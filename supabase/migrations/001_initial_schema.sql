@@ -1,7 +1,7 @@
 -- 001_initial_schema.sql
 -- CoachingSage V1 — Schéma initial (Epic 1 Foundation, Story 1.1a)
 -- Projet hébergé en région eu-central-1 (Frankfurt) — obligatoire RGPD NFR-S04
--- À appliquer dans : Supabase Dashboard → SQL Editor du projet `sagecoach-dev`
+-- À appliquer dans : Supabase Dashboard → SQL Editor du projet `coachingsage-dev`
 --
 -- Alignement avec les DTO Swift (CoachingSage/Services/DTOs/CoreProfileDTO.swift) :
 --   colonne is_soft_deleted (PAS is_deleted — leçon tirée du drift GardenSage migration 050).

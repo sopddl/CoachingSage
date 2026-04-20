@@ -4,7 +4,7 @@
 
 1. **Créer le projet Supabase** :
    - https://supabase.com/dashboard → New Project
-   - Name : `sagecoach-dev`
+   - Name : `coachingsage-dev`
    - Region : **EU (Frankfurt)** — obligatoire RGPD
    - Password : générer fort, stocker 1Password
 
@@ -28,7 +28,7 @@
 6. **Remplir les xcconfig locaux** :
    - Éditer `Config-Debug.xcconfig`, `Config-Staging.xcconfig`, `Config-Release.xcconfig`
    - Remplacer les placeholders par les vraies valeurs
-   - (Pour dev en local : Debug et Staging peuvent pointer vers `sagecoach-dev`, Release attend `sagecoach-prod` — à créer plus tard)
+   - (Pour dev en local : Debug et Staging peuvent pointer vers `coachingsage-dev`, Release attend `coachingsage-prod` — à créer plus tard)
 
 7. **Relancer l'app dans Xcode** :
    - Cmd+B puis Cmd+R
@@ -36,7 +36,7 @@
 
 ## Staging + Prod
 
-- `sagecoach-staging` : à créer avant la beta TestFlight
-- `sagecoach-prod` : à créer avant App Store release
+- `coachingsage-staging` : à créer avant la beta TestFlight
+- `coachingsage-prod` : à créer avant App Store release
 
 Chacun aura sa propre `001_initial_schema.sql` appliquée via dashboard.
