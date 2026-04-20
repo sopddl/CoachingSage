@@ -7,16 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043F3AD5B9A9221ADF4D8ECD /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D14BBE0C4ED62CE64E0583 /* SupabaseService.swift */; };
+		0FB62706268DB90CC0FEE9EF /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54703AA569A5DF3C64122F0 /* PrimaryButtonStyle.swift */; };
+		295A45B77A257CC37867C33C /* Font+Coaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853EC636E8FC829E84AE2F8C /* Font+Coaching.swift */; };
 		3036CC0F771D2EE4F0148333 /* CoachingSageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996ACBB1413DB2AEDAEABD09 /* CoachingSageApp.swift */; };
+		400002C5E5134C01E60F2F64 /* Color+Coaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5103E796106AED5FE07D891C /* Color+Coaching.swift */; };
+		473CFBD55514A3D7F16A8692 /* CoreProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C795F3D7C4B0D0010E47E0FC /* CoreProfileRepository.swift */; };
 		4D0C40DA7AA71C529DD78BC4 /* CoachingSageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E5560C4D3A9B8C5694D8DB /* CoachingSageUITests.swift */; };
+		519D48190BC092F5D8B498F8 /* NotificationPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977B581BCC54654D261CFCE2 /* NotificationPreferences.swift */; };
+		60611C6FDD8493F3EC29044F /* DefaultCoreProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA55024C693442B9733FAD1F /* DefaultCoreProfileRepository.swift */; };
 		63AFBA0CF7030D1A2DA8B28A /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 4FAC1159ED8687BBF9FB176C /* PostgREST */; };
 		7055F12DDF651AE659A6C63B /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8C550ECF6B5EE55503850168 /* Supabase */; };
 		8052B19196DBBCAB04E35AC4 /* CoachingSageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748D86D983DE72D41A9DCC8 /* CoachingSageTests.swift */; };
 		835598B98FDA185AF124604E /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = DC9E798329CB4B58A36EB835 /* Auth */; };
+		83CD7D845AF35A2C051BF250 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D7C33CFE4977F4BDB7035 /* AuthView.swift */; };
+		8A864EC473867A3659A61AB8 /* CoreProfileDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECA89A91146FD3FC5486BFB /* CoreProfileDTO.swift */; };
+		8F19906C558D486B4DFB6FC7 /* SageCoreProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75229FDF1730BFAB470F33E /* SageCoreProfile.swift */; };
 		9266674344C255E0270AD787 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 387E901F3003338D1D455F57 /* Storage */; };
 		955C8C71D466E4B29E07BB4E /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 425DD5A4004D8904AF335FC0 /* Realtime */; };
+		9ED08CDB8B6AD2C48A98ADAC /* PendingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8474B16A1085DC583F637 /* PendingOperation.swift */; };
+		A0684D2705A4C792249C4465 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242338C6A253BA0C07D92BE7 /* AuthViewModel.swift */; };
+		AA9634DD1A4190D25D9C37D3 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BFA8B7A260C833D10ECE0D /* SignInWithAppleButton.swift */; };
+		AFF8F953167F6A3E34F9A594 /* CoachingRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B298A62312506D41778AB2 /* CoachingRadius.swift */; };
 		B9040BECBA01FF832AF49020 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 55602A83122E41C314502A6E /* Functions */; };
 		EA772B264DE38876B5918EC1 /* SageCore in Frameworks */ = {isa = PBXBuildFile; productRef = D50DFFCB3B420D5A254989C7 /* SageCore */; };
+		F03495EF5B63C09F83524E05 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567401E3501A58FD3263A9D6 /* AuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,11 +52,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		242338C6A253BA0C07D92BE7 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		3B1D7C33CFE4977F4BDB7035 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		5103E796106AED5FE07D891C /* Color+Coaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Coaching.swift"; sourceTree = "<group>"; };
+		567401E3501A58FD3263A9D6 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		59B298A62312506D41778AB2 /* CoachingRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingRadius.swift; sourceTree = "<group>"; };
 		6DBB134FE9E01E10EA66716D /* CoachingSage.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CoachingSage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E5E3F83216C1E86CF0D3DF5 /* CoachingSageUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CoachingSageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		853EC636E8FC829E84AE2F8C /* Font+Coaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Coaching.swift"; sourceTree = "<group>"; };
 		87E5560C4D3A9B8C5694D8DB /* CoachingSageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingSageUITests.swift; sourceTree = "<group>"; };
+		89BFA8B7A260C833D10ECE0D /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
+		8FA8474B16A1085DC583F637 /* PendingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOperation.swift; sourceTree = "<group>"; };
+		977B581BCC54654D261CFCE2 /* NotificationPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreferences.swift; sourceTree = "<group>"; };
 		97DD16261E5B3C2722098D12 /* CoachingSageTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CoachingSageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		996ACBB1413DB2AEDAEABD09 /* CoachingSageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingSageApp.swift; sourceTree = "<group>"; };
+		A3D14BBE0C4ED62CE64E0583 /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
+		A54703AA569A5DF3C64122F0 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		AECA89A91146FD3FC5486BFB /* CoreProfileDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreProfileDTO.swift; sourceTree = "<group>"; };
+		B75229FDF1730BFAB470F33E /* SageCoreProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SageCoreProfile.swift; sourceTree = "<group>"; };
+		BA55024C693442B9733FAD1F /* DefaultCoreProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCoreProfileRepository.swift; sourceTree = "<group>"; };
+		C795F3D7C4B0D0010E47E0FC /* CoreProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreProfileRepository.swift; sourceTree = "<group>"; };
 		D748D86D983DE72D41A9DCC8 /* CoachingSageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingSageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +96,7 @@
 		0F89A9304D5342059C8A310C /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				C795F3D7C4B0D0010E47E0FC /* CoreProfileRepository.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -122,6 +153,9 @@
 			isa = PBXGroup;
 			children = (
 				FEDF933B9C803CE7E4185DB8 /* Schema */,
+				977B581BCC54654D261CFCE2 /* NotificationPreferences.swift */,
+				8FA8474B16A1085DC583F637 /* PendingOperation.swift */,
+				B75229FDF1730BFAB470F33E /* SageCoreProfile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,6 +163,10 @@
 		927B495063AD203B4B90FC27 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				FB3506D1C554C44E0E3469D2 /* ViewModifiers */,
+				59B298A62312506D41778AB2 /* CoachingRadius.swift */,
+				5103E796106AED5FE07D891C /* Color+Coaching.swift */,
+				853EC636E8FC829E84AE2F8C /* Font+Coaching.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -143,6 +181,8 @@
 		B438B582BAAAA9AA62A4E719 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				3B1D7C33CFE4977F4BDB7035 /* AuthView.swift */,
+				89BFA8B7A260C833D10ECE0D /* SignInWithAppleButton.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -150,6 +190,7 @@
 		CA03083CDCCFF25B86D0D6A9 /* Implementations */ = {
 			isa = PBXGroup;
 			children = (
+				BA55024C693442B9733FAD1F /* DefaultCoreProfileRepository.swift */,
 			);
 			path = Implementations;
 			sourceTree = "<group>";
@@ -166,6 +207,7 @@
 		D10F795AA666C45173A42133 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				242338C6A253BA0C07D92BE7 /* AuthViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -173,6 +215,7 @@
 		DE794D9D6B1BB4539210482F /* DTOs */ = {
 			isa = PBXGroup;
 			children = (
+				AECA89A91146FD3FC5486BFB /* CoreProfileDTO.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -208,8 +251,18 @@
 			isa = PBXGroup;
 			children = (
 				DE794D9D6B1BB4539210482F /* DTOs */,
+				567401E3501A58FD3263A9D6 /* AuthService.swift */,
+				A3D14BBE0C4ED62CE64E0583 /* SupabaseService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		FB3506D1C554C44E0E3469D2 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				A54703AA569A5DF3C64122F0 /* PrimaryButtonStyle.swift */,
+			);
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 		FEDF933B9C803CE7E4185DB8 /* Schema */ = {
@@ -335,7 +388,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F03495EF5B63C09F83524E05 /* AuthService.swift in Sources */,
+				83CD7D845AF35A2C051BF250 /* AuthView.swift in Sources */,
+				A0684D2705A4C792249C4465 /* AuthViewModel.swift in Sources */,
+				AFF8F953167F6A3E34F9A594 /* CoachingRadius.swift in Sources */,
 				3036CC0F771D2EE4F0148333 /* CoachingSageApp.swift in Sources */,
+				400002C5E5134C01E60F2F64 /* Color+Coaching.swift in Sources */,
+				8A864EC473867A3659A61AB8 /* CoreProfileDTO.swift in Sources */,
+				473CFBD55514A3D7F16A8692 /* CoreProfileRepository.swift in Sources */,
+				60611C6FDD8493F3EC29044F /* DefaultCoreProfileRepository.swift in Sources */,
+				295A45B77A257CC37867C33C /* Font+Coaching.swift in Sources */,
+				519D48190BC092F5D8B498F8 /* NotificationPreferences.swift in Sources */,
+				9ED08CDB8B6AD2C48A98ADAC /* PendingOperation.swift in Sources */,
+				0FB62706268DB90CC0FEE9EF /* PrimaryButtonStyle.swift in Sources */,
+				8F19906C558D486B4DFB6FC7 /* SageCoreProfile.swift in Sources */,
+				AA9634DD1A4190D25D9C37D3 /* SignInWithAppleButton.swift in Sources */,
+				043F3AD5B9A9221ADF4D8ECD /* SupabaseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
