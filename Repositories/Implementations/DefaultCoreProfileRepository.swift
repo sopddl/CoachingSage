@@ -133,7 +133,7 @@ final class DefaultCoreProfileRepository: CoreProfileRepository {
             try await SupabaseService.shared.client
                 .from("core_profiles")
                 .update([
-                    "is_deleted": "true",
+                    "is_soft_deleted": "true",
                     "deleted_at": formatter.string(from: now),
                     "updated_at": formatter.string(from: now)
                 ])
