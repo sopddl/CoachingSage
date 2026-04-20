@@ -41,5 +41,5 @@ __pycache__/
 .venv/
 venv/
 
-# XcodeGen — le project.yml est versionné, le .xcodeproj généré NE l'est PAS (source of truth = project.yml)
-CoachingSage.xcodeproj/
+# XcodeGen : project.yml sert UNIQUEMENT au bootstrap initial.
+# Le .xcodeproj EST versionné (cohérent avec GardenSage/TailorSage, éditable via Xcode).
