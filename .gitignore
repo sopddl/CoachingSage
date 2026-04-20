@@ -1,0 +1,45 @@
+# Xcode
+.DS_Store
+build/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+
+# Secrets — JAMAIS versionnés
+Config-Debug.xcconfig
+Config-Staging.xcconfig
+Config-Release.xcconfig
+.env
+**/.env
+**/.env.local
+**/.env.*.local
+scripts/.service_role_key*
+scripts/migration.log
+
+# SPM
+.build/
+Packages/
+*.swiftpm/xcode/*.xcscheme
+.swiftpm/xcode/package.xcworkspace/
+
+# CocoaPods (non utilisé mais par sécurité)
+Pods/
+
+# Supabase CLI
+supabase/.temp/
+
+# Claude Code local settings
+.claude/
+
+# Snapshot testing — garder __Snapshots__/ versionné, ignorer les diffs d'échec
+**/FailureDiffs/
+*.xcresult
+
+# Python (Spike scripts éventuels)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# XcodeGen — le project.yml est versionné, le .xcodeproj généré NE l'est PAS (source of truth = project.yml)
+CoachingSage.xcodeproj/

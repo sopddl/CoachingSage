@@ -1,0 +1,18 @@
+<!--
+  Ces clés DOIVENT être ajoutées au Info.plist du projet GPSSpike.
+  Sans elles, l'app crashera quand elle demande l'autorisation localisation.
+-->
+
+<!-- Demande d'accès à la localisation pendant l'utilisation -->
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>GPSSpike a besoin d'accéder à votre position pour valider le tracking GPS background du futur app CoachingSage.</string>
+
+<!-- Demande d'accès à la localisation toujours (pour le test background) -->
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>GPSSpike a besoin d'un accès continu à votre position pour valider le tracking GPS en arrière-plan, comme une vraie séance de course/marche enregistrée par CoachingSage.</string>
+
+<!-- Capabilities → Background Modes → cocher "Location updates" qui ajoute automatiquement : -->
+<key>UIBackgroundModes</key>
+<array>
+    <string>location</string>
+</array>

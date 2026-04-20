@@ -1,0 +1,1002 @@
+{
+  "id": "running-avance-semi-marathon-12sem",
+  "schema_version": 1,
+  "sport": "running",
+  "level": "avance",
+  "name": "Semi-marathon — 12 semaines pour performer sur 21,1 km",
+  "duration_weeks": 12,
+  "sessions_per_week": 4,
+  "default_objective": "Terminer un semi-marathon (21,1 km) en continu avec objectif de temps personnel, ciblant une fourchette 1h45-2h00 selon le profil (allure 5:00-5:40 min/km).",
+  "assumed_profile": "Coureur confirmé capable de courir 10 km en 50-60 min sans s'arrêter, pratique régulière 3×/sem depuis au moins 6 mois. Connait la notion de seuil aérobie, a déjà couru des sorties longues de 12-14 km. Équipé d'une montre GPS ou chronomètre, chaussures de running en bon état (< 600 km). Pas de blessure active. Accès à terrain plat ou légèrement vallonné pour les séances de fractionné.",
+  "summary": "Plan semi-marathon avancé sur 12 semaines, 4 séances/semaine (sortie longue, tempo/seuil, VO2max/intervalles, renforcement-préventif). Volume hebdo croissant de 40 km (W1) à 55 km (pic W10), avec deux semaines cutback (W4 et W8). Chaque semaine intègre : 1 sortie longue progressive (de 14 km en W1 à 25 km au pic), 1 séance seuil (allure 10K cible + 20-30 s/km, 20-40 min continu), 1 séance VO2max (intervalles 400-1000 m à allure 5K), 1 renforcement préventif (nordic curl, single-leg squat, gainage, abducteurs). Semaine de taper W11-W12 pour arriver frais au départ. Cibles d'allure chiffrées basées sur un 10K en 55 min (allure 5:30 min/km) : allure semi cible 5:05-5:20 min/km, allure seuil 5:00-5:10 min/km, allure VO2max 4:30-4:40 min/km (allure 5K).",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Entrée en matière — établir les bases",
+      "goal": "Poser les quatre types de séance du plan. Volume hebdo : ~40 km. Sortie longue 14 km à allure confortable (6:00-6:30 min/km). Première séance seuil douce : 2×10 min à allure seuil (5:00-5:10 min/km). Premier fractionné VO2max léger : 6×400 m à allure 5K (4:30-4:40 min/km).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie endurance — 10 km",
+          "duration_minutes": 65,
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing très lent (Z1). Rotations chevilles 10/sens, balancés de jambe 10/jambe, hanches 10 cercles.",
+          "exercises": [
+            {
+              "name": "Course endurance fondamentale",
+              "sets": 1,
+              "duration": "55 min",
+              "rest_seconds": 0,
+              "notes": "Allure endurance fondamentale : 6:00-6:30 min/km (Zone 2, tu peux parler en phrases complètes). Distance cible ~9-10 km. C'est une séance de construction de base aérobie, ne pas forcer."
+            }
+          ],
+          "cooldown": "5 min marche lente. Étirements statiques : mollets 40 sec/jambe, ischio-jambiers 40 sec/jambe, quadriceps 30 sec/jambe, piriformis 30 sec/côté. Hydratation."
+        },
+        {
+          "day": 3,
+          "name": "Fractionné VO2max — 6×400 m",
+          "duration_minutes": 55,
+          "type": "interval",
+          "warmup": "10 min footing facile (Z1-Z2) + 4 accélérations progressives de 80 m (strides) pour activer les fibres rapides. Total échauffement : 15 min.",
+          "exercises": [
+            {
+              "name": "Intervalles 400 m",
+              "sets": 6,
+              "duration": "400 m à allure 5K",
+              "rest_seconds": 90,
+              "notes": "Allure cible : 4:30-4:40 min/km (allure 5K). Repos : 90 sec marche active entre chaque. Sensation : essoufflement marqué, dernier 100 m difficile mais tenable. Si allure impossible à tenir, revoir à la baisse plutôt que sacrifier la forme. RPE 8-9 sur les intervalles."
+            }
+          ],
+          "cooldown": "10 min footing léger (Z1) + étirements 5 min. Ne pas s'arrêter brutalement."
+        },
+        {
+          "day": 5,
+          "name": "Séance seuil — 2×10 min",
+          "duration_minutes": 55,
+          "type": "interval",
+          "warmup": "12 min footing progressif (Z1 → Z2) + 3 strides 60 m. Total : 15 min.",
+          "exercises": [
+            {
+              "name": "Blocs seuil 10 min",
+              "sets": 2,
+              "duration": "10 min à allure seuil",
+              "rest_seconds": 180,
+              "notes": "Allure seuil : 5:00-5:10 min/km (allure 10K cible + 20-30 s/km). Respiration rythmée, phrases courtes possibles. Sensation : effort soutenu mais contrôlé, RPE 7-8. Récupération 3 min trot lent entre blocs."
+            }
+          ],
+          "cooldown": "10 min footing très léger + étirements ischio-jambiers, mollets 5 min."
+        },
+        {
+          "day": 7,
+          "name": "Renforcement préventif — fondations avancé",
+          "duration_minutes": 45,
+          "type": "strength",
+          "warmup": "8 min marche rapide + 10 cercles hanches/sens + 10 squats poids corps lents.",
+          "exercises": [
+            {
+              "name": "Nordic curl (ou partner hamstring curl)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 90,
+              "notes": "Agenouillé, partenaire tient les chevilles (ou pieds calés sous canapé/barre basse). Descente lente en 4 sec, contrôlée. Freine la descente au maximum, aide-toi des mains pour remonter. Prévention majeure des tendinites ischio-jambières chez le coureur intermédiaire/avancé."
+            },
+            {
+              "name": "Single-leg squat (pistol squat assisté)",
+              "sets": 3,
+              "reps": "6 par jambe",
+              "rest_seconds": 60,
+              "notes": "Debout sur une jambe, autre jambe tendue devant, descente contrôlée vers une chaise/box. Renforce le quad, fessier et stabilisateurs de hanche. Détecte les asymétries G/D."
+            },
+            {
+              "name": "Calf raises excentriques sur marche",
+              "sets": 3,
+              "reps": "12 par jambe",
+              "rest_seconds": 45,
+              "notes": "Monter bipodal, descendre unipodal en 3-4 sec. Amplitude complète (talon sous la marche). Protection tendon d'Achille et mollet."
+            },
+            {
+              "name": "Clamshell avec bande élastique",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 40,
+              "notes": "Bande autour des genoux. Ouvre le genou du dessus sans bouger le bassin. Prévention ITBS et stabilisation hanche. Obligatoire en début de plan."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "45 sec",
+              "rest_seconds": 45,
+              "notes": "Corps aligné, gainage actif. Core en fin de séance pour ne pas pré-fatiguer les stabilisateurs."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "notes": "Bras opposé + jambe opposée, tenir 2 sec. Core profond et anti-rotation lombaire."
+            }
+          ],
+          "cooldown": "Étirements 8 min : mollets, ischio, quadriceps, fessiers, piriformis."
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Construction progressive — monter le seuil",
+      "goal": "Volume hebdo : ~43 km (+8% vs W1). Sortie longue 16 km. Seuil : 3×8 min. VO2max : 6×600 m.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie endurance — 11 km",
+          "duration_minutes": 70,
+          "type": "endurance",
+          "warmup": "Échauffement standard 10 min (marche + footing Z1).",
+          "exercises": [
+            {
+              "name": "Course endurance fondamentale",
+              "sets": 1,
+              "duration": "60 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:30 min/km, Zone 2 stable. ~11 km. Augmentation modeste par rapport à W1."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 7 min."
+        },
+        {
+          "day": 3,
+          "name": "Fractionné VO2max — 6×600 m",
+          "duration_minutes": 60,
+          "type": "interval",
+          "warmup": "12 min footing progressif + 4 strides 80 m.",
+          "exercises": [
+            {
+              "name": "Intervalles 600 m",
+              "sets": 6,
+              "duration": "600 m à allure 5K",
+              "rest_seconds": 120,
+              "notes": "Allure : 4:30-4:40 min/km. Récupération 2 min trot entre répétitions. Volume VO2max légèrement augmenté vs W1 (400→600 m). RPE 8-9 sur chaque intervalle."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 5 min."
+        },
+        {
+          "day": 5,
+          "name": "Séance seuil — 3×8 min",
+          "duration_minutes": 60,
+          "type": "interval",
+          "warmup": "12 min footing progressif + 3 strides.",
+          "exercises": [
+            {
+              "name": "Blocs seuil 8 min",
+              "sets": 3,
+              "duration": "8 min à allure seuil",
+              "rest_seconds": 150,
+              "notes": "Allure seuil : 5:00-5:10 min/km. Repos 2 min 30 trot entre blocs. 3 blocs = 24 min total à seuil, progression vs 2×10 min W1 sur la durée cumulée."
+            }
+          ],
+          "cooldown": "10 min footing léger + étirements 5 min."
+        },
+        {
+          "day": 7,
+          "name": "Sortie longue — 16 km",
+          "duration_minutes": 105,
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing très lent.",
+          "exercises": [
+            {
+              "name": "Sortie longue Z2",
+              "sets": 1,
+              "duration": "95 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:30 min/km, démo de confort. ~15-16 km. Stratégie nutrition : si > 75 min en chaleur ou été, gel ou boisson isotonique à 60 min. Hydratation toutes les 20 min."
+            }
+          ],
+          "cooldown": "8 min marche + étirements complets 10 min."
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Intensification seuil — 30 min continus",
+      "goal": "Volume hebdo : ~46 km (+7% vs W2). Premier bloc seuil de 30 min continus. VO2max : 8×400 m. Sortie longue 17 km.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie endurance — 12 km",
+          "duration_minutes": 75,
+          "type": "endurance",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Course endurance fondamentale",
+              "sets": 1,
+              "duration": "65 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:20 min/km. ~12 km. Terrain varié bienvenu pour habituer l'appareil locomoteur."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 7 min."
+        },
+        {
+          "day": 3,
+          "name": "Fractionné VO2max — 8×400 m",
+          "duration_minutes": 60,
+          "type": "interval",
+          "warmup": "12 min footing progressif + 4 strides.",
+          "exercises": [
+            {
+              "name": "Intervalles 400 m",
+              "sets": 8,
+              "duration": "400 m à allure 5K",
+              "rest_seconds": 90,
+              "notes": "Allure : 4:30-4:40 min/km. Repos 90 sec marche/trot. Volume accru (8 répétitions) mais distance unitaire repassée à 400 m pour maintenir la qualité. RPE 8-9."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 5 min."
+        },
+        {
+          "day": 5,
+          "name": "Tempo run — 30 min continu au seuil",
+          "duration_minutes": 60,
+          "type": "endurance",
+          "warmup": "15 min footing progressif (Z1 → Z2 → début Z3).",
+          "exercises": [
+            {
+              "name": "Tempo continu 30 min",
+              "sets": 1,
+              "duration": "30 min à allure seuil",
+              "rest_seconds": 0,
+              "notes": "Allure seuil : 5:00-5:10 min/km. 30 min CONTINUS sans pause (vs blocs courts W1-W2). C'est la pierre angulaire du demi-marathon : capacité à tenir son allure en continu. RPE 7-8 stable. Si ça dérive au-delà de 5:15, c'est que l'allure était trop ambitieuse cette semaine."
+            }
+          ],
+          "cooldown": "10 min footing très léger + étirements 8 min ischio + mollets."
+        },
+        {
+          "day": 7,
+          "name": "Sortie longue — 17 km",
+          "duration_minutes": 110,
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing Z1.",
+          "exercises": [
+            {
+              "name": "Sortie longue Z2",
+              "sets": 1,
+              "duration": "100 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:30 min/km. ~17 km. Pratiquer la stratégie de ravitaillement : eau et gel si > 80 min. Ne pas dépasser Z2 même en fin de sortie."
+            }
+          ],
+          "cooldown": "8 min marche + étirements complets 10 min."
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Cutback W4 — consolidation",
+      "goal": "Semaine allégée : volume -15% vs W3 (~39 km). Pas de nouvelle intensité, consolidation des adaptations. Renforcement maintenu. Sortie longue réduite à 14 km.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie endurance légère — 9 km",
+          "duration_minutes": 60,
+          "type": "endurance",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Course endurance fondamentale légère",
+              "sets": 1,
+              "duration": "50 min",
+              "rest_seconds": 0,
+              "notes": "Allure détendue 6:10-6:40 min/km. ~9 km. Séance de récupération active, rester en Zone 1-2 strict. Semaine cutback = les adaptations se consolident, ne pas sauter."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 6 min."
+        },
+        {
+          "day": 3,
+          "name": "Fractionné réduit — 5×400 m",
+          "duration_minutes": 50,
+          "type": "interval",
+          "warmup": "12 min footing progressif + 3 strides.",
+          "exercises": [
+            {
+              "name": "Intervalles 400 m cutback",
+              "sets": 5,
+              "duration": "400 m à allure 5K",
+              "rest_seconds": 90,
+              "notes": "Allure : 4:30-4:40 min/km. Volume réduit (5 au lieu de 8). Maintenir la qualité sans accumuler de fatigue. RPE 8-9 sur chaque."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 5 min."
+        },
+        {
+          "day": 5,
+          "name": "Tempo réduit — 20 min",
+          "duration_minutes": 50,
+          "type": "endurance",
+          "warmup": "12 min footing progressif.",
+          "exercises": [
+            {
+              "name": "Tempo continu 20 min",
+              "sets": 1,
+              "duration": "20 min à allure seuil",
+              "rest_seconds": 0,
+              "notes": "Allure seuil : 5:00-5:10 min/km. 20 min (vs 30 min W3). Semaine cutback : maintenir la vitesse, réduire le volume."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 6 min."
+        },
+        {
+          "day": 7,
+          "name": "Sortie longue cutback — 14 km",
+          "duration_minutes": 90,
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing Z1.",
+          "exercises": [
+            {
+              "name": "Sortie longue Z2 cutback",
+              "sets": 1,
+              "duration": "80 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:30 min/km. ~13-14 km. Sortie longue réduite vs W3. Profiter pour tester ta stratégie nutrition sur une sortie < 90 min. Renforcement préventif : calf raises excentriques 3×10 par jambe à faire après la séance (5 min)."
+            }
+          ],
+          "cooldown": "8 min marche + étirements 10 min + 3×10 calf raises excentriques par jambe."
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Bloc montant — intervalles 1000 m",
+      "goal": "Volume hebdo : ~47 km (+20% vs W4). Introduction des intervalles 1000 m VO2max. Seuil : 2×15 min. Sortie longue 18 km.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie endurance — 12 km",
+          "duration_minutes": 75,
+          "type": "endurance",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Course endurance fondamentale",
+              "sets": 1,
+              "duration": "65 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:20 min/km. ~12 km. Reprise de volume après la cutback W4 — le corps est reposé, ne pas se laisser emporter dans la séance."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 7 min."
+        },
+        {
+          "day": 3,
+          "name": "Fractionné VO2max — 5×1000 m",
+          "duration_minutes": 65,
+          "type": "interval",
+          "warmup": "15 min footing progressif + 4 strides 80 m.",
+          "exercises": [
+            {
+              "name": "Intervalles 1000 m",
+              "sets": 5,
+              "duration": "1000 m à allure 5K",
+              "rest_seconds": 150,
+              "notes": "Allure : 4:30-4:40 min/km (soit environ 4 min 30 par 1000 m). Repos 2 min 30 trot entre chaque. Introduction du 1000 m : chaque répétition dure ~4 min 30, plus exigeant métaboliquement. RPE 8-9. Si impossible à tenir la dernière, s'arrêter à 4 répétitions."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 6 min."
+        },
+        {
+          "day": 5,
+          "name": "Séance seuil — 2×15 min",
+          "duration_minutes": 62,
+          "type": "interval",
+          "warmup": "12 min footing progressif + 3 strides.",
+          "exercises": [
+            {
+              "name": "Blocs seuil 15 min",
+              "sets": 2,
+              "duration": "15 min à allure seuil",
+              "rest_seconds": 180,
+              "notes": "Allure seuil : 5:00-5:10 min/km. Repos 3 min trot entre blocs. 30 min totaux à seuil, format alternatif au tempo continu W3."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 7 min."
+        },
+        {
+          "day": 7,
+          "name": "Sortie longue — 18 km",
+          "duration_minutes": 118,
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing Z1.",
+          "exercises": [
+            {
+              "name": "Sortie longue Z2",
+              "sets": 1,
+              "duration": "108 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:20 min/km. ~17-18 km. Au-delà de 90 min, ravitaillement obligatoire : 1 gel ou 150 ml boisson isotonique à 60 min, eau ad libitum. Tester les gels/boissons prévus pour la course."
+            }
+          ],
+          "cooldown": "8 min marche + étirements complets 10 min."
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Spécificité demi — allure course",
+      "goal": "Volume hebdo : ~50 km (+6% vs W5). Introduction des segments à allure semi-marathon cible (5:05-5:20 min/km). Sortie longue 19 km avec 8 km à allure semi.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie endurance — 12 km",
+          "duration_minutes": 75,
+          "type": "endurance",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Course endurance fondamentale",
+              "sets": 1,
+              "duration": "65 min",
+              "rest_seconds": 0,
+              "notes": "Allure 5:50-6:20 min/km. ~12 km. Séance récupérative active avant les séances qualitatives."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 7 min."
+        },
+        {
+          "day": 3,
+          "name": "Fractionné VO2max — 6×800 m",
+          "duration_minutes": 65,
+          "type": "interval",
+          "warmup": "15 min footing progressif + 4 strides.",
+          "exercises": [
+            {
+              "name": "Intervalles 800 m",
+              "sets": 6,
+              "duration": "800 m à allure 5K",
+              "rest_seconds": 120,
+              "notes": "Allure : 4:30-4:40 min/km. Repos 2 min trot entre chaque. Format 800 m : qualité/volume intermédiaire entre 400 m et 1000 m. RPE 8-9."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 6 min."
+        },
+        {
+          "day": 5,
+          "name": "Tempo + segments allure semi",
+          "duration_minutes": 65,
+          "type": "interval",
+          "warmup": "12 min footing progressif.",
+          "exercises": [
+            {
+              "name": "Segment tempo 15 min",
+              "sets": 1,
+              "duration": "15 min à allure seuil",
+              "rest_seconds": 180,
+              "notes": "Allure seuil : 5:00-5:10 min/km. RPE 7-8. Récupération 3 min trot."
+            },
+            {
+              "name": "Segments allure semi",
+              "sets": 3,
+              "duration": "5 min à allure semi cible",
+              "rest_seconds": 90,
+              "notes": "Allure semi cible : 5:05-5:20 min/km. Récupération 90 sec trot entre segments. Première exposition à l'allure de course réelle. RPE 7. Sensation : soutenu mais gérable longtemps."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 8 min."
+        },
+        {
+          "day": 7,
+          "name": "Sortie longue avec allure semi — 19 km",
+          "duration_minutes": 125,
+          "type": "mixed",
+          "warmup": "5 min marche + 5 min footing Z1.",
+          "exercises": [
+            {
+              "name": "Portion endurance Z2",
+              "sets": 1,
+              "duration": "60 min à allure endurance",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:20 min/km. ~10 km. Première partie de la sortie, s'économiser."
+            },
+            {
+              "name": "Portion allure semi cible",
+              "sets": 1,
+              "duration": "40 min à allure semi cible",
+              "rest_seconds": 0,
+              "notes": "Allure 5:05-5:20 min/km. ~8 km. La deuxième partie de la sortie longue à allure semi simule les conditions de course. C'est l'entraînement le plus spécifique du plan. RPE 7-8."
+            }
+          ],
+          "cooldown": "10 min marche + étirements complets 10 min + ravitaillement post-effort (glucides + protéines dans les 30 min)."
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "theme": "Volume pic approchant — 1000 m séries longues",
+      "goal": "Volume hebdo : ~52 km (+4% vs W6). VO2max : 6×1000 m. Tempo 35 min continu. Sortie longue 21 km.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie endurance — 13 km",
+          "duration_minutes": 80,
+          "type": "endurance",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Course endurance fondamentale",
+              "sets": 1,
+              "duration": "70 min",
+              "rest_seconds": 0,
+              "notes": "Allure 5:50-6:20 min/km. ~13 km. Séance de récupération active. Surveiller les premiers signes de fatigue accumulée (FC repos, qualité du sommeil)."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 7 min."
+        },
+        {
+          "day": 3,
+          "name": "Fractionné VO2max — 6×1000 m",
+          "duration_minutes": 75,
+          "type": "interval",
+          "warmup": "15 min footing progressif + 4 strides.",
+          "exercises": [
+            {
+              "name": "Intervalles 1000 m",
+              "sets": 6,
+              "duration": "1000 m à allure 5K",
+              "rest_seconds": 150,
+              "notes": "Allure : 4:30-4:40 min/km. Repos 2 min 30 trot. 6 répétitions = volume VO2max pic du plan. RPE 8-9. Si la 5e ou 6e dérive au-delà de 4:50 min/km, stopper à 5 répétitions."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 6 min."
+        },
+        {
+          "day": 5,
+          "name": "Tempo run — 35 min continu",
+          "duration_minutes": 65,
+          "type": "endurance",
+          "warmup": "15 min footing progressif.",
+          "exercises": [
+            {
+              "name": "Tempo continu 35 min",
+              "sets": 1,
+              "duration": "35 min à allure seuil",
+              "rest_seconds": 0,
+              "notes": "Allure seuil : 5:00-5:10 min/km. 35 min CONTINUS = pic seuil du plan (ACSM recommande 20-40 min pour le seuil). RPE 7-8 stable. Ne pas démmarrer trop vite : les 5 premières minutes servent à caler l'allure."
+            }
+          ],
+          "cooldown": "12 min footing léger + étirements 8 min."
+        },
+        {
+          "day": 7,
+          "name": "Sortie longue — 21 km",
+          "duration_minutes": 135,
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing Z1.",
+          "exercises": [
+            {
+              "name": "Sortie longue Z2",
+              "sets": 1,
+              "duration": "125 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:20 min/km. ~21 km (= distance du semi-marathon !). Première sortie égale à la distance cible. Stratégie nutrition : gel à 60 min, gel à 100 min, eau toutes les 20 min. Rester en Z2, ne pas courir plus vite malgré l'euphorie de la distance. C'est un test de résistance, pas de vitesse."
+            }
+          ],
+          "cooldown": "10 min marche + étirements complets 12 min."
+        }
+      ]
+    },
+    {
+      "week_number": 8,
+      "theme": "Cutback W8 — consolidation et régénération",
+      "goal": "Semaine allégée : volume -15% vs W7 (~44 km). Renforcement préventif maintenu. Sortie longue réduite 16 km. Consolider les adaptations accumulées.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie endurance légère — 10 km",
+          "duration_minutes": 65,
+          "type": "endurance",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Course endurance fondamentale légère",
+              "sets": 1,
+              "duration": "55 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:10-6:40 min/km. ~10 km. Séance facile, rester en Zone 1-2 strict. Le corps récupère et consolide les gains de W7."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 7 min."
+        },
+        {
+          "day": 3,
+          "name": "Fractionné réduit — 5×800 m",
+          "duration_minutes": 55,
+          "type": "interval",
+          "warmup": "12 min footing progressif + 3 strides.",
+          "exercises": [
+            {
+              "name": "Intervalles 800 m cutback",
+              "sets": 5,
+              "duration": "800 m à allure 5K",
+              "rest_seconds": 120,
+              "notes": "Allure : 4:30-4:40 min/km. Volume réduit (5 répétitions). Maintenir l'acuité neuromusculaire sans accumuler de fatigue. RPE 8-9."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 5 min."
+        },
+        {
+          "day": 5,
+          "name": "Tempo réduit — 20 min + renforcement",
+          "duration_minutes": 65,
+          "type": "mixed",
+          "warmup": "12 min footing progressif.",
+          "exercises": [
+            {
+              "name": "Tempo continu 20 min",
+              "sets": 1,
+              "duration": "20 min à allure seuil",
+              "rest_seconds": 0,
+              "notes": "Allure seuil : 5:00-5:10 min/km. 20 min (vs 35 min W7). Cutback du volume tempo."
+            }
+          ],
+          "cooldown": "8 min footing Z1 + 3×8 nordic curl + 3×10 single-leg squat par jambe + étirements 8 min. Renforcement préventif de maintien intégré au cooldown."
+        },
+        {
+          "day": 7,
+          "name": "Sortie longue cutback — 16 km",
+          "duration_minutes": 105,
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing Z1.",
+          "exercises": [
+            {
+              "name": "Sortie longue Z2 cutback",
+              "sets": 1,
+              "duration": "95 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:30 min/km. ~15-16 km. Sortie allégée. Profiter pour peaufiner la stratégie de ravitaillement et le ressenti à l'allure semi sur les 5 derniers kilomètres."
+            }
+          ],
+          "cooldown": "8 min marche + étirements complets 10 min."
+        }
+      ]
+    },
+    {
+      "week_number": 9,
+      "theme": "Volume pic — charge maximale",
+      "goal": "Volume hebdo : ~55 km (pic du plan, +25% vs W8 cutback). Sortie longue 23 km. Tempo 35 min. VO2max : 6×1000 m.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie endurance — 13 km",
+          "duration_minutes": 82,
+          "type": "endurance",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Course endurance fondamentale",
+              "sets": 1,
+              "duration": "72 min",
+              "rest_seconds": 0,
+              "notes": "Allure 5:50-6:10 min/km. ~13 km. Légère accélération de l'allure fondamentale (signe d'adaptation). Rester en conversation."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 7 min."
+        },
+        {
+          "day": 3,
+          "name": "Fractionné VO2max — 6×1000 m",
+          "duration_minutes": 75,
+          "type": "interval",
+          "warmup": "15 min footing progressif + 4 strides.",
+          "exercises": [
+            {
+              "name": "Intervalles 1000 m",
+              "sets": 6,
+              "duration": "1000 m à allure 5K",
+              "rest_seconds": 150,
+              "notes": "Allure : 4:30-4:40 min/km. Repos 2 min 30 trot. Même volume que W7 — la progression vient du contexte de charge totale de la semaine. RPE 8-9."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 6 min."
+        },
+        {
+          "day": 5,
+          "name": "Tempo run — 35 min continu",
+          "duration_minutes": 65,
+          "type": "endurance",
+          "warmup": "15 min footing progressif.",
+          "exercises": [
+            {
+              "name": "Tempo continu 35 min",
+              "sets": 1,
+              "duration": "35 min à allure seuil",
+              "rest_seconds": 0,
+              "notes": "Allure seuil : 5:00-5:10 min/km. Pic du volume seuil, même durée que W7 mais dans un contexte de volume total hebdo plus élevé. RPE 7-8 constant."
+            }
+          ],
+          "cooldown": "12 min footing léger + étirements 8 min."
+        },
+        {
+          "day": 7,
+          "name": "Sortie longue pic — 23 km",
+          "duration_minutes": 148,
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing Z1.",
+          "exercises": [
+            {
+              "name": "Sortie longue Z2 pic",
+              "sets": 1,
+              "duration": "138 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:20 min/km. ~23 km = 109% de la distance semi. Pic du plan en sortie longue. Stratégie nutrition : gel à 60 min, gel à 100 min, gel à 130 min, eau toutes les 15-20 min. Tester l'alimentation et la tenue de l'allure sur les 3 derniers km."
+            }
+          ],
+          "cooldown": "10 min marche + étirements complets 12 min + collation 30 min post-effort."
+        }
+      ]
+    },
+    {
+      "week_number": 10,
+      "theme": "Maintien de pointe — consolidation haute intensité",
+      "goal": "Volume hebdo : ~52 km (-5% vs W9, légère réduction amorce du taper). Maintenir les qualités. Sortie longue 21 km avec 10 km à allure semi.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie endurance — 12 km",
+          "duration_minutes": 75,
+          "type": "endurance",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Course endurance fondamentale",
+              "sets": 1,
+              "duration": "65 min",
+              "rest_seconds": 0,
+              "notes": "Allure 5:50-6:10 min/km. ~12 km. Première semaine d'amorce du taper, baisser légèrement le volume général."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 7 min."
+        },
+        {
+          "day": 3,
+          "name": "Fractionné VO2max — 5×1000 m",
+          "duration_minutes": 68,
+          "type": "interval",
+          "warmup": "15 min footing progressif + 4 strides.",
+          "exercises": [
+            {
+              "name": "Intervalles 1000 m",
+              "sets": 5,
+              "duration": "1000 m à allure 5K",
+              "rest_seconds": 150,
+              "notes": "Allure : 4:30-4:40 min/km. 5 répétitions (vs 6 en W9). Début de réduction du volume VO2max. Qualité primordiale sur quantité."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 6 min."
+        },
+        {
+          "day": 5,
+          "name": "Tempo 25 min + strides allure semi",
+          "duration_minutes": 65,
+          "type": "interval",
+          "warmup": "12 min footing progressif.",
+          "exercises": [
+            {
+              "name": "Tempo continu 25 min",
+              "sets": 1,
+              "duration": "25 min à allure seuil",
+              "rest_seconds": 180,
+              "notes": "Allure seuil : 5:00-5:10 min/km. Volume réduit (25 min vs 35 min). Récupération 3 min trot."
+            },
+            {
+              "name": "Strides allure semi",
+              "sets": 4,
+              "duration": "2 min à allure semi cible",
+              "rest_seconds": 90,
+              "notes": "Allure semi cible : 5:05-5:20 min/km. 4 segments de 2 min avec 90 sec trot. Rappel neuromusculaire de l'allure cible."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 8 min."
+        },
+        {
+          "day": 7,
+          "name": "Sortie longue avec allure semi — 21 km",
+          "duration_minutes": 135,
+          "type": "mixed",
+          "warmup": "5 min marche + 5 min footing Z1.",
+          "exercises": [
+            {
+              "name": "Portion endurance Z2",
+              "sets": 1,
+              "duration": "65 min à allure endurance",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:20 min/km. ~11 km. Première partie, rester frais pour la portion spécifique."
+            },
+            {
+              "name": "Portion allure semi cible",
+              "sets": 1,
+              "duration": "55 min à allure semi cible",
+              "rest_seconds": 0,
+              "notes": "Allure 5:05-5:20 min/km. ~10 km. La portion la plus longue à allure cible du plan. RPE 7-8. Simulation partielle de course. Confirme la viabilité de l'allure sur longue durée."
+            }
+          ],
+          "cooldown": "10 min marche + étirements complets 12 min."
+        }
+      ]
+    },
+    {
+      "week_number": 11,
+      "theme": "Taper — réduction progressive",
+      "goal": "Volume hebdo : ~38 km (-27% vs W10). Maintenir les stimuli de vitesse mais réduire fortement les volumes. Sortie longue 16 km. Les jambes doivent commencer à se sentir légères.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie endurance légère — 9 km",
+          "duration_minutes": 60,
+          "type": "endurance",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Course endurance taper",
+              "sets": 1,
+              "duration": "50 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:20 min/km. ~9 km. Taper = réduire pour supercompenser. Les jambes peuvent sembler lourdes en début de taper, c'est normal."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 6 min."
+        },
+        {
+          "day": 3,
+          "name": "Fractionné taper — 4×800 m",
+          "duration_minutes": 50,
+          "type": "interval",
+          "warmup": "12 min footing progressif + 4 strides.",
+          "exercises": [
+            {
+              "name": "Intervalles 800 m taper",
+              "sets": 4,
+              "duration": "800 m à allure 5K",
+              "rest_seconds": 120,
+              "notes": "Allure : 4:30-4:40 min/km. 4 répétitions. Maintenir la vitesse, réduire le volume. Garder les fibres rapides activées. RPE 8-9 toujours."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 5 min."
+        },
+        {
+          "day": 5,
+          "name": "Tempo taper — 20 min + segments semi",
+          "duration_minutes": 55,
+          "type": "interval",
+          "warmup": "12 min footing progressif.",
+          "exercises": [
+            {
+              "name": "Tempo continu 20 min",
+              "sets": 1,
+              "duration": "20 min à allure seuil",
+              "rest_seconds": 180,
+              "notes": "Allure seuil : 5:00-5:10 min/km. Volume réduit (20 min). Récupération 3 min trot."
+            },
+            {
+              "name": "Segments allure semi",
+              "sets": 3,
+              "duration": "3 min à allure semi cible",
+              "rest_seconds": 90,
+              "notes": "Allure 5:05-5:20 min/km. Rappel de l'allure cible à 1 semaine du D-day. Sensation : fluide, confortable, mécanique bien huilée."
+            }
+          ],
+          "cooldown": "10 min footing Z1 + étirements 7 min."
+        },
+        {
+          "day": 7,
+          "name": "Sortie longue taper — 16 km",
+          "duration_minutes": 100,
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing Z1.",
+          "exercises": [
+            {
+              "name": "Sortie longue Z2 taper",
+              "sets": 1,
+              "duration": "90 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:00-6:20 min/km. ~15-16 km. Dernière longue sortie avant la course. Pas de segment allure semi : conserver l'énergie. Confirmer le matériel de course : chaussures, tenue, gels, montre."
+            }
+          ],
+          "cooldown": "8 min marche + étirements complets 10 min."
+        }
+      ]
+    },
+    {
+      "week_number": 12,
+      "theme": "Race week — arriver frais, courir vite",
+      "goal": "Volume ultra-réduit (~20 km hors course). 3 séances légères d'activation avant la course. Checklist d'autonomie finale. Jour de course : 21,1 km.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Activation légère — 6 km",
+          "duration_minutes": 45,
+          "type": "endurance",
+          "warmup": "5 min marche + rotations articulaires douces 5 min.",
+          "exercises": [
+            {
+              "name": "Jogging d'activation",
+              "sets": 1,
+              "duration": "35 min",
+              "rest_seconds": 0,
+              "notes": "Allure très confortable 6:20-6:50 min/km. ~5-6 km. Garder les jambes actives sans les fatiguer. Pas d'effort, juste circuler le sang."
+            }
+          ],
+          "cooldown": "5 min marche + étirements légers 5 min."
+        },
+        {
+          "day": 3,
+          "name": "Strides et activation neuromusculaire",
+          "duration_minutes": 35,
+          "type": "mixed",
+          "warmup": "8 min footing très léger.",
+          "exercises": [
+            {
+              "name": "Footing léger",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Allure 6:10-6:30 min/km. Échauffement général."
+            },
+            {
+              "name": "Strides allure semi",
+              "sets": 4,
+              "duration": "90 sec à allure semi cible",
+              "rest_seconds": 120,
+              "notes": "Allure 5:05-5:20 min/km. 4 strides de 90 sec. Rappel final de l'allure cible. Sensation attendue : l'allure doit sembler facile — signe que le taper a fonctionné. Récupération 2 min marche entre chaque."
+            }
+          ],
+          "cooldown": "5 min marche + mobilité hanches et chevilles 5 min."
+        },
+        {
+          "day": 5,
+          "name": "Mobilité pré-course et préparation mentale",
+          "duration_minutes": 30,
+          "type": "mobility",
+          "warmup": null,
+          "exercises": [
+            {
+              "name": "Routine mobilité complète",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Cercles chevilles 15/sens, balancés de jambe avant/arrière et latéral 15/jambe, mobilisation hanche en fente basse 30 sec/côté, rotations thoraciques 10/sens. Aucune intensité, relâchement."
+            },
+            {
+              "name": "Checklist pré-course",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Vérification matériel : chaussures de course (< 600 km, pas de nouvelles chaussures le jour J), tenue testée à l'entraînement (pas de nouveauté), gels/boissons prévus (1 gel à 7 km, 1 gel à 14 km, eau aux ravitaillements), montre GPS chargée, dossard, objectif de temps et allure par km écrits sur le poignet ou mémorisés."
+            }
+          ],
+          "cooldown": "5 min respiration abdominale lente. Visualisation du parcours et de l'arrivée."
+        },
+        {
+          "day": 7,
+          "name": "COURSE — Semi-marathon 21,1 km",
+          "duration_minutes": 115,
+          "type": "endurance",
+          "warmup": "J-20 min : 8 min footing très lent + 4 strides progressifs de 60 m + rotations articulaires. Ne pas s'échauffer plus de 15 min pour conserver les réserves glycogène.",
+          "exercises": [
+            {
+              "name": "Semi-marathon 21,1 km",
+              "sets": 1,
+              "duration": "105-120 min selon objectif",
+              "rest_seconds": 0,
+              "notes": "Stratégie de course : partir à allure CONSERVATRICE les 5 premiers km (5:20-5:30 min/km), légèrement plus lente que l'objectif. Progresser vers l'allure cible (5:05-5:20 min/km) de 5 km à 18 km. Donner tout dans les 3 derniers km. Ne jamais partir plus vite que l'allure cible même si les jambes le permettent — la dette en km 15-18 est impitoyable. Ravitaillements : boire 150-200 ml à chaque poste de ravitaillement (ne pas attendre d'avoir soif). Gel à 7 km et à 14 km si prévu.\n\nCHECKLIST D'AUTONOMIE FINALE :\n1. Allure cible tenue : as-tu couru les km 5-18 à ton allure cible (5:05-5:20 min/km) sans déraper au-delà de 5:30 ?\n2. Gestion de l'effort : tu n'as pas eu de 'mur' brutal après le km 15, la fatigue était progressive et gérable ?\n3. Stratégie nutrition appliquée : as-tu pris tes gels aux km prévus et bu à chaque ravitaillement ?\n4. Terminé en force : les 3 derniers km étaient plus rapides que les km 5-15 (negative split ou même split) ?\n5. Autonomie future : tu es capable d'identifier ton allure semi sur 1 km à la sensation seule, sans regarder la montre ?"
+            }
+          ],
+          "cooldown": "Marche 10 min post-arrivée (ne pas s'arrêter brutalement). Étirements légers : mollets, quadriceps, ischio 3×40 sec. Ravitaillement : boisson isotonique + glucides + protéines dans les 30 min. Glace sur les genoux si nécessaire. Félicitations."
+        }
+      ]
+    }
+  ],
+  "safety_notes": "DRAPEAUX ROUGES À SURVEILLER (arrêter la séance, consulter si persistant > 1 semaine) :\n\n• Douleur derrière le genou irradiant dans la cuisse postérieure pendant ou après les intervalles (tendinite ischio-jambière) : risque majeur du coureur avancé qui intensifie le fractionné. Stop fractionnés, glace, repos 5-7 jours. Cause fréquente : volume d'intervalles augmenté trop vite, nordic curls absents de la routine. Les nordic curls du plan sont préventifs — ne pas les sauter.\n• Douleur face externe du genou (ITBS / syndrome de la bandelette ilio-tibiale) : fréquent à partir de 40-50 km/sem. Clamshells élastiques et single-leg squat du plan sont préventifs. Si douleur installée : repos 5 jours, massage transversal profond, foam roller TFL, avis kiné.\n• Douleur diffuse ou localisée sur le tibia antérieur (stress fracture tibiale) : risque du coureur avancé qui monte le volume trop vite. Douleur qui persiste au repos et la nuit = arrêt immédiat et consultation médicale. Radiographie ou IRM nécessaire. Ne pas confondre avec courbatures tibiales post-séance.\n• Douleur derrière le talon au réveil ou à la reprise après repos (tendinite d'Achille) : réduire volume 30%, calf raises excentriques thérapeutiques, glace 15 min 2×/jour, avis kiné si > 5 jours.\n• Douleur de genou (face antérieure = PFPS, genou du coureur) : vérifie le drop de tes chaussures, la cadence (viser 170-180 pas/min) et la présence de valgus dynamique (genoux qui rentrent au landing).\n• Fasciite plantaire : douleur sous le talon ou l'arche au premier pas le matin. Étirer l'arche plantaire et les mollets 2×/jour, changer de chaussures si > 600 km.\n\nRÈGLES GÉNÉRALES :\n• Chaussures avec amorti adapté, renouvelées tous les 600-800 km. Pas de chaussures neuves en course ou la semaine de la course.\n• Pattern hebdo : J1 endurance / J2 repos / J3 intervalles / J4 repos / J5 tempo / J6 repos ou mobilité / J7 sortie longue. Au moins 48h entre deux séances intenses (intervalles et tempo ne doivent pas être consécutifs).\n• Hydratation : 500 ml dans l'heure précédant les séances longues, 500 ml dans l'heure suivante. Boisson isotonique si sortie > 75 min ou chaleur.\n• Alimentation post-sortie longue : 40-60 g glucides + 20-25 g protéines dans les 30 min. Fenêtre anabolique critique après efforts > 90 min.\n• Échauffement NON optionnel sur les séances d'intervalles et de tempo : les fibres fast-twitch blessées à froid. Minimum 12-15 min d'échauffement progressif avant tout effort intense.\n• Sommeil : 7-9h/nuit. Le taper (W11-W12) augmente souvent l'anxiété et perturbe le sommeil — normal, ne pas s'en alarmer.\n\nINTENSITÉ (zones de référence basées sur 10K en 55 min / FCmax 185 bpm) :\n• Zone 1 récupération : < 65% FCmax / allure > 7:00 min/km\n• Zone 2 endurance fondamentale : 65-75% FCmax / allure 6:00-6:30 min/km (phrases complètes)\n• Zone 3 tempo / seuil : 75-85% FCmax / allure 5:00-5:10 min/km (phrases courtes)\n• Zone 4 seuil anaérobie : 85-90% FCmax / allure 4:45-5:00 min/km\n• Zone 5 VO2max : 90-95% FCmax / allure 4:30-4:40 min/km (intervalles)\n• Allure semi cible : 5:05-5:20 min/km soit entre Z2 haute et Z3 basse\n• Cadence cible : 178-185 pas/min. Augmenter la cadence de 5-10% réduit les forces d'impact de 15-20%.\n\nSIGNES DE SURCHARGE NEUROMUSCULAIRE (3+ signes simultanés → semaine allégée type cutback) :\n• FC de repos +8-10 bpm habituelle au réveil\n• Allure de footing « facile » dégradée de > 20 sec/km sans raison apparente\n• Courbatures persistantes > 72h dans les ischio-jambiers ou mollets\n• Sommeil dégradé > 3 nuits consécutives\n• Motivation effondrée pour les séances\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre là où tu en étais, sauter la séance manquée.\n• 1-2 semaines de pause : revenir à la semaine précédente du plan.\n• > 2 semaines de pause (hors taper) : reprendre 2 semaines en arrière dans le plan et réévaluer la date de course.\n• Si blessure : ne pas remplacer une séance de course par une séance de vélo ou natation sans avis médical — le croisement d'entraînement est utile mais ne remplace pas l'adaptation locomotrice spécifique.",
+  "progression_logic": "Progression construite sur 5 principes, alignés ACSM Running Position Statement, Hal Higdon Half Marathon Advanced, et NSCA :\n\n(1) RÈGLE DES 10% HEBDOMADAIRE : volume kilométrique augmente de 7-12% par semaine hors cutback. Volume hebdo approximatif (km cours) : W1 40 → W2 43 → W3 46 → W4 39 (cutback -15%) → W5 47 → W6 50 → W7 52 → W8 44 (cutback -15%) → W9 55 (pic) → W10 52 → W11 38 (taper) → W12 20+course. Aucun delta W→W+1 ne dépasse +25% (sauf sortie de cutback, toujours justifiée par la semaine allégée précédente).\n\n(2) DOUBLE QUALITÉ HEBDOMADAIRE OBLIGATOIRE (avancé) : chaque semaine hors cutback et taper contient IMPÉRATIVEMENT une séance VO2max (400-1000 m à allure 5K) ET une séance tempo/seuil (20-40 min à allure 10K+20s). Ces deux qualités ne sont jamais le même jour ni consécutives (récupération minimale 48h entre séances intenses).\n\n(3) PROGRESSION DU SEUIL : tempo continu passe de 2×10 min (W1) à 30 min continu (W3), puis 35 min continu (W7-W9). Le tempo continu 30-40 min est le standard ACSM pour développer le seuil lactique sur demi-marathon. Format blocs (2×15 min, 3×8 min) alterné avec tempo continu pour varier les stimulus.\n\n(4) SORTIE LONGUE PROGRESSIVE ET SPÉCIFIQUE : passe de 14 km (W1) à 23 km (W9) = 109% de la distance semi. En W6 et W10, la sortie longue intègre 8-10 km à allure semi cible (5:05-5:20 min/km) pour construire la spécificité de course. Cette session longue à allure spécifique est le stimulus d'entraînement le plus prédictif de la performance sur demi-marathon (Billat, 2001).\n\n(5) RENFORCEMENT PRÉVENTIF SPÉCIFIQUE AVANCÉ : nordic curl (prévention ischio-jambier, Mjolsnes 2004 : -51% tendinopathies), single-leg squat (stabilisation hanche et détection asymétries), calf raises excentriques (tendon d'Achille), clamshells élastique (ITBS). Ces exercices apparaissent explicitement en W1 et se maintiennent tout au long du plan. Core (planche, bird-dog) en fin de séance uniquement. TAPER W11-W12 : volume réduit de 30-40% mais maintien des stimuli de vitesse (strides, segments allure semi) pour éviter la désentraînement des fibres rapides tout en permettant la supercompensation glycogène et musculaire.",
+  "validated_at": null,
+  "validated_by": null
+}

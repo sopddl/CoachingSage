@@ -1,0 +1,33 @@
+# Adaptability : yoga-expert-advanced-12sem + p5-low-energy-week
+
+## Rigidity score
+**6/10** (flexible sur le volume, mais progression_logic et safety_notes imposent des garde-fous forts)
+
+## Patch approach
+La contrainte "fatigue basse énergie" est compatible avec le yoga expert, mais exige un compromis : réduire volume/intensité (sets, durées) tout en préservant la qualité technique et les inversions non-négociables. Les cutback weeks (W4, W9) du template offrent un modèle déjà structuré pour cette adaptation. La stratégie : appliquer la logique cutback en volume (-15% minimum) + réduire les postures avancées à versions allégées (mur obligatoire pour inversions, pas de transitions explosives, Savasana augmentée). Safety_notes exige Savasana 5-7 min systématique et Ujjayi maintenu — ces deux garde-fous restent non-négociables même en fatigue.
+
+## Concrete modifications
+
+- **W<N> J1 (Inversions)** : Réduire Sirsasana I libre de 2-3 min → 1 min max. Pincha OBLIGATOIRE au mur (pas de tentatives libres cette semaine). Réduire sets de 4 → 2. Augmenter rest entre sets : 90 sec → 2 min (récupération prioritaire). Supprimer les variations (scissor legs, rotations) — juste tenue stable.
+- **W<N> J2 (Back bends)** : Urdhva Dhanurasana × 3 montées (vs 5) sans walking in. Walking in exige de la fraîcheur propulsive — reporter à semaine normale. Kapotasana : SUPPRIMER entièrement cette semaine (si post-W8, elle est déjà maîtrisée partiellement ; en fatigue, le risque de compensation lombaire augmente). Remplacer par Ustrasana modéré × 3 × 60 sec uniquement. Augmenter contre-postures : Paschimottanasana 5 min (vs 2 min), Viparita Karani 5 min (vs 3 min) = recentrage sur décompression, pas approfondissement.
+- **W<N> J3 (Arm balances)** : Bakasana : réduire durée cible 60 sec → 30 sec, réduire sets 5 → 3. Supprimer transitions explosives (Bakasana → Chaturanga jump back, Bakasana → Handstand). Garder tenue stable uniquement. Supprimer Eka Pada Koundinyasana, Astavakrasana, autres arm balances avancés. Justification : arm balances = haute demande proprioceptive + fatigue = risque technique insuffisant. Handstand : 3 tentatives max (vs 6-8), pas d'exigence de durée, juste contact.
+- **W<N> J5 (Mobilité)** : Réduire durée totale 75 min → 60 min. Garder les postures Yin (Dragon, Sleeping Swan, Melting Heart) mais réduire durée 3-5 min → 2-3 min chacune. Supprimer les pranayama intenses (Kapalabhati, Bhastrika, Viloma). Garder seulement Nadi Shodhana 3 min (équilibrant, reposant). Ajouter 2 min de Yoga Nidra (si énergie sévère) ou méditation assise 5 min.
+- **W<N> J6 (Full practice)** : Réduire durée globale 90-110 min → 60-75 min. Primary Series : simplifier en enlevant 50% des postures assises (ex. enlever Trianga Mukhaikapada, Marichyasana C, garder seulement Janu Sirsasana A/B). Garder série debout intacte (elle est courte). Intermediate Series : SUPPRIMER ENTIÈREMENT cette semaine. Closing : raccourcir Sarvangasana 3 min (vs 5), Halasana 1 min (vs 3), Sirsasana 2 min (vs 5), Matsyasana 1 min. Savasana 8 min (non négociable, même augmentée).
+
+## Rigidity issues
+
+- **Progression_logic mandate (1) SPIRALE, pas perte de phase** : Réduire inversions libres (ex. Sirsasana 1 min au lieu de 5 min) ne casse pas la spirale, mais sauter Kapotasana ou Intermediate entièrement = risque de "plateau bloqué" si l'énergie revient semaine suivante. Le template ne prévoit pas nativement une semaine ad hoc de fatigue en milieu de plan — les cutbacks (W4, W9) sont programmés pédagogiquement, pas pour répondre à des aléas externes. Adaptation : cette semaine d'allégement doit être suivie d'une semaine "de rattrapage ciblé" (voir ci-dessous).
+- **Safety_notes exigent Savasana 5-7 min NON NÉGOCIABLE** : Le template la défend comme "intégration neuromusculaire pendant les phases de repos actif". En fatigue, Savasana long est encore plus crucial (récupération CNS), donc non coupable. Mais le volume des exercices avant Savasana diminue = contradiction logique mineure : on récupère plus longtemps après moins d'effort. Solution : accepter cette "inefficacité" comme saine en fatigue (la récupération prime sur le volume).
+- **Ujjayi maintenu en permanence vs fatigue** : Safety_notes dit "si respiration Ujjayi se bloque = posture trop intense". Fatigue = respiration plus facilement bloquée. Adapter : autoriser l'Ujjayi "souple" cette semaine (respiration naturelle plus profonde, moins de contrôle actif), avec l'intention de redevenir strict la semaine suivante.
+
+## Contradictions
+
+- **Contradiction avec progression_logic (3) SÉQUENCE ASHTANGA CONFORME** : Supprimer 50% de la série assise (J6) = départ de la séquence validée par la transmission Ashtanga. Le template dit "cet ordre n'est pas arbitraire". Cependant, la Primary Series debout seule (Surya Namaskar + postures debout) *existe* comme "short practice" dans Ashtanga traditionnel — donc la simplification est légitime si elle reste conforme aux enseignements historiques (elle l'est). Aucune contradiction grave.
+- **Contradiction avec safety_notes sur "surcharge" (SIGNS DE SURCHARGE)** : "Raideur excessive des épaules le matin", "poignets sensibles", "respiration Ujjayi dégradée" = signes de surcharge. La situation "gros boulot / sommeil mauvais" = conditions favorables à ces signes. Le template dit "réduire l'intensité ou repos si 3 signes simultanés". Cette adaptation est donc conforme à la guidance, pas une contradiction — c'est l'application de la rule "SI 3 signes, ALORS réduire".
+- **Contradiction avec progression W<N> cutback logic** : Si cette semaine de fatigue arrive en W5 (montée en puissance), appliquer une logique cutback = revenir à W3-W4 level = une semaine "perdue" dans la spirale pédagogique. Mais le template dit aussi "Principle of ahimsa (non-violence envers soi) : la progression en yoga avancé est lente par nature". Donc une semaine d'allégement pour préserver la santé > poursuite forcenée d'une courbe de progression. Pas de contradiction éthique.
+
+---
+
+## Semaine de rattrapage post-fatigue (à planifier après cette semaine allégée)
+
+Si l'énergie revient la semaine suivante : **reprendre 1 semaine en arrière** (ex. si fatigue en W6, reprendre W5 J1-J3, puis W6 complet W6 J5-J6). Cela garantit que les inversions (Sirsasana libre, Pincha libre) et les progressions neuromusculaires perdues ne deviennent pas une "faille" dans la spirale. **Ne pas "sauter" une semaine pour "rattraper"** — le yoga avancé progresse lentement, pas par compression.

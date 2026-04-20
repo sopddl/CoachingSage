@@ -1,0 +1,732 @@
+{
+  "assumed_profile" : "Adulte sédentaire ou peu actif, sans pathologie cardiaque, équipé d'une paire de chaussures de running avec amorti en bon état (< 600 km). Aucune expérience récente de la course. Capable de marcher 30 min sans pause.",
+  "default_objective" : "Courir 30 minutes en continu (équivalent 5K à allure débutante confortable, ~6-8 min/km)",
+  "duration_weeks" : 8,
+  "id" : "running-debutant-5k-8sem",
+  "level" : "debutant",
+  "name" : "5K Doux — 8 semaines pour courir 30 min en continu",
+  "progression_logic" : "Progression construite sur 4 principes, alignés NHS Couch to 5K et recommandations ACSM :\n(1) RÈGLE DES 10-20% : augmentation hebdomadaire du volume ou de l'intensité limitée, jamais les deux la même semaine. Volume hebdo de course : 16 → 18 → 18 → 22 → 23 → 28 → 35 → 50 min (la dernière semaine est le pic séance phare).\n(2) CUTBACK WEEK : semaine 5 = volume réduit pour consolidation, avec introduction qualité (bloc 8 min) en 2e séance uniquement. Sans semaine allégée, 8 semaines de progression continue surchargent l'appareil locomoteur.\n(3) RENFORCEMENT PRÉVENTIF : mollets (calf raises) et core (planche, bird-dog) dès W1 pour prévenir shin splints et stabiliser le tronc. Clamshells dès W1 pour prévenir ITBS — ne pas les repousser aux semaines ultérieures.\n(4) TAPERING W8 : séances 1 (20 min léger) et 2 (mobility) allégées pour arriver frais à la séance phare J5. Ne pas sauter les séances de taper, elles sont CONSTITUTIVES de la performance finale.\n\nStructure hebdo : 2 séances running + 1 renforcement, 4-5 jours de repos entre les sollicitations identiques.",
+  "safety_notes" : "DRAPEAUX ROUGES à surveiller (arrêter la séance et consulter si persistant > 1 semaine) :\n• Douleur vive sur le tibia antérieur (shin splints / périostite tibiale) : risque n°1 du débutant. Stop immédiat, glace 15 min, repos 3 jours minimum. Cause fréquente : volume trop élevé, chaussures inadaptées, sol trop dur.\n• Douleur sous le talon ou arche plantaire (fasciite plantaire) : étirer mollets 2×/jour, vérifier l'usure des chaussures (< 600 km).\n• Douleur derrière le talon (tendinite d'Achille) : réduire volume 30%, glacer, étirer en douceur.\n• Douleur face externe du genou (syndrome bandelette ilio-tibiale / ITBS) : les clamshells sont préventifs ; si douleur installée, repos 1 semaine et avis kiné.\n• Douleur articulaire genou > 2/10 : marcher immédiatement, arrêter la séance. Fatigue musculaire = OK, douleur articulaire = pas OK.\n\nRÈGLES GÉNÉRALES :\n• Chaussures avec bon amorti, renouvelées tous les 600-800 km.\n• Surfaces souples privilégiées (chemin, piste, bitume lisse). Éviter dénivelé important en début de plan.\n• 1 jour de repos complet entre chaque séance (pattern recommandé : J1 run / J2 repos / J3 strength / J4 repos / J5 run / J6-J7 repos).\n• Hydratation : 500 ml dans l'heure précédant la séance, 500 ml dans l'heure suivante (plus en conditions chaudes).\n• Échauffement NON optionnel : sauter l'échauffement triple le risque de blessure chez le débutant.\n• Courbatures 24-72h après séance = normal. Douleur PENDANT la séance = anormale.\n\nINTENSITÉ :\n• Test de la parole : tu dois pouvoir dire une phrase complète en courant. Si tu ne peux dire que des mots isolés = trop rapide, ralentis.\n• Cadence cible ~170-180 pas/min. Attaque médio-pied ou talon léger, pas d'attaque talon franc.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine allégée type W5 cutback) :\n• FC de repos +10 bpm inhabituelle au réveil\n• Sommeil dégradé > 3 nuits d'affilée\n• Courbatures persistantes > 72h\n• Motivation effondrée subitement\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre la même séance 1-2 jours plus tard.\n• 1-2 semaines de pause : reprendre la semaine précédente.\n• > 2 semaines de pause : reprendre la semaine -2 pour resécuriser l'adaptation.",
+  "schema_version" : 1,
+  "sessions_per_week" : 3,
+  "sport" : "running",
+  "summary" : "Programme run/walk progressif sur 8 semaines aligné sur les recommandations NHS Couch to 5K, avec renforcement musculaire intégré dès la semaine 1 (mollets, gainage, abducteurs de hanche) pour prévenir les blessures typiques du débutant (shin splints, ITBS). Progression volume +10-25%/sem avec une semaine cutback en W5. Séance phare W8 = 30 min continu, correspondant à ~3-4 km pour un vrai débutant ou ~5 km pour un profil plus actif selon l'allure individuelle.",
+  "weeks" : [
+    {
+      "goal" : "Habituer le corps à l'effort running et activer le renforcement préventif. Objectif volume : ~8 min de course par séance, alternance 1 min course / 1 min 30 marche.",
+      "sessions" : [
+        {
+          "cooldown" : "3 min marche lente. Étirements statiques : mollets 30 sec/jambe, quadriceps 30 sec/jambe, ischio-jambiers 30 sec/jambe. Hydratation.",
+          "day" : 1,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "duration" : "1 min course lente + 1 min 30 marche rapide",
+              "name" : "Bloc run/walk",
+              "notes" : "Allure de course TRÈS lente, test de la parole : tu dois pouvoir dire une phrase entière. Si le souffle coupe au bout de 30 sec, ralentis encore. Total bloc : 20 min.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            }
+          ],
+          "name" : "Run/walk découverte",
+          "type" : "mixed",
+          "warmup" : "5 min de marche progressive + 10 cercles de chevilles/côté + 10 balancements de jambe avant-arrière/côté + 10 demi-squats lents. Total : 8 min. Ne jamais sauter cette étape."
+        },
+        {
+          "cooldown" : "Étirement mollets (30 sec/côté), étirement fessier allongé (30 sec/côté), marche 2 min.",
+          "day" : 3,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "duration" : "20 sec",
+              "name" : "Wall sit partiel",
+              "notes" : "Dos plat contre le mur, descente à 60-70° (pas 90°). Renforce le quadriceps avec peu de charge articulaire.",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Pont fessier",
+              "notes" : "Tenir 2 sec en haut. Cible les fessiers (stabilisateurs clés de la foulée).",
+              "reps" : "10",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Clamshell",
+              "notes" : "Allongé sur le côté, genoux pliés. Ouvre le genou du dessus sans bouger le bassin. Cible les abducteurs de hanche — prévention ITBS (syndrome de l'essuie-glace) dès la semaine 1.",
+              "reps" : "12 par côté",
+              "rest_seconds" : 35,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises bipodal",
+              "notes" : "Montées sur la pointe des pieds, les deux pieds ensemble. Prévention shin splints (les mollets forts absorbent jusqu'à 30% de la charge tibiale). Obligatoire chez le débutant.",
+              "reps" : "15",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement foundation",
+          "type" : "strength",
+          "warmup" : "5 min marche rapide + rotations bassin 10/sens + talons-fesses 20 pas + montées de genoux 20 pas. Total : 7 min."
+        },
+        {
+          "cooldown" : "Même retour au calme qu'en J1.",
+          "day" : 5,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "duration" : "1 min course lente + 1 min 30 marche rapide",
+              "name" : "Bloc run/walk",
+              "notes" : "Même séance qu'en J1. La répétition à volume égal permet au corps d'adapter l'os tibial (adaptation lente, 6-8 semaines). Ne pas forcer l'augmentation.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            }
+          ],
+          "name" : "Run/walk découverte",
+          "type" : "mixed",
+          "warmup" : "Identique à séance 1 (8 min échauffement complet)."
+        }
+      ],
+      "theme" : "Fondations — premiers pas",
+      "week_number" : 1
+    },
+    {
+      "goal" : "Passer à 1 min 30 de course continue, volume hebdo +12%. Renforcement avec ajout du gainage.",
+      "sessions" : [
+        {
+          "cooldown" : "5 min marche + étirements 4 min.",
+          "day" : 1,
+          "duration_minutes" : 38,
+          "exercises" : [
+            {
+              "duration" : "1 min 30 course + 2 min marche",
+              "name" : "Bloc run/walk",
+              "notes" : "Respiration conversationnelle maintenue. Total bloc : 21 min.",
+              "rest_seconds" : 0,
+              "sets" : 6
+            }
+          ],
+          "name" : "Run/walk 1m30",
+          "type" : "mixed",
+          "warmup" : "Échauffement standard 8 min."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "duration" : "30 sec",
+              "name" : "Wall sit",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Pont fessier",
+              "reps" : "12",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Clamshell",
+              "reps" : "15 par côté",
+              "rest_seconds" : 35,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises bipodal",
+              "reps" : "20",
+              "rest_seconds" : 30,
+              "sets" : 3
+            },
+            {
+              "duration" : "20 sec",
+              "name" : "Planche ventrale",
+              "notes" : "Coudes sous épaules, corps aligné, fessiers engagés. Introduction du core, minimum ACSM pour les coureurs.",
+              "rest_seconds" : 45,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement + gainage",
+          "type" : "strength",
+          "warmup" : "7 min."
+        },
+        {
+          "cooldown" : "5 min marche + étirements 4 min.",
+          "day" : 5,
+          "duration_minutes" : 38,
+          "exercises" : [
+            {
+              "duration" : "1 min 30 course + 2 min marche",
+              "name" : "Bloc run/walk",
+              "notes" : "Identique à J1. Consolidation avant le palier W3.",
+              "rest_seconds" : 0,
+              "sets" : 6
+            }
+          ],
+          "name" : "Run/walk 1m30",
+          "type" : "mixed",
+          "warmup" : "Échauffement standard 8 min."
+        }
+      ],
+      "theme" : "Adaptation — allonger la course",
+      "week_number" : 2
+    },
+    {
+      "goal" : "Introduire le bloc de 3 min continu via un format laddered. Volume stable (consolidation qualité).",
+      "sessions" : [
+        {
+          "cooldown" : "5 min marche + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 38,
+          "exercises" : [
+            {
+              "duration" : "1 min 30 course + 1 min 30 marche + 3 min course + 3 min marche",
+              "name" : "Bloc laddered",
+              "notes" : "Enchaîner 2 fois ce cycle. Total course par cycle : 4 min 30. Le bloc 3 min est nouveau — reste à allure conversationnelle, ne force pas. Total bloc : 18 min.",
+              "rest_seconds" : 0,
+              "sets" : 2
+            }
+          ],
+          "name" : "Run/walk laddered",
+          "type" : "mixed",
+          "warmup" : "Échauffement standard 8 min."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 37,
+          "exercises" : [
+            {
+              "duration" : "40 sec",
+              "name" : "Wall sit",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Fentes statiques",
+              "notes" : "Genou avant à 90° max. Ne pas laisser le genou dépasser la pointe du pied.",
+              "reps" : "8 par jambe",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Pont fessier unilatéral",
+              "notes" : "Progression vs W2. Renforce l'équilibre G/D.",
+              "reps" : "10 par côté",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises bipodal",
+              "reps" : "20",
+              "rest_seconds" : 30,
+              "sets" : 3
+            },
+            {
+              "duration" : "30 sec",
+              "name" : "Planche ventrale",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Bird-dog",
+              "notes" : "À 4 pattes, tendre bras opposé + jambe opposée. Tenir 2 sec. Cible le core profond et l'anti-rotation lombaire.",
+              "reps" : "8 par côté",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement + bird-dog",
+          "type" : "strength",
+          "warmup" : "7 min."
+        },
+        {
+          "cooldown" : "5 min marche + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 38,
+          "exercises" : [
+            {
+              "duration" : "1 min 30 course + 1 min 30 marche + 3 min course + 3 min marche",
+              "name" : "Bloc laddered",
+              "notes" : "Identique à J1. Répéter la même séance stabilise l'adaptation au bloc 3 min.",
+              "rest_seconds" : 0,
+              "sets" : 2
+            }
+          ],
+          "name" : "Run/walk laddered",
+          "type" : "mixed",
+          "warmup" : "Échauffement standard 8 min."
+        }
+      ],
+      "theme" : "Premier palier — bloc 3 min",
+      "week_number" : 3
+    },
+    {
+      "goal" : "Introduire le bloc de 5 min continu. Volume hebdo +22% vs W3.",
+      "sessions" : [
+        {
+          "cooldown" : "5 min marche + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 40,
+          "exercises" : [
+            {
+              "duration" : "3 min course + 2 min marche",
+              "name" : "Blocs courts 3 min",
+              "notes" : "Deux blocs de 3 min pour préparer le bloc long final.",
+              "rest_seconds" : 0,
+              "sets" : 2
+            },
+            {
+              "duration" : "5 min course",
+              "name" : "Bloc long 5 min",
+              "notes" : "Enchaîner directement après les blocs courts. Allure TOUJOURS conversationnelle. Si tu ne peux plus parler, ralentis. Total bloc séance : 15 min de course.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Run/walk bloc 5",
+          "type" : "mixed",
+          "warmup" : "Échauffement standard 8 min."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 37,
+          "exercises" : [
+            {
+              "duration" : "45 sec",
+              "name" : "Wall sit",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Fentes dynamiques",
+              "notes" : "Alternance G/D avec retour au centre. Progression vs fentes statiques.",
+              "reps" : "8 par jambe",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Pont fessier unilatéral",
+              "reps" : "12 par côté",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises surélevés",
+              "notes" : "Debout sur le bord d'une marche, talons dans le vide. Amplitude complète (descente sous la marche). Charge accrue sur les mollets.",
+              "reps" : "15 par côté",
+              "rest_seconds" : 30,
+              "sets" : 3
+            },
+            {
+              "duration" : "40 sec",
+              "name" : "Planche ventrale",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Bird-dog",
+              "reps" : "10 par côté",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement progression",
+          "type" : "strength",
+          "warmup" : "7 min."
+        },
+        {
+          "cooldown" : "5 min marche + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 40,
+          "exercises" : [
+            {
+              "duration" : "3 min course + 2 min marche",
+              "name" : "Blocs courts 3 min",
+              "rest_seconds" : 0,
+              "sets" : 2
+            },
+            {
+              "duration" : "5 min course",
+              "name" : "Bloc long 5 min",
+              "notes" : "Même séance qu'en J1. Le bloc 5 min doit devenir confortable avant d'avancer.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Run/walk bloc 5",
+          "type" : "mixed",
+          "warmup" : "Échauffement standard 8 min."
+        }
+      ],
+      "theme" : "Bloc 5 min — premier vrai cap",
+      "week_number" : 4
+    },
+    {
+      "goal" : "Semaine de consolidation (volume -9% vs W4) avec introduction d'un bloc 8 min en 2e séance. Les semaines allégées sont essentielles pour l'adaptation — ne pas les sauter.",
+      "sessions" : [
+        {
+          "cooldown" : "5 min marche + étirements 4 min.",
+          "day" : 1,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "duration" : "5 min course + 2 min marche",
+              "name" : "Bloc course",
+              "notes" : "Session allégée pour consolidation. Si tu te sens en forme, c'est bon signe — ça veut dire que l'adaptation se fait. Ne pas pousser au-delà.",
+              "rest_seconds" : 0,
+              "sets" : 2
+            }
+          ],
+          "name" : "Cutback — blocs 5 min",
+          "type" : "mixed",
+          "warmup" : "Échauffement standard 8 min."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "duration" : "45 sec",
+              "name" : "Wall sit",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Fentes dynamiques",
+              "reps" : "10 par jambe",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Pont fessier unilatéral",
+              "reps" : "12 par côté",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises surélevés",
+              "reps" : "15 par côté",
+              "rest_seconds" : 30,
+              "sets" : 3
+            },
+            {
+              "duration" : "30 sec",
+              "name" : "Planche ventrale",
+              "notes" : "Retour au volume W3 (cutback core aussi).",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "duration" : "20 sec par côté",
+              "name" : "Side plank",
+              "notes" : "Nouveauté cutback week : latéral, anti-rotation. Cible les obliques et les moyens fessiers.",
+              "rest_seconds" : 30,
+              "sets" : 2
+            }
+          ],
+          "name" : "Renforcement + side plank",
+          "type" : "strength",
+          "warmup" : "7 min."
+        },
+        {
+          "cooldown" : "5 min marche + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 38,
+          "exercises" : [
+            {
+              "duration" : "8 min course",
+              "name" : "Bloc long 8 min",
+              "notes" : "Premier bloc de 8 min du plan. Allure lente et régulière, si tu dois marcher tu marches mais tu reviens au jogging dès que possible.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "3 min",
+              "name" : "Marche récupération",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "5 min course",
+              "name" : "Bloc 5 min",
+              "notes" : "Retour à un volume connu après la nouveauté. Total course séance : 13 min.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Bloc 8 min — palier qualité",
+          "type" : "mixed",
+          "warmup" : "Échauffement standard 8 min."
+        }
+      ],
+      "theme" : "Cutback + bloc 8 min",
+      "week_number" : 5
+    },
+    {
+      "goal" : "Enchaîner un bloc de 10 min continu. Transition vers un volume plus proche de l'endurance pure. +22% volume vs W5.",
+      "sessions" : [
+        {
+          "cooldown" : "5 min marche + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "duration" : "8 min course",
+              "name" : "Bloc long 8 min",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "2 min",
+              "name" : "Marche récupération",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "5 min course",
+              "name" : "Bloc 5 min",
+              "notes" : "Consolidation du bloc 8 min découvert en W5 J5. Total course : 13 min.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Bloc 8 confirmé",
+          "type" : "mixed",
+          "warmup" : "Échauffement standard 8 min."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 37,
+          "exercises" : [
+            {
+              "duration" : "60 sec",
+              "name" : "Wall sit",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Fentes dynamiques",
+              "reps" : "10 par jambe",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Step-ups",
+              "notes" : "Sur une marche/chaise stable. Montée jambe d'appel explosive, descente contrôlée. Transfère vers la foulée.",
+              "reps" : "10 par jambe",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises excentriques",
+              "notes" : "Monter sur 2 pieds, descendre sur 1 seul en 3 sec. Protection tendon d'Achille, progression majeure vs calf raises classiques.",
+              "reps" : "12 par côté",
+              "rest_seconds" : 30,
+              "sets" : 3
+            },
+            {
+              "duration" : "45 sec",
+              "name" : "Planche ventrale",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Bird-dog",
+              "reps" : "10 par côté",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement progression",
+          "type" : "strength",
+          "warmup" : "7 min."
+        },
+        {
+          "cooldown" : "5 min marche + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 40,
+          "exercises" : [
+            {
+              "duration" : "10 min course",
+              "name" : "Bloc long 10 min",
+              "notes" : "Premier bloc 10 min du plan. Allure très lente. Si la respiration s'emballe, ralentir jusqu'à une allure où tu peux encore parler.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "3 min",
+              "name" : "Marche récupération",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "5 min course",
+              "name" : "Bloc 5 min",
+              "notes" : "Total course : 15 min.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Premier bloc 10 min",
+          "type" : "mixed",
+          "warmup" : "Échauffement standard 8 min."
+        }
+      ],
+      "theme" : "Bloc 10 min — passage à l'endurance",
+      "week_number" : 6
+    },
+    {
+      "goal" : "Passer à la course continue sans phases de marche. +25% volume vs W6. Introduction du concept d'allure stable.",
+      "sessions" : [
+        {
+          "cooldown" : "7 min marche + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 40,
+          "exercises" : [
+            {
+              "duration" : "15 min",
+              "name" : "Course continue",
+              "notes" : "Première course SANS pause marche. Allure conversationnelle maintenue. Si tu n'arrives pas à tenir les 15 min sans marcher, recule d'une semaine — c'est normal et ce n'est pas un échec.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "15 min continu",
+          "type" : "endurance",
+          "warmup" : "Échauffement standard 8 min."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "duration" : "60 sec",
+              "name" : "Wall sit",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Squats poids du corps",
+              "reps" : "15",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Fentes dynamiques",
+              "reps" : "10 par jambe",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises bipodal",
+              "notes" : "Retour au format simple pour le maintien avant la séance phare W8.",
+              "reps" : "20",
+              "rest_seconds" : 30,
+              "sets" : 3
+            },
+            {
+              "duration" : "45 sec",
+              "name" : "Planche ventrale",
+              "rest_seconds" : 45,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement maintien",
+          "type" : "strength",
+          "warmup" : "7 min."
+        },
+        {
+          "cooldown" : "6 min marche + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 40,
+          "exercises" : [
+            {
+              "duration" : "20 min",
+              "name" : "Course continue",
+              "notes" : "Objectif : 20 min d'affilée sans marcher. Si coup dur, marcher 1 min et reprendre — ne pas abandonner. Cadence cible ~170-180 pas/min.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "20 min continu",
+          "type" : "endurance",
+          "warmup" : "Échauffement standard 8 min."
+        }
+      ],
+      "theme" : "Course continue — 15 à 20 min",
+      "week_number" : 7
+    },
+    {
+      "goal" : "Tapering sur les deux premières séances, pic W8 J5 à 30 min continu (alignement NHS C25K semaine 9). Équivaut à ~5 km pour un coureur qui tient ~6 min/km, ~3-4 km pour un débutant à 8-10 min/km.",
+      "sessions" : [
+        {
+          "cooldown" : "5 min marche + étirements 2 min.",
+          "day" : 1,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "duration" : "20 min",
+              "name" : "Course continue légère",
+              "notes" : "Séance de remise en jambes, PAS un test. Allure très confortable, respiration facile. Tapering = réduire pour arriver frais à la séance phare.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Activation 20 min",
+          "type" : "endurance",
+          "warmup" : "5 min marche + 3 min activation douce."
+        },
+        {
+          "cooldown" : "5 min respiration profonde + visualisation de la séance phare de J5.",
+          "day" : 3,
+          "duration_minutes" : 30,
+          "exercises" : [
+            {
+              "duration" : "10 min",
+              "name" : "Routine mobilité hanches + chevilles",
+              "notes" : "Pas d'intensité, relâchement. Prépare les articulations au pic de W8 J5.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "5 min",
+              "name" : "Activation fessiers légère",
+              "notes" : "10 ponts fessiers + 10 clamshells par côté + 10 bird-dogs par côté, sans charge.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Mobilité pré-test",
+          "type" : "mobility",
+          "warmup" : "5 min marche + mobilité dynamique 5 min (cercles hanches, chevilles, talons-fesses lents)."
+        },
+        {
+          "cooldown" : "7 min marche lente + étirements complets 10 min (mollets, quadriceps, ischio-jambiers, fessiers, piriformis). Hydratation + collation post-effort.",
+          "day" : 5,
+          "duration_minutes" : 55,
+          "exercises" : [
+            {
+              "duration" : "30 min",
+              "name" : "30 min course continue",
+              "notes" : "Objectif : 30 min sans marcher, à TON allure. Si tu couvres 5 km dans ce temps, super. Sinon tu continues au-delà de 30 min jusqu'à atteindre 5 km (max 45 min), ou tu t'arrêtes à 30 min et le 5K sera pour la semaine suivante en course libre. Les deux scénarios sont des réussites — l'objectif réel est la course continue, pas le chrono.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Séance phare — 30 min continu",
+          "type" : "endurance",
+          "warmup" : "5 min marche progressive + 3 min activation (talons-fesses, montées de genoux lents)."
+        }
+      ],
+      "theme" : "Séance phare — 30 min continu",
+      "week_number" : 8
+    }
+  ]
+}

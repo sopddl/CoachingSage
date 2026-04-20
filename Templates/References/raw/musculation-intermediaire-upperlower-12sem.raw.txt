@@ -1,0 +1,2553 @@
+{
+  "id": "musculation-intermediaire-upperlower-12sem",
+  "schema_version": 1,
+  "sport": "musculation",
+  "level": "intermediaire",
+  "name": "Split Upper/Lower — 12 semaines",
+  "duration_weeks": 12,
+  "sessions_per_week": 4,
+  "default_objective": "Développer la force et l'hypertrophie générale via un split haut/bas structuré en 4 séances/semaine, en progressant sur les 5 patterns fondamentaux (squat, hinge, push horizontal, push vertical, pull horizontal, pull vertical) et en atteignant RPE 8-9 sur les composés en fin de plan.",
+  "assumed_profile": "Pratiquant régulier depuis 6+ mois, accès salle de sport complète (rack, banc, barres, haltères, machines, poulie). Maîtrise technique du squat, deadlift, bench press. Connaissance de base du RPE. Pas de blessure en cours.",
+  "summary": "Programme Upper/Lower 4 séances/semaine sur 12 semaines, organisé en 3 blocs de 4 semaines (Accumulation W1-W4, Intensification W5-W8, Réalisation W9-W11 + Deload W12). Chaque semaine comprend 2 séances Upper (push + pull) et 2 séances Lower (squat-dominant + hinge-dominant). Progression par double progression (reps puis charge) sur les composés, surcharge progressive sur les isolations. Cutback en W4 et W8 (volume -15%), deload complet en W12. Les 5 patterns fondamentaux sont couverts chaque semaine. Core en fin de séance. Repos 120-180 s sur composés lourds conformément aux recommandations ACSM/NSCA.",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Bloc 1 — Accumulation : prise de repères et calibration RPE",
+      "goal": "Établir les charges de travail de référence pour chaque exercice composé. Objectif RPE 6-7 sur tous les composés pour laisser de la marge technique. Introduction de la grille RPE/RIR en échauffement de la première séance.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Upper A — Push dominant",
+          "duration_minutes": 65,
+          "type": "strength",
+          "warmup": "Calibration RPE (1ère séance uniquement) : RPE 10 = impossible de faire 1 rep de plus, technique qui cède. RPE 8 = 2 reps en réserve, tu pourrais en faire 2 de plus avec la même forme. RPE 7 = 3 reps en réserve. RIR (Reps In Reserve) est l'équivalent inversé. Semaine 1 cible RPE 6-7. Puis : 5 min vélo ou rameur intensité légère. Rotation épaule en croix 10/sens. Cercles coudes 10/sens. Push-up lent ×10. Band pull-apart ×15 (ou sans élastique : rotation externe isométrique contre mur). Face pull léger ×15.",
+          "exercises": [
+            {
+              "name": "Bench Press (barre)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "RPE 6-7 cette semaine. Omoplates rétractées et déprimées sur le banc, descente contrôlée 2 sec, poussée explosive. Pattern push horizontal. Charger à ~65-70% 1RM estimé."
+            },
+            {
+              "name": "Overhead Press (barre debout)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "Pattern push vertical. Gainage abdominal serré, fessiers contractés, pas d'hyper-extension lombaire. Si barre trop lourde, utiliser haltères ou machine Shoulder Press."
+            },
+            {
+              "name": "Bent-over Row (barre, prise pronation)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "Pattern pull horizontal. Dos à 45°, barre tirée vers le nombril. RPE 6-7. Maintenir une légère arche lombaire naturelle."
+            },
+            {
+              "name": "Cable Fly ou Pec Deck",
+              "sets": 3,
+              "reps": "12-15",
+              "rest_seconds": 75,
+              "notes": "Isolation pectoraux. Sensation d'étirement contrôlé, pas de douleur antérieure d'épaule. Repos 75 sec sur isolations."
+            },
+            {
+              "name": "Curl biceps haltères",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Coudes fixes contre le corps. Supination complète en haut. Pas de balancement du buste."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Core en fin de séance. Coudes sous épaules, corps aligné, ne pas laisser les hanches monter ou descendre."
+            }
+          ],
+          "cooldown": "Étirement pectoraux (bras contre montant 30 sec/côté). Étirement épaule croisée (30 sec/côté). Rotation thoracique allongée (5 par côté). 5 min marche légère."
+        },
+        {
+          "day": 2,
+          "name": "Lower A — Squat dominant",
+          "duration_minutes": 65,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité cheville : cercles 10/sens, lunge contre mur 60 sec/côté. Mobilité hanche : pigeon debout 30 sec/côté, cercles de bassin 10/sens. Goblet squat léger ×10 (poids minimal). Box squat lent à la chaise ×10.",
+          "exercises": [
+            {
+              "name": "Back Squat (barre, rack)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 180,
+              "notes": "RPE 6-7 cette semaine. Pattern squat. Descente jusqu'à creux de genou parallèle minimum, chest up, genoux dans l'axe des orteils (éviter valgus). 3 min repos — ACSM/NSCA pour les composés lourds."
+            },
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "10-12",
+              "rest_seconds": 120,
+              "notes": "Pieds à hauteur d'épaules, légèrement écarté. Ne pas descendre au point de décollement fessier du siège. Complémentaire squat."
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "12-15",
+              "rest_seconds": 60,
+              "notes": "Isolation quadriceps. Contrôle de la descente 2 sec. Ne pas hyperextendre le genou en position haute."
+            },
+            {
+              "name": "Leg Curl couché",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Isolation ischio-jambiers. Pied en flexion dorsale pour maximiser le recrutement. Descente lente 3 sec."
+            },
+            {
+              "name": "Calf Raises debout (machine ou Smith)",
+              "sets": 4,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Amplitude complète, descente sous la plateforme. Pause 1 sec en bas pour étirer le soléaire."
+            },
+            {
+              "name": "Ab Wheel ou Crunch câble",
+              "sets": 3,
+              "reps": "10-12",
+              "rest_seconds": 45,
+              "notes": "Core en fin de séance. Ab wheel : partez à genoux, extension jusqu'à la limite sans creuser les lombaires."
+            }
+          ],
+          "cooldown": "Étirement quadriceps debout (30 sec/côté). Étirement ischio couché (30 sec/côté). Pigeon au sol (45 sec/côté). 5 min marche."
+        },
+        {
+          "day": 4,
+          "name": "Upper B — Pull dominant",
+          "duration_minutes": 65,
+          "type": "strength",
+          "warmup": "5 min rameur léger. Band pull-apart ×15. Dislocations épaule avec élastique ×10. Face pull léger ×15. Lat stretch à la poulie basse (30 sec/côté).",
+          "exercises": [
+            {
+              "name": "Pull-up (barre fixe, prise pronation)",
+              "sets": 4,
+              "reps": "6-8",
+              "rest_seconds": 150,
+              "notes": "Pattern pull vertical. Si < 6 pull-up stricts : utiliser machine d'assistance ou bande d'assistance. RPE 6-7. Descente complète (bras quasi-tendus) obligatoire."
+            },
+            {
+              "name": "Chest-Supported Row (haltères sur banc incliné)",
+              "sets": 4,
+              "reps": "10",
+              "rest_seconds": 150,
+              "notes": "Pattern pull horizontal. Appui poitrine sur banc incliné à 45°, élimine le triche lombaire. Coudes tirés vers le plafond, omoplate vers la colonne."
+            },
+            {
+              "name": "Incline Bench Press (haltères)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 150,
+              "notes": "Pattern push horizontal incliné. Angle 30-45°. Complète le volume push de la semaine. RPE 6-7."
+            },
+            {
+              "name": "Face Pull câble (corde, prise neutre)",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60,
+              "notes": "Corde à hauteur front. Tirer les mains vers les oreilles, finir en rotation externe. Santé coiffe des rotateurs. Pas de rotation interne forcée."
+            },
+            {
+              "name": "Triceps Pushdown câble (barre droite ou corde)",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Coudes fixes contre le corps. Extension complète sans hyperextension. Isolation triceps."
+            },
+            {
+              "name": "Planche latérale (side plank)",
+              "sets": 3,
+              "duration": "20 sec par côté",
+              "rest_seconds": 30,
+              "notes": "Core en fin de séance. Corps aligné des pieds aux épaules. Anti-rotation obliques."
+            }
+          ],
+          "cooldown": "Étirement dorsaux (accroche poulie basse 30 sec). Étirement biceps (bras tendu contre mur 30 sec/côté). Mobilité thoracique foam roller 3 min."
+        },
+        {
+          "day": 5,
+          "name": "Lower B — Hinge dominant",
+          "duration_minutes": 65,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité hanche : 90/90 au sol 30 sec/côté. Hip hinge avec bâton : 10 reps lentes pour graver le pattern (bâton contre la colonne, contact tête-fessiers-dos). Good morning à vide ×10.",
+          "exercises": [
+            {
+              "name": "Deadlift conventionnel (barre)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "Pattern hinge. RPE 6-7 cette semaine. Barre au-dessus des lacets, dos plat, hanches plus hautes que les genoux au départ. Pousser le sol vers le bas, pas seulement tirer. 3 min repos minimum — composé le plus exigeant du plan."
+            },
+            {
+              "name": "Romanian Deadlift (haltères)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 120,
+              "notes": "Hinge pur sans flexion genoux excessive. Descente jusqu'à sensation légère d'étirement ischio. Isolation de la chaîne postérieure."
+            },
+            {
+              "name": "Bulgarian Split Squat (haltères)",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 90,
+              "notes": "Pied arrière sur banc. Genou avant dans l'axe. Développe la force unilatérale et corrige les déséquilibres G/D. Compter les deux jambes dans les 90 sec."
+            },
+            {
+              "name": "Glute Bridge lourd (barre sur bassin)",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 75,
+              "notes": "Épaules sur banc, barre avec pad sur les hanches. Poussée explosive du bassin vers le haut, contraction fessière 1 sec en haut. Hinge horizontal."
+            },
+            {
+              "name": "Calf Raises assis (machine ou haltère sur genou)",
+              "sets": 4,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Assis = cible le soléaire (vs debout = gastrocnémien). Complémentaire Lower A."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "notes": "Core en fin de séance. Extension bras opposé + jambe opposée, tenir 2 sec. Stabilisation lombaire et anti-extension."
+            }
+          ],
+          "cooldown": "Étirement fessiers (figure 4 allongée 45 sec/côté). Étirement ischio couché (30 sec/côté). Foam roller lombaires et thoraciques 3 min."
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Bloc 1 — Accumulation : montée en volume",
+      "goal": "Ajouter 1 série sur les composés principaux. RPE 7 sur les composés. Double progression : si tu as fait toutes les reps de la semaine 1 proprement, ajoute 2,5 kg sur les composés upper et 5 kg sur les lower.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Upper A — Push dominant",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "5 min vélo. Rotation épaule ×10. Band pull-apart ×15. Push-up ×10. Face pull léger ×15.",
+          "exercises": [
+            {
+              "name": "Bench Press (barre)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "RPE 7. +2,5 kg vs W1 si toutes les reps W1 étaient propres. Si non, même charge. Double progression : on monte les reps en premier (8→10), puis la charge."
+            },
+            {
+              "name": "Overhead Press (barre debout)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "RPE 7. Ajout d'1 série vs W1 (3→4 sets). +2,5 kg si W1 complet."
+            },
+            {
+              "name": "Bent-over Row (barre, prise pronation)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "RPE 7. +5 kg si W1 complet. Maintenir dos à 45°."
+            },
+            {
+              "name": "Cable Fly ou Pec Deck",
+              "sets": 3,
+              "reps": "12-15",
+              "rest_seconds": 75,
+              "notes": "Même charge que W1. Progression sur les isolations en reps d'abord."
+            },
+            {
+              "name": "Curl biceps haltères",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "+2 kg si W1 complet."
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 45,
+              "notes": "Core en fin de séance. Allongé sur le dos, bras vers le plafond, genoux à 90°. Descendre bras et jambe opposés sans toucher le sol, dos plaqué. Anti-extension lombaire."
+            }
+          ],
+          "cooldown": "Étirement pectoraux. Étirement épaule. Rotation thoracique. 5 min marche."
+        },
+        {
+          "day": 2,
+          "name": "Lower A — Squat dominant",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité cheville. Goblet squat ×10. Box squat ×10.",
+          "exercises": [
+            {
+              "name": "Back Squat (barre, rack)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 180,
+              "notes": "RPE 7. +5 kg si W1 complet. Vérifier profondeur : creux au moins parallèle. 3 min repos."
+            },
+            {
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": "10-12",
+              "rest_seconds": 120,
+              "notes": "+1 série vs W1. +10 kg si W1 complet."
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "12-15",
+              "rest_seconds": 60,
+              "notes": "Progression en reps d'abord."
+            },
+            {
+              "name": "Leg Curl couché",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "+2,5 kg si W1 complet."
+            },
+            {
+              "name": "Calf Raises debout",
+              "sets": 4,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "+2,5 kg si W1 complet ou +2 reps."
+            },
+            {
+              "name": "Ab Wheel ou Crunch câble",
+              "sets": 3,
+              "reps": "10-12",
+              "rest_seconds": 45,
+              "notes": "Core fin séance. +1 rep ou légère augmentation charge."
+            }
+          ],
+          "cooldown": "Étirement quadriceps. Pigeon. Étirement ischio. 5 min marche."
+        },
+        {
+          "day": 4,
+          "name": "Upper B — Pull dominant",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "5 min rameur. Band pull-apart ×15. Face pull léger ×15. Lat stretch 30 sec/côté.",
+          "exercises": [
+            {
+              "name": "Pull-up (barre fixe)",
+              "sets": 4,
+              "reps": "6-8",
+              "rest_seconds": 150,
+              "notes": "RPE 7. Si tu as atteint 8 reps propres en W1, ajouter 2,5 kg en ceinture. Sinon progresser en reps d'abord."
+            },
+            {
+              "name": "Chest-Supported Row (haltères)",
+              "sets": 4,
+              "reps": "10",
+              "rest_seconds": 150,
+              "notes": "RPE 7. +2 kg/haltère si W1 complet."
+            },
+            {
+              "name": "Incline Bench Press (haltères)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 150,
+              "notes": "RPE 7. +2 kg si W1 complet."
+            },
+            {
+              "name": "Face Pull câble",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60,
+              "notes": "Légère augmentation charge ou reps (objectif 15 bien contrôlés)."
+            },
+            {
+              "name": "Triceps Pushdown câble",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "+2 kg si W1 complet."
+            },
+            {
+              "name": "Planche latérale",
+              "sets": 3,
+              "duration": "25 sec par côté",
+              "rest_seconds": 30,
+              "notes": "+5 sec vs W1."
+            }
+          ],
+          "cooldown": "Étirement dorsaux à la poulie. Étirement biceps. Foam roller thoracique."
+        },
+        {
+          "day": 5,
+          "name": "Lower B — Hinge dominant",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "5 min vélo. Hip hinge bâton ×10. Good morning vide ×10. 90/90 au sol.",
+          "exercises": [
+            {
+              "name": "Deadlift conventionnel (barre)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "RPE 7. +5 kg si W1 complet. 3 min repos minimum."
+            },
+            {
+              "name": "Romanian Deadlift (haltères)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 120,
+              "notes": "+2 kg/haltère si W1 complet."
+            },
+            {
+              "name": "Bulgarian Split Squat (haltères)",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 90,
+              "notes": "+2 kg si W1 complet."
+            },
+            {
+              "name": "Glute Bridge lourd (barre)",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 75,
+              "notes": "+5 kg si W1 complet."
+            },
+            {
+              "name": "Calf Raises assis",
+              "sets": 4,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "notes": "+1 rep vs W1."
+            }
+          ],
+          "cooldown": "Étirement fessiers figure 4. Étirement ischio. Foam roller lombaires."
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Bloc 1 — Accumulation : pic de volume",
+      "goal": "Volume maximum du bloc 1. RPE 7-8 sur composés. Ajouter 1 série aux composés secondaires. Introduction du tempo excentrique 3 sec sur les composés upper.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Upper A — Push dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Rotation épaule ×10. Band pull-apart ×15. Push-up ×12.",
+          "exercises": [
+            {
+              "name": "Bench Press (barre) — tempo 3-0-1",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "RPE 7-8. Descente 3 sec, 0 sec en bas, poussée explosive 1 sec. Le tempo excentrique augmente le stress mécanique sans augmenter la charge. Légère réduction de charge vs W2 (~5%) pour maintenir la forme sous tempo."
+            },
+            {
+              "name": "Overhead Press (barre debout)",
+              "sets": 4,
+              "reps": "8-10",
+              "rest_seconds": 150,
+              "notes": "RPE 7-8. Progression en reps : viser 10 si 8 était RPE 7 en W2."
+            },
+            {
+              "name": "Bent-over Row (barre)",
+              "sets": 4,
+              "reps": "8-10",
+              "rest_seconds": 150,
+              "notes": "RPE 7-8. Viser 10 reps si W2 à 8 était RPE 7."
+            },
+            {
+              "name": "Dips (barres parallèles)",
+              "sets": 3,
+              "reps": "8-10",
+              "rest_seconds": 90,
+              "notes": "Nouveau mouvement W3. Push horizontal/vertical intermédiaire. Légère inclinaison vers l'avant pour cibler davantage les pectoraux. Si dips trop difficile : Chest Dips machine."
+            },
+            {
+              "name": "Cable Fly ou Pec Deck",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 75,
+              "notes": "Volume max sur les isolations ce bloc."
+            },
+            {
+              "name": "Curl biceps haltères",
+              "sets": 3,
+              "reps": "12-15",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "40 sec",
+              "rest_seconds": 45,
+              "notes": "+10 sec vs W1."
+            }
+          ],
+          "cooldown": "Étirement pectoraux. Étirement épaule. Rotation thoracique foam roller. 5 min marche."
+        },
+        {
+          "day": 2,
+          "name": "Lower A — Squat dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité cheville. Goblet squat ×12. Box squat ×10.",
+          "exercises": [
+            {
+              "name": "Back Squat (barre) — tempo 3-1-1",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 180,
+              "notes": "RPE 7-8. Descente 3 sec, pause 1 sec en bas (pause squat léger), montée explosive. Développe la force en position basse. Légère réduction de charge vs W2 (~5-10%) pour maintenir le tempo."
+            },
+            {
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 120,
+              "notes": "Progresser en reps avant de monter la charge."
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Leg Curl couché",
+              "sets": 3,
+              "reps": "12-15",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Calf Raises debout",
+              "sets": 4,
+              "reps": "15-20",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Ab Wheel",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 45,
+              "notes": "Core fin séance. Progression reps."
+            }
+          ],
+          "cooldown": "Étirement quadriceps. Pigeon. Étirement ischio. 5 min marche."
+        },
+        {
+          "day": 4,
+          "name": "Upper B — Pull dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min rameur. Band pull-apart ×15. Face pull ×15. Lat stretch.",
+          "exercises": [
+            {
+              "name": "Pull-up (barre fixe) — tempo 3-0-1",
+              "sets": 4,
+              "reps": "6-8",
+              "rest_seconds": 150,
+              "notes": "RPE 7-8. Descente 3 sec contrôlée. Le tempo excentrique est particulièrement efficace pour les pull-up. Bras presque tendus en bas."
+            },
+            {
+              "name": "Chest-Supported Row (haltères)",
+              "sets": 4,
+              "reps": "10-12",
+              "rest_seconds": 150,
+              "notes": "RPE 7-8. Viser 12 reps si 10 était RPE 7 en W2."
+            },
+            {
+              "name": "Incline Bench Press (haltères)",
+              "sets": 3,
+              "reps": "10-12",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Lat Pulldown (poulie haute, prise large)",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 90,
+              "notes": "Nouveau W3. Pull vertical complémentaire aux pull-up. Tirer vers le menton, omoplate vers le bas et l'arrière. Ne pas tirer derrière la nuque."
+            },
+            {
+              "name": "Face Pull câble",
+              "sets": 3,
+              "reps": "15-20",
+              "rest_seconds": 60,
+              "notes": "Volume max isolations, santé épaule."
+            },
+            {
+              "name": "Triceps Pushdown câble",
+              "sets": 3,
+              "reps": "12-15",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Planche latérale",
+              "sets": 3,
+              "duration": "30 sec par côté",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "Étirement dorsaux. Étirement biceps. Foam roller thoracique."
+        },
+        {
+          "day": 5,
+          "name": "Lower B — Hinge dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Hip hinge bâton ×10. Good morning vide ×10.",
+          "exercises": [
+            {
+              "name": "Deadlift conventionnel (barre)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "RPE 7-8. Progression de charge continue. 3 min repos."
+            },
+            {
+              "name": "Romanian Deadlift (haltères)",
+              "sets": 4,
+              "reps": "10",
+              "rest_seconds": 120,
+              "notes": "+1 série vs W2."
+            },
+            {
+              "name": "Bulgarian Split Squat (haltères)",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 90,
+              "notes": "+2 reps vs W2."
+            },
+            {
+              "name": "Glute Bridge lourd (barre)",
+              "sets": 3,
+              "reps": "12-15",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Nordic Curl (machine ou partenaire)",
+              "sets": 3,
+              "reps": "5-6",
+              "rest_seconds": 90,
+              "notes": "Nouveau W3. Prévention majeure des tendinites ischio-jambiers (risque documenté chez intermédiaire+). Cheville fixée, descente lente excentrique, freiner avec les mains en bas. 5 reps = très difficile. Si impossible : 3 reps avec aide."
+            },
+            {
+              "name": "Calf Raises assis",
+              "sets": 4,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "Étirement fessiers figure 4. Étirement ischio. Foam roller lombaires."
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Bloc 1 — Cutback : décharge et consolidation",
+      "goal": "Semaine allégée, volume -15% vs W3. RPE 6 sur tous les composés. Consolider les patterns techniques avant le bloc intensification. Ne pas sauter cette semaine : l'adaptation supercompensatoire se produit pendant la récupération.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Upper A — Push dominant (allégé)",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "5 min vélo. Rotation épaule ×10. Band pull-apart ×15. Push-up ×10.",
+          "exercises": [
+            {
+              "name": "Bench Press (barre)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "RPE 6. Même charge que W2 (pas W3). Semaine de décharge : volume réduit, focus technique. 1 série en moins vs W3."
+            },
+            {
+              "name": "Overhead Press (barre debout)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "RPE 6. Même charge que W2."
+            },
+            {
+              "name": "Bent-over Row (barre)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "RPE 6."
+            },
+            {
+              "name": "Cable Fly",
+              "sets": 2,
+              "reps": "15",
+              "rest_seconds": 75,
+              "notes": "2 séries au lieu de 3."
+            },
+            {
+              "name": "Curl biceps haltères",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Core maintenu à volume réduit."
+            }
+          ],
+          "cooldown": "Étirement complet 8 min. Foam roller thoracique."
+        },
+        {
+          "day": 2,
+          "name": "Lower A — Squat dominant (allégé)",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité cheville. Goblet squat ×10.",
+          "exercises": [
+            {
+              "name": "Back Squat (barre)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 180,
+              "notes": "RPE 6. Charge W2. Focus sur la profondeur et la posture. 3 min repos."
+            },
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Leg Curl couché",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Calf Raises debout",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Ab Wheel",
+              "sets": 2,
+              "reps": "10",
+              "rest_seconds": 45,
+              "notes": "Volume core réduit."
+            }
+          ],
+          "cooldown": "Étirement complet 8 min."
+        },
+        {
+          "day": 4,
+          "name": "Upper B — Pull dominant (allégé)",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "5 min rameur. Band pull-apart ×15. Face pull ×15.",
+          "exercises": [
+            {
+              "name": "Pull-up (barre fixe)",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 150,
+              "notes": "RPE 6. Pas de charge additionnelle. Focus technique descente contrôlée."
+            },
+            {
+              "name": "Chest-Supported Row (haltères)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Incline Bench Press (haltères)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Face Pull câble",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Triceps Pushdown câble",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Planche latérale",
+              "sets": 2,
+              "duration": "25 sec par côté",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "Étirement dorsaux. Foam roller thoracique. Mobilité épaule complète."
+        },
+        {
+          "day": 5,
+          "name": "Lower B — Hinge dominant (allégé)",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "5 min vélo. Hip hinge bâton ×10. Good morning vide ×10.",
+          "exercises": [
+            {
+              "name": "Deadlift conventionnel (barre)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "RPE 6. Charge W2. Moins de volume, focus parfait technique. 3 min repos."
+            },
+            {
+              "name": "Romanian Deadlift (haltères)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Bulgarian Split Squat (haltères)",
+              "sets": 2,
+              "reps": "8 par jambe",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Glute Bridge lourd (barre)",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Calf Raises assis",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 2,
+              "reps": "10 par côté",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "Étirement fessiers. Étirement ischio. Foam roller lombaires. 5 min marche."
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Bloc 2 — Intensification : fourchette de reps réduite, charges augmentées",
+      "goal": "Passer en fourchette 6-8 reps sur les composés principaux (vs 8-10 en accumulation). RPE 7-8. Charges +5-10% vs W3. Introduction du cluster set sur deadlift.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Upper A — Push dominant",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "5 min vélo. Rotation épaule ×10. Band pull-apart ×15. Bench press léger ×10 (barre seule).",
+          "exercises": [
+            {
+              "name": "Bench Press (barre)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "RPE 7-8. Fourchette réduite à 6 reps, charge plus élevée vs W3. Repos 3 min — charges plus lourdes exigent récupération complète (ACSM). Double progression : 6 reps propres → 7 reps → 8 reps → +2,5 kg retour à 6."
+            },
+            {
+              "name": "Overhead Press (barre debout)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "RPE 7-8. Même logique de fourchette réduite."
+            },
+            {
+              "name": "Bent-over Row (barre)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "RPE 7-8. Charge +5 kg vs W3."
+            },
+            {
+              "name": "Dips lestés (ceinture)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Si 10 dips propres atteints en W3, ajouter 5-10 kg via ceinture. Sinon continuer poids de corps."
+            },
+            {
+              "name": "Cable Fly",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 75,
+              "notes": "Isolations maintenues à volume stable."
+            },
+            {
+              "name": "Curl biceps haltères incliné",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60,
+              "notes": "Assis sur banc incliné à 45°, plus long étirement du biceps. Progression qualitative vs curl debout."
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 45,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement pectoraux. Étirement épaule. Rotation thoracique. 5 min marche."
+        },
+        {
+          "day": 2,
+          "name": "Lower A — Squat dominant",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité cheville. Goblet squat ×10. Squat barre seule ×8.",
+          "exercises": [
+            {
+              "name": "Back Squat (barre)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "RPE 7-8. Fourchette réduite, charge +10 kg vs W3. 3 min repos minimum."
+            },
+            {
+              "name": "Front Squat (barre) ou Goblet Squat lourd",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "Nouveau W5. Front squat = charge sur avant-bras/épaules → trunk plus vertical → plus de quadriceps. Alternative : goblet squat avec kettlebell ou haltère lourd si technique front squat non maîtrisée."
+            },
+            {
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": "10",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Leg Curl couché",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60,
+              "notes": "Fourchette légèrement réduite, charge augmentée."
+            },
+            {
+              "name": "Calf Raises debout",
+              "sets": 4,
+              "reps": "12-15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Pallof Press (câble)",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Core fin séance. Anti-rotation. Câble à hauteur nombril, poulie à 90°. Pousser les bras devant, résister à la rotation. Nouveau mouvement bloc 2."
+            }
+          ],
+          "cooldown": "Étirement quadriceps. Pigeon. Étirement ischio. 5 min marche."
+        },
+        {
+          "day": 4,
+          "name": "Upper B — Pull dominant",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "5 min rameur. Band pull-apart ×15. Face pull ×15. Lat stretch.",
+          "exercises": [
+            {
+              "name": "Pull-up lesté (ceinture)",
+              "sets": 4,
+              "reps": "5-6",
+              "rest_seconds": 180,
+              "notes": "RPE 7-8. Ajouter 5-10 kg si 8 pull-up stricts atteints en W3. Si pas encore : continuer poids de corps avec descente 4 sec. 3 min repos — composé lourd."
+            },
+            {
+              "name": "Pendlay Row (barre, départ sol)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "Variante du bent-over row : chaque rep part du sol, dos parallèle. Développe la force explosive du pull horizontal. RPE 7-8."
+            },
+            {
+              "name": "Incline Bench Press (haltères)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Lat Pulldown prise serrée (V-bar)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 90,
+              "notes": "Prise neutre serrée = plus d'activation des dorsaux bas. Complément pull-up."
+            },
+            {
+              "name": "Face Pull câble",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Triceps Barre à front (Skull Crusher)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 75,
+              "notes": "Nouveau W5. Allongé sur banc, barre EZ descendue vers le front, coudes fixes. Isolation triceps en étirement complet. Garder les coudes alignés, pas évasés."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "45 sec",
+              "rest_seconds": 45,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement dorsaux. Étirement biceps. Foam roller thoracique."
+        },
+        {
+          "day": 5,
+          "name": "Lower B — Hinge dominant",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "5 min vélo. Hip hinge bâton ×10. Deadlift barre seule ×8.",
+          "exercises": [
+            {
+              "name": "Deadlift conventionnel — cluster set",
+              "sets": 4,
+              "reps": "3+3",
+              "rest_seconds": 180,
+              "notes": "RPE 7-8. Cluster set : 3 reps, rerack 15-20 sec de mini-repos intra-set, 3 reps. Permet de travailler à charge plus élevée (+10% vs W3) avec la même qualité technique. 3 min entre les clusters."
+            },
+            {
+              "name": "Romanian Deadlift (haltères)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Charge augmentée, reps légèrement réduites."
+            },
+            {
+              "name": "Bulgarian Split Squat (haltères)",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Nordic Curl",
+              "sets": 3,
+              "reps": "5-6",
+              "rest_seconds": 90,
+              "notes": "Maintenu du bloc. Prévention ischio-jambiers."
+            },
+            {
+              "name": "Glute Bridge lourd (barre)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 75,
+              "notes": "Fourchette réduite, charge augmentée."
+            },
+            {
+              "name": "Calf Raises assis",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog lestés (haltère au pied ou au poignet)",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "notes": "Core fin séance. Légère charge pour progression. Maintenir alignement parfait."
+            }
+          ],
+          "cooldown": "Étirement fessiers. Étirement ischio. Foam roller lombaires. 5 min marche."
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Bloc 2 — Intensification : progression linéaire",
+      "goal": "Continuer la progression linéaire sur les composés. RPE 8. Introduire les séries back-off pour volume additionnel sans fatigue excessive.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Upper A — Push dominant",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "5 min vélo. Rotation épaule ×10. Band pull-apart ×15. Bench press léger ×8.",
+          "exercises": [
+            {
+              "name": "Bench Press (barre) — séries lourdes + back-off",
+              "sets": 4,
+              "reps": "6 + 1×10 back-off",
+              "rest_seconds": 180,
+              "notes": "3 séries lourdes à RPE 8, puis 1 série back-off à -15% de la charge lourde pour 10 reps. Le back-off accumule du volume total sans compromettre la récupération. Exemple : 3×6 à 80 kg, 1×10 à 68 kg."
+            },
+            {
+              "name": "Overhead Press (barre)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "RPE 8. +2,5 kg vs W5 si W5 complet."
+            },
+            {
+              "name": "Bent-over Row (barre)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "RPE 8. +5 kg vs W5 si W5 complet."
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Cable Fly",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Curl biceps haltères incliné",
+              "sets": 3,
+              "reps": "10-12",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 45,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement pectoraux. Étirement épaule. Foam roller thoracique."
+        },
+        {
+          "day": 2,
+          "name": "Lower A — Squat dominant",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité cheville. Squat barre seule ×8.",
+          "exercises": [
+            {
+              "name": "Back Squat (barre) — séries lourdes + back-off",
+              "sets": 4,
+              "reps": "6 + 1×10 back-off",
+              "rest_seconds": 180,
+              "notes": "3 séries lourdes RPE 8, 1 back-off -15%. 3 min repos entre toutes les séries."
+            },
+            {
+              "name": "Front Squat ou Goblet Squat lourd",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "+2 kg vs W5."
+            },
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Leg Curl couché",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Calf Raises debout",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Pallof Press (câble)",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement quadriceps. Pigeon. Étirement ischio. 5 min marche."
+        },
+        {
+          "day": 4,
+          "name": "Upper B — Pull dominant",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "5 min rameur. Band pull-apart ×15. Face pull ×15.",
+          "exercises": [
+            {
+              "name": "Pull-up lesté + back-off",
+              "sets": 4,
+              "reps": "5-6 + 1×10 poids corps",
+              "rest_seconds": 180,
+              "notes": "3 séries lestées RPE 8, 1 série poids de corps pour volume. 3 min repos."
+            },
+            {
+              "name": "Pendlay Row (barre)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "RPE 8. +5 kg vs W5."
+            },
+            {
+              "name": "Incline Bench Press (haltères)",
+              "sets": 3,
+              "reps": "8-10",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Lat Pulldown V-bar",
+              "sets": 3,
+              "reps": "10-12",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Face Pull câble",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Skull Crusher (barre EZ)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "50 sec",
+              "rest_seconds": 45,
+              "notes": "Core fin séance. +5 sec vs W5."
+            }
+          ],
+          "cooldown": "Étirement dorsaux. Foam roller thoracique. Mobilité épaule."
+        },
+        {
+          "day": 5,
+          "name": "Lower B — Hinge dominant",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "5 min vélo. Hip hinge bâton ×10. Deadlift barre seule ×6.",
+          "exercises": [
+            {
+              "name": "Deadlift conventionnel — cluster set",
+              "sets": 4,
+              "reps": "3+3",
+              "rest_seconds": 180,
+              "notes": "RPE 8. +5 kg vs W5. 3 min entre clusters."
+            },
+            {
+              "name": "Romanian Deadlift (haltères)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Bulgarian Split Squat (haltères)",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Nordic Curl",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 90,
+              "notes": "+1 rep vs W5."
+            },
+            {
+              "name": "Glute Bridge lourd (barre)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Calf Raises assis",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog lestés",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement fessiers. Étirement ischio. Foam roller lombaires."
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "theme": "Bloc 2 — Intensification : pic du bloc",
+      "goal": "Volume pic du bloc 2 avec introduction des séries top set (1RM estimé à 85-87,5%). RPE 8-9 sur les top sets. Rester à RPE 7-8 sur les séries de travail.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Upper A — Push dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Rotation épaule ×10. Band pull-apart ×15. Rampe montée progressive bench : barre ×10, 50% ×5, 65% ×3, 80% ×1 avant les séries de travail.",
+          "exercises": [
+            {
+              "name": "Bench Press — Top Set + séries de travail",
+              "sets": 5,
+              "reps": "1 (top set) + 4×6",
+              "rest_seconds": 180,
+              "notes": "Top set à ~87% 1RM estimé (RPE 9, 1 seule rep). Puis 4 séries de 6 à -15% de la charge top set (RPE 7-8). Méthode top set : calibre le niveau de la journée avant les séries de travail."
+            },
+            {
+              "name": "Overhead Press (barre)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "RPE 8-9. Pic du bloc."
+            },
+            {
+              "name": "Bent-over Row (barre)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "RPE 8-9."
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Cable Fly",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Curl biceps haltères incliné",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement pectoraux. Étirement épaule. Foam roller thoracique. 5 min marche."
+        },
+        {
+          "day": 2,
+          "name": "Lower A — Squat dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité cheville et hanche. Rampe squat : barre ×10, 50% ×5, 65% ×3, 80% ×1.",
+          "exercises": [
+            {
+              "name": "Back Squat — Top Set + séries de travail",
+              "sets": 5,
+              "reps": "1 (top set) + 4×5",
+              "rest_seconds": 180,
+              "notes": "Top set ~87% 1RM, RPE 9. Puis 4×5 à -15% charge. 3 min entre toutes les séries."
+            },
+            {
+              "name": "Front Squat ou Goblet Squat lourd",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": "10",
+              "rest_seconds": 120,
+              "notes": "Charge progressive."
+            },
+            {
+              "name": "Leg Curl couché",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Calf Raises debout",
+              "sets": 4,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Pallof Press (câble)",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 45,
+              "notes": "+3 reps vs W6."
+            }
+          ],
+          "cooldown": "Étirement quadriceps. Pigeon. Étirement ischio. 5 min marche."
+        },
+        {
+          "day": 4,
+          "name": "Upper B — Pull dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min rameur. Band pull-apart ×15. Face pull ×15. Rampe pull-up : 3×3 montée progressive avec ceinture.",
+          "exercises": [
+            {
+              "name": "Pull-up lesté — Top Set + séries de travail",
+              "sets": 5,
+              "reps": "1 (top set max lesté) + 4×6",
+              "rest_seconds": 180,
+              "notes": "Top set : max charge avec 1 rep propre. Séries de travail : poids de corps + légère leste confortable. 3 min repos."
+            },
+            {
+              "name": "Pendlay Row (barre)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 180,
+              "notes": "RPE 8-9. Pic bloc 2."
+            },
+            {
+              "name": "Incline Bench Press (haltères)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Lat Pulldown V-bar",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Face Pull câble",
+              "sets": 3,
+              "reps": "20",
+              "rest_seconds": 60,
+              "notes": "Volume max santé épaule ce bloc."
+            },
+            {
+              "name": "Skull Crusher (barre EZ)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "55 sec",
+              "rest_seconds": 45,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement dorsaux. Étirement biceps. Foam roller thoracique."
+        },
+        {
+          "day": 5,
+          "name": "Lower B — Hinge dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Hip hinge bâton ×10. Rampe deadlift : barre ×8, 50% ×4, 65% ×2, 80% ×1.",
+          "exercises": [
+            {
+              "name": "Deadlift conventionnel — Top Set + cluster",
+              "sets": 4,
+              "reps": "1 (top set) + 3×(3+3)",
+              "rest_seconds": 180,
+              "notes": "Top set à ~87% 1RM, 1 rep. Puis 3 clusters à -10% charge. RPE 8-9 pic du bloc. 3 min entre toutes les séries."
+            },
+            {
+              "name": "Romanian Deadlift (haltères)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Bulgarian Split Squat (haltères)",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Nordic Curl",
+              "sets": 3,
+              "reps": "6-7",
+              "rest_seconds": 90,
+              "notes": "Prévention ischio maintenue."
+            },
+            {
+              "name": "Glute Bridge lourd (barre)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Calf Raises assis",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog lestés",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "notes": "+2 reps vs W6."
+            }
+          ],
+          "cooldown": "Étirement fessiers. Étirement ischio. Foam roller lombaires. 5 min marche."
+        }
+      ]
+    },
+    {
+      "week_number": 8,
+      "theme": "Bloc 2 — Cutback : décharge et supercompensation",
+      "goal": "Semaine allégée -15% volume vs W7. RPE 6 sur tous les composés. Supercompensation avant le bloc réalisation. Ne pas augmenter les charges : cette semaine permet au système nerveux de récupérer.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Upper A — Push dominant (allégé)",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "5 min vélo. Rotation épaule ×10. Band pull-apart ×15. Push-up ×10.",
+          "exercises": [
+            {
+              "name": "Bench Press (barre)",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 150,
+              "notes": "RPE 6. Charge W6 (pas W7). 1 série en moins vs W7. Focus sur la sensation de mouvement fluide."
+            },
+            {
+              "name": "Overhead Press (barre)",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 150,
+              "notes": "RPE 6."
+            },
+            {
+              "name": "Bent-over Row (barre)",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 150,
+              "notes": "RPE 6."
+            },
+            {
+              "name": "Cable Fly",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Curl biceps haltères",
+              "sets": 2,
+              "reps": "10",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "40 sec",
+              "rest_seconds": 45,
+              "notes": "Core maintenu, volume réduit."
+            }
+          ],
+          "cooldown": "Étirement complet 8 min."
+        },
+        {
+          "day": 2,
+          "name": "Lower A — Squat dominant (allégé)",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité cheville. Goblet squat ×10.",
+          "exercises": [
+            {
+              "name": "Back Squat (barre)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "RPE 6. Charge W6. 3 min repos."
+            },
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Leg Curl couché",
+              "sets": 2,
+              "reps": "10",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Calf Raises debout",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 2,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Core réduit."
+            }
+          ],
+          "cooldown": "Étirement complet 8 min."
+        },
+        {
+          "day": 4,
+          "name": "Upper B — Pull dominant (allégé)",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "5 min rameur. Band pull-apart ×15. Face pull ×15.",
+          "exercises": [
+            {
+              "name": "Pull-up (poids de corps)",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 150,
+              "notes": "RPE 6. Pas de leste cette semaine."
+            },
+            {
+              "name": "Chest-Supported Row (haltères)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Incline Bench Press (haltères)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Face Pull câble",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60,
+              "notes": "Maintenu pour santé épaule."
+            },
+            {
+              "name": "Triceps Pushdown câble",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Planche latérale",
+              "sets": 2,
+              "duration": "30 sec par côté",
+              "rest_seconds": 30,
+              "notes": "Core réduit."
+            }
+          ],
+          "cooldown": "Étirement dorsaux. Foam roller thoracique. Mobilité épaule complète."
+        },
+        {
+          "day": 5,
+          "name": "Lower B — Hinge dominant (allégé)",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "5 min vélo. Hip hinge bâton ×10. Deadlift barre seule ×6.",
+          "exercises": [
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 3,
+              "reps": "4",
+              "rest_seconds": 180,
+              "notes": "RPE 6. Charge W6. Moins de volume, focus parfait technique. 3 min repos."
+            },
+            {
+              "name": "Romanian Deadlift (haltères)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Bulgarian Split Squat (haltères)",
+              "sets": 2,
+              "reps": "8 par jambe",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Nordic Curl",
+              "sets": 2,
+              "reps": "5",
+              "rest_seconds": 90,
+              "notes": "Maintenu en volume réduit."
+            },
+            {
+              "name": "Calf Raises assis",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 2,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "notes": "Core réduit."
+            }
+          ],
+          "cooldown": "Étirement fessiers. Étirement ischio. Foam roller lombaires. 5 min marche."
+        }
+      ]
+    },
+    {
+      "week_number": 9,
+      "theme": "Bloc 3 — Réalisation : fourchette 4-6 reps, charges peak",
+      "goal": "Bloc force pure. Fourchette 4-6 reps sur les composés principaux. RPE 8-9. Charges les plus élevées du plan. Récupération 3 min minimum sur TOUS les composés.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Upper A — Push dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Rotation épaule. Rampe bench : barre ×8, 50% ×5, 65% ×3, 80% ×2, 87% ×1 de préparation.",
+          "exercises": [
+            {
+              "name": "Bench Press (barre)",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "RPE 8-9. Charges peak du plan. Double progression en reps : 5→6 avant de monter la charge. 3 min repos obligatoire."
+            },
+            {
+              "name": "Overhead Press (barre)",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "RPE 8-9. Charge maximale du plan sur ce mouvement."
+            },
+            {
+              "name": "Bent-over Row (barre)",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "RPE 8-9."
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Cable Fly",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 75,
+              "notes": "Isolations maintenues à volume stable, pas d'intensification."
+            },
+            {
+              "name": "Curl biceps haltères incliné",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement pectoraux. Étirement épaule. Foam roller thoracique. 5 min marche."
+        },
+        {
+          "day": 2,
+          "name": "Lower A — Squat dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité cheville et hanche complète. Rampe squat : barre ×8, 50% ×5, 65% ×3, 80% ×2.",
+          "exercises": [
+            {
+              "name": "Back Squat (barre)",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "RPE 8-9. Charges peak. 3 min repos. Vérifier valgus genoux sous charge maximale — stop si valgus apparaît."
+            },
+            {
+              "name": "Front Squat ou Goblet Squat lourd",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Leg Curl couché",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Calf Raises debout",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 45,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement quadriceps. Pigeon. Étirement ischio. 5 min marche."
+        },
+        {
+          "day": 4,
+          "name": "Upper B — Pull dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min rameur. Band pull-apart ×15. Face pull ×15. Rampe pull-up avec leste.",
+          "exercises": [
+            {
+              "name": "Pull-up lesté",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "RPE 8-9. Leste maximum du plan. 3 min repos."
+            },
+            {
+              "name": "Pendlay Row (barre)",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "RPE 8-9. Charges peak."
+            },
+            {
+              "name": "Incline Bench Press (haltères)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Lat Pulldown V-bar",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Face Pull câble",
+              "sets": 3,
+              "reps": "20",
+              "rest_seconds": 60,
+              "notes": "Santé épaule maintenue."
+            },
+            {
+              "name": "Skull Crusher (barre EZ)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "55 sec",
+              "rest_seconds": 45,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement dorsaux. Étirement biceps. Foam roller thoracique."
+        },
+        {
+          "day": 5,
+          "name": "Lower B — Hinge dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Hip hinge bâton ×10. Rampe deadlift : barre ×6, 50% ×4, 65% ×3, 80% ×2.",
+          "exercises": [
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 4,
+              "reps": "4",
+              "rest_seconds": 180,
+              "notes": "RPE 8-9. Charges peak du plan. 3 min repos minimum. Attention aux signaux lombaires — ne pas sacrifier la technique à la charge."
+            },
+            {
+              "name": "Romanian Deadlift (haltères)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Bulgarian Split Squat (haltères)",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Nordic Curl",
+              "sets": 3,
+              "reps": "7",
+              "rest_seconds": 90,
+              "notes": "Progression reps."
+            },
+            {
+              "name": "Glute Bridge lourd (barre)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 75,
+              "notes": "Charge peak."
+            },
+            {
+              "name": "Calf Raises assis",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog lestés",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement fessiers. Étirement ischio. Foam roller lombaires. 5 min marche."
+        }
+      ]
+    },
+    {
+      "week_number": 10,
+      "theme": "Bloc 3 — Réalisation : progression continue sur la force",
+      "goal": "Continuer la progression linéaire. RPE 9 sur les composés principaux. Introduire le method 5/3/1 simplifié : rampe hebdo vers un set max de la journée suivi de back-off.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Upper A — Push dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Rotation épaule. Rampe bench complète : barre ×8, 50% ×5, 65% ×3, 80% ×2, 87% ×1, 92% ×1.",
+          "exercises": [
+            {
+              "name": "Bench Press — AMRaP set + back-off",
+              "sets": 4,
+              "reps": "AMRAP à 85% + 3×5 back-off",
+              "rest_seconds": 180,
+              "notes": "Méthode 5/3/1 simplifiée. AMRaP (As Many Reps as Possible) avec la charge 85% 1RM : faire le maximum de reps de qualité (s'arrêter 1 rep avant technique défaillante). Puis 3×5 à 70%. Ce set AMRaP est le meilleur indicateur de ta progression réelle. 3 min entre toutes les séries."
+            },
+            {
+              "name": "Overhead Press (barre)",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "RPE 9. Charge maximale du plan +2,5 kg vs W9."
+            },
+            {
+              "name": "Bent-over Row (barre)",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Cable Fly",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Curl biceps haltères incliné",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement pectoraux. Étirement épaule. Foam roller thoracique. 5 min marche."
+        },
+        {
+          "day": 2,
+          "name": "Lower A — Squat dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité complète. Rampe squat : barre ×8, 50% ×5, 65% ×3, 80% ×2, 87% ×1.",
+          "exercises": [
+            {
+              "name": "Back Squat — AMRaP set + back-off",
+              "sets": 4,
+              "reps": "AMRAP à 85% + 3×5 back-off",
+              "rest_seconds": 180,
+              "notes": "Même méthode que bench. AMRaP à 85% : viser 6+ reps pour un intermédiaire solide. Back-off 3×5 à 70%. 3 min entre toutes les séries."
+            },
+            {
+              "name": "Front Squat ou Goblet Squat lourd",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Leg Curl couché",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Calf Raises debout",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 45,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement quadriceps. Pigeon. Étirement ischio. 5 min marche."
+        },
+        {
+          "day": 4,
+          "name": "Upper B — Pull dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min rameur. Band pull-apart ×15. Face pull ×15. Rampe pull-up.",
+          "exercises": [
+            {
+              "name": "Pull-up lesté — AMRaP + back-off",
+              "sets": 4,
+              "reps": "AMRAP charge pic + 3×6 poids corps",
+              "rest_seconds": 180,
+              "notes": "AMRaP avec charge maximale du plan. Back-off poids de corps 3×6. 3 min repos."
+            },
+            {
+              "name": "Pendlay Row (barre)",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "RPE 9. +5 kg vs W9 si W9 complet."
+            },
+            {
+              "name": "Incline Bench Press (haltères)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Lat Pulldown V-bar",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Face Pull câble",
+              "sets": 3,
+              "reps": "20",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Skull Crusher (barre EZ)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "60 sec",
+              "rest_seconds": 45,
+              "notes": "1 min cible. Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement dorsaux. Étirement biceps. Foam roller thoracique."
+        },
+        {
+          "day": 5,
+          "name": "Lower B — Hinge dominant",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Hip hinge bâton ×10. Rampe deadlift complète.",
+          "exercises": [
+            {
+              "name": "Deadlift conventionnel — AMRaP + back-off",
+              "sets": 4,
+              "reps": "AMRAP à 85% + 3×4 back-off",
+              "rest_seconds": 180,
+              "notes": "AMRaP à 85% 1RM. Back-off 3×4 à 70%. Note le nombre de reps AMRaP pour comparaison W11. 3 min entre toutes les séries."
+            },
+            {
+              "name": "Romanian Deadlift (haltères)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Bulgarian Split Squat (haltères)",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Nordic Curl",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Glute Bridge lourd (barre)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Calf Raises assis",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog lestés",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement fessiers. Étirement ischio. Foam roller lombaires. 5 min marche."
+        }
+      ]
+    },
+    {
+      "week_number": 11,
+      "theme": "Bloc 3 — Réalisation : semaine test et autoévaluation",
+      "goal": "Séance phare de test sur les 4 composés principaux. Mesure concrète de la progression sur 10 semaines. RPE 9-10 sur les tests. Checklist d'autonomie finale incluse.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Upper A — Test Bench Press et OHP",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Rotation épaule complète. Rampe bench longue : barre ×10, 50% ×5, 65% ×3, 75% ×2, 85% ×1, 90% ×1 (repos 2 min entre les montées).",
+          "exercises": [
+            {
+              "name": "Bench Press — Tentative 1RM estimé",
+              "sets": 1,
+              "reps": "1",
+              "rest_seconds": 300,
+              "notes": "Test 1RM technique : charger à ~92-95% 1RM estimé (basé sur AMRaP W10). 1 rep propre complète = succès. Si réussi, attendre 5 min et tenter +2,5 kg. Si raté, noter la charge max réussie. Ce chiffre est ta référence de départ pour le prochain cycle."
+            },
+            {
+              "name": "Overhead Press (barre) — Tentative 1RM estimé",
+              "sets": 1,
+              "reps": "1",
+              "rest_seconds": 240,
+              "notes": "Test OHP après 4 min de récup du bench. Même procédure. Note le résultat."
+            },
+            {
+              "name": "Bent-over Row",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 150,
+              "notes": "Volume modéré pour ne pas fatiguer avant le test Lower."
+            },
+            {
+              "name": "Cable Fly",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Curl biceps haltères",
+              "sets": 2,
+              "reps": "10",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 2,
+              "reps": "10 par côté",
+              "rest_seconds": 45,
+              "notes": "Core maintenu."
+            }
+          ],
+          "cooldown": "Étirement complet 10 min. Foam roller thoracique. Notation des charges de test dans le carnet."
+        },
+        {
+          "day": 2,
+          "name": "Lower A — Test Back Squat",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité complète. Rampe squat longue : barre ×10, 50% ×5, 65% ×3, 75% ×2, 85% ×1, 90% ×1.",
+          "exercises": [
+            {
+              "name": "Back Squat — Tentative 1RM estimé",
+              "sets": 1,
+              "reps": "1",
+              "rest_seconds": 360,
+              "notes": "Test squat. Charger à 92-95% 1RM estimé. Profondeur complète obligatoire pour valider. 6 min de récup si deuxième tentative. Checklist d'autonomie : vérifier (1) profondeur au parallèle, (2) absence de valgus genou sous charge max, (3) dos plat maintenu du début à la fin du mouvement."
+            },
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 120,
+              "notes": "Volume modéré post-test."
+            },
+            {
+              "name": "Leg Curl couché",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Calf Raises debout",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 2,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Étirement complet 10 min. Foam roller lombaires. Notation charge de test."
+        },
+        {
+          "day": 4,
+          "name": "Upper B — Pull dominant (volume modéré)",
+          "duration_minutes": 65,
+          "type": "strength",
+          "warmup": "5 min rameur. Band pull-apart ×15. Face pull ×15.",
+          "exercises": [
+            {
+              "name": "Pull-up lesté",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "Volume modéré avant test deadlift demain. Pas de test pull-up aujourd'hui."
+            },
+            {
+              "name": "Chest-Supported Row (haltères)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Incline Bench Press (haltères)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Face Pull câble",
+              "sets": 3,
+              "reps": "20",
+              "rest_seconds": 60,
+              "notes": "Santé épaule maintenue."
+            },
+            {
+              "name": "Triceps Pushdown câble",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "60 sec",
+              "rest_seconds": 45,
+              "notes": "Core fin séance. Checklist autonomie core : tenir 60 sec sans compensation (hanches stables, pas de tremblement de hanche, respiration contrôlée)."
+            }
+          ],
+          "cooldown": "Étirement dorsaux. Foam roller thoracique. Repos et hydratation avant test deadlift J5."
+        },
+        {
+          "day": 5,
+          "name": "Lower B — Test Deadlift et bilan final",
+          "duration_minutes": 80,
+          "type": "strength",
+          "warmup": "5 min vélo. Hip hinge bâton ×10. Rampe deadlift longue : barre ×8, 50% ×5, 65% ×3, 75% ×2, 85% ×1, 90% ×1.",
+          "exercises": [
+            {
+              "name": "Deadlift conventionnel — Tentative 1RM estimé",
+              "sets": 1,
+              "reps": "1",
+              "rest_seconds": 360,
+              "notes": "Test deadlift. Charger à 92-95% 1RM estimé. Dos plat obligatoire du départ au lockout. Arrêt si arrondi lombaire excessif — la sécurité prime sur le record. 6 min récup si deuxième tentative."
+            },
+            {
+              "name": "Romanian Deadlift (haltères)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Volume modéré post-test."
+            },
+            {
+              "name": "Nordic Curl",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 90,
+              "notes": "Maintenu pour la prévention."
+            },
+            {
+              "name": "Calf Raises assis",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 2,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "notes": "Core fin séance. Bilan final : CHECKLIST D'AUTONOMIE POST-PLAN (5 critères) : (1) RPE 8-9 sur les composés avec forme maintenue — tu peux te challenger sans casser la technique. (2) Tu progrèses en charge ou en reps chaque semaine sur au moins 2 des 4 composés principaux. (3) Tu identifies tes points faibles structuraux (ex: quad faible sur squat = plus de front squat ; ischio faible = plus de Nordic curl). (4) Tu connais tes 1RM estimés sur les 4 composés et tu es capable de calculer tes zones de travail (60%, 70%, 80%, 85%). (5) Tu es capable de moduler ton volume et ton intensité selon les signaux de récupération (FC repos, DOMS, motivation) — tu n'appliques plus le plan aveuglément, tu l'adaptes."
+            }
+          ],
+          "cooldown": "Étirement fessiers figure 4. Étirement ischio. Foam roller lombaires et thoraciques complet. 10 min d'étirements finaux. Notation de tous les 1RM dans le carnet d'entraînement. Bilan de la progression semaine 1 → semaine 11."
+        }
+      ]
+    },
+    {
+      "week_number": 12,
+      "theme": "Deload complet — récupération et transition",
+      "goal": "Semaine de décharge totale. Volume -40% vs W11. RPE 5-6 maximum. Aucune tentative de progression. Objectif : permettre la récupération complète du système nerveux central et des structures tendineuses avant le prochain cycle.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Upper A — Deload actif",
+          "duration_minutes": 45,
+          "type": "strength",
+          "warmup": "5 min vélo léger. Rotation épaule. Band pull-apart ×10.",
+          "exercises": [
+            {
+              "name": "Bench Press (barre)",
+              "sets": 2,
+              "reps": "5",
+              "rest_seconds": 120,
+              "notes": "RPE 5. Charge à 60% 1RM. Pas de fatigue voulue. Focus sur le ressenti du mouvement parfait. 2 min repos."
+            },
+            {
+              "name": "Overhead Press (barre)",
+              "sets": 2,
+              "reps": "5",
+              "rest_seconds": 120,
+              "notes": "RPE 5. 60% 1RM."
+            },
+            {
+              "name": "Bent-over Row (barre)",
+              "sets": 2,
+              "reps": "5",
+              "rest_seconds": 120,
+              "notes": "RPE 5. 60% 1RM."
+            },
+            {
+              "name": "Face Pull câble",
+              "sets": 2,
+              "reps": "15",
+              "rest_seconds": 60,
+              "notes": "Santé épaule maintenue pendant deload."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 2,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Core léger fin séance."
+            }
+          ],
+          "cooldown": "Étirement complet 10 min. Mobilité épaule et thoracique foam roller 5 min."
+        },
+        {
+          "day": 2,
+          "name": "Lower A — Deload actif",
+          "duration_minutes": 45,
+          "type": "strength",
+          "warmup": "5 min vélo. Mobilité cheville. Goblet squat ×8.",
+          "exercises": [
+            {
+              "name": "Back Squat (barre)",
+              "sets": 2,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "RPE 5. 60% 1RM. Profondeur complète, allure détendue. 2,5 min repos."
+            },
+            {
+              "name": "Romanian Deadlift (haltères)",
+              "sets": 2,
+              "reps": "8",
+              "rest_seconds": 90,
+              "notes": "Charge légère, étirement ischio ressenti."
+            },
+            {
+              "name": "Leg Curl couché",
+              "sets": 2,
+              "reps": "10",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Calf Raises debout",
+              "sets": 2,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 2,
+              "reps": "8 par côté",
+              "rest_seconds": 30,
+              "notes": "Core fin séance."
+            }
+          ],
+          "cooldown": "Pigeon 60 sec/côté. Étirement ischio. Foam roller lombaires 5 min."
+        },
+        {
+          "day": 4,
+          "name": "Upper B — Deload actif + mobilité",
+          "duration_minutes": 45,
+          "type": "mixed",
+          "warmup": "5 min marche. Mobilité dynamique épaule complète 5 min.",
+          "exercises": [
+            {
+              "name": "Pull-up (poids de corps)",
+              "sets": 2,
+              "reps": "4",
+              "rest_seconds": 120,
+              "notes": "RPE 5. Descente lente 3 sec, pas de leste. Focus sensation."
+            },
+            {
+              "name": "Chest-Supported Row (haltères légers)",
+              "sets": 2,
+              "reps": "10",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Face Pull câble",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Santé coiffe des rotateurs."
+            },
+            {
+              "name": "Routine mobilité thoracique",
+              "sets": 1,
+              "duration": "8 min",
+              "rest_seconds": 0,
+              "notes": "Foam roller thoracique 2 min. Ouverture en rotation 8/côté. Thread the needle 6/côté. Libère les tensions accumulées sur 11 semaines de bench et row."
+            }
+          ],
+          "cooldown": "Étirement pectoraux, dorsaux, biceps et épaule 10 min complet."
+        },
+        {
+          "day": 5,
+          "name": "Lower B — Deload actif + bilan programme",
+          "duration_minutes": 45,
+          "type": "mixed",
+          "warmup": "5 min vélo. Hip hinge bâton ×8.",
+          "exercises": [
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 2,
+              "reps": "4",
+              "rest_seconds": 150,
+              "notes": "RPE 5. 60% 1RM. Le meilleur outil de vérification technique à charge légère : si le pattern est bon ici, il sera solide au prochain cycle. 2,5 min repos."
+            },
+            {
+              "name": "Bulgarian Split Squat (haltères légers)",
+              "sets": 2,
+              "reps": "6 par jambe",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Glute Bridge (poids de corps ou légère charge)",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Calf Raises assis",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Routine mobilité hanche complète",
+              "sets": 1,
+              "duration": "8 min",
+              "rest_seconds": 0,
+              "notes": "90/90 au sol 60 sec/côté. Pigeon 60 sec/côté. Hip flexor stretch debout 45 sec/côté. Figure 4 allongée 45 sec/côté. Préparation articulaire pour le prochain cycle. Bilan programme complet : note tes 1RM actuels vs début de plan, identifie tes 3 priorités pour le cycle suivant (ex: plus de volume sur le point faible, travail de mobilité spécifique, ajout de romanian deadlift bilatéral)."
+            }
+          ],
+          "cooldown": "Foam roller corps complet 10 min (thoracique, lombaires, IT band, quadriceps, mollets). Hydratation et récupération active post-programme. Planifier la reprise du prochain cycle dans 5-7 jours avec des charges de départ à 90% des nouveaux 1RM atteints."
+        }
+      ]
+    }
+  ],
+  "safety_notes": "DRAPEAUX ROUGES (arrêter immédiatement et consulter un professionnel de santé) :\n• Douleur antérieure d'épaule lors du bench press ou des dips — signe de conflit sous-acromial. Stop exercice, glaçage 15 min, consultation kiné si persistant > 48h. La douleur articulaire d'épaule est le drapeau rouge n°1 du pratiquant musculation intermédiaire.\n• Douleur vive lombaire pendant ou après deadlift ou squat : stop immédiat. Douleur irradiante dans la jambe (nerf sciatique) = consultation urgente. Ne jamais forcer sous douleur lombaire aiguë.\n• Engourdissement ou fourmillements dans les bras lors du bench press ou OHP : déposer la barre, ne pas continuer.\n• Douleur face antérieure du genou (rotule) sous charge : surveiller le valgus genou lors du squat. Réduire la charge, vérifier la mobilité cheville. Si persistant > 1 semaine : pause et avis médical.\n• Claquage ou tiraillement ischio-jambier sur Nordic curl ou RDL : arrêt immédiat. Risque tendinopathie ischio si ignoré.\n\nRÈGLES GÉNÉRALES :\n• Repos entre composés lourds (squat, deadlift, bench, OHP, pull-up, row) : MINIMUM 2 minutes, recommandé 3 minutes (ACSM/NSCA). Ne pas compromettre ce repos pour raccourcir la séance — la récupération intra-set est directement liée à la performance et à la sécurité.\n• Repos entre isolations et mouvements légers : 60-90 secondes.\n• DOMS (courbatures 24-72h post-séance) : normal et attendu, notamment en début de bloc ou après introduction d'un nouveau mouvement. DOMS ≠ douleur articulaire. La distinction est critique : courbatures musculaires profondes = récupération normale ; douleur tendon, articulation, bruit de craquement anormal = signal d'alarme.\n• Ceinture lombaire : optionnelle sur les sets de travail (≥ 85% 1RM), déconseillée pour les séries légères et les back-off (le core doit travailler). Ne jamais utiliser la ceinture pour compenser une technique défaillante.\n• Magnésie (craie) : recommandée sur deadlift et pull-up lesté dès que la grip est le facteur limitant.\n• Ne jamais sauter l'échauffement — en particulier la montée progressive des charges (rampe) avant les composés lourds.\n\nINTENSITÉ ET RPE :\n• Grille RPE pratique : RPE 6 = 4 reps en réserve, effort modéré. RPE 7 = 3 reps en réserve. RPE 8 = 2 reps en réserve, effort soutenu mais forme parfaite. RPE 9 = 1 rep en réserve, très exigeant. RPE 10 = effort total, aucune rep de plus possible avec bonne technique.\n• Ne jamais dépasser RPE 9 sur les composés sans partenaire d'entraînement ou barres de sécurité en place (rack obligatoire pour squat et bench press).\n• Si RPE d'une séance est systématiquement 1-2 points au-dessus de la cible (ex: RPE 9 là où RPE 7 était attendu) : ne pas progresser en charge cette semaine. La récupération est insuffisante ou les charges de départ étaient trop ambitieuses.\n\nSIGNES DE SURCHARGE NEUROMUSCULAIRE (3+ signes simultanés → cutback ou récupération active 1 semaine) :\n• Performance stagnante ou régressant sur 2 semaines consécutives\n• Fréquence cardiaque de repos +10 bpm au réveil\n• Sommeil de mauvaise qualité > 3 nuits\n• Motivation très basse, sentiment d'appréhension avant les séances\n• Courbatures prolongées > 72h\n• Irritabilité ou fatigue générale diurne excessive\n\nRISQUES SPÉCIFIQUES INTERMÉDIAIRE+ :\n• Tendinopathies ischio-jambières sur fractionné eccentric (nordic curl) : progresser très lentement. 5 reps à la première exposition, augmentation d'1 rep/semaine max.\n• Stress fracture tibiale ou métatarsale si combinaison de ce programme avec running intensif simultané : ne pas cumuler sans avis professionnel.\n• Syndrome de surentraînement : à ce niveau de volume (4 séances/sem), la récupération hors salle (sommeil 7-9h, alimentation protéique ≥ 1,6g/kg/j) est aussi importante que l'entraînement lui-même.\n\nSI SÉANCE MANQUÉE :\n• 1 séance manquée : la sauter et reprendre le planning prévu. Ne pas compresser 2 séances en 1 journée.\n• 1 semaine manquée : reprendre à la même semaine, réduire les charges de 10%.\n• 2 semaines manquées : reprendre à la semaine précédente du plan, réduire les charges de 20%.\n• > 3 semaines manquées : reprendre au bloc 1 (W1-W2) avec charges réévaluées.",
+  "progression_logic": "Progression sur 4 principes fondamentaux, conformes aux recommandations ACSM, NSCA et à la littérature sur la periodization (Zatsiorsky, Israetel) :\n(1) DOUBLE PROGRESSION SUR LES COMPOSÉS : pour chaque mouvement composé, la progression suit l'ordre : augmenter les reps jusqu'au haut de la fourchette (ex : 6→8) → puis augmenter la charge de 2,5 kg (upper) ou 5 kg (lower) en retournant au bas de la fourchette. Ce mécanisme garantit que la charge monte uniquement quand la technique est parfaitement maîtrisée au volume cible. Exemple concret : Bench Press à 80 kg × 6 reps (bas fourchette) → 80 kg × 7 → 80 kg × 8 (haut fourchette) → 82,5 kg × 6 (nouveau cycle). Sur les deadlift et back squat : paliers de 5 kg.\n(2) PERIODIZATION LINÉAIRE PAR BLOCS : 3 blocs distincts. Bloc 1 (W1-W4) = Accumulation : fourchette 8-10 reps, RPE 6-7, construction du volume. Bloc 2 (W5-W8) = Intensification : fourchette 6-8 reps, RPE 7-9, introduction top sets et cluster sets. Bloc 3 (W9-W11) = Réalisation : fourchette 4-6 reps, RPE 8-10, tests 1RM estimés en W11. Cette structure ondulée (DUP simplifié) est supérieure à la progression linéaire pure pour un intermédiaire (Rhea et al., 2002).\n(3) CUTBACKS OBLIGATOIRES EN W4 ET W8 + DELOAD W12 : W4 et W8 = volume réduit de 15% avec RPE 6 pour permettre la supercompensation. W12 = deload complet à 60% 1RM, 2 séries par exercice. Sans décharge, les structures tendineuses et le système nerveux central accumulent une fatigue que les muscles ne ressentent pas (dissociation performance perçue / capacité réelle). Ces semaines sont constitutives de la performance finale, pas des semaines perdues.\n(4) MÉTHODE TOP SET ET AMRAP DANS LES BLOCS 2 ET 3 : les top sets (1 rep lourd à 85-90%) servent à calibrer l'état du pratiquant en temps réel avant les séries de travail (autoregulation). Les sets AMRaP (As Many Reps as Possible) en W10-W11 permettent d'estimer les 1RM sans prise de risque excessive et de mesurer la progression réelle du cycle. Cette approche est au cœur du programme 5/3/1 de Jim Wendler (référence pour intermediaire+).\n(5) CORE EN FIN DE SÉANCE ET NORDIC CURL COMME PRÉVENTION : core toujours en dernière position pour ne pas fatiguer les stabilisateurs avant les composés lourds (NSCA). Les exercices core progressent en difficulté : planche ventrale (W1) → dead bug (W2) → pallof press anti-rotation (W5) → maintien intégré. Nordic curl introduit en W3 et maintenu tout au long du plan : réduction de 51% des tendinopathies ischio-jambières documentée (Petersen et al., 2011), risque majeur pour l'intermédiaire qui intensifie. Tous les exercices cités dans cette section apparaissent effectivement dans le contenu des semaines."
+}

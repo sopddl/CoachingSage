@@ -1,0 +1,747 @@
+{
+  "id": "yoga-debutant-initiation-6sem",
+  "schema_version": 1,
+  "sport": "yoga",
+  "level": "debutant",
+  "name": "Yoga initiation — 6 semaines pour une pratique autonome",
+  "duration_weeks": 6,
+  "sessions_per_week": 3,
+  "default_objective": "Acquérir 20 postures de base et enchaîner une séance de 30 min en autonomie",
+  "assumed_profile": "Adulte sans expérience yoga, tapis disponible, 30 min à consacrer par séance, absence de blessure active. Raideur classique de sédentaire. Pas de bloc yoga ni sangle requis — alternatives au sol proposées à chaque fois.",
+  "summary": "Programme de 6 semaines introduisant exactement 20 postures de base, organisées en progression pédagogique : postures au sol (W1-W2), puis debout simples (W2-W3), puis équilibre et enchaînements (W4-W5), puis séance autonome complète (W6). Respiration dirgha (3 temps) introduite dès W1, ujjayi à partir de W3 seulement. Savasana 3-5 min à chaque séance. Semaine de cutback en W4 (volume allégé, consolidation qualitative). Checklist d'autonomie en W6. Aucun accessoire obligatoire hors tapis.",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Sol et respiration — poser les fondations",
+      "goal": "Découvrir la respiration dirgha (3 temps) et les 5 premières postures au sol. Installer le rituel tapis : arriver, respirer, bouger, savasana.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Découverte du sol et du souffle",
+          "duration_minutes": 30,
+          "type": "technique",
+          "warmup": "Allongé sur le dos, genoux pliés, pieds au sol : 8 respirations naturelles pour observer le corps. Puis 5 respirations dirgha : inspire en gonflant ventre → côtes → clavicules (3 temps), expire en vidant clavicules → côtes → ventre. Ce pattern est ta boussole pour toute la séance.",
+          "exercises": [
+            {
+              "name": "Posture 1 — Savasana préparatoire (Corps allongé)",
+              "sets": 1,
+              "duration": "2 min",
+              "rest_seconds": null,
+              "notes": "Allongé sur le dos, bras légèrement écartés paumes vers le ciel, jambes relâchées. Sentir le contact du dos avec le tapis. Point d'ancrage de toute la pratique."
+            },
+            {
+              "name": "Posture 2 — Knees to Chest (Apanasana)",
+              "sets": 1,
+              "duration": "1 min 30",
+              "rest_seconds": null,
+              "notes": "Ramener les deux genoux sur la poitrine, encercler les tibias avec les bras. Doucement bercer G/D. Massage du bas du dos, décompression lombaire. Alternative si douleur aux genoux : saisir l'arrière des cuisses."
+            },
+            {
+              "name": "Posture 3 — Cat-Cow (Marjaryasana-Bitilasana)",
+              "sets": 3,
+              "reps": "6 cycles",
+              "rest_seconds": null,
+              "notes": "À 4 pattes, poignets sous épaules, genoux sous hanches. Expire : arrondir le dos vers le ciel (Chat). Inspire : creuser le dos, lever le regard (Vache). Mouvement lent, piloté par le souffle. Échauffement obligatoire des poignets avant tout appui."
+            },
+            {
+              "name": "Posture 4 — Child's Pose (Balasana)",
+              "sets": 2,
+              "duration": "45 sec",
+              "rest_seconds": null,
+              "notes": "Depuis 4 pattes, asseoir les fessiers vers les talons, bras allongés devant ou le long du corps. Front au sol ou sur les poings si raideur des hanches. Posture de repos actif — revenir ici à tout moment si débordement."
+            },
+            {
+              "name": "Posture 5 — Reclined Twist (Supta Matsyendrasana)",
+              "sets": 1,
+              "reps": "45 sec par côté",
+              "rest_seconds": null,
+              "notes": "Allongé sur le dos, genoux pliés. Faire tomber les deux genoux d'un côté, ouvrir le bras opposé. Regarder le plafond ou dans le sens opposé des genoux. Respirer dans l'espace intercostal. Raideur classique côté opposé à la respiration — normal."
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": null,
+              "notes": "Allongé immobile, yeux fermés. Laisser les effets de la séance s'installer. Non négociable : même 3 minutes comptent. C'est la posture la plus difficile pour un débutant impatient."
+            }
+          ],
+          "cooldown": "Savasana intégrée à la séance (4 min). Après le tapis : une gorgée d'eau, 1 min assis les yeux ouverts avant de se lever lentement."
+        },
+        {
+          "day": 3,
+          "name": "Approfondissement sol — hanches et colonne",
+          "duration_minutes": 30,
+          "type": "technique",
+          "warmup": "5 respirations dirgha allongé. Puis Cat-Cow 6 cycles pour réveiller la colonne (posture 3 déjà connue — la mémoriser par son nom).",
+          "exercises": [
+            {
+              "name": "Cat-Cow (Marjaryasana-Bitilasana) — révision",
+              "sets": 2,
+              "reps": "5 cycles",
+              "rest_seconds": null,
+              "notes": "Consolidation. Attention : ne pas laisser la tête tomber en arrière sur la vache — regard vers l'avant, pas le plafond."
+            },
+            {
+              "name": "Child's Pose (Balasana) — révision avec bras latéraux",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": null,
+              "notes": "Bras le long du corps cette fois (variante yin). Observer la différence de sensation avec bras devant."
+            },
+            {
+              "name": "Posture 6 — Seated Forward Fold (Paschimottanasana)",
+              "sets": 2,
+              "duration": "45 sec",
+              "rest_seconds": null,
+              "notes": "Assis, jambes allongées devant. Grandir sur l'inspire, pencher le buste en avant sur l'expire — dos droit, pas arrondi. Saisir les chevilles, les mollets ou les pieds selon disponibilité. Alternative si hamstrings très tendus (sédentaire) : plier légèrement les genoux. Ne jamais forcer jusqu'à douleur."
+            },
+            {
+              "name": "Posture 7 — Reclined Butterfly (Supta Baddha Konasana)",
+              "sets": 1,
+              "duration": "2 min",
+              "rest_seconds": null,
+              "notes": "Allongé sur le dos, plantes des pieds jointes, genoux vers l'extérieur. Bras relâchés sur le côté. Ouverture passive des hanches. Raideur de l'aine = normal pour sédentaire — ne pas forcer le dos des genoux vers le sol. Respirer dans l'aine."
+            },
+            {
+              "name": "Knees to Chest (Apanasana) — révision",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": null,
+              "notes": "Transition vers savasana. Bercer doucement."
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": null,
+              "notes": "Relâchement complet. Si l'esprit s'agite, revenir à la sensation des pieds sur le tapis."
+            }
+          ],
+          "cooldown": "Savasana intégrée. Rouler sur le côté droit avant de se lever (protection lombaire)."
+        },
+        {
+          "day": 5,
+          "name": "Synthèse W1 — 7 postures sol maîtrisées",
+          "duration_minutes": 30,
+          "type": "technique",
+          "warmup": "5 respirations dirgha. Cat-Cow 6 cycles. Observer si le mouvement est plus fluide qu'en J1.",
+          "exercises": [
+            {
+              "name": "Enchaînement sol W1 — postures 1 à 7",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": null,
+              "notes": "Enchaîner les 7 postures découvertes cette semaine dans l'ordre : Savasana préparatoire (1 min) → Knees to Chest (1 min) → Cat-Cow (4 cycles) → Child's Pose (1 min) → Seated Forward Fold (45 sec x2) → Reclined Butterfly (2 min) → Reclined Twist (45 sec/côté). Pas de chrono strict, écouter les sensations. C'est la première fois qu'on ENCHAÎNE — l'objectif est de mémoriser la séquence, pas de parfaire les postures."
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": null,
+              "notes": "Séance de synthèse : prendre une minute de plus en savasana pour laisser s'intégrer les 7 postures. Avant de se lever, nommer mentalement les 7 postures de la semaine."
+            }
+          ],
+          "cooldown": "Savasana intégrée. Assis en tailleur 1 min, mains sur les genoux, 3 respirations dirgha conscientes pour clore la séance."
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Debout — ancrage et force simple",
+      "goal": "Introduire les premières postures debout (postures 8 à 12). Maintenir le fil des postures au sol de W1 en échauffement. Volume stable, qualité prioritaire.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Debout — Mountain et Warrior I",
+          "duration_minutes": 30,
+          "type": "technique",
+          "warmup": "5 respirations dirgha allongé. Cat-Cow 5 cycles. Child's Pose 45 sec. Se lever lentement pour les postures debout.",
+          "exercises": [
+            {
+              "name": "Posture 8 — Mountain Pose (Tadasana)",
+              "sets": 1,
+              "duration": "2 min",
+              "rest_seconds": null,
+              "notes": "Debout, pieds parallèles largeur des hanches, poids équitablement réparti sur les 4 coins des pieds. Cuisses légèrement activées, coccyx neutre (ni bassin antérieur ni trop rentré), sternum ouvert, épaules relâchées, sommet du crâne vers le plafond. Respirer ici 6 cycles. Posture en apparence passive — en réalité très active pour le débutant qui découvre son alignement axial."
+            },
+            {
+              "name": "Posture 9 — Warrior I (Virabhadrasana I)",
+              "sets": 1,
+              "reps": "45 sec par côté",
+              "rest_seconds": null,
+              "notes": "Depuis Mountain : grand pas en arrière avec un pied, talon arrière tourné à 45°. Genou avant à 90° (genou au-dessus de la cheville, pas au-delà). Hanches face à l'avant. Bras levés. Attention : ne pas laisser le genou avant partir en valgus (vers l'intérieur). Serrer légèrement les cuisses l'une vers l'autre mentalement."
+            },
+            {
+              "name": "Child's Pose (Balasana) — récupération",
+              "sets": 1,
+              "duration": "45 sec",
+              "rest_seconds": null,
+              "notes": "Toujours disponible entre postures debout fatigantes."
+            },
+            {
+              "name": "Posture 10 — Forward Fold debout (Uttanasana)",
+              "sets": 2,
+              "duration": "45 sec",
+              "rest_seconds": null,
+              "notes": "Depuis Mountain, plier les genoux autant que nécessaire, poser les mains au sol ou sur les tibias. Tête lourde, nuque relâchée. Ne pas tirer sur la nuque. Décompression vertébrale douce. Alternative sédentaire très raide : se pencher sur les cuisses, bras croisés, se balancer doucement."
+            },
+            {
+              "name": "Reclined Butterfly (Supta Baddha Konasana) — sol finalisation",
+              "sets": 1,
+              "duration": "1 min 30",
+              "rest_seconds": null,
+              "notes": "Retour au sol pour calmer le système nerveux après les debout."
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": null,
+              "notes": "Nommer mentalement les postures découvertes cette séance."
+            }
+          ],
+          "cooldown": "Savasana intégrée. Rouler sur le côté avant de se lever."
+        },
+        {
+          "day": 3,
+          "name": "Debout — Warrior II et Triangle",
+          "duration_minutes": 30,
+          "type": "technique",
+          "warmup": "5 respirations dirgha. Cat-Cow 5 cycles. Mountain Pose 1 min pour s'ancrer.",
+          "exercises": [
+            {
+              "name": "Posture 11 — Warrior II (Virabhadrasana II)",
+              "sets": 1,
+              "reps": "45 sec par côté",
+              "rest_seconds": null,
+              "notes": "Depuis Mountain : jambes écartées 90-110 cm. Pied droit à 90°, pied gauche à 15°. Plier le genou droit à 90° (genou dans l'axe du 2e orteil). Bras en T, regard vers la main droite. Différence avec Warrior I : hanches ouvertes sur le côté, pas face à l'avant. Épaules basses, mâchoire relâchée."
+            },
+            {
+              "name": "Posture 12 — Triangle (Trikonasana)",
+              "sets": 1,
+              "reps": "45 sec par côté",
+              "rest_seconds": null,
+              "notes": "Position de départ proche de Warrior II mais genou avant TENDU (jambe droite). Incliner le buste latéralement, poser la main droite sur le tibia, la cheville ou le sol (pas de bloc : saisir le tibia). Bras gauche vers le plafond. Regard vers la main du haut. Ne pas s'affaisser sur le bas du dos — allonger la colonne."
+            },
+            {
+              "name": "Child's Pose — récupération",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": null
+            },
+            {
+              "name": "Seated Forward Fold (Paschimottanasana) — rappel",
+              "sets": 2,
+              "duration": "45 sec",
+              "rest_seconds": null,
+              "notes": "Retour W1 pour évaluer la progression sur les hamstrings."
+            },
+            {
+              "name": "Reclined Twist — rappel",
+              "sets": 1,
+              "reps": "45 sec par côté",
+              "rest_seconds": null
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": null
+            }
+          ],
+          "cooldown": "Savasana intégrée."
+        },
+        {
+          "day": 5,
+          "name": "Synthèse W1+W2 — 12 postures mémorisées",
+          "duration_minutes": 30,
+          "type": "technique",
+          "warmup": "5 respirations dirgha. Cat-Cow 5 cycles. Child's Pose 45 sec. Mountain 1 min.",
+          "exercises": [
+            {
+              "name": "Enchaînement synthèse W1-W2 — postures 1 à 12",
+              "sets": 1,
+              "duration": "22 min",
+              "rest_seconds": null,
+              "notes": "Séquence complète : Cat-Cow (4 cycles) → Child's Pose (45 sec) → Knees to Chest (45 sec) → Seated Forward Fold (45 sec) → Mountain (1 min) → Warrior I (45 sec/côté) → Forward Fold debout (45 sec) → Warrior II (45 sec/côté) → Triangle (45 sec/côté) → Reclined Butterfly (1 min) → Reclined Twist (45 sec/côté). Premier enchaînement sol-debout. Le passage du sol au debout (et retour) est une compétence à part entière — descendre et monter avec contrôle."
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": null,
+              "notes": "Avant de se lever : compter mentalement les 12 postures apprises. Si une posture résiste à la mémoire, noter son nom sur papier post-séance."
+            }
+          ],
+          "cooldown": "Savasana intégrée. Assis 1 min, 3 respirations dirgha conscientes."
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Ancrage et souffle ujjayi — postures d'appui",
+      "goal": "Introduire ujjayi (W3 minimum — règle yoga débutant), ajouter postures 13-16 incluant la planche et le chien tête en bas. Échauffement poignets systématique avant tout appui.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Ujjayi et Downward Dog",
+          "duration_minutes": 30,
+          "type": "technique",
+          "warmup": "5 respirations dirgha. Échauffement poignets OBLIGATOIRE avant appuis : 8 cercles de poignets dans chaque sens, 8 flexions-extensions actives, 5 sec d'appui sur le bout des doigts. Cat-Cow 5 cycles.",
+          "exercises": [
+            {
+              "name": "Introduction ujjayi — respiration océan",
+              "sets": 1,
+              "duration": "3 min",
+              "rest_seconds": null,
+              "notes": "Assis ou allongé. Bouche ouverte, souffler comme pour embuer un miroir (son 'haaa'). Puis fermer la bouche en conservant la légère constriction de la gorge — obtenir un léger bruissement oceanique sur l'expire. Puis reproduire sur l'inspire. Ujjayi = outil de concentration, PAS de tension cervicale. Si sensation d'étranglement, revenir à la dirgha. Ne pas forcer le volume sonore."
+            },
+            {
+              "name": "Posture 13 — Planche (Phalakasana)",
+              "sets": 3,
+              "duration": "20 sec",
+              "rest_seconds": null,
+              "notes": "Depuis 4 pattes, avancer les poignets légèrement devant les épaules, reculer les pieds pour aligner corps-hanches-épaules. Doigts écartés, appui sur toute la paume (soulage les poignets). Fessiers ni trop hauts ni trop bas. Respirer ujjayi si possible, sinon dirgha. Alternative poignets fragiles : appui sur les avant-bras (planche basse)."
+            },
+            {
+              "name": "Child's Pose — récupération entre planches",
+              "sets": 2,
+              "duration": "30 sec",
+              "rest_seconds": null
+            },
+            {
+              "name": "Posture 14 — Downward Dog (Adho Mukha Svanasana)",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": null,
+              "notes": "Depuis 4 pattes : rentrer les orteils, lever les hanches vers le ciel, former un V inversé. Genoux légèrement pliés si hamstrings tendus (sédentaire : presque toujours le cas). Talons cherchent le sol sans forcer. Poids équitabrement réparti mains-pieds. Tête dans l'axe de la colonne, regard vers les pieds. Alterner activation de jambe droite et gauche (pédaler) pour relâcher les mollets."
+            },
+            {
+              "name": "Reclined Butterfly — retour sol",
+              "sets": 1,
+              "duration": "1 min 30",
+              "rest_seconds": null
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": null,
+              "notes": "Pratiquer ujjayi les 2 premières minutes de savasana, puis laisser la respiration revenir naturelle."
+            }
+          ],
+          "cooldown": "Savasana intégrée. Étirements des poignets : tirer doucement les doigts vers soi 20 sec après toute séance avec appuis."
+        },
+        {
+          "day": 3,
+          "name": "Low Lunge et Side Angle",
+          "duration_minutes": 30,
+          "type": "technique",
+          "warmup": "5 respirations ujjayi assis. Échauffement poignets (8 cercles/sens + flexions-extensions). Cat-Cow 5 cycles. Downward Dog 30 sec.",
+          "exercises": [
+            {
+              "name": "Posture 15 — Low Lunge (Anjaneyasana)",
+              "sets": 1,
+              "reps": "1 min par côté",
+              "rest_seconds": null,
+              "notes": "Depuis Downward Dog, avancer le pied droit entre les mains. Genou arrière gauche au sol (placer une couche de serviette sous le genou si inconfort). Hanches vers le bas, dos droit, bras levés ou mains sur le genou avant. Ouverture profonde du psoas (fléchisseur de hanche — raccourci par la sédentarité). Respirer dans la face avant de la hanche arrière."
+            },
+            {
+              "name": "Posture 16 — Extended Side Angle (Utthita Parsvakonasana)",
+              "sets": 1,
+              "reps": "45 sec par côté",
+              "rest_seconds": null,
+              "notes": "Depuis Warrior II : poser l'avant-bras sur la cuisse avant (alternative sans bloc). Bras du dessus allongé au-dessus de la tête, en diagonale. Corps forme une longue ligne oblique de la cheville arrière aux doigts du dessus. Activation du tronc entier. Ne pas s'affaisser sur le coude."
+            },
+            {
+              "name": "Child's Pose — pause",
+              "sets": 1,
+              "duration": "45 sec",
+              "rest_seconds": null
+            },
+            {
+              "name": "Warrior I + Warrior II enchaînement — rappel",
+              "sets": 1,
+              "reps": "30 sec/posture par côté",
+              "rest_seconds": null,
+              "notes": "Enchaîner: Warrior I → Warrior II en pivotant les hanches. Premier mini-enchaînement debout. Utiliser ujjayi pour rythmer la transition."
+            },
+            {
+              "name": "Seated Forward Fold — rappel sol",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": null
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": null
+            }
+          ],
+          "cooldown": "Savasana intégrée. Étirements poignets après."
+        },
+        {
+          "day": 5,
+          "name": "Introduction Surya Namaskar A — Salutation au Soleil A",
+          "duration_minutes": 30,
+          "type": "technique",
+          "warmup": "5 respirations ujjayi. Échauffement poignets complet. Cat-Cow 5 cycles. Downward Dog 30 sec.",
+          "exercises": [
+            {
+              "name": "Surya Namaskar A (Salutation au Soleil A) — apprentissage pas à pas",
+              "sets": 3,
+              "duration": "4 min par cycle",
+              "rest_seconds": null,
+              "notes": "Séquence classique pilotée par le souffle : Mountain (Tadasana) → Forward Fold debout (Uttanasana) [expire] → Demi-levée dos plat (Ardha Uttanasana) [inspire] → Planche (Phalakasana) [expire pendant la descente] → Ventre au sol relâché (alternative au Chaturanga pour débutant) → Cobra ou Chien tête en haut [inspire] → Downward Dog (Adho Mukha Svanasana) [5 souffles] → Forward Fold [expire en sautant ou marchant les pieds vers les mains] → Demi-levée [inspire] → Mountain [expire]. Nommer explicitement : 'Je pratique Surya Namaskar A (Salutation au Soleil A)'. Faire lentement, les 3 cycles à l'apprentissage, pas à la vitesse. Chaturanga (pompe yoga) n'est PAS enseigné ici — risque épaule et poignets en l'absence de prof. Ventre au sol = substitut sûr."
+            },
+            {
+              "name": "Child's Pose — récupération post-salutations",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": null
+            },
+            {
+              "name": "Reclined Twist — clôture sol",
+              "sets": 1,
+              "reps": "45 sec par côté",
+              "rest_seconds": null
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": null,
+              "notes": "Après les salutations, savasana légèrement plus longue pour intégrer. Les 16 postures des W1-W3 sont toutes présentes dans ou autour de la Salutation au Soleil A — faire ce constat mental."
+            }
+          ],
+          "cooldown": "Savasana intégrée. Étirements poignets systématiques post-séance appui."
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Cutback — consolidation et équilibre statique",
+      "goal": "Semaine allégée (volume -15% vs W3). Introduire postures 17-18 (équilibre) à faible intensité. Consolider les 16 postures acquises. Le repos actif construit autant que l'effort.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cutback — sol doux et respiration",
+          "duration_minutes": 28,
+          "type": "mobility",
+          "warmup": "6 respirations dirgha allongé. Cat-Cow 4 cycles seulement. Child's Pose 1 min.",
+          "exercises": [
+            {
+              "name": "Reclined Butterfly — tenu long",
+              "sets": 1,
+              "duration": "3 min",
+              "rest_seconds": null,
+              "notes": "Version 'yin' : tenir 3 min sans bouger, respirer dans les hanches. Observer si la posture est plus accessible qu'en W1."
+            },
+            {
+              "name": "Seated Forward Fold — tenu long",
+              "sets": 1,
+              "duration": "2 min",
+              "rest_seconds": null,
+              "notes": "Genoux légèrement pliés si besoin. Laisser la gravité faire le travail, ne pas tirer. Observer la progression par rapport à W1."
+            },
+            {
+              "name": "Posture 17 — Tree Pose (Vrksasana) — initiation",
+              "sets": 1,
+              "reps": "45 sec par côté",
+              "rest_seconds": null,
+              "notes": "Depuis Mountain. Prendre appui sur une main contre le mur si équilibre instable (alternative sans accessoire). Poser le pied de la jambe libre sur la cheville, le mollet ou l'intérieur de la cuisse (jamais sur le genou — risque ligamentaire). Mains en prière ou sur les hanches. Regarder un point fixe (drishti). L'équilibre vacille : c'est normal et c'est le travail."
+            },
+            {
+              "name": "Reclined Twist — récupération",
+              "sets": 1,
+              "reps": "45 sec par côté",
+              "rest_seconds": null
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": null,
+              "notes": "Cutback week : la savasana est le coeur de la séance. Observer l'accumulation des 3 semaines précédentes qui 'se dépose'."
+            }
+          ],
+          "cooldown": "Savasana intégrée."
+        },
+        {
+          "day": 3,
+          "name": "Cutback — Salutation au Soleil A lente",
+          "duration_minutes": 28,
+          "type": "technique",
+          "warmup": "5 respirations ujjayi. Échauffement poignets complet. Cat-Cow 4 cycles.",
+          "exercises": [
+            {
+              "name": "Surya Namaskar A — 2 cycles très lents",
+              "sets": 2,
+              "duration": "5 min par cycle",
+              "rest_seconds": null,
+              "notes": "Cette semaine : 2 cycles au lieu de 3, mais TRÈS lentement. 5 souffles par posture au lieu de 1. Objectif : sentir chaque posture de l'intérieur plutôt que d'enchaîner. Nommer chaque posture à voix haute ou dans sa tête pendant le cycle."
+            },
+            {
+              "name": "Tree Pose (Vrksasana) — révision",
+              "sets": 1,
+              "reps": "45 sec par côté",
+              "rest_seconds": null,
+              "notes": "Deuxième exposition. L'équilibre est-il plus stable qu'en J1 ?"
+            },
+            {
+              "name": "Child's Pose — clôture",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": null
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": null
+            }
+          ],
+          "cooldown": "Savasana intégrée. Étirements poignets."
+        },
+        {
+          "day": 5,
+          "name": "Cutback — Warrior Flow et posture 18",
+          "duration_minutes": 30,
+          "type": "technique",
+          "warmup": "5 respirations ujjayi. Échauffement poignets. Cat-Cow 4 cycles. Downward Dog 30 sec.",
+          "exercises": [
+            {
+              "name": "Posture 18 — Warrior III (Virabhadrasana III) — initiation",
+              "sets": 1,
+              "reps": "30 sec par côté",
+              "rest_seconds": null,
+              "notes": "Depuis Mountain : incliner le buste vers l'avant en levant la jambe arrière — corps forme un T. Mains sur les hanches ou bras tendus le long du corps pour simplifier. Appui possible sur une chaise ou le mur (alternative sans accessoire : une main sur la chaise assise face à soi). Maintenir 30 sec seulement en cutback week — l'équilibre unilatéral est exigeant neurologiquement."
+            },
+            {
+              "name": "Warrior I → Warrior II → Side Angle — enchaînement",
+              "sets": 1,
+              "reps": "1 cycle par côté",
+              "rest_seconds": null,
+              "notes": "Consolidation du Warrior Flow de W3. Fluidifier les transitions sans s'arrêter entre les postures. Utiliser ujjayi pour rythmer."
+            },
+            {
+              "name": "Reclined Butterfly — clôture sol",
+              "sets": 1,
+              "duration": "2 min",
+              "rest_seconds": null
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": null,
+              "notes": "Fin de cutback week : nommer mentalement les 18 postures apprises. Deux postures restent à introduire en W5. Observer l'aisance relative sur les postures de W1 comparées à la première exposition."
+            }
+          ],
+          "cooldown": "Savasana intégrée."
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Postures complètes et premier enchaînement 30 min",
+      "goal": "Introduire postures 19-20 (Cobra et Pigeon couché). Enchaîner pour la première fois une séance complète de ~30 min. +15% volume vs W4 cutback.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cobra et pigeon couché — les 20 postures complètes",
+          "duration_minutes": 30,
+          "type": "technique",
+          "warmup": "5 respirations ujjayi. Échauffement poignets complet. Cat-Cow 5 cycles. Downward Dog 30 sec.",
+          "exercises": [
+            {
+              "name": "Posture 19 — Cobra (Bhujangasana)",
+              "sets": 3,
+              "duration": "20 sec",
+              "rest_seconds": null,
+              "notes": "Allongé ventre au sol, mains sous les épaules doigts vers l'avant. Sur l'inspire, pousser le sol pour lever la poitrine. Coudes légèrement fléchis — ne pas verrouiller les bras. Pubis reste au sol (Cobra bas/intermédiaire). Ne pas rejeter la tête en arrière : regard vers l'horizon. Différence avec Chien tête en haut (hanche au sol vs hanches levées) — bien distinguer. Sortir sur l'expire en se réabaissant avec contrôle."
+            },
+            {
+              "name": "Child's Pose — récupération entre cobras",
+              "sets": 2,
+              "duration": "30 sec",
+              "rest_seconds": null
+            },
+            {
+              "name": "Posture 20 — Reclined Pigeon (Supta Kapotasana)",
+              "sets": 1,
+              "reps": "90 sec par côté",
+              "rest_seconds": null,
+              "notes": "Allongé sur le dos. Jambe droite : croiser la cheville sur la cuisse gauche (figure de 4). Saisir l'arrière de la cuisse gauche et tirer doucement vers la poitrine. Ouverture profonde de la fesse et du piriforme. Alternative si douleur au genou croisé : garder le pied croisé sur le sol et laisser tomber le genou droit vers l'extérieur sans tirer. Respirer lentement dans la hanche. Posture n°20, la dernière du programme — marquer mentalement ce moment."
+            },
+            {
+              "name": "Reclined Twist — transition finale",
+              "sets": 1,
+              "reps": "45 sec par côté",
+              "rest_seconds": null
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": null,
+              "notes": "Les 20 postures du programme sont maintenant toutes introduites. Savasana avec conscience des 20 noms appris."
+            }
+          ],
+          "cooldown": "Savasana intégrée. Étirements poignets post-appuis."
+        },
+        {
+          "day": 3,
+          "name": "Premier enchaînement 30 min complet",
+          "duration_minutes": 35,
+          "type": "mixed",
+          "warmup": "5 respirations ujjayi assis. Échauffement poignets. Cat-Cow 5 cycles.",
+          "exercises": [
+            {
+              "name": "Séance complète 30 min — toutes sections",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": null,
+              "notes": "Structure : Sol (8 min) : Cat-Cow (3 cycles) → Child's Pose (45 sec) → Knees to Chest (45 sec) → Reclined Butterfly (1 min 30) → Seated Forward Fold (1 min). Debout (12 min) : Mountain (45 sec) → Surya Namaskar A x2 (5 min) → Warrior I (45 sec/côté) → Warrior II (45 sec/côté) → Triangle (45 sec/côté) → Tree Pose (30 sec/côté). Appuis (4 min) : Low Lunge (45 sec/côté) → Warrior III (30 sec/côté) → Downward Dog (45 sec). Clôture sol (2 min) : Cobra (20 sec x2) → Reclined Pigeon (2 min/côté — 4 min total) → Reclined Twist (30 sec/côté). Savasana (4 min). Note : c'est la première fois que toutes les postures sont enchaînées en 30 min. Utiliser ujjayi pendant les phases debout et appuis. Revenir en Child's Pose à tout moment si débordement."
+            },
+            {
+              "name": "Savasana finale intégrée",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": null,
+              "notes": "La savasana compte dans les 30 min ci-dessus. Ne pas la rognér."
+            }
+          ],
+          "cooldown": "Savasana intégrée. Assis en tailleur, 3 ujjayi pour clore."
+        },
+        {
+          "day": 5,
+          "name": "Consolidation — enchaînement fluide",
+          "duration_minutes": 35,
+          "type": "mixed",
+          "warmup": "5 respirations ujjayi. Échauffement poignets. Cat-Cow 5 cycles. Downward Dog 30 sec.",
+          "exercises": [
+            {
+              "name": "Séance complète 30 min — répétition avec fluidité",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": null,
+              "notes": "Même structure que J3. Objectif cette fois : fluidifier les transitions, diminuer les pauses de réflexion, sentir les postures plutôt que les exécuter mécaniquement. Si une posture est oubliée, improviser une posture connue plutôt que de s'arrêter. Utiliser ujjayi sur toutes les phases. Observer : est-ce que je peux enchaîner 30 min sans regarder des notes ?"
+            },
+            {
+              "name": "Savasana finale intégrée",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": null
+            }
+          ],
+          "cooldown": "Savasana intégrée. Note mentale : quelle posture résiste encore, quelle transition est encore hésitante. Ce seront les points de travail de W6."
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Autonomie — séance maîtrisée sans support",
+      "goal": "Enchaîner la séance de 30 min de manière autonome, sans chronomètre ni aide extérieure. Autoévaluation des 20 postures. Checklist d'autonomie finale.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance libre — 30 min en autonomie complète",
+          "duration_minutes": 35,
+          "type": "mixed",
+          "warmup": "Autonome : choisir son propre échauffement parmi les rituels appris (ujjayi + Cat-Cow + échauffement poignets si appuis prévus).",
+          "exercises": [
+            {
+              "name": "Séance 30 min entièrement autonome — sans guide",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": null,
+              "notes": "Poser le téléphone. Pas de guide audio. Enchaîner la séance complète de mémoire, en s'accordant la liberté d'adapter selon les sensations du jour : si les hanches sont raides, prolonger Reclined Butterfly. Si l'énergie est haute, ajouter un 3e cycle de Surya Namaskar A. C'est l'autonomie réelle : savoir ajuster, pas seulement reproduire. Respecter la structure : sol → debout → appuis → clôture sol → savasana. Savasana minimum 3 min."
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": null,
+              "notes": "Observer : la savasana est-elle moins agitée qu'en W1 ?"
+            }
+          ],
+          "cooldown": "Savasana intégrée. Post-tapis : noter les postures où on s'est senti à l'aise vs hésitant."
+        },
+        {
+          "day": 3,
+          "name": "Révision ciblée — points de travail personnels",
+          "duration_minutes": 30,
+          "type": "technique",
+          "warmup": "5 respirations ujjayi. Échauffement poignets. Cat-Cow 5 cycles.",
+          "exercises": [
+            {
+              "name": "Postures cibles — révision personnalisée",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": null,
+              "notes": "Choisir les 3-4 postures identifiées comme hésitantes après J1 W6. Les pratiquer 2-3 fois avec attention particulière à l'alignement et au souffle. Exemples typiques : Warrior III (équilibre), Triangle (rotation du tronc), Downward Dog (distribution du poids). Se concentrer sur la sensation, pas sur la forme parfaite."
+            },
+            {
+              "name": "Warrior Flow complet — rappel fluidité",
+              "sets": 1,
+              "reps": "1 cycle par côté",
+              "rest_seconds": null,
+              "notes": "Warrior I → Warrior II → Side Angle → Triangle → Forward Fold. Enchaînement fluide, ujjayi continu, transitions sans pause."
+            },
+            {
+              "name": "Reclined Pigeon — tenu long",
+              "sets": 1,
+              "reps": "2 min par côté",
+              "rest_seconds": null,
+              "notes": "Version approfondissement : tenir 2 min par côté avec ujjayi. Observer la progression depuis W5."
+            },
+            {
+              "name": "Savasana finale",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": null
+            }
+          ],
+          "cooldown": "Savasana intégrée."
+        },
+        {
+          "day": 5,
+          "name": "Séance phare — autonomie et autoévaluation",
+          "duration_minutes": 40,
+          "type": "mixed",
+          "warmup": "Autonome — 5 min au choix.",
+          "exercises": [
+            {
+              "name": "Séance phare 30 min — pratique autonome complète",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": null,
+              "notes": "Séance finale du programme. Enchaîner les 30 min de mémoire, au propre rythme, avec ujjayi sur l'intégralité des phases actives. Adapter librement selon les sensations. Inclure les 20 postures : chacune doit avoir eu au moins une répétition dans la séance (soit dans la structure, soit en bonus). Structure recommandée (libre d'être modifiée) : sol (8 min) → Surya Namaskar A x2-3 (6-8 min) → Warrior Flow (8 min, côté G+D) → équilibre (Tree + Warrior III, 4 min) → clôture sol Cobra + Reclined Pigeon + Reclined Twist (6 min) → Savasana (4 min). Total : ~36 min avec savasana — laisser dépasser 30 min si le corps le demande."
+            },
+            {
+              "name": "Savasana finale — intégration du programme",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": null,
+              "notes": "Dernière savasana du programme. 5 min. Avant de se lever, parcourir mentalement les 6 semaines : W1 (premières postures au sol), W2 (debout), W3 (appuis et ujjayi), W4 (consolidation), W5 (20 postures complètes), W6 (autonomie). Identifier 1 chose qui a le plus changé dans le corps ou le souffle."
+            },
+            {
+              "name": "Checklist d'autonomie finale — autoévaluation",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": null,
+              "notes": "Après la savasana, assis en tailleur, évaluer honnêtement les 5 critères suivants :\n1. POSTURES : Je reconnais et nomme les 20 postures du programme sans aide (objectif : 18/20 minimum).\n2. SOUFFLE : Je maintiens ujjayi sur au moins 70-80% des phases debout et d'appui de la séance sans me rappeler activement d'y penser.\n3. AUTONOMIE : Je peux enchaîner 25-30 min de séance sans guide audio ni fiche, en restant fluide sur les transitions.\n4. AJUSTEMENT : Je choisis mes variantes selon mes sensations du jour (genoux pliés en Forward Fold si hamstrings tendus, appui mur pour Tree Pose si fatigue, Child's Pose si débordement) sans culpabilité.\n5. SAVASANA : Je reste immobile et présent pendant au moins 3 min de savasana, sans me lever avant la fin.\nSi 4 critères sur 5 sont atteints : le programme est accompli. Pour maintenir la pratique : 2-3 séances de 30 min par semaine minimum. Pour progresser : explorer Surya Namaskar B, les inversions douces (Legs Up the Wall), et le pranayama (nadi shodhana)."
+            }
+          ],
+          "cooldown": "Assis en tailleur, mains sur les genoux, 5 respirations ujjayi conscientes pour honorer la pratique. Se lever lentement sur le côté droit."
+        }
+      ]
+    }
+  ],
+  "safety_notes": "DRAPEAUX ROUGES — arrêter immédiatement et consulter un médecin ou kiné si :\n• Douleur vive au poignet pendant ou après les appuis (Planche, Downward Dog, Cat-Cow) : arrêter tous les appuis, passer en variante avant-bras. Les poignets de sédentaire ne sont pas habitués à porter le poids du corps — progression obligatoire.\n• Douleur dans la nuque ou les épaules lors des postures d'appui ou des torsions : relâcher immédiatement, ne jamais forcer l'amplitude cervicale.\n• Douleur vive dans le bas du dos pendant les back bends (Cobra) : vérifier que le pubis reste au sol (Cobra bas uniquement), ne pas chercher l'extension maximale.\n• Sensation d'étranglement ou de pression laryngée sur ujjayi : revenir à la respiration dirgha, ne pas forcer la constriction glottique.\n• Douleur au genou dans Tree Pose : vérifier que le pied de la jambe levée est placé sur la cheville ou la cuisse — JAMAIS sur l'articulation du genou (risque ligamentaire ligament latéral interne).\n• Vertige lors des transitions rapides sol-debout : se lever lentement en deux temps (assis → genoux → debout), attendre la stabilisation avant de continuer.\n• Crampes ou fourmillements persistants dans les jambes (postures assises longues) : sortir de la posture, agiter doucement les membres, réévaluer la durée.\n\nRÈGLES GÉNÉRALES :\n• Tapis antidérapant stable — ne jamais pratiquer sur sol glissant (carrelage sans tapis).\n• Pieds nus obligatoires (proprioception + stabilité en équilibre).\n• Vêtements non restrictifs permettant la flexion complète des hanches et des genoux.\n• Échauffement poignets SYSTÉMATIQUE avant toute séance incluant des appuis (Cat-Cow, Planche, Downward Dog) : 8 cercles dans chaque sens + flexions-extensions actives. Ne jamais sauter cette étape.\n• Jeun léger conseillé : éviter un repas copieux dans l'heure précédant la séance (inversions et torsions sont inconfortables estomac plein).\n• Hydratation : boire de l'eau avant et après, mais pas pendant les postures au sol pour ne pas interrompre la concentration.\n• Ne jamais forcer une amplitude : le yoga progressif s'appuie sur la gravité et la respiration, pas sur la force ou le rebond. 'Douleur vive = stop, inconfort productif = continuer doucement.'\n• Signaler à tout nouveau prof toute pathologie de genou (ménisque, LCA), lombaire (hernie discale, spondylolyse) ou épaule (conflit sous-acromial) — ces pathologies nécessitent des adaptations spécifiques hors du cadre débutant.\n\nINTENSITÉ ET PROGRESSION :\n• Ujjayi pas avant W3 : la constriction glottique chez un débutant sans surveillance peut générer une tension cervicale et un effet de straining. Semaines 1-2 : respiration dirgha uniquement.\n• Respiration bilatérale (nadi shodhana) : hors du cadre de ce plan débutant, ne pas l'introduire en autonomie sans guidance.\n• Sirsasana (posture sur la tête) et Sarvangasana (chandelle) : EXPERT uniquement, jamais en autodidacte débutant. Risque de fracture cervicale par compression.\n• Chaturanga Dandasana (pompe yoga basse) : non enseigné dans ce plan. Remplacé par 'ventre au sol' dans la Salutation au Soleil A. L'enseigner sans correction de visu risque un conflit sous-acromial.\n\nSIGNES DE SURCHARGE (2+ signes → séance allégée ou repos) :\n• Fatigue musculaire persistante dans les bras ou les épaules > 72h post-séance d'appuis\n• Douleur persistante de poignet au quotidien (frappe clavier, portée d'objets)\n• Irritabilité ou tension mentale post-séance au lieu de détente\n• Raideur lombaire exacerbée les jours suivant un back bend\n\nSI SÉANCE MANQUÉE :\n• Moins de 5 jours de pause : reprendre la séance manquée le lendemain, décaler d'une journée.\n• 1-2 semaines de pause : reprendre à la semaine précédente pendant 2-3 séances avant de continuer.\n• Plus de 3 semaines de pause : reprendre en W2 pour resécuriser les fondations posturales et la mécanique ujjayi.",
+  "progression_logic": "Progression construite sur 5 principes, alignés sur les guidelines pédagogiques yoga (Yoga Alliance), ACSM et les recommandations de progression motrice neuroscientifique :\n\n(1) PROGRESSION POSTURALE PÉDAGOGIQUE : les 20 postures s'introduisent dans l'ordre sol → debout simple → debout complexe → équilibre unipodal → appuis → clôture. Cette séquence respecte la hiérarchie sécuritaire (postures au sol = moins de risque de chute, moins de charge sur les poignets) et neurologique (pattern de complexité croissante). W1 : postures 1-7 (sol). W2 : postures 8-12 (debout simples). W3 : postures 13-16 (appuis et debout complexes). W4 : postures 17-18 (équilibre, cutback). W5 : postures 19-20 (clôture + séance complète). W6 : intégration autonome.\n\n(2) RÈGLE UJJAYI W3 MINIMUM : la respiration ujjayi (constriction glottique) est cognitquement et physiologiquement trop exigeante pour un débutant qui gère encore l'alignement de base. Introduire avant W3 risque tension cervicale et parasitage de l'apprentissage postural. Semaines 1-2 : dirgha (respiration 3 temps, sûre et accessible). W3 : ujjayi introduit progressivement, d'abord en savasana et en postures simples, puis étendu.\n\n(3) CUTBACK W4 OBLIGATOIRE (-15%) : après 3 semaines d'introduction intensive (postures, respiration, appuis), le système nerveux a besoin d'une semaine de consolidation. La W4 réduit le volume de 15% tout en introduisant l'équilibre statique (Tree, Warrior III) à faible durée, exploitant la ressource disponible pour la nouveauté qualitative sans surcharger. Les postures tenues en version 'yin' longue (3 min) permettent une adaptation passive des tissus conjonctifs.\n\n(4) ÉCHAUFFEMENT POIGNETS NON NÉGOCIABLE : les poignets de sédentaire supportent rarement le port du corps au sol sans préparation. Dès W3 (introduction de la Planche et du Downward Dog), l'échauffement poignets (8 cercles/sens + flexions-extensions actives + 5 sec bout des doigts) est prescrit AVANT chaque séance avec appuis. En W1-W2, le Cat-Cow sert d'échauffement doux. La progression appuis : Cat-Cow (W1) → Planche (W3) → Downward Dog (W3) → Surya Namaskar A intégrant les deux (W3-W6).\n\n(5) SAVASANA STRUCTURELLE 3-5 MIN SYSTÉMATIQUE + AUTONOMIE W6 : chaque séance se termine par 3-5 min de savasana, non optionnelle. La séance phare W6 J5 intègre une checklist d'autoévaluation en 5 critères observables (nommer 18/20 postures, ujjayi sur 70-80% des phases actives, enchaîner 25-30 min sans guide, choisir ses variantes, tenir savasana 3 min). Cette checklist matérialise la transition vers la pratique autonome post-plan. La progression séance complète : 7 postures enchaînées (W1 J5) → 12 postures (W2 J5) → Surya Namaskar A (W3 J5) → 30 min complètes (W5 J3) → autonomie sans guide (W6 J1+J5).",
+  "validated_at": null,
+  "validated_by": null
+}

@@ -1,0 +1,729 @@
+{
+  "assumed_profile" : "Coureur régulier capable de courir 5 km en 30-35 min sans difficulté, pratique 2×/semaine depuis au moins 2 mois. Aucune blessure active. Équipé de chaussures de running adaptées (< 600 km). Accès à un espace extérieur ou tapis de course. Aucun équipement de musculation requis (exercices au poids du corps uniquement).",
+  "default_objective" : "Courir 10 km en continu (objectif de temps libre, typiquement 55-70 min)",
+  "duration_weeks" : 8,
+  "id" : "running-intermediaire-10k-8sem",
+  "level" : "intermediaire",
+  "name" : "10K — 8 semaines pour franchir la barre des 10 km",
+  "progression_logic" : "Progression construite sur 5 principes, alignés Hal Higdon Intermediate 1, ACSM Guidelines for Exercise Testing and Prescription (11e éd.) et NSCA recommandations pour la course :\n\n(1) RÈGLE DES 10-15% DE VOLUME HEBDOMADAIRE : le volume total de course progresse de W1 (16 km) → W2 (19 km, +18%) → W3 (22 km, +15%) → W4 (25 km, +14%) → W5 cutback (21 km, -15%) → W6 (28 km, +33% vs cutback / +12% vs W4) → W7 (31 km, +10%) → W8 tapering. La semaine cutback est recalculée vs la semaine non-cutback précédente : W4→W6 fait +12%, dans la règle des 10-15%. Jamais deux semaines consécutives de progression > 15% simultanément.\n\n(2) DOUBLE LEVIER QUALITÉ — TEMPO + VO2MAX OBLIGATOIRES : conformément à la règle de la section 3.1, ce plan intermédiaire contient OBLIGATOIREMENT les deux types de séances : (a) Tempo seuil continu (W3 : 20 min, W7 : 25 min) ou fractionné (W5 : 2 × 10 min, W8 : 2 × 8 min tapering) — allure = allure 10K cible + 15-20 s/km, zone 'comfortably hard', seuil lactate. (b) Intervalles VO2max courts à longs (W2 : 4 × 600m, W4 : 4 × 800m, W6 : 4 × 1000m) — allure = allure 5K actuelle, récupération 3 min marche (NSCA). Les deux types de séances travaillent des systèmes différents et sont complémentaires — supprimer l'un ou l'autre diminue l'effet d'entraînement de 30-40%.\n\n(3) SORTIE LONGUE PROGRESSIVE AVEC PIC > 120% DE LA DISTANCE CIBLE : W1 : 7 km → W2 : 8 km → W3 : 9 km → W4 : 10 km (1er passage) → W5 cutback : 8 km → W6 : 11 km → W7 : 12 km (pic, 120% du 10K cible) → W8 : 10 km séance phare. La sortie longue au pic dépasse la distance cible pour construire la réserve physiologique et mentale. Le coureur qui a fait 12 km en W7 aborde le 10K en W8 avec confiance.\n\n(4) CUTBACK W5 OBLIGATOIRE : volume réduit de 15% pour permettre la supercompensation (os, tendons, mitochondries). La cutback n'est pas une semaine de repos — elle inclut une séance qualité de maintien (tempo 2 × 10 min) et un travail de mobilité actif. Sans cutback, les stress fractures tibiales et les tendinopathies surviennent typiquement entre W5 et W6 (données BJSM sur plans 10K amateurs).\n\n(5) RENFORCEMENT PRÉVENTIF SPÉCIFIQUE INTERMÉDIAIRE : nordic curl dès W1 (prévention rupture/tendinopathie ischio, risque majeur du fractionné — étude Mjolsness, NSCA 2021), single-leg squat (PFPS, genou du coureur), calf raises excentriques (Achille, tibias), hip thrust/clamshells (ITBS abducteurs), core anti-rotation (dead bug, planche RKC, side plank). Le renforcement est placé en J3 (entre les deux séances de course) pour maximiser la récupération musculaire. Il est allégé en W5 cutback et arrêté en W8 J3 (mobilité uniquement) pour arriver frais à la séance phare.\n\nTapering W8 : J1 = activation tempo 2 × 8 min (entretien sensation allure), J3 = mobilité + activation neuromusculaire légère (sans charge). Modèle tapering 7-10 jours sur 10K, réduction volume 50-60%, maintien intensité (recommandation Mujika & Padilla, 2003).",
+  "safety_notes" : "DRAPEAUX ROUGES — arrêter la séance et consulter un médecin ou kiné si l'un de ces signes persiste > 5-7 jours :\n• Douleur face interne ou antérieure du tibia (stress fracture tibiale potentielle ou périostite) : risque majoré lors des séances de fractionné (800m-1000m) sur surface dure. Stop immédiat, glace 15 min, repos 5 jours minimum. Un coureur intermédiaire qui augmente l'intensité est plus exposé que le débutant.\n• Douleur face externe du genou irradiant vers le bas (ITBS / syndrome de la bandelette ilio-tibiale) : signal précoce = tiraillement au km 6-7 de la longue. Ne pas ignorer. Clamshells et hip thrust sont préventifs — si douleur installée, repos 1 semaine + renforcement abducteurs + avis kiné.\n• Douleur à l'insertion proximale de l'ischio-jambier (tendinopathie ischio-jambière) : risque spécifique aux séances tempo et fractionné chez l'intermédiaire. Sensation de brûlure ou de tiraillement haut dans la cuisse arrière en phase de propulsion. Nordic curl préventif dès W1 — si douleur, stopper le fractionné, maintenir volume facile seulement.\n• Douleur derrière le talon ou sous le tendon d'Achille (tendinopathie Achilléenne) : aggravée par les calf raises excentriques si la douleur est présente. Réduire le volume d'excentrique de 50%, ne pas courir sur la douleur en intensité.\n• Douleur sous-rotulienne ou face antérieure du genou (PFPS / genou du coureur) : souvent déclenché par la montée de volume. Single-leg squat préventif. Si douleur au descent d'escaliers, consulter.\n• Douleur dorsale ou plantaire sous le pied (fasciite plantaire) : étirer les mollets et la voûte plantaire 2×/jour, chaussures adaptées (< 600 km d'usure).\n\nRÈGLES GÉNÉRALES :\n• Chaussures de running adaptées, renouvelées tous les 600-800 km. Un intermédiaire parcourt ~150-200 km sur ce plan — surveiller l'usure si les chaussures approchent de leur limite.\n• Alternance obligatoire : minimum 48h entre deux séances de course. Le schéma J1/J3/J5 est calculé pour respecter cela.\n• Surface : privilégier les chemins ou les routes régulières. Éviter les surfaces très dures (béton nu) pour les longues sorties. Le dénivelé positif augmente la charge tibiale.\n• Hydratation : 500 ml dans l'heure avant toute séance, 150-200 ml toutes les 20-25 min sur les longues sorties (> 60 min), 500 ml dans l'heure après. Par temps chaud, ajouter une pincée de sel ou une boisson isotonique.\n• Alimentation : ne pas courir à jeun pour les séances de qualité (tempo, intervalles). Glucides complexes 2h avant (banane, flocons d'avoine, pain complet). Les longues sorties > 75 min nécessitent un ravitaillement en course (gel, dattes, banane).\n• Échauffement NON négociable : démarrer directement à allure seuil ou à allure 5K sans échauffement double le risque de blessure musculaire et de tendinite.\n\nINTENSITÉ — ZONES D'EFFORT :\n• Z1 (récupération) : très facile, conversation fluide, FC < 65% FCmax.\n• Z2 (endurance aérobie) : confortable, phrase entière possible, FC 65-75% FCmax. Zone de la sortie longue.\n• Z3-Z4 (seuil) : effort contrôlé, seulement 3-4 mots à la fois, FC 80-88% FCmax. Zone du tempo. Ne pas dépasser sur les séances de fond.\n• Z5 (VO2max) : effort intense, impossibilité de parler, FC > 90% FCmax. Zone des intervalles 800m-1000m. Max 20-25% du volume hebdo.\n\nSIGNES DE SURCHARGE (3 signes simultanés → semaine allégée immédiate, type W5) :\n• FC de repos +7-10 bpm au-dessus de ta normale au réveil (mesurer chaque matin).\n• Courbatures persistantes > 72h, surtout aux ischio-jambiers ou mollets.\n• Allure habituelle Z2 devient effort, perte de vitesse > 15 s/km sans raison.\n• Sommeil agité ou qualité dégradée > 3 nuits consécutives.\n• Perte d'enthousiasme ou irritabilité inhabituelle (signe de surcharge du système nerveux central).\n\nSI SÉANCE MANQUÉE :\n• < 3 jours de pause non planifiée : reprendre la séance manquée le jour suivant, décaler J5 si besoin. Ne pas compresser 2 séances de course le même jour.\n• 4-7 jours de pause : reprendre la semaine en cours depuis le début, ou reprendre la semaine précédente si plus d'une semaine écoulée.\n• > 10 jours de pause : revenir 2 semaines en arrière dans le plan. Le corps désadapte rapidement — mieux vaut reconstruire une semaine que se blesser sur une reprise trop brutale.",
+  "schema_version" : 1,
+  "sessions_per_week" : 3,
+  "sport" : "running",
+  "summary" : "Programme 8 semaines pour un coureur intermédiaire visant 10 km en continu à 55-70 min. Structure : 2 séances de course par semaine (sortie longue progressive + séance qualité alternant tempo seuil et intervalles VO2max) + 1 séance de renforcement préventif ciblé running. Volume pic en W7 (~38 km hebdo de sollicitation totale, sortie longue 12 km), cutback W5 (volume -15%), tapering W8. Allures cibles chiffrées à chaque séance de qualité. Renforcement : nordic curl simplifié, single-leg squat, calf raises excentriques, gainage anti-rotation, abducteurs hanche. Progression volume +10-20%/sem alignée ACSM et plans Hal Higdon Intermediate 1.",
+  "weeks" : [
+    {
+      "goal" : "Établir le volume de départ et introduire les deux types de séances qualité. Sortie longue W1 = 7 km. Séance qualité = tempo court 20 min à allure seuil (allure 10K cible + 20 s/km, soit ~5:20-5:50/km pour un objectif 55-70 min). Volume total course W1 : ~16 km.",
+      "sessions" : [
+        {
+          "cooldown" : "5 min marche lente. Étirements statiques : mollets 30 sec/côté, quadriceps 30 sec/côté, ischio-jambiers 30 sec/côté, fléchisseurs de hanche 30 sec/côté.",
+          "day" : 1,
+          "duration_minutes" : 45,
+          "exercises" : [
+            {
+              "duration" : "30 min",
+              "name" : "Course facile",
+              "notes" : "Allure conversationnelle confortable, ~6:00-7:00/km selon ton niveau. Test de la parole : phrase entière possible. Base aérobie Z2.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 sec accélération + 40 sec marche",
+              "name" : "Strides (accélérations progressives)",
+              "notes" : "En fin de séance facile. Accélérer progressivement jusqu'à 80% de ta vitesse max sur 20 sec, pas de sprint. Réveille le système neuromusculaire sans charge.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            }
+          ],
+          "name" : "Sortie facile + strides",
+          "type" : "endurance",
+          "warmup" : "5 min de marche rapide + 10 balancements de jambe avant-arrière + 10 balancements latéraux + 10 demi-squats dynamiques + 10 montées de genoux + 10 talons-fesses. Total : 8 min."
+        },
+        {
+          "cooldown" : "Étirements mollets 30 sec/côté, fessiers 30 sec/côté, psoas 30 sec/côté. Total 5 min.",
+          "day" : 3,
+          "duration_minutes" : 40,
+          "exercises" : [
+            {
+              "name" : "Single-leg squat assisté (chaise à côté)",
+              "notes" : "Poser les mains légèrement sur une chaise pour l'équilibre. Descendre sur une jambe à ~60°, genou dans l'axe du pied. Renforce le contrôle genou (PFPS, genou du coureur). Intermédiaire : ne pas utiliser la chaise en appui, juste en contact de sécurité.",
+              "reps" : "8 par jambe",
+              "rest_seconds" : 60,
+              "sets" : 3
+            },
+            {
+              "name" : "Nordic curl simplifié (chaise ou partenaire)",
+              "notes" : "Genoux à terre, chevilles bloquées sous une chaise lourde ou contre un mur. S'incliner vers l'avant le plus loin possible en freinant avec les ischio-jambiers, revenir en poussant sur les mains. Meilleur exercice préventif tendinite ischio sur fractionné (Mjolsness et al., NSCA). Si trop difficile : effectuer seulement la phase excentrique (incliner + tomber, remonter à genoux à la main).",
+              "reps" : "6",
+              "rest_seconds" : 90,
+              "sets" : 3
+            },
+            {
+              "name" : "Clamshell avec résistance",
+              "notes" : "Allongé sur le côté, genoux fléchis. Ouvrir le genou du dessus sans bouger le bassin. Prévention ITBS. Si tu n'as pas d'élastique, effectuer en appui légèrement plus difficile (genou du dessus chargé d'un poids de bouteille).",
+              "reps" : "15 par côté",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises excentriques sur marche",
+              "notes" : "Monter sur 2 pieds, descendre lentement sur 1 seul en 3-4 sec, talons sous le niveau de la marche. Protection tendon d'Achille et prévention shin splints. Obligatoire pour un intermédiaire qui augmente le volume.",
+              "reps" : "12 par côté",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "duration" : "40 sec",
+              "name" : "Planche ventrale",
+              "notes" : "Coudes sous les épaules, corps aligné, fessiers engagés. Ne pas laisser les hanches tomber.",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Bird-dog",
+              "notes" : "À 4 pattes, tendre bras opposé + jambe opposée. Tenir 2 sec en haut. Anti-rotation lombaire essentiel pour la stabilité à haute fréquence de pas.",
+              "reps" : "10 par côté",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement préventif running — fondations",
+          "type" : "strength",
+          "warmup" : "5 min marche rapide + mobilité chevilles (20 cercles/côté) + mobilité hanches (10 cercles/côté) + activation fessiers (10 ponts fessiers lents). Total : 8 min."
+        },
+        {
+          "cooldown" : "5 min marche lente + étirements complets 8 min (mollets, quadriceps, ischio-jambiers, fessiers, piriformis, fléchisseurs hanche). Hydratation + collation si effort > 60 min.",
+          "day" : 5,
+          "duration_minutes" : 65,
+          "exercises" : [
+            {
+              "duration" : "45-55 min selon allure",
+              "name" : "Course continue 7 km",
+              "notes" : "Allure confortable Z2, ~6:30-7:30/km. C'est 40% de plus que ta distance habituelle de 5 km — sois prudent sur les 2 derniers km, ralentis si besoin. Ne jamais marcher pendant plus de 1 min si tu dois t'arrêter. Cette sortie longue hebdomadaire est le pilier du plan (Hal Higdon Intermediate 1).",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue 7 km",
+          "type" : "endurance",
+          "warmup" : "5 min marche progressive + 10 montées de genoux + 10 talons-fesses + 10 balancements de jambe. Total : 8 min."
+        }
+      ],
+      "theme" : "Bilan de forme — poser les bases intermédiaires",
+      "week_number" : 1
+    },
+    {
+      "goal" : "Introduire les intervalles courts (600m à allure 5K) et augmenter la sortie longue à 8 km. Volume total course W2 : ~19 km (+18% vs W1).",
+      "sessions" : [
+        {
+          "cooldown" : "8 min de course légère (Z1-Z2) + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 50,
+          "exercises" : [
+            {
+              "duration" : "600m à allure 5K cible",
+              "name" : "Intervalles 600m",
+              "notes" : "Allure cible : allure 5K actuelle = ~6:00-7:00/km pour un profil 5K en 30-35 min. C'est une allure où tu ne peux dire que 2-3 mots. Récupération 3 min marche entre chaque (ACSM : récupération complète sur VO2max). Si tu perds plus de 10 sec/km sur le dernier intervalle vs le premier, le volume est suffisant. Ne pas ajouter de répétition si dégradation de l'allure.",
+              "rest_seconds" : 180,
+              "sets" : 4
+            }
+          ],
+          "name" : "Intervalles VO2max — 600m × 4",
+          "type" : "interval",
+          "warmup" : "10 min de course légère à allure Z2 (~6:30-7:00/km) + 4 strides de 20 sec + 1 min marche. Total : 14 min."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 40,
+          "exercises" : [
+            {
+              "name" : "Single-leg squat assisté",
+              "notes" : "Progresser vers moins d'appui sur la chaise. Contrôle genou strict.",
+              "reps" : "10 par jambe",
+              "rest_seconds" : 60,
+              "sets" : 3
+            },
+            {
+              "name" : "Nordic curl simplifié",
+              "notes" : "Identique à W1. La progression se fait en amplitude, pas en répétitions : essaie d'aller 5 cm plus loin avant de te rattraper aux mains.",
+              "reps" : "6",
+              "rest_seconds" : 90,
+              "sets" : 3
+            },
+            {
+              "name" : "Hip thrust unilatéral",
+              "notes" : "Épaules sur banc bas ou canapé, un pied à plat, l'autre jambe tendue. Pousser les hanches vers le haut en contractant le fessier. Remplacement de l'exercice clamshell pour plus de charge fessière.",
+              "reps" : "12 par côté",
+              "rest_seconds" : 50,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises excentriques sur marche",
+              "reps" : "12 par côté",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "duration" : "50 sec",
+              "name" : "Planche ventrale",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "duration" : "30 sec par côté",
+              "name" : "Side plank",
+              "notes" : "Progression vs W1. Corps aligné, hanche décollée. Cible les obliques et stabilisateurs latéraux (prévention ITBS).",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement préventif — progression",
+          "type" : "strength",
+          "warmup" : "8 min activation (marche + mobilité chevilles/hanches + ponts fessiers)."
+        },
+        {
+          "cooldown" : "5 min marche + étirements complets 8 min.",
+          "day" : 5,
+          "duration_minutes" : 70,
+          "exercises" : [
+            {
+              "duration" : "52-65 min selon allure",
+              "name" : "Course continue 8 km",
+              "notes" : "Allure Z2 confortable, ~6:30-7:30/km. +1 km vs W1. Sur les 2 derniers km, maintenir l'allure sans forcer — si c'est difficile, c'est normal, c'est le signe que le stimulus d'entraînement est bon.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue 8 km",
+          "type" : "endurance",
+          "warmup" : "8 min échauffement standard."
+        }
+      ],
+      "theme" : "Introduction des intervalles VO2max",
+      "week_number" : 2
+    },
+    {
+      "goal" : "Consolider les intervalles et introduire le tempo seuil continu. Sortie longue 9 km. Volume total course W3 : ~22 km (+15% vs W2).",
+      "sessions" : [
+        {
+          "cooldown" : "8 min de course légère Z1 + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 55,
+          "exercises" : [
+            {
+              "duration" : "20 min",
+              "name" : "Tempo seuil continu",
+              "notes" : "Allure seuil = allure 10K cible + 15-20 s/km. Pour un objectif 10K en 60 min (6:00/km), allure seuil = 6:15-6:20/km. Intensité : tu peux parler par phrases COURTES (3-4 mots), pas de conversation fluide. C'est Z3-Z4, 'comfortably hard'. Tenir cette allure 20 min sans pause — si tu ne tiens pas l'allure, ralentis de 10 s/km et reconstruis.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Tempo seuil 20 min",
+          "type" : "interval",
+          "warmup" : "12 min de course légère Z2 + 4 strides de 20 sec + 2 min marche. Total : 16 min."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 42,
+          "exercises" : [
+            {
+              "name" : "Single-leg squat libre (sans aide)",
+              "notes" : "Sans tenir la chaise si tu maîtrises l'équilibre. Bras tendus devant pour contrepoids. Genou dans l'axe, descente contrôlée.",
+              "reps" : "8 par jambe",
+              "rest_seconds" : 60,
+              "sets" : 3
+            },
+            {
+              "name" : "Nordic curl simplifié",
+              "notes" : "+1 rep vs W2. Progression lente — cet exercice est très exigeant pour les ischio-jambiers.",
+              "reps" : "7",
+              "rest_seconds" : 90,
+              "sets" : 3
+            },
+            {
+              "name" : "Hip thrust unilatéral",
+              "reps" : "14 par côté",
+              "rest_seconds" : 50,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises excentriques sur marche",
+              "notes" : "+1 série vs W1-W2. Ajouter une série est plus bénéfique qu'augmenter les reps pour la prévention.",
+              "reps" : "10 par côté",
+              "rest_seconds" : 45,
+              "sets" : 4
+            },
+            {
+              "duration" : "60 sec",
+              "name" : "Planche ventrale",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "duration" : "15 sec",
+              "name" : "RKC plank",
+              "notes" : "Même position qu'une planche classique mais tu contractes TOUT au maximum (serrer les poings, contracter les fessiers, les quadriceps, le core). 15 sec de RKC = 60 sec de planche classique en intensité. Progression qualitative.",
+              "rest_seconds" : 45,
+              "sets" : 2
+            }
+          ],
+          "name" : "Renforcement préventif — progression W3",
+          "type" : "strength",
+          "warmup" : "8 min activation."
+        },
+        {
+          "cooldown" : "5 min marche + étirements complets 8 min. Hydratation impérative.",
+          "day" : 5,
+          "duration_minutes" : 75,
+          "exercises" : [
+            {
+              "duration" : "58-70 min selon allure",
+              "name" : "Course continue 9 km",
+              "notes" : "Allure Z2, ~6:30-7:30/km. Attention : premier passage au-dessus de 8 km, surveille les signaux de fatigue en seconde moitié. Les 4 derniers km doivent rester confortables. Stratégie : si tu te sens bien à 5 km, maintiens l'allure. Si tu te sens chargé, ralentis de 15 s/km pour finir proprement.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue 9 km",
+          "type" : "endurance",
+          "warmup" : "8 min échauffement standard."
+        }
+      ],
+      "theme" : "Tempo seuil — allure contrôlée 20-25 min",
+      "week_number" : 3
+    },
+    {
+      "goal" : "Premier passage à 10 km sur la sortie longue. Intervalles 800m × 4 à allure 5K. Volume total course W4 : ~25 km (+14% vs W3).",
+      "sessions" : [
+        {
+          "cooldown" : "8 min course légère Z1 + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 55,
+          "exercises" : [
+            {
+              "duration" : "800m à allure 5K cible",
+              "name" : "Intervalles 800m",
+              "notes" : "Allure 5K : ~5:50-6:30/km selon ton niveau (profil 5K en 30-35 min). Allure soutenue mais régulière — ne pas partir trop vite sur le premier. Récupération 3 min marche active entre chaque (NSCA recommandation pour VO2max). Si tu ne peux pas tenir l'allure sur le 4e = bonne séance, ne pas en ajouter.",
+              "rest_seconds" : 180,
+              "sets" : 4
+            }
+          ],
+          "name" : "Intervalles VO2max — 800m × 4",
+          "type" : "interval",
+          "warmup" : "12 min course légère Z2 + 4 strides 20 sec + 2 min marche. Total : 16 min."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 40,
+          "exercises" : [
+            {
+              "name" : "Single-leg squat libre",
+              "reps" : "10 par jambe",
+              "rest_seconds" : 60,
+              "sets" : 3
+            },
+            {
+              "name" : "Nordic curl simplifié",
+              "notes" : "Volume identique à W3 — semaine de charge en course, renforcement stable.",
+              "reps" : "7",
+              "rest_seconds" : 90,
+              "sets" : 3
+            },
+            {
+              "name" : "Hip thrust unilatéral",
+              "reps" : "14 par côté",
+              "rest_seconds" : 50,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises excentriques sur marche",
+              "reps" : "10 par côté",
+              "rest_seconds" : 45,
+              "sets" : 4
+            },
+            {
+              "duration" : "60 sec",
+              "name" : "Planche ventrale",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "duration" : "30 sec par côté",
+              "name" : "Side plank avec abduction",
+              "notes" : "En position side plank, soulever la jambe du dessus de 20-30 cm. Combine gainage latéral + abducteur hanche. Progression vs side plank classique de W2.",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement préventif — maintien charge",
+          "type" : "strength",
+          "warmup" : "8 min activation."
+        },
+        {
+          "cooldown" : "5 min marche + étirements complets 10 min. Hydratation + collation protéines/glucides dans les 30 min.",
+          "day" : 5,
+          "duration_minutes" : 80,
+          "exercises" : [
+            {
+              "duration" : "60-75 min selon allure",
+              "name" : "Course continue 10 km",
+              "notes" : "PREMIER 10 km du plan ! Allure très conservative Z2, ~6:45-7:30/km. L'objectif n'est PAS le chrono — juste finir les 10 km en courant. Si tu dois marcher 1-2 min au km 8, tu marches et tu reprends. Prendre un gel ou une datte si sortie > 70 min. La boisson : 150-200 ml toutes les 20-25 min si eau disponible sur le parcours.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue 10 km — premier passage",
+          "type" : "endurance",
+          "warmup" : "8 min échauffement standard."
+        }
+      ],
+      "theme" : "Montée en charge — intervalles 800m et sortie longue 10 km",
+      "week_number" : 4
+    },
+    {
+      "goal" : "Semaine allégée (-15% volume vs W4). Volume total course W5 : ~21 km. Introduction du tempo fractionné (2 × 10 min). Les semaines de récupération sont où se fait réellement l'adaptation — ne pas les sauter.",
+      "sessions" : [
+        {
+          "cooldown" : "8 min course légère + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 50,
+          "exercises" : [
+            {
+              "duration" : "10 min à allure seuil",
+              "name" : "Tempo fractionné 10 min",
+              "notes" : "Allure seuil identique à W3 (10K cible + 15-20 s/km). Récupération 5 min marche/trot léger entre les 2 blocs. Volume tempo réduit vs W3 (2 × 10 min au lieu de 20 min continu) pour accompagner la cutback. Qualité > quantité cette semaine.",
+              "rest_seconds" : 300,
+              "sets" : 2
+            }
+          ],
+          "name" : "Tempo fractionné — 2 × 10 min",
+          "type" : "interval",
+          "warmup" : "12 min course légère Z2 + 3 strides 20 sec + 2 min marche."
+        },
+        {
+          "cooldown" : "Étirements 6 min incluant fléchisseurs hanche et piriformis.",
+          "day" : 3,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "name" : "Single-leg squat libre",
+              "notes" : "Volume réduit cette semaine (2 séries au lieu de 3).",
+              "reps" : "8 par jambe",
+              "rest_seconds" : 60,
+              "sets" : 2
+            },
+            {
+              "name" : "Nordic curl simplifié",
+              "notes" : "Retour au volume W1-W2 pour la cutback.",
+              "reps" : "6",
+              "rest_seconds" : 90,
+              "sets" : 2
+            },
+            {
+              "name" : "Pont fessier bilatéral",
+              "notes" : "Retour au mouvement de base (bilatéral) pour alléger la charge. Tenir 2 sec en haut.",
+              "reps" : "15",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises excentriques sur marche",
+              "reps" : "10 par côté",
+              "rest_seconds" : 45,
+              "sets" : 2
+            },
+            {
+              "duration" : "45 sec",
+              "name" : "Planche ventrale",
+              "notes" : "Retour W3 volume.",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "duration" : "5 min",
+              "name" : "Étirements actifs hanches (90/90)",
+              "notes" : "Assis au sol, jambes en 90/90. Rotation avant et arrière. Mobilité hanche profonde — bénéfique pendant la cutback pour récupérer les articulations.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Renforcement — cutback actif",
+          "type" : "strength",
+          "warmup" : "8 min activation."
+        },
+        {
+          "cooldown" : "5 min marche + étirements complets 8 min.",
+          "day" : 5,
+          "duration_minutes" : 65,
+          "exercises" : [
+            {
+              "duration" : "52-60 min selon allure",
+              "name" : "Course continue 8 km",
+              "notes" : "Cutback : retour à 8 km (W2). Allure très confortable, Z1-Z2. Si tu te sens en pleine forme et l'envie de forcer est forte, c'est bon signe — résiste. La cutback est une récompense qui te prépare au pic des semaines 6-7. Les jambes fraîches de W6 viendront de ce repos relatif.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue réduite — 8 km récupération active",
+          "type" : "endurance",
+          "warmup" : "8 min échauffement standard."
+        }
+      ],
+      "theme" : "Cutback — consolidation avant pic de charge",
+      "week_number" : 5
+    },
+    {
+      "goal" : "Atteindre le volume maximal de qualité. Tempo 25 min continu. Sortie longue 11 km (pic = 120% de la distance cible, ici 11 km > 10 km). Volume total course W6 : ~28 km (+33% vs W5 cutback, +12% vs W4).",
+      "sessions" : [
+        {
+          "cooldown" : "8 min course légère Z1 + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 58,
+          "exercises" : [
+            {
+              "duration" : "1000m à allure 5K cible",
+              "name" : "Intervalles 1000m",
+              "notes" : "Progression vs W2 (600m) et W4 (800m). Allure 5K : ~5:50-6:30/km. Récupération 3 min marche active (ACSM/NSCA). Rythme régulier sur les 4 répétitions — le 4e doit être aussi propre que le premier, quitte à sortir 5 sec/km plus lent. 4 × 1000m = 4 km de qualité maximale, stimulus VO2max optimal.",
+              "rest_seconds" : 180,
+              "sets" : 4
+            }
+          ],
+          "name" : "Intervalles VO2max — 1000m × 4",
+          "type" : "interval",
+          "warmup" : "12 min course légère Z2 + 4 strides 20 sec + 2 min marche. Total : 16 min."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 42,
+          "exercises" : [
+            {
+              "name" : "Single-leg squat libre",
+              "reps" : "10 par jambe",
+              "rest_seconds" : 60,
+              "sets" : 3
+            },
+            {
+              "name" : "Nordic curl simplifié",
+              "notes" : "+1 rep vs W3-W4. Progression globale sur le plan : 6 → 6 → 7 → 7 → 6 (cutback) → 8.",
+              "reps" : "8",
+              "rest_seconds" : 90,
+              "sets" : 3
+            },
+            {
+              "name" : "Hip thrust unilatéral",
+              "reps" : "15 par côté",
+              "rest_seconds" : 50,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises excentriques sur marche",
+              "notes" : "+2 reps vs semaines précédentes.",
+              "reps" : "12 par côté",
+              "rest_seconds" : 45,
+              "sets" : 4
+            },
+            {
+              "duration" : "60 sec",
+              "name" : "Planche ventrale",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Dead bug",
+              "notes" : "Allongé sur le dos, bras vers le plafond, genoux à 90°. Abaisser bras opposé + jambe opposée en inspirant (ne pas toucher le sol), remonter en expirant. Core profond anti-extension — excellent pour la stabilité lombaire à haute cadence de course.",
+              "reps" : "10 par côté",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement préventif — pic de charge",
+          "type" : "strength",
+          "warmup" : "8 min activation."
+        },
+        {
+          "cooldown" : "6 min marche + étirements complets 10 min + roulade/foam roller sur mollets et IT band si disponible (alternative : massage manuel mollets 2 min/côté).",
+          "day" : 5,
+          "duration_minutes" : 90,
+          "exercises" : [
+            {
+              "duration" : "70-85 min selon allure",
+              "name" : "Course continue 11 km",
+              "notes" : "11 km = 120% de la distance cible (10 km). Allure Z2, ~6:45-7:30/km. Première fois au-dessus de 10 km — le but est de rester aérobie tout le long. Au km 8, évaluer ton état : si tu te sens bien, garde l'allure ; si le souffle forcit, ralentis de 15-20 s/km pour finir proprement. Nutrition : gel ou datte au km 7 si sortie > 75 min. Eau toutes les 20-25 min.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue 11 km — pic de volume",
+          "type" : "endurance",
+          "warmup" : "8 min échauffement standard."
+        }
+      ],
+      "theme" : "Pic de charge — tempo 25 min et sortie longue 11 km",
+      "week_number" : 6
+    },
+    {
+      "goal" : "Répliquer la qualité de W6 avec sortie longue maximale à 12 km. Tempo 25 min continu confirmé. Volume total course W7 : ~31 km (+10% vs W6). Semaine la plus chargée du plan.",
+      "sessions" : [
+        {
+          "cooldown" : "8 min course légère Z1 + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "25 min",
+              "name" : "Tempo seuil continu",
+              "notes" : "Allure seuil = 10K cible + 15-20 s/km. Pour objectif 60 min → allure tempo ~6:15/km. Progression vs W3 (20 min) et W5 (2 × 10 min fractionnés). 25 min continus à allure seuil = stimulus lactate optimal pour un 10K (recommandation ACSM pour coureurs intermédiaires). C'est difficile — normal. Si tu n'arrives pas à tenir les 25 min en continu cette semaine, fractionner en 2 × 12 min.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Tempo seuil continu 25 min",
+          "type" : "interval",
+          "warmup" : "12 min course légère Z2 + 4 strides 20 sec + 2 min marche."
+        },
+        {
+          "cooldown" : "Étirements 5 min + 2 min de respiration diaphragmatique allongé (récupération système nerveux).",
+          "day" : 3,
+          "duration_minutes" : 40,
+          "exercises" : [
+            {
+              "name" : "Single-leg squat libre",
+              "reps" : "10 par jambe",
+              "rest_seconds" : 60,
+              "sets" : 3
+            },
+            {
+              "name" : "Nordic curl simplifié",
+              "notes" : "Volume identique à W6 — semaine pic en course, stabiliser le renforcement.",
+              "reps" : "8",
+              "rest_seconds" : 90,
+              "sets" : 3
+            },
+            {
+              "name" : "Hip thrust unilatéral",
+              "reps" : "15 par côté",
+              "rest_seconds" : 50,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises excentriques sur marche",
+              "reps" : "12 par côté",
+              "rest_seconds" : 45,
+              "sets" : 4
+            },
+            {
+              "duration" : "60 sec",
+              "name" : "Planche ventrale",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Dead bug",
+              "reps" : "10 par côté",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement préventif — maintien semaine pic",
+          "type" : "strength",
+          "warmup" : "8 min activation."
+        },
+        {
+          "cooldown" : "6 min marche lente + étirements complets 10 min (mollets, quadriceps, ischio-jambiers, fessiers, piriformis, fléchisseurs hanche, adducteurs). Hydratation + collation glucides-protéines obligatoire. Si douleurs inhabituelles à la cheville, genou ou tibia, noter et surveiller avant W8.",
+          "day" : 5,
+          "duration_minutes" : 100,
+          "exercises" : [
+            {
+              "duration" : "78-92 min selon allure",
+              "name" : "Course continue 12 km",
+              "notes" : "12 km = 120% de la distance cible 10 km. Allure Z2 stricte, ~6:45-7:30/km — pas de tentation d'accélérer, cette sortie construit l'endurance de base. Stratégie de nutrition : gel ou datte au km 7. Eau régulière. Au km 10, tu as DEJA atteint ta distance cible — les 2 derniers km sont un bonus mental. Conserve l'allure, ne force pas la finition.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue 12 km — pic absolu",
+          "type" : "endurance",
+          "warmup" : "8 min échauffement standard."
+        }
+      ],
+      "theme" : "Consolidation pic — tempo 25 min confirmé et 12 km",
+      "week_number" : 7
+    },
+    {
+      "goal" : "Tapering progressif : W8 J1 = activation tempo courte, W8 J3 = mobilité et activation légère. Séance phare W8 J5 = 10 km à allure cible (55-70 min). Volume total W8 hors séance phare : ~8 km seulement. Arriver frais à la séance phare.",
+      "sessions" : [
+        {
+          "cooldown" : "8 min course légère Z1 + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 45,
+          "exercises" : [
+            {
+              "duration" : "8 min à allure seuil",
+              "name" : "Blocs tempo courts",
+              "notes" : "Tapering actif : volume réduit (2 × 8 min vs 25 min en W7) mais intensité maintenue. Objectif : entretenir la sensation d'allure seuil sans fatiguer. Récupération 5 min trot Z1 entre les 2 blocs. Ne pas dépasser les 2 blocs — la tentation d'en faire plus est forte mais contre-productive.",
+              "rest_seconds" : 300,
+              "sets" : 2
+            }
+          ],
+          "name" : "Activation tempo — 2 × 8 min",
+          "type" : "interval",
+          "warmup" : "10 min course légère Z2 + 3 strides 20 sec + 2 min marche."
+        },
+        {
+          "cooldown" : "5 min respiration profonde. Se coucher tôt, hydratation soignée la veille de J5. Pas d'alcool, repas riche en glucides complexes la veille.",
+          "day" : 3,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "duration" : "12 min",
+              "name" : "Routine mobilité complète",
+              "notes" : "Hanche 90/90 : 2 min. Hip flexor stretch : 90 sec/côté. Fessier pigeon allongé : 90 sec/côté. Mobilité thoracique (rotation assis) : 1 min. Chevilles (squat profond contre mur) : 2 min. Tout en douceur, pas d'effort.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "8 min",
+              "name" : "Activation neuromusculaire légère",
+              "notes" : "10 ponts fessiers + 10 clamshells/côté + 10 bird-dogs/côté + 10 single-leg calf raises/côté. Poids du corps, pas d'effort, juste activer. Préparer les muscles utilisés en course sans les fatiguer.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "5 min",
+              "name" : "Visualisation de la séance phare",
+              "notes" : "Allongé sur le dos. Fermer les yeux. Visualiser les 10 km : les 3 premiers km faciles, le km 5 au rythme, les 2 derniers km à te maintenir. Technique confirmée par la recherche en psychologie sportive pour améliorer la performance.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Mobilité + activation légère pré-course",
+          "type" : "mobility",
+          "warmup" : "5 min marche légère + mobilité dynamique douce (cercles hanches 10/côté, cercles chevilles 15/côté, balancements de jambe 10/côté). Total : 8 min."
+        },
+        {
+          "cooldown" : "6 min de marche lente. Étirements complets 12 min : mollets (30 sec/côté), quadriceps (30 sec/côté), ischio-jambiers (30 sec/côté), fessiers (30 sec/côté), piriformis (30 sec/côté), fléchisseurs hanche (30 sec/côté), adducteurs (30 sec). Hydratation + collation protéines-glucides dans les 30 min. Tu peux être fier — 8 semaines de travail livré.",
+          "day" : 5,
+          "duration_minutes" : 90,
+          "exercises" : [
+            {
+              "duration" : "55-70 min selon ton niveau",
+              "name" : "10 km à allure cible",
+              "notes" : "SÉANCE PHARE DU PLAN. Allure cible : ton objectif 10K. Si tu vises 60 min → 6:00/km. Si tu vises 65 min → 6:30/km. Stratégie recommandée : départ conservateur (premiers 3 km à allure cible + 10-15 sec/km), rythme cible du km 3 au km 8, légère accélération si tu peux sur les 2 derniers km. Si coup dur au km 7-8, ralentis de 15 s/km et finit proprement — l'objectif est de courir les 10 km EN CONTINU, pas d'un chrono précis. Les deux scénarios (objectif atteint ou course finissant au-delà du temps cible) sont des réussites — tu as couru 10 km.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Séance phare — 10 km race effort",
+          "type" : "endurance",
+          "warmup" : "8 min marche progressive + 5 min trot Z1 très léger + 3 strides 20 sec + 2 min marche. Total 15 min. Ne jamais partir froid sur une séance phare."
+        }
+      ],
+      "theme" : "Tapering + Séance phare — 10 km",
+      "week_number" : 8
+    }
+  ]
+}

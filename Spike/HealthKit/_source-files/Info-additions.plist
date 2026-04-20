@@ -1,0 +1,10 @@
+<!--
+  Ces clés DOIVENT être ajoutées au Info.plist (ou aux Build Settings → Info)
+  du projet Xcode HealthKitSpike. Sans elles, l'app crashera au démarrage de la
+  requête d'autorisation HealthKit avec une erreur "missing usage description".
+-->
+<key>NSHealthShareUsageDescription</key>
+<string>HealthKitSpike a besoin de lire vos données d'activité (pas, fréquence cardiaque, workouts) pour valider l'intégration HealthKit du futur app CoachingSage.</string>
+
+<key>NSHealthUpdateUsageDescription</key>
+<string>HealthKitSpike a besoin d'écrire vos workouts dans Apple Santé pour tester l'export vers Health.</string>

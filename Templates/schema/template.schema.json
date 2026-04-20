@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://coachingsage.app/schemas/template.schema.json",
+  "title": "ProgramTemplate",
+  "type": "object",
+  "required": [
+    "id",
+    "schema_version",
+    "sport",
+    "level",
+    "name",
+    "duration_weeks",
+    "sessions_per_week",
+    "default_objective",
+    "assumed_profile",
+    "summary",
+    "weeks",
+    "safety_notes",
+    "progression_logic"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1, "pattern": "^[a-z0-9-]+$" },
+    "schema_version": { "type": "integer", "const": 1 },
+    "sport": {
+      "type": "string",
+      "enum": ["running", "musculation", "natation", "velo", "triathlon", "tennis", "yoga", "hiit", "remise_en_forme", "sports_collectifs"]
+    },
+    "level": {
+      "type": "string",
+      "enum": ["debutant", "intermediaire", "avance", "expert"]
+    },
+    "name": { "type": "string", "minLength": 1 },
+    "duration_weeks": { "type": "integer", "minimum": 1, "maximum": 52 },
+    "sessions_per_week": { "type": "integer", "minimum": 1, "maximum": 14 },
+    "default_objective": { "type": "string", "minLength": 1 },
+    "assumed_profile": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string", "minLength": 1 },
+    "safety_notes": { "type": "string", "minLength": 1 },
+    "progression_logic": { "type": "string", "minLength": 1 },
+    "validated_at": {
+      "oneOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }]
+    },
+    "validated_by": {
+      "oneOf": [{ "type": "string" }, { "type": "null" }]
+    },
+    "weeks": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/templateWeek" }
+    }
+  },
+  "$defs": {
+    "templateWeek": {
+      "type": "object",
+      "required": ["week_number", "theme", "goal", "sessions"],
+      "properties": {
+        "week_number": { "type": "integer", "minimum": 1 },
+        "theme": { "type": "string", "minLength": 1 },
+        "goal": { "type": "string", "minLength": 1 },
+        "sessions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/templateSession" }
+        }
+      }
+    },
+    "templateSession": {
+      "type": "object",
+      "required": ["day", "name", "duration_minutes", "type", "exercises"],
+      "properties": {
+        "day": { "type": "integer", "minimum": 1, "maximum": 7 },
+        "name": { "type": "string", "minLength": 1 },
+        "duration_minutes": { "type": "integer", "minimum": 0 },
+        "type": {
+          "type": "string",
+          "enum": ["endurance", "interval", "technique", "strength", "mixed", "mobility", "rest", "other"]
+        },
+        "warmup": { "oneOf": [{ "type": "string" }, { "type": "null" }] },
+        "cooldown": { "oneOf": [{ "type": "string" }, { "type": "null" }] },
+        "exercises": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/templateExercise" }
+        }
+      }
+    },
+    "templateExercise": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "sets": { "oneOf": [{ "type": "integer", "minimum": 0 }, { "type": "null" }] },
+        "reps": { "oneOf": [{ "type": "string" }, { "type": "null" }] },
+        "duration": { "oneOf": [{ "type": "string" }, { "type": "null" }] },
+        "rest_seconds": { "oneOf": [{ "type": "integer", "minimum": 0 }, { "type": "null" }] },
+        "notes": { "oneOf": [{ "type": "string" }, { "type": "null" }] }
+      }
+    }
+  }
+}

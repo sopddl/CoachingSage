@@ -1,0 +1,439 @@
+{
+  "id": "natation-debutant-initiation-6sem",
+  "schema_version": 1,
+  "sport": "natation",
+  "level": "debutant",
+  "name": "Natation initiation — Nager 200 m en 6 semaines",
+  "duration_weeks": 6,
+  "sessions_per_week": 2,
+  "default_objective": "Nager 200 m en crawl sans s'arrêter, avec une respiration latérale maîtrisée",
+  "assumed_profile": "Adulte à l'aise dans l'eau et sachant flotter, accès à une piscine 25 m, aucune pratique régulière de la natation sportive. Maillot + lunettes + bonnet disponibles.",
+  "summary": "Programme de 6 semaines pour passer d'un nageur débutant — à l'aise dans l'eau mais sans technique — à un nageur capable d'enchaîner 200 m en crawl avec respiration latérale fonctionnelle. La progression pédagogique suit trois phases : acquisition de la respiration et de la flottaison ventrale (S1-S2), consolidation de la coordination bras-respiration sur de courtes longueurs (S3-S4), puis allongement progressif des blocs nagés avec une semaine cutback en S5 avant la séance phare 200 m en S6. Chaque séance dure 45 à 55 minutes de présence bassin. Le gainage hors eau est intégré pour prévenir les douleurs d'épaule et lombaires, risques principaux du nageur débutant.",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Fondations — flottaison ventrale et expiration dans l'eau",
+      "goal": "Maîtriser la position hydrodynamique allongée (face vers le bas, corps horizontal), expirer complètement dans l'eau et lever la tête hors de l'eau pour inspirer. Aucune longueur complète cette semaine — priorité à la sensation aquatique.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Découverte position ventrale et expiration",
+          "duration_minutes": 45,
+          "type": "technique",
+          "warmup": "5 min de marche rapide en couloir de faible profondeur (ou marche autour du bassin). 10 rotations de bras vers l'avant et vers l'arrière. 10 rotations de cou douces côté-côté. Entrer dans l'eau progressivement pour habituer le corps à la température.",
+          "exercises": [
+            {
+              "name": "Expiration sous-marine statique",
+              "sets": 5,
+              "duration": "10 sec",
+              "rest_seconds": 20,
+              "notes": "Debout en eau à hauteur de poitrine, inspirer au-dessus de l'eau, plonger le visage (lunettes), expirer lentement par le nez et la bouche en formant des bulles pendant 10 sec. Objectif : se débarrasser du réflexe de retenir sa respiration sous l'eau. C'est le geste fondateur du crawl."
+            },
+            {
+              "name": "Flottaison ventrale statique",
+              "sets": 5,
+              "duration": "5 sec",
+              "rest_seconds": 20,
+              "notes": "Bras tendus devant, corps à plat ventre à la surface, visage dans l'eau, expirer doucement. Se laisser porter 5 sec avant de reprendre pied. Si difficile à tenir horizontalement, mettre une frite flottante sous les hanches temporairement."
+            },
+            {
+              "name": "Coup de pied crawl avec planche",
+              "sets": 4,
+              "reps": "1 longueur 25 m",
+              "rest_seconds": 45,
+              "notes": "Bras tendus sur une planche, visage dans l'eau, battre les pieds. Jambes tendues depuis la hanche, mouvement de fouet partant de la cuisse. Ne pas plier les genoux à plus de 30°. Sortir la tête pour respirer quand nécessaire. Concentre-toi sur la position du corps, pas sur la vitesse."
+            },
+            {
+              "name": "Poussée de mur en position fuseau",
+              "sets": 6,
+              "duration": "5 sec de glisse",
+              "rest_seconds": 30,
+              "notes": "Pousser le mur avec les deux pieds, bras tendus en flèche au-dessus de la tête, oreilles entre les bras, glisser en fuseau 5 sec. Observer la sensation de portance. C'est la base de la position de nage efficace."
+            }
+          ],
+          "cooldown": "3 min de marche dans l'eau lente (eau mi-cuisse). Étirements hors bassin : épaules croisées sur la poitrine 30 sec/côté, triceps derrière la tête 20 sec/côté, quadriceps debout 20 sec/jambe."
+        },
+        {
+          "day": 4,
+          "name": "Battement de pieds + introduction du mouvement de bras",
+          "duration_minutes": 45,
+          "type": "technique",
+          "warmup": "5 min marche bassin peu profond + 10 rotations bras avant-arrière + 5 poussées de mur en fuseau pour activer la position.",
+          "exercises": [
+            {
+              "name": "Expiration sous-marine rythmée",
+              "sets": 6,
+              "duration": "10 sec",
+              "rest_seconds": 15,
+              "notes": "Même exercice qu'en S1J1 mais en cherchant un rythme : 2 sec inspiration au-dessus, 8 sec expiration sous l'eau. Crée l'habitude du cycle ventilatoire avant de l'appliquer en nage."
+            },
+            {
+              "name": "Coup de pied crawl avec planche",
+              "sets": 4,
+              "reps": "1 longueur 25 m",
+              "rest_seconds": 40,
+              "notes": "Même qu'en S1J1 mais chercher à mettre le visage dans l'eau sur 3-4 secondes d'affilée avant de ressortir respirer. Progression légère sur la gestion du souffle."
+            },
+            {
+              "name": "Bras crawl debout en eau peu profonde",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 30,
+              "notes": "Debout en eau jusqu'à la taille, se pencher légèrement en avant. Simuler le mouvement de bras du crawl : entrée dans l'eau du bout des doigts, tirée sous le corps, sortie à la hanche. 1 bras, puis l'autre. Visualiser le geste sans avoir à gérer la respiration simultanément."
+            },
+            {
+              "name": "Nage complète tentative sur 12 m",
+              "sets": 4,
+              "duration": "12 m",
+              "rest_seconds": 60,
+              "notes": "Départ poussée mur. Essayer d'enchaîner bras + battement sur 12 m (mi-longueur). Pas de respiration latérale encore — sortir la tête quand nécessaire. Objectif : sentir la coordination bras-jambes. Ne pas dépasser 12 m si souffle ou technique se dégradent."
+            }
+          ],
+          "cooldown": "3 min de dos crawl très lent (ou dos simple bras le long du corps, battement léger) pour décompresser les épaules. Étirements : pectoraux contre le bord du bassin 30 sec, mollets 20 sec/jambe."
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Respiration latérale — l'apprentissage clé",
+      "goal": "Introduire et stabiliser la rotation de la tête pour inspirer latéralement lors du crawl. Nager par blocs de 25 m avec arrêts au bord. Volume total nagé : ~100-150 m de nage technique par séance.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Respiration latérale avec planche",
+          "duration_minutes": 50,
+          "type": "technique",
+          "warmup": "5 min poussées de mur en fuseau + 4×25 m battement planche. Activer les épaules : 10 rotations avant-arrière hors eau.",
+          "exercises": [
+            {
+              "name": "Respiration latérale statique au bord",
+              "sets": 6,
+              "duration": "20 sec",
+              "rest_seconds": 20,
+              "notes": "Agrippé à la gouttière du bassin, corps horizontal, battement léger. Tourner la tête latéralement (sans lever — juste faire sortir une bouche, une oreille restant dans l'eau) pour inspirer, face dans l'eau pour expirer. Répéter le cycle 5-6 fois par set. C'est le geste LE PLUS DIFFICILE à apprendre — attends-toi à avaler de l'eau les premières tentatives, c'est normal."
+            },
+            {
+              "name": "Crawl avec planche, respiration latérale",
+              "sets": 4,
+              "reps": "1 longueur 25 m",
+              "rest_seconds": 60,
+              "notes": "Planche tenue devant avec les deux mains, battement continu. Tourner la tête pour respirer tous les 4-6 secondes. Maintenir le regard vers le fond lors de l'expiration. Progression clé : ne pas lever la tête vers l'avant pour respirer."
+            },
+            {
+              "name": "Nage 1 bras (unilatérale) avec planche",
+              "sets": 4,
+              "reps": "1 longueur 25 m (2 par bras)",
+              "rest_seconds": 60,
+              "notes": "Un bras tient la planche, l'autre fait le mouvement de crawl complet. Tourner la tête du côté du bras qui nage pour inspirer. Exercice fondamental pour synchroniser bras et respiration. 2 longueurs bras droit, 2 longueurs bras gauche."
+            },
+            {
+              "name": "Tentative crawl complet 25 m",
+              "sets": 2,
+              "reps": "1 longueur 25 m",
+              "rest_seconds": 90,
+              "notes": "Appliquer la respiration latérale en nage libre. Si la technique se dégrade, revenir à la planche sans hésitation. Objectif : 1 inspiration latérale réussie par longueur."
+            }
+          ],
+          "cooldown": "2 min dos crawl très lent. Étirements épaules + pectoraux 3 min."
+        },
+        {
+          "day": 4,
+          "name": "Consolidation respiration latérale + longueurs complètes",
+          "duration_minutes": 50,
+          "type": "technique",
+          "warmup": "4×25 m battement planche, focus expiration dans l'eau. Rotations d'épaules 10/sens hors eau.",
+          "exercises": [
+            {
+              "name": "Respiration latérale statique au bord",
+              "sets": 4,
+              "duration": "20 sec",
+              "rest_seconds": 15,
+              "notes": "Répétition de S2J1 — automatisation du geste."
+            },
+            {
+              "name": "Nage 1 bras (unilatérale) avec planche",
+              "sets": 4,
+              "reps": "1 longueur 25 m (2 par bras)",
+              "rest_seconds": 50,
+              "notes": "Même que S2J1 mais chercher à respirer tous les 2 cycles de bras (soit 1 inspiration toutes les 4 secondes)."
+            },
+            {
+              "name": "Crawl complet, pause au mur",
+              "sets": 4,
+              "reps": "1 longueur 25 m",
+              "rest_seconds": 60,
+              "notes": "Nage crawl complète avec respiration latérale. S'arrêter au mur après chaque longueur. Pas d'enchaînement encore. Priorité : technique respiratoire propre sur les 25 m. Total : 4×25 m = 100 m."
+            }
+          ],
+          "cooldown": "2 min marche dans l'eau. Étirements : nuque (oreille vers épaule) 20 sec/côté, épaules croisées 30 sec/côté, trapèzes auto-massage."
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Premier palier — enchaîner 2×25 m sans pause",
+      "goal": "Enchaîner 2 longueurs de 25 m en crawl avec virages au mur (toucher + poussée). Volume nagé cible : 150-200 m de crawl par séance. Introduction de l'exercice catch-up pour allonger la nage.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Catch-up drill + premiers 50 m",
+          "duration_minutes": 50,
+          "type": "technique",
+          "warmup": "200 m libre (crawl interrompu ou dos libre) à allure très douce. Rotations d'épaules 10/sens.",
+          "exercises": [
+            {
+              "name": "Catch-up drill",
+              "sets": 4,
+              "reps": "1 longueur 25 m",
+              "rest_seconds": 50,
+              "notes": "Nager en attendant que le bras avant soit complètement tendu (rattrapé) avant de lancer le bras arrière. Un bras toujours devant. Ralentit la cadence et oblige à glisser entre chaque traction — excellent pour sentir la portance et allonger la nage. Respiration latérale à chaque cycle."
+            },
+            {
+              "name": "Crawl complet 50 m sans pause",
+              "sets": 3,
+              "reps": "2 longueurs 25 m",
+              "rest_seconds": 75,
+              "notes": "Enchaîner 2 longueurs sans s'arrêter en bout de bassin — toucher le mur, pousser et repartir. S'arrêter après le 50 m pour récupérer. Si impossible sans s'arrêter, faire 2×25 m avec 10 sec de pause au mur — ce n'est pas un échec, c'est une progression normale. Total nage : 150 m."
+            },
+            {
+              "name": "Coup de pied crawl planche focus chevillles",
+              "sets": 2,
+              "reps": "1 longueur 25 m",
+              "rest_seconds": 40,
+              "notes": "Insister sur la souplesse des chevilles : pieds en extension (pointe), pas les orteils vers le haut. Des chevilles raides réduisent de 30% la propulsion du battement."
+            }
+          ],
+          "cooldown": "2 min dos élémentaire lent (bras le long du corps, battement léger). Étirements : chevilles en rotation 10/sens, quadriceps debout 20 sec/jambe, épaules."
+        },
+        {
+          "day": 4,
+          "name": "Consolidation 50 m + gainage préventif hors eau",
+          "duration_minutes": 50,
+          "type": "mixed",
+          "warmup": "200 m crawl libre ou dos doux. Rotations d'épaules dynamiques hors eau.",
+          "exercises": [
+            {
+              "name": "Crawl complet 50 m",
+              "sets": 4,
+              "reps": "2 longueurs 25 m",
+              "rest_seconds": 70,
+              "notes": "Objectif : 4 séries de 50 m avec récupération complète entre chaque. Total : 200 m de crawl. Allure décontractée — priorité à la régularité de la respiration, pas à la vitesse."
+            },
+            {
+              "name": "Planche ventrale hors eau (bord de bassin ou vestiaire)",
+              "sets": 3,
+              "duration": "20 sec",
+              "rest_seconds": 40,
+              "notes": "Coudes sous les épaules, corps aligné, fessiers contractés. Renforcement du core essentiel pour maintenir la position horizontale en crawl et prévenir les lombalgies."
+            },
+            {
+              "name": "Rotation externe épaule au sol hors eau",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "notes": "Allongé sur le côté, bras plié à 90°, avant-bras vers le plafond. Rotation externe lente. Renforce les rotateurs externes de l'épaule — muscles clés de la prévention des tendinites d'épaule chez le nageur, risque n°1 de la discipline."
+            }
+          ],
+          "cooldown": "3 min marche ou dos lent. Étirements : pectoraux 30 sec, trapèzes 20 sec/côté, épaules croisées 30 sec/côté."
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Bloc 75 m — allonger sans s'épuiser",
+      "goal": "Enchaîner 3 longueurs (75 m) sans pause. Améliorer la gestion de la respiration sur la distance. Introduire le concept d'allure soutenable (rythme ventilatoire tous les 3 temps). Volume nagé cible : 250-300 m de crawl par séance.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Respiration tous les 3 temps + blocs 75 m",
+          "duration_minutes": 50,
+          "type": "technique",
+          "warmup": "300 m libre à allure très douce (crawl ou dos alternés). 10 rotations d'épaules avant/arrière.",
+          "exercises": [
+            {
+              "name": "Crawl respiration bilatérale — drill 25 m",
+              "sets": 4,
+              "reps": "1 longueur 25 m",
+              "rest_seconds": 45,
+              "notes": "Respirer tous les 3 cycles de bras (inspiration côté droit, puis côté gauche en alternance). Favorise une nage symétrique et réduit la fatigue asymétrique des épaules. Si difficile, respirer tous les 2 cycles d'abord puis tenter tous les 3. C'est un objectif pédagogique, pas une obligation stricte à ce stade."
+            },
+            {
+              "name": "Crawl complet 75 m",
+              "sets": 3,
+              "reps": "3 longueurs 25 m",
+              "rest_seconds": 90,
+              "notes": "3 longueurs enchaînées. Allure lente et régulière — si le souffle manque à mi-parcours, ralentir (ne pas s'arrêter sauf urgence). Récupération complète entre les blocs. Total nage : 225 m."
+            },
+            {
+              "name": "Descente bras seul (pull avec planche entre jambes)",
+              "sets": 2,
+              "reps": "1 longueur 25 m",
+              "rest_seconds": 40,
+              "notes": "Planche coincée entre les cuisses (ou bouée pull-buoy si disponible), nager avec les bras uniquement. Isole la traction des bras et la respiration. Développe la sensation de l'appui dans l'eau."
+            }
+          ],
+          "cooldown": "2 min dos lent. Étirements épaules + nuque 3 min."
+        },
+        {
+          "day": 4,
+          "name": "Blocs 75 m consolidation + gainage",
+          "duration_minutes": 55,
+          "type": "mixed",
+          "warmup": "300 m crawl ou dos doux. Rotations d'épaules.",
+          "exercises": [
+            {
+              "name": "Crawl complet 75 m",
+              "sets": 3,
+              "reps": "3 longueurs 25 m",
+              "rest_seconds": 80,
+              "notes": "Même format que S4J1. Chercher à ce que la 3e longueur soit aussi propre techniquement que la 1re. Total nage : 225 m."
+            },
+            {
+              "name": "Crawl complet 50 m bonus",
+              "sets": 1,
+              "reps": "2 longueurs 25 m",
+              "rest_seconds": 0,
+              "notes": "Si la fatigue le permet après les 3×75 m — ajouter un 50 m en finale. Total possible : 275 m."
+            },
+            {
+              "name": "Planche ventrale hors eau",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 40,
+              "notes": "Progression vs S3 (20 sec). Position stricte."
+            },
+            {
+              "name": "Rotation externe épaule hors eau",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 30,
+              "notes": "Progression vs S3 (12 reps). Mouvement lent et contrôlé."
+            },
+            {
+              "name": "Superman dorsal hors eau",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 30,
+              "notes": "Allongé ventre au sol, bras tendus devant. Lever simultanément bras et jambes 2 sec en maintenant. Renforce les érecteurs spinaux et les fessiers — stabilisateurs posturaux essentiels pour maintenir la position plate en crawl sur la distance."
+            }
+          ],
+          "cooldown": "3 min dos lent. Étirements complets 5 min : épaules, pectoraux, lombaires (genoux sur la poitrine allongé), nuque."
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Cutback — consolider sans accumuler",
+      "goal": "Semaine allégée (-20% volume vs S4). Maintenir l'acquis technique, reposer les épaules, introduire un bloc 100 m unique en 2e séance. Les semaines de récupération sont CONSTITUTIVES de la progression — ne pas chercher à compenser en forçant.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cutback — qualité sur 150 m",
+          "duration_minutes": 40,
+          "type": "technique",
+          "warmup": "200 m libre doux. 10 rotations d'épaules.",
+          "exercises": [
+            {
+              "name": "Catch-up drill rappel",
+              "sets": 2,
+              "reps": "1 longueur 25 m",
+              "rest_seconds": 45,
+              "notes": "Retour au catch-up pour soigner la glisse — souvent négligée quand le nageur monte en volume. C'est la semaine idéale pour repolir la technique."
+            },
+            {
+              "name": "Crawl complet 50 m, focus technique",
+              "sets": 3,
+              "reps": "2 longueurs 25 m",
+              "rest_seconds": 70,
+              "notes": "3 blocs de 50 m à allure très confortable. Volume réduit par rapport à S4. Priorité absolue à la proprete de la respiration bilatérale. Total nage : 150 m."
+            }
+          ],
+          "cooldown": "3 min dos lent. Étirements complets épaules + pectoraux + nuque 4 min."
+        },
+        {
+          "day": 4,
+          "name": "Premier bloc 100 m — palier qualité",
+          "duration_minutes": 45,
+          "type": "technique",
+          "warmup": "200 m libre très doux. Rotations d'épaules.",
+          "exercises": [
+            {
+              "name": "Crawl complet 50 m",
+              "sets": 2,
+              "reps": "2 longueurs 25 m",
+              "rest_seconds": 70,
+              "notes": "Deux blocs de 50 m pour préparer le bloc long. Récupération complète entre les deux."
+            },
+            {
+              "name": "Bloc long 100 m",
+              "sets": 1,
+              "reps": "4 longueurs 25 m",
+              "rest_seconds": 0,
+              "notes": "Premier bloc de 100 m enchaîné du plan. Allure lente et régulière — respiration tous les 3 temps idéalement. Si la respiration s'emballe en 3e longueur, ralentir le bras, ne pas accélérer. Se dire : 'je nage pour finir, pas pour aller vite'. Total séance nage : 200 m."
+            }
+          ],
+          "cooldown": "3 min dos lent. Étirements 5 min. Moment idéal pour noter ses sensations (quelle longueur était difficile, à quel moment la respiration devenait saccadée)."
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Séance phare — 200 m en crawl continu",
+      "goal": "Nager 200 m en crawl sans s'arrêter, avec respiration latérale maîtrisée. Tapering sur la 1re séance, pic en 2e séance (J4). Volume total semaine intentionnellement réduit pour arriver frais.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Activation et rappel technique",
+          "duration_minutes": 40,
+          "type": "technique",
+          "warmup": "150 m libre très doux (crawl ou dos alternés). 10 rotations d'épaules.",
+          "exercises": [
+            {
+              "name": "Catch-up drill rappel",
+              "sets": 2,
+              "reps": "1 longueur 25 m",
+              "rest_seconds": 40,
+              "notes": "Rappel de la glisse — soigner l'entrée de la main dans l'eau (bout des doigts en premier, pas à plat)."
+            },
+            {
+              "name": "Crawl complet 75 m",
+              "sets": 2,
+              "reps": "3 longueurs 25 m",
+              "rest_seconds": 90,
+              "notes": "Deux blocs de 75 m à allure confortable. Pas de fatigue, pas d'effort maximal. C'est une séance d'activation avant le pic. Récupération complète entre les blocs. Total nage : 150 m."
+            }
+          ],
+          "cooldown": "3 min dos très lent. Étirements épaules et nuque 3 min. Visualiser mentalement la séance phare du J4 : départ poussée mur, allure régulière, respiration tous les 3 temps."
+        },
+        {
+          "day": 4,
+          "name": "Séance phare — 200 m crawl continu",
+          "duration_minutes": 55,
+          "type": "endurance",
+          "warmup": "300 m libre très doux (mélange crawl lent + dos élémentaire). 10 rotations d'épaules. 4 poussées de mur en fuseau. Entrer dans l'eau au moins 15 min avant la tentative principale.",
+          "exercises": [
+            {
+              "name": "Bloc de mise en température 50 m",
+              "sets": 1,
+              "reps": "2 longueurs 25 m",
+              "rest_seconds": 60,
+              "notes": "Crawl doux, juste pour activer la respiration. Récupération complète avant la tentative."
+            },
+            {
+              "name": "200 m crawl continu",
+              "sets": 1,
+              "reps": "8 longueurs 25 m",
+              "rest_seconds": 0,
+              "notes": "Objectif : 8 longueurs sans s'arrêter, à TON allure. Stratégie de nage : longueurs 1-2 très lentes (tu dois pouvoir respirer facilement), longueurs 3-6 régulières (rythme de croisière, respiration tous les 3 temps), longueurs 7-8 : maintenir, ne pas accélérer. Si tu dois t'arrêter une fois au mur, touche, pousse et repars — c'est une grande réussite quand même. Si tu nages les 200 m sans interruption, l'objectif du programme est atteint."
+            }
+          ],
+          "cooldown": "5 min de dos élémentaire très lent pour récupérer actif. Étirements complets 10 min : épaules croisées (30 sec/côté), pectoraux au mur (30 sec), triceps derrière la tête (20 sec/côté), nuque latérale (20 sec/côté), quadriceps debout (20 sec/jambe), mollets (20 sec/jambe). Hydratation et collation post-effort dans les 30 min."
+        }
+      ]
+    }
+  ],
+  "safety_notes": "DRAPEAUX ROUGES spécifiques à la natation (arrêter la séance et consulter si persistant) :\n• Douleur à l'épaule pendant ou après la nage (face antérieure, craquement, douleur à la rotation externe) : signe possible de tendinite de la coiffe des rotateurs ou de conflit sous-acromial — risque n°1 du nageur. Arrêt immédiat, glaçage 15 min, repos 5 jours, consulter un kiné ou médecin du sport avant de reprendre. Cause fréquente : bras trop large à l'entrée dans l'eau, manque de rotation du corps, exercices de renforcement des rotateurs insuffisants.\n• Douleur au genou face interne (syndrome du genou du brasser) : peu probable en crawl pur, mais si tu fais du dos ou brasse en récupération active, surveille ce signal.\n• Douleur lombaire après la nage : souvent liée à une position de nage creuse (hanches qui coulent, cambrure excessive). Renforcer le gainage ventral et améliorer la position horizontale. Si douleur > 3/10, consulter.\n• Douleur ou inflammation répétée au cou (cervicalgie) : souvent causée par une rotation de tête trop ample pour respirer, ou une tête levée en permanence. Corriger la technique de respiration latérale.\n• Crampe musculaire pendant la nage : s'approcher immédiatement du bord, s'y agripper, ne pas paniquer. Étirer le muscle concerné doucement. Ne pas reprendre la nage avant que la crampe soit totalement passée.\n• Malaise, vertige, nausée dans l'eau : sortir du bassin immédiatement, alerter le maître-nageur.\n\nRÈGLES GÉNÉRALES DE SÉCURITÉ :\n• Ne jamais nager seul dans un bassin non surveillé.\n• Toujours prévenir le maître-nageur présent si tu es débutant.\n• Lunettes : les porter systématiquement pour protéger les yeux du chlore et voir sous l'eau.\n• Bonnet : réduit la résistance frontale et protège les oreilles (bouchons d'oreilles optionnels si oreilles sensibles).\n• Ne pas nager si tu as de la fièvre ou une infection ORL active.\n• Hydratation : boire 400-500 ml d'eau dans l'heure précédant la séance. L'environnement aquatique masque la sensation de transpiration — tu te déshydrates même en piscine. Boire 300-500 ml après la séance.\n• Échauffement hors de l'eau NON optionnel : les rotations d'épaules préparent l'articulation avant les contraintes répétitives du crawl.\n• Ne jamais plonger dans les couloirs de nage peu profonds (< 1,2 m), entrer dans l'eau par les échelles ou en glissant depuis le bord.\n\nINTENSITÉ ET SENSATIONS :\n• En crawl débutant, tu dois pouvoir t'arrêter au mur et parler normalement après 25 m — si tu arrives haletant et incapable de parler, ton allure est trop élevée. La vitesse viendra avec la technique, pas en forçant.\n• Avaler de l'eau occasionnellement lors de l'apprentissage de la respiration latérale est normal — c'est inévitable. Ce n'est pas un signe de danger si c'est ponctuel et en eau peu profonde.\n• Sensation de jambes lourdes qui coulent : souvent liée à un défaut de position (tête trop haute) ou à des chevilles raides — non à un manque de force.\n\nSIGNES DE SURCHARGE (2+ signes simultanés → séance allégée ou repos) :\n• Douleur d'épaule résiduelle au réveil (sans effort)\n• Douleur au cou persistante après la séance\n• Peur régressive de l'eau, évitement (régression psychologique possible si apprentissage trop rapide)\n• Fatigue inexpliquée > 48h après la séance\n\nSI SÉANCE MANQUÉE :\n• Moins d'une semaine de pause : reprendre la même séance 1-2 jours plus tard.\n• 1 à 2 semaines de pause : reprendre la semaine précédente.\n• Plus de 2 semaines de pause : reculer de 2 semaines pour consolider les fondamentaux techniques.",
+  "progression_logic": "Progression construite sur 5 principes pédagogiques alignés sur les méthodes d'apprentissage de la natation (FFNS, ACSM, approche technique-first) :\n\n(1) TECHNIQUE AVANT VOLUME : contrairement au running où un débutant peut accumuler du volume rapidement, en natation, nager beaucoup avec une mauvaise technique ancre des gestes incorrects et surcharge les épaules. Les semaines 1-2 sont délibérément courtes en volume (150-200 m de nage) pour laisser le temps à la respiration latérale de s'automatiser. Un nageur qui nage 200 m correctement progresse plus vite qu'un nageur qui bat des records de longueurs avec la tête hors de l'eau.\n\n(2) PROGRESSION BLOC PAR BLOC : l'unité de progression est le bloc continu (25 m → 50 m → 75 m → 100 m → 200 m). On ne passe au bloc supérieur que quand le bloc précédent est confortable et techniquement propre. Le saut de 100 m à 200 m en S6 est rendu possible par la cutback S5 qui installe le 100 m comme un acquis consolidé.\n\n(3) CUTBACK SEMAINE 5 : volume réduit de 20% vs S4 avec maintien d'une nouveauté qualitative (premier bloc 100 m en fin de semaine). Les épaules sont particulièrement vulnérables en natation — une semaine de décharge régulière est non-négociable même sur un plan court de 6 semaines.\n\n(4) RENFORCEMENT PRÉVENTIF ÉPAULE DÈS S3 : les rotations externes d'épaule et le gainage sont introduits dès que le nageur commence à accumuler du volume (S3). Le travail de renforcement des rotateurs externes de l'épaule est soutenu par la littérature (Bak et al., recommandations FFNS) comme principale mesure préventive contre les tendinites du nageur. Le gainage core est indispensable pour maintenir la position hydrodynamique sur la distance.\n\n(5) TAPERING S6 : la première séance de S6 est une activation légère (150 m technique), non un entraînement. Arriver à la séance phare reposé permet une tentative 200 m dans les meilleures conditions neuromusculaires. Ne pas vouloir faire une grande séance la veille de la séance phare.",
+  "validated_at": null,
+  "validated_by": null
+}

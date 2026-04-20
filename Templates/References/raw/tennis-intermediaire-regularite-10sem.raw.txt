@@ -1,0 +1,797 @@
+{
+  "id": "tennis-intermediaire-regularite-10sem",
+  "schema_version": 1,
+  "sport": "tennis",
+  "level": "intermediaire",
+  "name": "Tennis régularité — 10 semaines",
+  "duration_weeks": 10,
+  "sessions_per_week": 2,
+  "default_objective": "Améliorer la régularité fond de court (30+ échanges consécutifs), stabiliser service et retour, intégrer montée au filet",
+  "assumed_profile": "Joueur pratiquant 1×/sem depuis 6+ mois, maîtrise les fondamentaux, coup droit et revers acquis mais manque de régularité. Accès court régulier. Équipement disponible : raquette, balles, filet, court (en dur ou terre battue). Aucun accès à salle de musculation requis — tout le renforcement est réalisable sur court ou dans un espace dégagé sans matériel (poids du corps uniquement).",
+  "summary": "Programme de 10 semaines conçu pour un joueur intermédiaire cherchant à passer de la frappe sécurisée à la régularité tactique : fond de court (30+ échanges), service-retour fiable et introduction au jeu de filet. Chaque semaine propose 2 séances : une séance technique/tactique sur court (drills de régularité, patterns, montée filet) et une séance de préparation physique tennis (cardio intermittent, force explosive, changements de direction, mobilité). Cutback en W5 et W9 (taper pré-évaluation finale W10). Safety covers : coude, épaule, cheville, genou. Checklist d'autonomie en W10.",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Diagnostic et fondations — régularité coup droit/revers",
+      "goal": "Établir la baseline : compter les échanges consécutifs actuels (objectif : atteindre 10 échanges réguliers en fond de court). Poser les bases du déplacement latéral.",
+      "sessions": [
+        {
+          "day": 2,
+          "name": "Séance technique — Diagnostic régularité fond de court",
+          "duration_minutes": 75,
+          "type": "technique",
+          "warmup": "10 min : jogging léger autour du court (2 tours), skipping, talons-fesses, balancements de bras (10 cercles avant/arrière), rotations tronc (10/sens), montées de genoux latérales (shadow footwork). Activation épaule : bras tendu cercles petit/grand 10/sens, bande élastique externe rotation si dispo.",
+          "exercises": [
+            {
+              "name": "Mini-tennis au carré de service",
+              "sets": 3,
+              "duration": "5 min par set",
+              "rest_seconds": 60,
+              "notes": "Échanges dans les carreaux de service, technique réduite, axé contact propre et direction. Objectif : sentir le rebond et la trajectoire. Allure lente."
+            },
+            {
+              "name": "Drill régularité croisé coup droit — comptage",
+              "sets": 4,
+              "duration": "3 min par set",
+              "rest_seconds": 90,
+              "notes": "Échanges croisés coup droit à fond de court avec partenaire ou contre mur. Compter les échanges consécutifs sans faute. Cible W1 : 10. Note ton meilleur comptage. Balles lentes, marges sur le filet (+60 cm), trajectoire haute."
+            },
+            {
+              "name": "Drill régularité croisé revers — comptage",
+              "sets": 4,
+              "duration": "3 min par set",
+              "rest_seconds": 90,
+              "notes": "Même protocole côté revers. Cible W1 : 10 échanges consécutifs. Le revers est souvent plus irrégulier que le CD — noter l'écart."
+            },
+            {
+              "name": "Service à la cuillère x20",
+              "sets": 2,
+              "reps": "20",
+              "rest_seconds": 60,
+              "notes": "Service lent (slice ou à plat) visant la moitié du carré. Objectif : placement et répétabilité, pas puissance. Identifier les défauts de lancer."
+            }
+          ],
+          "cooldown": "5 min marche autour du court. Étirements : mollets 30 sec/côté, quadriceps 30 sec/côté, pectoraux (main contre poteau) 30 sec/côté, triceps derrière tête 20 sec/côté, poignets extenseurs (bras tendu, main vers le bas, pression douce) 20 sec/côté, poignets fléchisseurs (bras tendu, main vers le haut, pression douce) 20 sec/côté."
+        },
+        {
+          "day": 5,
+          "name": "Prépa physique tennis — Cardio intermittent + force explosive",
+          "duration_minutes": 55,
+          "type": "mixed",
+          "warmup": "8 min : jogging 3 min + échauffement dynamique : montées de genoux, talons-fesses, carioca (déplacements croisés latéraux), squats dynamiques, rotations épaules.",
+          "exercises": [
+            {
+              "name": "Sprints latéraux court — interval",
+              "sets": 8,
+              "duration": "20 sec effort / 40 sec récup active (marche)",
+              "rest_seconds": 40,
+              "notes": "Sprint latéral 4 m à droite + retour. Imite le déplacement entre deux balles. RPE effort : 8/10. Méthode : 20/40 intermittent (ratio 1:2 typique tennis)."
+            },
+            {
+              "name": "Squat sauté (jump squat) poids du corps",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 90,
+              "notes": "Descente lente 3 sec, poussée explosive. Développe la puissance pour les départs explosifs. RPE 7. Aucun matériel requis."
+            },
+            {
+              "name": "Fente latérale alternée",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 60,
+              "notes": "Pas latéral large, genou fléchi au-dessus du pied, jambe opposée tendue. Reproduit le split-step / premier pas latéral au tennis."
+            },
+            {
+              "name": "Rotation de tronc debout (tennis swing simulation)",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 45,
+              "notes": "Bras tendus, mains jointes, rotation complète bassin + épaules comme un swing. Renforce la chaîne rotatoire. Sans raquette ni charge en W1."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Core essentiel pour le transfert de puissance et la protection lombaire au tennis. Corps aligné, ne pas laisser les hanches descendre."
+            },
+            {
+              "name": "Calf raises bipodal",
+              "sets": 3,
+              "reps": "20",
+              "rest_seconds": 30,
+              "notes": "Prévention entorse cheville et tendinites. Montée lente 2 sec, descente 3 sec."
+            }
+          ],
+          "cooldown": "5 min jogging léger + étirements ischio-jambiers 30 sec/côté, fessiers allongés 30 sec/côté, adducteurs en papillon 30 sec, épaule croisée (bras croisé devant) 20 sec/côté."
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Construction régularité — trajectoires hautes et marges",
+      "goal": "Passer de 10 à 15 échanges consécutifs en comprenant le rôle de la hauteur de balle au-dessus du filet. Introduire le concept de zone sécurisée (cibles de profondeur).",
+      "sessions": [
+        {
+          "day": 2,
+          "name": "Séance technique — Hauteur de balle et profondeur",
+          "duration_minutes": 75,
+          "type": "technique",
+          "warmup": "10 min échauffement standard : jogging, shadow footwork, rotations épaules, poignets.",
+          "exercises": [
+            {
+              "name": "Drill hauteur de balle — ruban visuel ou cible 1 m au-dessus filet",
+              "sets": 4,
+              "duration": "4 min par set",
+              "rest_seconds": 90,
+              "notes": "Échanges croisés CD uniquement. Objectif : chaque balle franchit le filet avec au moins 60-80 cm de marge. Imaginer une corde tendue à 1 m au-dessus du filet. Cible échanges consécutifs : 15. Ralentir la frappe si nécessaire."
+            },
+            {
+              "name": "Drill profondeur fond de court — cibles",
+              "sets": 4,
+              "duration": "4 min par set",
+              "rest_seconds": 90,
+              "notes": "Échanges croisés revers. Objectif : balle rebondissant au-delà du milieu du court adverse. Placer une raquette ou marque au sol à 2 m de la ligne de fond comme cible de profondeur. Comptage : 15 échanges cible."
+            },
+            {
+              "name": "Série de services — placement T et corps",
+              "sets": 3,
+              "reps": "10 services par cible",
+              "rest_seconds": 60,
+              "notes": "10 services visant le T (ligne centrale), 10 visant le corps du relanceur, 10 visant le côté extérieur. Total : 30 services par set. Accent sur la régularité du lancer de balle (même hauteur, même position)."
+            }
+          ],
+          "cooldown": "5 min marche + étirements complets épaule, triceps, poignets, mollets."
+        },
+        {
+          "day": 5,
+          "name": "Prépa physique — Changements de direction + force unipodal",
+          "duration_minutes": 55,
+          "type": "mixed",
+          "warmup": "8 min dynamique : jogging, carioca, skipping, split-step sur place (saut léger sur 2 pieds en écartant les jambes à la largeur d'épaule, comme un split-step de réception).",
+          "exercises": [
+            {
+              "name": "Exercice en T (T-drill) — cones ou repères au sol",
+              "sets": 6,
+              "duration": "15 sec sprint / 45 sec récup",
+              "rest_seconds": 45,
+              "notes": "Sprint avant 5 m + latéral droite 2.5 m + latéral gauche 5 m + retour centre + reculer. RPE effort : 8-9. Change direction = stabilité cheville/genou."
+            },
+            {
+              "name": "Squat bulgare unilatéral (pied arrière sur banc ou marche basse)",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 90,
+              "notes": "Développe la force unipodal pour les appuis lors des changements de direction. Descente contrôlée 3 sec. Alternative si aucune surface élevée : fente arrière profonde (pied arrière au sol). RPE 7-8."
+            },
+            {
+              "name": "Saut latéral sur une jambe (lateral bound)",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 60,
+              "notes": "Poussée latérale explosive sur une jambe, réception stable sur l'autre. Mimique le poussée lors d'un déplacement large. Atterrissage contrôlé, genou en ligne avec le pied."
+            },
+            {
+              "name": "Rotation de tronc avec bras tendus (resistance élastique si dispo, sinon poids corps)",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 45,
+              "notes": "Renforcement de la chaîne rotatoire (coup droit / revers). Si élastique disponible (pas requis), tenir les deux mains et tirer en rotation."
+            },
+            {
+              "name": "Superman (extension dorsale au sol)",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 40,
+              "notes": "Allongé face au sol, soulever simultanément bras et jambes. Renforce les érecteurs du rachis — essentiels pour tenir la posture sous fatigue au tennis."
+            }
+          ],
+          "cooldown": "5 min jogging + étirements fessiers, ischio-jambiers, adducteurs, épaule."
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Régularité croisé + introduction du long de ligne",
+      "goal": "Atteindre 20 échanges consécutifs en croix. Introduire la direction long de ligne comme variation tactique. Volume technique +15% vs W2.",
+      "sessions": [
+        {
+          "day": 2,
+          "name": "Séance technique — Croisé/Long de ligne",
+          "duration_minutes": 75,
+          "type": "technique",
+          "warmup": "10 min standard.",
+          "exercises": [
+            {
+              "name": "Drill régularité croisé CD — cible 20 échanges",
+              "sets": 4,
+              "duration": "5 min par set",
+              "rest_seconds": 90,
+              "notes": "Échanges croisés CD à fond de court. Objectif : 20 échanges consécutifs. Maintenir marge sur le filet (+60-80 cm), profondeur bonne. Évaluer en fin de set."
+            },
+            {
+              "name": "Drill introduction long de ligne (signal partenaire)",
+              "sets": 3,
+              "duration": "4 min par set",
+              "rest_seconds": 90,
+              "notes": "Échanges croisés par défaut. Sur signal du partenaire (frappe claquée), passage long de ligne. 1 long de ligne tous les 5-6 balles en moyenne. Objectif : transition fluide sans précipitation."
+            },
+            {
+              "name": "Retour de service — positionnement et bloc",
+              "sets": 3,
+              "reps": "15 retours par set",
+              "rest_seconds": 60,
+              "notes": "Partenaire sert. Objectif : replacer la balle profond en croix, sans tenter le gagnant. Retour = neutralisation. Position : 1 m derrière la ligne de fond pour gagner du temps."
+            }
+          ],
+          "cooldown": "5 min marche + étirements complets."
+        },
+        {
+          "day": 5,
+          "name": "Prépa physique — HIIT court + gainage rotatoire",
+          "duration_minutes": 55,
+          "type": "mixed",
+          "warmup": "8 min dynamique + shadow tennis 2 min (imiter 4-5 coups consécutifs en shadow, déplacements inclus).",
+          "exercises": [
+            {
+              "name": "Intervalles course — 30/30",
+              "sets": 10,
+              "duration": "30 sec sprint modéré / 30 sec marche",
+              "rest_seconds": 30,
+              "notes": "Méthode 30/30 (Billat). Effort à 85-90% FCmax, récup active marche. Mimique l'intermittence du point de tennis (effort 5-20 sec, récup 15-30 sec). RPE effort : 8."
+            },
+            {
+              "name": "Fentes latérales avec rotation de tronc",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 60,
+              "notes": "Fente latérale + rotation du buste vers le côté de la fente à la réception. Combine déplacement et rotation — moteur gestuel du tennis."
+            },
+            {
+              "name": "Mountain climbers",
+              "sets": 3,
+              "duration": "20 sec",
+              "rest_seconds": 45,
+              "notes": "En position de planche, ramener alternativement les genoux vers la poitrine. RPE 7-8. Gainage dynamique + cardio."
+            },
+            {
+              "name": "Nordic curl partiel (ou pont ischio)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 90,
+              "notes": "Nordic curl : à genoux, pieds bloqués sous un objet lourd ou par le partenaire, se laisser tomber vers le sol en freinant avec les ischio-jambiers. Partiel = ne descendre qu'à 45°. Prévention claquage ischio au tennis. Si impossible : pont fessier unilatéral tenu 5 sec."
+            },
+            {
+              "name": "Planche latérale",
+              "sets": 3,
+              "duration": "25 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Gainage latéral, obliques actifs. Ne pas laisser la hanche descendre."
+            }
+          ],
+          "cooldown": "5 min + étirements ischio-jambiers, mollets, épaule, poignets."
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Régularité sous pression de déplacement",
+      "goal": "Atteindre 20 échanges consécutifs avec déplacement actif (balles alternées droite/gauche). Introduire la notion de split-step systématique avant chaque frappe.",
+      "sessions": [
+        {
+          "day": 2,
+          "name": "Séance technique — Balles alternées et split-step",
+          "duration_minutes": 80,
+          "type": "technique",
+          "warmup": "10 min standard + 2 min de split-step sur place en rythme (saut sur 2 pieds toutes les 2 sec).",
+          "exercises": [
+            {
+              "name": "Drill balles alternées CD/Revers — régularité",
+              "sets": 5,
+              "duration": "4 min par set",
+              "rest_seconds": 90,
+              "notes": "Partenaire alterne balle côté CD puis côté revers avec rythme régulier. Tu te déplaces et frappes en croisé. Split-step obligatoire avant chaque frappe : saut léger sur 2 pieds au moment où le partenaire contacte la balle, puis premier pas décisif. Compter les échanges : cible 20."
+            },
+            {
+              "name": "Drill lob défensif",
+              "sets": 3,
+              "duration": "3 min par set",
+              "rest_seconds": 60,
+              "notes": "Partenaire envoie balles rapides ou proches du filet. Tu réponds en lob défensif haut (+ de 3 m au-dessus du filet). Passage de la frappe offensive à défensive — régularité de survie."
+            },
+            {
+              "name": "Service + 2e balle — schéma T",
+              "sets": 3,
+              "reps": "10 points simulés par set",
+              "rest_seconds": 90,
+              "notes": "Servir (viser T), puis jouer les 2 premiers coups en schéma décidé à l'avance (ex: service T + CD croisé + revers croisé). Construire le point dès le service."
+            }
+          ],
+          "cooldown": "5 min marche + étirements complets poignets et épaule prioritaires."
+        },
+        {
+          "day": 5,
+          "name": "Prépa physique — Force explosive + mobilité hanches",
+          "duration_minutes": 55,
+          "type": "mixed",
+          "warmup": "8 min dynamique.",
+          "exercises": [
+            {
+              "name": "Sprints en étoile (5 cônes en étoile, retour au centre après chaque)",
+              "sets": 6,
+              "duration": "20 sec sprint / 40 sec récup",
+              "rest_seconds": 40,
+              "notes": "Sprint vers un cône, retour au centre, sprint vers un autre cône, etc. Simule les déplacements multidirectionnels du tennis. RPE 8-9."
+            },
+            {
+              "name": "Squat goblet poids du corps (ou bouteille d'eau lestée)",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 75,
+              "notes": "Descente profonde, talons au sol. Renforce quad/fessiers pour les appuis tennis. Progression vs W1-W2 (4 séries). Alternative : squat poids du corps si aucune charge disponible."
+            },
+            {
+              "name": "Hip hinge (good morning) poids du corps",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Debout, mains sur les hanches, pencher le buste en avant en gardant le dos droit jusqu'à ressentir les ischio-jambiers. Prévient les lombalgies et prépare le pattern de charge du dos au service."
+            },
+            {
+              "name": "Step-ups sur marche haute",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 60,
+              "notes": "Marche ou boîte à 30-40 cm. Montée explosive, descente contrôlée. Force unipodal pour les départs latéraux."
+            },
+            {
+              "name": "Routine mobilité hanches au sol",
+              "sets": 1,
+              "duration": "6 min",
+              "rest_seconds": 0,
+              "notes": "90/90 stretch (2×45 sec/côté), fente basse tenue 45 sec/côté, pigeon modifié 45 sec/côté. Les hanches rigides limitent la rotation au service et au revers."
+            }
+          ],
+          "cooldown": "5 min + étirements fessiers, adducteurs, épaules."
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "CUTBACK — Consolidation et qualité mentale",
+      "goal": "Semaine allégée (volume -15% vs W4). Consolider les acquisitions : hauteur de balle, split-step, schéma croisé. Pas de nouveaux drills complexes. Recharge mentale.",
+      "sessions": [
+        {
+          "day": 2,
+          "name": "Séance technique allégée — Consolidation régularité",
+          "duration_minutes": 60,
+          "type": "technique",
+          "warmup": "8 min standard.",
+          "exercises": [
+            {
+              "name": "Mini-tennis + échanges croisés libres",
+              "sets": 3,
+              "duration": "5 min par set",
+              "rest_seconds": 60,
+              "notes": "Séance plaisir. Mini-tennis 5 min puis échanges croisés libres sans comptage obligatoire. Juste sentir les sensations, ne pas forcer. Si le comptage arrive naturellement, tant mieux."
+            },
+            {
+              "name": "Service libre — 30 balles par sens",
+              "sets": 2,
+              "reps": "30",
+              "rest_seconds": 60,
+              "notes": "30 services côté ad, 30 services côté deuce. Allure détendue, focus sur le lancer de balle. Cutback = relâchement, pas régression."
+            }
+          ],
+          "cooldown": "5 min marche + étirements complets 8 min."
+        },
+        {
+          "day": 5,
+          "name": "Prépa physique cutback — Mobilité et gainage doux",
+          "duration_minutes": 40,
+          "type": "mobility",
+          "warmup": "5 min marche + rotations douces.",
+          "exercises": [
+            {
+              "name": "Circuit mobilité épaule",
+              "sets": 2,
+              "duration": "5 min par set",
+              "rest_seconds": 60,
+              "notes": "Cercles d'épaule avant/arrière 10×, bras croisé devant 30 sec/côté, prise de balle dans le dos 20 sec/côté (main droite remonte dans le dos, main gauche descend, se rejoindre). Prévention swimmer's shoulder (risque similaire au tennis sur le service)."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Retour au volume W1 pour le cutback core."
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 40,
+              "notes": "Fessiers actifs, pas de compensation lombaire."
+            },
+            {
+              "name": "Routine mobilité complète — bas du corps",
+              "sets": 1,
+              "duration": "8 min",
+              "rest_seconds": 0,
+              "notes": "Fente basse 45 sec/côté, adducteurs assis 45 sec, mollets contre mur 30 sec/côté, étirement plantaire 30 sec/côté. Semaine de récupération = fenêtre idéale pour récupération tissu conjonctif."
+            }
+          ],
+          "cooldown": "5 min respiration profonde + auto-massage mollets avec les mains (30 sec/côté)."
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Régularité avancée — schémas directeurs et introduction filet",
+      "goal": "Atteindre 25 échanges consécutifs avec schémas dirigés (croix → long de ligne → croix). Introduire la première approche au filet après balle courte.",
+      "sessions": [
+        {
+          "day": 2,
+          "name": "Séance technique — Schémas directeurs + première approche filet",
+          "duration_minutes": 80,
+          "type": "technique",
+          "warmup": "10 min standard + 2 min de shadow vollée (frapper l'air avec la raquette en position de vollée, bloquer le poignet).",
+          "exercises": [
+            {
+              "name": "Drill régularité avec pattern — croix/longe de ligne/croix",
+              "sets": 4,
+              "duration": "5 min par set",
+              "rest_seconds": 90,
+              "notes": "Échanges croisés (4-5 balles) + signal → long de ligne → reprendre croix. Pattern imposé pour les deux joueurs. Objectif : 25 échanges en schéma dirigé. Ce n'est pas plus difficile : le schéma réduit les décisions et améliore la régularité."
+            },
+            {
+              "name": "Drill approche filet sur balle courte",
+              "sets": 4,
+              "duration": "3 min par set",
+              "rest_seconds": 90,
+              "notes": "Partenaire envoie balle courte (rebond après ligne de service). Toi : tu approches en frappant long de ligne, tu montes au filet et tu attendes la vollée. Volume vollée : 2-3 balles par point. Objectif : reconnaître la balle courte et déclencher l'approche sans hésitation."
+            },
+            {
+              "name": "Vollée croisée de position filet",
+              "sets": 3,
+              "duration": "4 min par set",
+              "rest_seconds": 60,
+              "notes": "Partenaire lobote depuis le fond. Toi : tu volle alternativement CD et revers depuis la position T du filet. Bloquer le poignet, ne pas swinguer. L'élan minimal = la vollée. Cible : carré opposé au fond."
+            }
+          ],
+          "cooldown": "5 min marche + étirements coude prioritaire (extenseurs poignets 30 sec/côté, fléchisseurs 30 sec/côté) + épaule + mollets."
+        },
+        {
+          "day": 5,
+          "name": "Prépa physique — Force + cardio intermittent avancé",
+          "duration_minutes": 60,
+          "type": "mixed",
+          "warmup": "10 min dynamique : jogging, shadow footwork, split-step réactif.",
+          "exercises": [
+            {
+              "name": "Intervalles EMOM 12 min (Every Minute On the Minute)",
+              "sets": 12,
+              "duration": "40 sec effort / 20 sec repos (dans chaque minute)",
+              "rest_seconds": 20,
+              "notes": "EMOM : à chaque minute, 40 sec de sprint court (4 m droite + 4 m gauche en navette) puis 20 sec de repos jusqu'à la prochaine minute. 12 répétitions = 12 min. RPE effort : 8-9."
+            },
+            {
+              "name": "Squat jump avec réception stable",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 90,
+              "notes": "Poussée explosive, atterrissage silencieux sur avant-pied, genoux fléchis à réception. Développe l'amortissement articulaire pour les réceptions après saut (smash, service)."
+            },
+            {
+              "name": "Fente arrière avec rotation buste",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 60,
+              "notes": "Fente arrière + rotation du buste vers la jambe avant en bas de la fente. Combine dissociation bassin/épaules = fondamentale pour la qualité des swings."
+            },
+            {
+              "name": "Pompes avec rotation (push-up rotation)",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 60,
+              "notes": "Pompe + rotation du buste en T, bras levé vers le plafond. Renforce pectoraux, épaule stabilisatrice et rotation — moteur du service et du CD."
+            },
+            {
+              "name": "Nordic curl partiel",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 90,
+              "notes": "Progression W3 : même exercice, légèrement plus bas vers le sol. Prévention ischio-jambiers lors des sprints explosifs."
+            }
+          ],
+          "cooldown": "5 min jogging léger + étirements complets."
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "theme": "Construction du point — service tactique et jeu de filet",
+      "goal": "Atteindre 25-28 échanges consécutifs. Consolider l'approche filet (3 cas : balle courte, approche volontaire, serve-and-volley). Volume +12% vs W6.",
+      "sessions": [
+        {
+          "day": 2,
+          "name": "Séance technique — Service tactique + jeu de filet confirmé",
+          "duration_minutes": 85,
+          "type": "technique",
+          "warmup": "10 min standard.",
+          "exercises": [
+            {
+              "name": "Drill régularité prolongée — cible 28 échanges",
+              "sets": 4,
+              "duration": "6 min par set",
+              "rest_seconds": 90,
+              "notes": "Échanges croisés libres, schémas décidés par chaque joueur. Compter les échanges consécutifs par set. Cible : au moins un set avec 28 échanges. Si balle sort, ne pas s'énerver, noter et recommencer. La régularité se construit par répétition de la patience."
+            },
+            {
+              "name": "Serve and volley — 15 points simulés",
+              "sets": 3,
+              "reps": "15 points",
+              "rest_seconds": 90,
+              "notes": "Servir puis monter immédiatement au filet (3 pas vers le filet après le service). Première vollée dans le jeu, chercher à conclure. Objectif tactique : comprendre que l'initiative peut venir du service."
+            },
+            {
+              "name": "Retour de service + neutralisation — schéma retour profond",
+              "sets": 3,
+              "duration": "3 min par set",
+              "rest_seconds": 60,
+              "notes": "Partenaire sert. Retour systématiquement profond en croix (marge + 80 cm, profondeur). Pas de tentative gagnante sur le retour. Neutraliser = premier objectif. 'Si le retour est profond, le match reprend à zéro.'"
+            }
+          ],
+          "cooldown": "5 min marche + étirements épaule (3 positions) + coude + poignets (obligatoires après séance chargée en service)."
+        },
+        {
+          "day": 5,
+          "name": "Prépa physique — Puissance et réactivité",
+          "duration_minutes": 60,
+          "type": "mixed",
+          "warmup": "10 min dynamique.",
+          "exercises": [
+            {
+              "name": "Intervalles sprint navette 10 m — Tabata",
+              "sets": 8,
+              "duration": "20 sec sprint / 10 sec repos",
+              "rest_seconds": 10,
+              "notes": "Tabata (Izumi Tabata, 1996) : 8 rounds de 20 sec effort maximal / 10 sec repos. Sprint aller-retour sur 10 m. RPE effort : 9/10. Total 4 min. Développe la puissance anaérobie lactique."
+            },
+            {
+              "name": "Single leg deadlift (poids du corps)",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 75,
+              "notes": "Debout sur une jambe, pencher le buste en avant en tendant la jambe arrière en équilibre. Renforce ischio-jambiers et proprioception cheville. Clé pour les réceptions en déséquilibre."
+            },
+            {
+              "name": "Broad jump (saut en longueur sur place)",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 90,
+              "notes": "Saut explosif vers l'avant depuis la position squat basse, réception amortie. Développe la puissance des membres inférieurs. Repos 90 sec pour récupération complète entre sets."
+            },
+            {
+              "name": "Rotation médecine-ball simulation (ou bouteille 1.5L comme charge légère)",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 60,
+              "notes": "Tenir objet léger à 2 mains, rotation explosive d'un côté puis l'autre. Simulation du transfert d'énergie au swing. Si bouteille d'eau (1.5 kg), excellent substitut au médecine-ball."
+            },
+            {
+              "name": "Planche ventrale + ouverture latérale (plank reach)",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 45,
+              "notes": "En position de planche, tendre un bras latéralement au sol sans laisser les hanches pivoter. Gainage anti-rotation avancé."
+            }
+          ],
+          "cooldown": "5 min + étirements complets."
+        }
+      ]
+    },
+    {
+      "week_number": 8,
+      "theme": "Jeu de situation — scénarios de match complets",
+      "goal": "Tester la régularité en conditions de match (30 échanges consécutifs cible). Travailler les 3 grands schémas de point : construction, finition filet, défense lob.",
+      "sessions": [
+        {
+          "day": 2,
+          "name": "Séance technique — Scénarios de match et 30 échanges",
+          "duration_minutes": 85,
+          "type": "technique",
+          "warmup": "12 min : jogging + échauffement progressif au filet (vollées douces), puis retour au fond.",
+          "exercises": [
+            {
+              "name": "Drill régularité — cible 30 échanges consécutifs",
+              "sets": 5,
+              "duration": "6 min par set",
+              "rest_seconds": 90,
+              "notes": "Échanges croisés libres. Comptage strict. Cible : atteindre 30 échanges consécutifs dans au moins un set. Si non atteint : analyser les causes (faute directe, balle courte, erreur de direction). C'est le moment de test principal du plan."
+            },
+            {
+              "name": "Scénario A — Construction + finition filet",
+              "sets": 3,
+              "reps": "10 points simulés",
+              "rest_seconds": 90,
+              "notes": "Service + 3 balles de construction croisées + approche sur balle courte + vollée de finition. Répéter 10 fois par côté. Jouer le point comme en match."
+            },
+            {
+              "name": "Scénario B — Service, retour profond, défense",
+              "sets": 3,
+              "reps": "10 points simulés",
+              "rest_seconds": 90,
+              "notes": "L'un sert, l'autre retourne profond. Celui qui a servi est en difficulté et doit se défendre avec un lob ou une balle croisée. Jouer le point jusqu'au bout. Entraîne les deux rôles."
+            }
+          ],
+          "cooldown": "5 min marche + étirements épaule + coude + ischio-jambiers."
+        },
+        {
+          "day": 5,
+          "name": "Prépa physique — Endurance intermittente tennis-spécifique",
+          "duration_minutes": 60,
+          "type": "mixed",
+          "warmup": "10 min dynamique.",
+          "exercises": [
+            {
+              "name": "Simulation point tennis — interval aléatoire",
+              "sets": 15,
+              "duration": "8-20 sec effort / 20-40 sec récup",
+              "rest_seconds": 40,
+              "notes": "Alterner sprints de 8 à 20 sec (aléatoire : parfois court comme un échange en 2 coups, parfois long comme 10 coups) avec récup proportionnelle. Reproduit la variabilité temporelle réelle d'un match."
+            },
+            {
+              "name": "Squat + saut + réception rotation",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 90,
+              "notes": "Squat, saut, atterrissage avec rotation du buste à 45° comme pour un smash. Développe la puissance et le contrôle post-saut."
+            },
+            {
+              "name": "Fentes latérales profondes avec balancement de bras",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 60,
+              "notes": "Balancement des bras comme un swing au moment de la fente. Travail coordonné jambes/bras."
+            },
+            {
+              "name": "Gainage complexe : planche → side plank → planche (cycle)",
+              "sets": 3,
+              "duration": "30 sec planche + 20 sec side plank D + 20 sec side plank G",
+              "rest_seconds": 60,
+              "notes": "Enchaîner sans pause dans le cycle. Renforce les 3 plans de gainage (anti-extension, anti-rotation droite, anti-rotation gauche)."
+            }
+          ],
+          "cooldown": "5 min + auto-massage mollets et cuisses + étirements complets."
+        }
+      ]
+    },
+    {
+      "week_number": 9,
+      "theme": "CUTBACK pré-final — Affûtage et service",
+      "goal": "Semaine allégée (volume -15% vs W8). Affûter le service (2e balle, service-retour). Arriver reposé et mentalement prêt pour la semaine d'évaluation W10.",
+      "sessions": [
+        {
+          "day": 2,
+          "name": "Séance technique allégée — Service + régularité douce",
+          "duration_minutes": 60,
+          "type": "technique",
+          "warmup": "8 min standard.",
+          "exercises": [
+            {
+              "name": "Travail de service ciblé — 60 balles",
+              "sets": 3,
+              "reps": "20 services",
+              "rest_seconds": 90,
+              "notes": "20 services visant le T (ad et deuce alternés), 20 visant le corps, 20 visant le côté extérieur. Accent sur la 2e balle : marge + 30 cm au-dessus du filet, slice ou lifté. La 2e balle fiable = tranquillité mentale en match."
+            },
+            {
+              "name": "Échanges croisés libres — séance plaisir",
+              "sets": 3,
+              "duration": "5 min par set",
+              "rest_seconds": 60,
+              "notes": "Pas de comptage strict. Juste des échanges fluides. Profiter de la semaine allégée pour ressentir la progression depuis W1. Les sensations doivent être meilleures : moins d'erreurs non forcées, rythme plus régulier."
+            }
+          ],
+          "cooldown": "5 min marche + étirements complets 10 min. Accorder du temps à l'épaule et au coude — semaine de récupération optimale."
+        },
+        {
+          "day": 5,
+          "name": "Prépa physique cutback — Activation douce + mobilité",
+          "duration_minutes": 40,
+          "type": "mobility",
+          "warmup": "5 min marche + mobilité douce.",
+          "exercises": [
+            {
+              "name": "Activation neuromusculaire légère — 6×10 m",
+              "sets": 6,
+              "duration": "10 m sprint léger à 70% + retour marche",
+              "rest_seconds": 45,
+              "notes": "Pas d'effort maximal. Juste réveiller les fibres rapides sans fatiguer. Sentir les appuis, pas courir fort."
+            },
+            {
+              "name": "Routine mobilité complète épaule + hanche",
+              "sets": 1,
+              "duration": "12 min",
+              "rest_seconds": 0,
+              "notes": "Épaule : cercles avant/arrière, 3 étirements croisés, prise mains dans le dos. Hanche : 90/90 stretch 45 sec/côté, pigeon modifié 45 sec/côté, fente basse rotation 30 sec/côté. Ces deux zones sont les premières limitées chez un joueur de tennis qui s'entraîne sans mobilité."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Maintien du gainage de base. Volume réduit cutback."
+            }
+          ],
+          "cooldown": "5 min respiration profonde + visualisation mentale de la semaine W10."
+        }
+      ]
+    },
+    {
+      "week_number": 10,
+      "theme": "Évaluation finale — Autonomie et projection",
+      "goal": "Valider les 3 objectifs du plan : 30 échanges consécutifs en fond de court, service-retour stabilisé, montée au filet intégrée. Checklist d'autoévaluation en fin de plan.",
+      "sessions": [
+        {
+          "day": 2,
+          "name": "Séance évaluation — Test complet des acquis",
+          "duration_minutes": 90,
+          "type": "technique",
+          "warmup": "12 min complet : jogging, shadow footwork, échauffement épaule, vollées douces 3 min.",
+          "exercises": [
+            {
+              "name": "TEST 1 — Régularité fond de court 30 échanges",
+              "sets": 5,
+              "duration": "6 min par set",
+              "rest_seconds": 90,
+              "notes": "Échanges croisés libres. Compter strictement. Objectif plan atteint si au moins 2 sets sur 5 dépassent 30 échanges consécutifs sans faute. Note ton meilleur comptage vs W1 (baseline). Progression = victoire, même si l'objectif 30 n'est pas atteint à 100%."
+            },
+            {
+              "name": "TEST 2 — Service placement 1re + 2e balle",
+              "sets": 2,
+              "reps": "20 services par test",
+              "rest_seconds": 90,
+              "notes": "20 services en comptant : taux de 1re balle dans le carré (objectif : 60%+), taux de 2e balle dans le carré (objectif : 80%+). Si 2e balle à 80%+, le service est stabilisé. Viser les 3 zones (T, corps, extérieur) à part égale."
+            },
+            {
+              "name": "TEST 3 — Intégration montée au filet",
+              "sets": 3,
+              "reps": "10 points simulés",
+              "rest_seconds": 90,
+              "notes": "10 points avec pour consigne : déclencher une montée au filet sur chaque balle courte ou demi-longue. Compter les points conclus au filet vs les points où tu es redescendu au fond. Objectif : monter au filet au moins 7 fois sur 10 quand l'opportunité se présente."
+            }
+          ],
+          "cooldown": "8 min étirements complets + moment de bilan personnel."
+        },
+        {
+          "day": 5,
+          "name": "Séance bilan et projection — Match libre + checklist autonomie",
+          "duration_minutes": 90,
+          "type": "other",
+          "warmup": "10 min standard.",
+          "exercises": [
+            {
+              "name": "Match libre en sets courts (4 jeux)",
+              "sets": 3,
+              "duration": "Jusqu'à 4 jeux par set",
+              "rest_seconds": 120,
+              "notes": "3 sets en format 4 jeux. Jouer avec l'intention : appliquer les 3 schémas travaillés (régularité fond, service-retour, filet). Ne pas jouer en automatique. Observer ce qui fonctionne et ce qui reste à travailler."
+            },
+            {
+              "name": "CHECKLIST D'AUTOÉVALUATION — Autonomie post-plan",
+              "sets": 1,
+              "duration": "10 min réflexion post-match",
+              "rest_seconds": 0,
+              "notes": "Répondre honnêtement aux 5 critères d'autonomie acquise :\n1. RÉGULARITÉ : J'enchaîne au moins 25-30 échanges consécutifs en fond de court sans faute directe dans la majorité de mes sets de drill (objectif principal atteint).\n2. SPLIT-STEP : J'effectue automatiquement le split-step avant chaque frappe sans y penser consciemment (test : demander au partenaire de vérifier sur 10 échanges).\n3. SERVICE : Mon taux de 2e balle dans le carré est de 75%+ et je cible 2 zones différentes par set de service (T et corps au minimum).\n4. FILET : Je reconnais la balle courte et je déclenche une montée au filet au moins 6 fois sur 10 quand l'opportunité se présente, sans hésiter 2 secondes.\n5. TACTIQUE : J'ai un schéma de point pré-décidé en tête avant de servir (ex: service T + CD croisé + approche si balle courte) plutôt que de réagir seulement à chaque balle.\nSi 4 critères sur 5 sont validés : le plan a atteint ses objectifs. Suite recommandée : programme intermédiaire-avancé axé jeu de filet ou tournois."
+            }
+          ],
+          "cooldown": "10 min étirements complets priorité épaule (3 positions) + coude (extenseurs + fléchisseurs poignets) + ischio-jambiers + mollets + chevilles."
+        }
+      ]
+    }
+  ],
+  "safety_notes": "DRAPEAUX ROUGES TENNIS — Arrêter la séance, consulter un médecin ou kiné si persistant :\n• ÉPICONDYLITE LATÉRALE (coude du tennismen) : douleur face externe du coude irradiant vers l'avant-bras. Cause : revers à 1 main avec flexion de poignet au contact, service trop chargé trop tôt. Stop exercices avec raquette, glaçage 15 min, repos minimum 1 semaine. Prévention : poignets étirés 30 sec/côté après chaque séance (obligatoire dans ce plan).\n• DOULEUR ANTÉRO-LATÉRALE DE L'ÉPAULE (conflit sous-acromial / tendinopathie de la coiffe) : douleur à la levée de bras, particulièrement en fin de mouvement de service. Stop service immédiatement. Repos 1 semaine minimum. Kiné si > 5 jours. Prévention : échauffement rotatoire de l'épaule OBLIGATOIRE avant toute frappe (décrit dans warmup).\n• ENTORSE DE CHEVILLE : risque élevé sur court en terre battue (glissades) et sur changements de direction rapides. Si laxité résiduelle post-entorse ancienne, port d'une chevillière légère recommandé. Calf raises et single leg balance sont préventifs dans ce plan.\n• DOULEUR INTERNE DU GENOU : valgus dynamique sur les arrêts-départs latéraux. Renforcement vaste médial (squats Bulgarian, fentes) et abducteurs (fentes latérales) ciblé dans le plan.\n• CLAQUAGE ISCHIO-JAMBIER : fréquent sur accélération vers une balle courte après position statique. Les nordic curls partiels dans le plan sont spécifiquement préventifs. Ne jamais sauter les nordic curls de la séance physique. Si douleur «claquage» en arrière de cuisse pendant un sprint : stop immédiat.\n• BLESSURES DUES À LA FATIGUE RÉPÉTÉE (stress fracture tarse/métatarse chez joueur s'entraînant sur dur) : douleur localisée sur un os du pied qui augmente à l'effort et diminue au repos. Consulter si présent > 1 semaine.\n\nRÈGLES GÉNÉRALES TENNIS :\n• Chaussures tennis OBLIGATOIRES (semelle pivotante adaptée). Les chaussures de running sur court en dur augmentent le risque d'entorse de 40%.\n• Sur terre battue : glisser est une technique, PAS une improvisation. Apprendre à glisser en appui sur l'extérieur du pied, jamais l'intérieur.\n• Échauffement épaule NON NÉGOCIABLE avant la première balle de service (10 cercles avant, 10 arrière, 3 étirements). La coiffe des rotateurs froide + service explosif = combinaison à risque.\n• Étirements coude et poignets OBLIGATOIRES en cooldown après chaque séance de service.\n• Hydratation : 500 ml avant la séance, 200-300 ml toutes les 30 min sur court (surtout été, conditions chaudes).\n\nINTENSITÉ ET CHARGE :\n• Tennis intermédiaire = pics d'effort 8-12 sec sur un point, récup 15-30 sec entre points, 90 sec entre jeux. La préparation physique de ce plan reproduit ce profil (sprints courts, repos proportionnel).\n• Ne pas cumuler 2 séances tech intense + 2 séances physique intense la même semaine. Ce plan (2 séances) est délibérément dosé pour un joueur qui maintient son match hebdomadaire par ailleurs.\n\nSIGNES DE SURCHARGE (réduire volume si 3+ signes) :\n• Douleur coude ou épaule pendant la frappe (même légère)\n• Réduction de la vitesse de réaction perçue sur les balles rapides\n• Sommeil dégradé > 3 nuits après une séance\n• Motivation soudainement effondrée\n• Coordination dégradée (plus de fautes que d'habitude sur des gestes maîtrisés)\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre la même séance 1-2 jours plus tard, décaler d'autant.\n• 1-2 semaines de pause : reprendre à la semaine précédente.\n• > 2 semaines de pause : reprendre W3-W4 pour resécuriser la base technique et physique.",
+  "progression_logic": "Progression sur 5 principes alignés ACSM (American College of Sports Medicine), NSCA (National Strength and Conditioning Association) et les principes pédagogiques ITF (International Tennis Federation) pour joueurs intermédiaires :\n\n(1) PROGRESSION TECHNIQUE EN SPIRALE : chaque compétence est introduite (W1-W3), approfondie sous contrainte (W4-W6), puis testée en contexte match (W7-W10). La régularité progresse par comptage croissant : 10 échanges (W1) → 15 (W2) → 20 (W3-W4) → 25 (W6-W7) → 30 (W8-W10). Jamais deux nouvelles compétences majeures simultanément : le split-step est introduit en W4, le filet en W6, le serve-and-volley en W7.\n\n(2) CUTBACK WEEKS (W5 et W9) : Volume réduit de 15% à chaque cutback. W5 consolide les acquisitions W1-W4 (régularité, hauteur de balle, déplacement). W9 est un cutback pré-évaluation (affûtage/taper). Sans ces semaines, la surcharge mentale et physique dégrade la qualité technique avant l'objectif final.\n\n(3) CARDIO INTERMITTENT SPÉCIFIQUE TENNIS : les séances physiques reproduisent le profil énergétique du tennis réel (ATP-PCr sur 8-12 sec + glycolytique sur points longs) via sprints navette, T-drill, Tabata et EMOM. Référence : Kovacs (2006), profil énergétique du tennis de compétition. RPE effort 8-9 sur les intervalles courts.\n\n(4) LES 5 PATTERNS FONDAMENTAUX ADAPTÉS TENNIS (pas de barre disponible) : squat (jump squat, Bulgarian squat) ; hinge (hip hinge, nordic curl, single leg deadlift) ; push horizontal (pompes avec rotation) ; push vertical (service = push vertical fonctionnel) ; pull (rotation tronc résistée comme pull-over fonctionnel, superman). Tous présents chaque semaine dès W1 — conforme NSCA guidelines pour la préparation physique tennis.\n\n(5) PRÉVENTION SPÉCIFIQUE INTÉGRÉE DÈS W1 : nordic curl partiel dès W3 (ischio-jambiers — claquage sprint) ; étirements coude obligatoires post-service dès W1 ; échauffement épaule rotatoire systématique ; calf raises chaque séance physique (tendon d'Achille + cheville). La prévention n'est pas ajoutée en fin de plan : elle est architecturée dans la structure dès le départ."
+}

@@ -1,0 +1,1246 @@
+{
+  "id": "sports-collectifs-intermediaire-prepa-saison-8sem",
+  "schema_version": 1,
+  "sport": "sports_collectifs",
+  "level": "intermediaire",
+  "name": "Prépa saison sports co — 8 semaines",
+  "duration_weeks": 8,
+  "sessions_per_week": 4,
+  "default_objective": "Préparer une saison en équipe amateur : endurance spécifique, puissance, agilité, résilience articulaire",
+  "assumed_profile": "Joueur amateur avec expérience (2-3 saisons), reprend après coupure estivale de 6-10 semaines ou prépare une nouvelle saison. Capable de courir 20-30 min en continu. Dispose de : chaussures de sport adaptées (crampons ou indoor), ballon, cône/repères au sol (x6 minimum), élastique de résistance légère/moyenne, tapis de sol. Plan prévu EN COMPLÉMENT de 2-3 entraînements collectifs par semaine.",
+  "summary": "Programme de préparation physique spécifique sports collectifs sur 8 semaines, conçu pour un joueur amateur intermédiaire reprenant après coupure. Structure en 4 blocs : W1-W2 remise en forme et base cardio, W3-W4 intensification et travail de puissance, W5 semaine cutback, W6-W7 pic de charge avec sprints et travail de changements de direction, W8 affûtage pré-saison. Chaque semaine inclut : 1 séance cardio intermittent spécifique (sprints, navettes), 1 séance de renforcement musculaire fonctionnel, 1 séance d'agilité et changements de direction, 1 séance mixte ou mobilité/récupération active. Renforcement préventif cheville, genou et épaule intégré dès W1. Cutback obligatoire en W5 (-15% volume).",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Remise en route — base cardio et activation musculaire",
+      "goal": "Réhabituer le corps à l'effort après coupure. Activer la chaîne musculaire des membres inférieurs, tester les amplitudes articulaires, poser les bases du renforcement préventif cheville et genou. Volume cardio modéré : 3 x 20-25 min effort.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio continu — remise en jambes",
+          "duration_minutes": 40,
+          "type": "endurance",
+          "warmup": "5 min de marche rapide + 10 cercles de hanches/sens + 10 balancements de jambe avant-arrière/côté + 2 x 10 m talons-fesses + 2 x 10 m montées de genoux. Total : 8 min.",
+          "exercises": [
+            {
+              "name": "Footing continu allure modérée",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Allure conversationnelle : tu dois pouvoir parler par phrases. Cible Z2 (60-70% FCmax). C'est une remise en route — ne pas chercher à performer."
+            },
+            {
+              "name": "Navettes basses intensité",
+              "sets": 4,
+              "duration": "30 m aller-retour",
+              "rest_seconds": 45,
+              "notes": "Distance entre 2 plots : 15 m. Trot aller, trot retour. Pas de sprint. Prépare l'appareil locomoteur aux changements de direction."
+            }
+          ],
+          "cooldown": "5 min de marche lente + étirements statiques : mollets 30 sec/côté, quadriceps 30 sec/côté, ischio-jambiers 30 sec/côté, adducteurs assis 30 sec. Hydratation."
+        },
+        {
+          "day": 2,
+          "name": "Renforcement fonctionnel — fondations membres inférieurs",
+          "duration_minutes": 45,
+          "type": "strength",
+          "warmup": "5 min footing lent + rotations genoux 10/sens + squats air 10 reps lents + mobilisation chevilles 10 cercles/côté. Total : 8 min.",
+          "exercises": [
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60,
+              "notes": "Descente en 3 sec, remontée explosive. Genoux alignés sur les orteils, ne pas laisser le valgus s'installer. Base de la préparation quad/fessiers."
+            },
+            {
+              "name": "Pont fessier bilatéral",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Tenir 2 sec en haut. Activer fessiers et ischio-jambiers, protège le genou lors des changements de direction."
+            },
+            {
+              "name": "Fentes statiques",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 50,
+              "notes": "Genou avant à 90° max. Tronc droit. Symétrie G/D obligatoire — les asymétries sont la première cause d'entorse chez le sportif en reprise."
+            },
+            {
+              "name": "Renforcement cheville — élastique en éversion",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 30,
+              "notes": "Élastique autour du pied, tirer en éversion (pied vers l'extérieur). Renforce les péroniers. Alternative sans élastique : alphabets de chevilles (tracer l'alphabet avec le pied en position assise). Prévention entorse latérale n°1 dans les sports co."
+            },
+            {
+              "name": "Calf raises bipodal",
+              "sets": 3,
+              "reps": "20",
+              "rest_seconds": 30,
+              "notes": "Montées lentes sur la pointe des pieds. Descente contrôlée. Renforce le complexe mollet-Achille."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 40,
+              "notes": "Core en fin de séance. Corps aligné, fessiers engagés, pas de cambrure lombaire."
+            }
+          ],
+          "cooldown": "Étirements 5 min : fessiers allongé 30 sec/côté, psoas en fente basse 30 sec/côté, mollets 30 sec/côté."
+        },
+        {
+          "day": 4,
+          "name": "Agilité — introduction aux changements de direction",
+          "duration_minutes": 45,
+          "type": "mixed",
+          "warmup": "5 min footing + skippings 2 x 20 m + shuffles latéraux 2 x 10 m/côté + back-pedal 2 x 10 m. Total : 10 min.",
+          "exercises": [
+            {
+              "name": "Shuffle latéral entre cônes",
+              "sets": 5,
+              "duration": "10 m gauche + 10 m droite",
+              "rest_seconds": 40,
+              "notes": "Pieds ne se croisent pas. Centre de gravité bas. Regard fixe devant. Fondamental des déplacements défensifs."
+            },
+            {
+              "name": "T-drill (agilité en T)",
+              "sets": 5,
+              "reps": "1 aller-retour complet",
+              "rest_seconds": 60,
+              "notes": "4 cônes en T : sprint 10 m, shuffle 5 m gauche, shuffle 10 m droite, shuffle 5 m gauche, retour en back-pedal 10 m. Intensité modérée W1 : pas de sprint max. Travailler la précision."
+            },
+            {
+              "name": "Back-pedal et pivot",
+              "sets": 4,
+              "duration": "10 m reculer + pivot 180° + sprint 10 m",
+              "rest_seconds": 45,
+              "notes": "Simule les déplacements défensifs puis l'attaque. Pivot sur l'avant-pied, ne jamais croiser les pieds pendant le recul."
+            },
+            {
+              "name": "Cross-over latéral",
+              "sets": 4,
+              "duration": "15 m gauche + 15 m droite",
+              "rest_seconds": 45,
+              "notes": "Croisé-décalé : pied arrière passe devant, pied avant recule. Utilisé pour couverture rapide de distance latérale."
+            }
+          ],
+          "cooldown": "5 min marche + étirements hanches (pigeon 30 sec/côté), quadriceps debout 30 sec/côté, ischio 30 sec/côté."
+        },
+        {
+          "day": 6,
+          "name": "Mobilité active et récupération",
+          "duration_minutes": 35,
+          "type": "mobility",
+          "warmup": "3 min de marche lente.",
+          "exercises": [
+            {
+              "name": "Routine mobilité hanches — cercles, 90/90",
+              "sets": 2,
+              "duration": "5 min",
+              "rest_seconds": 0,
+              "notes": "Cercles de hanches debout 10/sens, puis 90/90 au sol (assis, jambe avant et jambe arrière à 90°). Tenu 45 sec par côté. Hanches libres = moins de compensations genoux/lombaires."
+            },
+            {
+              "name": "Routine mobilité thoracique — rotations",
+              "sets": 2,
+              "duration": "3 min",
+              "rest_seconds": 0,
+              "notes": "Assis à 4 pattes, thread-the-needle (bras qui passe sous l'autre). 10 fois/côté. Ouvre la colonne thoracique, réduit les tensions d'épaule."
+            },
+            {
+              "name": "Étirement adducteurs et ischio — dynamique",
+              "sets": 2,
+              "duration": "4 min",
+              "rest_seconds": 0,
+              "notes": "Leg swings latéraux 15/côté + leg swings sagittaux 15/côté. Activer les muscles en amplitude plutôt qu'étirer passivement post-effort."
+            },
+            {
+              "name": "Équilibre unipodal",
+              "sets": 3,
+              "duration": "30 sec par pied",
+              "rest_seconds": 20,
+              "notes": "Debout sur un pied, regard fixe, cheville active. Progression : yeux fermés si confortable. Proprioception = meilleure prévention des entorses récidivantes."
+            },
+            {
+              "name": "Foam rolling membres inférieurs",
+              "sets": 1,
+              "duration": "8 min",
+              "rest_seconds": 0,
+              "notes": "Quadriceps, IT band (face externe cuisse), mollets, fessiers. 30-45 sec par zone. Pression progressive, marquer une pause sur les zones tendues."
+            }
+          ],
+          "cooldown": "Respiration profonde allongée : 5 cycles inspiration 4 sec / expiration 6 sec."
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Construction — intensité cardio augmentée et renforcement progressif",
+      "goal": "Introduire le travail par intervalles à intensité modérée-haute. Augmenter le volume de renforcement (+1 série). Volume cardio intermittent : +15% vs W1.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio intermittent — blocs 4 min effort / 2 min récup",
+          "duration_minutes": 45,
+          "type": "interval",
+          "warmup": "5 min footing + 2 x 30 m accélérations progressives (50-70-80%) + 10 skippings + 10 talons-fesses. Total : 10 min.",
+          "exercises": [
+            {
+              "name": "Intervalles 4 min effort Z3-Z4 / 2 min marche",
+              "sets": 4,
+              "duration": "4 min effort + 2 min récupération active",
+              "rest_seconds": 0,
+              "notes": "Effort à allure soutenue (Z3-Z4, ~75-85% FCmax) : tu peux parler par mots mais pas par phrases complètes. Récupération = marche. Total effort : 16 min. Représente l'intensité typique d'un mi-temps de sport co."
+            },
+            {
+              "name": "Navettes sprint 20 m",
+              "sets": 4,
+              "duration": "20 m aller-retour x3",
+              "rest_seconds": 60,
+              "notes": "3 allers-retours de 20 m en sprint max. Représente les sprints répétés d'un joueur de sports co (basket, hand, foot). Toucher la ligne au retour."
+            }
+          ],
+          "cooldown": "5 min marche + étirements mollets, quadriceps, ischio 30 sec/côté chacun."
+        },
+        {
+          "day": 2,
+          "name": "Renforcement fonctionnel — progression volume",
+          "duration_minutes": 50,
+          "type": "strength",
+          "warmup": "8 min (identique W1).",
+          "exercises": [
+            {
+              "name": "Squat sauté (jump squat)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 75,
+              "notes": "Descente contrôlée (3 sec), impulsion explosive vers le haut, réception souple sur avant-pied. Développe la puissance des membres inférieurs spécifique aux sauts et duel aérien."
+            },
+            {
+              "name": "Fentes dynamiques alternées",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 60,
+              "notes": "Alternance G/D avec retour au centre. Plus dynamique que W1. Simule le pas chassé et les départs en fente."
+            },
+            {
+              "name": "Nordic curl (lowering excentrique ischio)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 90,
+              "notes": "Agenouillé, chevilles bloquées sous un partenaire ou un meuble lourd, descendre en contrôlant la chute avec les ischio-jambiers. Arrêter avec les mains avant d'arriver au sol. Remontée avec les bras. 1 des meilleurs exercices préventifs des déchirures ischio-jambières (études Bahr et al.). Intensité d'effort élevée sur l'excentrique."
+            },
+            {
+              "name": "Pont fessier unilatéral",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Progression vs W1 bilatéral. Renforce l'équilibre G/D, stabilise le bassin."
+            },
+            {
+              "name": "Renforcement cheville — élastique en éversion",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 30,
+              "notes": "Identique à W1. Maintien du travail préventif cheville."
+            },
+            {
+              "name": "Gainage latéral — side plank",
+              "sets": 3,
+              "duration": "25 sec par côté",
+              "rest_seconds": 35,
+              "notes": "Corps aligné tête-pieds, hanche soulevée. Cible obliques et moyens fessiers, stabilisateurs latéraux du tronc lors des duel et des changements de direction."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "35 sec",
+              "rest_seconds": 40,
+              "notes": "Core en fin de séance, progression de 5 sec vs W1."
+            }
+          ],
+          "cooldown": "Étirements 5 min : fessiers, psoas, mollets."
+        },
+        {
+          "day": 4,
+          "name": "Agilité — T-drill et changements de direction sous pression",
+          "duration_minutes": 45,
+          "type": "mixed",
+          "warmup": "8 min : footing + shuffles + back-pedal + accélérations 50-80%.",
+          "exercises": [
+            {
+              "name": "T-drill — intensité augmentée",
+              "sets": 6,
+              "reps": "1 aller-retour",
+              "rest_seconds": 60,
+              "notes": "Même dispositif qu'en W1 mais exécution à 85-90% de la vitesse max. Chronométrer si possible. Cible : <12 sec pour un joueur amateur intermédiaire."
+            },
+            {
+              "name": "Cone drill en étoile (5-cones star drill)",
+              "sets": 4,
+              "reps": "1 étoile complète",
+              "rest_seconds": 75,
+              "notes": "5 cônes en étoile (1 central + 4 aux points cardinaux à 5 m). Sprint aller-retour vers chaque cône depuis le centre. Travaille les départs, freinages et changements de direction dans toutes les orientations."
+            },
+            {
+              "name": "Réaction latérale sur signal",
+              "sets": 6,
+              "duration": "5 sec de sprint latéral",
+              "rest_seconds": 40,
+              "notes": "Partenaire ou auto-signal (clap) : sprint latéral 5 m gauche ou droite sur signal aléatoire. Développe le temps de réaction et l'explosivité latérale. Sans partenaire : alterner G/D de façon imprévisible."
+            },
+            {
+              "name": "Sprint 30 m avec départ dos au sens de la course",
+              "sets": 4,
+              "reps": "1",
+              "rest_seconds": 90,
+              "notes": "Départ dos à la direction du sprint, pivot et accélération sur 30 m. Simule le retour défensif rapide ou le départ après duel. Pivot sur avant-pied, ne pas trébucher."
+            }
+          ],
+          "cooldown": "5 min marche + étirements ischio, hanches, mollets."
+        },
+        {
+          "day": 6,
+          "name": "Récupération active — mobilité et proprioception",
+          "duration_minutes": 35,
+          "type": "mobility",
+          "warmup": "3 min marche.",
+          "exercises": [
+            {
+              "name": "Yoga des sportifs — séquence hanche et cuisse",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Pigeon au sol 45 sec/côté + fente basse psoas 45 sec/côté + papillon assis 45 sec. Relâchement des chaînes musculaires sollicitées cette semaine."
+            },
+            {
+              "name": "Équilibre proprioceptif — unipodal dynamique",
+              "sets": 3,
+              "duration": "30 sec par pied",
+              "rest_seconds": 20,
+              "notes": "Tenir sur un pied, bras dans le dos. Variante : yeux fermés si stable. Progression vs W1 : sur surface légèrement instable si disponible (coussin, serviette pliée)."
+            },
+            {
+              "name": "Mobilité épaule — rotations et band pull-apart",
+              "sets": 2,
+              "duration": "3 min",
+              "rest_seconds": 0,
+              "notes": "10 rotations pendulaires bras relâché/côté + 15 band pull-apart avec élastique (bras tendus devant, écarter jusqu'à la poitrine). Prévention tendinites d'épaule. Alternative sans élastique : rotations extrêmes bras tendu 10/sens."
+            },
+            {
+              "name": "Foam rolling dos et IT band",
+              "sets": 1,
+              "duration": "6 min",
+              "rest_seconds": 0,
+              "notes": "Dos thoracique sur le rouleau (ne pas rouler sur les lombaires), puis face externe des cuisses (IT band). Technique : pression progressive, pause 5 sec sur les tensions."
+            }
+          ],
+          "cooldown": "5 cycles de respiration profonde diaphragmatique (inspiration 4 sec / pause 1 sec / expiration 6 sec)."
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Intensification — puissance et sprints répétés",
+      "goal": "Introduire les sprints répétés courts (5-10 m) et le renforcement avec charge additionnelle (haltère léger si disponible). Volume d'effort anaérobie augmenté de +20% vs W2. Travailler la récupération entre efforts maximaux.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sprints répétés — format 10-20-30",
+          "duration_minutes": 50,
+          "type": "interval",
+          "warmup": "10 min : 5 min footing + 3 accélérations progressives 20 m (60-80-95%) + 20 skippings + 20 talons-fesses.",
+          "exercises": [
+            {
+              "name": "Format 10-20-30 m",
+              "sets": 6,
+              "duration": "10 m sprint + 20 m course modérée + 30 m sprint max",
+              "rest_seconds": 90,
+              "notes": "Protocole inspiré Bangsbo (Copenhagen group) : 10 m à ~30% (marche rapide), 20 m à ~60%, puis sprint max sur 30 m. Mimique les accélérations-décélérations-réaccélérations des sports co. Récup 90 sec entre chaque set."
+            },
+            {
+              "name": "Navettes 5 m (micro-sprints défensifs)",
+              "sets": 4,
+              "duration": "5 m aller-retour x5",
+              "rest_seconds": 75,
+              "notes": "5 allers-retours de 5 m (ligne touchée à chaque retour). Sprint max. Simule le marquage de zone défensive. Repos 75 sec."
+            },
+            {
+              "name": "Course en Z — dribble imaginaire",
+              "sets": 4,
+              "reps": "1 circuit complet",
+              "rest_seconds": 60,
+              "notes": "3 cônes en ligne espacés de 5 m. Slalom aller en sprint, retour en back-pedal. Travaille les déplacements balle en main et le retour en position."
+            }
+          ],
+          "cooldown": "6 min marche + étirements complets membres inférieurs 6 min."
+        },
+        {
+          "day": 2,
+          "name": "Renforcement puissance — introduction charge légère",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "8 min.",
+          "exercises": [
+            {
+              "name": "Goblet squat",
+              "sets": 4,
+              "reps": "10",
+              "rest_seconds": 75,
+              "notes": "Haltère tenu contre la poitrine (8-16 kg selon morphologie). Descente profonde si mobilité le permet. Charge le squat pour développer la force fonctionnelle. Alternative sans haltère : sac à dos lestè avec 5-10 kg."
+            },
+            {
+              "name": "Step-up explosif",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 60,
+              "notes": "Sur une chaise stable ou une marche haute (~30-40 cm). Impulsion explosive depuis la jambe de montée, montée de genou de la jambe libre. Développe la puissance unilatérale (détente, changement de rythme)."
+            },
+            {
+              "name": "Nordic curl excentrique",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120,
+              "notes": "Progression +1 rep vs W2. Maintenir la lenteur de la descente (3-4 sec). Si douleur derrière le genou, réduire l'amplitude."
+            },
+            {
+              "name": "Fentes latérales (sumo step)",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 60,
+              "notes": "Grand pas latéral, descente vers la jambe fléchie, autre jambe tendue. Travaille les adducteurs et les abducteurs, fondamentaux pour les shuffles et les duels latéraux."
+            },
+            {
+              "name": "Pompes prise large",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Corps droit, descente 2 sec, poussée explosive. Renforce les pectoraux et triceps utilisés dans les duels épaule contre épaule. Important en sports co, souvent négligé."
+            },
+            {
+              "name": "Rowing incliné avec haltère",
+              "sets": 3,
+              "reps": "12 par bras",
+              "rest_seconds": 60,
+              "notes": "Genou et main ipsilatéraux sur le banc ou la chaise. Tirer le coude vers le haut. Alternative sans haltère : rowing élastique (attacher l'élastique devant soi, tirer en arrière coudes hauts). Renforce le dos, prévient les déséquilibres push/pull."
+            },
+            {
+              "name": "Planche avec toucher d'épaule",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 45,
+              "notes": "En position de planche haute, toucher l'épaule opposée sans rotation du bassin. Anti-rotation. Spécifique aux duels et aux frappes."
+            }
+          ],
+          "cooldown": "Étirements 5 min complets."
+        },
+        {
+          "day": 4,
+          "name": "Agilité spécifique — réaction et explosivité",
+          "duration_minutes": 45,
+          "type": "mixed",
+          "warmup": "10 min : footing + skippings + shuffles + back-pedal + 3 accélérations 90%.",
+          "exercises": [
+            {
+              "name": "Ladder drill — icky shuffle",
+              "sets": 4,
+              "reps": "1 passage complet",
+              "rest_seconds": 50,
+              "notes": "Échelle de coordination (ou tracer des cases au sol à la craie). Icky shuffle : entre-jambes, un pied dedans/un dehors en alternance. Si sans échelle, marquer cases avec scotch. Travaille la coordination pied-oeil et la cadence de pas."
+            },
+            {
+              "name": "Sprint court avec changement de direction sur signal",
+              "sets": 6,
+              "duration": "5-10 m sprint + changement de direction",
+              "rest_seconds": 60,
+              "notes": "Se déplacer 5 m en sprint, au signal (clap ou cri) changer de direction vers un des 4 cônes positionnés autour. Développe le temps de réaction et l'explosivité multi-directionnelle."
+            },
+            {
+              "name": "Sauts latéraux alternés sur ligne",
+              "sets": 4,
+              "duration": "20 sec",
+              "rest_seconds": 40,
+              "notes": "Sauter d'un côté à l'autre d'une ligne au sol, atterrissage sur un pied. Réception souple. Développe l'explosivité latérale et la résilience de cheville."
+            },
+            {
+              "name": "Squat jump avec atterrissage contrôlé",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 75,
+              "notes": "Saut vertical maximal depuis squat bas, atterrissage silencieux sur avant-pied puis déroulement du pied. Atterrissage = priorité. Un atterrissage bruyant signale un contrôle insuffisant de la réception = risque ligament."
+            }
+          ],
+          "cooldown": "5 min marche + étirements chevilles, mollets, quadriceps."
+        },
+        {
+          "day": 6,
+          "name": "Mobilité avancée et entretien préventif",
+          "duration_minutes": 40,
+          "type": "mobility",
+          "warmup": "3 min marche.",
+          "exercises": [
+            {
+              "name": "Mobilité hanches — world greatest stretch",
+              "sets": 3,
+              "reps": "6 par côté",
+              "rest_seconds": 20,
+              "notes": "Position de fente basse, bras intérieur au sol, rotation thoracique en levant le bras extérieur vers le ciel. Étirement multiplan. Mobilise hanches, thorax et épaules simultanément."
+            },
+            {
+              "name": "Calf raises excentriques",
+              "sets": 3,
+              "reps": "12 par jambe",
+              "rest_seconds": 30,
+              "notes": "Monter sur 2 pieds, descendre sur 1 seul en 3 sec. Si bord de marche disponible, descendre le talon sous la marche. Protection tendon d'Achille en prévision de l'intensification."
+            },
+            {
+              "name": "Renforcement isométrique genou — Spanish squat avec élastique",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Élastique fixé derrière (arbre, poteau), autour des genoux ou hanches, reculer jusqu'à tension, descendre en squat avec tibia vertical. Isometrique 30 sec. Alternative sans élastique : wall sit 30 sec. Prévention douleur patellaire (genou du sauteur / jumper's knee)."
+            },
+            {
+              "name": "Équilibre sur surface instable",
+              "sets": 3,
+              "duration": "45 sec par pied",
+              "rest_seconds": 20,
+              "notes": "Sur coussin plié, serviette roulée ou surface légèrement déformable. Yeux ouverts d'abord, puis fermés si stable. Progression majeure de proprioception."
+            },
+            {
+              "name": "Mobilité épaule et coiffe — L-position externe",
+              "sets": 2,
+              "reps": "15 par côté",
+              "rest_seconds": 20,
+              "notes": "Couché sur le côté, bras à 90° coude plié, faire une rotation externe en levant la main vers le plafond. Coiffe des rotateurs = prévention tendinite d'épaule (passes, tirs, lancers)."
+            },
+            {
+              "name": "Foam rolling complet",
+              "sets": 1,
+              "duration": "7 min",
+              "rest_seconds": 0,
+              "notes": "Mollets, ischio, quadriceps, IT band, dos thoracique. 30 sec/zone."
+            }
+          ],
+          "cooldown": "Respiration profonde 3 min."
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Pic d'intensité — endurance anaérobie et force maximale",
+      "goal": "Semaine la plus chargée de la phase 1. Sprints à 95-100% de la vitesse max, renforcement à charge maximale personnelle. Volume intermittent au pic de ce bloc : +15% vs W3.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Yo-Yo test simulé et sprints max",
+          "duration_minutes": 55,
+          "type": "interval",
+          "warmup": "12 min : footing 5 min + 4 accélérations progressives 15 m (60-75-90-100%) + skippings + montées de genoux explosives.",
+          "exercises": [
+            {
+              "name": "Yo-Yo Intermittent Recovery L1 simplifié",
+              "sets": 1,
+              "duration": "12-15 min",
+              "rest_seconds": 0,
+              "notes": "20 m aller-retour à vitesse croissante toutes les 40 sec (beep ou timer). Entre chaque navette : 10 sec de repos actif (marche sur place). Continuer jusqu'à ne plus pouvoir tenir la vitesse ou au bout de 15 min. Indicateur d'endurance intermittente spécifique aux sports co. Note le nombre de navettes complètes."
+            },
+            {
+              "name": "Sprints maximaux 30 m",
+              "sets": 5,
+              "reps": "1",
+              "rest_seconds": 120,
+              "notes": "Après la phase Yo-Yo, récupération 5 min marche, puis 5 sprints max sur 30 m. Départ debout. Chronométrer si possible. Récup 2 min entre chaque. Objectif : maintenir la performance sur les 5 sets."
+            }
+          ],
+          "cooldown": "8 min marche + étirements complets 8 min."
+        },
+        {
+          "day": 2,
+          "name": "Force maximale — charge peak",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "8 min + 1 set de 10 reps à charge légère pour chaque exercice principal.",
+          "exercises": [
+            {
+              "name": "Squat chargé",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 150,
+              "notes": "Charge représentant environ RPE 8 (2 reps en réserve). Si haltères uniquement : goblet squat lourd ou haltères tenus épaules. Si aucune charge : squat 1,5 (descendre, remonter à mi-chemin, redescendre, remonter = 1 rep) x8."
+            },
+            {
+              "name": "Nordic curl excentrique",
+              "sets": 4,
+              "reps": "7",
+              "rest_seconds": 120,
+              "notes": "Progression +1 rep vs W3. La descente doit rester contrôlée (3-4 sec). Si form se dégrade, rester à 6 reps. Ischio-jambiers = protection LCA."
+            },
+            {
+              "name": "Fentes bulgares (haltère ou poids de corps)",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 90,
+              "notes": "Pied arrière posé sur une chaise. Descente verticale du genou arrière vers le sol. Haltères en main si disponibles (6-12 kg). Force unilatérale maximale. Simule l'appui en pivot ou en départ explosif."
+            },
+            {
+              "name": "Pompes avec tempo",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Descente 3 sec, pause 1 sec en bas, poussée explosive. Charge relative accrue. Maintenir gainage."
+            },
+            {
+              "name": "Tirage élastique vertical (lat pull-down simulé)",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Élastique fixé en hauteur (porte, barre), tirer vers la poitrine en gardant les omoplates serrées. Alternative : recline row sous une table stable (corps incliné à 45°, tirer la table). Renforce le grand dorsal — puissance des bras au-dessus de la tête (smash, dégagement)."
+            },
+            {
+              "name": "Gainage dynamique — dead bug",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 40,
+              "notes": "Allongé sur le dos, bras tendus au plafond, jambes à 90°. Descendre bras et jambe opposés sans laisser le bas du dos décoller du sol. Anti-extension lombaire. Core en fin de séance."
+            }
+          ],
+          "cooldown": "Étirements 6 min : ischio, fessier, pec, grand dorsal."
+        },
+        {
+          "day": 4,
+          "name": "Agilité complexe — enchaînements multi-plans",
+          "duration_minutes": 50,
+          "type": "mixed",
+          "warmup": "12 min : footing + skippings + shuffles + back-pedal + ladder basique.",
+          "exercises": [
+            {
+              "name": "5-10-5 pro agility drill",
+              "sets": 6,
+              "reps": "1",
+              "rest_seconds": 75,
+              "notes": "3 cônes espacés de 5 m. Départ au cône central, sprint 5 m droite (toucher le sol), sprint 10 m gauche (toucher), sprint 5 m retour au centre. Standard NFL combine. Cible : < 5 sec pour un joueur amateur intermédiaire. Chronométrer."
+            },
+            {
+              "name": "Box drill (carré 5 m)",
+              "sets": 4,
+              "reps": "1 tour complet x2",
+              "rest_seconds": 90,
+              "notes": "Carré de 4 cônes (5 m x 5 m). Sprint côté 1, shuffle côté 2, back-pedal côté 3, cross-over côté 4. Puis sens inverse. Tous les types de déplacements dans le même drill."
+            },
+            {
+              "name": "Sauts pliométriques — box to box",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 90,
+              "notes": "Sauter depuis un point, atterrir sur les deux pieds, re-sauter immédiatement latéralement. Temps au sol minimal. Si pas de surfaces : sauts latéraux successifs sur ligne. Développe la réactivité au sol (stretch-shortening cycle)."
+            },
+            {
+              "name": "Accélération depuis positions variées",
+              "sets": 5,
+              "reps": "1",
+              "rest_seconds": 60,
+              "notes": "Position de départ variable selon le set : couché au sol, assis, genou au sol, dos au mur. Sprint 20 m sur signal. Simule les départs imprévus après un contact ou une chute."
+            }
+          ],
+          "cooldown": "6 min marche + étirements chevilles, genoux, hanches."
+        },
+        {
+          "day": 6,
+          "name": "Mobilité et évaluation mi-programme",
+          "duration_minutes": 40,
+          "type": "mobility",
+          "warmup": "3 min marche.",
+          "exercises": [
+            {
+              "name": "Bilan proprioceptif et mobilité — routine complète",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Séquence : mobilité hanches (90/90, 4 min), mobilité thoracique (thread-the-needle, 3 min), calf raises excentriques (3x12 par jambe, 5 min), équilibre unipodal yeux fermés (3x45 sec/pied, 5 min), band pull-apart épaule (2x15, 3 min). Évaluation : noter la symétrie G/D sur chaque exercice."
+            },
+            {
+              "name": "Auto-test fonctionnel mi-programme",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Tester et noter : (1) Équilibre unipodal yeux fermés (temps tenu par pied), (2) Jump squat : hauteur perçue vs W1, (3) T-drill : temps vs W1, (4) 30 m sprint : temps vs W1, (5) Mobilité hanches : amplitude 90/90 confort. Ces chiffres serviront de référence pour la dernière semaine."
+            }
+          ],
+          "cooldown": "5 min foam rolling + respiration profonde 3 min."
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Cutback — consolidation et récupération active",
+      "goal": "Semaine allégée obligatoire : volume global -15% vs W4. Maintenir la qualité des mouvements, récupérer les structures musculo-tendineuses, recharger pour la phase finale. Les semaines cutback sont productrices de gains — ne pas les transformer en semaine intensive.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio modéré — footing et cônes légers",
+          "duration_minutes": 40,
+          "type": "endurance",
+          "warmup": "8 min standard.",
+          "exercises": [
+            {
+              "name": "Footing continu allure légère Z2",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Allure conversationnelle facile (60-65% FCmax). Ne pas pousser. Séance de maintenance cardio pendant la cutback week."
+            },
+            {
+              "name": "Navettes légères 20 m",
+              "sets": 4,
+              "duration": "20 m aller-retour",
+              "rest_seconds": 60,
+              "notes": "Trot confortable, pas de sprint. Maintenir le schéma moteur des navettes sans solliciter le système nerveux."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 5 min."
+        },
+        {
+          "day": 2,
+          "name": "Renforcement allégé — volume -20%",
+          "duration_minutes": 40,
+          "type": "strength",
+          "warmup": "8 min.",
+          "exercises": [
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Retour au poids du corps. Maintenir la qualité du mouvement. Cutback = moins de charge, pas moins de technique."
+            },
+            {
+              "name": "Nordic curl excentrique",
+              "sets": 2,
+              "reps": "5",
+              "rest_seconds": 120,
+              "notes": "Volume réduit vs W4. Maintenir le mouvement préventif ischio."
+            },
+            {
+              "name": "Pont fessier unilatéral",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Maintien du renforcement postérieur."
+            },
+            {
+              "name": "Renforcement cheville — élastique",
+              "sets": 2,
+              "reps": "15 par côté",
+              "rest_seconds": 30,
+              "notes": "Maintien préventif obligatoire même en cutback."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "35 sec",
+              "rest_seconds": 40,
+              "notes": "Core maintenu, volume légèrement réduit vs W4."
+            }
+          ],
+          "cooldown": "Étirements 5 min."
+        },
+        {
+          "day": 4,
+          "name": "Agilité technique — précision à vitesse modérée",
+          "duration_minutes": 35,
+          "type": "technique",
+          "warmup": "8 min.",
+          "exercises": [
+            {
+              "name": "T-drill technique",
+              "sets": 4,
+              "reps": "1",
+              "rest_seconds": 75,
+              "notes": "Exécution à 70% de la vitesse max. Priorité à la précision des pivots et à la posture. Pendant la cutback, corriger les erreurs techniques vues dans les semaines précédentes."
+            },
+            {
+              "name": "Ladder drill — in-in-out-out",
+              "sets": 3,
+              "reps": "2 passages",
+              "rest_seconds": 45,
+              "notes": "Coordination légère. Vitesse modérée. Entretenir la coordination sans fatiguer."
+            },
+            {
+              "name": "Cross-over et shuffle conscients",
+              "sets": 4,
+              "duration": "15 m gauche + 15 m droite",
+              "rest_seconds": 40,
+              "notes": "Attention portée sur la posture (centre de gravité bas, regard devant, appuis antéropostérieurs). Séance technique > séance cardio."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 5 min."
+        },
+        {
+          "day": 6,
+          "name": "Récupération complète — mobilité profonde",
+          "duration_minutes": 45,
+          "type": "mobility",
+          "warmup": "3 min marche.",
+          "exercises": [
+            {
+              "name": "Yin yoga sportif — séquence longue hanches",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Fente basse psoas 2 min/côté + pigeon au sol 2 min/côté + chevalier assoupi (baddha konasana) 2 min + demi-dieu 90/90 2 min/côté + jambe dans le mur (viparita karani) 2 min. Yin = postures tenues longtemps, travail sur les fascias."
+            },
+            {
+              "name": "Calf raises excentriques — entretien",
+              "sets": 2,
+              "reps": "10 par jambe",
+              "rest_seconds": 30,
+              "notes": "Maintien du travail tendineux Achille pendant la cutback."
+            },
+            {
+              "name": "Équilibre proprioceptif — maintenance",
+              "sets": 2,
+              "duration": "45 sec par pied",
+              "rest_seconds": 20,
+              "notes": "Yeux fermés. La proprioception se perd rapidement sans entretien (72h sans stimulation = régression partielle)."
+            },
+            {
+              "name": "Foam rolling complet — corps entier",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Mollets, ischio, quad, IT band, dos thoracique, pecs. Profiter de la semaine légère pour travailler toutes les zones tendues accumulées."
+            }
+          ],
+          "cooldown": "5 min respiration abdominale profonde. Préparer mentalement la phase finale (W6-W8)."
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Reprise en puissance — endurance de vitesse",
+      "goal": "Reprendre l'intensification après la cutback. Introduire l'endurance de vitesse : maintenir une vitesse élevée sur des distances plus longues. +20% volume intermittent vs W5. Renforcement à charge maximale repris.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Endurance de vitesse — blocs 6x40 m",
+          "duration_minutes": 50,
+          "type": "interval",
+          "warmup": "12 min : footing 5 min + 4 accélérations progressives + skippings + talons-fesses.",
+          "exercises": [
+            {
+              "name": "Sprints 40 m à 90%",
+              "sets": 6,
+              "reps": "1",
+              "rest_seconds": 90,
+              "notes": "Effort à 90% de la vitesse max sur 40 m. Récupération 90 sec entre sprints. L'objectif est de maintenir le même niveau de performance sur les 6 sets, pas d'être maximal sur le 1er et épuisé sur le 6e."
+            },
+            {
+              "name": "Séquence aérobie-anaérobie (HIIT 30/30)",
+              "sets": 8,
+              "duration": "30 sec sprint Z4-Z5 + 30 sec marche",
+              "rest_seconds": 0,
+              "notes": "Après les sprints 40 m, récup 3 min, puis 8 x (30 sec effort intense + 30 sec marche). Format HIIT 30/30 spécifique sports co. RPE work : 8-9/10. RPE repos : 2-3/10."
+            }
+          ],
+          "cooldown": "6 min marche + étirements 6 min."
+        },
+        {
+          "day": 2,
+          "name": "Renforcement — force-vitesse et explosivité",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "8 min.",
+          "exercises": [
+            {
+              "name": "Squat jump avec haltère léger",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 90,
+              "notes": "Haltères légers (4-8 kg par main) ou poids du corps si pas d'haltère. Charge représentant 20-30% du max pour optimiser la puissance (zone force-vitesse). Atterrissage souple."
+            },
+            {
+              "name": "Fentes bulgares chargées",
+              "sets": 4,
+              "reps": "8 par jambe",
+              "rest_seconds": 90,
+              "notes": "Progression vs W4. Augmenter la charge ou maintenir avec meilleure amplitude."
+            },
+            {
+              "name": "Nordic curl excentrique",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Progression +1 rep vs W4. Maintenir la lenteur. Point de développement peak de ce plan."
+            },
+            {
+              "name": "Pompes pliométriques (clap push-up ou élévation rapide)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 75,
+              "notes": "Poussée explosive pour décoller les mains du sol, réception souple. Variante moins intense : pompes normales avec remontée la plus explosive possible. Force-vitesse du haut du corps."
+            },
+            {
+              "name": "Tirage élastique vertical",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Progression vs W3 : charge élastique augmentée (élastique plus résistant ou ancrage plus haut). Dos + biceps."
+            },
+            {
+              "name": "Dead bug",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 45,
+              "notes": "Progression vs W4 : +2 reps. Core en fin de séance."
+            }
+          ],
+          "cooldown": "Étirements 6 min."
+        },
+        {
+          "day": 4,
+          "name": "Agilité avec ballon — simulation match",
+          "duration_minutes": 50,
+          "type": "mixed",
+          "warmup": "10 min : footing + shuffles + ladder.",
+          "exercises": [
+            {
+              "name": "5-10-5 pro agility — chronométré",
+              "sets": 4,
+              "reps": "1",
+              "rest_seconds": 90,
+              "notes": "Répéter le drill du W4 avec objectif d'améliorer le temps. Comparer avec W4. Indicateur d'adaptations à l'agilité."
+            },
+            {
+              "name": "Slalom avec ballon (si disponible)",
+              "sets": 5,
+              "reps": "1 parcours complet",
+              "rest_seconds": 60,
+              "notes": "5-6 cônes espacés de 2 m. Dribble aller, retour sans ballon en sprint. Intégrer le geste technique dans le travail d'agilité. Sans ballon : slalom en sprint pur."
+            },
+            {
+              "name": "Séquence sprints multi-directionnels",
+              "sets": 4,
+              "duration": "15 sec d'effort",
+              "rest_seconds": 90,
+              "notes": "15 sec de mouvements enchaînés : sprint 10 m + pivot + sprint latéral 5 m + saut vertical + sprint 10 m retour. Simule une séquence de jeu intense."
+            },
+            {
+              "name": "Réception-impulsion pliométrique",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 75,
+              "notes": "Saut depuis une hauteur de 20-30 cm (chaise, marche), atterrissage, re-saut immédiat vers le haut ou latéral. Temps au sol < 0,3 sec. Développe la réactivité au sol, fondamentale pour les rebonds et les contre-attaques."
+            }
+          ],
+          "cooldown": "5 min marche + étirements."
+        },
+        {
+          "day": 6,
+          "name": "Mobilité et entretien préventif",
+          "duration_minutes": 40,
+          "type": "mobility",
+          "warmup": "3 min marche.",
+          "exercises": [
+            {
+              "name": "Routine mobilité complète — corps entier",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "World greatest stretch (5/côté) + thread-the-needle (10/côté) + 90/90 (2 min/côté) + fente basse psoas (1 min/côté) + leg swings sagittaux et latéraux (15/côté). Routine complète désormais maîtrisée."
+            },
+            {
+              "name": "Calf raises excentriques — progression",
+              "sets": 3,
+              "reps": "15 par jambe",
+              "rest_seconds": 30,
+              "notes": "Progression +3 reps vs W5. Maintien tendineux renforcé."
+            },
+            {
+              "name": "Équilibre proprioceptif + défi",
+              "sets": 3,
+              "duration": "60 sec par pied",
+              "rest_seconds": 20,
+              "notes": "Yeux fermés, sur surface instable si disponible. Ajouter un léger mouvement de bras (taper les bras latéralement en maintenant l'équilibre) pour augmenter la difficulté."
+            }
+          ],
+          "cooldown": "Foam rolling 5 min + respiration 3 min."
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "theme": "Pic de charge — simulation pré-compétition",
+      "goal": "Semaine la plus intense du programme. Enchaînements complexes force-vitesse, séances simulation match, endurance spécifique au plus haut. C'est ici que les adaptations maximales sont sollicitées avant l'affûtage final.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Simulation match — endurance intermittente haute intensité",
+          "duration_minutes": 60,
+          "type": "interval",
+          "warmup": "12 min.",
+          "exercises": [
+            {
+              "name": "Protocole mi-temps simulée (25 min)",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "Séquence répétée sur 25 min : 3 min jogging Z2 + 1 min accélérations Z3-Z4 + 30 sec sprint max + 30 sec marche. Cycle de 5 min, répété 5 fois. Simule la densité d'effort d'une mi-temps en sport co."
+            },
+            {
+              "name": "Sprints finaux (fatigue state)",
+              "sets": 4,
+              "reps": "1",
+              "rest_seconds": 60,
+              "notes": "Immédiatement après la simulation mi-temps (récup 2 min), 4 sprints de 20 m. Entraîner la capacité à sprinter sous fatigue — compétence décisive en fin de match."
+            }
+          ],
+          "cooldown": "8 min marche + étirements 8 min complets."
+        },
+        {
+          "day": 2,
+          "name": "Force maximale — séance peak",
+          "duration_minutes": 60,
+          "type": "strength",
+          "warmup": "10 min + échauffement spécifique sur chaque exercice.",
+          "exercises": [
+            {
+              "name": "Squat chargé — charge maximale personnelle",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "RPE 8-9 (1-2 reps en réserve). Charge la plus élevée du programme. Si haltères uniquement : goblet squat avec charge maximale ou haltères épaules. Ne pas sacrifier la forme. Repos 2,5 min minimum (ACSM recommandé sur exercices composés lourds)."
+            },
+            {
+              "name": "Fentes bulgares — charge maximale",
+              "sets": 4,
+              "reps": "6 par jambe",
+              "rest_seconds": 120,
+              "notes": "Charge maximum du programme. 2 min repos entre les côtés."
+            },
+            {
+              "name": "Nordic curl",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Point de pic de ce plan (débuté à 5 reps en W2). Qualité > quantité : 8 reps lentes valent mieux que 12 reps rapides."
+            },
+            {
+              "name": "Pompes pliométriques",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 75,
+              "notes": "Même set qu'en W6 avec focus sur la hauteur du décollement des mains."
+            },
+            {
+              "name": "Rowing élastique / table — charge maximale",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Élastique le plus résistant disponible. Maintenir l'alignement thoracique."
+            },
+            {
+              "name": "Gainage anti-rotation — Pallof press",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 40,
+              "notes": "Élastique fixé latéralement à hauteur de poitrine. Tenir l'élastique devant soi, bras tendus, sans que le corps ne pivote. Tient 2 sec bras tendus avant de ramener. Alternative sans élastique : dead bug x10."
+            }
+          ],
+          "cooldown": "Étirements 7 min : ischio, fessier, pec, grand dorsal."
+        },
+        {
+          "day": 4,
+          "name": "Agilité compétition — vitesse maximale et cohésion",
+          "duration_minutes": 50,
+          "type": "mixed",
+          "warmup": "12 min.",
+          "exercises": [
+            {
+              "name": "5-10-5 — objectif performance",
+              "sets": 5,
+              "reps": "1",
+              "rest_seconds": 90,
+              "notes": "Séance de performance : objectif d'atteindre ou battre le meilleur temps de W6. Récupération 90 sec entre chaque passage."
+            },
+            {
+              "name": "Circuit agilité complet (box + T + cone star)",
+              "sets": 3,
+              "reps": "1 circuit",
+              "rest_seconds": 120,
+              "notes": "Enchaîner : box drill complet (1 min) + T-drill (45 sec) + star drill (45 sec). Récupération 2 min entre les circuits. Densité d'effort proche de la compétition."
+            },
+            {
+              "name": "Sprint max avec adversaire imaginaire",
+              "sets": 5,
+              "reps": "1",
+              "rest_seconds": 90,
+              "notes": "Sprint 30 m avec départ positionnel variable (debout, dos, genou au sol). Visualiser une situation de jeu réelle. Intégrer le mental à l'entraînement physique."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 6 min."
+        },
+        {
+          "day": 6,
+          "name": "Récupération orientée performance",
+          "duration_minutes": 40,
+          "type": "mobility",
+          "warmup": "3 min marche.",
+          "exercises": [
+            {
+              "name": "Récupération active — footing léger",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Z1 très léger (55-60% FCmax). Facilite l'élimination des lactates et favorise la circulation sanguine vers les muscles sollicités cette semaine."
+            },
+            {
+              "name": "Mobilité complète — séquence W3 complète",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "World greatest stretch + thread-the-needle + 90/90 + pigeon + leg swings. Routine maîtrisée depuis W3, exécution fluide et efficace."
+            },
+            {
+              "name": "Calf raises excentriques — maintenance",
+              "sets": 2,
+              "reps": "12 par jambe",
+              "rest_seconds": 30,
+              "notes": "Maintien. Pas d'augmentation de volume avant la semaine d'affûtage."
+            }
+          ],
+          "cooldown": "Foam rolling 5 min + respiration profonde + visualisation positive de la saison à venir."
+        }
+      ]
+    },
+    {
+      "week_number": 8,
+      "theme": "Affûtage pré-saison — fraîcheur, confiance, évaluation",
+      "goal": "Réduire le volume de 30% en maintenant l'intensité pour arriver frais et confiant au premier match ou entraînement officiel. Évaluer les progrès réalisés. Checklist d'autonomie finale.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Activation cardio légère",
+          "duration_minutes": 35,
+          "type": "endurance",
+          "warmup": "8 min standard.",
+          "exercises": [
+            {
+              "name": "Footing Z2 léger",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Allure très confortable, 60-65% FCmax. Séance de relance douce après la semaine de pic."
+            },
+            {
+              "name": "Accélérations courtes — vitesse maintenue",
+              "sets": 4,
+              "reps": "1",
+              "rest_seconds": 90,
+              "notes": "4 accélérations de 20 m à 90% de la vitesse max. Court, intense, préservé. L'affûtage ne signifie pas l'arrêt de toute intensité — on maintient les stimuli pour ne pas perdre les adaptations."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 5 min."
+        },
+        {
+          "day": 2,
+          "name": "Renforcement affûtage — qualité maximale, volume réduit",
+          "duration_minutes": 40,
+          "type": "strength",
+          "warmup": "8 min.",
+          "exercises": [
+            {
+              "name": "Squat chargé",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "Charge identique à W7 (maintien intensité). Sets réduits à 3. Qualité maximale sur chaque rep."
+            },
+            {
+              "name": "Nordic curl",
+              "sets": 2,
+              "reps": "6",
+              "rest_seconds": 120,
+              "notes": "Volume réduit, intensité maintenue. Maintien préventif ischio."
+            },
+            {
+              "name": "Renforcement cheville — élastique éversion",
+              "sets": 2,
+              "reps": "15 par côté",
+              "rest_seconds": 30,
+              "notes": "Maintien obligatoire du travail préventif jusqu'au dernier jour."
+            },
+            {
+              "name": "Gainage — planche + side plank",
+              "sets": 2,
+              "duration": "40 sec chaque",
+              "rest_seconds": 40,
+              "notes": "Planche ventrale 40 sec + side plank 40 sec par côté. Volume réduit."
+            }
+          ],
+          "cooldown": "Étirements 5 min."
+        },
+        {
+          "day": 4,
+          "name": "Agilité affûtage — intensité maintenue, volume réduit",
+          "duration_minutes": 35,
+          "type": "mixed",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "5-10-5 — performance finale",
+              "sets": 3,
+              "reps": "1",
+              "rest_seconds": 120,
+              "notes": "3 passages seulement. Objectif : être au meilleur de soi. Chronométrer. Comparer avec W1 et W4."
+            },
+            {
+              "name": "Sprints 30 m maximaux",
+              "sets": 3,
+              "reps": "1",
+              "rest_seconds": 120,
+              "notes": "3 sprints max sur 30 m, 2 min de repos. Évaluation finale de la vitesse de sprint."
+            },
+            {
+              "name": "Sauts pliométriques — qualité",
+              "sets": 2,
+              "reps": "5",
+              "rest_seconds": 90,
+              "notes": "Box to box ou sauts latéraux. Qualité des atterrissages > nombre de répétitions."
+            }
+          ],
+          "cooldown": "5 min marche + étirements."
+        },
+        {
+          "day": 6,
+          "name": "Bilan final — mobilité, auto-évaluation et projection saison",
+          "duration_minutes": 50,
+          "type": "mobility",
+          "warmup": "3 min marche.",
+          "exercises": [
+            {
+              "name": "Mobilité et récupération complète",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Routine complète : world greatest stretch, thread-the-needle, 90/90, pigeon, leg swings, calf raises excentriques, band pull-apart épaule. La maîtriser = elle devient ta routine d'entretien post-saison."
+            },
+            {
+              "name": "Checklist d'autonomie et auto-évaluation finale",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Évaluer et noter honnêtement les 5 indicateurs suivants — comparer avec W1 et W4 :\n(1) SPRINT 30 M : as-tu amélioré ton temps vs début de programme ? (indicateur vitesse maximale)\n(2) 5-10-5 AGILITY DRILL : as-tu passé sous 5 sec ? as-tu amélioré vs W1 ? (indicateur agilité multi-directionnelle)\n(3) ÉQUILIBRE UNIPODAL YEUX FERMÉS : tiens-tu 45 sec sur chaque pied sans trébucher ? (indicateur résilience cheville)\n(4) FOOTING 20 MIN : peux-tu enchaîner 20 min à Z2 sans difficultés et tenir une conversation ? (indicateur base aérobie)\n(5) NORDIC CURL : peux-tu faire 8 reps excentriques contrôlées avec une descente de 3-4 sec ? (indicateur résistance ischio-jambiers)\nSi 4/5 critères sont atteints, tu es prêt(e) pour la saison. Si moins de 3/5, prolonger 1-2 semaines sur le cycle W6-W7 avant le début officiel."
+            }
+          ],
+          "cooldown": "Foam rolling 5 min + respiration profonde 3 min + projection mentale positive : visualiser le premier match, les déplacements fluides, les sprints récupérés, les duels remportés."
+        }
+      ]
+    }
+  ],
+  "safety_notes": "DRAPEAUX ROUGES — Arrêter immédiatement et consulter un médecin ou kinésithérapeute si :\n• Douleur vive en dehors du genou irradiant vers la cuisse (bandelette ilio-tibiale / ITBS) ou douleur sous la rotule au saut et à la descente d'escaliers (tendinopathie patellaire / jumper's knee) : arrêt de toute activité en impact, glace 15 min, élévation, avis kiné sous 72h.\n• Douleur ou craquement à l'intérieur du genou après contact, pivot ou réception de saut : suspicion ligamentaire (LCA, LLI). Stop immédiat, ne pas forcer le mouvement, urgence médicale si instabilité.\n• Entorse de cheville avec gonflement et impossibilité d'appui : protocole RICE (repos, glace, compression, élévation), consultation si douleur osseuse (règle d'Ottawa).\n• Douleur derrière la cuisse irradiant vers le genou à la course ou lors du nordic curl (lésion des ischio-jambiers) : réduction immédiate du volume, arrêt des nordic curls et sprints, avis médical si douleur > grade 1.\n• Douleur à l'épaule lors des duels, des tirs ou des lancers (conflit sous-acromial, tendinopathie de la coiffe des rotateurs) : réduire les pompes et le tirage vertical, consultation kiné.\n• Symptômes cardiaques (douleur thoracique, vertiges, palpitations anormales, essoufflement disproportionné) : arrêt immédiat, consultation médicale urgente.\n\nRÈGLES GÉNÉRALES :\n• Ce programme est conçu EN COMPLÉMENT de 2-3 entraînements collectifs. Si la charge totale est trop élevée (fatigue persistante, performances qui baissent), réduire les séances individuelles, pas les entraînements collectifs.\n• Chaussures adaptées à la surface de jeu (crampons terrain extérieur, semelle non-marquante intérieur). Renouveler si usure visible des plots ou de la semelle intermédiaire.\n• Hydratation spécifique intensité : 500 ml dans l'heure précédant la séance, 150-200 ml toutes les 15-20 min pendant les séances intenses (>40 min). Réhydratation post-effort : 150% du poids perdu.\n• Ne jamais sprinter sans échauffement complet. Le système nerveux et les tendons nécessitent 10-12 min d'activation progressive avant un effort max.\n• Surfaces : éviter les surfaces très dures (béton) pour les sauts et réceptions. Préférer le synthétique ou le gazon. En cas d'entraînement sur béton, réduire les exercices pliométriques de 50%.\n• Différence fondamentale : douleur articulaire (genou, cheville, hanche) = anormale, arrêt de séance. Douleur musculaire de travail (brûlure quadriceps, fatigue mollets) = normale pendant l'effort.\n\nINTENSITÉ ET ZONES D'EFFORT :\n• Z2 (endurance fondamentale) : conversation facile, phrases complètes, 60-70% FCmax.\n• Z3-Z4 (tempo-seuil) : phrases courtes ou mots isolés, 75-85% FCmax.\n• Z5 (sprint/VO2max) : impossible de parler, 90-100% FCmax. Limiter les efforts Z5 à 2-3 fois/semaine maximum.\n• Test de la parole applicable à chaque séance comme indicateur d'intensité réelle.\n\nSIGNES DE SURCHARGE (3+ signes simultanés = réduire le volume à 60% pendant 5 jours) :\n• FC de repos +10 bpm au réveil par rapport à la normale habituelle.\n• Courbatures encore présentes 72h après la séance.\n• Chute de performance sur des exercices habituellement maîtrisés (sprint plus lent, drill moins précis).\n• Irritabilité, sommeil dégradé > 3 nuits consécutives.\n• Perte de motivation soudaine et persistante.\n\nSPÉCIFIQUE SPORTS COLLECTIFS — RISQUES INTERMÉDIAIRE+ :\n• Tendinopathie des ischio-jambiers sur sprints répétés et nordic curls mal maîtrisés : toujours respecter les temps de récupération (120 sec minimum sur nordic curl), ne pas augmenter le volume si douleur en face postérieure de cuisse.\n• Stress fracture tibiale sur surcharge de sprints (rare mais possible en reprise rapide) : douleur tibia à la palpation localisée après des séances de sprint intensives = consultation.\n• Commotions cérébrales lors des contacts à l'entraînement collectif : protocole concussion CRT5 obligatoire en cas de choc crânien, retour au jeu progressif supervisé.\n• Crampes musculaires récurrentes (souvent déshydratation + hypokaliémie) : augmenter l'apport en potassium (banane, légumineuses), vérifier hydratation.\n\nSI SÉANCE MANQUÉE OU ARRÊT IMPRÉVU :\n• < 5 jours de pause : reprendre à la même séance, réduire l'intensité de 20% au retour.\n• 1-2 semaines de pause : reprendre 2 semaines en arrière dans le programme.\n• > 3 semaines de pause : reprendre depuis W3 (base cardio acquise mais conditionnement à rebâtir).",
+  "progression_logic": "Programme structuré sur 4 principes de progression, alignés NSCA (Essentials of Strength Training), ACSM et protocoles de recherche en sports collectifs (Bangsbo, Bahr) :\n\n(1) PÉRIODISATION PAR BLOCS : W1-W2 remise en forme et base aérobie, W3-W4 intensification charge progressive (+15 à +20% par semaine), W5 cutback obligatoire (-15%), W6-W7 pic de charge avec endurance de vitesse et force maximale, W8 affûtage (-30% volume, intensité maintenue). La périodisation en blocs améliore les adaptations spécifiques en concentrant les stimuli sur 2-3 semaines consécutives (Issurin, Block Periodization 2008).\n\n(2) SPRINTS RÉPÉTÉS ET ENDURANCE SPÉCIFIQUE : les sports collectifs se caractérisent par 150-250 accélérations par match (Thompson et al., 2013). Ce programme construit progressivement la capacité à répéter des sprints de haute qualité, en introduisant le protocole 10-20-30 (W3) et le format Yo-Yo (W4), reconnus comme les tests et méthodes d'entraînement les plus proches de la réalité match (Bangsbo et al., 2008).\n\n(3) NORDIC CURL — PROGRESSION ISCHIO-JAMBIÈRE : débuté à 5 reps (W2), progressé jusqu'à 8 reps (W7). La méta-analyse Petersen et al. (AJSM 2011) montre une réduction de 51% des déchirures ischio-jambières dans les programmes incluant le nordic curl. La progression doit être lente (1 rep toutes les 1-2 semaines). Maintenu jusqu'au dernier jour car la résilience tendineuse s'acquiert en 8-12 semaines. Ne jamais sacrifier la vitesse de descente (3-4 sec minimum).\n\n(4) RENFORCEMENT PRÉVENTIF MULTI-ARTICULAIRE : les entorses de cheville représentent 20-25% de toutes les blessures en sports collectifs. La proprioception en équilibre unipodal réduit de 40-50% le risque d'entorse récidivante (McHugh et al.). Le programme inclut le travail de cheville dès W1 et progresse vers des surfaces instables (W3). Le renforcement d'épaule (coiffe des rotateurs) est intégré à chaque semaine de mobilité pour prévenir les tendinopathies dues aux duels et aux gestes balistiques.\n\n(5) AFFÛTAGE ET TAPERING W8 : réduction du volume de 30% avec maintien de l'intensité (sprints à 90%, charge maintenue). Le tapering de 7-10 jours permet une surcompensation finale : glycogène musculaire +20%, conduction neuromusculaire optimale, récupération des microtraumatismes (Mujika & Padilla, 2003). Les deux premières séances de W8 sont intentionnellement allégées pour maximiser la fraîcheur au premier match officiel."
+}

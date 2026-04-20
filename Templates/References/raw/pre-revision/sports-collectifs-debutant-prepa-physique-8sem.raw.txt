@@ -1,0 +1,1073 @@
+{
+  "id": "sports-collectifs-debutant-prepa-physique-8sem",
+  "schema_version": 1,
+  "sport": "sports_collectifs",
+  "level": "debutant",
+  "name": "Prépa physique sports co — 8 semaines initiation",
+  "duration_weeks": 8,
+  "sessions_per_week": 3,
+  "default_objective": "Acquérir les bases physiques pour pratiquer sport collectif de loisir (foot, basket, volley, handball) : cardio, changements de direction, force générale",
+  "assumed_profile": "Adulte souhaitant reprendre sport co en loisir, condition physique moyenne, pas de pratique récente du sport cible. Équipement disponible : chaussures de sport multi-supports, tapis de sol, espace ouvert ou gymnase (lignes marquées ou cônes si possible), éventuellement deux bouteilles d'eau (0,5 L) comme haltères légers.",
+  "summary": "Programme de préparation physique générale sur 8 semaines destiné à préparer le corps aux exigences intermittentes des sports collectifs de loisir (foot, basket, volley, handball). Chaque semaine combine 2 séances cardio-coordination (changements de direction, sprints courts, sauts) et 1 séance de renforcement général (jambes, core, membres supérieurs). Volume cardio-intermittent progressif avec cutback en W5. Drapeau rouges : entorses cheville/genou sur changements de direction, douleurs tendineuses (coude, épaule), contusions. Checklist d'autoévaluation en W8 pour mesurer les acquis avant la reprise du sport cible.",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Fondations — découverte du mouvement multidirectionnel",
+      "goal": "Habituer le corps aux déplacements latéraux, aux changements de direction de base et au gainage. Volume léger, qualité d'exécution prioritaire.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio-coordination découverte",
+          "duration_minutes": 40,
+          "type": "mixed",
+          "warmup": "5 min marche rapide puis trot léger + mobilité dynamique : 10 cercles de chevilles par côté, 10 cercles de hanches par côté, 10 balancements de jambe avant-arrière par côté, 10 pas de côté lents (shuffle), 10 montées de genoux sur place. Total : 8 min. Ne pas sauter cette étape — les chevilles et genoux sont vulnérables sur les changements de direction sans échauffement.",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": 0,
+              "notes": "Allure conversationnelle, test de la parole. Mise en route cardiovasculaire."
+            },
+            {
+              "name": "Shuffle latéral",
+              "sets": 4,
+              "duration": "20 sec effort + 40 sec marche",
+              "rest_seconds": 0,
+              "notes": "Déplacement latéral de 4-5 m à gauche, puis 4-5 m à droite. Pieds parallèles, ne pas croiser les pieds. Genoux légèrement fléchis, dos droit. Intensité légère, RPE 4-5."
+            },
+            {
+              "name": "Changements de direction en T (marche)",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 60,
+              "notes": "Schéma : avancer 5 m, toucher au sol, reculer 5 m, shuffle gauche 3 m, shuffle droite 6 m, shuffle gauche 3 m. Exécuté en MARCHE rapide cette semaine. Objectif : mémoriser le pattern."
+            },
+            {
+              "name": "Saut vertical bilatéral sur place",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 45,
+              "notes": "Saut droit, réception pied à plat avec légère flexion genou (amortissement actif). Éviter les genoux en valgus (vers l'intérieur) à la réception."
+            }
+          ],
+          "cooldown": "3 min trot très lent puis marche. Étirements statiques : quadriceps 30 sec/jambe, mollets 30 sec/jambe, ischio-jambiers 30 sec/jambe, adducteurs assis 30 sec. Hydratation."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement général — initiation",
+          "duration_minutes": 40,
+          "type": "strength",
+          "warmup": "5 min marche + rotations bassin 10/sens + cercles d'épaules 10/sens + 10 squats lents poids du corps + 10 montées de genoux. Total : 8 min.",
+          "exercises": [
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60,
+              "notes": "Pieds largeur épaules, orteils légèrement ouverts. Descente lente 3 sec, genoux dans l'axe des orteils (ne pas laisser partir vers l'intérieur). Dos droit, regard devant. Cible quadriceps et fessiers — muscles clés des sports co."
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 45,
+              "notes": "Allongé sur le dos, pieds à plat, pousser les hanches vers le haut. Tenir 2 sec en haut. Renforce les ischio-jambiers et les fessiers (propulsion et protection du genou)."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "20 sec",
+              "rest_seconds": 45,
+              "notes": "Coudes sous les épaules, corps parfaitement aligné, ne pas laisser les hanches tomber. Respiration régulière. Core stable = protection lombaire sur les contacts et les sauts."
+            },
+            {
+              "name": "Pompes genoux au sol",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 45,
+              "notes": "Mains largeur épaules, corps aligné (tête-hanches-genoux). Descendre jusqu'à ce que la poitrine frôle le sol. Si trop facile, passer en pompes pieds au sol (prévues W3). Renforce la chaîne push horizontale (épaules, pectoraux, triceps)."
+            },
+            {
+              "name": "Calf raises bipodal",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 30,
+              "notes": "Montées sur la pointe des pieds, lent et contrôlé. Mollets forts = prévention entorses et protection de la cheville sur les accélérations."
+            }
+          ],
+          "cooldown": "Étirements 5 min : mollets, quadriceps, ischio-jambiers, épaules (cross-body). Marche 2 min."
+        },
+        {
+          "day": 5,
+          "name": "Cardio-coordination — consolidation W1",
+          "duration_minutes": 40,
+          "type": "mixed",
+          "warmup": "Échauffement standard 8 min (identique J1).",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": 0,
+              "notes": "Mise en route identique à J1. Confort progressif."
+            },
+            {
+              "name": "Shuffle latéral",
+              "sets": 4,
+              "duration": "20 sec effort + 40 sec marche",
+              "rest_seconds": 0,
+              "notes": "Même format qu'en J1. Chercher à améliorer la fluidité latérale."
+            },
+            {
+              "name": "Changements de direction en T (trot)",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 60,
+              "notes": "Même schéma qu'en J1 mais TROT léger (pas marche). Intensité très légère. La progression se fait sur la vitesse d'exécution, pas la distance."
+            },
+            {
+              "name": "Saut vertical bilatéral sur place",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 45,
+              "notes": "Même exercice qu'en J1, focus sur la qualité de la réception (amortissement genou)."
+            }
+          ],
+          "cooldown": "3 min marche + étirements 5 min. Hydratation."
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Activation — premier contact avec l'intermittence",
+      "goal": "Introduire les sprints courts (10 m) et augmenter légèrement le volume cardio (+15%). Renforcement avec ajout des fentes et du gainage latéral.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio-intermittent 10 m sprints",
+          "duration_minutes": 42,
+          "type": "interval",
+          "warmup": "5 min trot léger + mobilité dynamique 8 min (chevilles, hanches, genoux). Inclure 3 accélérations progressives de 10 m à 50-70% de la vitesse max pour préparer les tendons aux sprints.",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": 0,
+              "notes": "Mise en route cardiovasculaire. Allure conversationnelle."
+            },
+            {
+              "name": "Sprint 10 m + retour marche",
+              "sets": 6,
+              "duration": "10 m sprint + 20 sec marche retour",
+              "rest_seconds": 0,
+              "notes": "Accélération sur 10 m à ~75% de la vitesse max. Retour en marchant. Ne pas chercher la vitesse max dès W2 — le tendon d'Achille et les ischio-jambiers ont besoin de s'adapter progressivement."
+            },
+            {
+              "name": "Shuffle latéral",
+              "sets": 4,
+              "duration": "25 sec effort + 35 sec marche",
+              "rest_seconds": 0,
+              "notes": "Légère augmentation de durée vs W1. Même technique : pieds parallèles, genoux fléchis, dos droit."
+            },
+            {
+              "name": "Changements de direction en T (trot)",
+              "sets": 4,
+              "duration": "30 sec",
+              "rest_seconds": 60,
+              "notes": "Un set supplémentaire vs W1. Chercher la fluidité plutôt que la vitesse."
+            }
+          ],
+          "cooldown": "3 min marche + étirements 5 min (ischio-jambiers, mollets, quadriceps, adducteurs). Vérifier la chaleur des chevilles — si douleur latérale, glacer 10 min."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement — fentes et gainage latéral",
+          "duration_minutes": 40,
+          "type": "strength",
+          "warmup": "8 min échauffement complet.",
+          "exercises": [
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Progression vs W1 (+2 reps). Descente lente 3 sec, montée explosive contrôlée."
+            },
+            {
+              "name": "Fentes statiques",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 60,
+              "notes": "Genou avant à 90°, genou arrière à 2 cm du sol. Ne pas laisser le genou avant dépasser la pointe du pied. Les fentes reproduisent les postures d'appui des sports co (relance, protection de balle)."
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Progression de 12 à 15 reps vs W1."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Progression de 20 à 30 sec. Même technique."
+            },
+            {
+              "name": "Side plank",
+              "sets": 2,
+              "duration": "20 sec par côté",
+              "rest_seconds": 40,
+              "notes": "Coude sous l'épaule, corps en ligne droite. Nouveauté W2 : gainage latéral essentiel pour les déplacements de côté et la protection du rachis lombaire."
+            },
+            {
+              "name": "Pompes genoux au sol",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 45,
+              "notes": "Progression +2 reps vs W1."
+            },
+            {
+              "name": "Calf raises bipodal",
+              "sets": 3,
+              "reps": "18",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "Étirements 5 min + marche 2 min."
+        },
+        {
+          "day": 5,
+          "name": "Cardio-coordination — circuit",
+          "duration_minutes": 42,
+          "type": "mixed",
+          "warmup": "8 min échauffement standard + 3 accélérations progressives 10 m.",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Sprint 10 m + retour marche",
+              "sets": 6,
+              "duration": "10 m sprint + 20 sec marche retour",
+              "rest_seconds": 0,
+              "notes": "Identique à J1. Chercher à améliorer la régularité des accélérations."
+            },
+            {
+              "name": "Back-pedal (recul en course)",
+              "sets": 4,
+              "duration": "10 m recul + 10 sec récup marche",
+              "rest_seconds": 30,
+              "notes": "Reculer en courant sur 10 m, regard devant. Mouvement clé pour le défenseur (foot, basket, handball). Petites foulées rapides, bas du dos droit. NOUVEAUTÉ de la semaine."
+            },
+            {
+              "name": "Saut vertical bilatéral sur place",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 45,
+              "notes": "Progression +2 reps vs W1. Focus réception en flexion de genou."
+            }
+          ],
+          "cooldown": "3 min marche + étirements 5 min."
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Puissance — sauts et sprints à 20 m",
+      "goal": "Allonger les sprints à 20 m, introduire les sauts avec appel unilatéral (cloche-pied). Volume cardio +15% vs W2. Renforcement avec pompes pieds au sol.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sprints 20 m + sauts",
+          "duration_minutes": 45,
+          "type": "interval",
+          "warmup": "5 min trot + 8 min mobilité dynamique + 3 accélérations progressives 20 m à 60-75-85% de la vitesse max.",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "6 min",
+              "rest_seconds": 0,
+              "notes": "Progression de 5 à 6 min de mise en route."
+            },
+            {
+              "name": "Sprint 20 m + retour trot",
+              "sets": 6,
+              "duration": "20 m sprint + 30 sec trot retour",
+              "rest_seconds": 0,
+              "notes": "Distance doublée vs W2. Vitesse à 80% max. Le retour en trot (pas marche) augmente la sollicitation cardio. RPE effort 7-8."
+            },
+            {
+              "name": "Shuffle latéral",
+              "sets": 4,
+              "duration": "30 sec effort + 30 sec marche",
+              "rest_seconds": 0,
+              "notes": "Légère progression durée. Chercher à prendre de la vitesse latérale."
+            },
+            {
+              "name": "Saut cloche-pied en avant (5 sauts par pied)",
+              "sets": 3,
+              "reps": "5 sauts par jambe",
+              "rest_seconds": 60,
+              "notes": "Sauter sur 1 pied et atterrir sur le même pied. Chercher la hauteur plutôt que la distance. Genou légèrement fléchi à la réception. Développe la puissance unilatérale et l'équilibre — prévention entorse de cheville."
+            },
+            {
+              "name": "Changements de direction en T (course)",
+              "sets": 4,
+              "duration": "30 sec",
+              "rest_seconds": 60,
+              "notes": "Premier T-drill en course (pas trot). Vitesse à 70% max. Priorité sur les appuis : planter le pied à plat, pousser en direction opposée."
+            }
+          ],
+          "cooldown": "4 min marche + étirements 6 min (insister sur ischio-jambiers et chevilles). Si douleur latérale cheville après le cloche-pied, glacer 10 min et réduire la vitesse des sauts J5."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement — passage pompes pieds",
+          "duration_minutes": 42,
+          "type": "strength",
+          "warmup": "8 min échauffement complet.",
+          "exercises": [
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60,
+              "notes": "Progression de 12 à 15 reps. Chercher à contrôler la descente sur 3 sec et la montée sur 1 sec (tempo 3-0-1)."
+            },
+            {
+              "name": "Fentes dynamiques",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 60,
+              "notes": "Passage des fentes statiques aux fentes dynamiques (alternance G/D avec retour au centre). Progression vers le mouvement des sports co."
+            },
+            {
+              "name": "Pont fessier unilatéral",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 50,
+              "notes": "Passage du pont bilatéral au pont unilatéral. Renforce l'équilibre G/D (asymétries fréquentes chez les joueurs de sport co)."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "35 sec",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "25 sec par côté",
+              "rest_seconds": 40,
+              "notes": "Passage de 2 à 3 sets."
+            },
+            {
+              "name": "Pompes pieds au sol",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 50,
+              "notes": "Passage des pompes genoux aux pompes pieds. Corps parfaitement aligné, abdominaux engagés. Si la forme se dégrade avant 8 reps, revenir aux genoux pour les dernières reps."
+            },
+            {
+              "name": "Calf raises surélevés (marche ou step)",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 30,
+              "notes": "Debout sur le bord d'une marche ou step. Amplitude complète. Progression majeure vs calf raises à plat."
+            }
+          ],
+          "cooldown": "Étirements 6 min + marche 2 min."
+        },
+        {
+          "day": 5,
+          "name": "Cardio-intermittent combiné",
+          "duration_minutes": 45,
+          "type": "interval",
+          "warmup": "8 min échauffement standard + 3 accélérations progressives 20 m.",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "6 min",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Sprint 20 m + retour trot",
+              "sets": 6,
+              "duration": "20 m sprint + 30 sec trot retour",
+              "rest_seconds": 0,
+              "notes": "Même format que J1. Chercher la régularité des accélérations."
+            },
+            {
+              "name": "Back-pedal",
+              "sets": 4,
+              "duration": "10 m recul + 10 sec récup marche",
+              "rest_seconds": 30,
+              "notes": "Consolidation du back-pedal introduit en W2."
+            },
+            {
+              "name": "Cross-over step",
+              "sets": 3,
+              "duration": "10 m + retour 10 sec",
+              "rest_seconds": 30,
+              "notes": "NOUVEAUTÉ W3 : déplacement latéral en croisant un pied devant l'autre. Mouvement plus rapide que le shuffle, utilisé dans les sports co pour couvrir les grands espaces latéraux. Commencer lentement, priorité technique."
+            },
+            {
+              "name": "Saut vertical bilatéral sur place",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 45
+            }
+          ],
+          "cooldown": "4 min marche + étirements 5 min."
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Complexité — agility et force maximale",
+      "goal": "Introduire l'agility ladder (ou marquages au sol) et les squats avec charge légère (bouteilles d'eau). Volume cardio +10% vs W3.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Agility et sprints combinés",
+          "duration_minutes": 47,
+          "type": "interval",
+          "warmup": "5 min trot + 8 min mobilité dynamique + 3 accélérations progressives 20 m.",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "7 min",
+              "rest_seconds": 0,
+              "notes": "Progression de 6 à 7 min."
+            },
+            {
+              "name": "Sprint 20 m + retour trot",
+              "sets": 7,
+              "duration": "20 m sprint + 30 sec trot retour",
+              "rest_seconds": 0,
+              "notes": "Un set supplémentaire vs W3. Vitesse à 85% max."
+            },
+            {
+              "name": "Agility en échelle au sol (ligne à ligne)",
+              "sets": 4,
+              "duration": "20 sec effort + 40 sec repos marche",
+              "rest_seconds": 0,
+              "notes": "Si tu n'as pas d'échelle d'agilité, trace 8 cases de 50 cm au sol avec de la craie ou place des foulards. Travail : 2 pieds dans chaque case en avançant. Priorité sur la hauteur des pieds (ne pas traîner). NOUVEAUTÉ W4. Simule les appuis rapides et précis sur le terrain."
+            },
+            {
+              "name": "Changements de direction en T (course 80%)",
+              "sets": 5,
+              "duration": "30 sec",
+              "rest_seconds": 60,
+              "notes": "Un set supplémentaire vs W3. Vitesse à 80% max. Chercher à réduire le temps de contact au sol sur le pivot."
+            },
+            {
+              "name": "Saut avec réception squat",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 60,
+              "notes": "Sauter verticalement et atterrir en position squat (90° genou). Tenir la réception 2 sec avant de se relever. Renforce la chaîne d'amortissement et prévient les traumatismes du genou au saut/réception (typique basket et volley)."
+            }
+          ],
+          "cooldown": "4 min marche + étirements 6 min. Attention aux chevilles après l'agility ladder — vérifier chaleur et gonflement."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement — charge légère",
+          "duration_minutes": 45,
+          "type": "strength",
+          "warmup": "8 min échauffement complet.",
+          "exercises": [
+            {
+              "name": "Squat avec charge légère (bouteilles ou sac léger)",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Tenir une bouteille d'eau de 1,5 L contre la poitrine (ou un petit sac à dos de 3-5 kg). Technique identique au squat poids du corps. Introduit la charge pour progresser vers la force fonctionnelle. Alternative sans matériel : squat jump avec 2 sec de maintien squat entre chaque saut."
+            },
+            {
+              "name": "Fentes dynamiques",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 60,
+              "notes": "Progression de 8 à 10 reps."
+            },
+            {
+              "name": "Pont fessier unilatéral",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 50,
+              "notes": "Progression de 10 à 12 reps."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "40 sec",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "30 sec par côté",
+              "rest_seconds": 40
+            },
+            {
+              "name": "Pompes pieds au sol",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 50,
+              "notes": "Progression de 8 à 10 reps."
+            },
+            {
+              "name": "Superman (extension dorsale au sol)",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 40,
+              "notes": "NOUVEAUTÉ W4 : allongé ventre au sol, lever simultanément bras et jambes. Tenir 2 sec. Renforce la chaîne postérieure (lombaires, fessiers, ischio-jambiers) — protège le dos dans les duels et les contacts."
+            },
+            {
+              "name": "Calf raises surélevés",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "Étirements 6 min + marche 2 min."
+        },
+        {
+          "day": 5,
+          "name": "Circuit mixte sport co",
+          "duration_minutes": 47,
+          "type": "mixed",
+          "warmup": "8 min échauffement standard + 3 accélérations progressives 20 m.",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "7 min",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Sprint 20 m + retour trot",
+              "sets": 6,
+              "duration": "20 m sprint + 30 sec trot retour",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Agility en échelle au sol",
+              "sets": 4,
+              "duration": "20 sec effort + 40 sec repos marche",
+              "rest_seconds": 0,
+              "notes": "Consolidation de l'échelle introduite en J1. Chercher à augmenter la fluidité."
+            },
+            {
+              "name": "Cross-over step",
+              "sets": 4,
+              "duration": "10 m + retour 10 sec",
+              "rest_seconds": 30,
+              "notes": "Un set supplémentaire vs W3."
+            },
+            {
+              "name": "Saut avec réception squat",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 60,
+              "notes": "Consolidation. Chercher la stabilité sur la réception."
+            }
+          ],
+          "cooldown": "4 min marche + étirements 6 min."
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Cutback — consolidation et récupération active",
+      "goal": "Semaine allégée (volume cardio -15% vs W4) pour consolider les acquis neuromusculaires. Introduction du travail de réactivité (stopwatches ou signal partenaire). Ne pas confondre semaine allégée et semaine perdue.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio allégé — trot et changements de direction",
+          "duration_minutes": 38,
+          "type": "mixed",
+          "warmup": "5 min trot + 7 min mobilité dynamique.",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "7 min",
+              "rest_seconds": 0,
+              "notes": "Volume stable, intensité réduite. Allure très confortable."
+            },
+            {
+              "name": "Sprint 20 m + retour trot",
+              "sets": 5,
+              "duration": "20 m sprint + 30 sec trot retour",
+              "rest_seconds": 0,
+              "notes": "Réduction de 7 à 5 sets (cutback). Vitesse à 75% max cette semaine."
+            },
+            {
+              "name": "Shuffle latéral",
+              "sets": 3,
+              "duration": "25 sec effort + 35 sec marche",
+              "rest_seconds": 0,
+              "notes": "Réduction de volume vs W4. Chercher la qualité des appuis."
+            },
+            {
+              "name": "Réactivité sur signal",
+              "sets": 5,
+              "duration": "Signal + 5 m sprint",
+              "rest_seconds": 60,
+              "notes": "NOUVEAUTÉ cutback : seul ou avec partenaire, sprint de 5 m dans une direction au signal (verbal, claquement). Simule la réactivité en jeu. Volume faible, qualité neuromusculaire. Si solo : utiliser le chrono du téléphone pour déclencher en auto-signal."
+            }
+          ],
+          "cooldown": "3 min marche + étirements 5 min."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement cutback",
+          "duration_minutes": 38,
+          "type": "strength",
+          "warmup": "7 min échauffement.",
+          "exercises": [
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60,
+              "notes": "Retour au squat sans charge pour la semaine cutback. Focus sur la technique parfaite."
+            },
+            {
+              "name": "Fentes statiques",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 60,
+              "notes": "Retour aux fentes statiques (cutback). Lenteur et contrôle."
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Retour au bilatéral (cutback)."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Volume réduit de 40 à 30 sec."
+            },
+            {
+              "name": "Side plank",
+              "sets": 2,
+              "duration": "25 sec par côté",
+              "rest_seconds": 40,
+              "notes": "Réduction à 2 sets."
+            },
+            {
+              "name": "Pompes genoux au sol",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 45,
+              "notes": "Retour aux pompes genoux pour préserver les épaules (cutback)."
+            }
+          ],
+          "cooldown": "Étirements 6 min. Prendre le temps de noter ses sensations : zones de courbatures, douleurs articulaires éventuelles."
+        },
+        {
+          "day": 5,
+          "name": "Circuit cardio léger + réactivité",
+          "duration_minutes": 38,
+          "type": "mixed",
+          "warmup": "7 min échauffement standard.",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "7 min",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Réactivité sur signal",
+              "sets": 8,
+              "duration": "Signal + 5 m sprint",
+              "rest_seconds": 45,
+              "notes": "Volume augmenté vs J1 (8 sets). 4 directions différentes. Simule l'imprévisibilité du jeu collectif."
+            },
+            {
+              "name": "Saut cloche-pied en avant",
+              "sets": 2,
+              "reps": "5 sauts par jambe",
+              "rest_seconds": 60,
+              "notes": "Volume réduit vs W3 (cutback). Focus sur la réception stable."
+            }
+          ],
+          "cooldown": "4 min marche + étirements 5 min. Si la fatigue est faible, c'est la preuve que la progression s'installe bien. Ne pas en faire plus."
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Intensification — sprints 30 m et force explosive",
+      "goal": "Allonger les sprints à 30 m, introduire les squats sautés. Volume cardio +20% vs W5. Renforcement : nordic curl (ischio-jambiers) pour prévenir les blessures musculaires.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sprints 30 m + changements de direction",
+          "duration_minutes": 50,
+          "type": "interval",
+          "warmup": "5 min trot + 8 min mobilité dynamique + 4 accélérations progressives 30 m à 60-70-80-90% de la vitesse max.",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "8 min",
+              "rest_seconds": 0,
+              "notes": "Progression de 7 à 8 min."
+            },
+            {
+              "name": "Sprint 30 m + retour trot",
+              "sets": 6,
+              "duration": "30 m sprint + 40 sec trot retour",
+              "rest_seconds": 0,
+              "notes": "Distance portée à 30 m. Vitesse à 85% max. Le retour en trot intensifie la charge cardio. RPE 8 sur les sprints."
+            },
+            {
+              "name": "Agility en échelle au sol",
+              "sets": 5,
+              "duration": "20 sec effort + 40 sec repos",
+              "rest_seconds": 0,
+              "notes": "Un set supplémentaire. Variante : 2 pieds à l'extérieur de chaque case alternativement (pattern 'in-in-out-out')."
+            },
+            {
+              "name": "Changements de direction en T (course 85%)",
+              "sets": 5,
+              "duration": "30 sec",
+              "rest_seconds": 60,
+              "notes": "Vitesse augmentée à 85%. Focus sur le temps de pivot — plus vite au sol = plus vite en jeu."
+            },
+            {
+              "name": "Saut avec réception squat",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60,
+              "notes": "Progression de 8 à 10 reps. Chercher la stabilité immédiate sur la réception."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 7 min (insister sur ischio-jambiers — risque accru sur sprints longs). Glacer en prévention 5 min sur les ischio-jambiers si sensation de fatigue musculaire profonde."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement — force explosive",
+          "duration_minutes": 47,
+          "type": "strength",
+          "warmup": "8 min échauffement complet.",
+          "exercises": [
+            {
+              "name": "Squat sauté (jump squat)",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 75,
+              "notes": "NOUVEAUTÉ W6 : descente en squat à 90°, montée explosive en saut. Atterrir en flexion de genou (amortir). Développe la puissance explosive des membres inférieurs — qualité clé pour les duels et les sauts en sports co. RPE 7-8."
+            },
+            {
+              "name": "Fentes dynamiques",
+              "sets": 3,
+              "reps": "12 par jambe",
+              "rest_seconds": 60,
+              "notes": "Progression de 10 à 12 reps."
+            },
+            {
+              "name": "Nordic curl assisté",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 90,
+              "notes": "NOUVEAUTÉ W6 : agenouillé, pieds bloqués sous un meuble lourd ou par un partenaire. Se laisser tomber en avant LENTEMENT en contrôlant les ischio-jambiers, se rattraper avec les mains. Remonter en poussant avec les mains. Exercice préventif de référence pour les déchirures ischio-jambières (blessure n°1 sprint en sport co). Ne jamais faire de nordic curl avec les lombaires arquées."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "45 sec",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "35 sec par côté",
+              "rest_seconds": 40
+            },
+            {
+              "name": "Pompes pieds au sol",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 50,
+              "notes": "Progression de 10 à 12 reps."
+            },
+            {
+              "name": "Superman",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 40,
+              "notes": "Progression de 12 à 15 reps."
+            }
+          ],
+          "cooldown": "Étirements 7 min (insister sur ischio-jambiers après nordic curl). Marche 2 min."
+        },
+        {
+          "day": 5,
+          "name": "Circuit sport co intensifié",
+          "duration_minutes": 50,
+          "type": "mixed",
+          "warmup": "8 min échauffement + 4 accélérations progressives 30 m.",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "8 min",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Sprint 30 m + retour trot",
+              "sets": 6,
+              "duration": "30 m sprint + 40 sec trot retour",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Réactivité sur signal",
+              "sets": 8,
+              "duration": "Signal + 5-10 m sprint",
+              "rest_seconds": 45,
+              "notes": "Progression : sprint jusqu'à 10 m (vs 5 m en W5). 4 directions aléatoires."
+            },
+            {
+              "name": "Cross-over step",
+              "sets": 4,
+              "duration": "15 m + retour 15 sec",
+              "rest_seconds": 30,
+              "notes": "Distance portée à 15 m."
+            },
+            {
+              "name": "Back-pedal",
+              "sets": 4,
+              "duration": "15 m recul + 15 sec récup",
+              "rest_seconds": 30,
+              "notes": "Distance portée à 15 m."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 6 min."
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "theme": "Simulation — circuits sport co complets",
+      "goal": "Reproduire les contraintes réelles d'un sport co (alternance sprint/récup/changement de direction) en séquences continues de 4-5 min. Volume cardio +10% vs W6. Pic de charge du plan.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Circuit sport co — séquences continues",
+          "duration_minutes": 52,
+          "type": "interval",
+          "warmup": "5 min trot + 8 min mobilité + 4 accélérations progressives 30 m.",
+          "exercises": [
+            {
+              "name": "Séquence sport co A",
+              "sets": 3,
+              "duration": "4 min activité + 2 min récup marche",
+              "rest_seconds": 0,
+              "notes": "4 min consécutives : 20 m trot → changement de direction → 20 m sprint → shuffle latéral 5 m gauche/droite → 5 sauts verticaux → trot retour au départ. Répéter le cycle sans pause pendant 4 min. Simule les efforts intermittents d'une mi-temps. RPE 7-8 sur les sprints, RPE 4-5 sur le trot. Récup de 2 min marche entre les sets."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 7 min."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement — pic force",
+          "duration_minutes": 48,
+          "type": "strength",
+          "warmup": "8 min échauffement complet.",
+          "exercises": [
+            {
+              "name": "Squat sauté",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 75,
+              "notes": "Passage à 4 sets. Même technique."
+            },
+            {
+              "name": "Fentes dynamiques",
+              "sets": 4,
+              "reps": "12 par jambe",
+              "rest_seconds": 60,
+              "notes": "Passage à 4 sets (pic)."
+            },
+            {
+              "name": "Nordic curl assisté",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 90,
+              "notes": "Progression de 5 à 6 reps."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 4,
+              "duration": "45 sec",
+              "rest_seconds": 45,
+              "notes": "Passage à 4 sets (pic)."
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "40 sec par côté",
+              "rest_seconds": 40
+            },
+            {
+              "name": "Pompes pieds au sol",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 50,
+              "notes": "Passage à 4 sets (pic)."
+            },
+            {
+              "name": "Calf raises surélevés",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "Étirements 7 min + marche 2 min."
+        },
+        {
+          "day": 5,
+          "name": "Circuit sport co — séquence longue",
+          "duration_minutes": 52,
+          "type": "interval",
+          "warmup": "8 min échauffement standard + 4 accélérations progressives 30 m.",
+          "exercises": [
+            {
+              "name": "Séquence sport co B",
+              "sets": 3,
+              "duration": "5 min activité + 2 min récup marche",
+              "rest_seconds": 0,
+              "notes": "Même principe que séquence A mais 5 min (vs 4 min en J1). 20 m trot → sprint 30 m → back-pedal 10 m → cross-over step 15 m → 5 sauts avec réception squat → réactivité sur signal 5 m → trot retour. RPE 7-8 sur les sprints. Le fait que la séquence soit plus longue simule un effort de fin de match quand la fatigue s'installe."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 8 min (insister sur ischio-jambiers, quadriceps, chevilles). Hydratation et collation protéinée si possible dans les 30 min."
+        }
+      ]
+    },
+    {
+      "week_number": 8,
+      "theme": "Finalisation — test et autonomie",
+      "goal": "Tapering des deux premières séances, séance phare J5 de simulation complète. Checklist d'autoévaluation pour mesurer les acquis et préparer la reprise du sport cible.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Activation légère — remise en jambes",
+          "duration_minutes": 38,
+          "type": "mixed",
+          "warmup": "5 min trot + 6 min mobilité.",
+          "exercises": [
+            {
+              "name": "Trot continu",
+              "sets": 1,
+              "duration": "8 min",
+              "rest_seconds": 0,
+              "notes": "Allure très confortable. Séance de remise en jambes, pas un test."
+            },
+            {
+              "name": "Sprint 20 m + retour trot",
+              "sets": 4,
+              "duration": "20 m sprint + 30 sec trot retour",
+              "rest_seconds": 0,
+              "notes": "Volume réduit (tapering). Vitesse à 70% pour préserver les ischio-jambiers avant la séance phare."
+            },
+            {
+              "name": "Shuffle latéral",
+              "sets": 3,
+              "duration": "25 sec effort + 35 sec marche",
+              "rest_seconds": 0,
+              "notes": "Volume réduit. Juste entretenir la fluidité latérale."
+            },
+            {
+              "name": "Squat sauté",
+              "sets": 2,
+              "reps": "6",
+              "rest_seconds": 75,
+              "notes": "Tapering : volume réduit à 2 sets."
+            }
+          ],
+          "cooldown": "4 min marche + étirements 5 min."
+        },
+        {
+          "day": 3,
+          "name": "Mobilité pré-test — récupération active",
+          "duration_minutes": 35,
+          "type": "mobility",
+          "warmup": "5 min marche + mobilité dynamique douce 5 min (cercles chevilles, hanches, genoux).",
+          "exercises": [
+            {
+              "name": "Routine mobilité corps entier",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Enchaîner : 5 cercles de chevilles/côté → 5 cercles de genoux/côté → 5 cercles de hanches/côté → 5 rotations thoraciques/côté → 5 cercles d'épaules/sens. Doux, sans forcer."
+            },
+            {
+              "name": "Activation fessiers et ischio-jambiers légère",
+              "sets": 1,
+              "duration": "8 min",
+              "rest_seconds": 0,
+              "notes": "10 ponts fessiers bilatéraux + 10 fentes statiques lentes + 5 nordic curl assistés sans aller au-delà de 60° d'inclinaison. Volume minimal pour maintenir l'activation neuromusculaire sans fatiguer."
+            },
+            {
+              "name": "Étirements statiques longs",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Ischio-jambiers 45 sec/côté, quadriceps 45 sec/côté, mollets 45 sec/côté, adducteurs 45 sec, pectoraux 30 sec. Respiration lente. Visualiser mentalement la séance phare de J5."
+            }
+          ],
+          "cooldown": "3 min respiration profonde allongé. Préparer mentalement les 5 items de la checklist d'autonomie."
+        },
+        {
+          "day": 5,
+          "name": "Séance phare — simulation sport co complète + autoévaluation",
+          "duration_minutes": 60,
+          "type": "mixed",
+          "warmup": "5 min trot + 8 min mobilité dynamique + 4 accélérations progressives 30 m à 60-70-80-90%.",
+          "exercises": [
+            {
+              "name": "Simulation sport co complète",
+              "sets": 4,
+              "duration": "5 min activité + 2 min récup marche",
+              "rest_seconds": 0,
+              "notes": "4 séquences de 5 min avec récupération de 2 min marche. Chaque séquence : 30 m trot → sprint 30 m (85% vitesse max) → back-pedal 10 m → cross-over step 15 m → 5 sauts verticaux avec réception squat → shuffle latéral 5 m → réactivité signal 10 m → trot retour. Total course/action : 28 min de travail effectif. C'est LE test de l'acquisition des 8 semaines. Cherche à maintenir la qualité des appuis et des changements de direction sur TOUTES les séquences, y compris la 4e."
+            },
+            {
+              "name": "CHECKLIST D'AUTONOMIE — autoévaluation finale",
+              "sets": null,
+              "reps": null,
+              "duration": "10 min post-effort",
+              "rest_seconds": null,
+              "notes": "Après la séance, évalue honnêtement les 5 critères suivants :\n1. CARDIO : As-tu tenu les 4 séquences de 5 min sans marcher en dehors des 2 min de récup prévues ? OUI = objectif cardio atteint.\n2. CHANGEMENTS DE DIRECTION : Sur la 4e séquence (fatigue), tes appuis de pivot restaient-ils stables et tes genoux dans l'axe des orteils ? OUI = contrôle moteur acquis.\n3. SPRINTS : Ta vitesse de sprint en séquence 4 était-elle ≥ 70% de ta vitesse de séquence 1 (pas d'effondrement) ? OUI = capacité à sprinter sous fatigue acquise.\n4. FORCE-RÉCEPTION : Tes réceptions de saut en séquence 3 et 4 étaient-elles stables (pas de chute sur le côté, genoux dans l'axe) ? OUI = force explosive et amortissement acquis.\n5. RÉCUPÉRATION : Ta FC est-elle revenue à moins de 100 bpm dans les 3 min de marche entre les séquences ? OUI = condition physique de base pour sport co atteinte.\nSi 4 critères sur 5 sont OUI : tu es prêt(e) à reprendre ton sport co en séance de loisir. Si moins de 4 OUI : identifier le critère faible et prolonger 2 semaines en ciblant ce point avant la reprise."
+            }
+          ],
+          "cooldown": "7 min marche lente + étirements complets 10 min (mollets, quadriceps, ischio-jambiers, adducteurs, pectoraux, épaules). Hydratation + collation protéinée dans les 30 min."
+        }
+      ]
+    }
+  ],
+  "safety_notes": "DRAPEAUX ROUGES à surveiller (arrêter la séance et consulter si persistant) :\n• Douleur latérale de cheville pendant ou après les changements de direction ou l'agility ladder : risque d'entorse. STOP immédiat, glace 15 min, repos 48h minimum. Ne jamais reprendre sur une cheville douloureuse sans avis médical — l'entorse non traitée favorise l'instabilité chronique.\n• Douleur face antérieure du genou (genou du coureur, syndrome rotulien) sur les squats ou les sauts : réduire la flexion à 60°, arrêter les squats sautés. Consulter si persistant > 5 jours.\n• Douleur vive à l'arrière de la cuisse pendant ou après les sprints (ischio-jambiers) : risque de déchirure musculaire. Arrêt immédiat. Les nordic curls sont préventifs à condition de NE PAS les faire sur ischio-jambiers déjà douloureux.\n• Douleur latérale de coude ou épaule après les pompes ou les mouvements de bras (épicondylite, conflit sous-acromial) : modifier les pompes (mains plus larges ou plus serrées), ne jamais forcer en douleur articulaire.\n• Douleur lombaire sur les fentes, squats ou back-pedal : vérifier la position du dos (neutre, pas creusé), réduire le volume. Consulter si > 3 jours.\n• Palpitations, douleur thoracique ou vertiges pendant l'effort : arrêt immédiat, position assise, consulter sans délai.\n\nRÈGLES GÉNÉRALES :\n• Chaussures de sport avec bon maintien latéral (pas de chaussures de running neutres sur terrain de sport co — elles n'offrent pas le maintien de cheville nécessaire sur les changements de direction).\n• Surface : éviter les sols glissants (parquet humide, herbe mouillée) sans crampons ou semelles adaptées.\n• Repos minimum 48h entre deux séances sollicitant les mêmes groupes musculaires (pattern J1 cardio / J3 renforcement / J5 cardio = respecté dans ce plan).\n• Hydratation : 500 ml dans l'heure précédant la séance, boire toutes les 20 min pendant l'effort (sport co est une activité intermittente mais la sudation est rapide), 500 ml dans l'heure suivante.\n• Échauffement OBLIGATOIRE : les changements de direction sur tissus froids multiplient par 3 le risque d'entorse. Jamais de sprint sans 8 min d'échauffement préalable.\n\nINTENSITÉ :\n• Test de la parole sur le trot : tu dois pouvoir parler en phrases. Sur les sprints : effort max accepté, mais précédé d'accélérations progressives.\n• RPE (échelle de 1 à 10) : trot = 4-5, sprints = 7-8, récupération marche = 2-3. Au-dessus de RPE 9 sur une séance entière = surcharge, réduire la vitesse des sprints.\n• Progresser sur UN facteur à la fois : ne pas augmenter la distance ET la vitesse des sprints la même semaine.\n\nSIGNES DE SURCHARGE (3+ signes simultanément → semaine cutback ou pause) :\n• FC de repos +10 bpm inhabituels le matin\n• Courbatures qui ne s'estompent pas en 72h\n• Baisse de performance notable sans raison (sprints plus lents, réception instable)\n• Sommeil perturbé > 3 nuits consécutives\n• Irritabilité et perte de motivation soudaine\n\nSI SÉANCE MANQUÉE :\n• Moins d'1 semaine de pause : reprendre la même séance 1-2 jours plus tard, décaler la suite de la semaine.\n• 1-2 semaines de pause : reprendre à la semaine précédente.\n• Plus de 2 semaines de pause : reprendre à W(actuelle - 2) pour resécuriser l'adaptation musculo-tendineuse.",
+  "progression_logic": "Progression construite sur 5 principes, alignés sur les recommandations ACSM (American College of Sports Medicine) et les pratiques de préparation physique des sports collectifs (football, basketball, handball) :\n\n(1) RÈGLE DES 10-15% : augmentation hebdomadaire du volume cardio-intermittent limitée à 10-15% maximum, jamais sur deux facteurs simultanément. Distance des sprints progressent de 10 m (W2) à 20 m (W3-W4) puis 30 m (W6-W8). Durée des séquences continues de 4 min (W7 J1) à 5 min (W7-W8).\n\n(2) CUTBACK WEEK W5 : volume réduit de 15% avec introduction d'un travail de réactivité neuro-musculaire (signal réactif). L'adaptation tendineuse (Achille, ligaments collatéraux) est plus lente que l'adaptation musculaire et cardiovasculaire — la semaine allégée est une phase active de renforcement tissulaire.\n\n(3) PROGRESSION DES MOUVEMENTS DU SIMPLE AU COMPLEXE : W1 shuffle lent → W2 back-pedal → W3 cross-over step → W4 agility ladder → W6 nordic curl → W7-W8 séquences continues multi-mouvements. Chaque nouveau mouvement est introduit isolément avant d'être intégré dans un circuit.\n\n(4) RENFORCEMENT PRÉVENTIF CIBLÉ SPORTS CO : nordic curl dès W6 (prévention déchirure ischio-jambière sur sprint, blessure n°1 en sports co), calf raises surélevés dès W3 (prévention entorse cheville), side plank dès W2 (stabilisation rachis sur duels), saut avec réception squat dès W4 (prévention traumatisme LCA sur réception). Ces exercices ne sont pas optionnels — ils réduisent le risque de blessure de 30-50% selon les études ACSM sur la prévention en sport co. Les nordic curls (W6+) et le saut avec réception squat (W4+) apparaissent effectivement dans les exercises de leurs semaines respectives.\n\n(5) TAPERING W8 ET SIMULATION PROGRESSIVE : séances 1 et 2 de W8 allégées pour arriver frais à la séance phare J5 (4 séquences de 5 min). La simulation W8 reproduit les contraintes d'une activité de loisir de 45-60 min. Structure hebdomadaire constante sur les 8 semaines : J1 cardio-coordination / J3 renforcement / J5 cardio-intermittent, avec 48h minimum entre chaque sollicitation pour l'adaptation neuro-musculaire."
+}

@@ -1,0 +1,2107 @@
+{
+  "id": "tennis-expert-tournoi-prep-16sem",
+  "schema_version": 1,
+  "sport": "tennis",
+  "level": "expert",
+  "name": "Tennis tournoi prep — 16 semaines",
+  "duration_weeks": 16,
+  "sessions_per_week": 4,
+  "default_objective": "Préparer un tournoi compétitif (classement 15 et mieux) avec pic de forme ciblé en semaine 16 : maintien des fondamentaux tactiques, pic d'explosivité et de vitesse de déplacement, endurance spécifique aux échanges longs, gestion du stress compétitif.",
+  "assumed_profile": "Joueur classé 15 à seconde série, volume hebdo de pratique tennis 6h minimum, travaille avec un coach ou des partenaires réguliers de niveau équivalent. Accès à un court de tennis (surface selon objectif : terre battue ou dur), salle de musculation ou espace de renforcement avec haltères/élastiques/kettlebell, chronomètre, corde à sauter. Aucune blessure active. Capable d'exécuter mouvements techniques composés (squat, fente, deadlift léger, sprint avec changement de direction).",
+  "summary": "Programme de 16 semaines en 4 blocs structurés : Bloc 1 (W1-W4) construction physique et rafraîchissement technique, Bloc 2 (W5-W8) intensification et développement de la vitesse-force spécifique tennis, Bloc 3 (W9-W12) transfert compétitif avec simulation de match et gestion de la fatigue, Bloc 4 (W13-W16) affûtage, pic de forme et préparation mentale au tournoi. 4 séances par semaine : 1 séance physique force/puissance, 1 séance cardio-spécifique tennis (fractionné intermittent, navettes, shadow), 1 séance technique/tactique sur court, 1 séance mixte (jeu compétitif + renforcement ciblé). Cutback weeks en W4 et W8. Checklist d'autonomie en W16.",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Bilan et fondations — remise en régime",
+      "goal": "Évaluer les qualités physiques actuelles (force, endurance, vitesse de déplacement), réactiver les patterns moteurs fondamentaux, établir les zones d'effort de référence pour les 15 semaines à venir.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Évaluation physique + force fondamentale",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "10 min : 3 min corde à sauter rythme modéré + 10 cercles d'épaules avant-arrière + 10 rotations thoraciques/côté + 10 fentes latérales + 10 squats à vide. Mobilité hanche et cheville 3 min.",
+          "exercises": [
+            {
+              "name": "Back squat ou goblet squat (test charge)",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 150,
+              "notes": "Trouver la charge de travail sur 6 reps à RPE 7 (2-3 reps en réserve). Sera la base de progression des blocs suivants. Profondeur parallèle ou en-dessous, dos neutre, genoux alignés orteils. Repos composé lourd : 2 min 30 minimum (ACSM)."
+            },
+            {
+              "name": "Romanian Deadlift (RDL)",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "Charnière de hanche, dos plat, barre ou haltères le long des cuisses. RPE 7. Charge de référence pour suivi progression. Repos 2 min 30."
+            },
+            {
+              "name": "Dumbbell bench press",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 120,
+              "notes": "Push horizontal. Omoplates rétractées sur le banc, coudes à 45° du corps. RPE 7. Alternative sans banc : pompes pieds surélevés (3×15)."
+            },
+            {
+              "name": "Dumbbell row unilatéral",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 120,
+              "notes": "Pull horizontal. Genou et main sur banc ou chaise stable. Coude tiré vers la hanche, pas vers l'extérieur. RPE 7."
+            },
+            {
+              "name": "Pull-up ou lat pulldown",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Pull vertical. Pull-up en priorité si barre fixe disponible. Sinon lat pulldown machine ou dumbbell pullover 3×12. Coudes vers les hanches en fin de mouvement."
+            },
+            {
+              "name": "Planche ventrale + rotation",
+              "sets": 3,
+              "duration": "30 sec planche + 10 rotations lentes",
+              "rest_seconds": 60,
+              "notes": "Core en fin de séance. Planche 30 sec, puis sans poser les genoux effectuer 10 rotations d'épaule lentes (thread the needle modifié). Anti-flexion + rotation = spécifique tennis."
+            }
+          ],
+          "cooldown": "5 min marche + étirements statiques : ischio-jambiers 30 sec/côté, quadriceps 30 sec/côté, pectoraux 30 sec, dorsaux 30 sec."
+        },
+        {
+          "day": 3,
+          "name": "Cardio spécifique tennis — évaluation endurance",
+          "duration_minutes": 60,
+          "type": "interval",
+          "warmup": "8 min : corde à sauter 3 min + shuffle latéral sur ligne de fond 2 min + 10 accélérations courtes 5 m + mobilité cheville et hanche dynamique.",
+          "exercises": [
+            {
+              "name": "Test navettes 20 m (Beep test tronqué)",
+              "sets": 1,
+              "duration": "8 min",
+              "rest_seconds": 0,
+              "notes": "Navettes 20 m aller-retour au rythme audio (appli Beep test) ou à allure maximale soutenue 8 min. Noter le palier atteint ou la distance couverte — sert de référence VO2max relative."
+            },
+            {
+              "name": "Récupération active",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": 0,
+              "notes": "Marche ou trot très lent. FC doit redescendre sous 120 bpm avant le bloc suivant."
+            },
+            {
+              "name": "Sprint-récupération tennis (RSA)",
+              "sets": 8,
+              "duration": "10 sec sprint maximal + 20 sec marche",
+              "rest_seconds": 0,
+              "notes": "Sprints latéraux ou diagonaux depuis le centre du court (ou espace 10 m). Simule les déplacements courts-explosifs d'un échange. RPE 9 sur les sprints, RPE 2 sur les récups. Ratio work/rest 1:2."
+            },
+            {
+              "name": "Shadow tennis — déplacements complets",
+              "sets": 3,
+              "duration": "90 sec effort + 60 sec récup",
+              "rest_seconds": 60,
+              "notes": "Sans balle, reproduire les déplacements d'un échange réel (coup droit, revers, approche filet, recentrage). Qualité des appuis, split-step systématique. RPE 7-8 sur les blocs."
+            }
+          ],
+          "cooldown": "5 min marche + étirements dynamiques doux : fentes hip flexor 30 sec/côté, rotation thoracique assise 10/côté."
+        },
+        {
+          "day": 5,
+          "name": "Technique sur court — diagnostic",
+          "duration_minutes": 75,
+          "type": "technique",
+          "warmup": "10 min : jonglage raquette-balle 2 min + mini-tennis au filet 5 min + rallyes fond de court progressifs 3 min.",
+          "exercises": [
+            {
+              "name": "Rallyes fond de court — cadence et profondeur",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Échanges croisés et en ligne avec partenaire ou coach. Focus : profondeur des balles (zone des 2 derniers mètres), constance 20 échanges sans faute volontaire. Diagnostic du niveau actuel de régularité."
+            },
+            {
+              "name": "Service — série à vitesse modérée",
+              "sets": 4,
+              "reps": "10 services",
+              "rest_seconds": 45,
+              "notes": "10 premiers services à 70% de vitesse, focus placement (T, corps, extérieur). 10 services deuxième balle. Identifier les tendances : double faute, pied dans le carré, fautes à l'élan."
+            },
+            {
+              "name": "Return de service — timing",
+              "sets": 3,
+              "reps": "15 returns",
+              "rest_seconds": 60,
+              "notes": "Partenaire sert à vitesse progressive. Focus : split-step avant l'impact adversaire, lecture de la balle tôt, raccourcir l'élan sur les services rapides."
+            },
+            {
+              "name": "Jeu de points 4-4 — lecture tactique",
+              "sets": 3,
+              "duration": "8 min chaque",
+              "rest_seconds": 120,
+              "notes": "Sets express 8 jeux à 15-15. Observer : types de fautes directes, longueur d'échange avant la faute, zones de vulnérabilité adverse. Diagnostique tactique à noter post-séance."
+            }
+          ],
+          "cooldown": "5 min étirements épaule (pendule, cross-arm) + avant-bras (pronation-supination passive) + mollets 30 sec/côté."
+        },
+        {
+          "day": 7,
+          "name": "Mobilité et prévention — épaule, cheville, hanche",
+          "duration_minutes": 45,
+          "type": "mobility",
+          "warmup": "5 min marche + rotations cervicales douces + cercles d'épaules 10/sens.",
+          "exercises": [
+            {
+              "name": "Rotator cuff — external rotation avec élastique",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 45,
+              "notes": "Coude plaqué au corps, rotation externe contre résistance légère. Prévention conflit sous-acromial tennis. Indispensable avant toute intensification de volume service."
+            },
+            {
+              "name": "Wall slides",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 40,
+              "notes": "Dos au mur, avant-bras contre le mur, faire glisser les bras vers le haut en maintenant le contact poignets-coudes-épaules. Mobilité thoracique + activation des fixateurs d'omoplate."
+            },
+            {
+              "name": "Hip 90-90 stretch",
+              "sets": 2,
+              "duration": "60 sec par côté",
+              "rest_seconds": 30,
+              "notes": "Assis au sol, une jambe en rotation interne, l'autre en rotation externe, bassin neutre. Déverrouille les hanches pour les changements de direction."
+            },
+            {
+              "name": "Ankle CARs (Controlled Articular Rotations)",
+              "sets": 2,
+              "reps": "10 cercles par cheville",
+              "rest_seconds": 20,
+              "notes": "Rotation active maximale de la cheville dans toute son amplitude. Prévention entorse de cheville — drapeau rouge n°1 sports de raquette."
+            },
+            {
+              "name": "Thoracic spine extension sur rouleau ou serviette roulée",
+              "sets": 2,
+              "duration": "60 sec",
+              "rest_seconds": 30,
+              "notes": "Allongé sur le dos, rouleau sous les vertèbres thoraciques (T4-T8). Laisser la gravité ouvrir la mobilité d'extension. Améliore l'amplitude du service et de l'overhead."
+            },
+            {
+              "name": "Banded clamshell + abduction hip",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 30,
+              "notes": "Élastique au-dessus des genoux. Prévention ITBS et stabilité latérale pour les appuis sur terre battue."
+            }
+          ],
+          "cooldown": "5 min respiration diaphragmatique allongé. Relâchement complet."
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Construction — charge progressive et technique service",
+      "goal": "Augmenter le volume de travail physique de 10-15%, approfondir le travail sur la cinématique du service. RPE cible sur les composés : 7-8.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force composés — progression linéaire",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "10 min identique à W1 J1.",
+          "exercises": [
+            {
+              "name": "Back squat ou goblet squat",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 150,
+              "notes": "Ajouter 2.5-5 kg vs W1 si la forme était parfaite à RPE 7. Sinon même charge. Logique de progression linéaire sur les composés."
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 4,
+              "reps": "8",
+              "rest_seconds": 150,
+              "notes": "Progression +2.5-5 kg si RPE W1 ≤ 7. Concentrique contrôlé 2 sec, excentrique 3 sec."
+            },
+            {
+              "name": "Dumbbell bench press",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 120,
+              "notes": "Même charge ou légère progression. Alternative sans banc : pompes pieds surélevés 3×15."
+            },
+            {
+              "name": "Dumbbell row unilatéral",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Pull-up ou lat pulldown ou dumbbell pullover",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Pull vertical obligatoire. Dumbbell pullover 3×12 si pas de barre ni machine."
+            },
+            {
+              "name": "Overhead press dumbbell",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 120,
+              "notes": "Push vertical. Coudes légèrement devant le plan frontal, ne pas hyperextender les lombaires. Spécifique à la puissance du service et de l'overhead smash."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "40 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin de séance. Progression +10 sec vs W1."
+            }
+          ],
+          "cooldown": "5 min marche + étirements ischio-jambiers, quadriceps, pectoraux, dorsaux 30 sec/groupe."
+        },
+        {
+          "day": 3,
+          "name": "Cardio intermittent tennis — RSA progressif",
+          "duration_minutes": 60,
+          "type": "interval",
+          "warmup": "8 min : corde à sauter 3 min + shuffles + sprints 5 m × 6.",
+          "exercises": [
+            {
+              "name": "Navettes tennis 4 cônes (T-drill)",
+              "sets": 6,
+              "duration": "30 sec effort max + 90 sec récup",
+              "rest_seconds": 90,
+              "notes": "4 cônes en T (5 m devant, 2.5 m gauche-droite-gauche). Départ du bas, sprint au cône central, shuffle gauche-droite, retour. Simule les changements de direction d'un échange. RPE 9 sur l'effort. Ratio 1:3."
+            },
+            {
+              "name": "Spider drill court de tennis",
+              "sets": 4,
+              "duration": "20 sec effort + 40 sec récup",
+              "rest_seconds": 40,
+              "notes": "Depuis le centre du fond de court, toucher les 6 balles/cônes placés aux 4 coins + milieu filet × 2, revenir au centre entre chaque. RPE 9. Ratio 1:2."
+            },
+            {
+              "name": "Shadow tennis cadencé",
+              "sets": 4,
+              "duration": "2 min effort + 1 min récup",
+              "rest_seconds": 60,
+              "notes": "Partenaire ou coach donne les directions verbalement (coup droit, revers, filet, lob). Split-step systématique. RPE 7-8. Travail de décision + déplacement."
+            }
+          ],
+          "cooldown": "6 min marche + étirements mollets, hip flexors, épaules."
+        },
+        {
+          "day": 5,
+          "name": "Technique sur court — service et retour",
+          "duration_minutes": 75,
+          "type": "technique",
+          "warmup": "10 min mini-tennis + rallyes progressifs.",
+          "exercises": [
+            {
+              "name": "Service — exercice du trophée",
+              "sets": 4,
+              "reps": "12 services",
+              "rest_seconds": 60,
+              "notes": "Travail de la position trophée : poids sur le pied arrière, raquette en supination, balle à la hauteur optimale. Finir 6 services au T, 6 services corps. Focus cinématique, pas vitesse. Prendre vidéo si possible."
+            },
+            {
+              "name": "Service — 1re balle à 85%",
+              "sets": 3,
+              "reps": "15 services",
+              "rest_seconds": 60,
+              "notes": "15 premières balles à 85% vitesse max. Compter le ratio 1re balle (objectif ≥ 60%). Note les zones cibles et les résultats."
+            },
+            {
+              "name": "Rallyes — coup droit croisé long",
+              "sets": 3,
+              "duration": "5 min chaque",
+              "rest_seconds": 90,
+              "notes": "Échanges croisés coup droit uniquement. Objectif 25 balles consécutives dans la zone de profondeur (2 derniers mètres). Si 25 atteint, ajouter top-spin pour élever la trajectoire."
+            },
+            {
+              "name": "Revers — accélération sur courte balle",
+              "sets": 3,
+              "reps": "20 balles",
+              "rest_seconds": 60,
+              "notes": "Coach ou partenaire lance une courte balle mi-court, joueur court et accélère le revers en ligne. Travail déclenchement + accélération. Simulation de fin d'échange."
+            }
+          ],
+          "cooldown": "Étirements épaule (pendule 2 min/côté), avant-bras extenseurs/fléchisseurs 30 sec/côté, mollets 30 sec/côté."
+        },
+        {
+          "day": 7,
+          "name": "Mixte — jeu compétitif + renforcement préventif",
+          "duration_minutes": 80,
+          "type": "mixed",
+          "warmup": "10 min : mini-tennis + rallyes + 6 services de mise en route.",
+          "exercises": [
+            {
+              "name": "Jeu de match simulé — sets de 6 jeux",
+              "sets": 2,
+              "duration": "25 min par set",
+              "rest_seconds": 300,
+              "notes": "Deux sets complets de 6 jeux avec tie-break si 5-5. Score réel, pression de match. Observer : gestion des points importants, choix tactique sous fatigue. 5 min de pause entre sets."
+            },
+            {
+              "name": "External rotation coiffe des rotateurs élastique",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 45,
+              "notes": "Immédiatement après le jeu, pendant que les muscles sont encore chauds. Prévention épaule. Résistance légère."
+            },
+            {
+              "name": "Wrist curls + reverse wrist curls",
+              "sets": 2,
+              "reps": "15 chaque direction",
+              "rest_seconds": 30,
+              "notes": "Haltère léger (1-2 kg). Flexion-extension du poignet assis, avant-bras sur la cuisse. Prévention épicondylite (tennis elbow). Incontournable chez le joueur expert."
+            }
+          ],
+          "cooldown": "10 min : étirements complets épaule, avant-bras, hanche, mollets. Glace sur épaule de jeu si sensations de chaleur (10 min)."
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Intensification — puissance et jeu de jambes",
+      "goal": "Introduire le travail de puissance explosive (pliométrie basse intensité), augmenter la cadence des déplacements spécifiques tennis. Volume force +10% vs W2.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force + introduction pliométrie",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "12 min : corde à sauter 3 min + mobilité dynamique complète + 6 sauts verticaux légers d'activation.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "Passage de 6 à 5 reps avec charge légèrement augmentée (+2.5-5 kg). Progression vers la force maximale."
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 4,
+              "reps": "6",
+              "rest_seconds": 150,
+              "notes": "Réduction à 6 reps, charge augmentée. RPE 8."
+            },
+            {
+              "name": "Lateral lunge avec haltère",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 90,
+              "notes": "Fente latérale avec haltère goblet. Cible adducteurs et abducteurs, déplacement latéral spécifique tennis. Genou aligné orteils, hanche en arrière."
+            },
+            {
+              "name": "Dumbbell bench press",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Moins de reps, plus de charge. RPE 8."
+            },
+            {
+              "name": "Pull-up ou lat pulldown",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Box jump ou saut vertical",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 90,
+              "notes": "Pliométrie basse intensité : saut sur box 30-40 cm (ou saut vertical) avec atterrissage silencieux (absorption). Repos 90 sec complet entre séries — qualité > quantité sur pliométrie. Ne pas faire fatigué."
+            },
+            {
+              "name": "Bird-dog avec extension élastique",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 45,
+              "notes": "Core anti-rotation avec élastique léger fixé à un point d'ancrage latéral. Simule la résistance du tronc lors des frappes."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 5 min."
+        },
+        {
+          "day": 3,
+          "name": "Cardio — interval long (simulation endurance match)",
+          "duration_minutes": 65,
+          "type": "interval",
+          "warmup": "8 min : corde à sauter + shuffles + montées de genoux.",
+          "exercises": [
+            {
+              "name": "Interval pyramidal tennis",
+              "sets": 1,
+              "duration": "22 min",
+              "rest_seconds": 0,
+              "notes": "Format pyramidal : 15 sec sprint + 30 sec récup → 30 sec sprint + 60 sec récup → 45 sec sprint + 90 sec récup → 30 sec sprint + 60 sec récup → 15 sec sprint + 30 sec récup. Répéter la pyramide 2 fois sans pause entre pyramides. Sprints sur navettes ou shadow. RPE 9 sur sprints, RPE 2 sur récup."
+            },
+            {
+              "name": "Endurance fondamentale — trot",
+              "sets": 1,
+              "duration": "12 min",
+              "rest_seconds": 0,
+              "notes": "Trot en zone 2 (peut parler en phrases). Simule la récupération entre jeux au cours d'un long match. FC cible : 65-75% FCmax."
+            },
+            {
+              "name": "Sprint latéraux avec freinage",
+              "sets": 6,
+              "duration": "8 sec effort + 22 sec récup",
+              "rest_seconds": 22,
+              "notes": "Sprint latéral 5 m, freinage brutal, repositionnement. Développe l'excentrique des ischio-jambiers et adducteurs — zone à risque sur les arrêts brusques. RPE 9."
+            }
+          ],
+          "cooldown": "7 min marche + étirements ischio-jambiers debout 30 sec/côté + mollets 30 sec/côté."
+        },
+        {
+          "day": 5,
+          "name": "Technique — tactique et finition",
+          "duration_minutes": 80,
+          "type": "technique",
+          "warmup": "10 min mini-tennis + rallyes + services légers.",
+          "exercises": [
+            {
+              "name": "Approche-volée-smash (AVS)",
+              "sets": 4,
+              "reps": "12 séquences",
+              "rest_seconds": 60,
+              "notes": "Coach envoie courte balle → joueur approche (drive en ligne) → coach lobe → joueur smashe. Travail de la séquence complète en 3 temps. Finition au filet : incontournable chez le joueur de tournoi."
+            },
+            {
+              "name": "Jeu en situation — construction + finition",
+              "sets": 3,
+              "duration": "8 min",
+              "rest_seconds": 120,
+              "notes": "Jeu de points à partir de mi-court. Objectif : provoquer la courte balle et finir au filet. Compter le ratio d'approches réussies."
+            },
+            {
+              "name": "Drop shot — sensation de tranche",
+              "sets": 3,
+              "reps": "15 balles",
+              "rest_seconds": 45,
+              "notes": "Depuis le fond de court ou mi-court, amorti brossé. Toucher balle côté bas, raquette passe sous la balle. Atterrissage court + rebond latéral. Arme tactique sur terre battue."
+            }
+          ],
+          "cooldown": "Étirements épaule + avant-bras + hanche 8 min total."
+        },
+        {
+          "day": 7,
+          "name": "Mixte — match compétitif + renforcement coiffe",
+          "duration_minutes": 85,
+          "type": "mixed",
+          "warmup": "10 min échauffement court complet.",
+          "exercises": [
+            {
+              "name": "Match simulé full score",
+              "sets": 1,
+              "duration": "50 min",
+              "rest_seconds": 0,
+              "notes": "Match en 2 sets gagnants, tie-break à 6-6, super tie-break si 1-1. Score complet avec temps entre points (20 sec) et changements de côté (90 sec). Pression maximale de simulation de tournoi."
+            },
+            {
+              "name": "External rotation + internal rotation élastique",
+              "sets": 3,
+              "reps": "15 par direction et par côté",
+              "rest_seconds": 40,
+              "notes": "Prévention épaule post-match. Rotation externe et interne contrôlées. Résistance légère, amplitude complète."
+            }
+          ],
+          "cooldown": "10 min étirements complets. Glace épaule de service 10 min si sensation de chaleur ou fatigue articulaire."
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Cutback semaine 1 — consolidation et récupération active",
+      "goal": "Réduire le volume de 15% pour permettre la supercompensation. Maintenir la qualité technique. Préparer le corps à la phase d'intensification du Bloc 2.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force allégée — maintien",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "10 min standard.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "Même charge que W3 mais 1 série en moins. RPE 7 seulement. Semaine de récupération, ne pas chercher à progresser."
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 150,
+              "notes": "Même logique : -1 série, même charge."
+            },
+            {
+              "name": "Dumbbell bench press",
+              "sets": 2,
+              "reps": "10",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Pull-up",
+              "sets": 2,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Core : planche + side plank",
+              "sets": 2,
+              "duration": "30 sec ventrale + 20 sec chaque côté",
+              "rest_seconds": 60
+            }
+          ],
+          "cooldown": "5 min étirements."
+        },
+        {
+          "day": 3,
+          "name": "Cardio léger — zone 2 et agilité douce",
+          "duration_minutes": 45,
+          "type": "endurance",
+          "warmup": "8 min.",
+          "exercises": [
+            {
+              "name": "Trot zone 2",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "FC 65-75% FCmax, allure confortable. Récupération active, ne pas monter en intensité."
+            },
+            {
+              "name": "Ladder drills pieds",
+              "sets": 4,
+              "duration": "30 sec",
+              "rest_seconds": 30,
+              "notes": "Échelle de vitesse au sol (ou marquages au sol). Exercices : one-in each, lateral shuffle, Ickey shuffle. Travail coordination pieds sans impact élevé."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 5 min."
+        },
+        {
+          "day": 5,
+          "name": "Technique — service et précision",
+          "duration_minutes": 60,
+          "type": "technique",
+          "warmup": "10 min mini-tennis.",
+          "exercises": [
+            {
+              "name": "Service — placement par zones",
+              "sets": 4,
+              "reps": "10 services",
+              "rest_seconds": 60,
+              "notes": "Séries de 10 : 5 au T, 5 sur le corps ou extérieur, côté déuce puis côté avantage. Compter le ratio dans la zone (objectif 7/10 à 80% vitesse). Séance qualitative, volume réduit."
+            },
+            {
+              "name": "Rallyes croisés fond de court",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Échanges libres réguliers. Pas de consigne spécifique, juste maintenir le niveau de frappe. Détente tennis."
+            }
+          ],
+          "cooldown": "Étirements épaule + avant-bras 6 min."
+        },
+        {
+          "day": 7,
+          "name": "Mobilité et récupération complète",
+          "duration_minutes": 40,
+          "type": "mobility",
+          "warmup": "5 min marche.",
+          "exercises": [
+            {
+              "name": "Routine mobilité complète",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "Enchaîner sans interruption : hip 90-90 2 min/côté → thoracic spine extension sur rouleau 2 min → ankle CARs 10/côté → wall slides 15 reps → rotator cuff external rotation élastique léger 15/côté → étirements ischio-jambiers 30 sec/côté → étirements pectoraux 30 sec → étirements mollets 30 sec/côté. Aucune intensité, pur déverrouillage articulaire."
+            }
+          ],
+          "cooldown": "5 min respiration abdominale allongée."
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Bloc 2 — Puissance et vitesse explosive",
+      "goal": "Développer la puissance de déplacement et de frappe. Introduction des sauts pliométriques dirigés et des résistances en exercices de vitesse. Volume force retour au niveau W3 +10%.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force-puissance — complexes",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "12 min : corde à sauter 3 min + mobilité + 6 box jumps légers.",
+          "exercises": [
+            {
+              "name": "Back squat + box jump (complexe)",
+              "sets": 4,
+              "reps": "4 squats lourds + 4 box jumps",
+              "rest_seconds": 180,
+              "notes": "Post-activation potentiation (PAP) : 4 squats à RPE 8, poser la barre, immédiatement 4 box jumps explosifs. La contraction isométrique lourde potentialise la puissance explosive. Repos 3 min entre séries (NSCA : repos complet sur pliométrie haute intensité). Ne pas réduire le repos."
+            },
+            {
+              "name": "RDL + sprint 10 m (complexe)",
+              "sets": 4,
+              "reps": "4 RDL lourds + 1 sprint 10 m",
+              "rest_seconds": 180,
+              "notes": "Même logique PAP : 4 RDL à RPE 8, puis sprint explosif 10 m. Développe la puissance des ischio-jambiers/fessiers — moteurs du premier pas tennis."
+            },
+            {
+              "name": "Lateral band walk + lateral bound",
+              "sets": 3,
+              "reps": "10 pas avec élastique + 5 bonds latéraux",
+              "rest_seconds": 90,
+              "notes": "Lateral band walk 10 pas/côté avec élastique aux chevilles, puis immédiatement 5 bonds latéraux unilatéraux (saut sur un pied, réception autre pied). Développe la puissance latérale spécifique tennis."
+            },
+            {
+              "name": "Overhead press dumbbell",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Dumbbell row",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Pallof press",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 60,
+              "notes": "Anti-rotation : élastique ou câble fixé latéralement, bras tendus devant soi, résister à la rotation. Cible le core en résistance rotatoire — directement transférable aux frappes de fond de court."
+            }
+          ],
+          "cooldown": "6 min marche + étirements complets."
+        },
+        {
+          "day": 3,
+          "name": "Cardio-puissance — sprint résisté et RSA",
+          "duration_minutes": 65,
+          "type": "interval",
+          "warmup": "10 min : corde à sauter rapide 2 min + drills agilité pieds + 6 accélérations progressives.",
+          "exercises": [
+            {
+              "name": "Sprint résisté avec élastique",
+              "sets": 8,
+              "duration": "8 sec effort + 52 sec récup",
+              "rest_seconds": 52,
+              "notes": "Élastique autour de la taille, partenaire résiste à l'arrière. Sprint sur 10-15 m. L'élastique force à chercher plus de puissance par pas. RPE 9. Ratio 1:6 pour qualité maximale."
+            },
+            {
+              "name": "T-drill chronométré",
+              "sets": 6,
+              "reps": "1 passage",
+              "rest_seconds": 90,
+              "notes": "T-drill standard : noter le temps. Objectif pour un joueur expert : < 9 sec. Repos 90 sec entre passages. Compétition vs soi-même."
+            },
+            {
+              "name": "Shadow boxing tennis — intensité haute",
+              "sets": 4,
+              "duration": "45 sec effort + 45 sec récup",
+              "rest_seconds": 45,
+              "notes": "Shadow à intensité maximale : coup droit, revers, lob, amortit, smash, retour centre. RPE 9. Split-step avant chaque coup. Ratio 1:1."
+            }
+          ],
+          "cooldown": "7 min marche + étirements mollets excentriques + ischio-jambiers."
+        },
+        {
+          "day": 5,
+          "name": "Technique — frappe offensive et schémas de jeu",
+          "duration_minutes": 80,
+          "type": "technique",
+          "warmup": "10 min progressif.",
+          "exercises": [
+            {
+              "name": "Inside-out forehand — coup droit en around-the-post",
+              "sets": 3,
+              "reps": "20 balles",
+              "rest_seconds": 60,
+              "notes": "Balle envoyée sur le revers, joueur contourne et frappe un coup droit inside-out dans le couloir déuce. Travail du coup offensif signature des joueurs de tournoi. Prise en épaisse."
+            },
+            {
+              "name": "Service + 1 + 2 (schéma en 3 coups)",
+              "sets": 4,
+              "reps": "10 échanges",
+              "rest_seconds": 60,
+              "notes": "Service placé (T ou extérieur), coup 2 prévu (coup droit croisé ou revers en ligne selon la réponse anticipée), coup 3 de finition. Travail de la construction depuis le service. Compter les points gagnés sur coup 1 ou 2 (objectif 6/10)."
+            },
+            {
+              "name": "Slice revers en attaque",
+              "sets": 3,
+              "reps": "15 balles",
+              "rest_seconds": 45,
+              "notes": "Revers slicé court et bas, forçant l'adversaire à lever la balle. Utilisé comme préparation d'approche filet. Ne pas slicer défensif, slicer avec intention."
+            }
+          ],
+          "cooldown": "Étirements bras + épaule + hanche 8 min."
+        },
+        {
+          "day": 7,
+          "name": "Mixte — match avec contraintes tactiques",
+          "duration_minutes": 90,
+          "type": "mixed",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Match avec contrainte : serveur-volleyeur obligatoire",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "Après chaque service (1re et 2e), monter au filet obligatoirement. Si peur du filet = zone de confort à briser. Objectif : 40% de points gagnés au filet. Travail de la prise de risque tactique."
+            },
+            {
+              "name": "Match libre full score",
+              "sets": 1,
+              "duration": "35 min",
+              "rest_seconds": 0,
+              "notes": "Set complet en score réel. Appliquer les schémas tactiques travaillés en semaine. Observer la capacité à maintenir le plan de jeu sous pression."
+            },
+            {
+              "name": "Wrist curls + pronation-supination légère",
+              "sets": 2,
+              "reps": "20 par sens",
+              "rest_seconds": 30,
+              "notes": "Prévention épicondylite. Haltère 1 kg maximum. Systématique après chaque jour de jeu intensif."
+            }
+          ],
+          "cooldown": "10 min étirements complets. Glace coude/épaule si nécessaire."
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Puissance + endurance spécifique match",
+      "goal": "Allonger la capacité à maintenir l'intensité sur un match long (2h+). Travail des 3e set et tie-break sous fatigue. Volume cardio +12% vs W5.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force-puissance — progression complexes",
+          "duration_minutes": 75,
+          "type": "strength",
+          "warmup": "12 min.",
+          "exercises": [
+            {
+              "name": "Back squat + box jump (complexe)",
+              "sets": 4,
+              "reps": "3 squats + 5 box jumps",
+              "rest_seconds": 180,
+              "notes": "Moins de squats, plus de box jumps. La puissance est l'objectif. Hauteur de box +5-10 cm si possible. RPE squat : 8-9."
+            },
+            {
+              "name": "Bulgarian split squat",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 120,
+              "notes": "Pied arrière sur banc, descente contrôlée 3 sec. Unilateral : détecte et corrige les asymétries G/D, fréquentes chez les joueurs dominants d'un côté. Haltères dans les mains."
+            },
+            {
+              "name": "RDL unilatéral",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 120,
+              "notes": "Équilibre sur une jambe, descente haltère vers le sol, dos plat. Renforce les ischio-jambiers et stabilisateurs de cheville. Prévention claquage ischio sur sprints latéraux."
+            },
+            {
+              "name": "Cable ou élastique chop (diagonal)",
+              "sets": 3,
+              "reps": "12 par sens",
+              "rest_seconds": 90,
+              "notes": "Mouvement diagonal de haut en bas ou bas en haut avec élastique ou câble. Simule la rotation du tronc dans les frappes. Core rotatoire spécifique tennis."
+            },
+            {
+              "name": "Pull-up",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Planche ventrale + tap épaule",
+              "sets": 3,
+              "duration": "40 sec",
+              "rest_seconds": 60,
+              "notes": "En position de planche, toucher alternativement l'épaule opposée avec la main sans bouger les hanches. Anti-rotation dynamique."
+            }
+          ],
+          "cooldown": "5 min marche + étirements."
+        },
+        {
+          "day": 3,
+          "name": "Endurance match — simulation long match",
+          "duration_minutes": 70,
+          "type": "interval",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Simulation endurance échange — long RSA",
+              "sets": 1,
+              "duration": "35 min",
+              "rest_seconds": 0,
+              "notes": "Format : 8 sec d'effort intense (shadow ou navettes) + 20 sec marche récup = 1 point. 4 points = 1 jeu (2 min effort actif). 6 jeux = 1 set (12 min effort). Pause de 2 min entre sets. Faire 2-3 sets selon forme. Simule la structure temporelle d'un match. FC cible : 80-90% FCmax sur les points."
+            },
+            {
+              "name": "Endurance fond — trot zone 2",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Retour en zone 2 (65-75% FCmax) après la simulation haute intensité. Développe la récupération entre les efforts de haute intensité."
+            }
+          ],
+          "cooldown": "7 min marche + étirements complets."
+        },
+        {
+          "day": 5,
+          "name": "Technique — retour de service et filet",
+          "duration_minutes": 80,
+          "type": "technique",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Retour de service — variation de placement",
+              "sets": 4,
+              "reps": "20 returns",
+              "rest_seconds": 60,
+              "notes": "Partenaire sert à 80-90% vitesse. Alternance : 5 returns croisés, 5 en ligne, 5 amortis, 5 liftés profonds. Travailler tous les retours, pas seulement les confortables."
+            },
+            {
+              "name": "Jeu de volée — exercice des 3 balles",
+              "sets": 3,
+              "reps": "15 séquences",
+              "rest_seconds": 60,
+              "notes": "Au filet : coach envoie 3 balles successives rapides sur 3 côtés différents. Volée de revers, volée de coup droit, smash ou lob. Travail de réactivité et placement des pieds au filet."
+            },
+            {
+              "name": "Super tie-break sous pression (10 points)",
+              "sets": 3,
+              "duration": "10-15 min",
+              "rest_seconds": 120,
+              "notes": "Super tie-break à 10 points, changer d'adversaire si possible. Pression maximale sur un format court. Travail de la gestion mentale des moments décisifs."
+            }
+          ],
+          "cooldown": "Étirements épaule + avant-bras 8 min."
+        },
+        {
+          "day": 7,
+          "name": "Mixte — match 3 sets avec analyse",
+          "duration_minutes": 95,
+          "type": "mixed",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Match 3 sets gagnants",
+              "sets": 1,
+              "duration": "70 min",
+              "rest_seconds": 0,
+              "notes": "Match complet 3 sets avec score réel. Si possible, enregistrer vidéo pour analyse. Observer spécifiquement : niveau d'énergie en 3e set, qualité des 2e balles en fin de match, exécution sous pression des schémas travaillés."
+            },
+            {
+              "name": "Analyse post-match",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Remplir fiche tactique : 1) statistiques service (1re balle, double fautes), 2) type de fautes directes (revers, service, coup droit ?), 3) situations de break (sauvés/concédés). Bâtir le plan de W7."
+            }
+          ],
+          "cooldown": "10 min étirements. Glace épaule si besoin."
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "theme": "Vitesse de jeu et points courts",
+      "goal": "Améliorer la capacité à dominer les échanges courts (1-4 coups). Travail du premier coup gagnant et de l'accélération de balle. Maintenir le volume cardio, charger la qualité.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force-explosivité maximale",
+          "duration_minutes": 70,
+          "type": "strength",
+          "warmup": "12 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "3",
+              "rest_seconds": 180,
+              "notes": "5 séries de 3 reps à RPE 8-9. Phase de force maximale. Chaque rep explosive à la montée. Repos 3 min (ACSM/NSCA composé lourd). Ne pas compromettre la forme technique."
+            },
+            {
+              "name": "Power clean ou kettlebell swing",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "Power clean si technique solide, sinon kettlebell swing heavy (24-32 kg). Mouvement de hanche explosif, triple extension. Directement transférable à la puissance du premier pas. Repos 2 min 30."
+            },
+            {
+              "name": "Plyometric push-up",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Pompe avec décollage des mains. Explosive à la montée, absorption souple à la descente. Développe la puissance du push horizontal — transfert vers la frappe de volée."
+            },
+            {
+              "name": "Pull-up",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Single-leg squat (pistol partiel)",
+              "sets": 3,
+              "reps": "6 par jambe",
+              "rest_seconds": 90,
+              "notes": "Descente sur 1 jambe jusqu'à la profondeur confortable, retour explosif. Asymétrie et force unilatérale. Alternative : descente sur box basse."
+            },
+            {
+              "name": "Chop diagonal avec médecine ball",
+              "sets": 3,
+              "reps": "10 par sens",
+              "rest_seconds": 60,
+              "notes": "Médecine ball 3-5 kg. Rotation explosive du tronc. Simule l'engagement du core dans une frappe violente."
+            }
+          ],
+          "cooldown": "6 min + étirements."
+        },
+        {
+          "day": 3,
+          "name": "Cardio — sprints courts tennis RSA haute intensité",
+          "duration_minutes": 60,
+          "type": "interval",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "RSA court — 6 sec/24 sec",
+              "sets": 12,
+              "duration": "6 sec sprint + 24 sec récup",
+              "rest_seconds": 24,
+              "notes": "Sprints de 6 sec sur navettes 5 m ou shadow, départs variés (debout, accroupi, dos à la direction). Ratio 1:4. Développe la capacité à répéter des sprints maximaux — échanges courts explosifs de tournoi. RPE 10 sur les sprints."
+            },
+            {
+              "name": "Pause 3 min",
+              "sets": 1,
+              "duration": "3 min",
+              "rest_seconds": 0,
+              "notes": "Récupération passive. FC < 130 bpm avant de continuer."
+            },
+            {
+              "name": "RSA court — deuxième bloc",
+              "sets": 10,
+              "duration": "6 sec sprint + 24 sec récup",
+              "rest_seconds": 24,
+              "notes": "Deuxième bloc. Observer la diminution de la vitesse de sprint : si chute > 10% vs début = limite atteinte pour aujourd'hui, arrêter. Qualité > quantité."
+            }
+          ],
+          "cooldown": "7 min marche + étirements."
+        },
+        {
+          "day": 5,
+          "name": "Technique — service percutant et coup droit offensif",
+          "duration_minutes": 80,
+          "type": "technique",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Service — accélération maximale",
+              "sets": 5,
+              "reps": "10 services",
+              "rest_seconds": 60,
+              "notes": "10 services à vitesse maximale (1re balle pure). Mesurer ou estimer la vitesse. Objectif : 180-200 km/h pour une 1re de service de haut niveau. Focus : pronation de l'avant-bras au contact, extension complète du corps."
+            },
+            {
+              "name": "Coup droit inside-in",
+              "sets": 3,
+              "reps": "20 balles",
+              "rest_seconds": 60,
+              "notes": "Balle envoyée dans le couloir déuce, coup droit à grande vitesse en ligne (inside-in). Coup pour couper le court et gagner le point directement. Rotation de l'épaule complète."
+            },
+            {
+              "name": "Jeu libre — domination offensive",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "Jeu libre avec objectif tactique : essayer de gagner chaque point en 4 coups maximum. Forcer le jeu offensif même si risqué. Compter le ratio de points gagnés en 1-4 coups (objectif 55%+)."
+            }
+          ],
+          "cooldown": "Étirements bras, épaule, hanche 8 min."
+        },
+        {
+          "day": 7,
+          "name": "Mixte — pratique compétitive avec jeu au filet",
+          "duration_minutes": 85,
+          "type": "mixed",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Jeu en 8 — compétition au filet",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Terrain réduit aux carreaux de service. Jeu de volées, demi-volées, amortis uniquement. Développe le toucher de balle et les réflexes au filet. Format compétitif (score)."
+            },
+            {
+              "name": "Match simulé 2 sets",
+              "sets": 1,
+              "duration": "45 min",
+              "rest_seconds": 0,
+              "notes": "Match complet. Appliquer la tactique des points courts travaillée en W7 : chercher à finir vite, monter au filet après un bon échange de 2-3 coups."
+            },
+            {
+              "name": "Renforcement préventif",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "External rotation coiffe 3×15/côté + wrist curls 2×20 + clamshell 2×15/côté. Systématique, inchangé depuis W1."
+            }
+          ],
+          "cooldown": "10 min étirements complets."
+        }
+      ]
+    },
+    {
+      "week_number": 8,
+      "theme": "Cutback semaine 2 — récupération pré-Bloc 3",
+      "goal": "Volume réduit de 15-20% pour récupération complète avant le Bloc 3 de simulation compétitive. Maintenir la qualité, supprimer la quantité.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force — maintien allégé",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 3,
+              "reps": "3",
+              "rest_seconds": 150,
+              "notes": "Même charge que W7, -2 séries. RPE 7 max. Ne pas tenter de PR cette semaine."
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 150,
+              "notes": "Retour à 6 reps, même charge W6. Récupération des ischio-jambiers."
+            },
+            {
+              "name": "Dumbbell bench press",
+              "sets": 2,
+              "reps": "10",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Pull-up",
+              "sets": 2,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Core : planche + pallof press",
+              "sets": 2,
+              "duration": "30 sec planche + 10 pallof/côté",
+              "rest_seconds": 60
+            }
+          ],
+          "cooldown": "5 min étirements."
+        },
+        {
+          "day": 3,
+          "name": "Cardio zone 2 + mobilité",
+          "duration_minutes": 50,
+          "type": "mixed",
+          "warmup": "8 min.",
+          "exercises": [
+            {
+              "name": "Trot zone 2",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "65-75% FCmax. Récupération active cardiovasculaire."
+            },
+            {
+              "name": "Mobilité complète",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Hip 90-90 + wall slides + thoracic extension + ankle CARs + étirements épaule. Routine W4 J7 complète."
+            }
+          ],
+          "cooldown": "5 min."
+        },
+        {
+          "day": 5,
+          "name": "Technique libre — plaisir et sensation",
+          "duration_minutes": 60,
+          "type": "technique",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Séance libre avec partenaire",
+              "sets": 1,
+              "duration": "40 min",
+              "rest_seconds": 0,
+              "notes": "Pas de consigne précise. Jouer pour le plaisir. Services, rallyes, jeu en douceur. Laisser le corps récupérer mentalement aussi. Éviter les échanges intenses."
+            }
+          ],
+          "cooldown": "Étirements 8 min."
+        },
+        {
+          "day": 7,
+          "name": "Prévention + récupération mentale",
+          "duration_minutes": 45,
+          "type": "mobility",
+          "warmup": "5 min.",
+          "exercises": [
+            {
+              "name": "Renforcement coiffe des rotateurs complet",
+              "sets": 3,
+              "reps": "15 par direction et côté",
+              "rest_seconds": 40,
+              "notes": "External rotation + internal rotation + élévation latérale contrôlée. Bilan épaule à mi-plan. Si sensations de gêne persistantes, consulter un kiné avant W9."
+            },
+            {
+              "name": "Visualisation du tournoi cible",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Allongé, yeux fermés. Imaginer un match de tournoi : le service, le retour, un échange difficile, un point capital, la gestion du score serré. Préparer mentalement la deuxième moitié du plan. Technique de préparation mentale utilisée par les joueurs ATP."
+            }
+          ],
+          "cooldown": "5 min respiration profonde."
+        }
+      ]
+    },
+    {
+      "week_number": 9,
+      "theme": "Bloc 3 — Transfert compétitif, simulation tournoi",
+      "goal": "Simuler les conditions de tournoi : enchaînement de matchs, récupération entre tours, gestion de l'énergie sur 2-3 jours. Volume jeu maximal du plan.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force maintenance — protocole court",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 3,
+              "reps": "4",
+              "rest_seconds": 150,
+              "notes": "En Bloc 3, la force est en maintenance, pas en progression. L'énergie est réservée au jeu. Charge stable, RPE 7-8. Reste au programme pour préserver les gains neuromusculaires."
+            },
+            {
+              "name": "Bulgarian split squat",
+              "sets": 3,
+              "reps": "6 par jambe",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Pull-up",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Pallof press",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 60
+            },
+            {
+              "name": "External rotation coiffe",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 45,
+              "notes": "Inchangé. Maintenu tout le plan."
+            }
+          ],
+          "cooldown": "5 min étirements."
+        },
+        {
+          "day": 3,
+          "name": "Simulation tour 1 de tournoi — match complet",
+          "duration_minutes": 100,
+          "type": "technique",
+          "warmup": "15 min : comme avant un vrai match de tournoi (mini-tennis, rallyes fond, services, quelques retours). Ritualisé.",
+          "exercises": [
+            {
+              "name": "Match 3 sets — simulation tour 1",
+              "sets": 1,
+              "duration": "70 min",
+              "rest_seconds": 0,
+              "notes": "Adversaire de niveau équivalent ou supérieur. Score réel, règles officielles. Chronométrer les temps de service et pauses (règlement ITF). Rester concentré même en menant facilement."
+            },
+            {
+              "name": "Analyse post-match (carnet de bord)",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Noter : 1) ratio 1re balle, 2) types de fautes directes, 3) situations de break gagnées/perdues, 4) niveau d'énergie en 3e set (1-10). Bâtir les ajustements pour J5."
+            }
+          ],
+          "cooldown": "10 min marche + étirements + glace épaule si besoin."
+        },
+        {
+          "day": 5,
+          "name": "Simulation tour 2 — match avec ajustement tactique",
+          "duration_minutes": 100,
+          "type": "technique",
+          "warmup": "15 min rituel pré-match.",
+          "exercises": [
+            {
+              "name": "Match 3 sets — simulation tour 2",
+              "sets": 1,
+              "duration": "70 min",
+              "rest_seconds": 0,
+              "notes": "Appliquer 1 ajustement tactique identifié en J3 (ex: si trop de fautes revers → jouer plus au coup droit, si double fautes → ralentir 2e balle). Contrainte mentale : 48h de récup entre matches comme en tournoi réel."
+            },
+            {
+              "name": "Analyse post-match",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "L'ajustement tactique a-t-il fonctionné ? Comparer les stats avec J3. Identifier la prochaine zone de travail."
+            }
+          ],
+          "cooldown": "10 min étirements + glace."
+        },
+        {
+          "day": 7,
+          "name": "Cardio récupération + renforcement léger",
+          "duration_minutes": 55,
+          "type": "mixed",
+          "warmup": "8 min.",
+          "exercises": [
+            {
+              "name": "Trot zone 2",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Récupération active après 2 matchs en 4 jours. FC max 75% FCmax."
+            },
+            {
+              "name": "Ladder drills et agilité douce",
+              "sets": 4,
+              "duration": "30 sec",
+              "rest_seconds": 30,
+              "notes": "Coordination pieds sans impact élevé. Maintien neuromusculaire."
+            },
+            {
+              "name": "Renforcement préventif complet",
+              "sets": 1,
+              "duration": "12 min",
+              "rest_seconds": 0,
+              "notes": "External rotation 3×15/côté + wrist curls 2×20 + clamshell 2×15/côté + planche 2×30 sec. Inchangé."
+            }
+          ],
+          "cooldown": "6 min étirements."
+        }
+      ]
+    },
+    {
+      "week_number": 10,
+      "theme": "Gestion de la fatigue et qualité sous pression",
+      "goal": "Maintenir le niveau de jeu sous fatigue accumulée. Travail de la concentration et du reset mental entre les points. Volume jeu stable, volume physique maintenu.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force maintenance + RSA",
+          "duration_minutes": 70,
+          "type": "mixed",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 3,
+              "reps": "4",
+              "rest_seconds": 150,
+              "notes": "Maintenance. Même charge W9."
+            },
+            {
+              "name": "RDL",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Pull-up",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120
+            },
+            {
+              "name": "RSA post-force",
+              "sets": 6,
+              "duration": "10 sec sprint + 50 sec récup",
+              "rest_seconds": 50,
+              "notes": "6 sprints shadow tennis après la force. Travail de la qualité du premier pas sous fatigue musculaire légère. RPE 9 sur sprints."
+            },
+            {
+              "name": "External rotation coiffe",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 45
+            }
+          ],
+          "cooldown": "5 min + étirements."
+        },
+        {
+          "day": 3,
+          "name": "Technique — points sous pression et gestion mentale",
+          "duration_minutes": 80,
+          "type": "technique",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Jeu de points — situations de pression",
+              "sets": 6,
+              "reps": "10 points par série",
+              "rest_seconds": 120,
+              "notes": "Situations scénarisées : départ à 0-30, 30-40, 5-6 au tie-break. Travail de la capacité à jouer son jeu sous pression. Le joueur de tournoi perd souvent ses automatismes à 30-40 — corriger ça ici."
+            },
+            {
+              "name": "Routine entre les points",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Développer et automatiser une routine de 10-20 sec entre les points : regarder les cordes, respirer, choisir le prochain schéma. Pratiquer délibérément ce reset. Modèle Djokovic/Nadal : toujours la même routine."
+            }
+          ],
+          "cooldown": "Étirements 6 min."
+        },
+        {
+          "day": 5,
+          "name": "Match simulation avec analyse vidéo",
+          "duration_minutes": 100,
+          "type": "technique",
+          "warmup": "15 min rituel.",
+          "exercises": [
+            {
+              "name": "Match filmé — 2 sets",
+              "sets": 1,
+              "duration": "60 min",
+              "rest_seconds": 0,
+              "notes": "Filmer le match. Score réel. Se concentrer sur la qualité de chaque point, pas sur le score final. Appliquer la routine entre les points développée en J3."
+            },
+            {
+              "name": "Analyse vidéo post-match",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Regarder le film immédiatement après. Identifier : position du corps avant les frappes (bien préparé ?) , pieds statiques sur les retours (?), qualité des 2e balles en fin de set. 3 axes d'amélioration concrets."
+            }
+          ],
+          "cooldown": "10 min."
+        },
+        {
+          "day": 7,
+          "name": "Récupération + mobilité active",
+          "duration_minutes": 50,
+          "type": "mobility",
+          "warmup": "5 min.",
+          "exercises": [
+            {
+              "name": "Routine mobilité complète",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "Hip 90-90 + thoracic extension + wall slides + ankle CARs + étirements ischio 30 sec/côté + calf raises excentriques 3×10/côté (maintien tendon Achille) + étirements pectoraux."
+            },
+            {
+              "name": "Wrist curls préventifs",
+              "sets": 2,
+              "reps": "20",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "5 min."
+        }
+      ]
+    },
+    {
+      "week_number": 11,
+      "theme": "Pic de volume jeu — endurance compétitive maximale",
+      "goal": "Volume de jeu le plus élevé du plan. Tester la résistance physique et mentale sur 3 jours de jeu intensif simulant la semaine de tournoi.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force + explosivité légère",
+          "duration_minutes": 60,
+          "type": "strength",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 3,
+              "reps": "4",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Bulgarian split squat",
+              "sets": 3,
+              "reps": "6 par jambe",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Pull-up",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Box jump",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 90,
+              "notes": "Maintien de l'explosivité. Hauteur maximale, atterrissage silencieux."
+            },
+            {
+              "name": "Planche + rotation",
+              "sets": 3,
+              "duration": "30 sec + 10 rotations",
+              "rest_seconds": 60
+            }
+          ],
+          "cooldown": "5 min."
+        },
+        {
+          "day": 3,
+          "name": "Journée 1 tournoi simulé — 2 matchs",
+          "duration_minutes": 120,
+          "type": "technique",
+          "warmup": "15 min rituel.",
+          "exercises": [
+            {
+              "name": "Match 1 — adversaire A",
+              "sets": 1,
+              "duration": "50 min",
+              "rest_seconds": 0,
+              "notes": "2 sets gagnants. Pause 20 min entre les 2 matchs (simuler le tournoi intérieur : match 1 le matin, match 2 en après-midi)."
+            },
+            {
+              "name": "Pause nutrition et récupération",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Hydratation, alimentation légère (banane, barres énergétiques), étirements doux 5 min. Gestion de l'inter-match."
+            },
+            {
+              "name": "Match 2 — adversaire B",
+              "sets": 1,
+              "duration": "50 min",
+              "rest_seconds": 0,
+              "notes": "2 sets gagnants. Adapter le jeu à un adversaire différent. Travail de l'adaptation tactique rapide."
+            }
+          ],
+          "cooldown": "10 min étirements complets + glace épaule + alimentation récupération."
+        },
+        {
+          "day": 5,
+          "name": "Journée 2 tournoi simulé — cardio spécifique + 1 match",
+          "duration_minutes": 105,
+          "type": "mixed",
+          "warmup": "12 min.",
+          "exercises": [
+            {
+              "name": "RSA matinée — activation",
+              "sets": 8,
+              "duration": "8 sec sprint + 22 sec récup",
+              "rest_seconds": 22,
+              "notes": "Activation physique avant le match. Pas de fatigue, juste activation neuromusculaire. RPE 8-9."
+            },
+            {
+              "name": "Match 3 — adversaire C",
+              "sets": 1,
+              "duration": "60 min",
+              "rest_seconds": 0,
+              "notes": "Match complet. Observer la capacité à maintenir le niveau après 2 matchs en 48h. C'est la vraie simulation d'un quart de finale après deux tours de tournoi."
+            }
+          ],
+          "cooldown": "10 min marche + étirements + glace."
+        },
+        {
+          "day": 7,
+          "name": "Récupération active — journée off",
+          "duration_minutes": 40,
+          "type": "mobility",
+          "warmup": "5 min.",
+          "exercises": [
+            {
+              "name": "Natation ou vélo léger (optionnel)",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Si accès piscine ou vélo, 20 min d'effort très doux (zone 1). Sinon, simplement la routine mobilité. Objectif : circulation sanguine pour récupération musculaire."
+            },
+            {
+              "name": "Routine mobilité + renforcement préventif",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "External rotation + wrist curls + clamshell + planche. Systématique."
+            }
+          ],
+          "cooldown": "5 min."
+        }
+      ]
+    },
+    {
+      "week_number": 12,
+      "theme": "Consolidation Bloc 3 — récupération et préparation au Bloc 4",
+      "goal": "Récupérer du volume pic de W11. Volume jeu -20%. Préparer le corps à la phase d'affûtage. Bilan mi-plan complet.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force légère + bilan physique",
+          "duration_minutes": 60,
+          "type": "strength",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Back squat — test charge max 3 reps",
+              "sets": 3,
+              "reps": "3",
+              "rest_seconds": 150,
+              "notes": "Tenter un nouveau 3RM pour mesurer la progression depuis W1. Comparer avec la charge de référence W1. Indicateur de progrès de force sur 12 semaines."
+            },
+            {
+              "name": "RDL",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 150
+            },
+            {
+              "name": "Pull-up",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120
+            },
+            {
+              "name": "Core rotatoire — wood chop + pallof",
+              "sets": 2,
+              "duration": "12 reps/côté chacun",
+              "rest_seconds": 60
+            }
+          ],
+          "cooldown": "5 min."
+        },
+        {
+          "day": 3,
+          "name": "Cardio modéré + shadow tennis",
+          "duration_minutes": 55,
+          "type": "interval",
+          "warmup": "8 min.",
+          "exercises": [
+            {
+              "name": "Trot zone 2",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Shadow tennis modéré",
+              "sets": 4,
+              "duration": "90 sec effort + 90 sec récup",
+              "rest_seconds": 90,
+              "notes": "Intensité réduite vs Bloc 2. RPE 7 max. Maintien des automatismes de déplacement."
+            }
+          ],
+          "cooldown": "7 min."
+        },
+        {
+          "day": 5,
+          "name": "Technique — bilan et ajustements finaux",
+          "duration_minutes": 75,
+          "type": "technique",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Bilan service — test de précision",
+              "sets": 4,
+              "reps": "10 services",
+              "rest_seconds": 60,
+              "notes": "10 services par zone (T, corps, extérieur, côté avantage). Compter le ratio de précision. Comparer avec W1 J3. Indicateur de progression technique."
+            },
+            {
+              "name": "Jeu points libres — bilan tactique",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "Jeu libre, pas de contrainte. Observer le jeu naturel après 12 semaines. Est-ce que les automatismes tactiques (approche filet, inside-out, service-volée) sont devenus naturels ?"
+            }
+          ],
+          "cooldown": "Étirements 8 min."
+        },
+        {
+          "day": 7,
+          "name": "Mobilité et récupération complète",
+          "duration_minutes": 45,
+          "type": "mobility",
+          "warmup": "5 min.",
+          "exercises": [
+            {
+              "name": "Routine mobilité intégrale",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "Routine complète W1 J7 : external rotation + wall slides + hip 90-90 + ankle CARs + thoracic extension + clamshell + wrist curls. Bilan de l'état articulaire à mi-plan. Si douleur persistante quelque part, consulter avant W13."
+            }
+          ],
+          "cooldown": "5 min."
+        }
+      ]
+    },
+    {
+      "week_number": 13,
+      "theme": "Bloc 4 — Affûtage : réduction volume, maintien qualité",
+      "goal": "Début du taper : volume global -25% vs pic. Maintien de l'intensité (sprints, match qualité). Le corps doit arriver frais au tournoi. Aucun gain nouveau — récolte des 12 semaines de travail.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force taper — composés essentiels",
+          "duration_minutes": 50,
+          "type": "strength",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 3,
+              "reps": "3",
+              "rest_seconds": 150,
+              "notes": "Charge haute (85-90% du 3RM testé W12), 3 reps seulement. Maintien neuromusculaire. Pas de fatigue accumulée. RPE 8."
+            },
+            {
+              "name": "Pull-up",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120
+            },
+            {
+              "name": "External rotation coiffe",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 2,
+              "duration": "40 sec",
+              "rest_seconds": 60
+            }
+          ],
+          "cooldown": "5 min."
+        },
+        {
+          "day": 3,
+          "name": "Cardio affûtage — sprints courts intenses",
+          "duration_minutes": 50,
+          "type": "interval",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "RSA qualité maximale",
+              "sets": 8,
+              "duration": "6 sec sprint + 54 sec récup",
+              "rest_seconds": 54,
+              "notes": "8 sprints à intensité maximale avec récupération presque complète. Qualité > quantité. Maintenir la vitesse de pointe. Ratio 1:9 = récupération quasi totale entre sprints."
+            },
+            {
+              "name": "Shadow tennis qualité",
+              "sets": 3,
+              "duration": "60 sec + 60 sec récup",
+              "rest_seconds": 60,
+              "notes": "3 blocs de shadow à très haute qualité gestuelle. Pas d'allongement, juste maintien des automatismes."
+            }
+          ],
+          "cooldown": "7 min."
+        },
+        {
+          "day": 5,
+          "name": "Technique — schémas de jeu finaux",
+          "duration_minutes": 70,
+          "type": "technique",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Service + 1 — schéma principal",
+              "sets": 3,
+              "reps": "15 séquences",
+              "rest_seconds": 60,
+              "notes": "Automatiser LE schéma de jeu principal choisi pour le tournoi (ex : service au T, coup droit croisé en coup 2). Répétition délibérée jusqu'à l'automatisme."
+            },
+            {
+              "name": "Match affûtage — 1 set qualité",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "1 seul set à qualité maximale. Ne pas chercher à en faire plus. Arriver frais en W14 et W15."
+            }
+          ],
+          "cooldown": "Étirements 8 min."
+        },
+        {
+          "day": 7,
+          "name": "Récupération + préparation mentale",
+          "duration_minutes": 45,
+          "type": "mobility",
+          "warmup": "5 min.",
+          "exercises": [
+            {
+              "name": "Mobilité articulaire complète",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Routine habituelle, complète et sans effort."
+            },
+            {
+              "name": "Visualisation match de tournoi",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Situation difficile : mener 6-5 au tie-break, service adversaire. Visualiser chaque choix : split-step, lecture, retour, réaction. Entraîner la clarté décisionnelle sous pression."
+            }
+          ],
+          "cooldown": "5 min."
+        }
+      ]
+    },
+    {
+      "week_number": 14,
+      "theme": "Affûtage avancé — fraîcheur physique et confiance",
+      "goal": "Volume -35% vs pic (W11). Maintenir la vitesse et la puissance explosive. Maximiser la récupération. Arriver au dernier week-end de préparation avec des jambes fraîches et une tête claire.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Force légère — activation musculaire",
+          "duration_minutes": 45,
+          "type": "strength",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 2,
+              "reps": "3",
+              "rest_seconds": 150,
+              "notes": "Charge 80% du 3RM. 2 séries seulement. Activation neuromusculaire sans fatigue. RPE 7 max."
+            },
+            {
+              "name": "Box jump",
+              "sets": 3,
+              "reps": "4",
+              "rest_seconds": 90,
+              "notes": "Maintien puissance explosive. Qualité d'atterrissage."
+            },
+            {
+              "name": "Pull-up",
+              "sets": 2,
+              "reps": "6",
+              "rest_seconds": 120
+            },
+            {
+              "name": "External rotation coiffe",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 45
+            }
+          ],
+          "cooldown": "5 min."
+        },
+        {
+          "day": 3,
+          "name": "Cardio léger + agilité",
+          "duration_minutes": 45,
+          "type": "interval",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "RSA réduit — qualité",
+              "sets": 6,
+              "duration": "6 sec sprint + 54 sec récup",
+              "rest_seconds": 54,
+              "notes": "6 sprints seulement (vs 8 en W13). Intensité maximale préservée. Volume réduit."
+            },
+            {
+              "name": "Ladder drills",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 30,
+              "notes": "Coordination pieds. Activation neuromusculaire légère."
+            }
+          ],
+          "cooldown": "7 min."
+        },
+        {
+          "day": 5,
+          "name": "Technique — confiance et automatismes",
+          "duration_minutes": 65,
+          "type": "technique",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Service — séquences de confiance",
+              "sets": 3,
+              "reps": "10 services",
+              "rest_seconds": 60,
+              "notes": "Choisir les placements où la confiance est maximale. Finir toujours sur une bonne série. Construire la confiance, pas diagnostiquer les faiblesses."
+            },
+            {
+              "name": "Jeu libre et fluide",
+              "sets": 1,
+              "duration": "35 min",
+              "rest_seconds": 0,
+              "notes": "Jouer pour le plaisir, sans enjeu. Laisser les automatismes s'exprimer. Éviter la sur-analyse. La confiance se construit aussi par le jeu libéré."
+            }
+          ],
+          "cooldown": "Étirements 8 min."
+        },
+        {
+          "day": 7,
+          "name": "Prévention + visualisation",
+          "duration_minutes": 40,
+          "type": "mobility",
+          "warmup": "5 min.",
+          "exercises": [
+            {
+              "name": "Bilan articulaire — épaule, coude, cheville",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Mobilisation douce de chaque articulation. Identifier toute sensibilité résiduelle. Si douleur coude ou épaule > 3/10, consulter un médecin du sport avant le tournoi."
+            },
+            {
+              "name": "Routine mobilité essentielle",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Hip 90-90 + thoracic extension + ankle CARs + wall slides. 15 min sans effort."
+            },
+            {
+              "name": "Visualisation scénario difficile",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Imaginer un scénario défavorable : break concédé au 3e set, 3-5 de retard. Visualiser le retour au calme, la routine entre points, la montée au jeu suivant. Automatiser la résilience."
+            }
+          ],
+          "cooldown": "5 min."
+        }
+      ]
+    },
+    {
+      "week_number": 15,
+      "theme": "Pré-tournoi — activation et confiance maximale",
+      "goal": "Dernière semaine avant le tournoi. Volume minimal, intensité maintenue sur des séquences très courtes. Corps au maximum de sa fraîcheur. Esprit préparé et confiant.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Activation physique — séance courte",
+          "duration_minutes": 40,
+          "type": "strength",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Back squat activation",
+              "sets": 2,
+              "reps": "3",
+              "rest_seconds": 150,
+              "notes": "Charge 75% du 3RM. Activation pure, aucune fatigue. Sentir les jambes vives et réactives."
+            },
+            {
+              "name": "Box jump",
+              "sets": 3,
+              "reps": "3",
+              "rest_seconds": 90,
+              "notes": "3 sauts à qualité maximale. Sentir l'explosivité."
+            },
+            {
+              "name": "External rotation coiffe",
+              "sets": 2,
+              "reps": "15 par côté",
+              "rest_seconds": 45
+            }
+          ],
+          "cooldown": "5 min + étirements légers."
+        },
+        {
+          "day": 3,
+          "name": "Sprint court + rituel pré-compétition",
+          "duration_minutes": 35,
+          "type": "interval",
+          "warmup": "10 min.",
+          "exercises": [
+            {
+              "name": "Sprints courts maximaux",
+              "sets": 5,
+              "duration": "5 sec sprint + 55 sec récup",
+              "rest_seconds": 55,
+              "notes": "5 sprints de 5 sec à vitesse maximale. Ratio 1:11. Activation du système nerveux sans aucune fatigue. Sentir le premier pas explosif."
+            },
+            {
+              "name": "Pratique du rituel pré-match",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Dérouler intégralement son rituel d'échauffement de tournoi (tel qu'on le fera le jour J) : mini-tennis 3 min → rallyes fond 5 min → services progressifs → quelques retours → split-steps. Mémoriser la routine."
+            }
+          ],
+          "cooldown": "5 min."
+        },
+        {
+          "day": 5,
+          "name": "Technique — dernier réglage",
+          "duration_minutes": 55,
+          "type": "technique",
+          "warmup": "10 min rituel.",
+          "exercises": [
+            {
+              "name": "Service — zones de confiance",
+              "sets": 2,
+              "reps": "10 services",
+              "rest_seconds": 60,
+              "notes": "20 services uniquement. Finir sur une série réussie. Ne rien changer de technique à ce stade."
+            },
+            {
+              "name": "Jeu léger 20 min",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Rallyes et quelques points. Échanges fluides, sans effort. Le corps doit rester frais. S'arrêter avant de se sentir fatigué."
+            }
+          ],
+          "cooldown": "Étirements 8 min."
+        },
+        {
+          "day": 7,
+          "name": "Repos actif — veille de tournoi",
+          "duration_minutes": 30,
+          "type": "mobility",
+          "warmup": "5 min marche.",
+          "exercises": [
+            {
+              "name": "Mobilité légère",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Hip 90-90 + wall slides + ankle CARs uniquement. 15 min, aucun effort. Juste maintenir la mobilité articulaire."
+            },
+            {
+              "name": "Préparation logistique et mentale",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Préparer le sac de tournoi : raquettes cordées, serviettes, alimentation, eau, vêtements de rechange. Vérifier l'horaire. Dormir 8h minimum cette nuit. Visualiser une dernière fois le scénario de victoire."
+            }
+          ],
+          "cooldown": "5 min respiration."
+        }
+      ]
+    },
+    {
+      "week_number": 16,
+      "theme": "Semaine de tournoi — pic de forme et autonomie",
+      "goal": "Semaine du tournoi. Maintenir l'activation entre les matchs, gérer la fatigue inter-rounds, performer au pic de forme acquis en 15 semaines. Checklist d'autonomie finale.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Activation pré-tournoi — jour de match",
+          "duration_minutes": 30,
+          "type": "mixed",
+          "warmup": "Rituel pré-match complet : mini-tennis 3 min + rallyes fond 5 min + services progressifs 10 balles + retours 5 balles + split-steps.",
+          "exercises": [
+            {
+              "name": "Sprints d'activation",
+              "sets": 4,
+              "duration": "5 sec sprint + 55 sec récup",
+              "rest_seconds": 55,
+              "notes": "4 sprints de 5 sec pour activer le système nerveux 45-60 min avant le match. Pas de fatigue, juste éveil neuromusculaire."
+            },
+            {
+              "name": "External rotation coiffe légère",
+              "sets": 2,
+              "reps": "15 par côté",
+              "rest_seconds": 30,
+              "notes": "Activation de l'épaule avant la compétition. Résistance très légère."
+            }
+          ],
+          "cooldown": "Étirements dynamiques doux 5 min. Hydratation."
+        },
+        {
+          "day": 3,
+          "name": "Récupération inter-rounds",
+          "duration_minutes": 35,
+          "type": "mobility",
+          "warmup": "5 min marche.",
+          "exercises": [
+            {
+              "name": "Récupération active post-match",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Marche légère 5 min + étirements complets (ischio 30 sec/côté, quadriceps 30 sec/côté, épaule pendule 2 min, mollets 30 sec/côté, hip flexor 30 sec/côté). Glace sur toute zone sensible 10 min."
+            },
+            {
+              "name": "Activation légère pré-prochain match",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Si le prochain match est le même jour : shadow tennis 3×45 sec léger + 4 sprints de 5 sec pour ré-activer. Si lendemain : juste la mobilité."
+            }
+          ],
+          "cooldown": "5 min + alimentation récupération (protéines + glucides dans les 30 min post-match)."
+        },
+        {
+          "day": 5,
+          "name": "Match décisif — application de toutes les compétences acquises",
+          "duration_minutes": 110,
+          "type": "technique",
+          "warmup": "15 min rituel complet de tournoi. Priorité à l'état mental.",
+          "exercises": [
+            {
+              "name": "Match de tournoi — objectif classement",
+              "sets": 1,
+              "duration": "80 min",
+              "rest_seconds": 0,
+              "notes": "Appliquer : routine entre chaque point (10-20 sec), schéma de jeu principal automatisé, service placé à 80-85% vitesse (mettre plus de 1res balles que d'habitude), montée filet sur 30% des échanges minimum, gestion des moments de break (jouer sobre). L'objectif tactique l'emporte sur l'inspiration du moment."
+            }
+          ],
+          "cooldown": "10 min marche + étirements complets + bilan mental écrit."
+        },
+        {
+          "day": 7,
+          "name": "Bilan final + checklist d'autonomie",
+          "duration_minutes": 45,
+          "type": "other",
+          "warmup": null,
+          "exercises": [
+            {
+              "name": "Checklist d'autonomie — autoévaluation post-plan",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Répondre honnêtement à chaque critère sur 10 :\n1. SERVICE : mon ratio de 1re balle en match de tournoi dépasse 60% et je place la balle dans au moins 2 zones différentes (T, corps, extérieur) de façon fiable. Score actuel : .../10.\n2. DÉPLACEMENT : mon split-step est automatique avant chaque frappe adversaire ; je sens mes pieds actifs avant d'avoir décidé du coup. Score actuel : .../10.\n3. ENDURANCE MATCH : au 3e set (ou tie-break), ma qualité de frappe et ma vitesse de déplacement restent au même niveau qu'au 1er set (pas d'effondrement en fin de match). Score actuel : .../10.\n4. GESTION MENTALE : j'applique systématiquement ma routine entre les points (cordes, respiration, choix du prochain schéma) y compris à 30-40 ou 5-6 au tie-break. Score actuel : .../10.\n5. PRÉVENTION : j'ai aucune douleur active à l'épaule, au coude, ni aux chevilles. Je connais mes exercices préventifs (external rotation, wrist curls, clamshell) et je les fais 2x/semaine de façon autonome. Score actuel : .../10.\nObjectif post-plan : score total ≥ 35/50. Si < 35 sur 2 critères spécifiques, orienter les 4 prochaines semaines d'entraînement libre sur ces zones."
+            },
+            {
+              "name": "Plan de continuation post-programme",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Définir : 1) fréquence d'entraînement physique à maintenir (2x/sem minimum pour préserver les gains), 2) prochain objectif de tournoi ou de progression, 3) si blessure détectée : consulter médecin du sport ou kiné du tennis avant de reprendre l'entraînement intensif. Le programme de 16 semaines est un cycle : après 4-6 semaines de récupération relative, un nouveau cycle peut commencer avec charges actualisées."
+            }
+          ],
+          "cooldown": "5 min respiration. Félicitations pour l'engagement sur 16 semaines."
+        }
+      ]
+    }
+  ],
+  "safety_notes": "DRAPEAUX ROUGES — Arrêter immédiatement et consulter un médecin du sport :\n• Douleur antéro-latérale de l'épaule de jeu (conflit sous-acromial / swimmer's shoulder tennis) : douleur lors de l'armé du service, de l'overhead ou des smash. Arrêt du service immédiat. Glacer 10 min, consulter dans les 48h. Ne pas jouer en antidouleur sans diagnostic. Risque : rupture partielle de la coiffe des rotateurs.\n• Douleur au coude côté externe ou interne (épicondylite latérale ou médiale / tennis elbow) : brûlure ou élancement en revers ou lors des coups slicés. Réduire la pratique, vérifier la tension des cordes (cordes trop tendues = vibrations transmises au coude) et le poids de la raquette. Wrist curls préventifs insuffisants si douleur installée : repos + kiné.\n• Entorse de cheville grade 2+ : gonflement visible, impossibilité d'appui. Protocole RICE (Rest, Ice, Compression, Elevation). Rééducation proprioceptive obligatoire avant le retour au court — ne pas jouer sur une cheville instable sur terre battue glissante.\n• Douleur genou face interne ou externe (ITBS ou syndrome plica) sur les appuis latéraux répétés : réduire les exercices pliométriques latéraux, glacer, consulter.\n• Douleur à la face postérieure de la cuisse (ischio-jambiers) pendant ou après les sprints : risque de claquage. Arrêt immédiat. Les ischio-jambiers sont la zone de blessure la plus fréquente sur les sprints répétés en tournoi. Le RDL unilatéral de ce plan est une mesure préventive — si claquage survient malgré tout, repos 2 semaines minimum.\n• Signes d'effort cardiaque inhabituel : oppression thoracique, vertiges, palpitations hors effort. Arrêt immédiat, consultation cardiologue.\n\nRÈGLES GÉNÉRALES :\n• Ne jamais jouer ni s'entraîner en antidouleur masquant une douleur articulaire. La douleur articulaire est un signal d'alarme, pas une gêne à ignorer.\n• Hydratation : 500 ml dans l'heure pré-séance, 500-750 ml/heure d'effort (plus par temps chaud), 500 ml post-séance. Sur un match de tournoi par temps chaud : 1 L/heure minimum avec électrolytes.\n• Nutrition inter-rounds : glucides rapides (banane, gel, fruits secs) entre les sets longs et entre les matchs. Ne pas jouer à jeun.\n• Cordes et raquette : vérifier la tension des cordes avant le plan (cordes trop tendues > 25 kg transmettent plus de vibrations au coude). Grips usés = risque de compensation en serrant plus fort = tendinites avant-bras.\n• Chaussures : chaussures de tennis spécifiques à la surface (terre battue = semelle lisse/arrête, dur = semelle grip). Renouveler après 400-600h de jeu ou si grip latéral dégradé.\n• Repos entre matchs en tournoi : minimum 45-60 min de récupération physique + alimentation avant le prochain match. Ne pas sauter le repas post-match.\n• Sommeil : 8h minimum pendant la semaine de tournoi. La privation de sommeil réduit la vitesse de réaction et la gestion des émotions sous pression.\n\nINTENSITÉ :\n• Toutes les séances de force composée (squat, RDL, pull-up) : repos 2 min 30 minimum entre séries (ACSM/NSCA standard composé lourd). Ne pas comprimer ces temps en Bloc 2-3 pour gagner du temps.\n• Les séances de pliométrie (box jump, bonds latéraux) : repos complet (90-180 sec selon l'exercice) — la pliométrie sans récupération complète devient un exercice de fatigue, plus de puissance, et augmente le risque tendineux cheville/genou.\n• RPE sur les séances de match : visée à 7-9. Si le joueur expert reste sous 6 RPE systématiquement, l'adversaire est trop faible — trouver un partenaire de niveau ou niveau supérieur.\n\nSIGNES DE SURCHARGE (4 signes ou plus simultanément → cutback immédiat d'une semaine) :\n• FC de repos +10 bpm au réveil sur 3 jours consécutifs\n• Douleurs musculaires persistantes > 72h qui n'apparaissaient pas avant\n• Baisse de vitesse mesurable sur les sprints chronométrés (T-drill ou sprints courts) > 10%\n• Irritabilité, troubles du sommeil, motivation effondrée\n• Sensation que le bras de service est lourd lors des premières balles d'échauffement\n\nSI SÉANCE MANQUÉE :\n• 1 séance manquée : reprendre au point d'arrêt, décaler d'1-2 jours.\n• 1 semaine de pause : reculer d'une semaine dans le plan.\n• 2 semaines de pause : retourner à la semaine d'évaluation (W1) pour re-calibrer les charges.\n• Maladie fébrile (> 38°C) : repos absolu jusqu'à 48h après normalisation thermique. Reprise progressive sur 3-5 jours (aucun sprint ni match avant le 4e jour de reprise).",
+  "progression_logic": "Progression construite sur 5 principes, alignés sur les recommandations NSCA (Tennis Conditioning), ACSM (Resistance Training), et les pratiques des préparateurs physiques ATP :\n\n(1) BLOCS DE PÉRIODISATION ONDULÉE (4 blocs × 4 semaines) : Bloc 1 (W1-W4) = construction physique fondamentale + diagnostic technique ; Bloc 2 (W5-W8) = développement puissance et vitesse explosive (PAP, complexes force-pliométrie) ; Bloc 3 (W9-W12) = transfert compétitif (simulation tournoi, gestion fatigue) ; Bloc 4 (W13-W16) = affûtage progressif puis pic de forme pour le tournoi. Chaque bloc se termine par une semaine cutback (W4, W8) ou par une réduction de volume naturelle (W12 bilan, W16 taper). Les deux semaines cutback (W4 et W8) réduisent le volume de 15-20% tout en maintenant l'intensité sur 1-2 exercices clés, permettant la supercompensation sans perte d'adaptations.\n\n(2) PROGRESSION FORCE LINÉAIRE PUIS ONDULÉE : W1-W3 progression linéaire sur les composés (+2.5-5 kg/semaine sur squat et RDL tant que la forme tient et RPE ≤ 8). W5-W8 passage à la puissance (charges hautes, reps réduites à 3-5, complexes PAP). W9-W12 maintenance (charge fixe, réduction du volume total, préservation des adaptations neuromusculaires). W13-W16 taper (volume -25 à -50%, charge maintenue à 80-90% du max, activation uniquement). Logique double progression sur les accessoires : +1 rep/semaine jusqu'au top de la fourchette → +charge la semaine suivante (NSCA).\n\n(3) SPÉCIFICITÉ TENNIS PROGRESSIVE : En Bloc 1, les exercices de force ciblent les patterns fondamentaux (squat, hinge, push horizontal/vertical, pull horizontal/vertical) avec transfert indirect au tennis. En Bloc 2, introduction des complexes force-pliométrie (PAP : squat → box jump ; RDL → sprint) et des mouvements rotatoires (wood chop, pallof press, chop diagonal) directement transférables aux frappes. En Bloc 3, le volume de matchs simulés devient prépondérant (3 matchs/semaine W9, W11). En Bloc 4, seuls les exercices les plus transférables sont maintenus (squat bas volume, box jump, external rotation coiffe). Les exercices de prévention coiffe des rotateurs (external rotation élastique) et poignet (wrist curls) sont maintenus SANS EXCEPTION toutes les 16 semaines — c'est la fondation de la longévité pour un joueur de tournoi.\n\n(4) RÈGLE DES SPRINTS RSA (Repeated Sprint Ability) : Volume RSA progression W1 (8×10s/20s) → W3 (RSA pyramidal) → W5 (sprint résisté) → W7 (12+10 × 6s/24s) → puis réduction progressive en Bloc 4. Ratio work:rest : Bloc 1-2 = 1:2 à 1:4 (endurance RSA) ; Bloc 4 = 1:9 à 1:11 (qualité neuromusculaire pure, pas d'accumulation de fatigue). Cette progression développe d'abord l'endurance des sprints répétés (Bloc 1-2) puis affûte la vitesse de pointe (Bloc 4).\n\n(5) SIMULATION COMPÉTITIVE GRADUELLE (NSCA et principes des préparateurs ATP) : Les matchs simulés progressent en longueur, pression et spécificité : W1 = diagnostic (sets express 8 jeux) → W3 = match full score → W6 = match 3 sets avec analyse → W9 = simulation tour 1 + tour 2 en 48h → W11 = 3 matchs en 4 jours (simulation semaine de tournoi complète) → W15-W16 = tournoi réel. Cette gradation permet d'affronter la pression compétitive avec un capital physique et mental progressivement renforcé, évitant l'effondrement technique sous fatigue lors des matchs décisifs. Les routines mentales (routine entre les points, visualisation) sont intégrées dès W10 et automatisées avant le tournoi."
+}

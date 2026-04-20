@@ -1,0 +1,1401 @@
+{
+  "id": "remise-en-forme-intermediaire-maintien-8sem",
+  "schema_version": 1,
+  "sport": "remise_en_forme",
+  "level": "intermediaire",
+  "name": "Remise en forme maintien — 8 semaines",
+  "duration_weeks": 8,
+  "sessions_per_week": 4,
+  "default_objective": "Construire une routine mixte cardio + renfo + mobilité pour maintenir forme générale : endurance aérobie stable, force fonctionnelle sur les grands groupes musculaires, et mobilité articulaire entretenue",
+  "assumed_profile": "Adulte actif avec pratique sportive modérée depuis quelques mois (marche, vélo doux, salle occasionnelle). Aucune pathologie cardiaque ou ostéo-articulaire. Souhaite structurer un programme sans spécialisation, mix cardio/renfo/mobilité avec 4 séances par semaine. Matériel disponible : tapis de sol, paire d'haltères légers à moyens (5-12 kg), chaise ou banc stable, corde à sauter optionnelle.",
+  "summary": "Programme 8 semaines à 4 séances par semaine (ratio ~40% cardio / 40% renforcement / 20% mobilité), conçu pour un pratiquant intermédiaire souhaitant ancrer une routine durable. Chaque semaine alterne 1 séance cardio endurance, 1 séance renforcement bas du corps, 1 séance renforcement haut du corps + core, 1 séance mobilité active. Cutback week en W5 (volume -15%). Intensité progressive sur RPE, test de la parole sur les phases cardio, double progression sur les séances de force. Checklist d'autonomie en W8 pour mesurer l'atteinte des objectifs.",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Évaluation et fondations",
+      "goal": "Établir les niveaux de départ (RPE, allure cardio, endurance musculaire). Volume modéré, priorité à la qualité d'exécution et à la grille RPE. 4 séances : 1 cardio endurance, 1 renfo bas du corps, 1 renfo haut du corps + core, 1 mobilité.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio endurance — découverte allure",
+          "duration_minutes": 40,
+          "type": "endurance",
+          "warmup": "5 min marche rapide ou step sur place + 10 balancements de bras + 10 cercles de hanches + 10 montées de genoux. Total : 8 min.",
+          "exercises": [
+            {
+              "name": "Cardio continu au choix",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "Marche rapide, vélo d'appartement, step sur place, course légère ou corde à sauter lente. RPE cible : 5-6/10. Test de la parole : tu dois pouvoir dire une phrase entière. Si tu essouffles au-delà, ralentis. Note mentalement ton RPE à 5 min, 15 min et 25 min pour te calibrer."
+            }
+          ],
+          "cooldown": "5 min marche lente + étirements statiques : mollets 30 sec/côté, ischio-jambiers 30 sec/côté, quadriceps 30 sec/côté. Hydratation."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement bas du corps — évaluation",
+          "duration_minutes": 40,
+          "type": "strength",
+          "warmup": "5 min marche + 10 demi-squats lents + 10 cercles de genoux + 10 rotations de chevilles/côté. Total : 8 min.",
+          "exercises": [
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Introduction grille RPE W1 : RPE 6 = tu pourrais faire 4 reps de plus facilement. RPE 8 = tu pourrais en faire 2 de plus. Cible W1 : RPE 6-7. Genoux dans l'axe des orteils, descente 90° ou selon confort articulaire."
+            },
+            {
+              "name": "Fentes alternées poids du corps",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 60,
+              "notes": "Genou avant à 90°, genou arrière effleure le sol. Alternance G/D. RPE 6-7."
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Tenir 2 sec en haut. Si trop facile, passer au pont unilatéral. Cible fessiers et ischio-jambiers."
+            },
+            {
+              "name": "Calf raises bipodal",
+              "sets": 3,
+              "reps": "20",
+              "rest_seconds": 30,
+              "notes": "Montée complète, descente lente 2 sec. Prévention tendinite Achille et maintien puissance des mollets."
+            }
+          ],
+          "cooldown": "5 min étirements : quadriceps 30 sec/côté, fessiers allongés 30 sec/côté, ischio-jambiers 30 sec/côté."
+        },
+        {
+          "day": 5,
+          "name": "Renforcement haut du corps + core",
+          "duration_minutes": 40,
+          "type": "strength",
+          "warmup": "5 min marche + 10 rotations d'épaules avant/arrière + 10 cercles de coudes + 10 cercles de poignets + 5 push-ups très lents sur genoux pour activation. Total : 8 min.",
+          "exercises": [
+            {
+              "name": "Push-up (au sol ou sur genoux selon niveau)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60,
+              "notes": "Push-up complet si RPE 6-7 atteignable. Sur genoux si le push-up complet dépasse RPE 8. Corps en planche, descente contrôlée 2 sec. Push horizontal — pattern fondamental."
+            },
+            {
+              "name": "Rowing haltère unilatéral",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 60,
+              "notes": "Main + genou ipsilatéraux sur la chaise. Dos neutre, coude tire vers la hanche. Pull horizontal — contrebalance le push. Haltère : commencer par 6-8 kg selon confort, RPE 6-7."
+            },
+            {
+              "name": "Développé haltères épaules assis",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60,
+              "notes": "Assis sur chaise, dos droit. Pousser verticalement sans verrouiller les coudes. Push vertical. 5-8 kg selon niveau, RPE 6-7."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "25 sec",
+              "rest_seconds": 45,
+              "notes": "Core en fin de séance (NSCA : jamais en début — le core fatigué compromet la stabilité des composés suivants). Corps aligné, fessiers engagés, ne pas creuser les lombaires."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 30,
+              "notes": "Tendre bras opposé + jambe opposée, tenir 2 sec. Core profond et anti-rotation lombaire. Mouvement lent et contrôlé."
+            }
+          ],
+          "cooldown": "5 min étirements : pectoraux sur cadre de porte 30 sec, étirement dos (cat stretch) 30 sec, trapèzes 30 sec/côté."
+        },
+        {
+          "day": 7,
+          "name": "Mobilité active — bilan semaine",
+          "duration_minutes": 35,
+          "type": "mobility",
+          "warmup": "3 min marche douce + 5 grandes respirations diaphragmatiques (inspire 4 sec, expire 6 sec). Total : 5 min.",
+          "exercises": [
+            {
+              "name": "Cat-Cow",
+              "sets": 2,
+              "reps": "10 cycles",
+              "rest_seconds": 20,
+              "notes": "À 4 pattes. Expire en arrondissant (cat), inspire en creusant (cow). Mobilité de la colonne vertébrale. Rythme lent, coordonné avec la respiration."
+            },
+            {
+              "name": "Thread the needle",
+              "sets": 2,
+              "reps": "8 par côté",
+              "rest_seconds": 20,
+              "notes": "À 4 pattes, passer un bras sous l'autre jusqu'au sol. Rotation thoracique — contre la raideur due au travail de bureau."
+            },
+            {
+              "name": "Low lunge avec ouverture de hanche",
+              "sets": 2,
+              "duration": "40 sec par côté",
+              "rest_seconds": 20,
+              "notes": "Genou arrière au sol, creuser doucement la hanche. Étire le psoas et le quadriceps — zones souvent raides chez les personnes à mode de vie sédentaire partiel."
+            },
+            {
+              "name": "Hip 90/90 stretch",
+              "sets": 2,
+              "duration": "40 sec par côté",
+              "rest_seconds": 20,
+              "notes": "Assis au sol, deux genoux à 90°. Pencher doucement vers la jambe avant. Mobilité de la hanche en rotation interne/externe."
+            },
+            {
+              "name": "Étirement thoracique sur rouleau ou sol",
+              "sets": 2,
+              "duration": "30 sec",
+              "rest_seconds": 20,
+              "notes": "Allongé sur le dos, genoux pliés, bras en croix. Laisser la cage thoracique s'ouvrir vers le sol. Si pas de rouleau, utiliser une serviette roulée entre les omoplates."
+            },
+            {
+              "name": "Respiration finale allongée",
+              "sets": 1,
+              "duration": "3 min",
+              "rest_seconds": 0,
+              "notes": "Allongé sur le dos, yeux fermés. Inspire 4 sec, expire 6 sec. Passage en récupération parasympathique."
+            }
+          ],
+          "cooldown": null
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Consolidation — augmenter la charge légèrement",
+      "goal": "Progresser d'un cran en charge sur les séances de renfo (+10% poids ou +1 rep), allonger le cardio de 5 min. Volume total +12%. RPE cible : 7 sur les derniers sets de renfo.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio endurance — 30 min",
+          "duration_minutes": 45,
+          "type": "endurance",
+          "warmup": "8 min activation standard (marche + mobilité dynamique).",
+          "exercises": [
+            {
+              "name": "Cardio continu au choix",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "Même modalité qu'en W1 ou variation. RPE 5-6/10, test de la parole tenu sur toute la durée. Tenter de maintenir un rythme constant sur les 30 min (pas d'accélération les 5 premières minutes)."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 4 min."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement bas du corps — progression",
+          "duration_minutes": 42,
+          "type": "strength",
+          "warmup": "8 min activation.",
+          "exercises": [
+            {
+              "name": "Squat goblet avec haltère",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 75,
+              "notes": "Tenir un haltère à deux mains contre la poitrine (6-10 kg). Progression naturelle du squat poids du corps vers la charge. Dos neutre, genoux dans l'axe. RPE 7 sur le 3e set."
+            },
+            {
+              "name": "Fentes alternées avec haltères",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 75,
+              "notes": "Haltères en main le long du corps (5-8 kg/main). Descente contrôlée 2 sec. RPE 7."
+            },
+            {
+              "name": "Pont fessier unilatéral",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Progression vs pont bilatéral. Une jambe levée tendue, décoller le bassin. Équilibre G/D."
+            },
+            {
+              "name": "Calf raises sur marche ou surélevé",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 30,
+              "notes": "Pied sur bord de marche, talons dans le vide. Amplitude complète. Un pied à la fois."
+            }
+          ],
+          "cooldown": "5 min étirements bas du corps."
+        },
+        {
+          "day": 5,
+          "name": "Renforcement haut du corps + core — progression",
+          "duration_minutes": 42,
+          "type": "strength",
+          "warmup": "8 min activation épaules et dos.",
+          "exercises": [
+            {
+              "name": "Push-up complet",
+              "sets": 3,
+              "reps": "10-12",
+              "rest_seconds": 75,
+              "notes": "Tous complets si RPE 7 tenable. Si RPE > 8 à la rep 8, passer les dernières reps sur genoux. Double progression : dès que tu atteins 12 reps à RPE < 7, ajouter difficulté (pieds sur chaise ou sac lesté)."
+            },
+            {
+              "name": "Rowing haltère unilatéral",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 75,
+              "notes": "+2 reps vs W1 ou +1 kg si W1 facile. RPE 7 dernier set. Coude tire jusqu'à la hanche."
+            },
+            {
+              "name": "Développé haltères épaules debout",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 75,
+              "notes": "Debout, gainage abdominal engagé. Légère progression de stabilité vs assis. RPE 7."
+            },
+            {
+              "name": "Curl biceps haltères",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Isolation. Coudes fixes contre le torse, montée sur 2 sec, descente sur 3 sec. 6-10 kg selon niveau."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Core en fin de séance. Progression de 5 sec vs W1."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "notes": "+2 reps vs W1. Tenue 2 sec à chaque extension."
+            }
+          ],
+          "cooldown": "5 min étirements haut du corps."
+        },
+        {
+          "day": 7,
+          "name": "Mobilité active — hanches et épaules",
+          "duration_minutes": 35,
+          "type": "mobility",
+          "warmup": "5 min respiration et marche douce.",
+          "exercises": [
+            {
+              "name": "Cat-Cow",
+              "sets": 2,
+              "reps": "12 cycles",
+              "rest_seconds": 15,
+              "notes": "Augmentation de 2 cycles vs W1. Coordonner chaque mouvement avec la respiration."
+            },
+            {
+              "name": "Thread the needle",
+              "sets": 2,
+              "reps": "10 par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Cercles d'épaules au sol (bras en croix)",
+              "sets": 2,
+              "reps": "8 par côté",
+              "rest_seconds": 15,
+              "notes": "Allongé sur le dos, genoux pliés, un bras tendu au sol. Faire monter le bras vers le plafond puis de l'autre côté jusqu'au sol. Rotation thoracique + épaule."
+            },
+            {
+              "name": "Low lunge + rotation thoracique",
+              "sets": 2,
+              "duration": "45 sec par côté",
+              "rest_seconds": 20,
+              "notes": "En low lunge, bras du côté jambe avant monte vers le plafond. Combine ouverture hanche + mobilité thoracique."
+            },
+            {
+              "name": "Happy baby",
+              "sets": 1,
+              "duration": "60 sec",
+              "rest_seconds": 0,
+              "notes": "Allongé sur le dos, attraper les pieds, genoux vers les aisselles. Relâchement lombaires et hanches."
+            },
+            {
+              "name": "Respiration finale allongée",
+              "sets": 1,
+              "duration": "3 min",
+              "rest_seconds": 0,
+              "notes": "Inspire 4 sec, expire 6 sec."
+            }
+          ],
+          "cooldown": null
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Intensification modérée — cardio fractionné introduit",
+      "goal": "Introduire 1 séance d'intervalles cardio (40/20) pour stimuler le système cardiovasculaire autrement que l'endurance continue. Renfo : +1 set sur les composés. Volume total +15% vs W2.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio intervalles — 40/20 méthode",
+          "duration_minutes": 40,
+          "type": "interval",
+          "warmup": "5 min cardio continu léger (RPE 4) + 5 min mobilité dynamique. Total : 10 min.",
+          "exercises": [
+            {
+              "name": "Intervalles 40/20 — Bloc A",
+              "sets": 4,
+              "duration": "40 sec effort + 20 sec récupération active",
+              "rest_seconds": 0,
+              "notes": "Méthode 40/20 : 40 sec à RPE 8 (effort soutenu, test de la parole échoue — mots seulement), 20 sec à RPE 2 (marche ou step léger). Exercices au choix en rotation sur les 4 sets : jumping jacks, step rapide, course sur place, corde à sauter. Work RPE 8, rest RPE 2."
+            },
+            {
+              "name": "Récupération active",
+              "sets": 1,
+              "duration": "2 min",
+              "rest_seconds": 0,
+              "notes": "Marche lente entre les blocs A et B. RPE 2."
+            },
+            {
+              "name": "Intervalles 40/20 — Bloc B",
+              "sets": 4,
+              "duration": "40 sec effort + 20 sec récupération active",
+              "rest_seconds": 0,
+              "notes": "Même format. Peut changer les exercices ou répéter. Total travail effectif : 5 min 20 sec."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 5 min (insister mollets, quadriceps)."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement bas du corps — 4 sets composés",
+          "duration_minutes": 45,
+          "type": "strength",
+          "warmup": "8 min activation.",
+          "exercises": [
+            {
+              "name": "Squat goblet avec haltère",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 90,
+              "notes": "Passer à 4 sets (+1 vs W2). Maintenir la même charge si RPE 7-8 est atteint dès le 3e set. Double progression : si tu atteins 12 reps faciles sur 4 sets → +1 kg la prochaine fois."
+            },
+            {
+              "name": "Fentes avant marchées avec haltères",
+              "sets": 4,
+              "reps": "8 par jambe",
+              "rest_seconds": 90,
+              "notes": "Lunge marchant : pas en avant, genou descend, ramener le pied et avancer l'autre jambe. Plus dynamique que la fente statique. RPE 7-8."
+            },
+            {
+              "name": "Soulevé de terre haltères (Romanian Deadlift)",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 90,
+              "notes": "Hinge pattern : dos neutre, pousser les hanches vers l'arrière, descendre les haltères le long des cuisses jusqu'à mi-tibia. Sentir l'étirement des ischio-jambiers. 10-15 kg selon confort. RPE 7."
+            },
+            {
+              "name": "Calf raises excentriques",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "notes": "Monter sur 2 pieds, descendre sur 1 seul en 3 sec. Protection tendon d'Achille."
+            }
+          ],
+          "cooldown": "5 min étirements ischio-jambiers et fessiers."
+        },
+        {
+          "day": 5,
+          "name": "Renforcement haut du corps + core — 4 sets",
+          "duration_minutes": 45,
+          "type": "strength",
+          "warmup": "8 min activation épaules.",
+          "exercises": [
+            {
+              "name": "Push-up complet",
+              "sets": 4,
+              "reps": "10-12",
+              "rest_seconds": 90,
+              "notes": "4 sets vs 3 en W2. Si 12 reps à RPE < 7 sur 3 sets → progression (pieds surélevés ou rythme 3 sec descente)."
+            },
+            {
+              "name": "Rowing haltère unilatéral",
+              "sets": 4,
+              "reps": "12 par côté",
+              "rest_seconds": 90,
+              "notes": "4 sets. Charge identique ou +1 kg si W2 était RPE < 7."
+            },
+            {
+              "name": "Développé haltères épaules debout",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 90,
+              "notes": "+2 reps vs W2. RPE 7 dernier set."
+            },
+            {
+              "name": "Curl biceps haltères",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Triceps kick-back haltères",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 60,
+              "notes": "Hanche pliée, dos plat, coude fixe à 90° puis extension complète. Isolation triceps. 4-6 kg."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "35 sec",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "5 min étirements haut du corps."
+        },
+        {
+          "day": 7,
+          "name": "Mobilité active — colonne et bas du corps",
+          "duration_minutes": 35,
+          "type": "mobility",
+          "warmup": "5 min respiration et marche douce.",
+          "exercises": [
+            {
+              "name": "Cat-Cow",
+              "sets": 2,
+              "reps": "12 cycles",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Squat profond de mobilité (deep squat hold)",
+              "sets": 3,
+              "duration": "40 sec",
+              "rest_seconds": 20,
+              "notes": "Tenir les talons si possible, sinon caler sous les talons. Ouvrir les hanches et relâcher les lombaires. Mains jointes pour s'aider à s'équilibrer."
+            },
+            {
+              "name": "Pigeon modifié au sol",
+              "sets": 2,
+              "duration": "50 sec par côté",
+              "rest_seconds": 20,
+              "notes": "Hanche avant fléchie à 90°, jambe arrière tendue. Relâcher le poids vers le sol progressivement. Étirement profond de la hanche et du piriformis."
+            },
+            {
+              "name": "Étirement latéral debout",
+              "sets": 2,
+              "reps": "8 par côté",
+              "rest_seconds": 15,
+              "notes": "Debout, bras par-dessus la tête, pencher latéralement. Mobilité de la cage thoracique et des obliques."
+            },
+            {
+              "name": "Supine twist (rotation allongé)",
+              "sets": 2,
+              "duration": "40 sec par côté",
+              "rest_seconds": 15,
+              "notes": "Allongé sur le dos, genoux pliés ensemble, rotation vers un côté, bras en croix. Bascule de hanche douce."
+            },
+            {
+              "name": "Respiration finale allongée",
+              "sets": 1,
+              "duration": "3 min",
+              "rest_seconds": 0
+            }
+          ],
+          "cooldown": null
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Pic de volume avant cutback",
+      "goal": "Atteindre le volume le plus élevé du plan sur les séances de renfo et de cardio. +12% vs W3. RPE cible 7-8 sur les derniers sets. Semaine exigeante — dormir 7-8h, s'alimenter correctement.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio endurance soutenu — 35 min",
+          "duration_minutes": 48,
+          "type": "endurance",
+          "warmup": "8 min activation.",
+          "exercises": [
+            {
+              "name": "Cardio continu au choix",
+              "sets": 1,
+              "duration": "35 min",
+              "rest_seconds": 0,
+              "notes": "RPE cible 6/10 sur la majorité, passage à RPE 7 sur les 10 dernières minutes si tu te sens bien. Test de la parole : phrases complètes à RPE 6, phrases courtes à RPE 7. Objectif : tenir 35 min à rythme maîtrisé."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 5 min."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement bas du corps — pic volume",
+          "duration_minutes": 48,
+          "type": "strength",
+          "warmup": "8 min activation.",
+          "exercises": [
+            {
+              "name": "Squat goblet avec haltère",
+              "sets": 4,
+              "reps": "14",
+              "rest_seconds": 90,
+              "notes": "+2 reps vs W3. Si RPE > 8 sur le 3e set avec la charge actuelle, maintenir la charge et viser 12 reps. Double progression."
+            },
+            {
+              "name": "Fentes avant marchées avec haltères",
+              "sets": 4,
+              "reps": "10 par jambe",
+              "rest_seconds": 90,
+              "notes": "+2 reps par jambe vs W3. RPE 7-8."
+            },
+            {
+              "name": "Soulevé de terre haltères (Romanian Deadlift)",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 90,
+              "notes": "+1 set vs W3. Dos neutre impératif — si décharge des lombaires ressentie, alléger la charge de 2 kg."
+            },
+            {
+              "name": "Step-ups avec haltères",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 75,
+              "notes": "Sur chaise ou marche stable, haltères en mains (5-8 kg/main). Montée explosive jambe d'appui, descente contrôlée. Transfert vers la vie quotidienne (escaliers)."
+            },
+            {
+              "name": "Calf raises excentriques",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 30,
+              "notes": "+3 reps vs W3."
+            }
+          ],
+          "cooldown": "5 min étirements bas du corps."
+        },
+        {
+          "day": 5,
+          "name": "Renforcement haut du corps + core — pic volume",
+          "duration_minutes": 48,
+          "type": "strength",
+          "warmup": "8 min activation épaules et poignets.",
+          "exercises": [
+            {
+              "name": "Push-up complet",
+              "sets": 4,
+              "reps": "12-15",
+              "rest_seconds": 90,
+              "notes": "Fourchette haute. Si 15 reps RPE < 7 → pieds sur chaise la semaine prochaine."
+            },
+            {
+              "name": "Rowing haltère unilatéral",
+              "sets": 4,
+              "reps": "14 par côté",
+              "rest_seconds": 90,
+              "notes": "+2 reps vs W3. Charge maintenue ou +1 kg si RPE < 7."
+            },
+            {
+              "name": "Développé haltères épaules debout",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 90,
+              "notes": "+1 set vs W3. RPE 7-8 dernier set."
+            },
+            {
+              "name": "Élévations latérales haltères",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60,
+              "notes": "Bras légèrement fléchis, monter à hauteur des épaules. Pull vertical indirect (deltoïdes latéraux). 4-6 kg. Éviter de balancer le buste."
+            },
+            {
+              "name": "Curl biceps + marteau alternés",
+              "sets": 3,
+              "reps": "10 + 10",
+              "rest_seconds": 60,
+              "notes": "5 curl biceps classique + 5 curl marteau (prise neutre) par bras. Variation de grip pour solliciter brachioradial."
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 4,
+              "duration": "35 sec",
+              "rest_seconds": 45,
+              "notes": "+1 set vs W3."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "notes": "+2 reps vs W3."
+            }
+          ],
+          "cooldown": "5 min étirements haut du corps."
+        },
+        {
+          "day": 7,
+          "name": "Mobilité active — récupération active complète",
+          "duration_minutes": 40,
+          "type": "mobility",
+          "warmup": "5 min respiration profonde allongée.",
+          "exercises": [
+            {
+              "name": "Mobilité thoracique sur chaise",
+              "sets": 2,
+              "reps": "10 cycles",
+              "rest_seconds": 15,
+              "notes": "Assis, mains derrière la tête, s'allonger en arrière sur le dossier de la chaise. Extension thoracique. Si inconfort, enrouler une serviette autour du dossier."
+            },
+            {
+              "name": "Low lunge + rotation + bras levé",
+              "sets": 2,
+              "duration": "50 sec par côté",
+              "rest_seconds": 20
+            },
+            {
+              "name": "Pigeon modifié au sol",
+              "sets": 2,
+              "duration": "60 sec par côté",
+              "rest_seconds": 20,
+              "notes": "+10 sec vs W3. Relâchement progressif."
+            },
+            {
+              "name": "Downward dog actif",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 15,
+              "notes": "À 4 pattes, pousser les hanches vers le haut. Allonger les mollets et étirer toute la chaîne postérieure. Léger balancement talon G/D pour relâcher davantage."
+            },
+            {
+              "name": "Supine twist",
+              "sets": 2,
+              "duration": "50 sec par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Respiration finale allongée",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": 0
+            }
+          ],
+          "cooldown": null
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Cutback — consolidation active",
+      "goal": "Semaine allégée obligatoire : volume -15% vs W4. Maintenir la fréquence (4 séances) mais réduire sets et durée. Objectif : laisser l'organisme absorber les adaptations. Ne pas interpréter cette semaine comme un recul — c'est une partie intégrante de la progression.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio continu facile — 25 min",
+          "duration_minutes": 35,
+          "type": "endurance",
+          "warmup": "8 min activation.",
+          "exercises": [
+            {
+              "name": "Cardio continu au choix",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "RPE 5/10 maximum. Séance de récupération active — tu dois pouvoir chanter une chanson. Si tu te sens frais et plein d'énergie, c'est bon signe : c'est l'adaptation en cours. Ne pas forcer."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 4 min."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement bas du corps — cutback",
+          "duration_minutes": 38,
+          "type": "strength",
+          "warmup": "8 min activation.",
+          "exercises": [
+            {
+              "name": "Squat goblet avec haltère",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 75,
+              "notes": "Retour à 3 sets et 10 reps (vs 4x14 en W4). Charge identique — on allège le volume, pas la technique."
+            },
+            {
+              "name": "Fentes statiques avec haltères",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 75,
+              "notes": "Retour aux fentes statiques (moins exigeantes que marchées). Volume réduit."
+            },
+            {
+              "name": "Soulevé de terre haltères (Romanian Deadlift)",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 90,
+              "notes": "3 sets vs 4 en W4. Charge identique."
+            },
+            {
+              "name": "Calf raises bipodal",
+              "sets": 2,
+              "reps": "20",
+              "rest_seconds": 30,
+              "notes": "Format simple, volume réduit."
+            }
+          ],
+          "cooldown": "5 min étirements."
+        },
+        {
+          "day": 5,
+          "name": "Renforcement haut du corps + core — cutback",
+          "duration_minutes": 38,
+          "type": "strength",
+          "warmup": "8 min activation.",
+          "exercises": [
+            {
+              "name": "Push-up complet",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 75,
+              "notes": "3 sets vs 4 en W4. Technique parfaite prioritaire."
+            },
+            {
+              "name": "Rowing haltère unilatéral",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 75,
+              "notes": "Volume réduit. Charge identique."
+            },
+            {
+              "name": "Développé haltères épaules debout",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Retour au volume W2."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 30,
+              "notes": "Volume allégé."
+            }
+          ],
+          "cooldown": "5 min étirements haut du corps."
+        },
+        {
+          "day": 7,
+          "name": "Mobilité longue — récupération profonde",
+          "duration_minutes": 45,
+          "type": "mobility",
+          "warmup": "5 min respiration.",
+          "exercises": [
+            {
+              "name": "Cat-Cow",
+              "sets": 3,
+              "reps": "10 cycles",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Thread the needle",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Low lunge + ouverture de hanche",
+              "sets": 3,
+              "duration": "60 sec par côté",
+              "rest_seconds": 20
+            },
+            {
+              "name": "Pigeon modifié au sol",
+              "sets": 3,
+              "duration": "60 sec par côté",
+              "rest_seconds": 20,
+              "notes": "3 séries cette semaine (vs 2 en W3-W4). Plus de temps passé sur la récupération profonde."
+            },
+            {
+              "name": "Hip 90/90 stretch",
+              "sets": 2,
+              "duration": "50 sec par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Downward dog actif",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Respiration finale allongée",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": 0,
+              "notes": "5 min cette semaine — récupération parasympathique maximisée."
+            }
+          ],
+          "cooldown": null
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Relance — reprise en force",
+      "goal": "Reprendre la progression post-cutback avec progression sur les charges (+5-10%). Introduction du circuit mixte cardio-renfo. Volume +18% vs W5.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio intervalles 30/30 — relance",
+          "duration_minutes": 42,
+          "type": "interval",
+          "warmup": "10 min cardio léger RPE 4 + mobilité dynamique.",
+          "exercises": [
+            {
+              "name": "Intervalles 30/30",
+              "sets": 6,
+              "duration": "30 sec effort + 30 sec récupération active",
+              "rest_seconds": 0,
+              "notes": "30/30 : 30 sec RPE 8 (effort maximal soutenu), 30 sec marche ou step léger RPE 2. 6 sets = 6 min de travail effectif. Exercices : burpees modifiés (sans saut), mountain climbers, squat jump sans impact (squat + montée sur pointe). Alterner au choix."
+            },
+            {
+              "name": "Récupération active",
+              "sets": 1,
+              "duration": "2 min",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Intervalles 30/30 — série 2",
+              "sets": 4,
+              "duration": "30 sec effort + 30 sec récupération active",
+              "rest_seconds": 0,
+              "notes": "+4 sets = total 10 sets. Si fatigue > RPE 6 pendant les 30 sec de récup après le 7e set, arrêter là."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 5 min."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement bas du corps — progression post-cutback",
+          "duration_minutes": 48,
+          "type": "strength",
+          "warmup": "8 min activation.",
+          "exercises": [
+            {
+              "name": "Squat goblet avec haltère",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 90,
+              "notes": "Retour à 4 sets. Tenter +1 à +2 kg vs W4 si RPE W4 était < 7-8. Sinon charge identique."
+            },
+            {
+              "name": "Fentes avant marchées avec haltères",
+              "sets": 4,
+              "reps": "10 par jambe",
+              "rest_seconds": 90,
+              "notes": "Charge identique W4 ou +1 kg si W4 facile."
+            },
+            {
+              "name": "Soulevé de terre haltères (Romanian Deadlift)",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 90,
+              "notes": "Retour à 4 sets. Dos neutre, focus sur l'engagement des ischio-jambiers au début du mouvement."
+            },
+            {
+              "name": "Step-ups avec haltères",
+              "sets": 3,
+              "reps": "12 par jambe",
+              "rest_seconds": 75,
+              "notes": "+2 reps vs W4."
+            },
+            {
+              "name": "Calf raises excentriques",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "5 min étirements."
+        },
+        {
+          "day": 5,
+          "name": "Circuit mixte cardio-renfo",
+          "duration_minutes": 48,
+          "type": "mixed",
+          "warmup": "8 min activation cardio + mobilité.",
+          "exercises": [
+            {
+              "name": "Circuit A — 3 tours",
+              "sets": 3,
+              "duration": "12 min par tour (4 min × 3 tours)",
+              "rest_seconds": 90,
+              "notes": "Enchaîner sans pause les 4 exercices suivants, 90 sec de repos entre chaque tour complet. Tour = Push-up ×10 + Squat goblet ×12 + Rowing haltère ×10/côté + Planche 25 sec. RPE moyen du tour : 7."
+            },
+            {
+              "name": "Push-up complet (dans circuit A)",
+              "sets": null,
+              "reps": "10",
+              "rest_seconds": 0,
+              "notes": "Pas de repos entre les exercices du circuit. Faire immédiatement le squat après."
+            },
+            {
+              "name": "Squat goblet (dans circuit A)",
+              "sets": null,
+              "reps": "12",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Rowing haltère alterné (dans circuit A)",
+              "sets": null,
+              "reps": "10 par côté",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Planche ventrale (dans circuit A)",
+              "sets": null,
+              "duration": "25 sec",
+              "rest_seconds": 90,
+              "notes": "Repos 90 sec ici avant le prochain tour."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 5 min haut et bas du corps."
+        },
+        {
+          "day": 7,
+          "name": "Mobilité active + cardio doux",
+          "duration_minutes": 40,
+          "type": "mixed",
+          "warmup": "5 min respiration.",
+          "exercises": [
+            {
+              "name": "Marche rapide ou vélo doux",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "RPE 4. Active la circulation sans charger les muscles en récupération."
+            },
+            {
+              "name": "Cat-Cow",
+              "sets": 2,
+              "reps": "12 cycles",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Pigeon modifié au sol",
+              "sets": 2,
+              "duration": "60 sec par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Supine twist",
+              "sets": 2,
+              "duration": "45 sec par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Respiration finale allongée",
+              "sets": 1,
+              "duration": "4 min",
+              "rest_seconds": 0
+            }
+          ],
+          "cooldown": null
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "theme": "Pic de performance — puissance et endurance",
+      "goal": "Séance la plus exigeante du plan sur les trois piliers. Renfo : RPE 8 visé sur derniers sets. Cardio : 38 min à RPE 6-7. Circuit mixte + mobilité long. +12% vs W6.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio endurance soutenu — 38 min",
+          "duration_minutes": 52,
+          "type": "endurance",
+          "warmup": "8 min activation.",
+          "exercises": [
+            {
+              "name": "Cardio continu au choix",
+              "sets": 1,
+              "duration": "38 min",
+              "rest_seconds": 0,
+              "notes": "Pic cardio du plan. RPE 6-7/10 stable. Sur les 10 dernières minutes, essaie de maintenir RPE 7 si le souffle le permet. Test de la parole : phrases courtes OK à RPE 7."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 5 min."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement bas du corps — pic de charge",
+          "duration_minutes": 52,
+          "type": "strength",
+          "warmup": "10 min activation spécifique (squat aérien ×15 + fentes ×8 + hip hinge sans charge ×10).",
+          "exercises": [
+            {
+              "name": "Squat goblet avec haltère",
+              "sets": 4,
+              "reps": "12-14",
+              "rest_seconds": 120,
+              "notes": "Charge max du plan. RPE 8 sur le 4e set (ACSM : intermédiaire vise RPE 7-9). Si RPE > 8 sur le 3e set, ne pas augmenter la charge. Repos 120 sec entre les sets (ACSM : composés lourds ≥ 2 min)."
+            },
+            {
+              "name": "Fentes bulgares avec haltères",
+              "sets": 4,
+              "reps": "8 par jambe",
+              "rest_seconds": 120,
+              "notes": "Pied arrière posé sur la chaise, pied avant devant. Descente profonde en gardant le tronc droit. Exercice plus exigeant que la fente marchée — introduit en W7 pour intensifier. RPE 8."
+            },
+            {
+              "name": "Soulevé de terre haltères (Romanian Deadlift)",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 120,
+              "notes": "Charge + si W6 était RPE < 7. Priorité absolue au dos neutre."
+            },
+            {
+              "name": "Step-ups avec haltères",
+              "sets": 3,
+              "reps": "12 par jambe",
+              "rest_seconds": 75
+            },
+            {
+              "name": "Calf raises excentriques",
+              "sets": 3,
+              "reps": "15 par côté",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "7 min étirements bas du corps approfondis."
+        },
+        {
+          "day": 5,
+          "name": "Renforcement haut du corps + core — pic de charge",
+          "duration_minutes": 52,
+          "type": "strength",
+          "warmup": "10 min activation épaules et poignets.",
+          "exercises": [
+            {
+              "name": "Push-up complet ou pieds surélevés",
+              "sets": 4,
+              "reps": "12-15",
+              "rest_seconds": 120,
+              "notes": "Pieds sur chaise si 15 reps à RPE < 7 au sol. RPE 8 sur dernier set. Repos 120 sec (ACSM composés)."
+            },
+            {
+              "name": "Rowing haltère unilatéral",
+              "sets": 4,
+              "reps": "14 par côté",
+              "rest_seconds": 120,
+              "notes": "Charge max du plan. RPE 8 dernier set. Repos 120 sec."
+            },
+            {
+              "name": "Développé haltères épaules debout",
+              "sets": 4,
+              "reps": "12",
+              "rest_seconds": 120,
+              "notes": "Charge + si W6 facile. RPE 8."
+            },
+            {
+              "name": "Élévations latérales haltères",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Curl biceps haltères",
+              "sets": 3,
+              "reps": "14",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Triceps kick-back haltères",
+              "sets": 3,
+              "reps": "14 par côté",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 4,
+              "duration": "40 sec",
+              "rest_seconds": 45,
+              "notes": "Core en fin de séance."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "7 min étirements haut du corps approfondis."
+        },
+        {
+          "day": 7,
+          "name": "Mobilité longue — récupération active avant W8",
+          "duration_minutes": 45,
+          "type": "mobility",
+          "warmup": "5 min respiration et marche douce.",
+          "exercises": [
+            {
+              "name": "Cat-Cow",
+              "sets": 3,
+              "reps": "12 cycles",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Thread the needle",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Low lunge + rotation + bras levé",
+              "sets": 3,
+              "duration": "60 sec par côté",
+              "rest_seconds": 20
+            },
+            {
+              "name": "Pigeon modifié au sol",
+              "sets": 3,
+              "duration": "70 sec par côté",
+              "rest_seconds": 20,
+              "notes": "Durée maximale du plan. Laisser la tension se dissoudre progressivement."
+            },
+            {
+              "name": "Downward dog actif",
+              "sets": 3,
+              "duration": "40 sec",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Hip 90/90 stretch",
+              "sets": 2,
+              "duration": "60 sec par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Supine twist",
+              "sets": 2,
+              "duration": "60 sec par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Respiration finale allongée",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": 0
+            }
+          ],
+          "cooldown": null
+        }
+      ]
+    },
+    {
+      "week_number": 8,
+      "theme": "Ancrage et autonomie — bilan des 8 semaines",
+      "goal": "Semaine légèrement allégée en volume (-10% vs W7) pour arriver frais aux séances qualité. Focus sur l'exécution maîtrisée et la checklist d'autonomie finale. Objectif : démontrer à toi-même que la routine est acquise et transférable au-delà du plan.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio endurance — 30 min maîtrisé",
+          "duration_minutes": 45,
+          "type": "endurance",
+          "warmup": "8 min activation.",
+          "exercises": [
+            {
+              "name": "Cardio continu au choix",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "RPE 6/10 stable sur toute la durée. Séance de mise en jambes — pas un test. Comparaison mentale avec W1 : tu tiens maintenant 30 min à un rythme que tu ne pouvais pas soutenir 8 semaines sans fatigue excessive."
+            }
+          ],
+          "cooldown": "5 min marche + étirements 4 min."
+        },
+        {
+          "day": 3,
+          "name": "Renforcement bas + haut du corps — séance complète",
+          "duration_minutes": 55,
+          "type": "strength",
+          "warmup": "10 min activation complète (cardio léger + mobilité dynamique).",
+          "exercises": [
+            {
+              "name": "Squat goblet avec haltère",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 120,
+              "notes": "Charge identique à W7. Objectif : qualité et maîtrise parfaite. Note mentalement : est-ce que 12 reps sont confortables ? Cela mesure le chemin parcouru vs W1."
+            },
+            {
+              "name": "Soulevé de terre haltères (Romanian Deadlift)",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 120,
+              "notes": "Charge identique W7. Dos neutre, hinge propre."
+            },
+            {
+              "name": "Push-up complet",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 90,
+              "notes": "Note le nombre de reps que tu pourrais encore faire après 12 (RIR = Reps in Reserve). Si RIR ≥ 4, ton niveau a nettement progressé."
+            },
+            {
+              "name": "Rowing haltère unilatéral",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 90,
+              "notes": "Charge W7. Mouvement propre et contrôlé."
+            },
+            {
+              "name": "Développé haltères épaules debout",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 90
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "40 sec",
+              "rest_seconds": 45,
+              "notes": "Core en fin de séance."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "7 min étirements complets haut et bas du corps."
+        },
+        {
+          "day": 5,
+          "name": "Circuit mixte final — séance phare",
+          "duration_minutes": 50,
+          "type": "mixed",
+          "warmup": "10 min activation cardio + mobilité.",
+          "exercises": [
+            {
+              "name": "Cardio continu",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "RPE 6. Échauffement cardio spécifique avant le circuit."
+            },
+            {
+              "name": "Circuit final — 4 tours",
+              "sets": 4,
+              "duration": "10 min par tour",
+              "rest_seconds": 90,
+              "notes": "Le circuit le plus complet du plan : Squat goblet ×12 + Push-up ×10 + Romanian Deadlift ×10 + Rowing haltère ×10/côté + Planche 30 sec + Bird-dog 8/côté. Enchaîner sans pause entre les exercices, 90 sec entre les tours. RPE global par tour : 7-8."
+            },
+            {
+              "name": "Squat goblet (dans circuit final)",
+              "sets": null,
+              "reps": "12",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Push-up complet (dans circuit final)",
+              "sets": null,
+              "reps": "10",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Romanian Deadlift haltères (dans circuit final)",
+              "sets": null,
+              "reps": "10",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Rowing haltère alterné (dans circuit final)",
+              "sets": null,
+              "reps": "10 par côté",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Planche ventrale (dans circuit final)",
+              "sets": null,
+              "duration": "30 sec",
+              "rest_seconds": 0
+            },
+            {
+              "name": "Bird-dog (dans circuit final)",
+              "sets": null,
+              "reps": "8 par côté",
+              "rest_seconds": 90,
+              "notes": "Repos 90 sec ici avant le prochain tour."
+            }
+          ],
+          "cooldown": "7 min marche lente + étirements complets 8 min (mollets, ischio-jambiers, quadriceps, fessiers, pectoraux, dos). Hydratation + collation post-effort."
+        },
+        {
+          "day": 7,
+          "name": "Mobilité + checklist d'autonomie finale",
+          "duration_minutes": 45,
+          "type": "mobility",
+          "warmup": "5 min respiration profonde.",
+          "exercises": [
+            {
+              "name": "Cat-Cow",
+              "sets": 2,
+              "reps": "12 cycles",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Low lunge + rotation thoracique",
+              "sets": 2,
+              "duration": "60 sec par côté",
+              "rest_seconds": 20
+            },
+            {
+              "name": "Pigeon modifié au sol",
+              "sets": 2,
+              "duration": "70 sec par côté",
+              "rest_seconds": 20
+            },
+            {
+              "name": "Downward dog actif",
+              "sets": 2,
+              "duration": "40 sec",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Supine twist",
+              "sets": 2,
+              "duration": "60 sec par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Respiration finale + bilan",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": 0,
+              "notes": "Checklist d'autonomie finale — évalue ces 5 critères honnêtement avant de continuer au-delà du plan : (1) CARDIO : je tiens 30 min de cardio continu à RPE 6 sans effort perçu excessif (respiration maîtrisée, test de la parole réussi sur la majorité de la durée). (2) FORCE : sur mes composés clés (squat goblet, RDL, push-up, rowing), j'atteins RPE 7-8 sur le dernier set avec une forme technique propre, sans douleur articulaire. (3) MOBILITÉ : je passe 20-25 min de mobilité active sans inconfort articulaire et je perçois une différence d'amplitude vs W1 (hanches, épaules, colonne). (4) RÉGULARITÉ : j'ai complété au moins 28 des 32 séances programmées (≥ 87%) — si oui, la routine est ancrée et transférable sans plan structuré. (5) AUTONOMIE : je suis capable de choisir mon exercice cardio, de régler ma charge de renfo selon le RPE, et de reconnaître les signaux de surcharge (FC de repos élevée, courbatures > 72h, motivation effondrée) — si oui, tu peux programmer la suite toi-même."
+            }
+          ],
+          "cooldown": null
+        }
+      ]
+    }
+  ],
+  "safety_notes": "DRAPEAUX ROUGES (arrêter immédiatement et consulter si les signes persistent) :\n• Douleur articulaire genou ou hanche pendant ou après les squats, fentes ou step-ups : réduire l'amplitude, alléger la charge. Douleur articulaire ≠ fatigue musculaire. Consulter si > 48h.\n• Douleur aiguë dans le bas du dos pendant le soulevé de terre haltères : arrêter immédiatement, vérifier la position (dos plat, hinge propre). Réduire la charge de 30%. Si récurrente, consulter un professionnel avant de reprendre.\n• Gêne antérieure à l'épaule (face avant, sous-acromiale) sur les développés ou élévations : signe d'un conflit sous-acromial possible. Éviter les élévations au-dessus de la tête jusqu'à consultation. Alternative : élévations latérales basses (30° seulement).\n• Douleur au poignet en appui (push-up, planche) : échauffer les poignets systématiquement (10 cercles + 10 flexions/extensions avant toute mise en appui). Alternative push-up : push-up sur poings fermés pour neutraliser le poignet.\n• Essoufflement excessif lors du cardio (incapacité à prononcer un mot) : ralentir immédiatement. Si essoufflement sévère, arrêt, repos assis, consulter si douleur thoracique ou vertiges.\n• Vertiges ou nausées en cours de séance : arrêt, s'asseoir ou s'allonger, s'hydrater. Vérifier l'alimentation pré-séance (repas léger 1-2h avant).\n\nRÈGLES GÉNÉRALES :\n• Hydratation : 400-600 ml dans l'heure précédant la séance, 150-200 ml toutes les 20 min pendant l'effort, 400-500 ml dans l'heure suivant la séance.\n• Alimentation : ne pas s'entraîner à jeun sur les séances de force > 40 min. Une collation légère (fruit + protéine) 1h avant suffit.\n• Repos entre les séances identiques : minimum 48h entre deux séances de renforcement du même groupe musculaire.\n• Échauffement non optionnel : le risque de blessure double chez un pratiquant intermédiaire qui saute l'échauffement sur les séances de force.\n• Chaussures : semelle adaptée à l'effort cardio pratiqué. Pas de séances de step ou de saut en chaussures de running minimalistes usées.\n• DOMS (courbatures) : normales 24-72h après une séance. Une douleur musculaire pendant la séance est anormale et signale une surcharge ou une mauvaise technique.\n\nINTENSITÉ :\n• Cardio : test de la parole en fil conducteur. RPE 5-6 = tu parles en phrases complètes (endurance). RPE 7 = tu parles par phrases courtes (tempo). RPE 8-9 = mots seulement (intervalles). Ne pas dépasser RPE 7 sur les séances d'endurance continue.\n• Force : grille RPE 1-10 calibrée en W1. RPE 6-7 = 3-4 reps en réserve (RIR 3-4). RPE 7-8 = 1-2 reps en réserve (RIR 1-2). Ne pas dépasser RPE 9 (échec musculaire) sans surveillance.\n• Repos entre les sets composés lourds (squat, RDL, développé, rowing) : 90-120 sec minimum (ACSM). Raccourcir ce temps dégrade la forme et augmente le risque lombaire et d'épaule.\n\nSIGNES DE SURCHARGE (3+ simultanés → semaine cutback immédiate type W5) :\n• FC de repos +8-10 bpm au réveil sur 3 matins consécutifs.\n• Sommeil perturbé (difficultés d'endormissement ou réveils nocturnes) > 3 nuits consécutives.\n• Courbatures résiduelles > 72h post-séance.\n• Baisse de performance notable (moins de reps possibles à même charge, ou cardio plus difficile à RPE identique).\n• Irritabilité ou motivation effondrée de façon inhabituelle.\n\nSI SÉANCE MANQUÉE :\n• < 3 jours de manque : décaler la séance sans modifier la semaine (ne pas en faire 2 le même jour).\n• 3-7 jours de manque : reprendre à la séance manquée puis continuer le plan normalement.\n• 1-2 semaines de pause involontaire (maladie, voyage) : reprendre à la semaine précédant celle abandonnée, réduire les charges de 10%.\n• > 2 semaines : reprendre 2 semaines en arrière pour resécuriser les adaptations musculaires et cardio-vasculaires.",
+  "progression_logic": "Progression construite sur 5 principes, alignés sur les recommandations ACSM (American College of Sports Medicine) et NSCA pour les pratiquants intermédiaires en remise en forme générale :\n\n(1) RATIO CARDIO / RENFO / MOBILITÉ : chaque semaine équilibre ~40% cardio, ~40% renforcement, ~20% mobilité. Cette balance prévient la spécialisation excessive et maintient toutes les composantes de la condition physique. L'ACSM recommande 150 min/sem d'activité modérée + 2 séances de force/sem pour les adultes : ce programme y répond avec 4 séances structurées.\n\n(2) DOUBLE PROGRESSION EN FORCE : sur tous les exercices composés (squat, RDL, push-up, rowing, développé épaules), la règle est : dès que tu atteins le haut de la fourchette de reps (ex : 12/12) avec RPE < 7 sur tous les sets, tu augmentes la charge de 1-2 kg la séance suivante. Sur les exercices d'isolation (curl, élévations latérales, kick-back), même principe mais paliers de 0,5-1 kg. Ne jamais augmenter charge ET volume la même semaine (NSCA).\n\n(3) RÈGLE DE 10-15% : la charge totale hebdomadaire (volume × intensité) n'augmente pas de plus de 15% d'une semaine à l'autre. W4 représente le pic pré-cutback, W5 est le creux de récupération (-15%), W6-W7 relancent progressivement.\n\n(4) CUTBACK WEEK (W5) : semaine de récupération active obligatoire à mi-plan. Maintien de la fréquence (4 séances) mais réduction de volume (-15%) et d'intensité (retour à RPE 6). Sans cette semaine, le risque de blessure de surcharge (tendinopathies, fatigue chronique) augmente significativement sur un programme de 8 semaines à 4 séances/sem.\n\n(5) MONTÉE EN CARDIO MIXTE : W1-W2 = endurance continue (RPE 5-6, 25-30 min). W3 = introduction intervalles 40/20. W4 = endurance longue (35 min). W6 = intervalles 30/30 (plus courts et plus intenses). W7 = pic endurance (38 min). W8 = retour à 30 min maîtrisés + circuit mixte. Cette alternance endurance/intervalles stimule à la fois le système aérobie et la puissance cardio-vasculaire sans surcharge. Le circuit mixte W6 et W8 intègre force + cardio dans un format AMRAP / circuit time-based, entraînant les filières mixtes propres aux activités de la vie quotidienne."
+}

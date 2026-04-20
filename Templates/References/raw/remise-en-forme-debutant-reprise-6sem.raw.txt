@@ -1,0 +1,966 @@
+{
+  "id": "remise-en-forme-debutant-reprise-6sem",
+  "schema_version": 1,
+  "sport": "remise_en_forme",
+  "level": "debutant",
+  "name": "Remise en forme — Reprise douce 6 semaines",
+  "duration_weeks": 6,
+  "sessions_per_week": 3,
+  "default_objective": "Retrouver une base cardio (30 min de marche rapide continue) + mobilité générale + gainage élémentaire",
+  "assumed_profile": "Adulte sédentaire depuis plusieurs mois, aucun sport récent, pas de pathologie majeure. Envie de bouger sans viser un sport particulier. Aucun équipement requis : tapis de sol recommandé, chaise solide ou mur disponible, chaussures de marche confortables.",
+  "summary": "Programme de remise en forme progressive sur 6 semaines, structuré autour d'un ratio cardio/renforcement/mobilité d'environ 40/40/20 en minutes. Chaque semaine comprend 2 séances mixtes cardio + renforcement et 1 séance mobilité/récupération active. La cardio repose sur la marche rapide progressivement allongée jusqu'à 30 min continus en W6 (objectif cible). Le renforcement poids de corps couvre : gainage (planche, bird-dog, pont fessier), membres inférieurs (squats, fentes, mollets) et membres supérieurs (pompes adaptées). La mobilité adresse hanches, épaules, colonne et chevilles — les zones les plus raides chez le sédentaire de longue durée. Une semaine cutback en W4 (-15% de volume) permet la consolidation avant le pic final.",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Éveil — redécouvrir son corps",
+      "goal": "Réactiver le système cardio-vasculaire et les grands groupes musculaires après une période sédentaire. Objectif marche : 15 min de marche rapide. Découvrir les exercices de base sans chercher la performance.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio marche + renforcement fondamental",
+          "duration_minutes": 40,
+          "type": "mixed",
+          "warmup": "5 min de marche lente + 10 cercles de chevilles par côté + 10 rotations de bras vers l'avant/arrière + 10 balancements de jambe avant/arrière par côté. Total : 8 min. L'échauffement n'est pas optionnel — le tissu musculaire froid se blesse 2 à 3 fois plus facilement.",
+          "exercises": [
+            {
+              "name": "Marche rapide continue",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Allure soutenue mais conversationnelle : tu dois pouvoir parler par phrases courtes. Bras actifs, épaules détendues, pas d'attaque talon franc. Si tu dois ralentir, ralentis — ne t'arrête pas."
+            },
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60,
+              "notes": "Pieds largeur d'épaules, orteils légèrement ouverts. Descente contrôlée 2 sec, remontée 1 sec. Genoux dans l'axe des orteils. Descendre autant que la mobilité le permet (pas besoin d'aller à 90° dès W1)."
+            },
+            {
+              "name": "Pompes sur les genoux",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 60,
+              "notes": "Mains à la largeur des épaules, corps aligné (épaules-hanches-genoux). Descente 2 sec, remontée 1 sec. Alternative si douleur de poignet : pompes debout contre le mur."
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 45,
+              "notes": "Allongé sur le dos, pieds à plat, genoux fléchis. Soulever le bassin en serrant les fessiers, tenir 2 sec en haut. Très accessible et fondamental pour réactiver les fessiers anesthésiés par la station assise prolongée."
+            },
+            {
+              "name": "Planche ventrale sur genoux",
+              "sets": 3,
+              "duration": "15 sec",
+              "rest_seconds": 45,
+              "notes": "Coudes sous les épaules, corps aligné de la tête aux genoux. Ventre rentré sans bloquer la respiration. Variante si trop difficile : poser les deux mains à plat sur le sol, bras tendus (position pompe haute)."
+            }
+          ],
+          "cooldown": "5 min de marche lente + étirements statiques : quadriceps 30 sec/côté, mollets 30 sec/côté, ischio-jambiers assis 30 sec/côté. Hydratation."
+        },
+        {
+          "day": 3,
+          "name": "Mobilité et souplesse générale",
+          "duration_minutes": 35,
+          "type": "mobility",
+          "warmup": "5 min de marche lente + 8 rotations de la tête lentes par sens + 10 rotations d'épaules par sens. Total : 8 min.",
+          "exercises": [
+            {
+              "name": "Cat-Cow (chat/vache)",
+              "sets": 2,
+              "reps": "10 cycles",
+              "rest_seconds": 20,
+              "notes": "À 4 pattes, mains sous les épaules, genoux sous les hanches. Inspiration : creuser le dos (vache). Expiration : arrondir le dos (chat). Mouvement lent et coordonné à la respiration. Réveil essentiel de la colonne thoracique et lombaire."
+            },
+            {
+              "name": "Ouverture de hanches au sol (90/90)",
+              "sets": 2,
+              "duration": "45 sec par côté",
+              "rest_seconds": 20,
+              "notes": "Assis au sol, une jambe devant à 90° et une jambe derrière à 90°. Tenir la position sans forcer. Cible la hanche — zone majeure de raideur chez le sédentaire."
+            },
+            {
+              "name": "Étirement pectoral à la porte",
+              "sets": 2,
+              "duration": "30 sec par côté",
+              "rest_seconds": 20,
+              "notes": "Bras à 90° contre le cadre de porte, avancer doucement le buste. Contre-balance l'affaissement postural de la station assise prolongée."
+            },
+            {
+              "name": "Mobilisation épaule : bras croisé",
+              "sets": 2,
+              "duration": "30 sec par côté",
+              "rest_seconds": 15,
+              "notes": "Ramener un bras tendu en travers de la poitrine avec l'autre bras. Relâchement de la capsule postérieure. Ne pas forcer si douleur antérieure de l'épaule."
+            },
+            {
+              "name": "Étirement mollets debout contre mur",
+              "sets": 2,
+              "duration": "30 sec par côté",
+              "rest_seconds": 15,
+              "notes": "Pied arrière talon au sol, jambe tendue. Maintenir le talon collé au sol. Cible gastrocnémien et soléaire."
+            },
+            {
+              "name": "Rotation thoracique allongé (windshield wiper)",
+              "sets": 2,
+              "reps": "8 par côté",
+              "rest_seconds": 20,
+              "notes": "Allongé sur le dos, genoux fléchis, faire tomber les deux genoux lentement d'un côté à l'autre. Épaules restent au sol. Mobilisation douce de la colonne."
+            }
+          ],
+          "cooldown": "5 min allongé sur le dos, respiration abdominale profonde (3 sec inspiration par le nez, 5 sec expiration par la bouche). Observation des sensations sans jugement."
+        },
+        {
+          "day": 5,
+          "name": "Cardio marche + renforcement fondamental",
+          "duration_minutes": 40,
+          "type": "mixed",
+          "warmup": "Échauffement standard 8 min (identique à J1).",
+          "exercises": [
+            {
+              "name": "Marche rapide continue",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Même durée qu'en J1. La répétition à volume stable permet l'adaptation cardio-vasculaire. Essaie de maintenir un pas régulier tout au long des 15 min."
+            },
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60,
+              "notes": "Même technique qu'en J1. Compare tes sensations : la mobilité s'améliore-t-elle déjà un peu ?"
+            },
+            {
+              "name": "Pompes sur les genoux",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 60,
+              "notes": "Maintenir le gainage abdominal pendant tout le mouvement. Alternative contre le mur si les genoux font mal."
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 45,
+              "notes": "Tenir 2 sec en haut de chaque répétition. Sentir la contraction dans les fessiers, pas dans le bas du dos."
+            },
+            {
+              "name": "Planche ventrale sur genoux",
+              "sets": 3,
+              "duration": "15 sec",
+              "rest_seconds": 45,
+              "notes": "Identique à J1. La stabilité du gainage s'améliore déjà entre les deux séances."
+            }
+          ],
+          "cooldown": "5 min de marche lente + étirements standards 5 min (mollets, quadriceps, ischio, pectoraux)."
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Construction — augmenter le temps de marche",
+      "goal": "Passer à 20 min de marche rapide continue. Progresser légèrement sur les exercices de renforcement (+2 répétitions, durée planche +5 sec). Volume hebdo +15% vs W1.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio 20 min + renforcement",
+          "duration_minutes": 45,
+          "type": "mixed",
+          "warmup": "Échauffement standard 8 min.",
+          "exercises": [
+            {
+              "name": "Marche rapide continue",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Premier cap : 20 min sans s'arrêter. Allure conversationnelle obligatoire. Si la fréquence cardiaque monte trop (impossible de parler), ralentis légèrement mais ne t'arrête pas."
+            },
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "2 répétitions de plus qu'en W1. Chercher à descendre un peu plus bas si la mobilité le permet."
+            },
+            {
+              "name": "Pompes sur les genoux",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60,
+              "notes": "2 répétitions de plus. Si les pompes sur genoux deviennent faciles, tester 2-3 pompes classiques à la fin du dernier set."
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 45,
+              "notes": "Tenir 2 sec en haut. Ajouter une légère rotation du bassin en fin de séries pour activer les rotateurs."
+            },
+            {
+              "name": "Planche ventrale sur genoux",
+              "sets": 3,
+              "duration": "20 sec",
+              "rest_seconds": 45,
+              "notes": "+5 sec vs W1. Respiration régulière pendant l'effort."
+            }
+          ],
+          "cooldown": "5 min marche lente + étirements 5 min."
+        },
+        {
+          "day": 3,
+          "name": "Mobilité ciblée + introduction bird-dog",
+          "duration_minutes": 35,
+          "type": "mobility",
+          "warmup": "5 min marche lente + mobilité cervicale douce (oui/non/peut-être lents).",
+          "exercises": [
+            {
+              "name": "Cat-Cow",
+              "sets": 2,
+              "reps": "12 cycles",
+              "rest_seconds": 15,
+              "notes": "+2 cycles vs W1. Chercher à maximiser l'amplitude à chaque cycle."
+            },
+            {
+              "name": "Fente basse au sol — hip flexor stretch",
+              "sets": 2,
+              "duration": "40 sec par côté",
+              "rest_seconds": 20,
+              "notes": "Un genou au sol, l'autre pied devant. Faire glisser le bassin vers l'avant doucement pour ouvrir le fléchisseur de hanche. Zone très raidie par la station assise."
+            },
+            {
+              "name": "Ouverture dorsale bras tendus (thread the needle)",
+              "sets": 2,
+              "reps": "6 par côté",
+              "rest_seconds": 20,
+              "notes": "À 4 pattes, faire glisser un bras sous le corps jusqu'à poser l'épaule au sol, puis revenir. Mobilise la colonne thoracique et les épaules. Respirer en amplifiant le mouvement."
+            },
+            {
+              "name": "Rotation thoracique allongé",
+              "sets": 2,
+              "reps": "10 par côté",
+              "rest_seconds": 15,
+              "notes": "+2 répétitions vs W1. Aller chercher le sol des deux côtés à vitesse lente."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "6 par côté",
+              "rest_seconds": 30,
+              "notes": "Introduction dès W2. À 4 pattes, tendre le bras droit et la jambe gauche simultanément, tenir 2 sec, revenir. Gainage profond anti-rotation. Commencer par 6 répétitions pour maîtriser l'équilibre."
+            },
+            {
+              "name": "Étirement global dos (enfant — Child's Pose)",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": 0,
+              "notes": "Genoux écartés, bras tendus vers l'avant, front posé au sol (ou coussin). Relâchement complet du bas du dos et des épaules."
+            }
+          ],
+          "cooldown": "5 min respiration abdominale allongé."
+        },
+        {
+          "day": 5,
+          "name": "Cardio 20 min + renforcement",
+          "duration_minutes": 45,
+          "type": "mixed",
+          "warmup": "Échauffement standard 8 min.",
+          "exercises": [
+            {
+              "name": "Marche rapide continue",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Consolider les 20 min avant de progresser la semaine suivante. Essaie de maintenir un rythme plus régulier qu'en J1 de cette semaine."
+            },
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Pompes sur les genoux",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Planche ventrale sur genoux",
+              "sets": 3,
+              "duration": "20 sec",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "6 par côté",
+              "rest_seconds": 30,
+              "notes": "Introduit en J3 de cette semaine, première répétition en séance mixte. Chercher la stabilité du bassin — pas de rotation du tronc."
+            }
+          ],
+          "cooldown": "5 min marche lente + étirements 5 min."
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Consolidation — 25 min de marche et nouvelles variations",
+      "goal": "Allonger la marche à 25 min continus. Introduire les fentes, la planche latérale et le calf raise. Volume +18% vs W2.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio 25 min + renforcement enrichi",
+          "duration_minutes": 50,
+          "type": "mixed",
+          "warmup": "Échauffement standard 8 min + 10 pas talons-fesses + 10 montées de genoux. Total : 10 min.",
+          "exercises": [
+            {
+              "name": "Marche rapide continue",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "5 min de plus qu'en W2. Garder l'allure conversationnelle. Si tu remarques que tu peux parler aisément tout au long des 25 min, c'est signe d'une bonne adaptation cardio."
+            },
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60,
+              "notes": "+3 répétitions vs W2. Chercher la descente parallèle au sol si possible."
+            },
+            {
+              "name": "Fentes statiques",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 60,
+              "notes": "Nouveau mouvement. Un pied devant, l'autre derrière. Descendre le genou arrière vers le sol sans le poser. Genou avant ne dépasse pas la pointe du pied. Si équilibre difficile, tenir le dossier d'une chaise."
+            },
+            {
+              "name": "Pompes sur les genoux",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Si les pompes sur genoux sont devenues confortables, essayer 1 set classique (pieds tendus)."
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Planche ventrale sur genoux",
+              "sets": 3,
+              "duration": "25 sec",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 30,
+              "notes": "+2 répétitions vs W2. Fluidifier le mouvement bras/jambe opposés."
+            },
+            {
+              "name": "Calf raises bipodal",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 30,
+              "notes": "Nouveau. Monter sur la pointe des deux pieds, tenir 1 sec, descendre lentement 2 sec. Debout au sol ou sur une marche si disponible. Renforce les mollets et protège les tendons d'Achille."
+            }
+          ],
+          "cooldown": "5 min marche lente + étirements complets 5 min (mollets, quadriceps, ischio, fessiers, pectoraux)."
+        },
+        {
+          "day": 3,
+          "name": "Mobilité avancée + planche latérale",
+          "duration_minutes": 35,
+          "type": "mobility",
+          "warmup": "5 min marche lente + Cat-Cow 10 cycles.",
+          "exercises": [
+            {
+              "name": "Fente basse au sol — hip flexor stretch",
+              "sets": 2,
+              "duration": "45 sec par côté",
+              "rest_seconds": 15,
+              "notes": "+5 sec vs W2. Amplifier l'ouverture en montant le bras opposé au ciel."
+            },
+            {
+              "name": "Pigeon (demi-pigeon allongé)",
+              "sets": 2,
+              "duration": "45 sec par côté",
+              "rest_seconds": 15,
+              "notes": "Allongé sur le dos : croiser une cheville sur le genou opposé, fléchi. Saisir l'arrière de la cuisse et tirer doucement vers la poitrine. Étirement profond de la hanche externe (fessier, pyramidal). Très efficace pour les sédentaires."
+            },
+            {
+              "name": "Thread the needle",
+              "sets": 2,
+              "reps": "8 par côté",
+              "rest_seconds": 15,
+              "notes": "+2 répétitions vs W2. Amplifier la rotation en expirant."
+            },
+            {
+              "name": "Étirement pectoral dynamique (eagle arms)",
+              "sets": 2,
+              "reps": "10 cycles",
+              "rest_seconds": 15,
+              "notes": "Croiser les avant-bras devant soi (un par-dessus l'autre) puis ouvrir grand les bras horizontalement en expirant. Mobilisation des rhomboïdes et pectoraux."
+            },
+            {
+              "name": "Planche latérale sur genou",
+              "sets": 2,
+              "duration": "20 sec par côté",
+              "rest_seconds": 30,
+              "notes": "Nouveau. Allongé sur le côté, appui sur le genou et l'avant-bras. Corps en ligne droite. Cible les obliques et les fessiers médians. Alternative si inconfort au genou : planche latérale debout contre le mur."
+            },
+            {
+              "name": "Child's Pose avec balancement latéral",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": 0,
+              "notes": "Position Child's Pose, puis balancer les bras d'un côté à l'autre pour ouvrir le flanc alternativement. Respiration profonde."
+            }
+          ],
+          "cooldown": "5 min respiration abdominale allongé."
+        },
+        {
+          "day": 5,
+          "name": "Cardio 25 min + renforcement enrichi",
+          "duration_minutes": 50,
+          "type": "mixed",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Marche rapide continue",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "Consolidation des 25 min. Chercher à maintenir un pas plus énergique sur les 10 dernières minutes si tu t'en sens capable."
+            },
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Fentes statiques",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 60,
+              "notes": "Deuxième passage sur les fentes cette semaine — la technique s'améliore déjà ?"
+            },
+            {
+              "name": "Pompes sur les genoux",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Planche ventrale sur genoux",
+              "sets": 3,
+              "duration": "25 sec",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 30
+            },
+            {
+              "name": "Calf raises bipodal",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "5 min marche lente + étirements 5 min."
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Cutback — consolidation et qualité",
+      "goal": "Semaine allégée : volume -15% vs W3. Maintenir la marche à 25 min mais réduire le volume de renforcement. Consolidation des acquis avant le pic final W5-W6. Les semaines allégées ne sont pas optionnelles : elles sont le moment où le corps s'adapte réellement.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio 25 min allégé + renforcement réduit",
+          "duration_minutes": 42,
+          "type": "mixed",
+          "warmup": "Échauffement standard 8 min.",
+          "exercises": [
+            {
+              "name": "Marche rapide continue",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "Même durée qu'en W3 mais on réduit le renforcement qui suit. Si tu te sens en forme et léger, c'est exactement ce que doit procurer une cutback week."
+            },
+            {
+              "name": "Squat poids du corps",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "1 set de moins, retour à 12 reps. Volume réduit intentionnellement."
+            },
+            {
+              "name": "Pompes sur les genoux",
+              "sets": 2,
+              "reps": "10",
+              "rest_seconds": 60,
+              "notes": "1 set de moins vs W3."
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Planche ventrale sur genoux",
+              "sets": 2,
+              "duration": "20 sec",
+              "rest_seconds": 45,
+              "notes": "Retour à 20 sec. Cutback sur le gainage aussi."
+            }
+          ],
+          "cooldown": "5 min marche lente + étirements 5 min."
+        },
+        {
+          "day": 3,
+          "name": "Mobilité douce et récupération active",
+          "duration_minutes": 30,
+          "type": "mobility",
+          "warmup": "5 min marche lente.",
+          "exercises": [
+            {
+              "name": "Cat-Cow",
+              "sets": 2,
+              "reps": "12 cycles",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Pigeon (demi-pigeon allongé)",
+              "sets": 2,
+              "duration": "60 sec par côté",
+              "rest_seconds": 15,
+              "notes": "+15 sec vs W3 : la cutback week est idéale pour tenir les étirements plus longtemps et gagner en souplesse."
+            },
+            {
+              "name": "Fente basse au sol — hip flexor stretch",
+              "sets": 2,
+              "duration": "45 sec par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Rotation thoracique allongé",
+              "sets": 2,
+              "reps": "10 par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Étirement global dos — Child's Pose",
+              "sets": 2,
+              "duration": "1 min",
+              "rest_seconds": 15,
+              "notes": "2 passages de 1 min. Laisser le bas du dos se relâcher complètement."
+            }
+          ],
+          "cooldown": "5 min respiration abdominale allongé. Bien reposer."
+        },
+        {
+          "day": 5,
+          "name": "Cardio 25 min + renforcement cutback",
+          "duration_minutes": 42,
+          "type": "mixed",
+          "warmup": "Échauffement standard 8 min.",
+          "exercises": [
+            {
+              "name": "Marche rapide continue",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "Finir la cutback week en force. Observe : tu te sens moins fatigué après 25 min qu'en W1 ? C'est la preuve de ton adaptation."
+            },
+            {
+              "name": "Squat poids du corps",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Fentes statiques",
+              "sets": 2,
+              "reps": "8 par jambe",
+              "rest_seconds": 60,
+              "notes": "Maintien de la technique acquise en W3 à volume réduit."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 2,
+              "reps": "8 par côté",
+              "rest_seconds": 30
+            },
+            {
+              "name": "Calf raises bipodal",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "5 min marche lente + étirements 5 min."
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Montée en puissance — 28 min et progressions",
+      "goal": "Passer à 28 min de marche rapide continue. Progresser sur le renforcement : planche classique, pompes classiques, fentes dynamiques. Volume +20% vs W4 cutback.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cardio 28 min + renforcement progressé",
+          "duration_minutes": 55,
+          "type": "mixed",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Marche rapide continue",
+              "sets": 1,
+              "duration": "28 min",
+              "rest_seconds": 0,
+              "notes": "3 min de plus qu'en W3 (pré-cutback). Allure conversationnelle. Si tu veux accélérer sur les 5 dernières minutes, c'est le moment d'essayer."
+            },
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Fentes dynamiques",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 60,
+              "notes": "Progression vs fentes statiques de W3 : alterner jambe droite/gauche avec retour au centre. Plus fonctionnel et cardio."
+            },
+            {
+              "name": "Pompes — transition vers classique",
+              "sets": 3,
+              "reps": "5 classiques + 5 sur genoux",
+              "rest_seconds": 60,
+              "notes": "Objectif : commencer chaque set avec 5 pompes classiques (pieds au sol), puis finir sur les genoux pour maintenir le volume. Si 5 classiques sont trop difficiles, faire 2-3 et basculer sur les genoux."
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Planche ventrale classique",
+              "sets": 3,
+              "duration": "20 sec",
+              "rest_seconds": 45,
+              "notes": "Transition vers planche classique (pieds au sol). Retour à 20 sec sur la version plus difficile. Si impossible, continuer sur les genoux 30 sec."
+            },
+            {
+              "name": "Planche latérale sur genou",
+              "sets": 3,
+              "duration": "20 sec par côté",
+              "rest_seconds": 30,
+              "notes": "+1 set vs W3. Renforcement latéral important pour la stabilité globale."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "notes": "+2 répétitions vs W3."
+            },
+            {
+              "name": "Calf raises bipodal",
+              "sets": 3,
+              "reps": "20",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "5 min marche lente + étirements complets 6 min."
+        },
+        {
+          "day": 3,
+          "name": "Mobilité et renforcement léger",
+          "duration_minutes": 40,
+          "type": "mixed",
+          "warmup": "5 min marche lente + Cat-Cow 10 cycles.",
+          "exercises": [
+            {
+              "name": "Cat-Cow",
+              "sets": 2,
+              "reps": "12 cycles",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Pigeon (demi-pigeon allongé)",
+              "sets": 2,
+              "duration": "60 sec par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Thread the needle",
+              "sets": 2,
+              "reps": "10 par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Fente basse avec bras levé (deep lunge thoracic rotation)",
+              "sets": 2,
+              "reps": "8 par côté",
+              "rest_seconds": 20,
+              "notes": "En fente basse, lever le bras du côté de la jambe avant vers le ciel en ouvrant la cage thoracique. Combine ouverture hanche et mobilité thoracique."
+            },
+            {
+              "name": "Squat profond tenu (deep squat hold)",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 30,
+              "notes": "S'accroupir le plus bas possible, talons au sol si possible (agripper un poteau ou un meuble si l'équilibre est difficile). Ouvre les hanches, étire les mollets, améliore la mobilité de cheville. Exercice très efficace pour les sédentaires."
+            },
+            {
+              "name": "Rotation d'épaule en wall angel",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 30,
+              "notes": "Dos contre le mur, lombes collées au mur, coudes à 90° (position de capitulation). Glisser les bras vers le haut en gardant le contact dos/mur. Corrige la posture épaules enroulées typique du sédentaire."
+            }
+          ],
+          "cooldown": "5 min respiration abdominale. Préparer mentalement la séance phare de W6."
+        },
+        {
+          "day": 5,
+          "name": "Cardio 28 min + renforcement progressé",
+          "duration_minutes": 55,
+          "type": "mixed",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Marche rapide continue",
+              "sets": 1,
+              "duration": "28 min",
+              "rest_seconds": 0,
+              "notes": "Consolider les 28 min. Essaie de maintenir un pas vif tout au long. La semaine prochaine : 30 min."
+            },
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Fentes dynamiques",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Pompes — transition vers classique",
+              "sets": 3,
+              "reps": "5 classiques + 5 sur genoux",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Planche ventrale classique",
+              "sets": 3,
+              "duration": "20 sec",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30
+            },
+            {
+              "name": "Calf raises bipodal",
+              "sets": 3,
+              "reps": "20",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "5 min marche lente + étirements complets 6 min."
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Séance phare — 30 min de marche et autonomie",
+      "goal": "Atteindre l'objectif principal : 30 min de marche rapide continue. Consolider le renforcement et la mobilité. Checklist d'autoévaluation pour mesurer les progrès et préparer la suite en autonomie.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Activation pré-pic + renforcement complet",
+          "duration_minutes": 55,
+          "type": "mixed",
+          "warmup": "Échauffement standard 10 min.",
+          "exercises": [
+            {
+              "name": "Marche rapide continue",
+              "sets": 1,
+              "duration": "28 min",
+              "rest_seconds": 0,
+              "notes": "Séance d'activation : même durée qu'en W5. Pas de stress, pas de test. Arriver frais à la séance phare de J5."
+            },
+            {
+              "name": "Squat poids du corps",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Fentes dynamiques",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 60
+            },
+            {
+              "name": "Pompes — transition vers classique",
+              "sets": 3,
+              "reps": "8 classiques (ou 5 classiques + reste sur genoux)",
+              "rest_seconds": 60,
+              "notes": "Essayer d'augmenter à 8 pompes classiques si possible. Sans forcer la forme."
+            },
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45
+            },
+            {
+              "name": "Planche ventrale classique",
+              "sets": 3,
+              "duration": "25 sec",
+              "rest_seconds": 45,
+              "notes": "+5 sec vs W5."
+            },
+            {
+              "name": "Planche latérale sur genou",
+              "sets": 3,
+              "duration": "25 sec par côté",
+              "rest_seconds": 30
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30
+            },
+            {
+              "name": "Calf raises bipodal",
+              "sets": 3,
+              "reps": "20",
+              "rest_seconds": 30
+            }
+          ],
+          "cooldown": "5 min marche lente + étirements complets 6 min."
+        },
+        {
+          "day": 3,
+          "name": "Mobilité douce pré-séance phare",
+          "duration_minutes": 30,
+          "type": "mobility",
+          "warmup": "5 min marche lente.",
+          "exercises": [
+            {
+              "name": "Cat-Cow",
+              "sets": 2,
+              "reps": "12 cycles",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Pigeon (demi-pigeon allongé)",
+              "sets": 2,
+              "duration": "60 sec par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Fente basse avec bras levé",
+              "sets": 2,
+              "reps": "8 par côté",
+              "rest_seconds": 15
+            },
+            {
+              "name": "Wall angel",
+              "sets": 2,
+              "reps": "10",
+              "rest_seconds": 20
+            },
+            {
+              "name": "Deep squat hold",
+              "sets": 2,
+              "duration": "30 sec",
+              "rest_seconds": 20
+            }
+          ],
+          "cooldown": "5 min respiration abdominale allongé. Visualiser la marche de 30 min du J5 : rythme calme, bras actifs, regard droit devant."
+        },
+        {
+          "day": 5,
+          "name": "Séance phare — 30 min de marche rapide continue",
+          "duration_minutes": 55,
+          "type": "mixed",
+          "warmup": "5 min marche lente progressive + 10 cercles de chevilles par côté + 10 balancements de jambe avant/arrière.",
+          "exercises": [
+            {
+              "name": "Marche rapide continue — objectif 30 min",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "L'objectif du plan. Allure vive mais conversationnelle pendant 30 min sans pause. Si tu dois t'arrêter 30 secondes, c'est OK — reprends et finit les 30 min. Les deux sont des réussites. Bras actifs (fléchis à 90°), poitrine ouverte, regard à l'horizon."
+            },
+            {
+              "name": "Renforcement bilan — circuit final",
+              "sets": 2,
+              "reps": "10 squats + 8 pompes (classiques ou genoux) + 10 ponts fessiers + 15 sec planche + 8 bird-dogs/côté",
+              "rest_seconds": 60,
+              "notes": "Circuit complet en 2 passages pour illustrer le chemin parcouru depuis W1. Pas besoin de repousser tes limites aujourd'hui — observer la qualité et la fluidité acquises."
+            },
+            {
+              "name": "CHECKLIST D'AUTOÉVALUATION — fin du plan",
+              "sets": null,
+              "reps": null,
+              "duration": "5 min de bilan",
+              "rest_seconds": null,
+              "notes": "Prends 5 min pour évaluer honnêtement les 5 critères suivants, qui marquent l'atteinte des objectifs du plan :\n\n1. CARDIO : Tu viens de tenir 30 min de marche rapide sans pause — ou tu es à 28 min et tu sais que les 30 min arrivent sous 1-2 semaines. Dans les deux cas, compare : en W1 tu faisais 15 min. Le système cardio-vasculaire a progressé.\n\n2. RESPIRATION : Pendant les 30 min, tu pouvais parler par phrases courtes (test de la parole) sans être essoufflé — signe d'un effort en zone aérobie saine (Z2), exactement la cible.\n\n3. RENFORCEMENT : Tu exécutes squats, ponts fessiers, bird-dogs et planche avec une forme stable — sans douleur articulaire, avec une légère sensation de travail musculaire. C'est RPE 5-6 sur une échelle de 10.\n\n4. MOBILITÉ : Compare tes amplitudes de la semaine 1 à aujourd'hui (squat plus bas ? fente plus profonde ? étirements moins douloureux ?). La raideur sédentaire a reculé.\n\n5. RÉGULARITÉ : Tu as maintenu 3 séances/semaine sur 6 semaines (18 séances au total). C'est l'habitude la plus précieuse acquise — plus que la performance elle-même.\n\nSi 4/5 critères sont satisfaits : tu as atteint l'objectif du plan et tu es prêt pour la suite (programme running débutant, ou musculation poids du corps, ou yoga débutant selon tes envies)."
+            }
+          ],
+          "cooldown": "7 min marche lente + étirements complets 10 min (mollets, quadriceps, ischio-jambiers, fessiers, pectoraux, épaules). Hydratation. Felicitation : 6 semaines de régularité, c'est une vraie victoire."
+        }
+      ]
+    }
+  ],
+  "safety_notes": "DRAPEAUX ROUGES à surveiller — arrêter la séance immédiatement et consulter un médecin si :\n• Douleur thoracique, oppression, palpitations ou essoufflement disproportionné à l'effort (douleur « en étau » dans la poitrine) : STOP et appel médical. Chez un sédentaire de longue durée, la consultation médicale avant reprise est conseillée si plus de 40 ans et sédentarité > 1 an.\n• Vertige, sensation de malaise ou perte d'équilibre pendant l'effort : s'arrêter, s'asseoir, s'hydrater, ne pas reprendre si le symptôme persiste.\n• Douleur articulaire vive (genou, cheville, hanche) pendant la marche ou le renforcement : arrêter l'exercice, ne pas « pousser à travers » une douleur articulaire aiguë. Fatigue musculaire = normale. Douleur articulaire = signal d'alarme.\n• Douleur lombaire persistante > 48h : vérifier la technique de gainage (ne pas creuser le bas du dos en planche ou en pont fessier). Consulter si ça ne s'améliore pas avec le repos.\n\nRÈGLES GÉNÉRALES pour ce plan :\n• Chaussures de marche avec bon maintien et amorti. Pas de chaussures de ville plates ou de tongs pour les séances.\n• Hydratation : 400-500 ml dans la demi-heure précédant la séance, réhydratation progressive après. Ne pas attendre la sensation de soif pendant l'effort.\n• Échauffement NON négociable : le muscle froid est 2-3 fois plus vulnérable aux élongations. Ne saute jamais l'échauffement même si tu « manques de temps ».\n• Respect des jours de repos (J2, J4, J6, J7) : l'adaptation musculaire et osseuse se fait PENDANT le repos, pas pendant l'effort. Surcharger le planning annule les bénéfices.\n• Courbatures (DOMS) 24-72h après séance : normales, signe d'adaptation. Boire beaucoup, marcher légèrement, ne pas s'allonger toute la journée. Disparaissent en 72h maximum au fur et à mesure que le corps s'adapte.\n\nINTENSITÉ — comprendre et doser son effort :\n• Test de la parole (méthode simple) : pendant la marche rapide, tu dois pouvoir prononcer une phrase entière de 7-8 mots sans être coupé par le souffle. Si tu peux seulement dire des mots isolés, ralentis. Si tu pourrais chanter, accélère un peu.\n• Fréquence cardiaque cible approximative pour un adulte en remise en forme (zone aérobie saine) : 50-70% de la FCmax. Estimation FCmax = 220 - âge. Exemple à 45 ans : FCmax ~175 bpm, cible séance ~87-122 bpm.\n• Sur les exercices de renforcement : effort perçu cible de 5-7 sur 10. Tu dois sentir l'effort mais garder le contrôle de la respiration et de la forme. Jamais de tremblement incontrôlé ni de douleur.\n\nSIGNES DE SURCHARGE (si 3+ signes simultanés : prendre 1 jour de repos supplémentaire et alléger la semaine suivante) :\n• FC de repos au réveil plus élevée de 10 bpm que d'habitude\n• Courbatures persistant au-delà de 72h\n• Sommeil dégradé plusieurs nuits de suite\n• Irritabilité inhabituelle ou motivation en chute brutale\n• Lourdeur des jambes toute la journée sans amélioration\n\nSI SÉANCE MANQUÉE :\n• 1 séance manquée : la récupérer 1-2 jours plus tard, puis reprendre le rythme normal.\n• 1 semaine complète manquée : reprendre la semaine précédente pour resécuriser l'adaptation.\n• Pause > 2 semaines : reprendre en W3 ou W4 selon comment tu te sens à la première séance de retour.",
+  "progression_logic": "Progression construite sur 5 principes, alignés sur les recommandations ACSM (American College of Sports Medicine) pour la remise en forme du débutant sédentaire :\n\n(1) RÈGLE DES 10-20% : le volume total (durée de marche + volume de renforcement) n'augmente pas de plus de 20% d'une semaine à l'autre. Volume cardio marche par séance : W1 = 15 min, W2 = 20 min, W3 = 25 min, W4 = 25 min (cutback), W5 = 28 min, W6 = 30 min. La progression est volontairement plus lente que les plans sportifs spécialisés car le système musculo-squelettique d'un sédentaire prolongé présente une faiblesse globale qui nécessite une adaptation progressive.\n\n(2) CUTBACK WEEK OBLIGATOIRE (W4) : volume réduit de 15% en W4 pour permettre la supercompensation. Les séances cutback sont souvent perçues comme « trop faciles » — c'est précisément leur objectif. L'adaptation réelle se produit pendant la récupération, pas pendant l'effort. Sans cutback, l'appareil locomoteur et le système nerveux central se surchargent progressivement et le risque de blessure ou d'abandon augmente fortement après 3-4 semaines de progression continue.\n\n(3) RATIO CARDIO/RENFORCEMENT/MOBILITÉ équilibré : chaque semaine cible environ 40% du temps d'entraînement en cardio marche, 40% en renforcement musculaire, 20% en mobilité. Ce ratio correspond aux recommandations ACSM pour la remise en forme générale (non spécialisée). La mobilité n'est pas une option : chez le sédentaire, les hanches (fléchisseurs), la colonne thoracique et les épaules présentent des raideurs qui, non traitées, génèrent des compensations et des douleurs lors de la montée en charge.\n\n(4) PROGRESSION SIMULTANÉE RENFORCEMENT + CARDIO : les exercices progressent chaque semaine selon la double approche reps/durée : +2 répétitions OU +5 secondes de tenue par palier. Les exercices sont introduits progressivement (squats et pompes dès W1, bird-dog dès W2, fentes dès W3, planche classique et fentes dynamiques dès W5). La séquence suit la logique pédagogique : mouvements simples et stables d'abord (pont fessier, planche sur genoux), puis coordination (bird-dog), puis unipodal et dynamique (fentes dynamiques).\n\n(5) TAPERING ET SÉANCE PHARE W6 : les deux premières séances de W6 sont intentionnellement allégées (J1 = activation, J3 = mobilité douce) pour arriver frais et confiant à la séance phare du J5 (30 min de marche + circuit bilan + checklist d'autonomie). Le tapering est constitutif de la performance finale, pas un luxe. Sources : ACSM Guidelines for Exercise Testing and Prescription (11e éd.), NHS Physical Activity Guidelines for Adults."
+}

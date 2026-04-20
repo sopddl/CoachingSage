@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review v2 — 5K Doux 30 min, 8 semaines</title>
+<style>
+  :root {
+    --bg: #fafafa; --card: #fff; --border: #e4e4e4;
+    --text: #1a1a1a; --muted: #666; --subtle: #999;
+    --warn: #b56d00; --good: #1d8a4e;
+    --chip-bg: #f0f0f0; --chip-text: #333;
+    --endurance: #e4f1fd; --endurance-t: #0a4a8a;
+    --strength:  #eee4fd; --strength-t:  #4a0a8a;
+    --mixed:     #fdf4e4; --mixed-t:     #8a5a0a;
+    --mobility:  #f4e4fd; --mobility-t:  #6a0a8a;
+    --new: #e4fdf1; --new-t: #0a7a3a;
+    --cutback: #fef7e4; --cutback-t: #7a5a0a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  .revision-banner {
+    background: #e4fdf1; border: 1px solid #8cd4a8; color: #0a4a2a;
+    padding: 12px 16px; border-radius: 8px; font-size: 13px; margin-bottom: 24px;
+  }
+  .revision-banner strong { color: #064022; }
+
+  header.intro { background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px 28px 24px; margin-bottom: 24px; }
+  header.intro h1 { margin: 0 0 6px; font-size: 26px; letter-spacing: -0.01em; }
+  header.intro .id { color: var(--subtle); font-family: ui-monospace, monospace; font-size: 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 18px; }
+  .chip { background: var(--chip-bg); color: var(--chip-text); padding: 3px 10px;
+    border-radius: 999px; font-size: 12px; font-weight: 500; }
+  .chip.accent { background: #e4f1fd; color: #0a4a8a; }
+  .meta { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+  .meta strong { color: var(--text); font-weight: 600; }
+  .meta .label { display: inline-block; min-width: 140px; color: var(--subtle); }
+  .summary { margin: 14px 0 0; font-size: 15px; color: #333; }
+
+  .progression-table { width: 100%; border-collapse: collapse; margin: 12px 0 0; font-size: 13px; }
+  .progression-table th { text-align: left; padding: 6px 8px; font-weight: 600;
+    font-size: 11px; text-transform: uppercase; color: var(--subtle); border-bottom: 1px solid var(--border); }
+  .progression-table td { padding: 5px 8px; border-bottom: 1px solid #f0f0f0; font-family: ui-monospace, monospace; }
+  .progression-table td:first-child { color: var(--subtle); }
+  .progression-table tr.cutback td { background: var(--cutback); color: var(--cutback-t); }
+  .progression-table tr.peak td { background: var(--new); color: var(--new-t); font-weight: 600; }
+
+  h2.week-title { margin: 36px 0 12px; font-size: 19px; letter-spacing: -0.005em;
+    display: flex; align-items: baseline; gap: 12px; }
+  h2.week-title .num { font-family: ui-monospace, monospace; color: var(--subtle);
+    font-size: 13px; font-weight: 500; letter-spacing: 0; }
+  h2.week-title .cutback-tag { background: var(--cutback); color: var(--cutback-t);
+    padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.04em; margin-left: 8px; }
+  h2.week-title .peak-tag { background: var(--new); color: var(--new-t);
+    padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.04em; margin-left: 8px; }
+  .week-goal { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+
+  .session { background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px 20px; margin-bottom: 12px; }
+  .session-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .session-head h3 { margin: 0; font-size: 15px; font-weight: 600; }
+  .session-meta { font-size: 12px; color: var(--subtle); display: flex; gap: 8px; align-items: center; }
+  .type-badge { padding: 2px 9px; border-radius: 4px; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.03em; }
+  .type-endurance { background: var(--endurance); color: var(--endurance-t); }
+  .type-strength  { background: var(--strength);  color: var(--strength-t); }
+  .type-mixed     { background: var(--mixed);     color: var(--mixed-t); }
+  .type-mobility  { background: var(--mobility);  color: var(--mobility-t); }
+
+  .warmup, .cooldown { font-size: 13px; color: var(--muted); background: #fafafa;
+    border-left: 3px solid var(--border); padding: 8px 12px; margin: 12px 0; border-radius: 0 6px 6px 0; }
+  .warmup::before { content: "Échauffement — "; color: var(--subtle); font-weight: 600;
+    text-transform: uppercase; font-size: 10px; letter-spacing: 0.05em; display: block; margin-bottom: 2px; }
+  .cooldown::before { content: "Retour au calme — "; color: var(--subtle); font-weight: 600;
+    text-transform: uppercase; font-size: 10px; letter-spacing: 0.05em; display: block; margin-bottom: 2px; }
+
+  table.exercises { width: 100%; border-collapse: collapse; margin: 8px 0 4px; font-size: 14px; }
+  table.exercises th { text-align: left; font-weight: 600; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.04em; color: var(--subtle);
+    padding: 6px 8px 6px 0; border-bottom: 1px solid var(--border); }
+  table.exercises td { padding: 8px 8px 8px 0; vertical-align: top; border-bottom: 1px solid #f0f0f0; }
+  table.exercises tr:last-child td { border-bottom: none; }
+  table.exercises td.name { font-weight: 500; width: 35%; }
+  table.exercises td.name .new-badge { display: inline-block; background: var(--new);
+    color: var(--new-t); padding: 1px 5px; border-radius: 3px; font-size: 9px;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 4px; vertical-align: middle; }
+  table.exercises td.num { font-family: ui-monospace, monospace; color: var(--muted); white-space: nowrap; }
+  table.exercises td.notes { color: var(--muted); font-size: 13px; font-style: italic; }
+  .dash { color: var(--border); }
+
+  section.footer-block { margin: 28px 0 0; padding: 20px 24px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 10px; }
+  section.footer-block h2 { margin: 0 0 10px; font-size: 15px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em; color: var(--subtle); }
+  section.footer-block p, section.footer-block pre { margin: 0; font-size: 14px; color: #333; }
+  section.footer-block pre { font-family: inherit; white-space: pre-wrap; }
+  section.footer-block.safety { border-left: 4px solid var(--warn); }
+  section.footer-block.safety h2 { color: var(--warn); }
+
+  .toolbar { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+  .toolbar button { font: inherit; font-size: 13px; background: var(--card);
+    border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; cursor: pointer; color: var(--muted); }
+  .toolbar button:hover { color: var(--text); border-color: var(--muted); }
+
+  details.week { margin-bottom: 20px; }
+  details.week > summary { cursor: pointer; list-style: none; }
+  details.week > summary::-webkit-details-marker { display: none; }
+  details.week > summary h2.week-title { margin-top: 0; }
+  details.week[open] > summary h2.week-title::after { content: " ▾"; color: var(--subtle); font-size: 12px; }
+  details.week:not([open]) > summary h2.week-title::after { content: " ▸"; color: var(--subtle); font-size: 12px; }
+
+  @media print {
+    body { background: #fff; } .toolbar { display: none; }
+    details.week[open], details.week { page-break-inside: avoid; }
+    details.week > summary { pointer-events: none; }
+    details.week { margin-bottom: 30px; }
+    .session { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="revision-banner">
+  <strong>Révision v2 · 2026-04-18</strong> — Issues critiques corrigées suite à review sourcée (NHS C25K, Jeff Galloway, None to Run, ACSM). Volume W1 aligné NHS, sauts de progression lissés, cutback W5 ajouté, mollets/gainage/clamshells intégrés dès W1, safety notes élargies (shin splints, Achille, ITBS, fasciite), séance phare W8 = 30 min continu (pas "5K obligatoire").
+</div>
+
+<header class="intro">
+  <div class="id">running-debutant-5k-8sem · schema v1 · révision 2</div>
+  <h1>5K Doux — 8 semaines pour courir 30 min en continu</h1>
+  <div class="chips">
+    <span class="chip accent">running</span>
+    <span class="chip">débutant</span>
+    <span class="chip">8 semaines</span>
+    <span class="chip">3 séances/semaine</span>
+  </div>
+  <div class="meta"><span class="label">Objectif par défaut</span><strong>Courir 30 minutes en continu (équivalent 5K à allure débutante confortable, ~6-8 min/km)</strong></div>
+  <div class="meta"><span class="label">Profil assumé</span>Adulte sédentaire ou peu actif, sans pathologie cardiaque, équipé d'une paire de chaussures de running avec amorti en bon état (< 600 km). Aucune expérience récente de la course. Capable de marcher 30 min sans pause.</div>
+  <p class="summary">Programme run/walk progressif sur 8 semaines aligné sur les recommandations NHS Couch to 5K, avec renforcement musculaire intégré dès la semaine 1 (mollets, gainage, abducteurs de hanche) pour prévenir les blessures typiques du débutant (shin splints, ITBS). Progression volume +10-25%/sem avec une semaine cutback en W5. Séance phare W8 = 30 min continu, correspondant à ~3-4 km pour un vrai débutant ou ~5 km pour un profil plus actif selon l'allure individuelle.</p>
+
+  <table class="progression-table">
+    <tr><th>Sem</th><th>Thème</th><th>Vol course</th><th>Bloc max</th><th>Δ vol</th></tr>
+    <tr><td>W1</td><td>Fondations</td><td>16 min</td><td>1 min</td><td>—</td></tr>
+    <tr><td>W2</td><td>Adaptation</td><td>18 min</td><td>1 min 30</td><td>+12%</td></tr>
+    <tr><td>W3</td><td>Palier 3 min</td><td>18 min</td><td>3 min</td><td>0%</td></tr>
+    <tr><td>W4</td><td>Bloc 5 min</td><td>22 min</td><td>5 min</td><td>+22%</td></tr>
+    <tr class="cutback"><td>W5</td><td>Cutback + bloc 8</td><td>23 min</td><td>8 min</td><td>+5%</td></tr>
+    <tr><td>W6</td><td>Bloc 10 min</td><td>28 min</td><td>10 min</td><td>+22%</td></tr>
+    <tr><td>W7</td><td>15-20 continu</td><td>35 min</td><td>20 min</td><td>+25%</td></tr>
+    <tr class="peak"><td>W8</td><td>30 continu (phare)</td><td>50 min</td><td>30 min</td><td>pic</td></tr>
+  </table>
+</header>
+
+<div class="toolbar">
+  <button id="toggle-all" type="button">Tout replier</button>
+</div>
+
+<!-- WEEK 1 -->
+<details class="week" open>
+  <summary><h2 class="week-title"><span class="num">W1</span>Fondations — premiers pas</h2></summary>
+  <p class="week-goal">Habituer le corps à l'effort running et activer le renforcement préventif. Objectif volume : ~8 min de course par séance, alternance 1 min course / 1 min 30 marche.</p>
+
+  <div class="session">
+    <div class="session-head"><h3>Run/walk découverte</h3>
+      <div class="session-meta"><span>Jour 1</span> · <span>35 min</span> · <span class="type-badge type-mixed">mixed</span></div></div>
+    <div class="warmup">5 min marche progressive + 10 cercles de chevilles/côté + 10 balancements de jambe avant-arrière/côté + 10 demi-squats lents. Total : 8 min. Ne jamais sauter cette étape.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Bloc run/walk</td><td class="num">8</td><td class="num dash">—</td><td class="num">1 min course + 1 min 30 marche</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Allure TRÈS lente, test de la parole : tu dois pouvoir dire une phrase entière. Si le souffle coupe au bout de 30 sec, ralentis encore. Total bloc : 20 min.</td></tr>
+    </table>
+    <div class="cooldown">3 min marche lente. Étirements statiques : mollets 30 sec/jambe, quadriceps 30 sec/jambe, ischio-jambiers 30 sec/jambe. Hydratation.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Renforcement foundation</h3>
+      <div class="session-meta"><span>Jour 3</span> · <span>35 min</span> · <span class="type-badge type-strength">strength</span></div></div>
+    <div class="warmup">5 min marche rapide + rotations bassin 10/sens + talons-fesses 20 pas + montées de genoux 20 pas. Total : 7 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Wall sit partiel</td><td class="num">3</td><td class="num dash">—</td><td class="num">20 sec</td><td class="num">45 s</td></tr>
+      <tr><td colspan="5" class="notes">Dos plat contre le mur, descente à 60-70° (pas 90°). Renforce le quadriceps avec peu de charge articulaire.</td></tr>
+      <tr><td class="name">Pont fessier</td><td class="num">3</td><td class="num">10</td><td class="num dash">—</td><td class="num">40 s</td></tr>
+      <tr><td colspan="5" class="notes">Tenir 2 sec en haut. Cible les fessiers (stabilisateurs clés de la foulée).</td></tr>
+      <tr><td class="name">Clamshell <span class="new-badge">W1</span></td><td class="num">3</td><td class="num">12/côté</td><td class="num dash">—</td><td class="num">35 s</td></tr>
+      <tr><td colspan="5" class="notes">Allongé sur le côté, genoux pliés. Ouvre le genou du dessus sans bouger le bassin. Cible les abducteurs de hanche — prévention ITBS (syndrome de l'essuie-glace) dès la semaine 1.</td></tr>
+      <tr><td class="name">Calf raises bipodal <span class="new-badge">W1</span></td><td class="num">3</td><td class="num">15</td><td class="num dash">—</td><td class="num">30 s</td></tr>
+      <tr><td colspan="5" class="notes">Montées sur la pointe des pieds, les deux pieds ensemble. Prévention shin splints (les mollets forts absorbent jusqu'à 30% de la charge tibiale). Obligatoire chez le débutant.</td></tr>
+    </table>
+    <div class="cooldown">Étirement mollets (30 sec/côté), étirement fessier allongé (30 sec/côté), marche 2 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Run/walk découverte</h3>
+      <div class="session-meta"><span>Jour 5</span> · <span>35 min</span> · <span class="type-badge type-mixed">mixed</span></div></div>
+    <div class="warmup">Identique à séance 1 (8 min échauffement complet).</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Bloc run/walk</td><td class="num">8</td><td class="num dash">—</td><td class="num">1 min course + 1 min 30 marche</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Même séance qu'en J1. La répétition à volume égal permet au corps d'adapter l'os tibial (adaptation lente, 6-8 semaines). Ne pas forcer l'augmentation.</td></tr>
+    </table>
+    <div class="cooldown">Même retour au calme qu'en J1.</div>
+  </div>
+</details>
+
+<!-- WEEK 2 -->
+<details class="week" open>
+  <summary><h2 class="week-title"><span class="num">W2</span>Adaptation — allonger la course</h2></summary>
+  <p class="week-goal">Passer à 1 min 30 de course continue, volume hebdo +12%. Renforcement avec ajout du gainage.</p>
+
+  <div class="session">
+    <div class="session-head"><h3>Run/walk 1m30</h3>
+      <div class="session-meta"><span>Jour 1</span> · <span>38 min</span> · <span class="type-badge type-mixed">mixed</span></div></div>
+    <div class="warmup">Échauffement standard 8 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Bloc run/walk</td><td class="num">6</td><td class="num dash">—</td><td class="num">1 min 30 course + 2 min marche</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Respiration conversationnelle maintenue. Total bloc : 21 min.</td></tr>
+    </table>
+    <div class="cooldown">5 min marche + étirements 4 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Renforcement + gainage</h3>
+      <div class="session-meta"><span>Jour 3</span> · <span>35 min</span> · <span class="type-badge type-strength">strength</span></div></div>
+    <div class="warmup">7 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Wall sit</td><td class="num">3</td><td class="num dash">—</td><td class="num">30 sec</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Pont fessier</td><td class="num">3</td><td class="num">12</td><td class="num dash">—</td><td class="num">40 s</td></tr>
+      <tr><td class="name">Clamshell</td><td class="num">3</td><td class="num">15/côté</td><td class="num dash">—</td><td class="num">35 s</td></tr>
+      <tr><td class="name">Calf raises bipodal</td><td class="num">3</td><td class="num">20</td><td class="num dash">—</td><td class="num">30 s</td></tr>
+      <tr><td class="name">Planche ventrale <span class="new-badge">W2</span></td><td class="num">3</td><td class="num dash">—</td><td class="num">20 sec</td><td class="num">45 s</td></tr>
+      <tr><td colspan="5" class="notes">Coudes sous épaules, corps aligné, fessiers engagés. Introduction du core, minimum ACSM pour les coureurs.</td></tr>
+    </table>
+    <div class="cooldown">Étirements 5 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Run/walk 1m30</h3>
+      <div class="session-meta"><span>Jour 5</span> · <span>38 min</span> · <span class="type-badge type-mixed">mixed</span></div></div>
+    <div class="warmup">Échauffement standard 8 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Bloc run/walk</td><td class="num">6</td><td class="num dash">—</td><td class="num">1 min 30 course + 2 min marche</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Identique à J1. Consolidation avant le palier W3.</td></tr>
+    </table>
+    <div class="cooldown">5 min marche + étirements 4 min.</div>
+  </div>
+</details>
+
+<!-- WEEK 3 -->
+<details class="week" open>
+  <summary><h2 class="week-title"><span class="num">W3</span>Premier palier — bloc 3 min</h2></summary>
+  <p class="week-goal">Introduire le bloc de 3 min continu via un format laddered. Volume stable (consolidation qualité).</p>
+
+  <div class="session">
+    <div class="session-head"><h3>Run/walk laddered</h3>
+      <div class="session-meta"><span>Jour 1</span> · <span>38 min</span> · <span class="type-badge type-mixed">mixed</span></div></div>
+    <div class="warmup">Échauffement standard 8 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Bloc laddered</td><td class="num">2</td><td class="num dash">—</td><td class="num">1m30 course + 1m30 marche + 3 min course + 3 min marche</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Enchaîner 2 fois ce cycle. Total course par cycle : 4 min 30. Le bloc 3 min est nouveau — reste à allure conversationnelle. Total bloc : 18 min.</td></tr>
+    </table>
+    <div class="cooldown">5 min marche + étirements 5 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Renforcement + bird-dog</h3>
+      <div class="session-meta"><span>Jour 3</span> · <span>37 min</span> · <span class="type-badge type-strength">strength</span></div></div>
+    <div class="warmup">7 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Wall sit</td><td class="num">3</td><td class="num dash">—</td><td class="num">40 sec</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Fentes statiques</td><td class="num">3</td><td class="num">8/jambe</td><td class="num dash">—</td><td class="num">45 s</td></tr>
+      <tr><td colspan="5" class="notes">Genou avant à 90° max. Ne pas laisser le genou dépasser la pointe du pied.</td></tr>
+      <tr><td class="name">Pont fessier unilatéral</td><td class="num">3</td><td class="num">10/côté</td><td class="num dash">—</td><td class="num">40 s</td></tr>
+      <tr><td colspan="5" class="notes">Progression vs W2. Renforce l'équilibre G/D.</td></tr>
+      <tr><td class="name">Calf raises bipodal</td><td class="num">3</td><td class="num">20</td><td class="num dash">—</td><td class="num">30 s</td></tr>
+      <tr><td class="name">Planche ventrale</td><td class="num">3</td><td class="num dash">—</td><td class="num">30 sec</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Bird-dog <span class="new-badge">W3</span></td><td class="num">3</td><td class="num">8/côté</td><td class="num dash">—</td><td class="num">30 s</td></tr>
+      <tr><td colspan="5" class="notes">À 4 pattes, tendre bras opposé + jambe opposée. Tenir 2 sec. Cible le core profond et l'anti-rotation lombaire.</td></tr>
+    </table>
+    <div class="cooldown">Étirements 5 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Run/walk laddered</h3>
+      <div class="session-meta"><span>Jour 5</span> · <span>38 min</span> · <span class="type-badge type-mixed">mixed</span></div></div>
+    <div class="warmup">Échauffement standard 8 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Bloc laddered</td><td class="num">2</td><td class="num dash">—</td><td class="num">1m30 course + 1m30 marche + 3 min course + 3 min marche</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Identique à J1. Répéter la même séance stabilise l'adaptation au bloc 3 min.</td></tr>
+    </table>
+    <div class="cooldown">5 min marche + étirements 5 min.</div>
+  </div>
+</details>
+
+<!-- WEEK 4 -->
+<details class="week" open>
+  <summary><h2 class="week-title"><span class="num">W4</span>Bloc 5 min — premier vrai cap</h2></summary>
+  <p class="week-goal">Introduire le bloc de 5 min continu. Volume hebdo +22% vs W3.</p>
+
+  <div class="session">
+    <div class="session-head"><h3>Run/walk bloc 5</h3>
+      <div class="session-meta"><span>Jour 1</span> · <span>40 min</span> · <span class="type-badge type-mixed">mixed</span></div></div>
+    <div class="warmup">Échauffement standard 8 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Blocs courts 3 min</td><td class="num">2</td><td class="num dash">—</td><td class="num">3 min course + 2 min marche</td><td class="num">0 s</td></tr>
+      <tr><td class="name">Bloc long 5 min</td><td class="num">1</td><td class="num dash">—</td><td class="num">5 min course</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Enchaîner directement après les blocs courts. Allure TOUJOURS conversationnelle. Si tu ne peux plus parler, ralentis. Total bloc séance : 15 min de course.</td></tr>
+    </table>
+    <div class="cooldown">5 min marche + étirements 5 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Renforcement progression</h3>
+      <div class="session-meta"><span>Jour 3</span> · <span>37 min</span> · <span class="type-badge type-strength">strength</span></div></div>
+    <div class="warmup">7 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Wall sit</td><td class="num">3</td><td class="num dash">—</td><td class="num">45 sec</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Fentes dynamiques</td><td class="num">3</td><td class="num">8/jambe</td><td class="num dash">—</td><td class="num">45 s</td></tr>
+      <tr><td colspan="5" class="notes">Alternance G/D avec retour au centre. Progression vs fentes statiques.</td></tr>
+      <tr><td class="name">Pont fessier unilatéral</td><td class="num">3</td><td class="num">12/côté</td><td class="num dash">—</td><td class="num">40 s</td></tr>
+      <tr><td class="name">Calf raises surélevés</td><td class="num">3</td><td class="num">15/côté</td><td class="num dash">—</td><td class="num">30 s</td></tr>
+      <tr><td colspan="5" class="notes">Debout sur le bord d'une marche, talons dans le vide. Amplitude complète. Charge accrue sur les mollets.</td></tr>
+      <tr><td class="name">Planche ventrale</td><td class="num">3</td><td class="num dash">—</td><td class="num">40 sec</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Bird-dog</td><td class="num">3</td><td class="num">10/côté</td><td class="num dash">—</td><td class="num">30 s</td></tr>
+    </table>
+    <div class="cooldown">Étirements 5 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Run/walk bloc 5</h3>
+      <div class="session-meta"><span>Jour 5</span> · <span>40 min</span> · <span class="type-badge type-mixed">mixed</span></div></div>
+    <div class="warmup">Échauffement standard 8 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Blocs courts 3 min</td><td class="num">2</td><td class="num dash">—</td><td class="num">3 min course + 2 min marche</td><td class="num">0 s</td></tr>
+      <tr><td class="name">Bloc long 5 min</td><td class="num">1</td><td class="num dash">—</td><td class="num">5 min course</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Même séance qu'en J1. Le bloc 5 min doit devenir confortable avant d'avancer.</td></tr>
+    </table>
+    <div class="cooldown">5 min marche + étirements 5 min.</div>
+  </div>
+</details>
+
+<!-- WEEK 5 -->
+<details class="week" open>
+  <summary><h2 class="week-title"><span class="num">W5</span>Cutback + bloc 8 min<span class="cutback-tag">Cutback</span></h2></summary>
+  <p class="week-goal">Semaine de consolidation (volume -9% vs W4) avec introduction d'un bloc 8 min en 2e séance. Les semaines allégées sont essentielles pour l'adaptation — ne pas les sauter.</p>
+
+  <div class="session">
+    <div class="session-head"><h3>Cutback — blocs 5 min</h3>
+      <div class="session-meta"><span>Jour 1</span> · <span>35 min</span> · <span class="type-badge type-mixed">mixed</span></div></div>
+    <div class="warmup">Échauffement standard 8 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Bloc course</td><td class="num">2</td><td class="num dash">—</td><td class="num">5 min course + 2 min marche</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Session allégée pour consolidation. Si tu te sens en forme, c'est bon signe — ça veut dire que l'adaptation se fait. Ne pas pousser au-delà.</td></tr>
+    </table>
+    <div class="cooldown">5 min marche + étirements 4 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Renforcement + side plank</h3>
+      <div class="session-meta"><span>Jour 3</span> · <span>35 min</span> · <span class="type-badge type-strength">strength</span></div></div>
+    <div class="warmup">7 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Wall sit</td><td class="num">3</td><td class="num dash">—</td><td class="num">45 sec</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Fentes dynamiques</td><td class="num">3</td><td class="num">10/jambe</td><td class="num dash">—</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Pont fessier unilatéral</td><td class="num">3</td><td class="num">12/côté</td><td class="num dash">—</td><td class="num">40 s</td></tr>
+      <tr><td class="name">Calf raises surélevés</td><td class="num">3</td><td class="num">15/côté</td><td class="num dash">—</td><td class="num">30 s</td></tr>
+      <tr><td class="name">Planche ventrale</td><td class="num">3</td><td class="num dash">—</td><td class="num">30 sec</td><td class="num">45 s</td></tr>
+      <tr><td colspan="5" class="notes">Retour au volume W3 (cutback core aussi).</td></tr>
+      <tr><td class="name">Side plank <span class="new-badge">W5</span></td><td class="num">2</td><td class="num dash">—</td><td class="num">20 sec/côté</td><td class="num">30 s</td></tr>
+      <tr><td colspan="5" class="notes">Nouveauté cutback week : latéral, anti-rotation. Cible les obliques et les moyens fessiers.</td></tr>
+    </table>
+    <div class="cooldown">Étirements 5 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Bloc 8 min — palier qualité</h3>
+      <div class="session-meta"><span>Jour 5</span> · <span>38 min</span> · <span class="type-badge type-mixed">mixed</span></div></div>
+    <div class="warmup">Échauffement standard 8 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Bloc long 8 min</td><td class="num">1</td><td class="num dash">—</td><td class="num">8 min course</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Premier bloc de 8 min du plan. Allure lente et régulière, si tu dois marcher tu marches mais tu reviens au jogging dès que possible.</td></tr>
+      <tr><td class="name">Marche récupération</td><td class="num">1</td><td class="num dash">—</td><td class="num">3 min</td><td class="num">0 s</td></tr>
+      <tr><td class="name">Bloc 5 min</td><td class="num">1</td><td class="num dash">—</td><td class="num">5 min course</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Retour à un volume connu après la nouveauté. Total course séance : 13 min.</td></tr>
+    </table>
+    <div class="cooldown">5 min marche + étirements 5 min.</div>
+  </div>
+</details>
+
+<!-- WEEK 6 -->
+<details class="week" open>
+  <summary><h2 class="week-title"><span class="num">W6</span>Bloc 10 min — passage à l'endurance</h2></summary>
+  <p class="week-goal">Enchaîner un bloc de 10 min continu. Transition vers un volume plus proche de l'endurance pure. +22% volume vs W5.</p>
+
+  <div class="session">
+    <div class="session-head"><h3>Bloc 8 confirmé</h3>
+      <div class="session-meta"><span>Jour 1</span> · <span>35 min</span> · <span class="type-badge type-mixed">mixed</span></div></div>
+    <div class="warmup">Échauffement standard 8 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Bloc long 8 min</td><td class="num">1</td><td class="num dash">—</td><td class="num">8 min course</td><td class="num">0 s</td></tr>
+      <tr><td class="name">Marche récupération</td><td class="num">1</td><td class="num dash">—</td><td class="num">2 min</td><td class="num">0 s</td></tr>
+      <tr><td class="name">Bloc 5 min</td><td class="num">1</td><td class="num dash">—</td><td class="num">5 min course</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Consolidation du bloc 8 min découvert en W5 J5. Total course : 13 min.</td></tr>
+    </table>
+    <div class="cooldown">5 min marche + étirements 5 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Renforcement progression</h3>
+      <div class="session-meta"><span>Jour 3</span> · <span>37 min</span> · <span class="type-badge type-strength">strength</span></div></div>
+    <div class="warmup">7 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Wall sit</td><td class="num">3</td><td class="num dash">—</td><td class="num">60 sec</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Fentes dynamiques</td><td class="num">3</td><td class="num">10/jambe</td><td class="num dash">—</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Step-ups <span class="new-badge">W6</span></td><td class="num">3</td><td class="num">10/jambe</td><td class="num dash">—</td><td class="num">45 s</td></tr>
+      <tr><td colspan="5" class="notes">Sur une marche/chaise stable. Montée jambe d'appel explosive, descente contrôlée. Transfère vers la foulée.</td></tr>
+      <tr><td class="name">Calf raises excentriques <span class="new-badge">W6</span></td><td class="num">3</td><td class="num">12/côté</td><td class="num dash">—</td><td class="num">30 s</td></tr>
+      <tr><td colspan="5" class="notes">Monter sur 2 pieds, descendre sur 1 seul en 3 sec. Protection tendon d'Achille, progression majeure vs calf raises classiques.</td></tr>
+      <tr><td class="name">Planche ventrale</td><td class="num">3</td><td class="num dash">—</td><td class="num">45 sec</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Bird-dog</td><td class="num">3</td><td class="num">10/côté</td><td class="num dash">—</td><td class="num">30 s</td></tr>
+    </table>
+    <div class="cooldown">Étirements 5 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Premier bloc 10 min</h3>
+      <div class="session-meta"><span>Jour 5</span> · <span>40 min</span> · <span class="type-badge type-mixed">mixed</span></div></div>
+    <div class="warmup">Échauffement standard 8 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Bloc long 10 min</td><td class="num">1</td><td class="num dash">—</td><td class="num">10 min course</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Premier bloc 10 min du plan. Allure très lente. Si la respiration s'emballe, ralentir jusqu'à une allure où tu peux encore parler.</td></tr>
+      <tr><td class="name">Marche récupération</td><td class="num">1</td><td class="num dash">—</td><td class="num">3 min</td><td class="num">0 s</td></tr>
+      <tr><td class="name">Bloc 5 min</td><td class="num">1</td><td class="num dash">—</td><td class="num">5 min course</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Total course : 15 min.</td></tr>
+    </table>
+    <div class="cooldown">5 min marche + étirements 5 min.</div>
+  </div>
+</details>
+
+<!-- WEEK 7 -->
+<details class="week" open>
+  <summary><h2 class="week-title"><span class="num">W7</span>Course continue — 15 à 20 min</h2></summary>
+  <p class="week-goal">Passer à la course continue sans phases de marche. +25% volume vs W6. Introduction du concept d'allure stable.</p>
+
+  <div class="session">
+    <div class="session-head"><h3>15 min continu</h3>
+      <div class="session-meta"><span>Jour 1</span> · <span>40 min</span> · <span class="type-badge type-endurance">endurance</span></div></div>
+    <div class="warmup">Échauffement standard 8 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Course continue</td><td class="num">1</td><td class="num dash">—</td><td class="num">15 min</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Première course SANS pause marche. Allure conversationnelle maintenue. Si tu n'arrives pas à tenir les 15 min sans marcher, recule d'une semaine — c'est normal et ce n'est pas un échec.</td></tr>
+    </table>
+    <div class="cooldown">7 min marche + étirements 5 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Renforcement maintien</h3>
+      <div class="session-meta"><span>Jour 3</span> · <span>35 min</span> · <span class="type-badge type-strength">strength</span></div></div>
+    <div class="warmup">7 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Wall sit</td><td class="num">3</td><td class="num dash">—</td><td class="num">60 sec</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Squats poids du corps</td><td class="num">3</td><td class="num">15</td><td class="num dash">—</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Fentes dynamiques</td><td class="num">3</td><td class="num">10/jambe</td><td class="num dash">—</td><td class="num">45 s</td></tr>
+      <tr><td class="name">Calf raises bipodal</td><td class="num">3</td><td class="num">20</td><td class="num dash">—</td><td class="num">30 s</td></tr>
+      <tr><td colspan="5" class="notes">Retour au format simple pour le maintien avant la séance phare W8.</td></tr>
+      <tr><td class="name">Planche ventrale</td><td class="num">3</td><td class="num dash">—</td><td class="num">45 sec</td><td class="num">45 s</td></tr>
+    </table>
+    <div class="cooldown">Étirements 5 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>20 min continu</h3>
+      <div class="session-meta"><span>Jour 5</span> · <span>40 min</span> · <span class="type-badge type-endurance">endurance</span></div></div>
+    <div class="warmup">Échauffement standard 8 min.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Course continue</td><td class="num">1</td><td class="num dash">—</td><td class="num">20 min</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Objectif : 20 min d'affilée sans marcher. Si coup dur, marcher 1 min et reprendre — ne pas abandonner. Cadence cible ~170-180 pas/min.</td></tr>
+    </table>
+    <div class="cooldown">6 min marche + étirements 5 min.</div>
+  </div>
+</details>
+
+<!-- WEEK 8 -->
+<details class="week" open>
+  <summary><h2 class="week-title"><span class="num">W8</span>Séance phare — 30 min continu<span class="peak-tag">Pic</span></h2></summary>
+  <p class="week-goal">Tapering sur les deux premières séances, pic W8 J5 à 30 min continu (alignement NHS C25K semaine 9). Équivaut à ~5 km pour un coureur qui tient ~6 min/km, ~3-4 km pour un débutant à 8-10 min/km.</p>
+
+  <div class="session">
+    <div class="session-head"><h3>Activation 20 min</h3>
+      <div class="session-meta"><span>Jour 1</span> · <span>35 min</span> · <span class="type-badge type-endurance">endurance</span></div></div>
+    <div class="warmup">5 min marche + 3 min activation douce.</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Course continue légère</td><td class="num">1</td><td class="num dash">—</td><td class="num">20 min</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Séance de remise en jambes, PAS un test. Allure très confortable, respiration facile. Tapering = réduire pour arriver frais à la séance phare.</td></tr>
+    </table>
+    <div class="cooldown">5 min marche + étirements 2 min.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Mobilité pré-test</h3>
+      <div class="session-meta"><span>Jour 3</span> · <span>30 min</span> · <span class="type-badge type-mobility">mobility</span></div></div>
+    <div class="warmup">5 min marche + mobilité dynamique 5 min (cercles hanches, chevilles, talons-fesses lents).</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">Routine mobilité hanches + chevilles</td><td class="num">1</td><td class="num dash">—</td><td class="num">10 min</td><td class="num">0 s</td></tr>
+      <tr><td class="name">Activation fessiers légère</td><td class="num">1</td><td class="num dash">—</td><td class="num">5 min</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">10 ponts fessiers + 10 clamshells par côté + 10 bird-dogs par côté, sans charge.</td></tr>
+    </table>
+    <div class="cooldown">5 min respiration profonde + visualisation de la séance phare de J5.</div>
+  </div>
+
+  <div class="session">
+    <div class="session-head"><h3>Séance phare — 30 min continu</h3>
+      <div class="session-meta"><span>Jour 5</span> · <span>55 min</span> · <span class="type-badge type-endurance">endurance</span></div></div>
+    <div class="warmup">5 min marche progressive + 3 min activation (talons-fesses, montées de genoux lents).</div>
+    <table class="exercises">
+      <tr><th>Exercice</th><th>Séries</th><th>Reps</th><th>Durée</th><th>Repos</th></tr>
+      <tr><td class="name">30 min course continue</td><td class="num">1</td><td class="num dash">—</td><td class="num">30 min</td><td class="num">0 s</td></tr>
+      <tr><td colspan="5" class="notes">Objectif : 30 min sans marcher, à TON allure. Si tu couvres 5 km dans ce temps, super. Sinon tu continues au-delà de 30 min jusqu'à atteindre 5 km (max 45 min), ou tu t'arrêtes à 30 min et le 5K sera pour la semaine suivante en course libre. Les deux scénarios sont des réussites — l'objectif réel est la course continue, pas le chrono.</td></tr>
+    </table>
+    <div class="cooldown">7 min marche lente + étirements complets 10 min (mollets, quadriceps, ischio-jambiers, fessiers, piriformis). Hydratation + collation post-effort.</div>
+  </div>
+</details>
+
+<section class="footer-block safety">
+  <h2>Safety notes</h2>
+  <pre>DRAPEAUX ROUGES à surveiller (arrêter la séance et consulter si persistant > 1 semaine) :
+• Douleur vive sur le tibia antérieur (shin splints / périostite tibiale) : risque n°1 du débutant. Stop immédiat, glace 15 min, repos 3 jours minimum. Cause fréquente : volume trop élevé, chaussures inadaptées, sol trop dur.
+• Douleur sous le talon ou arche plantaire (fasciite plantaire) : étirer mollets 2×/jour, vérifier l'usure des chaussures (< 600 km).
+• Douleur derrière le talon (tendinite d'Achille) : réduire volume 30%, glacer, étirer en douceur.
+• Douleur face externe du genou (syndrome bandelette ilio-tibiale / ITBS) : les clamshells sont préventifs ; si douleur installée, repos 1 semaine et avis kiné.
+• Douleur articulaire genou > 2/10 : marcher immédiatement, arrêter la séance. Fatigue musculaire = OK, douleur articulaire = pas OK.
+
+RÈGLES GÉNÉRALES :
+• Chaussures avec bon amorti, renouvelées tous les 600-800 km.
+• Surfaces souples privilégiées (chemin, piste, bitume lisse). Éviter dénivelé important en début de plan.
+• 1 jour de repos complet entre chaque séance (pattern recommandé : J1 run / J2 repos / J3 strength / J4 repos / J5 run / J6-J7 repos).
+• Hydratation : 500 ml dans l'heure précédant la séance, 500 ml dans l'heure suivante (plus en conditions chaudes).
+• Échauffement NON optionnel : sauter l'échauffement triple le risque de blessure chez le débutant.
+• Courbatures 24-72h après séance = normal. Douleur PENDANT la séance = anormale.
+
+INTENSITÉ :
+• Test de la parole : tu dois pouvoir dire une phrase complète en courant. Si tu ne peux dire que des mots isolés = trop rapide, ralentis.
+• Cadence cible ~170-180 pas/min. Attaque médio-pied ou talon léger, pas d'attaque talon franc.
+
+SIGNES DE SURCHARGE (3+ signes simultanés → semaine allégée type W5 cutback) :
+• FC de repos +10 bpm inhabituelle au réveil
+• Sommeil dégradé > 3 nuits d'affilée
+• Courbatures persistantes > 72h
+• Motivation effondrée subitement
+
+SI SÉANCE MANQUÉE :
+• &lt; 1 semaine de pause : reprendre la même séance 1-2 jours plus tard.
+• 1-2 semaines de pause : reprendre la semaine précédente.
+• &gt; 2 semaines de pause : reprendre la semaine -2 pour resécuriser l'adaptation.</pre>
+</section>
+
+<section class="footer-block">
+  <h2>Logique de progression</h2>
+  <pre>Progression construite sur 4 principes, alignés NHS Couch to 5K et recommandations ACSM :
+(1) RÈGLE DES 10-20% : augmentation hebdomadaire du volume ou de l'intensité limitée, jamais les deux la même semaine. Volume hebdo de course : 16 → 18 → 18 → 22 → 23 → 28 → 35 → 50 min (la dernière semaine est le pic séance phare).
+(2) CUTBACK WEEK : semaine 5 = volume réduit pour consolidation, avec introduction qualité (bloc 8 min) en 2e séance uniquement. Sans semaine allégée, 8 semaines de progression continue surchargent l'appareil locomoteur.
+(3) RENFORCEMENT PRÉVENTIF : mollets (calf raises) et core (planche, bird-dog) dès W1 pour prévenir shin splints et stabiliser le tronc. Clamshells dès W1 pour prévenir ITBS — ne pas les repousser aux semaines ultérieures.
+(4) TAPERING W8 : séances 1 (20 min léger) et 2 (mobility) allégées pour arriver frais à la séance phare J5. Ne pas sauter les séances de taper, elles sont CONSTITUTIVES de la performance finale.
+
+Structure hebdo : 2 séances running + 1 renforcement, 4-5 jours de repos entre les sollicitations identiques.</pre>
+</section>
+
+</div>
+
+<script>
+  const btn = document.getElementById('toggle-all');
+  const weeks = document.querySelectorAll('details.week');
+  btn.addEventListener('click', () => {
+    const anyOpen = [...weeks].some(d => d.open);
+    weeks.forEach(d => d.open = !anyOpen);
+    btn.textContent = anyOpen ? 'Tout déplier' : 'Tout replier';
+  });
+</script>
+</body>
+</html>

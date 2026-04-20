@@ -1,0 +1,26 @@
+# Adaptability : natation-debutant-initiation-6sem + p4-more-ambitious-goal
+
+## Rigidity score
+**3/10**
+
+## Patch approach
+Le template est **structurellement rigide** face à une élévation d'objectif. L'architecture W1-W5 repose sur une progression pédagogique irréversible (technique → distance) et une logique de cutback W5 obligatoire alignée sur l'apprentissage moteur ACSM. Rehausser l'objectif final (200 m → 400-500 m) sans allonger la durée crée une **collision frontale** avec trois invariants : (1) le cutback W5 devient contre-productif si W6 doit être un pic, (2) l'espacement 72h entre séances sera insuffisant pour absorber le survolume, (3) la respiration bilatérale ne sera pas suffisamment stabilisée en W4-W5 pour servir de fondation à de longues distances. Une adaptation crédible exigerait soit d'allonger à 8-10 semaines, soit de sacrifier une partie de la pédagogie technique.
+
+## Concrete modifications
+- **W4-W5 fusion** : supprimer le cutback W5 classique. Transformer W5 en **semaine d'intégration "haute charge"** (volume 850 m, soit W4-level, PAS -15%). La justification : si l'objectif passe à 400 m en W6, il faut une adaptation physiologique (épaule, système aérobie) plus rapide. Risque : tendinite d'épaule augmentée (voir contradictions).
+- **W6 restructuration radicale** : remplacer la séance phare unique 200 m (J4) par un split : J1 = 250 m continu, J4 = 400 m continu (double l'objectif annoncé). Alternative : trois répétitions de 150 m (450 m total) si nageur moins confiant.
+- **W3 ajustement** : passer de "75-100 m premier essai" à **100-125 m obligatoire** pour tenir le calendrier resserré. Drill respiration latérale doit être maîtrisé plus tôt (W3 plutôt que W4).
+- **W2 intensité** : ajouter **1 x 75 m continu** à la fin de J4 (au lieu de "si confortable"). Cela crée un pente de volume plus agressive : 400 m (W1) → 550 m (W2, ajout 75 m) → 750 m (W3) → 900 m (W4) → 900 m (W5 **sans cutback**) → 1000-1200 m (W6 selon scénario 400 ou 450 m phare).
+- **W4 respiration bilatérale forcée** : l'expérimentation bilatérale (W4 J1) doit être remplacée par une **consolidation unilatérale renforcée** si la progression s'accélère. Sinon : risque cognitif majeur de mélanger l'apprentissage technique et l'augmentation de volume en parallèle.
+
+## Rigidity issues
+- **Cutback W5 obligatoire vs. pic W6** : le template dit explicitement "CUTBACK W5 OBLIGATOIRE" et "L'ordre est : drill maîtrisé → application 50 m → extension 75-100 m → 200 m en W6". Ôter le cutback viole l'invariant pédagogique. Le justificatif ACSM (consolidation motrice + adaptation musculaire) disparaît.
+- **Respiration bilatérale insuffisamment ancrée** : en W4 (introduction), la respiration bilatérale n'est qu'une expérimentation. Passer directement à 400 m avec bilatérale non stabilisée augmente le risque de panique respiratoire sur les longueurs 5-8 du 400 m.
+- **Progression_logic W3 dit "75 m continu avec respiration latérale imparfaite mais fonctionnelle"** : imparfaite + accélération = incompatible. Si on rehausse à 400 m, la respiration doit être maîtrisée (quasi-parfaite) dès W4, ce qui exige du temps non disponible dans 6 semaines.
+- **Densité pédagogique figée** : chaque semaine introduit un drill ciblé (W1 équilibre, W2 propulsion, W3 respiration, W4 bilatérale). On ne peut pas paralléliser deux drills dans une semaine sans dégrader l'apprentissage. Donc la cascade W1-W6 est verrouillée.
+
+## Contradictions
+- **Safety_notes vs. volume accru** : "Douleur antéro-latérale de l'épaule pendant ou après la nage" (swimmer's shoulder) est flaggée comme RED FLAG. Avec W5 sans cutback (900 m vs. 700 m en cutback théorique), la sollicitation de la coiffe des rotateurs **explose**. La note dit "Les tendons de l'épaule sont sous haute sollicitation en crawl" — supprimer le cutback aggrave directement ce risque. Un débutant n'a pas les adaptations tendineuses/musculaires pour absorber un volume de 900 m deux semaines consécutives (W4-W5 haut volume).
+- **Progression_logic (5) "CUTBACK W5 OBLIGATOIRE"** vs. objectif 400 m W6 : le template affirme "L'épaule, dorsaux, triceps sollicités de façon inhabituelle" — si on monte à 400 m sans cutback précédent, cette sollicitation devient dangereuse. La text dit "La W5 n'est pas une semaine facile — c'est une semaine d'intégration" — mais d'intégration d'un volume 700 m, pas 900 m.
+- **Respiration_logic W3-W4** : "RESPIRATION BILATÉRALE PAS AVANT W4" découle d'une pédagogie sérielle (maîtriser unilatéral, PUIS bilatéral). Rehausser à 400 m en W6 forcerait à consolider bilatérale plus tôt (W3-4), ce qui crée une charge cognitive accrue jusque W5-W6. Risk : panique respiratoire sur les longueurs 5-8 du 400 m si bilatérale n'est qu'une semaine et demi de pratique.
+- **Espacement 72h violation potentielle** : le template dit "RÈGLE DES 72H ENTRE SÉANCES (…) permet la consolidation sans dégradation. En dessous de 48h ou au-delà de 96h, l'apprentissage gestuel ralentit." Un nageur de débutant à 900 m/séance le jour 1 et jour 4 subit déjà une fatigue musculaire importante. Si on ajoute une 3e séance (pour atteindre 400 m plus vite), l'espacement se réduit et la dégradation technique devient probable.
