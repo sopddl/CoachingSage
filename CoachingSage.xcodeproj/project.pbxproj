@@ -15,6 +15,7 @@
 		473CFBD55514A3D7F16A8692 /* CoreProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C795F3D7C4B0D0010E47E0FC /* CoreProfileRepository.swift */; };
 		4D0C40DA7AA71C529DD78BC4 /* CoachingSageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E5560C4D3A9B8C5694D8DB /* CoachingSageUITests.swift */; };
 		519D48190BC092F5D8B498F8 /* NotificationPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977B581BCC54654D261CFCE2 /* NotificationPreferences.swift */; };
+		580946AF1BF3149ED4A755B0 /* AuthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF2FBAE3700B0D288B12991 /* AuthViewModelTests.swift */; };
 		60611C6FDD8493F3EC29044F /* DefaultCoreProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA55024C693442B9733FAD1F /* DefaultCoreProfileRepository.swift */; };
 		638C91209A629F17273F3B2B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2EB0C8F5D50D573B2B9BC515 /* Localizable.xcstrings */; };
 		63AFBA0CF7030D1A2DA8B28A /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 4FAC1159ED8687BBF9FB176C /* PostgREST */; };
@@ -26,6 +27,7 @@
 		8F19906C558D486B4DFB6FC7 /* SageCoreProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75229FDF1730BFAB470F33E /* SageCoreProfile.swift */; };
 		9266674344C255E0270AD787 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 387E901F3003338D1D455F57 /* Storage */; };
 		955C8C71D466E4B29E07BB4E /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 425DD5A4004D8904AF335FC0 /* Realtime */; };
+		996E085A80497941996B96DC /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20DB657D3395503D4C7C654 /* MockAuthService.swift */; };
 		9ED08CDB8B6AD2C48A98ADAC /* PendingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8474B16A1085DC583F637 /* PendingOperation.swift */; };
 		A0684D2705A4C792249C4465 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242338C6A253BA0C07D92BE7 /* AuthViewModel.swift */; };
 		A7F8F79B1E2EB44DA707B3DB /* SchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC63A8EC767EEA99877F1B4 /* SchemaV1.swift */; };
@@ -34,6 +36,7 @@
 		B215BA8BE2CC40B6AD5B3A7A /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FBFF7B81DFD25F150C64B6 /* AppDependencies.swift */; };
 		B9040BECBA01FF832AF49020 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 55602A83122E41C314502A6E /* Functions */; };
 		D75621E4CA0D5710CDA2604C /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10210F100B4F71B634C26C3C /* AppConstants.swift */; };
+		DD223EDEC0DA42292CA14A82 /* MockCoreProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC788BB1F14199FEA38C00F /* MockCoreProfileRepository.swift */; };
 		EA772B264DE38876B5918EC1 /* SageCore in Frameworks */ = {isa = PBXBuildFile; productRef = D50DFFCB3B420D5A254989C7 /* SageCore */; };
 		F03495EF5B63C09F83524E05 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567401E3501A58FD3263A9D6 /* AuthService.swift */; };
 /* End PBXBuildFile section */
@@ -56,8 +59,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FF2FBAE3700B0D288B12991 /* AuthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelTests.swift; sourceTree = "<group>"; };
 		10210F100B4F71B634C26C3C /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		242338C6A253BA0C07D92BE7 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		2AC788BB1F14199FEA38C00F /* MockCoreProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreProfileRepository.swift; sourceTree = "<group>"; };
 		2EB0C8F5D50D573B2B9BC515 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		3B1D7C33CFE4977F4BDB7035 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		3FC63A8EC767EEA99877F1B4 /* SchemaV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV1.swift; sourceTree = "<group>"; };
@@ -78,12 +83,13 @@
 		AECA89A91146FD3FC5486BFB /* CoreProfileDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreProfileDTO.swift; sourceTree = "<group>"; };
 		B75229FDF1730BFAB470F33E /* SageCoreProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SageCoreProfile.swift; sourceTree = "<group>"; };
 		BA55024C693442B9733FAD1F /* DefaultCoreProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCoreProfileRepository.swift; sourceTree = "<group>"; };
+		C20DB657D3395503D4C7C654 /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
 		C5FBFF7B81DFD25F150C64B6 /* AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
 		C795F3D7C4B0D0010E47E0FC /* CoreProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreProfileRepository.swift; sourceTree = "<group>"; };
 		D748D86D983DE72D41A9DCC8 /* CoachingSageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingSageTests.swift; sourceTree = "<group>"; };
-		"TEMP_4FF34135-A655-4EC4-A5E8-31B669233576" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_667A8DFD-9898-44E4-A720-C813777B014E" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_EA218448-188F-4F1B-A942-33749BDF26E0" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_7F4E5A21-C2F9-4332-B0C9-60AEA54827EE" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_94FE0D4C-FB3E-4F57-89B1-EA9A0963CF52" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_E317B8A2-1439-47E2-B984-AF0076AF485F" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +135,15 @@
 			);
 			sourceTree = "<group>";
 		};
+		35971344BB67B690FE03FCAC /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C20DB657D3395503D4C7C654 /* MockAuthService.swift */,
+				2AC788BB1F14199FEA38C00F /* MockCoreProfileRepository.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		40133C799B1336F62D3227EF /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +162,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		7A59DD1A56EB85B9A47656FD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0FF2FBAE3700B0D288B12991 /* AuthViewModelTests.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		8003F13FE0E3CD3201F168C9 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +180,8 @@
 		80923BA1E60DDF94BCDF5E36 /* CoachingSageTests */ = {
 			isa = PBXGroup;
 			children = (
+				35971344BB67B690FE03FCAC /* Mocks */,
+				7A59DD1A56EB85B9A47656FD /* ViewModels */,
 				D748D86D983DE72D41A9DCC8 /* CoachingSageTests.swift */,
 			);
 			path = CoachingSageTests;
@@ -287,12 +312,12 @@
 			path = Schema;
 			sourceTree = "<group>";
 		};
-		"TEMP_71B43489-F632-4512-9E27-77F3E3197C2F" /* CoachingSage */ = {
+		"TEMP_EA035F1A-6796-4F80-B967-8284BBD328DF" /* CoachingSage */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_4FF34135-A655-4EC4-A5E8-31B669233576" /* Config-Debug.xcconfig */,
-				"TEMP_EA218448-188F-4F1B-A942-33749BDF26E0" /* Config-Release.xcconfig */,
-				"TEMP_667A8DFD-9898-44E4-A720-C813777B014E" /* Config-Staging.xcconfig */,
+				"TEMP_7F4E5A21-C2F9-4332-B0C9-60AEA54827EE" /* Config-Debug.xcconfig */,
+				"TEMP_94FE0D4C-FB3E-4F57-89B1-EA9A0963CF52" /* Config-Release.xcconfig */,
+				"TEMP_E317B8A2-1439-47E2-B984-AF0076AF485F" /* Config-Staging.xcconfig */,
 			);
 			path = CoachingSage;
 			sourceTree = "<group>";
@@ -460,7 +485,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				580946AF1BF3149ED4A755B0 /* AuthViewModelTests.swift in Sources */,
 				8052B19196DBBCAB04E35AC4 /* CoachingSageTests.swift in Sources */,
+				996E085A80497941996B96DC /* MockAuthService.swift in Sources */,
+				DD223EDEC0DA42292CA14A82 /* MockCoreProfileRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +512,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -501,6 +530,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -516,7 +546,7 @@
 		};
 		61B5E17E96E19C8E098AA3DC /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_667A8DFD-9898-44E4-A720-C813777B014E" /* Config-Staging.xcconfig */;
+			baseConfigurationReference = "TEMP_E317B8A2-1439-47E2-B984-AF0076AF485F" /* Config-Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -577,7 +607,7 @@
 		};
 		6444A73E993A0AE7B8936309 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_EA218448-188F-4F1B-A942-33749BDF26E0" /* Config-Release.xcconfig */;
+			baseConfigurationReference = "TEMP_94FE0D4C-FB3E-4F57-89B1-EA9A0963CF52" /* Config-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -640,6 +670,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -683,6 +714,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -724,7 +756,7 @@
 		};
 		E103FFBD6D87D5F977B573D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_4FF34135-A655-4EC4-A5E8-31B669233576" /* Config-Debug.xcconfig */;
+			baseConfigurationReference = "TEMP_7F4E5A21-C2F9-4332-B0C9-60AEA54827EE" /* Config-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -794,6 +826,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -837,6 +870,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
