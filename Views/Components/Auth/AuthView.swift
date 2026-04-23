@@ -126,8 +126,8 @@ struct AuthView: View {
 
                     #if DEBUG
                     // Login rapide pour tests sur simulateur (pas d'Apple Sign In)
-                    Button("Dev Login (test-claude)") {
-                        email = "test-claude@coachingsage.app"
+                    Button("Dev Login (test)") {
+                        email = "test@test.com"
                         password = "CoachingTest2026!"
                         Task { await viewModel.signIn(email: email, password: password) }
                     }
