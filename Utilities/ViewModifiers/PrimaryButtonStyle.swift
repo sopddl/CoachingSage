@@ -2,14 +2,13 @@
 // ⚠️ Protocole ButtonStyle (accès à configuration.isPressed) — PAS ViewModifier.
 // Cible tactile : 52pt > 44pt minimum (NFR-A04)
 // VoiceOver : ButtonStyle propage automatiquement le label du Button (NFR-A02)
-// Placeholder Story 1.1a — valeurs tokens ajustées en Story 1.2.
 import SwiftUI
 
 struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.coachingH2)
-            .foregroundColor(.coachingTextPrimary)
+            .foregroundColor(.coachingOnPrimary)
             .frame(maxWidth: .infinity)
             .frame(height: 52)
             .background(Color.coachingPrimary.opacity(configuration.isPressed ? 0.85 : 1.0))

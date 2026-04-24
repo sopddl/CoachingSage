@@ -1,6 +1,5 @@
 // App/CoachingSageApp.swift
-// Story 1.1a bootstrap — point d'entrée @main.
-// Story 1.2 remplace le placeholder authentifié par la TabView 4 onglets.
+// Point d'entrée @main — gère bootstrap SwiftData, AppDependencies, et bascule Auth ↔ MainTabView.
 
 import os
 import SwiftUI
@@ -9,11 +8,16 @@ import SwiftData
 @main
 struct CoachingSageApp: App {
     private static let logger = Logger(subsystem: "com.sopddl.coachingsage", category: "app")
+    private let launchStart: Date
     private let container: ModelContainer
     private let deps: AppDependencies
     @State private var isAuthenticated: Bool
+    @State private var coldStartLogged = false
 
     init() {
+        // Capturé dès la 1re ligne de init() pour que NFR7 mesure du @main au 1er rendu.
+        // (static let est lazy → donnerait ~0ms.)
+        self.launchStart = Date()
         let env = ProcessInfo.processInfo.environment
         let isUITesting = env["IS_UI_TESTING"] != nil || env["XCTestConfigurationFilePath"] != nil
 
@@ -75,25 +79,7 @@ struct CoachingSageApp: App {
         WindowGroup {
             Group {
                 if isAuthenticated {
-                    // Placeholder Story 1.1a — remplacé par TabView en Story 1.2.
-                    VStack(spacing: 16) {
-                        Image(systemName: "figure.run.circle.fill")
-                            .font(.system(size: 64))
-                            .foregroundStyle(Color.coachingPrimary)
-                        Text("CoachingSage")
-                            .font(.coachingDisplay)
-                        Text("Authentifié — TabView en Story 1.2")
-                            .font(.coachingBody)
-                            .foregroundStyle(.secondary)
-                        Button("Déconnexion") {
-                            Task { try? await deps.authService.signOut() }
-                        }
-                        .primaryButtonStyle()
-                        .padding(.top, 24)
-                        .padding(.horizontal, 48)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.coachingBackground)
+                    MainTabView()
                 } else {
                     AuthView(
                         authService: deps.authService,
@@ -102,6 +88,14 @@ struct CoachingSageApp: App {
                 }
             }
             .environment(\.appDependencies, deps)
+            .onAppear {
+                // NFR7 cold start : mesuré du `init()` de l'@main jusqu'au 1er rendu.
+                // Cible < 3s (NFR7). Log une seule fois par lancement.
+                guard !coldStartLogged else { return }
+                coldStartLogged = true
+                let elapsed = Date().timeIntervalSince(launchStart)
+                Self.logger.info("cold_start_ms=\(Int(elapsed * 1000))")
+            }
             .task {
                 // En UI testing, ne pas écouter authStateChanges (placeholder client → .signedOut parasite).
                 guard ProcessInfo.processInfo.environment["IS_UI_TESTING"] == nil else { return }
