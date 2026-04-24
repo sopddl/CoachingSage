@@ -1,7 +1,7 @@
 // Utilities/Font+Coaching.swift
-// Échelle typographique CoachingSage — placeholder Story 1.1a.
-// ⚠️ Story 1.2 remplacera par des fonts custom adaptées au ton coaching sport
-// (pas Lora/DM Sans comme GardenSage).
+// Échelle typographique CoachingSage — Story 1.2.
+// SF Pro rounded pour les titres (ton sport, cohérence iOS natif, zéro asset embarqué) ;
+// serif italic pour la voix de Léon.
 import SwiftUI
 import UIKit
 
