@@ -4,16 +4,19 @@
 // Enrichi au fil des stories (SyncService Story 1.3, repositories domaine Epic 2+).
 import SwiftUI
 import SwiftData
+import SageCore
 
 struct AppDependencies {
     let coreProfileRepository: any CoreProfileRepository
     let authService: any AuthServiceProtocol
+    let syncService: any SyncServiceProtocol
 
     @MainActor
     static func live(modelContext: ModelContext) -> AppDependencies {
         AppDependencies(
             coreProfileRepository: DefaultCoreProfileRepository(modelContext: modelContext),
-            authService: AuthService()
+            authService: AuthService(),
+            syncService: SyncService(modelContext: modelContext)
         )
     }
 }
