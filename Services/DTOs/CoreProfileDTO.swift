@@ -67,7 +67,9 @@ struct CoreProfileDTO: Decodable {
 }
 
 /// DTO pour l'upsert vers Supabase — tous les champs sauf soft delete.
-struct CoreProfileUpsertDTO: Encodable {
+/// Codable (pas seulement Encodable) : SyncService.execute() décode le payload
+/// stocké dans PendingOperation pour le ré-envoyer à Supabase au drain.
+struct CoreProfileUpsertDTO: Codable {
     let id: UUID
     let firstName: String?
     let language: String

@@ -97,6 +97,11 @@ struct CoachingSageApp: App {
                 Self.logger.info("cold_start_ms=\(Int(elapsed * 1000))")
             }
             .task {
+                // Story 1.3 — démarre le monitor réseau + drain à reconnexion.
+                // Placé dans .task (pas dans init) pour ne pas peser sur le cold start NFR7.
+                deps.syncService.start()
+            }
+            .task {
                 // En UI testing, ne pas écouter authStateChanges (placeholder client → .signedOut parasite).
                 guard ProcessInfo.processInfo.environment["IS_UI_TESTING"] == nil else { return }
                 for await stateChange in SupabaseService.shared.client.auth.authStateChanges {
