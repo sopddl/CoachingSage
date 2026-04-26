@@ -22,7 +22,7 @@ struct AuthView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 24) {
+            VStack(spacing: 20) {
                 // En-tête branding CoachingSage
                 VStack(spacing: 8) {
                     Image(systemName: "figure.run")
@@ -34,7 +34,7 @@ struct AuthView: View {
                         .font(.coachingBody)
                         .foregroundStyle(.secondary)
                 }
-                .padding(.top, 48)
+                .padding(.top, 24)
 
                 VStack(spacing: 16) {
                     // ─── Apple Sign In EN PREMIER (App Store Review Guidelines 4.8) ───
@@ -69,13 +69,15 @@ struct AuthView: View {
                             .autocorrectionDisabled()
                             .textInputAutocapitalization(.never)
                             .accessibilityIdentifier("auth.email")
-                            .padding()
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 16)
                             .background(.regularMaterial)
                             .cornerRadius(12)
 
                         SecureField("auth.password.placeholder", text: $password)
                             .textContentType(isSignUp ? .newPassword : .password)
-                            .padding()
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 16)
                             .background(.regularMaterial)
                             .cornerRadius(12)
 
