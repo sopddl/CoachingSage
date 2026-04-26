@@ -126,6 +126,9 @@ final class DefaultCoreProfileRepository: CoreProfileRepository {
         profile.updatedAt = Date()
         try modelContext.save()
 
+        // En UI testing, pas d'appel Supabase (credentials placeholder → timeout).
+        guard ProcessInfo.processInfo.environment["IS_UI_TESTING"] == nil else { return }
+
         let now = Date()
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
