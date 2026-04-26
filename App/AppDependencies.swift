@@ -10,13 +10,17 @@ struct AppDependencies {
     let coreProfileRepository: any CoreProfileRepository
     let authService: any AuthServiceProtocol
     let syncService: any SyncServiceProtocol
+    let accountService: any AccountServiceProtocol
 
     @MainActor
     static func live(modelContext: ModelContext) -> AppDependencies {
-        AppDependencies(
-            coreProfileRepository: DefaultCoreProfileRepository(modelContext: modelContext),
-            authService: AuthService(),
-            syncService: SyncService(modelContext: modelContext)
+        let coreProfileRepository = DefaultCoreProfileRepository(modelContext: modelContext)
+        let authService = AuthService()
+        return AppDependencies(
+            coreProfileRepository: coreProfileRepository,
+            authService: authService,
+            syncService: SyncService(modelContext: modelContext),
+            accountService: AccountService(coreProfileRepository: coreProfileRepository)
         )
     }
 }

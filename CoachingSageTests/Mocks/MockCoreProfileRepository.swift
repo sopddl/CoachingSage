@@ -10,6 +10,12 @@ final class MockCoreProfileRepository: CoreProfileRepository {
     var deletedProfiles: [SageCoreProfile] = []
     var shouldThrow: Bool = false
 
+    /// Si true, softDelete throw avant d'enregistrer le profil dans deletedProfiles (Story 1.4 tests).
+    var softDeleteShouldThrow: Bool = false
+
+    /// Hook appelé au début de softDelete (Story 1.4 tests : vérifier l'ordre).
+    var softDeleteHook: (() -> Void)? = nil
+
     func fetchCurrentProfile() async throws -> SageCoreProfile? {
         if shouldThrow { throw AppError.network(URLError(.notConnectedToInternet)) }
         return stubbedProfile
@@ -21,7 +27,17 @@ final class MockCoreProfileRepository: CoreProfileRepository {
     }
 
     func softDelete(_ profile: SageCoreProfile) async throws {
-        if shouldThrow { throw AppError.network(URLError(.notConnectedToInternet)) }
+        softDeleteHook?()
+        if shouldThrow || softDeleteShouldThrow {
+            throw AppError.network(URLError(.notConnectedToInternet))
+        }
+        // Reflète le comportement réel du repository : profil flaggé soft-deleted, deletedAt posé,
+        // et fetchCurrentProfile() renverra nil (filtre isSoftDeleted == false).
+        profile.isSoftDeleted = true
+        profile.deletedAt = Date()
+        if stubbedProfile === profile {
+            stubbedProfile = nil
+        }
         deletedProfiles.append(profile)
     }
 

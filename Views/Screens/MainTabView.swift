@@ -26,11 +26,13 @@ struct MainTabView: View {
                 }
                 .accessibilityIdentifier("tab.progress")
 
-            ProfileView()
-                .tabItem {
-                    Label("tab.profile", systemImage: "person.crop.circle")
-                }
-                .accessibilityIdentifier("tab.profile")
+            NavigationStack {
+                ProfileView()
+            }
+            .tabItem {
+                Label("tab.profile", systemImage: "person.crop.circle")
+            }
+            .accessibilityIdentifier("tab.profile")
         }
         .tint(Color.coachingPrimary)
         .overlay(alignment: .top) {

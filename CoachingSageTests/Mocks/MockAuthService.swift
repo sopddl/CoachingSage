@@ -13,6 +13,9 @@ final class MockAuthService: AuthServiceProtocol {
     var signInAppleCalled: Bool = false
     var resetPasswordCalled: Bool = false
 
+    /// Hook appelé au début de signOut (Story 1.4 tests : vérifier l'ordre).
+    var signOutHook: (() -> Void)? = nil
+
     /// UUID fixe retourné par makeMockUser() — utilisé pour vérifier SageCoreProfile.id dans les tests
     let stubbedUserId = UUID(uuidString: "00000000-0000-0000-0000-000000000001")!
 
@@ -37,6 +40,7 @@ final class MockAuthService: AuthServiceProtocol {
     }
 
     func signOut() async throws {
+        signOutHook?()
         signOutCalled = true
         if shouldThrow { throw AppError.auth("Déconnexion impossible") }
     }
