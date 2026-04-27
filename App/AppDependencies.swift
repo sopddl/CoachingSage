@@ -11,6 +11,7 @@ struct AppDependencies {
     let authService: any AuthServiceProtocol
     let syncService: any SyncServiceProtocol
     let accountService: any AccountServiceProtocol
+    let healthKitService: any HealthKitServiceProtocol
 
     @MainActor
     static func live(modelContext: ModelContext) -> AppDependencies {
@@ -20,7 +21,8 @@ struct AppDependencies {
             coreProfileRepository: coreProfileRepository,
             authService: authService,
             syncService: SyncService(modelContext: modelContext),
-            accountService: AccountService(coreProfileRepository: coreProfileRepository)
+            accountService: AccountService(coreProfileRepository: coreProfileRepository),
+            healthKitService: DefaultHealthKitService()
         )
     }
 }
