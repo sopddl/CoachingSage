@@ -74,6 +74,7 @@ targets:
               - coachingsage
         SUPABASE_ANON_KEY: $(SUPABASE_ANON_KEY)
         SUPABASE_HOST: $(SUPABASE_HOST)
+        NSHealthShareUsageDescription: "CoachingSage utilise Apple Santé pour pré-remplir votre profil sportif (sexe, âge, poids, taille) lors de l'onboarding. Vous pouvez aussi saisir ces informations manuellement à tout moment."
         UILaunchScreen:
           UIColorName: ""
         UISupportedInterfaceOrientations:
@@ -84,6 +85,7 @@ targets:
       properties:
         com.apple.developer.applesignin:
           - Default
+        com.apple.developer.healthkit: true
         com.apple.security.application-groups:
           - group.com.sopddl.coachingsage.shared
     settings:
