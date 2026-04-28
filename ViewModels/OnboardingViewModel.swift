@@ -1,0 +1,234 @@
+// ViewModels/OnboardingViewModel.swift
+// Story 2.2 — state machine 4 écrans + import HealthKit + finalize.
+import Foundation
+import HealthKit
+import SwiftUI
+import SageCore
+
+enum OnboardingScreen: Int, CaseIterable {
+    case firstNameLanguage = 0
+    case personalData = 1
+    case sportsSelection = 2
+    case disclaimerPARQ = 3
+
+    var next: OnboardingScreen? {
+        OnboardingScreen(rawValue: rawValue + 1)
+    }
+}
+
+@MainActor
+@Observable
+final class OnboardingViewModel {
+    static let disclaimerCurrentVersion = "1.0"
+
+    // MARK: - State machine
+
+    var currentScreen: OnboardingScreen = .firstNameLanguage
+
+    // MARK: - Écran 1
+
+    var firstName: String = ""
+    var language: String = Locale.current.language.languageCode?.identifier ?? "fr"
+
+    // MARK: - Écran 2 (HealthKit-pre-fillable)
+
+    var biologicalSex: String? {
+        didSet { if biologicalSex != nil { hasUserEditedScreen2 = true } }
+    }
+    var dateOfBirth: Date? {
+        didSet { if dateOfBirth != nil { hasUserEditedScreen2 = true } }
+    }
+    var weightKg: Double? {
+        didSet { if weightKg != nil { hasUserEditedScreen2 = true } }
+    }
+    var heightCm: Double? {
+        didSet { if heightCm != nil { hasUserEditedScreen2 = true } }
+    }
+    private(set) var hasUserEditedScreen2: Bool = false
+
+    // MARK: - Écran 3
+
+    var activeSports: Set<String> = []
+
+    // MARK: - Écran 4
+
+    var parqResponses: [String: Bool] = PARQQuestion.defaultResponses
+    var analyticsConsent: Bool = false
+
+    // MARK: - Save state
+
+    var saveState: ViewState<Void> = .idle
+
+    /// Bool dérivé Equatable — observé par OnboardingView (ViewState n'est pas Equatable côté SageCore SPM 1.3.0).
+    /// Pattern aligné avec GardenSage OnboardingCompletionView (KNOWN-ISSUES.md:67-72).
+    var isOnboardingFinalized: Bool {
+        if case .success = saveState { return true }
+        return false
+    }
+
+    var isSaving: Bool {
+        if case .loading = saveState { return true }
+        return false
+    }
+
+    var saveErrorMessage: String? {
+        if case .error(let err) = saveState { return err.localizedDescription }
+        return nil
+    }
+
+    // MARK: - Dependencies
+
+    private let coreProfileRepository: any CoreProfileRepository
+    private let coachingProfileRepository: any CoachingProfileRepository
+    private let healthKitService: any HealthKitServiceProtocol
+
+    init(
+        coreProfileRepository: any CoreProfileRepository,
+        coachingProfileRepository: any CoachingProfileRepository,
+        healthKitService: any HealthKitServiceProtocol
+    ) {
+        self.coreProfileRepository = coreProfileRepository
+        self.coachingProfileRepository = coachingProfileRepository
+        self.healthKitService = healthKitService
+    }
+
+    /// Pré-remplit `firstName` depuis le profil core existant (cas user qui revient — ex. après réinstall).
+    /// À appeler depuis `.task` au mount de l'écran 1.
+    func prefillFromExistingProfile() async {
+        guard firstName.isEmpty,
+              let existing = try? await coreProfileRepository.fetchCurrentProfile(),
+              let storedName = existing.firstName,
+              !storedName.isEmpty
+        else { return }
+        firstName = storedName
+    }
+
+    // MARK: - Validators
+
+    var canContinueScreen1: Bool {
+        let trimmed = firstName.trimmingCharacters(in: .whitespacesAndNewlines)
+        return (1...50).contains(trimmed.count)
+    }
+
+    var canContinueScreen2: Bool {
+        guard let sex = biologicalSex, !sex.isEmpty,
+              dateOfBirth != nil,
+              let w = weightKg, (30.0...250.0).contains(w),
+              let h = heightCm, (100.0...230.0).contains(h)
+        else { return false }
+        return true
+    }
+
+    var canContinueScreen3: Bool {
+        !activeSports.isEmpty
+    }
+
+    var anyParqYes: Bool {
+        parqResponses.values.contains(true)
+    }
+
+    var showHealthKitCTA: Bool {
+        healthKitService.isHealthDataAvailable && !healthKitService.hasRequestedAuthorization
+    }
+
+    // MARK: - Navigation
+
+    func goNext() {
+        if currentScreen == .disclaimerPARQ {
+            Task { await finalize() }
+            return
+        }
+        if let next = currentScreen.next {
+            currentScreen = next
+        }
+    }
+
+    // MARK: - HealthKit import (écran 2)
+
+    func importFromHealthKit() async {
+        do {
+            try await healthKitService.requestProfileAuthorization()
+        } catch {
+            #if DEBUG
+            print("HealthKit auth failed (acceptable): \(error.localizedDescription)")
+            #endif
+        }
+
+        let data = await healthKitService.fetchProfileData()
+
+        // Préserve toute saisie utilisateur déjà faite (review P1-1).
+        guard !hasUserEditedScreen2 else { return }
+
+        if biologicalSex == nil, let sex = data.biologicalSex {
+            biologicalSex = Self.mapBiologicalSex(sex)
+        }
+        if dateOfBirth == nil, let dob = data.dateOfBirth {
+            dateOfBirth = dob
+        }
+        if weightKg == nil, let w = data.bodyMassKg, (30.0...250.0).contains(w) {
+            weightKg = w
+        }
+        if heightCm == nil, let h = data.heightCm, (100.0...230.0).contains(h) {
+            heightCm = h
+        }
+
+        // Les setters ont marqué hasUserEditedScreen2=true via didSet.
+        // On reset car l'edit vient de la machine, pas de l'utilisateur.
+        hasUserEditedScreen2 = false
+    }
+
+    static func mapBiologicalSex(_ value: HKBiologicalSex) -> String? {
+        switch value {
+        case .female: return "female"
+        case .male: return "male"
+        case .other: return "other"
+        case .notSet: return nil
+        @unknown default: return nil
+        }
+    }
+
+    // MARK: - Finalize
+
+    func finalize() async {
+        saveState = .loading
+        do {
+            // 1. Update core_profiles : first_name + language + analytics_consent.
+            let coreProfile: SageCoreProfile
+            if let existing = try await coreProfileRepository.fetchCurrentProfile() {
+                coreProfile = existing
+            } else {
+                guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else {
+                    saveState = .error(.sync("Session utilisateur introuvable"))
+                    return
+                }
+                coreProfile = SageCoreProfile(id: userId, language: language)
+            }
+            coreProfile.firstName = firstName.trimmingCharacters(in: .whitespacesAndNewlines)
+            coreProfile.language = language
+            coreProfile.analyticsConsent = analyticsConsent
+            coreProfile.updatedAt = Date()
+            try await coreProfileRepository.save(coreProfile)
+
+            // 2. Save coaching_profiles avec onboarding_completed_at.
+            // Réutilise une row existante (cas hydrate-on-miss : reprise sur nouveau device après réinstall)
+            // pour éviter un conflit @Attribute(.unique) var id.
+            let coaching = (try? await coachingProfileRepository.fetchCurrentProfile())
+                ?? CoachingProfile(id: coreProfile.id)
+            coaching.biologicalSex = biologicalSex
+            coaching.dateOfBirth = dateOfBirth
+            coaching.weightKg = weightKg
+            coaching.heightCm = heightCm
+            coaching.activeSports = Array(activeSports).sorted()
+            coaching.parqResponses = parqResponses
+            coaching.requiresMedicalClearance = anyParqYes
+            coaching.disclaimerVersionAccepted = Self.disclaimerCurrentVersion
+            coaching.disclaimerAcceptedAt = Date()
+            coaching.onboardingCompletedAt = Date()
+            try await coachingProfileRepository.save(coaching)
+
+            saveState = .success(())
+        } catch {
+            saveState = .error(error as? AppError ?? .sync(error.localizedDescription))
+        }
+    }
+}
