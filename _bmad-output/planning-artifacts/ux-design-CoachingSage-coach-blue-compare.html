@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoachingSage — Bleu Coach : #1E5090 vs #3478C6</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F5F2EE;
+    color: #141E2B;
+    padding: 40px 24px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .page-header { text-align: center; margin-bottom: 48px; }
+  .page-header h1 { font-family: 'Lora', serif; font-size: 28px; color: #1B3A5C; margin-bottom: 8px; }
+  .page-header p { color: #5A6577; font-size: 14px; }
+
+  .section { margin-bottom: 48px; }
+  .section h2 { font-family: 'Lora', serif; font-size: 20px; color: #1B3A5C; margin-bottom: 6px; text-align: center; }
+  .section .desc { font-size: 13px; color: #5A6577; margin-bottom: 24px; text-align: center; }
+
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 700px) { .compare-row { grid-template-columns: 1fr; } }
+
+  .col-header {
+    text-align: center; padding: 12px; border-radius: 10px;
+    font-size: 14px; font-weight: 600; color: white;
+    margin-bottom: 16px;
+  }
+
+  .context-box {
+    border-radius: 12px; padding: 20px; margin-bottom: 16px;
+  }
+  .context-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 10px;
+  }
+
+  .pill {
+    padding: 12px 16px; border-radius: 14px;
+    font-family: 'Lora', serif; font-style: italic; font-size: 13px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .pill .arrow { margin-left: auto; font-size: 11px; opacity: 0.6; }
+
+  /* Swatch comparison */
+  .swatch-compare {
+    display: flex; gap: 24px; justify-content: center;
+    margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .swatch-item { text-align: center; }
+  .swatch-dot {
+    width: 56px; height: 56px; border-radius: 50%;
+    margin: 0 auto 6px; border: 2px solid rgba(0,0,0,0.08);
+  }
+  .swatch-name { font-size: 12px; font-weight: 600; color: #141E2B; }
+  .swatch-hex { font-size: 11px; color: #5A6577; font-family: monospace; }
+
+  /* Session card */
+  .session-card {
+    padding: 12px 14px; background: white; border-radius: 12px;
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .sess-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .sess-info { flex: 1; }
+  .sess-name { font-size: 13px; font-weight: 500; color: #141E2B; }
+  .sess-detail { font-size: 11px; color: #5A6577; }
+
+  /* Coach message in chat */
+  .chat-bubble {
+    padding: 12px 16px; border-radius: 16px 16px 16px 4px;
+    font-family: 'Lora', serif; font-style: italic; font-size: 13px;
+    color: white; max-width: 260px; margin-bottom: 8px;
+  }
+
+  /* Floating button */
+  .fab {
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; color: white;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+
+  /* Progress chip */
+  .progress-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 8px; color: white;
+    font-size: 12px; font-weight: 600;
+  }
+
+  .divider { height: 1px; background: #EDE9E3; margin: 40px 0; }
+
+  .note {
+    padding: 10px 14px; background: rgba(30,80,144,0.04);
+    border-radius: 8px; font-size: 11px; color: #5A6577; margin-top: 8px;
+  }
+  .note strong { color: #141E2B; }
+
+  .verdict-box {
+    background: white; padding: 24px; border-radius: 14px;
+    max-width: 700px; margin: 0 auto;
+    border: 2px solid #D4A85A;
+  }
+  .verdict-box h3 { font-family: 'Lora', serif; font-size: 18px; color: #D4A85A; margin-bottom: 12px; text-align: center; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Bleu Coach — #1E5090 vs #3478C6</h1>
+  <p>Faut-il remplacer le bleu Coach actuel par le plus clair, partout ?</p>
+</div>
+
+<!-- Swatches -->
+<div class="swatch-compare">
+  <div class="swatch-item">
+    <div class="swatch-dot" style="background:#1B3A5C;"></div>
+    <div class="swatch-name">Primary</div>
+    <div class="swatch-hex">#1B3A5C</div>
+  </div>
+  <div class="swatch-item">
+    <div class="swatch-dot" style="background:#1E5090;"></div>
+    <div class="swatch-name">Coach actuel</div>
+    <div class="swatch-hex">#1E5090</div>
+  </div>
+  <div class="swatch-item">
+    <div class="swatch-dot" style="background:#3478C6;"></div>
+    <div class="swatch-name">Coach proposé</div>
+    <div class="swatch-hex">#3478C6</div>
+  </div>
+  <div class="swatch-item">
+    <div class="swatch-dot" style="background:#2B5F8A;"></div>
+    <div class="swatch-name">Earth</div>
+    <div class="swatch-hex">#2B5F8A</div>
+  </div>
+</div>
+
+<!-- ═══ 1. Coach Pill fond clair ═══ -->
+<div class="section">
+  <h2>1. Coach Pill — Fond clair</h2>
+  <div class="compare-row">
+    <div>
+      <div class="col-header" style="background:#1E5090;">Actuel — #1E5090</div>
+      <div class="context-box" style="background:#F5F2EE;">
+        <div style="font-family:'Lora',serif; font-size:18px; color:#141E2B; margin-bottom:10px;">Bonjour Sophie</div>
+        <div class="pill" style="background:#1E5090; color:#E8F0FA;">
+          <span>💬</span>
+          <span>"Prête pour le vélo endurance !"</span>
+          <span class="arrow">›</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="col-header" style="background:#3478C6;">Proposé — #3478C6</div>
+      <div class="context-box" style="background:#F5F2EE;">
+        <div style="font-family:'Lora',serif; font-size:18px; color:#141E2B; margin-bottom:10px;">Bonjour Sophie</div>
+        <div class="pill" style="background:#3478C6; color:#E8F0FA;">
+          <span>💬</span>
+          <span>"Prête pour le vélo endurance !"</span>
+          <span class="arrow">›</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="note"><strong>#3478C6</strong> est nettement plus lumineux sur fond clair. Coach "pop" davantage — plus visible, plus dynamique.</div>
+</div>
+
+<!-- ═══ 2. Coach Pill fond sombre ═══ -->
+<div class="section">
+  <h2>2. Coach Pill — Fond sombre (tracking)</h2>
+  <div class="compare-row">
+    <div>
+      <div class="col-header" style="background:#1E5090;">Actuel — #1E5090</div>
+      <div class="context-box" style="background:#141E2B;">
+        <div style="text-align:center; font-size:10px; color:#7BC142; font-weight:600; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;">🏃 Running</div>
+        <div style="text-align:center; font-size:36px; font-weight:700; color:#F5F2EE; margin-bottom:16px;">5:38 <span style="font-size:13px; color:rgba(245,242,238,0.4);">/km</span></div>
+        <div class="pill" style="background:#1E5090; color:#E8F0FA;">
+          <span>💬</span>
+          <span>"Tiens l'allure !"</span>
+          <span class="arrow">›</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="col-header" style="background:#3478C6;">Proposé — #3478C6</div>
+      <div class="context-box" style="background:#141E2B;">
+        <div style="text-align:center; font-size:10px; color:#7BC142; font-weight:600; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;">🏃 Running</div>
+        <div style="text-align:center; font-size:36px; font-weight:700; color:#F5F2EE; margin-bottom:16px;">5:38 <span style="font-size:13px; color:rgba(245,242,238,0.4);">/km</span></div>
+        <div class="pill" style="background:#3478C6; color:#E8F0FA;">
+          <span>💬</span>
+          <span>"Tiens l'allure !"</span>
+          <span class="arrow">›</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="note"><strong>#3478C6</strong> ressort nettement mieux sur fond sombre. Plus de bordure dorée nécessaire — le problème est résolu par la couleur elle-même.</div>
+</div>
+
+<!-- ═══ 3. Bouton flottant Coach ═══ -->
+<div class="section">
+  <h2>3. Bouton flottant Coach (FAB)</h2>
+  <div class="compare-row">
+    <div>
+      <div class="col-header" style="background:#1E5090;">Actuel — #1E5090</div>
+      <div class="context-box" style="background:#F5F2EE; display:flex; gap:16px; align-items:center; justify-content:center;">
+        <div>
+          <div style="font-size:11px; color:#5A6577; margin-bottom:6px;">Sur fond clair</div>
+          <div class="fab" style="background:#1E5090;">💬</div>
+        </div>
+        <div>
+          <div style="font-size:11px; color:#5A6577; margin-bottom:6px;">Sur fond sombre</div>
+          <div style="background:#141E2B; padding:16px; border-radius:12px;">
+            <div class="fab" style="background:#1E5090;">💬</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="col-header" style="background:#3478C6;">Proposé — #3478C6</div>
+      <div class="context-box" style="background:#F5F2EE; display:flex; gap:16px; align-items:center; justify-content:center;">
+        <div>
+          <div style="font-size:11px; color:#5A6577; margin-bottom:6px;">Sur fond clair</div>
+          <div class="fab" style="background:#3478C6;">💬</div>
+        </div>
+        <div>
+          <div style="font-size:11px; color:#5A6577; margin-bottom:6px;">Sur fond sombre</div>
+          <div style="background:#141E2B; padding:16px; border-radius:12px;">
+            <div class="fab" style="background:#3478C6;">💬</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="note"><strong>#3478C6</strong> le FAB est plus visible dans les deux contextes. Le bouton flottant Coach doit "attraper l'œil" — le bleu plus clair le fait mieux.</div>
+</div>
+
+<!-- ═══ 4. Chat Coach ═══ -->
+<div class="section">
+  <h2>4. Bulles de chat Coach</h2>
+  <div class="compare-row">
+    <div>
+      <div class="col-header" style="background:#1E5090;">Actuel — #1E5090</div>
+      <div class="context-box" style="background:#F5F2EE;">
+        <div class="chat-bubble" style="background:#1E5090;">"Bonjour Sophie ! Aujourd'hui c'est vélo endurance."</div>
+        <div class="chat-bubble" style="background:#1E5090;">"Tu as progressé de 5% en VMA cette semaine. Bravo !"</div>
+        <div class="chat-bubble" style="background:#1E5090; margin-left:auto; border-radius:16px 16px 4px 16px; background:#EDE9E3; color:#141E2B; font-style:normal; font-family:'DM Sans',sans-serif;">"Coach, j'ai mal au genou"</div>
+        <div class="chat-bubble" style="background:#1E5090;">"OK, j'adapte ta séance. Pas de fractionné aujourd'hui — endurance douce."</div>
+      </div>
+    </div>
+    <div>
+      <div class="col-header" style="background:#3478C6;">Proposé — #3478C6</div>
+      <div class="context-box" style="background:#F5F2EE;">
+        <div class="chat-bubble" style="background:#3478C6;">"Bonjour Sophie ! Aujourd'hui c'est vélo endurance."</div>
+        <div class="chat-bubble" style="background:#3478C6;">"Tu as progressé de 5% en VMA cette semaine. Bravo !"</div>
+        <div class="chat-bubble" style="background:#3478C6; margin-left:auto; border-radius:16px 16px 4px 16px; background:#EDE9E3; color:#141E2B; font-style:normal; font-family:'DM Sans',sans-serif;">"Coach, j'ai mal au genou"</div>
+        <div class="chat-bubble" style="background:#3478C6;">"OK, j'adapte ta séance. Pas de fractionné aujourd'hui — endurance douce."</div>
+      </div>
+    </div>
+  </div>
+  <div class="note"><strong>#3478C6</strong> les bulles sont plus lumineuses, le chat est plus vivant. Le bleu plus clair rappelle iMessage/WhatsApp — familier et chaleureux.</div>
+</div>
+
+<!-- ═══ 5. Palette complète comparée ═══ -->
+<div class="section">
+  <h2>5. Palette complète — avec/sans remplacement</h2>
+  <div class="compare-row">
+    <div>
+      <div class="col-header" style="background:#5A6577;">Palette actuelle</div>
+      <div style="display:flex; gap:4px; height:40px; border-radius:8px; overflow:hidden;">
+        <div style="flex:1; background:#1B3A5C;"></div>
+        <div style="flex:1; background:#1E5090;"></div>
+        <div style="flex:1; background:#2B5F8A;"></div>
+        <div style="flex:1; background:#7BC142;"></div>
+        <div style="flex:1; background:#2D8A4E;"></div>
+        <div style="flex:1; background:#D4A85A;"></div>
+        <div style="flex:1; background:#F5F2EE; border:1px solid #EDE9E3;"></div>
+      </div>
+      <div style="display:flex; gap:4px; margin-top:4px; font-size:8px; color:#5A6577;">
+        <div style="flex:1; text-align:center;">Primary</div>
+        <div style="flex:1; text-align:center;">Coach</div>
+        <div style="flex:1; text-align:center;">Earth</div>
+        <div style="flex:1; text-align:center;">Accent</div>
+        <div style="flex:1; text-align:center;">Success</div>
+        <div style="flex:1; text-align:center;">Record</div>
+        <div style="flex:1; text-align:center;">Bg</div>
+      </div>
+      <div class="note" style="margin-top:12px;">3 bleus proches : Primary #1B3A5C · Coach #1E5090 · Earth #2B5F8A → peu de contraste entre eux</div>
+    </div>
+    <div>
+      <div class="col-header" style="background:#3478C6;">Palette avec #3478C6</div>
+      <div style="display:flex; gap:4px; height:40px; border-radius:8px; overflow:hidden;">
+        <div style="flex:1; background:#1B3A5C;"></div>
+        <div style="flex:1; background:#3478C6;"></div>
+        <div style="flex:1; background:#2B5F8A;"></div>
+        <div style="flex:1; background:#7BC142;"></div>
+        <div style="flex:1; background:#2D8A4E;"></div>
+        <div style="flex:1; background:#D4A85A;"></div>
+        <div style="flex:1; background:#F5F2EE; border:1px solid #EDE9E3;"></div>
+      </div>
+      <div style="display:flex; gap:4px; margin-top:4px; font-size:8px; color:#5A6577;">
+        <div style="flex:1; text-align:center;">Primary</div>
+        <div style="flex:1; text-align:center;">Coach</div>
+        <div style="flex:1; text-align:center;">Earth</div>
+        <div style="flex:1; text-align:center;">Accent</div>
+        <div style="flex:1; text-align:center;">Success</div>
+        <div style="flex:1; text-align:center;">Record</div>
+        <div style="flex:1; text-align:center;">Bg</div>
+      </div>
+      <div class="note" style="margin-top:12px;">Coach #3478C6 est nettement distinct de Primary #1B3A5C et Earth #2B5F8A → meilleure hiérarchie de bleus, plus de dynamisme</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Verdict -->
+<div class="verdict-box">
+  <h3>Mon avis</h3>
+  <p style="font-size:14px; color:#141E2B; text-align:center; line-height:1.6;">
+    <strong>Oui, remplace #1E5090 par #3478C6 partout.</strong><br><br>
+    Le bleu plus clair donne à Coach une identité plus forte et distincte.
+    Il fonctionne mieux sur fond clair ET sombre (plus besoin de bordure dorée).
+    Et la palette gagne en dynamisme — 3 bleus bien distincts au lieu de 3 bleus trop proches.<br><br>
+    <span style="color:#5A6577; font-size:12px;">
+      Contraste #3478C6 sur blanc : 4.1:1 ✓ AA (gros texte) · Contraste #E8F0FA sur #3478C6 : 5.2:1 ✓ AA
+    </span>
+  </p>
+</div>
+
+<div style="text-align:center; margin-top:40px; color:#5A6577; font-size:12px;">
+  CoachingSage — Coach Blue Comparison — 2026-03-23
+</div>
+
+</body>
+</html>

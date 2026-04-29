@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoachingSage — Direction Hybride + Icônes Sport</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #141E2B;
+    color: #F5F2EE;
+    padding: 40px 24px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .page-header { text-align: center; margin-bottom: 48px; }
+  .page-header h1 { font-family: 'Lora', serif; font-size: 32px; color: #D4A85A; margin-bottom: 8px; }
+  .page-header p { color: #5A6577; font-size: 14px; }
+
+  .section { margin-bottom: 60px; }
+  .section-title { font-family: 'Lora', serif; font-size: 24px; color: #D4A85A; margin-bottom: 8px; text-align: center; }
+  .section-desc { color: #5A6577; font-size: 13px; margin-bottom: 32px; text-align: center; }
+
+  /* ═══ Phone ═══ */
+  .phone-wrapper { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .phone {
+    width: 340px; height: 720px;
+    border-radius: 44px;
+    border: 2px solid rgba(212,168,90,0.3);
+    overflow: hidden; position: relative;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    background: #F5F2EE;
+  }
+  .phone-screen {
+    width: 100%; height: 100%;
+    overflow-y: auto; padding-top: 44px; padding-bottom: 64px;
+  }
+  .phone-screen::-webkit-scrollbar { display: none; }
+
+  /* Tab bars */
+  .tab-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 60px; background: white;
+    border-top: 1px solid #EDE9E3;
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 0 8px; z-index: 10;
+  }
+  .tab-item {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    font-size: 9px; color: #5A6577; width: 60px;
+  }
+  .tab-item.active { color: #D4A85A; }
+  .tab-item .tab-icon { font-size: 22px; line-height: 1; }
+  .tab-item .tab-sf { font-size: 11px; font-weight: 600; width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .tab-item.active .tab-sf { background: rgba(212,168,90,0.15); }
+
+  /* ═══ Hybrid screen ═══ */
+  .hybrid .header { padding: 14px 20px 6px; }
+  .hybrid .greeting { font-family: 'Lora', serif; font-size: 22px; color: #141E2B; }
+  .hybrid .coach-msg {
+    margin: 8px 20px;
+    padding: 10px 14px; border-radius: 14px;
+    background: #1E5090; color: #E8F0FA;
+    font-family: 'Lora', serif; font-style: italic; font-size: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hybrid .coach-msg .arrow { margin-left: auto; font-size: 11px; opacity: 0.6; }
+
+  /* Sport cards strip */
+  .hybrid .sport-strip {
+    display: flex; gap: 8px; padding: 10px 20px; overflow-x: auto;
+  }
+  .hybrid .sport-chip {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 12px;
+    flex-shrink: 0; font-size: 12px; font-weight: 600; color: white;
+  }
+  .hybrid .sport-chip .emoji { font-size: 18px; }
+  .hybrid .sport-chip .pct { font-size: 10px; opacity: 0.8; margin-left: 2px; }
+
+  /* Section label */
+  .hybrid .section-lbl {
+    padding: 14px 20px 6px;
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px; color: #D4A85A;
+  }
+
+  /* Session cards */
+  .hybrid .session-card {
+    margin: 0 20px 8px; padding: 14px;
+    background: white; border-radius: 14px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .hybrid .session-card.next { border: 2px solid #7BC142; }
+  .hybrid .sess-icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .hybrid .sess-info { flex: 1; }
+  .hybrid .sess-name { font-size: 14px; font-weight: 500; color: #141E2B; }
+  .hybrid .sess-prog { font-size: 11px; color: #2B5F8A; }
+  .hybrid .sess-when { font-size: 11px; color: #5A6577; margin-top: 1px; }
+  .hybrid .go-btn {
+    padding: 8px 16px; border-radius: 10px;
+    font-size: 13px; font-weight: 700; color: white; flex-shrink: 0;
+  }
+
+  /* Programme cards */
+  .hybrid .prog-card {
+    margin: 0 20px 8px; padding: 14px;
+    background: white; border-radius: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hybrid .prog-icon { font-size: 28px; flex-shrink: 0; }
+  .hybrid .prog-info { flex: 1; }
+  .hybrid .prog-name { font-size: 14px; font-weight: 500; color: #141E2B; }
+  .hybrid .prog-meta { font-size: 11px; color: #5A6577; margin-top: 2px; }
+  .hybrid .prog-bar { height: 5px; background: #EDE9E3; border-radius: 3px; margin-top: 6px; overflow: hidden; }
+  .hybrid .prog-fill { height: 100%; border-radius: 3px; }
+  .hybrid .prog-pct { font-size: 16px; font-weight: 700; color: #D4A85A; flex-shrink: 0; }
+
+  /* ═══ Icons library ═══ */
+  .icons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  .icon-option {
+    background: rgba(245,242,238,0.05);
+    border-radius: 14px; padding: 20px;
+    border: 1px solid rgba(212,168,90,0.15);
+  }
+  .icon-option h3 {
+    font-family: 'Lora', serif; font-size: 16px; color: #D4A85A;
+    margin-bottom: 12px;
+  }
+  .icon-option .desc { font-size: 12px; color: #5A6577; margin-bottom: 16px; }
+  .tab-preview {
+    display: flex; gap: 0; background: white; border-radius: 12px;
+    padding: 10px 4px; justify-content: space-around;
+  }
+  .tab-preview .tp-item {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    font-size: 9px; color: #5A6577; width: 56px; text-align: center;
+  }
+  .tab-preview .tp-item.active { color: #D4A85A; }
+  .tab-preview .tp-item .tp-icon { font-size: 20px; line-height: 1; }
+
+  /* SF Symbol text style */
+  .sf-row {
+    display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px;
+  }
+  .sf-item {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    background: rgba(255,255,255,0.05); border-radius: 8px; padding: 8px 12px;
+    min-width: 80px;
+  }
+  .sf-item .sf-icon { font-size: 20px; }
+  .sf-item .sf-name { font-size: 9px; color: #5A6577; text-align: center; }
+  .sf-item .sf-sfsym { font-size: 8px; color: #2B5F8A; font-family: monospace; text-align: center; }
+
+  .mockups-row {
+    display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .mockups-row { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>CoachingSage — Direction Hybride</h1>
+  <p>Mix D1 (message perso) + D3 (chiffres semaine) + D5 (cartes sport) + séances D2/D5</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- MOCKUP HYBRIDE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="mockups-row">
+
+    <!-- Version A — Tab Emoji Sport -->
+    <div class="phone-wrapper">
+      <div style="text-align:center;">
+        <div style="font-family:'Lora',serif; font-size:18px; color:#F5F2EE;">Tab Bar A — Emoji Sport</div>
+        <div style="font-size:12px; color:#5A6577;">Emojis expressifs, fun, colorés</div>
+      </div>
+      <div class="phone">
+        <div class="phone-screen hybrid">
+          <!-- Header : message perso (D1) -->
+          <div class="header">
+            <div class="greeting">Bonjour Sophie</div>
+          </div>
+
+          <!-- Coach pill perso (D1) -->
+          <div class="coach-msg">
+            <span>💬</span>
+            <span>"Bonne récup hier ! Aujourd'hui c'est vélo endurance, parfait pour enchaîner."</span>
+            <span class="arrow">›</span>
+          </div>
+
+          <!-- Sport chips (D5 compact) + chiffres (D3) -->
+          <div class="sport-strip">
+            <div class="sport-chip" style="background: linear-gradient(135deg, #1B3A5C, #2B5F8A);">
+              <span class="emoji">🏊</span> Triathlon <span class="pct">38%</span>
+            </div>
+            <div class="sport-chip" style="background: linear-gradient(135deg, #2D8A4E, #7BC142);">
+              <span class="emoji">🧘</span> Yoga <span class="pct">65%</span>
+            </div>
+          </div>
+
+          <!-- Séances (D2/D5 style — date, pas heure) -->
+          <div class="section-lbl">Prochaines séances</div>
+
+          <div class="session-card next">
+            <div class="sess-icon" style="background: rgba(123,193,66,0.12);">🚴</div>
+            <div class="sess-info">
+              <div class="sess-name">Vélo — Endurance</div>
+              <div class="sess-prog">Triathlon Sprint · Semaine 6</div>
+              <div class="sess-when">Aujourd'hui · 1h15 · Zone 2</div>
+            </div>
+            <div class="go-btn" style="background:#7BC142;">GO</div>
+          </div>
+
+          <div class="session-card">
+            <div class="sess-icon" style="background: rgba(27,58,92,0.08);">🧘</div>
+            <div class="sess-info">
+              <div class="sess-name">Yoga — Étirements</div>
+              <div class="sess-prog">Souplesse & Récup · Semaine 3</div>
+              <div class="sess-when">Demain · 30 min</div>
+            </div>
+            <div class="go-btn" style="background:#1B3A5C;">GO</div>
+          </div>
+
+          <div class="session-card">
+            <div class="sess-icon" style="background: rgba(27,58,92,0.08);">🏃</div>
+            <div class="sess-info">
+              <div class="sess-name">Running — Fractionné</div>
+              <div class="sess-prog">Triathlon Sprint · Semaine 6</div>
+              <div class="sess-when">Mercredi · 45 min · 8×400m</div>
+            </div>
+            <div class="go-btn" style="background:#1B3A5C;">GO</div>
+          </div>
+
+          <!-- Programmes -->
+          <div class="section-lbl">Mes programmes</div>
+
+          <div class="prog-card">
+            <div class="prog-icon">🏊</div>
+            <div class="prog-info">
+              <div class="prog-name">Triathlon Sprint 16 sem.</div>
+              <div class="prog-meta">Sem. 6/16 · 84% cette semaine</div>
+              <div class="prog-bar"><div class="prog-fill" style="width:38%; background: linear-gradient(90deg, #1B3A5C, #2B5F8A);"></div></div>
+            </div>
+            <div class="prog-pct">38%</div>
+          </div>
+
+          <div class="prog-card">
+            <div class="prog-icon">🧘</div>
+            <div class="prog-info">
+              <div class="prog-name">Souplesse & Récup</div>
+              <div class="prog-meta">Sem. 3/4 · 100% ✓</div>
+              <div class="prog-bar"><div class="prog-fill" style="width:65%; background:#2D8A4E;"></div></div>
+            </div>
+            <div class="prog-pct">65%</div>
+          </div>
+
+        </div>
+        <!-- Tab A — Emoji sport -->
+        <div class="tab-bar">
+          <div class="tab-item active"><span class="tab-icon">🏟️</span>Accueil</div>
+          <div class="tab-item"><span class="tab-icon">🏋️</span>Séance</div>
+          <div class="tab-item"><span class="tab-icon">🏆</span>Progrès</div>
+          <div class="tab-item"><span class="tab-icon">⚡</span>Profil</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Version B — Tab SF Symbols Sport -->
+    <div class="phone-wrapper">
+      <div style="text-align:center;">
+        <div style="font-family:'Lora',serif; font-size:18px; color:#F5F2EE;">Tab Bar B — SF Symbols Sport</div>
+        <div style="font-size:12px; color:#5A6577;">SF Symbols iOS natifs, sport-themed, dorés</div>
+      </div>
+      <div class="phone">
+        <div class="phone-screen hybrid">
+          <div class="header">
+            <div class="greeting">Bonjour Sophie</div>
+          </div>
+          <div class="coach-msg">
+            <span>💬</span>
+            <span>"Bonne récup hier ! Aujourd'hui c'est vélo endurance, parfait pour enchaîner."</span>
+            <span class="arrow">›</span>
+          </div>
+          <div class="sport-strip">
+            <div class="sport-chip" style="background: linear-gradient(135deg, #1B3A5C, #2B5F8A);">
+              <span class="emoji">🏊</span> Triathlon <span class="pct">38%</span>
+            </div>
+            <div class="sport-chip" style="background: linear-gradient(135deg, #2D8A4E, #7BC142);">
+              <span class="emoji">🧘</span> Yoga <span class="pct">65%</span>
+            </div>
+          </div>
+          <div class="section-lbl">Prochaines séances</div>
+          <div class="session-card next">
+            <div class="sess-icon" style="background: rgba(123,193,66,0.12);">🚴</div>
+            <div class="sess-info">
+              <div class="sess-name">Vélo — Endurance</div>
+              <div class="sess-prog">Triathlon Sprint · Semaine 6</div>
+              <div class="sess-when">Aujourd'hui · 1h15 · Zone 2</div>
+            </div>
+            <div class="go-btn" style="background:#7BC142;">GO</div>
+          </div>
+          <div class="session-card">
+            <div class="sess-icon" style="background: rgba(27,58,92,0.08);">🧘</div>
+            <div class="sess-info">
+              <div class="sess-name">Yoga — Étirements</div>
+              <div class="sess-prog">Souplesse & Récup · Semaine 3</div>
+              <div class="sess-when">Demain · 30 min</div>
+            </div>
+            <div class="go-btn" style="background:#1B3A5C;">GO</div>
+          </div>
+          <div class="session-card">
+            <div class="sess-icon" style="background: rgba(27,58,92,0.08);">🏃</div>
+            <div class="sess-info">
+              <div class="sess-name">Running — Fractionné</div>
+              <div class="sess-prog">Triathlon Sprint · Semaine 6</div>
+              <div class="sess-when">Mercredi · 45 min · 8×400m</div>
+            </div>
+            <div class="go-btn" style="background:#1B3A5C;">GO</div>
+          </div>
+          <div class="section-lbl">Mes programmes</div>
+          <div class="prog-card">
+            <div class="prog-icon">🏊</div>
+            <div class="prog-info">
+              <div class="prog-name">Triathlon Sprint 16 sem.</div>
+              <div class="prog-meta">Sem. 6/16 · 84% cette semaine</div>
+              <div class="prog-bar"><div class="prog-fill" style="width:38%; background: linear-gradient(90deg, #1B3A5C, #2B5F8A);"></div></div>
+            </div>
+            <div class="prog-pct">38%</div>
+          </div>
+          <div class="prog-card">
+            <div class="prog-icon">🧘</div>
+            <div class="prog-info">
+              <div class="prog-name">Souplesse & Récup</div>
+              <div class="prog-meta">Sem. 3/4 · 100% ✓</div>
+              <div class="prog-bar"><div class="prog-fill" style="width:65%; background:#2D8A4E;"></div></div>
+            </div>
+            <div class="prog-pct">65%</div>
+          </div>
+        </div>
+        <!-- Tab B — SF Symbols sport-themed, doré actif -->
+        <div class="tab-bar">
+          <div class="tab-item active">
+            <span class="tab-icon">🔥</span>Accueil
+          </div>
+          <div class="tab-item">
+            <span class="tab-icon">▶️</span>Séance
+          </div>
+          <div class="tab-item">
+            <span class="tab-icon">📊</span>Progrès
+          </div>
+          <div class="tab-item">
+            <span class="tab-icon">🎯</span>Profil
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BIBLIOTHÈQUE D'ICÔNES SPORT -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Bibliothèque d'icônes — Tab Bar</div>
+  <div class="section-desc">SF Symbols iOS natifs avec un rendu sport. Actif = doré #D4A85A. Inactif = gris #5A6577.</div>
+
+  <div class="icons-grid">
+
+    <!-- Option 1 -->
+    <div class="icon-option">
+      <h3>Option 1 — Flamme & Action</h3>
+      <div class="desc">Énergie, feu, dynamisme — très sport</div>
+      <div class="tab-preview">
+        <div class="tp-item active"><span class="tp-icon">🔥</span>Accueil</div>
+        <div class="tp-item"><span class="tp-icon">▶️</span>Séance</div>
+        <div class="tp-item"><span class="tp-icon">📊</span>Progrès</div>
+        <div class="tp-item"><span class="tp-icon">🎯</span>Profil</div>
+      </div>
+      <div style="font-size:10px; color:#5A6577; margin-top:8px;">SF: flame.fill · play.circle.fill · chart.line.uptrend.xyaxis · target</div>
+    </div>
+
+    <!-- Option 2 -->
+    <div class="icon-option">
+      <h3>Option 2 — Stade & Trophée</h3>
+      <div class="desc">Sport classique, compétition, accomplissement</div>
+      <div class="tab-preview">
+        <div class="tp-item active"><span class="tp-icon">🏟️</span>Accueil</div>
+        <div class="tp-item"><span class="tp-icon">🏋️</span>Séance</div>
+        <div class="tp-item"><span class="tp-icon">🏆</span>Progrès</div>
+        <div class="tp-item"><span class="tp-icon">👤</span>Profil</div>
+      </div>
+      <div style="font-size:10px; color:#5A6577; margin-top:8px;">SF: sportscourt.fill · figure.strengthtraining · trophy.fill · person.fill</div>
+    </div>
+
+    <!-- Option 3 -->
+    <div class="icon-option">
+      <h3>Option 3 — Running & Étoile</h3>
+      <div class="desc">Mouvement, progression, étoile Sage dorée</div>
+      <div class="tab-preview">
+        <div class="tp-item active"><span class="tp-icon">🏃</span>Accueil</div>
+        <div class="tp-item"><span class="tp-icon">⏱️</span>Séance</div>
+        <div class="tp-item"><span class="tp-icon">📈</span>Progrès</div>
+        <div class="tp-item"><span class="tp-icon">⭐</span>Profil</div>
+      </div>
+      <div style="font-size:10px; color:#5A6577; margin-top:8px;">SF: figure.run · timer · chart.xyaxis.line · star.fill (étoile Sage)</div>
+    </div>
+
+    <!-- Option 4 -->
+    <div class="icon-option">
+      <h3>Option 4 — Cœur & Énergie</h3>
+      <div class="desc">Bien-être, santé, vitalité — inclusif (Nathalie aussi)</div>
+      <div class="tab-preview">
+        <div class="tp-item active"><span class="tp-icon">💪</span>Accueil</div>
+        <div class="tp-item"><span class="tp-icon">▶️</span>Séance</div>
+        <div class="tp-item"><span class="tp-icon">❤️‍🔥</span>Progrès</div>
+        <div class="tp-item"><span class="tp-icon">😊</span>Profil</div>
+      </div>
+      <div style="font-size:10px; color:#5A6577; margin-top:8px;">SF: figure.mixed.cardio · play.fill · heart.text.square.fill · face.smiling.fill</div>
+    </div>
+
+    <!-- Option 5 -->
+    <div class="icon-option">
+      <h3>Option 5 — Bolt & Médaille</h3>
+      <div class="desc">Rapide, percutant, récompense — très app sport premium</div>
+      <div class="tab-preview">
+        <div class="tp-item active"><span class="tp-icon">⚡</span>Accueil</div>
+        <div class="tp-item"><span class="tp-icon">▶️</span>Séance</div>
+        <div class="tp-item"><span class="tp-icon">🥇</span>Progrès</div>
+        <div class="tp-item"><span class="tp-icon">⚙️</span>Profil</div>
+      </div>
+      <div style="font-size:10px; color:#5A6577; margin-top:8px;">SF: bolt.fill · play.circle.fill · medal.fill · gearshape.fill</div>
+    </div>
+
+    <!-- Option 6 -->
+    <div class="icon-option">
+      <h3>Option 6 — Figure Humaine</h3>
+      <div class="desc">Silhouettes sport iOS 17 — natif Apple, élégant</div>
+      <div class="tab-preview">
+        <div class="tp-item active"><span class="tp-icon">🏠</span>Accueil</div>
+        <div class="tp-item"><span class="tp-icon">🤸</span>Séance</div>
+        <div class="tp-item"><span class="tp-icon">📊</span>Progrès</div>
+        <div class="tp-item"><span class="tp-icon">🧑</span>Profil</div>
+      </div>
+      <div style="font-size:10px; color:#5A6577; margin-top:8px;">SF: house.fill · figure.highintensity.intervaltraining · chart.bar.fill · person.crop.circle</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SF SYMBOLS SPORT CATALOGUE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">SF Symbols Sport — Catalogue</div>
+  <div class="section-desc">Tous les SF Symbols sport disponibles iOS 17+ pour enrichir l'app (menus, cartes, headers)</div>
+
+  <div style="background: rgba(245,242,238,0.05); border-radius: 14px; padding: 24px; border: 1px solid rgba(212,168,90,0.15);">
+
+    <div style="font-size: 13px; color: #D4A85A; font-weight: 600; margin-bottom: 12px;">FIGURES SPORT (figure.*)</div>
+    <div class="sf-row">
+      <div class="sf-item"><div class="sf-icon">🏃</div><div class="sf-name">Running</div><div class="sf-sfsym">figure.run</div></div>
+      <div class="sf-item"><div class="sf-icon">🚴</div><div class="sf-name">Vélo</div><div class="sf-sfsym">figure.outdoor.cycle</div></div>
+      <div class="sf-item"><div class="sf-icon">🏊</div><div class="sf-name">Natation</div><div class="sf-sfsym">figure.pool.swim</div></div>
+      <div class="sf-item"><div class="sf-icon">🏋️</div><div class="sf-name">Muscu</div><div class="sf-sfsym">figure.strengthtraining.traditional</div></div>
+      <div class="sf-item"><div class="sf-icon">🧘</div><div class="sf-name">Yoga</div><div class="sf-sfsym">figure.yoga</div></div>
+      <div class="sf-item"><div class="sf-icon">🤸</div><div class="sf-name">HIIT</div><div class="sf-sfsym">figure.highintensity.intervaltraining</div></div>
+      <div class="sf-item"><div class="sf-icon">🎾</div><div class="sf-name">Tennis</div><div class="sf-sfsym">figure.tennis</div></div>
+      <div class="sf-item"><div class="sf-icon">⚽</div><div class="sf-name">Football</div><div class="sf-sfsym">figure.soccer</div></div>
+      <div class="sf-item"><div class="sf-icon">🥊</div><div class="sf-name">Boxe</div><div class="sf-sfsym">figure.boxing</div></div>
+      <div class="sf-item"><div class="sf-icon">🚣</div><div class="sf-name">Rameur</div><div class="sf-sfsym">figure.rower</div></div>
+      <div class="sf-item"><div class="sf-icon">🧗</div><div class="sf-name">Escalade</div><div class="sf-sfsym">figure.climbing</div></div>
+      <div class="sf-item"><div class="sf-icon">🤾</div><div class="sf-name">Handball</div><div class="sf-sfsym">figure.handball</div></div>
+    </div>
+
+    <div style="font-size: 13px; color: #D4A85A; font-weight: 600; margin: 20px 0 12px;">ACTIONS & MÉTRIQUES</div>
+    <div class="sf-row">
+      <div class="sf-item"><div class="sf-icon">🔥</div><div class="sf-name">Flamme</div><div class="sf-sfsym">flame.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">⚡</div><div class="sf-name">Énergie</div><div class="sf-sfsym">bolt.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">⏱️</div><div class="sf-name">Chrono</div><div class="sf-sfsym">timer</div></div>
+      <div class="sf-item"><div class="sf-icon">❤️</div><div class="sf-name">FC</div><div class="sf-sfsym">heart.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">📈</div><div class="sf-name">Tendance</div><div class="sf-sfsym">chart.line.uptrend.xyaxis</div></div>
+      <div class="sf-item"><div class="sf-icon">📊</div><div class="sf-name">Stats</div><div class="sf-sfsym">chart.bar.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">🏆</div><div class="sf-name">Trophée</div><div class="sf-sfsym">trophy.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">🥇</div><div class="sf-name">Médaille</div><div class="sf-sfsym">medal.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">🎯</div><div class="sf-name">Objectif</div><div class="sf-sfsym">target</div></div>
+      <div class="sf-item"><div class="sf-icon">⭐</div><div class="sf-name">Étoile</div><div class="sf-sfsym">star.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">▶️</div><div class="sf-name">Play</div><div class="sf-sfsym">play.circle.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">🔔</div><div class="sf-name">Notif</div><div class="sf-sfsym">bell.fill</div></div>
+    </div>
+
+    <div style="font-size: 13px; color: #D4A85A; font-weight: 600; margin: 20px 0 12px;">NAVIGATION & UI</div>
+    <div class="sf-row">
+      <div class="sf-item"><div class="sf-icon">🏠</div><div class="sf-name">Maison</div><div class="sf-sfsym">house.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">👤</div><div class="sf-name">Profil</div><div class="sf-sfsym">person.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">⚙️</div><div class="sf-name">Réglages</div><div class="sf-sfsym">gearshape.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">💬</div><div class="sf-name">Coach</div><div class="sf-sfsym">bubble.left.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">🗓️</div><div class="sf-name">Calendrier</div><div class="sf-sfsym">calendar</div></div>
+      <div class="sf-item"><div class="sf-icon">📋</div><div class="sf-name">Programme</div><div class="sf-sfsym">list.bullet.clipboard</div></div>
+      <div class="sf-item"><div class="sf-icon">🗺️</div><div class="sf-name">Carte GPS</div><div class="sf-sfsym">map.fill</div></div>
+      <div class="sf-item"><div class="sf-icon">📍</div><div class="sf-name">Position</div><div class="sf-sfsym">location.fill</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align:center; margin-top:60px; padding-top:32px; border-top:1px solid rgba(212,168,90,0.2);">
+  <p style="font-size:13px; color:#5A6577;">CoachingSage — Direction Hybride + Icônes — 2026-03-23</p>
+</div>
+
+</body>
+</html>
