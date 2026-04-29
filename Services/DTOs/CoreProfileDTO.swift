@@ -64,6 +64,27 @@ struct CoreProfileDTO: Decodable {
         case isSoftDeleted         = "is_soft_deleted"
         case deletedAt             = "deleted_at"
     }
+
+    /// Construit un `SageCoreProfile` SwiftData à partir du DTO Supabase.
+    /// Utilisé par l'hydrate-on-miss du repository (Story 3.1 — fix bug réinstall app).
+    /// ⚠️ DRIFT [COPIE IDENTIQUE] vs GardenSage/TailorSage : à propager en story dédiée.
+    func toModel() -> SageCoreProfile {
+        let profile = SageCoreProfile(id: id, language: language, region: region)
+        profile.firstName = firstName
+        profile.latitude = latitude
+        profile.longitude = longitude
+        profile.altitude = altitude
+        profile.analyticsConsent = analyticsConsent
+        profile.notificationPreferences = notificationPreferences
+        profile.vacationEndDate = vacationEndDate
+        profile.subscriptionTier = subscriptionTier
+        profile.subscriptionExpiresAt = subscriptionExpiresAt
+        profile.createdAt = createdAt
+        profile.updatedAt = updatedAt
+        profile.isSoftDeleted = isSoftDeleted
+        profile.deletedAt = deletedAt
+        return profile
+    }
 }
 
 /// DTO pour l'upsert vers Supabase — tous les champs sauf soft delete.

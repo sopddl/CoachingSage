@@ -24,8 +24,49 @@ final class DefaultCoreProfileRepository: CoreProfileRepository {
             if let match = try modelContext.fetch(authDescriptor).first {
                 return match
             }
+
+            // Hydrate-on-miss : SwiftData local vide (ex: réinstallation app) → fetch Supabase et hydrate.
+            // Aligné DefaultCoachingProfileRepository (qui a déjà ce pattern).
+            // ⚠️ DRIFT [COPIE IDENTIQUE] vs GardenSage/TailorSage : à propager en story dédiée.
+            // Bug Story 3.1 (2026-04-29) : sans hydrate, ProfileViewModel échouait avec .notFound après une réinstall
+            // (CoachingProfile était re-hydraté mais SageCoreProfile restait nil).
+            guard ProcessInfo.processInfo.environment["IS_UI_TESTING"] == nil else {
+                // En UI testing, pas d'appel Supabase (credentials placeholder → timeout).
+                let fallback = FetchDescriptor<SageCoreProfile>(
+                    predicate: #Predicate { profile in profile.isSoftDeleted == false }
+                )
+                return try modelContext.fetch(fallback).first
+            }
+
+            do {
+                let response = try await SupabaseService.shared.client
+                    .from("core_profiles")
+                    .select()
+                    .eq("id", value: authUserId.uuidString)
+                    .eq("is_soft_deleted", value: false)
+                    .limit(1)
+                    .execute()
+
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let dtos = try decoder.decode([CoreProfileDTO].self, from: response.data)
+                if let dto = dtos.first {
+                    let hydrated = dto.toModel()
+                    modelContext.insert(hydrated)
+                    try modelContext.save()
+                    #if DEBUG
+                    Self.logger.debug("Hydrated SageCoreProfile from Supabase for user \(authUserId)")
+                    #endif
+                    return hydrated
+                }
+            } catch {
+                #if DEBUG
+                Self.logger.debug("Hydrate-on-miss SageCoreProfile failed (acceptable si nouveau user): \(error.localizedDescription)")
+                #endif
+            }
         }
 
+        // Fallback final : retourne n'importe quel profil non soft-deleted (cas edge sans session).
         let descriptor = FetchDescriptor<SageCoreProfile>(
             predicate: #Predicate { profile in
                 profile.isSoftDeleted == false

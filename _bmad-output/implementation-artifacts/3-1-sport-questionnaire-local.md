@@ -617,6 +617,7 @@ Le prompt système Léon arbitrera selon les 2 valeurs (cf. Story 3.3 design).
 - ON DELETE CASCADE depuis `coaching_profiles` (P2-1) → si feature « supprimer son coaching_profile » émerge, ajouter cleanup explicit.
 - Plurals FR/EN automatiques pour le compteur de sports.
 - Test integration RLS en CI (P1-14) → infra credentials CI à mettre en place story dédiée.
+- **Story 3.1.5 — Pré-fill niveau Q1 via HealthKit** (idée Sophie 2026-04-29) : utiliser `HKWorkout` running du HealthKitService Story 2.1 pour pré-remplir Q1 avec un guess. Algo simple : 0 workouts récents → `beginner` ; 1-2/sem → `recreational` ; 3+/sem stable 6+ mois → `regular` ; présence races 5K+/10K+ → `competitive`. Q1 reste affichée mais en mode confirmation : « D'après tes activités, je te vois plutôt **Régulier**. C'est ça ? » avec boutons `Oui` / `Plutôt débutant` / `Plutôt occasionnel` / `Plus haut`. Fallback Q1 normale si pas de données HealthKit. Pré-requis : valider pattern Story 3.1 + Story 3.3 (prompt Léon) d'abord — pour ne pas optimiser un flow non-validé bout-en-bout. Effort estimé +0.5j. **Strava** = hors scope (OAuth + API + token refresh + ToS = ~3j → Epic 4 intégrations externes).
 
 ### Standards de tests
 

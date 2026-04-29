@@ -177,7 +177,7 @@ private struct SportCapsule: View {
                     .foregroundStyle(isSupported ? Color.coachingPrimary : Color.coachingDisabled)
                     .frame(width: 28)
 
-                Text(LocalizedStringKey("session.button.requestProgram.\(sportCode)"))
+                Text(SportCapsule.requestProgramKey(for: sportCode))
                     .font(.body)
                     .foregroundStyle(isSupported ? Color.coachingTextPrimary : Color.coachingDisabled)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -203,6 +203,25 @@ private struct SportCapsule: View {
         }
         .buttonStyle(.plain)
         .disabled(!isSupported)
+    }
+
+    /// Mapping explicite sport → clé i18n.
+    /// `LocalizedStringKey("...\(var)...")` avec interpolation dynamique ne résout PAS la lookup
+    /// (SwiftUI traite l'interpolation comme un format spec). Switch verbose mais fiable.
+    static func requestProgramKey(for sportCode: String) -> LocalizedStringKey {
+        switch sportCode {
+        case "running":          return "session.button.requestProgram.running"
+        case "cycling":          return "session.button.requestProgram.cycling"
+        case "swimming":         return "session.button.requestProgram.swimming"
+        case "triathlon":        return "session.button.requestProgram.triathlon"
+        case "strengthTraining": return "session.button.requestProgram.strengthTraining"
+        case "yoga":             return "session.button.requestProgram.yoga"
+        case "hiit":             return "session.button.requestProgram.hiit"
+        case "hiking":           return "session.button.requestProgram.hiking"
+        case "tennis":           return "session.button.requestProgram.tennis"
+        case "football":         return "session.button.requestProgram.football"
+        default:                 return "session.requestProgram.unsupportedSport"
+        }
     }
 
     /// SF Symbol par code sport — aligné enum SportCode.
@@ -248,7 +267,7 @@ private struct ProgramAlreadyExistsView: View {
                 Text("session.programExists.title")
                     .font(.title2.bold())
 
-                Text(LocalizedStringKey("session.button.requestProgram.\(sportCode)"))
+                Text(SportCapsule.requestProgramKey(for: sportCode))
                     .font(.body)
                     .foregroundStyle(Color.coachingTextSecondary)
 
