@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoachingSage — Directions de Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #141E2B;
+    color: #F5F2EE;
+    padding: 40px 24px 80px;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .page-header h1 {
+    font-family: 'Lora', serif;
+    font-size: 36px;
+    color: #D4A85A;
+    margin-bottom: 8px;
+  }
+  .page-header p {
+    color: #5A6577;
+    font-size: 15px;
+  }
+
+  .directions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 48px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .direction-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .direction-label {
+    text-align: center;
+  }
+  .direction-label .num {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #D4A85A;
+    margin-bottom: 4px;
+  }
+  .direction-label h2 {
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    color: #F5F2EE;
+    margin-bottom: 4px;
+  }
+  .direction-label p {
+    font-size: 13px;
+    color: #5A6577;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  /* Phone frame */
+  .phone {
+    width: 310px;
+    height: 660px;
+    border-radius: 44px;
+    border: 2px solid rgba(212,168,90,0.3);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    flex-shrink: 0;
+    background: #F5F2EE;
+  }
+  .phone-screen {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding-top: 44px;
+    padding-bottom: 60px;
+  }
+  .phone-screen::-webkit-scrollbar { display: none; }
+
+  /* Tab bar */
+  .tab-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: white;
+    border-top: 1px solid #EDE9E3;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 4px;
+    z-index: 10;
+  }
+  .tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 9px;
+    color: #5A6577;
+  }
+  .tab-item.active { color: #D4A85A; }
+  .tab-item .tab-icon { font-size: 18px; }
+
+  /* Common components */
+  .pill {
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .pill .arrow { margin-left: auto; font-size: 11px; opacity: 0.6; }
+
+  .card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  .go-btn {
+    padding: 5px 14px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .progress-bar {
+    height: 5px;
+    background: #EDE9E3;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  /* ═══════════════════════════════════════════ */
+  /* D1 — Feed Programmes (style Decathlon Coach) */
+  /* ═══════════════════════════════════════════ */
+  .d1 .header {
+    padding: 16px 20px 8px;
+  }
+  .d1 .greeting {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    color: #141E2B;
+  }
+  .d1 .sub { font-size: 12px; color: #5A6577; margin-top: 2px; }
+  .d1 .coach-pill {
+    margin: 10px 20px;
+    background: #1E5090;
+    color: #E8F0FA;
+  }
+  .d1 .section-lbl {
+    padding: 14px 20px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #D4A85A;
+  }
+  .d1 .prog-card {
+    margin: 0 20px 10px;
+    padding: 14px;
+  }
+  .d1 .prog-sport {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #2B5F8A;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .d1 .prog-name {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    color: #141E2B;
+    margin-bottom: 6px;
+  }
+  .d1 .prog-meta { font-size: 11px; color: #5A6577; margin-top: 4px; }
+  .d1 .session-row {
+    margin: 0 20px 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .d1 .session-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .d1 .session-name { font-size: 13px; font-weight: 500; color: #141E2B; }
+  .d1 .session-detail { font-size: 11px; color: #5A6577; }
+  .d1 .session-info { flex: 1; }
+
+  /* ═══════════════════════════════════════════ */
+  /* D2 — Header Doré Premium */
+  /* ═══════════════════════════════════════════ */
+  .d2 .gold-header {
+    background: linear-gradient(135deg, #1B3A5C 0%, #2B5F8A 100%);
+    padding: 20px 20px 24px;
+    color: white;
+    border-radius: 0 0 24px 24px;
+  }
+  .d2 .gold-header .greeting {
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    color: #D4A85A;
+  }
+  .d2 .gold-header .sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+  .d2 .stats-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .d2 .stat-box {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+  }
+  .d2 .stat-val { font-size: 20px; font-weight: 700; color: #D4A85A; }
+  .d2 .stat-lbl { font-size: 9px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+  .d2 .section-lbl {
+    padding: 16px 20px 6px;
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: #D4A85A;
+  }
+  .d2 .next-session {
+    margin: 8px 20px;
+    padding: 16px;
+    border: 2px solid #7BC142;
+  }
+  .d2 .next-tag {
+    font-size: 10px; font-weight: 700; color: #7BC142;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .d2 .next-name { font-family: 'Lora', serif; font-size: 16px; color: #141E2B; }
+  .d2 .next-detail { font-size: 12px; color: #5A6577; margin-top: 2px; }
+  .d2 .next-go {
+    margin-top: 12px;
+    padding: 12px;
+    background: #7BC142;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .d2 .prog-mini {
+    margin: 0 20px 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .d2 .prog-mini-icon { font-size: 24px; }
+  .d2 .prog-mini-info { flex: 1; }
+  .d2 .prog-mini-name { font-size: 13px; font-weight: 500; color: #141E2B; }
+  .d2 .prog-mini-meta { font-size: 11px; color: #5A6577; }
+  .d2 .prog-mini-pct { font-size: 14px; font-weight: 700; color: #1B3A5C; }
+
+  /* ═══════════════════════════════════════════ */
+  /* D3 — Calendrier Horizontal */
+  /* ═══════════════════════════════════════════ */
+  .d3 .header { padding: 16px 20px 8px; }
+  .d3 .greeting { font-family: 'Lora', serif; font-size: 22px; color: #141E2B; }
+  .d3 .week-strip {
+    display: flex;
+    gap: 0;
+    padding: 12px 12px;
+    overflow-x: auto;
+  }
+  .d3 .day {
+    flex: 1;
+    min-width: 40px;
+    text-align: center;
+    padding: 8px 4px;
+    border-radius: 12px;
+  }
+  .d3 .day.today { background: #1B3A5C; }
+  .d3 .day .d-name { font-size: 10px; color: #5A6577; }
+  .d3 .day.today .d-name { color: rgba(255,255,255,0.6); }
+  .d3 .day .d-num { font-size: 16px; font-weight: 600; color: #141E2B; margin-top: 2px; }
+  .d3 .day.today .d-num { color: white; }
+  .d3 .day .d-dot { width: 5px; height: 5px; border-radius: 50%; margin: 4px auto 0; }
+  .d3 .day.has-session .d-dot { background: #7BC142; }
+  .d3 .day.today .d-dot { background: #D4A85A; }
+  .d3 .section-lbl {
+    padding: 12px 20px 6px;
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: #D4A85A;
+  }
+  .d3 .session-card {
+    margin: 0 20px 10px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .d3 .time-badge {
+    background: #1B3A5C;
+    color: #D4A85A;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .d3 .sess-info { flex: 1; }
+  .d3 .sess-name { font-size: 13px; font-weight: 500; color: #141E2B; }
+  .d3 .sess-prog { font-size: 11px; color: #2B5F8A; }
+  .d3 .sess-dur { font-size: 11px; color: #5A6577; }
+
+  /* ═══════════════════════════════════════════ */
+  /* D4 — Coach Hero */
+  /* ═══════════════════════════════════════════ */
+  .d4 .coach-hero {
+    background: linear-gradient(180deg, #1E5090 0%, #1B3A5C 100%);
+    padding: 24px 20px;
+    color: white;
+    text-align: center;
+  }
+  .d4 .coach-avatar {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #D4A85A;
+    margin: 0 auto 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    border: 3px solid rgba(255,255,255,0.2);
+  }
+  .d4 .coach-msg {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: #E8F0FA;
+    line-height: 1.5;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+  .d4 .coach-action {
+    margin-top: 14px;
+    padding: 10px 24px;
+    background: #7BC142;
+    border-radius: 10px;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+  }
+  .d4 .section-lbl {
+    padding: 16px 20px 6px;
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: #D4A85A;
+  }
+  .d4 .session-row {
+    margin: 0 20px 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .d4 .session-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .d4 .session-info { flex: 1; }
+  .d4 .session-name { font-size: 13px; font-weight: 500; color: #141E2B; }
+  .d4 .session-detail { font-size: 11px; color: #5A6577; }
+
+  /* ═══════════════════════════════════════════ */
+  /* D5 — Cartes Sport Visuelles */
+  /* ═══════════════════════════════════════════ */
+  .d5 .header { padding: 16px 20px 8px; }
+  .d5 .greeting { font-family: 'Lora', serif; font-size: 22px; color: #141E2B; }
+  .d5 .sub { font-size: 12px; color: #5A6577; margin-top: 2px; }
+  .d5 .sport-cards {
+    display: flex;
+    gap: 10px;
+    padding: 12px 20px;
+    overflow-x: auto;
+  }
+  .d5 .sport-card {
+    min-width: 130px;
+    padding: 16px 14px;
+    border-radius: 16px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .d5 .sport-card .emoji { font-size: 36px; margin-bottom: 8px; }
+  .d5 .sport-card .name {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    color: white;
+    margin-bottom: 4px;
+  }
+  .d5 .sport-card .count { font-size: 11px; color: rgba(255,255,255,0.7); }
+  .d5 .section-lbl {
+    padding: 16px 20px 6px;
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: #D4A85A;
+  }
+  .d5 .session-row {
+    margin: 0 20px 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .d5 .session-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; background: rgba(27,58,92,0.08);
+  }
+  .d5 .session-info { flex: 1; }
+  .d5 .session-name { font-size: 13px; font-weight: 500; color: #141E2B; }
+  .d5 .session-detail { font-size: 11px; color: #5A6577; }
+  .d5 .coach-pill {
+    margin: 10px 20px;
+    background: #1E5090;
+    color: #E8F0FA;
+  }
+
+  /* ═══════════════════════════════════════════ */
+  /* D6 — Prochaine Séance Hero */
+  /* ═══════════════════════════════════════════ */
+  .d6 .header { padding: 16px 20px 4px; }
+  .d6 .greeting { font-family: 'Lora', serif; font-size: 22px; color: #141E2B; }
+  .d6 .hero-session {
+    margin: 16px 20px;
+    padding: 24px 20px;
+    background: linear-gradient(135deg, #1B3A5C, #2B5F8A);
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+  }
+  .d6 .hero-emoji { font-size: 48px; margin-bottom: 12px; }
+  .d6 .hero-sport {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+    color: #D4A85A; font-weight: 600;
+  }
+  .d6 .hero-name {
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    color: white;
+    margin: 6px 0;
+  }
+  .d6 .hero-detail { font-size: 13px; color: rgba(255,255,255,0.6); }
+  .d6 .hero-go {
+    margin-top: 16px;
+    padding: 14px 48px;
+    background: #7BC142;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+  }
+  .d6 .coach-pill {
+    margin: 12px 20px;
+    background: #1E5090;
+    color: #E8F0FA;
+  }
+  .d6 .section-lbl {
+    padding: 12px 20px 6px;
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: #D4A85A;
+  }
+  .d6 .upcoming {
+    margin: 0 20px 8px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border-radius: 12px;
+    border-left: 3px solid #D4A85A;
+  }
+  .d6 .upcoming .emoji { font-size: 20px; }
+  .d6 .upcoming .info { flex: 1; }
+  .d6 .upcoming .name { font-size: 13px; font-weight: 500; color: #141E2B; }
+  .d6 .upcoming .when { font-size: 11px; color: #5A6577; }
+
+  @media (max-width: 768px) {
+    .directions-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>CoachingSage — Directions de Design</h1>
+  <p>6 approches pour l'écran d'accueil · Palette : bleu marine + lime + doré</p>
+</div>
+
+<div class="directions-grid">
+
+  <!-- ═══ D1 — Feed Programmes ═══ -->
+  <div class="direction-card">
+    <div class="direction-label">
+      <div class="num">Direction 01</div>
+      <h2>Feed Programmes</h2>
+      <p>Style Decathlon Coach — programmes actifs en cartes, séances en feed chronologique</p>
+    </div>
+    <div class="phone">
+      <div class="phone-screen d1">
+        <div class="header">
+          <div class="greeting">Bonjour Sophie</div>
+          <div class="sub">2 programmes actifs · 3 séances cette semaine</div>
+        </div>
+        <div class="pill coach-pill" style="margin: 10px 20px; background:#1E5090; color:#E8F0FA;">
+          <span>💬</span>
+          <span>"Bonne récup hier ! Prête pour le vélo ?"</span>
+          <span class="arrow">›</span>
+        </div>
+        <div class="section-lbl">Programmes en cours</div>
+        <div class="card prog-card">
+          <div class="prog-sport">🏊 Triathlon</div>
+          <div class="prog-name">Sprint 16 semaines</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:38%; background: linear-gradient(90deg, #1B3A5C, #2B5F8A);"></div></div>
+          <div class="prog-meta">Semaine 6/16 · 84% cette semaine</div>
+        </div>
+        <div class="card prog-card">
+          <div class="prog-sport">🧘 Yoga</div>
+          <div class="prog-name">Souplesse & Récup</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:65%; background:#2D8A4E;"></div></div>
+          <div class="prog-meta">Semaine 3/4 · 100% ✓</div>
+        </div>
+        <div class="section-lbl">Prochaines séances</div>
+        <div class="card session-row">
+          <div class="session-icon" style="background:rgba(27,58,92,0.08);">🚴</div>
+          <div class="session-info">
+            <div class="session-name">Vélo — Endurance</div>
+            <div class="session-detail">Aujourd'hui · 1h15</div>
+          </div>
+          <div class="go-btn" style="background:#7BC142;">GO</div>
+        </div>
+        <div class="card session-row">
+          <div class="session-icon" style="background:rgba(27,58,92,0.08);">🧘</div>
+          <div class="session-info">
+            <div class="session-name">Yoga — Étirements</div>
+            <div class="session-detail">Demain · 30 min</div>
+          </div>
+          <div class="go-btn" style="background:#1B3A5C;">GO</div>
+        </div>
+        <div class="card session-row">
+          <div class="session-icon" style="background:rgba(27,58,92,0.08);">🏃</div>
+          <div class="session-info">
+            <div class="session-name">Running — Fractionné</div>
+            <div class="session-detail">Mercredi · 45 min</div>
+          </div>
+          <div class="go-btn" style="background:#1B3A5C;">GO</div>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active"><span class="tab-icon">🏠</span>Accueil</div>
+        <div class="tab-item"><span class="tab-icon">⏱️</span>Tracking</div>
+        <div class="tab-item"><span class="tab-icon">📈</span>Progrès</div>
+        <div class="tab-item"><span class="tab-icon">👤</span>Profil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ D2 — Header Doré Premium ═══ -->
+  <div class="direction-card">
+    <div class="direction-label">
+      <div class="num">Direction 02</div>
+      <h2>Header Doré Premium</h2>
+      <p>En-tête bleu/doré avec stats semaine, prochaine séance en focus hero</p>
+    </div>
+    <div class="phone">
+      <div class="phone-screen d2" style="padding-top:0;">
+        <div class="gold-header" style="padding-top: 56px;">
+          <div class="greeting">Bonjour Sophie</div>
+          <div class="sub">Semaine 6 de ton triathlon</div>
+          <div class="stats-row">
+            <div class="stat-box"><div class="stat-val">4</div><div class="stat-lbl">séances</div></div>
+            <div class="stat-box"><div class="stat-val">92%</div><div class="stat-lbl">complété</div></div>
+            <div class="stat-box"><div class="stat-val">3</div><div class="stat-lbl">records</div></div>
+          </div>
+        </div>
+        <div class="section-lbl">Prochaine séance</div>
+        <div class="card next-session">
+          <div class="next-tag">🚴 Aujourd'hui</div>
+          <div class="next-name">Vélo — Endurance</div>
+          <div class="next-detail">1h15 · Zone 2 · Triathlon Sprint</div>
+          <div class="next-go">COMMENCER →</div>
+        </div>
+        <div class="section-lbl">Mes programmes</div>
+        <div class="card prog-mini">
+          <div class="prog-mini-icon">🏊</div>
+          <div class="prog-mini-info">
+            <div class="prog-mini-name">Triathlon Sprint</div>
+            <div class="prog-mini-meta">Semaine 6/16</div>
+          </div>
+          <div class="prog-mini-pct">38%</div>
+        </div>
+        <div class="card prog-mini">
+          <div class="prog-mini-icon">🧘</div>
+          <div class="prog-mini-info">
+            <div class="prog-mini-name">Souplesse & Récup</div>
+            <div class="prog-mini-meta">Semaine 3/4</div>
+          </div>
+          <div class="prog-mini-pct">65%</div>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active"><span class="tab-icon">🏠</span>Accueil</div>
+        <div class="tab-item"><span class="tab-icon">⏱️</span>Tracking</div>
+        <div class="tab-item"><span class="tab-icon">📈</span>Progrès</div>
+        <div class="tab-item"><span class="tab-icon">👤</span>Profil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ D3 — Calendrier Horizontal ═══ -->
+  <div class="direction-card">
+    <div class="direction-label">
+      <div class="num">Direction 03</div>
+      <h2>Calendrier Semaine</h2>
+      <p>Bande semaine scrollable, séances du jour avec horaires, dots d'activité</p>
+    </div>
+    <div class="phone">
+      <div class="phone-screen d3">
+        <div class="header">
+          <div class="greeting">Bonjour Sophie</div>
+        </div>
+        <div class="week-strip">
+          <div class="day has-session"><div class="d-name">Lun</div><div class="d-num">17</div><div class="d-dot"></div></div>
+          <div class="day"><div class="d-name">Mar</div><div class="d-num">18</div><div class="d-dot"></div></div>
+          <div class="day today has-session"><div class="d-name">Mer</div><div class="d-num">19</div><div class="d-dot"></div></div>
+          <div class="day has-session"><div class="d-name">Jeu</div><div class="d-num">20</div><div class="d-dot"></div></div>
+          <div class="day"><div class="d-name">Ven</div><div class="d-num">21</div><div class="d-dot"></div></div>
+          <div class="day has-session"><div class="d-name">Sam</div><div class="d-num">22</div><div class="d-dot"></div></div>
+          <div class="day"><div class="d-name">Dim</div><div class="d-num">23</div><div class="d-dot"></div></div>
+        </div>
+        <div class="section-lbl">Aujourd'hui — mercredi 19</div>
+        <div class="card session-card">
+          <div class="time-badge">8h00</div>
+          <div class="sess-info">
+            <div class="sess-name">🚴 Vélo — Endurance</div>
+            <div class="sess-prog">Triathlon Sprint · Semaine 6</div>
+            <div class="sess-dur">1h15 · Zone 2</div>
+          </div>
+          <div class="go-btn" style="background:#7BC142;">GO</div>
+        </div>
+        <div class="card session-card">
+          <div class="time-badge">18h30</div>
+          <div class="sess-info">
+            <div class="sess-name">🧘 Yoga — Étirements</div>
+            <div class="sess-prog">Souplesse & Récup · Semaine 3</div>
+            <div class="sess-dur">30 min</div>
+          </div>
+          <div class="go-btn" style="background:#1B3A5C;">GO</div>
+        </div>
+        <div class="section-lbl">Demain — jeudi 20</div>
+        <div class="card session-card">
+          <div class="time-badge">7h00</div>
+          <div class="sess-info">
+            <div class="sess-name">🏃 Running — Fractionné</div>
+            <div class="sess-prog">Triathlon Sprint · Semaine 6</div>
+            <div class="sess-dur">45 min · 8×400m</div>
+          </div>
+          <div class="go-btn" style="background:#1B3A5C;">GO</div>
+        </div>
+        <div class="pill" style="margin: 12px 20px; background:#1E5090; color:#E8F0FA;">
+          <span>💬</span>
+          <span>"Bonne récup hier ! Prête pour le vélo ?"</span>
+          <span class="arrow">›</span>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active"><span class="tab-icon">🏠</span>Accueil</div>
+        <div class="tab-item"><span class="tab-icon">⏱️</span>Tracking</div>
+        <div class="tab-item"><span class="tab-icon">📈</span>Progrès</div>
+        <div class="tab-item"><span class="tab-icon">👤</span>Profil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ D4 — Coach Hero ═══ -->
+  <div class="direction-card">
+    <div class="direction-label">
+      <div class="num">Direction 04</div>
+      <h2>Coach Hero</h2>
+      <p>Coach au centre avec avatar doré, message personnalisé, CTA direct</p>
+    </div>
+    <div class="phone">
+      <div class="phone-screen d4" style="padding-top:0;">
+        <div class="coach-hero" style="padding-top: 56px;">
+          <div class="coach-avatar">🏅</div>
+          <div class="coach-msg">"Bonjour Sophie ! Aujourd'hui c'est vélo endurance — parfait après ta récup d'hier. Tu es à 84% de ton programme triathlon. On y va ?"</div>
+          <div class="coach-action">Commencer la séance →</div>
+        </div>
+        <div class="section-lbl">Prochaines séances</div>
+        <div class="card session-row">
+          <div class="session-icon" style="background:rgba(27,58,92,0.08);">🚴</div>
+          <div class="session-info">
+            <div class="session-name">Vélo — Endurance</div>
+            <div class="session-detail">Aujourd'hui · 1h15 · Triathlon</div>
+          </div>
+          <div class="go-btn" style="background:#7BC142;">GO</div>
+        </div>
+        <div class="card session-row">
+          <div class="session-icon" style="background:rgba(27,58,92,0.08);">🧘</div>
+          <div class="session-info">
+            <div class="session-name">Yoga — Étirements</div>
+            <div class="session-detail">Aujourd'hui · 30 min · Récup</div>
+          </div>
+          <div class="go-btn" style="background:#1B3A5C;">GO</div>
+        </div>
+        <div class="card session-row">
+          <div class="session-icon" style="background:rgba(27,58,92,0.08);">🏃</div>
+          <div class="session-info">
+            <div class="session-name">Running — Fractionné</div>
+            <div class="session-detail">Demain · 45 min · Triathlon</div>
+          </div>
+          <div class="go-btn" style="background:#1B3A5C;">GO</div>
+        </div>
+        <div class="section-lbl">Mes programmes</div>
+        <div class="card" style="margin: 0 20px 8px; padding: 12px 14px; display:flex; align-items:center; gap:10px;">
+          <span style="font-size:20px;">🏊</span>
+          <div style="flex:1;"><div style="font-size:13px; font-weight:500; color:#141E2B;">Triathlon Sprint</div><div style="font-size:11px; color:#5A6577;">Sem. 6/16</div></div>
+          <div style="font-size:14px; font-weight:700; color:#D4A85A;">38%</div>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active"><span class="tab-icon">🏠</span>Accueil</div>
+        <div class="tab-item"><span class="tab-icon">⏱️</span>Tracking</div>
+        <div class="tab-item"><span class="tab-icon">📈</span>Progrès</div>
+        <div class="tab-item"><span class="tab-icon">👤</span>Profil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ D5 — Cartes Sport Visuelles ═══ -->
+  <div class="direction-card">
+    <div class="direction-label">
+      <div class="num">Direction 05</div>
+      <h2>Cartes Sport</h2>
+      <p>Grandes cartes par sport en scroll horizontal, colorées, visuelles et fun</p>
+    </div>
+    <div class="phone">
+      <div class="phone-screen d5">
+        <div class="header">
+          <div class="greeting">Bonjour Sophie</div>
+          <div class="sub">3 séances aujourd'hui</div>
+        </div>
+        <div class="sport-cards">
+          <div class="sport-card" style="background: linear-gradient(135deg, #1B3A5C, #2B5F8A);">
+            <div class="emoji">🏊</div>
+            <div class="name">Triathlon</div>
+            <div class="count">Sem. 6/16</div>
+          </div>
+          <div class="sport-card" style="background: linear-gradient(135deg, #2D8A4E, #7BC142);">
+            <div class="emoji">🧘</div>
+            <div class="name">Yoga</div>
+            <div class="count">Sem. 3/4</div>
+          </div>
+          <div class="sport-card" style="background: linear-gradient(135deg, #D4A85A, #F0C87A);">
+            <div class="emoji">💪</div>
+            <div class="name">Muscu</div>
+            <div class="count">Pas actif</div>
+          </div>
+        </div>
+        <div class="pill coach-pill" style="margin: 8px 20px; background:#1E5090; color:#E8F0FA;">
+          <span>💬</span>
+          <span>"Prête pour le vélo ?"</span>
+          <span class="arrow">›</span>
+        </div>
+        <div class="section-lbl">Prochaines séances</div>
+        <div class="card session-row">
+          <div class="session-icon">🚴</div>
+          <div class="session-info">
+            <div class="session-name">Vélo — Endurance</div>
+            <div class="session-detail">Aujourd'hui · 1h15</div>
+          </div>
+          <div class="go-btn" style="background:#7BC142;">GO</div>
+        </div>
+        <div class="card session-row">
+          <div class="session-icon">🧘</div>
+          <div class="session-info">
+            <div class="session-name">Yoga — Étirements</div>
+            <div class="session-detail">Aujourd'hui · 30 min</div>
+          </div>
+          <div class="go-btn" style="background:#1B3A5C;">GO</div>
+        </div>
+        <div class="card session-row">
+          <div class="session-icon">🏃</div>
+          <div class="session-info">
+            <div class="session-name">Running — Fractionné</div>
+            <div class="session-detail">Demain · 45 min</div>
+          </div>
+          <div class="go-btn" style="background:#1B3A5C;">GO</div>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active"><span class="tab-icon">🏠</span>Accueil</div>
+        <div class="tab-item"><span class="tab-icon">⏱️</span>Tracking</div>
+        <div class="tab-item"><span class="tab-icon">📈</span>Progrès</div>
+        <div class="tab-item"><span class="tab-icon">👤</span>Profil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ D6 — Prochaine Séance Hero ═══ -->
+  <div class="direction-card">
+    <div class="direction-label">
+      <div class="num">Direction 06</div>
+      <h2>Séance Hero</h2>
+      <p>La prochaine séance en plein écran, gros CTA "GO", reste en secondaire</p>
+    </div>
+    <div class="phone">
+      <div class="phone-screen d6">
+        <div class="header">
+          <div class="greeting">Bonjour Sophie</div>
+        </div>
+        <div class="hero-session">
+          <div class="hero-emoji">🚴</div>
+          <div class="hero-sport">Triathlon Sprint · Semaine 6</div>
+          <div class="hero-name">Vélo — Endurance</div>
+          <div class="hero-detail">1h15 · Zone 2 · Récup active</div>
+          <div class="hero-go">GO</div>
+        </div>
+        <div class="pill coach-pill" style="margin: 0 20px 12px; background:#1E5090; color:#E8F0FA;">
+          <span>💬</span>
+          <span>"Bonne récup hier, parfait pour l'endurance !"</span>
+          <span class="arrow">›</span>
+        </div>
+        <div class="section-lbl">À venir</div>
+        <div class="upcoming">
+          <div class="emoji">🧘</div>
+          <div class="info">
+            <div class="name">Yoga — Étirements</div>
+            <div class="when">Aujourd'hui · 30 min</div>
+          </div>
+        </div>
+        <div class="upcoming">
+          <div class="emoji">🏃</div>
+          <div class="info">
+            <div class="name">Running — Fractionné</div>
+            <div class="when">Demain · 45 min</div>
+          </div>
+        </div>
+        <div class="upcoming">
+          <div class="emoji">🏊</div>
+          <div class="info">
+            <div class="name">Natation — Technique</div>
+            <div class="when">Jeudi · 1h</div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active"><span class="tab-icon">🏠</span>Accueil</div>
+        <div class="tab-item"><span class="tab-icon">⏱️</span>Tracking</div>
+        <div class="tab-item"><span class="tab-icon">📈</span>Progrès</div>
+        <div class="tab-item"><span class="tab-icon">👤</span>Profil</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div style="text-align:center; margin-top:60px; padding-top:32px; border-top:1px solid rgba(212,168,90,0.2);">
+  <p style="font-size:13px; color:#5A6577;">CoachingSage — Directions de Design — 2026-03-23</p>
+  <p style="font-size:11px; color:#5A6577; margin-top:4px;">Palette : Bleu Marine #1B3A5C + Lime #7BC142 + Or #D4A85A + Vert Forêt #2D8A4E</p>
+</div>
+
+</body>
+</html>
