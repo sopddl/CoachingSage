@@ -9,6 +9,7 @@ import SageCore
 struct AppDependencies {
     let coreProfileRepository: any CoreProfileRepository
     let coachingProfileRepository: any CoachingProfileRepository
+    let coachingSportProfileRepository: any CoachingSportProfileRepository
     let authService: any AuthServiceProtocol
     let syncService: any SyncServiceProtocol
     let accountService: any AccountServiceProtocol
@@ -18,10 +19,12 @@ struct AppDependencies {
     static func live(modelContext: ModelContext) -> AppDependencies {
         let coreProfileRepository = DefaultCoreProfileRepository(modelContext: modelContext)
         let coachingProfileRepository = DefaultCoachingProfileRepository(modelContext: modelContext)
+        let coachingSportProfileRepository = DefaultCoachingSportProfileRepository(modelContext: modelContext)
         let authService = AuthService()
         return AppDependencies(
             coreProfileRepository: coreProfileRepository,
             coachingProfileRepository: coachingProfileRepository,
+            coachingSportProfileRepository: coachingSportProfileRepository,
             authService: authService,
             syncService: SyncService(modelContext: modelContext),
             accountService: AccountService(coreProfileRepository: coreProfileRepository),

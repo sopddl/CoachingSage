@@ -1,0 +1,431 @@
+// ViewModels/SportQuestionnaireViewModel.swift
+// Story 3.1 — orchestre le flow conversationnel chat (intro Léon → questions → save).
+// 100% local jusqu'au save final (UPSERT Supabase via repo).
+//
+// Garde-fous critiques (review pré-implem 2026-04-29) :
+//   - Cross-user race au submit (P0-4) : capture currentUserId au start, re-vérifie après chaque await.
+//   - Idempotence double-tap option (P1-8) : isAdvancing guard.
+//   - Recovery si dismiss accidentel (P1-6) : snapshot des réponses + freeTextDraft dans UserDefaults
+//     à chaque progression. Purge au save success.
+//   - Mots bannis EU MDR (P0-5) : la formulation des questions est dans Localizable.xcstrings, validée Task 9.
+//   - Honorer requires_medical_clearance (P0-6) : bulle conditionnelle injectée au start si flag true.
+//
+import Foundation
+import os
+import SageCore
+
+@MainActor
+@Observable
+final class SportQuestionnaireViewModel {
+
+    // MARK: - Dependencies
+
+    private static let logger = Logger(subsystem: "com.sopddl.coachingsage", category: "questionnaire")
+
+    let questionnaire: SportQuestionnaire
+    private let repository: any CoachingSportProfileRepository
+    private let authService: any AuthServiceProtocol
+    private let typingDelay: TypingDelayProvider
+
+    // MARK: - State observable
+
+    /// Bulles affichées dans le ScrollView (review P1-7 : enum typé, typing inline).
+    var messages: [ChatMessage] = []
+
+    /// Question actuellement présentée (nil = pas démarré OU finalisé).
+    var currentQuestion: QuestionnaireQuestion?
+
+    /// Réponses validées des questions précédentes.
+    var accumulatedAnswers: [QuestionId: AnswerValue] = [:]
+
+    /// Historique conversationnel pour `conversation_history_json` (audit + Léon Story 3.3).
+    var conversationHistory: [ConversationEntry] = []
+
+    /// Brouillon Q6 (texte libre). Sauvegardé dans UserDefaults pour recovery (review P1-6).
+    var freeTextDraft: String = ""
+
+    /// État global du flow.
+    var state: ViewState<CoachingSportProfile> = .idle
+
+    /// Recovery prompt à afficher au start si pendingDraft trouvé (review P1-6).
+    var showRecoveryPrompt: Bool = false
+
+    // MARK: - State internal
+
+    /// Idempotence : empêche le double-tap option de sauter une question (review P1-8).
+    private(set) var isAdvancing: Bool = false
+
+    /// Capture du userId au start pour détecter cross-user race (review P0-4).
+    private var capturedUserId: UUID?
+
+    /// Indique si la bulle medical clearance a été affichée (pour AC8 / review P0-6).
+    private var medicalClearanceAcknowledgedSnapshot: Bool = false
+
+    /// Mesure perf flow complet (review P2-5).
+    private var flowStartedAt: Date?
+
+    /// Pending draft à proposer au start s'il existe.
+    private var pendingDraftToOffer: PendingDraft?
+
+    // MARK: - Init
+
+    init(
+        questionnaire: SportQuestionnaire,
+        repository: any CoachingSportProfileRepository,
+        authService: any AuthServiceProtocol,
+        typingDelay: TypingDelayProvider = RandomTypingDelay()
+    ) {
+        self.questionnaire = questionnaire
+        self.repository = repository
+        self.authService = authService
+        self.typingDelay = typingDelay
+    }
+
+    // MARK: - Public API
+
+    /// Lance le flow ou propose recovery si un brouillon existe.
+    /// `requiresMedicalClearance` = snapshot du flag coachingProfile au moment de l'ouverture (review P0-6).
+    func start(requiresMedicalClearance: Bool) {
+        flowStartedAt = Date()
+        capturedUserId = currentAuthUserId()
+        medicalClearanceAcknowledgedSnapshot = requiresMedicalClearance
+
+        // Vérifier brouillon en attente pour ce (user × sport).
+        if let draft = loadPendingDraft() {
+            pendingDraftToOffer = draft
+            showRecoveryPrompt = true
+            // L'écran présentera le prompt Reprendre/Recommencer ; les méthodes resumeFromDraft / discardDraftAndStart
+            // poursuivront en conséquence.
+            return
+        }
+
+        startFreshFlow()
+    }
+
+    /// Choisi par l'user au prompt recovery → restaure les réponses + currentQuestion.
+    func resumeFromDraft() {
+        guard let draft = pendingDraftToOffer else {
+            startFreshFlow()
+            return
+        }
+        accumulatedAnswers = draft.answers
+        conversationHistory = draft.history
+        freeTextDraft = draft.freeText ?? ""
+
+        // Re-construire les bulles affichées à partir de l'historique pour donner du contexte visuel.
+        messages = []
+        appendIntroBubbles()
+        for entry in conversationHistory where !entry.skipped {
+            if let key = entry.questionTextKey {
+                messages.append(.leonText(id: UUID(), key: key))
+            }
+            if let answer = entry.answer {
+                messages.append(.userText(id: UUID(), text: userBubbleText(for: AnswerValue(dto: answer))))
+            }
+        }
+
+        // Reprendre à la prochaine question non répondue.
+        if let currentId = draft.currentQuestionId,
+           let q = findQuestion(byId: currentId) {
+            currentQuestion = q
+        } else {
+            currentQuestion = questionnaire.firstQuestion
+        }
+
+        showRecoveryPrompt = false
+        pendingDraftToOffer = nil
+    }
+
+    /// Choisi par l'user au prompt recovery → purge le brouillon + start fresh.
+    func discardDraftAndStart() {
+        purgePendingDraft()
+        pendingDraftToOffer = nil
+        showRecoveryPrompt = false
+        startFreshFlow()
+    }
+
+    /// Tap sur une option (single ou multi confirmé) ou validation Q6 freeText.
+    func answer(_ value: AnswerValue) async {
+        // Idempotence : ignore si déjà en cours d'avancement (review P1-8).
+        guard !isAdvancing, let asked = currentQuestion else { return }
+        isAdvancing = true
+        defer { isAdvancing = false }
+
+        // Bulle user
+        messages.append(.userText(id: UUID(), text: userBubbleText(for: value)))
+
+        // Stocker la réponse
+        accumulatedAnswers[asked.id] = value
+        conversationHistory.append(
+            ConversationEntry(
+                questionId: asked.id,
+                questionTextKey: asked.textKey,
+                answer: value.asDTO,
+                askedAt: Date()
+            )
+        )
+
+        // Persister le brouillon à chaque progression (review P1-6).
+        savePendingDraft(currentQuestionId: nil)
+
+        // Question suivante
+        let next = questionnaire.nextQuestion(after: asked.id, answer: value, accumulated: accumulatedAnswers)
+
+        // Si une question intermédiaire a été skippée par le moteur (ex: Q4 si beginner), tracer dans l'historique.
+        if let next = next, let skippedId = detectSkippedBetween(current: asked.id, next: next.id) {
+            conversationHistory.append(
+                ConversationEntry(
+                    questionId: skippedId,
+                    questionTextKey: nil,
+                    answer: nil,
+                    askedAt: Date(),
+                    skipped: true,
+                    skipReason: "level_beginner"
+                )
+            )
+        }
+
+        currentQuestion = nil
+
+        guard let nextQuestion = next else {
+            // Fin du flow → submit
+            await submit()
+            return
+        }
+
+        // Typing indicator + bulle Léon + nouvelle question
+        let typingId = UUID()
+        messages.append(.typingIndicator(id: typingId))
+        await typingDelay.wait()
+        // Retirer le typing
+        messages.removeAll { if case .typingIndicator(let id) = $0 { return id == typingId } else { return false } }
+        messages.append(.leonText(id: UUID(), key: nextQuestion.textKey))
+        currentQuestion = nextQuestion
+
+        // Sauvegarder l'avancée (currentQuestionId pour reprise)
+        savePendingDraft(currentQuestionId: nextQuestion.id)
+    }
+
+    // MARK: - Submit
+
+    private func submit() async {
+        // Cross-user race check (review P0-4)
+        guard let captured = capturedUserId, captured == currentAuthUserId() else {
+            state = .error(.sync(String(localized: "questionnaire.error.userChanged")))
+            return
+        }
+
+        state = .loading
+
+        let draft = questionnaire.buildProfile(
+            userId: captured,
+            answers: accumulatedAnswers,
+            freeTextNotes: freeTextDraft.isEmpty ? nil : freeTextDraft,
+            history: conversationHistory,
+            medicalClearanceAcknowledged: medicalClearanceAcknowledgedSnapshot
+        )
+
+        do {
+            try await repository.save(draft)
+
+            // Re-vérifier après l'await (review P0-4)
+            guard captured == currentAuthUserId() else {
+                state = .error(.sync(String(localized: "questionnaire.error.userChanged")))
+                return
+            }
+
+            purgePendingDraft()
+            state = .success(draft)
+
+            if let started = flowStartedAt {
+                let duration = Date().timeIntervalSince(started)
+                Self.logger.info("questionnaire_duration sport=\(self.questionnaire.sportCode) seconds=\(duration)")
+            }
+        } catch {
+            Self.logger.error("Save CoachingSportProfile failed: \(error.localizedDescription)")
+            state = .error(error as? AppError ?? .sync(error.localizedDescription))
+        }
+    }
+
+    /// Réessayer le save après un échec (UI bouton "Réessayer").
+    func retrySubmit() async {
+        guard case .error = state else { return }
+        await submit()
+    }
+
+    // MARK: - Helpers
+
+    private func startFreshFlow() {
+        accumulatedAnswers = [:]
+        conversationHistory = []
+        freeTextDraft = ""
+        messages = []
+        purgePendingDraft()
+
+        appendIntroBubbles()
+        let first = questionnaire.firstQuestion
+        messages.append(.leonText(id: UUID(), key: first.textKey))
+        currentQuestion = first
+        savePendingDraft(currentQuestionId: first.id)
+    }
+
+    private func appendIntroBubbles() {
+        // Intro principale
+        messages.append(.leonText(id: UUID(), key: "questionnaire.\(questionnaire.sportCode).intro"))
+        // Bulle medical clearance (review P0-6)
+        if medicalClearanceAcknowledgedSnapshot {
+            messages.append(.leonText(id: UUID(), key: "questionnaire.intro.medicalClearance"))
+        }
+    }
+
+    private func currentAuthUserId() -> UUID? {
+        authService.currentUserId
+    }
+
+    /// Texte de la bulle user à afficher (label localisé pour les options, texte brut pour freeText).
+    /// La résolution `Text(LocalizedStringKey(...))` côté View transforme la clé en label si présent.
+    private func userBubbleText(for value: AnswerValue) -> String {
+        switch value {
+        case .single(let code):
+            // Chercher l'option correspondante dans la question répondue (la dernière non-skipped)
+            if let q = currentQuestion, let opt = q.options.first(where: { $0.code == code }) {
+                return opt.labelKey
+            }
+            return code
+        case .multi(let codes):
+            // Concaténer les labelKey des options sélectionnées (séparées par virgule).
+            // La View résoudra chaque clé individuellement via une concaténation post-localisation.
+            // V1 : passe les labelKey jointes par "|" et la View split + résout. Pour simplicité ici,
+            // passer le code raw qui sera résolu côté View via une vue dédiée pour multi (Task 6).
+            if let q = currentQuestion {
+                let labels = codes.compactMap { code in q.options.first(where: { $0.code == code })?.labelKey }
+                return labels.joined(separator: "|")  // séparateur conventionnel à parser côté View
+            }
+            return codes.joined(separator: ", ")
+        case .text(let s):
+            return s ?? ""
+        }
+    }
+
+    private func detectSkippedBetween(current: QuestionId, next: QuestionId) -> QuestionId? {
+        // V1 spécifique RunningQuestionnaire : Q3 → Q5 = Q4 skippée.
+        if current == "q3_frequency" && next == "q5_equipment" { return "q4_constraints" }
+        return nil
+    }
+
+    private func findQuestion(byId id: QuestionId) -> QuestionnaireQuestion? {
+        // V1 RunningQuestionnaire : on cherche dans les questions statiques.
+        // Si on étend à d'autres sports, ajouter une méthode au protocol SportQuestionnaire.
+        let all: [QuestionnaireQuestion] = [
+            RunningQuestionnaire.q1Level,
+            RunningQuestionnaire.q2Goal,
+            RunningQuestionnaire.q3Frequency,
+            RunningQuestionnaire.q4Constraints,
+            RunningQuestionnaire.q5Equipment,
+            RunningQuestionnaire.q6FreeText
+        ]
+        return all.first { $0.id == id }
+    }
+
+    // MARK: - UserDefaults pending draft
+
+    private var pendingKey: String {
+        let userIdString = capturedUserId?.uuidString.lowercased() ?? "anon"
+        return "pending_questionnaire_\(userIdString)_\(questionnaire.sportCode)"
+    }
+
+    private struct PendingDraft: Codable {
+        let answers: [QuestionId: AnswerValue]
+        let history: [ConversationEntry]
+        let freeText: String?
+        let currentQuestionId: QuestionId?
+    }
+
+    private func savePendingDraft(currentQuestionId: QuestionId?) {
+        guard capturedUserId != nil else { return }
+        let draft = PendingDraft(
+            answers: accumulatedAnswers,
+            history: conversationHistory,
+            freeText: freeTextDraft.isEmpty ? nil : freeTextDraft,
+            currentQuestionId: currentQuestionId
+        )
+        if let data = try? JSONEncoder().encode(draft) {
+            UserDefaults.standard.set(data, forKey: pendingKey)
+        }
+    }
+
+    private func loadPendingDraft() -> PendingDraft? {
+        guard capturedUserId != nil,
+              let data = UserDefaults.standard.data(forKey: pendingKey),
+              let draft = try? JSONDecoder().decode(PendingDraft.self, from: data) else {
+            return nil
+        }
+        return draft
+    }
+
+    private func purgePendingDraft() {
+        UserDefaults.standard.removeObject(forKey: pendingKey)
+    }
+}
+
+// MARK: - AnswerValue Codable (pour PendingDraft UserDefaults)
+
+extension AnswerValue: Codable {
+    private enum CodingKeys: String, CodingKey { case type, value }
+    private enum Kind: String, Codable { case single, multi, text }
+
+    func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .single(let s):
+            try c.encode(Kind.single, forKey: .type)
+            try c.encode(s, forKey: .value)
+        case .multi(let arr):
+            try c.encode(Kind.multi, forKey: .type)
+            try c.encode(arr, forKey: .value)
+        case .text(let s):
+            try c.encode(Kind.text, forKey: .type)
+            try c.encodeIfPresent(s, forKey: .value)
+        }
+    }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        let kind = try c.decode(Kind.self, forKey: .type)
+        switch kind {
+        case .single: self = .single(try c.decode(String.self, forKey: .value))
+        case .multi: self = .multi(try c.decode([String].self, forKey: .value))
+        case .text: self = .text(try c.decodeIfPresent(String.self, forKey: .value))
+        }
+    }
+}
+
+// MARK: - ChatMessage (review P1-7 : enum typé)
+
+enum ChatMessage: Identifiable, Equatable {
+    case leonText(id: UUID, key: String)            // clé xcstrings (résolue View)
+    case userText(id: UUID, text: String)           // labelKey OU labelKey1|labelKey2|... pour multi (résolu View)
+    case typingIndicator(id: UUID)
+
+    var id: UUID {
+        switch self {
+        case .leonText(let id, _), .userText(let id, _), .typingIndicator(let id): return id
+        }
+    }
+}
+
+// MARK: - SportQuestionnaireError
+// Note : utilisé seulement par les tests (qui veulent un type discriminé typé).
+// Côté VM, on assigne directement state = .error(.sync(...)) car ViewState attend AppError.
+
+enum SportQuestionnaireError: LocalizedError, Equatable {
+    case userChanged
+    case saveFailed
+
+    var errorDescription: String? {
+        switch self {
+        case .userChanged: return String(localized: "questionnaire.error.userChanged")
+        case .saveFailed: return String(localized: "questionnaire.error.save.title")
+        }
+    }
+}
