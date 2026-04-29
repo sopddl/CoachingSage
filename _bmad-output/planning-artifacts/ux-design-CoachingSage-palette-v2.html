@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CoachingSage — Palette v2 (variantes du bleu primary)</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif;
+    margin: 0;
+    padding: 32px;
+    background: #ECECEC;
+    color: #141E2B;
+  }
+  h1 { font-size: 24px; margin: 0 0 8px; font-weight: 700; }
+  h2 { font-size: 14px; margin: 24px 0 8px; color: #5A6577; text-transform: uppercase; letter-spacing: 0.04em; }
+  .legend { color: #5A6577; font-size: 14px; margin-bottom: 24px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 16px;
+  }
+
+  .variant {
+    background: #F5F2EE;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+  }
+  .variant-header {
+    padding: 12px 20px;
+    background: #fff;
+    border-bottom: 1px solid #EDE9E3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #5A6577;
+  }
+  .variant-name { font-weight: 600; color: #141E2B; }
+  .swatch {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .hex { font-family: ui-monospace, "SF Mono", monospace; font-size: 12px; }
+
+  .mockup {
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    background: #F5F2EE;
+  }
+  .mockup-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 24px;
+  }
+  .icon-big {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    color: #fff;
+  }
+  .title { font-size: 26px; font-weight: 700; }
+  .subtitle { font-size: 14px; color: #5A6577; }
+
+  .cta-go {
+    margin-top: 24px;
+    background: #7BC142;
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 28px;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(123,193,66,0.3);
+  }
+  .cta-secondary {
+    margin-top: 12px;
+    color: #5A6577;
+    font-size: 13px;
+  }
+
+  .tabbar {
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 6px 0 28px;
+  }
+  .tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 10px;
+    font-weight: 500;
+    color: #9AA0A8;
+  }
+  .tab.active { font-weight: 600; }
+  .tab-icon { font-size: 22px; }
+
+  .info {
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #5A6577;
+    line-height: 1.5;
+  }
+  .info strong { color: #141E2B; }
+
+  .compare-bar {
+    display: flex;
+    gap: 4px;
+    margin-top: 12px;
+  }
+  .compare-cell {
+    flex: 1;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 11px;
+    font-family: ui-monospace, monospace;
+  }
+</style>
+</head>
+<body>
+
+<h1>CoachingSage — Palette bleu primary, variantes</h1>
+<p class="legend">Le bleu marine actuel <code>#1B3A5C</code> te paraît trop foncé. Voici 5 variantes (dont l'actuel) sur le mockup TabView. Le vert lime <code>#7BC142</code> du CTA "GO!" reste constant pour voir l'harmonie.</p>
+
+<div class="info">
+  <strong>Comment choisir ?</strong> Regarde le contraste icône/fond, l'agressivité visuelle de la TabView active, et l'harmonie avec le vert lime. Plus c'est clair, plus c'est moderne / sportif léger ; plus c'est foncé, plus c'est sérieux / coach pro.
+</div>
+
+<h2>Comparaison rapide des 5 bleus</h2>
+<div class="compare-bar">
+  <div class="compare-cell" style="background:#1B3A5C">#1B3A5C</div>
+  <div class="compare-cell" style="background:#244C73">#244C73</div>
+  <div class="compare-cell" style="background:#2B5F8A">#2B5F8A</div>
+  <div class="compare-cell" style="background:#3672A3">#3672A3</div>
+  <div class="compare-cell" style="background:#1E5090">#1E5090</div>
+</div>
+
+<div class="grid">
+
+  <!-- Variant 1 — actuel -->
+  <div class="variant">
+    <div class="variant-header">
+      <span class="variant-name">A — Actuel</span>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span class="hex">#1B3A5C</span>
+        <div class="swatch" style="background:#1B3A5C"></div>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-content">
+        <div class="icon-big" style="background:#1B3A5C">⚡</div>
+        <div class="title">Aujourd'hui</div>
+        <div class="subtitle">Coming soon</div>
+        <div class="cta-go">GO !</div>
+        <div class="cta-secondary">Bleu marine sport (foncé)</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active" style="color:#1B3A5C"><span class="tab-icon">☀️</span>Today</div>
+        <div class="tab"><span class="tab-icon">🤸</span>Workout</div>
+        <div class="tab"><span class="tab-icon">📈</span>Progress</div>
+        <div class="tab"><span class="tab-icon">👤</span>Profile</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variant 2 — éclairci léger -->
+  <div class="variant">
+    <div class="variant-header">
+      <span class="variant-name">B — Éclairci léger</span>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span class="hex">#244C73</span>
+        <div class="swatch" style="background:#244C73"></div>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-content">
+        <div class="icon-big" style="background:#244C73">⚡</div>
+        <div class="title">Aujourd'hui</div>
+        <div class="subtitle">Coming soon</div>
+        <div class="cta-go">GO !</div>
+        <div class="cta-secondary">Marine plus respirable</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active" style="color:#244C73"><span class="tab-icon">☀️</span>Today</div>
+        <div class="tab"><span class="tab-icon">🤸</span>Workout</div>
+        <div class="tab"><span class="tab-icon">📈</span>Progress</div>
+        <div class="tab"><span class="tab-icon">👤</span>Profile</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variant 3 — bleu acier -->
+  <div class="variant">
+    <div class="variant-header">
+      <span class="variant-name">C — Bleu acier</span>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span class="hex">#2B5F8A</span>
+        <div class="swatch" style="background:#2B5F8A"></div>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-content">
+        <div class="icon-big" style="background:#2B5F8A">⚡</div>
+        <div class="title">Aujourd'hui</div>
+        <div class="subtitle">Coming soon</div>
+        <div class="cta-go">GO !</div>
+        <div class="cta-secondary">Coach pro, équilibré</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active" style="color:#2B5F8A"><span class="tab-icon">☀️</span>Today</div>
+        <div class="tab"><span class="tab-icon">🤸</span>Workout</div>
+        <div class="tab"><span class="tab-icon">📈</span>Progress</div>
+        <div class="tab"><span class="tab-icon">👤</span>Profile</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variant 4 — bleu sport vif -->
+  <div class="variant">
+    <div class="variant-header">
+      <span class="variant-name">D — Bleu sport vif</span>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span class="hex">#3672A3</span>
+        <div class="swatch" style="background:#3672A3"></div>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-content">
+        <div class="icon-big" style="background:#3672A3">⚡</div>
+        <div class="title">Aujourd'hui</div>
+        <div class="subtitle">Coming soon</div>
+        <div class="cta-go">GO !</div>
+        <div class="cta-secondary">Plus jeune, dynamique</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active" style="color:#3672A3"><span class="tab-icon">☀️</span>Today</div>
+        <div class="tab"><span class="tab-icon">🤸</span>Workout</div>
+        <div class="tab"><span class="tab-icon">📈</span>Progress</div>
+        <div class="tab"><span class="tab-icon">👤</span>Profile</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variant 5 — Léon blue (cohérence assistant) -->
+  <div class="variant">
+    <div class="variant-header">
+      <span class="variant-name">E — Bleu Léon (cohérence)</span>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span class="hex">#1E5090</span>
+        <div class="swatch" style="background:#1E5090"></div>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-content">
+        <div class="icon-big" style="background:#1E5090">⚡</div>
+        <div class="title">Aujourd'hui</div>
+        <div class="subtitle">Coming soon</div>
+        <div class="cta-go">GO !</div>
+        <div class="cta-secondary">= bleu de l'assistant Léon</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active" style="color:#1E5090"><span class="tab-icon">☀️</span>Today</div>
+        <div class="tab"><span class="tab-icon">🤸</span>Workout</div>
+        <div class="tab"><span class="tab-icon">📈</span>Progress</div>
+        <div class="tab"><span class="tab-icon">👤</span>Profile</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<h2>Notes pour décider</h2>
+<div class="info">
+  <p style="margin:0 0 8px"><strong>A (#1B3A5C — actuel)</strong> : marine très foncé, tendance "corporate". Côté positif : sérieux/expert. Reproche : un peu lourd pour une app sportive jeune.</p>
+  <p style="margin:0 0 8px"><strong>B (#244C73)</strong> : même esprit, juste 1 cran plus clair. Compromis safe.</p>
+  <p style="margin:0 0 8px"><strong>C (#2B5F8A — coachingEarth actuel)</strong> : c'est le bleu "secondaire" déjà dans la palette. Si tu le passes en primary, on perd l'écart secondaire/primary — il faudrait redéfinir un earth plus clair.</p>
+  <p style="margin:0 0 8px"><strong>D (#3672A3)</strong> : franchement sport / jeune. Risque : moins "expert".</p>
+  <p style="margin:0"><strong>E (#1E5090)</strong> : c'est le bleu de Léon. Cohérence app+assistant max, mais on perd la distinction visuelle Léon/UI.</p>
+</div>
+
+<p style="color:#5A6577; font-size:13px; margin-top:32px;">→ Si tu veux d'autres variantes (vers cyan, indigo, bleu nuit profond, etc.), dis-moi et je régénère.</p>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+// Views/Screens/Coaching/SportQuestionnaireView.swift
+// Story 3.1 — écran principal du flow questionnaire chat.
+// Présenté en sheet plein écran depuis SessionView (review AC1).
+// VStack (PAS LazyVStack — review P1-4) + scrollDismissesKeyboard pour Q6 (review P1-12).
+import SwiftUI
+
+struct SportQuestionnaireView: View {
+    @State var viewModel: SportQuestionnaireViewModel
+    let requiresMedicalClearance: Bool
+    let onCompleted: (CoachingSportProfile) -> Void
+
+    @Environment(\.dismiss) private var dismiss
+    @State private var showExitConfirm: Bool = false
+
+    var body: some View {
+        NavigationStack {
+            mainContent
+            .background(Color.coachingBackground.ignoresSafeArea())
+            .navigationTitle(Text("questionnaire.title"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showExitConfirm = true
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundStyle(Color.coachingTextPrimary)
+                    }
+                }
+            }
+            .confirmationDialog(
+                Text("questionnaire.exit.confirm.title"),
+                isPresented: $showExitConfirm,
+                titleVisibility: .visible
+            ) {
+                Button(role: .destructive) {
+                    dismiss()
+                } label: {
+                    Text("questionnaire.exit.confirm.action")
+                }
+                Button(role: .cancel) {} label: {
+                    Text("questionnaire.exit.cancel")
+                }
+            } message: {
+                Text("questionnaire.exit.confirm.message")
+            }
+            .alert(
+                Text("questionnaire.recovery.prompt"),
+                isPresented: $viewModel.showRecoveryPrompt
+            ) {
+                Button {
+                    viewModel.resumeFromDraft()
+                } label: {
+                    Text("questionnaire.recovery.resume")
+                }
+                Button(role: .destructive) {
+                    viewModel.discardDraftAndStart()
+                } label: {
+                    Text("questionnaire.recovery.restart")
+                }
+            }
+            .onAppear {
+                if viewModel.messages.isEmpty {
+                    viewModel.start(requiresMedicalClearance: requiresMedicalClearance)
+                }
+            }
+            .onChange(of: isCompleted) { _, newValue in
+                if newValue, case .success(let profile) = viewModel.state {
+                    onCompleted(profile)
+                    dismiss()
+                }
+            }
+        }
+    }
+
+    // MARK: - Sub-views (split pour aider le type-checker SwiftUI)
+
+    @ViewBuilder
+    private var mainContent: some View {
+        VStack(spacing: 0) {
+            chatScroll
+            errorSection
+            optionsSection
+        }
+    }
+
+    @ViewBuilder
+    private var chatScroll: some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(spacing: 12) {
+                    ForEach(viewModel.messages) { message in
+                        bubble(for: message)
+                            .id(message.id)
+                    }
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 16)
+                .padding(.bottom, 24)
+            }
+            .scrollDismissesKeyboard(.interactively)
+            .onChange(of: viewModel.messages.count) { _, _ in
+                withAnimation(.easeOut(duration: 0.2)) {
+                    proxy.scrollTo(viewModel.messages.last?.id, anchor: .bottom)
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var errorSection: some View {
+        if case .error(let err) = viewModel.state {
+            errorBanner(message: err.localizedDescription)
+        }
+    }
+
+    @ViewBuilder
+    private var optionsSection: some View {
+        if let q = viewModel.currentQuestion {
+            QuestionAnswerOptionsView(
+                question: q,
+                onAnswer: { value in
+                    Task { await viewModel.answer(value) }
+                },
+                freeTextDraft: $viewModel.freeTextDraft,
+                isLocked: viewModel.isAdvancing || isLoadingState
+            )
+        } else if isLoadingState {
+            ProgressView()
+                .padding(.vertical, 24)
+        }
+    }
+
+    private var isLoadingState: Bool {
+        if case .loading = viewModel.state { return true }
+        return false
+    }
+
+    /// Bool Equatable pour `.onChange` (ViewState SageCore 1.3 n'est pas Equatable).
+    private var isCompleted: Bool {
+        if case .success = viewModel.state { return true }
+        return false
+    }
+
+    @ViewBuilder
+    private func bubble(for message: ChatMessage) -> some View {
+        switch message {
+        case .leonText(_, let key):
+            ChatBubbleView(sender: .leon, textRaw: key)
+        case .userText(_, let text):
+            ChatBubbleView(sender: .user, textRaw: text)
+        case .typingIndicator:
+            HStack(alignment: .top, spacing: 8) {
+                LeonAvatarView(size: 32)
+                TypingIndicatorView()
+                Spacer(minLength: 40)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func errorBanner(message: String) -> some View {
+        HStack(spacing: 12) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .foregroundStyle(.white)
+            Text(message)
+                .font(.subheadline)
+                .foregroundStyle(.white)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Button {
+                Task { await viewModel.retrySubmit() }
+            } label: {
+                Text("questionnaire.error.save.retry")
+                    .font(.subheadline.bold())
+                    .foregroundStyle(.white)
+            }
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 16)
+        .background(Color.coachingError)
+    }
+}
