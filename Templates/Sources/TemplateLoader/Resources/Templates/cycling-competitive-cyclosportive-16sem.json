@@ -1,0 +1,1524 @@
+{
+  "assumed_profile" : "Cycliste expert, base hebdo habituelle 200-300 km, FTP estimée > 280 W (ou > 4 W/kg), maîtrise du pacing en col (tenue de zone au watt), capteur de puissance disponible (sinon FC + RPE), nutrition solide sur long effort (ravitaillements toutes les 45-60 min, gels/barres), équipement route en bon état (vélo ajusté par un professionnel, pneus < 3000 km). Aucune blessure active. Disponible pour 5 séances/semaine dont 1 sortie longue week-end et 1 sortie trail/gravel optionnelle remplacée par un bloc vélo.",
+  "default_objective" : "Préparer une cyclosportive exigeante (180-220 km, 3000+ m de dénivelé) avec objectif de temps : finir en moins de 8h pour un profil de 200 km / 3500 m D+, ou établir un PR personnel sur distance équivalente.",
+  "duration_weeks" : 16,
+  "id" : "cycling-competitive-cyclosportive-16sem",
+  "level" : "competitive",
+  "name" : "Cyclosportive — Préparation 16 semaines",
+  "progression_logic" : "Progression construite sur 5 principes, alignés sur les recommandations ACSM, les modèles de Coggan (zones de puissance) et les méthodes des équipes WorldTour adaptées au cycliste amateur expert :\n\n(1) STRUCTURE EN 4 BLOCS PROGRESSIFS : Bloc 1 (W1-W4) construction aérobie — Z2 dominant, réactivation neuromusculaire, calibrage. Bloc 2 (W5-W9) développement seuil et VO2max — intervalles Z4 et Z5 croissants, test FTP en W9 cutback. Bloc 3 (W10-W13) spécifique course — simulations de cols, séquences tactiques, résistance à la fatigue, grand fond en W11. Bloc 4 (W14-W16) affûtage — réduction volume progressive (-25% W14, -20% W15), maintien des touches d'intensité, pic de fraîcheur le jour J.\n\n(2) RÈGLE DES 10% HEBDO ET CUTBACK WEEKS : Augmentation hebdomadaire du volume ≤ 10-15% maximum. Trois semaines cutback obligatoires : W4 (fin bloc base), W9 (fin bloc intensité, avec test FTP), W13 (fin bloc spécifique, avant affûtage). Chaque cutback représente -15 à -20% vs la semaine précédente. Sans ces semaines de consolidation, le risque de tendinopathie du genou et de fatigue surrenalienne augmente drastiquement au-delà de 10h/sem.\n\n(3) POLARISATION DE L'ENTRAÎNEMENT (80/20) : Environ 80% du volume en Z1-Z2 (endurance de base), 20% en Z3-Z5 (intervalles). Éviter le piège du 'grey zone' (trop de Z3 chronique sans bénéfice de Z2 ni de Z5) — erreur fréquente des cyclistes experts non structurés. Les séances d'intensité sont denses et qualitatives, les séances de volume sont rigoureusement en Z2.\n\n(4) PROGRESSION QUALITATIVE DES INTERVALLES : Seuil Z4 : 2x10 min (W2) → 3x15 min (W5) → 2x20 min (W6-W7) → 2x25 min split négatif (W12). VO2max Z5 : 8x2 min (W5) → 5x4 min (W7) → 6x3 min (W11) → maintien 4x2 min en W12 (séance VO2max réintégrée pour éviter la rupture d'adaptation entre W11 et W14) → 4x2 min rappel (W14). Chaque progression respecte l'intervalle de récupération minimum : 48h entre deux séances d'intensité identiques — règle rappelée dans les notes de chaque séance intensive. Force basse cadence (50-60 rpm, Z3-Z4) introduite en W1 et maintenue tout au long du plan pour développer la force spécifique col — variable clé sur 3000+ m D+.\n\n(5) SPÉCIFICITÉ COURSE ET AFFÛTAGE : Les simulations de course (W10-W13) reproduisent fidèlement les conditions de la cyclosportive : séquences de cols multiples à intensité croissante, transitions col-plat-col, effort sur jambes pré-fatiguées, protocoles nutrition testés à l'entraînement. L'affûtage (W14-W16) réduit le volume de 50% total vs le pic (W11) tout en maintenant 2-3 touches d'intensité courtes par semaine — ce qui préserve les adaptations physiologiques acquises (études Mujika & Padilla, 2003 : maintien de 80-95% des adaptations avec 50-60% du volume si l'intensité est maintenue).\n\n(6) RECALIBRAGE FTP EN W9 ET PROPAGATION W10-W16 : Après le test FTP de W9 J3, toutes les zones de puissance sont recalculées selon la formule Coggan. Exemple de table de conversion rapide (à adapter à ta FTP mesurée) :\n• Si FTP mesurée = 260 W → Z2 = 146-195 W | Z3 = 198-234 W | Z4 = 237-273 W | Z5 = 276-312 W\n• Si FTP mesurée = 275 W → Z2 = 154-206 W | Z3 = 209-248 W | Z4 = 250-289 W | Z5 = 292-330 W\n• Si FTP mesurée = 295 W → Z2 = 165-221 W | Z3 = 224-266 W | Z4 = 268-310 W | Z5 = 313-354 W\nFormule générale : Z2 = 56-75% FTP | Z3 = 76-90% FTP | Z4 = 91-105% FTP | Z5 = 106-120% FTP. Utiliser ces nouvelles valeurs dès W10.",
+  "safety_notes" : "DRAPEAUX ROUGES (arrêter immédiatement et consulter) :\n• Douleur lombaire irradiante ou vive en position sur le vélo : signe d'une mauvaise position (hauteur de selle, reach trop long) ou de contracture profonde. Arrêter la séance, vérifier la position avec un spécialiste bike-fitting.\n• Douleur interne de genou ou face externe (bandelette ilio-tibiale) à cadence basse ou grand plateau : cadence insuffisante sur braquets lourds. Augmenter la cadence à 85+ rpm, réduire le braquet. Si douleur > 3/10 pendant l'effort : stopper.\n• Douleur au tendon rotulien (douleur face antérieure du genou) : souvent liée à une selle trop basse. Consulter avant de reprendre les séances d'intensité.\n• Douleur cervicale ou dorsale irradiante dans le bras (paresthésies) : position trop aggressive en descente ou reach excessif. Remonter immédiatement et ajuster.\n• Palpitations, douleur thoracique, essoufflement disproportionné à l'effort : arrêt immédiat, position assise, consulter en urgence.\n• Douleur au tendon d'Achille ou plantaire persistante : vérifier le réglage de la taquets (cale de chaussure) — une torsion interne ou externe excessive est la cause n°1. Laisser 3-5° de flottement.\n\nRÈGLES GÉNÉRALES :\n• Casque OBLIGATOIRE en toutes circonstances, y compris sur home trainer si chute possible.\n• Réglage vélo vérifié avant le début du plan : hauteur de selle (légère flexion du genou en bas de course, ~25-30°), reach (bras légèrement fléchis en position aéro), taquets avec flottement 3-5°.\n• Pneus vérifiés avant chaque sortie longue : pression adaptée (7-8 bars route, 4-5 bars en conditions humides pour adhérence), usure < 3000 km.\n• Lubrification chaîne tous les 200-300 km ou après sortie sous la pluie.\n• En descente : position aéro basse, cadence libre naturelle (100-110 rpm), poids sur les pédales (pas sur la selle), anticiper les freinages (jamais en virage serré). En pluie : réduire vitesse de descente de 10-15% vs conditions sèches, tester les freins en haut de chaque descente.\n• Hydratation : 500-750 ml/h en dessous de 20°C, 750-1000 ml/h au-dessus de 25°C. Prévoir 2 bidons sur sorties > 2h.\n• Nutrition longue sortie (> 90 min) : 60-80 g de glucides/h dès la 1e heure (ne pas attendre la faim — trop tard). Tester les aliments de course en entraînement, jamais tester nouveauté le jour de la course. Exemple de répartition pour une sortie de 8h (grand fond W11) : 4 gels x 25 g glucides (100 g) + 4 barres x 40 g glucides (160 g) + boisson énergétique 4 x 600 ml x 40 g glucides (160 g) + ravitaillements solides (riz, banane, pain) ≈ 420-560 g glucides totaux ≈ 70-88 g/h. Adapter selon tolérance digestive testée en entraînement.\n\nINTENSITÉ — ZONES DE PUISSANCE :\n• Z1 (récupération) : < 55% FTP. Conversation facile, effort imperceptible.\n• Z2 (endurance) : 56-75% FTP. Phrases confortables, effort faible. Majorité du volume du plan.\n• Z3 (tempo) : 76-90% FTP. Phrases courtes possibles, respiration cadencée.\n• Z4 (seuil) : 91-105% FTP. Phrases très difficiles, souffle contrôlé nécessaire. RPE 8/10.\n• Z5 (VO2max) : 106-120% FTP. Communication quasi impossible. RPE 9/10. Durée < 5 min par intervalle.\n• Z6+ (anaérobie) : > 120% FTP. Sprints courts, < 30 sec. Maximum neuromusculaire.\n• Cadence cible plat : 85-95 rpm. Cadence en col : 70-80 rpm. Cadence drills : 100-120 rpm. Cadence en descente : libre naturelle (100-110 rpm).\n\nRÈGLE DES 48H ENTRE SÉANCES INTENSIVES : Ne jamais enchaîner deux séances Z4 ou Z5 avec moins de 48h d'intervalle. Toujours placer une séance Z1 ou un jour de repos entre deux séances d'intensité. Cette règle est rappelée dans les notes de chaque séance intensive du plan.\n\nSIGNES DE SURCHARGE (3+ signes → réduire le volume de 20% et ajouter 1-2 jours de repos) :\n• FC de repos matinale > 8-10 bpm au-dessus de ta normale sur 3 jours consécutifs.\n• Puissance FTP ressentie de manière RPE 8 alors que tu travailles à 75% FTP.\n• Sommeil perturbé ou sommeil long sans récupération perçue.\n• Irritabilité, désintérêt pour le vélo (signe de surcharge neuroendocrine).\n• DOMS persistant au-delà de 72h post-séance.\n• Tendance aux maladies ORL répétées (immunosuppression par surcharge).\n\nSURMENAGE À L'AFFÛTAGE (W14-W16) :\n• L'affûtage provoque souvent une sensation de jambes lourdes en W14 — normal, c'est la vidange du glycogène musculaire qui précède la surcompensation. Ne pas paniquer et ne pas ajouter du volume pour compenser.\n• L'erreur classique de l'expert : trop rouler en W14-W15 par anxiété de perte de forme. Le volume supplémentaire en affûtage est contre-productif.\n\nCONTINGENCES MÉTÉO :\n• Pluie / conditions humides : sur sorties > 4h en terrain montagneux, privilégier un parcours maîtrisé avec moins de descentes techniques. Freins testés en haut de chaque col. Vitesse de descente réduite de 10-15% vs conditions sèches. Pression pneus abaissée à 4-5 bars (meilleure adhérence).\n• Froid extrême (< 5°C) : couvrir les genoux (collant ou manchons de genou), protéger les extrémités. Durée de séance réduite si nécessaire. Hydratation maintenue même sans sensation de soif.\n• Vent violent : éviter les sorties longues seul sur routes exposées. Adapter le parcours pour avoir le vent de dos au retour (jambes fatiguées).\n\nÉQUIPEMENT CHECKLIST DÉBUT DE PLAN :\n• Casque homologué EN 1078 ✓\n• Feux avant (blanc) et arrière (rouge) clignotants, chargés ✓\n• Kit réparation : chambre à air de rechange, pompe portable, démonte-pneus, gel tubeless si applicable ✓\n• Capteur de puissance chargé et calibré ✓\n• Gilet de visibilité haute visibilité pour sorties tôt/tard ✓\n• Téléphone chargé, contact d'urgence enregistré ✓\n\nSI SÉANCE MANQUÉE :\n• < 3 jours de pause pendant le plan : reprendre la séance suivante normalement, ne pas rattraper le manqué.\n• 4-7 jours de pause involontaire : reprendre à la même semaine mais à 80% du volume.\n• > 1 semaine de pause : reculer de 2 semaines dans le plan.\n• > 3 semaines de pause (blessure, maladie) : reprendre au début du bloc en cours à 60% du volume.",
+  "schema_version" : 1,
+  "sessions_per_week" : 5,
+  "sport" : "cycling",
+  "summary" : "Plan de 16 semaines structuré en 4 blocs progressifs pour un cycliste expert visant une cyclosportive de 180-220 km avec 3000+ m D+. Bloc 1 (W1-W4) : construction de base aérobie Z2 et réactivation neuromusculaire. Bloc 2 (W5-W9) : développement seuil et VO2max, simulation de cols. Bloc 3 (W10-W13) : spécifique course, briques d'intensité, sortie longue proche distance cible. Bloc 4 (W14-W16) : affûtage progressif, arrivée frais sur la ligne de départ. Trois cutback weeks : W4, W9, W13. Zones d'effort définies sur FTP : Z1 < 55% FTP, Z2 56-75% FTP, Z3 76-90% FTP (tempo), Z4 91-105% FTP (seuil), Z5 106-120% FTP (VO2max). Cadence cible : 85-95 rpm sur plat, 70-80 rpm en côte, 100+ rpm sur intervals de cadence. Recalibrage FTP obligatoire en W9 J3 avec table de conversion fournie en progression_logic.",
+  "weeks" : [
+    {
+      "goal" : "Réactiver les adaptations aérobies, calibrer les zones de puissance, préparer l'appareil locomoteur et cardiovasculaire aux 16 semaines à venir. Volume cible : ~250 km / ~10h de selle.",
+      "sessions" : [
+        {
+          "cooldown" : "15 min Z1, cadence libre, jambes molles. Étirements hors vélo : quadriceps, fléchisseurs de hanche, mollets, 30 sec/groupe.",
+          "day" : 1,
+          "duration_minutes" : 120,
+          "exercises" : [
+            {
+              "duration" : "90 min",
+              "name" : "Bloc Z2 continu",
+              "notes" : "Zone 2 stricte : 56-75% FTP. Si puissancemètre : maintenir la puissance dans la fenêtre. Si FC : 65-75% FCmax. Cadence 88-95 rpm. Test de la parole : phrases courtes confortables. Cette zone développe les mitochondries musculaires et l'oxydation des lipides — base indispensable avant tout travail intensif.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Endurance Z2 fondamentale",
+          "type" : "endurance",
+          "warmup" : "15 min en Z1 (< 55% FTP), cadence libre 80-90 rpm, effort quasi nul — jambes qui tournent, pas d'effort perçu."
+        },
+        {
+          "cooldown" : "10 min Z1 + étirements mollets et fléchisseurs de hanche 30 sec/côté.",
+          "day" : 2,
+          "duration_minutes" : 90,
+          "exercises" : [
+            {
+              "duration" : "60 min",
+              "name" : "Bloc Z2 avec variations de cadence",
+              "notes" : "Z2 de base. Toutes les 15 min, insérer 3 min à cadence élevée (100-110 rpm, puissance maintenue en Z2). Active le système nerveux sans surcharger les jambes.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "1 min",
+              "name" : "High cadence drills",
+              "notes" : "Cadence 110-120 rpm, plateau léger, puissance Z1-Z2. Fluidité du pédalage, pas de rebond sur la selle. Si rebond : réduire cadence de 5 rpm.",
+              "rest_seconds" : 120,
+              "sets" : 4
+            }
+          ],
+          "name" : "Endurance active + test cadence",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "5 min de marche à pied + rouleau de massage ou foam roller sur quadriceps et fléchisseurs de hanche.",
+          "day" : 3,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "50 min",
+              "name" : "Sortie Z1 récupération",
+              "notes" : "Strictement < 55% FTP ou < 60% FCmax. Vélo plat, aucune accélération. Favorise la circulation sanguine et l'élimination des déchets métaboliques sans générer de fatigue supplémentaire.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "10 min Z1 + étirements lombaires et fessiers.",
+          "day" : 5,
+          "duration_minutes" : 100,
+          "exercises" : [
+            {
+              "duration" : "30 min",
+              "name" : "Bloc Z2 de base",
+              "notes" : "Établir les jambes en Z2 avant les blocs de force. RÈGLE 48H : cette séance contient des blocs Z3-Z4. Attendre minimum 48h avant de répéter une séance d'intensité similaire.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "4 min",
+              "name" : "Force basse cadence — séries de côte",
+              "notes" : "En côte ou grand plateau sur home trainer. Cadence 50-60 rpm, puissance Z3-Z4 (76-105% FTP), position assise, dos plat, traction sur le cintre sans rouler les épaules. Force musculaire = recrutement de fibres lentes + transition lente/rapide. Repos 4 min en Z1 entre chaque série.",
+              "rest_seconds" : 240,
+              "sets" : 5
+            },
+            {
+              "duration" : "15 min",
+              "name" : "Peloton simulé — variations d'intensité",
+              "notes" : "Z2 ponctuées de 10 sec d'accélération Z4 toutes les 4 min. Simule les relances de groupe.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Technique et force basse cadence",
+          "type" : "technique",
+          "warmup" : "10 min Z1-Z2."
+        },
+        {
+          "cooldown" : "20 min Z1 final. Dès l'arrêt : glucides + protéines dans les 30 min (ratio 3:1). Surélévation des jambes 10 min.",
+          "day" : 6,
+          "duration_minutes" : 210,
+          "exercises" : [
+            {
+              "duration" : "170 min",
+              "name" : "Sortie longue Z2 avec dénivelé modéré",
+              "notes" : "Objectif : 100-120 km, 800-1200 m D+. Z2 en plat et descente, Z3 sur les montées (pacing col : rester en dessous de 90% FTP sur cols, même si tu te sens fort). Descentes : position aéro basse, cadence libre naturelle (100-110 rpm), poids sur les pédales. Ravitaillement toutes les 45 min : 60-80 g glucides/h en sortie > 2h. Hydratation : 500-750 ml/h selon température. Cadence 70-80 rpm en montée, 88-95 rpm en plat.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue fondation",
+          "type" : "endurance",
+          "warmup" : "20 min Z1-Z2 progressive."
+        }
+      ],
+      "theme" : "Remise en route — base aérobie Z2",
+      "week_number" : 1
+    },
+    {
+      "goal" : "Augmenter le volume Z2 de 10%, introduire les premiers intervalles courts en Z4. Volume cible : ~275 km / ~11h de selle.",
+      "sessions" : [
+        {
+          "cooldown" : "10 min Z1 + étirements complets 5 min.",
+          "day" : 1,
+          "duration_minutes" : 120,
+          "exercises" : [
+            {
+              "duration" : "60 min",
+              "name" : "Bloc Z2 base",
+              "notes" : "Z2 stricte 56-75% FTP, cadence 88-95 rpm.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "10 min",
+              "name" : "Sweet spot Z3 introduction",
+              "notes" : "88-93% FTP (haut de Z3 / bas de Z4). Cadence 85-90 rpm. Premier contact avec l'intensité. Repos 5 min Z1 entre les blocs. Si inconfort respiratoire intense, rester en Z3 bas. RÈGLE 48H : séance douce en sweet spot — attendre 48h avant une nouvelle séance Z4 ou Z5.",
+              "rest_seconds" : 300,
+              "sets" : 2
+            }
+          ],
+          "name" : "Endurance Z2 + sweet spot court",
+          "type" : "endurance",
+          "warmup" : "15 min Z1-Z2."
+        },
+        {
+          "cooldown" : "Foam roller 10 min quadriceps + bandelette ilio-tibiale.",
+          "day" : 2,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "50 min",
+              "name" : "Sortie Z1",
+              "notes" : "< 55% FTP. Plat total, aucune accélération. Récupération neuromusculaire active.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1 + étirements mollets 30 sec/côté.",
+          "day" : 3,
+          "duration_minutes" : 90,
+          "exercises" : [
+            {
+              "duration" : "4 min",
+              "name" : "Intervalles seuil courts",
+              "notes" : "Z4 : 91-105% FTP. Cadence 85-90 rpm. Effort régulier, pas de surge en début d'intervalle. RPE 7-8/10. Repos 4 min Z1 actif entre chaque intervalle. Si puissance chute > 5% en fin d'intervalle : zone réelle non atteinte, réduire la cible. RÈGLE 48H : séance Z4 — minimum 48h avant la prochaine séance intensive. La prochaine séance intensive est J5 (force basse cadence Z3-Z4) : délai respecté.",
+              "rest_seconds" : 240,
+              "sets" : 6
+            }
+          ],
+          "name" : "Intervalles Z4 courts",
+          "type" : "interval",
+          "warmup" : "15 min Z1-Z2 progressive, inclure 3 x 10 sec accélérations à 120% FTP pour activer les fibres rapides."
+        },
+        {
+          "cooldown" : "10 min Z1-Z2 décroissant.",
+          "day" : 5,
+          "duration_minutes" : 120,
+          "exercises" : [
+            {
+              "duration" : "90 min",
+              "name" : "Bloc tempo Z3 progressif",
+              "notes" : "Z3 : 76-90% FTP. Commence à 76% les 30 premières min, monte à 85-90% les 45 min suivantes, revient à 76% les 15 dernières. Cadence 88-92 rpm. Ravitaillement toutes les 45 min.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Endurance tempo Z3",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "20 min Z1 + 30 min post-sortie : récupération active, protéines, surélévation des jambes.",
+          "day" : 7,
+          "duration_minutes" : 240,
+          "exercises" : [
+            {
+              "duration" : "200 min",
+              "name" : "Sortie longue avec col(s)",
+              "notes" : "120-140 km, 1200-1800 m D+. En plat : Z2 strict. En col : Z3 max, respecter le pacing (ne pas dépasser 90% FTP sur > 10 min de montée même si tu peux). Descentes : cadence libre naturelle (100-110 rpm), position aéro, poids sur les pédales. Tester la nutrition : 60-80 g glucides/h. Hydratation : au moins 500 ml/h. Ceci prépare le pacing col de la course.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue Z2 col simulation",
+          "type" : "endurance",
+          "warmup" : "20 min Z1-Z2."
+        }
+      ],
+      "theme" : "Base aérobie — volume en hausse",
+      "week_number" : 2
+    },
+    {
+      "goal" : "Consolider le volume Z2, développer la force spécifique en côte, augmenter la durée des blocs sweet spot. Volume cible : ~300 km / ~12h.",
+      "sessions" : [
+        {
+          "cooldown" : "15 min Z1 + étirements.",
+          "day" : 1,
+          "duration_minutes" : 120,
+          "exercises" : [
+            {
+              "duration" : "12 min",
+              "name" : "Blocs sweet spot",
+              "notes" : "88-93% FTP. Cadence 85-90 rpm. Progression vs W2 (2x10 → 3x12). Repos 5 min Z1 entre blocs. Total volume seuil : 36 min. RÈGLE 48H : séance sweet spot/seuil — attendre 48h avant prochaine séance intensive (J3).",
+              "rest_seconds" : 300,
+              "sets" : 3
+            }
+          ],
+          "name" : "Sweet spot développement",
+          "type" : "interval",
+          "warmup" : "15 min Z1-Z2."
+        },
+        {
+          "cooldown" : "Foam roller + étirements lombaires 10 min.",
+          "day" : 2,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "50 min",
+              "name" : "Sortie Z1",
+              "notes" : "Récupération active < 55% FTP. Plat strict.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 3,
+          "duration_minutes" : 105,
+          "exercises" : [
+            {
+              "duration" : "5 min",
+              "name" : "Force basse cadence",
+              "notes" : "En côte ou résistance élevée, cadence 50-60 rpm, Z3-Z4. Dos plat, traction propre sur les manivelles, pas de balancement. Repos 5 min Z1. RÈGLE 48H : délai respecté depuis J1 (48h+). Attendre 48h après cette séance avant de répéter une séance Z4 similaire (J5 est Z2 pur : délai respecté).",
+              "rest_seconds" : 300,
+              "sets" : 4
+            },
+            {
+              "duration" : "5 min",
+              "name" : "Intervalles Z4 standard",
+              "notes" : "91-105% FTP, cadence 85-90 rpm. Enchaînés après les blocs force pour simuler l'état de fatigue en montée finale de col.",
+              "rest_seconds" : 300,
+              "sets" : 4
+            }
+          ],
+          "name" : "Force basse cadence + intervalles Z4",
+          "type" : "interval",
+          "warmup" : "15 min Z1-Z2 + 3 x 10 sec sprints d'activation."
+        },
+        {
+          "cooldown" : "10 min Z1 + étirements fléchisseurs de hanche.",
+          "day" : 5,
+          "duration_minutes" : 120,
+          "exercises" : [
+            {
+              "duration" : "100 min",
+              "name" : "Bloc Z2 continu avec insertions cadence",
+              "notes" : "Z2 base. Toutes les 20 min : 3 min à 105-110 rpm (Z2 maintenu). Travail neuro-musculaire sans fatigue excessive. Prise de glucides si > 90 min.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Endurance Z2 + cadence drill",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "25 min Z1 + récupération complète 30 min (glucides, protéines, repos jambes en l'air).",
+          "day" : 7,
+          "duration_minutes" : 270,
+          "exercises" : [
+            {
+              "duration" : "230 min",
+              "name" : "Sortie longue cols multiples",
+              "notes" : "140-160 km, 1800-2500 m D+. Pacing : Z3 sur chaque montée (max 90% FTP), Z2 sur les plats, relâchement en descente (cadence libre 100-110 rpm, position aéro). Sur le 2e et 3e col : résister à l'envie d'attaquer — pacing constant reste plus efficace. Nutrition : 60-80 g glucides/h dès la 1e heure. Tester les aliments de course (gels, barres) pour identifier les intolérances digestives.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue avec cols multiples",
+          "type" : "endurance",
+          "warmup" : "25 min Z1-Z2."
+        }
+      ],
+      "theme" : "Base aérobie — consolidation et force musculaire",
+      "week_number" : 3
+    },
+    {
+      "goal" : "Réduire le volume de 15% par rapport à W3 pour consolidation. Maintenir la qualité avec un bloc sweet spot court. Volume cible : ~250 km / ~10h.",
+      "sessions" : [
+        {
+          "cooldown" : "10 min Z1.",
+          "day" : 1,
+          "duration_minutes" : 90,
+          "exercises" : [
+            {
+              "duration" : "70 min",
+              "name" : "Bloc Z2 allégé",
+              "notes" : "Z2 sans forcer. Semaine de cutback : laisser les jambes souffler. Si tu te sens parfaitement frais, c'est que l'adaptation se fait correctement — ne pas ajouter de volume.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Endurance Z2 allégée",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "Foam roller 15 min.",
+          "day" : 2,
+          "duration_minutes" : 50,
+          "exercises" : [
+            {
+              "duration" : "40 min",
+              "name" : "Sortie Z1",
+              "notes" : "< 55% FTP. Récupération pure.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 3,
+          "duration_minutes" : 80,
+          "exercises" : [
+            {
+              "duration" : "12 min",
+              "name" : "Blocs sweet spot réduits",
+              "notes" : "88-93% FTP. Maintien de la qualité sans creuser la dette de fatigue. Repos 6 min Z1. Total seuil : 24 min (vs 36 en W3). RÈGLE 48H : délai respecté depuis J1.",
+              "rest_seconds" : 360,
+              "sets" : 2
+            }
+          ],
+          "name" : "Sweet spot court cutback",
+          "type" : "interval",
+          "warmup" : "15 min Z1-Z2."
+        },
+        {
+          "cooldown" : "10 min Z1 + étirements complets 10 min.",
+          "day" : 5,
+          "duration_minutes" : 90,
+          "exercises" : [
+            {
+              "duration" : "70 min",
+              "name" : "Bloc Z2 pur",
+              "notes" : "Z2 aérobie stricte. Pas d'intervalles, pas de force. Récupération musculaire active.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Endurance légère Z2",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "15 min Z1 + récupération 20 min.",
+          "day" : 7,
+          "duration_minutes" : 180,
+          "exercises" : [
+            {
+              "duration" : "150 min",
+              "name" : "Sortie longue allégée",
+              "notes" : "80-100 km, 800-1200 m D+. Z2 dominant, cols en Z3 max. Pas de forçage. Semaine de restauration — les adaptations se consolident au repos, pas à l'effort. Nutrition testée comme en course.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue cutback",
+          "type" : "endurance",
+          "warmup" : "15 min Z1."
+        }
+      ],
+      "theme" : "Cutback semaine 1 — récupération et ancrage",
+      "week_number" : 4
+    },
+    {
+      "goal" : "Entrer dans le bloc d'intensification. Introduire les premiers vrais intervalles VO2max (Z5) et allonger les blocs seuil (Z4). Volume : ~280 km / ~11h30.",
+      "sessions" : [
+        {
+          "cooldown" : "15 min Z1 + étirements.",
+          "day" : 1,
+          "duration_minutes" : 120,
+          "exercises" : [
+            {
+              "duration" : "15 min",
+              "name" : "Blocs seuil Z4",
+              "notes" : "91-105% FTP. Cadence 85-90 rpm. Effort constant, ne pas partir trop fort sur les 2 premières min. RPE 8/10. Repos 5 min Z1. Total seuil : 45 min — dépassement significatif du stimulus W4. RÈGLE 48H : séance Z4 — attendre 48h avant prochaine séance intensive (J3). Délai respecté.",
+              "rest_seconds" : 300,
+              "sets" : 3
+            }
+          ],
+          "name" : "Intervalles seuil longs",
+          "type" : "interval",
+          "warmup" : "15 min Z1-Z2 + 3 x 20 sec efforts Z5 pour activer la filière anaérobie."
+        },
+        {
+          "cooldown" : "Foam roller + récupération jambes surélevées 10 min.",
+          "day" : 2,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "50 min",
+              "name" : "Sortie Z1",
+              "notes" : "< 55% FTP. Essentiel après séance seuil.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1-Z2 décroissant.",
+          "day" : 3,
+          "duration_minutes" : 90,
+          "exercises" : [
+            {
+              "duration" : "2 min",
+              "name" : "Intervalles VO2max courts",
+              "notes" : "Z5 : 106-120% FTP. Cadence libre (naturelle à effort élevé = 90-95 rpm). RPE 9/10. Repos 2 min Z1. Format court pour introduction progressive. Si puissance s'effondre sur le dernier tiers d'un intervalle, arrêter la série — qualité prime sur quantité. RÈGLE 48H : séance Z5 — délai respecté depuis J1 (48h). Attendre 48h avant prochaine séance intensive (J5 est Z3 tempo : délai respecté).",
+              "rest_seconds" : 120,
+              "sets" : 8
+            }
+          ],
+          "name" : "VO2max introduction",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2 + 4 x 15 sec Z5 avec 45 sec repos."
+        },
+        {
+          "cooldown" : "10 min Z1.",
+          "day" : 5,
+          "duration_minutes" : 135,
+          "exercises" : [
+            {
+              "duration" : "110 min",
+              "name" : "Sortie tempo progressive",
+              "notes" : "Z3 76-90% FTP. Progression dans le tempo : 30 min Z3 bas (76-80%), 50 min Z3 milieu (80-86%), 30 min Z3 haut (86-90%). Simule la montée en intensité d'une longue sortie en compétition.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Endurance tempo Z3 développé",
+          "type" : "endurance",
+          "warmup" : "15 min Z1."
+        },
+        {
+          "cooldown" : "20 min Z1 + récupération complète.",
+          "day" : 7,
+          "duration_minutes" : 270,
+          "exercises" : [
+            {
+              "duration" : "230 min",
+              "name" : "Sortie longue avec effort col soutenu",
+              "notes" : "140-160 km, 2000-2500 m D+. Simulation tactique : choisir un col de 20-30 min et le grimper à allure course (85-92% FTP soutenu). Tous les autres cols en Z3 max. Observer la récupération post-effort soutenu : FC qui redescend bien = bonne condition aérobie. Nutrition : 60-80 g glucides/h dès la 1e heure.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue avec simulation de col clé",
+          "type" : "endurance",
+          "warmup" : "20 min Z1-Z2."
+        }
+      ],
+      "theme" : "Bloc 2 — Développement seuil et VO2max",
+      "week_number" : 5
+    },
+    {
+      "goal" : "Augmenter le volume des blocs seuil, enchaîner seuil + VO2max dans une même séance. Volume : ~300 km / ~12h.",
+      "sessions" : [
+        {
+          "cooldown" : "15 min Z1 + étirements.",
+          "day" : 1,
+          "duration_minutes" : 130,
+          "exercises" : [
+            {
+              "duration" : "20 min",
+              "name" : "Blocs seuil Z4 longs",
+              "notes" : "91-105% FTP. Effort uniforme. 2 x 20 min = format classique du développement seuil. Repos 6 min Z1. Total seuil : 40 min. Progression qualitative vs W5 (35 min à effort identique). RÈGLE 48H : séance Z4 — attendre 48h avant prochaine séance intensive (J3). Délai respecté.",
+              "rest_seconds" : 360,
+              "sets" : 2
+            }
+          ],
+          "name" : "Seuil développé",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2."
+        },
+        {
+          "cooldown" : "Foam roller bandelette + quadriceps.",
+          "day" : 2,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "50 min",
+              "name" : "Sortie Z1 pure",
+              "notes" : "< 55% FTP. Jambes légères, récupération après le bloc seuil.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active Z1",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1-Z2 décroissant + étirements.",
+          "day" : 3,
+          "duration_minutes" : 110,
+          "exercises" : [
+            {
+              "duration" : "10 min",
+              "name" : "Blocs seuil Z4",
+              "notes" : "91-105% FTP. Cadence 85-90 rpm. Repos 5 min Z1. RÈGLE 48H : délai respecté depuis J1 (48h).",
+              "rest_seconds" : 300,
+              "sets" : 2
+            },
+            {
+              "duration" : "3 min",
+              "name" : "Intervalles VO2max Z5",
+              "notes" : "106-120% FTP. Enchaîner après les blocs seuil (jambes pré-fatiguées = meilleur stimulus physiologique). Repos 3 min Z1. Séance de haute intensité — ne pas répéter avant 48h.",
+              "rest_seconds" : 180,
+              "sets" : 5
+            }
+          ],
+          "name" : "Séance combinée seuil + VO2max",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2 + 3 x 20 sec accélérations."
+        },
+        {
+          "cooldown" : "10 min Z1.",
+          "day" : 5,
+          "duration_minutes" : 120,
+          "exercises" : [
+            {
+              "duration" : "60 min",
+              "name" : "Z2 base",
+              "notes" : "56-75% FTP. Cadence 88-95 rpm.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "5 min",
+              "name" : "Force basse cadence en côte",
+              "notes" : "50-60 rpm, Z3-Z4 en montée. Développement de la force spécifique col. Dos plat, absorption aux genoux.",
+              "rest_seconds" : 300,
+              "sets" : 5
+            }
+          ],
+          "name" : "Endurance Z2 + force basse cadence",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "20 min Z1 + récupération 30 min.",
+          "day" : 7,
+          "duration_minutes" : 270,
+          "exercises" : [
+            {
+              "duration" : "230 min",
+              "name" : "Sortie longue avec portion tempo",
+              "notes" : "150-170 km, 2000-2800 m D+. Structure : Z2 les 2 premières heures, portion centrale 60 min en Z3 (tempo), Z2 sur les 45 dernières min. Cols : Z3 max sauf 1 col test à 88-92% FTP. Ravitaillement soigné : 60-90 g glucides/h à partir de la 1e heure.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue tempo inclus",
+          "type" : "endurance",
+          "warmup" : "20 min Z1-Z2."
+        }
+      ],
+      "theme" : "Développement seuil — volume et densité",
+      "week_number" : 6
+    },
+    {
+      "goal" : "Développer la puissance aérobie maximale avec des intervalles VO2max de 4-5 min. Maintenir le volume seuil. Volume : ~310 km / ~12h30.",
+      "sessions" : [
+        {
+          "cooldown" : "20 min Z1 décroissant.",
+          "day" : 1,
+          "duration_minutes" : 110,
+          "exercises" : [
+            {
+              "duration" : "4 min",
+              "name" : "Intervalles VO2max longs",
+              "notes" : "106-120% FTP. Cadence naturelle (90-95 rpm). RPE 9/10. Repos 4 min Z1. Format 5x4 = 20 min de travail VO2max total. Si douleur respiratoire ou FC ne remonte plus sur les derniers intervalles, arrêter — signe de saturation. RÈGLE 48H : séance Z5 — attendre 48h avant prochaine séance intensive (J3). Délai respecté.",
+              "rest_seconds" : 240,
+              "sets" : 5
+            }
+          ],
+          "name" : "VO2max longs",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2 + 4 x 20 sec sprints."
+        },
+        {
+          "cooldown" : "Foam roller + récupération jambes surélevées.",
+          "day" : 2,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "50 min",
+              "name" : "Sortie Z1",
+              "notes" : "< 55% FTP. Récupération prioritaire après VO2max.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 3,
+          "duration_minutes" : 120,
+          "exercises" : [
+            {
+              "duration" : "20 min",
+              "name" : "2x20 min Z4",
+              "notes" : "91-105% FTP. Cadence 85-90 rpm. Standard de référence pour développement seuil lactique. Si puissance > 103% FTP tenue sur 20 min : FTP sous-estimée, réévaluer (test FTP à prévoir en W9 cutback). RÈGLE 48H : délai respecté depuis J1 (48h).",
+              "rest_seconds" : 300,
+              "sets" : 2
+            }
+          ],
+          "name" : "Seuil 2x20 consolidation",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2."
+        },
+        {
+          "cooldown" : "10 min Z1.",
+          "day" : 5,
+          "duration_minutes" : 120,
+          "exercises" : [
+            {
+              "duration" : "100 min",
+              "name" : "Z2 base avec sprints de peloton",
+              "notes" : "Z2 dominant. Toutes les 15 min : 30 sec à effort maximum (Z6+ si puissancemètre) pour simuler les relances peloton ou les sprints d'un carrefour en cyclosportive. Récupération immédiate en Z2 après chaque sprint.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Endurance Z2 + simulation peloton",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "25 min Z1 + récupération 30 min complète.",
+          "day" : 7,
+          "duration_minutes" : 300,
+          "exercises" : [
+            {
+              "duration" : "255 min",
+              "name" : "Sortie longue avec effort qualifiant en col",
+              "notes" : "160-180 km, 2500-3000 m D+. Objectif : réaliser 2 cols en pacing race (88-92% FTP soutenu), autres cols en Z3 max. Observer : est-ce que le rythme reste constant sur toute la durée ? La capacité à maintenir la puissance en fin de sortie (180e-240e min) est un indicateur de condition physique clé. Nutrition : 70-90 g glucides/h.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue avec cols Z3-Z4",
+          "type" : "endurance",
+          "warmup" : "25 min Z1-Z2."
+        }
+      ],
+      "theme" : "Pic VO2max — intervalles longs",
+      "week_number" : 7
+    },
+    {
+      "goal" : "Semaine de surcompensation légère avant le test de mi-programme. Maintenir les stimuli, réduire légèrement le volume long. Volume : ~270 km / ~11h.",
+      "sessions" : [
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 1,
+          "duration_minutes" : 110,
+          "exercises" : [
+            {
+              "duration" : "15 min",
+              "name" : "Seuil Z4",
+              "notes" : "91-105% FTP. Maintien qualité. RÈGLE 48H : séance Z4+Z5 — attendre 48h avant prochaine séance intensive (J3). Délai respecté.",
+              "rest_seconds" : 300,
+              "sets" : 2
+            },
+            {
+              "duration" : "3 min",
+              "name" : "VO2max Z5",
+              "notes" : "106-120% FTP. Enchaîné après seuil. RPE 9/10.",
+              "rest_seconds" : 180,
+              "sets" : 4
+            }
+          ],
+          "name" : "Seuil + VO2max combiné",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2."
+        },
+        {
+          "cooldown" : "Foam roller.",
+          "day" : 2,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "50 min",
+              "name" : "Sortie Z1",
+              "notes" : "< 55% FTP.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération Z1",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 3,
+          "duration_minutes" : 100,
+          "exercises" : [
+            {
+              "duration" : "5 min",
+              "name" : "Force basse cadence en côte",
+              "notes" : "50-60 rpm, Z3-Z4. Développement force spécifique col. RÈGLE 48H : délai respecté depuis J1 (48h).",
+              "rest_seconds" : 300,
+              "sets" : 5
+            },
+            {
+              "duration" : "30 sec",
+              "name" : "Accélérations sur plat",
+              "notes" : "Effort maximal, cadence 95-105 rpm. Récupération 2 min Z1 entre chaque. Puissance neuromusculaire.",
+              "rest_seconds" : 120,
+              "sets" : 6
+            }
+          ],
+          "name" : "Force basse cadence + accélérations",
+          "type" : "interval",
+          "warmup" : "15 min Z1-Z2."
+        },
+        {
+          "cooldown" : "10 min Z1.",
+          "day" : 5,
+          "duration_minutes" : 120,
+          "exercises" : [
+            {
+              "duration" : "100 min",
+              "name" : "Sortie Z2 avec 20 min tempo sans regarder la puissance",
+              "notes" : "Z2 dominant. Milieu de séance : 20 min avec puissancemètre caché. Rouler à RPE 7/10 perçu, vérifier ensuite si la puissance correspond à Z3-Z4. Entraîne la lecture interne de l'effort — capital pour la course sans regarder constamment le compteur.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Z2 avec test de perception d'effort",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "20 min Z1 + récupération.",
+          "day" : 7,
+          "duration_minutes" : 240,
+          "exercises" : [
+            {
+              "duration" : "200 min",
+              "name" : "Sortie longue Z2 avec 30 min finaux en Z3",
+              "notes" : "120-140 km, 1800-2500 m D+. Particularité : les 30 dernières minutes en Z3-Z4 (tempo-seuil) pour simuler l'effort en jambes fatiguées. C'est précisément l'état dans lequel tu seras au km 150 de la cyclosportive. Nutrition : 70-90 g glucides/h.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue avec accélération finale",
+          "type" : "endurance",
+          "warmup" : "20 min Z1-Z2."
+        }
+      ],
+      "theme" : "Surcompensation — intensité maintenue, volume modéré",
+      "week_number" : 8
+    },
+    {
+      "goal" : "Deuxième semaine de cutback (-15% volume vs W8). Inclure un test FTP en milieu de semaine pour calibrer les zones pour le bloc spécifique (W10-W13). Volume : ~230 km / ~9h.",
+      "sessions" : [
+        {
+          "cooldown" : "10 min Z1.",
+          "day" : 1,
+          "duration_minutes" : 80,
+          "exercises" : [
+            {
+              "duration" : "60 min",
+              "name" : "Z2 allégé",
+              "notes" : "Z2 pur, pas d'intervalles. Cutback = récupération. Les adaptations se consolident maintenant.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Activation légère",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "Étirements globaux légers 10 min.",
+          "day" : 2,
+          "duration_minutes" : 30,
+          "exercises" : [
+            {
+              "duration" : "30 min",
+              "name" : "Repos complet ou marche légère optionnelle",
+              "notes" : "REPOS COMPLET recommandé avant le test FTP de demain. Si tu as absolument besoin de bouger : marche tranquille 20-30 min (non cycliste, non cardiaque). La marche est une option bien-être, pas une séance d'entraînement. Préparer mentalement le test FTP : protocole, alimentation pré-test (repas glucidique 3h avant), vérification du capteur de puissance.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Repos complet J-1 test FTP",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "20 min Z1 décroissant — récupération active immédiate post-test. 10 min supplémentaires de récupération Z1 à cadence libre puis arrêt complet. Noter la puissance moyenne et calculer : FTP = puissance moyenne 20 min × 0.95. Recalculer toutes les zones selon la table de conversion en progression_logic. Ces nouvelles zones s'appliquent dès W10.",
+          "day" : 3,
+          "duration_minutes" : 90,
+          "exercises" : [
+            {
+              "duration" : "20 min",
+              "name" : "Test FTP 20 min",
+              "notes" : "Effort maximal uniforme sur 20 min. FTP = 95% de la puissance moyenne (ou FC moyenne si pas de puissancemètre). Cadence libre. Départ conservateur les 5 premières min (ne pas exploser au km 1), progression graduelle, accélération douce sur les 2 dernières min si encore des ressources. Résultat : recalibrer toutes les zones de puissance pour W10-W16 (voir table de conversion dans progression_logic). PROTOCOLE ALTERNATIF si 20 min semble insurmontable (maladie récente, jambes très lourdes) : 3 x 5 min à effort maximal avec 5 min repos Z1, FTP = puissance moyenne des 3 efforts × 0.90. Cette alternative Coggan est validée comme proxy acceptable.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Test FTP 20 min",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2 + 5 min Z3 + 2 x 30 sec efforts maximum avec 5 min repos. Terminer l'échauffement par 5 min Z1. Durée warmup totale : 30 min environ. Séance totale : échauffement (30 min) + test (20 min) + cooldown (20 min + 10 min récup active) = 80 min minimum. Le duration_minutes de 90 min inclut toutes ces phases."
+        },
+        {
+          "cooldown" : "10 min Z1.",
+          "day" : 5,
+          "duration_minutes" : 90,
+          "exercises" : [
+            {
+              "duration" : "70 min",
+              "name" : "Z2 récupération avec nouvelles zones",
+              "notes" : "Z2 pur avec les nouvelles zones recalculées post-test FTP. Premiers watts avec la nouvelle FTP. Observer la différence de sensation : si RPE semble plus bas à la même % FTP → progression confirmée.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Endurance Z2 cutback",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "20 min Z1.",
+          "day" : 7,
+          "duration_minutes" : 210,
+          "exercises" : [
+            {
+              "duration" : "175 min",
+              "name" : "Sortie longue allégée",
+              "notes" : "100-120 km, 1200-1800 m D+. Z2 dominant, Z3 sur les cols uniquement. Pas de tempo, pas d'effort seuil. Confort et plaisir. Tester l'alimentation avec les nouvelles intensités post-FTP.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue cutback",
+          "type" : "endurance",
+          "warmup" : "15 min Z1."
+        }
+      ],
+      "theme" : "Cutback semaine 2 + test FTP",
+      "week_number" : 9
+    },
+    {
+      "goal" : "Débuter le bloc spécifique avec simulations de segments de course (montées longues à allure race, transitions, séquences de cols). Volume : ~290 km / ~12h.",
+      "sessions" : [
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 1,
+          "duration_minutes" : 120,
+          "exercises" : [
+            {
+              "duration" : "20 min",
+              "name" : "Montée longue allure race",
+              "notes" : "85-92% FTP (zones recalculées post-test W9). Cadence 70-80 rpm en côte. Simule un col de 20 min à allure course. Repos 10 min Z1 (descente simulée). Observation clé : FC se stabilise-t-elle à < 90% FCmax au bout de 5 min ? Si oui, le pacing est correct. RÈGLE 48H : séance Z4 — attendre 48h avant prochaine séance intensive (J3). Délai respecté.",
+              "rest_seconds" : 600,
+              "sets" : 2
+            }
+          ],
+          "name" : "Simulation montée longue allure race",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2."
+        },
+        {
+          "cooldown" : "Foam roller.",
+          "day" : 2,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "50 min",
+              "name" : "Sortie Z1",
+              "notes" : "< 55% FTP.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération Z1",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 3,
+          "duration_minutes" : 130,
+          "exercises" : [
+            {
+              "duration" : "15 min",
+              "name" : "Séquence 3 cols simulés",
+              "notes" : "Col 1 : 85-88% FTP (conservateur, comme le serait le 1er col en course). Col 2 : 88-92% FTP (milieu de course). Col 3 : 90-95% FTP (dernier col, jambes fatiguées). Repos 8 min Z1-Z2 entre chaque (simule la descente). Total effort : 45 min. Ceci est la simulation la plus proche de la réalité. RÈGLE 48H : délai respecté depuis J1 (48h).",
+              "rest_seconds" : 480,
+              "sets" : 3
+            }
+          ],
+          "name" : "Séquence de cols simulée",
+          "type" : "interval",
+          "warmup" : "15 min Z1-Z2."
+        },
+        {
+          "cooldown" : "10 min Z1.",
+          "day" : 5,
+          "duration_minutes" : 150,
+          "exercises" : [
+            {
+              "duration" : "130 min",
+              "name" : "Sortie Z2 avec protocole nutrition race",
+              "notes" : "Z2 pur. Appliquer le protocole nutrition exact de la course (gel/barre/boisson à intervalles précis de 45 min). Identifier d'éventuels troubles digestifs > 2h d'effort. Hydratation 600-750 ml/h.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Endurance Z2 + nutrition test",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "20 min Z1 + récupération complète 30 min.",
+          "day" : 7,
+          "duration_minutes" : 300,
+          "exercises" : [
+            {
+              "duration" : "260 min",
+              "name" : "Sortie longue 160-180 km avec dénivelé race",
+              "notes" : "160-180 km, 2500-3500 m D+. Pacing identique à la course : Z2 sur le plat, Z3 sur les montées moyennes, 88-92% FTP sur 2-3 cols choisis. Dernier tiers de sortie : maintenir le rythme même quand les jambes brûlent. Nutrition race complète. Observer : as-tu encore du jus à 150 km ?",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue simulation de course partielle",
+          "type" : "endurance",
+          "warmup" : "20 min Z1-Z2."
+        }
+      ],
+      "theme" : "Bloc spécifique course — simulation de segments",
+      "week_number" : 10
+    },
+    {
+      "goal" : "Développer la résistance à l'effort en jambes fatiguées, augmenter la densité en cols. Volume : ~310 km / ~12h30.",
+      "sessions" : [
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 1,
+          "duration_minutes" : 130,
+          "exercises" : [
+            {
+              "duration" : "15 min",
+              "name" : "Blocs seuil sur jambes fatiguées",
+              "notes" : "91-103% FTP après 20 min de pré-fatigue Z3 à cadence 85-90 rpm (cadence modérée pour activer sans brûler les jambes, puis passer en 70-75 rpm sur les blocs Z4 qui suivent pour simuler la cadence en montée). La difficulté est intentionnelle — simule un col en fin de cyclosportive. Repos 5 min Z1. Si la puissance chute < 88% FTP sur le 3e bloc : normal, tenir l'effort perçu plutôt que le chiffre. RÈGLE 48H : séance Z4 — attendre 48h avant prochaine séance intensive (J3). Délai respecté.",
+              "rest_seconds" : 300,
+              "sets" : 3
+            }
+          ],
+          "name" : "Seuil sur jambes pré-fatiguées",
+          "type" : "interval",
+          "warmup" : "10 min Z1 + 20 min Z3 à cadence 85-90 rpm (pré-fatigue volontaire à cadence modérée)."
+        },
+        {
+          "cooldown" : "Foam roller + bain froid optionnel (10-12°C, 10 min).",
+          "day" : 2,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "50 min",
+              "name" : "Sortie Z1",
+              "notes" : "< 55% FTP. Impératif après séance de haute densité.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération Z1",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 3,
+          "duration_minutes" : 110,
+          "exercises" : [
+            {
+              "duration" : "3 min",
+              "name" : "Intervalles VO2max Z5",
+              "notes" : "106-120% FTP. RPE 9/10. Format 6x3 = 18 min de travail VO2max. RÈGLE 48H : délai respecté depuis J1 (48h).",
+              "rest_seconds" : 180,
+              "sets" : 6
+            },
+            {
+              "duration" : "15 sec",
+              "name" : "Sprints neuromusculaires",
+              "notes" : "Effort maximum (> 150% FTP si puissancemètre). Cadence 100-110 rpm. Repos 5 min Z1. Ces sprints finaux stimulent les fibres rapides résidentes et maintiennent la réactivité neuromusculaire.",
+              "rest_seconds" : 300,
+              "sets" : 4
+            }
+          ],
+          "name" : "VO2max + sprints finaux",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2 + 3 x 20 sec sprints."
+        },
+        {
+          "cooldown" : "10 min Z1.",
+          "day" : 5,
+          "duration_minutes" : 150,
+          "exercises" : [
+            {
+              "duration" : "130 min",
+              "name" : "Sortie Z2 avec blocs force en col",
+              "notes" : "Z2 dominant. Lors de toute montée > 5 min : passer en 50-60 rpm (force) les 3 premières min, puis retrouver 70-80 rpm. Cet exercice de changement de cadence simule les variations de pente en col.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Endurance Z2 avec cols basse cadence",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "25 min Z1 + récupération maximale : glucides + protéines immédiatement, jambes surélevées 20 min, sommeil prioritaire.",
+          "day" : 7,
+          "duration_minutes" : 330,
+          "exercises" : [
+            {
+              "duration" : "280 min",
+              "name" : "Grand fond — 170-200 km avec dénivelé race",
+              "notes" : "170-200 km, 2800-3500 m D+. Sortie la plus longue du plan — sert de répétition générale. Durée estimée : 7h-8h40 selon le terrain. Pacing strict de course sur toute la distance. NUTRITION RACE COMPLÈTE — exemple de répartition sur 8h : 4 gels x 25 g glucides (100 g) + 4 barres x 40 g glucides (160 g) + boisson énergétique 4 x 600 ml x 40 g glucides (160 g) + ravitaillements solides (riz, banane) ≈ 500-560 g glucides totaux ≈ 70-88 g/h. Adapter selon tolérance digestive testée en entraînement. Observer ton état mental et physique aux kilomètres 120, 150, 170 — cela te donne une info précieuse sur ta limite actuelle. Hydratation : au moins 500 ml/h en hiver, 750-1000 ml/h en été. MÉTÉO : en cas de pluie ou conditions humides sur cette sortie longue en montagne, privilégier un parcours alternatif avec moins de descentes techniques.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue maximale du plan",
+          "type" : "endurance",
+          "warmup" : "25 min Z1-Z2."
+        }
+      ],
+      "theme" : "Spécifique — résistance à la fatigue",
+      "week_number" : 11
+    },
+    {
+      "goal" : "Affiner la tactique de course, travailler les transitions col/plat, maîtriser la gestion de l'effort sur distance. Volume : ~290 km / ~12h.",
+      "sessions" : [
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 1,
+          "duration_minutes" : 120,
+          "exercises" : [
+            {
+              "duration" : "25 min",
+              "name" : "Effort col en split négatif",
+              "notes" : "Col 25 min : les 12 premières min à 82-85% FTP, les 13 dernières à 88-93% FTP (accélération progressive). Split négatif = clé du pacing expert en col long. Repos 10 min Z1-Z2 entre les 2 blocs. RÈGLE 48H : séance Z4 — attendre 48h avant prochaine séance intensive (J3). Délai respecté.",
+              "rest_seconds" : 600,
+              "sets" : 2
+            }
+          ],
+          "name" : "Pacing col négatif",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2."
+        },
+        {
+          "cooldown" : "Foam roller.",
+          "day" : 2,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "50 min",
+              "name" : "Sortie Z1",
+              "notes" : "< 55% FTP.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération Z1",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 3,
+          "duration_minutes" : 130,
+          "exercises" : [
+            {
+              "duration" : "30 min",
+              "name" : "Séquence tactique col-plat-col",
+              "notes" : "Chaque bloc de 30 min : 12 min col à 88% FTP (cadence 70-75 rpm) + 6 min plat transition (100 rpm, Z3) + 12 min col à 90% FTP (cadence 72-78 rpm). Simule la mécanique réelle d'une étape avec vallonnement. Repos 10 min Z1-Z2. RÈGLE 48H : délai respecté depuis J1 (48h).",
+              "rest_seconds" : 600,
+              "sets" : 2
+            }
+          ],
+          "name" : "Transition col-plat-col",
+          "type" : "interval",
+          "warmup" : "15 min Z1-Z2."
+        },
+        {
+          "cooldown" : "10 min Z1.",
+          "day" : 5,
+          "duration_minutes" : 110,
+          "exercises" : [
+            {
+              "duration" : "20 min",
+              "name" : "Rappel VO2max court",
+              "notes" : "106-120% FTP. Format 4x2 min, repos 2 min Z1. Maintien des adaptations VO2max acquises en W5-W11 — une interruption de 2 semaines sans Z5 ferait décroître le stimulus physiologique (cf. progression_logic). Volume réduit et intentionnel pour ne pas surcharger cette semaine chargée en seuil et tactique. RÈGLE 48H : délai respecté depuis J3 (48h+).",
+              "rest_seconds" : 120,
+              "sets" : 4
+            },
+            {
+              "duration" : "60 min",
+              "name" : "Z2 de récupération post-VO2max",
+              "notes" : "Z2 strict à la suite du rappel VO2max. Cadence 88-95 rpm. Récupération active intégrée.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Rappel VO2max + endurance Z2",
+          "type" : "interval",
+          "warmup" : "15 min Z1-Z2."
+        },
+        {
+          "cooldown" : "20 min Z1 + récupération complète.",
+          "day" : 7,
+          "duration_minutes" : 300,
+          "exercises" : [
+            {
+              "duration" : "260 min",
+              "name" : "Sortie longue 150-170 km avec pacing race intégral",
+              "notes" : "150-170 km, 2500-3200 m D+. Appliquer le plan de course exact : zones strictes, protocole nutrition race, gestion descentes (récupération active, position aéro, cadence libre 100-110 rpm). Imaginer que c'est la course — quelle serait ta stratégie sur chaque col ? À noter post-sortie : temps par segment et ressenti.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue pacing race intégral",
+          "type" : "endurance",
+          "warmup" : "20 min Z1-Z2."
+        }
+      ],
+      "theme" : "Spécifique — tactique et pacing avancé",
+      "week_number" : 12
+    },
+    {
+      "goal" : "Troisième cutback (-15% vs W12). Préparer le pic de forme pour l'affûtage W14-W16. Volume : ~240 km / ~10h.",
+      "sessions" : [
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 1,
+          "duration_minutes" : 100,
+          "exercises" : [
+            {
+              "duration" : "15 min",
+              "name" : "Blocs seuil courts",
+              "notes" : "91-103% FTP. Maintien de la qualité sans creuser. Total : 30 min seuil. Repos 6 min Z1. RÈGLE 48H : séance Z4 — attendre 48h avant prochaine séance intensive (J3). Délai respecté.",
+              "rest_seconds" : 360,
+              "sets" : 2
+            }
+          ],
+          "name" : "Seuil maintien allégé",
+          "type" : "interval",
+          "warmup" : "15 min Z1-Z2."
+        },
+        {
+          "cooldown" : "Foam roller + étirements.",
+          "day" : 2,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "50 min",
+              "name" : "Sortie Z1",
+              "notes" : "< 55% FTP.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération Z1",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 3,
+          "duration_minutes" : 80,
+          "exercises" : [
+            {
+              "duration" : "3 min",
+              "name" : "Intervalles VO2max réduits",
+              "notes" : "106-120% FTP. Maintien de la qualité (4x3 vs 6x3 en W11). Cutback = ne pas perdre les adaptations, pas d'accumulation supplémentaire. RÈGLE 48H : délai respecté depuis J1 (48h).",
+              "rest_seconds" : 180,
+              "sets" : 4
+            }
+          ],
+          "name" : "VO2max bref cutback",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2."
+        },
+        {
+          "cooldown" : "10 min Z1.",
+          "day" : 5,
+          "duration_minutes" : 90,
+          "exercises" : [
+            {
+              "duration" : "70 min",
+              "name" : "Z2 pur allégé",
+              "notes" : "Z2 strict. Cadence libre. Récupération aérobie sans stimulus d'intensité.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Endurance Z2 cutback",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "15 min Z1 + récupération.",
+          "day" : 7,
+          "duration_minutes" : 210,
+          "exercises" : [
+            {
+              "duration" : "175 min",
+              "name" : "Sortie longue allégée",
+              "notes" : "100-120 km, 1200-2000 m D+. Z2 dominant, Z3 sur les cols uniquement, aucun effort seuil. Choisir un parcours plaisir. Observer la fraîcheur musculaire — si les jambes se sentent mieux qu'en W11-W12, la récupération est efficace. Nutrition race testée une dernière fois.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue cutback avec plaisir",
+          "type" : "endurance",
+          "warmup" : "15 min Z1."
+        }
+      ],
+      "theme" : "Cutback semaine 3 — consolidation finale avant affûtage",
+      "week_number" : 13
+    },
+    {
+      "goal" : "Réduire le volume de 25% vs W13, maintenir des touches d'intensité pour garder la forme. Volume : ~180 km / ~7h30. NOTE AFFÛTAGE : une sensation de jambes lourdes en W14 est normale — c'est la phase de vidange glycogène précédant la surcompensation. Ne pas ajouter de volume par anxiété : cela serait contre-productif.",
+      "sessions" : [
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 1,
+          "duration_minutes" : 90,
+          "exercises" : [
+            {
+              "duration" : "12 min",
+              "name" : "Blocs seuil rappel",
+              "notes" : "91-103% FTP. Affûtage ne signifie pas arrêt de l'intensité — cela provoquerait une perte de forme. Maintenir la qualité, réduire le volume. Total : 24 min seuil. RÈGLE 48H : séance Z4 — attendre 48h avant prochaine séance intensive (J3). Délai respecté.",
+              "rest_seconds" : 360,
+              "sets" : 2
+            }
+          ],
+          "name" : "Intervalles de rappel seuil",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2."
+        },
+        {
+          "cooldown" : "Foam roller léger.",
+          "day" : 2,
+          "duration_minutes" : 50,
+          "exercises" : [
+            {
+              "duration" : "40 min",
+              "name" : "Sortie Z1 courte",
+              "notes" : "< 55% FTP. Phase d'affûtage : récupération prioritaire.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 3,
+          "duration_minutes" : 80,
+          "exercises" : [
+            {
+              "duration" : "2 min",
+              "name" : "Intervalles VO2max rappel",
+              "notes" : "106-120% FTP. Maintien des adaptations VO2max. Volume réduit (4x2 = 8 min seulement). RÈGLE 48H : délai respecté depuis J1 (48h).",
+              "rest_seconds" : 120,
+              "sets" : 4
+            },
+            {
+              "duration" : "10 sec",
+              "name" : "Sprints neuromusculaires",
+              "notes" : "Effort maximum > 150% FTP. Stimulation neuromusculaire avant affûtage profond.",
+              "rest_seconds" : 300,
+              "sets" : 3
+            }
+          ],
+          "name" : "VO2max et sprints de rappel",
+          "type" : "interval",
+          "warmup" : "20 min Z1-Z2 + 3 x 15 sec accélérations."
+        },
+        {
+          "cooldown" : "10 min Z1.",
+          "day" : 5,
+          "duration_minutes" : 90,
+          "exercises" : [
+            {
+              "duration" : "70 min",
+              "name" : "Sortie Z2 allégée",
+              "notes" : "Z2 strict. Cadence 88-95 rpm. Aucune accélération. Affûtage pur.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Endurance Z2 courte",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "15 min Z1 + récupération.",
+          "day" : 7,
+          "duration_minutes" : 180,
+          "exercises" : [
+            {
+              "duration" : "150 min",
+              "name" : "Sortie avec segment race-pace 30 min",
+              "notes" : "80-100 km, 1200-1800 m D+. Milieu de sortie : 30 min à allure race exacte (85-92% FTP selon ton pacing de col prévu). Observer le RPE : si RPE 6-7 alors que la puissance est à la cible race → très bonne forme, tu arrives frais. Si RPE 8-9 → repos supplémentaire en W15 nécessaire.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue affûtage — pacing test final",
+          "type" : "endurance",
+          "warmup" : "15 min Z1."
+        }
+      ],
+      "theme" : "Affûtage — phase 1 : réduction volume, maintien intensité",
+      "week_number" : 14
+    },
+    {
+      "goal" : "Réduire encore le volume (-20% vs W14). Séances très courtes et qualitatives. Préparer le corps à arriver frais J-1 de la course. Volume : ~140 km / ~6h. NOTE AFFÛTAGE : si les jambes semblent encore lourdes en W15, c'est normal — l'effet de fraîcheur (surcompensation glycogène) arrive souvent J-3 à J-5 avant la course. Ne pas paniquer ni ajouter de volume.",
+      "sessions" : [
+        {
+          "cooldown" : "5 min Z1.",
+          "day" : 1,
+          "duration_minutes" : 70,
+          "exercises" : [
+            {
+              "duration" : "55 min",
+              "name" : "Sortie Z2 fraîcheur",
+              "notes" : "Z2 pur. Les jambes doivent commencer à se sentir légères. Si elles sont encore lourdes : ne pas s'inquiéter, l'effet de fraîcheur arrive souvent J-3 à J-5 avant la course.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Activation courte Z2",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "day" : 2,
+          "duration_minutes" : 0,
+          "exercises" : [
+            {
+              "name" : "Repos complet",
+              "notes" : "Repos total. Marche légère si besoin de bouger. Préparation mentale et logistique de la course (vérification vélo, matériel, nutrition prévue)."
+            }
+          ],
+          "name" : "Repos",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "15 min Z1.",
+          "day" : 3,
+          "duration_minutes" : 70,
+          "exercises" : [
+            {
+              "duration" : "8 min",
+              "name" : "Rappel seuil ultra-court",
+              "notes" : "91-103% FTP. Maintien du fil neuromusculaire sans accumuler de fatigue. Total : 16 min seuil. RÈGLE 48H : délai respecté depuis J1 (48h).",
+              "rest_seconds" : 300,
+              "sets" : 2
+            },
+            {
+              "duration" : "8 sec",
+              "name" : "Sprints de vivacité",
+              "notes" : "Effort maximum. Cadence 100-110 rpm. Très courts pour ne générer aucune fatigue mais maintenir la réactivité musculaire.",
+              "rest_seconds" : 240,
+              "sets" : 4
+            }
+          ],
+          "name" : "Touches de qualité affûtage",
+          "type" : "interval",
+          "warmup" : "15 min Z1-Z2."
+        },
+        {
+          "cooldown" : "5 min Z1.",
+          "day" : 5,
+          "duration_minutes" : 70,
+          "exercises" : [
+            {
+              "duration" : "60 min",
+              "name" : "Sortie décontractée",
+              "notes" : "Z1-Z2 sans aucune contrainte de puissance. Profiter du vélo, tester une dernière fois le matériel (position, pédales, compteur). Pas d'effort.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie légère Z1-Z2",
+          "type" : "endurance",
+          "warmup" : "5 min Z1."
+        },
+        {
+          "cooldown" : "10 min Z1. Vérification vélo finale. Préparer la nutrition de course, les bidons, la tenue. ÉCHAUFFEMENT COURSE STANDARD pour J-1 ou le jour J (rappel) : 20 min Z1-Z2 progressif, puis 3 x 20 sec accélérations Z4 avec 2 min repos Z1, puis 10 min Z1 pur avant départ officiel.",
+          "day" : 6,
+          "duration_minutes" : 40,
+          "exercises" : [
+            {
+              "duration" : "25 min",
+              "name" : "Activation pré-course",
+              "notes" : "Z1 dominant, 2-3 accélérations de 20 sec à Z4 pour déboucher les jambes. Aucun effort soutenu. Objectif : activer sans fatiguer. Si la course est le lendemain (J+1), c'est la dernière sortie.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Activation J-1 ou J-2 course",
+          "type" : "mixed",
+          "warmup" : "5 min Z1."
+        }
+      ],
+      "theme" : "Affûtage — phase 2 : fraîcheur maximale",
+      "week_number" : 15
+    },
+    {
+      "goal" : "Exécuter le plan de course préparé pendant 16 semaines. Checklist d'autoévaluation post-course. Récupération active post-effort.",
+      "sessions" : [
+        {
+          "cooldown" : "20 min de vélo Z1 dès l'arrivée si possible. Glucides + protéines immédiats (barre, boisson de récup). Étirements mollets, quadriceps, fléchisseurs de hanche 5 min. Priorité récupération les 48h suivantes.",
+          "day" : 1,
+          "duration_minutes" : 480,
+          "exercises" : [
+            {
+              "duration" : "480 min",
+              "name" : "Cyclosportive — exécution du plan de course",
+              "notes" : "ÉCHAUFFEMENT COURSE : arriver 60 min avant le départ. 20 min Z1-Z2 progressif sur home trainer ou sur route de départ, puis 3 x 20 sec accélérations Z4 avec 2 min repos Z1, puis 10 min Z1 pur avant départ officiel. EXÉCUTION : Z2 sur les 20 premiers km (ne pas partir trop vite avec l'adrénaline du départ), Z3 sur les montées modérées, 85-92% FTP sur les cols clés. Nutrition : 60-90 g glucides/h dès la 1e heure, ravitaillement officiel utilisé. Hydratation 600-800 ml/h. Sur le dernier col : si tu as encore du jus, augmenter à 92-95% FTP. Dernier plat : lâcher les jambes.\n\nCHECKLIST D'AUTOÉVALUATION post-course — à remplir dans ton journal d'entraînement dans les 2h suivant l'arrivée :\n□ (1) Ai-je respecté mon pacing de départ (pas de dépassement de zone sur les 30 premiers km) ? OUI / NON — Notes : ___\n□ (2) Ma puissance sur les cols ciblés était-elle dans la fenêtre 85-92% FTP prévue ? OUI / NON — Puissance réelle observée : ___ W\n□ (3) Ai-je pris mes ravitaillements à intervalles réguliers de 45-60 min sans oubli ? OUI / NON — Quantité estimée glucides/h : ___\n□ (4) Ai-je pu maintenir une cadence 70-80 rpm en montée jusqu'au dernier col sans m'effondrer en dessous de 55 rpm ? OUI / NON — Notes : ___\n□ (5) Mon temps final correspond-il à ± 20 min de l'objectif fixé en début de plan ? OUI / NON — Temps réel : ___ h ___ min | Objectif : ___ h ___ min\n\nAXES DE PROGRESSION identifiés pour le prochain cycle : ___",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Jour de la cyclosportive",
+          "type" : "endurance",
+          "warmup" : "Arriver 60 min avant le départ. 20 min Z1-Z2 progressif sur home trainer ou route de départ. 3 x 20 sec accélérations Z4, 2 min repos Z1. 10 min Z1 pur jusqu'au départ."
+        },
+        {
+          "cooldown" : "Foam roller doux + bain chaud ou contraste chaud/froid.",
+          "day" : 3,
+          "duration_minutes" : 50,
+          "exercises" : [
+            {
+              "duration" : "40 min",
+              "name" : "Sortie Z1 post-course",
+              "notes" : "< 55% FTP. Élimination des déchets métaboliques, relance la circulation sanguine. Ne pas forcer même si tu te sens bien — les microtraumatismes musculaires et osseux demandent 5-10 jours de récupération après un effort de cette amplitude.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active J+2",
+          "type" : "rest"
+        },
+        {
+          "cooldown" : "Étirements complets. Bilan écrit : temps final, watts moyens, nutrition tenue, zones respectées, prochaines améliorations.",
+          "day" : 5,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "45 min",
+              "name" : "Sortie Z1 bilan",
+              "notes" : "Sortie tranquille pour fermer le cycle. Pendant la sortie : réfléchir aux 5 points de la checklist d'autoévaluation. Plan post-programme : 2 semaines de récupération libre (Z1-Z2 uniquement, pas d'intervalles), puis reprise selon prochain objectif. Si l'autoévaluation révèle des lacunes (pacing col insuffisant, nutrition défaillante, puissance qui chute en fin de course) : noter les axes de progression pour le prochain cycle d'entraînement.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            }
+          ],
+          "name" : "Bilan et plan post-programme",
+          "type" : "other"
+        }
+      ],
+      "theme" : "COURSE — Cyclosportive et bilan autonomie",
+      "week_number" : 16
+    }
+  ]
+}

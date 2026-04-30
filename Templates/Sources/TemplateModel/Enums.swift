@@ -2,22 +2,22 @@ import Foundation
 
 public enum Sport: String, Codable, CaseIterable, Sendable {
     case running
-    case musculation
-    case natation
-    case velo
+    case cycling
+    case swimming
     case triathlon
-    case tennis
+    case strengthTraining = "strength_training"
     case yoga
     case hiit
-    case remiseEnForme = "remise_en_forme"
-    case sportsCollectifs = "sports_collectifs"
+    case hiking
+    case tennis
+    case football
 }
 
 public enum Level: String, Codable, CaseIterable, Sendable {
-    case debutant
-    case intermediaire
-    case avance
-    case expert
+    case beginner
+    case recreational
+    case regular
+    case competitive
 }
 
 public enum SessionType: String, Codable, CaseIterable, Sendable {

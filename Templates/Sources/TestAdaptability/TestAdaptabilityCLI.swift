@@ -65,10 +65,10 @@ struct TestAdaptabilityCLI {
         }
 
         // Also include the root reference template if no --files filter
-        let rootRef = cwd.appendingPathComponent("References/running-debutant-5k-8sem.json")
+        let rootRef = cwd.appendingPathComponent("References/running-beginner-5k-8sem.json")
         var allFiles = files
         if specificFiles.isEmpty && FileManager.default.fileExists(atPath: rootRef.path) {
-            if !allFiles.contains(where: { $0.lastPathComponent == "running-debutant-5k-8sem.json" }) {
+            if !allFiles.contains(where: { $0.lastPathComponent == "running-beginner-5k-8sem.json" }) {
                 allFiles.insert(rootRef, at: 0)
             }
         }

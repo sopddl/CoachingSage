@@ -58,11 +58,11 @@ struct ChallengeTemplatesCLI {
         }
 
         // Also check for the root reference template
-        let rootRef = cwd.appendingPathComponent("References/running-debutant-5k-8sem.json")
+        let rootRef = cwd.appendingPathComponent("References/running-beginner-5k-8sem.json")
         var allFiles = files
         if FileManager.default.fileExists(atPath: rootRef.path) && !specificFiles.isEmpty == false {
             // only add if no --files filter
-            if !allFiles.contains(where: { $0.lastPathComponent == "running-debutant-5k-8sem.json" }) {
+            if !allFiles.contains(where: { $0.lastPathComponent == "running-beginner-5k-8sem.json" }) {
                 allFiles.insert(rootRef, at: 0)
             }
         }

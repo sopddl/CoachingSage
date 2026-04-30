@@ -8,6 +8,7 @@ inputs:
   - Spike 0.3 v1 et v2 results
   - Décisions d'architecture 2026-04-06
   - Pivot algo-first 2026-04-29 (cf. section dédiée ci-dessous)
+  - Décisions Story 0.5.8 / 0.5.10 du 2026-04-29 (découpage renaming pur + regen qualité, 10 SportCode confirmés, sports_collectifs et remise_en_forme tous archivés)
 ---
 
 # CoachingSage — Proposition de réécriture Epics 0 / 2 / 3
@@ -61,10 +62,13 @@ Après livraison Story 3.1 (SportQuestionnaire local), constat : la plupart des 
 - Story 3.2 (selector) : **plus jamais de retour `nil`** — la library est étendue pour couvrir les 10 SportCode iOS (alignement nécessaire entre `Sport` package templates et `SportCode` enum app).
 
 Cette refonte impose :
-- Story 0.5.8 (alignement enum + complétion library 10 sports)
-- Story 0.5.9 (audit metadata templates pour rendre l'algo possible — exercices avec hooks zone/équipement/contraintes incompatibles/alternatives)
+- Story 0.5.8 (renaming structurel pur — enum + JSON filenames + manifest, **sans regen contenu**)
+- Story 0.5.9 (absorbée dans 0.5.10 — les hooks metadata sont injectés dans le prompt master de regen, pas en passe séparée)
+- Story 0.5.10 *(nouveau, ajouté 2026-04-29)* : regen qualité sport-spécifique des 40 templates (10 sports × 4 levels), un prompt master par sport intégrant les hooks Story 0.5.9, revue par agent dédié `template-quality-reviewer`
 - Doctrine doc `leon-algo-doctrine-by-sport.md` (formules + règles substitution + périodisation par sport, sources publiques citées)
 - Refonte Story 3.3 → 3.3a (algo deterministic, free illimité) + 3.3b (IA fallback rate-limité)
+
+**SportCode 10 sports confirmés** *(décidé 2026-04-29 ; reconfirmé 2026-04-30 après aller-retour generalFitness)* : pas d'ajout de `generalFitness` — Sophie tranche : pas de catégorie "sport générique" en V1. Les 4 templates `sports_collectifs` ET les 3 templates `remise_en_forme` sont **tous archivés** (Story 0.5.8) : génériques non convertibles en sport-spécifique sans regen. 10 sports finaux iOS : `running, cycling, swimming, triathlon, strengthTraining, yoga, hiit, hiking, tennis, football`. Cible library = 40 templates (10×4) après Story 0.5.10.
 
 ## Les 7 décisions qui sous-tendent cette réécriture
 
@@ -118,9 +122,11 @@ So que je puisse piloter la rentabilité en temps réel sans naviguer à l'aveug
 
 # Epic 0.5 — Template Library Creation & Validation *(nouveau, pre-Epic 1)*
 
-**Pourquoi un nouvel epic** : la bibliothèque de 40 templates est un asset critique qui doit être prêt et validé **avant** de démarrer l'Epic 1 code. C'est un travail éditorial one-shot qui peut (doit) se faire en parallèle des spikes 0.1 et 0.2.
+**Pourquoi un nouvel epic** : la bibliothèque de 40 templates est un asset critique qui doit être prêt et validé **avant** de démarrer Story 3.2 (selector). C'est un travail éditorial qui se déroule maintenant en 2 phases (révisé 2026-04-29) :
+- **Phase 1** (Stories 0.5.1→0.5.7) : structure, premiers templates, loader, manifest — **livrée 2026-04-20**
+- **Phase 2** (Stories 0.5.8 + 0.5.10) : alignement enums + regen qualité sport-spécifique — **en cours post-Story 3.1**
 
-**Scope** : créer, challenger, et valider 40 templates de programmes de base, puis les intégrer comme resources bundled dans l'app.
+**Scope final** : 40 templates de programmes spécifiques sport-par-sport (1 prompt master par sport, doctrine publique sourcée), bundled comme resources dans l'app.
 
 ## Structure du data model template
 
@@ -143,9 +149,9 @@ struct ProgramTemplate: Codable {
 }
 ```
 
-## Les 40 templates — matrice sport × niveau *(révisé 2026-04-29)*
+## Les 40 templates — matrice sport × niveau *(révisé 2026-04-29 : 10 sports SportCode)*
 
-Alignement strict sur l'enum `SportCode` iOS (10 codes : `running, cycling, swimming, triathlon, strengthTraining, yoga, hiit, hiking, tennis, football`). Les enums `Sport` du package Templates **doivent être renommés** pour matcher (Story 0.5.8).
+Alignement strict sur l'enum `SportCode` iOS (10 codes : `running, cycling, swimming, triathlon, strengthTraining, yoga, hiit, hiking, tennis, football`). Les enums `Sport` et `Level` du package Templates **sont renommés en EN** Story 0.5.8 (pas de mapping interne FR→EN — élimination de la dette tech à chaud).
 
 | SportCode | Beginner | Recreational | Regular | Competitive |
 |---|---|---|---|---|
@@ -160,11 +166,11 @@ Alignement strict sur l'enum `SportCode` iOS (10 codes : `running, cycling, swim
 | tennis | Initiation 8sem | Régularité 10sem | Match prep 12sem | Tournoi prep 16sem |
 | football | Prépa physique base 6sem | Saison amateur 8sem (intervalles + force + agilité) | Match physique 10sem | Elite prep 12sem (préparation pré-saison structurée) |
 
-**Note 1 — Niveaux** : la map level frontend (`beginner | recreational | regular | competitive`) est l'**identifiant utilisateur** ; en interne les templates pourront garder `debutant | intermediaire | avance | expert` si on veut, à condition d'avoir un mapping testé. Recommandation : renommer aussi les enums internes en anglais SportCode-aligned pour éliminer le mapping (Story 0.5.8).
+**Note 1 — Niveaux** : enum `Level` package Templates renommé EN Story 0.5.8 (`beginner | recreational | regular | competitive`) — alignement strict iOS, plus aucun mapping. Les fichiers JSON existants sont renommés (`-debutant-` → `-beginner-`, etc.) avec champ `level` mis à jour dans le contenu.
 
 **Note 2 — Triathlon-débutant** : généré comme programme d'**introduction multidiscipline** (un peu de chaque) plutôt que vraie distance compétitive. Sécurise la couverture algo (jamais de `nil` dans Story 3.2).
 
-**Note 3 — Couverture pleine** : **40 templates** (10 sports × 4 niveaux), tous remplis. Les templates `remise_en_forme` et `sports_collectifs` de la matrice initiale sont **archivés** (potentiellement réintégrables en V2 si pertinents en addition).
+**Note 3 — Couverture pleine** : **40 templates** (10 sports × 4 niveaux), tous remplis post-Story 0.5.10. `sports_collectifs` (4 templates) et `remise_en_forme` (3 templates) tous archivés Story 0.5.8 (génériques non convertibles en sport-spécifique).
 
 ## Stories
 
@@ -227,51 +233,59 @@ Les templates validés sont copiés dans le bundle final de l'app. Chargement au
 - Fichier `templates-manifest.json` avec checksums
 - Tests unitaires sur le chargement
 
-### Story 0.5.8 : Alignement enum + complétion library 10 sports *(nouveau, ajouté 2026-04-29 — pré-requis Story 3.2/3.3a)*
+### Story 0.5.8 : Renaming structurel enum + JSON + manifest *(révisé 2026-04-29 — découpage)*
 
-**Objectif** : faire correspondre les sports du package Templates aux 10 `SportCode` iOS, et générer les templates manquants pour atteindre **40 templates pleins** (10 × 4).
+**Objectif** : alignement strict des enums `Sport` et `Level` du package Templates sur les contrats iOS (`SportCode` 11 cases EN, levels 4 cases EN), renommer les fichiers JSON existants, archiver les sports non-couverts, **sans toucher au contenu pédagogique**. Pré-requis structurel pour Story 3.2 (selector) et débloque Story 0.5.10.
 
 **Critères** :
-- Renommer enum `Sport` du package Templates → `SportCode` (codes anglais alignés iOS) :
+- Refactor `Templates/Sources/TemplateModel/Enums.swift` :
+  - `enum Sport` → 10 cases EN : `running, cycling, swimming, triathlon, strengthTraining, yoga, hiit, hiking, tennis, football`
   - `velo` → `cycling`, `natation` → `swimming`, `musculation` → `strengthTraining`
-  - Supprimer `remise_en_forme`, `sports_collectifs` (archives)
-  - Ajouter `hiking`, `football`
-  - Garder : `running, triathlon, yoga, hiit, tennis`
-- Renommer enum `Level` → `LevelCode` aligné `beginner | recreational | regular | competitive` (ou garder `debutant…` interne avec mapping testé)
-- Régénérer / migrer les templates existants vers les nouveaux keys
-- **Générer 9 nouveaux templates** : `hiking ×4`, `football ×4`, `triathlon-beginner ×1` (sonnet-4-6, ~$1 total)
-- Faire passer les 9 nouveaux par les Stories 0.5.3 → 0.5.6 (challenge, révision, adaptabilité, review humaine)
-- Mettre à jour `templates-manifest.json` (40 entrées, checksums)
-- Mettre à jour `TemplateLoader` tests : `testProductionBundleLoads40Templates()`
+  - `remise_en_forme` et `sports_collectifs` → **supprimés** (7 templates archivés vers `References/archived/`)
+  - `sports_collectifs` → **supprimé** (4 templates archivés vers `References/archived/`)
+  - `enum Level` → 4 cases EN : `beginner, recreational, regular, competitive` (renaming complet, plus de mapping FR/EN)
+- Refactor `Models/CoachingProfile.swift` (iOS) :
+- Renommer 34 JSON existants dans `Templates/Sources/TemplateLoader/Resources/Templates/` :
+  - filename : sport+level FR → EN (ex: `musculation-debutant-...` → `strength-training-beginner-...`)
+  - contenu : champs `sport` et `level` mis à jour
+- Déplacer 4 templates `sports-collectifs-*` vers `Templates/References/archived/`
+- Régénérer `templates-manifest.json` via `swift run GenerateManifest` (34 entrées attendues post-renaming, 44 cible après Story 0.5.10)
+- Pas de regen contenu, pas de génération nouveaux templates → réservé Story 0.5.10
+- Test `testProductionBundleLoads38TemplatesIfPopulated` ajusté en `testProductionBundleLoadsAtLeast30Templates` (déjà tolérant `>= 30`, OK)
 
-**Effort** : 1-1.5 jour (renaming + génération + revalidation des 9 ajouts).
+**Effort** : ~1 jour (renaming pur, pas de génération AI).
 
-### Story 0.5.9 : Audit metadata templates pour algo deterministic *(nouveau, ajouté 2026-04-29 — pré-requis Story 3.3a)*
+### Story 0.5.9 : Audit metadata templates pour algo deterministic *(absorbée par Story 0.5.10 — 2026-04-29)*
 
-**Objectif** : enrichir chaque template existant avec les **hooks metadata** que l'algo deterministic Story 3.3a doit pouvoir lire pour patcher mécaniquement.
+**Status** : **MERGED INTO Story 0.5.10**. Les hooks metadata par exercice (`targetZone, requiredEquipment, incompatibleConstraints, alternatives, volumeAxis`) et par template (`weekStructure, progressionLogic, deloadWeeks`) sont injectés directement dans le **prompt master** de la Story 0.5.10 — pas de passe d'audit séparée. Aucun bénéfice à regen 2 fois la library : on intègre les exigences metadata dans la regen qualité.
 
-**Hooks attendus par exercice** :
-- `targetZone` (E/M/T/I/R pour course ; FTP-zone pour vélo ; %CSS pour nat ; %1RM pour muscu ; etc.)
-- `requiredEquipment: [String]` (pull-up bar, barbell, pool, treadmill, road, trail…)
-- `incompatibleConstraints: [String]` (knee, back, shoulder, wrist, cardiac, pregnancy…)
-- `alternatives: [{ id, name, equipment, constraints_resolved }]` (au moins 1-2 par exercice contraignant)
-- `volumeAxis: { sets, reps_or_duration, intensity }` (pour modulation par fréquence)
+### Story 0.5.10 : Regen qualité sport-spécifique des 40 templates *(nouveau, ajouté 2026-04-29 — absorbe 0.5.9, pré-requis Story 3.3a)*
 
-**Hooks attendus par template (séance / semaine)** :
-- `weekStructure` (clé : ordre des séances dans la semaine, déplaçables)
-- `progressionLogic` (lin / non-lin / undulating ; valeurs structurées au lieu d'un texte libre)
-- `deloadWeeks: [Int]` (semaines de récup intégrées)
+**Objectif** : produire 40 templates **vraiment spécifiques au sport** (1 prompt master par sport, doctrine publique sourcée), avec hooks metadata complets pour l'algo Story 3.3a, revue par agent dédié `template-quality-reviewer`. **Refus explicite du générique** — stratégie qualité > vitesse (Sophie 2026-04-18).
+
+**Pré-requis** : Story 0.5.8 livrée (enums alignés, library renommée, structure stable).
 
 **Critères** :
-- Audit des 40 templates : grep / parse pour vérifier la complétude des hooks
-- Si <80% des exercices ont leurs hooks → re-générer les templates concernés via prompt enrichi (sonnet-4-6) en ajoutant explicitement les hooks au schéma JSON demandé
-- Mettre à jour `template-schema.md`
-- Tests : `testEveryExerciseHasZoneAndEquipment()`, `testEveryConstrainingExerciseHasAlternative()`
-- Aucun template `status: approved` post-audit s'il manque des hooks essentiels
+- 1 prompt master par sport (11 fichiers `Templates/Prompts/master-{sportCode}.md`) intégrant :
+  - Doctrine publique référente (Daniels VDOT pour running, Coggan FTP pour cycling, Maglischo CSS pour swimming, Israetel %1RM pour strengthTraining, Friel pour triathlon, etc.)
+  - Périodisation et progressions sport-spécifiques (intersaison/saison foot, deload running, blocs cycling)
+  - Schéma JSON exigé incluant les hooks metadata (Story 0.5.9 absorbée)
+  - Contraintes EU MDR (mots bannis, requires_medical_clearance trigger)
+- Génération sonnet-4-6 (qualité prioritaire sur coût) — coût estimé $5-10 total
+- Revue par agent `template-quality-reviewer` (Claude SDK custom agent) sur checklist sport-spécifique :
+  - Cohérence des zones d'effort avec la doctrine
+  - Présence de tous les hooks metadata
+  - Réalisme des volumes / récup
+  - Détection de phrases génériques / boilerplate
+- Itération prompt + regen jusqu'à validation agent (pattern `quality_over_speed_templates`)
+- 40 templates `status: approved` finaux
+- Manifest mis à jour (44 entrées)
+- Test `testProductionBundleLoads44Templates()` ajouté
+- Audit récurrent en prod prévu (memory `template_audits_recurring_prod`)
 
-**Effort** : 1-2 jours (audit + regen partielle si besoin).
+**Effort** : 1-2 semaines (regen + revue + itérations qualité).
 
-**Scope total Epic 0.5** : ~2-3 semaines de travail (incluant 0.5.8 + 0.5.9). Coût Claude total ~$10-15. Peut se faire en parallèle des spikes 0.1 et 0.2 jusqu'à 0.5.7, puis 0.5.8 et 0.5.9 livrés post-Story 3.1 (Story 3.1 a déjà été livrée : ces 2 stories sont à programmer **avant Story 3.2**).
+**Scope total Epic 0.5** : ~3-4 semaines de travail (incluant 0.5.8 + 0.5.10). Coût Claude total ~$15-25 (regen sonnet sport-spécifique). 0.5.8 livrable rapide, 0.5.10 plus lourd mais débloque Stories 3.2 + 3.3a avec une library qualitative.
 
 ---
 
@@ -378,10 +392,10 @@ So que j'aie immédiatement quelque chose à regarder avant même que Léon inte
 
 **Given** un utilisateur ayant un `CoachingSportProfile` complet pour un sport
 **When** l'algo `ProgramTemplateSelector.select(profile:)` est invoqué
-**Then** l'algo parcourt la `ProgramTemplateLibrary` (Epic 0.5, post-Story 0.5.8 = 40 templates pleins)
+**Then** l'algo parcourt la `ProgramTemplateLibrary` (Epic 0.5, post-Story 0.5.10 = 40 templates pleins ; couverture structurelle dès Story 0.5.8 = 34 templates renommés)
 **And** sélectionne le template qui match : sport + niveau + objectif le plus proche
 **And** l'algo est **100% local**, **0 appel réseau**, **0 token**
-**And** **retourne TOUJOURS un `ProgramTemplate` non-optionnel** (signature `select(profile:) -> ProgramTemplate`) — révisé 2026-04-29 : la library couvre les 10 SportCode × 4 levels après Story 0.5.8, donc le cas `nil` n'existe plus
+**And** **retourne TOUJOURS un `ProgramTemplate` non-optionnel** (signature `select(profile:) -> ProgramTemplate`) — révisé 2026-04-29 : la library couvre les 10 SportCode × 4 levels après Story 0.5.10, donc le cas `nil` n'existe plus
 **And** un test paramétrique vérifie que **toute combinaison `(SportCode, Level, GoalsPayload représentatif)` retourne un template valide**
 **And** l'algo passe ensuite **immédiatement** la main à Story 3.3a (algo adaptation deterministic) — pas de bandeau "Léon réfléchit", l'utilisateur reçoit son programme adapté **instantané** dans le hot path par défaut
 **And** la Story 3.5 (from-scratch Pro) reste accessible en option utilisateur explicite, mais n'est **plus déclenchée par un fail Story 3.2**
@@ -532,7 +546,7 @@ So que j'aie un vrai coach à disposition.
 | FR15 questions exercices/techniques | Story 3.6 |
 | FR16 contexte historique | Toutes les stories Léon IA (inclus dans chaque appel 3.3b/3.4/3.5/3.6) |
 | FR17 programmes publics tiers | Story 3.5 (Léon Pro uniquement) |
-| FR18 10+ sports | Epic 0.5 (templates 10 sports post-Story 0.5.8) + Story 3.1 (SportQuestionnaires) |
+| FR18 10+ sports | Epic 0.5 (templates 10 sports post-Story 0.5.10) + Story 3.1 (SportQuestionnaires) |
 | FR19 multi-discipline | Epic 0.5 (templates triathlon/combinés) |
 | FR20 programmes ciblés | Story 3.5 (cas edge généralisé) |
 | FR21 ultra-progressif débutant | Epic 0.5 (templates débutant) + Story 3.3a (adaptation algo) |
@@ -682,10 +696,10 @@ So que je détecte rapidement les dérives et améliore les prompts/templates en
 
 **État au 2026-04-29** : Epic 0 (spikes), Epic 0.5 (0.5.1→0.5.7), Epic 1, Epic 2, Story 3.1 sont **livrés et mergés sur main**. La suite à dérouler avec le pivot algo-first :
 
-1. **Story 0.5.8** — Alignement enum SportCode + complétion library (hiking, football, triathlon-beginner) → 40 templates pleins
-2. **Story 0.5.9** — Audit metadata templates (hooks targetZone, requiredEquipment, incompatibleConstraints, alternatives) — pré-requis algo deterministic
-3. **Doctrine doc** : `_bmad-output/planning-artifacts/leon-algo-doctrine-by-sport.md` (formules + règles substitution + périodisation par sport, sources publiques citées) — peut être démarré en parallèle de 0.5.8/0.5.9 sur les 4 sports prioritaires
-4. **Story 3.2** — ProgramTemplateSelector (jamais nil après 0.5.8)
+1. **Story 0.5.8** — Renaming structurel pur (enum Sport+Level EN, JSON files renommés, manifest, archive sports_collectifs ET remise_en_forme) → 31 templates renommés, 1 jour
+2. **Story 0.5.10** *(absorbe 0.5.9)* — Regen qualité sport-spécifique 40 templates avec hooks metadata Story 0.5.9 inclus, prompt master par sport, revue agent — pré-requis algo deterministic
+3. **Doctrine doc** : `_bmad-output/planning-artifacts/leon-algo-doctrine-by-sport.md` (formules + règles substitution + périodisation par sport, sources publiques citées) — démarré en parallèle de 0.5.10 (les prompts master en sont l'extraction)
+4. **Story 3.2** — ProgramTemplateSelector (jamais nil après 0.5.10 ; couverture structurelle dès 0.5.8)
 5. **Story 3.3a** — Adaptation algo deterministic (cœur free tier illimité)
 6. **Story 3.3b** — Adaptation IA fallback (rate-limité 10/j cumulé)
 7. **Story 3.6** — Questions ad-hoc + adapt-session (FR12, IA, même quota)

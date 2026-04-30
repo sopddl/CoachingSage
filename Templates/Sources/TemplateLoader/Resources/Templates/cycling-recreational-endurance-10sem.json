@@ -1,0 +1,632 @@
+{
+  "assumed_profile" : "Cycliste régulier tenant 40 km à 25-28 km/h, pratique 1-2×/sem, vélo de route avec cardio-fréquencemètre conseillé (puissancemètre optionnel). Équipement minimal : vélo de route en bon état, casque, cuissard rembourré, bidons x2, chambre à air de rechange + démonte-pneu, ravitaillement solide pour sorties > 60 min.",
+  "default_objective" : "Couvrir 80 km en une seule sortie à allure endurance (Z2, 70-75% FCmax, ~25-28 km/h sur terrain roulant)",
+  "duration_weeks" : 10,
+  "id" : "cycling-recreational-endurance-10sem",
+  "level" : "recreational",
+  "name" : "Vélo endurance — 80 km en 10 semaines",
+  "progression_logic" : "Progression construite sur 5 principes, alignés sur les recommandations ACSM et les pratiques coaching vélo de compétition :\n\n(1) RÈGLE DES 10-15% LONG RIDE : augmentation du long ride hebdomadaire limitée à 10-15% maximum par semaine de charge. Volume long ride (km) : 45 → 52 → 60 → 52 (cutback W4) → 65 → 72 → 72 → 60 (cutback W8) → 78 → 80. Les deux cutback weeks (W4 et W8) sont non négociables — elles permettent la supercompensation (adaptation structurelle du collagène, des tendons, et des adaptations cardiovasculaires).\n\n(2) DEUX CUTBACK WEEKS OBLIGATOIRES : W4 (-15% vs pic W3) et W8 (-15% vs pic W7) pour un plan de 10 semaines. Sans récupération programmée, le risque de douleur genou, lombaire et de fatigue neuromusculaire chronique augmente significativement après la 3e semaine consécutive de charge (ACSM Training Guidelines for Exercise Testing and Prescription).\n\n(3) TROIS TYPES DE SÉANCES DISTINCTS chaque semaine : (a) Long ride Z2 = développe l'économie aérobie, les adaptations mitochondriales et la résistance musculaire longue durée. (b) Séance intensité (Z3 tempo ou Z4 seuil/intervalles) = développe la puissance à seuil et la capacité à soutenir des efforts intenses sur des sections variées du 80 km. (c) Récupération active Z1-Z2 = facilite le flush lactate, maintient les adaptations neuromusculaires sans accumuler de fatigue. Ne jamais remplacer la séance récup par une 2e séance intensive.\n\n(4) CADENCE ET ZONES D'EFFORT CODIFIÉES : la cadence cible de 85-95 rpm sur plat (70-80 rpm en côte) est prescrite dans chaque séance et respectée dès W1. Le pédalage à haute cadence réduit la charge articulaire sur les genoux (facteur de risque n°1 chez le cycliste intermédiaire poussant des grands braquets). Les zones Z1-Z5 par % FCmax sont définies une fois pour toutes et cohérentes avec les standards physiologiques (Coggan & Allen, Training and Racing with a Power Meter).\n\n(5) TAPERING W10 : séances J1 (40 km) et J3 (20 km + mobilité) allégées pour arriver physiologiquement frais au 80 km de J5. Le tapering idéal pour un effort d'endurance de 3h est de 50-60% du volume pic sur 7-10 jours (ACSM, 2022). Ne pas ajouter de séance supplémentaire en W10 — le surentraînement de dernière minute est la cause n°1 d'échec lors d'un événement sportif cible.",
+  "safety_notes" : "DRAPEAUX ROUGES (arrêter la séance et consulter un médecin si persistant) :\n• Douleur genou antérieure ou latérale (syndrome fémoro-patellaire ou bandelette ilio-tibiale) : cause fréquente = cadence trop basse (< 80 rpm) sur gros braquet, selle trop basse, cleat mal réglé. Stop si > 3/10 pendant le pédalage. Glacer, repos 3 jours, vérifier le réglage de la selle et des cales.\n• Douleur lombaire basse persistante : souvent liée à un cintre trop bas, une selle trop haute, ou un core insuffisant. Ajuster la position avec un fit professionnel si la douleur revient à chaque sortie. Étirements ilio-psoas obligatoires après chaque longue sortie.\n• Douleur sur la face interne du genou (ligaments) : vérifier l'alignement des cales (cleats) — une rotation incorrecte crée un cisaillement médial chronique.\n• Fourmillements mains ou pieds : cintre trop bas (mains) ou chaussures trop serrées ou cales mal centrées (pieds). Ajuster avant de continuer.\n• Douleur cervicale persistante après la sortie : position trop aggressive (cintre trop bas ou trop loin), musculature de la nuque insuffisante. Remonter le cintre ou raccourcir la potence.\n• CASQUE OBLIGATOIRE : porté à chaque sortie sans exception. En cas de chute et choc crânien même léger, arrêter la sortie et évaluer (protocole commotion). Remplacer le casque après chaque impact crânien.\n\nRÈGLES GÉNÉRALES :\n• Réglage de la selle : hauteur = légère flexion du genou (~25-35°) en bas de la pédale, pas de basculement du bassin. Un mauvais réglage selle est la cause n°1 des douleurs genou à vélo.\n• Cadence minimale : 85 rpm sur plat, 70-80 rpm en côte. Jamais < 60 rpm en continu — le pédalage à basse cadence sous charge élevée détruit les genoux progressivement (pression fémoro-patellaire × 3).\n• Hydratation : 500-750 ml/heure selon température. Sur les sorties > 90 min, ajouter électrolytes (sodium, magnésium) pour prévenir crampes et hyponatrémie.\n• Nutrition : à partir de 60 min, ravitaillement toutes les 30-35 min (gel 25 g glucides, barre, ou banane). Ne jamais commencer une sortie longue le ventre vide — petit-déjeuner digéré 2-3h avant.\n• Visibilité : gilet réfléchissant + feux avant et arrière clignotants même en plein jour (obligatoire la nuit). Préférer des routes peu fréquentées pour les longues sorties.\n• Vérification avant chaque sortie : pression pneus (7-8 bars sur route), freins, chaîne lubrifiée, kit réparation (chambre à air, démonte-pneu, CO2 ou pompe portable).\n• Itinéraire partagé : pour les longues sorties (> 60 km), partager le tracé GPS avec un proche avant le départ.\n\nINTENSITÉ ET ZONES :\n• Z1 récupération : < 65% FCmax. Tu peux chanter.\n• Z2 endurance : 65-75% FCmax. Tu peux parler librement en phrases complètes.\n• Z3 tempo : 76-82% FCmax. Tu peux parler par phrases courtes.\n• Z4 seuil : 83-90% FCmax. Tu peux dire quelques mots seulement.\n• Z5 VO2max : > 90% FCmax. Tu ne peux pas parler. Non utilisé dans ce plan sauf exception (fin de côte courte).\n• FCmax estimée = 220 - âge (approximation, le cardio-fréquencemètre permet d'affiner). Utiliser la FC de réserve (méthode Karvonen) pour plus de précision si FC repos connue.\n\nSIGNES DE SURCHARGE (3+ signes = semaine allégée supplémentaire) :\n• FC de repos +8-10 bpm au réveil de façon répétée\n• Jambes lourdes systématiquement en début de sortie, après 10 km d'échauffement\n• Performances qui stagnent ou régressent sur les séances calibrées\n• Sommeil dégradé, irritabilité inhabituelle\n• Appétit coupé ou fringales excessives post-séance\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre la même séance planifiée, décaler la semaine de 2-3 jours.\n• 1-2 semaines de pause : reprendre la semaine précédente dans le plan.\n• > 2 semaines de pause : reculer de 2 semaines dans le plan pour resécuriser l'adaptation cardiovasculaire et musculaire.",
+  "schema_version" : 1,
+  "sessions_per_week" : 3,
+  "sport" : "cycling",
+  "summary" : "Plan 10 semaines pour un cycliste intermédiaire visant sa première sortie de 80 km. Trois séances par semaine : une sortie longue progressive (pilier du plan), une séance d'intensité (Z3 tempo ou Z4 seuil en intervalles), et une séance de récupération active / travail de cadence. Volume long ride : 40 → 80 km en progression ~10-15%/sem avec deux cutback weeks (W4 et W8). Zones d'effort codifiées par % FCmax (Z1-Z5) pour chaque séance. Renforcement core et mobilité intégré dans les séances d'intensité pour prévenir lombaires et genoux.",
+  "weeks" : [
+    {
+      "goal" : "Calibrer les zones d'effort individuelles et poser les bases du plan. Sortie longue de 45 km en Z2 pur. Séance d'intensité : test de cadence et blocs Z3 courts.",
+      "sessions" : [
+        {
+          "cooldown" : "10 min Z1 très facile pour flush lactate. Descente de vélo : 2 min marche, étirements statiques quadriceps 30 sec/jambe, ilio-psoas 30 sec/jambe, mollets 30 sec/jambe.",
+          "day" : 1,
+          "duration_minutes" : 110,
+          "exercises" : [
+            {
+              "duration" : "45 km / ~80-95 min",
+              "name" : "Sortie endurance Z2",
+              "notes" : "Zone 2 : 65-75% FCmax. Test de la parole : tu peux tenir une conversation complète. Cadence 85-95 rpm sur plat. Objectif : finir sans être épuisé. Si FCmax dépasse 78% en montée, réduire l'allure ou passer au petit plateau. Ravitaillement obligatoire toutes les 30 min (gel ou barre) au-delà de 45 min.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue Z2 — 45 km",
+          "type" : "endurance",
+          "warmup" : "15 min de pédalage facile en Z1 (<65% FCmax), cadence libre 80-90 rpm, terrain plat. Ne pas forcer avant que les jambes soient chaudes."
+        },
+        {
+          "cooldown" : "8 min Z1 très facile. Étirements statiques : fessiers 30 sec/côté, quadriceps 30 sec/jambe, étirement lombaire en flexion debout 30 sec.",
+          "day" : 3,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "3 min à 100-105 rpm en Z2",
+              "name" : "Travail cadence haute",
+              "notes" : "Petit plateau, résistance modérée. Objectif : habituer le système neuromusculaire à la cadence élevée. Entre chaque série : 2 min Z1 à cadence libre.",
+              "rest_seconds" : 120,
+              "sets" : 4
+            },
+            {
+              "duration" : "5 min",
+              "name" : "Blocs tempo Z3",
+              "notes" : "Zone 3 : 76-82% FCmax. Allure soutenue mais tenable 30-40 min en continu chez un intermédiaire. Tu peux parler mais seulement par phrases courtes. Entre chaque bloc : 2 min 30 Z1. C'est ton introduction au travail d'intensité — ne force pas la FC au-delà de 83%.",
+              "rest_seconds" : 150,
+              "sets" : 3
+            }
+          ],
+          "name" : "Cadence + blocs Z3 — initiation tempo",
+          "type" : "interval",
+          "warmup" : "10 min Z1-Z2 progressif, terminer par 3 accélérations de 10 sec à 100 rpm pour activer les fibres rapides."
+        },
+        {
+          "cooldown" : "5 min de pédalage très facile + 5 min marche + étirements ischio-jambiers 30 sec/jambe.",
+          "day" : 5,
+          "duration_minutes" : 75,
+          "exercises" : [
+            {
+              "duration" : "30 km / ~65-75 min",
+              "name" : "Sortie récupération Z1-Z2",
+              "notes" : "Z1-Z2 : <75% FCmax. Cadence libre 80-90 rpm. Pas d'effort supra-Z2 même si tu te sens en forme. Cette séance est une récupération active — elle prépare les muscles à l'effort de la semaine suivante. Idéal sur un parcours plat ou légèrement vallonné.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active — 30 km Z1-Z2",
+          "type" : "endurance",
+          "warmup" : "Sortie démarrée directement en Z1, pas d'échauffement spécifique nécessaire pour une sortie récup."
+        }
+      ],
+      "theme" : "Bilan de forme — établir les zones",
+      "week_number" : 1
+    },
+    {
+      "goal" : "Porter la sortie longue à 52 km (+16%). Introduire les intervalles Z4 courts (30 sec) pour développer la puissance de seuil.",
+      "sessions" : [
+        {
+          "cooldown" : "10 min Z1 + étirements 5 min (quadriceps, ischio, mollets).",
+          "day" : 1,
+          "duration_minutes" : 125,
+          "exercises" : [
+            {
+              "duration" : "52 km / ~100-110 min",
+              "name" : "Sortie endurance Z2",
+              "notes" : "Z2 : 65-75% FCmax. Garder la cadence 85-95 rpm sur plat. Sur les côtes, accepter de passer en Z3 brièvement (montées < 3 min) mais revenir Z2 dès le replat. Ravitaillement : gel ou barre toutes les 30 min, bidon 750 ml/h. Première sortie légèrement > 50 km — pace toi dès le départ.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue Z2 — 52 km",
+          "type" : "endurance",
+          "warmup" : "15 min Z1, cadence 85 rpm."
+        },
+        {
+          "cooldown" : "10 min Z1 + étirements lombaires et fessiers 5 min.",
+          "day" : 3,
+          "duration_minutes" : 65,
+          "exercises" : [
+            {
+              "duration" : "30 sec",
+              "name" : "Blocs Z4 courts",
+              "notes" : "Zone 4 : 83-90% FCmax (ou 90-105% FTP si puissancemètre). Effort intense mais contrôlé — tu ne dois pas tenir plus de 5-6 répétitions de qualité. Entre chaque répétition : 1 min 30 Z1. Cette série développe la capacité à soutenir des efforts intenses courts — utile pour les faux-plats et les accélérations en groupe.",
+              "rest_seconds" : 90,
+              "sets" : 6
+            },
+            {
+              "duration" : "8 min",
+              "name" : "Blocs tempo Z3",
+              "notes" : "Z3 : 76-82% FCmax. Enchaîner après les blocs courts. Cadence 88-93 rpm. Récupération 3 min Z1 entre les blocs.",
+              "rest_seconds" : 180,
+              "sets" : 2
+            }
+          ],
+          "name" : "Intervalles Z4 courts — puissance seuil",
+          "type" : "interval",
+          "warmup" : "12 min Z1-Z2 progressif + 3 sprints de 10 sec à 110 rpm pour activer."
+        },
+        {
+          "cooldown" : "5 min Z1 + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 80,
+          "exercises" : [
+            {
+              "duration" : "32 km / ~70-80 min",
+              "name" : "Sortie récupération Z1-Z2",
+              "notes" : "Z1-Z2 strict. Cadence libre. Profiter de cette sortie pour travailler la position sur le vélo (dos plat, coudes légèrement fléchis, regard à l'horizon) et la fluidité du coup de pédale.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active — 32 km Z1-Z2",
+          "type" : "endurance",
+          "warmup" : "Démarrer directement en Z1."
+        }
+      ],
+      "theme" : "Construction — allonger le long ride",
+      "week_number" : 2
+    },
+    {
+      "goal" : "Premier long ride à 60 km (+15%). Séance tempo : blocs Z3 portés à 10 min. Volume récup stable.",
+      "sessions" : [
+        {
+          "cooldown" : "10 min Z1 + étirements complets 7 min.",
+          "day" : 1,
+          "duration_minutes" : 145,
+          "exercises" : [
+            {
+              "duration" : "60 km / ~120-130 min",
+              "name" : "Sortie endurance Z2",
+              "notes" : "Z2 : 65-75% FCmax. Premier cap symbolique à 60 km. Préparer 2 gels ou 2 barres + 1,5 L d'eau minimum. Cadence 85-95 rpm sur plat. En côte longue (> 5 min) : descendre en Z3 est acceptable mais pousser un gros braquet = erreur (genoux en danger, réserves épuisées prématurément).",
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue Z2 — 60 km",
+          "type" : "endurance",
+          "warmup" : "15 min Z1 progressif."
+        },
+        {
+          "cooldown" : "10 min Z1 + étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 70,
+          "exercises" : [
+            {
+              "duration" : "10 min",
+              "name" : "Blocs tempo Z3",
+              "notes" : "Zone 3 : 76-82% FCmax. Cadence 88-93 rpm. Récupération 3 min Z1 entre chaque bloc. Tu dois finir chaque bloc fatigué mais pas épuisé — le 3e bloc doit se faire à la même qualité que le 1er.",
+              "rest_seconds" : 180,
+              "sets" : 3
+            },
+            {
+              "duration" : "2 min à 100-105 rpm",
+              "name" : "Cadence haute Z2",
+              "notes" : "En Z2, cadence élevée en fin de séance. Réduit la fatigue musculaire et améliore l'efficacité neuromusculaire. Récupération 1 min Z1.",
+              "rest_seconds" : 60,
+              "sets" : 3
+            }
+          ],
+          "name" : "Tempo Z3 — blocs 10 min",
+          "type" : "interval",
+          "warmup" : "12 min Z1-Z2."
+        },
+        {
+          "cooldown" : "5 min Z1 + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 80,
+          "exercises" : [
+            {
+              "duration" : "32 km / ~70-80 min",
+              "name" : "Sortie récupération Z1-Z2",
+              "notes" : "Z1-Z2 strict. Journée de récupération fonctionnelle avant la cutback W4. Profiter du relâchement pour travailler les appuis (ne pas écraser la selle, répartir poids entre selle, guidon, pédales).",
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active — 32 km Z1-Z2",
+          "type" : "endurance",
+          "warmup" : "Démarrage Z1 direct."
+        }
+      ],
+      "theme" : "Construction — 60 km et tempo soutenu",
+      "week_number" : 3
+    },
+    {
+      "goal" : "Semaine allégée (-15% volume long ride : 52 km). Laisser le corps assimiler les 3 semaines de charge. Maintenir la qualité en Z3-Z4 mais réduire les durées.",
+      "sessions" : [
+        {
+          "cooldown" : "10 min Z1 + étirements 6 min.",
+          "day" : 1,
+          "duration_minutes" : 125,
+          "exercises" : [
+            {
+              "duration" : "52 km / ~100-110 min",
+              "name" : "Sortie endurance Z2",
+              "notes" : "Z2 : 65-75% FCmax. Semaine allégée — profiter de la distance réduite pour travailler la qualité de pédalage (cercles fluides, pas de coups de piston). Ne pas compenser en allant plus vite. L'objectif est la récupération, pas la performance.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue cutback — 52 km Z2",
+          "type" : "endurance",
+          "warmup" : "15 min Z1."
+        },
+        {
+          "cooldown" : "10 min Z1 + étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 55,
+          "exercises" : [
+            {
+              "duration" : "45 sec",
+              "name" : "Blocs Z4 courts",
+              "notes" : "Zone 4 : 83-90% FCmax. 4 répétitions (vs 6 en W2) — volume réduit. Récupération 2 min Z1. Maintenir la qualité de l'effort sur chaque bloc.",
+              "rest_seconds" : 120,
+              "sets" : 4
+            },
+            {
+              "duration" : "6 min",
+              "name" : "Blocs tempo Z3",
+              "notes" : "Z3 : 76-82% FCmax. 2 blocs (vs 3 en W3) — allégé. Récupération 2 min 30 Z1.",
+              "rest_seconds" : 150,
+              "sets" : 2
+            }
+          ],
+          "name" : "Intensité courte — blocs Z4 + cadence",
+          "type" : "interval",
+          "warmup" : "10 min Z1-Z2."
+        },
+        {
+          "cooldown" : "5 min Z1 + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 65,
+          "exercises" : [
+            {
+              "duration" : "25 km / ~55-65 min",
+              "name" : "Sortie récupération Z1",
+              "notes" : "Z1 strict : < 65% FCmax. Cadence libre. Sortie de récupération maximale — la plus facile du plan. Si tu te sens en grande forme, c'est que la cutback week fonctionne. Ne pas accélérer.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération pure — 25 km Z1",
+          "type" : "endurance",
+          "warmup" : "Démarrage Z1 direct."
+        }
+      ],
+      "theme" : "Cutback — consolidation et récupération",
+      "week_number" : 4
+    },
+    {
+      "goal" : "Reprendre la progression après la cutback. Long ride à 65 km (+25% vs W4 cutback, +8% vs W3 pic). Intervalles Z4 portés à 1 min. Troisième séance : tempo Z3.",
+      "sessions" : [
+        {
+          "cooldown" : "10 min Z1 + étirements 7 min.",
+          "day" : 1,
+          "duration_minutes" : 155,
+          "exercises" : [
+            {
+              "duration" : "65 km / ~130-145 min",
+              "name" : "Sortie endurance Z2",
+              "notes" : "Z2 : 65-75% FCmax. Préparer 2-3 gels + 2 bidons (750 ml/h). Inclure si possible un segment légèrement vallonné (dénivelé cumulé 300-500 m) pour simuler la variété de terrain du 80 km final. Gérer les côtes en Z3 max, pas de Z4 sur les montées.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue Z2 — 65 km",
+          "type" : "endurance",
+          "warmup" : "15 min Z1."
+        },
+        {
+          "cooldown" : "10 min Z1 + étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 70,
+          "exercises" : [
+            {
+              "duration" : "1 min",
+              "name" : "Blocs Z4 structurés",
+              "notes" : "Zone 4 : 83-90% FCmax. 1 min full, récupération 2 min Z1. Cadence 90-95 rpm. Ces blocs développent la VO2max et l'endurance à haute intensité — capital pour tenir 80 km avec du relief.",
+              "rest_seconds" : 120,
+              "sets" : 6
+            },
+            {
+              "duration" : "10 min",
+              "name" : "Blocs tempo Z3",
+              "notes" : "Z3 après les blocs Z4 — enchaîner la fatigue. Cadence 88-93 rpm. Récupération 3 min Z1.",
+              "rest_seconds" : 180,
+              "sets" : 2
+            }
+          ],
+          "name" : "Intervalles Z4 — blocs 1 min",
+          "type" : "interval",
+          "warmup" : "12 min Z1-Z2 + 3 accélérations 10 sec."
+        },
+        {
+          "cooldown" : "10 min Z1 + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 75,
+          "exercises" : [
+            {
+              "duration" : "12 min",
+              "name" : "Blocs tempo Z3",
+              "notes" : "Zone 3 : 76-82% FCmax. 3 blocs de 12 min avec 3 min 30 de récupération Z1. Séance de développement de l'endurance de seuil — essentielle pour tenir le 80 km sans dériver en Z1 pur. Cadence 88-93 rpm.",
+              "rest_seconds" : 210,
+              "sets" : 3
+            }
+          ],
+          "name" : "Tempo Z3 — blocs 12 min",
+          "type" : "interval",
+          "warmup" : "12 min Z1-Z2."
+        }
+      ],
+      "theme" : "Reprise — 65 km et intervalles Z4 structurés",
+      "week_number" : 5
+    },
+    {
+      "goal" : "Premier long ride approchant les 3/4 de l'objectif final (72 km, +10% vs W5). Séance Z4 : blocs 2 min. Séance récup maintenue.",
+      "sessions" : [
+        {
+          "cooldown" : "12 min Z1 + étirements complets 8 min + rouleau de massage léger sur quadriceps et IT-band si disponible.",
+          "day" : 1,
+          "duration_minutes" : 175,
+          "exercises" : [
+            {
+              "duration" : "72 km / ~150-165 min",
+              "name" : "Sortie endurance Z2",
+              "notes" : "Z2 : 65-75% FCmax. Cap psychologique important : plus de 70 km pour la première fois. Stratégie nutrition : gel ou barre toutes les 30-35 min dès le départ (ne pas attendre la faim). 750 ml d'eau/heure. Prévoir un ravitaillement à mi-parcours si sortie en autonomie. Sur terrain valloné : dénivelé cumulé jusqu'à 600-800 m accepté.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue Z2 — 72 km",
+          "type" : "endurance",
+          "warmup" : "15 min Z1."
+        },
+        {
+          "cooldown" : "10 min Z1 + étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 75,
+          "exercises" : [
+            {
+              "duration" : "2 min",
+              "name" : "Blocs Z4",
+              "notes" : "Zone 4 : 83-90% FCmax. 5 blocs de 2 min, récupération 2 min 30 Z1. Les 2 dernières répétitions seront difficiles — c'est normal et voulu. Cadence 88-93 rpm. Ne pas dépasser 92% FCmax.",
+              "rest_seconds" : 150,
+              "sets" : 5
+            },
+            {
+              "duration" : "8 min",
+              "name" : "Tempo Z3",
+              "notes" : "2 blocs Z3 en fin de séance. Récupération 3 min Z1. Enchaîner après les blocs Z4 développe la résistance à la fatigue.",
+              "rest_seconds" : 180,
+              "sets" : 2
+            }
+          ],
+          "name" : "Intervalles Z4 — blocs 2 min",
+          "type" : "interval",
+          "warmup" : "12 min Z1-Z2 + 3 accélérations 10 sec."
+        },
+        {
+          "cooldown" : "5 min Z1 + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 75,
+          "exercises" : [
+            {
+              "duration" : "30 km / ~65-70 min",
+              "name" : "Sortie récupération Z1-Z2",
+              "notes" : "Z1-Z2 pur. Après un long ride 72 km + séance intensive, cette sortie facile est critique pour la récupération musculaire. Cadence libre. Rouler à la sensation.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active — 30 km Z1-Z2",
+          "type" : "endurance",
+          "warmup" : "Démarrage Z1 direct."
+        }
+      ],
+      "theme" : "Volume pic intermédiaire — 72 km",
+      "week_number" : 6
+    },
+    {
+      "goal" : "Sortie longue stable à 72 km (confirmer sans être frais). Séance spécifique côtes pour renforcer les appuis en montée. Tempo Z3 long 15 min.",
+      "sessions" : [
+        {
+          "cooldown" : "12 min Z1 + étirements complets 8 min.",
+          "day" : 1,
+          "duration_minutes" : 175,
+          "exercises" : [
+            {
+              "duration" : "72 km / ~150-165 min",
+              "name" : "Sortie endurance Z2 avec variante côte",
+              "notes" : "Z2 : 65-75% FCmax. Même distance qu'en W6 mais après une semaine de charge — psychologiquement différent. Inclure 2-3 côtes de 3-5 min (Z3-Z4 acceptable en montée). Redescendre en Z1-Z2 sur le replat. Cet entraînement au variété de rythme est fondamental pour le 80 km réel.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue confirmation — 72 km",
+          "type" : "endurance",
+          "warmup" : "15 min Z1."
+        },
+        {
+          "cooldown" : "10 min Z1 en descente + étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 70,
+          "exercises" : [
+            {
+              "duration" : "2 min 30 en montée",
+              "name" : "Répétitions côte Z4",
+              "notes" : "Trouver une côte de 3-5% régulière. Montée en Z4 (83-90% FCmax), cadence 70-80 rpm, gros braquet modéré. Descente en récupération Z1 (3 min). Développe la force spécifique pour les sections vallonnées du 80 km. Si pas de côte disponible : intervalles en résistance élevée (plateau dur) sur home trainer ou route plate, même durée et zones.",
+              "rest_seconds" : 180,
+              "sets" : 6
+            }
+          ],
+          "name" : "Répétitions côtes — force-endurance",
+          "type" : "interval",
+          "warmup" : "15 min Z1-Z2 en montant vers la côte de travail."
+        },
+        {
+          "cooldown" : "10 min Z1 + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 80,
+          "exercises" : [
+            {
+              "duration" : "15 min",
+              "name" : "Blocs tempo Z3",
+              "notes" : "Zone 3 : 76-82% FCmax. 3 blocs de 15 min avec 4 min de récupération Z1. Séance longue et exigeante — c'est la principale séance de développement de l'endurance musculaire. Cadence 88-93 rpm. Si tu es trop fatigué après W7 J1, réduire à 2 blocs de 15 min.",
+              "rest_seconds" : 240,
+              "sets" : 3
+            }
+          ],
+          "name" : "Tempo Z3 long — blocs 15 min",
+          "type" : "interval",
+          "warmup" : "12 min Z1-Z2."
+        }
+      ],
+      "theme" : "Consolidation — tempo long et côtes",
+      "week_number" : 7
+    },
+    {
+      "goal" : "Deuxième cutback week (-15% volume long ride : 60 km). Laisser le corps récupérer avant les 2 semaines de pic et tapering. Séance intensité allégée.",
+      "sessions" : [
+        {
+          "cooldown" : "10 min Z1 + étirements 6 min.",
+          "day" : 1,
+          "duration_minutes" : 145,
+          "exercises" : [
+            {
+              "duration" : "60 km / ~120-130 min",
+              "name" : "Sortie endurance Z2",
+              "notes" : "Z2 : 65-75% FCmax. Sortie allégée — ton corps a accumulé deux semaines de charge lourde (W6-W7). La récupération permet la supercompensation. Rouler à l'aise, ne pas pousser. Profiter pour fignoler la position sur le vélo et tester ton plan nutrition du 80 km.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue cutback 2 — 60 km",
+          "type" : "endurance",
+          "warmup" : "15 min Z1."
+        },
+        {
+          "cooldown" : "10 min Z1 + étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 55,
+          "exercises" : [
+            {
+              "duration" : "10 min",
+              "name" : "Blocs tempo Z3",
+              "notes" : "Z3 : 76-82% FCmax. 2 blocs seulement (vs 3 les semaines précédentes). Récupération 3 min Z1. Volume allégé.",
+              "rest_seconds" : 180,
+              "sets" : 2
+            },
+            {
+              "duration" : "2 min à 100-105 rpm",
+              "name" : "Cadence haute Z2",
+              "notes" : "En Z2 post-tempo. Travail de légèreté du coup de pédale. Récupération 1 min Z1.",
+              "rest_seconds" : 60,
+              "sets" : 4
+            }
+          ],
+          "name" : "Intensité légère — Z3 et cadence",
+          "type" : "interval",
+          "warmup" : "10 min Z1-Z2."
+        },
+        {
+          "cooldown" : "5 min Z1 + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 65,
+          "exercises" : [
+            {
+              "duration" : "25 km / ~55-65 min",
+              "name" : "Sortie récupération Z1",
+              "notes" : "Z1 strict : < 65% FCmax. Dernière vraie sortie facile avant les deux semaines de charge finale. Profiter pour vérifier le matériel (pneus, câbles, éclairage) en prévision du grand jour.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération pure — 25 km Z1",
+          "type" : "endurance",
+          "warmup" : "Démarrage Z1 direct."
+        }
+      ],
+      "theme" : "Cutback 2 — récupération avant pic final",
+      "week_number" : 8
+    },
+    {
+      "goal" : "Sortie longue quasi-objectif à 78 km (+30% vs W8 cutback). Séance Z4 maintenue pour garder la forme. Troisième séance : récupération active.",
+      "sessions" : [
+        {
+          "cooldown" : "12 min Z1 + étirements complets 10 min + auto-massage mollets et quadriceps.",
+          "day" : 1,
+          "duration_minutes" : 190,
+          "exercises" : [
+            {
+              "duration" : "78 km / ~165-180 min",
+              "name" : "Sortie endurance Z2 — 78 km",
+              "notes" : "Z2 : 65-75% FCmax. Sortie simulacre du 80 km final. Tester le plan nutrition exact du grand jour : gel ou barre toutes les 30-35 min dès le départ, 750 ml d'eau par heure. Mémoriser les sensations aux km 40, 60 et 70 — c'est là que les ressources s'épuisent si la nutrition est absente. Cadence 85-95 rpm tout le long. Terminer avec des jambes encore disponibles — ni frais ni écrasé.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Sortie longue pic — 78 km",
+          "type" : "endurance",
+          "warmup" : "15 min Z1."
+        },
+        {
+          "cooldown" : "12 min Z1 + étirements 6 min.",
+          "day" : 3,
+          "duration_minutes" : 65,
+          "exercises" : [
+            {
+              "duration" : "1 min 30",
+              "name" : "Blocs Z4",
+              "notes" : "Zone 4 : 83-90% FCmax. 5 blocs de 90 sec, récupération 2 min 30 Z1. Volume légèrement réduit vs W6 pour préserver les jambes. Objectif : maintenir la forme neuromusculaire sans accumuler de fatigue supplémentaire.",
+              "rest_seconds" : 150,
+              "sets" : 5
+            }
+          ],
+          "name" : "Intervalles Z4 — blocs 90 sec",
+          "type" : "interval",
+          "warmup" : "12 min Z1-Z2."
+        },
+        {
+          "cooldown" : "5 min Z1 + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 75,
+          "exercises" : [
+            {
+              "duration" : "30 km / ~65-70 min",
+              "name" : "Sortie récupération Z1-Z2",
+              "notes" : "Z1-Z2 strict. Récupération active post long ride 78 km. Aucun effort au-delà de Z2. Profiter pour confirmer le parcours du 80 km final (reconnaissance mentale ou GPS) et valider le matériel complet (bidons, ravitaillement, chambre à air, outils).",
+              "sets" : 1
+            }
+          ],
+          "name" : "Récupération active — 30 km Z1-Z2",
+          "type" : "endurance",
+          "warmup" : "Démarrage Z1 direct."
+        }
+      ],
+      "theme" : "Pic — 78 km et préparation finale",
+      "week_number" : 9
+    },
+    {
+      "goal" : "Tapering sur les 2 premières séances pour arriver frais au 80 km J5. Checklist d'autoévaluation intégrée à la séance phare. Consacrer J3 à la mobilité et préparation mentale.",
+      "sessions" : [
+        {
+          "cooldown" : "8 min Z1 + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 100,
+          "exercises" : [
+            {
+              "duration" : "40 km / ~85-95 min",
+              "name" : "Sortie activation Z1-Z2",
+              "notes" : "Z1-Z2 : < 75% FCmax. Séance de tapering — volume réduit de moitié vs long ride W9. Ne pas rouler vite même si tu te sens en grande forme. L'objectif est de garder les fibres musculaires actives sans les fatiguer. Inclure 3 accélérations de 30 sec en Z3 pour maintenir le tonus neuromusculaire.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Activation légère — 40 km Z1-Z2",
+          "type" : "endurance",
+          "warmup" : "10 min Z1."
+        },
+        {
+          "cooldown" : "5 min marche + visualisation : imaginer la sensation du 80 km km par km, la stratégie de nutrition, les côtes, la fin.",
+          "day" : 3,
+          "duration_minutes" : 60,
+          "exercises" : [
+            {
+              "duration" : "20 km / ~45-50 min",
+              "name" : "Sortie très courte Z1",
+              "notes" : "Z1 pur : < 65% FCmax. Sortie symbole — garder les jambes sans les fatiguer. Inclure 2 accélérations de 20 sec pour activer le système nerveux. Vérifier le matériel après la sortie : pneus gonflés à pression cible, freins, dérailleur, lubrification chaîne.",
+              "sets" : 1
+            },
+            {
+              "duration" : "10 min",
+              "name" : "Routine mobilité post-vélo",
+              "notes" : "Hip flexor stretch (psoas/ilio-psoas) 45 sec/côté. Pigeon pose ou fessier allongé 45 sec/côté. Étirement lombaire en rotation allongé 30 sec/côté. Mollets debout et en flexion plantaire 30 sec/jambe. Objectif : arriver au 80 km avec les articulations libres.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Mobilité et préparation — 20 km Z1",
+          "type" : "mobility",
+          "warmup" : "Démarrage Z1 direct."
+        },
+        {
+          "cooldown" : "10-15 min de pédalage très facile après l'arrivée (ne pas s'arrêter brutalement). Descente du vélo : marcher 5 min. Étirements complets 12 min (quadriceps, ischio-jambiers, ilio-psoas, mollets, lombaires, fessiers). Hydratation immédiate : 500 ml eau + électrolytes. Collation dans les 30 min (protéines + glucides). Auto-massage ou bain froid si disponible.",
+          "day" : 5,
+          "duration_minutes" : 210,
+          "exercises" : [
+            {
+              "duration" : "80 km",
+              "name" : "Sortie 80 km Z2",
+              "notes" : "STRATÉGIE : (1) Km 0-15 : Z1-Z2 bas (65-70% FCmax), cadence 85-90 rpm, résister à l'envie de partir vite. (2) Km 15-60 : Z2 établi (70-75% FCmax), cadence 88-95 rpm, nutrition toutes les 30-35 min. (3) Km 60-80 : tenir le Z2 même si les jambes fatiguent — si FCmax dérive au-delà de 78%, ralentir plutôt que lutter. (4) Nutrition : gel ou barre toutes les 30-35 min dès le départ, 750 ml d'eau/heure. Ne jamais attendre la faim ou la soif. (5) Sur les côtes : Z3 acceptable, pas de Z4 (préserver les ressources). (6) Les 10 derniers km : rouler à l'instinct, la forme est acquise.\n\nCHECKLIST D'AUTOÉVALUATION (à cocher après la sortie) :\n1. Tu as maintenu Z2 (65-75% FCmax) sur au moins 80% de la distance hors côtes — visible sur la FC moyenne de la sortie.\n2. Tu as respecté le plan nutrition sans sauter de ravitaillement et terminé sans fringale ni hypoglycémie.\n3. Tu as maintenu une cadence de 85-95 rpm sur les segments plats (vérifiable sur GPS/compteur).\n4. Tu as terminé les 80 km sans devoir descendre de vélo involontairement (crevaison exclue).\n5. Ton rythme au km 70 était cohérent avec ton rythme au km 30 — tu n'as pas explosé dans la seconde moitié.\nSi 4 critères sur 5 sont validés : objectif atteint. Bravo. Si 3 ou moins : identifier le critère manquant et travailler ce point lors des prochains mois.",
+              "sets" : 1
+            }
+          ],
+          "name" : "Séance phare — 80 km",
+          "type" : "endurance",
+          "warmup" : "15 min Z1 strict. Ne pas démarrer en Z2 avant que les jambes soient chaudes (10-15 min)."
+        }
+      ],
+      "theme" : "Tapering et séance phare — 80 km",
+      "week_number" : 10
+    }
+  ]
+}

@@ -1,0 +1,1641 @@
+{
+  "assumed_profile": "Athlète fonctionnel expert, 2+ ans de pratique intense, mouvements olympiques maîtrisés (snatch, clean & jerk, power clean), accès salle/box complet (barres olympiques, haltères, kettlebells, assault bike, rower, ski erg, anneaux, racks, sangle TRX, boîtes de pliométrie). Capable de tenir un Fran en moins de 5 min, un Helen en moins de 12 min. Pas de pathologie articulaire active.",
+  "default_objective": "Développer puissance, endurance musculaire et capacité anaérobie pour compétition fonctionnelle (Hyrox, CrossFit local)",
+  "duration_weeks": 12,
+  "id": "hiit-competitive-athletique-12sem",
+  "level": "competitive",
+  "name": "Préparation athlétique HIIT — 12 semaines",
+  "progression_logic": "Progression construite sur 5 principes, alignés sur les recommandations ACSM, NSCA et les méthodologies de préparation fonctionnelle Hyrox/CrossFit :\n\n(1) STRUCTURE EN 3 BLOCS PROGRESSIFS : Bloc 1 (W1-W4) = construction de la base aérobie, calibrage des benchmarks, volume modéré. Bloc 2 (W5-W8) = intensification métabolique et force maximale, volume élevé. Bloc 3 (W9-W12) = pic compétitif, simulations complètes, tapering. Chaque bloc se termine par une semaine cutback (W4 et W8) permettant la récupération neuromusculaire avant d'intensifier. Sans cutback, l'accumulation de fatigue sur 12 semaines à 5 sessions/sem aboutit à du surmenage (NSCA : cutback recommandée toutes les 3-5 semaines).\n\n(2) DOUBLE PROGRESSION SUR LES COMPOSÉS LOURDS (NSCA) : Pour Back Squat, Deadlift, Clean & Jerk, Snatch — progression par charge (+2,5-5 kg) semaine après semaine tant que la technique tient. Les clusters sets (W5, W6) et les tentatives 1RM (W7, W9) permettent des pics d'intensité au-dessus du volume habituel sans compromettre la récupération. Repos composés lourds : 2-3 min minimum (ACSM/NSCA) systématiquement respecté dans toutes les sessions — ces temps de repos sont conformes aux rest_seconds ≥ 150-180 sec déclarés pour les séries composées.\n\n(3) MÉTHODES HIIT EXPLICITES ET PROGRESSIVES : Tabata 20/10 (W2) → Intervalles 30/30 VO2max (W6) → Tabata comparatifs (W7, W11) → Sprints d'activation 10/50 (W12 tapering). Les ratios travail/repos sont nommés et justifiés : Tabata (Izumi Tabata 1996, 170% VO2max), 40/20 (ratio 2:1 endurance lactique), 30/30 (Billat 2001, VO2max). La progression du volume HIIT suit : 4 min Tabata W2 → 12 min Tabata triples W3 → EMOM 30 min W5 → AMRAP 25 min W6 → simulations compétition W9-W10.\n\n(4) PRÉVENTION INTÉGRÉE ET COHÉRENTE : Nordic curls (ischio-jambiers) présents toutes les semaines impaires et maintenu en W2, W3, W5, W6, W7, W9, W10, W11 — prévention clé sur sprints HIIT et mouvements olympiques. Activation scapulaire (bande élastique, face pulls, external rotation) systématique en échauffement des séances upper body pour prévenir le swimmer's/thrower's shoulder. Foam roller thoracique hebdomadaire pour maintenir la mobilité nécessaire aux OHS et mouvements overhead. L-sit et GHD sit-ups en core finisher (jamais en début de séance — core fatigué comprometrait les composés lourds, NSCA).\n\n(5) TAPERING SCIENTIFIQUE W12 (ACSM) : Volume réduit de 35-40% vs W11 tout en maintenant 2-3 pics d'intensité courte (sprints 10 sec, sets à 80% 1RM) pour conserver l'activation neuromusculaire. Séance de mobilité dédiée pré-compétition (J3). Ne pas sauter les séances de tapering — elles sont CONSTITUTIVES de la performance le jour J. Repos adaptatif complet J4 et J7 tout au long du plan.",
+  "safety_notes": "DRAPEAUX ROUGES (arrêter immédiatement et consulter si présent) :\n• Douleur articulaire épaule en arc de mouvement (60°-120° d'abduction) : conflit sous-acromial possible. Arrêt des HSPU, press overhead, muscle-ups. Consulter kiné ou médecin du sport avant de reprendre.\n• Douleur lombaire aiguë sur hinge (deadlift, clean, snatch) : arrêt immédiat. Différencier fatigue musculaire érecteurs (normale) vs douleur vertébrale vive/irradiante (drapeaux rouges = consulter).\n• Tendinite ischio-jambiers (douleur au point d'insertion ischion) : risque élevé sur sprints HIIT, cleans, swings. Les Nordic Curls hebdomadaires sont préventifs. Si douleur à la palpation de l'ischion → consulter.\n• Tendinite rotulienne (douleur antérieure genou sur box jumps, pistol squats) : réduire volume pliométrique de 50%, glacer post-séance, consulter si persistent > 7 jours.\n• Stress fractures tibiales (douleur localisée, pointue, aggravée à la percussion) : stop running immédiat, radio ou IRM.\n• Douleur poignet/avant-bras sur mouvements olympiques : surveiller en W1-W2, adapter le positionnement de rack si douleur.\n• Signes de surentraînement (3+ critères simultanés sur 3 jours) : FC repos +10 bpm, sommeil dégradé, motivation effondrée, performance en baisse de >10%, appétit perturbé. → Semaine allégée immédiate type cutback, pas de séance intensive avant résolution.\n\nRÈGLES GÉNÉRALES :\n• Échauffement non optionnel : à l'intensité de l'expert, un échauffement bâclé est le premier facteur de blessure sur mouvements olympiques. Minimum 10 min avec montée de charge progressive sur les composés.\n• DOMS vs douleur : courbatures musculaires 24-72h post-séance = normal. Douleur articulaire pendant la séance = anormale, stop immédiat.\n• Fatigue neuromusculaire : les semaines 9-11 sont extrêmement exigeantes. Un sommeil de qualité (7-9h) et une nutrition adaptée (protéines 1,8-2,2 g/kg/jour) sont non négociables.\n• Hydratation compétition : 500-750 ml dans l'heure précédant, 200-300 ml toutes les 20 min d'effort, boisson de récupération protéines + glucides dans les 30 min post-effort long.\n• Jours de repos actif : les J4 et J7 sont des repos — marche, natation légère ou mobilité uniquement. Pas de séances supplémentaires non planifiées.\n\nINTENSITÉ :\n• Grille RPE utilisée dans ce plan : RPE 6 = effort modéré, conversation normale. RPE 7-8 = effort soutenu, phrases courtes. RPE 9 = très difficile, quelques mots. RPE 10 = effort max, ne peut pas parler. RIR (reps en réserve) : RPE 8 = RIR 2, RPE 9 = RIR 1, RPE 10 = RIR 0.\n• Sur les mouvements olympiques, ne jamais sacrifier la technique pour l'intensité. Un snatch raté à 95% du 1RM est plus risqué qu'un clean & jerk solide à 88%.\n• Règle Tabata : si la production (calories, distance, reps) chute de >15% entre le 1er et le 8e round, la charge/résistance est trop élevée pour le protocole.\n\nSIGNES DE SURCHARGE NEUROMUSCULAIRE (spécifique expert HIIT) :\n• Perte de vitesse sur les sprints (Assault bike, ski erg) de >20% vs semaines précédentes à effort identique.\n• Incapacité à terminer les EMOM dans la minute sur 3+ stations consécutives.\n• Crampes musculaires inhabituelles (mollets, avant-bras) non liées à la déshydratation.\n• Anxiété pré-séance persistante (signe de surmenage central).\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre en sautant la séance manquée, ne pas compenser en doublant.\n• 1-2 semaines de pause : reprendre à la semaine précédente.\n• > 2 semaines de pause : reprendre au début du bloc en cours.\n• Maladie fébrile : repos complet jusqu'à 48h après disparition de la fièvre. Ne pas s'entraîner fiévreux — risque myocardite sur effort intense.\n• Blessure aiguë : consulter avant reprise, adapter les séances en évitant le mouvement douloureux (ex. : blessure genou → maintien upper body et outil sans impact).",
+  "schema_version": 1,
+  "sessions_per_week": 5,
+  "sport": "hiit",
+  "summary": "Programme 12 semaines à 5 sessions par semaine structuré en 3 blocs de 4 semaines : Bloc 1 (W1-W4) construction de la base aérobie-anaérobie et consolidation technique ; Bloc 2 (W5-W8) intensification via Tabata, EMOM et AMRAP chargés ; Bloc 3 (W9-W12) pic compétitif, simulations Hyrox/CrossFit et tapering. Cutback W4 et W8. Mouvements olympiques, pliométrie lourde, skill gymnastics et énergétique mixte tout au long du plan. Checklist d'autonomie en W12.",
+  "weeks": [
+    {
+      "goal": "Établir les valeurs de référence (benchmark) sur les mouvements clés, calibrer les charges et allures pour les 11 semaines suivantes. Volume modéré, qualité maximale.",
+      "sessions": [
+        {
+          "cooldown": "10 min : 5 min vélo très léger, étirements thorax (cat-cow 10 reps), pigeon stretch 60 sec par côté, bande élastique pour épaule (rotation externe 15 reps/côté). Note les valeurs dans un carnet/app.",
+          "day": 1,
+          "duration_minutes": 75,
+          "exercises": [
+            {
+              "name": "Deadlift 1RM test",
+              "notes": "Montée progressive jusqu'au max du jour. Dos neutre impératif. Enregistrer la valeur : elle servira de référence pour les zones de travail. RPE cible : 10 au dernier effort.",
+              "reps": "1",
+              "rest_seconds": 180,
+              "sets": 3
+            },
+            {
+              "name": "Strict Pull-up test",
+              "notes": "Répétitions maximales strictes (pas de kipping). Enregistrer le chiffre : référence pour les progressions gymnastic. Prise pronation, amplitude complète (départ bras tendus, menton au-dessus de la barre).",
+              "reps": "max",
+              "rest_seconds": 180,
+              "sets": 1
+            },
+            {
+              "duration": "10 min",
+              "name": "AMRAP 10 min — Benchmark MetCon A",
+              "notes": "Enchaîner : 10 Wallballs 9/6 kg + 10 Box jumps 60/50 cm + 10 Toes-to-bar. Compter les rounds complets. RPE work 8-9. Enregistrer : rounds + reps.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Benchmark Day 1 — Fuerza y Potencia",
+          "type": "other",
+          "warmup": "10 min échauffement général : 500 m rowing Z2, 10 hip circles par sens, 10 inchworms, 10 dip de poitrine en pose basse squat, 5 muscle snatch vide. Puis 3 séries de montée de charge : Deadlift 10 reps à 50% / 5 reps à 70% / 3 reps à 85% 1RM estimé."
+        },
+        {
+          "cooldown": "8 min : marche 3 min, étirements ischio-jambiers debout 30 sec/côté, hip flexor lunge stretch 45 sec/côté, foam roller thoracique 2 min.",
+          "day": 2,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "duration": "effort maximal",
+              "name": "2000 m row test",
+              "notes": "2000 m à allure maximale maintenue. Enregistrer le temps : référence pour les splits rowing des 12 semaines. Cible expert : sous 7 min pour homme, sous 8 min pour femme. RPE 9-10 sur les 500 derniers mètres.",
+              "rest_seconds": 300,
+              "sets": 1
+            },
+            {
+              "name": "Max unbroken Double-Unders",
+              "notes": "Corde à sauter, enchainement sans interruption. Enregistrer le chiffre. Référence pour les WODs avec double-unders.",
+              "reps": "max",
+              "rest_seconds": 120,
+              "sets": 1
+            },
+            {
+              "name": "EMOM 12 min — Benchmark MetCon B",
+              "notes": "Min impaires : 5 Power Cleans à 70% 1RM estimé. Min paires : 15 Burpees. Si tu ne termines pas dans la minute, note à partir de quelle minute tu as décroché. RPE work 8-9, RPE dans la minute de repos 4-5.",
+              "reps": "1 mouvement par minute",
+              "rest_seconds": 0,
+              "sets": 12
+            }
+          ],
+          "name": "Benchmark Day 2 — Endurance fonctionnelle",
+          "type": "interval",
+          "warmup": "8 min : 400 m footing léger, 10 air squats profonds, 10 dips de hanche bande élastique, 3 x 30 m high knees, activation épaules avec élastique (15 reps face pull)."
+        },
+        {
+          "cooldown": "10 min : shoulder flossing avec bande élastique (10 reps/mouvement : dislocation, overhead stretch), wrist circles 30 sec, pigeon stretch 60 sec/côté, spiderman stretch 30 sec/côté.",
+          "day": 3,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "name": "Snatch technique — complexe",
+              "notes": "Charge : 60-70% 1RM snatch. Focus sur l'extension triple et le turnover. RPE 6-7, qualité absolue. Corriger la position reçue (hips en dessous des épaules, genoux trackés sur les pieds).",
+              "reps": "2 snatch grip deadlift + 2 hang power snatch + 1 full snatch",
+              "rest_seconds": 120,
+              "sets": 6
+            },
+            {
+              "name": "Clean & Jerk technique — complexe",
+              "notes": "Charge : 65-70% 1RM clean & jerk. Attention au catch position du jerk : pied avant à 90°, genou avant aligné, bras verrouillés. RPE 6-7.",
+              "reps": "1 power clean + 1 hang squat clean + 1 split jerk",
+              "rest_seconds": 150,
+              "sets": 5
+            },
+            {
+              "duration": "20-30 sec",
+              "name": "Gymnastic skill — Handstand holds",
+              "notes": "Contre le mur. Engager le core, pointer les orteils, regarder les mains. Prépare les HSPU des semaines suivantes. Si déjà à l'aise, tenter 3-5 sec freestanding.",
+              "rest_seconds": 60,
+              "sets": 5
+            }
+          ],
+          "name": "Technique & Skill — Mouvements olympiques",
+          "type": "technique",
+          "warmup": "12 min : 500 m ski erg léger, mobility overhead squat avec bâton 10 reps, Sotts press 10 reps barre vide, 5 snatch grip deadlift à vide, rotations thoraciques 10/côté."
+        },
+        {
+          "cooldown": "10 min récupération active : marche 4 min, shoulder stretch contre mur 30 sec/côté, foam roller quadriceps 90 sec/côté, étirement pectoraux en porte à porte 30 sec.",
+          "day": 4,
+          "duration_minutes": 60,
+          "exercises": [
+            {
+              "duration": "pour temps",
+              "name": "Fran benchmark",
+              "notes": "21-15-9 : Thrusters 43/29 kg + Pull-ups kipping. Effort maximal, enregistrer le temps. Référence cible expert : sous 5 min pour homme, sous 6 min pour femme. RPE 10 sur les dernières reps.",
+              "rest_seconds": 600,
+              "sets": 1
+            },
+            {
+              "name": "Max HSPU strict",
+              "notes": "Handstand push-ups stricts contre le mur, nez touche le sol. Si pas de HSPU strict, utiliser une défense d'abimed (abmat) sous la tête. Enregistrer la série max et le total des 3 séries.",
+              "reps": "max par série",
+              "rest_seconds": 120,
+              "sets": 3
+            }
+          ],
+          "name": "Benchmark Day 3 — Force endurance",
+          "type": "mixed",
+          "warmup": "8 min : 3 rondes de 5 push-ups + 5 ring rows + 10 air squats. Puis 2 séries Thruster barre vide 10 reps."
+        },
+        {
+          "cooldown": "10 min : étirements complets, attention aux fléchisseurs de hanche (lunge stretch 60 sec/côté), thorax (chat-vache 10 reps), rotation thoracique assise 10/côté.",
+          "day": 6,
+          "duration_minutes": 60,
+          "exercises": [
+            {
+              "duration": "40-45 min",
+              "name": "Monostructural long — choix libre",
+              "notes": "Assault bike, rower, ski erg ou run à Z2 (conversation facile, RPE 4-5). Allure stable et constante. Objectif : construire le moteur aérobie qui soutient toutes les performances anaérobies. Ne pas aller plus fort même si tu te sens bien — la base aérobie Z2 est l'investissement long terme.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Aérobie longue durée — Endurance de base",
+          "type": "endurance",
+          "warmup": "5 min : mobilité hanches et chevilles, activation épaules légère."
+        }
+      ],
+      "theme": "Baseline — évaluation et fondations",
+      "week_number": 1
+    },
+    {
+      "goal": "Augmenter le volume de travail de 15% par rapport à W1. Introduire les formats Tabata et les complexes de force-endurance. Consolider les benchmarks obtenus en W1.",
+      "sessions": [
+        {
+          "cooldown": "8 min : foam roller lombaires et quadriceps, pigeon stretch 60 sec/côté, hip flexor kneeling stretch 45 sec/côté.",
+          "day": 1,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "name": "Back Squat — force",
+              "notes": "Charge : 82-85% 1RM. Descente contrôlée 3 sec, montée explosive. Maintien de la position (poitrine haute, genoux trackés). RPE 8-9. Repos 2-3 min ACSM composés lourds.",
+              "reps": "4",
+              "rest_seconds": 180,
+              "sets": 5
+            },
+            {
+              "name": "Strict Press",
+              "notes": "Charge : 78-80% 1RM. Gainage absolu pendant le press. Pas de triche avec les jambes. RPE 8.",
+              "reps": "5",
+              "rest_seconds": 150,
+              "sets": 4
+            },
+            {
+              "duration": "20 sec travail / 10 sec repos",
+              "name": "Tabata Thruster — méthode Tabata 20/10",
+              "notes": "Charge légère (40-50% 1RM Thruster). 8 rounds continus, 4 min total. RPE work 8-9, RPE repos 2-3. Compter les reps au total des 8 rounds. Méthode Tabata : Izumi Tabata 1996, protocole 170% VO2max.",
+              "rest_seconds": 0,
+              "sets": 8
+            },
+            {
+              "name": "Core finisher — Toes-to-bar EMOM",
+              "notes": "Chaque minute au top : 10 toes-to-bar stricts. Le reste de la minute = repos. Core en fin de séance, jamais en début (core fatigué compromet les composés).",
+              "reps": "10",
+              "rest_seconds": 60,
+              "sets": 5
+            }
+          ],
+          "name": "Force — Squat & Press emphasis",
+          "type": "strength",
+          "warmup": "10 min : 500 m row Z2, 10 passé d'épaule avec bâton, 10 Cossack squats, 5 OHS barre vide, montée de charge back squat : 10 à 50% / 5 à 65% / 3 à 80%."
+        },
+        {
+          "cooldown": "8 min : marche 3 min, étirements fessiers, lunge hip flexor 45 sec/côté, foam roller IT band 90 sec/côté. Attention : tendinites cheville/genou sur pliométrie — surveiller toute douleur antérieure genou.",
+          "day": 2,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "40 sec travail / 20 sec transition",
+              "name": "Circuit 40/20 — 5 stations × 4 rondes",
+              "notes": "Station 1 : Assault bike sprint. Station 2 : Kettlebell swing américain 32/24 kg. Station 3 : Box jumps 60/50 cm. Station 4 : Rowing sprint. Station 5 : Burpee over bar. 90 sec repos entre rondes. RPE work 8-9 (les 40 sec sont à effort max maintenu), RPE récup 2-3. Méthode 40/20 : ratio 2:1 travail/repos pour endurance anaérobie lactique.",
+              "rest_seconds": 90,
+              "sets": 4
+            }
+          ],
+          "name": "HIIT Métabolique — 40/20 intervalles",
+          "type": "interval",
+          "warmup": "8 min : 3 rondes de 10 high knees + 10 jumping jacks + 5 burpees lents + 5 box step-ups par côté."
+        },
+        {
+          "cooldown": "10 min : shoulder flossing bande élastique, wrist stretch 30 sec/direction, foam roller thoracique 2 min, étirement triceps 30 sec/côté.",
+          "day": 3,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "name": "Ring Muscle-up technique",
+              "notes": "Si les muscle-ups sont acquis : focus sur le faux grip et la transition lente. Sinon : complexe 2 ring pull-ups + 2 ring dips. RPE 7-8.",
+              "reps": "2-3",
+              "rest_seconds": 120,
+              "sets": 6
+            },
+            {
+              "name": "HSPU — pyramide de volume",
+              "notes": "Handstand push-ups stricts. Prendre 3 séries max puis dégressif si la forme casse. Tête touche le sol entre les mains, planche complète. RPE 8.",
+              "reps": "5-4-3-2-1 (descente pyramide)",
+              "rest_seconds": 90,
+              "sets": 5
+            },
+            {
+              "name": "Pistol squat technique",
+              "notes": "Genou unique, descente complète, garde la cheville droite. Si nécessaire, TRX pour l'assistance. Fonctionne aussi bien les deux jambes (symétrie G/D).",
+              "reps": "5 par jambe",
+              "rest_seconds": 60,
+              "sets": 4
+            },
+            {
+              "duration": "10-15 sec",
+              "name": "L-sit hold sur parallèles",
+              "notes": "Jambes horizontales, bras tendus, scapulas déprimées. Core actif. En fin de séance, positionné après les mouvements forts.",
+              "rest_seconds": 45,
+              "sets": 4
+            }
+          ],
+          "name": "Gymnastic & Skill — Rings et HSPU",
+          "type": "technique",
+          "warmup": "10 min : activation scapulaire bande élastique (face pulls, external rotation, pull-aparts) 15 reps chaque, 5 skin the cats sur anneaux lents, 10 ring push-ups, hollow body hold 20 sec × 3."
+        },
+        {
+          "cooldown": "8 min : foam roller complet (quadriceps, fessiers, thoracique), lunge hip flexor 45 sec/côté, ischio debout 30 sec/côté.",
+          "day": 5,
+          "duration_minutes": 60,
+          "exercises": [
+            {
+              "duration": "20 min",
+              "name": "AMRAP 20 min — Chipper fonctionnel",
+              "notes": "Enchaîner sans interruption : 5 Power Cleans 70/47 kg + 10 Ring push-ups + 15 Wall balls 9/6 kg + 20 Double-unders. Compter les rounds. Objectif cible expert : 6+ rounds. RPE moyen 7-8 (rythme soutenu mais gérable sur 20 min).",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "name": "Nordic curl — prévention ischio",
+              "notes": "Genoux fixés au sol, descente la plus lente possible (3-5 sec). Exercice préventif critique : les ischio-jambiers sont exposés aux claquages sur sprints HIIT et clean. RPE excentrique élevé — normal. Introduit en W2 comme annoncé dans progression_logic.",
+              "reps": "6",
+              "rest_seconds": 90,
+              "sets": 3
+            }
+          ],
+          "name": "AMRAP chargé — Force endurance",
+          "type": "mixed",
+          "warmup": "10 min : 400 m ski erg, 10 Romanian deadlifts barre vide, 10 sumo deadlift high pull barre vide, 3 séries de montée en power clean (5 reps à 50% / 3 reps à 65% / 2 reps à 75%)."
+        },
+        {
+          "cooldown": "8 min : étirements complets, attention pigeon stretch et hip flexor lunge.",
+          "day": 6,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "40 min",
+              "name": "Endurance longue Z2 — combinée",
+              "notes": "10 min rower Z2 + 10 min assault bike Z2 + 10 min ski erg Z2 + 10 min run lent ou cycle Z2. RPE 4-5 constant, conversation facile. Développe le moteur aérobie de base qui soutient la récupération entre les efforts HIIT. Ne pas dépasser Z3.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Aérobie Z2 — Récupération active longue",
+          "type": "endurance",
+          "warmup": "5 min : mobilité hanches, activation scapulaire légère."
+        }
+      ],
+      "theme": "Construction — volumes et intensités en montée",
+      "week_number": 2
+    },
+    {
+      "goal": "Monter l'intensité sur les séances HIIT. Introduire les sprints Assault bike et les complexes olympiques en fatigue. Volume +10% vs W2.",
+      "sessions": [
+        {
+          "cooldown": "10 min : étirements épaule et thorax, pigeon stretch, foam roller quadriceps et IT band.",
+          "day": 1,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "name": "Snatch — montée de charge",
+              "notes": "Atteindre 85-90% 1RM snatch sur les dernières séries. Technique non-négociable — si la position reçue est mauvaise, descendre la charge. RPE 8-9 sur les dernières séries. Repos 2-3 min entre séries lourdes.",
+              "reps": "2",
+              "rest_seconds": 150,
+              "sets": 6
+            },
+            {
+              "name": "Box jumps lourds — réception profonde",
+              "notes": "Box 75-80 cm (homme) ou 60-65 cm (femme). Sauter depuis position de demi-squat, atterrissage amorti profond (reçu en squat). Descente face avant ou par les côtés. Développe la puissance explosive des membres inférieurs pour les WODs plyo. RPE 8.",
+              "reps": "4",
+              "rest_seconds": 90,
+              "sets": 5
+            },
+            {
+              "name": "Depth drop to squat",
+              "notes": "Chuter d'une boîte 50 cm, atterrir en squat profond absorbé. Pliométrie réactive. Renforce la capacité de freinage excentrique des quadriceps et fessiers. Nouveau pattern en W3.",
+              "reps": "5",
+              "rest_seconds": 90,
+              "sets": 4
+            },
+            {
+              "name": "GHD sit-ups — core post-session",
+              "notes": "Sur GHD machine. Amplitude complète, descente contrôlée. Core en fin de séance. Si nouveau sur GHD, limiter à 10 reps (DOMS peuvent être sévères les 48h suivantes — DOMS vs douleur : courbatures fessiers/ischio = normal, douleur lombaire vive = stop).",
+              "reps": "15",
+              "rest_seconds": 60,
+              "sets": 3
+            }
+          ],
+          "name": "Puissance explosive — Snatch et plyo",
+          "type": "strength",
+          "warmup": "12 min : 500 m row, overhead mobility (10 OHS bâton, 10 passé d'épaule), 5 snatch grip deadlifts, 3 séries de hang power snatch montant en charge."
+        },
+        {
+          "cooldown": "8 min récupération impérative : 5 min marche, étirements chevilles (cercles 30 sec/côté), genoux (quadriceps debout 30 sec/côté). Surveiller douleur antérieure genou et cheville post-pliométrie.",
+          "day": 2,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "duration": "20 sec sprint / 10 sec repos",
+              "name": "Tabata Assault bike 20/10",
+              "notes": "Effort maximal sur chaque sprint. Méthode Tabata pure : 8 rounds = 4 min. RPE work 9-10, RPE repos 2. 3 min repos. Compter les calories totales ou la distance. Référence : noter pour comparer en W7.",
+              "rest_seconds": 180,
+              "sets": 8
+            },
+            {
+              "duration": "20 sec sprint / 10 sec repos",
+              "name": "Tabata Burpee box jump over 20/10",
+              "notes": "Deuxième bloc Tabata : burpee + saut par-dessus la boîte (60/50 cm). 8 rounds. RPE work 8-9. 3 min repos. Compter les reps totales.",
+              "rest_seconds": 180,
+              "sets": 8
+            },
+            {
+              "duration": "20 sec sprint / 10 sec repos",
+              "name": "Tabata Double-unders 20/10",
+              "notes": "Troisième bloc Tabata : corde à sauter double-unders. Effort max sur les 20 sec. Dernier bloc — RPE 8-9 work. Compter les reps totales des 8 rounds.",
+              "rest_seconds": 0,
+              "sets": 8
+            }
+          ],
+          "name": "Tabata intensif — Assault bike + Body weight",
+          "type": "interval",
+          "warmup": "8 min : 3 rondes de 200 m run + 10 jumping lunges + 5 strict push-ups."
+        },
+        {
+          "cooldown": "10 min : marche récupération 4 min, foam roller complet, foam roller mollets 90 sec/côté, étirement ischio-jambiers 40 sec/côté.",
+          "day": 3,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "duration": "pour temps",
+              "name": "Simulation Hyrox stations 1-4",
+              "notes": "Enchaîner sans repos : 1000 m ski erg + 1000 m run + 50 m sled push (+ 70/+ 40 kg) + 1000 m run + 50 m sled drag (+ 70/+ 40 kg) + 1000 m run. Chronométrer. Simuler l'alternance course / station fonctionnelle typique Hyrox. RPE moyen 7-8, effort soutenu.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "40 m par série",
+              "name": "Farmer carry — finisher",
+              "notes": "Haltères 40/25 kg par main. Dos droit, épaules en arrière. Complète la simulation Hyrox (farmer carry est une station Hyrox). RPE 8.",
+              "rest_seconds": 60,
+              "sets": 4
+            }
+          ],
+          "name": "Hyrox Simulation partielle — Running + Functional",
+          "type": "mixed",
+          "warmup": "8 min : 400 m run léger, 10 hip circles, 10 leg swings avant-arrière, 10 leg swings latéraux, activation core (hollow body 20 sec × 2)."
+        },
+        {
+          "cooldown": "10 min : bande élastique épaule (external rotation, pull-apart), foam roller thoracique, lunge stretch 45 sec/côté.",
+          "day": 5,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "name": "Deadlift — force maximale",
+              "notes": "Charge : 87-90% 1RM. Technique parfaite : engagement lat (rentrer les épaules), barre sur le corps, extension triple explosive. RPE 8-9. Repos 2-3 min ACSM sur composés lourds.",
+              "reps": "3",
+              "rest_seconds": 180,
+              "sets": 5
+            },
+            {
+              "name": "Pendlay Row",
+              "notes": "Barre au sol entre chaque rep (Pendlay strict). Dos horizontal, traction vers les hanches. Pull horizontal complémentaire au deadlift. Charge : 75-80% 1RM row. RPE 8.",
+              "reps": "6",
+              "rest_seconds": 150,
+              "sets": 4
+            },
+            {
+              "name": "Weighted Pull-up — pull vertical",
+              "notes": "Ceinture lestée (10-20 kg selon niveau). Prise pronation, amplitude complète. Pull vertical obligatoire — pattern clé pour les muscle-ups et les programmes fonctionnels. RPE 8.",
+              "reps": "4",
+              "rest_seconds": 150,
+              "sets": 4
+            },
+            {
+              "name": "Nordic curl — prévention ischio",
+              "notes": "Même protocole qu'en W2. Excentrique lent 4-5 sec. Maintenu toutes les semaines impaires comme annoncé dans progression_logic.",
+              "reps": "6",
+              "rest_seconds": 90,
+              "sets": 3
+            }
+          ],
+          "name": "Force — Hinge et Upper Pull",
+          "type": "strength",
+          "warmup": "10 min : 400 m ski erg, 10 Romanian deadlifts à vide, 10 hip circles, 3 séries de deadlift montant : 8 à 50% / 5 à 70% / 3 à 80%."
+        },
+        {
+          "cooldown": "8 min : mollets (excentrique sur marche 10 reps/côté), foam roller IT band, étirements quadriceps.",
+          "day": 6,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "duration": "35 min",
+              "name": "Run Z2 — foulée technique",
+              "notes": "Course à RPE 4-5, conversation facile. Focus foulée : cadence 170-180 pas/min, attaque médio-pied, bras à 90°. Le running est une station clé Hyrox — développer l'économie de course améliore les performances globales. Ne pas dépasser Z3.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Endurance aérobie Z2 — technique run",
+          "type": "endurance",
+          "warmup": "5 min mobilité hanches et chevilles."
+        }
+      ],
+      "theme": "Intensification — pic anaérobie et puissance",
+      "week_number": 3
+    },
+    {
+      "goal": "Volume réduit de 20% vs W3. Maintenir la qualité technique et les intensités, réduire le volume total. Récupération neuromusculaire avant le Bloc 2 intensif.",
+      "sessions": [
+        {
+          "cooldown": "12 min : shoulder flossing, wrist stretch, pigeon 60 sec/côté, foam roller thoracique.",
+          "day": 1,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "name": "Snatch — qualité 70-75%",
+              "notes": "Charge réduite cutback : 70-75% 1RM. Focus absolu sur la qualité technique : premier pull lent, transition rapide, réception stable. RPE 6-7. 8 singles, pas de montée en charge.",
+              "reps": "1",
+              "rest_seconds": 90,
+              "sets": 8
+            },
+            {
+              "name": "Clean & Jerk — qualité 70-75%",
+              "notes": "Même principe cutback. 6 singles à 70-75%. Observer et corriger : timing du catch clean, position du rack, dip et drive du jerk. RPE 6-7.",
+              "reps": "1",
+              "rest_seconds": 90,
+              "sets": 6
+            }
+          ],
+          "name": "Technique olympique — qualité pure",
+          "type": "technique",
+          "warmup": "12 min overhead mobility complet + 3 séries snatch complexe à vide."
+        },
+        {
+          "cooldown": "8 min : étirements épaule, wrist, hanche.",
+          "day": 2,
+          "duration_minutes": 45,
+          "exercises": [
+            {
+              "name": "EMOM 16 min — technique en fatigue modérée",
+              "notes": "Min 1 : 10 Kettlebell swings 32/24 kg. Min 2 : 8 Box jumps 60/50 cm (step down lent). Min 3 : 5 HSPU stricts. Min 4 : 10 Ring rows. Répéter 4 cycles. Effort RPE 6-7 — cutback, pas d'effort max. L'objectif est la fluidité technique.",
+              "reps": "1 mouvement par minute",
+              "rest_seconds": 0,
+              "sets": 16
+            }
+          ],
+          "name": "HIIT modéré — EMOM technique",
+          "type": "interval",
+          "warmup": "8 min : 400 m row, activation générale."
+        },
+        {
+          "cooldown": "8 min : foam roller complet.",
+          "day": 3,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "name": "Back Squat — léger cutback",
+              "notes": "Charge : 70-75% 1RM. Maintien du pattern, volume réduit. RPE 6-7. Repos 2 min suffisant à cette intensité.",
+              "reps": "5",
+              "rest_seconds": 150,
+              "sets": 3
+            },
+            {
+              "name": "Strict Press — léger cutback",
+              "notes": "Charge : 70% 1RM. Technique pure. RPE 6.",
+              "reps": "6",
+              "rest_seconds": 120,
+              "sets": 3
+            },
+            {
+              "name": "Nordic curl — maintien",
+              "notes": "Volume réduit cutback. Maintien de la prévention ischio — ne pas supprimer cette semaine.",
+              "reps": "6",
+              "rest_seconds": 90,
+              "sets": 2
+            },
+            {
+              "name": "GHD sit-ups — core cutback",
+              "notes": "Volume réduit. Core en fin de séance.",
+              "reps": "12",
+              "rest_seconds": 60,
+              "sets": 2
+            }
+          ],
+          "name": "Force légère — maintien cutback",
+          "type": "strength",
+          "warmup": "8 min : activation générale, montée de charge Back squat 10 à 50% / 5 à 65%."
+        },
+        {
+          "cooldown": "10 min : récupération complète, foam roller, étirements.",
+          "day": 5,
+          "duration_minutes": 45,
+          "exercises": [
+            {
+              "duration": "12 min",
+              "name": "AMRAP 12 min — volume réduit",
+              "notes": "Enchaîner : 8 Wallballs 9/6 kg + 8 Pull-ups + 200 m run. RPE moyen 6-7. Effort gérable, se concentrer sur la fluidité des transitions et l'économie de mouvement. Compter les rounds pour comparaison future.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "MetCon léger — AMRAP cutback",
+          "type": "mixed",
+          "warmup": "8 min : activation globale."
+        },
+        {
+          "cooldown": "5 min respiration diaphragmatique : inspire 4 sec, retiens 4 sec, expire 6 sec. Active le système parasympathique.",
+          "day": 6,
+          "duration_minutes": 40,
+          "exercises": [
+            {
+              "duration": "30 min",
+              "name": "Routine mobilité complète",
+              "notes": "Séquence : 2 min foam roller thoracique + 90/90 hip mobility 60 sec/côté + pigeon stretch 90 sec/côté + lunge stretch avec rotation 45 sec/côté + shoulder dislocations bâton 15 reps + ankle CARs 10 reps/côté + cat-cow 10 reps. RPE 2-3. Cette séance de récupération est CONSTITUTIVE de la performance du Bloc 2.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Mobilité et récupération active",
+          "type": "mobility"
+        }
+      ],
+      "theme": "Cutback W4 — Consolidation et récupération",
+      "week_number": 4
+    },
+    {
+      "goal": "Introduire les charges les plus lourdes du plan sur les composés. Augmenter le volume EMOM et AMRAP. +20% volume vs W4 cutback.",
+      "sessions": [
+        {
+          "cooldown": "10 min : foam roller complet, pigeon stretch, lunge stretch.",
+          "day": 1,
+          "duration_minutes": 75,
+          "exercises": [
+            {
+              "name": "Back Squat — intensité haute",
+              "notes": "Charge : 87-90% 1RM. Phase de force maximale du Bloc 2. RPE 9. Repos 3 min entre séries (ACSM/NSCA composés lourds).",
+              "reps": "3",
+              "rest_seconds": 180,
+              "sets": 4
+            },
+            {
+              "name": "Romanian Deadlift — force excentrique",
+              "notes": "Charge : 70-75% 1RM deadlift. Descente 4 sec, extension complète en haut. Hinge pattern, ischio en tension tout au long. RPE 8.",
+              "reps": "6",
+              "rest_seconds": 150,
+              "sets": 4
+            },
+            {
+              "name": "Weighted Dip — push vertical assistance",
+              "notes": "Ceinture lestée +15-20 kg. Profondeur : épaules sous les coudes. Push vertical complémentaire. RPE 8. Attention : douleur antérieure épaule = réduire amplitude ou charge.",
+              "reps": "6",
+              "rest_seconds": 120,
+              "sets": 4
+            },
+            {
+              "name": "Toes-to-bar EMOM — core finisher",
+              "notes": "6 min EMOM : 12 toes-to-bar au top de chaque minute. Core en fin de séance.",
+              "reps": "12",
+              "rest_seconds": 60,
+              "sets": 6
+            }
+          ],
+          "name": "Force maximale — Squat et Deadlift jumelés",
+          "type": "strength",
+          "warmup": "12 min : 500 m ski erg, mobilité thoracique, montée charge squat (10/50%, 5/65%, 3/80%, 1/88%)."
+        },
+        {
+          "cooldown": "10 min récupération : marche 4 min, étirements complets priorité ischio, hip flexor.",
+          "day": 2,
+          "duration_minutes": 60,
+          "exercises": [
+            {
+              "name": "EMOM 30 min — 5 mouvements cycliques",
+              "notes": "Min 1 : 15 Cal Assault bike. Min 2 : 5 Power Cleans 70/47 kg. Min 3 : 12 Box jumps 60/50 cm. Min 4 : 8 Pull-ups kipping. Min 5 : 20 m double kettlebell front rack carry 24/16 kg. Répéter 6 cycles (30 min total). RPE work 7-8 soutenu, RPE dans la minute de repos 4. Si tu ne termines pas dans la minute sur 2+ stations, réduire le volume de 2 reps.",
+              "reps": "1 mouvement par minute",
+              "rest_seconds": 0,
+              "sets": 30
+            }
+          ],
+          "name": "EMOM long — Capacité de travail",
+          "type": "interval",
+          "warmup": "10 min : row 500 m, activation épaules et hanches."
+        },
+        {
+          "cooldown": "10 min : foam roller mollets, IT band, foam roller thoracique, shoulder stretch.",
+          "day": 3,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "duration": "pour temps — 3 rondes",
+              "name": "Helen — pour temps",
+              "notes": "3 rondes : 400 m run + 21 KB swings américains 32/24 kg + 12 Pull-ups kipping. Effort maximal. Cible expert : sous 9 min (homme) / sous 11 min (femme). Comparer avec le benchmark W1 si tu l'as fait. Pace les 400 m run pour ne pas partir trop vite sur la ronde 1.",
+              "rest_seconds": 0,
+              "sets": 3
+            },
+            {
+              "name": "Nordic curl — prévention ischio",
+              "notes": "Maintenu comme annoncé — prévention ischio sur sessions intensives running + KB swings. Toujours en fin de séance.",
+              "reps": "6",
+              "rest_seconds": 90,
+              "sets": 3
+            }
+          ],
+          "name": "CrossFit benchmark — Helen",
+          "type": "mixed",
+          "warmup": "10 min : 400 m run léger, KB swing 10 reps à charge légère, pull-up activation 5 reps."
+        },
+        {
+          "cooldown": "10 min : shoulder flossing, foam roller thoracique, pigeon stretch.",
+          "day": 5,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "name": "Power Snatch — clusters",
+              "notes": "Cluster set : 1 rep, 15 sec pause dans le rack, 1 rep, 15 sec pause, 1 rep. Charge : 80-85% 1RM. Les clusters permettent plus de volume proche du max sans compromis technique. RPE 8-9. Repos 2 min 30 entre clusters.",
+              "reps": "1.1.1 (cluster set)",
+              "rest_seconds": 150,
+              "sets": 6
+            },
+            {
+              "duration": "15 min",
+              "name": "AMRAP 15 min — Cardio-force mixte",
+              "notes": "5 Hang Power Cleans 60/40 kg + 10 Burpees + 15 Wall balls 9/6 kg + 200 m row. RPE moyen 7-8. Compter rounds. Gérer l'effort pour maintenir un rythme constant plutôt que de partir à fond sur les premières rondes.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Snatch Power & HIIT combo",
+          "type": "mixed",
+          "warmup": "12 min : overhead mobility, 3 séries snatch montant (5 à 55%, 3 à 70%, 1 à 80%)."
+        },
+        {
+          "cooldown": "8 min : étirements complets, foam roller mollets, lunge stretch.",
+          "day": 6,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "40 min",
+              "name": "Alternance run / bike Z2",
+              "notes": "20 min run Z2 + 20 min assault bike Z2. RPE 4-5 constant. Objectif : développer l'endurance aérobie fondamentale sans accumulation de fatigue neuromusculaire. Ne pas franchir Z3 même si tu te sens bien.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Endurance Z2 — Run + Bike combo",
+          "type": "endurance",
+          "warmup": "5 min : mobilité chevilles et hanches."
+        }
+      ],
+      "theme": "Bloc 2 — Intensification lactique",
+      "week_number": 5
+    },
+    {
+      "goal": "Introduire les intervalles courts à effort maximal (VO2max). Augmenter la charge des composés de 2-3% vs W5. Volume maintenu.",
+      "sessions": [
+        {
+          "cooldown": "10 min : pigeon stretch, lunge stretch, foam roller thoracique.",
+          "day": 1,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "name": "Clean & Jerk — cluster sets",
+              "notes": "Charge : 85-88% 1RM. Cluster : 1 rep, 20 sec pause, 1 rep. Développe la puissance au-dessus du seuil habituel. RPE 9 sur la deuxième rep. Repos 3 min entre clusters.",
+              "reps": "1.1 (cluster)",
+              "rest_seconds": 180,
+              "sets": 5
+            },
+            {
+              "name": "Front Squat — drop sets",
+              "notes": "Charge : 80-83% 1RM front squat. Coudes hauts, poitrine verticale. Complémente le clean pour la position de rack. RPE 8-9.",
+              "reps": "3",
+              "rest_seconds": 150,
+              "sets": 4
+            },
+            {
+              "name": "Single-leg Romanian Deadlift — hinge unilatéral",
+              "notes": "Haltère ipsilatéral 24/16 kg. Bascule du tronc, jambe libre tendue vers l'arrière. Symétrie G/D et proprioception cheville/hanche. RPE 7.",
+              "reps": "8 par jambe",
+              "rest_seconds": 90,
+              "sets": 3
+            },
+            {
+              "name": "GHD back extension — core/hinge finisher",
+              "notes": "Contrôlé, pas d'hyperextension lombaire. Core finisher en fin de séance.",
+              "reps": "12",
+              "rest_seconds": 60,
+              "sets": 3
+            }
+          ],
+          "name": "Force explosive — Cluster Clean & Jerk",
+          "type": "strength",
+          "warmup": "12 min : 500 m row, mobility overhead, montée Clean & Jerk."
+        },
+        {
+          "cooldown": "10 min : marche 5 min, étirements thorax et épaule, étirements mollets excentrique 10 reps/côté.",
+          "day": 2,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "30 sec sprint / 30 sec repos",
+              "name": "Intervalles VO2max Assault bike — 30/30",
+              "notes": "10 rounds de 30 sec sprint maximal / 30 sec pédalage très lent (ratio 1:1). RPE work 9-10 (le dernier sprint doit être aussi intense que le premier — si décroissance > 15%, réduire à 8 rounds). RPE repos 2-3. Format 30/30 : efficace pour élever VO2max (Billat 2001).",
+              "rest_seconds": 0,
+              "sets": 10
+            },
+            {
+              "duration": "40 sec sprint / 20 sec repos",
+              "name": "Intervalles VO2max Ski erg — 40/20",
+              "notes": "8 rounds de 40 sec effort maximal / 20 sec repos complet. RPE work 9-10. 5 min repos complet entre les deux blocs. Méthode 40/20 : ratio 2:1. Compter les calories par intervalle pour comparaison.",
+              "rest_seconds": 300,
+              "sets": 8
+            }
+          ],
+          "name": "Intervalles VO2max — Assault bike + Ski erg",
+          "type": "interval",
+          "warmup": "10 min : 3 rondes faciles de 200 m bike + 200 m ski erg, montée progressive cadence."
+        },
+        {
+          "cooldown": "10 min : wrist stretch, shoulder flossing, forearm rolling, étirements dorsaux.",
+          "day": 3,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "name": "Bar Muscle-up — volume technique",
+              "notes": "Barre fixe. Si acquis : focus sur la transition high hip (hanche à la barre avant la poussée). Sinon : banded bar muscle-up ou jumping muscle-up. 8 séries de 2-3 reps. RPE 7-8.",
+              "reps": "2-3",
+              "rest_seconds": 90,
+              "sets": 8
+            },
+            {
+              "name": "Ring Muscle-up — volume",
+              "notes": "Anneaux plus instables que la barre — coordination accrue. Si les ring MU sont acquis, tenter sans faux grip. RPE 8.",
+              "reps": "2",
+              "rest_seconds": 90,
+              "sets": 5
+            },
+            {
+              "duration": "10 m ou 15 sec",
+              "name": "Handstand Walk — distance",
+              "notes": "Marche sur les mains. Engagement total du core, regard entre les mains. Si pas encore acquis : shoulder taps contre le mur 10 reps. Développe la stabilité d'épaule nécessaire pour les HSPU sous fatigue.",
+              "rest_seconds": 60,
+              "sets": 5
+            },
+            {
+              "name": "Rope Climb — 15 pieds",
+              "notes": "Grimper à la corde technique pieds (L-sit préféré si la technique est acquise). 15 pieds = 4,5 m. Composante gymnastic/endurance fondamentale CrossFit. RPE 7.",
+              "reps": "1 montée",
+              "rest_seconds": 60,
+              "sets": 4
+            }
+          ],
+          "name": "Gymnastic avancé — Muscle-ups et skills",
+          "type": "technique",
+          "warmup": "12 min : activation scapulaire élastique, skin the cats 5 reps sur anneaux, kipping swings 10 reps, 5 pull-ups lents."
+        },
+        {
+          "cooldown": "12 min : marche 5 min, foam roller complet (priorité quadriceps, IT band, mollets), pigeon stretch.",
+          "day": 5,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "duration": "25 min",
+              "name": "AMRAP 25 min — WOD compétition",
+              "notes": "Enchaîner : 5 Power Cleans 80/55 kg + 5 Bar Muscle-ups + 10 Box jumps 75/60 cm + 15 Double-unders + 200 m run. Compter les rounds. Cible expert : 6+ rounds sur 25 min. RPE moyen 8. Stratégie : pacing dès le début, ne pas partir à fond sur la ronde 1.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "name": "Nordic curl — prévention ischio",
+              "notes": "Maintenu — prévention sur séance longue avec run et power cleans. Core en fin de séance.",
+              "reps": "6",
+              "rest_seconds": 90,
+              "sets": 3
+            }
+          ],
+          "name": "AMRAP chargé lourd — Simulation compétition",
+          "type": "mixed",
+          "warmup": "10 min : activation globale, 400 m run, montée Power Clean."
+        },
+        {
+          "cooldown": "8 min : shoulder stretch, bande élastique external rotation, étirements ischio.",
+          "day": 6,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "40 min",
+              "name": "Rower continu Z2",
+              "notes": "Allure Z2, split 500 m stable (+/- 5 sec). RPE 4-5. Cadence rame 22-24 coups/min. Technique : jambes — tronc — bras en poussée, bras — tronc — jambes en retour (ordre strict). Le rowing Z2 est complémentaire au running Hyrox et développe le moteur sans impact articulaire.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Endurance Z2 — Rower long",
+          "type": "endurance",
+          "warmup": "5 min : mobilité épaule et hanche."
+        }
+      ],
+      "theme": "Intensification — VO2max et puissance lactique",
+      "week_number": 6
+    },
+    {
+      "goal": "Volume et intensité les plus élevés du Bloc 2. Introduire les chipper longs et les complexes olympiques en fatigue. Volume +10% vs W6.",
+      "sessions": [
+        {
+          "cooldown": "10 min : foam roller complet, pigeon, lunge.",
+          "day": 1,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "name": "Back Squat — test 1RM mi-plan",
+              "notes": "Après 3 séries de montée progressive (5 à 60% / 3 à 75% / 1 à 88%). Tentative de nouveau 1RM ou confirmation. Compare au benchmark W1. RPE 10 si succès. Repos 5 min avant d'enchaîner.",
+              "reps": "1 (tentative max)",
+              "rest_seconds": 300,
+              "sets": 1
+            },
+            {
+              "name": "Back Squat — volume post-test",
+              "notes": "Redescendre à 75-78% post-test pour volume. RPE 7-8.",
+              "reps": "5",
+              "rest_seconds": 150,
+              "sets": 3
+            },
+            {
+              "name": "Push Press — puissance shoulder",
+              "notes": "Charge : 80-83% 1RM. Dip rapide, drive explosif des jambes, press verrouillé. Complément push vertical. RPE 8.",
+              "reps": "4",
+              "rest_seconds": 150,
+              "sets": 4
+            },
+            {
+              "name": "Toes-to-bar EMOM — core finisher",
+              "notes": "7 min EMOM au top. Core en fin de séance — volume légèrement augmenté vs W5.",
+              "reps": "12",
+              "rest_seconds": 60,
+              "sets": 7
+            }
+          ],
+          "name": "Force maximale — Séance test mi-plan",
+          "type": "strength",
+          "warmup": "12 min : mobilité complète, montée charge squat et deadlift."
+        },
+        {
+          "cooldown": "10 min : marche impérative 5 min, foam roller complet. Risques tendineux cheville/genou : surveiller douleur antérieure genou post-Tabata — si persistante > 48h, consulter.",
+          "day": 2,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "20 sec sprint / 10 sec repos",
+              "name": "Tabata Assault bike — comparaison W3",
+              "notes": "Même protocole qu'en W3 J2. Comparer les calories/distance avec W3. Cible : maintenance ou amélioration de 5-10%. RPE 9-10. 3 min repos.",
+              "rest_seconds": 180,
+              "sets": 8
+            },
+            {
+              "duration": "20 sec travail / 10 sec repos",
+              "name": "Tabata Thruster + Pull-up alternés 20/10",
+              "notes": "Alternance : 20 sec Thrusters 50/35 kg / 10 sec repos / 20 sec Pull-ups kipping / 10 sec repos. Compter 1 round = 1 Thruster + 1 Pull-up (alterner). 8 rounds. RPE 9. 3 min repos.",
+              "rest_seconds": 180,
+              "sets": 8
+            },
+            {
+              "duration": "20 sec sprint / 10 sec repos",
+              "name": "Tabata Row — intensité terminale",
+              "notes": "8 rounds rowing sprint. RPE 9-10. Dernier bloc Tabata de la séance. Compter les mètres totaux des 8 rounds. Référence pour W11.",
+              "rest_seconds": 0,
+              "sets": 8
+            }
+          ],
+          "name": "Tabata double bloc — Puissance lactique pic",
+          "type": "interval",
+          "warmup": "10 min : activation cardio et articulaire progressive."
+        },
+        {
+          "cooldown": "15 min : marche 6 min, foam roller complet, étirements priorité mollets, ischio, hip flexor. Hydratation et collation post-effort obligatoires sur cette durée.",
+          "day": 3,
+          "duration_minutes": 75,
+          "exercises": [
+            {
+              "duration": "pour temps",
+              "name": "Simulation Hyrox étendue",
+              "notes": "Enchaîner : 1000 m ski erg + 1000 m run + 50 m sled push (lourd) + 1000 m run + 50 m sled drag + 1000 m run + 80 m burpee broad jumps + 1000 m run + 1 round sandbag lunges 20 m (22/15 kg). Chronométrer chaque station et le total. RPE soutenu 7-8. Simuler la gestion de l'effort sur une durée >40 min.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Hyrox Simulation étendue — stations 1-7",
+          "type": "mixed",
+          "warmup": "10 min : 400 m run, activation générale, montée charge progressive sled."
+        },
+        {
+          "cooldown": "10 min : shoulder flossing, foam roller pectoraux, étirements biceps/avant-bras.",
+          "day": 5,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "name": "Bench Press — force",
+              "notes": "Charge : 87-90% 1RM. Push horizontal lourd — souvent sous-développé en CrossFit. Commande scapulaire : omoplates rétractées et déprimées avant chaque rep. RPE 9. Repos 3 min ACSM composés lourds.",
+              "reps": "3",
+              "rest_seconds": 180,
+              "sets": 5
+            },
+            {
+              "name": "Pendlay Row — force",
+              "notes": "Charge : 80-83% 1RM. Pull horizontal complémentaire au bench. RPE 8-9.",
+              "reps": "4",
+              "rest_seconds": 150,
+              "sets": 5
+            },
+            {
+              "name": "Weighted Pull-up — charge augmentée",
+              "notes": "Ceinture lestée +20-25 kg (progression vs W3). Pull vertical — pattern essentiel. RPE 8-9. Repos 2 min 30.",
+              "reps": "4",
+              "rest_seconds": 150,
+              "sets": 5
+            },
+            {
+              "name": "Ring Dip lestés",
+              "notes": "Ceinture lestée +10-15 kg sur anneaux. Push vertical instable. RPE 8. Attention : épaule (conflit antéro-latéral) — si douleur en arc de mouvement, stop et retirer le lest.",
+              "reps": "6",
+              "rest_seconds": 120,
+              "sets": 3
+            },
+            {
+              "name": "Nordic curl — maintien ischio",
+              "notes": "Maintien prévention. Core en fin de séance.",
+              "reps": "6",
+              "rest_seconds": 90,
+              "sets": 3
+            }
+          ],
+          "name": "Force — Press et Pull spécialisation",
+          "type": "strength",
+          "warmup": "10 min : bande élastique activation épaule, 3 séries bench montant, 3 séries pull-up lestés montants."
+        },
+        {
+          "cooldown": "8 min : mollets (excentrique), pigeon stretch, foam roller IT band.",
+          "day": 6,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "40 min",
+              "name": "Run Z2 avec 4 accélérations courtes",
+              "notes": "35 min run Z2 (RPE 4-5) + 4 accélérations de 30 sec à RPE 7 (Z3-4) réparties aux min 10, 20, 28, 35. Retour Z2 après chaque accélération. Fartlek léger pour stimuler la filière lactique en récupération d'une semaine intense. Ne pas forcer les accélérations au-delà de Z4.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Endurance Z2 + Fartlek léger",
+          "type": "endurance",
+          "warmup": "5 min mobilité."
+        }
+      ],
+      "theme": "Pic bloc 2 — Haute densité",
+      "week_number": 7
+    },
+    {
+      "goal": "Volume réduit de 20% vs W7. Récupération neuromusculaire et articulaire complète. Maintien de la qualité technique sur les mouvements olympiques. Préparation mentale au Bloc 3 compétitif.",
+      "sessions": [
+        {
+          "cooldown": "12 min : shoulder flossing, wrist stretch, foam roller thoracique.",
+          "day": 1,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "name": "Snatch — singles qualité 72-77%",
+              "notes": "Volume réduit, intensité modérée. Focus intégration technique : timing du deuxième tirage, position reçue stable. RPE 6-7.",
+              "reps": "1",
+              "rest_seconds": 90,
+              "sets": 8
+            },
+            {
+              "name": "Clean & Jerk — qualité 72-77%",
+              "notes": "Même principe. Observer spécifiquement la position du jerk : pied avant à 90°, verrouillage bras complet. RPE 6-7.",
+              "reps": "1",
+              "rest_seconds": 90,
+              "sets": 6
+            }
+          ],
+          "name": "Technique olympique — qualité cutback",
+          "type": "technique",
+          "warmup": "12 min : overhead mobility complet, 3 séries snatch à vide."
+        },
+        {
+          "cooldown": "8 min : étirements complets.",
+          "day": 2,
+          "duration_minutes": 45,
+          "exercises": [
+            {
+              "name": "EMOM 20 min — 4 mouvements",
+              "notes": "Min 1 : 8 KB swings 32/24 kg. Min 2 : 5 Ring push-ups. Min 3 : 6 Box step-ups 60 cm par jambe (step lent). Min 4 : 8 Pull-ups stricts. Répéter 5 cycles. RPE work 6-7 cutback. Fluidité technique, pas d'effort max.",
+              "reps": "1 mouvement par minute",
+              "rest_seconds": 0,
+              "sets": 20
+            }
+          ],
+          "name": "HIIT modéré — EMOM technique cutback",
+          "type": "interval",
+          "warmup": "8 min activation générale."
+        },
+        {
+          "cooldown": "8 min : foam roller complet.",
+          "day": 3,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "name": "Front Squat — léger",
+              "notes": "Charge : 70-73% 1RM. Technique pure — coudes hauts, poitrine verticale. RPE 6-7.",
+              "reps": "5",
+              "rest_seconds": 150,
+              "sets": 3
+            },
+            {
+              "name": "Strict Press — léger",
+              "notes": "Charge : 68-70% 1RM. RPE 6.",
+              "reps": "6",
+              "rest_seconds": 120,
+              "sets": 3
+            },
+            {
+              "name": "Nordic curl — cutback",
+              "notes": "Volume réduit pour cutback mais maintenu — prévention ischio priorité absolue avant le Bloc 3 intense.",
+              "reps": "5",
+              "rest_seconds": 90,
+              "sets": 2
+            },
+            {
+              "duration": "15 sec",
+              "name": "L-sit hold — core cutback",
+              "notes": "Core en fin de séance. Volume réduit.",
+              "rest_seconds": 45,
+              "sets": 3
+            }
+          ],
+          "name": "Force légère — maintien volume cutback",
+          "type": "strength",
+          "warmup": "8 min activation, montée charge légère squat."
+        },
+        {
+          "cooldown": "10 min : foam roller, étirements priorité épaule et hanche.",
+          "day": 5,
+          "duration_minutes": 45,
+          "exercises": [
+            {
+              "duration": "12 min",
+              "name": "AMRAP 12 min — référence progression",
+              "notes": "Même WOD qu'en W4 J5 : 8 Wallballs 9/6 kg + 8 Pull-ups + 200 m run. Comparer les rounds avec W4. Une amélioration de 1-2 rounds confirme la progression du Bloc 1 → Bloc 2. RPE 6-7.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "MetCon léger — benchmark intermédiaire",
+          "type": "mixed",
+          "warmup": "8 min : activation globale."
+        },
+        {
+          "cooldown": "5 min : visualisation positive d'une compétition Hyrox ou WOD CrossFit réussi.",
+          "day": 6,
+          "duration_minutes": 40,
+          "exercises": [
+            {
+              "duration": "30 min",
+              "name": "Routine mobilité complète + respiration",
+              "notes": "Séquence : foam roller thoracique 2 min + 90/90 hip 90 sec/côté + pigeon 90 sec/côté + overhead shoulder stretch contre mur 45 sec/côté + lunge thoracique rotation 45 sec/côté + ankle CARs 10 reps/côté + cat-cow 10 reps + respiration box breathing 4 min (inspire 4 sec / retiens 4 / expire 4 / retiens 4). Cette séance prépare mentalement et physiquement au Bloc 3 compétitif.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Mobilité et récupération active",
+          "type": "mobility"
+        }
+      ],
+      "theme": "Cutback W8 — Récupération avant Bloc 3",
+      "week_number": 8
+    },
+    {
+      "goal": "Atteindre les charges et intensités les plus élevées du plan. Simulations compétition. Volume maintenu, intensité maximale sur les séances clés.",
+      "sessions": [
+        {
+          "cooldown": "12 min : shoulder flossing, foam roller thoracique, pigeon stretch 90 sec/côté.",
+          "day": 1,
+          "duration_minutes": 75,
+          "exercises": [
+            {
+              "name": "Snatch — 1RM tentative ou 97%",
+              "notes": "Après 4 séries de montée (60% / 72% / 82% / 90%). Tentative de 1RM ou confirmation à 97%. Comparer avec W1 benchmark. RPE 10 sur la tentative max. Repos 5 min.",
+              "reps": "1",
+              "rest_seconds": 300,
+              "sets": 1
+            },
+            {
+              "name": "Snatch — volume post-max",
+              "notes": "Redescendre à 82-85%. 4 singles de qualité pour consolider le mouvement après l'effort max. RPE 8.",
+              "reps": "1",
+              "rest_seconds": 120,
+              "sets": 4
+            },
+            {
+              "name": "Clean & Jerk — 3 tentatives lourdes",
+              "notes": "Charge : 90-95% 1RM. 3 tentatives avec 4 min de repos. Effort compétitif. RPE 9-10.",
+              "reps": "1",
+              "rest_seconds": 240,
+              "sets": 3
+            }
+          ],
+          "name": "Force maximale — Complexe olympique compétition",
+          "type": "strength",
+          "warmup": "15 min : mobility overhead complet, montée progressive snatch et C&J."
+        },
+        {
+          "cooldown": "10 min : marche 5 min, foam roller, étirements priorité chevilles et genoux.",
+          "day": 2,
+          "duration_minutes": 60,
+          "exercises": [
+            {
+              "duration": "30 sec sprint / 30 sec repos",
+              "name": "Intervalles VO2max 30/30 — Ski erg",
+              "notes": "12 rounds (vs 10 en W6 — progression volume). RPE work 9-10. Compter les calories par intervalle. 5 min repos complet.",
+              "rest_seconds": 300,
+              "sets": 12
+            },
+            {
+              "duration": "10 min",
+              "name": "AMRAP 10 min — post-intervalles",
+              "notes": "Immédiatement après les 5 min de repos : 5 Burpees box jump over 60/50 cm + 10 KB swings américains 32/24 kg + 15 Double-unders. RPE 8 malgré la fatigue des intervalles. Simule la capacité à produire de l'effort après une phase de haute intensité.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "HIIT compétition — 30/30 + AMRAP enchaînés",
+          "type": "interval",
+          "warmup": "10 min : cardio progressif et activation."
+        },
+        {
+          "cooldown": "15 min impératif : marche 6 min, foam roller complet, étirements priorité épaule, quadriceps, ischio. Hydratation et collation post-effort.",
+          "day": 3,
+          "duration_minutes": 75,
+          "exercises": [
+            {
+              "duration": "pour temps",
+              "name": "Murph modifié — pour temps",
+              "notes": "1 mile run (1609 m) + 100 Pull-ups + 200 Push-ups + 300 Air squats + 1 mile run. Partition libre (20 rondes de 5/10/15 recommandées). Cible expert : sous 45 min (homme), sous 55 min (femme). RPE moyen 7-8 géré sur la durée. Pas de gilet lesté — volume déjà maximal. Enregistrer le temps total et les splits.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "CrossFit Hero WOD — Endurance mentale",
+          "type": "mixed",
+          "warmup": "10 min : activation globale, montée charge deadlift."
+        },
+        {
+          "cooldown": "10 min : foam roller lombaires et ischios, lunge stretch 60 sec/côté.",
+          "day": 5,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "name": "Deadlift — test ou proche max",
+              "notes": "Après 4 séries montantes (60% / 73% / 83% / 90%). Tentative de 1RM ou confirmation. Compare benchmark W1. RPE 10 si tentative max.",
+              "reps": "1",
+              "rest_seconds": 300,
+              "sets": 1
+            },
+            {
+              "name": "Deadlift — volume post-max",
+              "notes": "Redescendre à 78-80%. Volume consolidation. RPE 8.",
+              "reps": "4",
+              "rest_seconds": 150,
+              "sets": 3
+            },
+            {
+              "name": "Weighted Pull-up — pic de charge",
+              "notes": "Ceinture lestée +25-30 kg. Pic de charge pull vertical sur le plan. RPE 9. Repos 2 min 30.",
+              "reps": "3",
+              "rest_seconds": 150,
+              "sets": 5
+            },
+            {
+              "name": "Nordic curl — maintien",
+              "notes": "Maintien prévention ischio en période de haute intensité. Core en fin de séance.",
+              "reps": "6",
+              "rest_seconds": 90,
+              "sets": 3
+            }
+          ],
+          "name": "Force — Hinge lourd et Upper body",
+          "type": "strength",
+          "warmup": "12 min : activation épaule et hanche, montée deadlift."
+        },
+        {
+          "cooldown": "8 min : étirements complets.",
+          "day": 6,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "duration": "38 min",
+              "name": "Bike ergomètre Z2 continu",
+              "notes": "RPE 4-5. Récupération active après une semaine pic. Le vélo est l'outil de récupération actif par excellence (pas d'impact, pas d'excitation neuromusculaire excessive). Ne pas aller en Z3 même si tu te sens bien.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Endurance Z2 — Récupération active post-pic",
+          "type": "endurance",
+          "warmup": "5 min : mobilité légère."
+        }
+      ],
+      "theme": "Bloc 3 — Pic compétitif, intensité maximale",
+      "week_number": 9
+    },
+    {
+      "goal": "Simulations de compétitions complètes (Hyrox full, CrossFit WOD compétition). Maintien de l'intensité haute, début de gestion stratégique de l'effort.",
+      "sessions": [
+        {
+          "cooldown": "10 min : foam roller, pigeon, lunge stretch.",
+          "day": 1,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "name": "Back Squat — volume lourd maintenu",
+              "notes": "Charge : 87-90% 1RM. Maintien du pic de force. RPE 8-9. Repos 3 min ACSM composés lourds.",
+              "reps": "3",
+              "rest_seconds": 180,
+              "sets": 4
+            },
+            {
+              "name": "Strict OHP — force verticale",
+              "notes": "Charge : 82-85% 1RM. Gainage absolu, RPE 8-9.",
+              "reps": "4",
+              "rest_seconds": 150,
+              "sets": 4
+            },
+            {
+              "name": "Muscle Snatch — technique de vitesse",
+              "notes": "Charge légère (50-55% 1RM snatch). Mouvement continu sans pause en haut. Développe la vitesse de turnover. RPE 7.",
+              "reps": "3",
+              "rest_seconds": 90,
+              "sets": 5
+            },
+            {
+              "name": "GHD sit-ups — core finisher",
+              "notes": "Core en fin de séance. Volume légèrement augmenté.",
+              "reps": "18",
+              "rest_seconds": 60,
+              "sets": 3
+            }
+          ],
+          "name": "Force — Maintenance et qualité",
+          "type": "strength",
+          "warmup": "12 min : mobilité complète, montée charge squat et press."
+        },
+        {
+          "cooldown": "12 min : marche 5 min, foam roller complet, étirements épaule et cheville.",
+          "day": 2,
+          "duration_minutes": 60,
+          "exercises": [
+            {
+              "name": "WOD 1 — Sprint EMOM",
+              "notes": "10 min EMOM : 3 Bar Muscle-ups + 5 Thrusters 50/35 kg. Si tu ne termines pas dans la minute sur 3 rounds consécutifs, retirer 1 mouvement. RPE work 9. 5 min repos.",
+              "reps": "1 mouvement par minute",
+              "rest_seconds": 300,
+              "sets": 10
+            },
+            {
+              "duration": "pour temps",
+              "name": "WOD 2 — Chipper compétition",
+              "notes": "Chipper unique : 30 Double-unders + 25 Wallballs 9/6 kg + 20 Pull-ups kipping + 15 Box jumps 75/60 cm + 10 Power Cleans 80/55 kg + 5 Rope Climbs 15 ft. Pour temps. Cible : sous 12 min (homme), sous 15 min (femme). RPE 9 sur les derniers mouvements.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "HIIT Compétition — WOD CrossFit simulé",
+          "type": "interval",
+          "warmup": "10 min : activation progressive, montée en énergie."
+        },
+        {
+          "cooldown": "20 min impératif : marche 8 min, foam roller complet priorité mollets, quadriceps, ischio, foam roller thoracique. Hydratation, collation protéines + glucides dans les 30 min.",
+          "day": 3,
+          "duration_minutes": 90,
+          "exercises": [
+            {
+              "duration": "pour temps",
+              "name": "Hyrox Full Race Simulation",
+              "notes": "Simulation complète Hyrox : 1000 m ski erg + 1000 m run + 50 m sled push + 1000 m run + 50 m sled drag + 1000 m run + 80 m burpee broad jumps + 1000 m run + 1 round sandbag lunges 20 m (22/15 kg) + 1000 m run + 100 m farmers carry (24/16 kg par main) + 1000 m run + 200 m wallballs 9/6 kg (100 reps) + 1000 m run + 100 m rowing (1000 m row en fin de course). Chronométrer chaque station. RPE moyen 7-8 géré. Cible expert : 60-80 min. Enregistrer les splits par station.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Hyrox Simulation complète — Full race",
+          "type": "mixed",
+          "warmup": "10 min : activation globale, run 400 m léger."
+        },
+        {
+          "cooldown": "10 min : wrist stretch, shoulder flossing, foam roller dorsaux.",
+          "day": 5,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "name": "Gymnastics chipper — volume",
+              "notes": "3 rondes pour temps (ronder séparées) : 10 HSPU + 8 Ring Muscle-ups + 6 Pistol squats par jambe + 4 Rope Climbs. Chronométrer chaque ronde. Repos 2 min entre rondes. RPE par ronde 8-9.",
+              "reps": "par ronde",
+              "rest_seconds": 120,
+              "sets": 3
+            },
+            {
+              "name": "Nordic curl — maintien",
+              "notes": "Maintien prévention ischio en phase compétitive. Core en fin de séance.",
+              "reps": "6",
+              "rest_seconds": 90,
+              "sets": 3
+            }
+          ],
+          "name": "Gymnastic et force endurance",
+          "type": "mixed",
+          "warmup": "10 min : activation scapulaire, kipping swings, 3 séries pull-ups lents."
+        },
+        {
+          "cooldown": "8 min : foam roller et étirements.",
+          "day": 6,
+          "duration_minutes": 45,
+          "exercises": [
+            {
+              "duration": "30 min",
+              "name": "Récupération Z2 — choix libre",
+              "notes": "Rower, bike ou run très léger. RPE 3-4 seulement. Après la semaine de simulations complètes, cette séance est une récupération active pure. Si tu as des courbatures sévères, ne dépasse pas le Z1-Z2 et écoute ton corps.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Récupération active — Z2 léger",
+          "type": "endurance",
+          "warmup": "5 min : mobilité légère."
+        }
+      ],
+      "theme": "Compétition — Simulations complètes",
+      "week_number": 10
+    },
+    {
+      "goal": "Dernière semaine à plein volume avant le tapering W12. Viser les meilleures performances sur les WODs de référence. Volume maintenu, intensité maximale.",
+      "sessions": [
+        {
+          "cooldown": "12 min : foam roller complet, pigeon, lunge.",
+          "day": 1,
+          "duration_minutes": 75,
+          "exercises": [
+            {
+              "name": "Back Squat — pic volume/intensité",
+              "notes": "Charge : 90-93% 1RM. 5 doubles — pic d'intensité force du plan. RPE 9 sur les dernières séries. Repos 3 min ACSM composés lourds.",
+              "reps": "2",
+              "rest_seconds": 180,
+              "sets": 5
+            },
+            {
+              "name": "Deadlift — volume pic",
+              "notes": "Charge : 87-90% 1RM. RPE 8-9. Repos 3 min.",
+              "reps": "3",
+              "rest_seconds": 180,
+              "sets": 4
+            },
+            {
+              "name": "Push Press — puissance maximale",
+              "notes": "Charge : 85-87% 1RM. Dip-drive explosif. RPE 9.",
+              "reps": "3",
+              "rest_seconds": 150,
+              "sets": 4
+            },
+            {
+              "name": "GHD sit-ups + L-sit superset — core finisher",
+              "notes": "Superset core en fin de séance. GHD puis immédiatement L-sit sans repos entre les deux. Repos 75 sec entre supersets.",
+              "reps": "15 GHD + 15 sec L-sit",
+              "rest_seconds": 75,
+              "sets": 3
+            }
+          ],
+          "name": "Force — Complexe Squat/Deadlift lourd final",
+          "type": "strength",
+          "warmup": "15 min : mobilité complète, montée charge back squat."
+        },
+        {
+          "cooldown": "10 min : marche 4 min, foam roller, étirements priorité chevilles et genoux. Surveiller tendinites cheville/genou post-pliométrie intensive.",
+          "day": 2,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "20 sec sprint / 10 sec repos",
+              "name": "Tabata Row — référence finale",
+              "notes": "Même protocole qu'en W7. Comparer les mètres totaux. Indicateur de progression sur 4 semaines de Bloc 3. RPE 9-10. 3 min repos.",
+              "rest_seconds": 180,
+              "sets": 8
+            },
+            {
+              "duration": "20 sec sprint / 10 sec repos",
+              "name": "Tabata Assault bike final",
+              "notes": "Même protocole W3/W7. Comparer les calories avec les sessions précédentes. RPE 9-10. 3 min repos.",
+              "rest_seconds": 180,
+              "sets": 8
+            },
+            {
+              "duration": "10 min",
+              "name": "AMRAP 10 min — benchmark W1 revisité",
+              "notes": "Même WOD qu'en W1 : Wallballs 9/6 kg + Box jumps 60/50 cm + Toes-to-bar (10/10/10). Comparer avec W1 benchmark. Un gain de 2+ rounds sur 10 min confirme une progression significative de la capacité de travail. RPE 8-9.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Tabata final — Comparaison W7",
+          "type": "interval",
+          "warmup": "10 min : activation progressive cardio."
+        },
+        {
+          "cooldown": "12 min : marche 5 min, foam roller complet, étirements épaule, pigeon, lunge.",
+          "day": 3,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "duration": "pour temps",
+              "name": "WOD signature final",
+              "notes": "5 rondes pour temps : 10 Power Cleans 80/55 kg + 10 Bar Muscle-ups + 20 Double-unders + 200 m run. Effort maximal soutenu. Stratégie : gestion du rythme sur les 3 premières rondes (RPE 8), push sur les 2 dernières (RPE 9-10). Enregistrer le temps total — référence absolue du plan.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "MetCon lourd final — WOD signature",
+          "type": "mixed",
+          "warmup": "12 min : activation globale, montée charge Power Clean."
+        },
+        {
+          "cooldown": "10 min : shoulder flossing, foam roller pectoraux et dorsaux, étirements.",
+          "day": 5,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "name": "Pendlay Row — force finale",
+              "notes": "Charge : 83-85% 1RM. Dernière séance lourde pull horizontal. RPE 9.",
+              "reps": "4",
+              "rest_seconds": 150,
+              "sets": 5
+            },
+            {
+              "name": "Weighted Pull-up — charge finale",
+              "notes": "Ceinture lestée +28-32 kg. Pic absolu pull vertical. RPE 9. Repos 2 min 30.",
+              "reps": "3",
+              "rest_seconds": 150,
+              "sets": 5
+            },
+            {
+              "name": "Single-arm DB Row — symétrie",
+              "notes": "Haltère lourd. Équilibre G/D avant compétition. Pull horizontal unilatéral. RPE 8.",
+              "reps": "8 par bras",
+              "rest_seconds": 90,
+              "sets": 3
+            },
+            {
+              "name": "Nordic curl — dernière séance préventive",
+              "notes": "Dernière séance Nordic curl du plan avant le tapering W12. Maintien de la prévention ischio jusqu'au dernier moment.",
+              "reps": "6",
+              "rest_seconds": 90,
+              "sets": 3
+            }
+          ],
+          "name": "Force — Hinge et Upper volume final",
+          "type": "strength",
+          "warmup": "12 min : activation épaule, montée Pendlay row et weighted pull-up."
+        },
+        {
+          "cooldown": "10 min : mollets excentrique, pigeon, foam roller complet.",
+          "day": 6,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "40 min",
+              "name": "Run long Z2 avec accélérations Hyrox",
+              "notes": "30 min Z2 (RPE 4-5) + 5 accélérations de 45 sec à RPE 7-8 (allure Hyrox) réparties toutes les 5 min. Simule la gestion de l'allure de course entre les stations Hyrox. Retour Z2 après chaque accélération. Dernière sortie longue avant le tapering.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Endurance Z2 + Fartlek — Dernière base longue",
+          "type": "endurance",
+          "warmup": "5 min : mobilité hanches et chevilles."
+        }
+      ],
+      "theme": "Pic final — Dernière semaine haute intensité",
+      "week_number": 11
+    },
+    {
+      "goal": "Réduire le volume de 35-40% vs W11 tout en maintenant quelques pics d'intensité pour rester activé. Arriver frais et affûté à la compétition ou à la séance phare J5. Checklist d'autonomie post-plan.",
+      "sessions": [
+        {
+          "cooldown": "10 min : foam roller, pigeon, lunge stretch.",
+          "day": 1,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "name": "Back Squat — activation tapering",
+              "notes": "Charge : 80% 1RM. Volume réduit, intensité maintenue. Objectif : rester activé neuromusculairement sans accumuler de fatigue. RPE 7-8. Repos 2 min 30.",
+              "reps": "3",
+              "rest_seconds": 150,
+              "sets": 3
+            },
+            {
+              "name": "Strict Press — activation",
+              "notes": "Charge : 77-80% 1RM. RPE 7. Technique parfaite.",
+              "reps": "4",
+              "rest_seconds": 120,
+              "sets": 3
+            },
+            {
+              "name": "Toes-to-bar — activation core",
+              "notes": "Core en fin de séance. Volume réduit tapering.",
+              "reps": "8",
+              "rest_seconds": 60,
+              "sets": 3
+            }
+          ],
+          "name": "Activation force — volume réduit tapering",
+          "type": "strength",
+          "warmup": "10 min : mobilité complète, montée charge légère."
+        },
+        {
+          "cooldown": "8 min : shoulder flossing, foam roller léger.",
+          "day": 2,
+          "duration_minutes": 40,
+          "exercises": [
+            {
+              "duration": "10 sec sprint / 50 sec repos",
+              "name": "Sprints courts Assault bike — activation",
+              "notes": "6 × 10 sec effort maximal / 50 sec repos complet. Volume très réduit vs les blocs Tabata des semaines précédentes. Objectif : activer le système nerveux sans accumuler de fatigue lactique. RPE work 9-10 sur 10 sec, RPE repos 2. Les sprints courts n'induisent pas de dette lactique significative.",
+              "rest_seconds": 0,
+              "sets": 6
+            },
+            {
+              "name": "Technique snatch — activation légère",
+              "notes": "Charge : 70-72% 1RM. Fluidité et confiance. Rappel du pattern moteur avant la compétition. RPE 6-7.",
+              "reps": "2",
+              "rest_seconds": 90,
+              "sets": 5
+            }
+          ],
+          "name": "HIIT activation — sprints courts",
+          "type": "interval",
+          "warmup": "8 min : activation globale progressive."
+        },
+        {
+          "cooldown": "5 min : visualisation compétition. Revoir mentalement les stratégies de pacing, les transitions Hyrox, la gestion de l'effort sur les WODs. Respiration box breathing 3 min.",
+          "day": 3,
+          "duration_minutes": 35,
+          "exercises": [
+            {
+              "duration": "25 min",
+              "name": "Routine mobilité complète pré-compétition",
+              "notes": "Séquence : foam roller thoracique 90 sec + 90/90 hip 60 sec/côté + pigeon 90 sec/côté + overhead shoulder stretch 45 sec/côté + lunge rotation 45 sec/côté + ankle CARs 10 reps/côté + wrist circles 30 sec + cat-cow 8 reps. RPE 2. Ne pas s'étirer de façon agressive — juste du relâchement et de l'activation douce.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Mobilité pré-compétition",
+          "type": "mobility"
+        },
+        {
+          "cooldown": "20 min : marche 8 min, foam roller complet, étirements priorité quadriceps, ischio, épaule. Hydratation et nutrition récupération dans les 30 min. Célébrer l'accomplissement des 12 semaines.",
+          "day": 5,
+          "duration_minutes": 90,
+          "exercises": [
+            {
+              "duration": "durée compétition",
+              "name": "Compétition Hyrox ou WOD CrossFit local — performance maximale",
+              "notes": "Objectif principal du plan : participer à une compétition Hyrox ou CrossFit local et livrer la meilleure performance. Si pas de compétition disponible : simulation complète Hyrox (stations 1-8 + runs) ou 3 WODs CrossFit enchaînés avec 15 min de repos (comme un format compétition local). Gérer l'effort : ne pas partir à 100% sur les premières stations/rondes. Enregistrer tous les temps et performances. CHECKLIST D'AUTONOMIE post-plan (voir notes ci-dessous).",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Séance phare — Compétition ou simulation finale",
+          "type": "mixed",
+          "warmup": "15 min échauffement compétition : 400 m run léger + 10 burpees lents + 10 air squats + 5 pull-ups + 5 KB swings légers + montée progressive en snatch et clean. Arriver chaud mais pas fatigué."
+        },
+        {
+          "cooldown": "5 min : réflexion sur les 3 points forts du plan et les 2 axes de progression pour la suite. Planifier la prochaine phase d'entraînement.",
+          "day": 6,
+          "duration_minutes": 35,
+          "exercises": [
+            {
+              "duration": "25 min",
+              "name": "Routine récupération post-compétition",
+              "notes": "Foam roller complet sans forcer (10 min : priorité quadriceps, ischio, mollets, thoracique) + étirements statiques doux (pigeon 90 sec/côté, lunge 60 sec/côté, shoulder stretch 45 sec/côté, cat-cow 10 reps) + respiration diaphragmatique 5 min. Cette séance clôt le plan. La régularité et la progression sur 12 semaines sont les véritables accomplissements — la compétition n'est que la mesure externe.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Récupération active finale",
+          "type": "mobility"
+        }
+      ],
+      "theme": "Tapering — Affûtage et séance phare compétition",
+      "week_number": 12
+    }
+  ]
+}

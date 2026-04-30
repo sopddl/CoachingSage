@@ -64,7 +64,7 @@ struct GenerateTemplatesCLI {
         // Load schema + reference template
         let cwd = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
         let schemaURL = cwd.appendingPathComponent("schema/template.schema.json")
-        let refURL = cwd.appendingPathComponent("References/running-debutant-5k-8sem.json")
+        let refURL = cwd.appendingPathComponent("References/running-beginner-5k-8sem.json")
 
         guard let schemaData = try? Data(contentsOf: schemaURL),
               let schemaString = String(data: schemaData, encoding: .utf8) else {
@@ -206,8 +206,8 @@ struct GenerateTemplatesCLI {
           -h, --help       Show this help
 
         Exemple :
-          swift run GenerateTemplates --dry-run --ids running-intermediaire-10k-8sem
-          swift run GenerateTemplates --ids running-intermediaire-10k-8sem,musculation-debutant-home-basics-8sem
+          swift run GenerateTemplates --dry-run --ids running-recreational-10k-8sem
+          swift run GenerateTemplates --ids running-recreational-10k-8sem,strength-training-beginner-home-basics-8sem
         """)
     }
 
