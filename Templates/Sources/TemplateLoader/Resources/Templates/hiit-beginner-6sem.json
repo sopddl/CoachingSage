@@ -1,0 +1,929 @@
+{
+  "assumed_profile" : "Adulte en condition correcte, sans pathologie cardiaque connue, capable de marcher 30 min sans pause. Pas d'équipement requis (aucun matériel, espace minimal de 2×2 m). Aucune expérience préalable du HIIT.",
+  "default_objective" : "Réaliser une séance HIIT de 20 min (intervalles courts 20-30 s d'effort, ratio work/rest 20/40 puis 20/20) sans équipement, à RPE 8-9 sur les blocs d'effort",
+  "duration_weeks" : 6,
+  "id" : "hiit-beginner-6sem",
+  "level" : "beginner",
+  "name" : "HIIT initiation — 6 semaines pour réaliser une séance complète de 20 min",
+  "progression_logic" : "Progression construite sur 5 principes, alignés recommandations ACSM HIIT débutant et guidelines NSCA sur la pliométrie progressive :\n(1) PROGRESSION DU RATIO WORK/REST : W1-W2 ratio 1:2 (20/40 s) — phase d'apprentissage technique et cardio. W3 ratio 20/30 — transition. W4 cutback retour 20/40 pour consolidation. W5-W6 ratio 1:1 (20/20 s, Tabata). Ne jamais descendre sous 1:1 en débutant — le Tabata strict 20/10 est niveau intermédiaire+. Chaque ratio doit être maîtrisé (RPE stable sur toutes les répétitions d'un bloc) avant d'être réduit.\n(2) PROGRESSION VOLUME EFFORT PAR SÉANCE : W1 = 2 min 40 s, W2 = 3 min 12 s (+20%), W3 = 4 min (+25%), W4 cutback = 2 min 40 s (-33% intentionnel), W5 = 5 min 20 s, W6 = 6 min 40 s. Hors cutback, progression +20-25% maximum entre semaines actives.\n(3) CUTBACK WEEK W4 OBLIGATOIRE : volume réduit de 15-33% après 3 semaines de progression. Sans semaine allégée, la surcompensation cardiaque et tendinite d'Achille/cheville sont les risques typiques à 3-4 semaines HIIT. La cutback week est une semaine d'adaptation, pas de régression.\n(4) PROGRESSION DES MOUVEMENTS (impact croissant) : W1-W2 = mouvements sans impact ou faible impact (squat, step touch, fente, marche sur place). W3 = introduction impact léger (jumping jack, high knees). W4 = consolidation mouvements acquis. W5 = introduction squat sauté (pliométrie légère) uniquement après 4 semaines de base de force (pont fessier, planche, calf raises). W6 = variantes au choix autonome. Pas de box jump ni kettlebell — exclus du niveau débutant (NSCA : pliométrie avancée requiert 6 mois de base de force).\n(5) RENFORCEMENT PRÉVENTIF INTÉGRÉ : calf raises excentriques (W3+) pour protection tendon d'Achille avant les séances à impact ; planche + dead bug dès W1 pour gainage lombaire (protège le bas du dos pendant burpees et mountain climbers) ; pont fessier dès W1 pour stabilisation genou pendant les squats et fentes ; side plank (W3+) pour obliques et moyen fessier, stabilisateurs latéraux des sauts. Introduction squat sauté W5 uniquement après 4 semaines de ces prérequis.",
+  "safety_notes" : "DRAPEAUX ROUGES (arrêter la séance immédiatement et consulter si persistant) :\n• Douleur thoracique, essoufflement disproportionné, vertiges ou nausées pendant l'effort : arrêt immédiat, position assise, consulter un médecin avant de reprendre. En HIIT débutant, la FC peut monter à 85-95% FCmax — si tu ressens une douleur dans la poitrine ou des palpitations irrégulières, ce n'est PAS normal, c'est un signal médical urgent.\n• Douleur vive cheville (ligament latéral) pendant ou après les jumping jacks ou squats sautés : arrêt, glace 15 min, repos 48h minimum. Les entorses de cheville représentent 20% des blessures HIIT. Réception toujours souple sur avant-pied.\n• Douleur aiguë genou (face antérieure ou interne) pendant les squats ou fentes : vérifier immédiatement si le genou part en valgus (en dedans) — c'est la cause n°1. Si douleur > 2/10, arrêter le mouvement, adapter l'amplitude.\n• Douleur tendon d'Achille ou derrière le talon après les séances à impact (jumping jacks, high knees) : réduire l'impact 50%, ajouter les calf raises excentriques quotidiens (2×15 par côté), glacer après l'effort.\n• Courbatures lombaires persistantes après les burpees ou mountain climbers : vérifier que le bas du dos ne se creuse pas en position de planche. Si douleur lombaire > 3/10, consulter avant de reprendre les mouvements au sol.\n\nRÈGLES GÉNÉRALES :\n• Échauffement NON optionnel : sauter l'échauffement sur une séance à haute intensité multiplie par 3 le risque d'élongation et de tendinite.\n• Hydratation : 400-500 ml dans l'heure précédant la séance, eau disponible pendant la séance, 500 ml dans l'heure suivante. Le HIIT provoque une sudation intense, même en séance courte.\n• Récupération entre séances HIIT : minimum 48h entre deux séances à haute intensité (pattern J1/J3/J5 recommandé). Le HIIT crée une fatigue neuromusculaire qui ne se résout pas en moins de 24h.\n• Sol antidérapant obligatoire pour les séances avec sauts. Chaussures de sport avec amorti pour les séances à impact (à partir de W3).\n• Test de la parole adapté au HIIT : pendant les blocs d'effort, tu ne peux dire qu'un mot isolé (RPE 8-9). Pendant les récupérations inter-blocs (2 min), tu dois retrouver une respiration suffisante pour dire une phrase courte. Si après 2 min de repos inter-bloc tu ne récupères pas, le volume est trop élevé — retirer un bloc.\n• DOMS (courbatures retardées) 24-48h après = normal et attendu, surtout en W1-W2. Douleur articulaire PENDANT la séance = signal d'arrêt.\n\nINTENSITÉ :\n• Grille RPE rappel : effort HIIT = RPE 8-9 (impossible de parler, souffle court), récupération = RPE 2-3 (marche, respiration qui se normalise). Ne jamais aller à RPE 10 (sprint maximal) en débutant — risque de surutilisation et abandon.\n• Débutant HIIT : pas de box jump, pas de kettlebell swing, pas de double under (corde à sauter double rotation), pas de mouvement olympique. Ces mouvements requièrent une maîtrise technique et une base de force préalables de 6-12 mois.\n• Ratio work/rest : ne jamais descendre sous 1:1 (ratio 20/20) en débutant. Le Tabata strict 20/10 est réservé aux niveaux intermédiaire+.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → insérer une cutback week ou pause 48h) :\n• FC de repos au réveil +10 bpm habituelle\n• Jambes lourdes dès le début de l'échauffement (3e séance consécutive)\n• Qualité du sommeil dégradée plus de 2 nuits consécutives\n• Motivation effondrée ou anxiété à l'approche de la séance\n• Courbatures encore présentes au début de la séance suivante\n\nSI SÉANCE MANQUÉE :\n• < 5 jours de pause : reprendre la séance manquée puis continuer.\n• 5-10 jours de pause : reprendre la semaine en cours depuis le début.\n• > 10 jours de pause : revenir à la semaine précédente (ex : pause pendant W4 → reprendre W3).",
+  "schema_version" : 1,
+  "sessions_per_week" : 3,
+  "sport" : "hiit",
+  "summary" : "Programme HIIT sans équipement sur 6 semaines, progression depuis des intervalles courts 20 s effort / 40 s repos (ratio 1:2) vers des intervalles 30 s effort / 30 s repos (ratio 1:1) pour une séance complète de 20 min. Méthodes utilisées : Tabata modifié (20/40), 30/30 et EMOM introduit en W5-W6. Renforcement de base intégré dès W1 pour sécuriser chevilles, genoux et gainage. Cutback W4 pour consolidation. Checklist d'autonomie en W6.",
+  "weeks" : [
+    {
+      "goal" : "Comprendre et calibrer la grille RPE 1-10. Réaliser 3 blocs Tabata modifié 20/40 (ratio 1:2) sur des mouvements simples sans impact. Volume total d'effort par séance : 3 min.",
+      "sessions" : [
+        {
+          "cooldown" : "3 min de marche lente + étirements statiques 5 min : quadriceps 30 s/jambe, ischio-jambiers 30 s/jambe, mollets 30 s/jambe, flexion de hanche au sol 30 s/côté. Hydratation immédiate.",
+          "day" : 1,
+          "duration_minutes" : 30,
+          "exercises" : [
+            {
+              "duration" : "2 min",
+              "name" : "Calibration RPE — explication grille",
+              "notes" : "Avant de commencer : RPE 1 = repos complet, RPE 5 = marche rapide où tu peux parler facilement, RPE 7 = effort soutenu où parler est difficile, RPE 8-9 = effort intense où tu ne peux dire qu'un mot, RPE 10 = sprint maximal insoutenable. Pendant le HIIT, les blocs d'effort visent RPE 8. Entre les blocs, récupère à RPE 2-3. Mémorise cette grille, elle guide tout le programme.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active (marche sur place)",
+              "name" : "Bloc Tabata modifié 20/40 — Squat poids du corps",
+              "notes" : "Descente cuisses parallèles au sol, genoux dans l'axe des orteils (pas en dedans), talon au sol. Viser RPE 8 sur les 20 s : rythme rapide mais forme propre. RPE 2-3 pendant les 40 s. Si douleur genou > 2/10 en descente, réduire l'amplitude. Ne pas rebondir en bas.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "notes" : "Marche lente sur place, respiration nasale. RPE 1-2. Ce repos est CONSTITUTIF de l'entraînement, ne pas le supprimer.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active (marche sur place)",
+              "name" : "Bloc Tabata modifié 20/40 — Step touch latéral",
+              "notes" : "Pas latéraux rapides en touchant le sol avec la pointe du pied opposé à chaque côté. Mouvement sans impact, sécurisé pour les chevilles. RPE 7-8. Idéal pour débuter : le rythme monte la FC sans stress articulaire.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "notes" : "Marche lente, respiration profonde.",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active (marche sur place)",
+              "name" : "Bloc Tabata modifié 20/40 — Marche rapide sur place avec genoux hauts",
+              "notes" : "Genoux montant au-dessus de la hanche, bras en balancier actif. RPE 7-8. Pas de saut. Total de temps d'effort sur la séance : 3 × 4 × 20 s = 4 min. Total de la partie intervalles : environ 16 min.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            }
+          ],
+          "name" : "Découverte RPE + Tabata modifié intro",
+          "type" : "interval",
+          "warmup" : "5 min de marche rapide sur place + 10 cercles d'épaules en avant/arrière + 10 rotations de hanches/sens + 10 balancements de jambe avant-arrière + 10 squats très lents (3 sec descente). Objectif : élever la FC progressivement sans stresser les articulations. Total : 7 min."
+        },
+        {
+          "cooldown" : "Étirements 5 min : mollets, ischio-jambiers, quadriceps, étirement du piriforme (figure-4 au sol 30 s/côté).",
+          "day" : 3,
+          "duration_minutes" : 30,
+          "exercises" : [
+            {
+              "duration" : "20 s",
+              "name" : "Planche ventrale sur genoux",
+              "notes" : "Coudes sous les épaules, corps aligné, nombril rentré, fessiers engagés. Version sur genoux pour débutant : permet la forme correcte sans fatigue prématurée. Progression vers planche complète dès W3.",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Pont fessier",
+              "notes" : "Allongé sur le dos, pieds plats, pousser les hanches vers le ciel, tenir 2 s en haut. Stabilise les fessiers et les lombaires — essentiels pour protéger les genoux pendant les sauts des semaines suivantes.",
+              "reps" : "12",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Superman",
+              "notes" : "Allongé ventre au sol, lever simultanément bras tendus et jambes en 2 s, tenir 2 s, redescendre. Renforce les extenseurs lombaires. Ne pas forcer la hauteur — la qualité prime.",
+              "reps" : "10",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Dead bug",
+              "notes" : "Sur le dos, genoux à 90° en l'air, bras tendus vers le plafond. Descendre un bras + jambe opposée en maintenant le bas du dos COLLÉ au sol. Ce mouvement protège les lombaires lors des mouvements dynamiques du HIIT.",
+              "reps" : "6 par côté",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises bipodal",
+              "notes" : "Montées sur la pointe des pieds, contrôle de la descente (2 s). Prévention des tendinites chevilles/Achille, risque typique du débutant en HIIT.",
+              "reps" : "15",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement fondation — gainage et mobilité",
+          "type" : "strength",
+          "warmup" : "5 min marche + 10 rotations thoraciques/côté + 10 ponts fessiers lents + 10 squats lents. Total : 7 min."
+        },
+        {
+          "cooldown" : "3 min marche lente + étirements 5 min (identiques à J1).",
+          "day" : 5,
+          "duration_minutes" : 30,
+          "exercises" : [
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc Tabata modifié 20/40 — Squat poids du corps",
+              "notes" : "Même mouvement qu'en J1. Le répéter permet de mieux calibrer le RPE 8 cible. Note mentalement si c'est plus facile qu'en J1 — c'est le signe que le corps s'adapte.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc Tabata modifié 20/40 — Fente alternée",
+              "notes" : "Fente avant G/D en alternance rapide. Genou avant à 90°, genou arrière ne touche pas le sol. RPE 8. Si douleur genou, réduire l'amplitude de descente. Pas de fente sautée cette semaine.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc Tabata modifié 20/40 — Pompes sur genoux",
+              "notes" : "Mains légèrement plus larges que les épaules, coudes à 45° du tronc (pas à 90°). Corps aligné des genoux aux épaules. RPE 7-8. Version sur genoux obligatoire pour débutant. Pas de pompes complètes avant W3.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            }
+          ],
+          "name" : "Tabata modifié — confirmation W1",
+          "type" : "interval",
+          "warmup" : "5 min marche rapide + mobilité dynamique 7 min : cercles chevilles, cercles hanches, balancements jambe, 10 squats lents."
+        }
+      ],
+      "theme" : "Découverte — apprendre la grille RPE et les mouvements de base",
+      "week_number" : 1
+    },
+    {
+      "goal" : "Passer à 4 blocs Tabata modifié 20/40 par séance. Introduire le premier mouvement à impact léger (jumping jack à faible amplitude). Volume total d'effort : 3 min 12 s (légère hausse ~+6%).",
+      "sessions" : [
+        {
+          "cooldown" : "3 min marche + étirements 5 min (quadriceps, mollets, ischio-jambiers, hanches).",
+          "day" : 1,
+          "duration_minutes" : 32,
+          "exercises" : [
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc Tabata modifié 20/40 — Squat",
+              "notes" : "RPE 8. Confirmation W1.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc Tabata modifié 20/40 — Fente alternée",
+              "notes" : "RPE 8. Confirmation W1.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc Tabata modifié 20/40 — Pompes sur genoux",
+              "notes" : "RPE 7-8.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc Tabata modifié 20/40 — Jumping jack à faible amplitude",
+              "notes" : "NOUVEAU mouvement à impact. Jumping jack classique MAIS écartement des jambes limité (< largeur épaules), réception souple sur avant-pied. RPE 7-8. Si douleur cheville, revenir au step touch de W1. Ce 4e bloc est la nouveauté de la semaine — ne pas compenser en accélérant les autres blocs.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            }
+          ],
+          "name" : "4 blocs Tabata modifié + jumping jack",
+          "type" : "interval",
+          "warmup" : "5 min marche rapide + 10 cercles chevilles/côté + 10 balancements jambe + 10 squats lents + 10 jumping jacks très lents (rythme marche). Total : 8 min."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 32,
+          "exercises" : [
+            {
+              "duration" : "20 s",
+              "name" : "Planche ventrale complète",
+              "notes" : "Progression vs planche sur genoux de W1. Corps rigide des talons aux épaules. Si tremblements excessifs avant 15 s, revenir sur genoux 1 semaine de plus.",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Pont fessier",
+              "notes" : "Progression +3 reps vs W1.",
+              "reps" : "15",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Superman",
+              "reps" : "12",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Dead bug",
+              "reps" : "8 par côté",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises bipodal",
+              "reps" : "20",
+              "rest_seconds" : 30,
+              "sets" : 3
+            },
+            {
+              "name" : "Pompes sur genoux",
+              "notes" : "Introduction en renforcement (pas en intervalle). Tempo 2-0-1 (2 s descente, 0 pause, 1 s montée). Développe la force de base pour progresser vers les pompes complètes.",
+              "reps" : "8",
+              "rest_seconds" : 45,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement progression — planche complète",
+          "type" : "strength",
+          "warmup" : "5 min marche + 7 min mobilité dynamique."
+        },
+        {
+          "cooldown" : "3 min marche + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 32,
+          "exercises" : [
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc Tabata modifié 20/40 — Jumping jack",
+              "notes" : "Passer le jumping jack en premier : frais pour le mouvement nouveau. RPE 7-8.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc Tabata modifié 20/40 — Squat",
+              "notes" : "RPE 8.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc Tabata modifié 20/40 — Fente alternée",
+              "notes" : "RPE 8.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc Tabata modifié 20/40 — Mountain climber lent",
+              "notes" : "NOUVEAU. En position de planche, ramener les genoux alternativement vers la poitrine, rythme lent (1 genou/seconde). Gainage et cardio combinés. RPE 7-8. Ne pas laisser les hanches remonter. Pas de version rapide avant W4.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            }
+          ],
+          "name" : "4 blocs Tabata modifié — confirmation",
+          "type" : "interval",
+          "warmup" : "8 min mobilité dynamique complète."
+        }
+      ],
+      "theme" : "Consolidation — ajouter un 4e bloc, introduire impact léger",
+      "week_number" : 2
+    },
+    {
+      "goal" : "Réduire le temps de récupération à 30 s (ratio 20/30, encore supérieur à 1:1). Introduire le burpee modifié (sans saut). Volume d'effort par séance : 4 min (+16% vs W2).",
+      "sessions" : [
+        {
+          "cooldown" : "4 min marche + étirements 5 min (insister sur les mollets et hanches fléchisseurs après les burpees).",
+          "day" : 1,
+          "duration_minutes" : 33,
+          "exercises" : [
+            {
+              "duration" : "20 s effort + 30 s récupération active",
+              "name" : "Bloc 20/30 — Squat",
+              "notes" : "NOUVEAU ratio : 30 s de récup au lieu de 40 s. RPE 8 pendant l'effort, RPE 2-3 pendant le repos. Si RPE monte à 9-10 pendant les 5e répétitions, c'est que le ratio 20/40 n'est pas encore bien consolidé — ralentir l'effort pour tenir le RPE 8 constant.",
+              "rest_seconds" : 0,
+              "sets" : 5
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 30 s récupération active",
+              "name" : "Bloc 20/30 — Fente alternée",
+              "notes" : "RPE 8.",
+              "rest_seconds" : 0,
+              "sets" : 5
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 30 s récupération active",
+              "name" : "Bloc 20/30 — Mountain climber",
+              "notes" : "Légère accélération vs W2 maintenant que le ratio raccourcit. Garder les hanches stables.",
+              "rest_seconds" : 0,
+              "sets" : 5
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 30 s récupération active",
+              "name" : "Bloc 20/30 — Burpee modifié sans saut",
+              "notes" : "NOUVEAU MOUVEMENT. Squat → mains au sol → recul des jambes vers planche → retour pieds vers mains → se redresser (pas de saut). Rythme lent mais continu. RPE 8. Pas de saut, pas de pompe incluse à ce stade. Le burpee sans saut est la seule version recommandée ACSM pour le débutant HIIT — le saut arrive W5 au plus tôt.",
+              "rest_seconds" : 0,
+              "sets" : 5
+            }
+          ],
+          "name" : "Passage ratio 20/30 — 4 blocs",
+          "type" : "interval",
+          "warmup" : "8 min mobilité dynamique complète incluant 10 squats lents, 10 jumping jacks lents, 10 fentes alternées lentes."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 32,
+          "exercises" : [
+            {
+              "name" : "Pompes complètes",
+              "notes" : "Progression depuis les pompes sur genoux. Si 5 reps complètes impossible avec une bonne forme, faire 2-3 complètes puis finir sur genoux. Corps aligné, pas de cambrure lombaire, coudes à 45°.",
+              "reps" : "5",
+              "rest_seconds" : 60,
+              "sets" : 3
+            },
+            {
+              "duration" : "30 s",
+              "name" : "Planche ventrale",
+              "notes" : "Progression vs 20 s en W2.",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "duration" : "20 s par côté",
+              "name" : "Side plank sur genou",
+              "notes" : "NOUVEAU. Coude sous l'épaule, corps aligné en diagonale (version genoux). Cible les obliques et le moyen fessier — stabilisateurs latéraux essentiels pour les jumping jacks et les fentes. Progression vers side plank pied dès W5.",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Pont fessier unilatéral",
+              "notes" : "Progression vs pont bilatéral. Une jambe tendue vers le ciel, monter et tenir 2 s.",
+              "reps" : "10 par côté",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Dead bug",
+              "reps" : "10 par côté",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises surélevés",
+              "notes" : "Debout sur le bord d'une marche ou livre épais, descendre le talon sous la marche (amplitude complète). Renforce le tendon d'Achille en excentrique — protection contre tendinites sur les sauts des semaines suivantes.",
+              "reps" : "12 par côté",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement — pompes complètes + side plank",
+          "type" : "strength",
+          "warmup" : "7 min marche + mobilité."
+        },
+        {
+          "cooldown" : "3 min marche + étirements 5 min mollets en priorité.",
+          "day" : 5,
+          "duration_minutes" : 33,
+          "exercises" : [
+            {
+              "duration" : "20 s effort + 30 s récupération active",
+              "name" : "Bloc 20/30 — Jumping jack",
+              "notes" : "RPE 7-8. Amplitude plus grande qu'en W2 si les chevilles sont à l'aise.",
+              "rest_seconds" : 0,
+              "sets" : 5
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 30 s récupération active",
+              "name" : "Bloc 20/30 — Squat",
+              "notes" : "RPE 8.",
+              "rest_seconds" : 0,
+              "sets" : 5
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 30 s récupération active",
+              "name" : "Bloc 20/30 — Burpee modifié sans saut",
+              "notes" : "Confirmation W3 J1. Fluidité du mouvement en amélioration.",
+              "rest_seconds" : 0,
+              "sets" : 5
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 30 s récupération active",
+              "name" : "Bloc 20/30 — Genoux hauts (high knees)",
+              "notes" : "NOUVEAU. Genoux montant à hauteur de hanche alternativement, bras actifs en opposition. RPE 8-9. Mouvement à fort impact : réception souple, avant-pied. Pas de High Knees en W1-W2 — les chevilles et mollets ont besoin de 3 semaines d'adaptation avant ce niveau d'impact.",
+              "rest_seconds" : 0,
+              "sets" : 5
+            }
+          ],
+          "name" : "Ratio 20/30 confirmé — 4 blocs variés",
+          "type" : "interval",
+          "warmup" : "8 min mobilité dynamique complète."
+        }
+      ],
+      "theme" : "Progression — ratio 20/30, introduction du burpee modifié",
+      "week_number" : 3
+    },
+    {
+      "goal" : "Semaine allégée : retour au ratio 20/40 mais avec les mouvements acquis. Volume réduit de 15% vs W3 pour consolidation. Les semaines cutback sont CONSTITUTIVES de l'adaptation — ne pas les sauter sous prétexte que c'est trop facile.",
+      "sessions" : [
+        {
+          "cooldown" : "3 min marche + étirements 5 min.",
+          "day" : 1,
+          "duration_minutes" : 28,
+          "exercises" : [
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc 20/40 — Squat",
+              "notes" : "Semaine allégée : retour au ratio confortable. RPE 8 mais le 40 s de repos doit sembler long maintenant — c'est le signe que le corps s'est adapté aux semaines précédentes.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc 20/40 — Fente alternée",
+              "notes" : "RPE 8.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc 20/40 — Mountain climber",
+              "notes" : "RPE 7-8. Accélération légère vs W2 — meilleure maîtrise maintenant.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            }
+          ],
+          "name" : "Cutback — retour 20/40 sur mouvements clés",
+          "type" : "interval",
+          "warmup" : "8 min mobilité dynamique."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 28,
+          "exercises" : [
+            {
+              "name" : "Pompes complètes",
+              "notes" : "+1 rep vs W3 malgré la cutback week : les séances de renforcement peuvent progresser légèrement même semaine allégée HIIT.",
+              "reps" : "6",
+              "rest_seconds" : 60,
+              "sets" : 3
+            },
+            {
+              "duration" : "30 s",
+              "name" : "Planche ventrale",
+              "notes" : "Volume maintenu (même qu'en W3).",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Pont fessier unilatéral",
+              "reps" : "12 par côté",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Dead bug",
+              "notes" : "Retour volume W2 (allégement).",
+              "reps" : "8 par côté",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises surélevés",
+              "reps" : "12 par côté",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement allégé — maintien qualité",
+          "type" : "strength",
+          "warmup" : "7 min mobilité."
+        },
+        {
+          "cooldown" : "3 min marche + étirements 5 min.",
+          "day" : 5,
+          "duration_minutes" : 30,
+          "exercises" : [
+            {
+              "duration" : "20 s effort + 40 s récupération active",
+              "name" : "Bloc 20/40 — Burpee modifié",
+              "notes" : "Volume réduit (3 sets seulement). RPE 8.",
+              "rest_seconds" : 0,
+              "sets" : 3
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 25 s récupération active",
+              "name" : "Bloc 20/25 — Jumping jack",
+              "notes" : "TRANSITION vers ratio 1:1. Le 25 s de repos prépare le passage à 20/20 en W5. RPE 8. Marche sur place pendant les 25 s de récupération.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            },
+            {
+              "duration" : "90 s",
+              "name" : "Repos actif inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 25 s récupération active",
+              "name" : "Bloc 20/25 — Squat",
+              "notes" : "Même exploration du ratio transition. RPE 8.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            }
+          ],
+          "name" : "Cutback + intro ratio 20/25 (transition)",
+          "type" : "interval",
+          "warmup" : "8 min mobilité dynamique."
+        }
+      ],
+      "theme" : "Cutback — consolidation (volume -15%) et préparation ratio 1:1",
+      "week_number" : 4
+    },
+    {
+      "goal" : "Maîtriser le ratio 1:1 (20 s effort / 20 s repos) sur 4 blocs de 8 répétitions. Introduction d'une séance EMOM (Every Minute On the Minute). Volume d'effort par séance : 5 min 20 s (+20% vs W4 active).",
+      "sessions" : [
+        {
+          "cooldown" : "4 min marche lente + étirements 6 min (pectoraux ouverts mains au dos, quadriceps, mollets, ischio).",
+          "day" : 1,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "duration" : "20 s effort + 20 s récupération active",
+              "name" : "Bloc Tabata 20/20 — Squat",
+              "notes" : "VRAI Tabata : 8 répétitions × 20 s = bloc de 4 min. RPE 8-9 sur les 20 s, RPE 2 sur les 20 s de repos. Le 20 s de repos est très court : reste debout, marche sur place, ne t'asseois pas. Si tu n'arrives pas à tenir RPE 8 sur les 5e-8e répétitions, c'est normal pour un débutant — maintenir l'effort même si l'intensité baisse légèrement.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            },
+            {
+              "duration" : "2 min",
+              "name" : "Repos inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 20 s récupération active",
+              "name" : "Bloc Tabata 20/20 — Jumping jack",
+              "notes" : "RPE 8-9. Amplitude maximale confortable.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            },
+            {
+              "duration" : "2 min",
+              "name" : "Repos inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 20 s récupération active",
+              "name" : "Bloc Tabata 20/20 — Mountain climber",
+              "notes" : "RPE 8-9. Version rapide maintenant que le mouvement est maîtrisé depuis W2.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            },
+            {
+              "duration" : "2 min",
+              "name" : "Repos inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 20 s récupération active",
+              "name" : "Bloc Tabata 20/20 — Pompes (complètes ou sur genoux selon niveau)",
+              "notes" : "Pompes complètes si possibles (forme stricte prioritaire sur nombre). Passer sur genoux dès que la forme se casse. RPE 8. 4 blocs × 8 reps = 20 min total de la partie intervalles. Durée totale effort pur : 5 min 20 s.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            }
+          ],
+          "name" : "Tabata 20/20 — ratio 1:1 sur 4 blocs",
+          "type" : "interval",
+          "warmup" : "8 min mobilité dynamique complète incluant 10 jumping jacks lents, 5 burpees modifiés très lents, 10 squats."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 33,
+          "exercises" : [
+            {
+              "name" : "Pompes complètes",
+              "notes" : "4 séries maintenant. RPE 7-8 à la dernière rep de chaque série.",
+              "reps" : "6",
+              "rest_seconds" : 60,
+              "sets" : 4
+            },
+            {
+              "duration" : "40 s",
+              "name" : "Planche ventrale",
+              "notes" : "Progression continue vs W4.",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "duration" : "20 s par côté",
+              "name" : "Side plank sur pied",
+              "notes" : "Progression depuis side plank sur genou de W3. Corps aligné des pieds aux épaules, hanches hautes. Si inconfort cheville/épaule, maintenir version genoux.",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Squat sauté (jump squat)",
+              "notes" : "NOUVEAU mouvement explosif. Squat standard → extension explosive jusqu'à la pointe des pieds (pas nécessairement saut décollé). Réception souple genoux légèrement fléchis. Ce n'est pas un squat sauté avec gros décollage — c'est une montée explosive. Introduction progressive de la pliométrie (ACSM : base de force préalable requise = atteinte via les 4 semaines précédentes).",
+              "reps" : "8",
+              "rest_seconds" : 60,
+              "sets" : 3
+            },
+            {
+              "name" : "Pont fessier unilatéral",
+              "reps" : "12 par côté",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "name" : "Calf raises excentriques",
+              "notes" : "Monter sur 2 pieds, descendre sur 1 seul en 3 s. Tendon d'Achille préparé aux squats sautés.",
+              "reps" : "12 par côté",
+              "rest_seconds" : 30,
+              "sets" : 3
+            }
+          ],
+          "name" : "Renforcement — progression pompes et side plank pied",
+          "type" : "strength",
+          "warmup" : "7 min mobilité."
+        },
+        {
+          "cooldown" : "4 min marche + étirements 6 min.",
+          "day" : 5,
+          "duration_minutes" : 35,
+          "exercises" : [
+            {
+              "duration" : "16 min (4 cycles × 4 mouvements × 1 min)",
+              "name" : "EMOM 16 min — 4 mouvements en rotation",
+              "notes" : "MÉTHODE EMOM : chaque minute commence un mouvement. Minute 1 : 10 squats. Minute 2 : 10 jumping jacks. Minute 3 : 8 mountain climbers (par côté). Minute 4 : 6 burpees modifiés. Ce cycle se répète 4 fois (16 minutes). RPE 8 pendant les répétitions, le temps restant dans la minute est ton repos. Si tu termines en 35 s, tu as 25 s de repos — si tu termines en 50 s, tu n'as que 10 s. L'EMOM apprend à gérer l'intensité pour conserver le repos mérité.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            }
+          ],
+          "name" : "EMOM 16 min — Every Minute On the Minute",
+          "type" : "interval",
+          "warmup" : "8 min mobilité dynamique complète."
+        }
+      ],
+      "theme" : "Tabata 20/20 — ratio 1:1 et introduction EMOM",
+      "week_number" : 5
+    },
+    {
+      "goal" : "Réaliser une séance HIIT complète de 20 min sans équipement : 4 blocs Tabata 20/20 (ratio 1:1) enchaînés avec 2 min de repos inter-blocs. Séance autonome, RPE 8-9 sur les intervalles. Checklist d'autoévaluation en J5.",
+      "sessions" : [
+        {
+          "cooldown" : "4 min marche + étirements 6 min.",
+          "day" : 1,
+          "duration_minutes" : 38,
+          "exercises" : [
+            {
+              "duration" : "20 s effort + 20 s récupération active",
+              "name" : "Bloc Tabata 20/20 — Squat sauté (ou squat si inconfort)",
+              "notes" : "Version sautée si les séances W5 étaient confortables. Version classique si doute. RPE 8-9.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            },
+            {
+              "duration" : "2 min",
+              "name" : "Repos inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 20 s récupération active",
+              "name" : "Bloc Tabata 20/20 — Burpee modifié",
+              "notes" : "RPE 8-9.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            },
+            {
+              "duration" : "2 min",
+              "name" : "Repos inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 20 s récupération active",
+              "name" : "Bloc Tabata 20/20 — High knees",
+              "notes" : "RPE 8-9. Genoux à hauteur de hanche.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            },
+            {
+              "duration" : "2 min",
+              "name" : "Repos inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 20 s récupération active",
+              "name" : "Bloc Tabata 20/20 — Pompes complètes",
+              "notes" : "RPE 8. Finir par les pompes : effort du haut du corps en fin de séance quand le cardio est déjà sollicité.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            }
+          ],
+          "name" : "Répétition générale 20 min",
+          "type" : "interval",
+          "warmup" : "8 min mobilité dynamique complète."
+        },
+        {
+          "cooldown" : "Étirements 5 min.",
+          "day" : 3,
+          "duration_minutes" : 33,
+          "exercises" : [
+            {
+              "name" : "Pompes complètes",
+              "notes" : "Objectif +2 reps vs W5 : 8 reps propres.",
+              "reps" : "8",
+              "rest_seconds" : 60,
+              "sets" : 4
+            },
+            {
+              "duration" : "45 s",
+              "name" : "Planche ventrale",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "duration" : "25 s par côté",
+              "name" : "Side plank sur pied",
+              "rest_seconds" : 40,
+              "sets" : 3
+            },
+            {
+              "name" : "Pont fessier unilatéral",
+              "reps" : "12 par côté",
+              "rest_seconds" : 45,
+              "sets" : 3
+            },
+            {
+              "duration" : "12 min (4 cycles × 3 mouvements × 1 min)",
+              "name" : "EMOM 12 min allégé — 3 mouvements",
+              "notes" : "Minute 1 : 10 squats. Minute 2 : 10 jumping jacks. Minute 3 : 8 mountain climbers par côté. Répéter 4 fois. Volume réduit vs W5 EMOM pour préserver les jambes avant la séance phare J5.",
+              "rest_seconds" : 0,
+              "sets" : 4
+            }
+          ],
+          "name" : "Renforcement maintien + EMOM 12 min allégé",
+          "type" : "mixed",
+          "warmup" : "7 min mobilité."
+        },
+        {
+          "cooldown" : "5 min marche lente + étirements complets 8 min : quadriceps, ischio-jambiers, mollets, pectoraux (mains au dos), hanche fléchisseur, piriforme. Hydratation + récupération active.",
+          "day" : 5,
+          "duration_minutes" : 40,
+          "exercises" : [
+            {
+              "duration" : "20 s effort + 20 s récupération active",
+              "name" : "Bloc Tabata 20/20 — Squat (ou squat sauté)",
+              "notes" : "SÉANCE AUTONOME : choisis toi-même ta variante selon tes sensations du jour. Squat sauté si tu te sens fort, squat classique si jambes lourdes. C'est la compétence clé de l'autonomie HIIT. RPE 8-9.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            },
+            {
+              "duration" : "2 min",
+              "name" : "Repos inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 20 s récupération active",
+              "name" : "Bloc Tabata 20/20 — Jumping jack",
+              "notes" : "RPE 8-9.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            },
+            {
+              "duration" : "2 min",
+              "name" : "Repos inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 20 s récupération active",
+              "name" : "Bloc Tabata 20/20 — Burpee modifié",
+              "notes" : "RPE 8-9.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            },
+            {
+              "duration" : "2 min",
+              "name" : "Repos inter-bloc",
+              "rest_seconds" : 0,
+              "sets" : 1
+            },
+            {
+              "duration" : "20 s effort + 20 s récupération active",
+              "name" : "Bloc Tabata 20/20 — Mountain climber rapide",
+              "notes" : "RPE 8-9. 4 blocs × 4 min + 3 repos × 2 min = 22 min. CHECKLIST D'AUTOÉVALUATION (à cocher mentalement pendant ou après la séance) : (1) Tu as tenu le ratio 20/20 sur les 4 blocs sans dépasser les 2 min de repos inter-blocs — si oui, le plan est réussi. (2) RPE 8-9 maintenu sur au moins 6 des 8 répétitions de chaque bloc — si oui, ton cardio s'est adapté. (3) Tu as choisi toi-même la variante squat (sauté ou classique) selon tes sensations — si oui, tu gères ton intensité de façon autonome. (4) La forme technique (squat : genoux dans l'axe / pompes : corps aligné / burpee : pas de cambrure) était correcte sur au moins 80% des reps — si oui, la sécurité articulaire est acquise. (5) Tu pourrais répéter cette séance de 20 min la semaine prochaine sans plan — si oui, tu es autonome en HIIT débutant.",
+              "rest_seconds" : 0,
+              "sets" : 8
+            }
+          ],
+          "name" : "Séance phare autonome — 20 min HIIT complet",
+          "type" : "interval",
+          "warmup" : "8 min mobilité dynamique complète. Tu connais maintenant ton échauffement par coeur — c'est le signe de l'autonomie."
+        }
+      ],
+      "theme" : "Séance phare 20 min — autonomie complète + checklist",
+      "week_number" : 6
+    }
+  ]
+}

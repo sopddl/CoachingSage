@@ -1,0 +1,1886 @@
+{
+  "assumed_profile": "Coureur expérimenté ayant couru au moins un semi-marathon (idéalement sous 1h50 pour marathon sub-4h, ou sous 1h35 pour marathon sub-3h30). Volume hebdomadaire habituel ≥ 40 km/sem. Connaissance de sa FC seuil (via test Conconi, test 30 min, ou course 10K récente), de son allure marathon cible (AM) et de son allure seuil lactique (AS = allure 10K + 15-30 s/km). Équipé : chaussures de running adaptées < 400 km, montre GPS avec FC, accès à un sol varié (bitume + chemins). Renforcement : accès à sol, mur, marche (step-ups). Aucune blessure active.",
+  "default_objective": "Terminer un marathon (42,2 km) en visant un temps personnel. Objectif structurel : courir l'intégralité de la distance à allure cible stable, avec une seconde moitié ≥ première moitié (negative split ou split pair).",
+  "duration_weeks": 16,
+  "id": "running-competitive-marathon-16sem",
+  "level": "competitive",
+  "name": "Marathon — 16 semaines vers ton temps personnel",
+  "progression_logic": "Progression structurée sur 5 principes, alignés sur les plans Hal Higdon Advanced, Pete Pfitzinger (Advanced Marathoning) et recommandations ACSM/NSCA :\n\n(1) PROGRESSION EN 4 BLOCS AVEC CUTBACK TOUTES LES 4 SEMAINES :\n- Bloc 1 (W1-W4) : Base aérobie. Volume de 55 à 66 km, cutback W4 à 56 km.\n- Bloc 2 (W5-W8) : Développement seuil lactique + VO2max. Volume de 63 à 68 km, cutback W8 à 56 km.\n- Bloc 3 (W9-W12) : Spécificité marathon. Volume de 64 à 75 km (pic W11), cutback W12 à 60 km.\n- Bloc 4 (W13-W16) : Affûtage progressif sur 3 semaines + Race week. Volume décroissant : 51 → 38 → 25 → marathon.\nLa règle des 10-20% est respectée semaine après semaine dans chaque bloc, sauf dans les semaines de cutback (réduction volontaire de 15-20%). Aucun delta entre semaines consécutives ne dépasse 15% en dehors des semaines de cutback.\n\n(2) SÉANCES QUALITÉ MAINTENUES À LEUR INTENSITÉ PENDANT L'AFFÛTAGE (principe Mujika & Padilla) :\nLe tapering réduit le VOLUME, jamais l'INTENSITÉ. Les séances tempo et VO2max de W13, W14, W15 maintiennent les allures exactes des blocs 2 et 3. C'est la réduction du volume (-15%, -35%, -50%) qui permet la supercompensation, pas la réduction de l'intensité. Supprimer les strides pendant l'affûtage est une erreur fréquente qui laisse les fibres rapides non-stimulées le jour J.\n\n(3) SÉANCES TEMPO ET VO2MAX TOUTES LES SEMAINES SANS EXCEPTION (règle 3.1 running expert) :\n- Tempo seuil (allure 10K + 15-30 s/km) : progression de 20 min continus (W1) à 40 min continus (W10). Format alterné : continu 1 semaine, fractionné 2x blocs la suivante pour permettre plus de volume total au seuil.\n- Intervalles VO2max (allure 5K) : 400-600m en W1-W2, passage à 1000m en W3, 1200m en W7. Séances présentes sur les 16 semaines (réduites mais jamais absentes).\n- Ces deux types de séances ne sont jamais planifiés le même jour, ni à moins de 48h d'écart, ni dans les 48h précédant le long run.\n\n(4) LONG RUN PROGRESSIF AVEC PORTION ALLURE MARATHON CROISSANTE (spécificité Pfitzinger) :\nLe long run n'est pas uniquement aérobie : il intègre une portion croissante à allure marathon (AM) pour entraîner le corps à courir vite sur des jambes fatiguées. Évolution de la portion AM : 4 km (W2), 8 km (W5), 11 km (W6), 16 km (W7), 18 km (W9), 20 km (W10 et W11). Cette progression est au cœur de la préparation marathon expert. Le long run pic à 35 km (W11) représente 83% de la distance marathon — suffisant pour déclencher les adaptations (glycogène, mitochondries) sans les traumatismes excessifs d'un long run à 38-40 km.\n\n(5) RENFORCEMENT PRÉVENTIF SPÉCIFIQUE EXPERT :\n- Nordic curls (ischio-jambiers) : dès W1, progression de 5-6 reps à 8 reps sur 4 séries. Prévention tendinite ischio-jambière proximale, risque n°1 du coureur de marathon pratiquant des intervalles à haute vitesse.\n- Calf raises excentriques unipodaux : dès W1, progression de 12 à 18 reps sur 4 séries. Prévention tendinopathie d'Achille sous charge cumulative marathon.\n- Single-leg squat / Bulgarian split squat : prévention PFPS et ITBS, équilibre G/D.\n- Core (planche, bird-dog, side plank, dead bug) : maintien de la stabilité lombopelvienne sur les km 30+. En fin de séance force UNIQUEMENT, jamais en début (fatigue des stabilisateurs compromettrait les autres exercices).\n- Volume de renforcement progressivement réduit pendant l'affûtage (W13-W15) pour ne pas induire de fatigue résiduelle le jour J.",
+  "safety_notes": "DRAPEAUX ROUGES — arrêter immédiatement et consulter un médecin si :\n• Douleur aigu sur le tibia antérieur ou la face interne du tibia localisée en un point précis, qui empire à la palpation : suspicion de fracture de stress tibiale. Stop immédiat, IRM ou scintigraphie. Les fractured de stress surviennent typiquement lors des pics de volume (W10-W11 de ce plan) chez les coureurs qui augmentent trop vite ou qui ont une carence en vitamine D/calcium. Différent du shin splint diffus : la fracture de stress fait mal SUR UN POINT PRÉCIS.\n• Douleur postérieure de cuisse irradiant vers le bas lors de l'accélération ou en nordic curl : suspicion de tendinopathie proximale des ischio-jambiers. Arrêt des intervalles et du fractionné, kiné obligatoire. Très fréquent chez le coureur de marathon qui fait des séances tempo et VO2max à haute charge.\n• Douleur face externe du genou au km 15-20 systématiquement : syndrome bandelette ilio-tibiale (ITBS). Réduire le volume de 30%, kiné, continuer les clamshells et les single-leg squats.\n• Douleur derrière le talon le matin au réveil (tendinopathie d'Achille) : ne pas courir à travers la douleur. Protocole excentrique (calf raises excentriques = déjà dans le plan), réduire l'intensité des séances, kiné si persistance > 10 jours.\n• Douleur à la plante du pied au premier pas le matin (fasciite plantaire) : étirements mollets et fascia plantaire 2×/jour, glace, vérifier les chaussures (< 400 km dans les chaussures d'entraînement, < 200 km dans les chaussures de course).\n• Douleur antérieure de genou, craquements, gonflement (PFPS — chondropathie rotulienne) : réduire les descentes en côte, renforcer le vaste médial (single-leg squat), kiné.\n• Signes cardiovasculaires : douleur thoracique, palpitations, malaise, essoufflement disproportionné à l'effort — arrêt immédiat et appel au 15. Ne jamais courir avec une FC de repos > 15 bpm au-dessus de la normale.\n\nRÈGLES GÉNÉRALES :\n• Chaussures de course ≤ 400 km en entraînement. Chaussures 'de course' (carbon plate ou mousse haute) ≤ 200 km, réservées aux séances tempo/VO2max et au marathon. Ne pas faire tous les runs en carbon plate : le manque de stimulation proprioceptive fragilise les tendons à moyen terme.\n• Hydratation : 500 ml dans les 2h précédant chaque run, eau à portée sur tout run > 60 min. Électrolytes (sodium, magnésium) sur les runs > 90 min. En conditions chaudes : réduire l'allure de 5-10 s/km par tranche de 5°C au-dessus de 15°C.\n• 1 jour de repos ou mobilité entre les séances running (pattern : J1 run / J2 force ou mobilité / J3 tempo / J4 repos / J5 intervalles / J6 repos / J7 long run).\n• Nutrition : l'entraînement marathon épuise les réserves de glycogène. Objectif glucidique : 6-8 g/kg de poids corporel par jour dans les semaines de volume élevé (W9-W11). Protéines : 1,6 g/kg/jour pour la récupération musculaire.\n• Sommeil : 7-9h/nuit est aussi important que les séances elles-mêmes. La supercompensation se fait pendant le sommeil. Moins de 6h/nuit répété = risque blessure augmenté de 1,7x (étude Milewski, 2014).\n\nINTENSITÉ ET ALLURES DE RÉFÉRENCE :\n• AM (allure marathon cible) : calculée depuis ton record de semi-marathon récent ou ton objectif 42,2 km. Utiliser la calculateur Jack Daniels VDOT ou le calculateur Riegel (AM = temps estimé ÷ distance).\n• AS (allure seuil) = allure 10K cible + 15-30 s/km. FC cible : 85-90% FCmax. Test : tu peux dire 4-5 mots consécutifs mais pas une phrase entière.\n• Allure VO2max = allure 5K estimée. FC cible en fin d'intervalle : 95-100% FCmax.\n• Allure aérobie (long run) = AM + 45-60 s/km. Test de la parole : phrase entière sans difficulté.\n• Allure récupération = AM + 75-90 s/km. Jamais de conversation difficile.\n\nSIGNES DE SURCHARGE (3+ signes → passer à une semaine cutback ou consulter) :\n• FC de repos au réveil > 8 bpm au-dessus de ta normale pendant 3 jours consécutifs.\n• Douleurs musculaires persistantes > 72h après une séance modérée.\n• Baisse inexpliquée des allures sur des séances identiques (> 10 sec/km sur le tempo).\n• Troubles du sommeil sur 3 nuits consécutives.\n• Perte d'appétit inhabituelle + irritabilité.\n• Sensations de jambes constamment lourdes même sur les runs faciles 3 jours après un long run.\n\nSI SÉANCE MANQUÉE :\n• 1-2 jours de pause : reprendre le programme là où il s'est arrêté, décaler les séances dans la semaine.\n• 3-6 jours de pause (maladie légère) : reprendre au même point mais avec une séance de moins cette semaine. Ne pas récupérer le volume manqué.\n• 1-2 semaines de pause : reprendre la semaine -2.\n• > 2 semaines de pause pendant les W1-W8 : reprendre au début du bloc interrompu.\n• Pause en W13-W15 (affûtage) : continuer le plan normal — les semaines d'affûtage sont à bas volume, une pause courte n'impacte pas significativement la forme.",
+  "schema_version": 1,
+  "sessions_per_week": 5,
+  "sport": "running",
+  "summary": "Plan expert 16 semaines structuré en 4 blocs : Base aérobie renforcée (W1-W4), Développement seuil + VO2max (W5-W8), Spécificité marathon + volume pic (W9-W12), Cutback final + affûtage (W13-W16). Chaque semaine comporte 5 séances : 1 sortie longue progressive, 1 séance tempo/seuil (20-40 min à AS), 1 séance intervalles VO2max (400-1000m à allure 5K), 1 run de récupération active, 1 run à allure marathon ou renforcement musculaire. Cutbacks toutes les 4 semaines (W4, W8, W12). Long run pic : 32-35 km. Affûtage 3 semaines (W13-W15) + race week W16. Allures de référence calculées depuis ton allure marathon cible (AM) : récup = AM + 75-90 s/km, endurance = AM + 45-60 s/km, seuil = AM - 10 à +10 s/km, intervalles VO2max = allure 5K estimée.",
+  "weeks": [
+    {
+      "goal": "Poser la base aérobie à volume modéré (~55 km). Réactiver les repères d'allure (AM, AS, récup). Séance tempo introduite dès W1 (20 min) pour établir les repères neuromusculaires. Long run modéré 18 km.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements dynamiques légers mollets + ischio-jambiers.",
+          "day": 1,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "40 min",
+              "name": "Run facile",
+              "notes": "Allure AM + 60 s/km minimum. Zone 2 (65-75% FCmax). Respiration conversationnelle complète. Ce run 'facile' est aussi important que les séances dures : c'est ici que se construit la base mitochondriale.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "20 sec accélération progressive",
+              "name": "Strides",
+              "notes": "Après le run facile, 4 accélérations de 20 sec sur terrain plat. Monter progressivement à 90% de la VMA, pas de sprint max. Récupération marche/footing entre chaque. Active les fibres rapides sans fatiguer.",
+              "rest_seconds": 90,
+              "sets": 4
+            }
+          ],
+          "name": "Run facile + strides",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing très lent (allure AM + 90 s/km). Mobilité dynamique : 10 balancements de jambe avant-arrière/côté, 10 cercles de hanches, 10 high knees lents."
+        },
+        {
+          "cooldown": "Étirements statiques 5 min : ischio-jambiers, mollets, fessiers, psoas-iliaque.",
+          "day": 2,
+          "duration_minutes": 40,
+          "exercises": [
+            {
+              "name": "Single-leg calf raises excentriques",
+              "notes": "Monter sur 2 pieds, descendre sur 1 seul en 4 sec. Protection tendon d'Achille. Obligatoire chez l'expert en préparation marathon (charge cumulée > 700 km).",
+              "reps": "12 par jambe",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Nordic curl",
+              "notes": "Genoufléchi au sol, partenaire ou meuble stable tient les chevilles. Descente contrôlée en 4 sec, mains au sol pour revenir. Prévention tendinite ischio-jambière sur fractionné : exercice le plus validé scientifiquement (étude Mjolsnes 2004).",
+              "reps": "5-6",
+              "rest_seconds": 90,
+              "sets": 3
+            },
+            {
+              "name": "Single-leg squat (pistol assisté)",
+              "notes": "Debout sur 1 jambe, descente contrôlée. Main sur le mur pour équilibre si besoin. Renforce le vaste médial et les abducteurs de hanche — prévention PFPS et ITBS.",
+              "reps": "8 par jambe",
+              "rest_seconds": 60,
+              "sets": 3
+            },
+            {
+              "duration": "45 sec",
+              "name": "Planche ventrale",
+              "notes": "Alignement strict. Core stabilisateur pour maintenir la forme en fin de marathon.",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Bird-dog",
+              "notes": "Tenir 2 sec en extension. Anti-rotation lombaire, protection des lombaires sur longues distances.",
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            },
+            {
+              "name": "Clamshells avec résistance légère",
+              "notes": "Avec élastique léger si disponible, sinon poids du corps. Prévention ITBS.",
+              "reps": "15 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            }
+          ],
+          "name": "Renforcement préventif fondation",
+          "type": "strength",
+          "warmup": "5 min marche rapide + activation hanches (clamshells 10/côté, pont fessier 10 reps)."
+        },
+        {
+          "cooldown": "10 min footing très lent (AM + 90 s/km) + 5 min marche + étirements 5 min mollets, ischio-jambiers.",
+          "day": 3,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "duration": "20 min",
+              "name": "Tempo continu seuil lactique",
+              "notes": "Allure seuil = allure 10K cible + 15-30 s/km (= environ AM - 10 à +10 s/km selon ton niveau). Tu dois pouvoir dire des phrases courtes de 4-5 mots. FC cible : 85-90% FCmax. C'est la zone où la lactatémie commence à dépasser 4 mmol/L. Maintien d'une allure STABLE sur les 20 min, pas d'accélération finale.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Séance tempo seuil — 20 min",
+          "type": "interval",
+          "warmup": "15 min échauffement progressif : 5 min marche + 10 min footing allure AM + 60 s/km. 4 strides de 15 sec. L'échauffement long est obligatoire avant toute séance au seuil."
+        },
+        {
+          "cooldown": "10 min footing très lent + 5 min marche + étirements 5 min.",
+          "day": 5,
+          "duration_minutes": 60,
+          "exercises": [
+            {
+              "duration": "600m (environ 2 min 20 - 2 min 45 selon ton niveau)",
+              "name": "Intervalles 600m à allure 5K",
+              "notes": "Allure cible = ton allure 5K estimée (allure marathon - 60 à 75 s/km pour un coureur expert). FC cible en fin d'intervalle : 95-100% FCmax. Récupération 2 min 30 de jogging lent (pas de marche statique). Si tu ne peux pas tenir l'allure sur le 4e ou 5e intervalle, c'est OK : réduis à 400m. La cohérence d'allure prime sur la distance.",
+              "rest_seconds": 150,
+              "sets": 5
+            }
+          ],
+          "name": "Intervalles VO2max — 5x600m",
+          "type": "interval",
+          "warmup": "15 min échauffement : 5 min marche + 10 min footing facile + 3 strides de 20 sec."
+        },
+        {
+          "cooldown": "5 min marche + étirements complets 10 min. Collation 30-45 min post-effort (glucides + protéines).",
+          "day": 7,
+          "duration_minutes": 120,
+          "exercises": [
+            {
+              "duration": "18 km",
+              "name": "Long run aérobie",
+              "notes": "Allure AM + 45-60 s/km (Zone 2 aisée). Tester la nutrition/hydratation en course : 1 gel ou équivalent toutes les 45-50 min, eau toutes les 20 min. Ne pas négliger la nutrition sur les longs runs — les problèmes GI au marathon se préviennent à l'entraînement. Sur les 3 derniers km, accélérer légèrement pour terminer sur une bonne sensation.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue — 18 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 1 — Mise en route aérobie",
+      "week_number": 1
+    },
+    {
+      "goal": "Volume +10% vs W1 (~60 km). Allonger le tempo à 25 min. Long run 21 km (semi-marathon distance).",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "42 min",
+              "name": "Run facile",
+              "notes": "Allure AM + 60 s/km. Zone 2. +2 min vs W1.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "20 sec accélération progressive",
+              "name": "Strides",
+              "notes": "+1 stride vs W1.",
+              "rest_seconds": 90,
+              "sets": 5
+            }
+          ],
+          "name": "Run facile + strides",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent + mobilité dynamique standard."
+        },
+        {
+          "cooldown": "Étirements 5 min.",
+          "day": 2,
+          "duration_minutes": 40,
+          "exercises": [
+            {
+              "name": "Single-leg calf raises excentriques",
+              "notes": "+3 reps vs W1. Progression sur l'excentrique.",
+              "reps": "15 par jambe",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Nordic curl",
+              "notes": "Progression douce. Si tu ne peux pas encore faire les Nordic curls complets, reste en descente excentrique avec remontée assistée.",
+              "reps": "6-7",
+              "rest_seconds": 90,
+              "sets": 3
+            },
+            {
+              "name": "Single-leg squat (pistol assisté)",
+              "notes": "+2 reps vs W1.",
+              "reps": "10 par jambe",
+              "rest_seconds": 60,
+              "sets": 3
+            },
+            {
+              "duration": "50 sec",
+              "name": "Planche ventrale",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Bird-dog",
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            },
+            {
+              "name": "Clamshells avec résistance",
+              "reps": "15 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            }
+          ],
+          "name": "Renforcement préventif",
+          "type": "strength",
+          "warmup": "5 min activation."
+        },
+        {
+          "cooldown": "10 min footing lent + 5 min marche + étirements.",
+          "day": 3,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "duration": "25 min",
+              "name": "Tempo continu seuil lactique",
+              "notes": "Même allure seuil que W1 (allure 10K + 15-30 s/km). +5 min vs W1. L'enjeu est de maintenir l'allure IDENTIQUE sur 25 min — si tu accélères sur les 5 dernières minutes, tu as couru trop lentement avant. Régularité = critère de maîtrise.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Tempo seuil — 25 min",
+          "type": "interval",
+          "warmup": "15 min progressif + 4 strides 15 sec."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements 5 min.",
+          "day": 5,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "duration": "600m",
+              "name": "Intervalles 600m à allure 5K",
+              "notes": "+1 intervalle vs W1. Même allure cible 5K. Vérifie que l'allure des 6 intervalles est homogène (±5 sec). Un 6e intervalle beaucoup plus lent signale une fatigue cumulée — noter dans le journal.",
+              "rest_seconds": 150,
+              "sets": 6
+            }
+          ],
+          "name": "Intervalles VO2max — 6x600m",
+          "type": "interval",
+          "warmup": "15 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "5 min marche + étirements 10 min.",
+          "day": 7,
+          "duration_minutes": 135,
+          "exercises": [
+            {
+              "duration": "21 km",
+              "name": "Long run aérobie avec portion allure marathon",
+              "notes": "Km 1-14 à AM + 45-60 s/km. Km 14-21 : intégrer 4 km à allure marathon cible (AM) pour sentir l'allure race-pace. Nutrition : gel à 45 min et 90 min. C'est la première distance semi-marathon du plan — te rappeler que 21 km = exactement la moitié du marathon.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue — 21 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 1 — Consolidation aérobie",
+      "week_number": 2
+    },
+    {
+      "goal": "Volume +10% (~66 km). Tempo 2x16 min (format fractionné du seuil). Long run 24 km. VO2max progressé en 1000m.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 60,
+          "exercises": [
+            {
+              "duration": "45 min",
+              "name": "Run facile",
+              "notes": "Allure AM + 60 s/km. Zone 2.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "20 sec",
+              "name": "Strides",
+              "notes": "5 strides post-run. Maintien neurostimulation vitesse.",
+              "rest_seconds": 90,
+              "sets": 5
+            }
+          ],
+          "name": "Run facile + strides",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent + mobilité."
+        },
+        {
+          "cooldown": "Étirements 5 min.",
+          "day": 2,
+          "duration_minutes": 40,
+          "exercises": [
+            {
+              "name": "Single-leg calf raises excentriques",
+              "notes": "+1 série vs W2. Volume calf en hausse pour préparer le long run 24 km.",
+              "reps": "12 par jambe",
+              "rest_seconds": 45,
+              "sets": 4
+            },
+            {
+              "name": "Nordic curl",
+              "reps": "7-8",
+              "rest_seconds": 90,
+              "sets": 3
+            },
+            {
+              "name": "Step-ups explosifs",
+              "notes": "Remplacement du pistol assisté cette semaine. Marche ou chaise stable 40 cm. Montée explosive, descente contrôlée 2 sec. Transfère en puissance de foulée.",
+              "reps": "10 par jambe",
+              "rest_seconds": 60,
+              "sets": 3
+            },
+            {
+              "duration": "55 sec",
+              "name": "Planche ventrale",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Bird-dog",
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            },
+            {
+              "duration": "30 sec par côté",
+              "name": "Side plank",
+              "notes": "Introduction du side plank en W3. Cible les obliques et moyen fessier.",
+              "rest_seconds": 30,
+              "sets": 3
+            }
+          ],
+          "name": "Renforcement préventif",
+          "type": "strength",
+          "warmup": "5 min activation."
+        },
+        {
+          "cooldown": "10 min footing lent + 5 min marche + étirements.",
+          "day": 3,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "duration": "16 min",
+              "name": "Tempo seuil fractionné",
+              "notes": "Deux blocs de 16 min à allure seuil (allure 10K + 15-30 s/km), récupération 3 min de footing lent entre les deux. Total seuil : 32 min. Volume seuil supérieur au 25 min continu de W2 mais la coupure de 3 min permet de tenir l'allure haute sur toute la durée — méthode validée ACSM pour développer le seuil lactique.",
+              "rest_seconds": 180,
+              "sets": 2
+            }
+          ],
+          "name": "Tempo fractionné 2x16 min",
+          "type": "interval",
+          "warmup": "15 min progressif + 4 strides."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements 5 min.",
+          "day": 5,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "duration": "1000m (environ 3 min 50 - 4 min 30 selon le niveau)",
+              "name": "Intervalles 1000m à allure 5K",
+              "notes": "Passage de 600m à 1000m. Récupération 3 min 30 de jogging lent. Allure cible identique : allure 5K. Le 1000m sollicite le VO2max plus longtemps (> 3 min 45 = seuil d'activation VO2max selon Billat). 5 répétitions avec allure homogène sur toutes.",
+              "rest_seconds": 210,
+              "sets": 5
+            }
+          ],
+          "name": "Intervalles VO2max — 5x1000m",
+          "type": "interval",
+          "warmup": "15 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "5 min marche + étirements 10 min + bain froid optionnel (eau froide jusqu'aux genoux 10 min) pour limiter l'inflammation.",
+          "day": 7,
+          "duration_minutes": 150,
+          "exercises": [
+            {
+              "duration": "24 km",
+              "name": "Long run progressif",
+              "notes": "Km 1-16 à AM + 45-60 s/km. Km 16-24 : 5 km à AM. Test nutrition complet : gel à 45 min, 80 min, 120 min. Vérifier confort gastrointestinal et timing d'ingestion. Observer si l'allure marathon est tenable en fin de long run — c'est l'indicateur de forme principal en prépa marathon.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue — 24 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 1 — Développement volume",
+      "week_number": 3
+    },
+    {
+      "goal": "Semaine allégée : volume -15% vs W3 (~56 km). Maintien de la qualité (1 séance tempo courte + 1 séance intervalles courte). Long run réduit à 18 km. Les semaines de cutback ne sont pas facultatives : c'est pendant la récupération que les adaptations physiologiques s'installent.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "duration": "40 min",
+              "name": "Run facile",
+              "notes": "Allure AM + 75-90 s/km. Intentionnellement lent. Oxygénation sans traumatisme supplémentaire.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Run facile récupération",
+          "type": "endurance",
+          "warmup": "5 min marche + mobilité douce."
+        },
+        {
+          "cooldown": "Étirements 5 min.",
+          "day": 2,
+          "duration_minutes": 35,
+          "exercises": [
+            {
+              "name": "Single-leg calf raises excentriques",
+              "notes": "Volume cutback : retour à 3 séries.",
+              "reps": "12 par jambe",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Nordic curl",
+              "notes": "Volume réduit.",
+              "reps": "6",
+              "rest_seconds": 90,
+              "sets": 2
+            },
+            {
+              "duration": "45 sec",
+              "name": "Planche ventrale",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Bird-dog",
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            }
+          ],
+          "name": "Renforcement maintenance",
+          "type": "strength",
+          "warmup": "5 min activation légère."
+        },
+        {
+          "cooldown": "10 min footing lent + 5 min marche + étirements.",
+          "day": 3,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "20 min",
+              "name": "Tempo continu seuil",
+              "notes": "Retour au volume tempo de W1. Allure identique (allure 10K + 15-30 s/km). Observes-tu une sensation de facilité relative par rapport à W1 ? C'est le signe que le bloc 1 a porté ses fruits.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Tempo seuil court — 20 min",
+          "type": "interval",
+          "warmup": "12 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 5,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "800m",
+              "name": "Intervalles 800m à allure 5K",
+              "notes": "Volume réduit (4x800m vs 5x1000m en W3). Maintien de la stimulation neuromusculaire. Récupération 3 min de jogging lent.",
+              "rest_seconds": 180,
+              "sets": 4
+            }
+          ],
+          "name": "Intervalles VO2max — 4x800m",
+          "type": "interval",
+          "warmup": "12 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "5 min marche + étirements 10 min.",
+          "day": 7,
+          "duration_minutes": 115,
+          "exercises": [
+            {
+              "duration": "18 km",
+              "name": "Long run aérobie pur",
+              "notes": "Intégralement à AM + 60 s/km. Pas de portion AM. Semaine de récupération = long run aérobie pur sans stress d'allure. Profiter pour observer sa mécanique de course (posture, attaque pied, cadence ~180 pas/min).",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue cutback — 18 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 1 Cutback — consolidation",
+      "week_number": 4
+    },
+    {
+      "goal": "Volume +12% vs W4 (~63 km). Tempo progressé à 30 min continu. VO2max en 5x1000m. Long run 26 km avec portion AM étendue.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 60,
+          "exercises": [
+            {
+              "duration": "45 min",
+              "name": "Run facile",
+              "notes": "Zone 2. AM + 60 s/km. Cadence cible 180 pas/min — utiliser un métronome ou une playlist 180 bpm si nécessaire.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "20 sec",
+              "name": "Strides qualité",
+              "notes": "6 strides. Monter à 90-95% VMA. Travail neurostimulation pré-semaine de charge.",
+              "rest_seconds": 90,
+              "sets": 6
+            }
+          ],
+          "name": "Run facile + strides qualité",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent + mobilité."
+        },
+        {
+          "cooldown": "Étirements 5 min.",
+          "day": 2,
+          "duration_minutes": 45,
+          "exercises": [
+            {
+              "name": "Single-leg calf raises excentriques",
+              "reps": "15 par jambe",
+              "rest_seconds": 45,
+              "sets": 4
+            },
+            {
+              "name": "Nordic curl",
+              "notes": "Progression des ischio-jambiers. 8 reps de qualité > 10 reps saccadées.",
+              "reps": "8",
+              "rest_seconds": 90,
+              "sets": 3
+            },
+            {
+              "name": "Bulgarian split squat",
+              "notes": "Pied arrière sur chaise ou banc. Descente genou avant à 90°. Charge poids du corps. Renforce la chaîne postérieure et les quad de façon asymétrique — transfère direct sur la foulée.",
+              "reps": "10 par jambe",
+              "rest_seconds": 60,
+              "sets": 3
+            },
+            {
+              "duration": "60 sec",
+              "name": "Planche ventrale",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Bird-dog",
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            },
+            {
+              "name": "Side plank dynamique",
+              "notes": "Side plank en appui, soulever et abaisser la hanche. Version dynamique plus exigeante.",
+              "reps": "10 élévations de hanche par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            }
+          ],
+          "name": "Renforcement intermédiaire",
+          "type": "strength",
+          "warmup": "5 min activation."
+        },
+        {
+          "cooldown": "10 min footing lent + 5 min marche + étirements.",
+          "day": 3,
+          "duration_minutes": 75,
+          "exercises": [
+            {
+              "duration": "30 min",
+              "name": "Tempo continu seuil lactique",
+              "notes": "Premier 30 min continu à seuil du plan. Allure constante du début à la fin (allure 10K + 15-30 s/km). Si l'allure dérive dans les 10 dernières minutes, c'est acceptable mais noter. 30 min continus au seuil = marqueur de maturité aérobie pour un expert marathon.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Tempo seuil — 30 min continu",
+          "type": "interval",
+          "warmup": "15 min progressif + 4 strides."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 5,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "duration": "1000m",
+              "name": "Intervalles 1000m à allure 5K",
+              "notes": "Retour au format 5x1000m. Vérifier si l'allure est plus confortable qu'en W3 — c'est l'indicateur d'amélioration VO2max. Récupération 3 min 30 jogging lent.",
+              "rest_seconds": 210,
+              "sets": 5
+            }
+          ],
+          "name": "Intervalles VO2max — 5x1000m",
+          "type": "interval",
+          "warmup": "15 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "5 min marche + étirements 10 min.",
+          "day": 7,
+          "duration_minutes": 165,
+          "exercises": [
+            {
+              "duration": "26 km",
+              "name": "Long run avec portion AM étendue",
+              "notes": "Km 1-16 à AM + 45-60 s/km. Km 16-24 : 8 km à allure marathon cible AM. Km 24-26 : retour aérobie facile. Tester la nutrition sur 8 km AM consécutifs. Le fait de tenir l'allure AM après 16 km de base est l'objectif pédagogique clé.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue — 26 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 2 — Développement seuil + VO2max",
+      "week_number": 5
+    },
+    {
+      "goal": "Volume stable ~63 km (consolidation). Tempo progressé à 2x18 min fractionné. VO2max en 6x1000m. Long run 27 km.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 60,
+          "exercises": [
+            {
+              "duration": "48 min",
+              "name": "Run facile",
+              "notes": "Zone 2. AM + 60 s/km. Légère augmentation de la durée par rapport à W5.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "20 sec",
+              "name": "Strides",
+              "rest_seconds": 90,
+              "sets": 5
+            }
+          ],
+          "name": "Run facile endurance",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        },
+        {
+          "cooldown": "Étirements 5 min.",
+          "day": 2,
+          "duration_minutes": 45,
+          "exercises": [
+            {
+              "name": "Single-leg calf raises excentriques",
+              "reps": "15 par jambe",
+              "rest_seconds": 45,
+              "sets": 4
+            },
+            {
+              "name": "Nordic curl",
+              "reps": "8",
+              "rest_seconds": 90,
+              "sets": 3
+            },
+            {
+              "name": "Bulgarian split squat",
+              "notes": "+2 reps vs W5.",
+              "reps": "12 par jambe",
+              "rest_seconds": 60,
+              "sets": 3
+            },
+            {
+              "duration": "60 sec",
+              "name": "Planche ventrale",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Side plank dynamique",
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            },
+            {
+              "name": "Dead bug",
+              "notes": "Allongé sur le dos, bras tendus, jambes à 90°. Baisser bras opposé + jambe opposée vers le sol en gardant le bas du dos plaqué au sol. Anti-extension lombaire. Nouveau mouvement W6.",
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            }
+          ],
+          "name": "Renforcement avancé",
+          "type": "strength",
+          "warmup": "5 min activation."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements 5 min.",
+          "day": 3,
+          "duration_minutes": 75,
+          "exercises": [
+            {
+              "duration": "18 min",
+              "name": "Tempo seuil fractionné",
+              "notes": "Deux blocs 18 min à allure seuil. Récupération 3 min footing lent. Volume total seuil = 36 min. +4 min vs W3 (2x16). Allure identique — la régularité entre les deux blocs est le critère de succès.",
+              "rest_seconds": 180,
+              "sets": 2
+            }
+          ],
+          "name": "Tempo seuil — 2x18 min",
+          "type": "interval",
+          "warmup": "15 min progressif + 4 strides."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 5,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "duration": "1000m",
+              "name": "Intervalles 1000m à allure 5K",
+              "notes": "6 répétitions. Volume VO2max pic de ce bloc. Si l'allure ne peut pas être maintenue sur le 5e ou 6e intervalle, arrêter là : ne pas finir à une allure significativement plus lente (moins 15 sec/km) car cela sort du stimulus VO2max.",
+              "rest_seconds": 210,
+              "sets": 6
+            }
+          ],
+          "name": "Intervalles VO2max — 6x1000m",
+          "type": "interval",
+          "warmup": "15 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "5 min marche + étirements 10 min.",
+          "day": 7,
+          "duration_minutes": 170,
+          "exercises": [
+            {
+              "duration": "27 km",
+              "name": "Long run avec blocs AM et fin progressive",
+              "notes": "Km 1-14 à AM + 60 s/km. Km 14-25 : 11 km à AM. Km 25-27 : AM - 10 s/km si les jambes le permettent. Apprendre à finir fort est la compétence clé du marathonien. Nutrition : gel à 40 min, 75 min, 110 min.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue — 27 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 2 — Intensification qualité",
+      "week_number": 6
+    },
+    {
+      "goal": "Volume +8% (~68 km). Tempo 35 min continu. Long run 29 km avec proportion AM majoritaire. VO2max maintenu.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "duration": "50 min",
+              "name": "Run facile",
+              "notes": "Zone 2. AM + 60 s/km.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "20 sec",
+              "name": "Strides",
+              "rest_seconds": 90,
+              "sets": 6
+            }
+          ],
+          "name": "Run facile endurance",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        },
+        {
+          "cooldown": "Étirements 5 min.",
+          "day": 2,
+          "duration_minutes": 45,
+          "exercises": [
+            {
+              "name": "Single-leg calf raises excentriques",
+              "reps": "15 par jambe",
+              "rest_seconds": 45,
+              "sets": 4
+            },
+            {
+              "name": "Nordic curl",
+              "notes": "+1 série vs semaines précédentes. Charge ischio maximale avant le cutback W8.",
+              "reps": "8",
+              "rest_seconds": 90,
+              "sets": 4
+            },
+            {
+              "name": "Bulgarian split squat",
+              "reps": "12 par jambe",
+              "rest_seconds": 60,
+              "sets": 3
+            },
+            {
+              "duration": "60 sec",
+              "name": "Planche ventrale",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Dead bug",
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            },
+            {
+              "name": "Jumping squat (saut squat contrôlé)",
+              "notes": "Squat descendant à 60°, impulsion explosive vers le haut, réception douce en absorbant sur avant-pied. Puissance plyométrique. Terrain souple ou tapis impératif.",
+              "reps": "8",
+              "rest_seconds": 60,
+              "sets": 3
+            }
+          ],
+          "name": "Renforcement charge",
+          "type": "strength",
+          "warmup": "5 min activation."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements 5 min.",
+          "day": 3,
+          "duration_minutes": 75,
+          "exercises": [
+            {
+              "duration": "35 min",
+              "name": "Tempo continu seuil lactique",
+              "notes": "35 min continus à allure seuil (allure 10K + 15-30 s/km). Volume seuil le plus élevé du plan jusqu'ici. Objectif de régularité totale : drift d'allure < 5 sec/km sur les 35 min. FC attendue : 85-90% FCmax en régime permanent.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Tempo seuil — 35 min continu",
+          "type": "interval",
+          "warmup": "15 min progressif + 4 strides."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 5,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "duration": "1200m",
+              "name": "Intervalles 1200m à allure 5K",
+              "notes": "Passage à 1200m. Récupération 4 min de jogging lent. Chaque répétition dure environ 4 min 30 - 5 min 20 selon le niveau : optimal pour maintenir VO2max au plafond sur toute la répétition. Allure 5K strictement maintenue.",
+              "rest_seconds": 240,
+              "sets": 5
+            }
+          ],
+          "name": "Intervalles VO2max — 5x1200m",
+          "type": "interval",
+          "warmup": "15 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "5 min marche + étirements 10 min + bain froid optionnel.",
+          "day": 7,
+          "duration_minutes": 185,
+          "exercises": [
+            {
+              "duration": "29 km",
+              "name": "Long run charge AM",
+              "notes": "Km 1-10 à AM + 60 s/km. Km 10-26 : 16 km à allure marathon AM. Km 26-29 : aérobie récupération. 16 km consécutifs à AM après 10 km de base = simulation haute fidélité de la seconde moitié du marathon. Nutrition stricte : gel toutes les 40-45 min à partir du km 10. Note mentalement les sensations musculaires aux km 24-29.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue — 29 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 2 — Volume pic + spécificité AM",
+      "week_number": 7
+    },
+    {
+      "goal": "Volume -18% vs W7 (~56 km). Maintien d'une seule séance de qualité (tempo court). Long run réduit à 22 km pur aérobie. Corps et esprit doivent se régénérer avant le bloc spécificité marathon.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "duration": "40 min",
+              "name": "Run facile",
+              "notes": "AM + 90 s/km. Intentionnellement très lent. Récupération active.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Run facile court",
+          "type": "endurance",
+          "warmup": "5 min marche."
+        },
+        {
+          "cooldown": "5 min respiration profonde.",
+          "day": 2,
+          "duration_minutes": 35,
+          "exercises": [
+            {
+              "duration": "15 min",
+              "name": "Routine mobilité complète",
+              "notes": "Rotations hanches, mobilité cheville (cercles + flexion-extension), étirement dynamique psoas, mobilité thoracique (cat-cow debout, rotation thoracique). Pas de renforcement lourd.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "40 sec planche + 8 bird-dogs par côté",
+              "name": "Gainage léger cutback",
+              "notes": "Volume réduit. Maintien neural, pas de fatigue.",
+              "rest_seconds": 45,
+              "sets": 2
+            }
+          ],
+          "name": "Mobilité et gainage léger",
+          "type": "mobility",
+          "warmup": "5 min marche."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 3,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "20 min",
+              "name": "Tempo continu seuil",
+              "notes": "Unique séance de qualité de la semaine cutback. Allure seuil maintenue. Comparer la sensation à W1 : si le 20 min seuil se sent nettement plus facile, le Bloc 2 a été efficace.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Tempo seuil court — 20 min",
+          "type": "interval",
+          "warmup": "12 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 5,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "35 min",
+              "name": "Run AM confort",
+              "notes": "Courir 35 min à allure marathon AM. Pas d'effort, juste sentir le rythme marathon. Évaluer : est-ce que AM semble 'durable' ? C'est la question fondamentale à laquelle les 8 semaines précédentes doivent avoir répondu positivement.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Run allure marathon confort",
+          "type": "endurance",
+          "warmup": "10 min footing lent."
+        },
+        {
+          "cooldown": "5 min marche + étirements 10 min.",
+          "day": 7,
+          "duration_minutes": 135,
+          "exercises": [
+            {
+              "duration": "22 km",
+              "name": "Long run aérobie récupération",
+              "notes": "Intégralement à AM + 60 s/km. Pas de portion AM. Récupération longue. Profiter pour vérifier la mécanique : posture haute, attaque médio-pied, cadence ~180 pas/min, balancier des bras détendu.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue cutback — 22 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 2 Cutback — récupération active",
+      "week_number": 8
+    },
+    {
+      "goal": "Volume +15% vs W8 (~64 km). Séance AM longue introduite (run au seuil marathon 2x5 km). Long run 30 km avec 18 km à AM. Passage critique : les long runs dépassent le seuil des 28-30 km.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 60,
+          "exercises": [
+            {
+              "duration": "48 min",
+              "name": "Run facile",
+              "notes": "Zone 2. AM + 60 s/km.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "20 sec",
+              "name": "Strides",
+              "rest_seconds": 90,
+              "sets": 6
+            }
+          ],
+          "name": "Run facile + strides",
+          "type": "endurance",
+          "warmup": "5 min marche + mobilité."
+        },
+        {
+          "cooldown": "Étirements 5 min.",
+          "day": 2,
+          "duration_minutes": 45,
+          "exercises": [
+            {
+              "name": "Single-leg calf raises excentriques",
+              "reps": "15 par jambe",
+              "rest_seconds": 45,
+              "sets": 4
+            },
+            {
+              "name": "Nordic curl",
+              "reps": "8",
+              "rest_seconds": 90,
+              "sets": 3
+            },
+            {
+              "name": "Bulgarian split squat",
+              "reps": "12 par jambe",
+              "rest_seconds": 60,
+              "sets": 3
+            },
+            {
+              "duration": "60 sec",
+              "name": "Planche ventrale",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Dead bug",
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            },
+            {
+              "name": "Jumping squat",
+              "notes": "Maintien de la puissance plyométrique en Bloc 3.",
+              "reps": "8",
+              "rest_seconds": 60,
+              "sets": 3
+            }
+          ],
+          "name": "Renforcement spécificité marathon",
+          "type": "strength",
+          "warmup": "5 min activation."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 3,
+          "duration_minutes": 75,
+          "exercises": [
+            {
+              "duration": "20 min",
+              "name": "Tempo seuil fractionné",
+              "notes": "2x20 min à allure seuil. Volume total seuil = 40 min. Récupération 3 min footing lent. En Bloc 3, le tempo reste un outil de seuil mais l'emphase se déplace vers la spécificité AM (long run). Tenir l'allure seuil sur 2 blocs de 20 min sans dégradation.",
+              "rest_seconds": 180,
+              "sets": 2
+            }
+          ],
+          "name": "Tempo seuil — 2x20 min",
+          "type": "interval",
+          "warmup": "15 min progressif + 4 strides."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 5,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "duration": "1000m",
+              "name": "Intervalles 1000m à allure 5K",
+              "notes": "Maintien du stimulus VO2max (5x1000m). En Bloc 3, les intervalles servent à maintenir le plafond VO2max acquis, pas à le développer davantage. Allure identique.",
+              "rest_seconds": 210,
+              "sets": 5
+            }
+          ],
+          "name": "Intervalles VO2max — 5x1000m",
+          "type": "interval",
+          "warmup": "15 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "8 min marche + étirements complets 12 min. Nutrition post-effort immédiat (< 30 min).",
+          "day": 7,
+          "duration_minutes": 195,
+          "exercises": [
+            {
+              "duration": "30 km",
+              "name": "Long run pic Bloc 3 premier palier",
+              "notes": "Km 1-12 à AM + 60 s/km. Km 12-30 : 18 km à allure AM. C'est le long run le plus exigeant du plan jusqu'ici : 18 km consécutifs à AM. Les 3 derniers km seront difficiles — c'est précisément l'objectif. Tester le plan nutritionnel race-day : gel toutes les 35-40 min à partir du km 10, eau abondante. Observer les signaux : crampes, baisse de cadence, déviation posturale.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue — 30 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 3 — Spécificité marathon, volume montant",
+      "week_number": 9
+    },
+    {
+      "goal": "Volume +8% (~69 km). Tempo 40 min continu (pic seuil). Long run 32 km avec 20 km à AM. VO2max 6x1000m.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "duration": "52 min",
+              "name": "Run facile",
+              "notes": "Zone 2. AM + 60 s/km. Jambes devaient être fraîches après la récupération post-long run W9.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "20 sec",
+              "name": "Strides",
+              "rest_seconds": 90,
+              "sets": 6
+            }
+          ],
+          "name": "Run facile endurance",
+          "type": "endurance",
+          "warmup": "5 min marche + mobilité."
+        },
+        {
+          "cooldown": "Étirements 5 min.",
+          "day": 2,
+          "duration_minutes": 45,
+          "exercises": [
+            {
+              "name": "Single-leg calf raises excentriques",
+              "notes": "Volume calf maximum du plan.",
+              "reps": "18 par jambe",
+              "rest_seconds": 45,
+              "sets": 4
+            },
+            {
+              "name": "Nordic curl",
+              "notes": "4 séries. Volume ischio maximum du plan.",
+              "reps": "8",
+              "rest_seconds": 90,
+              "sets": 4
+            },
+            {
+              "name": "Bulgarian split squat",
+              "notes": "+1 série vs W9.",
+              "reps": "10 par jambe",
+              "rest_seconds": 60,
+              "sets": 4
+            },
+            {
+              "duration": "60 sec",
+              "name": "Planche ventrale",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Dead bug",
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            },
+            {
+              "name": "Jumping squat",
+              "reps": "10",
+              "rest_seconds": 60,
+              "sets": 3
+            }
+          ],
+          "name": "Renforcement charge maximale",
+          "type": "strength",
+          "warmup": "5 min activation."
+        },
+        {
+          "cooldown": "10 min footing lent + 5 min marche + étirements.",
+          "day": 3,
+          "duration_minutes": 80,
+          "exercises": [
+            {
+              "duration": "40 min",
+              "name": "Tempo continu seuil lactique",
+              "notes": "40 min continus à allure seuil (allure 10K + 15-30 s/km). Pic absolu de la séance tempo du plan. FC stable 85-90% FCmax sur toute la durée. Si l'allure dérive de plus de 8 sec/km sur les 10 dernières minutes, c'est acceptable — noter pour référence. Un expert qui tient 40 min au seuil est en excellente forme pour le marathon.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Tempo seuil — 40 min continu",
+          "type": "interval",
+          "warmup": "15 min progressif + 4 strides."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 5,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "duration": "1000m",
+              "name": "Intervalles 1000m à allure 5K",
+              "notes": "6 répétitions. Dernier grand volume VO2max avant la phase d'affûtage. Allure 5K homogène sur les 6.",
+              "rest_seconds": 210,
+              "sets": 6
+            }
+          ],
+          "name": "Intervalles VO2max — 6x1000m",
+          "type": "interval",
+          "warmup": "15 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "8 min marche + étirements 12 min. Récupération prioritaire (sommeil + nutrition).",
+          "day": 7,
+          "duration_minutes": 210,
+          "exercises": [
+            {
+              "duration": "32 km",
+              "name": "Long run pic Bloc 3 avancé",
+              "notes": "Km 1-12 à AM + 60 s/km. Km 12-32 : 20 km à allure AM. 20 km consécutifs à allure marathon : c'est la simulation la plus proche des conditions race-day. Observer les km 28-32 : la capacité à maintenir AM à ce stade est prédictive de la performance. Nutrition : gel toutes les 35-40 min à partir du km 10. Prévoir ravitaillement eau porté ou parcours avec fontaines.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue — 32 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 3 — Volume marathon +, seuil 40 min continu",
+      "week_number": 10
+    },
+    {
+      "goal": "Volume pic du plan (~75 km). Long run 35 km (pic absolu, 83% de la distance marathon). Tempo 2x20 min maintenance. VO2max conservé.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "45 min",
+              "name": "Run facile",
+              "notes": "AM + 75 s/km. Séance de récupération active après le 32 km de W10. Les jambes peuvent être lourdes — c'est normal. Cadence légèrement réduite acceptée.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Run facile récupération post-long run",
+          "type": "endurance",
+          "warmup": "5 min marche."
+        },
+        {
+          "cooldown": "Étirements 5 min.",
+          "day": 2,
+          "duration_minutes": 40,
+          "exercises": [
+            {
+              "name": "Single-leg calf raises excentriques",
+              "notes": "Volume légèrement réduit vs W10 pour préparer le long run 35 km.",
+              "reps": "15 par jambe",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Nordic curl",
+              "reps": "8",
+              "rest_seconds": 90,
+              "sets": 3
+            },
+            {
+              "duration": "60 sec",
+              "name": "Planche ventrale",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Bird-dog",
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            },
+            {
+              "name": "Dead bug",
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "sets": 3
+            }
+          ],
+          "name": "Renforcement maintenance",
+          "type": "strength",
+          "warmup": "5 min activation."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 3,
+          "duration_minutes": 70,
+          "exercises": [
+            {
+              "duration": "20 min",
+              "name": "Tempo seuil fractionné",
+              "notes": "2x20 min seuil. Semaine de volume pic : le tempo est en mode 'maintenance' (40 min total seuil) pour ne pas surcharger avant le long run 35 km. Priorité absolue à la qualité du long run ce week-end.",
+              "rest_seconds": 180,
+              "sets": 2
+            }
+          ],
+          "name": "Tempo seuil — 2x20 min",
+          "type": "interval",
+          "warmup": "15 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 5,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "1000m",
+              "name": "Intervalles 1000m à allure 5K",
+              "notes": "Volume VO2max réduit cette semaine (4x vs 6x) pour préserver les jambes pour le long run 35 km. Maintien du stimulus sans accumulation excessive.",
+              "rest_seconds": 210,
+              "sets": 4
+            }
+          ],
+          "name": "Intervalles VO2max — 4x1000m",
+          "type": "interval",
+          "warmup": "12 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "10 min marche + étirements 12 min. Récupération maximale les 48h suivantes.",
+          "day": 7,
+          "duration_minutes": 230,
+          "exercises": [
+            {
+              "duration": "35 km",
+              "name": "Long run pic — simulation marathon partielle",
+              "notes": "Long run pic absolu du plan (83% de la distance marathon). Km 1-12 à AM + 60 s/km. Km 12-32 : 20 km à allure AM. Km 32-35 : AM + 30 s/km (récupération progressive). Le long run de 35 km provoque des adaptations physiologiques impossibles à court-circuiter : augmentation des dépôts de glycogène musculaire, hypertrophie mitochondriale, adaptation tendineuse. Nutrition race-day exacte : pratiquer l'exacte routine de la veille, le matin, et en course. Ce run simulera les km 30+ du marathon en termes de fatigue musculaire.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue pic — 35 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 3 — Volume pic marathon",
+      "week_number": 11
+    },
+    {
+      "goal": "Volume -20% vs W11 (~60 km). Récupération après le long run 35 km. Long run réduit à 23 km. 1 seule séance qualité (tempo court). Physiologiquement : les adaptations du long run 35 km s'installent pendant cette semaine de repos.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "duration": "40 min",
+              "name": "Run facile",
+              "notes": "AM + 90 s/km. Très lent. Les jambes sont probablement fatiguées après le 35 km. Pas de pression de performance — simplement bouger.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Run facile récupération",
+          "type": "endurance",
+          "warmup": "5 min marche."
+        },
+        {
+          "cooldown": "5 min respiration profonde allongé.",
+          "day": 2,
+          "duration_minutes": 35,
+          "exercises": [
+            {
+              "duration": "10 min",
+              "name": "Mobilité hanches et chevilles",
+              "notes": "Rotations, cercles, pigeon (fessiers), étirements dynamiques. Aucune résistance.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "30 sec planche + 8 bird-dogs par côté",
+              "name": "Gainage minimal cutback",
+              "notes": "Minimal. Maintien du pattern neuromusculaire sans fatigue.",
+              "rest_seconds": 40,
+              "sets": 2
+            }
+          ],
+          "name": "Mobilité complète récupération",
+          "type": "mobility"
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 3,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "duration": "20 min",
+              "name": "Tempo continu seuil",
+              "notes": "Unique séance qualité de la semaine. Allure seuil identique. La semaine de cutback est volontairement 'frustrante' pour un expert — résiste à l'envie de forcer. Les adaptations au 35 km se font pendant le repos.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Tempo seuil court — 20 min",
+          "type": "interval",
+          "warmup": "12 min progressif + 2 strides."
+        },
+        {
+          "cooldown": "8 min footing lent + étirements.",
+          "day": 5,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "duration": "35 min",
+              "name": "Run allure marathon",
+              "notes": "35 min à AM. Ressentir l'allure marathon après la semaine de récupération. Question clé : AM se sent-elle 'manageable' ? Si oui, excellent signal. Si non, analyser : était-ce la fatigue, la nutrition, les conditions ?",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Run AM confort",
+          "type": "endurance",
+          "warmup": "8 min footing lent."
+        },
+        {
+          "cooldown": "5 min marche + étirements 10 min.",
+          "day": 7,
+          "duration_minutes": 145,
+          "exercises": [
+            {
+              "duration": "23 km",
+              "name": "Long run aérobie",
+              "notes": "Intégralement à AM + 60 s/km. Pas de segment AM. Récupération pure. Profiter pour tester l'équipement race-day (chaussures de course, vêtements, montre, ceinture porte-gels si prévue).",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue cutback — 23 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 3 Cutback — récupération du pic volume",
+      "week_number": 12
+    },
+    {
+      "goal": "Volume -15% vs W12 (~51 km). Début de l'affûtage (tapering) : réduction progressive du volume tout en MAINTENANT l'intensité des séances qualité. Long run 28 km. Les recherches (Mujika & Padilla, 2003) montrent qu'un affûtage de 3 semaines optimise la performance marathon.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "42 min",
+              "name": "Run facile",
+              "notes": "Zone 2. AM + 60 s/km. Réduction vs W12 (bien que W12 était déjà un cutback — réduction structurelle de l'affûtage).",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "20 sec",
+              "name": "Strides",
+              "notes": "Maintien de la vivacité neuromusculaire pendant l'affûtage : ne pas supprimer les strides.",
+              "rest_seconds": 90,
+              "sets": 6
+            }
+          ],
+          "name": "Run facile + strides",
+          "type": "endurance",
+          "warmup": "5 min marche + mobilité."
+        },
+        {
+          "cooldown": "Étirements 5 min.",
+          "day": 2,
+          "duration_minutes": 35,
+          "exercises": [
+            {
+              "name": "Single-leg calf raises excentriques",
+              "notes": "Volume réduit. Maintien préventif.",
+              "reps": "12 par jambe",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Nordic curl",
+              "notes": "Réduit. Pas de stress supplémentaire sur les ischio.",
+              "reps": "6",
+              "rest_seconds": 90,
+              "sets": 2
+            },
+            {
+              "duration": "45 sec",
+              "name": "Planche ventrale",
+              "rest_seconds": 45,
+              "sets": 3
+            },
+            {
+              "name": "Bird-dog",
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "sets": 2
+            }
+          ],
+          "name": "Renforcement affûtage — volume réduit",
+          "type": "strength",
+          "warmup": "5 min activation."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 3,
+          "duration_minutes": 65,
+          "exercises": [
+            {
+              "duration": "25 min",
+              "name": "Tempo continu seuil",
+              "notes": "MAINTENIR l'allure seuil exacte. Réduire le volume (25 vs 40 min), pas l'intensité — principe cardinal de l'affûtage (Mujika & Padilla, Sports Medicine 2003). Le corps doit arriver au marathon avec les adaptations intactes et les réserves pleines.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Tempo seuil affûtage — 25 min",
+          "type": "interval",
+          "warmup": "15 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 5,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "800m",
+              "name": "Intervalles 800m à allure 5K",
+              "notes": "Volume VO2max réduit (4x800m vs 6x1000m). Allure 5K maintenue. Récupération 3 min jogging. Ces intervalles maintiennent le plafond VO2max sans épuiser les réserves glycolytiques.",
+              "rest_seconds": 180,
+              "sets": 4
+            }
+          ],
+          "name": "Intervalles VO2max réduits — 4x800m",
+          "type": "interval",
+          "warmup": "12 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "8 min marche + étirements 10 min.",
+          "day": 7,
+          "duration_minutes": 185,
+          "exercises": [
+            {
+              "duration": "28 km",
+              "name": "Long run affûtage avec portion AM",
+              "notes": "Km 1-10 à AM + 60 s/km. Km 10-24 : 14 km à AM. Km 24-28 : AM + 30 s/km. Dernier long run de l'affûtage. La portion AM (14 km) est réduite vs W11 mais toujours présente pour maintenir la mémoire musculaire de l'allure. Nutrition race-day exacte obligatoire.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue affûtage — 28 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 4 Affûtage 1 — réduction volume amorce",
+      "week_number": 13
+    },
+    {
+      "goal": "Volume -25% vs W13 (~38 km). Réduction marquée du volume. Intensité maintenue. Long run 20 km. Corps commence à stocker le glycogène. Il est NORMAL de se sentir lourd ou amorphe : c'est signe de supercompensation.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 45,
+          "exercises": [
+            {
+              "duration": "35 min",
+              "name": "Run facile",
+              "notes": "AM + 75 s/km. Légère réduction vs W13. Les jambes peuvent se sentir bizarrement lourdes — c'est la supercompensation glycolytique. Ne pas paniquer, ne pas ajouter du volume.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "20 sec",
+              "name": "Strides",
+              "notes": "Maintien vivacité. Essentiel pendant l'affûtage.",
+              "rest_seconds": 90,
+              "sets": 6
+            }
+          ],
+          "name": "Run facile court",
+          "type": "endurance",
+          "warmup": "5 min marche."
+        },
+        {
+          "cooldown": "5 min respiration.",
+          "day": 2,
+          "duration_minutes": 30,
+          "exercises": [
+            {
+              "duration": "12 min",
+              "name": "Routine mobilité complète",
+              "notes": "Hanches, chevilles, thoracique. Pas de renforcement lourd en W14.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "30 sec planche + 8 bird-dogs par côté",
+              "name": "Gainage léger",
+              "rest_seconds": 40,
+              "sets": 2
+            }
+          ],
+          "name": "Mobilité et gainage léger",
+          "type": "mobility"
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 3,
+          "duration_minutes": 55,
+          "exercises": [
+            {
+              "duration": "20 min",
+              "name": "Tempo continu seuil",
+              "notes": "MAINTENIR l'allure seuil exacte, réduire le volume. L'allure seuil en W14 devrait se sentir notablement plus facile qu'en W1 — c'est la réponse attendue après 13 semaines de préparation. Si ce n'est pas le cas, analyser : récupération, nutrition, sommeil.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Tempo seuil court — 20 min",
+          "type": "interval",
+          "warmup": "12 min progressif + 3 strides."
+        },
+        {
+          "cooldown": "10 min footing lent + étirements.",
+          "day": 5,
+          "duration_minutes": 50,
+          "exercises": [
+            {
+              "duration": "30 min à AM puis 3 strides de 20 sec",
+              "name": "Run AM avec 3 strides",
+              "notes": "30 min à allure marathon pour ancrer le rythme. Terminer par 3 strides de 20 sec pour garder la vivacité. Ressentir l'allure AM : elle doit commencer à sembler 'confortable et durable'.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Run allure marathon vivacité",
+          "type": "endurance",
+          "warmup": "10 min footing lent."
+        },
+        {
+          "cooldown": "5 min marche + étirements 10 min.",
+          "day": 7,
+          "duration_minutes": 125,
+          "exercises": [
+            {
+              "duration": "20 km",
+              "name": "Long run court affûtage",
+              "notes": "Km 1-8 à AM + 60 s/km. Km 8-18 : 10 km à AM. Km 18-20 : AM + 30 s/km. Long run d'affûtage : maintien de la spécificité AM sur 10 km. La réduction de volume (20 vs 28 km) va clairement se ressentir — résister à l'envie de prolonger. Nutrition : pratiquer le matin de course (timing, quantité).",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Sortie longue affûtage — 20 km",
+          "type": "endurance",
+          "warmup": "5 min marche + 5 min footing lent."
+        }
+      ],
+      "theme": "Bloc 4 Affûtage 2 — réduction marquée",
+      "week_number": 14
+    },
+    {
+      "goal": "Volume -35% vs W14 (~25 km). Affûtage final. Pas de long run. Deux runs courts avec strides. Legs fraîches pour la race week. Psychologiquement le plus difficile mais le plus important de l'affûtage.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche + étirements.",
+          "day": 1,
+          "duration_minutes": 40,
+          "exercises": [
+            {
+              "duration": "25 min",
+              "name": "Run facile",
+              "notes": "AM + 75 s/km. Très facile. Profite de la légèreté progressive.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "20 sec",
+              "name": "Strides",
+              "notes": "Les strides sont la composante la plus importante de la semaine affûtage final : maintien de la stimulation neuromusculaire à haute vélocité sans fatigue cumulée.",
+              "rest_seconds": 90,
+              "sets": 6
+            }
+          ],
+          "name": "Run facile vivacité",
+          "type": "endurance",
+          "warmup": "5 min marche."
+        },
+        {
+          "cooldown": "8 min footing lent + étirements légers.",
+          "day": 3,
+          "duration_minutes": 40,
+          "exercises": [
+            {
+              "duration": "20 min AM puis 6 strides de 20 sec",
+              "name": "Run AM court + strides finaux",
+              "notes": "20 min à AM pour sentir le rythme cible une dernière fois. 6 strides de 20 sec à allure 5K pour 'rappeler' les fibres rapides. Dernière vraie stimulation avant la course.",
+              "rest_seconds": 90,
+              "sets": 1
+            }
+          ],
+          "name": "Run AM strides — activation",
+          "type": "endurance",
+          "warmup": "8 min footing lent."
+        },
+        {
+          "day": 4,
+          "duration_minutes": 25,
+          "exercises": [
+            {
+              "duration": "10 min",
+              "name": "Routine mobilité légère",
+              "notes": "Hanches, chevilles, thoracique. Pas de force, pas de renforcement. Juste du mouvement.",
+              "rest_seconds": 0,
+              "sets": 1
+            },
+            {
+              "duration": "10 min",
+              "name": "Visualisation course",
+              "notes": "Allongé ou assis, fermer les yeux et visualiser les km 30-40 du marathon : sensations de jambes lourdes, tenue de l'allure, recentrage sur la respiration et la cadence. Anticipation mentale des moments difficiles = gestion améliorée le jour J.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Mobilité pré-race",
+          "type": "mobility"
+        },
+        {
+          "cooldown": "5 min marche.",
+          "day": 5,
+          "duration_minutes": 25,
+          "exercises": [
+            {
+              "duration": "15 min",
+              "name": "Shakeout run",
+              "notes": "Run très facile, 15 min à AM + 90 s/km. Objectif unique : se sentir léger et coordonné. 3 strides de 15 sec à la fin si les jambes se sentent bien. Pas d'effort, pas de pression.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Run de shakeout",
+          "type": "endurance"
+        },
+        {
+          "day": 7,
+          "duration_minutes": 0,
+          "exercises": [
+            {
+              "duration": "20 min marche légère",
+              "name": "Repos actif optionnel",
+              "notes": "Repos complet ou marche de 20 min maximum. Préparer le sac de course, vérifier l'équipement, revoir le plan de course. Hydratation optimale toute la journée. Repas glucidique ce soir (pâtes, riz — pas de nourriture nouvelle ou à risque GI)."
+            }
+          ],
+          "name": "Repos complet",
+          "type": "rest"
+        }
+      ],
+      "theme": "Bloc 4 Affûtage final — legs fraîches",
+      "week_number": 15
+    },
+    {
+      "goal": "Arriver sur la ligne de départ frais, confiant, et avec un plan de course précis. La préparation est faite — la semaine 16 est purement logistique et stratégique. Séance phare = le marathon lui-même. CHECKLIST D'AUTOÉVALUATION incluse.",
+      "sessions": [
+        {
+          "cooldown": "5 min marche.",
+          "day": 1,
+          "duration_minutes": 25,
+          "exercises": [
+            {
+              "duration": "15 min",
+              "name": "Shakeout run",
+              "notes": "Très facile. AM + 90 s/km. 2-3 strides de 15 sec si les jambes se sentent bien. Objectif : se sentir coordonné et léger, pas performant.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Shakeout léger",
+          "type": "endurance"
+        },
+        {
+          "day": 2,
+          "duration_minutes": 20,
+          "exercises": [
+            {
+              "duration": "20 min",
+              "name": "Marche légère",
+              "notes": "Marche de 20 min pour rester mobile. Jour logistique : retrait du dossard, repérage du départ/arrivée, préparation du sac. Hydratation continue. Repas du soir : glucides familiers (pas d'expérimentation), 3h avant le coucher au maximum pour laisser digérer.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Repos et préparation mentale",
+          "type": "rest"
+        },
+        {
+          "day": 3,
+          "duration_minutes": 0,
+          "exercises": [
+            {
+              "name": "Repos total",
+              "notes": "Pas de course. Peut-être 10 min de marche. Préparer vêtements, gels, chaussures. Petit déjeuner race-day déjà planifié et testé (riz, pain blanc + confiture, banana — ce que ton intestin connaît). Coucher tôt. Ne pas stresser si le sommeil est agité la nuit J-1 : normal chez 80% des coureurs, sans impact sur la performance si la nuit J-2 était bonne."
+            }
+          ],
+          "name": "Repos complet J-1",
+          "type": "rest"
+        },
+        {
+          "day": 4,
+          "duration_minutes": 15,
+          "exercises": [
+            {
+              "duration": "10-15 min",
+              "name": "Activation pré-course",
+              "notes": "15 min avant le départ : 8 min de jogging très lent + 4 strides de 15 sec à allure marathon. Active le système cardiovasculaire et les fibres rapides. Évite le démarrage 'à froid' qui pénalise les 3 premiers km. Si l'organisation du marathon ne laisse pas de place pour courir, faire 5 min de mobilité dynamique (high knees lents, balancements de jambes) dans le sas de départ.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "Activation race morning",
+          "type": "endurance"
+        },
+        {
+          "cooldown": "Marche 10 min dès la ligne franchie — ne pas s'asseoir immédiatement (risque hypotension orthostatique). Nutrition : 40-60g glucides + protéines dans les 30 min. Hydratation progressive (eau + électrolytes, pas de bière immédiate si chaleur). Étirements légers après 1h. 48-72h de repos complet avant tout jogging de récupération.",
+          "day": 5,
+          "duration_minutes": 225,
+          "exercises": [
+            {
+              "duration": "42,2 km à allure marathon cible AM",
+              "name": "Marathon 42,2 km",
+              "notes": "STRATÉGIE DE COURSE : Km 0-5 : sortir à AM ou AM + 5 s/km — contrôler l'adrénaline du départ, les autres coureurs partent vite, toi tu cours ton plan. Km 5-30 : allure AM stable et régulière, viser negative split ou split pair. FC cible : 80-85% FCmax. Nutrition : gel toutes les 35-40 min à partir du km 8, eau à chaque ravitaillement. Km 30-35 : 'the wall' possible — si les jambes durcissent, raccourcir la foulée (ne pas ralentir l'allure, ralentir la foulée et augmenter la cadence). Km 35-42 : tout ce qui reste. Recentrer sur la respiration, la cadence, et l'objectif. CHECKLIST D'AUTOÉVALUATION POST-COURSE : (1) As-tu tenu l'allure AM sur ≥ 80% de la distance (km 5-35) sans dériver de plus de 10 s/km ? (2) As-tu réussi à tenir la seconde moitié (km 21-42) dans un split ≤ +5 min vs première moitié ? (3) As-tu consommé ton plan nutritionnel prévu (gel toutes les 35-40 min) sans incident GI ? (4) Ta cadence est-elle restée ≥ 175 pas/min sur les km 30-40 ? (5) Sur les km 30-40, as-tu utilisé les stratégies de recentrage (respiration, cadence) plutôt que de ralentir sans contrôle ? Si 4/5 ou 5/5 de ces critères sont atteints, la préparation a fonctionné et la base est posée pour un futur PB. Si 2-3/5, identifier le(s) point(s) de défaillance pour le prochain cycle.",
+              "rest_seconds": 0,
+              "sets": 1
+            }
+          ],
+          "name": "MARATHON — Séance phare",
+          "type": "endurance",
+          "warmup": "Activation race morning décrite en J4 (jour 4 de la semaine)."
+        }
+      ],
+      "theme": "Race week — le jour J",
+      "week_number": 16
+    }
+  ]
+}

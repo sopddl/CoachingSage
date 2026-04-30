@@ -4,13 +4,13 @@ import XCTest
 final class RoundTripTests: XCTestCase {
 
     func testReferenceTemplateDecodes() throws {
-        let url = try fixtureURL(named: "running-debutant-5k-8sem")
+        let url = try fixtureURL(named: "running-beginner-5k-8sem")
         let data = try Data(contentsOf: url)
         let template = try TemplateCoding.decode(data)
 
-        XCTAssertEqual(template.id, "running-debutant-5k-8sem")
+        XCTAssertEqual(template.id, "running-beginner-5k-8sem")
         XCTAssertEqual(template.sport, .running)
-        XCTAssertEqual(template.level, .debutant)
+        XCTAssertEqual(template.level, .beginner)
         XCTAssertEqual(template.durationWeeks, 8)
         XCTAssertEqual(template.sessionsPerWeek, 3)
         XCTAssertEqual(template.weeks.count, 8)
@@ -19,7 +19,7 @@ final class RoundTripTests: XCTestCase {
     }
 
     func testRoundTripEncodeDecode() throws {
-        let url = try fixtureURL(named: "running-debutant-5k-8sem")
+        let url = try fixtureURL(named: "running-beginner-5k-8sem")
         let data = try Data(contentsOf: url)
         let original = try TemplateCoding.decode(data)
 
@@ -30,14 +30,14 @@ final class RoundTripTests: XCTestCase {
     }
 
     func testValidatorAcceptsReference() throws {
-        let url = try fixtureURL(named: "running-debutant-5k-8sem")
+        let url = try fixtureURL(named: "running-beginner-5k-8sem")
         let data = try Data(contentsOf: url)
         let template = try TemplateCoding.decode(data)
         XCTAssertNoThrow(try TemplateValidator.validate(template))
     }
 
     func testValidatorRejectsSchemaVersionMismatch() throws {
-        let url = try fixtureURL(named: "running-debutant-5k-8sem")
+        let url = try fixtureURL(named: "running-beginner-5k-8sem")
         let data = try Data(contentsOf: url)
         let original = try TemplateCoding.decode(data)
         let bumped = ProgramTemplate(
@@ -64,7 +64,7 @@ final class RoundTripTests: XCTestCase {
     }
 
     func testValidatorRejectsWeekCountMismatch() throws {
-        let url = try fixtureURL(named: "running-debutant-5k-8sem")
+        let url = try fixtureURL(named: "running-beginner-5k-8sem")
         let data = try Data(contentsOf: url)
         let original = try TemplateCoding.decode(data)
         let truncated = ProgramTemplate(

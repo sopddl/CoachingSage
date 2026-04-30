@@ -55,7 +55,7 @@ final class TemplateLoaderTests: XCTestCase {
     }
 
     private func referenceTemplate() throws -> ProgramTemplate {
-        let url = try fixtureURL(named: "running-debutant-5k-8sem")
+        let url = try fixtureURL(named: "running-beginner-5k-8sem")
         let data = try Data(contentsOf: url)
         return try TemplateCoding.decode(data)
     }
@@ -210,7 +210,7 @@ final class TemplateLoaderTests: XCTestCase {
 
     // MARK: - Production bundle (only runs if GenerateManifest has produced a populated manifest)
 
-    func testProductionBundleLoads38TemplatesIfPopulated() async throws {
+    func testProductionBundleLoadsAtLeast30Templates() async throws {
         let manifest = try TemplateLoader.loadManifest()
         guard manifest.templates.count >= 30 else {
             throw XCTSkip("manifest contient \(manifest.templates.count) templates — lance `swift run GenerateManifest` pour peupler")

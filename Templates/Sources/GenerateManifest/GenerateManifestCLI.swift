@@ -8,7 +8,7 @@ struct GenerateManifestCLI {
     static func main() {
         let args = Array(CommandLine.arguments.dropFirst())
         var rawDir = "References/raw"
-        var rootRefPath: String? = "References/running-debutant-5k-8sem.json"
+        var rootRefPath: String? = "References/running-beginner-5k-8sem.json"
         var outResourcesDir = "Sources/TemplateLoader/Resources"
         var dryRun = false
         var validateEach = true
@@ -138,7 +138,7 @@ struct GenerateManifestCLI {
 
         Options:
           --raw-dir <path>    Working dir with raw template JSONs (default: References/raw)
-          --root-ref <path>   Root reference template (default: References/running-debutant-5k-8sem.json, 'none' to skip)
+          --root-ref <path>   Root reference template (default: References/running-beginner-5k-8sem.json, 'none' to skip)
           --out <path>        Resources dir for TemplateLoader (default: Sources/TemplateLoader/Resources)
           --dry-run           Build manifest in memory, don't write files
           --no-validate       Skip TemplateValidator on each template
