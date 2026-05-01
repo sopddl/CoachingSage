@@ -1,0 +1,1373 @@
+{
+  "schema_version": 2,
+  "id": "hiit-beginner-6sem",
+  "sport": "hiit",
+  "level": "beginner",
+  "name": "HIIT initiation — 6 semaines pour réaliser une séance complète de 20 min",
+  "duration_weeks": 6,
+  "sessions_per_week": 3,
+  "default_objective": "Réaliser une séance HIIT de 20 min (intervalles courts 30 s d'effort, ratio work/rest 30/60 puis 30/30) sans équipement, à RPE 7-8 sur les blocs d'effort",
+  "assumed_profile": "Adulte sédentaire ou peu actif sans antécédent cardiaque, capable de courir 5 min sans pause, équipement minimal (tapis, espace 2x2 m), aucune expérience HIIT.",
+  "summary": "Programme HIIT initiation 6 semaines, 3 séances par semaine (2 HIT courts + 1 mobilité/renforcement préventif), aligné ACSM Position Stand on HIIT 2014 pour le débutant. Progression doce des ratios work/rest : 30/60 ratio 1:2 RPE 7-8 (W1-W3) puis 30/30 ratio 1:1 RPE 8 (W5-W6) — pas de Tabata strict, pas de RPE 9-10, pas d'AMRAP. HIT cumulé hebdo : 4 → 6 → 8 → 5 (cutback W4) → 7 → 8 min/sem (pic). Mouvements bodyweight low-impact uniquement (pas de box jumps, pas de KB swings, pas de burpees full). Renforcement préventif intégré dès W1 (calf raises bipodal, tibialis raises, planche, dead bug, glute bridge) pour sécuriser chevilles, genoux et lombaires. Cutback W4 obligatoire (-25 à -30% durée HIT). Séance phare W6 : 2 blocs de 4 min HIT (30/30 ratio 1:1 RPE 8) avec 2 min récup, soit 20 min de séance complète warmup/cooldown inclus. Checklist d'autonomie 5 critères en W6.",
+  "week_structure": {
+    "type": "linear",
+    "micro_pattern": "HIT court 4 min + rest + mobilité/renforcement + rest + HIT court 4 min + rest + rest",
+    "recovery_cadence": "1 cutback W4 sur plan 6 sem (-25 à -30% durée HIT)"
+  },
+  "deload_weeks": [
+    4
+  ],
+  "progression_logic": "Progression construite sur 5 principes, alignés ACSM Position Stand on HIIT 2014 et NSCA Time-Efficient Training pour le débutant :\n(1) RATIOS WORK/REST DOUX EN PRIORITÉ : démarrage ratio 1:2 (30 sec work / 60 sec rest, RPE 7-8) sur W1-W3 — c'est la fenêtre d'apprentissage cardio + technique. Passage ratio 1:1 (30/30, RPE 8) en W5-W6 seulement. Le Tabata strict 20/10 (ratio 1:0.5 RPE 9-10) est exclu du niveau débutant : trop agressif pour une cheville et un système cardio non préparés.\n(2) HIT CUMULÉ PROGRESSIF DANS LA FENÊTRE 4-8 MIN/SEM (référence ACSM 2014 dose minimale efficace) : W1 = 4 min (1 séance HIT 4 min, ratio 1:2), W2 = 6 min (2 séances de 3 min HIT), W3 = 8 min (2 séances de 4 min HIT, palier haut avant cutback), W4 = 5 min (cutback -38% : 1 séance HIT 4 min + 1 séance HIT 1 min de réveil), W5 = 7 min (2 séances 30/30 ratio 1:1, 3 min + 4 min HIT), W6 = 8 min (séance phare 2 blocs de 4 min HIT 30/30 + 1 séance HIT court 4 min en W6 J1). HIT cumulé pic 8 min/sem dans la cible doctrine 4-8 min/sem.\n(3) CUTBACK W4 OBLIGATOIRE : volume HIT cumulé réduit -38% (8 → 5 min) après 3 semaines de build. Sans semaine allégée, surcompensation cardiaque + tendinite Achille / cheville sont les risques typiques à 3-4 semaines HIIT chez le débutant. La cutback est constitutive de l'adaptation, ne pas la sauter.\n(4) MOUVEMENTS BODYWEIGHT LOW-IMPACT EXCLUSIVEMENT : squat-air partial ROM, marche genoux haut, step-jacks (jumping jacks pied après pied), mountain climbers slow, montée/descente d'un step bas (15-20 cm), squat thrust sans saut. Mouvements BANNIS pour ce niveau : box jumps, kettlebell swings, burpees full plyo, sauts plyo, mouvements olympiques, double-unders. Référence NSCA : pliométrie volumineuse exige 6 mois de base de force préalable.\n(5) RENFORCEMENT PRÉVENTIF INTÉGRÉ DÈS W1 : calf raises bipodal + tibialis raises systématiques (prévention shin splints + tendinite Achille — risque n°1 du débutant HIIT, jusqu'à 30% des blessures lower-leg sur HIIT plyo non préparé). Planche ventrale + dead bug + glute bridge dès W1 (gainage lombaire pendant mountain climbers, stabilité genou pendant squats). Récupération inter-séances HIT ≥ 48 h respectée (pattern J1 / J3 / J5).",
+  "safety_notes": "DRAPEAUX ROUGES (arrêter la séance immédiatement et consulter si persistant > 5 jours) :\n• Douleur thoracique, palpitations irrégulières, vertiges ou nausées pendant l'effort : arrêt immédiat, position assise, avis médical avant reprise. En HIIT débutant, la FC peut monter à 85-95% FCmax — une douleur thoracique ou des palpitations ne sont PAS normales, c'est un signal médical urgent.\n• Tendinite Achille (douleur localisée tendon achille pendant ou après séance, raideur matinale chronique) sur volume jumping jacks / step-jacks / mountain climbers répétés : stop low-impact dynamique, calf raises excentriques + repos actif, avis kiné si > 5 jours.\n• Patellar tendonitis / jumper's knee (douleur sous rotule pendant squats ou montées de step) : réduire foot contacts -50%, atterrissages genoux fléchis (jamais jambes raides), terminal knee extension renforcement.\n• Shin splints (douleur tibia antérieur après jumping jacks / marche genoux haut sans tibialis raises préventifs) : stop dynamique, tibialis raises excentriques 2×/jour, vérifier amortie chaussures (tapis recommandé).\n• Entorse cheville (douleur immédiate + gonflement après step-jacks / mountain climbers sur sol glissant) : RICE, avis médical si gonflement > 24 h.\n• Lombalgie aiguë (douleur lombaire pendant ou après mountain climbers / squat thrust > 2 jours post-séance) : stop hinge dynamique, vérifier que le bas du dos ne se creuse pas en planche, avis kiné si > 5 jours.\n• Hyperextension cervicale (sit-ups en fatigue ou OHP en finissant cervicale en hyperextension) : signal posture à corriger immédiatement (menton rentré, yeux à l'horizon).\n• Si tu as des antécédents cardiaques connus, plus de 50 ans avec sédentarité prolongée, hypertension non équilibrée, asthme d'effort, grossesse / postpartum récent, ou si tu reprends après une opération / blessure < 6 mois : consulte un médecin avant de commencer ce programme. Référence ACSM 2014 : screening obligatoire pour > 35 ans avec facteurs de risque, et 6 mois de cardio régulier avant introduction HIIT structuré pour profil sédentaire prolongé.\n\nRÈGLES GÉNÉRALES :\n• Warmup 5-10 min RPE 6-7 NON optionnel : sauter l'échauffement avant un work HIT triple le risque d'élongation et de tendinite. Référence ACSM 2014.\n• Cooldown 5-10 min walking-recovery ou mobilité douce après tout HIT.\n• Récupération inter-séances HIT ≥ 48 h : règle absolue, JAMAIS 2 séances HIT sur 2 jours consécutifs. Le HIIT crée une fatigue neuromusculaire qui ne se résout pas en moins de 24 h. Pattern recommandé : J1 HIT / J3 mobilité ou renforcement / J5 HIT, J2-J4-J6-J7 repos.\n• Hydratation 500-750 ml/h tempéré (jusqu'à 1 L/h chaleur > 25 °C, sodium 300-700 mg/L). Jamais HIT chaleur > 30 °C indoor sans climatisation.\n• Sol antidérapant et tapis recommandés pour absorber l'impact. Chaussures de sport avec amorti correct si tu sors du tapis pour les mouvements debout.\n• Hip hinge maîtrisé prérequis avant toute introduction de KB swings / deadlift dynamique (exclus de ce plan débutant — réservés à un programme `recreational`+ après 6 mois de pratique).\n• Atterrissages plyo : genoux fléchis toujours, jamais jambes raides. Réduire foot contacts -50% si douleur sous rotule.\n\nINTENSITÉ :\n• Test de la parole adapté HIIT : RPE 7 = essoufflé mais peut sortir 1 phrase complète, RPE 8-9 = parler 2-3 mots maximum, RPE 10 = incapacité totale à parler. Pendant les blocs work du programme, tu vises RPE 7-8 (W1-W3) puis RPE 8 (W5-W6). Tu ne dois JAMAIS aller à RPE 10 (sprint maximal) en débutant : risque de surutilisation et abandon.\n• Pendant les rest intervals (40-60 sec selon ratio), tu vises RPE 2-3 : marche sur place lente, respiration qui se normalise. Si après 60 sec de repos tu n'as pas retrouvé une respiration permettant 1 phrase, le volume est trop élevé — retirer un round.\n• Mouvements à BANNIR ce plan : box jumps, kettlebell swings (hinge non maîtrisé), burpees full plyo, sauts plyo, mouvements olympiques, double-unders, AMRAP. Ces formats requièrent une maîtrise technique et une base de force préalables de 6-12 mois.\n• Ratios work/rest : ce plan ne descend JAMAIS sous le ratio 1:1 (30/30). Le Tabata strict 20/10 (ratio 1:0.5 RPE 9-10) est réservé aux niveaux `regular`+.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → insérer 1 cutback supplémentaire ou pause 48-72 h) :\n• FC repos +10 bpm au réveil (régulière sur 3 jours).\n• Jambes lourdes dès le début de l'échauffement (3 séances consécutives).\n• Sommeil dégradé > 2 nuits consécutives.\n• Motivation effondrée, anxiété à l'approche de la séance.\n• Courbatures encore présentes au début de la séance suivante (> 72 h post-séance précédente).\n• Baisse de résistance sur le bloc HIT phare 2 sem consécutives (tu tiens moins de rounds qu'au cycle précédent).\n\nSI SÉANCE MANQUÉE :\n• 1-3 jours de pause : reprendre la séance manquée puis continuer normalement.\n• 4-7 jours de pause : reprendre la semaine en cours depuis le début.\n• 1-2 sem de pause : reprise sur volume W-1 (refaire la semaine précédente).\n• > 2 sem de pause : recommencer au début du build courant (W1 si pause pendant W1-W3, W4 cutback si pause pendant W4-W6).",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Découverte HIIT — calibration RPE et ratio doux 1:2",
+      "goal": "Comprendre la grille RPE adaptée HIIT (RPE 7-8 work, RPE 2-3 rest), réaliser 1 séance HIT 4 min en 30/60 ratio 1:2 sur mouvements low-impact + 2 séances mobilité/renforcement préventif. HIT cumulé hebdo : 4 min.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "HIT découverte 30/60 — calibration RPE",
+          "type": "interval",
+          "duration_minutes": 30,
+          "warmup": "5 min marche rapide sur place + 8 min mobilité dynamique : 10 cercles d'épaules en avant/arrière + 10 rotations bassin par sens + 10 balancements de jambe avant-arrière par côté + 10 demi-squats lents (3 sec descente) + 10 jumping jacks lents version step (un pied après l'autre). Total : 13 min. Objectif : élever progressivement la FC à RPE 6-7 sans stresser les articulations.",
+          "cooldown": "3 min marche lente sur place + étirements statiques 5 min : mollets 30 sec/jambe, quadriceps 30 sec/jambe, ischio-jambiers 30 sec/jambe, fessier figure-4 au sol 30 sec/côté. Hydratation immédiate.",
+          "exercises": [
+            {
+              "name": "Calibration grille RPE HIIT",
+              "sets": 1,
+              "duration": "2 min",
+              "rest_seconds": 0,
+              "notes": "Avant de commencer le travail intervalle, mémorise la grille adaptée HIIT : RPE 1 = repos complet allongé, RPE 5 = marche rapide où tu parles facilement, RPE 7 = essoufflé mais tu sors une phrase complète, RPE 8-9 = parler 2-3 mots maximum, RPE 10 = incapacité à parler (sprint maximal). Pendant les blocs work du programme, tu vises RPE 7-8 sur W1-W3, puis RPE 8 sur W5-W6. Pendant les rest intervals (60 sec), tu vises RPE 2-3 (marche sur place, respiration qui se normalise). Tu ne dois JAMAIS aller à RPE 10 dans ce plan débutant.",
+              "target_zone": "technique",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Lecture de la grille RPE en `safety_notes` 2 min sans mouvement",
+                "Visualisation des sensations cibles 2 min"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bloc 30/60 — Squat-air partial ROM",
+              "sets": 4,
+              "duration": "30 sec work + 60 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format first-class 30/60 (ratio 1:2). Work 30 sec à RPE 7-8 : descente cuisses partielles (60-70°, pas 90°), genoux dans l'axe des orteils (jamais en valgus en dedans), talons au sol, rythme rapide mais forme propre. Rest 60 sec à RPE 2-3 : marche sur place lente, respiration nasale. Total bloc : 4 × 90 sec = 6 min. HIT cumulé bloc : 4 × 30 sec = 2 min. Si genou douloureux > 2/10 en descente, réduire encore l'amplitude.",
+              "target_zone": "30/60",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "cardiac-clearance-required",
+                "hip-injury"
+              ],
+              "alternatives": [
+                "Step-up bas alterné 30 sec sur marche 15-20 cm",
+                "Wall sit partiel 30 sec à 60-70°"
+              ],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Repos actif inter-bloc",
+              "sets": 1,
+              "duration": "90 sec",
+              "rest_seconds": 0,
+              "notes": "Marche lente sur place, respiration profonde nasale. RPE 1-2. Ce repos est CONSTITUTIF de l'entraînement, ne pas le supprimer. Si tu n'as pas retrouvé une respiration confortable au bout de 90 sec, ajoute 30 sec.",
+              "target_zone": "walking-recovery",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Repos passif debout 90 sec",
+                "Étirements doux gastrocnémiens 30 sec/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bloc 30/60 — Step-jacks (jumping jacks version pied après pied)",
+              "sets": 4,
+              "duration": "30 sec work + 60 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/60 (ratio 1:2) RPE 7-8 work / RPE 2-3 rest. Step-jacks = jumping jacks SANS saut : tu pose un pied sur le côté pendant que tu lèves les bras, retour, l'autre pied de l'autre côté. Cardio dynamique sans impact, sécurisé pour les chevilles débutantes. Total bloc : 4 × 90 sec = 6 min. HIT cumulé bloc : 4 × 30 sec = 2 min. HIT cumulé séance W1 J1 = 2 + 2 = 4 min (= HIT cumulé hebdo W1 entier).",
+              "target_zone": "30/60",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "ankle-injury",
+                "cardiac-clearance-required",
+                "apartment-noise",
+                "hip-injury"
+              ],
+              "alternatives": [
+                "Marche sur place genoux haut 30 sec",
+                "Cercles bras + pas latéraux dynamiques 30 sec"
+              ],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Renforcement préventif W1 — chevilles + core + fessiers",
+          "type": "strength",
+          "duration_minutes": 30,
+          "warmup": "5 min marche rapide sur place + 5 min mobilité dynamique : 10 rotations bassin par sens + 10 talons-fesses lents + 10 montées de genoux lents + 10 cercles chevilles par sens. Total : 10 min.",
+          "cooldown": "Étirements 5 min : mollets 30 sec/côté, fessier figure-4 30 sec/côté, marche lente 2 min.",
+          "exercises": [
+            {
+              "name": "Calf raises bipodal",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 30,
+              "notes": "Montées sur la pointe des pieds, les deux pieds ensemble. Prévention shin splints + tendinite Achille (les mollets forts absorbent jusqu'à 30% de la charge tibiale). Obligatoire chez le débutant HIIT dès W1, à maintenir tout le plan.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                "Calf raises assis sur chaise 15 reps",
+                "Wall calf raise (appui mains au mur) 15 reps"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Tibialis raises",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 30,
+              "notes": "Debout dos contre un mur, talons au sol, monter la pointe des pieds vers le tibia (extension dorsale cheville). Renforce le tibialis antérieur — prévention shin splints (cheville antérieure compensant le travail explosif des step-jacks et marche genoux haut). Obligatoire HIIT débutant.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                "Pointe-talon assis 15 reps",
+                "Tibialis raises avec resistance-band légère 12 reps"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Glute bridge bipodal",
+              "sets": 3,
+              "reps": "10",
+              "rest_seconds": 40,
+              "notes": "Allongé sur le dos, pieds au sol, monter le bassin en activant les fessiers (pas les lombaires). Tenir 2 sec en haut. Cible les fessiers (stabilisateurs clés du squat et de la foulée HIIT) et désactive le creusement lombaire pendant les mountain climbers à venir.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                "Glute bridge avec pieds sur chaise 10 reps",
+                "Bridge isométrique 25 sec"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Planche ventrale sur genoux",
+              "sets": 3,
+              "duration": "20 sec",
+              "rest_seconds": 45,
+              "notes": "Coudes sous épaules, corps aligné, fessiers engagés, nombril rentré. Version genoux pour W1 = forme correcte sans fatigue prématurée. Progression vers planche complète W3.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "alternatives": [
+                "Planche avant-bras genoux 20 sec",
+                "Dead bug 8 reps/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Dead bug",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 30,
+              "notes": "Allongé sur le dos, bras tendus vers le plafond, jambes pliées 90° au-dessus du bassin. Tendre bras opposé + jambe opposée vers le sol sans creuser le bas du dos. Cible le core profond et l'anti-extension lombaire — protège le bas du dos pendant les mountain climbers à venir.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                "Bird-dog 8 reps/côté",
+                "Pelvic tilt 12 reps"
+              ],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Mobilité + activation neuromusculaire",
+          "type": "mobility",
+          "duration_minutes": 25,
+          "warmup": "3 min marche rapide sur place + 3 min mobilité douce (cercles épaules, hanches, chevilles).",
+          "cooldown": "5 min marche lente + respiration profonde nasale.",
+          "exercises": [
+            {
+              "name": "Routine mobilité hanche + cheville",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Cercles hanches 10 par sens, fente basse tenue 30 sec/côté, deep squat hold 30 sec, cercles chevilles 10 par sens, calf stretch debout 30 sec/côté, ankle CARs 8 par sens. Pas d'intensité, relâchement. Prépare les articulations à la progression W2.",
+              "target_zone": "technique",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Yoga doux 15 min (chien tête en bas, cobra, child pose)",
+                "Étirements statiques globaux 10 min"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Activation neuromusculaire low-impact",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": 0,
+              "notes": "8 squat-air lents (3 sec descente) + 6 push-up genoux contrôlés + 10 mountain climbers slow (sans impact, alternance lente) + 10 step-jacks. Permet au système neuromusculaire de mémoriser les patterns du HIIT sans la charge cardio.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "knee-injury",
+                "wrist-pain"
+              ],
+              "alternatives": [
+                "Marche dynamique 10 min avec montées de genoux",
+                "Patterns isolés 1 par minute pendant 5 min"
+              ],
+              "volume_axis": "duration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Adaptation — 2 séances HIT 30/60 + renforcement progression",
+      "goal": "Passer à 2 séances HIT par semaine en 30/60 ratio 1:2 RPE 7-8, volume HIT cumulé hebdo +50% vs W1 (4 → 6 min). Renforcement avec progression durée planche + ajout side plank.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "HIT 30/60 — squat-air + step-jacks",
+          "type": "interval",
+          "duration_minutes": 28,
+          "warmup": "Échauffement standard 10 min : 5 min marche rapide + 10 cercles épaules + 10 rotations bassin + 10 talons-fesses + 10 demi-squats lents + 10 step-jacks lents.",
+          "cooldown": "3 min marche lente + 5 min étirements (mollets, quadriceps, fessiers).",
+          "exercises": [
+            {
+              "name": "Bloc 30/60 — Squat-air partial ROM",
+              "sets": 3,
+              "duration": "30 sec work + 60 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/60 (ratio 1:2) RPE 7-8 work / RPE 2-3 rest. Même mouvement qu'en W1 mais cherche un rythme légèrement plus soutenu sur les 30 sec (sans dégrader la forme). Total bloc : 3 × 90 sec = 4 min 30 sec. HIT cumulé bloc : 3 × 30 sec = 1 min 30 sec.",
+              "target_zone": "30/60",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "cardiac-clearance-required",
+                "hip-injury"
+              ],
+              "alternatives": [
+                "Step-up bas alterné 30 sec",
+                "Wall sit partiel 30 sec"
+              ],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Repos actif inter-bloc",
+              "sets": 1,
+              "duration": "90 sec",
+              "rest_seconds": 0,
+              "target_zone": "walking-recovery",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Repos passif debout 90 sec",
+                "Étirements doux 30 sec/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bloc 30/60 — Step-jacks",
+              "sets": 3,
+              "duration": "30 sec work + 60 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. Step-jacks toujours sans saut. Cherche à augmenter légèrement la cadence des bras et l'amplitude des pas latéraux pour monter à RPE 8 sur les 5 dernières secondes. Total bloc : 3 × 90 sec = 4 min 30 sec. HIT cumulé bloc : 3 × 30 sec = 1 min 30 sec. HIT cumulé séance W2 J1 = 1 min 30 + 1 min 30 = 3 min.",
+              "target_zone": "30/60",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "ankle-injury",
+                "cardiac-clearance-required",
+                "apartment-noise"
+              ],
+              "alternatives": [
+                "Marche sur place genoux haut 30 sec",
+                "Cercles bras + pas latéraux 30 sec"
+              ],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Renforcement préventif W2 — progression core + activation",
+          "type": "strength",
+          "duration_minutes": 32,
+          "warmup": "10 min : marche rapide + mobilité dynamique (rotations bassin, talons-fesses, montées de genoux, cercles chevilles).",
+          "cooldown": "5 min étirements (mollets, fessiers, ischios, gainage).",
+          "exercises": [
+            {
+              "name": "Calf raises bipodal",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 30,
+              "notes": "Progression vs W1 (12 → 15 reps). Toujours au sol, deux pieds ensemble.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                "Calf raises assis 18 reps",
+                "Wall calf raise 18 reps"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Tibialis raises",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 30,
+              "target_zone": "RPE 6-7",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                "Pointe-talon assis 18 reps",
+                "Tibialis raises avec resistance-band 15 reps"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Glute bridge bipodal",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 40,
+              "notes": "Progression durée tenue : 3 sec en haut au lieu de 2 sec en W1.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                "Glute bridge pieds sur chaise 12 reps",
+                "Bridge isométrique 30 sec"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Planche ventrale sur genoux",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Progression vs W1 (20 → 30 sec). Forme toujours prioritaire — si tu ne tiens pas 30 sec en gainage propre, fais 2×20 sec.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "alternatives": [
+                "Planche avant-bras genoux 30 sec",
+                "Dead bug 10 reps/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Dead bug",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "target_zone": "RPE 6-7",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                "Bird-dog 10 reps/côté",
+                "Pelvic tilt 15 reps"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Side plank sur genoux",
+              "sets": 2,
+              "duration": "20 sec par côté",
+              "rest_seconds": 30,
+              "notes": "Nouveauté W2 : side plank version genoux pliés (pieds croisés derrière). Cible les obliques et les moyens fessiers — stabilisateurs latéraux clés du HIIT (mountain climbers, step-jacks).",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "alternatives": [
+                "Side plank pieds posés 20 sec/côté",
+                "Clamshell 12 reps/côté"
+              ],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "HIT 30/60 — mountain climbers slow + squat-air",
+          "type": "interval",
+          "duration_minutes": 28,
+          "warmup": "Échauffement standard 10 min identique à J1.",
+          "cooldown": "3 min marche + 5 min étirements.",
+          "exercises": [
+            {
+              "name": "Bloc 30/60 — Mountain climbers slow",
+              "sets": 3,
+              "duration": "30 sec work + 60 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. Mountain climbers SLOW : position planche, alterner les genoux vers la poitrine en RYTHME LENT (pas de précipitation). Pas de creux lombaire, fessiers engagés. Si poignet douloureux, faire en appui avant-bras. Total bloc : 3 × 90 sec = 4 min 30 sec. HIT cumulé bloc : 3 × 30 sec = 1 min 30 sec.",
+              "target_zone": "30/60",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "wrist-pain",
+                "lower-back-pain",
+                "shoulder-injury",
+                "cardiac-clearance-required"
+              ],
+              "alternatives": [
+                "Mountain climbers avant-bras au sol 30 sec",
+                "Marche dynamique avec genoux haut 30 sec"
+              ],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Repos actif inter-bloc",
+              "sets": 1,
+              "duration": "90 sec",
+              "rest_seconds": 0,
+              "target_zone": "walking-recovery",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Repos passif debout 90 sec",
+                "Étirements doux gastrocnémiens 30 sec/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bloc 30/60 — Squat-air partial ROM",
+              "sets": 3,
+              "duration": "30 sec work + 60 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. Identique à J1 mais en 2e position de séance (fatigue cumulée). Si forme se dégrade, réduire l'amplitude de descente. Total bloc : 3 × 90 sec = 4 min 30 sec. HIT cumulé bloc : 3 × 30 sec = 1 min 30 sec. HIT cumulé séance W2 J5 = 3 min. HIT cumulé hebdo W2 = 6 min (3 + 3, +50% vs W1 = 4 min).",
+              "target_zone": "30/60",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "cardiac-clearance-required",
+                "hip-injury"
+              ],
+              "alternatives": [
+                "Step-up bas alterné 30 sec",
+                "Wall sit partiel 30 sec"
+              ],
+              "volume_axis": "sets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Build — palier haut avant cutback, 8 min HIT cumulé",
+      "goal": "Atteindre 8 min HIT cumulé hebdo (haut de la cible doctrine 4-8 min/sem `beginner`) en 30/60 ratio 1:2 RPE 7-8 — palier qualité avant cutback W4. 4 rounds par bloc au lieu de 3.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "HIT 30/60 — squat-air + step-jacks 4 rounds",
+          "type": "interval",
+          "duration_minutes": 32,
+          "warmup": "Échauffement standard 10 min.",
+          "cooldown": "3 min marche + 5 min étirements complets (mollets, quadriceps, ischios, fessiers, piriformis).",
+          "exercises": [
+            {
+              "name": "Bloc 30/60 — Squat-air partial ROM",
+              "sets": 4,
+              "duration": "30 sec work + 60 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. 4 rounds vs 3 en W2 (+1 round). Total bloc : 4 × 90 sec = 6 min. HIT cumulé bloc : 4 × 30 sec = 2 min. Forme genou-pied alignée prioritaire.",
+              "target_zone": "30/60",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "cardiac-clearance-required",
+                "hip-injury"
+              ],
+              "alternatives": [
+                "Step-up bas alterné 30 sec",
+                "Wall sit partiel 30 sec"
+              ],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Repos actif inter-bloc",
+              "sets": 1,
+              "duration": "120 sec",
+              "rest_seconds": 0,
+              "notes": "Récup inter-bloc allongée à 2 min vs 90 sec en W2 — la fatigue cumulée monte avec 4 rounds.",
+              "target_zone": "walking-recovery",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Repos passif debout 2 min",
+                "Étirements doux 30 sec/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bloc 30/60 — Step-jacks",
+              "sets": 4,
+              "duration": "30 sec work + 60 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. 4 rounds. Total bloc : 4 × 90 sec = 6 min. HIT cumulé bloc : 4 × 30 sec = 2 min. HIT cumulé séance W3 J1 = 4 min.",
+              "target_zone": "30/60",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "ankle-injury",
+                "cardiac-clearance-required",
+                "apartment-noise"
+              ],
+              "alternatives": [
+                "Marche sur place genoux haut 30 sec",
+                "Cercles bras + pas latéraux 30 sec"
+              ],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Renforcement préventif W3 — planche complète + bird-dog",
+          "type": "strength",
+          "duration_minutes": 35,
+          "warmup": "10 min : marche rapide + mobilité dynamique.",
+          "cooldown": "5 min étirements complets.",
+          "exercises": [
+            {
+              "name": "Calf raises excentriques bipodal",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 30,
+              "notes": "Nouveauté W3 : monter sur 2 pieds normalement, descendre LENTEMENT (3 sec). Approche excentrique inspirée de la littérature tendineuse — protection tendon Achille avant l'introduction des mouvements à impact léger en W5.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                "Calf raises bipodal classique 18 reps",
+                "Wall calf raise 15 reps"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Tibialis raises",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 30,
+              "target_zone": "RPE 6-7",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                "Pointe-talon assis 18 reps",
+                "Tibialis raises avec resistance-band 15 reps"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Glute bridge unilatéral",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 40,
+              "notes": "Progression vs glute bridge bipodal W1-W2 : un seul pied au sol, l'autre tendu. Renforce l'équilibre G/D et la force fessière individuelle.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                "Glute bridge bipodal 15 reps",
+                "Glute bridge pieds sur chaise 12 reps"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Planche ventrale complète",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 45,
+              "notes": "Progression vs planche genoux W1-W2 : version pieds. Coudes sous épaules, corps aligné des chevilles aux épaules, fessiers + abdos engagés.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "alternatives": [
+                "Planche genoux 45 sec",
+                "Dead bug 12 reps/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 30,
+              "notes": "Nouveauté W3 : à 4 pattes, tendre bras opposé + jambe opposée, tenir 2 sec. Cible le core profond et l'anti-rotation lombaire — protège le bas du dos pendant les blocs HIT à venir.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "wrist-pain",
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                "Dead bug 10 reps/côté",
+                "Bird-dog avant-bras au sol 8 reps/côté"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Side plank sur genoux",
+              "sets": 2,
+              "duration": "30 sec par côté",
+              "rest_seconds": 30,
+              "notes": "Progression durée vs W2 (20 → 30 sec/côté).",
+              "target_zone": "RPE 7-8",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "alternatives": [
+                "Side plank pieds posés 30 sec/côté",
+                "Clamshell 15 reps/côté"
+              ],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "HIT 30/60 — mountain climbers slow + squat-air 4 rounds",
+          "type": "interval",
+          "duration_minutes": 32,
+          "warmup": "Échauffement standard 10 min.",
+          "cooldown": "3 min marche + 5 min étirements.",
+          "exercises": [
+            {
+              "name": "Bloc 30/60 — Mountain climbers slow",
+              "sets": 4,
+              "duration": "30 sec work + 60 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. 4 rounds. Total bloc : 4 × 90 sec = 6 min. HIT cumulé bloc : 4 × 30 sec = 2 min. Si forme se dégrade en gainage planche, réduire la cadence.",
+              "target_zone": "30/60",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "wrist-pain",
+                "lower-back-pain",
+                "shoulder-injury",
+                "cardiac-clearance-required"
+              ],
+              "alternatives": [
+                "Mountain climbers avant-bras 30 sec",
+                "Marche dynamique genoux haut 30 sec"
+              ],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Repos actif inter-bloc",
+              "sets": 1,
+              "duration": "120 sec",
+              "rest_seconds": 0,
+              "target_zone": "walking-recovery",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Repos passif debout 2 min",
+                "Étirements doux gastrocnémiens 30 sec/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bloc 30/60 — Squat-air partial ROM",
+              "sets": 4,
+              "duration": "30 sec work + 60 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. 4 rounds en 2e position. Total bloc : 4 × 90 sec = 6 min. HIT cumulé bloc : 4 × 30 sec = 2 min. HIT cumulé séance W3 J5 = 4 min. HIT cumulé hebdo W3 = 8 min (4 + 4, palier haut cible doctrine `beginner` 4-8 min/sem). Cutback obligatoire en W4.",
+              "target_zone": "30/60",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "cardiac-clearance-required",
+                "hip-injury"
+              ],
+              "alternatives": [
+                "Step-up bas alterné 30 sec",
+                "Wall sit partiel 30 sec"
+              ],
+              "volume_axis": "sets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Cutback — consolidation, transition vers ratio 1:1",
+      "goal": "Cutback obligatoire après 3 semaines de build : HIT cumulé hebdo réduit -38% (8 → 5 min). Pas de nouveauté impactante — on consolide les acquis avant la transition au ratio 1:1 (30/30) en W5. La cutback est constitutive de l'adaptation.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Cutback HIT — 30/60 allégé",
+          "type": "interval",
+          "duration_minutes": 26,
+          "warmup": "Échauffement standard 10 min.",
+          "cooldown": "5 min marche + 5 min étirements complets.",
+          "exercises": [
+            {
+              "name": "Bloc 30/60 — Squat-air partial ROM",
+              "sets": 4,
+              "duration": "30 sec work + 60 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. Volume identique à W3 (4 rounds) mais SEULE séance HIT en J1, et la séance J5 sera très courte (1 min HIT). Profite de cette séance pour affiner la forme — pas de course après le chrono.",
+              "target_zone": "30/60",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "cardiac-clearance-required",
+                "hip-injury"
+              ],
+              "alternatives": [
+                "Step-up bas alterné 30 sec",
+                "Wall sit partiel 30 sec"
+              ],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Repos actif inter-bloc",
+              "sets": 1,
+              "duration": "120 sec",
+              "rest_seconds": 0,
+              "target_zone": "walking-recovery",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Repos passif debout 2 min",
+                "Étirements doux 30 sec/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bloc 30/60 — Step-jacks (cutback) ",
+              "sets": 4,
+              "duration": "30 sec work + 60 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/60 RPE 7 work (cutback : on vise RPE 7 et pas 8) / RPE 2-3 rest. Total bloc : 4 × 90 sec = 6 min. HIT cumulé séance W4 J1 = 4 min. La séance J5 ne sera qu'un réveil neuromusculaire 1 min HIT.",
+              "target_zone": "30/60",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "ankle-injury",
+                "cardiac-clearance-required",
+                "apartment-noise"
+              ],
+              "alternatives": [
+                "Marche sur place genoux haut 30 sec",
+                "Cercles bras + pas latéraux 30 sec"
+              ],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Mobilité + récupération active",
+          "type": "mobility",
+          "duration_minutes": 30,
+          "warmup": "5 min marche douce + 5 min mobilité légère.",
+          "cooldown": "5 min respiration profonde + visualisation positive de la transition W5.",
+          "exercises": [
+            {
+              "name": "Routine mobilité globale",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Cercles hanches 10/sens, fente basse tenue 45 sec/côté, deep squat hold 45 sec, cercles chevilles 10/sens, calf stretch debout 45 sec/côté, ankle CARs 10/sens, étirement piriformis figure-4 au sol 45 sec/côté, étirement psoas chevalier servant 45 sec/côté. La cutback c'est aussi pour les articulations : profite-en pour relâcher.",
+              "target_zone": "technique",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Yoga doux 20 min (chien tête en bas, cobra, child pose, pigeon)",
+                "Étirements statiques globaux 15 min"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Renforcement préventif léger (maintien)",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "2 × 12 calf raises bipodal + 2 × 12 tibialis raises + 2 × 10 glute bridge bipodal + 2 × 25 sec planche complète + 2 × 8 dead bug par côté. Volume cutback (vs renforcement W3 plus chargé), maintien des acquis.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "alternatives": [
+                "Renforcement W3 réduit à 2 séries au lieu de 3",
+                "Marche rapide 15 min + planche 2×30 sec"
+              ],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Réveil neuromusculaire — préparation transition 30/30",
+          "type": "interval",
+          "duration_minutes": 22,
+          "warmup": "Échauffement standard 10 min + 5 step-jacks lents + 5 squat-air contrôlés (préparation au format 30/30 W5).",
+          "cooldown": "5 min marche + 5 min étirements.",
+          "exercises": [
+            {
+              "name": "Bloc test 30/30 — Step-jacks (préparation W5)",
+              "sets": 2,
+              "duration": "30 sec work + 30 sec rest",
+              "rest_seconds": 0,
+              "notes": "Premier test du format 30/30 ratio 1:1 RPE 7-8 work / RPE 2-3 rest. SEULEMENT 2 rounds — c'est un essai pour calibrer ton ressenti avant la transition complète W5. Le rest 30 sec est plus court que les 60 sec habituels : tu vas sentir que ta respiration récupère moins. Si tu n'arrives pas à reprendre une respiration suffisante en 30 sec, prends 60 sec (retour au 30/60). Total bloc : 2 × 60 sec = 2 min. HIT cumulé bloc : 2 × 30 sec = 1 min.",
+              "target_zone": "30/30",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "ankle-injury",
+                "cardiac-clearance-required",
+                "apartment-noise"
+              ],
+              "alternatives": [
+                "Bloc 30/60 step-jacks 2 rounds (rester au ratio 1:2)",
+                "Marche sur place genoux haut 30 sec × 2 avec 60 sec rest"
+              ],
+              "volume_axis": "sets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Transition 30/30 — ratio 1:1 RPE 8",
+      "goal": "Transition au format 30/30 ratio 1:1 RPE 8 sur les 2 séances HIT, après la cutback W4 et le test J5. HIT cumulé hebdo : 7 min (3 min séance courte J1 + 4 min séance J5). Volume HIT en hausse +40% vs W4 cutback (5 → 7 min) mais en deçà du palier W3 (8 min) — progression contrôlée.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "HIT 30/30 — squat-air + step-jacks 3 rounds",
+          "type": "interval",
+          "duration_minutes": 26,
+          "warmup": "Échauffement standard 10 min + 10 jumping jacks step (lents) en activation neuromusculaire.",
+          "cooldown": "3 min marche + 5 min étirements complets.",
+          "exercises": [
+            {
+              "name": "Bloc 30/30 — Squat-air partial ROM",
+              "sets": 3,
+              "duration": "30 sec work + 30 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/30 ratio 1:1 RPE 8 work / RPE 2-3 rest. La récupération est moitié plus courte qu'en 30/60 : sois économe sur le rythme work pour pouvoir tenir 3 rounds. Si tu n'arrives plus à respirer correctement en rest, ralentis encore le work. Total bloc : 3 × 60 sec = 3 min. HIT cumulé bloc : 3 × 30 sec = 1 min 30 sec.",
+              "target_zone": "30/30",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "cardiac-clearance-required",
+                "hip-injury"
+              ],
+              "alternatives": [
+                "Bloc 30/60 squat-air 3 rounds (rester au 1:2 si fatigue cumulée)",
+                "Wall sit partiel 30 sec × 3 avec 30 sec rest"
+              ],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Repos actif inter-bloc",
+              "sets": 1,
+              "duration": "120 sec",
+              "rest_seconds": 0,
+              "target_zone": "walking-recovery",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Repos passif debout 2 min",
+                "Étirements doux gastrocnémiens 30 sec/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bloc 30/30 — Step-jacks",
+              "sets": 3,
+              "duration": "30 sec work + 30 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/30 RPE 8 work / RPE 2-3 rest. 3 rounds. Total bloc : 3 × 60 sec = 3 min. HIT cumulé bloc : 3 × 30 sec = 1 min 30 sec. HIT cumulé séance W5 J1 = 3 min.",
+              "target_zone": "30/30",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "ankle-injury",
+                "cardiac-clearance-required",
+                "apartment-noise"
+              ],
+              "alternatives": [
+                "Bloc 30/60 step-jacks 3 rounds",
+                "Marche sur place genoux haut 30 sec × 3"
+              ],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Renforcement préventif W5 — maintien + activation HIIT",
+          "type": "strength",
+          "duration_minutes": 35,
+          "warmup": "10 min : marche rapide + mobilité dynamique.",
+          "cooldown": "5 min étirements complets.",
+          "exercises": [
+            {
+              "name": "Calf raises excentriques bipodal",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 30,
+              "notes": "Maintien W3-W5. Descente 3 sec.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                "Calf raises bipodal classique 20 reps",
+                "Wall calf raise 18 reps"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Tibialis raises",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 30,
+              "target_zone": "RPE 6-7",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                "Pointe-talon assis 18 reps",
+                "Tibialis raises avec resistance-band 15 reps"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Glute bridge unilatéral",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 40,
+              "notes": "Progression vs W3 (8 → 10 reps/côté).",
+              "target_zone": "RPE 7-8",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                "Glute bridge bipodal 18 reps",
+                "Glute bridge pieds sur chaise 15 reps"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Planche ventrale complète",
+              "sets": 3,
+              "duration": "40 sec",
+              "rest_seconds": 45,
+              "notes": "Progression vs W3 (30 → 40 sec). Forme prioritaire.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "alternatives": [
+                "Planche genoux 50 sec",
+                "Dead bug 14 reps/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "target_zone": "RPE 6-7",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "wrist-pain",
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                "Dead bug 12 reps/côté",
+                "Bird-dog avant-bras au sol 10 reps/côté"
+              ],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Side plank sur genoux",
+              "sets": 2,
+              "duration": "30 sec par côté",
+              "rest_seconds": 30,
+              "target_zone": "RPE 7-8",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "alternatives": [
+                "Side plank pieds posés 30 sec/côté",
+                "Clamshell 15 reps/côté"
+              ],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "HIT 30/30 — mountain climbers slow + squat-air 4 rounds",
+          "type": "interval",
+          "duration_minutes": 30,
+          "warmup": "Échauffement standard 10 min + 8 mountain climbers lents en activation.",
+          "cooldown": "3 min marche + 7 min étirements complets.",
+          "exercises": [
+            {
+              "name": "Bloc 30/30 — Mountain climbers slow",
+              "sets": 4,
+              "duration": "30 sec work + 30 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/30 ratio 1:1 RPE 8 work / RPE 2-3 rest. 4 rounds. Total bloc : 4 × 60 sec = 4 min. HIT cumulé bloc : 4 × 30 sec = 2 min. Garde la cadence régulière sur les 4 rounds — si elle chute > 30% au round 4, c'est trop tôt pour 4 rounds, retour à 3.",
+              "target_zone": "30/30",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "wrist-pain",
+                "lower-back-pain",
+                "shoulder-injury",
+                "cardiac-clearance-required"
+              ],
+              "alternatives": [
+                "Mountain climbers avant-bras 30 sec × 4",
+                "Bloc 30/60 mountain climbers 4 rounds"
+              ],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Repos actif inter-bloc",
+              "sets": 1,
+              "duration": "120 sec",
+              "rest_seconds": 0,
+              "target_zone": "walking-recovery",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Repos passif debout 2 min",
+                "Étirements doux 30 sec/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bloc 30/30 — Squat-air partial ROM",
+              "sets": 4,
+              "duration": "30 sec work + 30 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/30 RPE 8 work / RPE 2-3 rest. 4 rounds en 2e position de séance (fatigue cumulée). Total bloc : 4 × 60 sec = 4 min. HIT cumulé bloc : 4 × 30 sec = 2 min. HIT cumulé séance W5 J5 = 4 min. HIT cumulé hebdo W5 = 7 min (3 + 4) — cible 8 min en W6 séance phare.",
+              "target_zone": "30/30",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "cardiac-clearance-required",
+                "hip-injury"
+              ],
+              "alternatives": [
+                "Step-up bas alterné 30 sec × 4",
+                "Wall sit partiel 30 sec × 4"
+              ],
+              "volume_axis": "sets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Séance phare — 20 min de séance complète, 8 min HIT cumulé",
+      "goal": "Pic du plan : séance phare W6 J5 = 2 blocs de 4 min HIT en 30/30 ratio 1:1 RPE 8 (warmup + cooldown inclus = 20 min de séance complète tel qu'annoncé en `default_objective`). HIT cumulé hebdo : 8 min (4 min séance courte J1 + 4 min séance phare J5). Checklist d'autonomie 5 critères.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "HIT 30/30 — séance courte de tapering",
+          "type": "interval",
+          "duration_minutes": 26,
+          "warmup": "Échauffement standard 10 min.",
+          "cooldown": "3 min marche + 5 min étirements complets.",
+          "exercises": [
+            {
+              "name": "Bloc 30/30 — Squat-air partial ROM",
+              "sets": 4,
+              "duration": "30 sec work + 30 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/30 RPE 7-8 work (tapering : on vise RPE 7-8 et pas RPE 9 — tu gardes du jus pour la séance phare J5) / RPE 2-3 rest. Total bloc : 4 × 60 sec = 4 min. HIT cumulé bloc : 4 × 30 sec = 2 min.",
+              "target_zone": "30/30",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "cardiac-clearance-required",
+                "hip-injury"
+              ],
+              "alternatives": [
+                "Bloc 30/60 squat-air 4 rounds",
+                "Wall sit partiel 30 sec × 4"
+              ],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Repos actif inter-bloc",
+              "sets": 1,
+              "duration": "120 sec",
+              "rest_seconds": 0,
+              "target_zone": "walking-recovery",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Repos passif debout 2 min",
+                "Étirements doux 30 sec/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bloc 30/30 — Step-jacks",
+              "sets": 4,
+              "duration": "30 sec work + 30 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/30 RPE 7-8 work (tapering) / RPE 2-3 rest. Total bloc : 4 × 60 sec = 4 min. HIT cumulé bloc : 4 × 30 sec = 2 min. HIT cumulé séance W6 J1 = 4 min. C'est ta dernière séance avant la séance phare J5 — repos actif J2-J4 (marche douce, étirements).",
+              "target_zone": "30/30",
+              "required_equipment": [],
+              "incompatible_constraints": [
+                "knee-injury",
+                "ankle-injury",
+                "cardiac-clearance-required",
+                "apartment-noise"
+              ],
+              "alternatives": [
+                "Bloc 30/60 step-jacks 4 rounds",
+                "Marche sur place genoux haut 30 sec × 4"
+              ],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Mobilité pré-test",
+          "type": "mobility",
+          "duration_minutes": 30,
+          "warmup": "5 min marche douce + 5 min mobilité légère.",
+          "cooldown": "5 min respiration profonde + visualisation positive de la séance phare J5.",
+          "exercises": [
+            {
+              "name": "Routine mobilité hanches + chevilles",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Cercles hanches 10/sens, fente basse tenue 45 sec/côté, deep squat hold 45 sec, cercles chevilles 10/sens, calf stretch debout 45 sec/côté, ankle CARs 10/sens, étirement piriformis figure-4 au sol 45 sec/côté. Pas d'intensité, relâchement total. Prépare les articulations au pic J5.",
+              "target_zone": "technique",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Yoga doux 20 min (chien tête en bas, cobra, child pose, pigeon)",
+                "Étirements statiques globaux 15 min"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Activation neuromusculaire légère",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": 0,
+              "notes": "8 squat-air lents + 8 step-jacks lents + 8 mountain climbers slow + 6 push-up genoux. Réveille les patterns de la séance phare sans fatiguer.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "knee-injury",
+                "wrist-pain"
+              ],
+              "alternatives": [
+                "Marche dynamique 8 min",
+                "Patterns isolés 1/min pendant 5 min"
+              ],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance phare — 20 min complète, 2 blocs 4 min HIT 30/30",
+          "type": "interval",
+          "duration_minutes": 20,
+          "warmup": "5 min marche rapide sur place + 3 min mobilité dynamique (10 cercles épaules + 10 rotations bassin + 10 talons-fesses + 10 montées de genoux + 10 demi-squats lents + 10 step-jacks lents). Total : 8 min — cherche à arriver à RPE 6-7 avant le premier bloc work.",
+          "cooldown": "3 min marche lente + étirements 5 min : mollets, quadriceps, ischio-jambiers, fessier figure-4, piriformis. Hydratation + collation post-effort.",
+          "exercises": [
+            {
+              "name": "Bloc 1 — 30/30 mixte 4 min HIT",
+              "sets": 4,
+              "duration": "30 sec work + 30 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/30 ratio 1:1 RPE 8 work / RPE 2-3 rest. 4 rounds en mouvements alternés à chaque round : R1 squat-air, R2 step-jacks, R3 mountain climbers slow, R4 squat-air. Total bloc : 4 × 60 sec = 4 min. HIT cumulé bloc : 4 × 30 sec = 2 min.",
+              "target_zone": "30/30",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "knee-injury",
+                "ankle-injury",
+                "wrist-pain",
+                "lower-back-pain",
+                "cardiac-clearance-required",
+                "apartment-noise"
+              ],
+              "alternatives": [
+                "Bloc 1 en 30/60 4 rounds (ratio 1:2 si fatigue cumulée)",
+                "Bloc 1 en 30/30 mais que 2 mouvements low-impact (squat-air + step-jacks alternés)"
+              ],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Récup inter-blocs longue",
+              "sets": 1,
+              "duration": "120 sec",
+              "rest_seconds": 0,
+              "notes": "2 min de récup totale entre les 2 blocs HIT — marche sur place lente, respiration profonde nasale. Si après 2 min tu n'as pas retrouvé une respiration permettant 1 phrase, ajoute 60 sec.",
+              "target_zone": "walking-recovery",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": [
+                "Repos passif debout 2 min",
+                "Étirements doux gastrocnémiens 30 sec/côté"
+              ],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bloc 2 — 30/30 mixte 4 min HIT",
+              "sets": 4,
+              "duration": "30 sec work + 30 sec rest",
+              "rest_seconds": 0,
+              "notes": "Format 30/30 ratio 1:1 RPE 8 work / RPE 2-3 rest. 4 rounds en mouvements alternés à chaque round : R1 step-jacks, R2 squat-air, R3 mountain climbers slow, R4 step-jacks. Total bloc : 4 × 60 sec = 4 min. HIT cumulé bloc : 4 × 30 sec = 2 min. HIT cumulé séance phare = 4 min. HIT cumulé hebdo W6 = 8 min (4 J1 + 4 J5) — cible doctrine `beginner` 4-8 min/sem atteinte.\n\n*** CHECKLIST D'AUTONOMIE — à valider après la séance phare ***\n1. Je tiens les 2 blocs de 4 min HIT (30/30 RPE 8) avec 2 min de récup entre eux sans pause forcée à l'intérieur d'un bloc.\n2. Je récupère ma FC en dessous de 100 bpm en moins de 3 min après le 2e bloc (proxy : je suis capable de tenir une conversation normale sous 3 min).\n3. Je sens mes mollets et cuisses fatigués mais sans douleur tibiale ni douleur Achille.\n4. J'ai respecté 48h de récup entre les 2 séances HIT de cette semaine (J1 et J5).\n5. Pas de courbatures bloquantes > 48h après J1 (je peux marcher normalement et entamer J3 sans gêne).\n\nSi tu coches 4+ critères, tu es autonome pour enchaîner sur un programme `recreational` HIIT 8 sem (introduction Tabata simple 4-6 rounds + EMOM 10-12 min). Si 3 critères ou moins, refais W5 et W6 (cycle de 2 sem) avant de progresser.",
+              "target_zone": "30/30",
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "knee-injury",
+                "ankle-injury",
+                "wrist-pain",
+                "lower-back-pain",
+                "cardiac-clearance-required",
+                "apartment-noise"
+              ],
+              "alternatives": [
+                "Bloc 2 en 30/60 4 rounds (ratio 1:2 si fatigue cumulée)",
+                "Bloc 2 en 30/30 mais que 2 mouvements low-impact (squat-air + step-jacks alternés)"
+              ],
+              "volume_axis": "sets"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

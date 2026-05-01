@@ -1,0 +1,908 @@
+{
+  "schema_version": 2,
+  "id": "cycling-recreational-endurance-10sem",
+  "sport": "cycling",
+  "level": "recreational",
+  "name": "Vélo endurance — 80 km en 10 semaines",
+  "duration_weeks": 10,
+  "sessions_per_week": 3,
+  "default_objective": "Couvrir 80 km en une seule sortie à allure endurance (Z2, 70-75% FCmax, ~25-28 km/h sur terrain roulant)",
+  "assumed_profile": "Cycliste régulier tenant 40 km à 25-28 km/h, pratique 1-2×/sem, vélo de route avec cardio-fréquencemètre conseillé (puissancemètre optionnel). Équipement minimal : vélo de route en bon état, casque, cuissard rembourré, bidons x2, chambre à air de rechange + démonte-pneu, ravitaillement solide pour sortie longue.",
+  "summary": "Plan 10 semaines pour cycliste recreational visant sa première sortie 80 km en autonomie, structuré en 3 sessions/sem (long ride Z2 + sweet spot/intensité + récupération active) selon la doctrine FasCat Sweet Spot Basic + British Cycling Sportive Beginner. Convention de mesure du volume : volume hebdo de pédalage pur (somme des durations exercises cycling, hors warmup/cooldown < 10 min). Séquence hebdo : ~3.4 → ~3.7 → ~4.1 → ~3.1 (cutback W4) → ~4.3 → ~4.8 → ~5.2 (pic W7) → ~3.9 (cutback W8) → ~4.8 → ~5.3 (W10 séance phare 80 km). Long ride progressif : 45 → 52 → 60 → 50 (cutback) → 65 → 72 → 78 → 62 (cutback) → 82 (pic distance, 102% de la cible) → 80 (séance phare). Introduction Sweet-Spot découvert dès W1 (3×5 min calibration), structuration progressive W2-W3 (4×8 min puis 3×10 min), pic durée bloc 3×15 min en W6 et 2×20 min en W7. Pas de FTP-Z5 strict — sweet spot dominant + tempo Z3 + côtes Z4 courtes pour préparer le relief de la sortie cible. 1 séance strength/mobilité hebdo intégrée à la session intensité (single-leg squat, hip thrust léger, gainage, étirements psoas). Cutbacks W4 (-17%) et W8 (-20%), taper W10 (J1 -50%, J3 activation 25 km), checklist d'autonomie 4 critères en W10.",
+  "week_structure": {
+    "type": "linear",
+    "micro_pattern": "long ride Z2 + sweet spot/tempo + récupération active",
+    "recovery_cadence": "1 deload toutes les 4 semaines (W4, W8) puis taper W10"
+  },
+  "deload_weeks": [4, 8],
+  "progression_logic": "Progression sur 5 principes alignés Coggan & Allen (Training and Racing with a Power Meter), FasCat Sweet Spot Basic (Frank Overton), British Cycling Sportive Beginner et la revue 2024 distribution polarized (PMC NIH).\n\n(1) DISTRIBUTION SWEET-SPOT DOMINANT recreational : 50-60% du volume en FTP-Z2 (endurance fondamentale, base aérobie, long ride), 35-45% en Sweet-Spot (88-94% FTP) et FTP-Z3 (tempo) sur les sessions intensité, < 10% en FTP-Z4 (côtes courtes W7) et FTP-Z1 (récupération active). Pas de polarized strict 80/20 : à 4-6 h/sem de pédalage pur, le volume LIT est insuffisant pour absorber 80% d'easy + 20% d'intervalles courts à allure VO2max. Le sweet-spot est l'optimum charge/temps validé pour le recreational (FasCat / TrainerRoad). Aucun FTP-Z5 strict sur ce plan — la VO2max est stimulée par les côtes Z4 courtes (W7) et la durabilité par les blocs sweet spot longs.\n\n(2) PROGRESSION VOLUME ET LONG RIDE : Convention de mesure : volume hebdo de pédalage pur (somme des durations exercises cycling, hors warmup/cooldown < 10 min). Séquence hebdo : ~3.4 → ~3.7 → ~4.1 → ~3.1 (cutback W4) → ~4.3 → ~4.8 → ~5.2 (pic W7) → ~3.9 (cutback W8) → ~4.8 → ~5.3 (W10 incluant séance phare). Long ride : 45 → 52 → 60 → 50 (cutback W4) → 65 → 72 → 78 → 62 (cutback W8) → 82 (pic distance, 102% de la cible 80 km) → 80 (séance phare W10 J5). Le long ride pic 82 km respecte la règle ≥ 100% de la cible. Hausse hebdo plafonnée ~10-15% par semaine de charge (règle ACSM des 10%, tolérance recreational), exception sur les retours post-deload où le rebond est explicitement plus marqué. Vol pic W7 ~5.2 h/sem dans la fenêtre 4-8 h/sem doctrine FasCat Sweet Spot Basic.\n\n(3) DEUX CUTBACKS W4 ET W8 (-20 à -25%) : volume hebdo W4 ~3.1 h vs ~4.1 h en W3 = ~-24%. Volume hebdo W8 ~3.9 h vs ~5.2 h en W7 = ~-25%. Cycle 3 build + 1 deload doctrine recreational (Coggan / FasCat). Sur les semaines de deload, le sweet spot est conservé en quantité réduite (2 blocs au lieu de 3) pour maintenir la qualité neuromusculaire, mais les durées de bloc et le long ride sont nettement raccourcis. Les adaptations cardiovasculaires, vasculaires et tendineuses se consolident pendant ces semaines — les sauter = stagnation ou douleur de surcharge genou/lombaire (40-60% des cyclistes touchés par lombalgie selon source ROUVY/MyVeloFit).\n\n(4) PROGRESSION SWEET-SPOT : sweet spot continu (88-94% FTP, 92-97% FCmax, RPE 3-4). Sweet spot découvert dès W1 (3×5 min, calibration sensation), structuration progressive W2-W3 (4×8 min puis 3×10 min), pic W6 (3×15 min = 45 min total) et W7 (2×20 min = 40 min total). Cette progression respecte la doctrine FasCat : le sweet spot est la zone d'entraînement la plus rentable pour passer d'une sortie 40 km confortable à une sortie 80 km tenue en Z2. Il améliore le seuil aérobie (FTP), la tolérance lactate et la durabilité musculaire à effort modéré-élevé. Les blocs sweet spot sont toujours précédés d'un échauffement long (10-15 min FTP-Z1-Z2) et suivis d'un cooldown FTP-Z1 (5-10 min) qui consolide le volume aérobie. Tempo FTP-Z3 (76-90% FTP, 84-94% FCmax) en alternative ou complément, plus tolérable mentalement sur 12-15 min continus.\n\n(5) TAPER W10 (J-7 séance phare J5) : taper 7 jours, volume W10 (hors séance phare) réduit ~50% vs W9. J1 sortie activation 40 km Z1-Z2 (~85 min, vs 82 km en W9 J1), J3 sortie très courte 25 km Z1 + routine mobilité 10 min (~55 min pédalage). Conforme Mujika & Padilla (2003) appliqué cycling : réduction volume 40-50% sur taper court avec maintien fréquence (3 sessions) et activation neuromusculaire (3 accélérations courtes 30 sec en Z3 J1, 2 sprints 10-15 sec J3). La séance phare 80 km Z2 le J5 vise une cadence 85-95 rpm et un pacing strict 65-75% FCmax, avec checklist d'autoévaluation 4 critères mesurables.",
+  "safety_notes": "DRAPEAUX ROUGES (arrêter la séance et consulter un professionnel de santé si symptômes persistent > 5 jours) :\n• Lombalgie cycliste persistante (40-60% des cyclistes touchés) : cause n°1 = position de selle / cintre (reach trop long, selle trop haute / nez trop bas, hanches désalignées). Si douleur > 2 sorties consécutives → bike fit professionnel. Vérifier hauteur de selle (genou flexion 25-30° en bas du pédalage), reach et cale.\n• Douleur antérieure du genou (genou cycliste) : selle trop basse / trop avancée, cale mal positionnée, cadence trop basse sur gros braquet. Stop si > 3/10 pendant le pédalage. Vérifier hauteur selle et avancée. Les single-leg squats du plan visent précisément à renforcer la stabilité fémoro-patellaire en prévention.\n• Douleur postérieure du genou : selle trop haute. Diminuer 5-10 mm avant la prochaine sortie.\n• Douleur sur la face interne du genou (ligaments) : alignement des cales (cleats) — une rotation incorrecte crée un cisaillement médial chronique. Réajuster avant de continuer.\n• Hot foot / engourdissement avant-pied : chaussures trop serrées, cales trop avancées, exposition longue à pente. Aérer aux arrêts, vérifier réglage cale.\n• Cervicalgie / shoulder strain : reach trop long, cintre trop bas. Réduire stack ou allonger potence.\n• Saddle sores / chamois pressure : crème chamois sortie > 90 min, cuissard de qualité, hygiène stricte.\n• Symptômes cardiaques (douleur thoracique, essoufflement disproportionné, palpitations irrégulières) : arrêt immédiat, avis médical avant reprise.\n\nSÉCURITÉ ROUTE :\n• CASQUE OBLIGATOIRE à chaque sortie sans exception. En cas de chute et choc crânien même léger, arrêter la sortie et évaluer (protocole commotion). Remplacer le casque après chaque impact.\n• Éclairages avant et arrière obligatoires en faible visibilité (aube, crépuscule, nuit, brouillard). Gilet réfléchissant en hiver.\n• Ne jamais mettre d'écouteurs en environnement urbain ou trafic dense — vigilance auditive critique.\n• Itinéraire partagé : pour les longues sorties (> 60 km), partager le tracé GPS avec un proche avant le départ.\n• Vérification avant chaque sortie : pression pneus (7-8 bars sur route), freins, chaîne lubrifiée, kit réparation (chambre à air, démonte-pneu, CO2 ou pompe portable).\n\nBIKE FIT (essentiel recreational en montée de volume) :\n• Hauteur de selle : flexion du genou 25-30° en bas du pédalage, sans basculement du bassin. Mauvais réglage = cause n°1 des douleurs genou et lombaires.\n• Reach : tronc inclinable sans douleur cervicale ou lombaire. Si douleur récurrente : réduire stack, raccourcir potence, ou consulter un fitter pro.\n• Cales : alignement neutre par défaut. Si genou interne / externe : ajustement à la sortie suivante.\n\nINTENSITÉ ET ZONES :\n• FTP-Z1 récupération : < 55% FTP, < 68% FCmax, RPE 1-2. Tu peux chanter.\n• FTP-Z2 endurance : 56-75% FTP, 69-83% FCmax, RPE 2-3. Tu peux parler en phrases longues.\n• FTP-Z3 tempo : 76-90% FTP, 84-94% FCmax, RPE 3-4. Tu peux parler par phrases courtes.\n• Sweet-Spot : 88-94% FTP, 92-97% FCmax, RPE 3-4. Tu parles par phrases brèves, respiration soutenue mais contrôlée.\n• FTP-Z4 lactate threshold : 91-105% FTP, 95-105% FCmax, RPE 4-5. Tu peux dire quelques mots seulement. Utilisé seulement sur côtes courtes 2-3 min en W7.\n• FCmax estimée = 220 - âge (approximation). Le cardio-fréquencemètre permet d'affiner. Sans powermeter, le pacing % FCmax + RPE est suffisant pour le recreational.\n• CADENCE CIBLE : 85-95 rpm sur plat, 75-85 rpm en côte modérée 3-7%, 70-80 rpm en côte raide > 8%. Jamais < 65 rpm en continu — la pression fémoro-patellaire est multipliée par 3.\n\nNUTRITION-HYDRATATION (sortie > 90 min) :\n• Glucides : 60-90 g/h pour sortie > 90 min (ratio 2:1 glucose:fructose au-delà de 60 g/h). Démarrer 30 g/h si profil non habitué et progresser sur 4-6 sem (gut training).\n• Hydratation : 500-750 ml/h tempéré (jusqu'à 1 L/h chaleur > 25°C, sodium 300-700 mg/L).\n• Avant sortie : 1-2 h avant départ, 30-60 g glucides + caféine optionnelle.\n• Après : fenêtre 30 min, ratio glucides:protéines 3:1 ou 4:1, 1.0-1.2 g glucides/kg + 0.3 g protéines/kg.\n• Ne jamais commencer une sortie longue le ventre vide — petit-déjeuner digéré 2-3 h avant.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → réduire volume hebdo de 30% et prendre 2 jours de repos actif, ou refaire la semaine précédente) :\n• FC de repos +8-10 bpm au réveil 3 matins consécutifs.\n• Jambes lourdes systématiquement après 10-15 min d'échauffement.\n• Performances qui stagnent ou régressent sur les blocs sweet spot calibrés.\n• Sommeil dégradé > 3 nuits, irritabilité inhabituelle.\n• Appétit coupé ou fringales excessives post-séance.\n• Immunité dégradée (rhumes à répétition).\n\nSI SÉANCE MANQUÉE :\n• < 4 jours de pause : reprendre la séance suivante prévue (ne pas rattraper la séance manquée).\n• 4-7 jours de pause : reprendre la semaine en cours en commençant par la session la plus facile (récup → long ride).\n• 1-2 sem de pause (maladie, voyage) : reprendre la semaine précédente complète.\n• > 2 semaines de pause : reculer de 2 semaines dans le plan pour resécuriser l'adaptation cardiovasculaire et tendineuse.",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Fondations — calibrer les zones et activer le renforcement préventif",
+      "goal": "Poser les zones d'effort individuelles via une sortie test 30 min FTP-Z2 / cadence 90 rpm. Long ride 45 km en FTP-Z2 pur. Initier sweet spot (3×5 min calibration) et renforcement préventif. Volume hebdo de pédalage pur : ~3.4 h.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie longue Z2 — 45 km calibration",
+          "type": "endurance",
+          "duration_minutes": 110,
+          "warmup": "10 min pédalage facile FTP-Z1 (< 65% FCmax), cadence libre 80-90 rpm, terrain plat. Ne pas forcer avant que les jambes soient chaudes.",
+          "cooldown": "5 min FTP-Z1 très facile pour flush lactate. Descente du vélo : 2 min marche, étirements statiques quadriceps 30 sec/jambe, ilio-psoas 30 sec/jambe, mollets 30 sec/jambe.",
+          "exercises": [
+            {
+              "name": "Sortie endurance FTP-Z2",
+              "sets": 1,
+              "duration": "45 km / ~95 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z2 = 56-75% FTP, 69-83% FCmax, RPE 2-3. Test de la parole : tu tiens une conversation complète. Cadence 85-95 rpm sur plat. Objectif : finir sans être épuisé. Si FCmax dépasse 78% en montée, réduire l'allure ou passer au petit plateau. Ravitaillement obligatoire toutes les 30-35 min (gel ou barre) au-delà de 60 min.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor", "bidons"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Sortie longue trainer 80 min FTP-Z2 (durée -15%)", "Vélo elliptique 90 min Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Cadence + initiation sweet spot — renforcement préventif",
+          "type": "mixed",
+          "duration_minutes": 75,
+          "warmup": "10 min FTP-Z1-Z2 progressif, terminer par 3 accélérations de 10 sec à 100 rpm pour activer les fibres rapides.",
+          "cooldown": "8 min FTP-Z1 très facile. Étirements statiques : fessiers 30 sec/côté, quadriceps 30 sec/jambe, étirement lombaire en flexion debout 30 sec.",
+          "exercises": [
+            {
+              "name": "Travail cadence haute FTP-Z2",
+              "sets": 4,
+              "duration": "3 min à 100-105 rpm en FTP-Z2",
+              "rest_seconds": 120,
+              "notes": "FTP-Z2, petit plateau, résistance modérée. Habituer le système neuromusculaire à la cadence élevée. Entre chaque série : 2 min FTP-Z1 cadence libre. Équivalent 73-83% FCmax, RPE 2-3.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain", "no-bike"],
+              "alternatives": ["Cadence haute trainer 4 × 3 min", "Drills cadence 100 rpm sur home trainer ERG"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Initiation sweet spot — blocs courts",
+              "sets": 3,
+              "duration": "5 min Sweet-Spot",
+              "rest_seconds": 180,
+              "notes": "Sweet-Spot = 88-94% FTP, 92-97% FCmax, RPE 3-4. Allure soutenue mais tenable 30-40 min en continu chez un recreational. Tu parles par phrases brèves. Cadence 88-93 rpm. Récupération 3 min FTP-Z1 entre chaque bloc. Première découverte du sweet spot — ne force pas, le but est de calibrer la sensation.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Tempo FTP-Z3 3 × 5 min (88-94% FCmax)", "Sweet spot trainer ERG 3 × 5 min"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Single-leg squat (assisté)",
+              "sets": 3,
+              "reps": "8 par côté",
+              "rest_seconds": 75,
+              "notes": "Tenir une chaise pour équilibre si nécessaire. Descente sur 1 jambe jusqu'à 60-70°, genou dans l'axe du pied. Renforce le mécanisme d'absorption à l'atterrissage du pédalage et stabilise le genou. Prévention syndrome fémoro-patellaire (PFPS).",
+              "target_zone": "RPE 7-8",
+              "required_equipment": [],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain"],
+              "alternatives": ["Step-ups bas 10 reps/jambe", "Squat bipodal lent 15 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Pont fessier bipodal",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 45,
+              "notes": "Cible les fessiers (stabilisateurs clés du pédalage). Tenir 2 sec en haut, contrôle excentrique. Renforce le grand fessier sous-utilisé chez le cycliste recreational.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Pont fessier unilatéral 10 reps/côté", "Hip thrust dos sur banc 12 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "40 sec",
+              "rest_seconds": 45,
+              "notes": "Corps rigide, fessiers engagés, ne pas laisser les hanches s'affaisser. Core stable = posture stable sur le vélo, prévention lombalgie cycliste.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 50 sec", "Dead bug 14 reps/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Récupération active — 30 km FTP-Z1-Z2",
+          "type": "endurance",
+          "duration_minutes": 75,
+          "warmup": "Sortie démarrée directement en FTP-Z1, pas d'échauffement spécifique nécessaire pour une sortie récup.",
+          "cooldown": "5 min de pédalage très facile + 5 min marche + étirements ischio-jambiers 30 sec/jambe, psoas 30 sec/côté.",
+          "exercises": [
+            {
+              "name": "Sortie récupération FTP-Z1-Z2",
+              "sets": 1,
+              "duration": "30 km / ~70 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z1-Z2 : < 75% FCmax, RPE 2-3. Cadence libre 80-90 rpm. Pas d'effort supra-Z2 même si tu te sens en forme. Cette séance est une récupération active — elle prépare les muscles à l'effort de la semaine suivante. Idéal sur un parcours plat ou légèrement vallonné.",
+              "target_zone": "FTP-Z1",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "no-bike"],
+              "alternatives": ["Récupération trainer 60 min FTP-Z1-Z2", "Vélo elliptique 70 min Z1-Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Construction — allonger le long ride et consolider sweet spot",
+      "goal": "Porter le long ride à 52 km (+16%). Sweet spot porté à 4 × 8 min. Volume hebdo de pédalage pur : ~3.7 h.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie longue Z2 — 52 km",
+          "type": "endurance",
+          "duration_minutes": 125,
+          "warmup": "12 min FTP-Z1, cadence 85 rpm.",
+          "cooldown": "8 min FTP-Z1 + étirements 5 min (quadriceps, ischio, mollets).",
+          "exercises": [
+            {
+              "name": "Sortie endurance FTP-Z2",
+              "sets": 1,
+              "duration": "52 km / ~108 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z2 = 56-75% FTP, 69-83% FCmax, RPE 2-3. Cadence 85-95 rpm sur plat. Sur les côtes, accepter de passer en FTP-Z3 brièvement (montées < 3 min) mais revenir Z2 dès le replat. Ravitaillement : gel ou barre toutes les 30-35 min, bidon 500-750 ml/h. Première sortie légèrement > 50 km — pace toi dès le départ.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor", "bidons"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Sortie longue trainer 90 min FTP-Z2 (durée -15%)", "Vélo elliptique 105 min Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Sweet spot 4 × 8 min — renforcement",
+          "type": "mixed",
+          "duration_minutes": 75,
+          "warmup": "12 min FTP-Z1-Z2 progressif + 3 accélérations 10 sec à 110 rpm pour activer.",
+          "cooldown": "8 min FTP-Z1 + étirements lombaires et fessiers 5 min.",
+          "exercises": [
+            {
+              "name": "Blocs sweet spot",
+              "sets": 4,
+              "duration": "8 min Sweet-Spot",
+              "rest_seconds": 180,
+              "notes": "Sweet-Spot = 88-94% FTP, 92-97% FCmax, RPE 3-4. Tu parles par phrases brèves, respiration soutenue mais contrôlée. Cadence 88-93 rpm. Récupération 3 min FTP-Z1 entre chaque bloc. Cette série développe le seuil aérobie et la durabilité — capital pour tenir 80 km.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Tempo FTP-Z3 4 × 8 min (88-94% FCmax)", "Sweet spot trainer ERG 4 × 8 min"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Hip thrust dos au sol",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 60,
+              "notes": "Pieds à plat, dos au sol, monter le bassin en serrant les fessiers, tenir 2 sec en haut. Renforce le grand fessier — moteur principal du coup de pédale en sortie de selle.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Pont fessier bipodal lent 15 reps", "Hip thrust dos sur banc 10 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Gainage latéral",
+              "sets": 3,
+              "duration": "30 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Corps aligné, hanches hautes, pas de chute du bassin. Renforce les obliques et le moyen fessier — stabilité sur le vélo en danseuse.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-injury"],
+              "alternatives": ["Gainage latéral genoux fléchis 40 sec/côté", "Side plank dips 10 reps/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Récupération active — 32 km FTP-Z1-Z2",
+          "type": "endurance",
+          "duration_minutes": 80,
+          "warmup": "Démarrer directement en FTP-Z1.",
+          "cooldown": "5 min FTP-Z1 + étirements 5 min (psoas, quadriceps, ischio).",
+          "exercises": [
+            {
+              "name": "Sortie récupération FTP-Z1-Z2",
+              "sets": 1,
+              "duration": "32 km / ~75 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z1-Z2 strict, < 75% FCmax, RPE 2-3. Cadence libre. Profiter de cette sortie pour travailler la position sur le vélo (dos plat, coudes légèrement fléchis, regard à l'horizon) et la fluidité du coup de pédale (cercles fluides, pas de coups de piston).",
+              "target_zone": "FTP-Z1",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "no-bike"],
+              "alternatives": ["Récupération trainer 65 min FTP-Z1-Z2", "Vélo elliptique 75 min Z1-Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Construction — premier 60 km et sweet spot 3 × 10 min",
+      "goal": "Premier long ride à 60 km (+15%). Sweet spot porté à 3 × 10 min. Volume hebdo de pédalage pur : ~4.1 h.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie longue Z2 — 60 km",
+          "type": "endurance",
+          "duration_minutes": 145,
+          "warmup": "12 min FTP-Z1 progressif.",
+          "cooldown": "8 min FTP-Z1 + étirements complets 7 min (quadriceps, ischio, psoas, mollets, lombaires).",
+          "exercises": [
+            {
+              "name": "Sortie endurance FTP-Z2",
+              "sets": 1,
+              "duration": "60 km / ~125 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z2 = 56-75% FTP, 69-83% FCmax, RPE 2-3. Premier cap symbolique à 60 km. Préparer 2 gels ou 2 barres + 1.5 L d'eau minimum. Cadence 85-95 rpm sur plat. En côte longue (> 5 min) : descendre en FTP-Z3 est acceptable mais pousser un gros braquet = erreur (genoux en danger, réserves épuisées prématurément).",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor", "bidons"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Sortie longue trainer 105 min FTP-Z2 (durée -15%)", "Vélo elliptique 120 min Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Sweet spot 3 × 10 min + cadence haute",
+          "type": "interval",
+          "duration_minutes": 80,
+          "warmup": "12 min FTP-Z1-Z2 + 3 accélérations 10 sec à 105 rpm.",
+          "cooldown": "8 min FTP-Z1 + étirements 5 min.",
+          "exercises": [
+            {
+              "name": "Blocs sweet spot",
+              "sets": 3,
+              "duration": "10 min Sweet-Spot",
+              "rest_seconds": 240,
+              "notes": "Sweet-Spot = 88-94% FTP, 92-97% FCmax, RPE 3-4. Cadence 88-93 rpm. Récupération 4 min FTP-Z1 entre chaque bloc. Tu dois finir chaque bloc fatigué mais pas épuisé — le 3e bloc doit se faire à la même qualité que le 1er. Si la dérive cardiaque > 5% sur le 3e bloc : c'est OK mais ne pas dépasser.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Tempo FTP-Z3 3 × 10 min (88-94% FCmax)", "Sweet spot trainer ERG 3 × 10 min"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Cadence haute FTP-Z2",
+              "sets": 3,
+              "duration": "2 min à 100-105 rpm",
+              "rest_seconds": 60,
+              "notes": "FTP-Z2, cadence élevée en fin de séance. Réduit la fatigue musculaire et améliore l'efficacité neuromusculaire. Récupération 1 min FTP-Z1.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "no-bike"],
+              "alternatives": ["Cadence trainer 3 × 2 min à 100 rpm", "Drills 100 rpm sur home trainer"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Récupération active — 32 km FTP-Z1-Z2",
+          "type": "endurance",
+          "duration_minutes": 80,
+          "warmup": "Démarrage FTP-Z1 direct.",
+          "cooldown": "5 min FTP-Z1 + étirements 5 min.",
+          "exercises": [
+            {
+              "name": "Sortie récupération FTP-Z1-Z2",
+              "sets": 1,
+              "duration": "32 km / ~75 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z1-Z2 strict, < 75% FCmax, RPE 2-3. Journée de récupération fonctionnelle avant la cutback W4. Profiter du relâchement pour travailler les appuis (ne pas écraser la selle, répartir poids entre selle, guidon, pédales).",
+              "target_zone": "FTP-Z1",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "no-bike"],
+              "alternatives": ["Récupération trainer 65 min FTP-Z1-Z2", "Vélo elliptique 75 min Z1-Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Cutback — consolidation et récupération",
+      "goal": "Semaine allégée (long ride 50 km, -17% vs W3). Laisser le corps assimiler les 3 semaines de charge. Maintenir la qualité sweet spot mais réduire les durées. Volume hebdo de pédalage pur : ~3.1 h.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie longue cutback — 50 km Z2",
+          "type": "endurance",
+          "duration_minutes": 120,
+          "warmup": "12 min FTP-Z1.",
+          "cooldown": "8 min FTP-Z1 + étirements 6 min.",
+          "exercises": [
+            {
+              "name": "Sortie endurance FTP-Z2",
+              "sets": 1,
+              "duration": "50 km / ~105 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z2 = 56-75% FTP, 69-83% FCmax, RPE 2-3. Semaine allégée — profiter de la distance réduite pour travailler la qualité de pédalage (cercles fluides, pas de coups de piston). Ne pas compenser en allant plus vite. L'objectif est la récupération, pas la performance.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor", "bidons"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Sortie longue trainer 90 min FTP-Z2", "Vélo elliptique 105 min Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Sweet spot allégé 2 × 8 min + mobilité",
+          "type": "mixed",
+          "duration_minutes": 60,
+          "warmup": "10 min FTP-Z1-Z2.",
+          "cooldown": "8 min FTP-Z1 + étirements 5 min (psoas obligatoire).",
+          "exercises": [
+            {
+              "name": "Blocs sweet spot allégés",
+              "sets": 2,
+              "duration": "8 min Sweet-Spot",
+              "rest_seconds": 240,
+              "notes": "Sweet-Spot = 88-94% FTP, 92-97% FCmax, RPE 3-4. 2 blocs (vs 3 en W3) — volume réduit. Récupération 4 min FTP-Z1. Maintenir la qualité de l'effort sur chaque bloc, ne pas pousser au-delà.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Tempo FTP-Z3 2 × 8 min", "Sweet spot trainer ERG 2 × 8 min"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Étirement ilio-psoas",
+              "sets": 2,
+              "duration": "45 sec par côté",
+              "rest_seconds": 30,
+              "notes": "Position fente avant, bassin abaissé, hanche arrière en extension. Cycliste = hanches courtes. Étirement préventif lombalgie cycliste — à pratiquer après chaque sortie > 60 min.",
+              "target_zone": "RPE 4-5",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["knee-injury"],
+              "alternatives": ["Pigeon pose 45 sec/côté", "Étirement psoas demi-genoux 50 sec/côté"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Étirement quadriceps",
+              "sets": 2,
+              "duration": "30 sec par côté",
+              "rest_seconds": 20,
+              "notes": "Debout ou allongé sur le côté, talon vers la fesse, hanche en extension. Cycliste = quadriceps courts (cause fréquente de douleur antérieure du genou).",
+              "target_zone": "RPE 4-5",
+              "required_equipment": [],
+              "incompatible_constraints": ["knee-injury"],
+              "alternatives": ["Étirement quadriceps allongé 35 sec/côté", "Étirement quadriceps debout avec appui mur 30 sec/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Récupération pure — 25 km FTP-Z1",
+          "type": "endurance",
+          "duration_minutes": 65,
+          "warmup": "Démarrage FTP-Z1 direct.",
+          "cooldown": "5 min FTP-Z1 + étirements 5 min.",
+          "exercises": [
+            {
+              "name": "Sortie récupération FTP-Z1",
+              "sets": 1,
+              "duration": "25 km / ~60 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z1 strict, < 65% FCmax, RPE 1-2. Cadence libre. Sortie de récupération maximale — la plus facile du plan jusque-là. Si tu te sens en grande forme, c'est que la cutback week fonctionne. Ne pas accélérer.",
+              "target_zone": "FTP-Z1",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "no-bike"],
+              "alternatives": ["Récupération trainer 50 min FTP-Z1", "Vélo elliptique 60 min Z1"],
+              "volume_axis": "distance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Reprise — 65 km et sweet spot 2 × 15 min",
+      "goal": "Reprendre la progression après la cutback. Long ride 65 km (+30% vs W4 cutback, +8% vs W3 pic). Sweet spot porté à 2 × 15 min (consolidation). Volume hebdo de pédalage pur : ~4.3 h.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie longue Z2 — 65 km",
+          "type": "endurance",
+          "duration_minutes": 155,
+          "warmup": "12 min FTP-Z1.",
+          "cooldown": "8 min FTP-Z1 + étirements 7 min (psoas, quadriceps, ischio, lombaires).",
+          "exercises": [
+            {
+              "name": "Sortie endurance FTP-Z2",
+              "sets": 1,
+              "duration": "65 km / ~135 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z2 = 56-75% FTP, 69-83% FCmax, RPE 2-3. Préparer 2-3 gels + 2 bidons (500-750 ml/h). Inclure si possible un segment légèrement vallonné (dénivelé cumulé 300-500 m) pour simuler la variété de terrain du 80 km final. Gérer les côtes en FTP-Z3 max, pas de Z4 sur les montées.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor", "bidons"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Sortie longue trainer 115 min FTP-Z2 (durée -15%)", "Vélo elliptique 135 min Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Sweet spot 2 × 15 min — bloc base FasCat",
+          "type": "interval",
+          "duration_minutes": 80,
+          "warmup": "12 min FTP-Z1-Z2 + 3 accélérations 10 sec à 105 rpm.",
+          "cooldown": "8 min FTP-Z1 + étirements 5 min.",
+          "exercises": [
+            {
+              "name": "Blocs sweet spot longs",
+              "sets": 2,
+              "duration": "15 min Sweet-Spot",
+              "rest_seconds": 300,
+              "notes": "Sweet-Spot = 88-94% FTP, 92-97% FCmax, RPE 3-4. Cadence 88-93 rpm. Récupération 5 min FTP-Z1 entre les 2 blocs. Premier bloc 15 min continu — c'est le pivot du plan, le sweet spot dominant qui développe le seuil aérobie. Si la dérive cardiaque > 5% sur le 2e bloc : c'est OK mais ne pas dépasser.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Tempo FTP-Z3 2 × 15 min (88-94% FCmax)", "Sweet spot trainer ERG 2 × 15 min"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Cadence haute FTP-Z2",
+              "sets": 3,
+              "duration": "2 min à 100-105 rpm",
+              "rest_seconds": 60,
+              "notes": "FTP-Z2 post-sweet spot. Travail de légèreté du coup de pédale en fatigue. Récupération 1 min FTP-Z1.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "no-bike"],
+              "alternatives": ["Cadence trainer 3 × 2 min à 100 rpm", "Drills 100 rpm sur home trainer"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Récupération active — 35 km FTP-Z1-Z2",
+          "type": "endurance",
+          "duration_minutes": 85,
+          "warmup": "Démarrage FTP-Z1 direct.",
+          "cooldown": "5 min FTP-Z1 + étirements 5 min.",
+          "exercises": [
+            {
+              "name": "Sortie récupération FTP-Z1-Z2",
+              "sets": 1,
+              "duration": "35 km / ~80 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z1-Z2 strict, < 75% FCmax, RPE 2-3. Cadence libre. Récupération active après la 1re grosse semaine post-cutback. Tester son ravitaillement : 1 gel ou barre à 30 min, 1 à 60 min — gut training pour la sortie 82 km à venir.",
+              "target_zone": "FTP-Z1",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "no-bike"],
+              "alternatives": ["Récupération trainer 70 min FTP-Z1-Z2", "Vélo elliptique 80 min Z1-Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Construction — 72 km et sweet spot 3 × 15 min",
+      "goal": "Premier long ride approchant les 9/10 de l'objectif final (72 km, +11% vs W5). Sweet spot porté à 3 × 15 min (volume de seuil maximal en bloc base). Volume hebdo de pédalage pur : ~4.8 h.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie longue Z2 — 72 km",
+          "type": "endurance",
+          "duration_minutes": 175,
+          "warmup": "12 min FTP-Z1.",
+          "cooldown": "12 min FTP-Z1 + étirements complets 8 min + rouleau de massage léger sur quadriceps et IT-band si disponible.",
+          "exercises": [
+            {
+              "name": "Sortie endurance FTP-Z2",
+              "sets": 1,
+              "duration": "72 km / ~150 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z2 = 56-75% FTP, 69-83% FCmax, RPE 2-3. Cap psychologique important : plus de 70 km pour la première fois. Stratégie nutrition : gel ou barre toutes les 30-35 min dès le départ (ne pas attendre la faim). 500-750 ml d'eau/heure. Prévoir un ravitaillement à mi-parcours si sortie en autonomie. Sur terrain vallonné : dénivelé cumulé jusqu'à 600-800 m accepté.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor", "bidons"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Sortie longue trainer 130 min FTP-Z2 (durée -15%)", "Vélo elliptique 150 min Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Sweet spot 3 × 15 min — pic bloc base",
+          "type": "interval",
+          "duration_minutes": 90,
+          "warmup": "12 min FTP-Z1-Z2 + 3 accélérations 10 sec à 105 rpm.",
+          "cooldown": "8 min FTP-Z1 + étirements 6 min.",
+          "exercises": [
+            {
+              "name": "Blocs sweet spot longs",
+              "sets": 3,
+              "duration": "15 min Sweet-Spot",
+              "rest_seconds": 300,
+              "notes": "Sweet-Spot = 88-94% FTP, 92-97% FCmax, RPE 3-4. Cadence 88-93 rpm. Récupération 5 min FTP-Z1 entre chaque bloc. 45 min de sweet spot continu réparti sur 3 blocs — pic du bloc base FasCat. Tu dois finir chaque bloc à la même qualité — si dérive > 8% sur le 3e bloc, le plan W7 sera ajusté.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Tempo FTP-Z3 3 × 15 min (88-94% FCmax)", "Sweet spot trainer ERG 3 × 15 min"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Récupération active — 35 km FTP-Z1-Z2",
+          "type": "endurance",
+          "duration_minutes": 85,
+          "warmup": "Démarrage FTP-Z1 direct.",
+          "cooldown": "5 min FTP-Z1 + étirements 5 min.",
+          "exercises": [
+            {
+              "name": "Sortie récupération FTP-Z1-Z2",
+              "sets": 1,
+              "duration": "35 km / ~80 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z1-Z2 pur, < 75% FCmax, RPE 2-3. Après un long ride 72 km + séance sweet spot intense, cette sortie facile est critique pour la récupération musculaire. Cadence libre. Rouler à la sensation.",
+              "target_zone": "FTP-Z1",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "no-bike"],
+              "alternatives": ["Récupération trainer 70 min FTP-Z1-Z2", "Vélo elliptique 80 min Z1-Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "theme": "Spécificité — 78 km et côtes Z4 courtes",
+      "goal": "Long ride à 78 km (+8% vs W6). Séance spécifique côtes courtes FTP-Z4 pour préparer le relief de la sortie cible. Sweet spot 2 × 20 min en complément. Pic du plan en volume hebdo. Volume hebdo de pédalage pur : ~5.2 h.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie longue Z2 — 78 km avec relief",
+          "type": "endurance",
+          "duration_minutes": 195,
+          "warmup": "15 min FTP-Z1.",
+          "cooldown": "12 min FTP-Z1 + étirements complets 8 min (psoas, quadriceps, ischio, lombaires, fessiers).",
+          "exercises": [
+            {
+              "name": "Sortie endurance FTP-Z2 avec côtes intégrées",
+              "sets": 1,
+              "duration": "78 km / ~165 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z2 = 56-75% FTP, 69-83% FCmax, RPE 2-3. Inclure 2-3 côtes de 3-5 min (FTP-Z3 acceptable en montée, FTP-Z4 sur 30-60 sec finaux maximum). Redescendre en FTP-Z1-Z2 sur le replat. Variété de rythme fondamentale pour le 80 km réel. Stratégie nutrition stricte : gel ou barre toutes les 30-35 min dès le départ, 500-750 ml d'eau/heure.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor", "bidons"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Sortie longue trainer 140 min FTP-Z2 (durée -15%)", "Vélo elliptique 165 min Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Côtes FTP-Z4 + sweet spot 2 × 20 min",
+          "type": "interval",
+          "duration_minutes": 90,
+          "warmup": "15 min FTP-Z1-Z2 + 3 accélérations 10 sec à 105 rpm en montant vers la côte de travail.",
+          "cooldown": "10 min FTP-Z1 en descente + étirements 6 min.",
+          "exercises": [
+            {
+              "name": "Répétitions côte FTP-Z4 courtes",
+              "sets": 5,
+              "duration": "2 min en montée",
+              "rest_seconds": 180,
+              "notes": "Trouver une côte de 4-7% régulière. Montée en FTP-Z4 (91-105% FTP, 95-105% FCmax, RPE 4-5), cadence 75-85 rpm, gros braquet modéré. Descente en récupération FTP-Z1 (3 min). Développe la force spécifique pour les sections vallonnées du 80 km. Si pas de côte disponible : intervalles en résistance élevée (plateau dur) sur home trainer ou route plate, même durée et zones.",
+              "target_zone": "FTP-Z4",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Intervalles trainer ERG 5 × 2 min FTP-Z4", "Sweet spot prolongé 5 × 3 min si côte indisponible"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Blocs sweet spot",
+              "sets": 2,
+              "duration": "20 min Sweet-Spot",
+              "rest_seconds": 360,
+              "notes": "Sweet-Spot = 88-94% FTP, 92-97% FCmax, RPE 3-4. Cadence 88-93 rpm. Récupération 6 min FTP-Z1 entre les 2 blocs. Pic durée bloc continu (20 min) — séance la plus exigeante du plan en sweet spot. Si trop fatigué après les côtes Z4, réduire à 1 × 20 min + 1 × 12 min.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Tempo FTP-Z3 2 × 20 min (88-94% FCmax)", "Sweet spot trainer ERG 2 × 20 min"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Récupération active — 35 km FTP-Z1-Z2",
+          "type": "endurance",
+          "duration_minutes": 85,
+          "warmup": "Démarrage FTP-Z1 direct.",
+          "cooldown": "5 min FTP-Z1 + étirements 5 min.",
+          "exercises": [
+            {
+              "name": "Sortie récupération FTP-Z1-Z2",
+              "sets": 1,
+              "duration": "35 km / ~80 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z1-Z2 strict, < 75% FCmax, RPE 2-3. Récupération absolue après la grosse semaine de spécificité. Cadence libre. Pas d'effort supra-Z2.",
+              "target_zone": "FTP-Z1",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "no-bike"],
+              "alternatives": ["Récupération trainer 70 min FTP-Z1-Z2", "Vélo elliptique 80 min Z1-Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 8,
+      "theme": "Cutback 2 — récupération avant le pic final",
+      "goal": "Deuxième cutback (long ride 62 km, -20% vs W7). Laisser le corps récupérer avant le pic distance W9 (82 km). Sweet spot allégé. Volume hebdo de pédalage pur : ~3.9 h.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie longue cutback 2 — 62 km Z2",
+          "type": "endurance",
+          "duration_minutes": 150,
+          "warmup": "12 min FTP-Z1.",
+          "cooldown": "10 min FTP-Z1 + étirements 6 min.",
+          "exercises": [
+            {
+              "name": "Sortie endurance FTP-Z2",
+              "sets": 1,
+              "duration": "62 km / ~130 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z2 = 56-75% FTP, 69-83% FCmax, RPE 2-3. Sortie allégée — ton corps a accumulé deux semaines de charge lourde (W6-W7). La récupération permet la supercompensation. Rouler à l'aise, ne pas pousser. Profiter pour fignoler la position sur le vélo et tester ton plan nutrition de la sortie cible.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor", "bidons"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Sortie longue trainer 110 min FTP-Z2", "Vélo elliptique 130 min Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Sweet spot allégé 2 × 12 min + cadence",
+          "type": "mixed",
+          "duration_minutes": 70,
+          "warmup": "10 min FTP-Z1-Z2.",
+          "cooldown": "8 min FTP-Z1 + étirements 5 min.",
+          "exercises": [
+            {
+              "name": "Blocs sweet spot allégés",
+              "sets": 2,
+              "duration": "12 min Sweet-Spot",
+              "rest_seconds": 240,
+              "notes": "Sweet-Spot = 88-94% FTP, 92-97% FCmax, RPE 3-4. 2 blocs (vs 3 × 15 min en W6) — volume réduit. Récupération 4 min FTP-Z1. Maintenir la qualité neuromusculaire sans accumuler de fatigue. La cutback fonctionne si tu te sens fluide sur ces blocs.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Tempo FTP-Z3 2 × 12 min", "Sweet spot trainer ERG 2 × 12 min"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Cadence haute FTP-Z2",
+              "sets": 4,
+              "duration": "2 min à 100-105 rpm",
+              "rest_seconds": 60,
+              "notes": "FTP-Z2 post-sweet spot. Travail de légèreté du coup de pédale. Récupération 1 min FTP-Z1.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "no-bike"],
+              "alternatives": ["Cadence trainer 4 × 2 min à 100 rpm", "Drills 100 rpm sur home trainer"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Récupération pure — 28 km FTP-Z1",
+          "type": "endurance",
+          "duration_minutes": 70,
+          "warmup": "Démarrage FTP-Z1 direct.",
+          "cooldown": "5 min FTP-Z1 + étirements 5 min.",
+          "exercises": [
+            {
+              "name": "Sortie récupération FTP-Z1",
+              "sets": 1,
+              "duration": "28 km / ~65 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z1 strict, < 65% FCmax, RPE 1-2. Dernière vraie sortie facile avant la semaine de pic W9. Profiter pour vérifier le matériel (pneus, câbles, éclairage, casque, ravitaillement) en prévision du grand jour.",
+              "target_zone": "FTP-Z1",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "no-bike"],
+              "alternatives": ["Récupération trainer 55 min FTP-Z1", "Vélo elliptique 65 min Z1"],
+              "volume_axis": "distance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 9,
+      "theme": "Pic — 82 km et préparation finale",
+      "goal": "Sortie longue pic distance à 82 km (+32% vs W8 cutback, 102% de la cible 80 km). Sweet spot maintenu pour garder la forme. Récupération active soignée. Volume hebdo de pédalage pur : ~4.8 h.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Sortie longue pic — 82 km",
+          "type": "endurance",
+          "duration_minutes": 205,
+          "warmup": "15 min FTP-Z1.",
+          "cooldown": "12 min FTP-Z1 + étirements complets 10 min + auto-massage mollets et quadriceps.",
+          "exercises": [
+            {
+              "name": "Sortie endurance FTP-Z2 — 82 km simulacre",
+              "sets": 1,
+              "duration": "82 km / ~175 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z2 = 56-75% FTP, 69-83% FCmax, RPE 2-3. Sortie simulacre du 80 km final, légèrement plus longue (+2 km). Tester le plan nutrition exact du grand jour : gel ou barre toutes les 30-35 min dès le départ, 500-750 ml d'eau par heure. Mémoriser les sensations aux km 40, 60 et 75 — c'est là que les ressources s'épuisent si la nutrition est absente. Cadence 85-95 rpm tout le long. Terminer avec des jambes encore disponibles — ni frais ni écrasé.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor", "bidons"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Sortie longue trainer 150 min FTP-Z2 (durée -15%)", "Vélo elliptique 175 min Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Sweet spot 2 × 15 min — maintien",
+          "type": "interval",
+          "duration_minutes": 80,
+          "warmup": "12 min FTP-Z1-Z2 + 2 accélérations 10 sec.",
+          "cooldown": "10 min FTP-Z1 + étirements 6 min.",
+          "exercises": [
+            {
+              "name": "Blocs sweet spot maintien",
+              "sets": 2,
+              "duration": "15 min Sweet-Spot",
+              "rest_seconds": 300,
+              "notes": "Sweet-Spot = 88-94% FTP, 92-97% FCmax, RPE 3-4. 2 × 15 min (vs 3 × 15 min en W6) — volume légèrement réduit pour préserver les jambes après le 82 km. Récupération 5 min FTP-Z1. Objectif : maintenir la forme neuromusculaire et le seuil aérobie sans accumuler de fatigue supplémentaire. Cadence 88-93 rpm.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Tempo FTP-Z3 2 × 15 min (88-94% FCmax)", "Sweet spot trainer ERG 2 × 15 min"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Récupération active — 32 km FTP-Z1-Z2",
+          "type": "endurance",
+          "duration_minutes": 80,
+          "warmup": "Démarrage FTP-Z1 direct.",
+          "cooldown": "5 min FTP-Z1 + étirements 5 min.",
+          "exercises": [
+            {
+              "name": "Sortie récupération FTP-Z1-Z2",
+              "sets": 1,
+              "duration": "32 km / ~75 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z1-Z2 strict, < 75% FCmax, RPE 2-3. Aucun effort au-delà de Z2. Profiter pour confirmer le parcours du 80 km final (reconnaissance mentale ou GPS) et valider le matériel complet (bidons, ravitaillement, chambre à air, outils).",
+              "target_zone": "FTP-Z1",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "no-bike"],
+              "alternatives": ["Récupération trainer 65 min FTP-Z1-Z2", "Vélo elliptique 75 min Z1-Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 10,
+      "theme": "Tapering et séance phare — 80 km",
+      "goal": "Tapering sur les 2 premières séances pour arriver frais à la séance phare 80 km le J5. Checklist d'autoévaluation 4 critères intégrée à la séance phare. Volume hebdo de pédalage pur : ~5.3 h (incluant la séance phare 80 km).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Activation légère — 40 km FTP-Z1-Z2",
+          "type": "endurance",
+          "duration_minutes": 100,
+          "warmup": "10 min FTP-Z1.",
+          "cooldown": "8 min FTP-Z1 + étirements 5 min.",
+          "exercises": [
+            {
+              "name": "Sortie activation FTP-Z1-Z2",
+              "sets": 1,
+              "duration": "40 km / ~85 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z1-Z2 : < 75% FCmax, RPE 2-3. Séance de tapering — volume réduit de moitié vs long ride W9 (82 km → 40 km). Ne pas rouler vite même si tu te sens en grande forme. L'objectif est de garder les fibres musculaires actives sans les fatiguer. Inclure 3 accélérations de 30 sec en FTP-Z3 pour maintenir le tonus neuromusculaire.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor", "bidons"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Activation trainer 75 min FTP-Z1-Z2 + 3 accélérations 30 sec", "Vélo elliptique 85 min Z1-Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Mobilité et préparation — 25 km FTP-Z1",
+          "type": "mobility",
+          "duration_minutes": 70,
+          "warmup": "Démarrage FTP-Z1 direct.",
+          "cooldown": "5 min marche + visualisation : imaginer la sensation du 80 km km par km, la stratégie de nutrition, les côtes, la fin.",
+          "exercises": [
+            {
+              "name": "Sortie très courte FTP-Z1",
+              "sets": 1,
+              "duration": "25 km / ~55 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z1 strict, < 65% FCmax, RPE 1-2. Sortie symbole — garder les jambes sans les fatiguer. Inclure 2 sprints courts de 10-15 sec (ne PAS pousser au-delà de 15 sec, jamais en zone anaérobie prolongée) pour activer le système nerveux. Vérifier le matériel après la sortie : pneus gonflés à pression cible (7-8 bars), freins, dérailleur, lubrification chaîne.",
+              "target_zone": "FTP-Z1",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "no-bike"],
+              "alternatives": ["Récupération trainer 50 min FTP-Z1 + 2 sprints 10 sec", "Vélo elliptique 55 min Z1"],
+              "volume_axis": "distance"
+            },
+            {
+              "name": "Routine mobilité post-vélo",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Hip flexor stretch (psoas/ilio-psoas) 45 sec/côté. Pigeon pose ou fessier allongé 45 sec/côté. Étirement lombaire en rotation allongé 30 sec/côté. Mollets debout et en flexion plantaire 30 sec/jambe. Étirement quadriceps 30 sec/côté. Objectif : arriver au 80 km avec les articulations libres.",
+              "target_zone": "RPE 4-5",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": [],
+              "alternatives": ["Routine yoga restaurative 12 min", "Foam roll quadriceps + IT-band 8 min"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance phare — 80 km",
+          "type": "endurance",
+          "duration_minutes": 210,
+          "warmup": "15 min FTP-Z1 strict. Ne pas démarrer en FTP-Z2 avant que les jambes soient chaudes (10-15 min).",
+          "cooldown": "10-15 min de pédalage très facile FTP-Z1 après l'arrivée (ne pas s'arrêter brutalement). Descente du vélo : marcher 5 min. Étirements complets 12 min (quadriceps, ischio-jambiers, ilio-psoas, mollets, lombaires, fessiers). Hydratation immédiate : 500 ml eau + électrolytes. Collation dans les 30 min (protéines + glucides, ratio 3:1). Auto-massage si disponible.",
+          "exercises": [
+            {
+              "name": "Sortie 80 km FTP-Z2",
+              "sets": 1,
+              "duration": "80 km / ~180 min",
+              "rest_seconds": 0,
+              "notes": "FTP-Z2 = 56-75% FTP, 69-83% FCmax, RPE 2-3. STRATÉGIE : (1) Km 0-15 : FTP-Z1-Z2 bas (65-70% FCmax), cadence 85-90 rpm, résister à l'envie de partir vite. (2) Km 15-60 : FTP-Z2 établi (70-75% FCmax), cadence 88-95 rpm, nutrition toutes les 30-35 min. (3) Km 60-80 : tenir le FTP-Z2 même si les jambes fatiguent — si FCmax dérive au-delà de 78%, ralentir plutôt que lutter. (4) Nutrition : gel ou barre (60-90 g glucides/h) toutes les 30-35 min dès le départ, 500-750 ml d'eau/heure (1 L/h si chaleur > 25°C, sodium 300-700 mg/L). Ne jamais attendre la faim ou la soif. (5) Sur les côtes : FTP-Z3 acceptable, pas de Z4 (préserver les ressources). (6) Les 10 derniers km : rouler à l'instinct, la forme est acquise.\n\nCHECKLIST D'AUTOÉVALUATION (à cocher après la sortie) :\n1. Tu as maintenu FTP-Z2 (65-75% FCmax) sur au moins 80% de la distance hors côtes — visible sur la FC moyenne de la sortie.\n2. Tu as respecté le plan nutrition sans sauter de ravitaillement et terminé sans fringale ni hypoglycémie.\n3. Tu as maintenu une cadence de 85-95 rpm sur les segments plats (vérifiable sur GPS/compteur).\n4. Ton rythme au km 70 était cohérent avec ton rythme au km 30 — tu n'as pas explosé dans la seconde moitié.\nSi 3 critères sur 4 sont validés : objectif atteint. Bravo. Si 2 ou moins : identifier le critère manquant et travailler ce point lors des prochains mois.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "heart-rate-monitor", "bidons"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "cardiac-clearance-required", "no-bike"],
+              "alternatives": ["Sortie longue trainer 150 min FTP-Z2 (durée -15%)", "Vélo elliptique 180 min Z2"],
+              "volume_axis": "distance"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
