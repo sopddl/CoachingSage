@@ -1,0 +1,2878 @@
+{
+  "schema_version": 2,
+  "id": "triathlon-recreational-sprint-12sem",
+  "sport": "triathlon",
+  "level": "recreational",
+  "name": "Triathlon Sprint — 12 semaines pour enchaîner 750 m natation + 20 km vélo + 5 km course",
+  "duration_weeks": 12,
+  "sessions_per_week": 6,
+  "default_objective": "Terminer un triathlon sprint (750 m natation + 20 km vélo + 5 km course) avec transitions maîtrisées, en moins de 1h30 pour un niveau intermédiaire confortable",
+  "assumed_profile": "Athlète tenant 30 min de course ou 30 min de vélo, capable de nager 200 m en continu en piscine (côté favori). Possède : maillot, lunettes, bonnet, vélo de route correctement réglé, casque, chaussures de running. Accès piscine 25 m, route plate ou parcours sécurisé pour le vélo. Pas de pathologie cardiaque déclarée.",
+  "summary": "Plan 12 semaines, 6 sessions/sem (2 swim + 1-2 bike + 1-2 run + 1 brick W4+ + 1 S&C). Les 3 disciplines progressent EN PARALLÈLE chaque semaine (Friel TTB 5e éd., USA Triathlon Brick Guide). Pic volume W9 ~6h cumul effort pur (≈1h35 swim + 2h30 bike incl. brick + 1h05 run incl. brick + 30 min S&C). Long pic par discipline : swim 1500 m, bike 90 min ou 60 km, run 45 min ou 8 km. Cutbacks W4 et W8 (-15 à -20%). Brick bike→run dès W4 (35+10 light), progression W5-W7 (45+15 → 55+18), pic W9 (60+20). Transitions T1/T2 à sec dès W3, simulées pool-side W5+. Distribution intensité ~85% LIT / ~15% HIT (sweet spot bike + Daniels-T run + EN2 swim). Taper J-14 W11 (-30%) puis J-7 W12 (-50%) avec séance phare J6 = simulation 600 m swim + 18 km bike + 4 km run avec transitions réelles.",
+  "week_structure": {
+    "type": "linear",
+    "micro_pattern": "swim techn+EN1/EN2 + bike Z2/Sweet-Spot + run E/T + brick W4+ + S&C",
+    "recovery_cadence": "1 cutback W4 et 1 cutback W8 sur plan 12 sem (3 build + 1 deload × 2), taper J-14 W11"
+  },
+  "deload_weeks": [4, 8],
+  "progression_logic": "Progression construite sur 7 principes alignés Friel TTB 5e éd. (2024), USA Triathlon Brick Workouts Guide, Triathlete 12wk Sprint, BeginnerTriathlete 13wk Sprint, 80/20 Triathlon (Fitzgerald/Warden), Daniels VDOT (run), Coggan FTP (bike), Maglischo + Swim Smooth CSS (swim) :\n\n(1) PARALLÉLISME STRICT 3 DISCIPLINES (Friel) : chaque semaine contient au moins 1 séance swim + 1 bike + 1 run, jamais de bloc mono-discipline 2-4 sem. Distribution 6 sessions : 2 swim + 1 bike + 2 run + 1 S&C (W1-W3, no brick) → 2 swim + 1 bike + 1 run + 1 brick (mixed) + 1 S&C (W4-W12). 48h minimum entre 2 swim, 48h minimum entre run et brick (cumul ischio-jambier + tendon rotulien).\n\n(2) PROGRESSION VOLUME EN PARALLÈLE (h cumul effort sport-pur, hors warmup/cooldown courts) : W1 ≈3h15 (swim 50 min + bike 60 min + run 55 min + S&C 30 min) → W2 ≈3h40 → W3 ≈4h05 → W4 cutback ≈3h25 (intro brick light) → W5 ≈4h30 → W6 ≈4h45 → W7 ≈5h05 → W8 cutback ≈4h05 (-20%) → W9 PIC ≈6h00 (swim 1h35 + bike 2h30 incluant brick + run 1h05 incluant brick + S&C 30 min) → W10 ≈5h25 → W11 pre-race ≈3h45 (-30%) → W12 race week ≈3h00 hors course (-50% vs W10). Pic 6h cumul cohérent avec la fenêtre recreational sprint 5-7h/sem (Triathlete 12wk Sprint, BeginnerTriathlete Sprint Plus 13wk).\n\n(3) LONG WORKOUT PIC PAR DISCIPLINE (W9) : swim 1500 m continu (vs 750 m course = 200% over-distance, pour le confort jour J), bike 90 min ou 60 km (vs 20 km course = 300%, base aérobie + confort selle), run 45 min ou 8 km (vs 5 km course = 160%, le run est sur-stressé par le brick alors on cap le long run pur à 8 km). Ces longs sont compatibles fenêtre recreational §3.2 master prompt.\n\n(4) DISTRIBUTION INTENSITÉ ~85% LIT / ~15% HIT : pas de polarized strict 80/20 (volume insuffisant), mais l'esprit polarisé est respecté. Sweet spot bike (FTP-Z3 88-94%) introduit W3 (3×8 min) puis W5-W7 (3-4×10 min) puis W9-W10 (continu 20-30 min). Daniels-T (tempo seuil) introduit W3 (15 min) puis W5-W7 (20-25 min). Swim EN2 (CSS±0-3s) introduit W5 (6×100 m @CSS+5s récup 15s), pic W9 (8×100 m @CSS récup 10s). Aucun Daniels-I strict, aucun FTP-Z5 VO2max, aucun SP1 swim — public recreational, préservation tendineuse multi-discipline.\n\n(5) BRICK INTRODUIT W4 (USA Triathlon Brick Guide) : premier brick W4 = 35 min bike Z2 + 10 min run E (run TRÈS court pour focus sensation jambes en coton, pas perf). Progression : W4 35+10 → W5 45+15 → W6 50+15 → W7 55+18 → W8 cutback 45+12 → W9 PIC 60+20 → W10 55+18 → W11 40+12 (pré-race) → W12 race-week brick 20+5 (réveil neuro-musculaire J-3). Volume run en brick jamais > 30% du volume run hebdo. Sur la dernière 5 min bike avant T2, viser cadence 95-100 rpm (préparer transition fluide vers la course).\n\n(6) TRANSITIONS T1/T2 ENTRAÎNÉES (USA Triathlon) : à sec dès W3 en S&C (sortir maillot mouillé à plat, casque + chaussures bike, démarrer course en posant vélo), simulées pool-side dès W5 (sortie d'eau réelle puis T1 sur tapis bord bassin). Chronométrées dès W7 (objectif T1 < 2 min, T2 < 1 min 30). Simulation complète W9 J5 (séance phare brick 60+20 avec T1/T2 réelles), W11 J6 simulation 600 m + 18 km + 4 km, W12 J6 séance phare race-rehearsal puis course J7.\n\n(7) CUTBACKS W4 + W8 ET TAPER W11-W12 (Friel TTB 5e éd.) : cycle 3 build + 1 deload × 2 → peak W9-W10 → taper. Cutback W4 (-15-20% volume vs W3, intro brick light), cutback W8 (-20% vs W7, brick maintenu allégé). Taper J-14 (W11) : volume -30% vs W10, intensité courte maintenue (sweet spot 2×8 min, tempo 12 min, strides 4×80 m, sighting drill swim) pour préserver adaptations neuromusculaires. Taper J-7 (W12) : volume -50%, séances très courtes par discipline + brick court réveil J-3 + mobilité + visualisation J-1. JAMAIS de nouvelle nutrition / nouvelle combinaison / nouvelles chaussures les 14 derniers jours.\n\nZONES D'EFFORT — RAPPEL UNIVERSEL :\n• Run (Daniels VDOT) : Daniels-E = MP+1:00 à 1:30/km conversational (~65-75% FCmax, RPE 4-5). Daniels-T = 10K+15-30s/km, phrases courtes (~85-88% FCmax, RPE 7).\n• Bike (Coggan FTP) : FTP-Z2 56-75% endurance (~65-75% FCmax, RPE 3-4). FTP-Z3 76-90% tempo (~75-85% FCmax, RPE 5-6). Sweet-Spot 88-94% (~80-87% FCmax, RPE 6-7).\n• Swim (Maglischo CSS + Swim Smooth) : EN1 = CSS+8-12s/100m conversational (~70% FCmax). EN2 = CSS±0-3s/100m seuil aérobie (~80-85% FCmax). CSS pace = pace explicite threshold sustained.\n• S&C : RPE 6-7 préventif, RPE 7-8 force-endurance hors-saison.",
+  "safety_notes": "DRAPEAUX ROUGES MULTI-DISCIPLINE (cumul charges) — STOP séance et consulte un professionnel de santé si symptômes persistent > 1 semaine :\n• Tendinopathie achille (talon) : risque accru en triathlon (bike SFR cadence basse + run rapide consécutif = double charge tendon). Calf raises excentriques 2×/sem dès W1 obligatoires (protocole Alfredson 1998). Glace 15 min post-séance si tension.\n• Tendinopathie ischio-jambier haute (sous-fessière) : run post-bike répété + position aéro vélo = raccourcissement chronique. Nordic curl assisté + single-leg deadlift préventifs dès W3.\n• ITBS (face externe genou, syndrome essuie-glace) : run post-bike prolongé, faiblesse abducteurs hanche. Clamshells dès W1 obligatoire.\n• Swimmer's shoulder (épaule sous-acromiale) : volume swim répétée + position vélo épaules en avant = double impingement. Y-T-W + external rotation band 1-2×/sem dès W2.\n• PFPS (douleur antérieure rotule) : selle vélo trop basse + run intensité. Bike fit basique dès W1, step-up + pont fessier en S&C.\n• Stress fracture tibiale (point précis très douloureux à la palpation, distinct des shin splints diffus) : arrêt total run, imagerie médicale.\n• Douleur articulaire genou > 2/10 ou 'claquement' épaule en swim : arrêt immédiat, glace, consultation kiné. Fatigue musculaire = OK, douleur articulaire = pas OK.\n• Antécédents cardiaques connus, > 50 ans débutant complet sans test effort cardio récent, grossesse / postpartum récent, asthme sévère, otites externes récurrentes (3+/12 mois) : consulte un médecin avant de commencer ce programme.\n\nOPEN WATER (eau libre) — plan principalement bassin, mais simulation eau libre possible W7-W10 si accès :\n• Hypothermie : eau < 16°C sans combinaison = risque vital sortie > 20 min. Combinaison quasi-obligatoire < 14°C, recommandée < 16°C, optionnelle 14-22°C, INTERDITE > 24°C (risque hyperthermie inverse).\n• Si tu utilises une combinaison le jour J : faire AU MOINS 2-3 sorties bassin avec combinaison W9-W10 pour t'habituer aux sensations (épaules plus raides, flottabilité accrue).\n• Coup de chaleur : swim eau > 28°C ou bike été > 30°C + déshydratation = céphalée, frissons paradoxaux, désorientation = STOP immédiat.\n• Panique respiratoire : prévisualiser plan d'eau, s'acclimater bassin avec combinaison W-2 à W-1, repère visuel obligatoire. En cas panique = roulé sur le dos, respiration calmée, lever bras pour assistance. JAMAIS seul en eau libre.\n\nSÉCURITÉ ROUTE BIKE :\n• Casque OBLIGATOIRE chaque sortie, sans exception. Ne JAMAIS rouler sans.\n• Éclairages avant/arrière en faible visibilité, gilet réfléchissant en hiver.\n• Vigilance trafic : pas d'écouteurs en environnement urbain, regard 360° aux intersections.\n• Bike fit : si douleur > 2 sorties consécutives → bike fit professionnel. Repère : genou flexion 25-30° en bas du pédalage, hanches stables sur la selle.\n\nTECHNIQUE / INTENSITÉ — RÈGLE DU RECREATIONAL :\n• Pacing par discipline : Daniels-E vs Daniels-T pour run (test parole : phrases complètes vs phrases courtes), FTP-Z2 vs Sweet-Spot pour bike (RPE 3-4 vs RPE 6-7), EN1 vs EN2 vs CSS pour swim (compter les coups bras / longueur, viser <22 par 25 m à allure EN2 d'ici W6).\n• Cadence vélo cible 85-95 rpm sur le plat, jamais < 65 rpm sur gros braquet (= tendinite genou). Sur 5 dernières min bike avant T2 : 95-100 rpm pour préparer T2.\n• Cadence run cible 170-180 pas/min, attaque médio-pied ou talon léger.\n• Brick : les 5-10 premières min de run post-bike sont inconfortables (jambes en coton — c'est physiologique, redistribution flux sanguin du bassin vers les jambes). Ne pas paniquer, ne pas ralentir au-delà du nécessaire. Cette sensation s'estompe avec la régularité brick.\n\nNUTRITION-HYDRATATION (sortie > 60 min, recreational) :\n• Bike 60-90 min : 1 bidon 500-750 ml + 30-45 g glucides/h (1 gel ou 1 barre). Gut training progressif si profil non habitué (démarrer 30 g/h, progresser sur 4-6 sem).\n• Hydratation post-séance : 500 ml + sodium dans l'heure suivante, plus en conditions chaudes.\n• Long ride W9 (90 min) : tester nutrition jour J (gel ou boisson glucidique). JAMAIS de nouvelle nutrition les 14 derniers jours / le jour J.\n• Repas pré-séance : 2h avant, glucides modérés, peu de fibres lourdes.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine cutback type W4 ou W8, refaire la semaine précédente avec volume -20%) :\n• FC repos +10 bpm chronique au réveil.\n• Sommeil dégradé > 3 nuits consécutives.\n• Courbatures persistantes > 72h après séance, toutes disciplines confondues.\n• Motivation effondrée 2+ semaines, irritabilité accrue.\n• Baisse de performance (sensation effort) sur 2 séances consécutives sans explication.\n• Immunité dégradée (rhumes répétés) — signal de surentraînement précoce.\n\nSI SÉANCE MANQUÉE :\n• < 5 jours : reprendre au jour suivant, compresser la semaine en réduisant 1 séance (priorité au brick + 1 swim).\n• 1-2 semaines : reprendre la semaine précédente.\n• > 2 semaines : reculer de 3 sem dans le plan. La course peut être reportée d'une saison si pause tombe dans les 4 dernières sem.\n• NE PAS remplacer une séance piscine par une séance vélo / course sans avis. Le cross-training maintient le cardio mais ne remplace pas l'adaptation locomotrice spécifique nage. La feel for the water se perd en 7-10 jours sans stimulus.\n\nÉQUIPEMENT MINIMAL :\n• Swim : maillot, lunettes, bonnet (assumés). Piscine 25m accessible.\n• Bike : casque (obligatoire), vélo de route bien réglé, 1-2 bidons 500 ml.\n• Run : chaussures running avec amorti correct (< 600 km).\n• Brick W4+ : transition-area-setup (sac, tapis, chaussures bike + run prêtes côte-à-côte), race-belt + elastic-laces dès W5.",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Fondations — calibrer les 3 disciplines en parallèle",
+      "goal": "Activer les 3 disciplines en confort, poser les fondations préventives. Volume cumul effort pur : ~3h15 (swim 50 min + bike 60 min + run 55 min + S&C 30 min).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Swim — drills + crawl aérobie EN1",
+          "type": "technique",
+          "duration_minutes": 50,
+          "warmup": "200 m relax (50 m crawl + 50 m brasse alternés) + 4 × 25 m drills (battements planche + sculling avant-bras).",
+          "cooldown": "100 m brasse ou dos relax. Étirements épaules (cross-body 30 sec/côté), poignets. Sécher les oreilles.",
+          "exercises": [
+            {
+              "name": "Drill catch — fingertip drag",
+              "sets": 4,
+              "duration": "25 m",
+              "rest_seconds": 30,
+              "notes": "Phase de récupération bras : faire glisser les doigts à la surface de l'eau. Force le coude haut et prépare un catch propre. Nager à 60% effort.",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Drill closed-fist 25 m (poings fermés pour sentir avant-bras)", "Drill 6-1-6 25 m (6 battements + 1 brasse)"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Drill équilibre — 6-3-6",
+              "sets": 4,
+              "duration": "25 m",
+              "rest_seconds": 30,
+              "notes": "6 battements sur le côté droit (bras inférieur tendu), 3 strokes de transition, 6 battements côté gauche. Cible la rotation tronc et l'équilibre — clé de l'économie de nage.",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "goggles"],
+              "incompatible_constraints": ["chlorine-allergy", "cervical-injury"],
+              "alternatives": ["Drill side-kick avec planche 25 m", "Drill superman glide 25 m"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crawl aérobie EN1 continu",
+              "sets": 4,
+              "duration": "100 m",
+              "rest_seconds": 30,
+              "notes": "Allure conversationnelle, respiration côté favori 1×3. Compter les coups de bras par 25 m — note ton chiffre comme référence (objectif < 22 coups/25 m d'ici W6). Total 400 m. Si fatigue épaule, switch pull-buoy 100 m.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "recurrent-otitis", "shoulder-injury"],
+              "alternatives": ["Crawl pull-buoy 100 m × 4 (focus haut du corps)", "Crawl avec palmes courtes 100 m × 4"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Run Daniels-E — sortie endurance",
+          "type": "endurance",
+          "duration_minutes": 40,
+          "warmup": "5 min marche progressive + 3 min trottinement très léger. 10 cercles chevilles/côté + 10 montées genoux + 10 talons-fesses + 4 × 60 m strides progressifs.",
+          "cooldown": "3 min marche + étirements statiques : mollets 30s/jambe, quadriceps 30s/jambe, ischio 30s/jambe, fléchisseurs hanche 30s/côté.",
+          "exercises": [
+            {
+              "name": "Course continue Daniels-E",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "Allure conversationnelle, RPE 4-5 (équivalent ~65-75% FCmax). Test parole strict : phrases complètes possibles. Cadence cible 170-180 pas/min. Le profil indique 30 min de course tenu — on consolide à allure très facile (Daniels-E). PAS de cadence rapide, PAS de fartlek W1.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "gps-watch"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
+              "alternatives": ["Tapis 30 min Z2 (légère pente 1-2%)", "Marche-course 4 min run + 1 min marche × 6"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Bike FTP-Z2 — sortie endurance",
+          "type": "endurance",
+          "duration_minutes": 70,
+          "warmup": "10 min pédalage très lent en plat, cadence libre. Vérifier pression pneus + freins avant départ.",
+          "cooldown": "5 min pédalage très lent. Étirements debout 3 min (ischio-jambiers + quadriceps + fléchisseurs hanche).",
+          "exercises": [
+            {
+              "name": "Sortie route FTP-Z2 endurance",
+              "sets": 1,
+              "duration": "60 min",
+              "rest_seconds": 0,
+              "notes": "Allure conversationnelle, RPE 3-4 (équivalent ~65-75% FCmax). Cadence cible 85-95 rpm sur le plat. Si dénivelé, monter en danseuse 30 sec max ou rétrograder. Casque OBLIGATOIRE. Sans powermeter, viser RPE 3-4 = je peux dire phrases complètes sans halètement. Distance indicative : ~22-28 km selon terrain.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons", "heart-rate-monitor"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required", "traffic-anxiety"],
+              "alternatives": ["Bike trainer indoor Z2 60 min", "VTT chemin plat 60 min Z2"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "S&C foundation — préventif triathlon",
+          "type": "strength",
+          "duration_minutes": 35,
+          "warmup": "5 min mobilité dynamique : cercles épaules 10/sens, rotations hanches 10/sens, talons-fesses 20 pas, montées genoux 20 pas, fente avec rotation tronc 6/côté.",
+          "cooldown": "Étirements 5 min (mollets, fessiers, épaules, dorsaux, fléchisseurs hanche).",
+          "exercises": [
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 40,
+              "notes": "Tenir 2 sec en haut. Cible fessiers (stabilisateurs clés foulée + pédalage). Préventif PFPS et tendinopathie ischio.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Pont fessier appui pieds chaise 12 reps", "Bridge isométrique 25 sec × 3"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Single-leg squat assisté (boîte ou TRX)",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 45,
+              "notes": "Descendre s'asseoir sur boîte 40 cm sur 1 jambe, remonter. Stabilisateur PFPS + ITBS. Si trop dur, garder 2 doigts main sur appui pour équilibre.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["bench"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain"],
+              "alternatives": ["Step-up sur boîte 30 cm 8/jambe", "Squat bipodal lent 12 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Clamshell avec mini-band",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "notes": "Allongé côté, genoux pliés, mini-band au-dessus des genoux. Ouvrir genou supérieur sans bouger bassin. Préventif ITBS triathlon (run post-bike).",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Clamshell sans band 15/côté", "Side-lying leg raise 12/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Calf raises bipodal contrôlés",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 30,
+              "notes": "Montées 1 sec, descente lente 3 sec (excentrique). Préventif tendinopathie achille triathlon (cumul bike SFR + run). Protocole Alfredson 1998.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": [],
+              "incompatible_constraints": ["ankle-injury"],
+              "alternatives": ["Calf raises sur marche (talon descend sous niveau) 12 reps", "Calf raises assis chaise 15 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Y-T-W shoulder activation",
+              "sets": 2,
+              "reps": "8 chaque lettre (Y, T, W)",
+              "rest_seconds": 40,
+              "notes": "À plat ventre, bras formant Y, T, W. Léger soulevé du sol. Cible coiffe rotateurs + rhomboïdes. Préventif swimmer's shoulder.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury"],
+              "alternatives": ["Y-T-W debout face mur 8/lettre", "External rotation band 12/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "30 sec",
+              "rest_seconds": 40,
+              "notes": "Coudes sous épaules, corps aligné, fessiers engagés. Core stabilisateur clé pour les 3 disciplines.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury", "wrist-injury"],
+              "alternatives": ["Planche genoux 40 sec", "Dead bug 10 reps/côté"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 2,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "notes": "À 4 pattes, bras + jambe opposés tendus. Tenir 2 sec. Anti-rotation lombaire — protège dos vélo et course.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["wrist-injury", "lower-back-pain"],
+              "alternatives": ["Dead bug 10/côté", "Bird-dog avant-bras au sol 10/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Swim — endurance EN1 + respiration bilatérale",
+          "type": "endurance",
+          "duration_minutes": 50,
+          "warmup": "200 m relax + 4 × 25 m drills (sculling avant-bras + battements planche).",
+          "cooldown": "100 m dos crawlé lent. Étirements épaules + grand pectoral (main contre mur, rotation tronc).",
+          "exercises": [
+            {
+              "name": "Drill respiration bilatérale 1×3",
+              "sets": 4,
+              "duration": "50 m",
+              "rest_seconds": 30,
+              "notes": "Crawl avec respiration toutes les 3 brassées (alternance côté). Améliore symétrie et gestion CO2. Si essouffler, 1×2 toléré W1, mais pousser 1×3 dès W2-W3.",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "goggles"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Crawl respi côté favori 1×2 50 m", "Crawl avec snorkel 50 m (gestion CO2)"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crawl EN1 continu 200 m",
+              "sets": 1,
+              "duration": "200 m",
+              "rest_seconds": 0,
+              "notes": "Allure régulière sans essoufflement. Compter coups de bras par 25 m. C'est le 'long swim' de la semaine — le profil indique 200 m continus déjà, on consolide.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "recurrent-otitis", "shoulder-injury"],
+              "alternatives": ["Crawl 100 m × 2 (récup 30 sec)", "Crawl pull-buoy 200 m"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Run Daniels-E — sortie aisée + strides",
+          "type": "endurance",
+          "duration_minutes": 35,
+          "warmup": "5 min marche + 3 min trottinement + activation dynamique (montées genoux, talons-fesses, balancements jambe 10/côté).",
+          "cooldown": "5 min marche + étirements 5 min (mollets, ischio, quadri).",
+          "exercises": [
+            {
+              "name": "Course Daniels-E aisée",
+              "sets": 1,
+              "duration": "22 min",
+              "rest_seconds": 0,
+              "notes": "Allure encore plus facile que J2 (Daniels-E inférieur), tu dois pouvoir chanter. Récupération active, pas de performance.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tapis 22 min Z2", "Marche rapide 30 min"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Strides — accélérations légères",
+              "sets": 4,
+              "duration": "20 sec",
+              "rest_seconds": 60,
+              "notes": "Après course facile : 4 accélérations progressives sur 60-80 m, RPE 7-8 max (PAS sprint). Améliore le contact sol et la foulée sans charge cardio. Cadence haute 180+ pas/min.",
+              "target_zone": "Daniels-R",
+              "required_equipment": ["running-shoes"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "ankle-injury"],
+              "alternatives": ["Strides 4 × 80 m sur tapis pente 0%", "Skipping haut 4 × 30 sec à la place"],
+              "volume_axis": "sets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Adaptation — allonger swim et bike",
+      "goal": "Augmenter swim à 60 min cumulés et bike à 75 min en confort. Maintenir run + S&C. Volume cumul : ~3h40 (swim 60 + bike 75 + run 60 + S&C 30 min).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Swim — drills + crawl EN1 progressif",
+          "type": "technique",
+          "duration_minutes": 55,
+          "warmup": "200 m relax + 4 × 25 m drills (battements planche + 6-3-6).",
+          "cooldown": "100 m brasse + 2 min flottaison.",
+          "exercises": [
+            {
+              "name": "Drill catch — sculling avant-bras",
+              "sets": 4,
+              "duration": "25 m",
+              "rest_seconds": 30,
+              "notes": "Mains en position catch (avant-bras vertical), petits mouvements en 8 avec paumes pour sentir pression eau. Développe proprioception EVF (early vertical forearm).",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "goggles"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Drill closed-fist 25 m", "Drill single-arm catch 25 m"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crawl EN1 200 m continu",
+              "sets": 2,
+              "duration": "200 m",
+              "rest_seconds": 60,
+              "notes": "2 × 200 m EN1 récup 60 sec entre. Total 400 m continu. Comparer coups bras / 25 m vs W1. Allure conversationnelle.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Crawl 100 m × 4 récup 30 sec", "Crawl pull-buoy 200 m × 2"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Run Daniels-E — endurance",
+          "type": "endurance",
+          "duration_minutes": 45,
+          "warmup": "5 min marche + 5 min trottinement + 4 × 60 m strides progressifs.",
+          "cooldown": "3 min marche + étirements 5 min.",
+          "exercises": [
+            {
+              "name": "Course continue Daniels-E",
+              "sets": 1,
+              "duration": "35 min",
+              "rest_seconds": 0,
+              "notes": "Allure conversationnelle. +5 min vs W1 (règle 10-15% volume). Cadence 170-180. Test parole positif. Si essoufflement, ralentir — c'est le LIT, pas la perf.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "gps-watch"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tapis 35 min Z2", "Run/walk 7 min run + 1 min marche × 4"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Bike FTP-Z2 — sortie endurance allongée",
+          "type": "endurance",
+          "duration_minutes": 85,
+          "warmup": "10 min pédalage très lent + 2 min cadence variable (60→100 rpm) pour activer chaîne pédalage.",
+          "cooldown": "5 min très lent + étirements debout 3 min.",
+          "exercises": [
+            {
+              "name": "Sortie route FTP-Z2 75 min",
+              "sets": 1,
+              "duration": "75 min",
+              "rest_seconds": 0,
+              "notes": "Allure conversationnelle RPE 3-4 (~65-75% FCmax). Cadence 85-95 rpm. +15 min vs W1. Distance indicative : ~28-35 km. Casque OBLIGATOIRE. 1 bidon obligatoire (sortie > 60 min).",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons", "heart-rate-monitor"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 75 min Z2", "VTT chemin plat 75 min Z2"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "S&C foundation + transitions à sec intro",
+          "type": "strength",
+          "duration_minutes": 35,
+          "warmup": "5 min mobilité dynamique (cercles épaules + hanches + chevilles).",
+          "cooldown": "5 min étirements globaux.",
+          "exercises": [
+            {
+              "name": "Pont fessier",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 40,
+              "notes": "Identique W1, consolidation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Pont fessier sur chaise 12 reps", "Bridge isométrique 25 sec × 3"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Single-leg deadlift (charge légère ou bodyweight)",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 45,
+              "notes": "Debout sur 1 jambe, basculer tronc en avant + jambe arrière tendue, dos plat. Préventif tendinopathie ischio-jambier haute (run post-bike répété). Bodyweight ok W2, ajouter 5-8 kg dumbbell W4+.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "ankle-injury"],
+              "alternatives": ["RDL bipodal avec dumbbells 10 reps", "Hip hinge bipodal 12 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Clamshell avec mini-band",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 30,
+              "notes": "Renforce abducteurs hanche. Préventif ITBS run post-bike.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Clamshell sans band 15/côté", "Side-lying leg raise 12/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Calf raises sur marche (excentriques)",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 30,
+              "notes": "Talon descend sous niveau marche (étirement excentrique). Protocole Alfredson — sécurité tendineuse triathlon.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": [],
+              "incompatible_constraints": ["ankle-injury"],
+              "alternatives": ["Calf raises bipodal sol 15 reps", "Calf raises assis chaise 15 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Y-T-W shoulder + external rotation band",
+              "sets": 2,
+              "reps": "8 chaque lettre + 12 ER/côté",
+              "rest_seconds": 40,
+              "notes": "Y-T-W puis external rotation avec band (coude collé au flanc). Préventif swimmer's shoulder + position aéro vélo.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["shoulder-injury"],
+              "alternatives": ["Y-T-W debout face mur 8/lettre", "External rotation seule band 15/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "35 sec",
+              "rest_seconds": 40,
+              "notes": "Core stabilisateur. +5 sec vs W1.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury", "wrist-injury"],
+              "alternatives": ["Planche genoux 45 sec", "Dead bug 12/côté"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 2,
+              "reps": "10 par côté",
+              "rest_seconds": 30,
+              "notes": "Anti-rotation lombaire.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["wrist-injury", "lower-back-pain"],
+              "alternatives": ["Dead bug 10/côté", "Bird-dog avant-bras 10/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Swim — endurance EN1 long set",
+          "type": "endurance",
+          "duration_minutes": 50,
+          "warmup": "200 m relax + 4 × 25 m drills.",
+          "cooldown": "100 m dos.",
+          "exercises": [
+            {
+              "name": "Crawl EN1 par séries",
+              "sets": 5,
+              "duration": "100 m",
+              "rest_seconds": 30,
+              "notes": "5 × 100 m EN1 récup 30 sec. Allure régulière, comptage coups bras. Total 500 m. Pic continu = 1 × 100 m, mais cumul progressif.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Crawl 50 m × 10 récup 20 sec", "Crawl pull-buoy 100 m × 5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Drill battements planche kickboard",
+              "sets": 4,
+              "duration": "25 m",
+              "rest_seconds": 30,
+              "notes": "Battements depuis hanche, planche tenue à bout bras. Éducation jambes.",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "kickboard", "goggles"],
+              "incompatible_constraints": ["chlorine-allergy", "knee-injury"],
+              "alternatives": ["Battements sur dos sans planche 25 m", "Battements avec snorkel 25 m"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Run Daniels-E — sortie aisée + strides",
+          "type": "endurance",
+          "duration_minutes": 35,
+          "warmup": "5 min marche + 5 min activation.",
+          "cooldown": "5 min marche + étirements.",
+          "exercises": [
+            {
+              "name": "Course Daniels-E aisée",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "Allure très facile. Récupération active.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tapis 25 min Z2", "Marche rapide 35 min"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Strides progressifs",
+              "sets": 4,
+              "duration": "20 sec",
+              "rest_seconds": 60,
+              "notes": "4 × 80 m progressifs. Cadence haute 180+ pas/min.",
+              "target_zone": "Daniels-R",
+              "required_equipment": ["running-shoes"],
+              "incompatible_constraints": ["shin-splints", "knee-injury"],
+              "alternatives": ["Strides tapis 4 × 80 m", "Skipping haut 4 × 30 sec"],
+              "volume_axis": "sets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Build — intro Daniels-T tempo + sweet spot bike + transitions à sec",
+      "goal": "Introduire la qualité : sweet spot bike (3 × 8 min), tempo Daniels-T run (15 min), transitions T1/T2 à sec en S&C. Long swim 400 m. Volume cumul : ~4h05 (swim 70 + bike 85 + run 65 + S&C 35 min).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Swim — drills + crawl EN1 long set",
+          "type": "technique",
+          "duration_minutes": 55,
+          "warmup": "200 m relax + 4 × 25 m drills (sculling + 6-3-6).",
+          "cooldown": "100 m dos + étirements épaules.",
+          "exercises": [
+            {
+              "name": "Drill catch single-arm",
+              "sets": 4,
+              "duration": "25 m",
+              "rest_seconds": 30,
+              "notes": "1 bras pratique le catch complet, l'autre tendu devant. Alterne côté chaque 25 m. Force la prise d'eau du bras actif.",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "goggles"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Drill catch-up 25 m", "Drill closed-fist 25 m"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crawl EN1 long continu",
+              "sets": 1,
+              "duration": "400 m",
+              "rest_seconds": 0,
+              "notes": "1 × 400 m continu EN1, allure conversationnelle. Premier 'long swim' du plan. Compter coups bras par 25 m, viser stabilité (pas de dérive +3 coups entre 1er et dernier 25 m).",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "recurrent-otitis", "shoulder-injury"],
+              "alternatives": ["Crawl 100 m × 4 récup 20 sec", "Crawl pull-buoy 400 m"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Run Daniels-T — intro tempo seuil",
+          "type": "interval",
+          "duration_minutes": 45,
+          "warmup": "10 min trottinement Daniels-E progressif + 4 × 60 m strides + 2 min marche.",
+          "cooldown": "5 min trottinement Daniels-E + 5 min marche + étirements ischio + mollets.",
+          "exercises": [
+            {
+              "name": "Tempo Daniels-T continu",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "INTRO seuil. Allure 10K + 15-30 s/km, RPE 7/10, phrases courtes. Équivalent ~85-88% FCmax. Cadence 175-185. C'est la zone la plus rentable pour le 5 km du sprint. Si essoufflé → ralentir. PAS Daniels-I (3K-5K), trop intense pour recreational.",
+              "target_zone": "Daniels-T",
+              "required_equipment": ["running-shoes", "gps-watch"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tempo 3 × 5 min Daniels-T récup 90s", "Fartlek libre 15 min effort modéré"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Bike Sweet-Spot — intro qualité",
+          "type": "interval",
+          "duration_minutes": 85,
+          "warmup": "10 min pédalage progressif + 3 × 1 min cadence haute (95-100 rpm) récup 1 min lent.",
+          "cooldown": "10 min pédalage très lent.",
+          "exercises": [
+            {
+              "name": "Bloc Sweet-Spot 3 × 8 min",
+              "sets": 3,
+              "duration": "8 min",
+              "rest_seconds": 240,
+              "notes": "INTRO sweet spot (88-94% FTP, RPE 6-7, ~80-87% FCmax). Cadence 85-95 rpm. Récup 4 min FTP-Z1 lent entre. Sans powermeter : RPE 6-7 = je peux dire 1 phrase de 4-5 mots, pas plus. Casque OBLIGATOIRE.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "bidons", "heart-rate-monitor"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 3 × 8 min Sweet-Spot", "FTP-Z3 3 × 10 min si Sweet-Spot inconfortable W3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pédalage FTP-Z2 récup",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "Après les 3 blocs, finir en endurance Z2. Consolide volume aérobie hebdo.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain"],
+              "alternatives": ["Bike trainer 30 min Z2", "VTT 30 min Z2"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "S&C + transitions T1/T2 à sec",
+          "type": "strength",
+          "duration_minutes": 40,
+          "warmup": "5 min mobilité dynamique.",
+          "cooldown": "5 min étirements globaux.",
+          "exercises": [
+            {
+              "name": "Single-leg squat assisté",
+              "sets": 3,
+              "reps": "8 par jambe",
+              "rest_seconds": 45,
+              "notes": "Sur boîte 40 cm. Stabilisateur PFPS + ITBS.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["bench"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain"],
+              "alternatives": ["Step-up 30 cm 8/jambe", "Squat bipodal lent 12 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Single-leg deadlift",
+              "sets": 3,
+              "reps": "10 par jambe",
+              "rest_seconds": 45,
+              "notes": "Bodyweight ou 5 kg dumbbell. Prévention ischio post-bike.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["dumbbells"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["RDL bipodal 12 reps", "Hip hinge 12 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Clamshell + calf raises excentriques",
+              "sets": 3,
+              "reps": "12 clamshell + 12 calf",
+              "rest_seconds": 40,
+              "notes": "Superset prévention ITBS + tendon achille.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["lower-back-pain", "ankle-injury"],
+              "alternatives": ["Clamshell sans band + calf bipodal", "Side-lying leg raise + calf assis"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Y-T-W + external rotation band",
+              "sets": 2,
+              "reps": "8/lettre + 12 ER/côté",
+              "rest_seconds": 40,
+              "notes": "Coiffe + rhomboïdes.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["shoulder-injury"],
+              "alternatives": ["Y-T-W debout mur 8/lettre", "ER seule band 15/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Planche + bird-dog",
+              "sets": 3,
+              "duration": "40 sec planche + 8 bird-dog/côté",
+              "rest_seconds": 40,
+              "notes": "Core + anti-rotation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "wrist-injury"],
+              "alternatives": ["Planche genoux + dead bug", "Side plank 25s/côté + bird-dog"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Transition T1 à sec — simulation lente",
+              "sets": 4,
+              "duration": "2 min par essai",
+              "rest_seconds": 60,
+              "notes": "INTRO transitions. Pars d'un tee-shirt mouillé (mime maillot mouillé) couché au sol, tu cours 5 m vers ta zone transition (sac + tapis), tu sors la tête du tee-shirt à plat, enfiles casque + chaussures bike (lacets élastiques idéal), attrapes vélo et repars en courant à côté. Objectif < 2 min, focus FLUIDITÉ pas chrono. 4 essais lents pour automatiser.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "helmet"],
+              "incompatible_constraints": [],
+              "alternatives": ["T1 simplifiée (juste casque + chaussures) 1 min × 4", "Visualisation T1 mime sans matériel"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Transition T2 à sec — simulation lente",
+              "sets": 4,
+              "duration": "1 min 30 par essai",
+              "rest_seconds": 60,
+              "notes": "Tu reviens en courant à côté du vélo, poses le vélo dans la zone, retires casque + chaussures bike, enfiles running-shoes (elastic-laces), clipper race-belt, démarrer course. Objectif < 1 min 30. 4 essais.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 simplifiée chaussures seules 45s × 4", "Mime T2 sans race-belt × 4"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Swim — endurance EN1 + intro CSS aware",
+          "type": "endurance",
+          "duration_minutes": 50,
+          "warmup": "200 m relax + 4 × 25 m drills.",
+          "cooldown": "100 m dos relax.",
+          "exercises": [
+            {
+              "name": "Crawl 100 m × 6 EN1",
+              "sets": 6,
+              "duration": "100 m",
+              "rest_seconds": 25,
+              "notes": "6 × 100 m EN1 récup 25 sec. Allure régulière. Compter coups bras 1er et 6e 100m, dérive < 2 coups/25m = nage économique.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Crawl 50 m × 12 récup 20 sec", "Crawl pull-buoy 100 m × 6"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Run Daniels-E long — sortie aisée + strides",
+          "type": "endurance",
+          "duration_minutes": 40,
+          "warmup": "5 min marche + 5 min activation.",
+          "cooldown": "5 min marche + étirements.",
+          "exercises": [
+            {
+              "name": "Course Daniels-E continue",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "Long run de la semaine. Allure conversationnelle. Cadence 170-180. Le profil indique 30 min — on consolide.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "gps-watch"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tapis 30 min Z2", "Run/walk 8 min run + 1 min marche × 4"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Strides finaux",
+              "sets": 4,
+              "duration": "20 sec",
+              "rest_seconds": 60,
+              "notes": "4 × 80 m progressifs. Cadence 180+.",
+              "target_zone": "Daniels-R",
+              "required_equipment": ["running-shoes"],
+              "incompatible_constraints": ["shin-splints", "knee-injury"],
+              "alternatives": ["Strides tapis 4 × 80 m", "Skipping 4 × 30s"],
+              "volume_axis": "sets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Cutback + intro brick — premier brick découverte",
+      "goal": "Cutback (-15-20% volume vs W3) MAIS intro brick light bike→run pour découvrir jambes en coton. Pas de nouveauté technique. Volume cumul : ~3h25 (swim 60 + bike 50 + run 25 + brick 45 + S&C 25 min).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Swim — drills + EN1 maintien",
+          "type": "technique",
+          "duration_minutes": 45,
+          "warmup": "200 m relax + 4 × 25 m drills.",
+          "cooldown": "100 m dos relax.",
+          "exercises": [
+            {
+              "name": "Drill 6-3-6 + sculling",
+              "sets": 4,
+              "duration": "25 m chaque",
+              "rest_seconds": 30,
+              "notes": "Maintenir technique sans charge. 2 × 25 m 6-3-6 + 2 × 25 m sculling.",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "goggles"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Drill catch-up 25 m × 4", "Drill closed-fist 25 m × 4"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crawl 100 m × 4 EN1",
+              "sets": 4,
+              "duration": "100 m",
+              "rest_seconds": 30,
+              "notes": "Total 400 m récup. Allure conversationnelle. Volume swim cutback (-25% vs W3 long swim 400 + 600 W3 cumul → 400 cumul ici).",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Crawl 50 m × 8 récup 20 sec", "Crawl pull-buoy 100 m × 4"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Run Daniels-E court",
+          "type": "endurance",
+          "duration_minutes": 30,
+          "warmup": "5 min marche + 3 min activation.",
+          "cooldown": "5 min marche + étirements.",
+          "exercises": [
+            {
+              "name": "Course Daniels-E aisée",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Cutback. Allure très facile. Pas de strides cette semaine pour préserver jambes pour le brick J5.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tapis 20 min Z2", "Marche rapide 30 min"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Bike FTP-Z2 cutback",
+          "type": "endurance",
+          "duration_minutes": 60,
+          "warmup": "10 min progressif.",
+          "cooldown": "5 min lent + étirements.",
+          "exercises": [
+            {
+              "name": "Sortie FTP-Z2 cutback",
+              "sets": 1,
+              "duration": "50 min",
+              "rest_seconds": 0,
+              "notes": "Volume bike cutback (50 min vs 75 W2 / 85 W3). PAS de sweet spot cette semaine, focus aérobie pur. Cadence 85-95 rpm. Casque OBLIGATOIRE.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 50 min Z2", "VTT 50 min Z2"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "S&C maintien + transitions",
+          "type": "strength",
+          "duration_minutes": 30,
+          "warmup": "5 min mobilité dynamique.",
+          "cooldown": "5 min étirements.",
+          "exercises": [
+            {
+              "name": "Pont fessier + clamshell",
+              "sets": 2,
+              "reps": "12 pont + 12 clam/côté",
+              "rest_seconds": 40,
+              "notes": "Cutback (2 sets vs 3). Maintien.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Bridge isométrique + side leg raise", "Pont sur chaise + clamshell sans band"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Calf raises excentriques",
+              "sets": 2,
+              "reps": "12",
+              "rest_seconds": 30,
+              "notes": "Maintien tendon achille.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": [],
+              "incompatible_constraints": ["ankle-injury"],
+              "alternatives": ["Calf bipodal sol 15", "Calf assis 15"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Y-T-W shoulder",
+              "sets": 2,
+              "reps": "8/lettre",
+              "rest_seconds": 40,
+              "notes": "Maintien coiffe.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury"],
+              "alternatives": ["Y-T-W mur 8/lettre", "ER band 12/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Planche + bird-dog",
+              "sets": 2,
+              "duration": "40s + 10 bird-dog/côté",
+              "rest_seconds": 40,
+              "notes": "Core maintien.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Planche genoux + dead bug", "Side plank + bird-dog"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Transitions T1 + T2 répétition",
+              "sets": 3,
+              "duration": "1 min 30 chaque",
+              "rest_seconds": 60,
+              "notes": "Maintien automatisme acquis W3. Pas de chrono strict, fluidité.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "helmet", "running-shoes", "race-belt"],
+              "incompatible_constraints": [],
+              "alternatives": ["T1 ou T2 séparées 4 × 1 min", "Visualisation 5 min"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Brick INTRO — bike Z2 35 min + run E 10 min",
+          "type": "mixed",
+          "duration_minutes": 60,
+          "warmup": "5 min pédalage très lent + cadence variable 2 min.",
+          "cooldown": "5 min marche + étirements complets 5 min (mollets, ischio, fessiers, dorsaux).",
+          "exercises": [
+            {
+              "name": "Bike FTP-Z2 35 min",
+              "sets": 1,
+              "duration": "35 min",
+              "rest_seconds": 0,
+              "notes": "PREMIER BRICK. Allure conversationnelle RPE 3-4. Cadence 85-95 rpm. Sur les 5 dernières min, viser cadence 95-100 rpm (préparer transition fluide vers la course). Casque OBLIGATOIRE. Pose le vélo idéalement à 5 m de tes chaussures de running pour mimer T2.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons", "transition-area-setup"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 35 min Z2 + transition simulée", "VTT 35 min Z2"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Transition T2 réelle",
+              "sets": 1,
+              "duration": "1 min 30",
+              "rest_seconds": 0,
+              "notes": "Pose vélo, casque off, chaussures bike off, running-shoes on, race-belt clippé. Objectif < 1 min 30, fluidité avant chrono.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 simplifiée chaussures seules 45s", "Pas de T2 (course direct) 30s"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Run Daniels-E 10 min — sensation jambes en coton",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Run TRÈS court pour focus SENSATION (pas perf). Allure conversationnelle. Les 3-5 premières min : jambes en coton — c'est physiologique (redistribution flux sanguin du bassin vers les jambes). Ne pas paniquer, ne pas forcer. Cadence cible 170-180 pas/min même si étrange au début.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "race-belt"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "ankle-injury", "cardiac-clearance-required"],
+              "alternatives": ["Marche rapide 12 min post-bike", "Run/walk 2 min run + 1 min marche × 3"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Swim — récup EN1 + drills",
+          "type": "technique",
+          "duration_minutes": 45,
+          "warmup": "200 m relax + 2 × 25 m drills.",
+          "cooldown": "100 m brasse + 2 min flottaison.",
+          "exercises": [
+            {
+              "name": "Drill battements planche",
+              "sets": 4,
+              "duration": "25 m",
+              "rest_seconds": 30,
+              "notes": "Récup active jambes post-brick.",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "kickboard"],
+              "incompatible_constraints": ["chlorine-allergy", "knee-injury"],
+              "alternatives": ["Battements dos sans planche 25 m", "Battements snorkel 25 m"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crawl REC 200 m + 100 m × 2",
+              "sets": 1,
+              "duration": "400 m cumul",
+              "rest_seconds": 0,
+              "notes": "200 m REC (CSS+15-20s/100m, très lent) + 100 m × 2 EN1 récup 30 sec. Cooldown swim après brick J5. Total 400 m.",
+              "target_zone": "REC",
+              "required_equipment": ["pool", "goggles"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Crawl pull-buoy 400 m", "Brasse relax 400 m"],
+              "volume_axis": "duration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Build — intro CSS swim + brick consolidé",
+      "goal": "Reprise post-cutback. Intro CSS+5s/100m swim. Brick 45 min bike + 15 min run. Long swim 600 m. Volume cumul : ~4h30 (swim 75 + bike 70 + run 35 + brick 60 + S&C 30 min).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Swim — drills + CSS+5s/100m intro",
+          "type": "interval",
+          "duration_minutes": 50,
+          "warmup": "200 m relax + 4 × 25 m drills (sculling + 6-3-6) + 4 × 50 m progressifs.",
+          "cooldown": "100 m dos relax.",
+          "exercises": [
+            {
+              "name": "Drill catch single-arm",
+              "sets": 4,
+              "duration": "25 m",
+              "rest_seconds": 30,
+              "notes": "Maintien technique avant qualité.",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "goggles"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Drill catch-up 25 m", "Drill closed-fist 25 m"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Set CSS+5s/100m — 6 × 100 m",
+              "sets": 6,
+              "duration": "100 m",
+              "rest_seconds": 15,
+              "notes": "INTRO threshold swim. Allure CSS estimée + 5 s/100m, récup 15 sec entre. Si pas testé CSS, viser allure où tu peux dire 1 mot court à la fin de chaque 100 m. RPE 7. Total 600 m.",
+              "target_zone": "EN2",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["6 × 100 m EN1+5s récup 20 sec", "8 × 75 m CSS+5s récup 15 sec"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Run Daniels-T tempo",
+          "type": "interval",
+          "duration_minutes": 40,
+          "warmup": "10 min Daniels-E progressif + 4 × 60 m strides.",
+          "cooldown": "5 min Daniels-E + 5 min marche + étirements.",
+          "exercises": [
+            {
+              "name": "Tempo Daniels-T continu",
+              "sets": 1,
+              "duration": "18 min",
+              "rest_seconds": 0,
+              "notes": "Allure 10K + 15-30 s/km, RPE 7, ~85-88% FCmax. Phrases courtes. +3 min vs W3.",
+              "target_zone": "Daniels-T",
+              "required_equipment": ["running-shoes", "gps-watch"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tempo 3 × 6 min Daniels-T récup 90s", "Fartlek libre 18 min"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Bike Sweet-Spot + endurance",
+          "type": "interval",
+          "duration_minutes": 80,
+          "warmup": "10 min progressif + 3 × 1 min cadence haute.",
+          "cooldown": "10 min très lent.",
+          "exercises": [
+            {
+              "name": "Bloc Sweet-Spot 3 × 10 min",
+              "sets": 3,
+              "duration": "10 min",
+              "rest_seconds": 240,
+              "notes": "Sweet-Spot 88-94% FTP, RPE 6-7, ~80-87% FCmax. Cadence 85-95 rpm. Récup 4 min FTP-Z1. +2 min/bloc vs W3.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "bidons", "heart-rate-monitor"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 3 × 10 min Sweet-Spot", "FTP-Z3 3 × 12 min"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pédalage FTP-Z2 récup",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Endurance Z2 final, consolide volume aérobie.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain"],
+              "alternatives": ["Bike trainer 20 min Z2", "VTT 20 min Z2"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "S&C + transitions pool-side simulées",
+          "type": "strength",
+          "duration_minutes": 35,
+          "warmup": "5 min mobilité dynamique.",
+          "cooldown": "5 min étirements.",
+          "exercises": [
+            {
+              "name": "Single-leg squat + single-leg deadlift",
+              "sets": 3,
+              "reps": "8 squat + 10 RDL/jambe",
+              "rest_seconds": 45,
+              "notes": "Superset PFPS + ischio.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["bench", "dumbbells"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain"],
+              "alternatives": ["Step-up + RDL bipodal", "Squat + hip hinge bipodal"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Clamshell + calf raises excentriques",
+              "sets": 3,
+              "reps": "12 clam + 12 calf",
+              "rest_seconds": 40,
+              "notes": "Préventif ITBS + tendon achille.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["lower-back-pain", "ankle-injury"],
+              "alternatives": ["Clam sans band + calf bipodal", "Side leg raise + calf assis"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Y-T-W + ER band + plank",
+              "sets": 2,
+              "reps": "8/lettre + 12 ER + 45s plank",
+              "rest_seconds": 40,
+              "notes": "Coiffe + core.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["shoulder-injury"],
+              "alternatives": ["Y-T-W mur + ER band + plank genoux", "Push-up + ER + dead bug"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Transition T1 pool-side simulée",
+              "sets": 4,
+              "duration": "1 min 30 par essai",
+              "rest_seconds": 60,
+              "notes": "Si tu as accès au bord du bassin avant/après ta séance swim, simule sortie d'eau réelle (jambes mouillées + essoufflé) + cours 5-10 m vers transition + casque + chaussures bike. Sinon à sec à la maison. T1 chronométrée pour 1ère fois (objectif < 2 min).",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "helmet"],
+              "incompatible_constraints": [],
+              "alternatives": ["T1 à sec maison 4 × 1 min 30", "Visualisation T1 sortie eau 5 min"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Transition T2 chronométrée",
+              "sets": 4,
+              "duration": "1 min par essai",
+              "rest_seconds": 60,
+              "notes": "T2 chronométrée. Objectif < 1 min. Pose vélo, casque off, chaussures bike off, running-shoes on, race-belt clippé.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 simplifiée 45s × 4", "T2 sans race-belt 45s × 4"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Brick — bike Z2 45 min + run E 15 min",
+          "type": "mixed",
+          "duration_minutes": 75,
+          "warmup": "5 min pédalage progressif + cadence variable 2 min.",
+          "cooldown": "5 min marche + étirements complets.",
+          "exercises": [
+            {
+              "name": "Bike FTP-Z2 45 min",
+              "sets": 1,
+              "duration": "45 min",
+              "rest_seconds": 0,
+              "notes": "Allure conversationnelle RPE 3-4. Cadence 85-95 rpm. 5 dernières min : 95-100 rpm pour préparer T2. Casque OBLIGATOIRE.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons", "transition-area-setup"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 45 min Z2", "VTT 45 min Z2"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Transition T2 réelle",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": 0,
+              "notes": "T2 chronométrée. Objectif < 1 min, fluidité.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 simplifiée 45s", "Pas de T2 30s"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Run Daniels-E 15 min",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Allure conversationnelle. Cadence 170-180. Jambes en coton les 3-5 premières min — physiologique. Le run en brick est CAP à 30% du run hebdo (run total W5 = 50 min hors brick + 15 = OK).",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "race-belt"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "ankle-injury"],
+              "alternatives": ["Marche rapide 18 min post-bike", "Run/walk 3 min run + 1 min marche × 4"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Swim — long EN1 + drills",
+          "type": "endurance",
+          "duration_minutes": 55,
+          "warmup": "200 m relax + 4 × 25 m drills.",
+          "cooldown": "100 m dos.",
+          "exercises": [
+            {
+              "name": "Crawl long EN1 600 m",
+              "sets": 1,
+              "duration": "600 m",
+              "rest_seconds": 0,
+              "notes": "LONG SWIM W5 = 600 m continu (pic intermédiaire). Allure conversationnelle, dérive coups bras < 3/25 m. Si fatigue épaule à 400 m, switch pull-buoy 200 m derniers.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "recurrent-otitis", "shoulder-injury"],
+              "alternatives": ["Crawl 200 m × 3 récup 30 sec", "Crawl pull-buoy 600 m"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Drill 6-3-6 finition",
+              "sets": 2,
+              "duration": "25 m",
+              "rest_seconds": 30,
+              "notes": "Drills cooldown technique.",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "goggles"],
+              "incompatible_constraints": ["chlorine-allergy"],
+              "alternatives": ["Drill side-kick 25 m × 2", "Drill superman glide 25 m × 2"],
+              "volume_axis": "sets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Build — sweet spot continu + brick 50+15",
+      "goal": "Sweet-Spot continu intro 1 × 15 min. Daniels-T 20 min. Brick 50 min bike + 15 min run. Long swim 700 m. Volume cumul : ~4h45 (swim 80 + bike 75 + run 35 + brick 65 + S&C 30 min).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Swim — CSS+5s/100m + drills",
+          "type": "interval",
+          "duration_minutes": 55,
+          "warmup": "300 m relax + 4 × 25 m drills + 4 × 50 m progressifs.",
+          "cooldown": "100 m dos relax.",
+          "exercises": [
+            {
+              "name": "Set CSS+5s/100m — 8 × 100 m",
+              "sets": 8,
+              "duration": "100 m",
+              "rest_seconds": 15,
+              "notes": "Threshold swim. CSS+5s/100m récup 15 sec. RPE 7, dérive < 5 sec entre 1er et 8e 100 m. Total 800 m.",
+              "target_zone": "EN2",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["8 × 100 m EN1+5s récup 20 sec", "10 × 75 m CSS+5s récup 15 sec"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Run Daniels-T tempo + strides",
+          "type": "interval",
+          "duration_minutes": 45,
+          "warmup": "10 min Daniels-E + 4 × 60 m strides.",
+          "cooldown": "5 min Daniels-E + étirements.",
+          "exercises": [
+            {
+              "name": "Tempo Daniels-T continu",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Allure 10K + 15-30 s/km, RPE 7. Phrases courtes. +2 min vs W5.",
+              "target_zone": "Daniels-T",
+              "required_equipment": ["running-shoes", "gps-watch"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tempo 4 × 5 min Daniels-T récup 90s", "Fartlek 20 min effort modéré"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Strides finaux",
+              "sets": 4,
+              "duration": "20 sec",
+              "rest_seconds": 60,
+              "notes": "4 × 80 m progressifs. Cadence 180+.",
+              "target_zone": "Daniels-R",
+              "required_equipment": ["running-shoes"],
+              "incompatible_constraints": ["shin-splints", "knee-injury"],
+              "alternatives": ["Strides tapis 4 × 80 m", "Skipping 4 × 30s"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Bike Sweet-Spot continu",
+          "type": "interval",
+          "duration_minutes": 85,
+          "warmup": "10 min progressif + 3 × 1 min cadence haute.",
+          "cooldown": "10 min très lent.",
+          "exercises": [
+            {
+              "name": "Sweet-Spot continu 1 × 15 min",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 480,
+              "notes": "INTRO Sweet-Spot CONTINU (vs intervalles W3-W5). 88-94% FTP, RPE 6-7. Cadence 85-95 rpm. Précédé d'un échauffement long. Récup 8 min FTP-Z2 lent ensuite.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "bidons", "heart-rate-monitor"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Sweet-Spot 2 × 8 min récup 4 min", "FTP-Z3 1 × 18 min continu"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Pédalage FTP-Z2 endurance",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "Z2 final pour consolidation volume.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain"],
+              "alternatives": ["Bike trainer 30 min Z2", "VTT 30 min Z2"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "S&C build + transitions chronométrées",
+          "type": "strength",
+          "duration_minutes": 35,
+          "warmup": "5 min mobilité.",
+          "cooldown": "5 min étirements.",
+          "exercises": [
+            {
+              "name": "Single-leg squat + single-leg deadlift chargé",
+              "sets": 3,
+              "reps": "10 squat + 10 RDL/jambe",
+              "rest_seconds": 45,
+              "notes": "RDL avec 5-8 kg dumbbell.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["bench", "dumbbells"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain"],
+              "alternatives": ["Step-up + RDL bipodal", "Squat + hip hinge"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Nordic curl assisté",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 60,
+              "notes": "INTRO nordic curl (W6). À genoux, partenaire ou sangle bloque chevilles, descendre lentement vers sol en gardant corps droit, remonter en aidant des bras. Préventif ischio-jambier (run post-bike répété). 3 sets × 5 reps INTRO.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Nordic excentrique pure (descente lente sans remonter) 5 reps", "Glute-ham raise 8 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Clamshell + calf raises excentriques",
+              "sets": 3,
+              "reps": "12 + 12",
+              "rest_seconds": 40,
+              "notes": "Maintien.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["lower-back-pain", "ankle-injury"],
+              "alternatives": ["Clam sans band + calf bipodal", "Side leg raise + calf assis"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Y-T-W + ER + plank",
+              "sets": 2,
+              "reps": "8/lettre + 12 ER + 45s plank",
+              "rest_seconds": 40,
+              "notes": "Coiffe + core.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["shoulder-injury"],
+              "alternatives": ["Y-T-W mur + ER + plank genoux", "Push-up + ER + dead bug"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Transitions T1+T2 chronométrées",
+              "sets": 4,
+              "duration": "T1 < 2 min + T2 < 1 min",
+              "rest_seconds": 90,
+              "notes": "Chrono strict pour la première fois. T1 puis T2 enchaînées.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "helmet", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T1 ou T2 séparées", "T1+T2 simplifiées sans race-belt"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Brick — bike Z2 50 min + run E 15 min",
+          "type": "mixed",
+          "duration_minutes": 80,
+          "warmup": "5 min pédalage progressif + cadence variable 2 min.",
+          "cooldown": "5 min marche + étirements complets.",
+          "exercises": [
+            {
+              "name": "Bike FTP-Z2 50 min",
+              "sets": 1,
+              "duration": "50 min",
+              "rest_seconds": 0,
+              "notes": "+5 min vs W5. Allure conversationnelle. 5 dernières min : 95-100 rpm. Casque OBLIGATOIRE.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons", "transition-area-setup"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 50 min Z2", "VTT 50 min Z2"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Transition T2 réelle",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": 0,
+              "notes": "T2 chronométrée objectif < 1 min.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 simplifiée 45s", "Pas de T2 30s"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Run Daniels-E 15 min",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Cadence 170-180. Sensation jambes en coton 3-5 min. Allure conversationnelle.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "race-belt"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "ankle-injury"],
+              "alternatives": ["Marche rapide 18 min", "Run/walk 3 min + 1 min × 4"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Swim — long EN1 700 m + drills",
+          "type": "endurance",
+          "duration_minutes": 55,
+          "warmup": "200 m relax + 4 × 25 m drills.",
+          "cooldown": "100 m dos.",
+          "exercises": [
+            {
+              "name": "Crawl long EN1 700 m",
+              "sets": 1,
+              "duration": "700 m",
+              "rest_seconds": 0,
+              "notes": "Long swim W6 = 700 m continu (vs 600 W5). Compter coups bras / 25 m, viser stabilité. Si fatigue à 500 m, switch pull-buoy.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "recurrent-otitis", "shoulder-injury"],
+              "alternatives": ["Crawl 200 m × 3 + 100 m × 1 récup 30 sec", "Crawl pull-buoy 700 m"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Drill sculling avant-bras",
+              "sets": 4,
+              "duration": "25 m",
+              "rest_seconds": 30,
+              "notes": "Drills cooldown technique.",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "goggles"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Drill catch-up 25 m × 4", "Drill closed-fist 25 m × 4"],
+              "volume_axis": "sets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "theme": "Build — pic intensité + brick 55+18",
+      "goal": "Sweet-Spot continu 20 min + Daniels-T 22 min + brick 55 min bike + 18 min run. Long swim 800 m. Volume cumul : ~5h05 (swim 85 + bike 80 + run 40 + brick 73 + S&C 30 min).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Swim — CSS+5s/100m volume",
+          "type": "interval",
+          "duration_minutes": 55,
+          "warmup": "300 m relax + 4 × 25 m drills + 4 × 50 m progressifs.",
+          "cooldown": "100 m dos relax.",
+          "exercises": [
+            {
+              "name": "Set CSS+5s/100m — 8 × 100 m",
+              "sets": 8,
+              "duration": "100 m",
+              "rest_seconds": 15,
+              "notes": "Threshold swim. Identique W6 pour consolider, focus stabilité allure (dérive < 5 sec).",
+              "target_zone": "EN2",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["8 × 100 m EN1+5s récup 20 sec", "10 × 75 m CSS+5s récup 15 sec"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Run Daniels-T tempo allongé",
+          "type": "interval",
+          "duration_minutes": 50,
+          "warmup": "12 min Daniels-E + 4 × 60 m strides.",
+          "cooldown": "5 min Daniels-E + étirements.",
+          "exercises": [
+            {
+              "name": "Tempo Daniels-T continu",
+              "sets": 1,
+              "duration": "22 min",
+              "rest_seconds": 0,
+              "notes": "Pic tempo W7 = 22 min. RPE 7, phrases courtes. +2 min vs W6.",
+              "target_zone": "Daniels-T",
+              "required_equipment": ["running-shoes", "gps-watch"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tempo 2 × 12 min Daniels-T récup 90s", "Fartlek 22 min effort modéré"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Bike Sweet-Spot continu allongé",
+          "type": "interval",
+          "duration_minutes": 90,
+          "warmup": "10 min progressif + 3 × 1 min cadence haute.",
+          "cooldown": "10 min très lent.",
+          "exercises": [
+            {
+              "name": "Sweet-Spot continu 1 × 20 min",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 480,
+              "notes": "+5 min vs W6. 88-94% FTP, RPE 6-7. Cadence 85-95 rpm. Récup 8 min FTP-Z2.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "bidons", "heart-rate-monitor"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Sweet-Spot 2 × 10 min récup 4 min", "FTP-Z3 1 × 25 min continu"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Pédalage FTP-Z2 endurance",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "Z2 final.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain"],
+              "alternatives": ["Bike trainer 30 min Z2", "VTT 30 min Z2"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "S&C build + transitions",
+          "type": "strength",
+          "duration_minutes": 35,
+          "warmup": "5 min mobilité.",
+          "cooldown": "5 min étirements.",
+          "exercises": [
+            {
+              "name": "Single-leg squat + RDL chargé",
+              "sets": 3,
+              "reps": "10 squat + 10 RDL/jambe",
+              "rest_seconds": 45,
+              "notes": "RDL 5-8 kg dumbbell.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["bench", "dumbbells"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain"],
+              "alternatives": ["Step-up + RDL bipodal", "Squat + hip hinge"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Nordic curl assisté",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 60,
+              "notes": "+1 rep vs W6.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Nordic excentrique pure 6 reps", "Glute-ham raise 8 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Clamshell + calf excentriques + Y-T-W + ER",
+              "sets": 3,
+              "reps": "12 + 12 + 8/lettre + 12 ER",
+              "rest_seconds": 45,
+              "notes": "Circuit prévention complet.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["lower-back-pain", "ankle-injury", "shoulder-injury"],
+              "alternatives": ["Circuit version simplifiée sans band", "Side leg raise + calf assis + Y-T-W mur"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Plank + side plank + bird-dog",
+              "sets": 2,
+              "duration": "45s plank + 30s/côté side + 10 bird-dog/côté",
+              "rest_seconds": 45,
+              "notes": "Core complet.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "wrist-injury", "shoulder-injury"],
+              "alternatives": ["Plank genoux + side plank genoux + bird-dog", "Dead bug + side leg raise"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Transitions T1+T2 chronométrées",
+              "sets": 3,
+              "duration": "T1 < 1 min 45 + T2 < 1 min",
+              "rest_seconds": 90,
+              "notes": "Chrono progressif. Objectif T1 réduit (< 1 min 45 vs < 2 min W6).",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "helmet", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T1 ou T2 séparées", "T1+T2 simplifiées"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Brick — bike Z2 55 min + run E 18 min",
+          "type": "mixed",
+          "duration_minutes": 90,
+          "warmup": "5 min pédalage progressif + cadence variable 2 min.",
+          "cooldown": "5 min marche + étirements complets.",
+          "exercises": [
+            {
+              "name": "Bike FTP-Z2 55 min",
+              "sets": 1,
+              "duration": "55 min",
+              "rest_seconds": 0,
+              "notes": "+5 min vs W6. Allure conversationnelle. 5 dernières min : 95-100 rpm. Casque OBLIGATOIRE.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons", "transition-area-setup"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 55 min Z2", "VTT 55 min Z2"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Transition T2 réelle",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": 0,
+              "notes": "T2 chronométrée < 1 min.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 simplifiée 45s", "Pas de T2 30s"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Run Daniels-E 18 min",
+              "sets": 1,
+              "duration": "18 min",
+              "rest_seconds": 0,
+              "notes": "+3 min vs W6. Cadence 170-180. Sensation jambes en coton 3-5 min.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "race-belt"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "ankle-injury"],
+              "alternatives": ["Marche rapide 22 min", "Run/walk 3 min + 1 min × 4"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Swim — long EN1 800 m + drills",
+          "type": "endurance",
+          "duration_minutes": 55,
+          "warmup": "200 m relax + 4 × 25 m drills.",
+          "cooldown": "100 m dos.",
+          "exercises": [
+            {
+              "name": "Crawl long EN1 800 m",
+              "sets": 1,
+              "duration": "800 m",
+              "rest_seconds": 0,
+              "notes": "Long swim W7 = 800 m continu. Compter coups bras stables.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "recurrent-otitis", "shoulder-injury"],
+              "alternatives": ["Crawl 200 m × 4 récup 30 sec", "Crawl pull-buoy 800 m"],
+              "volume_axis": "duration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 8,
+      "theme": "Cutback — consolidation avant peak",
+      "goal": "Cutback (-20% volume vs W7) avant peak W9-W10. Brick maintenu allégé (45+12). Volume cumul : ~4h05 (swim 70 + bike 60 + run 30 + brick 57 + S&C 30 min). Pas de nouveauté.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Swim — drills + EN1 maintien",
+          "type": "technique",
+          "duration_minutes": 50,
+          "warmup": "200 m relax + 4 × 25 m drills.",
+          "cooldown": "100 m dos.",
+          "exercises": [
+            {
+              "name": "Drill sculling + 6-3-6",
+              "sets": 4,
+              "duration": "25 m",
+              "rest_seconds": 30,
+              "notes": "Maintien technique cutback.",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "goggles"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Drill catch-up 25 m × 4", "Drill closed-fist 25 m × 4"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crawl 100 m × 5 EN1",
+              "sets": 5,
+              "duration": "100 m",
+              "rest_seconds": 25,
+              "notes": "Cutback (-30% set CSS vs W7). Allure conversationnelle. Total 500 m.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Crawl 50 m × 10 récup 20 sec", "Crawl pull-buoy 100 m × 5"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Run Daniels-E court",
+          "type": "endurance",
+          "duration_minutes": 35,
+          "warmup": "5 min marche + 3 min activation + 4 × 60 m strides.",
+          "cooldown": "5 min marche + étirements.",
+          "exercises": [
+            {
+              "name": "Course Daniels-E aisée",
+              "sets": 1,
+              "duration": "22 min",
+              "rest_seconds": 0,
+              "notes": "Cutback. Pas de tempo cette semaine. Allure conversationnelle.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tapis 22 min Z2", "Marche rapide 30 min"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Bike FTP-Z2 cutback",
+          "type": "endurance",
+          "duration_minutes": 70,
+          "warmup": "10 min progressif.",
+          "cooldown": "5 min lent.",
+          "exercises": [
+            {
+              "name": "Sortie FTP-Z2 60 min",
+              "sets": 1,
+              "duration": "60 min",
+              "rest_seconds": 0,
+              "notes": "Cutback (-25% vs W7 90 min). Pas de sweet spot. Aérobie pur. Cadence 85-95 rpm.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 60 min Z2", "VTT 60 min Z2"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "S&C maintien + transitions",
+          "type": "strength",
+          "duration_minutes": 30,
+          "warmup": "5 min mobilité.",
+          "cooldown": "5 min étirements.",
+          "exercises": [
+            {
+              "name": "Single-leg squat + RDL bodyweight",
+              "sets": 2,
+              "reps": "10 squat + 10 RDL/jambe",
+              "rest_seconds": 45,
+              "notes": "Cutback (2 sets vs 3). RDL bodyweight (pas de charge cette semaine).",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["bench"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain"],
+              "alternatives": ["Step-up + RDL bipodal", "Squat + hip hinge"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Nordic curl assisté",
+              "sets": 2,
+              "reps": "5",
+              "rest_seconds": 60,
+              "notes": "Cutback (2 sets × 5 vs 3 sets × 6).",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Nordic excentrique pure 5 reps", "Glute-ham 6 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Clamshell + calf + Y-T-W + plank",
+              "sets": 2,
+              "reps": "12 + 12 + 8/lettre + 40s plank",
+              "rest_seconds": 45,
+              "notes": "Maintien circuit.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["lower-back-pain", "ankle-injury", "shoulder-injury"],
+              "alternatives": ["Circuit simplifié", "Side leg raise + calf assis + Y-T-W mur + plank genoux"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Transitions T1+T2 maintien",
+              "sets": 3,
+              "duration": "T1 < 1 min 45 + T2 < 1 min",
+              "rest_seconds": 90,
+              "notes": "Maintien fluidité.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "helmet", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T1 ou T2 séparées", "T1+T2 simplifiées"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Brick cutback — bike Z2 45 min + run E 12 min",
+          "type": "mixed",
+          "duration_minutes": 70,
+          "warmup": "5 min pédalage progressif.",
+          "cooldown": "5 min marche + étirements.",
+          "exercises": [
+            {
+              "name": "Bike FTP-Z2 45 min",
+              "sets": 1,
+              "duration": "45 min",
+              "rest_seconds": 0,
+              "notes": "Cutback (-18% vs W7 brick 55 min). Allure conversationnelle. Casque OBLIGATOIRE.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons", "transition-area-setup"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 45 min Z2", "VTT 45 min Z2"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Transition T2 réelle",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": 0,
+              "notes": "T2 < 1 min.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 simplifiée 45s", "Pas de T2 30s"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Run Daniels-E 12 min",
+              "sets": 1,
+              "duration": "12 min",
+              "rest_seconds": 0,
+              "notes": "Cutback (-33% vs W7 18 min). Allure conversationnelle.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "race-belt"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "ankle-injury"],
+              "alternatives": ["Marche rapide 15 min", "Run/walk 3 min + 1 min × 3"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Swim — EN1 maintien",
+          "type": "endurance",
+          "duration_minutes": 50,
+          "warmup": "200 m relax + 4 × 25 m drills.",
+          "cooldown": "100 m dos.",
+          "exercises": [
+            {
+              "name": "Crawl EN1 long 500 m",
+              "sets": 1,
+              "duration": "500 m",
+              "rest_seconds": 0,
+              "notes": "Cutback (-37% vs W7 800 m). Allure très conversationnelle. Récup avant peak W9.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Crawl 100 m × 5 récup 30 sec", "Crawl pull-buoy 500 m"],
+              "volume_axis": "duration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 9,
+      "theme": "PIC — long ride 60 km + brick 60+20 + long swim 1500 m",
+      "goal": "Pic volume 6h cumul. Long swim 1500 m (200% over-distance vs course 750 m). Long bike 90 min ou 60 km. Long run 45 min ou 8 km. Brick PIC 60 bike + 20 run avec T1 simulée pool-side. Volume cumul : ~6h00 (swim 1h35 + bike 1h30 + run 1h05 + brick 1h20 + S&C 30 min).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Swim — CSS pace + drills",
+          "type": "interval",
+          "duration_minutes": 60,
+          "warmup": "300 m relax + 4 × 25 m drills + 4 × 50 m progressifs.",
+          "cooldown": "100 m dos relax.",
+          "exercises": [
+            {
+              "name": "Set CSS pace — 8 × 100 m récup 10 sec",
+              "sets": 8,
+              "duration": "100 m",
+              "rest_seconds": 10,
+              "notes": "PIC threshold swim. Allure CSS estimée (vs CSS+5s W5-W7). Récup courte 10 sec. RPE 7-8. Dérive < 5 sec entre 1er et 8e. Total 800 m. Si trop dur, switch CSS+3s récup 12 sec.",
+              "target_zone": "CSS pace",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["8 × 100 m CSS+3s récup 12 sec", "10 × 75 m CSS récup 10 sec"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Run Daniels-T tempo + strides",
+          "type": "interval",
+          "duration_minutes": 50,
+          "warmup": "12 min Daniels-E + 4 × 60 m strides.",
+          "cooldown": "5 min Daniels-E + étirements.",
+          "exercises": [
+            {
+              "name": "Tempo Daniels-T continu",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Pic tempo W9 = 20 min (légère réduction vs W7 22 min car volume hebdo augmente). RPE 7. Allure 10K + 15-30s/km.",
+              "target_zone": "Daniels-T",
+              "required_equipment": ["running-shoes", "gps-watch"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tempo 2 × 10 min Daniels-T récup 90s", "Fartlek 20 min effort modéré"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Strides finaux",
+              "sets": 4,
+              "duration": "20 sec",
+              "rest_seconds": 60,
+              "notes": "4 × 80 m progressifs. Cadence 180+.",
+              "target_zone": "Daniels-R",
+              "required_equipment": ["running-shoes"],
+              "incompatible_constraints": ["shin-splints", "knee-injury"],
+              "alternatives": ["Strides tapis 4 × 80 m", "Skipping 4 × 30s"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Bike LONG — 90 min ou 60 km FTP-Z2 + sweet spot",
+          "type": "endurance",
+          "duration_minutes": 105,
+          "warmup": "10 min progressif + 3 × 1 min cadence haute.",
+          "cooldown": "5 min très lent + étirements debout 5 min.",
+          "exercises": [
+            {
+              "name": "Long ride FTP-Z2 60 min",
+              "sets": 1,
+              "duration": "60 min",
+              "rest_seconds": 0,
+              "notes": "LONG RIDE PIC W9 = 90 min total (60 min Z2 + 30 min sweet spot bloc). Distance indicative : ~50-60 km selon terrain. Allure conversationnelle, RPE 3-4. Cadence 85-95 rpm. 1-2 bidons (sortie 90 min). Tester nutrition jour J : 1 gel ou 1 barre céréale + 500-750 ml eau. Casque OBLIGATOIRE.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons", "heart-rate-monitor"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 60 min Z2", "VTT 60 min Z2 chemin plat"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Sweet-Spot continu 30 min",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "PIC Sweet-Spot continu W9 = 30 min après 60 min Z2 (= long ride avec bloc race-pace en 2e moitié). 88-94% FTP, RPE 6-7. Cadence 85-95 rpm. Sans powermeter : RPE 6-7 = phrases courtes seulement. Hydrater + glucides en cours.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "bidons"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Sweet-Spot 3 × 10 min récup 4 min", "FTP-Z3 35 min continu"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "S&C peak + transitions pool-side",
+          "type": "strength",
+          "duration_minutes": 35,
+          "warmup": "5 min mobilité.",
+          "cooldown": "5 min étirements.",
+          "exercises": [
+            {
+              "name": "Single-leg squat + RDL chargé",
+              "sets": 3,
+              "reps": "10 squat + 10 RDL/jambe",
+              "rest_seconds": 45,
+              "notes": "RDL 5-8 kg dumbbell. Maintien.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["bench", "dumbbells"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain"],
+              "alternatives": ["Step-up + RDL bipodal", "Squat + hip hinge"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Nordic curl assisté",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 60,
+              "notes": "Maintien. Pic non augmenté pour éviter fatigue ischio avant brick J5.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Nordic excentrique pure 6 reps", "Glute-ham 8 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Clam + calf + Y-T-W + plank circuit",
+              "sets": 3,
+              "reps": "12 + 12 + 8/lettre + 45s plank",
+              "rest_seconds": 45,
+              "notes": "Circuit complet.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["lower-back-pain", "ankle-injury", "shoulder-injury"],
+              "alternatives": ["Circuit simplifié sans band", "Side leg raise + calf assis + Y-T-W mur + plank genoux"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Transition T1 pool-side simulée — sortie d'eau réelle",
+              "sets": 4,
+              "duration": "1 min 45 par essai",
+              "rest_seconds": 90,
+              "notes": "À faire après ta séance swim si accès au bord du bassin. Sors de l'eau réellement (jambes mouillées + essoufflement après 100 m crawl), cours 5-10 m vers ta zone transition (sac + tapis bord bassin), enfile tee-shirt mouillé pour mimer maillot, casque + chaussures bike on, attrape vélo (ou mime). Objectif < 1 min 45. C'est l'entraînement T1 le plus réaliste avant la course.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "helmet"],
+              "incompatible_constraints": [],
+              "alternatives": ["T1 à sec maison 4 × 1 min 45", "Visualisation T1 5 min"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "T2 chronométrée",
+              "sets": 3,
+              "duration": "1 min par essai",
+              "rest_seconds": 60,
+              "notes": "T2 < 1 min. Maintien.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 simplifiée 45s", "T2 sans race-belt 45s"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Brick PIC — bike Z2 60 min + run E 20 min avec T1+T2 réelles",
+          "type": "mixed",
+          "duration_minutes": 100,
+          "warmup": "5 min pédalage progressif + cadence variable 2 min.",
+          "cooldown": "10 min marche + étirements complets 10 min (mollets, ischio, fessiers, dorsaux, épaules). Hydratation + collation post-effort.",
+          "exercises": [
+            {
+              "name": "Bike FTP-Z2 60 min",
+              "sets": 1,
+              "duration": "60 min",
+              "rest_seconds": 0,
+              "notes": "PIC BRICK W9 = 60 min bike (vs 55 W7) + 20 min run (vs 18 W7). Allure conversationnelle. Cadence 85-95 rpm. 5 dernières min : 95-100 rpm. Tester gel ou barre à mi-bike (gut training). Casque OBLIGATOIRE. 1 bidon obligatoire.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons", "transition-area-setup"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 60 min Z2", "VTT 60 min Z2"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Transition T2 réelle chronométrée",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": 0,
+              "notes": "T2 chrono strict < 1 min.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 simplifiée 45s", "Pas de T2 30s"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Run Daniels-E 20 min",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "PIC run en brick = 20 min. Allure conversationnelle. Cadence 170-180. Sensation jambes en coton 3-5 min. Distance indicative : ~3-3,5 km.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "race-belt"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "ankle-injury"],
+              "alternatives": ["Marche rapide 25 min", "Run/walk 4 min + 1 min × 4"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Swim — LONG EN1 PIC 1500 m",
+          "type": "endurance",
+          "duration_minutes": 65,
+          "warmup": "200 m relax + 4 × 25 m drills + 200 m progressif.",
+          "cooldown": "200 m brasse + 2 min flottaison.",
+          "exercises": [
+            {
+              "name": "Crawl LONG EN1 PIC 1500 m",
+              "sets": 1,
+              "duration": "1500 m",
+              "rest_seconds": 0,
+              "notes": "PIC LONG SWIM W9 = 1500 m continu (200% du 750 m course = over-distance pour confort jour J). Allure conversationnelle stricte. Compter coups bras tous les 250 m, viser dérive < 3/25 m sur les 6 segments. Si fatigue épaule à 1000 m, switch pull-buoy 500 m derniers. Hydratation post-séance + recharge glucides.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "recurrent-otitis", "shoulder-injury"],
+              "alternatives": ["Crawl 300 m × 5 récup 30 sec", "Crawl pull-buoy 1500 m"],
+              "volume_axis": "duration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 10,
+      "theme": "Build maintenu — peak secondaire + simulation partielle",
+      "goal": "Maintenir le peak (~5h25 cumul, légère réduction post-W9). Brick 55+18. Long swim 1200 m, long bike 75 min, long run 45 min ou 8 km. Volume cumul : ~5h25 (swim 85 + bike 80 + run 45 + brick 73 + S&C 30 min).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Swim — CSS+3s/100m volume",
+          "type": "interval",
+          "duration_minutes": 55,
+          "warmup": "300 m relax + 4 × 25 m drills + 4 × 50 m progressifs.",
+          "cooldown": "100 m dos.",
+          "exercises": [
+            {
+              "name": "Set CSS+3s/100m — 8 × 100 m récup 12 sec",
+              "sets": 8,
+              "duration": "100 m",
+              "rest_seconds": 12,
+              "notes": "Threshold swim secondaire (légèrement plus facile que W9 CSS pure). Dérive < 5 sec.",
+              "target_zone": "EN2",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["8 × 100 m CSS+5s récup 15 sec", "10 × 75 m CSS+3s récup 12 sec"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Run Daniels-T tempo + LONG RUN PIC 8 km",
+          "type": "interval",
+          "duration_minutes": 55,
+          "warmup": "10 min Daniels-E + 4 × 60 m strides.",
+          "cooldown": "5 min Daniels-E + étirements complets.",
+          "exercises": [
+            {
+              "name": "Course Daniels-E continue PIC 45 min ou 8 km",
+              "sets": 1,
+              "duration": "45 min",
+              "rest_seconds": 0,
+              "notes": "PIC LONG RUN W10 = 45 min ou 8 km (~160% du 5 km course). Allure conversationnelle. Cadence 170-180. Tester nutrition (gel à 35 min si plan jour J).",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "gps-watch"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tapis 45 min Z2", "Run/walk 10 min + 1 min × 4"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Bike Sweet-Spot continu + Z2",
+          "type": "interval",
+          "duration_minutes": 90,
+          "warmup": "10 min progressif + 3 × 1 min cadence haute.",
+          "cooldown": "10 min très lent.",
+          "exercises": [
+            {
+              "name": "Sweet-Spot continu 25 min",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 360,
+              "notes": "Légère réduction vs W9 (30 min) — peak secondaire. 88-94% FTP, RPE 6-7. Cadence 85-95 rpm.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "bidons", "heart-rate-monitor"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Sweet-Spot 2 × 12 min récup 4 min", "FTP-Z3 30 min continu"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Pédalage FTP-Z2 endurance",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "Z2 final.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain"],
+              "alternatives": ["Bike trainer 30 min Z2", "VTT 30 min Z2"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "S&C peak + transitions",
+          "type": "strength",
+          "duration_minutes": 35,
+          "warmup": "5 min mobilité.",
+          "cooldown": "5 min étirements.",
+          "exercises": [
+            {
+              "name": "Single-leg squat + RDL chargé",
+              "sets": 3,
+              "reps": "10 + 10/jambe",
+              "rest_seconds": 45,
+              "notes": "Maintien.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["bench", "dumbbells"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain"],
+              "alternatives": ["Step-up + RDL bipodal", "Squat + hip hinge"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Nordic curl assisté",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 60,
+              "notes": "Maintien.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Nordic excentrique pure 6 reps", "Glute-ham 8 reps"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Clam + calf + Y-T-W + plank circuit",
+              "sets": 3,
+              "reps": "12 + 12 + 8/lettre + 45s plank",
+              "rest_seconds": 45,
+              "notes": "Maintien.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["lower-back-pain", "ankle-injury", "shoulder-injury"],
+              "alternatives": ["Circuit simplifié", "Versions sans band"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Transitions T1+T2 simulation enchaînée",
+              "sets": 3,
+              "duration": "T1 < 1 min 30 + T2 < 1 min",
+              "rest_seconds": 120,
+              "notes": "Enchaînement T1-bike mime 30 sec-T2-run mime 30 sec en boucle. Simule pression race. Objectif T1 < 1 min 30 W10.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "helmet", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T1+T2 séparées chronométrées", "T1+T2 simplifiées sans race-belt"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Brick — bike Z2 55 min + run E 18 min",
+          "type": "mixed",
+          "duration_minutes": 90,
+          "warmup": "5 min pédalage progressif + cadence variable.",
+          "cooldown": "5 min marche + étirements complets.",
+          "exercises": [
+            {
+              "name": "Bike FTP-Z2 55 min",
+              "sets": 1,
+              "duration": "55 min",
+              "rest_seconds": 0,
+              "notes": "Brick légèrement réduit vs W9 (60 min) — peak secondaire. Allure conversationnelle. 5 dernières min : 95-100 rpm. Casque OBLIGATOIRE.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons", "transition-area-setup"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 55 min Z2", "VTT 55 min Z2"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Transition T2 réelle",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": 0,
+              "notes": "T2 < 1 min.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 simplifiée 45s", "Pas de T2 30s"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Run Daniels-E 18 min",
+              "sets": 1,
+              "duration": "18 min",
+              "rest_seconds": 0,
+              "notes": "Cadence 170-180. Sensation jambes en coton 3-5 min.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "race-belt"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "ankle-injury"],
+              "alternatives": ["Marche rapide 22 min", "Run/walk 3 min + 1 min × 4"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Swim — long EN1 1200 m",
+          "type": "endurance",
+          "duration_minutes": 60,
+          "warmup": "200 m relax + 4 × 25 m drills.",
+          "cooldown": "100 m dos.",
+          "exercises": [
+            {
+              "name": "Crawl long EN1 1200 m",
+              "sets": 1,
+              "duration": "1200 m",
+              "rest_seconds": 0,
+              "notes": "Long swim W10 = 1200 m (vs 1500 W9). Allure conversationnelle. Si tu as accès à eau libre + combinaison, faire cette sortie en eau libre avec combinaison W-2 jour J = bonus.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "recurrent-otitis", "shoulder-injury"],
+              "alternatives": ["Crawl 300 m × 4 récup 30 sec", "Crawl eau libre avec combinaison 1200 m (si accès + jamais seul)"],
+              "volume_axis": "duration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 11,
+      "theme": "Pre-race — taper J-14 + simulation rehearsal",
+      "goal": "Taper J-14 (-30% volume vs W10). Simulation rehearsal J6 = 600 m swim + 18 km bike + 4 km run avec transitions T1/T2 réelles. Volume cumul : ~3h45 (swim 65 + bike 60 + run 30 + brick/sim 95 + S&C 25 min).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Swim — drills + CSS+5s court",
+          "type": "interval",
+          "duration_minutes": 40,
+          "warmup": "200 m relax + 4 × 25 m drills + 4 × 50 m progressifs.",
+          "cooldown": "100 m dos relax.",
+          "exercises": [
+            {
+              "name": "Drill sighting — relèvement tête",
+              "sets": 4,
+              "duration": "25 m",
+              "rest_seconds": 30,
+              "notes": "INTRO sighting (eau libre). Lever la tête tous les 4-6 strokes pour viser un repère. Force minimal, focus technique. Important si course en eau libre. Si pool, viser une ligne du fond.",
+              "target_zone": "technique",
+              "required_equipment": ["pool", "goggles"],
+              "incompatible_constraints": ["chlorine-allergy", "cervical-injury", "shoulder-injury"],
+              "alternatives": ["Crawl avec sighting tous 6 strokes 25 m × 4", "Crawl 25 m × 4 sans sighting"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Set CSS+5s/100m — 4 × 100 m",
+              "sets": 4,
+              "duration": "100 m",
+              "rest_seconds": 15,
+              "notes": "Taper threshold (-50% volume vs W10 8 × 100 m). Maintien intensité, réduction volume. Total 400 m.",
+              "target_zone": "EN2",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["4 × 100 m EN1+5s récup 20 sec", "6 × 75 m CSS+5s récup 15 sec"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Run Daniels-T court + strides allure 5K",
+          "type": "interval",
+          "duration_minutes": 35,
+          "warmup": "10 min Daniels-E + 4 × 60 m strides.",
+          "cooldown": "5 min Daniels-E + étirements.",
+          "exercises": [
+            {
+              "name": "Tempo Daniels-T continu",
+              "sets": 1,
+              "duration": "12 min",
+              "rest_seconds": 0,
+              "notes": "Taper tempo (-45% vs W9 20 min, -40% vs W6 20 min). Maintien intensité. Allure 10K + 15-30s/km. Mémoire neuromusculaire allure cible.",
+              "target_zone": "Daniels-T",
+              "required_equipment": ["running-shoes", "gps-watch"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required"],
+              "alternatives": ["Tempo 2 × 6 min Daniels-T récup 90s", "Fartlek 12 min effort modéré"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Strides à allure cible 5 km course",
+              "sets": 4,
+              "duration": "30 sec",
+              "rest_seconds": 60,
+              "notes": "4 × 100 m à allure cible 5 km course (Daniels-T - 5 s/km, soit allure 10K + 10s/km). Mémoire neuromusculaire allure jour J. Cadence 180+.",
+              "target_zone": "@10K-pace",
+              "required_equipment": ["running-shoes", "gps-watch"],
+              "incompatible_constraints": ["shin-splints", "knee-injury"],
+              "alternatives": ["Strides Daniels-R 4 × 80 m", "Skipping 4 × 30 sec"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Bike Sweet-Spot court + Z2",
+          "type": "interval",
+          "duration_minutes": 70,
+          "warmup": "10 min progressif.",
+          "cooldown": "10 min très lent.",
+          "exercises": [
+            {
+              "name": "Sweet-Spot 2 × 8 min",
+              "sets": 2,
+              "duration": "8 min",
+              "rest_seconds": 240,
+              "notes": "Taper sweet spot (-47% volume vs W10 25 min continu). Maintien intensité. 88-94% FTP, RPE 6-7.",
+              "target_zone": "Sweet-Spot",
+              "required_equipment": ["road-bike", "helmet", "bidons", "heart-rate-monitor"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Sweet-Spot 1 × 12 min", "FTP-Z3 2 × 10 min récup 3 min"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pédalage FTP-Z2",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "Endurance Z2 finale.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain"],
+              "alternatives": ["Bike trainer 25 min Z2", "VTT 25 min Z2"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "S&C maintien léger + transitions",
+          "type": "strength",
+          "duration_minutes": 25,
+          "warmup": "5 min mobilité.",
+          "cooldown": "5 min étirements.",
+          "exercises": [
+            {
+              "name": "Single-leg squat + RDL bodyweight",
+              "sets": 2,
+              "reps": "8 + 10/jambe",
+              "rest_seconds": 45,
+              "notes": "Taper S&C (-33%). Bodyweight pour RDL. Maintien sans charger.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["bench"],
+              "incompatible_constraints": ["knee-injury", "lower-back-pain"],
+              "alternatives": ["Step-up + RDL bipodal", "Squat + hip hinge"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Clam + calf + Y-T-W circuit",
+              "sets": 2,
+              "reps": "12 + 12 + 8/lettre",
+              "rest_seconds": 40,
+              "notes": "Maintien préventif sans charge.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat", "resistance-band"],
+              "incompatible_constraints": ["lower-back-pain", "ankle-injury", "shoulder-injury"],
+              "alternatives": ["Circuit simplifié sans band", "Versions debout"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Plank + bird-dog",
+              "sets": 2,
+              "duration": "40s + 10 bird-dog/côté",
+              "rest_seconds": 40,
+              "notes": "Core maintien.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "wrist-injury"],
+              "alternatives": ["Plank genoux + dead bug", "Side plank + bird-dog"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Transitions T1+T2 répétition fluide",
+              "sets": 3,
+              "duration": "T1 < 1 min 30 + T2 < 1 min",
+              "rest_seconds": 90,
+              "notes": "Maintien automatisme. Pas de pression chrono.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "helmet", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T1 ou T2 séparées", "Visualisation 5 min"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Run activation + visualisation pré-rehearsal",
+          "type": "endurance",
+          "duration_minutes": 25,
+          "warmup": "5 min marche + 3 min activation.",
+          "cooldown": "5 min visualisation positive J6 simulation.",
+          "exercises": [
+            {
+              "name": "Course Daniels-E activation",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "Activation courte avant simulation J6. Allure très facile, jambes légères. Pas un test.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes"],
+              "incompatible_constraints": ["shin-splints", "knee-injury"],
+              "alternatives": ["Tapis 15 min Z2", "Marche rapide 20 min"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "Séance phare REHEARSAL — simulation 600 m + 18 km + 4 km avec T1+T2",
+          "type": "mixed",
+          "duration_minutes": 95,
+          "warmup": "5 min marche progressive + 5 min mobilité dynamique (hanches, chevilles, épaules) + 100 m crawl très lent en bassin pour s'éveiller.",
+          "cooldown": "10 min marche très lente + étirements complets 10 min (mollets, quadriceps, ischio-jambiers, fessiers, dorsaux, épaules). Hydratation + collation post-effort.",
+          "exercises": [
+            {
+              "name": "Simulation swim 600 m EN1",
+              "sets": 1,
+              "duration": "600 m",
+              "rest_seconds": 0,
+              "notes": "Simule départ jour J. Allure conversationnelle, respiration côté favori, sighting tous les 6 strokes. À la sortie d'eau, cours bord bassin vers ta zone transition. C'est la dernière simulation avant la course — tester ce que tu prévois (combinaison si applicable).",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap", "wetsuit"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Crawl 100 m × 6 récup 20 sec", "Crawl pull-buoy 600 m"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Transition T1 RÉELLE chronométrée",
+              "sets": 1,
+              "duration": "1 min 30",
+              "rest_seconds": 0,
+              "notes": "Sortie d'eau, course 5-10 m vers transition, sortir maillot/combinaison à plat, casque + chaussures bike on, attraper vélo, démarrer en courant à côté. Objectif < 1 min 30. Si simulation hors piscine, simplifier sortie d'eau.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "helmet"],
+              "incompatible_constraints": [],
+              "alternatives": ["T1 simplifiée 1 min", "Pas de T1 (départ direct vélo) 30 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Simulation bike 18 km FTP-Z2",
+              "sets": 1,
+              "duration": "55 min",
+              "rest_seconds": 0,
+              "notes": "Distance simulée 18 km (~90% du 20 km jour J). Si tu connais le parcours course, fais cette simulation dessus. Allure RPE 3-4 conversationnelle. Cadence 85-95 rpm. 5 dernières min : 95-100 rpm pour T2. Hydratation 1 bidon + tester nutrition jour J. Casque OBLIGATOIRE.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 55 min Z2", "VTT 55 min Z2 chemin plat"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Transition T2 RÉELLE chronométrée",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": 0,
+              "notes": "Pose vélo, casque off, chaussures bike off, running-shoes on (elastic-laces), race-belt clippé. Objectif < 1 min, fluidité.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 simplifiée 45 sec", "Pas de T2 30 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Simulation run 4 km Daniels-E à allure cible",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "Distance simulée 4 km (~80% du 5 km jour J). Allure conversationnelle (Daniels-E) sur les 2 premiers km, puis allure cible 5 km course (Daniels-T -5s/km, ~10K+10s/km) sur les 2 derniers km si jambes le permettent. Sensation jambes en coton 3-5 min — tu connais maintenant. Cadence 170-180.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "race-belt", "gps-watch"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "ankle-injury"],
+              "alternatives": ["Run continu 25 min Daniels-E (sans accélération)", "Run/walk 5 min run + 1 min marche × 4"],
+              "volume_axis": "distance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 12,
+      "theme": "Race week — taper J-7 + course",
+      "goal": "Taper J-7 (-50% volume vs W10). Séances très courtes par discipline. Brick activation neuro J-3. Mobilité + visualisation J-1. Course J7 (J=jour course). Volume hors course : ~3h00 (swim 25 + bike 25 + run 15 + brick 25 + mob 30 min). Chaque séance prépare la course sans fatigue résiduelle. CHECKLIST D'AUTONOMIE 5 critères dans la séance phare J6 (race-day rehearsal court).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Swim taper — drills + 200 m relax",
+          "type": "technique",
+          "duration_minutes": 25,
+          "warmup": "100 m relax + 4 × 25 m drills (sighting + 6-3-6).",
+          "cooldown": "100 m brasse relax + 2 min flottaison.",
+          "exercises": [
+            {
+              "name": "Crawl continu 200 m EN1",
+              "sets": 1,
+              "duration": "200 m",
+              "rest_seconds": 0,
+              "notes": "Allure conversationnelle, focus relâchement. PAS un test. Activer la feel for the water. Total séance ~ 500 m incluant warmup/cooldown.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury"],
+              "alternatives": ["Crawl 50 m × 4 récup 30 sec", "Crawl pull-buoy 200 m"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "name": "Bike taper Z2 — 25 min reconnaissance",
+          "type": "endurance",
+          "duration_minutes": 35,
+          "warmup": "5 min progressif.",
+          "cooldown": "5 min très lent.",
+          "exercises": [
+            {
+              "name": "Sortie FTP-Z2 25 min sur parcours course",
+              "sets": 1,
+              "duration": "25 min",
+              "rest_seconds": 0,
+              "notes": "Volume taper -67% vs W10 (75 → 25 min). Allure conversationnelle, jambes légères. Si possible, faire cette sortie sur le parcours course pour reconnaissance (virages dangereux, kilométrage, ravitaillement). Casque OBLIGATOIRE.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["Bike trainer 25 min Z2", "VTT 25 min Z2"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Brick activation J-3 — bike Z2 20 min + run E 5 min",
+          "type": "mixed",
+          "duration_minutes": 35,
+          "warmup": "5 min pédalage progressif.",
+          "cooldown": "5 min marche + étirements.",
+          "exercises": [
+            {
+              "name": "Bike FTP-Z2 20 min",
+              "sets": 1,
+              "duration": "20 min",
+              "rest_seconds": 0,
+              "notes": "Brick court réveil neuromusculaire J-3 ou J-4. Allure conversationnelle. Cadence 85-95 rpm. 3 dernières min : 95-100 rpm. Casque OBLIGATOIRE. PAS un effort, juste activation.",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons", "transition-area-setup"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain"],
+              "alternatives": ["Bike trainer 20 min Z2", "VTT 20 min Z2"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Transition T2 réelle",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": 0,
+              "notes": "T2 < 1 min, fluidité.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 simplifiée 45s", "Pas de T2 30s"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Run Daniels-E 5 min activation",
+              "sets": 1,
+              "duration": "5 min",
+              "rest_seconds": 0,
+              "notes": "Très court, juste rappel sensation post-bike. Allure conversationnelle. Cadence 170-180.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes", "race-belt"],
+              "incompatible_constraints": ["shin-splints", "knee-injury"],
+              "alternatives": ["Marche rapide 6 min", "Run/walk 2 min run + 1 min marche × 1"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "name": "Run activation + strides allure 5K J-2",
+          "type": "endurance",
+          "duration_minutes": 25,
+          "warmup": "5 min marche + 3 min activation.",
+          "cooldown": "5 min marche + étirements.",
+          "exercises": [
+            {
+              "name": "Course Daniels-E activation",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Très court. Allure très facile.",
+              "target_zone": "Daniels-E",
+              "required_equipment": ["running-shoes"],
+              "incompatible_constraints": ["shin-splints", "knee-injury"],
+              "alternatives": ["Tapis 10 min Z2", "Marche rapide 15 min"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Strides allure 5K cible",
+              "sets": 4,
+              "duration": "20 sec",
+              "rest_seconds": 60,
+              "notes": "4 × 80 m à allure cible 5 km course. Mémoire neuromusculaire jour J. Cadence 180+.",
+              "target_zone": "@10K-pace",
+              "required_equipment": ["running-shoes"],
+              "incompatible_constraints": ["shin-splints", "knee-injury"],
+              "alternatives": ["Strides Daniels-R 4 × 80 m", "Skipping 4 × 30s"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Mobilité + visualisation + checklist pré-course J-2",
+          "type": "mobility",
+          "duration_minutes": 35,
+          "warmup": "5 min marche + mobilité dynamique 3 min.",
+          "cooldown": "5 min respiration profonde + visualisation positive race-day (briefing, eau, T1, vélo, T2, course, ligne d'arrivée, sourire). Hydratation + collation glucidique pré-course (dîner riche en glucides la veille).",
+          "exercises": [
+            {
+              "name": "Routine mobilité hanches + chevilles + épaules",
+              "sets": 1,
+              "duration": "12 min",
+              "rest_seconds": 0,
+              "notes": "Pas d'intensité. Cercles hanches 10/sens, cercles chevilles 10/sens, fentes basses tenues 30 sec/côté, squat profond tenu 30 sec, cercles épaules 10/sens, cat-cow 10 reps.",
+              "target_zone": null,
+              "required_equipment": ["mat"],
+              "incompatible_constraints": [],
+              "alternatives": ["Yoga doux 15 min", "Étirements statiques globaux 10 min"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Simulation T1+T2 mime lent + checklist autonomie",
+              "sets": 2,
+              "duration": "3 min par tour",
+              "rest_seconds": 60,
+              "notes": "Mime T1+T2 lent, sans précipitation. Visualisation chaque étape. Mental autant que physique.\n\nCHECKLIST D'AUTONOMIE — TRIATHLON RECREATIONAL SPRINT (à valider avant la course) :\n1. Je nage 750 m crawl en piscine en allure conversationnelle EN1 sans pause longue (vérifié W11 J6 simulation 600 m + adrénaline jour J = OK pour 750 m).\n2. Je tiens un brick 60 min bike + 20 min run avec écart d'allure run < 30 sec/km vs mes runs solo (vérifié W9 J5 brick PIC).\n3. Mon long ride 90 min (60 km) avec bloc 30 min sweet spot tient sans dérive de wattage / RPE > 5% et avec 30-45 g glucides/h tolérés (vérifié W9 J3).\n4. Mes transitions T1 (< 1 min 30) et T2 (< 1 min) sont automatisées, je sais sortir maillot mouillé à plat et enfiler casque + chaussures bike + race-belt en fluidité (vérifié W11 J6 rehearsal réel).\n5. Je sais distinguer une fatigue épaule normale d'une douleur naissante (swimmer's shoulder), je sais reconnaître la sensation jambes en coton physiologique brick et la passer en 3-5 min.\n\nSi tu coches 4-5 critères → tu es prêt pour ton triathlon sprint 750/20/5. Si 2-3 critères → décale la course de 2-3 sem pour refaire W9-W10.\n\nÉQUIPEMENT JOUR J — préparer sac la veille au soir :\n• Swim : maillot, lunettes, bonnet (souvent fourni par l'organisation), combinaison si applicable, vaseline (frottement nuque/aisselles).\n• Bike : casque (vérifier sangle), chaussures bike + chaussettes, bidons remplis, gel de mi-bike, kit de réparation (chambre à air + démonte-pneu + pompe / cartouche CO2).\n• Run : running-shoes (elastic-laces déjà installés), race-belt avec dossard pré-clippé, casquette/visière pour soleil.\n• Transition : tapis transition (sac bag), serviette pour pieds.\n• Nutrition pré-course : 200-300 ml eau dans l'heure précédente, banane ou barre céréale 1h30 avant départ.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["transition-area-setup", "helmet", "running-shoes"],
+              "incompatible_constraints": [],
+              "alternatives": ["Visualisation pure 10 min sans gestes", "Mime T1+T2 1 fois lent"],
+              "volume_axis": "sets"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "name": "JOUR J — Triathlon sprint 750/20/5",
+          "type": "mixed",
+          "duration_minutes": 90,
+          "warmup": "Briefing sécurité organisation. 10-15 min activation : 5 min marche + 5 min trottinement + cercles épaules / hanches + entrée progressive eau pour acclimatation T° + 50-100 m crawl très lent dans la zone d'échauffement (si autorisé) ou drills à sec si pas d'accès eau.",
+          "cooldown": "Marche 15 min après ligne arrivée + collation glucidique + protéines dans les 30 min + hydratation + douche tiède (pas froide). Étirements légers le lendemain. Récup active 2-3 jours.",
+          "exercises": [
+            {
+              "name": "Course swim 750 m EN1",
+              "sets": 1,
+              "duration": "750 m",
+              "rest_seconds": 0,
+              "notes": "Départ groupe. Rester en zone arrière du peloton si stress du départ massé (éviter combat dans les bouées). Allure conversationnelle EN1, surtout PAS rapide les 100 premiers m. Sighting toutes les 6-10 strokes pour viser bouée. Si panique = dos + respiration calmée. Sortir à pied, courir vers transition.",
+              "target_zone": "EN1",
+              "required_equipment": ["pool", "goggles", "swim-cap", "wetsuit"],
+              "incompatible_constraints": ["chlorine-allergy", "shoulder-injury", "cardiac-clearance-required"],
+              "alternatives": ["Si panique : retour bord, abandon ou repos 1-2 min", "Brasse 750 m si crawl impossible"],
+              "volume_axis": "distance"
+            },
+            {
+              "name": "Transition T1",
+              "sets": 1,
+              "duration": "1 min 30",
+              "rest_seconds": 0,
+              "notes": "T1 fluide, jamais paniquer. Trier les gestes : combinaison à plat, casque on (sangle attachée AVANT de toucher vélo — règle sécurité), chaussures bike on, race-belt clippé, attraper vélo, courir à côté jusqu'à la ligne 'mount line' (interdit de monter avant), monter, partir.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "helmet", "race-belt"],
+              "incompatible_constraints": [],
+              "alternatives": ["T1 lente 2 min sans pression", "T1 avec aide bénévole si autorisé"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Course bike 20 km FTP-Z2/Z3",
+              "sets": 1,
+              "duration": "40 min",
+              "rest_seconds": 0,
+              "notes": "20 km à allure FTP-Z2 confortable + montée éventuelle vers FTP-Z3 sur 5-10 min en milieu de bike si jambes OK. Cadence 85-95 rpm. Hydratation 1 bidon + gel à mi-parcours si > 30 min effort. Casque OBLIGATOIRE. Aucun écouteur. Vigilance ravitaillement / ralentisseurs / virages. NE PAS commencer en sweet spot (jambes en coton post-T1).",
+              "target_zone": "FTP-Z2",
+              "required_equipment": ["road-bike", "helmet", "bidons"],
+              "incompatible_constraints": ["no-bike", "knee-injury", "lower-back-pain", "cardiac-clearance-required"],
+              "alternatives": ["VTT si autorisé organisation", "Bike avec assistance électrique INTERDIT compétition"],
+              "volume_axis": "distance"
+            },
+            {
+              "name": "Transition T2",
+              "sets": 1,
+              "duration": "1 min",
+              "rest_seconds": 0,
+              "notes": "T2 fluide. Descendre AVANT 'dismount line' (règle sécurité), courir à côté du vélo jusqu'à zone, poser vélo, casque off (peut être enlevé après pose vélo seulement), chaussures bike off, running-shoes on (elastic-laces sauveurs), race-belt déjà clippé, partir en courant.",
+              "target_zone": null,
+              "required_equipment": ["transition-area-setup", "running-shoes", "race-belt", "elastic-laces"],
+              "incompatible_constraints": [],
+              "alternatives": ["T2 lente 1 min 30", "T2 avec aide bénévole si autorisé"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Course run 5 km Daniels-T (allure cible 5 km course)",
+              "sets": 1,
+              "duration": "30 min",
+              "rest_seconds": 0,
+              "notes": "5 km à allure cible (Daniels-T -5s/km ou allure 10K + 10s/km selon ressenti). Sensation jambes en coton les 3-5 premières min — c'est physiologique et tu connais. Cadence 170-180. Si crampes : ralentir 1-2 min, hydrater (eau + sel), repartir doucement. Sourire à la photo de la ligne d'arrivée. Tu es FINISHER.",
+              "target_zone": "Daniels-T",
+              "required_equipment": ["running-shoes", "race-belt"],
+              "incompatible_constraints": ["shin-splints", "knee-injury", "ankle-injury", "cardiac-clearance-required"],
+              "alternatives": ["Run continu Daniels-E 30 min (ralenti)", "Run/walk si crampes 4 min run + 1 min marche × 6"],
+              "volume_axis": "distance"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

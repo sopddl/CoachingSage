@@ -1,0 +1,2782 @@
+{
+  "schema_version": 2,
+  "id": "strength-training-competitive-strength-5x5-cycle",
+  "sport": "strength_training",
+  "level": "competitive",
+  "name": "Force 5x5 — Cycle de progression 12 semaines",
+  "duration_weeks": 12,
+  "sessions_per_week": 3,
+  "default_objective": "Progresser en force pure sur squat, bench press, deadlift, overhead press et rowing barbell selon protocole 5x5 progressif avec double progression et gestion de la fatigue sur 12 semaines",
+  "assumed_profile": "Pratiquant expert avec 3+ ans de musculation, force maximale connue (1RM établi sur les 5 mouvements composés — si non disponible, effectuer un test 1RM 2-3 jours avant W1). Accès salle complète avec rack squat, plateau de bench, barre olympique, plaques fractionnées (1,25 kg disponibles). Aucune blessure en cours.",
+  "summary": "Cycle force 12 semaines, 3 séances/sem (Lundi/Mercredi/Vendredi), inspiré Madcow 5x5 / Texas Method / Sheiko-Israetel block periodization. 3 blocs : Volume W1-W4 (5x5 @70-80% 1RM, RPE 6-8), Intensity W5-W8 (5x5 @80-90% 1RM, RPE 8-9), Realization W9-W12 (3-5 reps @85-95%+, peak W11 + test 1RM W12). Cutbacks W4 & W8 (-15% charges + -40% volume sets, paused squat + paused bench systématiques). Patterns 5+1 fondamentaux couverts chaque semaine (squat, hinge deadlift, push H bench, push V OHP, pull H row, pull V pull-up lestés). Volume hebdo cible MAV-MRV 16-22 sets/muscle principaux W3-W7, 18-22 sets pic W10. Test final W12 J5 = 1RM officiel sur squat/bench/deadlift + AMRAP @85% TM sur OHP et row. Repos compounds 180 sec, deadlift 240 sec (justifié SNC + lombaire). Core systématique en fin de séance.",
+  "week_structure": {
+    "type": "block",
+    "micro_pattern": "Lundi A (squat/bench/row) + repos + Mercredi B (squat/OHP/deadlift) + repos + Vendredi A2/B2 alternance + 2 jours rest",
+    "recovery_cadence": "Cutback toutes les 4 semaines (W4, W8) puis deload realization W12 ; chaque cutback -15% charge + -40% sets + paused variants"
+  },
+  "deload_weeks": [4, 8, 12],
+  "progression_logic": "Progression construite sur 6 principes, alignés Madcow 5x5, Texas Method (Rippetoe/Pendlay), Sheiko block periodization, Israetel (RP Strength) volume landmarks et NSCA Essentials of Strength Training :\n\n(1) BLOCK PERIODIZATION 3 PHASES : (a) Volume Block W1-W4 — accumulation 70-80% 1RM, RPE 6-8, 5x5 sur les 5 compounds, objectif construire la base musculaire et neurogène ; (b) Intensity Block W5-W8 — intensification 80-90% 1RM, RPE 8-9, 5x5 maintenu sur compound principal, baisse de volume sur secondaires (5x3 deadlift) ; (c) Realization Block W9-W12 — culmination 85-100%+ 1RM, schéma 5/3/1 progression W9 (5,5,5+) → W10 (3,3,3+) → W11 (5,3,1+ peak set) → W12 deload + test 1RM. Chaque bloc démarre légèrement au-dessus du pic du précédent (Bompa & Haff 2009, Sheiko Russian Squat Routine).\n\n(2) DOUBLE PROGRESSION FRACTIONNÉE EXPERT : +5 kg/sem sur squat et deadlift, +2,5 kg/sem sur bench / OHP / row en Volume Block. En Intensity et Realization Blocks, paliers réduits à +2,5 kg squat/DL et +1,25 kg bench/OHP/row (microloading expert via plaques fractionnées). Si stagnation (impossibilité 5x5 sur 2 séances consécutives), réduire palier de moitié et maintenir volume — jamais réduire les 2 variables simultanément (Helms Pyramid, NSCA).\n\n(3) CUTBACK W4 & W8 OBLIGATOIRES (-15% charges + -40% sets) : 5x5 → 3x5 sur compounds principaux, charges retombent à ~72-74% 1RM, RPE 6-7. Variantes paused squat (1-2 sec en bas) et paused bench (1-2 sec sur la poitrine) systématiques sur TOUTES les séances squat/bench de W4 et W8 — renforce les zones de transition + qualité technique sans charge max. Justification : la charge nerveuse + articulaire des compounds heavy nécessite un déload marqué (-40 à -50% sets, convention strength validée NSCA, Israetel RP volume landmarks). La super-compensation se fait PENDANT le cutback, jamais en chargeant indéfiniment.\n\n(4) PEAK + TAPER REALIZATION BLOCK : W9 entrée à charges = pic W7 +2,5 kg, RPE 8,5-9, schéma reps progressivement réduit (5 reps → 3 reps → 1 rep). W10 charges +2,5 kg, schéma 3,3,3+ (AMRAP last set). W11 = peak week — taper J1-J3 (3x3 @90% TM), pic technique J5 (5,3,1+ AMRAP @95% TM). W12 J5 = TEST 1RM officiel sur squat/bench/deadlift + AMRAP @85% TM sur OHP/row. La réduction de volume précédant un test 1RM augmente la performance de 5-8% (Plisk & Stone 2003, Pritchard et al. 2015 systematic review tapering strength).\n\n(5) 5+1 PATTERNS FONDAMENTAUX COUVERTS CHAQUE SEMAINE : squat (back squat 3x/sem), hinge (deadlift conventionnel 1-2x/sem en Volume, 1x/sem ailleurs), push H (bench press 2x/sem), push V (OHP 1-2x/sem), pull H (bent-over barbell row 2x/sem), pull V (pull-up lestés 1-2x/sem dès W3 + sans lest en cutback). Dips lestés introduits dès W3 comme accessoire push secondaire (renforce lockout bench + triceps). Core systématique en fin de séance (planche, side plank, bird-dog, dead bug, crunch inverse) — JAMAIS en début (un core préfatigué compromet le bracing sur compounds heavy = risque blessure majeur).\n\n(6) REPOS INTER-SÉRIES NSCA/ACSM EXPERT : compounds heavy (squat, bench, OHP, row) à 70-90% 1RM = 180 sec (3 min) minimum, conforme ACSM 2026 (2-3 min force standard, 3-5 min force max). Deadlift = 240 sec (4 min) en raison de la sollicitation SNC + lombaire supérieure documentée — ce repos additionnel est délibéré et non négociable même sur série unique. PR attempts W11 / Test 1RM W12 = 300 sec (5 min) entre tentatives. Doctrine CoachingSage : JAMAIS < 60 sec sur compound — la récupération neuromusculaire incomplète compromet la qualité technique.",
+  "safety_notes": "DRAPEAUX ROUGES — ARRÊT IMMÉDIAT ET CONSULTATION MÉDECIN/KINÉ DU SPORT :\n• Lombalgie aiguë sur deadlift/squat (rounding lombaire sous charge, hernie discale possible) : stop immédiat, repos 48-72h minimum, consultation kiné du sport sous 48h. Ne JAMAIS travailler à travers une douleur lombaire vive.\n• Sciatique (douleur irradiante jambe + fourmillements + faiblesse) : stop tout compound lombaire-loaded, avis médical immédiat. Ne pas pousser à travers.\n• Douleur antéro-latérale épaule (conflit sous-acromial, tendinopathie sus-épineux) sur bench / OHP : réduire amplitude, swap haltères temporairement, consultation kiné si > 5 jours.\n• Douleur cervicale sur back squat (compression mauvaise position de barre) : repositionner barre sur trapèzes (pas C7), arrêt si douleur irradie dans le bras.\n• Douleur antérieure rotule (PFPS, tendinite rotulienne) sur squat : vérifier valgus dynamique, réduire charge, renforcer abducteurs hanche (clamshells).\n• Engourdissement / fourmillements bras ou jambes PENDANT compound : arrêt immédiat, secours si persistant.\n• Surentraînement strength + signes RED-S (Relative Energy Deficiency in Sport) : fatigue chronique, baisse force ≥ 5% sur 2 sem consécutives, sommeil dégradé, irritabilité, FC repos +8-10 bpm, troubles cycle menstruel (femmes), libido effondrée — STOP cycle, semaine de repos complet, avis médical sportif.\n\nMEDICAL CLEARANCE — CONSULTE UN MÉDECIN AVANT DE COMMENCER CE PROGRAMME SI :\n• Pathologie lombaire chronique (hernie discale connue, lombalgie chronique, spondylose) : avis médecin/kiné obligatoire avant tout deadlift et squat lourds. Préférer trap bar deadlift et goblet/front squat en démarrage.\n• Antécédents cardiovasculaires (hypertension, antécédent cardiaque, arythmie) : la manœuvre Valsalva (apnée bracing) peut élever la TA jusqu'à 350/250 mmHg sur PR squat/dead. Profils hypertendus = avis médical OBLIGATOIRE avant 1RM, préférer reps > 3 avec respiration libre, ceinture lifting recommandée dès 80% 1RM.\n• Reprise post-opératoire (< 6 mois sur épaule, genou, lombaire, hanche) : avis spécialiste obligatoire.\n• Profil > 50 ans débutant complet sans test d'effort récent : test cardiologique préalable.\n• Grossesse : squat / deadlift lourds contre-indiqués sans avis sage-femme/médecin.\n\nRÈGLES GÉNÉRALES POUR EXPERT :\n• Échauffement non négociable : 10-12 min mobilité globale + ramping spécifique (3-5 sets de charge croissante, 10-25 reps cumulés max) avant working sets. Sauter l'échauffement multiplie risque blessure x3 sur charges > 80% 1RM.\n• Ceinture lombaire recommandée dès 80% 1RM sur squat / deadlift / good morning. Ne remplace pas le gainage, augmente la pression intra-abdominale.\n• Magnésie sur deadlift et row > 85% pour éviter grip failure (perdre la barre = risque blessure majeur).\n• Repos inter-séries : 180 sec compounds (squat / bench / OHP / row), 240 sec deadlift, 300 sec PR attempts. Une séance force bien construite dure 75-100 min. Ne pas sacrifier les repos pour raccourcir.\n• Spotter ou cage avec barres de sécurité OBLIGATOIRE sur squat ≥ 85% 1RM et bench ≥ 85% 1RM.\n• Sommeil ≥ 7h, idéalement 8h en Realization Block. Performance force chute 10-20% en deçà de 7h (NSF 2024).\n• Apport protéique ≥ 1,6 g/kg/j (ISSN), collation protéines + glucides dans 45 min post-séance.\n\nINTENSITÉ ET RPE / %1RM :\n• RPE expliqué + grille calibrée Training Max (TM) : RPE 7 = 3 RIR, RPE 8 = 2 RIR, RPE 9 = 1 RIR, RPE 10 = échec/max. TM = 90% du 1RM testé (Wendler 5/3/1). Tous les % de ce programme sont calculés sur le TM, pas le 1RM brut.\n• RPE 9-10 réservé W10-W11-W12 uniquement. Travailler RPE > 9 chaque semaine = fatigue neuromusculaire cumulative qui annule les gains.\n• Vérification arithmétique pré-séance : si TM squat = 150 kg, alors 80% TM = 120 kg, 85% = 127,5 kg, 90% = 135 kg, 95% = 142,5 kg. Plaques fractionnées 1,25 kg indispensables.\n• Valgus dynamique genou sous charge = urgence technique : arrêt série immédiat, déchargement, renforcement abducteurs hanche.\n• DOMS vs douleur articulaire : DOMS = muscle douloureux à la pression, 24-72h post-séance, normal. Douleur articulaire = douleur à l'articulation même ou irradiation = anormal, stop.\n\nSIGNES DE SURCHARGE STRENGTH (3+ signes simultanés = cutback immédiat ou repos 3 jours) :\n• FC repos +8-10 bpm sur 3+ jours consécutifs au réveil.\n• Vitesse de barre perceptiblement plus lente sur charges habituelles (test mental simple : la barre semble lourde dès le ramping).\n• Force subjective -15% ou incapacité à compléter reps cibles 5x5 sur 2 séances consécutives.\n• Sommeil dégradé > 3 nuits, réveils nocturnes, sommeil non récupérateur.\n• Irritabilité / apathie inhabituelle (surmenage SNC).\n• Courbatures > 72h récurrentes, douleurs articulaires multiples.\n• Motivation effondrée après période de régularité.\n\nSI SÉANCE MANQUÉE :\n• 1 séance manquée (< 4 jours) : reprendre planning prévu à la séance suivante, pas de rattrapage compensatoire.\n• 4-7 jours de pause : redémarrer la semaine en cours, séance par séance, à -2,5 kg vs charges prévues.\n• 1-2 semaines : reprendre à -1 sem de charge (ex : pause en W6 = redémarrer W5).\n• > 2 semaines : reculer 2-3 semaines (W-2 ou W-3) pour ressécuriser l'adaptation, ré-évaluer TM.\n• Cutback W4/W8 et deload W12 = NON NÉGOCIABLES — même si tu te sens en forme. La super-compensation est CONSTITUTIVE de la performance long terme.",
+  "weeks": [
+    {
+      "week_number": 1,
+      "theme": "Volume Block W1 — Réinstallation technique, 70% TM",
+      "goal": "Poser les bases mécaniques des 5 compounds à charge modérée (70% TM). Calibrer les charges de départ, repérer déficits techniques résiduels. RPE cible 6-7. Volume hebdo composés ~14-16 sets/muscle principal (squat 3x/sem 5x5 = 15 sets quad). Séances A-B-A.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance A1 — Squat / Bench / Row",
+          "type": "strength",
+          "duration_minutes": 75,
+          "warmup": "10 min mobilité globale : cercles épaules 10/sens, rotations thoraciques 10/côté, world's greatest stretch 5/côté, cercles genoux 10/sens, activation fessiers (clamshell 15/côté, pont fessier 15 reps). Ramping squat : barre x10, +20 kg x5, +40 kg x3 avant working sets. RAPPEL GRILLE RPE / TM : RPE 7 = 3 reps en réserve, RPE 8 = 2 reps en réserve, RPE 9 = 1 rep en réserve, RPE 10 = max. TM = 90% du 1RM testé. Tous les % sont calculés sur le TM. Plaques fractionnées 1,25 kg indispensables.",
+          "cooldown": "5 min mobilité douce : pigeon pose 60 sec/côté, doorway chest stretch 30 sec, flexion thoracique foam roller 2 min. Hydratation + collation protéines + glucides dans 45 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "70% TM. Pieds largeur épaules, orteils 30°, position barre haute ou basse selon préférence établie. Profondeur parallèle minimum (cuisses parallèles au sol). Descente contrôlée 3 sec, drive explosif. RPE cible 6-7. Vérifier : pas de wink fessier en bas, genoux dans l'axe orteils, dos neutre, regard horizon. 3 min de repos ACSM compounds heavy.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain", "cardiac-clearance-required"],
+              "alternatives": ["Front squat 5x5 @65% TM", "Box squat barre 5x5 @70% TM", "Goblet squat DB lourd 4x8 si rack indisponible"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "70% TM. Prise légèrement plus large que les épaules, coudes à 75° du tronc (pas 90° = conflit sous-acromial). Descente contrôlée vers sternum bas, drive explosif. Scapulas rétractées et déprimées tout au long. Pieds plantés, légère arche lombaire naturelle. RPE 6-7. Si douleur antéro-latérale épaule, swap DB bench press temporairement.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain", "cardiac-clearance-required"],
+              "alternatives": ["DB bench press 5x6-8", "Floor press barre 5x5", "Incline bench press 5x5 @65% TM"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "70% TM. Pronation par défaut (Pendlay row possible si tu maîtrises). Buste penché à ~45°, dos neutre, barre tirée vers le nombril/bas du sternum, coudes dans l'axe du tronc. Pas de triche lombaire (ne remonte pas le buste pour finir). Volume tirage = volume poussée = règle santé épaule long terme. RPE 6-7.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 5x5", "Chest-supported DB row 5x6-8", "T-bar row 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "45 sec",
+              "rest_seconds": 60,
+              "notes": "Core EN FIN DE SÉANCE. Corps rigide, fessiers engagés, ne pas laisser lombaires s'affaisser. Renforce gainage transfert direct squat/deadlift.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury", "wrist-pain"],
+              "alternatives": ["Planche genoux 60 sec", "Hollow hold 30 sec", "Dead bug 10 reps/côté"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 45,
+              "notes": "À 4 pattes, extension bras opposé + jambe opposée, tenir 3 sec. Anti-rotation lombaire, transfert direct deadlift et squat heavy.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Dead bug 10 reps/côté", "Pallof press anti-rotation 12 reps/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Séance B1 — Squat / OHP / Deadlift",
+          "type": "strength",
+          "duration_minutes": 75,
+          "warmup": "10 min mobilité : rotations épaules avec bande 15 reps, face pulls bande légère 15 reps, activation dorsale (Y-T-W 10 reps), mobilisation chevilles (cercles 15/côté). Ramping OHP : barre x10, +10 kg x5, +20 kg x3. Ramping deadlift : 60% x5, 70% x3.",
+          "cooldown": "Étirements ischio-jambiers 60 sec/jambe, fessier (figure 4) 60 sec/côté, psoas (fente basse) 45 sec/côté.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "70% TM, identique séance A1. Le squat apparaît dans les 3 séances de la semaine — central protocole 5x5. Surveiller fatigue cumulative en cours de semaine.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain"],
+              "alternatives": ["Front squat 5x5 @65% TM", "Box squat 5x5 @70% TM"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "70% TM. Prise légèrement plus large que les épaules, pronation. Barre part deltoïde antérieur, passe devant le visage, lockout coudes en haut barre au-dessus oreilles. Gainage abdominal permanent. Ne pas hyperextender lombaires (signal cervical = stop). RPE 6-7.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain", "lower-back-pain"],
+              "alternatives": ["Push press 5x5 si épaule à charge plus grande", "Z-press assis 5x5 @60% TM", "DB shoulder press 5x6-8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "5",
+              "rest_seconds": 240,
+              "notes": "70% TM. Protocole Texas Method / Madcow : 1 série lourde de travail. Dos neutre, hanches à hauteur correcte (ni trop haut ni trop bas), barre contre tibias, tirage explosif pieds-sol. RPE 6-7. 4 min de repos (240 sec) — sollicitation SNC + lombaire supérieure justifie repos majoré, maintenu sur tout le cycle.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain", "cardiac-clearance-required"],
+              "alternatives": ["Trap bar deadlift 1x5 @70% TM", "Sumo deadlift 1x5 @70% TM", "Romanian Deadlift 3x6 @60% TM si lombaire sensible"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crunch inverse",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 45,
+              "notes": "Allongé sur le dos, genoux à 90°, amener genoux vers poitrine en roulant le bassin. Cible psoas + abdominaux bas. Core en fin de séance.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Hanging leg raises 3x8", "Dead bug 3x10/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "30 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-flexion latérale. Transfert direct stabilisation squat heavy et OHP.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Side plank genoux 45 sec/côté", "Pallof press 12/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance A2 — Squat / Bench / Row",
+          "type": "strength",
+          "duration_minutes": 75,
+          "warmup": "10 min mobilité standard. Ramping bench : barre x10, +20 kg x5, +40 kg x3. Ramping squat : barre x10, +30 kg x5, +50 kg x3.",
+          "cooldown": "Mobilité thoracique foam roller 2 min + pigeon pose 60 sec/côté + chest stretch 30 sec.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "70% TM. 3ème squat de la semaine — évaluer fatigue : si RPE > 8 sur la 1ère série de travail, réduire de 5 kg. Le corps s'adapte à la fréquence, ne pas forcer.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain"],
+              "alternatives": ["Front squat 5x5 @65% TM", "Box squat 5x5 @70% TM"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "70% TM. Consolider technique W1 avant montées de charge. RPE 6-7.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 5x6-8", "Floor press barre 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "70% TM. Même charge qu'A1. Volume tirage = volume poussée = règle santé épaule long terme.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 5x5", "Chest-supported DB row 5x6-8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "45 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin de séance.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury", "wrist-pain"],
+              "alternatives": ["Planche genoux 60 sec", "Hollow hold 30 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-rotation lombaire.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 10/côté", "Pallof press 12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "theme": "Volume Block W2 — Montée à 75% TM, RPE 7-8",
+      "goal": "+5 kg squat / deadlift, +2,5 kg bench / OHP / row vs W1. Volume constant 5x5. RPE 7-8. Séances B-A-B (alternance pattern hebdo).",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance B2 — Squat / OHP / Deadlift",
+          "type": "strength",
+          "duration_minutes": 75,
+          "warmup": "10 min mobilité + ramping. OHP : barre x10, +10 kg x5, +25 kg x3. Deadlift : 60% x5, 75% x2.",
+          "cooldown": "Étirements ischio + fessiers + psoas, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+5 kg vs W1 (~75% TM). RPE 7-8. La montée +5 kg sur le squat est la progression minimale hebdomadaire pour un expert (Madcow : petits paliers longs). Vérifier profondeur et alignment genoux.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain"],
+              "alternatives": ["Front squat 5x5 @70% TM", "Box squat 5x5 @75% TM"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+2,5 kg vs W1. RPE 7-8. L'OHP stagne le plus vite chez l'expert — paliers 1,25 kg de chaque côté essentiels (plaques fractionnées).",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 5x5", "Z-press 5x5", "DB shoulder press 5x6-8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "5",
+              "rest_seconds": 240,
+              "notes": "+5 kg vs W1. RPE 7-8. Continuer à filmer ou demander retour sur position bas du dos. 4 min repos (240 sec).",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain"],
+              "alternatives": ["Trap bar deadlift 1x5", "Sumo deadlift 1x5", "Romanian Deadlift 3x6 @65% TM"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crunch inverse",
+              "sets": 3,
+              "reps": "12",
+              "rest_seconds": 45,
+              "notes": "Core en fin de séance.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Hanging leg raises 3x8", "Dead bug 3x10/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "35 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-flexion latérale.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Side plank genoux 50 sec/côté", "Pallof press 12/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Séance A3 — Squat / Bench / Row",
+          "type": "strength",
+          "duration_minutes": 75,
+          "warmup": "10 min mobilité. Bench : barre x10, +20 kg x5, +40 kg x3. Squat : barre x10, +30 kg x5, +50 kg x3.",
+          "cooldown": "Mobilité thoracique + pigeon pose, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+5 kg vs W1. Identique B2. RPE 7-8.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 5x5 @70% TM", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+2,5 kg vs W1. RPE 7-8. Vérifier que les 5èmes reps restent propres — si RPE > 9 dès la 3ème série, réduire de 2,5 kg.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 5x6-8", "Floor press 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+2,5 kg vs W1. RPE 7-8.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 5x5", "Chest-supported DB row 5x6-8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "50 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 65 sec", "Hollow hold 35 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "10 par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-rotation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 10/côté", "Pallof press 12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance B3 — Squat / OHP / Deadlift",
+          "type": "strength",
+          "duration_minutes": 75,
+          "warmup": "10 min mobilité. Identique B2.",
+          "cooldown": "Étirements ischio + fessiers, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge que B2/A3. 3ème squat de la semaine — si la 5ème série dépasse RPE 9, réduire légèrement. Volume > intensité en Volume Block.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 5x5", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge que B2. Consolider avant prochaine montée.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 5x5", "DB shoulder press 5x6-8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "5",
+              "rest_seconds": 240,
+              "notes": "Même charge que B2. Répétition = ancrage technique à cette charge. 4 min repos (240 sec).",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain"],
+              "alternatives": ["Trap bar deadlift 1x5", "RDL 3x6 @65% TM"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crunch inverse",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Hanging leg raises 3x10", "Dead bug 3x12/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "35 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-flexion latérale.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Side plank genoux 50 sec/côté", "Pallof press 12/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "theme": "Volume Block W3 — Pic 80% TM, RPE 8 + intro dips lestés et pull-ups lestés",
+      "goal": "+5 kg squat / deadlift, +2,5 kg bench / OHP / row vs W2 (~80% TM). Volume 5x5. RPE 8. Séances A-B-A. Introduction dips lestés (push V accessoire) et pull-ups lestés (pull V) comme accessoires de renforcement vertical.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance A4 — Squat / Bench / Row + Dips lestés",
+          "type": "strength",
+          "duration_minutes": 80,
+          "warmup": "10 min mobilité. Squat : barre x8, +30 kg x5, +50 kg x3, +70 kg x2.",
+          "cooldown": "Mobilité épaules + fessiers, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+10 kg vs W1 (~80% TM). RPE 8. Les 3 dernières reps de la 5ème série doivent être difficiles mais propres. Si forme se dégrade (genou en valgus, bascule avant), c'est trop lourd — réduire 5 kg.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain"],
+              "alternatives": ["Front squat 5x5 @75% TM", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+5 kg vs W1. RPE 8. Barre touche légèrement sternum bas avant de pousser. Surveiller tension triceps vs pec — si triceps faillit en premier, prioriser dips accessoires.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 5x6-8", "Incline bench press 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+5 kg vs W1. RPE 8. Ne pas sacrifier technique pour reps — chaque tirage finit coudes derrière la ligne dorsale.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 5x5", "T-bar row 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "PREMIER CONTACT. Lest départ : 5 kg si dips bodyweight maîtrisés, 10 kg si tu en fais 10+ facilement. Si charges compounds rendent cette séance difficile, débuter à 2x3 reps cette semaine, monter à 3x8 W4. Triceps + deltoïde antérieur + pec bas. Renforce lockout bench. Coudes à 45°, descente contrôlée.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["dipping-bars"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Close-grip bench press 3x8", "DB JM press 3x10", "Push-up lestés 3x12 si dips indisponibles"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "55 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 70 sec", "Hollow hold 40 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-rotation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 12/côté", "Pallof press 12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Séance B4 — Squat / OHP / Deadlift + Pull-ups lestés",
+          "type": "strength",
+          "duration_minutes": 80,
+          "warmup": "10 min mobilité. OHP : barre x10, +15 kg x5, +30 kg x3. Deadlift : 60% x5, 72% x3, 80% x1.",
+          "cooldown": "Étirements ischio + fessiers + dorsaux (lat stretch barre fixe 30 sec/côté).",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge qu'A4. RPE 8.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 5x5", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+5 kg vs W1. RPE 8. Si blocage progression OHP, vérifier mobilité thoracique et force triceps. Dips accessoires introduits adressent ce point.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 5x5", "Z-press 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "5",
+              "rest_seconds": 240,
+              "notes": "+10 kg vs W1. RPE 8. La série unique lourde traitée comme quasi-max — concentration totale, Valsalva sur chaque rep. 4 min repos.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain"],
+              "alternatives": ["Trap bar deadlift 1x5", "Sumo deadlift 1x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pull-ups lestés",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120,
+              "notes": "PREMIER CONTACT. Lest départ : 5 kg si pull-ups bodyweight maîtrisés x8+, 10 kg si tu en fais 10+ facilement. Même logique dips : si fatigue excessive, débuter 2x3 cette semaine. Rétraction scapulaire initiale, coudes tirés vers les hanches.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["pullup-bar"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Pull-up bodyweight 3x8", "Lat pulldown machine 3x8", "Inverted row 3x10 si pas de barre"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crunch inverse",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Hanging leg raises 3x10", "Dead bug 3x12/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "40 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-flexion latérale.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Side plank genoux 55 sec", "Pallof press 12/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance A5 — Squat / Bench / Row + Dips lestés",
+          "type": "strength",
+          "duration_minutes": 80,
+          "warmup": "10 min mobilité. Identique A4.",
+          "cooldown": "Mobilité épaules + fessiers, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge. Consolider à 80% avant cutback W4.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 5x5", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge. RPE 8.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 5x6-8", "Floor press 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge. RPE 8.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 5x5", "T-bar row 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Même lest qu'A4. Si 3x8 complété proprement, confirmer ici avant d'augmenter lest en W5.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["dipping-bars"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Close-grip bench press 3x8", "DB JM press 3x10"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "55 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 70 sec", "Hollow hold 40 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-rotation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 12/côté", "Pallof press 12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "theme": "Cutback Volume Block — Décharge -15% charges, 3x5, paused squat + paused bench systématiques",
+      "goal": "Semaine cutback obligatoire : -15% charges (retour ~72% TM), volume 3x5 (-40% sets), RPE 6-7. Permet super-compensation avant Intensity Block W5. Toutes les séances squat utilisent le PAUSED SQUAT (1-2 sec en bas), toutes les séances bench utilisent le PAUSED BENCH (1-2 sec sur la poitrine). Convention strength validée : ne JAMAIS sauter ce cutback, la super-compensation se fait PENDANT le repos.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance B5 — Squat / OHP / Deadlift (cutback)",
+          "type": "strength",
+          "duration_minutes": 60,
+          "warmup": "10 min mobilité + ramping léger adapté à 72% TM. Squat : barre x10, +20 kg x8, +50 kg x5.",
+          "cooldown": "Étirements globaux 8 min : ischio, fessiers, psoas, quadriceps, dorsaux.",
+          "exercises": [
+            {
+              "name": "Back squat (paused)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "72% TM (-15% vs W3). RPE 6-7. PAUSED SQUAT : pause obligatoire 1-2 sec en bas chaque rep, contrôle total sans rebond. Focus 100% sur qualité de mouvement, vitesse hors du trou, profondeur. Semaine technique par excellence.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain"],
+              "alternatives": ["Tempo squat 4-1-1-0 3x5", "Front squat paused 3x5", "Box squat 3x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "72% TM. RPE 6-7. Pause 2 sec en haut pour renforcer le lockout sans fatigue.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 3x5", "Z-press 3x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "3",
+              "rest_seconds": 180,
+              "notes": "72% TM. 3 reps seulement (volume réduit). Focus vitesse hors du sol et position initiale hanches. 3 min repos suffisants à intensité réduite.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain"],
+              "alternatives": ["Trap bar deadlift 1x3", "Romanian Deadlift 3x6 @60% TM"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pull-up bodyweight",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 90,
+              "notes": "Sans lest cutback. Volume tirage maintenu même en cutback (santé épaule).",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["pullup-bar"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Lat pulldown machine 3x10", "Inverted row 3x10", "Band-assisted pull-up 3x10"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 2,
+              "duration": "45 sec",
+              "rest_seconds": 60,
+              "notes": "Cutback core — volume réduit.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 60 sec", "Hollow hold 30 sec"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Séance A6 — Squat / Bench / Row (cutback)",
+          "type": "strength",
+          "duration_minutes": 60,
+          "warmup": "10 min mobilité. Bench : barre x10, +20 kg x8, +40 kg x5. Squat : barre x10, +20 kg x8, +50 kg x5.",
+          "cooldown": "Mobilité thoracique + épaules, 8 min.",
+          "exercises": [
+            {
+              "name": "Back squat (paused)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "72% TM. RPE 6-7. PAUSED SQUAT : pause obligatoire 1-2 sec en bas. Profiter charge légère pour travailler position idéale en bas et drive explosive hors du trou.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Tempo squat 3x5", "Box squat 3x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press (paused)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "72% TM. RPE 6-7. PAUSED BENCH : pause obligatoire 1-2 sec sur la poitrine cette semaine. Renforce phase de transition et force de départ sans rebond.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Tempo bench 4-2-1-0 3x5", "DB bench press 3x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "72% TM. RPE 6-7.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 3x5", "Chest-supported DB row 3x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 2,
+              "reps": "10 par côté",
+              "rest_seconds": 45,
+              "notes": "Cutback core.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 10/côté", "Pallof press 10/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance B6 — Squat / OHP / Deadlift (cutback)",
+          "type": "strength",
+          "duration_minutes": 60,
+          "warmup": "10 min mobilité. Squat : barre x10, +20 kg x8, +50 kg x5.",
+          "cooldown": "Étirements globaux 8 min.",
+          "exercises": [
+            {
+              "name": "Back squat (paused)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "72% TM. RPE 6-7. PAUSED SQUAT : pause obligatoire 1-2 sec en bas. Dernier squat cutback avant Intensity Block. Revenir 5x5 et charges élevées dès W5.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Tempo squat 3x5", "Box squat 3x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "72% TM. RPE 6-7.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 3x5", "Z-press 3x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "3",
+              "rest_seconds": 180,
+              "notes": "72% TM. Focus position barre contre tibias et traction initiale. 3 min repos.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain"],
+              "alternatives": ["Trap bar deadlift 1x3", "RDL 3x6 @60% TM"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Side plank",
+              "sets": 2,
+              "duration": "30 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Cutback core.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Side plank genoux 45 sec/côté", "Pallof press 10/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "theme": "Intensity Block W5 — Reprise 82% TM, RPE 8-8,5",
+      "goal": "Reprendre 5x5 à charges = pic W3 +2,5 kg sur tous mouvements (~82% TM). RPE 8-8,5. Volume 5x5 complet. Séances A-B-A. Microloading expert via plaques fractionnées 1,25 kg sur OHP/bench/row.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance A7 — Squat / Bench / Row + Dips lestés",
+          "type": "strength",
+          "duration_minutes": 85,
+          "warmup": "12 min mobilité renforcée : world's greatest stretch 8/côté, rotations thoraciques 12/côté, band pull-aparts 20 reps, activation fessiers. Squat : barre x8, +30 kg x5, +55 kg x3, +75 kg x2.",
+          "cooldown": "Mobilité épaules + fessiers, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Pic W3 +2,5 kg (~82% TM). RPE 8-8,5. Intensity Block démarre légèrement au-dessus du pic Volume Block — la super-compensation W4 doit rendre cette charge gérable. Si RPE > 9 dès la 2ème série, réduire au pic W3.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain"],
+              "alternatives": ["Front squat 5x5 @75% TM", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Pic W3 +2,5 kg. RPE 8-8,5. Les 5èmes reps des 2 dernières séries doivent être challengeantes. Si tu bloques sur la 4ème rep, c'est trop lourd.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 5x6-8", "Incline bench press 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Pic W3 +2,5 kg. RPE 8-8,5.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 5x5", "T-bar row 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "+2,5 kg lest vs Volume Block (soit 7,5 kg ou 12,5 kg selon ton lest départ W3).",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["dipping-bars"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Close-grip bench press 3x8", "DB JM press 3x10"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "60 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 75 sec", "Hollow hold 45 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-rotation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 12/côté", "Pallof press 12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Séance B8 — Squat / OHP / Deadlift + Pull-ups lestés",
+          "type": "strength",
+          "duration_minutes": 85,
+          "warmup": "12 min. OHP : barre x10, +15 kg x5, +30 kg x3, +45 kg x2. DL : 60% x5, 75% x3, 82% x1.",
+          "cooldown": "Étirements ischio + fessiers + dorsaux, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge qu'A7. RPE 8-8,5.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 5x5", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Pic W3 +2,5 kg. RPE 8-8,5. OHP nécessite plaques fractionnées 1,25 kg.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 5x5", "Z-press 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "5",
+              "rest_seconds": 240,
+              "notes": "Pic W3 +2,5 kg. RPE 8-8,5. Ceinture lombaire fortement recommandée à ce niveau de charge. Valsalva complet sur chaque rep. 4 min repos.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain"],
+              "alternatives": ["Trap bar deadlift 1x5", "Sumo deadlift 1x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pull-ups lestés",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120,
+              "notes": "+2,5 kg lest vs Volume Block.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["pullup-bar"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Pull-up bodyweight 3x8", "Lat pulldown 3x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crunch inverse",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Hanging leg raises 3x10", "Dead bug 3x12/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "45 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-flexion latérale.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Side plank genoux 60 sec", "Pallof press 12/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance A8 — Squat / Bench / Row + Dips lestés",
+          "type": "strength",
+          "duration_minutes": 85,
+          "warmup": "Identique A7.",
+          "cooldown": "Mobilité épaules + fessiers, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge. RPE 8-8,5. Consolider avant prochaine progression.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 5x5", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge. RPE 8-8,5.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 5x6-8", "Incline bench 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge. RPE 8-8,5.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 5x5", "T-bar row 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Même lest qu'A7.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["dipping-bars"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Close-grip bench press 3x8", "DB JM press 3x10"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "60 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 75 sec", "Hollow hold 45 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-rotation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 12/côté", "Pallof press 12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "theme": "Intensity Block W6 — Intensification 85% TM, RPE 8,5",
+      "goal": "+5 kg squat / deadlift, +1,25 kg bench / OHP / row vs W5 (~85% TM). RPE 8,5. Volume 5x5. Séances B-A-B.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance B9 — Squat / OHP / Deadlift + Pull-ups lestés",
+          "type": "strength",
+          "duration_minutes": 85,
+          "warmup": "12 min. DL : 60% x5, 75% x3, 85% x1.",
+          "cooldown": "Étirements ischio + fessiers, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+5 kg vs W5 (~85% TM). RPE 8,5. La 5ème série doit être un effort significatif sans jamais atteindre l'échec. Maintenir 3 min repos.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain"],
+              "alternatives": ["Front squat 5x5 @78% TM", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+1,25 kg vs W5 (microloading). RPE 8,5.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 5x5", "Z-press 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "5",
+              "rest_seconds": 240,
+              "notes": "+5 kg vs W5. RPE 8,5. Ceinture lombaire OBLIGATOIRE à ce % d'intensité. 4 min repos.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain"],
+              "alternatives": ["Trap bar deadlift 1x5", "Sumo deadlift 1x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pull-ups lestés",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120,
+              "notes": "Même lest qu'W5.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["pullup-bar"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Pull-up bodyweight 3x8", "Lat pulldown 3x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crunch inverse",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Hanging leg raises 3x10", "Dead bug 3x12/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "45 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-flexion latérale.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Side plank genoux 60 sec", "Pallof press 12/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Séance A10 — Squat / Bench / Row + Dips lestés",
+          "type": "strength",
+          "duration_minutes": 85,
+          "warmup": "12 min. Bench : barre x10, +25 kg x5, +50 kg x3, +70 kg x2.",
+          "cooldown": "Mobilité thoracique + épaules, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge que B9. RPE 8,5.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 5x5", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+1,25 kg vs W5. RPE 8,5. Si blocage répété sur 5èmes reps, noter séries complétées (ex : 5-5-5-5-4) — donnée pour adapter prochaine semaine.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 5x6-8", "Incline bench 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+1,25 kg vs W5. RPE 8,5.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 5x5", "T-bar row 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Même lest qu'W5.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["dipping-bars"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Close-grip bench press 3x8", "DB JM press 3x10"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "60 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 75 sec", "Hollow hold 45 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-rotation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 12/côté", "Pallof press 12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance B10 — Squat / OHP / Deadlift + Pull-ups lestés",
+          "type": "strength",
+          "duration_minutes": 85,
+          "warmup": "12 min. Identique B9.",
+          "cooldown": "Étirements ischio + dorsaux + psoas, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge. RPE 8,5. 3ème squat à 85% TM — surveiller fatigue : si vitesse barre chute nettement sur 4ème série, raccourcir à 4 séries.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 5x5", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge. RPE 8,5.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 5x5", "Z-press 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "5",
+              "rest_seconds": 240,
+              "notes": "Même charge. RPE 8,5. 4 min repos.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain"],
+              "alternatives": ["Trap bar deadlift 1x5", "Sumo deadlift 1x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pull-ups lestés",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120,
+              "notes": "Même lest.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["pullup-bar"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Pull-up bodyweight 3x8", "Lat pulldown 3x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crunch inverse",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Hanging leg raises 3x10", "Dead bug 3x12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "theme": "Intensity Block W7 — Pic d'intensification 87-88% TM, RPE 8,5-9",
+      "goal": "+5 kg squat / deadlift, +1,25 kg bench / OHP / row vs W6 (~88% TM). RPE 8,5-9. Volume 5x5. Séances A-B-A. Dernière semaine 5x5 complet avant cutback W8.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance A11 — Squat / Bench / Row + Dips lestés",
+          "type": "strength",
+          "duration_minutes": 90,
+          "warmup": "12 min mobilité. Squat : barre x8, +30 kg x5, +55 kg x3, +80 kg x2, +95 kg x1. Bench : barre x10, +25 kg x5, +50 kg x3, +70 kg x2.",
+          "cooldown": "Mobilité épaules + fessiers + étirements globaux, 7 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+5 kg vs W6 (~88% TM). RPE 8,5-9. Pic Intensity Block sur squat. La 5ème série est un effort quasi-maximal, l'abandon technique ne doit JAMAIS être une option. Spotter obligatoire OU cage avec barres de sécurité.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain", "cardiac-clearance-required"],
+              "alternatives": ["Front squat 5x5 @80% TM", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+1,25 kg vs W6. RPE 8,5-9. Spotter conseillé sur 2 dernières séries.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 5x6-8", "Incline bench 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+1,25 kg vs W6. RPE 8,5-9.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 5x5", "T-bar row 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "+1,25 kg lest vs W6.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["dipping-bars"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Close-grip bench press 3x8", "DB JM press 3x10"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "60 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 75 sec", "Hollow hold 45 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-rotation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 12/côté", "Pallof press 12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Séance B11 — Squat / OHP / Deadlift + Pull-ups lestés",
+          "type": "strength",
+          "duration_minutes": 90,
+          "warmup": "12 min. DL : 60% x5, 75% x3, 88% x1.",
+          "cooldown": "Étirements ischio + dorsaux, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge qu'A11. RPE 9. Volume le plus élevé du cycle sur squat avant cutback W8.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 5x5", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "+1,25 kg vs W6. RPE 8,5-9.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 5x5", "Z-press 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "5",
+              "rest_seconds": 240,
+              "notes": "+5 kg vs W6. RPE 8,5-9. Pic Intensity Block deadlift. Ceinture obligatoire, Valsalva, concentration max. 4 min repos.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain", "cardiac-clearance-required"],
+              "alternatives": ["Trap bar deadlift 1x5", "Sumo deadlift 1x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pull-ups lestés",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120,
+              "notes": "+1,25 kg vs W6.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["pullup-bar"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Pull-up bodyweight 3x8", "Lat pulldown 3x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crunch inverse",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Hanging leg raises 3x10", "Dead bug 3x12/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "45 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-flexion latérale.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Side plank genoux 60 sec", "Pallof press 12/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance A12 — Squat / Bench / Row + Dips lestés",
+          "type": "strength",
+          "duration_minutes": 90,
+          "warmup": "12 min. Identique A11.",
+          "cooldown": "Mobilité épaules + fessiers, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge qu'A11/B11. RPE 9. Confirmer le pic avant cutback W8.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 5x5", "Box squat 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge. RPE 8,5-9.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 5x6-8", "Incline bench 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 5,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge. RPE 8,5-9.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 5x5", "T-bar row 5x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Même lest.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["dipping-bars"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Close-grip bench press 3x8", "DB JM press 3x10"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "60 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 75 sec", "Hollow hold 45 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-rotation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 12/côté", "Pallof press 12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 8,
+      "theme": "Cutback Intensity Block — Décharge -15% charges, 3x5, paused squat + paused bench systématiques",
+      "goal": "Semaine cutback obligatoire avant Realization Block : -15% charges (~75% TM), 3x5 (-40% sets), RPE 6-7. La super-compensation post-cutback est la fondation du Realization Block qui visera les PR. PAUSED SQUAT et PAUSED BENCH systématiques.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance B12 — Squat / OHP / Deadlift (cutback)",
+          "type": "strength",
+          "duration_minutes": 60,
+          "warmup": "10 min mobilité + ramping léger. Squat : barre x10, +20 kg x8, +55 kg x5.",
+          "cooldown": "Étirements globaux 8 min.",
+          "exercises": [
+            {
+              "name": "Back squat (paused)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "-15% vs W7 (~75% TM). RPE 6-7. PAUSED SQUAT : pause obligatoire 1-2 sec en bas. Travailler vitesse de barre (intent vitesse maximale même sur charge légère) — entraînement puissance neuromusculaire sans fatigue.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Tempo squat 3x5", "Box squat 3x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "-15% vs W7. RPE 6-7.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 3x5", "Z-press 3x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "3",
+              "rest_seconds": 180,
+              "notes": "-15% vs W7. RPE 6. 3 reps en se concentrant sur position hanche et initiation traction. 3 min repos.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain"],
+              "alternatives": ["Trap bar deadlift 1x3", "RDL 3x6 @60% TM"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pull-up bodyweight",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 90,
+              "notes": "Sans lest, cutback.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["pullup-bar"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Lat pulldown 3x10", "Inverted row 3x10"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 2,
+              "duration": "50 sec",
+              "rest_seconds": 60,
+              "notes": "Cutback core.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 65 sec", "Hollow hold 35 sec"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Séance A13 — Squat / Bench / Row (cutback)",
+          "type": "strength",
+          "duration_minutes": 60,
+          "warmup": "10 min mobilité. Bench : barre x10, +20 kg x8, +45 kg x5. Squat : barre x10, +20 kg x8, +55 kg x5.",
+          "cooldown": "Mobilité épaules + thoracique, 8 min.",
+          "exercises": [
+            {
+              "name": "Back squat (paused)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "-15% vs W7. RPE 6-7. PAUSED SQUAT : pause 1-2 sec en bas. Renforce drive out of the hole pour préparer charges élevées Realization Block.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Tempo squat 3x5", "Box squat 3x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press (paused)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "-15% vs W7. RPE 6-7. PAUSED BENCH : pause 1-2 sec sur poitrine. Renforce phase de transition avant Realization.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Tempo bench 3x5", "DB bench press 3x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "-15% vs W7. RPE 6-7.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 3x5", "Chest-supported DB row 3x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 2,
+              "reps": "10 par côté",
+              "rest_seconds": 45,
+              "notes": "Cutback core.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 10/côté", "Pallof press 10/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance B13 — Squat / OHP / Deadlift (cutback)",
+          "type": "strength",
+          "duration_minutes": 60,
+          "warmup": "10 min mobilité. Squat : barre x10, +20 kg x8, +55 kg x5.",
+          "cooldown": "Étirements globaux 8 min.",
+          "exercises": [
+            {
+              "name": "Back squat (paused)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "Même charge que B12. RPE 6-7. PAUSED SQUAT : pause 1-2 sec. Dernier squat cutback. Préparer mentalement les charges Realization Block.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Tempo squat 3x5", "Box squat 3x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "Même charge. RPE 6-7.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 3x5", "Z-press 3x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "3",
+              "rest_seconds": 180,
+              "notes": "Même charge. RPE 6. 3 min repos.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain"],
+              "alternatives": ["Trap bar deadlift 1x3", "RDL 3x6 @60% TM"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Side plank",
+              "sets": 2,
+              "duration": "35 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Cutback core.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Side plank genoux 50 sec/côté", "Pallof press 10/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 9,
+      "theme": "Realization Block W9 — Schéma 5,5,5+ AMRAP @90% TM, RPE 8,5-9",
+      "goal": "Démarrer Realization Block à charges = pic W7 +2,5 kg sur tous mouvements (~90% TM). Schéma inspiré 5/3/1 W1 : compounds principaux 3x5 puis 1 set AMRAP @ même charge (5+ reps). Volume secondaires réduit. RPE 8,5-9. Séances A-B-A. Objectif : dépasser PR actuels en W11.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance A14 — Squat / Bench / Row + Dips lestés",
+          "type": "strength",
+          "duration_minutes": 90,
+          "warmup": "12 min mobilité. Squat : barre x8, +30 kg x5, +55 kg x3, +75 kg x2, +85 kg x1.",
+          "cooldown": "Mobilité épaules + fessiers + étirements globaux, 7 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 4,
+              "reps": "5, 5, 5, 5+ AMRAP",
+              "rest_seconds": 180,
+              "notes": "W7 +2,5 kg (~90% TM). RPE 8,5-9. Schéma 5/3/1 W1 : 3 séries de 5 puis 1 série AMRAP (As Many Reps As Possible) à même charge — viser 6-8 reps minimum si forme propre. Stop dès que la forme se dégrade. Concentration totale, spotter ou cage avec barres de sécurité à hauteur des épaules obligatoire.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain", "cardiac-clearance-required"],
+              "alternatives": ["Front squat 4x5 dont 1 AMRAP @82% TM", "Box squat 4x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 4,
+              "reps": "5, 5, 5, 5+ AMRAP",
+              "rest_seconds": 180,
+              "notes": "W7 +1,25 kg. RPE 8,5-9. Même schéma 5/3/1 W1. Spotter conseillé sur AMRAP. Si AMRAP < 5 reps, c'est trop lourd — réduire 2,5 kg pour W10.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 4x6-8", "Incline bench 4x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "W7 +1,25 kg. RPE 8,5-9. Pas d'AMRAP sur row (sécurité lombaire — risque rounding sous fatigue).",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 4x5", "T-bar row 4x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Même lest qu'W7.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["dipping-bars"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Close-grip bench press 3x8", "DB JM press 3x10"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "60 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 75 sec", "Hollow hold 45 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-rotation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 12/côté", "Pallof press 12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Séance B14 — Squat / OHP / Deadlift + Pull-ups lestés",
+          "type": "strength",
+          "duration_minutes": 90,
+          "warmup": "12 min. OHP : barre x10, +15 kg x5, +30 kg x3, +45 kg x2. DL : 60% x5, 75% x3, 85% x2.",
+          "cooldown": "Étirements ischio + dorsaux, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge qu'A14, mais SANS AMRAP cette séance (gestion fatigue). 4x5 @90% TM. RPE 8,5-9.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 4x5", "Box squat 4x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 4,
+              "reps": "5, 5, 5, 5+ AMRAP",
+              "rest_seconds": 180,
+              "notes": "W7 +1,25 kg. Schéma 5/3/1 W1 : 3x5 puis AMRAP @90% TM. RPE 8,5-9.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 4x5 dont 1 AMRAP", "Z-press 4x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "5",
+              "rest_seconds": 240,
+              "notes": "W7 +2,5 kg (~88-90% TM). RPE 8,5-9. SANS AMRAP sur deadlift en Realization Block — protocole sécurité spécifique : risque lombaire augmente exponentiellement sur séries sub-maximales répétées > 90% TM. Maintenir 1 série de 5. Ceinture obligatoire. 4 min repos.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain", "cardiac-clearance-required"],
+              "alternatives": ["Trap bar deadlift 1x5", "Sumo deadlift 1x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pull-ups lestés",
+              "sets": 3,
+              "reps": "6",
+              "rest_seconds": 120,
+              "notes": "Même lest qu'W7.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["pullup-bar"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Pull-up bodyweight 3x8", "Lat pulldown 3x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crunch inverse",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Hanging leg raises 3x10", "Dead bug 3x12/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "45 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-flexion latérale.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Side plank genoux 60 sec", "Pallof press 12/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance A15 — Squat / Bench / Row + Dips lestés",
+          "type": "strength",
+          "duration_minutes": 90,
+          "warmup": "12 min. Identique A14.",
+          "cooldown": "Mobilité épaules + fessiers, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge. SANS AMRAP cette séance (3ème squat de la semaine). 4x5 @90% TM. RPE 8,5-9.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 4x5", "Box squat 4x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge qu'A14. SANS AMRAP (déjà fait A14). 4x5 @90% TM. RPE 8,5-9.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 4x6-8", "Incline bench 4x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "Même charge. RPE 8,5-9.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 4x5", "T-bar row 4x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "Même lest.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["dipping-bars"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Close-grip bench press 3x8", "DB JM press 3x10"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "60 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 75 sec", "Hollow hold 45 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-rotation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 12/côté", "Pallof press 12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 10,
+      "theme": "Realization Block W10 — Schéma 3,3,3+ AMRAP @92% TM, RPE 9",
+      "goal": "+2,5 kg squat / deadlift, +1,25 kg bench / OHP / row vs W9 (~92% TM). Schéma 5/3/1 W2 : compounds principaux 3x3 puis 1 set AMRAP @ même charge (3+ reps). RPE 9. Séances B-A-B.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance B15 — Squat / OHP / Deadlift + Pull-ups lestés",
+          "type": "strength",
+          "duration_minutes": 90,
+          "warmup": "12 min. Squat : barre x8, +30 kg x5, +55 kg x3, +80 kg x2, +90 kg x1. OHP : barre x10, +15 kg x5, +30 kg x3, +45 kg x2.",
+          "cooldown": "Étirements ischio + fessiers + dorsaux, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 4,
+              "reps": "3, 3, 3, 3+ AMRAP",
+              "rest_seconds": 180,
+              "notes": "W9 +2,5 kg (~92% TM). RPE 9. Schéma 5/3/1 W2 : 3x3 puis AMRAP. AMRAP cible : 4-6 reps minimum. Concentration absolue, spotter ou cage obligatoire.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain", "cardiac-clearance-required"],
+              "alternatives": ["Front squat 4x3 dont 1 AMRAP @85% TM", "Box squat 4x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 4,
+              "reps": "3, 3, 3, 3+ AMRAP",
+              "rest_seconds": 180,
+              "notes": "W9 +1,25 kg. Schéma 3,3,3+ @92% TM. RPE 9.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 4x3 dont 1 AMRAP", "Z-press 4x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "3",
+              "rest_seconds": 240,
+              "notes": "W9 +2,5 kg (~92% TM). RPE 9. SANS AMRAP. 1x3 (volume réduit pour préserver SNC). Ceinture obligatoire, Valsalva. 4 min repos.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain", "cardiac-clearance-required"],
+              "alternatives": ["Trap bar deadlift 1x3", "Sumo deadlift 1x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pull-ups lestés",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 120,
+              "notes": "+1,25 kg vs W9 si W9 propre.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["pullup-bar"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Pull-up bodyweight 3x8", "Lat pulldown 3x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crunch inverse",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Hanging leg raises 3x10", "Dead bug 3x12/côté"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Side plank",
+              "sets": 3,
+              "duration": "45 sec par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-flexion latérale.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Side plank genoux 60 sec", "Pallof press 12/côté"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Séance A16 — Squat / Bench / Row + Dips lestés",
+          "type": "strength",
+          "duration_minutes": 90,
+          "warmup": "12 min. Bench : barre x10, +25 kg x5, +50 kg x3, +70 kg x2, +80 kg x1.",
+          "cooldown": "Mobilité thoracique + épaules, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 4,
+              "reps": "3",
+              "rest_seconds": 180,
+              "notes": "Même charge que B15. SANS AMRAP. 4x3 @92% TM. RPE 9.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 4x3", "Box squat 4x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 4,
+              "reps": "3, 3, 3, 3+ AMRAP",
+              "rest_seconds": 180,
+              "notes": "W9 +1,25 kg. Schéma 3,3,3+ @92% TM. RPE 9. Spotter conseillé sur AMRAP.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 4x6", "Incline bench 4x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 4,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "W9 +1,25 kg. RPE 8,5-9. Pas d'AMRAP (sécurité lombaire).",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 4x5", "T-bar row 4x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Dips lestés",
+              "sets": 3,
+              "reps": "8",
+              "rest_seconds": 120,
+              "notes": "+1,25 kg vs W9.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["dipping-bars"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Close-grip bench press 3x8", "DB JM press 3x10"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 3,
+              "duration": "60 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 75 sec", "Hollow hold 45 sec"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Bird-dog",
+              "sets": 3,
+              "reps": "12 par côté",
+              "rest_seconds": 45,
+              "notes": "Anti-rotation.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Dead bug 12/côté", "Pallof press 12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance B16 — Squat / OHP / Deadlift + Pull-ups lestés",
+          "type": "strength",
+          "duration_minutes": 90,
+          "warmup": "12 min. Identique B15.",
+          "cooldown": "Étirements ischio + dorsaux, 5 min.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 4,
+              "reps": "3",
+              "rest_seconds": 180,
+              "notes": "Même charge. SANS AMRAP. 4x3 @92% TM. RPE 9. 3ème squat à 92% — surveiller fatigue : si vitesse barre chute fortement, raccourcir à 3 séries.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 4x3", "Box squat 4x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 4,
+              "reps": "3",
+              "rest_seconds": 180,
+              "notes": "Même charge qu'B15. SANS AMRAP. 4x3 @92% TM. RPE 9.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 4x3", "Z-press 4x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "3",
+              "rest_seconds": 240,
+              "notes": "Même charge. RPE 9. 1x3. Ceinture obligatoire. 4 min repos.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain"],
+              "alternatives": ["Trap bar deadlift 1x3", "Sumo deadlift 1x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pull-ups lestés",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 120,
+              "notes": "Même lest qu'B15.",
+              "target_zone": "RPE 8-9",
+              "required_equipment": ["pullup-bar"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Pull-up bodyweight 3x8", "Lat pulldown 3x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Crunch inverse",
+              "sets": 3,
+              "reps": "15",
+              "rest_seconds": 45,
+              "notes": "Core en fin.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Hanging leg raises 3x10", "Dead bug 3x12/côté"],
+              "volume_axis": "reps"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 11,
+      "theme": "Realization Block W11 — Peak week, taper J1-J3, set 5,3,1+ AMRAP @95% TM J5",
+      "goal": "Semaine pic Realization Block. J1 séance taper allégée (3x3 @85% TM). J3 séance mobilité dédiée (récupération SNC). J5 = pic technique 5/3/1 W3 : schéma 5,3,1+ AMRAP @95% TM sur compounds principaux. RPE 9-9,5 J5. Préparation immédiate au test 1RM W12.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance taper — Squat / Bench / OHP / Row 3x3",
+          "type": "strength",
+          "duration_minutes": 70,
+          "warmup": "12 min mobilité. Squat : barre x8, +30 kg x5, +60 kg x3, +75 kg x2.",
+          "cooldown": "Mobilité globale 8 min : pigeon 90 sec/côté, doorway chest stretch 60 sec, lat stretch 45 sec/côté.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 3,
+              "reps": "3",
+              "rest_seconds": 180,
+              "notes": "85% TM (taper -5%). RPE 7. Volume réduit pour arriver frais à J5. Focus vitesse de barre et confiance — ne pas chercher fatigue.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain"],
+              "alternatives": ["Front squat 3x3 @78% TM", "Box squat 3x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 3,
+              "reps": "3",
+              "rest_seconds": 180,
+              "notes": "85% TM. RPE 7. Taper.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 3x5", "Incline bench 3x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 3,
+              "reps": "3",
+              "rest_seconds": 180,
+              "notes": "85% TM. RPE 7. Taper.",
+              "target_zone": "%1RM 80-85%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 3x3", "Z-press 3x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 150,
+              "notes": "75% TM. RPE 7. Maintien volume tirage léger.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 3x5 @75% TM", "Chest-supported DB row 3x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pull-up bodyweight",
+              "sets": 2,
+              "reps": "8",
+              "rest_seconds": 90,
+              "notes": "Sans lest. Maintien sans fatigue.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["pullup-bar"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Lat pulldown 2x10", "Inverted row 2x10"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 2,
+              "duration": "45 sec",
+              "rest_seconds": 60,
+              "notes": "Core taper.",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 60 sec", "Hollow hold 30 sec"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Mobilité pré-peak — Récupération SNC",
+          "type": "mobility",
+          "duration_minutes": 40,
+          "warmup": "5 min marche + activation légère.",
+          "cooldown": "5 min respiration diaphragmatique. Visualisation des peak sets de J5 : imaginer chaque mouvement propre et complet. Hydratation, repas complet 2h avant J5.",
+          "exercises": [
+            {
+              "name": "Mobilité hanches et chevilles",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "World's greatest stretch 8/côté, cercles chevilles 20/côté, Cossack squat dynamique 8/côté. Préparation articulaire sans fatigue.",
+              "target_zone": "technique",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["90/90 hip rotations 8/côté", "Pigeon flow 60 sec/côté"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Mobilité épaules et thoracique",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Foam roller thoracique 2 min, rotations épaules avec bande 15 reps, face pulls bande légère 15 reps, doorway stretch 30 sec/côté.",
+              "target_zone": "technique",
+              "required_equipment": ["foam-roller", "resistance-band"],
+              "incompatible_constraints": ["shoulder-injury"],
+              "alternatives": ["Cat-cow 15 reps + doorway stretch 60 sec", "Wall slides 15 reps"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Activation neuromusculaire légère",
+              "sets": 1,
+              "duration": "8 min",
+              "rest_seconds": 0,
+              "notes": "Pont fessier 15 reps, bird-dog 8/côté, planche 30 sec, scapular pull-up 8 reps. Activer sans créer fatigue.",
+              "target_zone": "technique",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["Glute bridge 15 reps + dead bug 8/côté"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Marche active",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Marche extérieure ou tapis allure conversationnelle. Active la circulation sans fatigue.",
+              "target_zone": "RPE 4-5",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": ["Vélo Z1 10 min", "Rower léger 10 min"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Séance Peak — 5,3,1+ AMRAP @95% TM",
+          "type": "strength",
+          "duration_minutes": 95,
+          "warmup": "15 min échauffement progressif complet. Squat : barre x8, +30 kg x5, +55 kg x3, +75 kg x2, +90 kg x1, +95% TM x1. Bench : barre x10, +25 kg x5, +50 kg x3, +70 kg x2, +85 kg x1.",
+          "cooldown": "10 min récupération active : marche lente, étirements profonds (pigeon 90 sec/côté, ischio allongé 90 sec/jambe, chest stretch doorway 60 sec, lat stretch 45 sec/côté). Repas complet (protéines + glucides + graisses) dans 2h post-session pour optimiser synthèse protéique post-effort maximal.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 3,
+              "reps": "5, 3, 1+ AMRAP",
+              "rest_seconds": 240,
+              "notes": "Schéma 5/3/1 W3 peak : 5 reps @85% TM (warmup heavy) → 3 reps @92% TM → 1 set AMRAP @95% TM (viser 2-4 reps minimum). RPE 9,5 sur AMRAP. Spotter ou cage avec barres de sécurité OBLIGATOIRE. Si 5+ reps sur AMRAP @95% : ton TM est sous-évalué — ajuster +5 kg pour W12 test 1RM.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain", "cardiac-clearance-required"],
+              "alternatives": ["Front squat 3 sets 5/3/1+ @78/85/88% TM", "Box squat 3 sets idem"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 3,
+              "reps": "5, 3, 1+ AMRAP",
+              "rest_seconds": 240,
+              "notes": "Schéma 5,3,1+ : 5 @85% TM → 3 @92% TM → 1+ AMRAP @95% TM. Spotter OBLIGATOIRE sur dernière série. RPE 9,5 sur AMRAP. Viser 2-4 reps.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 3x6 progression", "Incline bench 3 sets 5/3/1+"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 3,
+              "reps": "5, 3, 1+ AMRAP",
+              "rest_seconds": 240,
+              "notes": "Schéma 5,3,1+ : 5 @85% TM → 3 @92% TM → 1+ AMRAP @95% TM. RPE 9,5 sur AMRAP.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 3 sets 5/3/1+", "Z-press 3 sets 5/3/1+"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 3,
+              "reps": "5",
+              "rest_seconds": 180,
+              "notes": "@88% TM. RPE 8,5. Maintien volume tirage. Pas d'AMRAP (sécurité lombaire).",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 3x5", "T-bar row 3x5"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel",
+              "sets": 1,
+              "reps": "3",
+              "rest_seconds": 240,
+              "notes": "@90% TM. RPE 9. SANS AMRAP (sécurité lombaire). 1 série de 3, technique parfaite, ceinture obligatoire. Préparation au test 1RM W12. 4 min repos.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain", "cardiac-clearance-required"],
+              "alternatives": ["Trap bar deadlift 1x3 @90% TM", "Sumo deadlift 1x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 2,
+              "duration": "45 sec",
+              "rest_seconds": 60,
+              "notes": "Core en fin (volume réduit avant W12).",
+              "target_zone": "RPE 7-8",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 60 sec", "Hollow hold 30 sec"],
+              "volume_axis": "duration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_number": 12,
+      "theme": "Realization Block W12 — Deload taper J1 + mobilité J3 + TEST 1RM J5 + checklist autonomie",
+      "goal": "Semaine test final : J1 séance taper minimal (2x3 @75% TM, RPE 5-6) pour préserver fraîcheur SNC. J3 mobilité légère + visualisation. J5 = TEST 1RM officiel sur squat / bench / deadlift + AMRAP @85% TM sur OHP / row. Checklist d'autoévaluation 5 critères mesurables intégrée à la séance test pour clore le cycle et projeter le prochain mésocycle.",
+      "sessions": [
+        {
+          "day": 1,
+          "name": "Séance deload — Squat / Bench / OHP / Row taper",
+          "type": "strength",
+          "duration_minutes": 50,
+          "warmup": "10 min mobilité douce. Squat : barre x10, +30 kg x8.",
+          "cooldown": "10 min mobilité complète : foam roller globale, étirements profonds fessiers + ischio + épaules.",
+          "exercises": [
+            {
+              "name": "Back squat",
+              "sets": 2,
+              "reps": "3",
+              "rest_seconds": 120,
+              "notes": "75% TM. RPE 5-6. Volume MINIMAL pour préserver SNC avant J5 test. Focus plaisir du mouvement, vitesse de barre, fluidité. Pas de performance. Sortir du rack à RPE 5 max.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury"],
+              "alternatives": ["Front squat 2x3 @70% TM", "Box squat 2x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press",
+              "sets": 2,
+              "reps": "3",
+              "rest_seconds": 120,
+              "notes": "75% TM. RPE 5-6. Taper minimal.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 2x5", "Incline bench 2x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP)",
+              "sets": 2,
+              "reps": "3",
+              "rest_seconds": 120,
+              "notes": "75% TM. RPE 5-6. Taper minimal.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press 2x3", "Z-press 2x3"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bent-over barbell row",
+              "sets": 2,
+              "reps": "5",
+              "rest_seconds": 120,
+              "notes": "70% TM. RPE 5-6.",
+              "target_zone": "%1RM 75-80%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row 2x5", "Chest-supported DB row 2x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Pull-up bodyweight",
+              "sets": 2,
+              "reps": "5",
+              "rest_seconds": 90,
+              "notes": "Sans lest. Maintien sans fatigue.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["pullup-bar"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["Lat pulldown 2x8", "Inverted row 2x8"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Planche ventrale",
+              "sets": 2,
+              "duration": "30 sec",
+              "rest_seconds": 60,
+              "notes": "Core deload minimal.",
+              "target_zone": "RPE 6-7",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Planche genoux 45 sec", "Hollow hold 20 sec"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "name": "Mobilité pré-test 1RM — Préparation finale",
+          "type": "mobility",
+          "duration_minutes": 35,
+          "warmup": "5 min marche + activation légère.",
+          "cooldown": "5 min respiration diaphragmatique. Visualisation des 1RM attempts J5 : imaginer chaque rep complète et propre. Sommeil 8h+ obligatoire avant J5. Hydratation, repas riche en glucides 3-4h avant test.",
+          "exercises": [
+            {
+              "name": "Mobilité hanches et chevilles",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "World's greatest stretch 8/côté, cercles chevilles 20/côté, Cossack squat dynamique 6/côté. Articulaire sans fatigue.",
+              "target_zone": "technique",
+              "required_equipment": ["mat"],
+              "incompatible_constraints": ["lower-back-pain"],
+              "alternatives": ["90/90 hip rotations 8/côté", "Pigeon flow 60 sec/côté"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Mobilité épaules et thoracique",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Foam roller thoracique 2 min, rotations épaules avec bande 15 reps, face pulls bande légère 12 reps, doorway stretch 30 sec/côté.",
+              "target_zone": "technique",
+              "required_equipment": ["foam-roller", "resistance-band"],
+              "incompatible_constraints": ["shoulder-injury"],
+              "alternatives": ["Cat-cow 12 reps + doorway stretch 60 sec", "Wall slides 12 reps"],
+              "volume_axis": "duration"
+            },
+            {
+              "name": "Marche active",
+              "sets": 1,
+              "duration": "10 min",
+              "rest_seconds": 0,
+              "notes": "Marche extérieure ou tapis allure conversationnelle. Active la circulation sans fatigue.",
+              "target_zone": "RPE 4-5",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": ["Vélo Z1 10 min", "Rower léger 10 min"],
+              "volume_axis": "duration"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "name": "Test 1RM — Squat / Bench / Deadlift + AMRAP OHP/Row + Checklist autonomie",
+          "type": "strength",
+          "duration_minutes": 110,
+          "warmup": "20 min échauffement progressif complet. Mobilité globale 5 min. Squat warmup : barre x8, +30 kg x5, +55 kg x3, +80 kg x2, +95 kg x1, +(opener -10 kg) x1. Bench warmup : barre x10, +25 kg x5, +50 kg x3, +70 kg x2, +(opener -5 kg) x1. Deadlift warmup : barre x5, 60% x5, 75% x3, 85% x2, +(opener -10 kg) x1.",
+          "cooldown": "15 min récupération complète : marche 5 min, étirements profonds (pigeon 90 sec/côté, ischio 90 sec/jambe, lat 60 sec/côté, chest 60 sec), respiration diaphragmatique. Repas complet (protéines 30 g + glucides 80 g + graisses 20 g) dans 90 min post-test pour optimiser récupération. Fin du cycle 12 semaines.",
+          "exercises": [
+            {
+              "name": "Back squat — Test 1RM",
+              "sets": 1,
+              "reps": "1 (3 attempts max)",
+              "rest_seconds": 300,
+              "notes": "TEST 1RM OFFICIEL. Stratégie 3 attempts : (1) opener = TM +5 kg (charge propre prévue accessible), (2) PR attempt = opener +5 à +10 kg, (3) max attempt = PR +2,5 à +5 kg si attempt 2 propre. Ne jamais forcer attempt 3 si attempt 2 vacille. Spotter ou cage OBLIGATOIRE. 5 min repos entre attempts. Concentration totale. RPE 9-10 sur dernier attempt.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "knee-injury", "hip-pain", "cardiac-clearance-required"],
+              "alternatives": ["Front squat 1RM (1RM front squat ≈ 80% back squat 1RM)", "5RM test si tu n'es pas confortable avec 1RM"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Bench press — Test 1RM",
+              "sets": 1,
+              "reps": "1 (3 attempts max)",
+              "rest_seconds": 300,
+              "notes": "TEST 1RM OFFICIEL. Même stratégie 3 attempts : opener = TM +2,5 kg, PR = +2,5 à +5 kg, max = +1,25 à +2,5 kg. Spotter OBLIGATOIRE. Scapulas rétractées et déprimées tout au long. Si attempt 1 trop dur, ne pas tenter attempt 2 — prendre le PR à -2,5 kg.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "bench", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "wrist-pain"],
+              "alternatives": ["DB bench press 5RM test", "Floor press 1RM"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Deadlift conventionnel — Test 1RM",
+              "sets": 1,
+              "reps": "1 (3 attempts max)",
+              "rest_seconds": 300,
+              "notes": "TEST 1RM OFFICIEL. Stratégie 3 attempts : opener = TM +5 kg, PR = +5 à +10 kg, max = +2,5 à +5 kg. Ceinture lombaire obligatoire, magnésie, Valsalva contrôlé sur chaque attempt. Placement en dernier des compounds principaux (sécurité — fatigue cumulative). Si attempt 2 propre, attempt 3 possible ; si attempt 2 vacille, prendre le PR à attempt 2.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg", "lifting-belt"],
+              "incompatible_constraints": ["lower-back-pain", "hip-pain", "cardiac-clearance-required"],
+              "alternatives": ["Trap bar deadlift 1RM (souvent +5 à +10 kg vs conventionnel)", "Sumo deadlift 1RM", "5RM test conventionnel si 1RM non confortable"],
+              "volume_axis": "sets"
+            },
+            {
+              "name": "Overhead press (OHP) — AMRAP @85% TM",
+              "sets": 1,
+              "reps": "AMRAP 1 set",
+              "rest_seconds": 300,
+              "notes": "Test indirect 1RM via AMRAP @85% TM. Viser 6+ reps minimum (équivaut à TM intact). Si 8+ reps : TM sous-évalué, prochain cycle démarre TM +2,5 kg. Si < 5 reps : fatigue résiduelle, prochain cycle démarre TM -2,5 kg. RPE 9-9,5.",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "rack", "plates-1.25kg"],
+              "incompatible_constraints": ["shoulder-injury", "cervical-pain"],
+              "alternatives": ["Push press AMRAP @85% TM", "DB shoulder press AMRAP"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Bent-over barbell row — AMRAP @85% TM",
+              "sets": 1,
+              "reps": "AMRAP 1 set",
+              "rest_seconds": 240,
+              "notes": "Test indirect 1RM via AMRAP @85% TM. Viser 6+ reps. Stop dès que la forme se dégrade (rounding lombaire). RPE 9. Pas de 1RM direct sur row (sécurité lombaire — risque sub-maximal répété au max).",
+              "target_zone": "%1RM 85-90%",
+              "required_equipment": ["barbell", "plates-1.25kg"],
+              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
+              "alternatives": ["Pendlay row AMRAP @85% TM", "Chest-supported DB row AMRAP"],
+              "volume_axis": "reps"
+            },
+            {
+              "name": "Checklist d'autonomie — Bilan cycle 12 semaines",
+              "sets": 1,
+              "duration": "15 min",
+              "rest_seconds": 0,
+              "notes": "CHECKLIST D'AUTOÉVALUATION (5 critères mesurables, à compléter par écrit, format rapide 1-2 min/question) :\n\n1. PR ATTEINTS : note tes nouveaux 1RM W12 vs 1RM pré-cycle pour squat / bench / deadlift, et tes AMRAP @85% TM W12 vs début cycle pour OHP / row. Format : 'Squat 1RM : [_____] kg vs [_____] kg pré-cycle = +[__] kg / +[__]%'. PR sur ≥ 3 des 5 mouvements = cycle réussi. Le 5/3/1 standard projette +5 à +10 kg lower body et +2,5 à +5 kg upper body sur 12 sem expert.\n\n2. RPE RELATIF SUR CHARGE INITIALE : la charge W1 (70% TM initial) te semble-t-elle maintenant à RPE 5 ou moins sur set de 5 reps ? OUI / NON. Si OUI = la force de base a progressé.\n\n3. QUALITÉ TECHNIQUE : sur les vidéos squat W1 vs squat peak W11, identifie 1 amélioration concrète par mouvement (ex : profondeur squat plus stable, position coudes OHP plus verticale, dos plus plat sur deadlift, scapula plus rétractée bench, position barre row plus régulière). 5 améliorations identifiées = qualité technique consolidée.\n\n4. GESTION DE LA FATIGUE : as-tu complété ≥ 32/36 séances prévues (≥ 89%) ? OUI / NON. Si < 80% complétude (< 29 séances), identifier la cause (sur-engagement vie, blessure, charges trop hautes) et adapter le prochain cycle (TM démarrage -5 kg, sessions 2/sem).\n\n5. PROJECTION PROCHAIN CYCLE : identifie le mouvement avec la PLUS FAIBLE progression — c'est le point faible à adresser en priorité dans le prochain mésocycle. Exemples : OHP < +2,5 kg = ajouter 1 séance push press accessoire/sem ; deadlift stagnant = ajouter 1 séance RDL accessoire/sem ; squat < +5 kg = vérifier mobilité chevilles + tibialis. Mettre à jour les TM = 90% des nouveaux 1RM W12 pour le prochain cycle.\n\nCe bilan écrit est la base du prochain cycle (Volume Block W1 démarre à TM W12 +0 kg minimum). Conserve cette feuille — c'est ton journal de progression long terme.",
+              "target_zone": "technique",
+              "required_equipment": [],
+              "incompatible_constraints": [],
+              "alternatives": ["Bilan oral enregistré 5 min sur smartphone si écrit pas pratique"],
+              "volume_axis": "duration"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
