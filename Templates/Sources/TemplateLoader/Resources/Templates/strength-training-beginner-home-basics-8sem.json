@@ -1,19 +1,19 @@
 {
-  "assumed_profile" : "Adulte sédentaire sans expérience musculation récente, équipé d'une paire d'haltères ajustables (2 à 15 kg), d'un tapis, et d'un espace de 2x2 m. Pas de banc, pas de barre, pas de poulie. Capable de s'allonger et se relever du sol sans aide. Aucun objectif de performance avancée, priorité à la technique et à la régularité.",
-  "default_objective" : "Acquérir les mouvements de base (squat, pompe, tirage, gainage) et construire l'habitude d'un entraînement régulier 3x/semaine, en progressant sur les 5 patterns fondamentaux (squat, hinge, push horizontal, push vertical, pull) avec haltères légers à domicile.",
+  "assumed_profile" : "Adulte sédentaire sans expérience musculation récente, équipé d'une paire d'haltères ajustables (2 à 15 kg), d'un tapis, et d'un espace de 2x2 m. Pas de banc, pas de barre, pas de poulie. Capable de s'allonger et se relever du sol sans aide. Aucun objectif de performance avancée, priorité à la technique et l'habitude.",
+  "default_objective" : "Acquérir les mouvements de base (squat, pompe, tirage, gainage) et construire l'habitude d'un entraînement régulier 3x/semaine, en progressant sur les 5 patterns fondamentaux (squat, hinge, push horizontal, push vertical, pull horizontal/vertical adaptés au matériel limité)",
   "duration_weeks" : 8,
   "id" : "strength-training-beginner-home-basics-8sem",
   "level" : "beginner",
   "name" : "Musculation maison — Fondamentaux en 8 semaines",
-  "progression_logic" : "Progression construite sur 5 principes, alignés sur ACSM et NSCA Guidelines for Resistance Training :\n\n(1) DOUBLE PROGRESSION : mécanisme central de progression du débutant. Sur chaque exercice, on augmente d'abord les répétitions jusqu'au haut de la fourchette cible (ex : 3x8 → 3x10 → 3x12), puis seulement on augmente la charge de 1-2 kg et on revient au bas de la fourchette (3x8 avec charge +). Cette méthode permet une progression sûre et contrôlée sans risque de sur-chargement prématuré. Appliquée à tous les composés dès W2.\n\n(2) FRÉQUENCE D'APPRENTISSAGE FULL-BODY : chaque pattern (squat, hinge, push horizontal, push vertical, pull horizontal, pull vertical) est stimulé 3x/semaine. Cette fréquence est optimale pour l'apprentissage moteur du débutant (NSCA : le débutant bénéficie davantage de la fréquence que du volume par session). Un débutant qui fait le squat 3x/semaine en 8 semaines accumule 24 sessions de squat — suffisant pour automatiser le patron moteur.\n\n(3) CUTBACK WEEK W5 : volume réduit de 15% en semaine 5 pour permettre la supercompensation. Les adaptations structurelles (épaississement des tendons, microarchitecture musculaire, densité osseuse) se produisent PENDANT la récupération, pas pendant l'effort. Sans semaine allégée, le risque de tendinite des poignets, d'épaule et de lombalgie augmente significativement dès la 6ème semaine chez un débutant. La semaine de mobilité active (J3 en W5) est conçue pour maintenir le flux sanguin et la mobilité articulaire sans contrainte mécanique.\n\n(4) ADAPTATION PROGRESSIVE DU TEMPS DE REPOS : W1 = 60 sec sur les composés (charge très légère). W2 = 90 sec. W3+ = 120 sec (2 min, aligné ACSM pour les composés chargés). Cette progression du temps de repos est intentionnelle : démarrer avec 60 sec crée la conscience du rythme, puis allonger au fur et à mesure que la charge augmente. Les rest_seconds définis dans chaque exercice respectent strictement ce standard.\n\n(5) CORE EN FIN DE SÉANCE OBLIGATOIRE : conformément aux recommandations NSCA, le gainage est toujours placé en fin de séance. Un core préfatigué avant les composés (squat, deadlift, row, press) compromet la stabilité lombaire et augmente le risque de blessure. Cette règle est maintenue sur l'ensemble des 8 semaines et est rappelée dans les notes de chaque exercice de core.\n\nVolume séries composés par semaine : W1 = 15 séries composés → W2 = 18 → W3 = 21 → W4 = 24 → W5 = 15 (cutback) → W6 = 22 → W7 = 26 → W8 tapering. Progression nette +73% entre W1 et W7, avec cutback protecteur au milieu.\n\nPull vertical sans barre fixe : le profil exclut barre et poulie. Le pull vertical est couvert par (a) Dumbbell Pullover (grand dorsal en allongement + traction) et (b) Y-raise allongé (bas du trapèze, rhomboïdes). Ces deux exercices sont présents dans chaque semaine du plan, conformément à la déclaration de la progression_logic. Ce sont des substituts validés pour le contexte home-gym sans infrastructure.",
-  "safety_notes" : "DRAPEAUX ROUGES — arrêter la séance et consulter si persistant plus de 5 jours :\n• Douleur aiguë ou lancinante aux lombaires pendant ou après un Romanian Deadlift ou Hip Thrust : signe d'une technique défaillante (dos arrondi, charge trop lourde) ou d'une pathologie discale. Ne jamais continuer avec douleur vive dans le bas du dos. Réduire la charge de 50% ou abandonner le mouvement jusqu'à avis médical.\n• Douleur antéro-latérale à l'épaule (conflit sous-acromial) : typique du débutant qui monte en charge trop vite sur l'Overhead Press ou les pompes. Symptôme : douleur à l'élévation du bras entre 60 et 120°. Arrêt des mouvements de presse verticale, consultation kiné.\n• Douleur aux poignets sur les pompes ou Arnold Press : signe de tension des tendons fléchisseurs. Passer aux pompes poings fermés (haltères au sol), réduire le volume et mobiliser les poignets quotidiennement (3 min de mobilité poignets matin et soir).\n• Douleur face antérieure du genou (sous la rotule) sur les squats ou fentes : signe de syndrome fémoro-patellaire (genou du sportif débutant). Vérifier en priorité : le valgus dynamique (genou qui rentre). Réduire la charge, renforcer les abducteurs (fentes latérales légères).\n• Douleur cervicale sur l'Overhead Press : hyperextension cervicale lors de la poussée. Rentrer le menton avant la presse, réduire la charge, vérifier la position du dos.\n\nRÈGLES GÉNÉRALES :\n• Échauffement des poignets OBLIGATOIRE avant chaque séance (10 cercles avant-arrière, 10 cercles poignets) : les poignets subissent une contrainte élevée sur les pompes et les mouvements de presse. Sans échauffement, risque de tendinite multiplié.\n• Repos composés lourds (Goblet Squat, Romanian Deadlift, Dumbbell Row, Overhead Press, Hip Thrust) : 2 min minimum. Cette valeur s'aligne sur les recommandations ACSM/NSCA pour les mouvements composés — respecté dans l'ensemble du plan (rest_seconds 120 sur tous ces exercices).\n• Repos isolations légères (Pullover, Y-raise, Dead Bug, Planche) : 45-60 sec — suffisant pour les petits groupes musculaires.\n• DOMS (courbatures) 24-72h après séance = normal et attendu. Douleur articulaire PENDANT la séance = anormale, s'arrêter.\n• Sol stable : utiliser un tapis antidérapant. Éviter les chaussettes sur carrelage pour les fentes et squats.\n• Ne pas retenir sa respiration sur les efforts : expirer sur la phase de travail (poussée ou tirade), inspirer sur la phase de retour. Évite l'élévation brutale de la pression artérielle.\n\nINTENSITÉ ET RPE :\n• W1-W2 : RPE 5-6 (RIR 4-5). Apprentissage neurologique — charger trop tôt est contre-productif et dangereux.\n• W3-W4 : RPE 7 (RIR 3). Les adaptations musculaires démarrent.\n• W6-W7 : RPE 7-8 (RIR 2-3). Charge sérieuse avec maîtrise technique.\n• JAMAIS RPE 10 (échec musculaire) chez le débutant : le contrôle de forme disparaît à l'échec, risque de blessure important, et l'adaptation est identique à RPE 8 avec moins de risques.\n• Règle absolue : si la forme se dégrade (dos arrondi sur hinge, valgus sur squat, affaissement sur pompes), la série s'arrête, quelle que soit la rep en cours.\n\nSIGNES DE SURCHARGE (3 signes simultanés → réduire volume 30% ou prendre 2 jours de repos supplémentaires) :\n• Courbatures persistantes > 72h sur plusieurs groupes musculaires\n• Dégradation soudaine de la performance (charges habituelles semblent soudainement trop lourdes)\n• Sommeil perturbé > 3 nuits de suite\n• Perte de motivation marquée après avoir été régulier\n\nSI SÉANCE MANQUÉE :\n• 1 séance manquée dans la semaine : reprendre le lendemain ou le surlendemain (pas de rattrapage sur la même journée).\n• Semaine entière manquée : reprendre la semaine précédente (ex : W4 manquée → reprendre W3).\n• 2+ semaines manquées : reprendre en W2 ou W3 selon la forme ressentie.\n• La semaine cutback W5 est NON NÉGOCIABLE : même si tu te sens en forme, la réduire est une stratégie de performance long terme.",
-  "schema_version" : 1,
+  "progression_logic" : "Progression construite sur 5 principes, alignés NSCA Essentials of Strength Training, Helms Muscle and Strength Pyramid v2.0 et StrongLifts adapté home :\n\n(1) MEV — VOLUME MINIMUM EFFICACE : deux unités de volume distinctes, à ne pas confondre.\n\n  a) VOLUME PAR MUSCLE GROUP PRINCIPAL (unité de référence pour l'adaptation hypertrophie/force, conforme RP Strength / Israetel — MEV beginner 6-10 sets/muscle/sem) : on compte les sets working hebdo qui sollicitent un même groupe (quads, posterior chain — ischios+fessiers, push horizontal — pectoraux, push vertical — deltoïdes, pull horizontal — dorsaux/rhomboïdes, pull vertical — grand dorsal/bas trapèze). Progression cible par muscle group principal : ~6-7 (W1 intro charge nulle/légère, MEV bas) → ~8-9 (W2 charge ajoutée) → ~9-10 (W3 MEV haut) → ~10-12 (W4 pic build, MEV haut beginner) → ~6 (W5 cutback) → ~10-11 (W6 retour) → ~11-12 (W7 pic, plafond beginner avant graduation `recreational`) → tapering W8.\n\n  b) TOTAL COMPOUND SETS FULL-BODY / SEM (vue d'ensemble logistique de la charge hebdo, somme à travers les 3 séances des sets working sur les 5-6 compounds principaux) : ~12-14 (W1) → ~14-15 (W2) → ~16-17 (W3) → ~17-18 (W4 pic) → ~9-10 (W5 cutback -40%) → ~16-17 (W6) → ~17-18 (W7 pic) → ~10-12 (W8 tapering + bilan).\n\n  Cette double comptabilité évite la confusion : un compound multi-articulaire compte pour 1 set sur plusieurs muscle groups (ex : goblet squat = 1 set quads + 1 set fessiers/posterior chain), donc la somme par muscle group dépasse mécaniquement le total compound full-body. Le débutant bénéficie davantage de la fréquence (3×/sem chaque pattern) que du volume par séance (NSCA).\n\n(2) DOUBLE PROGRESSION introduite W3 : sur chaque exercice, augmenter d'abord les reps jusqu'au haut de la fourchette (ex : 3×8 → 3×10 → 3×12 propres à RPE 7), PUIS seulement augmenter la charge de 1-2 kg et revenir au bas de la fourchette (3×8 avec charge +). Cette méthode (Helms, NSCA, StrongLifts) protège du sur-chargement prématuré et structure la progression sans 1RM testé.\n\n(3) CUTBACK W5 OBLIGATOIRE (-40% sets composés) : convention strength validée, à ne pas confondre avec running (-15 à -20%). Justification : la charge nerveuse et articulaire des compounds (RDL, hip thrust, goblet squat, push) nécessite un déload marqué pour permettre la supercompensation (épaississement tendons, microarchitecture musculaire, densité osseuse). W5 J3 = séance mobilité dédiée (poignets, hanches, épaules, thoracique). Les semaines allégées sont CONSTITUTIVES de l'adaptation, jamais à sauter.\n\n(4) RPE/RIR DÉFINI W1 J1 — pacing universel sans 1RM : grille expliquée au premier exercice (RPE 6 = 4 reps en réserve, RPE 7 = 3 reps, RPE 8 = 2 reps, RPE 9 = 1 rep, RPE 10 = max). W1-W2 RPE 5-6 (apprentissage moteur), W3-W4 RPE 7 (RIR 3), W6-W7 RPE 7-8 (RIR 2-3). JAMAIS RPE 10 (échec) chez le débutant : la dégradation technique à l'échec est un facteur majeur de blessure et l'adaptation à RPE 8 est équivalente. Repos compounds 90-120 sec (NSCA standards beginner), isolations 60 sec, core 45 sec. Jamais < 60 sec sur compound.\n\n(5) 6 PATTERNS FONDAMENTAUX COUVERTS CHAQUE SEMAINE : squat (goblet squat / fentes haltères), hinge (Romanian Deadlift / hip thrust), push horizontal (pompes genoux puis complètes), push vertical (Arnold Press puis Overhead Press strict assis), pull horizontal (Dumbbell Row unilatéral), pull vertical (Dumbbell Pullover + Y-raise allongé combo). Le profil exclut barre fixe et poulie : le pull vertical est assuré par le combo pullover (grand dorsal en allongement / traction longitudinale) + Y-raise allongé (bas trapèze / rhomboïdes / coiffe rotateurs). Substituts validés home, jamais omettre le pattern. Core (planche / dead bug / side plank) TOUJOURS en fin de séance — un core préfatigué compromet le bracing sur compounds.",
+  "safety_notes" : "DRAPEAUX ROUGES — arrêter la séance et consulter un professionnel de santé si symptômes persistent > 5 jours :\n• Lombalgie aiguë sur Romanian Deadlift ou Hip Thrust : douleur lancinante au bas du dos pendant ou après set, douleur > 2 jours post-séance. Cause n°1 : flexion lombaire sous charge (rounding), bracing déficient, fatigue, charge trop élevée. Action : stop RDL / hip thrust heavy, swap variante goblet squat / hip thrust bodyweight, avis kiné si symptômes > 5 jours.\n• Sciatique (douleur irradiante jambe, fourmillements, faiblesse) : DRAPEAU ROUGE → stop tout compound lombaire-loaded, avis médical immédiat. Ne pas pousser à travers.\n• Douleur antéro-latérale épaule (conflit sous-acromial) sur Arnold Press / Overhead Press / pompes : douleur à l'élévation du bras 60-120°. Limiter ROM, swap pompes inclinées (mains sur table) ou DB floor press, intégrer Y-raise + scapular work. Si douleur > 5 jours : arrêt pressing vertical, avis kiné.\n• Wrist pain sur pompes ou Arnold Press : straps poignets, poings fermés sur les haltères au sol pour neutraliser l'hyperextension, mobilité poignets 3 min matin et soir.\n• Douleur antérieure rotule (PFPS) sur goblet squat ou fentes : vérifier en priorité le valgus dynamique (genou qui rentre vers l'intérieur). Réduire charge, renforcer abducteurs (clamshells, fentes latérales légères).\n• Hyperextension cervicale sur Overhead Press : signal posture à corriger immédiatement. Rentrer le menton avant la presse, réduire charge.\n\nMEDICAL CLEARANCE — consulte un médecin avant de commencer ce programme si :\n• Pathologie lombaire chronique (hernie discale, lombalgie chronique, spondylose) : avis médecin/kiné obligatoire avant tout RDL et squat chargé. Préférer goblet squat partial ROM et hip thrust en démarrage.\n• Antécédents cardiovasculaires (hypertension, antécédent cardiaque, arythmie) : la respiration libre est obligatoire sur tous les sets, pas d'apnée Valsalva.\n• Grossesse / postpartum récent (< 6 mois) : avis sage-femme/médecin obligatoire. Programme adapté nécessaire (DB squat partial ROM, glute bridge, push-up modifié).\n• Reprise post-opératoire (< 6 mois sur épaule, genou, lombaire, hanche) : avis spécialiste.\n• Plus de 50 ans avec sédentarité prolongée et sans test d'effort récent.\n\nRÈGLES GÉNÉRALES :\n• Échauffement obligatoire 7 min : mobilité articulaire (épaules, poignets, hanches) + 10 demi-squats poids du corps + balancements jambe. Sauter l'échauffement multiplie le risque blessure du débutant.\n• Échauffement poignets non négociable avant chaque séance (10 cercles avant/arrière, 10 flexions/extensions douces) : les poignets subissent une contrainte élevée sur pompes et presses haltères.\n• Repos compounds (Goblet Squat, Romanian Deadlift, Dumbbell Row, Hip Thrust, Arnold Press, Overhead Press) : 90-120 sec selon semaine. JAMAIS < 60 sec sur compound — la récupération neuromusculaire incomplète compromet la qualité technique. Si tu es pressé, raccourcis le nombre de sets, pas le repos compounds.\n• Repos isolations légères (Pullover, Y-raise) : 60 sec.\n• Repos core (planche, dead bug, side plank) : 45 sec.\n• Sol stable : tapis antidérapant, jamais chaussettes sur carrelage pour fentes/squats.\n• Respiration libre : expirer sur la phase de travail, inspirer sur la phase de retour. Ne pas retenir l'air (Valsalva contre-indiqué chez le débutant et les profils hypertendus).\n• Courbatures (DOMS) 24-72h post-séance = adaptation normale. Douleur articulaire PENDANT séance = signal d'arrêt immédiat.\n\nINTENSITÉ ET RPE/RIR :\n• La grille RPE est expliquée à W1 J1 dans les notes du premier exercice. Tu DOIS la lire avant ta toute première séance.\n• W1-W2 : RPE 5-6 (RIR 4-5). Apprentissage neurologique, charges très légères ou nulles. Charger trop tôt est contre-productif et dangereux.\n• W3-W4 : RPE 7 (RIR 3). Les adaptations musculaires démarrent. Double progression activée.\n• W6-W7 : RPE 7-8 (RIR 2-3). Charge sérieuse avec maîtrise technique acquise.\n• JAMAIS RPE 10 (échec musculaire) chez le débutant : le contrôle de forme disparaît à l'échec, risque blessure majeur, et l'adaptation est identique à RPE 8 avec moins de risques.\n• Règle absolue : si la forme se dégrade (dos arrondi sur hinge, valgus genou sur squat, affaissement bassin sur pompes), la série s'arrête, quelle que soit la rep en cours. Technique > charge, toujours.\n\nSIGNES DE SURCHARGE (3 signes simultanés → réduire volume 30% ou prendre 2 jours de repos supplémentaires) :\n• Courbatures persistantes > 72h sur plusieurs groupes musculaires.\n• Dégradation soudaine de la performance (charges habituelles semblent soudainement trop lourdes).\n• Sommeil perturbé > 3 nuits de suite, FC repos +8-10 bpm.\n• Perte de motivation marquée après avoir été régulier.\n• Douleurs articulaires multiples (pas musculaires).\n\nSI SÉANCE MANQUÉE :\n• < 4 jours de pause : reprends à la séance suivante, pas de rattrapage le même jour.\n• 4-7 jours : redémarre la semaine en cours, séance par séance.\n• 1-2 semaines : redémarre la semaine précédente (W-1).\n• > 2 semaines : recule de 2-3 semaines (W-2 ou W-3) pour ressécuriser l'adaptation.\n• La semaine cutback W5 est NON NÉGOCIABLE : même si tu te sens en forme, la réduire est une stratégie de performance long terme.",
+  "schema_version" : 2,
   "sessions_per_week" : 3,
   "sport" : "strength_training",
-  "summary" : "Programme full-body 3x/semaine sur 8 semaines, centré sur l'apprentissage technique des patterns fondamentaux de la musculation (squat, hinge, push horizontal/vertical, pull). Chaque séance couvre l'ensemble des patterns pour maximiser la fréquence d'apprentissage moteur. Le pull vertical est réalisé avec des haltères (dumbbell pullover, Y-raise) faute de barre de traction. Introduction de la grille RPE dès la W1. Semaine cutback en W5 (volume -15%). Progression en double progression (reps → charge). Séance phare W8 = circuit intégrant tous les patterns avec checklist d'autonomie.",
+  "summary" : "Programme full-body 3x/semaine sur 8 semaines (alternance Full-body A / Full-body B / Full-body C), aligné NSCA Beginner (1-3 sets, 2-3×/sem), Helms Pyramid (Adherence > Volume) et StrongLifts adapté home. Deux unités de volume distinctes utilisées dans tout le plan : (a) VOLUME PAR MUSCLE GROUP PRINCIPAL — sets working hebdo touchant un même groupe (quads / posterior chain / push horizontal / push vertical / pull horizontal-vertical), aligné landmarks RP Strength MEV beginner 6-10 sets/muscle/sem ; (b) TOTAL COMPOUND SETS FULL-BODY / SEM — somme des sets working sur les 5-6 compounds principaux à travers les 3 séances, sert d'indicateur de charge globale de la semaine. Les 6 patterns fondamentaux (squat, hinge, push H, push V, pull H, pull V) sont touchés CHAQUE semaine. Pull vertical assuré sans pullup-bar via dumbbell pullover + Y-raise allongé (combo grand dorsal + bas trapèze/rhomboïdes). Progression PAR MUSCLE GROUP PRINCIPAL : ~6-7 sets/muscle (W1 intro MEV bas) → ~8-9 (W2) → ~9-10 (W3 MEV haut) → ~10-12 (W4 pic build, MEV haut beginner) → ~6 (W5 cutback -40%) → ~10-11 (W6) → ~11-12 (W7 pic, proche MEV haut) → tapering W8. Progression TOTAL COMPOUND SETS FULL-BODY / SEM (vue d'ensemble) : ~12-14 (W1) → ~14-15 (W2) → ~16-17 (W3) → ~17-18 (W4 pic) → ~9-10 (W5 cutback) → ~16-17 (W6) → ~17-18 (W7 pic) → ~10-12 (W8 tapering + bilan). Double progression introduite W3 (atteindre haut de fourchette reps avant +1-2 kg). RPE/RIR expliqué W1 J1. Cutback W5 obligatoire (-40% sets compounds + séance mobilité dédiée J3). Plan conclu par un circuit intégrant tous les patterns + checklist d'autonomie 5 critères mesurables.",
   "weeks" : [
     {
-      "goal" : "Intégrer la grille RPE 1-10 et les positions de sécurité sur chaque pattern. Toutes les charges restent légères (RPE 5-6, RIR 4-5). Priorité absolue : ne jamais sacrifier la forme pour la charge.",
+      "goal" : "Intégrer la grille RPE 1-10 et les positions de sécurité sur chaque pattern. Toutes les charges restent légères ou nulles (RPE 5-6, RIR 4-5). Volume hebdo cible : ~6-7 sets working / muscle group principal (MEV bas Israetel, intro) — total compound sets full-body ~12-14 sur la semaine. Priorité absolue : ne jamais sacrifier la forme pour la charge.",
       "sessions" : [
         {
           "cooldown" : "3 min marche sur place ou mobilité douce. Étirements statiques : pectoraux (main sur mur, rotation tronc) 30 sec/côté, ischio-jambiers assis 30 sec/jambe, fessiers (figure 4) 30 sec/côté. Secouer les poignets. Hydratation.",
@@ -21,51 +21,133 @@
           "duration_minutes" : 45,
           "exercises" : [
             {
-              "duration" : "3 min lecture",
-              "name" : "Introduction grille RPE",
-              "notes" : "Avant de commencer : RPE 6 = effort modéré, tu pourrais faire 4 reps de plus facilement. RPE 7 = effort ressenti, 3 reps en réserve. RPE 8 = 2 reps en réserve. RPE 9 = 1 rep en réserve. RPE 10 = max absolu. Cette semaine : tout reste à RPE 5-6. Cette grille sera ta boussole tout au long du plan."
-            },
-            {
+              "alternatives" : [
+                "Wall sit 30 sec",
+                "Squats partiels mains au mur 12 reps",
+                "Box squat sur chaise 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Squat poids du corps (pattern squat)",
-              "notes" : "Pieds largeur épaules, orteils légèrement ouverts (15-30°). Descente en poussant les genoux dans l'axe des orteils — ne pas laisser les genoux rentrer (valgus). Descendre jusqu'à ce que les cuisses soient parallèles au sol minimum. Regard droit devant. RPE 5-6 : charge nulle cette semaine.",
+              "notes" : "GRILLE RPE / RIR — À LIRE AVANT TA TOUTE PREMIÈRE SÉANCE : RPE 6 = effort modéré, tu pourrais faire 4 reps de plus facilement (RIR 4). RPE 7 = effort ressenti, 3 reps en réserve (RIR 3). RPE 8 = 2 reps en réserve (RIR 2). RPE 9 = 1 rep en réserve (RIR 1). RPE 10 = max absolu (à éviter chez le débutant). Cette semaine : tout reste à RPE 5-6 (RIR 4-5). Cette grille est ta boussole tout au long du plan.\n\nTECHNIQUE SQUAT : pieds largeur épaules, orteils légèrement ouverts (15-30°). Descente en poussant les genoux dans l'axe des orteils — ne pas laisser les genoux rentrer (valgus). Descendre jusqu'à ce que les cuisses soient parallèles au sol minimum. Regard droit devant. RPE 5-6, charge nulle cette semaine.",
               "reps" : "10",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust bodyweight 12 reps",
+                "Glute bridge bodyweight 12 reps",
+                "Good morning bâton 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères légers (pattern hinge)",
-              "notes" : "Haltères devant les cuisses (2-5 kg). Pieds parallèles, largeur de hanches. Charnière aux hanches : dos PLAT, recule les fesses en arrière, descend les haltères le long des jambes jusqu'à sentir l'étirement ischio-jambiers (mi-tibia max). Remonte en serrant les fessiers. JAMAIS le dos arrondi sur ce mouvement. C'est le fondement de tout mouvement de soulevé.",
+              "notes" : "Haltères 2-5 kg devant les cuisses. Pieds parallèles, largeur de hanches. Charnière aux hanches : dos PLAT, recule les fesses en arrière, descends les haltères le long des jambes jusqu'à sentir l'étirement ischio-jambiers (mi-tibia max). Remonte en serrant les fessiers. JAMAIS le dos arrondi. C'est le fondement de tout mouvement de soulevé.",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes inclinées mains sur chaise 10 reps",
+                "DB floor press 10 reps charge légère",
+                "Push-up mur debout 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes sur les genoux (pattern push horizontal)",
-              "notes" : "Mains sous les épaules, légèrement écartées (largeur épaules). Corps aligné de la tête aux genoux. Descente contrôlée en 2 sec, coudes à 45° du tronc (pas à 90°). Montée explosive. Si les poignets font mal, poings fermés sur les haltères au sol pour neutraliser l'hyperextension.",
+              "notes" : "Mains sous les épaules, légèrement écartées (largeur épaules). Corps aligné de la tête aux genoux. Descente contrôlée 2 sec, coudes à 45° du tronc (pas à 90°). Montée explosive. Si les poignets font mal, poings fermés sur les haltères au sol pour neutraliser l'hyperextension.",
               "reps" : "8",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table robuste 10 reps",
+                "Band row assis 12 reps",
+                "Renegade row 8 reps/côté charge légère"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row unilatéral (pattern pull horizontal)",
               "notes" : "Un genou et une main au sol (ou sur une chaise stable). Haltère 4-8 kg. Tirer le coude vers la hanche (pas vers l'oreille). Épaule de travail ne doit pas hausser. Dos reste plat. Regarder le sol.",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
-              "name" : "Dumbbell Pullover (pattern pull vertical)",
-              "notes" : "Allongé sur le tapis, genoux fléchis. Tenir 1 haltère léger (4-6 kg) à deux mains au-dessus du sternum. Descendre l'haltère derrière la tête en inspirant, coudes légèrement fléchis. Remonter en expirant. Cible grand dorsal et grand pectoral. Alternative au pull-up faute de barre fixe.",
+              "alternatives" : [
+                "Band pull-down assis 12 reps",
+                "Y-raise allongé 12 reps en remplacement isolé",
+                "Dumbbell pullover bras tendus 8 reps charge réduite"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Dumbbell Pullover (pattern pull vertical — partie 1)",
+              "notes" : "Allongé sur le tapis, genoux fléchis. Tenir 1 haltère léger (4-6 kg) à deux mains au-dessus du sternum. Descendre l'haltère derrière la tête en inspirant, coudes légèrement fléchis. Remonter en expirant. Cible grand dorsal et grand pectoral en allongement. Premier composant du combo pull vertical home (faute de barre fixe).",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Planche genoux au sol 30 sec",
+                "Dead bug 8 reps/côté",
+                "Bird-dog 8 reps/côté"
+              ],
               "duration" : "15 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Planche ventrale (core — EN FIN DE SÉANCE)",
               "notes" : "Corps aligné, coudes sous épaules. Fessiers et abdos engagés — ne pas laisser le bassin tomber. Le core se travaille TOUJOURS en fin de séance, jamais en début : un core fatigué compromet la stabilité lombaire sur les composés.",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body A — Introduction patterns",
@@ -78,49 +160,134 @@
           "duration_minutes" : 45,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 12 reps",
+                "Wall sit 30 sec",
+                "Box squat sur chaise haltère léger 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat haltère léger (pattern squat)",
               "notes" : "Tenir 1 haltère verticalement à deux mains contre le sternum (4-8 kg). Le contrepoids devant aide naturellement à garder le buste droit et les genoux dans l'axe. Idéal pour apprendre la mécanique du squat. RPE 5-6.",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Glute bridge bipodal 15 reps",
+                "Single-leg glute bridge 8 reps/côté",
+                "Romanian Deadlift haltères très légers 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Hip Thrust au sol poids du corps (pattern hinge)",
               "notes" : "Allongé sur le dos, pieds à plat, genoux fléchis. Pousser le bassin vers le plafond en serrant les fessiers, tenir 2 sec en haut. Épaules au sol. Progression vers hip thrust avec haltère sur le bassin dès W3.",
               "reps" : "12",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes inclinées mains sur chaise 10 reps",
+                "DB floor press 10 reps charge légère",
+                "Push-up mur debout 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes sur les genoux (pattern push horizontal)",
               "notes" : "Même technique que J1. L'objectif cette semaine est de mémoriser la mécanique, pas d'augmenter le nombre de reps.",
               "reps" : "8",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pike push-up genoux pliés 6 reps",
+                "Band overhead press 12 reps",
+                "Z-press haltères très légers 8 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "cervical-pain",
+                "wrist-pain"
+              ],
               "name" : "Arnold Press assis au sol (pattern push vertical)",
               "notes" : "Assis en tailleur ou dos contre un mur. Haltères légers (2-4 kg). Partir paumes face à toi à hauteur épaules, rotation des paumes vers l'avant pendant la montée, finir bras tendus. Rentrer le menton pendant la presse pour protéger le cou (ne pas hyperextender cervicales).",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
-              "name" : "Y-raise allongé (pattern pull vertical alternatif)",
-              "notes" : "Allongé face contre terre sur le tapis, haltères très légers (2 kg) ou sans charge. Bras tendus en Y au-dessus de la tête. Soulever les bras du sol en serrant les omoplates et fessiers. Maintenir 2 sec. Cible le bas du trapèze et les rhomboïdes. Complément du pullover pour le pull vertical sans barre.",
+              "alternatives" : [
+                "T-raise allongé 12 reps",
+                "Band pull-apart assis 15 reps",
+                "Face pull élastique 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Y-raise allongé (pattern pull vertical — partie 2 du combo)",
+              "notes" : "Allongé face contre terre sur le tapis, haltères très légers (2 kg) ou sans charge. Bras tendus en Y au-dessus de la tête. Soulever les bras du sol en serrant les omoplates et fessiers. Maintenir 2 sec. Cible le bas du trapèze, les rhomboïdes, la coiffe rotateurs. Deuxième composant du combo pull vertical home (combo Pullover + Y-raise = substitut validé pull-up sans barre fixe).",
               "reps" : "12",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Bird-dog 8 reps/côté",
+                "Planche ventrale 20 sec",
+                "Hollow hold 15 sec"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Dead Bug (core — EN FIN DE SÉANCE)",
               "notes" : "Allongé sur le dos, bras tendus vers le plafond, genoux à 90°. Descendre bras opposé + jambe opposée vers le sol en expirant lentement, en maintenant le bas du dos PLAQUÉ au sol. Remonter. Cible le core profond (transverse de l'abdomen) — excellent pour protéger les lombaires sur les patterns hinge/squat.",
               "reps" : "8 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             }
           ],
-          "name" : "Full-body B — Consolidation positions",
+          "name" : "Full-body B — Consolidation positions + push V + pull V combo",
           "type" : "strength",
           "warmup" : "Échauffement standard : 10 cercles d'épaules, 10 rotations poignets, 10 cercles hanches, 10 demi-squats, 10 balancements jambe. Total 7 min."
         },
@@ -130,46 +297,133 @@
           "duration_minutes" : 45,
           "exercises" : [
             {
+              "alternatives" : [
+                "Wall sit 35 sec",
+                "Squats partiels mains au mur 15 reps",
+                "Box squat sur chaise 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Squat poids du corps (pattern squat)",
               "notes" : "Augmentation de 2 reps vs J1 uniquement si la technique est propre (genoux dans l'axe, dos droit, profondeur correcte). Sinon rester à 10 reps avec meilleure qualité.",
               "reps" : "12",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust bodyweight 15 reps",
+                "Single-leg RDL bodyweight 8 reps/côté",
+                "Good morning bâton 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères légers (pattern hinge)",
               "notes" : "Mêmes charges que J1. Si le dos reste plat et les fessiers tirent correctement, tu peux tenter +1 kg. Sinon consolide la forme.",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes inclinées mains sur chaise 12 reps",
+                "DB floor press 12 reps charge légère",
+                "Push-up mur debout 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes sur les genoux (pattern push horizontal)",
               "notes" : "Objectif : 10 reps propres. Tempo 2 sec descente, 1 sec pause en bas, poussée explosive.",
               "reps" : "10",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 10 reps",
+                "Band row assis 12 reps",
+                "Chest-supported row sur chaise 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row unilatéral (pattern pull horizontal)",
               "notes" : "Consolidation technique. Vérifier : coude tire vers la hanche, épaule reste basse, buste ne pivote pas.",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Band pull-down assis 12 reps",
+                "Y-raise allongé 15 reps",
+                "Dumbbell pullover bras tendus 8 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Dumbbell Pullover (pattern pull vertical)",
-              "notes" : "Même charge que J1. Sentir l'étirement du grand dorsal en position basse.",
+              "notes" : "Même charge que J1. Sentir l'étirement du grand dorsal en position basse. Rappel : combo pullover + Y-raise = substitut pull-up home (pas de barre fixe disponible).",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Planche genoux au sol 35 sec",
+                "Dead bug 10 reps/côté",
+                "Bird-dog 10 reps/côté"
+              ],
               "duration" : "20 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Planche ventrale (core — EN FIN DE SÉANCE)",
               "notes" : "+5 sec vs J1 si la position est solide.",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body C — Répétition et ancrage technique",
@@ -181,7 +435,7 @@
       "week_number" : 1
     },
     {
-      "goal" : "Consolider la mécanique de chaque pattern. Introduire une légère charge sur squat et hinge (RPE 6-7). Volume stable pour ancrer les adaptations neurologiques de W1.",
+      "goal" : "Consolider la mécanique de chaque pattern. Introduire une légère charge sur squat et hinge (RPE 6-7, RIR 3-4). Volume hebdo cible : ~8-9 sets working / muscle group principal (montée progressive dans la fenêtre MEV beginner 6-10) — total compound sets full-body ~14-15 sur la semaine. Repos compounds passe à 90 sec.",
       "sessions" : [
         {
           "cooldown" : "Étirements 5 min standards.",
@@ -189,45 +443,132 @@
           "duration_minutes" : 47,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 15 reps",
+                "Wall sit 45 sec",
+                "Box squat sur chaise haltère 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
-              "notes" : "Haltère 8-10 kg. RPE 6-7. Double progression : arriver à 12 reps propres avant d'augmenter la charge. Repos 90 sec sur les composés dès l'introduction de charge (ACSM recommande 2-3 min sur les composés lourds — nous augmentons progressivement vers cet objectif).",
+              "notes" : "Haltère 8-10 kg. RPE 6-7. Double progression (introduction préliminaire) : arriver à 12 reps propres avant d'augmenter la charge. Repos 90 sec sur les composés dès l'introduction de charge (NSCA standards).",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust bodyweight 15 reps",
+                "Single-leg RDL bodyweight 8 reps/côté",
+                "Glute bridge isométrique 30 sec"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères (pattern hinge)",
               "notes" : "Haltères 6-10 kg. Dos PLAT obligatoire. Si tu sens le bas du dos prendre la charge (au lieu des ischio-jambiers), la charge est trop lourde. Réduire immédiatement. RPE 6-7.",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes inclinées mains sur chaise 12 reps",
+                "DB floor press 12 reps charge modérée",
+                "Pompes complètes 5-6 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes sur les genoux (pattern push horizontal)",
               "notes" : "Objectif : 3 séries de 10 reps propres sans pause. Si tu arrives à 3x12 proprement cette semaine, tu passeras aux pompes complètes en W3.",
               "reps" : "10",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 12 reps",
+                "Band row assis 15 reps",
+                "Chest-supported row sur chaise 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "notes" : "Haltères 6-10 kg. RPE 6-7. Priorité à la stabilité du tronc.",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Band pull-down assis 15 reps",
+                "Y-raise allongé 15 reps",
+                "Dumbbell pullover bras tendus 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Dumbbell Pullover (pattern pull vertical)",
               "notes" : "Haltère 6-8 kg. Allonger légèrement l'amplitude en position basse si confortable.",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Planche genoux au sol 40 sec",
+                "Dead bug 10 reps/côté",
+                "Bird-dog 10 reps/côté"
+              ],
               "duration" : "25 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Planche ventrale (core — EN FIN)",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body A — Squat et hinge chargés",
@@ -240,48 +581,134 @@
           "duration_minutes" : 47,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 15 reps",
+                "Wall sit 45 sec",
+                "Box squat sur chaise haltère 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
               "notes" : "Même charge que J1. Volume de consolidation.",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Glute bridge bipodal 15 reps",
+                "Single-leg glute bridge 10 reps/côté",
+                "Romanian Deadlift haltères 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Hip Thrust avec haltère sur bassin (pattern hinge)",
               "notes" : "Allongé sur le dos, poser 1 haltère (6-10 kg) sur le bas du ventre/bassin (tenir avec les deux mains). Pousser vers le plafond. Progression directe vs hip thrust poids du corps de W1. Fessiers activés en contraction maximale en haut.",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pike push-up genoux pliés 6 reps",
+                "Band overhead press 15 reps",
+                "Z-press haltères légers 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "cervical-pain",
+                "wrist-pain"
+              ],
               "name" : "Arnold Press assis (pattern push vertical)",
               "notes" : "Haltères 4-6 kg. RPE 6-7. Dos contre mur ou en tailleur stable. Rentrer le menton sur la poussée.",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 12 reps",
+                "Band row assis 15 reps",
+                "Chest-supported row sur chaise 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "notes" : "Même charge que J1 ou +1 kg si RPE < 6.",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "T-raise allongé 15 reps",
+                "Band pull-apart assis 18 reps",
+                "Face pull élastique 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Y-raise allongé (pattern pull vertical)",
               "notes" : "Haltères 2 kg ou poids du corps. Augmenter les reps avant la charge sur ce mouvement.",
               "reps" : "15",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Bird-dog 10 reps/côté",
+                "Planche ventrale 25 sec",
+                "Hollow hold 20 sec"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Dead Bug (core — EN FIN)",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             }
           ],
-          "name" : "Full-body B — Intégration push vertical et hip hinge",
+          "name" : "Full-body B — Push V + pull V combo + hip hinge",
           "type" : "strength",
           "warmup" : "Échauffement standard 7 min."
         },
@@ -291,44 +718,131 @@
           "duration_minutes" : 47,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 18 reps",
+                "Wall sit 50 sec",
+                "Box squat sur chaise haltère 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
               "notes" : "Tenter 12 reps. Si propres à RPE 7, tu passes à la charge supérieure en W3.",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust haltère 12 reps",
+                "Single-leg RDL bodyweight 10 reps/côté",
+                "Good morning bâton 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères (pattern hinge)",
               "notes" : "Tenter 12 reps. Même logique : si propres à RPE 7, +charge en W3.",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes inclinées mains sur chaise 15 reps",
+                "DB floor press 15 reps charge modérée",
+                "Pompes complètes 6-8 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes sur les genoux (pattern push horizontal)",
               "notes" : "Dernier test avant passage pompes complètes. 3x12 propres = W3 pompes complètes.",
               "reps" : "12",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 15 reps",
+                "Band row assis 18 reps",
+                "Chest-supported row sur chaise 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "12 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Band pull-down assis 15 reps",
+                "Y-raise allongé 18 reps",
+                "Dumbbell pullover bras tendus 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Dumbbell Pullover (pattern pull vertical)",
               "notes" : "Haltère 8 kg si confortable.",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Planche genoux au sol 45 sec",
+                "Dead bug 12 reps/côté",
+                "Side plank genoux pliés 25 sec/côté"
+              ],
               "duration" : "30 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Planche ventrale (core — EN FIN)",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body C — Première évaluation technique personnelle",
@@ -340,7 +854,7 @@
       "week_number" : 2
     },
     {
-      "goal" : "Passer aux pompes complètes si 3x12 genoux était propre en W2. Augmenter les charges sur squat et hinge. RPE cible : 7. Début de la double progression systématique.",
+      "goal" : "Passer aux pompes complètes si 3x12 genoux était propre en W2. Augmenter les charges sur squat et hinge. RPE cible 7 (RIR 3). Volume hebdo cible : ~9-10 sets working / muscle group principal (entrée dans MEV haut beginner) — total compound sets full-body ~16-17 sur la semaine. Double progression activée. Repos compounds passe à 120 sec sur composés lourds (NSCA standard).",
       "sessions" : [
         {
           "cooldown" : "Étirements 5 min. Échauffement poignets en sens inverse (cercles lents) si tension ressentie.",
@@ -348,45 +862,132 @@
           "duration_minutes" : 50,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 18 reps",
+                "Wall sit 60 sec",
+                "Bulgarian split squat charge légère 8 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
-              "notes" : "Charge augmentée (+2 à 4 kg vs W2). RPE 7. Double progression : rester à cette charge jusqu'à 3x12 propres, puis augmenter. Repos 2 min sur les composés chargés (ACSM recommande 2-3 min).",
+              "notes" : "Charge augmentée (+2 à 4 kg vs W2). RPE 7. Double progression : rester à cette charge jusqu'à 3x12 propres, puis augmenter. Repos 2 min sur les composés chargés (NSCA recommande 90-120 sec sur compounds modérés beginner).",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust haltère 12 reps",
+                "Single-leg RDL bodyweight 10 reps/côté",
+                "Good morning bâton 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères (pattern hinge)",
               "notes" : "Charge augmentée. Même protocole double progression. Dos plat ABSOLU.",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes genoux 15 reps",
+                "Pompes inclinées mains sur chaise 12 reps",
+                "DB floor press 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes complètes ou genoux (pattern push horizontal)",
               "notes" : "Si 3x12 genoux propres en W2 : pompes complètes corps entier aligné. Commencer à 6-8 reps et appliquer la double progression. Si pas encore prêt : rester aux genoux mais à 15 reps. Les deux options sont valides — ne pas sacrifier la forme pour l'orgueil.",
               "reps" : "6-8",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 12 reps",
+                "Band row assis 15 reps",
+                "Chest-supported row sur chaise 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "notes" : "Charge augmentée. RPE 7.",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Band pull-down assis 15 reps",
+                "Y-raise allongé 15 reps",
+                "Dumbbell pullover bras tendus 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Dumbbell Pullover (pattern pull vertical)",
               "notes" : "Haltère 8-10 kg.",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Planche genoux au sol 50 sec",
+                "Dead bug 12 reps/côté",
+                "Side plank 25 sec/côté"
+              ],
               "duration" : "35 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Planche ventrale (core — EN FIN)",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body A — Pompes complètes et charges augmentées",
@@ -399,44 +1000,130 @@
           "duration_minutes" : 50,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 18 reps",
+                "Wall sit 60 sec",
+                "Bulgarian split squat charge légère 8 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
               "notes" : "Même charge que J1 W3. Volume de consolidation mid-semaine.",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Glute bridge bipodal 18 reps",
+                "Single-leg glute bridge 10 reps/côté",
+                "Romanian Deadlift haltères 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Hip Thrust haltère (pattern hinge)",
               "notes" : "Haltère 10-12 kg sur le bassin. Tenir 2 sec en haut. Progression directe du pattern hinge en isolation fessiers.",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 120,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pike push-up genoux pliés 8 reps",
+                "Band overhead press 15 reps",
+                "Z-press haltères 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "cervical-pain",
+                "wrist-pain"
+              ],
               "name" : "Arnold Press assis (pattern push vertical)",
               "notes" : "Haltères 6-8 kg. RPE 7. Rentrer le menton pendant la poussée — protection cervicale obligatoire.",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 12 reps",
+                "Band row assis 15 reps",
+                "Chest-supported row sur chaise 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "T-raise allongé 18 reps",
+                "Band pull-apart assis 18 reps",
+                "Face pull élastique 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Y-raise allongé (pattern pull vertical)",
               "notes" : "Haltères 2-3 kg. Bien serrer les omoplates en haut.",
               "reps" : "15",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Bird-dog 12 reps/côté",
+                "Planche ventrale 30 sec",
+                "Hollow hold 25 sec"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Dead Bug (core — EN FIN)",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             }
           ],
           "name" : "Full-body B — Hip Thrust chargé et Arnold Press progression",
@@ -449,44 +1136,131 @@
           "duration_minutes" : 50,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 18 reps",
+                "Wall sit 60 sec",
+                "Bulgarian split squat charge légère 8 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
               "notes" : "4ème série introduite. Si W3 J1 et J3 étaient à RPE 7, même charge. Si RPE < 6, augmenter.",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust haltère 12 reps",
+                "Single-leg RDL bodyweight 10 reps/côté",
+                "Good morning bâton 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères (pattern hinge)",
               "notes" : "4ème série. Même logique. RPE 7.",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes genoux 15 reps",
+                "Pompes inclinées mains sur chaise 12 reps",
+                "DB floor press 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes complètes ou genoux (pattern push horizontal)",
               "notes" : "Tenter de progresser vs J1 (1-2 reps de plus).",
               "reps" : "6-10",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 12 reps",
+                "Band row assis 15 reps",
+                "Chest-supported row sur chaise 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Band pull-down assis 15 reps",
+                "Y-raise allongé 18 reps",
+                "Dumbbell pullover bras tendus 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Dumbbell Pullover (pattern pull vertical)",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Side plank genoux pliés 30 sec/côté",
+                "Bird-dog 12 reps/côté",
+                "Planche ventrale 35 sec"
+              ],
               "duration" : "20 sec par côté",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Side Plank (core — EN FIN)",
               "notes" : "Nouveauté W3 : planche latérale pour le travail anti-latéroflexion. Hanches alignées, ne pas laisser tomber le bassin.",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body C — Volume légèrement augmenté",
@@ -494,11 +1268,11 @@
           "warmup" : "Échauffement standard 7 min."
         }
       ],
-      "theme" : "Progression charge — introduction pompes complètes",
+      "theme" : "Progression charge — introduction pompes complètes + double progression",
       "week_number" : 3
     },
     {
-      "goal" : "Augmenter la charge sur les composés pour atteindre RPE 7-8 (RIR 2-3). Introduire les fentes haltères. Volume hebdo en hausse modérée (+15% séries totales).",
+      "goal" : "Augmenter la charge sur les composés pour atteindre RPE 7-8 (RIR 2-3). Introduire les fentes haltères. Volume hebdo cible : ~10-12 sets working / muscle group principal (pic build, MEV haut beginner avant cutback W5) — total compound sets full-body ~17-18 sur la semaine. 4 séries sur composés principaux. Repos compounds 120 sec.",
       "sessions" : [
         {
           "cooldown" : "Étirements 5 min.",
@@ -506,45 +1280,132 @@
           "duration_minutes" : 52,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 20 reps",
+                "Wall sit 75 sec",
+                "Bulgarian split squat charge légère 10 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
               "notes" : "Charge augmentée pour cibler RPE 7-8. Si 8 reps restent à RPE < 7, charger davantage. Si RPE > 8, reculer. Double progression : 4x8 → 4x10 → 4x12 → charge supérieure.",
               "reps" : "8",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust haltère 12 reps",
+                "Single-leg RDL bodyweight 10 reps/côté",
+                "Good morning bâton 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères (pattern hinge)",
               "notes" : "RPE 7-8. Dos plat absolu. Ischio-jambiers sous tension — ne pas compenser avec les lombaires.",
               "reps" : "8",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes genoux 18 reps",
+                "Pompes inclinées mains sur chaise 15 reps",
+                "DB floor press 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes complètes (pattern push horizontal)",
               "notes" : "Progression reps. Si pompes complètes impossibles : inclinées mains sur chaise/table (version plus facile). Si trop faciles : pieds surélevés sur une chaise (version plus difficile).",
               "reps" : "8-12",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 12 reps",
+                "Band row assis 15 reps",
+                "Chest-supported row sur chaise 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "notes" : "4ème série. RPE 7-8.",
               "reps" : "8-10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Band pull-down assis 15 reps",
+                "Y-raise allongé 18 reps",
+                "Dumbbell pullover bras tendus 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Dumbbell Pullover (pattern pull vertical)",
               "notes" : "Haltère 10 kg si confortable.",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Planche genoux au sol 60 sec",
+                "Dead bug 14 reps/côté",
+                "Side plank 30 sec/côté"
+              ],
               "duration" : "40 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Planche ventrale (core — EN FIN)",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body A — Charges intensifiées",
@@ -557,44 +1418,129 @@
           "duration_minutes" : 52,
           "exercises" : [
             {
-              "name" : "Fentes haltères (pattern squat + équilibre)",
-              "notes" : "Haltères 4-8 kg dans chaque main. Genou avant à 90° max, genou arrière frôle le sol sans taper. Tronc vertical. Progression vs squat : demande plus d'équilibre et d'unilateral stability. RPE 6-7 cette semaine (nouveauté).",
+              "alternatives" : [
+                "Step-ups bas 10 reps/côté",
+                "Bulgarian split squat appui mur 8 reps/côté",
+                "Reverse lunges bodyweight 12 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "hip-injury"
+              ],
+              "name" : "Fentes haltères (pattern squat unilatéral)",
+              "notes" : "Haltères 4-8 kg dans chaque main. Genou avant à 90° max, genou arrière frôle le sol sans taper. Tronc vertical. Progression vs squat : demande plus d'équilibre et de stabilité unilatérale. RPE 6-7 cette semaine (nouveauté).",
               "reps" : "8 par jambe",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Glute bridge bipodal 18 reps",
+                "Single-leg glute bridge 10 reps/côté",
+                "Romanian Deadlift haltères 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Hip Thrust haltère (pattern hinge)",
               "notes" : "Haltère 12-15 kg si confortable. Tenir 2 sec en haut avec contraction maximale.",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pike push-up genoux pliés 8 reps",
+                "Band overhead press 15 reps",
+                "Z-press haltères 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "cervical-pain",
+                "wrist-pain"
+              ],
               "name" : "Arnold Press assis (pattern push vertical)",
               "notes" : "Haltères 8 kg. RPE 7-8.",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 12 reps",
+                "Band row assis 15 reps",
+                "Chest-supported row sur chaise 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "T-raise allongé 18 reps",
+                "Band pull-apart assis 20 reps",
+                "Face pull élastique 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Y-raise allongé (pattern pull vertical)",
               "notes" : "Haltères 3 kg. Maintenir 2 sec en haut.",
               "reps" : "15",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Bird-dog 12 reps/côté",
+                "Planche ventrale 35 sec",
+                "Hollow hold 30 sec"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Dead Bug (core — EN FIN)",
               "reps" : "12 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             }
           ],
           "name" : "Full-body B — Introduction fentes haltères",
@@ -607,42 +1553,129 @@
           "duration_minutes" : 52,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 20 reps",
+                "Wall sit 75 sec",
+                "Bulgarian split squat charge légère 10 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
-              "notes" : "Même charge que J1. Tenter 10 reps — si propre à RPE 7-8, tu es en bonne voie pour W5.",
+              "notes" : "Même charge que J1. Tenter 10 reps — si propre à RPE 7-8, tu es en bonne voie pour W6 (post-cutback).",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust haltère 14 reps",
+                "Single-leg RDL bodyweight 12 reps/côté",
+                "Good morning bâton 18 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères (pattern hinge)",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes genoux 18 reps",
+                "Pompes inclinées mains sur chaise 15 reps",
+                "DB floor press 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes complètes (pattern push horizontal)",
               "notes" : "4ème série introduite cette semaine.",
               "reps" : "8-12",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 90,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 12 reps",
+                "Band row assis 15 reps",
+                "Chest-supported row sur chaise 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Band pull-down assis 15 reps",
+                "Y-raise allongé 18 reps",
+                "Dumbbell pullover bras tendus 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Dumbbell Pullover (pattern pull vertical)",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Side plank genoux pliés 35 sec/côté",
+                "Bird-dog 14 reps/côté",
+                "Planche ventrale 45 sec"
+              ],
               "duration" : "25 sec par côté",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Side Plank (core — EN FIN)",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body C — Séance intensive W4",
@@ -654,7 +1687,7 @@
       "week_number" : 4
     },
     {
-      "goal" : "Semaine allégée (-15% volume vs W4). Les semaines de récupération sont constitutives de la progression : les adaptations (renforcement osseux, myofibrilles, proprioception) se consolident PENDANT le repos. Ne pas sauter cette semaine. RPE cible : 5-6.",
+      "goal" : "Cutback obligatoire (-40% sets composés vs W4 pic). Volume hebdo cible : ~6 sets working / muscle group principal (retour MEV bas le temps d'une semaine) — total compound sets full-body ~9-10 sur la semaine. Les semaines de récupération sont CONSTITUTIVES de la progression : les adaptations (renforcement osseux, myofibrilles, proprioception) se consolident PENDANT le repos. Ne pas sauter cette semaine. RPE cible 5-6 (charge -20% vs W4). J3 = séance mobilité dédiée (poignets/hanches/épaules/thoracique).",
       "sessions" : [
         {
           "cooldown" : "Étirements 6 min : prendre le temps d'étirer pectoraux, grand dorsal et ischio-jambiers plus longuement cette semaine (45 sec/muscle).",
@@ -662,44 +1695,131 @@
           "duration_minutes" : 40,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 15 reps",
+                "Wall sit 45 sec",
+                "Box squat sur chaise 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
-              "notes" : "Charge réduite de 20% vs W4. RPE 5-6. Focus sur la qualité d'exécution parfaite plutôt que sur l'effort. Observer et corriger : genoux dans l'axe ? Profondeur suffisante ? Buste droit ?",
+              "notes" : "Charge réduite -20% vs W4. RPE 5-6. Focus sur la qualité d'exécution parfaite plutôt que sur l'effort. Observer et corriger : genoux dans l'axe ? Profondeur suffisante ? Buste droit ? Cutback strength = -40% sets vs pic, charge -20% : convention NSCA / Helms Pyramid.",
               "reps" : "8",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust bodyweight 15 reps",
+                "Single-leg RDL bodyweight 8 reps/côté",
+                "Glute bridge bipodal 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères (pattern hinge)",
               "notes" : "Charge réduite. Utiliser la semaine cutback pour retravailler la charnière de hanche pure — souvent dégradée sous la fatigue.",
               "reps" : "8",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes genoux 12 reps",
+                "Pompes inclinées mains sur chaise 10 reps",
+                "DB floor press 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes complètes (pattern push horizontal)",
-              "notes" : "Volume réduit. Tempo contrôlé : 3 sec descente, 1 sec pause, poussée.",
+              "notes" : "Volume réduit (2 sets vs 3-4 en W4). Tempo contrôlé : 3 sec descente, 1 sec pause, poussée.",
               "reps" : "6-8",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 2,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 10 reps",
+                "Band row assis 12 reps",
+                "Chest-supported row sur chaise 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "8 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Band pull-down assis 12 reps",
+                "Y-raise allongé 15 reps",
+                "Dumbbell pullover bras tendus 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Dumbbell Pullover (pattern pull vertical)",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Planche genoux 40 sec",
+                "Dead bug 10 reps/côté",
+                "Bird-dog 10 reps/côté"
+              ],
               "duration" : "30 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Planche ventrale (core — EN FIN)",
               "notes" : "Volume core réduit aussi. Le corps récupère dans sa globalité.",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body cutback A — Volume réduit",
@@ -712,42 +1832,109 @@
           "duration_minutes" : 35,
           "exercises" : [
             {
+              "alternatives" : [
+                "Massage avant-bras 3 min",
+                "Mobilisation poignets sans appui sol 3 min",
+                "Étirements doigts 2 min"
+              ],
               "duration" : "3 min",
+              "incompatible_constraints" : [
+                "wrist-pain"
+              ],
               "name" : "Routine mobilité poignets",
-              "notes" : "Cercles 10/sens, extension douce au sol (paumes à plat, incliner le buste en avant), flexion douce (dos de la main au sol). Les poignets subissent une forte contrainte sur les pompes et Arnold Press — les mobiliser activement prévient les tendinites.",
+              "notes" : "Cercles 10/sens, extension douce au sol (paumes à plat, incliner le buste en avant), flexion douce (dos de la main au sol). Les poignets subissent une forte contrainte sur les pompes et Arnold Press — les mobiliser activement aide à prévenir les tendinites.",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 30,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "technique",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Pigeon stretch 60 sec/côté",
+                "Butterfly stretch 90 sec",
+                "Lizard pose 60 sec/côté"
+              ],
               "duration" : "60 sec par côté",
+              "incompatible_constraints" : [
+                "hip-injury",
+                "knee-injury"
+              ],
               "name" : "Hip 90/90 stretch",
               "notes" : "Assis au sol, jambes en position 90/90 (une jambe devant, une derrière). Inclinaison douce du buste vers la jambe avant. Cible les rotateurs de hanche — souvent raides chez le sédentaire, contribue à la profondeur du squat.",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 30,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "technique",
+              "volume_axis" : "duration"
             },
             {
-              "name" : "Thread the Needle",
-              "notes" : "À 4 pattes, glisser un bras sous le corps jusqu'à toucher l'épaule au sol. Rotation thoracique. Cible la mobilité thoracique — essentielle pour le Arnold Press et le Row sans compensation lombaire.",
+              "alternatives" : [
+                "T-spine rotation debout 10 reps/côté",
+                "Open book stretch allongé 8 reps/côté",
+                "Cat-cow rotation 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "name" : "Thread the Needle (mobilité thoracique)",
+              "notes" : "À 4 pattes, glisser un bras sous le corps jusqu'à toucher l'épaule au sol. Rotation thoracique. Cible la mobilité thoracique — essentielle pour Arnold Press et Row sans compensation lombaire.",
               "reps" : "8 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 30,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Wall slides 12 reps",
+                "Band pass-through 10 reps",
+                "Scapular CARs 8 reps/sens"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury"
+              ],
               "name" : "Shoulder CARs (Controlled Articular Rotations)",
-              "notes" : "Rotation lente et maximale de l'épaule dans toute son amplitude. Maintenir tout le corps statique, seule l'épaule bouge. Prévient le conflit sous-acromial à mesure que les charges augmentent.",
+              "notes" : "Rotation lente et maximale de l'épaule dans toute son amplitude. Maintenir tout le corps statique, seule l'épaule bouge. Aide à prévenir le conflit sous-acromial à mesure que les charges augmentent.",
               "reps" : "5 par épaule",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 30,
-              "sets" : 1
+              "sets" : 1,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Bird-dog 10 reps/côté",
+                "Pelvic tilt allongé 12 reps",
+                "Child pose tenu 60 sec"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain"
+              ],
               "name" : "Chat-Vache (Cat-Cow) — mobilité lombaire",
-              "notes" : "À 4 pattes. Inspiration : dos creux, regard vers le plafond. Expiration : dos rond, nombril vers la colonne. Fluidité articulaire lombaire, souvent comprimée après une semaine de deadlifts.",
+              "notes" : "À 4 pattes. Inspiration : dos creux, regard vers le plafond. Expiration : dos rond, nombril vers la colonne. Fluidité articulaire lombaire, souvent comprimée après une semaine de RDL.",
               "reps" : "10",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 30,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
             }
           ],
-          "name" : "Mobilité active — poignets, hanches, épaules",
+          "name" : "Mobilité active — poignets, hanches, épaules, thoracique",
           "type" : "mobility",
           "warmup" : "5 min marche sur place ou mobilité cervicale douce."
         },
@@ -757,43 +1944,128 @@
           "duration_minutes" : 42,
           "exercises" : [
             {
-              "name" : "Fentes haltères (pattern squat)",
+              "alternatives" : [
+                "Step-ups bas 8 reps/côté",
+                "Bulgarian split squat appui mur 6 reps/côté",
+                "Reverse lunges bodyweight 10 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "hip-injury"
+              ],
+              "name" : "Fentes haltères (pattern squat unilatéral)",
               "notes" : "Haltères légers (4-6 kg). Cutback sur les fentes introduites en W4. Priorité à l'équilibre et au genou dans l'axe.",
               "reps" : "6 par jambe",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Glute bridge bipodal 15 reps",
+                "Single-leg glute bridge 8 reps/côté",
+                "Romanian Deadlift haltères 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Hip Thrust haltère (pattern hinge)",
               "notes" : "Charge réduite 10-12 kg. Qualité de contraction fessière.",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pike push-up genoux pliés 6 reps",
+                "Band overhead press 12 reps",
+                "Z-press haltères légers 8 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "cervical-pain",
+                "wrist-pain"
+              ],
               "name" : "Arnold Press assis (pattern push vertical)",
               "notes" : "Haltères 6 kg. Volume réduit.",
               "reps" : "8",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 10 reps",
+                "Band row assis 12 reps",
+                "Chest-supported row sur chaise 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "8 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "T-raise allongé 12 reps",
+                "Band pull-apart assis 15 reps",
+                "Face pull élastique 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Y-raise allongé (pattern pull vertical)",
               "reps" : "12",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Bird-dog 10 reps/côté",
+                "Planche ventrale 30 sec",
+                "Hollow hold 20 sec"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Dead Bug (core — EN FIN)",
               "reps" : "8 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             }
           ],
           "name" : "Full-body cutback B — Technique sous charge légère",
@@ -805,7 +2077,7 @@
       "week_number" : 5
     },
     {
-      "goal" : "Retrouver et dépasser les charges de W4 grâce à la récupération de W5. Introduire le Overhead Press strict (alternative Arnold). RPE cible : 7-8. Volume +20% vs W5.",
+      "goal" : "Retrouver et dépasser les charges de W4 grâce à la récupération de W5. Introduire l'Overhead Press strict (alternative Arnold). RPE cible 7-8 (RIR 2-3). Volume hebdo cible : ~10-11 sets working / muscle group principal (retour MEV haut beginner) — total compound sets full-body ~16-17 sur la semaine.",
       "sessions" : [
         {
           "cooldown" : "Étirements 5 min.",
@@ -813,44 +2085,131 @@
           "duration_minutes" : 52,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 22 reps",
+                "Wall sit 90 sec",
+                "Bulgarian split squat charge légère 10 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
-              "notes" : "Charge W4 ou supérieure si RPE le permet. La semaine de récupération crée une surcompensation : tu devrais sentir plus de force.",
+              "notes" : "Charge W4 ou supérieure si RPE le permet. La semaine de récupération crée une supercompensation : tu devrais sentir plus de force.",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust haltère 14 reps",
+                "Single-leg RDL bodyweight 12 reps/côté",
+                "Good morning bâton 18 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères (pattern hinge)",
               "notes" : "Même logique. RPE 7-8.",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes genoux 18 reps",
+                "Pompes inclinées mains sur chaise 15 reps",
+                "DB floor press 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes complètes (pattern push horizontal)",
               "reps" : "8-12",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 90,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 12 reps",
+                "Band row assis 15 reps",
+                "Chest-supported row sur chaise 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Band pull-down assis 15 reps",
+                "Y-raise allongé 18 reps",
+                "Dumbbell pullover bras tendus 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Dumbbell Pullover (pattern pull vertical)",
               "notes" : "Haltère 10-12 kg.",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Planche statique 50 sec",
+                "Dead bug 14 reps/côté",
+                "Side plank 30 sec/côté"
+              ],
               "duration" : "40 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Planche ventrale + genoux alternés (core — EN FIN)",
               "notes" : "Planche standard + lever alternativement chaque genou légèrement du sol pendant la durée. Progression vs planche statique.",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body A — Retour force post-cutback",
@@ -863,44 +2222,129 @@
           "duration_minutes" : 52,
           "exercises" : [
             {
-              "name" : "Fentes haltères (pattern squat)",
+              "alternatives" : [
+                "Step-ups bas 12 reps/côté",
+                "Bulgarian split squat appui mur 8 reps/côté",
+                "Reverse lunges bodyweight 15 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "hip-injury"
+              ],
+              "name" : "Fentes haltères (pattern squat unilatéral)",
               "notes" : "Haltères 6-10 kg. RPE 7-8. Progression vs fentes W4.",
               "reps" : "8 par jambe",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Glute bridge bipodal 20 reps",
+                "Single-leg glute bridge 12 reps/côté",
+                "Romanian Deadlift haltères 14 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Hip Thrust haltère lourd (pattern hinge)",
               "notes" : "Haltère 12-15 kg. Progression charge.",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pike push-up genoux pliés 8 reps",
+                "Band overhead press 15 reps",
+                "Arnold Press assis haltères 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "cervical-pain",
+                "wrist-pain"
+              ],
               "name" : "Overhead Press strict assis (pattern push vertical)",
               "notes" : "Haltères 6-10 kg. Assis dos contre mur, paumes face avant, pousser verticalement au-dessus de la tête. Différence avec Arnold : mouvement linéaire plus strict. Rentrer le menton. Stabilité thoracique maximale — ne pas cambrer les lombaires.",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 12 reps",
+                "Band row assis 15 reps",
+                "Chest-supported row sur chaise 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "T-raise allongé 18 reps",
+                "Band pull-apart assis 20 reps",
+                "Face pull élastique 18 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Y-raise allongé (pattern pull vertical)",
               "notes" : "Haltères 3 kg.",
               "reps" : "15",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Bird-dog 14 reps/côté",
+                "Planche ventrale 40 sec",
+                "Hollow hold 30 sec"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Dead Bug (core — EN FIN)",
               "reps" : "12 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             }
           ],
           "name" : "Full-body B — Overhead Press strict introduit",
@@ -913,42 +2357,129 @@
           "duration_minutes" : 55,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 25 reps",
+                "Wall sit 90 sec",
+                "Bulgarian split squat charge légère 12 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
               "notes" : "Si 4x10 propres à RPE 7-8 : prêt pour charge supérieure en W7.",
               "reps" : "10-12",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust haltère 15 reps",
+                "Single-leg RDL bodyweight 12 reps/côté",
+                "Good morning bâton 20 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères (pattern hinge)",
               "reps" : "10-12",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes genoux 20 reps",
+                "Pompes inclinées mains sur chaise 18 reps",
+                "DB floor press 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes complètes (pattern push horizontal)",
               "notes" : "Pousser vers 15 reps si possible. Sinon variante pieds surélevés pour plus de difficulté.",
               "reps" : "10-15",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 90,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 15 reps",
+                "Band row assis 18 reps",
+                "Chest-supported row sur chaise 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "12 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pike push-up genoux pliés 10 reps",
+                "Band overhead press 15 reps",
+                "Arnold Press assis haltères 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "cervical-pain",
+                "wrist-pain"
+              ],
               "name" : "Overhead Press strict assis (pattern push vertical)",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Side plank genoux pliés 40 sec/côté",
+                "Bird-dog 14 reps/côté",
+                "Planche ventrale 50 sec"
+              ],
               "duration" : "30 sec par côté",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Side Plank (core — EN FIN)",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body C — Charge maximale de W6",
@@ -960,7 +2491,7 @@
       "week_number" : 6
     },
     {
-      "goal" : "Atteindre les charges maximales. 4-5 séries sur les composés principaux. RPE 7-8 sur tous les composés. Dernier bloc d'intensification avant le tapering W8.",
+      "goal" : "Atteindre les charges maximales. 4 séries sur les composés principaux. RPE 7-8 sur tous les composés (jamais RPE 10). Volume hebdo cible : ~11-12 sets working / muscle group principal (pic, plafond beginner avant graduation `recreational`) — total compound sets full-body ~17-18 sur la semaine. Dernier bloc d'intensification avant le tapering W8.",
       "sessions" : [
         {
           "cooldown" : "Étirements 6 min. Attention aux lombaires : étirement genoux-poitrine 60 sec.",
@@ -968,45 +2499,132 @@
           "duration_minutes" : 57,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 25 reps",
+                "Wall sit 90 sec",
+                "Bulgarian split squat charge modérée 10 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
               "notes" : "Charge maximale du plan. RPE 7-8. Si tu atteins RPE 9+ sur les dernières reps, tu es à la bonne charge. Forme prioritaire : valgus = réduire la charge immédiatement.",
               "reps" : "8",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust haltère 15 reps",
+                "Single-leg RDL bodyweight 12 reps/côté",
+                "Good morning bâton 20 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères (pattern hinge)",
               "notes" : "Charges maximales. Dos plat absolu. Si tu ressens une tension lombaire et non ischio-jambière, la charge est trop lourde ou la technique dégrade.",
               "reps" : "8",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes genoux 22 reps",
+                "Pompes inclinées mains sur chaise 18 reps",
+                "DB floor press 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes complètes (pattern push horizontal)",
               "notes" : "Variante au choix : classiques, pieds surélevés (plus difficile), ou larges (pectoraux+). Choisir la variante qui donne RPE 7-8 sur 10-15 reps.",
               "reps" : "10-15",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 90,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 15 reps",
+                "Band row assis 18 reps",
+                "Chest-supported row sur chaise 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row lourd (pattern pull horizontal)",
               "notes" : "Charge maximale. Si tu dois pivoter le tronc pour soulever, charge trop lourde.",
               "reps" : "8-10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Band pull-down assis 18 reps",
+                "Y-raise allongé 20 reps",
+                "Dumbbell pullover bras tendus 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Dumbbell Pullover (pattern pull vertical)",
               "notes" : "Haltère 10-12 kg.",
               "reps" : "12",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Planche genoux 60 sec",
+                "Dead bug 14 reps/côté",
+                "Side plank 35 sec/côté"
+              ],
               "duration" : "45 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Planche ventrale (core — EN FIN)",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body A — Volume pic",
@@ -1019,44 +2637,129 @@
           "duration_minutes" : 57,
           "exercises" : [
             {
-              "name" : "Fentes haltères (pattern squat)",
+              "alternatives" : [
+                "Step-ups bas 14 reps/côté",
+                "Bulgarian split squat appui mur 10 reps/côté",
+                "Reverse lunges bodyweight 18 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "hip-injury"
+              ],
+              "name" : "Fentes haltères (pattern squat unilatéral)",
               "notes" : "Charge maximale fentes. RPE 7-8. Si équilibre instable, réduire charge et améliorer la stabilité d'abord.",
               "reps" : "8-10 par jambe",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Glute bridge bipodal 22 reps",
+                "Single-leg glute bridge 14 reps/côté",
+                "Romanian Deadlift haltères 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Hip Thrust haltère maximal (pattern hinge)",
               "notes" : "Charge la plus lourde testée à ce jour. Tenir 2 sec en haut. Contraction fessière maximale.",
               "reps" : "10-12",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pike push-up genoux pliés 10 reps",
+                "Band overhead press 18 reps",
+                "Arnold Press assis haltères 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "cervical-pain",
+                "wrist-pain"
+              ],
               "name" : "Overhead Press strict assis (pattern push vertical)",
               "notes" : "Charge maximale du plan pour ce mouvement. RPE 7-8.",
               "reps" : "8",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 15 reps",
+                "Band row assis 18 reps",
+                "Chest-supported row sur chaise 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "T-raise allongé 18 reps",
+                "Band pull-apart assis 22 reps",
+                "Face pull élastique 18 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Y-raise allongé (pattern pull vertical)",
               "notes" : "Haltères 3-4 kg. Maintenir 2 sec en haut.",
               "reps" : "15",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Bird-dog 14 reps/côté",
+                "Planche ventrale 45 sec",
+                "Hollow hold 35 sec"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Dead Bug (core — EN FIN)",
               "reps" : "12 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             }
           ],
           "name" : "Full-body B — Fentes et presses chargées",
@@ -1069,42 +2772,129 @@
           "duration_minutes" : 57,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 25 reps",
+                "Wall sit 90 sec",
+                "Bulgarian split squat charge modérée 10 reps/côté"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
               "notes" : "Même charge que J1. Si 4x10 propres à RPE 7-8 : tu as maîtrisé ce niveau. La W8 tapering confirmera la progression.",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust haltère 15 reps",
+                "Single-leg RDL bodyweight 12 reps/côté",
+                "Good morning bâton 20 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères (pattern hinge)",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes genoux AMRAP propre",
+                "Pompes inclinées mains sur chaise AMRAP propre",
+                "DB floor press AMRAP propre"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes complètes (pattern push horizontal)",
-              "notes" : "Dernière série en AMRAP propre (aussi de reps que possible avec forme correcte). Note ton total : référence pour l'autonomie post-plan.",
+              "notes" : "Dernière série en AMRAP propre (autant de reps que possible avec forme correcte, RPE 8 max — pas RPE 10). Note ton total : référence pour l'autonomie post-plan.",
               "reps" : "max propre",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 90,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 15 reps",
+                "Band row assis 18 reps",
+                "Chest-supported row sur chaise 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 120,
-              "sets" : 4
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pike push-up genoux pliés 10 reps",
+                "Band overhead press 18 reps",
+                "Arnold Press assis haltères 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "cervical-pain",
+                "wrist-pain"
+              ],
               "name" : "Overhead Press strict assis (pattern push vertical)",
               "reps" : "8-10",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Side plank genoux pliés 45 sec/côté",
+                "Bird-dog 14 reps/côté",
+                "Planche ventrale 55 sec"
+              ],
               "duration" : "35 sec par côté",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Side Plank (core — EN FIN)",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Full-body C — Dernière séance intensive",
@@ -1116,7 +2906,7 @@
       "week_number" : 7
     },
     {
-      "goal" : "Séances 1 et 2 allégées pour arriver frais à la séance bilan J5. Séance bilan = circuit intégrant tous les patterns, évaluation RPE et de la forme technique. Checklist d'autonomie pour valider la progression et se projeter vers la suite.",
+      "goal" : "Séances 1 et 2 allégées (volume -30 à -40% vs W7) pour arriver frais à la séance bilan J5. Séance bilan = circuit intégrant tous les patterns, évaluation RPE et de la forme technique. Checklist d'autonomie 5 critères mesurables pour valider la progression et se projeter vers la suite (programme `recreational` upper/lower).",
       "sessions" : [
         {
           "cooldown" : "Étirements 5 min.",
@@ -1124,43 +2914,130 @@
           "duration_minutes" : 40,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squat poids du corps 18 reps",
+                "Wall sit 60 sec",
+                "Box squat sur chaise haltère 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain",
+                "wrist-pain"
+              ],
               "name" : "Goblet Squat (pattern squat)",
-              "notes" : "Charge réduite de 20% vs W7. RPE 6. Pas de test, pas de PR. Arriver frais à J5.",
+              "notes" : "Charge réduite -20% vs W7. RPE 6. Pas de test, pas de PR. Arriver frais à J5.",
               "reps" : "8",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Hip thrust haltère 12 reps",
+                "Single-leg RDL bodyweight 10 reps/côté",
+                "Good morning bâton 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "hip-injury"
+              ],
               "name" : "Romanian Deadlift haltères (pattern hinge)",
               "notes" : "Charge réduite. Même logique.",
               "reps" : "8",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Pompes genoux 15 reps",
+                "Pompes inclinées mains sur chaise 12 reps",
+                "DB floor press 12 reps"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "shoulder-injury"
+              ],
               "name" : "Pompes complètes (pattern push horizontal)",
               "notes" : "Volume réduit. Tempo lent pour activer sans fatiguer.",
               "reps" : "8",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Inverted row sous table 10 reps",
+                "Band row assis 12 reps",
+                "Chest-supported row sur chaise 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Dumbbell Row (pattern pull horizontal)",
               "reps" : "8 par côté",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Band pull-down assis 12 reps",
+                "Y-raise allongé 15 reps",
+                "Dumbbell pullover bras tendus 10 reps"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
               "name" : "Dumbbell Pullover (pattern pull vertical)",
               "reps" : "10",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Planche genoux 55 sec",
+                "Dead bug 12 reps/côté",
+                "Bird-dog 12 reps/côté"
+              ],
               "duration" : "40 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Planche ventrale (core — EN FIN)",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Activation tapering — volume réduit",
@@ -1173,16 +3050,44 @@
           "duration_minutes" : 30,
           "exercises" : [
             {
+              "alternatives" : [
+                "Yoga doux 15 min",
+                "Étirements statiques globaux 12 min",
+                "Marche active mobilité dynamique 15 min"
+              ],
               "duration" : "15 min",
+              "incompatible_constraints" : [
+
+              ],
               "name" : "Routine mobilité complète",
               "notes" : "Hip 90/90 60 sec/côté, Thread the needle 8 reps/côté, Shoulder CARs 5/épaule, Cat-Cow 10 reps, mobilité poignets 3 min. Prépare toutes les articulations sollicitées lors de la séance bilan.",
-              "sets" : 1
+              "required_equipment" : [
+                "mat"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "technique",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Marche active dynamique 5 min",
+                "Mobilité hanches sans charge 5 min",
+                "Air squats lents 10 reps + 10 hip hinges bâton"
+              ],
               "duration" : "5 min",
+              "incompatible_constraints" : [
+
+              ],
               "name" : "Activation légère patterns",
               "notes" : "5 goblet squat poids du corps, 5 hip hinge poids du corps, 5 pompes genoux lentes. Pure activation neuromusculaire, aucun effort.",
-              "sets" : 1
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "technique",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Mobilité et préparation séance bilan",
@@ -1195,23 +3100,72 @@
           "duration_minutes" : 55,
           "exercises" : [
             {
+              "alternatives" : [
+                "Circuit version bodyweight (squat / hip hinge bâton / pompes genoux / inverted row / pike push-up / band pull-down)",
+                "Circuit en 2 tours au lieu de 3 si fatigue",
+                "Séances séparées par pattern (1 pattern par jour sur 2 jours) si endurance insuffisante"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "knee-injury",
+                "wrist-pain",
+                "hip-injury",
+                "cardiac-clearance-required"
+              ],
               "name" : "Circuit bilan tous patterns (3 tours)",
-              "notes" : "Enchaîner sans repos entre les exercices d'un même tour, puis 2 min de repos entre les tours. Tour complet : (1) Goblet Squat x10 → (2) Romanian Deadlift x10 → (3) Pompes complètes x10 (ou max si < 10) → (4) Dumbbell Row x10/côté → (5) Overhead Press x10 → (6) Dumbbell Pullover x10. RPE cible 7-8 sur les composés, pas à fond. Observer : la forme est-elle maintenue sur les 3 tours ?",
+              "notes" : "Enchaîner sans repos entre les exercices d'un même tour, puis 2 min de repos entre les tours. Tour complet : (1) Goblet Squat ×10 → (2) Romanian Deadlift ×10 → (3) Pompes complètes ×10 (ou max si < 10) → (4) Dumbbell Row ×10/côté → (5) Overhead Press ×10 → (6) Dumbbell Pullover ×10. RPE cible 7-8 sur les composés, JAMAIS RPE 10. Observer : la forme est-elle maintenue sur les 3 tours ? Les 6 patterns fondamentaux sont touchés dans chaque tour.",
               "reps" : "10 de chaque exercice",
+              "required_equipment" : [
+                "dumbbells",
+                "mat"
+              ],
               "rest_seconds" : 120,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Planche genoux 60 sec",
+                "Dead bug 14 reps/côté",
+                "Side plank 35 sec/côté"
+              ],
               "duration" : "45 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Planche ventrale finale (core — EN FIN)",
               "notes" : "Core en clôture du circuit, comme toujours.",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 60,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             },
             {
-              "duration" : "5 min lecture/évaluation",
+              "alternatives" : [
+                "Auto-évaluation différée à H+24h si fatigue post-séance",
+                "Évaluation vidéo (filmer 1 set par pattern) si auto-perception difficile",
+                "Évaluation accompagnée par un proche observateur si possible"
+              ],
+              "duration" : "5 min",
+              "incompatible_constraints" : [
+
+              ],
               "name" : "CHECKLIST AUTONOMIE — autoévaluation post-plan",
-              "notes" : "Évalue honnêtement chaque critère après la séance bilan :\n1. SQUAT : mes genoux restent dans l'axe de mes orteils sur les 10 reps des 3 tours, sans compensation en valgus. (Oui / Partiellement / Non)\n2. HINGE : je sens les ischio-jambiers et non les lombaires travailler sur le Romanian Deadlift, dos plat maintenu sur l'ensemble des séries. (Oui / Partiellement / Non)\n3. PUSH : je réalise 10 pompes complètes consécutives avec corps aligné, coudes à 45°, sans creuser les lombaires. (Oui / Partiellement / Non)\n4. RPE : sur le tour 3 du circuit bilan, je tiens RPE 7-8 sans dépasser RPE 9 — je gère mon effort et je connais mes limites actuelles. (Oui / Partiellement / Non)\n5. HABITUDE : j'ai complété au moins 22 des 24 séances prévues sur 8 semaines (3 manquées maximum). (Oui / Non)\n\nSi 4/5 critères sont 'Oui' : tu as les fondamentaux. La suite naturelle est un programme intermédiaire avec surcharge progressive structurée (linear progression).\nSi 2-3/5 : prolonge de 2-4 semaines les semaines 6-7 avant de passer au niveau suivant.\nSi < 2/5 : reprends depuis W3 avec charges réduites en te concentrant sur la technique pure."
+              "notes" : "Évalue honnêtement chaque critère après la séance bilan :\n\n1. SQUAT : mes genoux restent dans l'axe de mes orteils sur les 10 reps des 3 tours, sans compensation en valgus. (Oui / Partiellement / Non)\n2. HINGE : je sens les ischio-jambiers et non les lombaires travailler sur le Romanian Deadlift, dos plat maintenu sur l'ensemble des séries. (Oui / Partiellement / Non)\n3. PUSH HORIZONTAL : je réalise 10 pompes complètes consécutives avec corps aligné, coudes à 45°, sans creuser les lombaires. (Oui / Partiellement / Non)\n4. RPE : sur le tour 3 du circuit bilan, je tiens RPE 7-8 sans dépasser RPE 9 — je gère mon effort et je connais mes limites actuelles. (Oui / Partiellement / Non)\n5. HABITUDE : j'ai complété au moins 22 des 24 séances prévues sur 8 semaines (3 manquées maximum). (Oui / Non)\n\nINTERPRÉTATION :\n• 4-5 critères 'Oui' : tu as les fondamentaux. La suite naturelle est un programme `recreational` upper/lower 12 sem avec progression structurée (10-14 sets/muscle/sem).\n• 2-3 critères 'Oui' : prolonge de 2-4 semaines les semaines W6-W7 avant de passer au niveau suivant.\n• < 2 critères 'Oui' : reprends depuis W3 avec charges réduites en te concentrant sur la technique pure.",
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "technique",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Séance bilan — Circuit fondamentaux + checklist autonomie",

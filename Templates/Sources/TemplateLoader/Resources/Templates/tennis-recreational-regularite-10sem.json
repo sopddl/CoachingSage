@@ -1,796 +1,2328 @@
 {
-  "assumed_profile" : "Joueur pratiquant 1×/sem depuis 6+ mois, maîtrise les fondamentaux, coup droit et revers acquis mais manque de régularité. Accès court régulier. Équipement disponible : raquette, balles, filet, court (en dur ou terre battue). Aucun accès à salle de musculation requis — tout le renforcement est réalisable sur court ou dans un espace dégagé sans matériel (poids du corps uniquement).",
+  "assumed_profile" : "Pratiquant tennis ayant suivi 8-12 semaines d'initiation (NTRP 2.0-2.5 / FFT 40-30/5), maîtrise grip continental + eastern + semi-western, capable d'échanges fond de court 5-10 coups, service 50-60% en jeu. Équipement : raquette adaptée, balles, chaussures court, accès court 2× minimum / 3× possible si récup OK.",
   "default_objective" : "Améliorer la régularité fond de court (30+ échanges consécutifs), stabiliser service et retour, intégrer montée au filet",
   "duration_weeks" : 10,
   "id" : "tennis-recreational-regularite-10sem",
   "level" : "recreational",
   "name" : "Tennis régularité — 10 semaines",
-  "progression_logic" : "Progression sur 5 principes alignés ACSM (American College of Sports Medicine), NSCA (National Strength and Conditioning Association) et les principes pédagogiques ITF (International Tennis Federation) pour joueurs intermédiaires :\n\n(1) PROGRESSION TECHNIQUE EN SPIRALE : chaque compétence est introduite (W1-W3), approfondie sous contrainte (W4-W6), puis testée en contexte match (W7-W10). La régularité progresse par comptage croissant : 10 échanges (W1) → 15 (W2) → 20 (W3-W4) → 25 (W6-W7) → 30 (W8-W10). Jamais deux nouvelles compétences majeures simultanément : le split-step est introduit en W4, le filet en W6, le serve-and-volley en W7.\n\n(2) CUTBACK WEEKS (W5 et W9) : Volume réduit de 15% à chaque cutback. W5 consolide les acquisitions W1-W4 (régularité, hauteur de balle, déplacement). W9 est un cutback pré-évaluation (affûtage/taper). Sans ces semaines, la surcharge mentale et physique dégrade la qualité technique avant l'objectif final.\n\n(3) CARDIO INTERMITTENT SPÉCIFIQUE TENNIS : les séances physiques reproduisent le profil énergétique du tennis réel (ATP-PCr sur 8-12 sec + glycolytique sur points longs) via sprints navette, T-drill, Tabata et EMOM. Référence : Kovacs (2006), profil énergétique du tennis de compétition. RPE effort 8-9 sur les intervalles courts.\n\n(4) LES 5 PATTERNS FONDAMENTAUX ADAPTÉS TENNIS (pas de barre disponible) : squat (jump squat, Bulgarian squat) ; hinge (hip hinge, nordic curl, single leg deadlift) ; push horizontal (pompes avec rotation) ; push vertical (service = push vertical fonctionnel) ; pull (rotation tronc résistée comme pull-over fonctionnel, superman). Tous présents chaque semaine dès W1 — conforme NSCA guidelines pour la préparation physique tennis.\n\n(5) PRÉVENTION SPÉCIFIQUE INTÉGRÉE DÈS W1 : nordic curl partiel dès W3 (ischio-jambiers — claquage sprint) ; étirements coude obligatoires post-service dès W1 ; échauffement épaule rotatoire systématique ; calf raises chaque séance physique (tendon d'Achille + cheville). La prévention n'est pas ajoutée en fin de plan : elle est architecturée dans la structure dès le départ.",
-  "safety_notes" : "DRAPEAUX ROUGES TENNIS — Arrêter la séance, consulter un médecin ou kiné si persistant :\n• ÉPICONDYLITE LATÉRALE (coude du tennismen) : douleur face externe du coude irradiant vers l'avant-bras. Cause : revers à 1 main avec flexion de poignet au contact, service trop chargé trop tôt. Stop exercices avec raquette, glaçage 15 min, repos minimum 1 semaine. Prévention : poignets étirés 30 sec/côté après chaque séance (obligatoire dans ce plan).\n• DOULEUR ANTÉRO-LATÉRALE DE L'ÉPAULE (conflit sous-acromial / tendinopathie de la coiffe) : douleur à la levée de bras, particulièrement en fin de mouvement de service. Stop service immédiatement. Repos 1 semaine minimum. Kiné si > 5 jours. Prévention : échauffement rotatoire de l'épaule OBLIGATOIRE avant toute frappe (décrit dans warmup).\n• ENTORSE DE CHEVILLE : risque élevé sur court en terre battue (glissades) et sur changements de direction rapides. Si laxité résiduelle post-entorse ancienne, port d'une chevillière légère recommandé. Calf raises et single leg balance sont préventifs dans ce plan.\n• DOULEUR INTERNE DU GENOU : valgus dynamique sur les arrêts-départs latéraux. Renforcement vaste médial (squats Bulgarian, fentes) et abducteurs (fentes latérales) ciblé dans le plan.\n• CLAQUAGE ISCHIO-JAMBIER : fréquent sur accélération vers une balle courte après position statique. Les nordic curls partiels dans le plan sont spécifiquement préventifs. Ne jamais sauter les nordic curls de la séance physique. Si douleur «claquage» en arrière de cuisse pendant un sprint : stop immédiat.\n• BLESSURES DUES À LA FATIGUE RÉPÉTÉE (stress fracture tarse/métatarse chez joueur s'entraînant sur dur) : douleur localisée sur un os du pied qui augmente à l'effort et diminue au repos. Consulter si présent > 1 semaine.\n\nRÈGLES GÉNÉRALES TENNIS :\n• Chaussures tennis OBLIGATOIRES (semelle pivotante adaptée). Les chaussures de running sur court en dur augmentent le risque d'entorse de 40%.\n• Sur terre battue : glisser est une technique, PAS une improvisation. Apprendre à glisser en appui sur l'extérieur du pied, jamais l'intérieur.\n• Échauffement épaule NON NÉGOCIABLE avant la première balle de service (10 cercles avant, 10 arrière, 3 étirements). La coiffe des rotateurs froide + service explosif = combinaison à risque.\n• Étirements coude et poignets OBLIGATOIRES en cooldown après chaque séance de service.\n• Hydratation : 500 ml avant la séance, 200-300 ml toutes les 30 min sur court (surtout été, conditions chaudes).\n\nINTENSITÉ ET CHARGE :\n• Tennis intermédiaire = pics d'effort 8-12 sec sur un point, récup 15-30 sec entre points, 90 sec entre jeux. La préparation physique de ce plan reproduit ce profil (sprints courts, repos proportionnel).\n• Ne pas cumuler 2 séances tech intense + 2 séances physique intense la même semaine. Ce plan (2 séances) est délibérément dosé pour un joueur qui maintient son match hebdomadaire par ailleurs.\n\nSIGNES DE SURCHARGE (réduire volume si 3+ signes) :\n• Douleur coude ou épaule pendant la frappe (même légère)\n• Réduction de la vitesse de réaction perçue sur les balles rapides\n• Sommeil dégradé > 3 nuits après une séance\n• Motivation soudainement effondrée\n• Coordination dégradée (plus de fautes que d'habitude sur des gestes maîtrisés)\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre la même séance 1-2 jours plus tard, décaler d'autant.\n• 1-2 semaines de pause : reprendre à la semaine précédente.\n• > 2 semaines de pause : reprendre W3-W4 pour resécuriser la base technique et physique.",
-  "schema_version" : 1,
+  "progression_logic" : "Progression construite sur 5 principes alignés sur ITF Coach Education Programme (Level 1 intermediate), USTA NTRP 2.5-3.0, FFT 30-30/2 et Complete Conditioning for Tennis (Kovacs, Roetert, Ellenbecker / USTA) :\n(1) DISTRIBUTION 4 PILIERS RECREATIONAL : Technique 40-50% / Tactique 10-20% / Physique 20-25% / Mental 5-10%. Sur ce plan, le focus est la régularité technique fond de court (drills cross forehand + backhand long de ligne) avec introduction progressive de patterns tactiques simples (1-2 coups : service + 1er coup décisif, retour + 1er coup neutralisant) et de la montée au filet (W6+). La tactique reste sobre — on ne cherche pas la victoire en match, mais la consistance.\n(2) ALLURE INTERMITTENTE PROGRESSIVE : W1-W2 100% drills `technique` + `Z2`. W3-W4 introduction `RPE 5-6` (rallye contrôle régularité). W4-W7 introduction `RPE 7-8` en sets partiels et drill panier match-simulation. AUCUN `RPE 8-9` sur ce plan — pas de sprint matchplay strict, pas de side-to-side panier explosif. Le tennis recreational vise la régularité, pas la puissance compétitive. Test de la parole en drill cross (Z3 limite haute = phrase courte possible mais pas confortable).\n(3) RENFORCEMENT PRÉVENTIF MAINTENU DÈS W1 : Y-T-W shoulder + external rotation à la bande + prone scaption + Pallof anti-rotation + single-leg squat / hip thrust + agility ladder + cardio intermittent 8-12 sprints 10-20 m + 30 sec récup. Ce bloc S&C intégré 25-30 min en fin de 2e séance court par semaine est le pilier protecteur tennis elbow + inconfort épaule (regional interdependence Kovacs-Ellenbecker). Ne pas reporter ces exercices, même si la séance court a été dense.\n(4) CUTBACK W5 (-15 à -20% volume hebdo) : volume court réduit (60 min vs 90 min en W4) + S&C maintenu en activation. Adaptation tendineuse coude-épaule + intégration des patterns appris en W3-W4. Pas de nouveauté technique cette semaine — tu consolides ce qui a été vu. Les tendons s'adaptent plus lentement que les muscles (6-8 sem), la cutback week leur donne du temps avant l'introduction tactique W6+.\n(5) MONTÉE AU FILET PROGRESSIVE W6 → W10 : introduction du pattern volée + smash sans pression. W6 ghost-stroking + drill panier 5-10 volées coup droit. W7-W8 séquence service + 1er coup + montée filet en drill alimenté. W9-W10 enchaînement complet en set partiel. Le filet est le 3e pilier de la régularité tennis (avec fond de court et service). Référence : ITF Level 1 intermediate, NTRP 2.5-3.0, Voyager Tennis recreational programming, Kovacs Adult Tennis Fitness L1.\n\nStructure hebdo : 2 sessions court / sem, pattern recommandé J1 court technique pure 75-90 min / J4-J5 court + bloc S&C intégré 60-75 min court + 25-30 min S&C. Au moins 2-3 jours d'écart entre les deux séances, jours de repos ou marche libre les autres jours. Si une séance court est annulée (météo, court indispo) : substitution S&C off-court complet 60 min (mobilité + force coiffe + agility ladder + cardio intermittent) — couvre le bloc préventif sans perte.",
+  "safety_notes" : "DRAPEAUX ROUGES — arrêter et consulter un professionnel de santé si les symptômes persistent > 5-7 jours :\n• Douleur face externe du coude (épicondylite latérale / tennis elbow) : risque n°1 du joueur tennis recreational, accentué par l'augmentation du volume et l'introduction des drills cross intensifiés. Survient typiquement par crispation du grip, frappe hors sweet spot, raquette trop tendue, augmentation rapide de volume. Signes : douleur à la palpation de l'épicondyle latéral, douleur en serrant la main, gêne en saisissant un objet lourd. Conduite : repos 1 semaine, glaçage 15 min 2x/jour, étirements avant-bras, exercices forearm excentriques (Tyler Twist) si sensible. Si épicondylite chronique > 6 semaines symptômes, consulte un kiné avant de poursuivre ce programme.\n• Douleur face interne du coude (épicondylite médiale / golfer's elbow) : protocole identique côté médial.\n• Douleur antéro-latérale ou supérieure de l'épaule (coiffe rotateurs, conflit sous-acromial, SLAP) : si gêne en levant le bras au-dessus de l'épaule, en service ou en smash → réduire le volume service à 30-40 max par séance, prioriser Y-T-W et external rotation, consulter un kiné si la gêne dure > 5-7 jours. Pathologie épaule connue (tendinite coiffe diagnostiquée, SLAP, conflit sous-acromial) → consulte un médecin avant de commencer ce programme et adapter le volume service.\n• Douleur poignet (TFCC, ECU, De Quervain) : grip mal adapté ou raquette trop lourde. Vérifier grip size et poids raquette < 300 g.\n• Entorse cheville : risque accentué sur drills latéraux (cross régularité side-to-side, agility ladder). Chaussures tennis dédiées obligatoires. Reprise post-entorse récente (< 3 mois) → consulte un médecin avant de commencer ce programme et reprends progressivement.\n• Douleur articulaire genou > 2/10 : stop immédiat, consulter si persistant. Fatigue musculaire = OK, douleur articulaire = pas OK.\n• Antécédents cardiaques connus, grossesse ou postpartum récent (< 6 mois) → consulte un médecin avant de commencer ce programme.\n\nPRÉVENTION TENNIS ELBOW :\n• Programme rotator cuff + scapular work 1×/sem dès W1 (Y-T-W, external rotation à la bande, prone scaption) intégré dans la séance S&C.\n• Vérifier grip size raquette (test : tu dois pouvoir glisser un doigt entre les doigts repliés et la base du pouce sur le grip). Cordage souple < 25 kg pour le niveau recreational.\n• Pression de grip 5-7/10. Ne jamais serrer la raquette comme une barre — la crispation accumule des microtraumatismes tendineux. Relâcher entre les frappes.\n• Frapper dans le sweet spot, pas en bord de tamis. Préférer une raquette de 280-300 g maximum à ce stade.\n• Exercices forearm excentriques (Tyler Twist, wrist extensor 1-3 kg) si sensible au coude — préventif et bien toléré 2-3×/sem.\n\nPRÉVENTION ÉPAULE — 3 piliers maintenus tout le plan :\n• Mobilité postérieure capsule (sleeper stretch, cross-body stretch) en cool-down systématique.\n• Force coiffe rotateurs (external rotation à la bande, jamais omettre dans le bloc S&C).\n• Force scapulaire (Y-T-W, prone scaption).\n• Volume service : max 30-40 services par séance court à ce niveau, avec progression lancer → trophée → élan complet → puissance contrôlée. À partir de la montée au filet (W6+), max 10-15 smashs par séance.\n\nMATÉRIEL OBLIGATOIRE :\n• Chaussures tennis dédiées (semelle latérale + non-marking) — JAMAIS de running shoe sur court (semelle non adaptée aux changements de direction = risque entorse cheville).\n• Raquette poids < 300 g, grip size adapté, cordage souple < 25 kg pour ce niveau.\n• Tube de balles standard (idéalement panier de 30-50 balles pour drills auto-alimentés). Sur court dur ou résine, balles all-court. Sur terre battue, balles plus lourdes type clay-court.\n• Mat ou sol propre pour le bloc S&C intégré, bande élastique légère ou moyenne pour external rotation, agility ladder ou marqueurs au sol (cordes, cônes, scotch).\n\nINTENSITÉ :\n• Drills techniques : `technique` ou `Z2` — phrase complète possible.\n• Drills cross régularité : `Z3` ou `RPE 5-6` — phrase courte possible mais pas confortable, équivalent ~75-85% FCmax.\n• Sets partiels et drill panier match-simulation : `RPE 7-8` — souffle court, phrase impossible, équivalent ~85-92% FCmax.\n• Bloc S&C intégré : `RPE 6-7` (force, mobilité), `RPE 7-8` sur cardio intermittent fin de séance.\n• Aucun `RPE 8-9` sur ce plan. Pas de sprint matchplay strict, pas de side-to-side panier explosif.\n\nNUTRITION-HYDRATATION :\n• 500 ml d'eau dans l'heure précédant la séance, 500-750 ml/h pendant en conditions tempérées (jusqu'à 1 L/h chaleur > 25°C, sodium 300-700 mg/L).\n• Pour les séances combinées court 60-75 min + S&C 25-30 min (durée totale > 90 min), prévoir une collation glucidique 30 min avant (banane, barre de céréales) et envisager 30-60 g glucides/h en boisson sucrée si effort prolongé en chaleur.\n• Récupération : 500 ml d'eau dans l'heure post-effort + collation protéinée + glucidique dans les 60 min.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine allégée type W5 cutback, refaire la semaine précédente avec volume -15 à -20%) :\n• FC de repos +10 bpm chronique au réveil.\n• Sommeil dégradé > 3 nuits d'affilée.\n• Douleur épaule ou coude > 2 séances consécutives.\n• Motivation effondrée ou irritabilité accrue 3+ semaines.\n• Performance régulièrement en baisse en drill cross (compte de frappes consécutives qui chute sur 2-3 séances).\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre la même séance 1-2 jours plus tard.\n• 1-2 semaines de pause : reprendre la semaine précédente (W-1).\n• > 2 semaines de pause : reprendre 2 semaines en arrière (W-2) pour resécuriser les patterns avant de progresser. La précipitation après une coupure est la première cause de récidive tennis elbow.\n• Si court indispo (météo, réservation) : substituer par S&C off-court complet 60 min (mobilité + force coiffe + agility ladder + cardio intermittent) — la fréquence prime, raccourcir plutôt que supprimer.",
+  "schema_version" : 2,
   "sessions_per_week" : 2,
   "sport" : "tennis",
-  "summary" : "Programme de 10 semaines conçu pour un joueur intermédiaire cherchant à passer de la frappe sécurisée à la régularité tactique : fond de court (30+ échanges), service-retour fiable et introduction au jeu de filet. Chaque semaine propose 2 séances : une séance technique/tactique sur court (drills de régularité, patterns, montée filet) et une séance de préparation physique tennis (cardio intermittent, force explosive, changements de direction, mobilité). Cutback en W5 et W9 (taper pré-évaluation finale W10). Safety covers : coude, épaule, cheville, genou. Checklist d'autonomie en W10.",
+  "summary" : "Programme tennis régularité sur 10 semaines aligné sur ITF Coach Education Programme (Level 1 intermediate), USTA NTRP 2.5-3.0 / FFT 30-30/2 et Complete Conditioning for Tennis (Kovacs, Roetert, Ellenbecker / USTA). Format 2 sessions / sem : une séance court technique pure (75-90 min — drills cross régularité forehand + backhand long, service-retour, intro montée filet) et une séance court avec bloc S&C intégré (60-75 min court + 25-30 min S&C cardio intermittent + force unilatérale + agility ladder). Volume pic ~2.5-3 h court + 30-40 min S&C intégré par semaine. Progression : W1-W2 régularité cross fond de court + S&C foundation, W3-W4 intro RPE 5-6 et patterns 1-2 coups + cardio intermittent, W5 cutback (-15 à -20%), W6-W7 drills tactiques + montée filet + sets partiels 4 jeux, W8-W9 drill panier match-simulation 11 points + tie-breaks d'entraînement, W10 séance phare avec checklist d'autonomie 5 critères. Renforcement préventif coiffe rotateurs et stabilité scapulaire dès W1 (Y-T-W, external rotation, prone scaption) — pilier prévention tennis elbow et inconfort épaule.",
   "weeks" : [
     {
-      "goal" : "Établir la baseline : compter les échanges consécutifs actuels (objectif : atteindre 10 échanges réguliers en fond de court). Poser les bases du déplacement latéral.",
+      "goal" : "Réactiver les patterns fond de court (forehand cross + backhand long de ligne) en allure technique-Z2, lancer le bloc S&C intégré (Y-T-W + external rotation + core + agility ladder + cardio intermittent doux). Volume cible : ~75 min court technique + 60 min court + 25 min S&C intégré = 140 min court + 25 min S&C.",
       "sessions" : [
         {
-          "cooldown" : "5 min marche autour du court. Étirements : mollets 30 sec/côté, quadriceps 30 sec/côté, pectoraux (main contre poteau) 30 sec/côté, triceps derrière tête 20 sec/côté, poignets extenseurs (bras tendu, main vers le bas, pression douce) 20 sec/côté, poignets fléchisseurs (bras tendu, main vers le haut, pression douce) 20 sec/côté.",
-          "day" : 2,
+          "cooldown" : "8 min : 5 min marche autour du court + sleeper stretch épaule (30 sec/côté) + cross-body stretch (30 sec/côté) + étirement avant-bras flexion + extension (20 sec/côté) + étirement mollets (30 sec/côté). Hydratation.",
+          "day" : 1,
           "duration_minutes" : 75,
           "exercises" : [
             {
-              "duration" : "5 min par set",
-              "name" : "Mini-tennis au carré de service",
-              "notes" : "Échanges dans les carreaux de service, technique réduite, axé contact propre et direction. Objectif : sentir le rebond et la trajectoire. Allure lente.",
+              "alternatives" : [
+                "Drill mur cross régularité 10 min",
+                "Ghost-stroking coup droit + revers 10 min"
+              ],
+              "duration" : "10 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Mini-tennis cross régulier — coup droit + revers",
+              "notes" : "Avec partenaire ou drill mur cross. Mise en route progressive — équivalent ~65-70% FCmax (Z2 bas). Compter les frappes consécutives sans rater pour calibrer le feeling balle.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                "Drill mur cross forehand 5 min × 4",
+                "Ball-machine coup droit cross 5 min × 4"
+              ],
+              "duration" : "5 min cross + 2 min récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross forehand régularité",
+              "notes" : "Forehand cross régulier fond de court avec partenaire alimentation contrôlée OU drill mur. Cible : enchaîner 15-20 frappes consécutives par série en moyenne. Allure conversationnelle limite — équivalent ~70-78% FCmax (Z2-Z3 bas). Relâcher le grip entre les frappes (5-6/10 pression).",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 4,
+              "target_zone" : "Z2",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Drill mur revers long de ligne 4 min × 3",
+                "Ghost-stroking revers + drill mur cross 4 min × 3"
+              ],
+              "duration" : "4 min long de ligne + 2 min récup marche",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow",
+                "wrist-pain"
+              ],
+              "name" : "Drill backhand long de ligne",
+              "notes" : "Backhand long de ligne (ou cross si plus à l'aise) avec alimentation contrôlée. Cible : 10-15 frappes consécutives par série. Allure Z2 conversationnelle.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 3,
+              "target_zone" : "Z2",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Service contre mur élan complet 15 × 2",
+                "Ghost-stroking service + service light contre mur 15 × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "name" : "Service progressif — élan complet sans cible chiffrée",
+              "notes" : "Échauffement service progressif : 5 services lancer + trophée, 5 services trois-quart d'élan, 5 services élan complet. Aucune cible de placement. Max 30 services sur la séance — pas plus. RPE technique 4-6.",
+              "reps" : "15 services",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
-            },
-            {
-              "duration" : "3 min par set",
-              "name" : "Drill régularité croisé coup droit — comptage",
-              "notes" : "Échanges croisés coup droit à fond de court avec partenaire ou contre mur. Compter les échanges consécutifs sans faute. Cible W1 : 10. Note ton meilleur comptage. Balles lentes, marges sur le filet (+60 cm), trajectoire haute.",
-              "rest_seconds" : 90,
-              "sets" : 4
-            },
-            {
-              "duration" : "3 min par set",
-              "name" : "Drill régularité croisé revers — comptage",
-              "notes" : "Même protocole côté revers. Cible W1 : 10 échanges consécutifs. Le revers est souvent plus irrégulier que le CD — noter l'écart.",
-              "rest_seconds" : 90,
-              "sets" : 4
-            },
-            {
-              "name" : "Service à la cuillère x20",
-              "notes" : "Service lent (slice ou à plat) visant la moitié du carré. Objectif : placement et répétabilité, pas puissance. Identifier les défauts de lancer.",
-              "reps" : "20",
-              "rest_seconds" : 60,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
             }
           ],
-          "name" : "Séance technique — Diagnostic régularité fond de court",
+          "name" : "Court technique — drills cross régularité",
           "type" : "technique",
-          "warmup" : "10 min : jogging léger autour du court (2 tours), skipping, talons-fesses, balancements de bras (10 cercles avant/arrière), rotations tronc (10/sens), montées de genoux latérales (shadow footwork). Activation épaule : bras tendu cercles petit/grand 10/sens, bande élastique externe rotation si dispo."
+          "warmup" : "8 min : 5 min mini-tennis cross très facile + 10 cercles d'épaule par sens + 10 rotations de poignet par sens + 10 fentes latérales lentes + 5 split-steps progressifs + 5 mouvements service à blanc."
         },
         {
-          "cooldown" : "5 min jogging léger + étirements ischio-jambiers 30 sec/côté, fessiers allongés 30 sec/côté, adducteurs en papillon 30 sec, épaule croisée (bras croisé devant) 20 sec/côté.",
-          "day" : 5,
-          "duration_minutes" : 55,
+          "cooldown" : "10 min : marche 5 min + sleeper stretch (30 sec/côté) + cross-body stretch (30 sec/côté) + étirement avant-bras + mollets + ischio-jambiers + fessier (30 sec chacun par côté).",
+          "day" : 4,
+          "duration_minutes" : 85,
           "exercises" : [
             {
-              "duration" : "20 sec effort / 40 sec récup active (marche)",
-              "name" : "Sprints latéraux court — interval",
-              "notes" : "Sprint latéral 4 m à droite + retour. Imite le déplacement entre deux balles. RPE effort : 8/10. Méthode : 20/40 intermittent (ratio 1:2 typique tennis).",
-              "rest_seconds" : 40,
-              "sets" : 8
+              "alternatives" : [
+                "Drill panier coach cross 6 min × 3",
+                "Ball-machine cross régularité 6 min × 3"
+              ],
+              "duration" : "6 min frappes + 2 min récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "name" : "Drill mur cross régularité",
+              "notes" : "Drill mur cross alterné forehand / revers. Cible : 30+ frappes consécutives sur au moins une série. Allure Z2 conversationnelle, équivalent ~70-75% FCmax. Si pas de mur, drill panier auto-alimenté.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "wall"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 3,
+              "target_zone" : "Z2",
+              "volume_axis" : "sets"
             },
             {
-              "name" : "Squat sauté (jump squat) poids du corps",
-              "notes" : "Descente lente 3 sec, poussée explosive. Développe la puissance pour les départs explosifs. RPE 7. Aucun matériel requis.",
-              "reps" : "8",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "alternatives" : [
+                "Drill mur fond de court 20 min",
+                "Drill panier coach alimentation alternée 20 min"
+              ],
+              "duration" : "20 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Échanges réguliers fond de court — coup droit + revers",
+              "notes" : "Avec partenaire en alimentation neutre. Alterner forehand cross / backhand long de ligne. Allure conversationnelle (Z2 ~65-75% FCmax). Cible : 15-20 frappes consécutives en moyenne sur l'ensemble.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
             },
             {
-              "name" : "Fente latérale alternée",
-              "notes" : "Pas latéral large, genou fléchi au-dessus du pied, jambe opposée tendue. Reproduit le split-step / premier pas latéral au tennis.",
-              "reps" : "10 par côté",
-              "rest_seconds" : 60,
-              "sets" : 3
-            },
-            {
-              "name" : "Rotation de tronc debout (tennis swing simulation)",
-              "notes" : "Bras tendus, mains jointes, rotation complète bassin + épaules comme un swing. Renforce la chaîne rotatoire. Sans raquette ni charge en W1.",
-              "reps" : "15 par côté",
-              "rest_seconds" : 45,
-              "sets" : 3
-            },
-            {
-              "duration" : "30 sec",
-              "name" : "Planche ventrale",
-              "notes" : "Core essentiel pour le transfert de puissance et la protection lombaire au tennis. Corps aligné, ne pas laisser les hanches descendre.",
-              "rest_seconds" : 45,
-              "sets" : 3
-            },
-            {
-              "name" : "Calf raises bipodal",
-              "notes" : "Prévention entorse cheville et tendinites. Montée lente 2 sec, descente 3 sec.",
-              "reps" : "20",
+              "alternatives" : [
+                "Y-T-W debout face mur 12/lettre × 2",
+                "Wall slide scapula 15 reps × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Y-T-W shoulder",
+              "notes" : "Allongé ventre au sol ou debout penché en avant. Y : bras à 45° en haut. T : bras écartés à l'horizontale. W : coudes pliés, scapulas serrées. Très peu ou pas de charge (0.5-1 kg). Pilier prévention tennis elbow et inconfort épaule. RPE 6-7 (effort musculaire local).",
+              "reps" : "12 par lettre",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 30,
-              "sets" : 3
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "External rotation côté allongé dumbbell 1 kg 10/bras × 2",
+                "Wall external rotation 12/bras × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury"
+              ],
+              "name" : "External rotation à la bande",
+              "notes" : "Bande élastique fixée à hauteur de coude, coude collé au flanc fléchi à 90°. Rotation externe contrôlée 2 sec aller / 2 sec retour. Cible coiffe rotateurs (infra-épineux, petit rond). Indispensable. RPE 6-7.",
+              "reps" : "12 par bras",
+              "required_equipment" : [
+                "resistance-band"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "Marqueurs au sol in-out 1 passage × 3",
+                "Skips bas + déplacements latéraux 30 sec × 3"
+              ],
+              "incompatible_constraints" : [
+                "ankle-injury",
+                "knee-injury"
+              ],
+              "name" : "Agility ladder — in-out lente",
+              "notes" : "Échelle d'agilité au sol (ou cordes / scotch). Pattern in-out : 2 pieds dans, 2 pieds dehors latéral. Allure technique-Z3, focus précision pieds. Si pas d'échelle, marqueurs au sol.",
+              "reps" : "1 passage A/R lent",
+              "required_equipment" : [
+                "agility-ladder",
+                "tennis-shoes"
+              ],
+              "rest_seconds" : 45,
+              "sets" : 3,
+              "target_zone" : "Z3",
+              "volume_axis" : "sets"
             }
           ],
-          "name" : "Prépa physique tennis — Cardio intermittent + force explosive",
+          "name" : "Court + bloc S&C intégré — mobilité + force coiffe + agility",
           "type" : "mixed",
-          "warmup" : "8 min : jogging 3 min + échauffement dynamique : montées de genoux, talons-fesses, carioca (déplacements croisés latéraux), squats dynamiques, rotations épaules."
+          "warmup" : "8 min mini-tennis cross facile + cercles épaule + rotations poignet + 5 split-steps. Mobilisation poignet et épaule particulièrement soignée."
         }
       ],
-      "theme" : "Diagnostic et fondations — régularité coup droit/revers",
+      "theme" : "Reprise — régularité cross fond de court + S&C foundation",
       "week_number" : 1
     },
     {
-      "goal" : "Passer de 10 à 15 échanges consécutifs en comprenant le rôle de la hauteur de balle au-dessus du filet. Introduire le concept de zone sécurisée (cibles de profondeur).",
+      "goal" : "Stabiliser les drills cross fond de court, introduire la séquence service + 1er coup retour neutre. Volume cible : ~80 min court technique + 70 min court + 25 min S&C intégré = 150 min court + 25 min S&C.",
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements complets épaule, triceps, poignets, mollets.",
-          "day" : 2,
-          "duration_minutes" : 75,
+          "cooldown" : "8 min : marche + sleeper stretch + cross-body stretch + étirement avant-bras + mollets + ischio-jambiers (30 sec chacun par côté).",
+          "day" : 1,
+          "duration_minutes" : 80,
           "exercises" : [
             {
-              "duration" : "4 min par set",
-              "name" : "Drill hauteur de balle — ruban visuel ou cible 1 m au-dessus filet",
-              "notes" : "Échanges croisés CD uniquement. Objectif : chaque balle franchit le filet avec au moins 60-80 cm de marge. Imaginer une corde tendue à 1 m au-dessus du filet. Cible échanges consécutifs : 15. Ralentir la frappe si nécessaire.",
-              "rest_seconds" : 90,
-              "sets" : 4
+              "alternatives" : [
+                "Drill mur cross régularité 8 min",
+                "Ghost-stroking forehand + revers 8 min"
+              ],
+              "duration" : "8 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Mini-tennis cross régulier — réveil moteur",
+              "notes" : "Mise en route progressive Z2 bas (~65-70% FCmax). Compter les frappes consécutives.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
             },
             {
-              "duration" : "4 min par set",
-              "name" : "Drill profondeur fond de court — cibles",
-              "notes" : "Échanges croisés revers. Objectif : balle rebondissant au-delà du milieu du court adverse. Placer une raquette ou marque au sol à 2 m de la ligne de fond comme cible de profondeur. Comptage : 15 échanges cible.",
-              "rest_seconds" : 90,
-              "sets" : 4
+              "alternatives" : [
+                "Drill mur cross forehand 5 min × 5",
+                "Ball-machine forehand cross 5 min × 5"
+              ],
+              "duration" : "5 min cross + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross forehand — volume",
+              "notes" : "Forehand cross régulier fond de court. Cible : 20+ frappes consécutives par série en moyenne. Allure Z2 limite haute (équivalent ~75-80% FCmax). Relâcher grip 5-7/10 entre les frappes.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 5,
+              "target_zone" : "Z2",
+              "volume_axis" : "sets"
             },
             {
-              "name" : "Série de services — placement T et corps",
-              "notes" : "10 services visant le T (ligne centrale), 10 visant le corps du relanceur, 10 visant le côté extérieur. Total : 30 services par set. Accent sur la régularité du lancer de balle (même hauteur, même position).",
-              "reps" : "10 services par cible",
+              "alternatives" : [
+                "Drill mur revers long de ligne 5 min × 3",
+                "Ghost-stroking revers + drill mur cross 5 min × 3"
+              ],
+              "duration" : "5 min + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow",
+                "wrist-pain"
+              ],
+              "name" : "Drill backhand long de ligne",
+              "notes" : "Backhand long de ligne avec alimentation contrôlée. Cible : 12-18 frappes consécutives par série. Allure Z2.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 3,
+              "target_zone" : "Z2",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Drill mur service + retour 10 séquences × 4",
+                "Ghost-stroking séquence service+retour 10 × 4"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "name" : "Séquence service + retour neutre",
+              "notes" : "Avec partenaire : service en place (1ère balle moyenne, 50-60% vitesse), retour neutralisant à mi-court (pas de coup gagnant), 1 frappe retour-côté serveur. Pas de point joué — focus pattern moteur. Si pas de partenaire, drill mur : auto-alimenter au service + frappe retour. Max 40 services sur la séance. RPE technique 4-6.",
+              "reps" : "10 séquences",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 4,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
             }
           ],
-          "name" : "Séance technique — Hauteur de balle et profondeur",
+          "name" : "Court technique — drills cross + service-retour basique",
           "type" : "technique",
-          "warmup" : "10 min échauffement standard : jogging, shadow footwork, rotations épaules, poignets."
+          "warmup" : "8 min mini-tennis cross + cercles épaule + rotations poignet + split-steps + 5 mouvements service à blanc."
         },
         {
-          "cooldown" : "5 min jogging + étirements fessiers, ischio-jambiers, adducteurs, épaule.",
-          "day" : 5,
-          "duration_minutes" : 55,
+          "cooldown" : "10 min : marche + sleeper stretch + cross-body stretch + étirement complet (mollets, quadriceps, ischio-jambiers, fessiers, avant-bras 30 sec chacun par côté).",
+          "day" : 4,
+          "duration_minutes" : 90,
           "exercises" : [
             {
-              "duration" : "15 sec sprint / 45 sec récup",
-              "name" : "Exercice en T (T-drill) — cones ou repères au sol",
-              "notes" : "Sprint avant 5 m + latéral droite 2.5 m + latéral gauche 5 m + retour centre + reculer. RPE effort : 8-9. Change direction = stabilité cheville/genou.",
-              "rest_seconds" : 45,
-              "sets" : 6
+              "alternatives" : [
+                "Drill panier coach cross 6 min × 4",
+                "Ball-machine cross régularité 6 min × 4"
+              ],
+              "duration" : "6 min frappes + 2 min récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "name" : "Drill mur cross régularité — coup droit volume",
+              "notes" : "Drill mur cross forehand. Cible progressive : 35+ frappes consécutives sur au moins une série. Allure Z2 (~70-75% FCmax). Si pas de mur, drill panier auto-alimenté.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "wall"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 4,
+              "target_zone" : "Z2",
+              "volume_axis" : "sets"
             },
             {
-              "name" : "Squat bulgare unilatéral (pied arrière sur banc ou marche basse)",
-              "notes" : "Développe la force unipodal pour les appuis lors des changements de direction. Descente contrôlée 3 sec. Alternative si aucune surface élevée : fente arrière profonde (pied arrière au sol). RPE 7-8.",
-              "reps" : "8 par jambe",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "alternatives" : [
+                "Drill mur fond de court alterné 20 min",
+                "Drill panier coach alimentation alternée 20 min"
+              ],
+              "duration" : "20 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Échanges réguliers fond de court alterné",
+              "notes" : "Avec partenaire. Alterner forehand cross / backhand long de ligne. Cible : 18-22 frappes consécutives en moyenne. Allure conversationnelle Z2.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
             },
             {
-              "name" : "Saut latéral sur une jambe (lateral bound)",
-              "notes" : "Poussée latérale explosive sur une jambe, réception stable sur l'autre. Mimique le poussée lors d'un déplacement large. Atterrissage contrôlé, genou en ligne avec le pied.",
-              "reps" : "8 par côté",
-              "rest_seconds" : 60,
-              "sets" : 3
+              "alternatives" : [
+                "Y-T-W + scaption sans charge debout face mur × 2",
+                "Wall slide + I-reach scapula 12 reps × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Y-T-W shoulder + prone scaption",
+              "notes" : "Y-T-W (12/lettre) + 12 prone scaption (bras à 30° vers le haut, pouces vers ciel). Charge 0.5-1 kg. RPE 6-7. Pilier prévention tennis elbow.",
+              "reps" : "12 par mouvement",
+              "required_equipment" : [
+                "mat",
+                "dumbbells"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
-              "name" : "Rotation de tronc avec bras tendus (resistance élastique si dispo, sinon poids corps)",
-              "notes" : "Renforcement de la chaîne rotatoire (coup droit / revers). Si élastique disponible (pas requis), tenir les deux mains et tirer en rotation.",
-              "reps" : "15 par côté",
-              "rest_seconds" : 45,
-              "sets" : 3
+              "alternatives" : [
+                "ER dumbbell 1 kg 10/bras + Pallof bande 10/côté × 2",
+                "Wall ER + plank anti-rotation 30 sec × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "External rotation à la bande + Pallof anti-rotation",
+              "notes" : "ER bande (12/bras), puis Pallof press anti-rotation (10/côté, tenir 2 sec en extension). Coiffe rotateurs + core anti-rotation, transferts directs sur la stabilité du buste pendant les frappes. RPE 6-7.",
+              "reps" : "12 ER + 10 Pallof par côté",
+              "required_equipment" : [
+                "resistance-band"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
-              "name" : "Superman (extension dorsale au sol)",
-              "notes" : "Allongé face au sol, soulever simultanément bras et jambes. Renforce les érecteurs du rachis — essentiels pour tenir la posture sous fatigue au tennis.",
-              "reps" : "12",
-              "rest_seconds" : 40,
-              "sets" : 3
+              "alternatives" : [
+                "6 × 30 sec vélo home-trainer modéré + 30 sec récup",
+                "6 × 1 min skips + 1 min marche"
+              ],
+              "incompatible_constraints" : [
+                "cardiac-clearance-required",
+                "knee-injury",
+                "ankle-injury"
+              ],
+              "name" : "Cardio intermittent — sprints courts en course",
+              "notes" : "6 sprints en ligne droite 15 m allure modérée (pas pleine puissance — RPE 6-7, équivalent ~75-80% FCmax). Récup marche entre chaque. Initiation au cardio intermittent tennis-spécifique. Si terrain limité, 6 × 30 sec course modérée + 30 sec marche.",
+              "reps" : "15 m sprint + 30 sec récup marche",
+              "required_equipment" : [
+                "tennis-shoes"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 6,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             }
           ],
-          "name" : "Prépa physique — Changements de direction + force unipodal",
+          "name" : "Court + bloc S&C intégré — force coiffe + core + cardio intermittent doux",
           "type" : "mixed",
-          "warmup" : "8 min dynamique : jogging, carioca, skipping, split-step sur place (saut léger sur 2 pieds en écartant les jambes à la largeur d'épaule, comme un split-step de réception)."
+          "warmup" : "8 min mini-tennis cross facile + cercles épaule + rotations poignet + split-steps."
         }
       ],
-      "theme" : "Construction régularité — trajectoires hautes et marges",
+      "theme" : "Adaptation — volume cross + intro service-retour",
       "week_number" : 2
     },
     {
-      "goal" : "Atteindre 20 échanges consécutifs en croix. Introduire la direction long de ligne comme variation tactique. Volume technique +15% vs W2.",
+      "goal" : "Introduire le rallye contrôle (RPE 5-6) sur drill cross, ajouter pattern service + 1er coup décisif neutralisant. Volume cible : ~80 min court technique + 75 min court + 30 min S&C intégré = 155 min court + 30 min S&C.",
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements complets.",
-          "day" : 2,
-          "duration_minutes" : 75,
+          "cooldown" : "8 min étirements complets épaule + avant-bras + mollets + ischio-jambiers (30 sec chacun par côté).",
+          "day" : 1,
+          "duration_minutes" : 80,
           "exercises" : [
             {
-              "duration" : "5 min par set",
-              "name" : "Drill régularité croisé CD — cible 20 échanges",
-              "notes" : "Échanges croisés CD à fond de court. Objectif : 20 échanges consécutifs. Maintenir marge sur le filet (+60-80 cm), profondeur bonne. Évaluer en fin de set.",
-              "rest_seconds" : 90,
-              "sets" : 4
+              "alternatives" : [
+                "Drill mur cross 8 min",
+                "Ghost-stroking forehand + revers 8 min"
+              ],
+              "duration" : "8 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Mini-tennis cross — réveil",
+              "notes" : "Z2 bas. Compter frappes consécutives.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
             },
             {
-              "duration" : "4 min par set",
-              "name" : "Drill introduction long de ligne (signal partenaire)",
-              "notes" : "Échanges croisés par défaut. Sur signal du partenaire (frappe claquée), passage long de ligne. 1 long de ligne tous les 5-6 balles en moyenne. Objectif : transition fluide sans précipitation.",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "alternatives" : [
+                "Drill mur cross forehand intensité contrôlée 5 min × 4",
+                "Ball-machine cross régularité 5 min × 4"
+              ],
+              "duration" : "5 min cross + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross forehand — rallye contrôle",
+              "notes" : "Forehand cross fond de court avec partenaire en mode rallye contrôle (vitesse contrôlée, profondeur ciblée). Cible : 25+ frappes consécutives. Allure RPE 5-6 (~75-85% FCmax) — phrase courte possible mais pas confortable.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 4,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
-              "name" : "Retour de service — positionnement et bloc",
-              "notes" : "Partenaire sert. Objectif : replacer la balle profond en croix, sans tenter le gagnant. Retour = neutralisation. Position : 1 m derrière la ligne de fond pour gagner du temps.",
-              "reps" : "15 retours par set",
+              "alternatives" : [
+                "Drill mur revers cross 5 min × 3",
+                "Ball-machine backhand cross 5 min × 3"
+              ],
+              "duration" : "5 min cross + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow",
+                "wrist-pain"
+              ],
+              "name" : "Drill cross backhand — rallye contrôle",
+              "notes" : "Backhand cross. Cible : 18-22 frappes consécutives. Allure RPE 5-6.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Drill mur service + 1er coup forehand 8 × 4",
+                "Drill panier coach service + 1er coup 8 × 4"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "name" : "Pattern service + 1er coup décisif (orienté forehand)",
+              "notes" : "Avec partenaire : service en place (50-60% vitesse), retour adversaire neutralisant, 1er coup serveur orienté forehand côté ouvert. Pas de point joué — focus pattern. Max 32 services sur cet exercice. Si pas de partenaire, drill mur auto-alimenté. RPE technique 5-6.",
+              "reps" : "8 séquences",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 4,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
             }
           ],
-          "name" : "Séance technique — Croisé/Long de ligne",
+          "name" : "Court technique — rallye contrôle + pattern service +1",
           "type" : "technique",
-          "warmup" : "10 min standard."
+          "warmup" : "10 min mini-tennis cross + cercles épaule + rotations poignet + split-steps + 5 mouvements service à blanc."
         },
         {
-          "cooldown" : "5 min + étirements ischio-jambiers, mollets, épaule, poignets.",
-          "day" : 5,
-          "duration_minutes" : 55,
+          "cooldown" : "10 min étirements complets + sleeper stretch + cross-body stretch.",
+          "day" : 4,
+          "duration_minutes" : 95,
           "exercises" : [
             {
-              "duration" : "30 sec sprint modéré / 30 sec marche",
-              "name" : "Intervalles course — 30/30",
-              "notes" : "Méthode 30/30 (Billat). Effort à 85-90% FCmax, récup active marche. Mimique l'intermittence du point de tennis (effort 5-20 sec, récup 15-30 sec). RPE effort : 8.",
+              "alternatives" : [
+                "Drill mur cross alterné 6 min × 4",
+                "Drill panier coach cross alterné 6 min × 4"
+              ],
+              "duration" : "6 min cross + 2 min récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross régularité alterné — forehand + backhand",
+              "notes" : "Drill cross alterné avec partenaire ou drill mur. Allure Z2-Z3 (~75% FCmax). Cible : 25-30 frappes consécutives par série.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 4,
+              "target_zone" : "Z3",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Drill mur fond de court patterns 18 min",
+                "Drill panier coach patterns 18 min"
+              ],
+              "duration" : "18 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Échanges fond de court — patterns 1-2 coups",
+              "notes" : "Avec partenaire en alimentation neutre, intégrer le pattern service + 1er coup décisif (orienté forehand). Allure Z2-Z3 (~70-78% FCmax).",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z3",
+              "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                "Y-T-W + ER debout face mur × 2",
+                "Wall slide + ER bande × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Y-T-W + external rotation",
+              "notes" : "Bloc préventif coiffe rotateurs + scapulaire. RPE 6-7.",
+              "reps" : "12 Y-T-W + 12 ER",
+              "required_equipment" : [
+                "mat",
+                "resistance-band"
+              ],
               "rest_seconds" : 30,
-              "sets" : 10
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
-              "name" : "Fentes latérales avec rotation de tronc",
-              "notes" : "Fente latérale + rotation du buste vers le côté de la fente à la réception. Combine déplacement et rotation — moteur gestuel du tennis.",
-              "reps" : "10 par côté",
-              "rest_seconds" : 60,
-              "sets" : 3
-            },
-            {
-              "duration" : "20 sec",
-              "name" : "Mountain climbers",
-              "notes" : "En position de planche, ramener alternativement les genoux vers la poitrine. RPE 7-8. Gainage dynamique + cardio.",
+              "alternatives" : [
+                "Squat bipodal 12 reps × 3",
+                "Pont fessier unilatéral 8/jambe × 3"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Single-leg squat (split squat)",
+              "notes" : "Pied avant à plat, pied arrière sur la pointe (split squat statique). Genou dans l'axe pied, poids vertical. Force unilatérale jambes — clé pour la stabilité des appuis et changements de direction tennis. Charge corps ou dumbbells 2-5 kg. RPE 6-7.",
+              "reps" : "8 par jambe",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
-              "name" : "Nordic curl partiel (ou pont ischio)",
-              "notes" : "Nordic curl : à genoux, pieds bloqués sous un objet lourd ou par le partenaire, se laisser tomber vers le sol en freinant avec les ischio-jambiers. Partiel = ne descendre qu'à 45°. Prévention claquage ischio au tennis. Si impossible : pont fessier unilatéral tenu 5 sec.",
-              "reps" : "8",
-              "rest_seconds" : 90,
-              "sets" : 3
-            },
-            {
-              "duration" : "25 sec par côté",
-              "name" : "Planche latérale",
-              "notes" : "Gainage latéral, obliques actifs. Ne pas laisser la hanche descendre.",
+              "alternatives" : [
+                "Pont fessier 12 reps + plank latéral genou 25 sec/côté × 2",
+                "Glute bridge unilatéral 8/jambe + plank avant-bras 30 sec × 2"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
+              "name" : "Hip thrust léger + plank latéral",
+              "notes" : "Hip thrust bipodal au sol (chaise pour les épaules) charge corps ou dumbbell 5 kg sur les hanches. Suivi plank latéral 25 sec/côté. Fessiers + obliques anti-rotation. RPE 6-7.",
+              "reps" : "10 hip thrust + 25 sec plank/côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "8 × 30 sec vélo home-trainer modéré + 30 sec récup",
+                "8 × 1 min skips + 1 min marche"
+              ],
+              "incompatible_constraints" : [
+                "cardiac-clearance-required",
+                "knee-injury",
+                "ankle-injury"
+              ],
+              "name" : "Cardio intermittent — 8 sprints 15 m",
+              "notes" : "8 sprints 15 m allure modérée RPE 6-7 (~75-80% FCmax). Récup marche entre chaque. Cardio intermittent tennis-spécifique progressif.",
+              "reps" : "15 m sprint + 30 sec récup marche",
+              "required_equipment" : [
+                "tennis-shoes"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 8,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             }
           ],
-          "name" : "Prépa physique — HIIT court + gainage rotatoire",
+          "name" : "Court + bloc S&C intégré — force unilatérale + cardio intermittent",
           "type" : "mixed",
-          "warmup" : "8 min dynamique + shadow tennis 2 min (imiter 4-5 coups consécutifs en shadow, déplacements inclus)."
+          "warmup" : "8 min mini-tennis cross + cercles épaule + rotations poignet + split-steps."
         }
       ],
-      "theme" : "Régularité croisé + introduction du long de ligne",
+      "theme" : "Intensification — intro RPE 5-6 et patterns 1-2 coups",
       "week_number" : 3
     },
     {
-      "goal" : "Atteindre 20 échanges consécutifs avec déplacement actif (balles alternées droite/gauche). Introduire la notion de split-step systématique avant chaque frappe.",
+      "goal" : "Introduire le drill panier match-simulation 11 points (RPE 7-8) et le tie-break partiel (4 points jouer-gagner). Volume pic avant cutback. Volume cible : ~90 min court technique + 80 min court + 35 min S&C intégré = 170 min court + 35 min S&C.",
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements complets poignets et épaule prioritaires.",
-          "day" : 2,
-          "duration_minutes" : 80,
+          "cooldown" : "10 min étirements complets épaule + avant-bras + mollets + ischio-jambiers + fessiers (30 sec chacun par côté).",
+          "day" : 1,
+          "duration_minutes" : 90,
           "exercises" : [
             {
-              "duration" : "4 min par set",
-              "name" : "Drill balles alternées CD/Revers — régularité",
-              "notes" : "Partenaire alterne balle côté CD puis côté revers avec rythme régulier. Tu te déplaces et frappes en croisé. Split-step obligatoire avant chaque frappe : saut léger sur 2 pieds au moment où le partenaire contacte la balle, puis premier pas décisif. Compter les échanges : cible 20.",
-              "rest_seconds" : 90,
-              "sets" : 5
+              "alternatives" : [
+                "Drill mur cross 8 min",
+                "Ghost-stroking 8 min"
+              ],
+              "duration" : "8 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Mini-tennis cross + réveil",
+              "notes" : "Z2 bas, mise en route progressive.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
             },
             {
-              "duration" : "3 min par set",
-              "name" : "Drill lob défensif",
-              "notes" : "Partenaire envoie balles rapides ou proches du filet. Tu réponds en lob défensif haut (+ de 3 m au-dessus du filet). Passage de la frappe offensive à défensive — régularité de survie.",
+              "alternatives" : [
+                "Drill mur cross forehand 5 min × 5",
+                "Ball-machine cross 5 min × 5"
+              ],
+              "duration" : "5 min cross + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross forehand — rallye contrôle volume",
+              "notes" : "Forehand cross intensité contrôlée. Cible : 25-30 frappes consécutives. Allure RPE 5-6 (~78-85% FCmax).",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 5,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Drill panier auto-alimenté 11 balles × 3",
+                "Ball-machine intensité aléatoire 11 balles × 3"
+              ],
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "knee-injury"
+              ],
+              "name" : "Drill panier match-simulation — 11 points",
+              "notes" : "Avec coach panier OU partenaire : alimentation aléatoire fond de court (forehand / revers / corner-corner), tu joues chaque balle pour gagner le point fictif. Compter les points marqués sur 11 (objectif progressif : 5-6 points / 11). Allure RPE 7-8 (~85-90% FCmax). Si pas de coach, drill panier auto-alimenté avec contrainte de profondeur (balle doit dépasser ligne service).",
+              "reps" : "1 série de 11 points + 2 min récup",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Service contre mur élan complet 10 × 4",
+                "Drill mur service + retour 10 × 4"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "name" : "Service en place + retour neutralisant",
+              "notes" : "Service à 50-60% vitesse, viser carré à plat ou kické. Cible : 6/10 services valides par série. Retour neutralisant à mi-court. Max 40 services sur la séance. RPE technique 5-6.",
+              "reps" : "10 séquences",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
-            },
-            {
-              "name" : "Service + 2e balle — schéma T",
-              "notes" : "Servir (viser T), puis jouer les 2 premiers coups en schéma décidé à l'avance (ex: service T + CD croisé + revers croisé). Construire le point dès le service.",
-              "reps" : "10 points simulés par set",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "sets" : 4,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
             }
           ],
-          "name" : "Séance technique — Balles alternées et split-step",
+          "name" : "Court technique — drills cross intensité + drill panier 11 points",
           "type" : "technique",
-          "warmup" : "10 min standard + 2 min de split-step sur place en rythme (saut sur 2 pieds toutes les 2 sec)."
+          "warmup" : "10 min mini-tennis cross progressif + cercles épaule + rotations poignet + split-steps + 5 mouvements service à blanc."
         },
         {
-          "cooldown" : "5 min + étirements fessiers, adducteurs, épaules.",
-          "day" : 5,
-          "duration_minutes" : 55,
+          "cooldown" : "10 min étirements complets + sleeper stretch + cross-body stretch.",
+          "day" : 4,
+          "duration_minutes" : 100,
           "exercises" : [
             {
-              "duration" : "20 sec sprint / 40 sec récup",
-              "name" : "Sprints en étoile (5 cônes en étoile, retour au centre après chaque)",
-              "notes" : "Sprint vers un cône, retour au centre, sprint vers un autre cône, etc. Simule les déplacements multidirectionnels du tennis. RPE 8-9.",
-              "rest_seconds" : 40,
-              "sets" : 6
-            },
-            {
-              "name" : "Squat goblet poids du corps (ou bouteille d'eau lestée)",
-              "notes" : "Descente profonde, talons au sol. Renforce quad/fessiers pour les appuis tennis. Progression vs W1-W2 (4 séries). Alternative : squat poids du corps si aucune charge disponible.",
-              "reps" : "12",
-              "rest_seconds" : 75,
-              "sets" : 4
-            },
-            {
-              "name" : "Hip hinge (good morning) poids du corps",
-              "notes" : "Debout, mains sur les hanches, pencher le buste en avant en gardant le dos droit jusqu'à ressentir les ischio-jambiers. Prévient les lombalgies et prépare le pattern de charge du dos au service.",
-              "reps" : "12",
-              "rest_seconds" : 60,
-              "sets" : 3
-            },
-            {
-              "name" : "Step-ups sur marche haute",
-              "notes" : "Marche ou boîte à 30-40 cm. Montée explosive, descente contrôlée. Force unipodal pour les départs latéraux.",
-              "reps" : "10 par jambe",
-              "rest_seconds" : 60,
-              "sets" : 3
-            },
-            {
-              "duration" : "6 min",
-              "name" : "Routine mobilité hanches au sol",
-              "notes" : "90/90 stretch (2×45 sec/côté), fente basse tenue 45 sec/côté, pigeon modifié 45 sec/côté. Les hanches rigides limitent la rotation au service et au revers.",
+              "alternatives" : [
+                "Drill mur cross alterné 6 min × 4",
+                "Drill panier coach cross 6 min × 4"
+              ],
+              "duration" : "6 min cross + 2 min récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross régularité alterné",
+              "notes" : "Drill cross alterné forehand + revers. Allure Z3 (~78-83% FCmax). Cible : 25-30 frappes consécutives.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 4,
+              "target_zone" : "Z3",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Drill panier match-simulation 11 points × 3",
+                "Drill mur intensité contrôlée 6 min × 3"
+              ],
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "knee-injury"
+              ],
+              "name" : "Tie-break partiel 4 points — joue pour gagner",
+              "notes" : "Avec partenaire : alterner service, jouer 4 points (premier à 4 gagne ce mini tie-break, pas de jeu décisif). Pression légère, focus régularité plus que coup gagnant. Allure RPE 7-8. Si pas de partenaire, drill panier 11 points en remplacement.",
+              "reps" : "1 tie-break 4 points + 2 min récup",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Y-T-W + ER debout face mur × 2",
+                "Wall slide + ER bande × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Y-T-W + external rotation",
+              "notes" : "Bloc préventif coiffe + scapulaire. RPE 6-7.",
+              "reps" : "12 Y-T-W + 12 ER",
+              "required_equipment" : [
+                "mat",
+                "resistance-band"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "Split squat statique 8/jambe + pont fessier 12 × 3",
+                "Lunge marché 10/jambe + glute bridge unilatéral 8/jambe × 3"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Split squat bulgare + hip thrust unilatéral",
+              "notes" : "Split squat bulgare (pied arrière sur banc / chaise) charge corps ou dumbbell 3-5 kg. Suivi hip thrust unilatéral. Force unilatérale jambes asymétrique tennis-spécifique. RPE 6-7.",
+              "reps" : "8 split squat / jambe + 8 hip thrust / jambe",
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 60,
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "Marqueurs au sol lateral shuffle 1 passage × 4",
+                "Side-step rapide 30 sec × 4"
+              ],
+              "incompatible_constraints" : [
+                "ankle-injury",
+                "knee-injury"
+              ],
+              "name" : "Agility ladder — lateral icky shuffle",
+              "notes" : "Pattern lateral icky shuffle (intérieur-extérieur en latéral). Précision pieds, rythme contrôlé. RPE 6-7. Si pas d'échelle, marqueurs au sol.",
+              "reps" : "1 passage A/R",
+              "required_equipment" : [
+                "agility-ladder",
+                "tennis-shoes"
+              ],
+              "rest_seconds" : 45,
+              "sets" : 4,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "10 × 30 sec vélo home-trainer modéré + 30 sec récup",
+                "10 × 1 min skips + 1 min marche"
+              ],
+              "incompatible_constraints" : [
+                "cardiac-clearance-required",
+                "knee-injury",
+                "ankle-injury"
+              ],
+              "name" : "Cardio intermittent — 10 sprints 15-20 m",
+              "notes" : "10 sprints 15-20 m allure modérée à soutenue RPE 6-7 (~78-83% FCmax). Récup marche entre chaque.",
+              "reps" : "15-20 m sprint + 30 sec récup marche",
+              "required_equipment" : [
+                "tennis-shoes"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 10,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             }
           ],
-          "name" : "Prépa physique — Force explosive + mobilité hanches",
+          "name" : "Court + bloc S&C intégré — tie-break partiel + cardio intermittent volume",
           "type" : "mixed",
-          "warmup" : "8 min dynamique."
+          "warmup" : "10 min mini-tennis + drills cross facile + cercles épaule + rotations poignet + split-steps."
         }
       ],
-      "theme" : "Régularité sous pression de déplacement",
+      "theme" : "Build — drill panier match-simulation + tie-break partiel",
       "week_number" : 4
     },
     {
-      "goal" : "Semaine allégée (volume -15% vs W4). Consolider les acquisitions : hauteur de balle, split-step, schéma croisé. Pas de nouveaux drills complexes. Recharge mentale.",
+      "goal" : "Cutback W5 (-15 à -20% volume hebdo). Maintenir la fréquence (2 sessions) mais réduire le volume court et l'intensité. Pas de nouveauté technique — adaptation tendineuse coude-épaule + intégration des patterns appris W3-W4. Volume cible : ~60 min court + 60 min court + 25 min S&C intégré = 120 min court + 25 min S&C (env. -18% vs W4).",
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements complets 8 min.",
-          "day" : 2,
+          "cooldown" : "8 min étirements complets épaule + avant-bras + mollets + ischio-jambiers (30 sec chacun par côté).",
+          "day" : 1,
           "duration_minutes" : 60,
           "exercises" : [
             {
-              "duration" : "5 min par set",
-              "name" : "Mini-tennis + échanges croisés libres",
-              "notes" : "Séance plaisir. Mini-tennis 5 min puis échanges croisés libres sans comptage obligatoire. Juste sentir les sensations, ne pas forcer. Si le comptage arrive naturellement, tant mieux.",
-              "rest_seconds" : 60,
-              "sets" : 3
+              "alternatives" : [
+                "Drill mur cross facile 10 min",
+                "Ghost-stroking forehand + revers 10 min"
+              ],
+              "duration" : "10 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Mini-tennis cross — réveil long",
+              "notes" : "Mise en route allongée Z2 bas (~65-70% FCmax). Compter frappes consécutives, focus relâchement et feeling balle.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
             },
             {
-              "name" : "Service libre — 30 balles par sens",
-              "notes" : "30 services côté ad, 30 services côté deuce. Allure détendue, focus sur le lancer de balle. Cutback = relâchement, pas régression.",
-              "reps" : "30",
+              "alternatives" : [
+                "Drill mur cross forehand 5 min × 3",
+                "Ball-machine cross 5 min × 3"
+              ],
+              "duration" : "5 min cross + 2 min récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross forehand — volume réduit",
+              "notes" : "Forehand cross. Cible : 20-25 frappes consécutives. Allure Z2-Z3 bas (~72-78% FCmax). Pas de RPE 7-8 cette semaine — consolidation.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 3,
+              "target_zone" : "Z2",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Drill mur revers cross 4 min × 2",
+                "Ball-machine backhand cross 4 min × 2"
+              ],
+              "duration" : "4 min cross + 2 min récup marche",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow",
+                "wrist-pain"
+              ],
+              "name" : "Drill cross backhand",
+              "notes" : "Backhand cross. Allure Z2. Cible : 15-18 frappes.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 2,
+              "target_zone" : "Z2",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Service contre mur élan complet 12 × 2",
+                "Ghost-stroking service complet 15 × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "name" : "Service récup — élan complet sans pression",
+              "notes" : "Élan complet, focus relâchement et timing. Aucune cible chiffrée. Max 24 services sur la séance — économie épaule. RPE technique 4-5.",
+              "reps" : "12 services",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
               "rest_seconds" : 60,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
             }
           ],
-          "name" : "Séance technique allégée — Consolidation régularité",
+          "name" : "Court technique allégé — drills cross régularité",
           "type" : "technique",
-          "warmup" : "8 min standard."
+          "warmup" : "8 min mini-tennis cross + cercles épaule + rotations poignet + split-steps."
         },
         {
-          "cooldown" : "5 min respiration profonde + auto-massage mollets avec les mains (30 sec/côté).",
-          "day" : 5,
-          "duration_minutes" : 40,
+          "cooldown" : "10 min étirements complets + sleeper stretch + cross-body stretch + foam roller mollets / quadriceps si dispo.",
+          "day" : 4,
+          "duration_minutes" : 75,
           "exercises" : [
             {
-              "duration" : "5 min par set",
-              "name" : "Circuit mobilité épaule",
-              "notes" : "Cercles d'épaule avant/arrière 10×, bras croisé devant 30 sec/côté, prise de balle dans le dos 20 sec/côté (main droite remonte dans le dos, main gauche descend, se rejoindre). Prévention swimmer's shoulder (risque similaire au tennis sur le service).",
-              "rest_seconds" : 60,
-              "sets" : 2
-            },
-            {
-              "duration" : "30 sec",
-              "name" : "Planche ventrale",
-              "notes" : "Retour au volume W1 pour le cutback core.",
-              "rest_seconds" : 45,
-              "sets" : 3
-            },
-            {
-              "name" : "Pont fessier",
-              "notes" : "Fessiers actifs, pas de compensation lombaire.",
-              "reps" : "15",
-              "rest_seconds" : 40,
-              "sets" : 3
-            },
-            {
-              "duration" : "8 min",
-              "name" : "Routine mobilité complète — bas du corps",
-              "notes" : "Fente basse 45 sec/côté, adducteurs assis 45 sec, mollets contre mur 30 sec/côté, étirement plantaire 30 sec/côté. Semaine de récupération = fenêtre idéale pour récupération tissu conjonctif.",
+              "alternatives" : [
+                "Drill panier coach cross 5 min × 3",
+                "Ball-machine cross 5 min × 3"
+              ],
+              "duration" : "5 min frappes + 2 min récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "name" : "Drill mur cross régularité — récup active",
+              "notes" : "Drill mur cross alterné. Allure Z2 bas confortable. Pas de cible de volume frappes — focus sensation.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "wall"
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 3,
+              "target_zone" : "Z2",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Drill mur fond de court 12 min",
+                "Drill panier coach alimentation neutre 12 min"
+              ],
+              "duration" : "12 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Échanges réguliers fond de court — récup active",
+              "notes" : "Avec partenaire en alimentation neutre coopérative. Allure conversationnelle Z2 (~65-72% FCmax). Pas de pattern, pas de pression — focus régularité douce.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                "Y-T-W debout face mur 12/lettre × 2",
+                "Wall slide 15 reps × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Y-T-W shoulder",
+              "notes" : "Maintien neuromusculaire bloc préventif. Volume taper — pas de surcharge cette semaine. RPE 6-7.",
+              "reps" : "12 par lettre",
+              "required_equipment" : [
+                "mat"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "ER dumbbell 1 kg 12/bras × 2",
+                "Wall ER 12/bras × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury"
+              ],
+              "name" : "External rotation à la bande",
+              "notes" : "Coude à 90° collé au flanc, rotation externe lente sur 3 sec, retour 2 sec. Maintien coiffe rotateurs en activation préventive. Volume taper cutback — pas de surcharge. RPE 6-7.",
+              "reps" : "12 par bras",
+              "required_equipment" : [
+                "resistance-band"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "Yoga doux 10 min",
+                "Étirements statiques globaux 10 min"
+              ],
+              "duration" : "10 min",
+              "incompatible_constraints" : [
+
+              ],
+              "name" : "Mobilité hanches + chevilles + foam roller",
+              "notes" : "Cercles hanches 10/sens, fentes basses tenues 30 sec/côté, squat profond tenu 30 sec, sleeper stretch 30 sec/côté, foam roller mollets / quadriceps / fessiers 1 min/zone si dispo. Pas d'intensité, relâchement complet.",
+              "required_equipment" : [
+                "mat",
+                "foam-roller"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "cool-down",
+              "volume_axis" : "duration"
             }
           ],
-          "name" : "Prépa physique cutback — Mobilité et gainage doux",
-          "type" : "mobility",
-          "warmup" : "5 min marche + rotations douces."
+          "name" : "Court allégé + bloc S&C activation",
+          "type" : "mixed",
+          "warmup" : "8 min mini-tennis cross + cercles épaule + rotations poignet + split-steps."
         }
       ],
-      "theme" : "CUTBACK — Consolidation et qualité mentale",
+      "theme" : "Cutback — consolidation et récupération tendineuse",
       "week_number" : 5
     },
     {
-      "goal" : "Atteindre 25 échanges consécutifs avec schémas dirigés (croix → long de ligne → croix). Introduire la première approche au filet après balle courte.",
+      "goal" : "Reprendre le volume après cutback, introduire la montée au filet (volée coup droit + revers, ghost-stroking + drill panier 5-10 volées). Volume cible : ~85 min court technique + 80 min court + 35 min S&C intégré = 165 min court + 35 min S&C.",
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements coude prioritaire (extenseurs poignets 30 sec/côté, fléchisseurs 30 sec/côté) + épaule + mollets.",
-          "day" : 2,
-          "duration_minutes" : 80,
+          "cooldown" : "10 min étirements complets épaule + avant-bras + mollets + ischio-jambiers (30 sec chacun par côté).",
+          "day" : 1,
+          "duration_minutes" : 85,
           "exercises" : [
             {
-              "duration" : "5 min par set",
-              "name" : "Drill régularité avec pattern — croix/longe de ligne/croix",
-              "notes" : "Échanges croisés (4-5 balles) + signal → long de ligne → reprendre croix. Pattern imposé pour les deux joueurs. Objectif : 25 échanges en schéma dirigé. Ce n'est pas plus difficile : le schéma réduit les décisions et améliore la régularité.",
-              "rest_seconds" : 90,
-              "sets" : 4
+              "alternatives" : [
+                "Drill mur cross 8 min",
+                "Ghost-stroking 8 min"
+              ],
+              "duration" : "8 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Mini-tennis cross — réveil",
+              "notes" : "Z2 bas, mise en route progressive.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
             },
             {
-              "duration" : "3 min par set",
-              "name" : "Drill approche filet sur balle courte",
-              "notes" : "Partenaire envoie balle courte (rebond après ligne de service). Toi : tu approches en frappant long de ligne, tu montes au filet et tu attendes la vollée. Volume vollée : 2-3 balles par point. Objectif : reconnaître la balle courte et déclencher l'approche sans hésitation.",
-              "rest_seconds" : 90,
-              "sets" : 4
+              "alternatives" : [
+                "Drill mur cross alterné 5 min × 4",
+                "Ball-machine cross alterné 5 min × 4"
+              ],
+              "duration" : "5 min cross + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross forehand + backhand",
+              "notes" : "Drill cross alterné forehand / revers. Cible : 25-30 frappes consécutives par série. Allure RPE 5-6 (~78-85% FCmax).",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 4,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
-              "duration" : "4 min par set",
-              "name" : "Vollée croisée de position filet",
-              "notes" : "Partenaire lobote depuis le fond. Toi : tu volle alternativement CD et revers depuis la position T du filet. Bloquer le poignet, ne pas swinguer. L'élan minimal = la vollée. Cible : carré opposé au fond.",
+              "alternatives" : [
+                "Ghost-stroking volée + drill mur volée 8 min × 2",
+                "Ball-machine volée mi-court 8 min × 2"
+              ],
+              "duration" : "8 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "wrist-pain",
+                "tennis-elbow"
+              ],
+              "name" : "Volée — ghost-stroking + intro panier",
+              "notes" : "Bloc 1 (4 min) ghost-stroking volée coup droit + revers (grip continental, geste court, contact devant le corps). Bloc 2 (4 min) drill panier coach OU drill mur à mi-court : 10-15 volées coup droit puis 10-15 volées revers, alimentation lente. Max 30 volées sur la séance — première session filet du plan. RPE technique 5-6.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 2,
+              "target_zone" : "technique",
+              "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                "Service contre mur 10 × 3",
+                "Ghost-stroking service complet 12 × 3"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "name" : "Service en place + retour neutralisant",
+              "notes" : "Service à 50-60% vitesse, viser carré. Cible : 6-7/10 services valides. Max 30 services sur la séance. RPE technique 5-6.",
+              "reps" : "10 séquences",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 60,
+              "sets" : 3,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
             }
           ],
-          "name" : "Séance technique — Schémas directeurs + première approche filet",
+          "name" : "Court technique — drills cross + intro volée filet",
           "type" : "technique",
-          "warmup" : "10 min standard + 2 min de shadow vollée (frapper l'air avec la raquette en position de vollée, bloquer le poignet)."
+          "warmup" : "10 min mini-tennis cross + cercles épaule + rotations poignet + split-steps + 5 mouvements service à blanc + 5 ghost-stroking volée."
         },
         {
-          "cooldown" : "5 min jogging léger + étirements complets.",
-          "day" : 5,
-          "duration_minutes" : 60,
+          "cooldown" : "10 min étirements complets + sleeper stretch + cross-body stretch.",
+          "day" : 4,
+          "duration_minutes" : 100,
           "exercises" : [
             {
-              "duration" : "40 sec effort / 20 sec repos (dans chaque minute)",
-              "name" : "Intervalles EMOM 12 min (Every Minute On the Minute)",
-              "notes" : "EMOM : à chaque minute, 40 sec de sprint court (4 m droite + 4 m gauche en navette) puis 20 sec de repos jusqu'à la prochaine minute. 12 répétitions = 12 min. RPE effort : 8-9.",
-              "rest_seconds" : 20,
-              "sets" : 12
+              "alternatives" : [
+                "Drill mur cross alterné 5 min × 5",
+                "Drill panier coach cross 5 min × 5"
+              ],
+              "duration" : "5 min cross + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross régularité alterné — volume",
+              "notes" : "Drill cross alterné forehand / revers avec partenaire ou drill mur. Cible : 25-35 frappes consécutives. Allure Z3 (~78-83% FCmax).",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 5,
+              "target_zone" : "Z3",
+              "volume_axis" : "sets"
             },
             {
-              "name" : "Squat jump avec réception stable",
-              "notes" : "Poussée explosive, atterrissage silencieux sur avant-pied, genoux fléchis à réception. Développe l'amortissement articulaire pour les réceptions après saut (smash, service).",
-              "reps" : "10",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "alternatives" : [
+                "Drill mur fond de court 15 min",
+                "Drill panier coach patterns 15 min"
+              ],
+              "duration" : "15 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Échanges réguliers fond de court avec patterns 1-2 coups",
+              "notes" : "Avec partenaire. Intégrer pattern service + 1er coup. Allure Z2-Z3 (~70-78% FCmax). Cible : 20-25 frappes consécutives en moyenne.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z3",
+              "volume_axis" : "duration"
             },
             {
-              "name" : "Fente arrière avec rotation buste",
-              "notes" : "Fente arrière + rotation du buste vers la jambe avant en bas de la fente. Combine dissociation bassin/épaules = fondamentale pour la qualité des swings.",
-              "reps" : "10 par côté",
+              "alternatives" : [
+                "Y-T-W + ER + plank anti-rotation 30 sec/côté × 2",
+                "Wall slide + ER + bird-dog 8/côté × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Y-T-W + external rotation + Pallof anti-rotation",
+              "notes" : "Bloc préventif coiffe + scapulaire + core anti-rotation. RPE 6-7.",
+              "reps" : "12 Y-T-W + 12 ER + 10 Pallof/côté",
+              "required_equipment" : [
+                "mat",
+                "resistance-band"
+              ],
+              "rest_seconds" : 45,
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "Split squat statique 10/jambe + glute bridge 12 × 3",
+                "Lunge marché 12/jambe + pont fessier unilatéral 8 × 3"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Split squat bulgare + hip thrust unilatéral",
+              "notes" : "Force unilatérale jambes. Charge corps ou dumbbell 3-5 kg. RPE 6-7.",
+              "reps" : "10 split squat / jambe + 8 hip thrust / jambe",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
-              "name" : "Pompes avec rotation (push-up rotation)",
-              "notes" : "Pompe + rotation du buste en T, bras levé vers le plafond. Renforce pectoraux, épaule stabilisatrice et rotation — moteur du service et du CD.",
-              "reps" : "8 par côté",
-              "rest_seconds" : 60,
-              "sets" : 3
-            },
-            {
-              "name" : "Nordic curl partiel",
-              "notes" : "Progression W3 : même exercice, légèrement plus bas vers le sol. Prévention ischio-jambiers lors des sprints explosifs.",
-              "reps" : "8",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "alternatives" : [
+                "10 × 30 sec vélo home-trainer modéré + 30 sec récup",
+                "10 × 1 min skips + 1 min marche"
+              ],
+              "incompatible_constraints" : [
+                "cardiac-clearance-required",
+                "knee-injury",
+                "ankle-injury"
+              ],
+              "name" : "Cardio intermittent — 10 sprints 20 m",
+              "notes" : "10 sprints 20 m allure soutenue RPE 6-7 (~78-83% FCmax). Récup marche.",
+              "reps" : "20 m sprint + 30 sec récup marche",
+              "required_equipment" : [
+                "tennis-shoes"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 10,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             }
           ],
-          "name" : "Prépa physique — Force + cardio intermittent avancé",
+          "name" : "Court + bloc S&C intégré — drills cross volume + cardio intermittent",
           "type" : "mixed",
-          "warmup" : "10 min dynamique : jogging, shadow footwork, split-step réactif."
+          "warmup" : "10 min mini-tennis + cercles épaule + rotations poignet + split-steps."
         }
       ],
-      "theme" : "Régularité avancée — schémas directeurs et introduction filet",
+      "theme" : "Reprise build — intro montée au filet",
       "week_number" : 6
     },
     {
-      "goal" : "Atteindre 25-28 échanges consécutifs. Consolider l'approche filet (3 cas : balle courte, approche volontaire, serve-and-volley). Volume +12% vs W6.",
+      "goal" : "Introduire le set partiel 4 jeux (joue-gagne, sans tie-break), enchaîner service + 1er coup + montée filet en drill alimenté. Volume cible : ~90 min court technique + 80 min court + 35 min S&C intégré = 170 min court + 35 min S&C.",
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements épaule (3 positions) + coude + poignets (obligatoires après séance chargée en service).",
-          "day" : 2,
-          "duration_minutes" : 85,
+          "cooldown" : "10 min étirements complets épaule + avant-bras + mollets + ischio-jambiers + fessiers (30 sec chacun par côté).",
+          "day" : 1,
+          "duration_minutes" : 90,
           "exercises" : [
             {
-              "duration" : "6 min par set",
-              "name" : "Drill régularité prolongée — cible 28 échanges",
-              "notes" : "Échanges croisés libres, schémas décidés par chaque joueur. Compter les échanges consécutifs par set. Cible : au moins un set avec 28 échanges. Si balle sort, ne pas s'énerver, noter et recommencer. La régularité se construit par répétition de la patience.",
-              "rest_seconds" : 90,
-              "sets" : 4
+              "alternatives" : [
+                "Drill mur cross 8 min",
+                "Ghost-stroking 8 min"
+              ],
+              "duration" : "8 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Mini-tennis cross — réveil",
+              "notes" : "Z2 bas mise en route.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
             },
             {
-              "name" : "Serve and volley — 15 points simulés",
-              "notes" : "Servir puis monter immédiatement au filet (3 pas vers le filet après le service). Première vollée dans le jeu, chercher à conclure. Objectif tactique : comprendre que l'initiative peut venir du service.",
-              "reps" : "15 points",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "alternatives" : [
+                "Drill mur cross forehand 5 min × 4",
+                "Ball-machine cross 5 min × 4"
+              ],
+              "duration" : "5 min cross + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross forehand intensité",
+              "notes" : "Forehand cross. Cible : 28-32 frappes consécutives par série. Allure RPE 5-6 (~80-85% FCmax).",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 4,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
-              "duration" : "3 min par set",
-              "name" : "Retour de service + neutralisation — schéma retour profond",
-              "notes" : "Partenaire sert. Retour systématiquement profond en croix (marge + 80 cm, profondeur). Pas de tentative gagnante sur le retour. Neutraliser = premier objectif. 'Si le retour est profond, le match reprend à zéro.'",
-              "rest_seconds" : 60,
-              "sets" : 3
+              "alternatives" : [
+                "Drill panier coach service+1+volée 8 × 4",
+                "Drill mur service + ghost-stroking volée 8 × 4"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "wrist-pain",
+                "tennis-elbow"
+              ],
+              "name" : "Service + 1er coup + montée filet — séquence enchaînée",
+              "notes" : "Avec partenaire ou coach panier : service à 50-60% vitesse, retour adversaire, 1er coup serveur orienté forehand profond, monte au filet, 1 volée ou smash si lob. Pas de point joué — focus enchaînement complet. Max 32 services sur la séance. RPE technique 5-6.",
+              "reps" : "8 séquences",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 75,
+              "sets" : 4,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "Drill panier auto-alimenté 11 balles × 2",
+                "Ball-machine intensité aléatoire 11 balles × 2"
+              ],
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "knee-injury"
+              ],
+              "name" : "Drill panier match-simulation 11 points — fond de court",
+              "notes" : "Coach panier alimentation aléatoire fond de court ou drill panier auto-alimenté avec contrainte profondeur. Compter points marqués sur 11 (cible : 6-7/11). Allure RPE 7-8 (~85-90% FCmax).",
+              "reps" : "1 série de 11 points + 2 min récup",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 2,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             }
           ],
-          "name" : "Séance technique — Service tactique + jeu de filet confirmé",
+          "name" : "Court technique — drills cross + service + montée filet enchaîné",
           "type" : "technique",
-          "warmup" : "10 min standard."
+          "warmup" : "10 min mini-tennis cross progressif + cercles épaule + rotations poignet + split-steps + 5 mouvements service à blanc + 5 ghost-stroking volée."
         },
         {
-          "cooldown" : "5 min + étirements complets.",
-          "day" : 5,
-          "duration_minutes" : 60,
+          "cooldown" : "10 min étirements complets + sleeper stretch + cross-body stretch.",
+          "day" : 4,
+          "duration_minutes" : 100,
           "exercises" : [
             {
-              "duration" : "20 sec sprint / 10 sec repos",
-              "name" : "Intervalles sprint navette 10 m — Tabata",
-              "notes" : "Tabata (Izumi Tabata, 1996) : 8 rounds de 20 sec effort maximal / 10 sec repos. Sprint aller-retour sur 10 m. RPE effort : 9/10. Total 4 min. Développe la puissance anaérobie lactique.",
-              "rest_seconds" : 10,
-              "sets" : 8
+              "alternatives" : [
+                "Drill mur cross alterné 5 min × 3",
+                "Drill panier coach cross 5 min × 3"
+              ],
+              "duration" : "5 min cross + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross régularité alterné",
+              "notes" : "Réveil drill cross alterné. Allure Z3 (~75-83% FCmax). Cible : 25-30 frappes.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 3,
+              "target_zone" : "Z3",
+              "volume_axis" : "sets"
             },
             {
-              "name" : "Single leg deadlift (poids du corps)",
-              "notes" : "Debout sur une jambe, pencher le buste en avant en tendant la jambe arrière en équilibre. Renforce ischio-jambiers et proprioception cheville. Clé pour les réceptions en déséquilibre.",
-              "reps" : "10 par jambe",
-              "rest_seconds" : 75,
-              "sets" : 3
+              "alternatives" : [
+                "3 × drill panier match-simulation 11 points",
+                "3 × tie-break partiel 4 points avec partenaire"
+              ],
+              "duration" : "30 min",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "knee-injury"
+              ],
+              "name" : "Set partiel 4 jeux — joue pour gagner",
+              "notes" : "Avec partenaire : set partiel 4 jeux (premier à 4 jeux gagne, pas de tie-break à 3-3 si plus de 4 jeux possible). Service alterné. Pression légère, focus régularité plus que coup gagnant. Allure RPE 7-8 (~85-92% FCmax). Si pas de partenaire, 3 séries de drill panier 11 points en remplacement.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court",
+                "partner"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             },
             {
-              "name" : "Broad jump (saut en longueur sur place)",
-              "notes" : "Saut explosif vers l'avant depuis la position squat basse, réception amortie. Développe la puissance des membres inférieurs. Repos 90 sec pour récupération complète entre sets.",
-              "reps" : "6",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "alternatives" : [
+                "Y-T-W + ER debout face mur × 2",
+                "Wall slide + ER bande × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Y-T-W + external rotation",
+              "notes" : "Bloc préventif coiffe + scapulaire. RPE 6-7.",
+              "reps" : "12 Y-T-W + 12 ER",
+              "required_equipment" : [
+                "mat",
+                "resistance-band"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
-              "name" : "Rotation médecine-ball simulation (ou bouteille 1.5L comme charge légère)",
-              "notes" : "Tenir objet léger à 2 mains, rotation explosive d'un côté puis l'autre. Simulation du transfert d'énergie au swing. Si bouteille d'eau (1.5 kg), excellent substitut au médecine-ball.",
-              "reps" : "15 par côté",
+              "alternatives" : [
+                "Rotational med ball au sol 8/côté + lunge 10/jambe × 3",
+                "Pallof bande 10/côté + squat bipodal 12 × 3"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "knee-injury"
+              ],
+              "name" : "Med ball rotational throws + split squat",
+              "notes" : "Med ball 2-4 kg : rotational throws contre mur (geste tennis-spécifique transfert force-vitesse) 8/côté. Suivi split squat statique ou bulgare 8/jambe charge corps ou dumbbell 3-5 kg. RPE 6-7.",
+              "reps" : "8 throws / côté + 8 split squat / jambe",
+              "required_equipment" : [
+                "medicine-ball"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
-              "name" : "Planche ventrale + ouverture latérale (plank reach)",
-              "notes" : "En position de planche, tendre un bras latéralement au sol sans laisser les hanches pivoter. Gainage anti-rotation avancé.",
-              "reps" : "10 par côté",
-              "rest_seconds" : 45,
-              "sets" : 3
+              "alternatives" : [
+                "10 × 30 sec vélo home-trainer modéré + 30 sec récup",
+                "10 × 1 min skips + 1 min marche"
+              ],
+              "incompatible_constraints" : [
+                "cardiac-clearance-required",
+                "knee-injury",
+                "ankle-injury"
+              ],
+              "name" : "Cardio intermittent — 10 sprints 20 m + 2 directions",
+              "notes" : "10 sprints 20 m alternant directions (avant / arrière en jogging récup). Allure RPE 6-7 (~78-83% FCmax).",
+              "reps" : "20 m aller + récup retour marche 30 sec",
+              "required_equipment" : [
+                "tennis-shoes"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 10,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             }
           ],
-          "name" : "Prépa physique — Puissance et réactivité",
+          "name" : "Court + bloc S&C intégré — set partiel 4 jeux + force-cardio",
           "type" : "mixed",
-          "warmup" : "10 min dynamique."
+          "warmup" : "10 min mini-tennis + drills cross facile + cercles épaule + rotations poignet + split-steps."
         }
       ],
-      "theme" : "Construction du point — service tactique et jeu de filet",
+      "theme" : "Build — set partiel 4 jeux + montée filet enchaînée",
       "week_number" : 7
     },
     {
-      "goal" : "Tester la régularité en conditions de match (30 échanges consécutifs cible). Travailler les 3 grands schémas de point : construction, finition filet, défense lob.",
+      "goal" : "Volume pic du plan : drill panier match-simulation 11 points en volume + intégrer montée filet en jeu réel (set partiel ou drill alimenté). Volume cible : ~90 min court technique + 85 min court + 40 min S&C intégré = 175 min court + 40 min S&C.",
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements épaule + coude + ischio-jambiers.",
-          "day" : 2,
-          "duration_minutes" : 85,
+          "cooldown" : "10 min étirements complets épaule + avant-bras + mollets + ischio-jambiers + fessiers (30 sec chacun par côté).",
+          "day" : 1,
+          "duration_minutes" : 90,
           "exercises" : [
             {
-              "duration" : "6 min par set",
-              "name" : "Drill régularité — cible 30 échanges consécutifs",
-              "notes" : "Échanges croisés libres. Comptage strict. Cible : atteindre 30 échanges consécutifs dans au moins un set. Si non atteint : analyser les causes (faute directe, balle courte, erreur de direction). C'est le moment de test principal du plan.",
-              "rest_seconds" : 90,
-              "sets" : 5
+              "alternatives" : [
+                "Drill mur cross 10 min",
+                "Ghost-stroking + drill mur 10 min"
+              ],
+              "duration" : "10 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Mini-tennis cross + drill cross facile",
+              "notes" : "Réveil progressif Z2 bas → Z2 haut. Compter frappes consécutives.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
             },
             {
-              "name" : "Scénario A — Construction + finition filet",
-              "notes" : "Service + 3 balles de construction croisées + approche sur balle courte + vollée de finition. Répéter 10 fois par côté. Jouer le point comme en match.",
-              "reps" : "10 points simulés",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "alternatives" : [
+                "Drill panier auto-alimenté 11 balles × 4",
+                "Ball-machine intensité aléatoire 11 balles × 4"
+              ],
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "knee-injury"
+              ],
+              "name" : "Drill panier match-simulation 11 points — volume",
+              "notes" : "Coach panier alimentation aléatoire fond de court (forehand / revers / corner-corner) ou drill panier auto-alimenté. Compter points marqués sur 11 (cible : 7/11). Allure RPE 7-8 (~85-92% FCmax). Volume pic du plan sur cet exercice.",
+              "reps" : "1 série de 11 points + 2 min récup",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 4,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
             },
             {
-              "name" : "Scénario B — Service, retour profond, défense",
-              "notes" : "L'un sert, l'autre retourne profond. Celui qui a servi est en difficulté et doit se défendre avec un lob ou une balle croisée. Jouer le point jusqu'au bout. Entraîne les deux rôles.",
-              "reps" : "10 points simulés",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "alternatives" : [
+                "Drill panier coach service-volée 8 × 3",
+                "Drill mur service + ghost-stroking volée 8 × 3"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "wrist-pain",
+                "tennis-elbow"
+              ],
+              "name" : "Service + montée filet — séquence service-volée",
+              "notes" : "Avec partenaire ou coach panier : service à 60% vitesse, montée filet directe (sans 1er coup fond), 1 volée. Pattern service-volée classique. Pas de point joué. Max 24 services sur cet exercice. RPE technique 5-6.",
+              "reps" : "8 séquences",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 75,
+              "sets" : 3,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
             }
           ],
-          "name" : "Séance technique — Scénarios de match et 30 échanges",
+          "name" : "Court technique — drill panier 11 points volume + service-volée",
           "type" : "technique",
-          "warmup" : "12 min : jogging + échauffement progressif au filet (vollées douces), puis retour au fond."
+          "warmup" : "10 min mini-tennis cross progressif + cercles épaule + rotations poignet + split-steps + 5 mouvements service + ghost-stroking volée."
         },
         {
-          "cooldown" : "5 min + auto-massage mollets et cuisses + étirements complets.",
-          "day" : 5,
-          "duration_minutes" : 60,
+          "cooldown" : "10 min étirements complets + sleeper stretch + cross-body stretch.",
+          "day" : 4,
+          "duration_minutes" : 105,
           "exercises" : [
             {
-              "duration" : "8-20 sec effort / 20-40 sec récup",
-              "name" : "Simulation point tennis — interval aléatoire",
-              "notes" : "Alterner sprints de 8 à 20 sec (aléatoire : parfois court comme un échange en 2 coups, parfois long comme 10 coups) avec récup proportionnelle. Reproduit la variabilité temporelle réelle d'un match.",
-              "rest_seconds" : 40,
-              "sets" : 15
+              "alternatives" : [
+                "Drill mur cross alterné 5 min × 3",
+                "Drill panier coach cross 5 min × 3"
+              ],
+              "duration" : "5 min cross + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross régularité alterné — réveil",
+              "notes" : "Drill cross alterné Z3 (~78-83% FCmax). Cible : 28-32 frappes consécutives.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 3,
+              "target_zone" : "Z3",
+              "volume_axis" : "sets"
             },
             {
-              "name" : "Squat + saut + réception rotation",
-              "notes" : "Squat, saut, atterrissage avec rotation du buste à 45° comme pour un smash. Développe la puissance et le contrôle post-saut.",
-              "reps" : "8",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "alternatives" : [
+                "3 × drill panier match-simulation 11 points",
+                "3 × tie-break partiel 4 points avec partenaire"
+              ],
+              "duration" : "35 min",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "knee-injury"
+              ],
+              "name" : "Set partiel 4 jeux — montée filet autorisée",
+              "notes" : "Avec partenaire : set partiel 4 jeux. Encourage la montée au filet sur balle courte adverse (au moins 1 montée filet par jeu). Pression légère. Allure RPE 7-8 (~85-92% FCmax). Si pas de partenaire, 3 séries de drill panier 11 points en remplacement.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court",
+                "partner"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             },
             {
-              "name" : "Fentes latérales profondes avec balancement de bras",
-              "notes" : "Balancement des bras comme un swing au moment de la fente. Travail coordonné jambes/bras.",
-              "reps" : "12 par côté",
+              "alternatives" : [
+                "Y-T-W + ER + plank anti-rotation × 2",
+                "Wall slide + ER + bird-dog × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Y-T-W + external rotation + Pallof anti-rotation",
+              "notes" : "Bloc préventif maintenu. RPE 6-7.",
+              "reps" : "12 Y-T-W + 12 ER + 10 Pallof/côté",
+              "required_equipment" : [
+                "mat",
+                "resistance-band"
+              ],
+              "rest_seconds" : 45,
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "Split squat statique 12/jambe + glute bridge 12 × 3",
+                "Lunge marché 12/jambe + pont fessier unilatéral 10 × 3"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Split squat bulgare + hip thrust unilatéral",
+              "notes" : "Force unilatérale jambes pic. Charge dumbbell 5 kg si confortable. RPE 6-7.",
+              "reps" : "10 split squat / jambe + 10 hip thrust / jambe",
+              "required_equipment" : [
+                "dumbbells"
+              ],
               "rest_seconds" : 60,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
-              "duration" : "30 sec planche + 20 sec side plank D + 20 sec side plank G",
-              "name" : "Gainage complexe : planche → side plank → planche (cycle)",
-              "notes" : "Enchaîner sans pause dans le cycle. Renforce les 3 plans de gainage (anti-extension, anti-rotation droite, anti-rotation gauche).",
-              "rest_seconds" : 60,
-              "sets" : 3
+              "alternatives" : [
+                "12 × 30 sec vélo home-trainer modéré + 30 sec récup",
+                "12 × 1 min skips + 1 min marche"
+              ],
+              "incompatible_constraints" : [
+                "cardiac-clearance-required",
+                "knee-injury",
+                "ankle-injury"
+              ],
+              "name" : "Cardio intermittent — 12 sprints 20 m",
+              "notes" : "12 sprints 20 m allure soutenue RPE 6-7 (~78-83% FCmax). Volume pic cardio intermittent du plan.",
+              "reps" : "20 m sprint + 30 sec récup marche",
+              "required_equipment" : [
+                "tennis-shoes"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 12,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             }
           ],
-          "name" : "Prépa physique — Endurance intermittente tennis-spécifique",
+          "name" : "Court + bloc S&C intégré — set partiel 4 jeux + S&C complet",
           "type" : "mixed",
-          "warmup" : "10 min dynamique."
+          "warmup" : "10 min mini-tennis + drills cross + cercles épaule + rotations poignet + split-steps."
         }
       ],
-      "theme" : "Jeu de situation — scénarios de match complets",
+      "theme" : "Build pic — drill panier 11 points volume + montée filet en jeu",
       "week_number" : 8
     },
     {
-      "goal" : "Semaine allégée (volume -15% vs W8). Affûter le service (2e balle, service-retour). Arriver reposé et mentalement prêt pour la semaine d'évaluation W10.",
+      "goal" : "Taper léger (-15%) avant la séance phare W10. Consolider drills cross + service + montée filet, intégrer un set partiel 4 jeux complet. Volume cible : ~85 min court technique + 80 min court + 30 min S&C intégré = 165 min court + 30 min S&C (-7% vs W8).",
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements complets 10 min. Accorder du temps à l'épaule et au coude — semaine de récupération optimale.",
-          "day" : 2,
-          "duration_minutes" : 60,
+          "cooldown" : "10 min étirements complets épaule + avant-bras + mollets + ischio-jambiers + fessiers (30 sec chacun par côté).",
+          "day" : 1,
+          "duration_minutes" : 85,
           "exercises" : [
             {
-              "name" : "Travail de service ciblé — 60 balles",
-              "notes" : "20 services visant le T (ad et deuce alternés), 20 visant le corps, 20 visant le côté extérieur. Accent sur la 2e balle : marge + 30 cm au-dessus du filet, slice ou lifté. La 2e balle fiable = tranquillité mentale en match.",
-              "reps" : "20 services",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "alternatives" : [
+                "Drill mur cross 8 min",
+                "Ghost-stroking 8 min"
+              ],
+              "duration" : "8 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Mini-tennis cross — réveil",
+              "notes" : "Z2 bas mise en route.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
             },
             {
-              "duration" : "5 min par set",
-              "name" : "Échanges croisés libres — séance plaisir",
-              "notes" : "Pas de comptage strict. Juste des échanges fluides. Profiter de la semaine allégée pour ressentir la progression depuis W1. Les sensations doivent être meilleures : moins d'erreurs non forcées, rythme plus régulier.",
-              "rest_seconds" : 60,
-              "sets" : 3
+              "alternatives" : [
+                "Drill mur cross alterné 5 min × 4",
+                "Drill panier coach cross 5 min × 4"
+              ],
+              "duration" : "5 min cross + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross alterné — qualité",
+              "notes" : "Drill cross alterné forehand / revers. Cible : 30+ frappes consécutives par série. Allure RPE 5-6 (~80-85% FCmax). Focus qualité plus que volume.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 4,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Drill panier auto-alimenté 11 balles × 3",
+                "Ball-machine aléatoire 11 balles × 3"
+              ],
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "knee-injury"
+              ],
+              "name" : "Drill panier match-simulation 11 points",
+              "notes" : "Coach panier ou auto-alimenté. Compter points marqués sur 11 (cible : 7-8/11). Allure RPE 7-8 (~85-92% FCmax).",
+              "reps" : "1 série de 11 points + 2 min récup",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Drill panier coach séquence complète 8 × 3",
+                "Drill mur service + ghost-stroking 8 × 3"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "wrist-pain",
+                "tennis-elbow"
+              ],
+              "name" : "Service + retour + 1er coup + montée filet — combinaison complète",
+              "notes" : "Avec partenaire : alterner service / retour. Servir, retourner, 1er coup décisif (orienté forehand côté ouvert), montée filet sur balle courte. Pas de point joué — focus enchaînement complet. Max 24 services sur cet exercice. RPE technique 5-6.",
+              "reps" : "8 séquences",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 75,
+              "sets" : 3,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
             }
           ],
-          "name" : "Séance technique allégée — Service + régularité douce",
+          "name" : "Court technique — drills cross + drill panier 11 points + service-volée",
           "type" : "technique",
-          "warmup" : "8 min standard."
+          "warmup" : "10 min mini-tennis cross + cercles épaule + rotations poignet + split-steps + 5 mouvements service à blanc + 5 ghost-stroking volée."
         },
         {
-          "cooldown" : "5 min respiration profonde + visualisation mentale de la semaine W10.",
-          "day" : 5,
-          "duration_minutes" : 40,
+          "cooldown" : "10 min étirements complets + sleeper stretch + cross-body stretch + foam roller si dispo.",
+          "day" : 4,
+          "duration_minutes" : 95,
           "exercises" : [
             {
-              "duration" : "10 m sprint léger à 70% + retour marche",
-              "name" : "Activation neuromusculaire légère — 6×10 m",
-              "notes" : "Pas d'effort maximal. Juste réveiller les fibres rapides sans fatiguer. Sentir les appuis, pas courir fort.",
-              "rest_seconds" : 45,
-              "sets" : 6
-            },
-            {
-              "duration" : "12 min",
-              "name" : "Routine mobilité complète épaule + hanche",
-              "notes" : "Épaule : cercles avant/arrière, 3 étirements croisés, prise mains dans le dos. Hanche : 90/90 stretch 45 sec/côté, pigeon modifié 45 sec/côté, fente basse rotation 30 sec/côté. Ces deux zones sont les premières limitées chez un joueur de tennis qui s'entraîne sans mobilité.",
+              "alternatives" : [
+                "Drill mur cross alterné 5 min × 3",
+                "Drill panier coach cross 5 min × 3"
+              ],
+              "duration" : "5 min cross + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross régularité alterné — réveil",
+              "notes" : "Drill cross alterné Z3 (~78-83% FCmax). Cible : 28-32 frappes consécutives.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 3,
+              "target_zone" : "Z3",
+              "volume_axis" : "sets"
             },
             {
-              "duration" : "30 sec",
-              "name" : "Planche ventrale",
-              "notes" : "Maintien du gainage de base. Volume réduit cutback.",
-              "rest_seconds" : 45,
-              "sets" : 3
+              "alternatives" : [
+                "3 × drill panier match-simulation 11 points",
+                "3 × tie-break partiel 4 points avec partenaire"
+              ],
+              "duration" : "30 min",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "knee-injury"
+              ],
+              "name" : "Set partiel 4 jeux — montée filet libre",
+              "notes" : "Avec partenaire : set partiel 4 jeux, montée filet libre (selon opportunité balle courte). Pression légère. Allure RPE 7-8. Si pas de partenaire, 3 séries de drill panier 11 points en remplacement.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court",
+                "partner"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                "Y-T-W + ER debout face mur × 2",
+                "Wall slide + ER bande × 2"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Y-T-W + external rotation",
+              "notes" : "Bloc préventif maintien. RPE 6-7. Volume taper avant W10.",
+              "reps" : "12 Y-T-W + 12 ER",
+              "required_equipment" : [
+                "mat",
+                "resistance-band"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "Split squat statique 12/jambe + plank anti-rotation 30 sec/côté × 2",
+                "Lunge marché 10/jambe + bird-dog 8/côté × 2"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Split squat bulgare + Pallof anti-rotation",
+              "notes" : "Force unilatérale + core anti-rotation maintien. Charge dumbbell 3-5 kg. RPE 6-7.",
+              "reps" : "10 split squat / jambe + 10 Pallof/côté",
+              "required_equipment" : [
+                "dumbbells",
+                "resistance-band"
+              ],
+              "rest_seconds" : 60,
+              "sets" : 2,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "8 × 30 sec vélo home-trainer modéré + 30 sec récup",
+                "8 × 1 min skips + 1 min marche"
+              ],
+              "incompatible_constraints" : [
+                "cardiac-clearance-required",
+                "knee-injury",
+                "ankle-injury"
+              ],
+              "name" : "Cardio intermittent — 8 sprints 20 m taper",
+              "notes" : "8 sprints 20 m allure modérée RPE 6-7. Volume taper avant W10.",
+              "reps" : "20 m sprint + 30 sec récup marche",
+              "required_equipment" : [
+                "tennis-shoes"
+              ],
+              "rest_seconds" : 30,
+              "sets" : 8,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "sets"
             }
           ],
-          "name" : "Prépa physique cutback — Activation douce + mobilité",
-          "type" : "mobility",
-          "warmup" : "5 min marche + mobilité douce."
+          "name" : "Court + bloc S&C intégré — set partiel 4 jeux + S&C maintien",
+          "type" : "mixed",
+          "warmup" : "10 min mini-tennis + drills cross facile + cercles épaule + rotations poignet + split-steps."
         }
       ],
-      "theme" : "CUTBACK pré-final — Affûtage et service",
+      "theme" : "Pré-validation — taper léger et consolidation patterns",
       "week_number" : 9
     },
     {
-      "goal" : "Valider les 3 objectifs du plan : 30 échanges consécutifs en fond de court, service-retour stabilisé, montée au filet intégrée. Checklist d'autoévaluation en fin de plan.",
+      "goal" : "Séance phare 90 min court : drill cross 30+ frappes consécutives, drill panier 11 points performance, set partiel 4 jeux avec montée filet, service en match-simulation + checklist d'autonomie 5 critères. Volume cible : ~80 min court allégé + 90 min court phare + 25 min S&C activation = 170 min court + 25 min S&C (taper léger).",
       "sessions" : [
         {
-          "cooldown" : "8 min étirements complets + moment de bilan personnel.",
-          "day" : 2,
-          "duration_minutes" : 90,
+          "cooldown" : "10 min étirements complets épaule + avant-bras + mollets + ischio-jambiers + fessiers (30 sec chacun par côté).",
+          "day" : 1,
+          "duration_minutes" : 80,
           "exercises" : [
             {
-              "duration" : "6 min par set",
-              "name" : "TEST 1 — Régularité fond de court 30 échanges",
-              "notes" : "Échanges croisés libres. Compter strictement. Objectif plan atteint si au moins 2 sets sur 5 dépassent 30 échanges consécutifs sans faute. Note ton meilleur comptage vs W1 (baseline). Progression = victoire, même si l'objectif 30 n'est pas atteint à 100%.",
-              "rest_seconds" : 90,
-              "sets" : 5
+              "alternatives" : [
+                "Drill mur cross 10 min",
+                "Ghost-stroking + drill mur 10 min"
+              ],
+              "duration" : "10 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Mini-tennis cross + drill cross facile",
+              "notes" : "Réveil long Z2 bas. Compter frappes consécutives, focus sensation.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
             },
             {
-              "name" : "TEST 2 — Service placement 1re + 2e balle",
-              "notes" : "20 services en comptant : taux de 1re balle dans le carré (objectif : 60%+), taux de 2e balle dans le carré (objectif : 80%+). Si 2e balle à 80%+, le service est stabilisé. Viser les 3 zones (T, corps, extérieur) à part égale.",
-              "reps" : "20 services par test",
-              "rest_seconds" : 90,
-              "sets" : 2
+              "alternatives" : [
+                "Drill mur cross alterné 5 min × 3",
+                "Drill panier coach cross 5 min × 3"
+              ],
+              "duration" : "5 min cross + 90 sec récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross alterné — qualité taper",
+              "notes" : "Drill cross alterné forehand / revers. Cible : 30+ frappes consécutives. Allure RPE 5-6 (~80-85% FCmax). Focus qualité.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
             },
             {
-              "name" : "TEST 3 — Intégration montée au filet",
-              "notes" : "10 points avec pour consigne : déclencher une montée au filet sur chaque balle courte ou demi-longue. Compter les points conclus au filet vs les points où tu es redescendu au fond. Objectif : monter au filet au moins 7 fois sur 10 quand l'opportunité se présente.",
-              "reps" : "10 points simulés",
-              "rest_seconds" : 90,
-              "sets" : 3
+              "alternatives" : [
+                "Drill panier coach service-volée 8 × 3",
+                "Drill mur service + ghost-stroking volée 8 × 3"
+              ],
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "wrist-pain",
+                "tennis-elbow"
+              ],
+              "name" : "Service en place + montée filet — séquence service-volée",
+              "notes" : "Service à 60% vitesse, montée filet directe, 1 volée. Pattern service-volée. Max 24 services sur cet exercice. RPE technique 5-6.",
+              "reps" : "8 séquences",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 75,
+              "sets" : 3,
+              "target_zone" : "technique",
+              "volume_axis" : "reps"
+            },
+            {
+              "alternatives" : [
+                "Y-T-W + ER debout face mur 12 min",
+                "Wall slide + ER + mobilité hanches 12 min"
+              ],
+              "duration" : "12 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "lower-back-pain"
+              ],
+              "name" : "Activation S&C légère — Y-T-W + ER + mobilité",
+              "notes" : "Y-T-W (10/lettre) + ER bande (10/bras) + mobilité hanches + sleeper stretch + cross-body stretch. Activation, pas surcharge — préserver fraîcheur pour J5 séance phare. RPE 6-7.",
+              "required_equipment" : [
+                "mat",
+                "resistance-band"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             }
           ],
-          "name" : "Séance évaluation — Test complet des acquis",
+          "name" : "Court allégé — pré-séance phare",
           "type" : "technique",
-          "warmup" : "12 min complet : jogging, shadow footwork, échauffement épaule, vollées douces 3 min."
+          "warmup" : "10 min mini-tennis cross + cercles épaule + rotations poignet + split-steps + 5 mouvements service à blanc + 5 ghost-stroking volée."
         },
         {
-          "cooldown" : "10 min étirements complets priorité épaule (3 positions) + coude (extenseurs + fléchisseurs poignets) + ischio-jambiers + mollets + chevilles.",
+          "cooldown" : "12 min : 5 min marche lente + étirements complets 8 min : mollets, quadriceps, ischio-jambiers, fessiers, sleeper stretch épaule (30 sec/côté), cross-body stretch (30 sec/côté), étirement avant-bras flexion + extension (20 sec/côté). Hydratation + collation post-effort.",
           "day" : 5,
-          "duration_minutes" : 90,
+          "duration_minutes" : 105,
           "exercises" : [
             {
-              "duration" : "Jusqu'à 4 jeux par set",
-              "name" : "Match libre en sets courts (4 jeux)",
-              "notes" : "3 sets en format 4 jeux. Jouer avec l'intention : appliquer les 3 schémas travaillés (régularité fond, service-retour, filet). Ne pas jouer en automatique. Observer ce qui fonctionne et ce qui reste à travailler.",
-              "rest_seconds" : 120,
-              "sets" : 3
+              "alternatives" : [
+                "Drill mur cross 10 min",
+                "Ghost-stroking 10 min"
+              ],
+              "duration" : "10 min",
+              "incompatible_constraints" : [
+                "shoulder-injury",
+                "tennis-elbow"
+              ],
+              "name" : "Mini-tennis + drill cross facile — mise en route",
+              "notes" : "Z2 bas progressif (~65-72% FCmax). Premier bloc séance phare, focus relâchement.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
             },
             {
-              "duration" : "10 min réflexion post-match",
-              "name" : "CHECKLIST D'AUTOÉVALUATION — Autonomie post-plan",
-              "notes" : "Répondre honnêtement aux 5 critères d'autonomie acquise :\n1. RÉGULARITÉ : J'enchaîne au moins 25-30 échanges consécutifs en fond de court sans faute directe dans la majorité de mes sets de drill (objectif principal atteint).\n2. SPLIT-STEP : J'effectue automatiquement le split-step avant chaque frappe sans y penser consciemment (test : demander au partenaire de vérifier sur 10 échanges).\n3. SERVICE : Mon taux de 2e balle dans le carré est de 75%+ et je cible 2 zones différentes par set de service (T et corps au minimum).\n4. FILET : Je reconnais la balle courte et je déclenche une montée au filet au moins 6 fois sur 10 quand l'opportunité se présente, sans hésiter 2 secondes.\n5. TACTIQUE : J'ai un schéma de point pré-décidé en tête avant de servir (ex: service T + CD croisé + approche si balle courte) plutôt que de réagir seulement à chaque balle.\nSi 4 critères sur 5 sont validés : le plan a atteint ses objectifs. Suite recommandée : programme intermédiaire-avancé axé jeu de filet ou tournois.",
+              "alternatives" : [
+                "Drill mur cross 30+ frappes × 3",
+                "Drill panier coach cross régularité × 3"
+              ],
+              "duration" : "1 série + 2 min récup marche",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury"
+              ],
+              "name" : "Drill cross régularité — validation 30+ frappes",
+              "notes" : "Drill cross forehand puis revers, cible : 30+ frappes consécutives sur au moins une série du forehand cross (critère checklist 1). Allure RPE 5-6 (~80-85% FCmax). Si tu rates avant 30, redémarre.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 3,
+              "target_zone" : "RPE 5-6",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "Drill panier auto-alimenté 11 balles × 2",
+                "Ball-machine aléatoire 11 balles × 2"
+              ],
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "knee-injury"
+              ],
+              "name" : "Drill panier match-simulation 11 points — performance",
+              "notes" : "Coach panier ou auto-alimenté. Compter points marqués sur 11 (cible : 7+/11). Allure RPE 7-8 (~85-92% FCmax). Performance jaugée — c'est la validation qualité du plan.",
+              "reps" : "1 série de 11 points + 2 min récup",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 2,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "sets"
+            },
+            {
+              "alternatives" : [
+                "3 × drill panier match-simulation 11 points",
+                "3 × tie-break partiel 4 points avec partenaire"
+              ],
+              "duration" : "30 min",
+              "incompatible_constraints" : [
+                "tennis-elbow",
+                "shoulder-injury",
+                "knee-injury"
+              ],
+              "name" : "Set partiel 4 jeux — match-simulation finale",
+              "notes" : "Avec partenaire : set partiel 4 jeux, montée filet libre. Compter le score officiel. Service alterné. Allure RPE 7-8. Si pas de partenaire, 3 séries de drill panier 11 points en remplacement.\n\nCHECKLIST D'AUTONOMIE — séance phare validation (à valider après la séance) :\n\n1. Je tiens 30+ frappes consécutives en drill cross forehand sur au moins une série de la séance phare (allure RPE 5-6 / Z3 ~80-85% FCmax).\n\n2. Je place mon premier service en jeu avec 50-60% de réussite sur 20 services en match-simulation (set partiel ou drill panier).\n\n3. Je tiens un set partiel 4 jeux complet sans baisse marquée de régularité (différence de qualité technique entre le 1er et le 4e jeu < 20%, sensation subjective).\n\n4. Mon S&C off-court hebdo (Y-T-W + ER + force unilatérale + cardio intermittent) est tenu sans inconfort articulaire coude / épaule / genou / cheville.\n\n5. Je sais distinguer une douleur épaule / coude d'une fatigue musculaire normale, et j'interprète correctement les signes de surcharge (FC repos, sommeil, motivation).\n\nSi tu coches 4+ critères, tu es autonome pour enchaîner sur un programme tennis regular 12-14 sem (préparation match / interclubs). Si 3 critères ou moins, refais W7 et W8 (cycle de 2 sem) avant de progresser. Tu peux aussi participer à un match amical de tournoi club avec confiance — sans pression de résultat.",
+              "required_equipment" : [
+                "racket",
+                "balls",
+                "tennis-shoes",
+                "court",
+                "partner"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                "Marche 8 min + étirements globaux 8 min",
+                "Yoga doux 13 min"
+              ],
+              "duration" : "13 min",
+              "incompatible_constraints" : [
+
+              ],
+              "name" : "Cool-down actif + Y-T-W récup",
+              "notes" : "5 min marche lente + Y-T-W (10/lettre) + ER bande (10/bras) + sleeper stretch + cross-body stretch + étirements avant-bras + mollets. Récupération active. RPE 1-2.",
+              "required_equipment" : [
+                "mat",
+                "resistance-band"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "cool-down",
+              "volume_axis" : "duration"
             }
           ],
-          "name" : "Séance bilan et projection — Match libre + checklist autonomie",
-          "type" : "other",
-          "warmup" : "10 min standard."
+          "name" : "Séance phare — validation régularité + checklist d'autonomie",
+          "type" : "mixed",
+          "warmup" : "12 min : 5 min marche progressive + 5 min mini-tennis cross facile + cercles épaule + rotations poignet + 5 split-steps + 5 mouvements service à blanc + 5 ghost-stroking volée. Mobilisation poignet et épaule particulièrement soignée."
         }
       ],
-      "theme" : "Évaluation finale — Autonomie et projection",
+      "theme" : "Séance phare — validation régularité + checklist d'autonomie",
       "week_number" : 10
     }
   ]

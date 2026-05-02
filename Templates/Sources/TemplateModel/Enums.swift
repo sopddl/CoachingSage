@@ -30,3 +30,11 @@ public enum SessionType: String, Codable, CaseIterable, Sendable {
     case rest
     case other
 }
+
+public enum VolumeAxis: String, Codable, CaseIterable, Sendable {
+    case duration
+    case distance
+    case reps
+    case sets
+    case elevation
+}

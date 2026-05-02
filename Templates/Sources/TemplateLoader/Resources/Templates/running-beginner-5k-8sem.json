@@ -1,19 +1,19 @@
 {
   "assumed_profile" : "Adulte sédentaire ou peu actif, sans pathologie cardiaque, équipé d'une paire de chaussures de running avec amorti en bon état (< 600 km). Aucune expérience récente de la course. Capable de marcher 30 min sans pause.",
-  "default_objective" : "Courir 30 minutes en continu (équivalent 5K à allure débutante confortable, ~6-8 min/km)",
+  "default_objective" : "Courir 30 minutes en continu (équivalent ~3-5 km selon le profil, allure conversationnelle 6-10 min/km)",
   "duration_weeks" : 8,
   "id" : "running-beginner-5k-8sem",
   "level" : "beginner",
   "name" : "5K Doux — 8 semaines pour courir 30 min en continu",
-  "progression_logic" : "Progression construite sur 4 principes, alignés NHS Couch to 5K et recommandations ACSM :\n(1) RÈGLE DES 10-20% : augmentation hebdomadaire du volume ou de l'intensité limitée, jamais les deux la même semaine. Volume hebdo de course : 16 → 18 → 18 → 22 → 23 → 28 → 35 → 50 min (la dernière semaine est le pic séance phare).\n(2) CUTBACK WEEK : semaine 5 = volume réduit pour consolidation, avec introduction qualité (bloc 8 min) en 2e séance uniquement. Sans semaine allégée, 8 semaines de progression continue surchargent l'appareil locomoteur.\n(3) RENFORCEMENT PRÉVENTIF : mollets (calf raises) et core (planche, bird-dog) dès W1 pour prévenir shin splints et stabiliser le tronc. Clamshells dès W1 pour prévenir ITBS — ne pas les repousser aux semaines ultérieures.\n(4) TAPERING W8 : séances 1 (20 min léger) et 2 (mobility) allégées pour arriver frais à la séance phare J5. Ne pas sauter les séances de taper, elles sont CONSTITUTIVES de la performance finale.\n\nStructure hebdo : 2 séances running + 1 renforcement, 4-5 jours de repos entre les sollicitations identiques.",
-  "safety_notes" : "DRAPEAUX ROUGES à surveiller (arrêter la séance et consulter si persistant > 1 semaine) :\n• Douleur vive sur le tibia antérieur (shin splints / périostite tibiale) : risque n°1 du débutant. Stop immédiat, glace 15 min, repos 3 jours minimum. Cause fréquente : volume trop élevé, chaussures inadaptées, sol trop dur.\n• Douleur sous le talon ou arche plantaire (fasciite plantaire) : étirer mollets 2×/jour, vérifier l'usure des chaussures (< 600 km).\n• Douleur derrière le talon (tendinite d'Achille) : réduire volume 30%, glacer, étirer en douceur.\n• Douleur face externe du genou (syndrome bandelette ilio-tibiale / ITBS) : les clamshells sont préventifs ; si douleur installée, repos 1 semaine et avis kiné.\n• Douleur articulaire genou > 2/10 : marcher immédiatement, arrêter la séance. Fatigue musculaire = OK, douleur articulaire = pas OK.\n\nRÈGLES GÉNÉRALES :\n• Chaussures avec bon amorti, renouvelées tous les 600-800 km.\n• Surfaces souples privilégiées (chemin, piste, bitume lisse). Éviter dénivelé important en début de plan.\n• 1 jour de repos complet entre chaque séance (pattern recommandé : J1 run / J2 repos / J3 strength / J4 repos / J5 run / J6-J7 repos).\n• Hydratation : 500 ml dans l'heure précédant la séance, 500 ml dans l'heure suivante (plus en conditions chaudes).\n• Échauffement NON optionnel : sauter l'échauffement triple le risque de blessure chez le débutant.\n• Courbatures 24-72h après séance = normal. Douleur PENDANT la séance = anormale.\n\nINTENSITÉ :\n• Test de la parole : tu dois pouvoir dire une phrase complète en courant. Si tu ne peux dire que des mots isolés = trop rapide, ralentis.\n• Cadence cible ~170-180 pas/min. Attaque médio-pied ou talon léger, pas d'attaque talon franc.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine allégée type W5 cutback) :\n• FC de repos +10 bpm inhabituelle au réveil\n• Sommeil dégradé > 3 nuits d'affilée\n• Courbatures persistantes > 72h\n• Motivation effondrée subitement\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre la même séance 1-2 jours plus tard.\n• 1-2 semaines de pause : reprendre la semaine précédente.\n• > 2 semaines de pause : reprendre la semaine -2 pour resécuriser l'adaptation.",
-  "schema_version" : 1,
+  "progression_logic" : "Progression construite sur 5 principes, alignés NHS Couch to 5K et recommandations ACSM :\n(1) RÈGLE DES 10-20% : augmentation hebdomadaire du volume ou de l'intensité limitée, jamais les deux la même semaine. Volume hebdo de course : 16 → 18 → 18 → 22 → 18 (cutback W5) → 22 → 30 → 50 min (W8 inclut la séance phare 30 min continu en J5 + 20 min de tapering en J1).\n(2) CUTBACK WEEK : semaine 5 = volume -18% pour consolidation (passage de 22 min de course en W4 à 18 min en W5), pas de nouveauté technique cette semaine. L'introduction du bloc 8 min continu est repoussée en W6 J5 (palier qualité), pédagogiquement plus juste après la consolidation. Les semaines allégées sont CONSTITUTIVES de l'adaptation, ne pas les sauter.\n(3) RENFORCEMENT PRÉVENTIF : mollets (calf raises bipodal) et core (planche, bird-dog) dès W1 pour prévenir shin splints et stabiliser le tronc. Clamshells dès W1 pour prévenir ITBS — ne pas les repousser aux semaines ultérieures (ACSM, Strength Running).\n(4) ALLURE CONVERSATIONNELLE STRICTE : 100% des blocs de course en zone Daniels-E (allure facile) — pas de Daniels-T/I/R chez le débutant tant que la course continue 30 min n'est pas acquise. Pacing par test de la parole (proxy Z1-Z2 quand pas de GPS / pas de race time).\n(5) TAPERING W8 : séances 1 (20 min léger) et 2 (mobility) allégées pour arriver frais à la séance phare J5. Les séances de taper sont indispensables à la performance finale.\n\nStructure hebdo : 2 séances running + 1 renforcement, 4-5 jours de repos entre les sollicitations identiques. Pattern recommandé : J1 run / J3 strength / J5 run, J2-J4-J6-J7 repos.",
+  "safety_notes" : "DRAPEAUX ROUGES à surveiller (arrêter la séance et consulter un professionnel de santé si les symptômes persistent > 1 semaine) :\n• Douleur vive sur le tibia antérieur (shin splints / périostite tibiale) : risque n°1 du débutant, jusqu'à 50% des blessures lower-leg en running. Stop immédiat, glace 15 min, repos 3 jours minimum. Cause fréquente : volume trop élevé, chaussures inadaptées, sol trop dur.\n• Douleur sous le talon ou arche plantaire (fasciite plantaire) : étirer les mollets (gastrocs + soléaire) 2×/jour, vérifier l'usure des chaussures (< 600 km).\n• Douleur derrière le talon (tendinopathie d'Achille) : réduire le volume de 30%, glacer, calf raises excentriques en douceur.\n• Douleur face externe du genou (syndrome bandelette ilio-tibiale / ITBS) : les clamshells sont préventifs ; si la douleur s'installe, repos 1 semaine et avis d'un kinésithérapeute.\n• Douleur antérieure rotule (PFPS, genou du coureur) : fentes statiques avec bon alignement genou-pied (genou aligné sur le 2e orteil, pas en valgus).\n• Douleur articulaire genou > 2/10 : marcher immédiatement, arrêter la séance. Fatigue musculaire = OK, douleur articulaire = pas OK.\n• Si tu as des antécédents cardiaques connus, plus de 50 ans avec sédentarité prolongée, ou si tu es en grossesse / postpartum récent : consulte un médecin avant de commencer ce programme.\n\nRÈGLES GÉNÉRALES :\n• Chaussures de running avec amorti correct, à renouveler tous les 600-800 km.\n• Surfaces souples privilégiées (chemin terre, piste tartan, bitume lisse). Éviter dénivelé important en début de plan.\n• 1 jour de repos complet entre chaque séance (pattern recommandé : J1 run / J2 repos / J3 strength / J4 repos / J5 run / J6-J7 repos).\n• Hydratation : 500 ml dans l'heure précédant la séance, 500 ml dans l'heure suivante (plus en conditions chaudes).\n• Échauffement NON optionnel : sauter l'échauffement triple le risque de blessure chez le débutant.\n• Courbatures 24-72h après séance = adaptation normale. Inconfort PENDANT la séance qui s'aggrave = signal d'arrêt.\n\nINTENSITÉ :\n• Test de la parole : tu dois pouvoir dire une phrase complète en courant. Si tu ne peux dire que des mots isolés = trop rapide, ralentis. C'est le repère central du plan, plus fiable qu'une montre cardio chez un débutant qui n'a pas encore de VDOT calibré.\n• Cadence cible ~170-180 pas/min. Attaque médio-pied ou talon léger, pas d'attaque talon franche.\n• Aucun fractionné dur, aucune ligne droite à fond, aucun sprint dans ce plan. Toute l'énergie va dans la construction de la base aérobie.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine allégée type W5 cutback, refaire la semaine précédente avec volume -20%) :\n• FC de repos +10 bpm inhabituelle au réveil.\n• Sommeil dégradé > 3 nuits d'affilée.\n• Courbatures persistantes > 72h après séance.\n• Motivation effondrée subitement, irritabilité accrue.\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre la même séance 1-2 jours plus tard.\n• 1-2 semaines de pause : reprendre la semaine précédente (W-1).\n• > 2 semaines de pause : reprendre la semaine -2 (W-2) pour resécuriser l'adaptation. La précipitation après une coupure est la première cause de récidive de shin splints.",
+  "schema_version" : 2,
   "sessions_per_week" : 3,
   "sport" : "running",
-  "summary" : "Programme run/walk progressif sur 8 semaines aligné sur les recommandations NHS Couch to 5K, avec renforcement musculaire intégré dès la semaine 1 (mollets, gainage, abducteurs de hanche) pour prévenir les blessures typiques du débutant (shin splints, ITBS). Progression volume +10-25%/sem avec une semaine cutback en W5. Séance phare W8 = 30 min continu, correspondant à ~3-4 km pour un vrai débutant ou ~5 km pour un profil plus actif selon l'allure individuelle.",
+  "summary" : "Programme run/walk progressif sur 8 semaines aligné sur les recommandations NHS Couch to 5K, avec renforcement musculaire intégré dès la semaine 1 (mollets, gainage, abducteurs de hanche) pour prévenir les blessures typiques du débutant (shin splints, ITBS). Progression volume hebdo de course : 16 → 18 → 18 → 22 → 18 (cutback W5) → 22 → 30 → séance phare 30 min continu. Séance phare W8 = 30 min en continu, équivalent ~3-4 km à 8-10 min/km ou ~5 km à 6 min/km selon le profil individuel. Le plan se conclut par une checklist d'autonomie 4 critères mesurables.",
   "weeks" : [
     {
-      "goal" : "Habituer le corps à l'effort running et activer le renforcement préventif. Objectif volume : ~8 min de course par séance, alternance 1 min course / 1 min 30 marche.",
+      "goal" : "Habituer le corps à l'effort running et activer le renforcement préventif. Volume cible : ~8 min de course par séance, alternance 1 min course / 1 min 30 marche.",
       "sessions" : [
         {
           "cooldown" : "3 min marche lente. Étirements statiques : mollets 30 sec/jambe, quadriceps 30 sec/jambe, ischio-jambiers 30 sec/jambe. Hydratation.",
@@ -21,11 +21,26 @@
           "duration_minutes" : 35,
           "exercises" : [
             {
+              "alternatives" : [
+                "Marche rapide 30 min",
+                "Vélo Z1 30 min"
+              ],
               "duration" : "1 min course lente + 1 min 30 marche rapide",
-              "name" : "Bloc run/walk",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc run/walk 1 min / 1 min 30",
               "notes" : "Allure de course TRÈS lente, test de la parole : tu dois pouvoir dire une phrase entière. Si le souffle coupe au bout de 30 sec, ralentis encore. Total bloc : 20 min.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 8
+              "sets" : 8,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "sets"
             }
           ],
           "name" : "Run/walk découverte",
@@ -38,32 +53,80 @@
           "duration_minutes" : 35,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squats partiels poids du corps 12 reps",
+                "Step-ups bas"
+              ],
               "duration" : "20 sec",
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Wall sit partiel",
               "notes" : "Dos plat contre le mur, descente à 60-70° (pas 90°). Renforce le quadriceps avec peu de charge articulaire.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Pont fessier appui pieds sur chaise",
+                "Bridge isométrique 20 sec"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Pont fessier",
               "notes" : "Tenir 2 sec en haut. Cible les fessiers (stabilisateurs clés de la foulée).",
               "reps" : "10",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 40,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Side-lying leg raise 12 reps/côté",
+                "Clamshell avec mini-band résistive"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Clamshell",
               "notes" : "Allongé sur le côté, genoux pliés. Ouvre le genou du dessus sans bouger le bassin. Cible les abducteurs de hanche — prévention ITBS (syndrome de l'essuie-glace) dès la semaine 1.",
               "reps" : "12 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 35,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Calf raises assis sur chaise",
+                "Wall calf raise (appui mains au mur)"
+              ],
+              "incompatible_constraints" : [
+                "ankle-injury"
+              ],
               "name" : "Calf raises bipodal",
               "notes" : "Montées sur la pointe des pieds, les deux pieds ensemble. Prévention shin splints (les mollets forts absorbent jusqu'à 30% de la charge tibiale). Obligatoire chez le débutant.",
               "reps" : "15",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 30,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             }
           ],
           "name" : "Renforcement foundation",
@@ -76,14 +139,29 @@
           "duration_minutes" : 35,
           "exercises" : [
             {
+              "alternatives" : [
+                "Marche rapide 30 min",
+                "Vélo Z1 30 min"
+              ],
               "duration" : "1 min course lente + 1 min 30 marche rapide",
-              "name" : "Bloc run/walk",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc run/walk 1 min / 1 min 30",
               "notes" : "Même séance qu'en J1. La répétition à volume égal permet au corps d'adapter l'os tibial (adaptation lente, 6-8 semaines). Ne pas forcer l'augmentation.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 8
+              "sets" : 8,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "sets"
             }
           ],
-          "name" : "Run/walk découverte",
+          "name" : "Run/walk découverte — répétition",
           "type" : "mixed",
           "warmup" : "Identique à séance 1 (8 min échauffement complet)."
         }
@@ -92,7 +170,7 @@
       "week_number" : 1
     },
     {
-      "goal" : "Passer à 1 min 30 de course continue, volume hebdo +12%. Renforcement avec ajout du gainage.",
+      "goal" : "Passer à 1 min 30 de course continue, volume hebdo +12%. Renforcement avec ajout du gainage ventral.",
       "sessions" : [
         {
           "cooldown" : "5 min marche + étirements 4 min.",
@@ -100,11 +178,26 @@
           "duration_minutes" : 38,
           "exercises" : [
             {
+              "alternatives" : [
+                "Marche rapide 35 min",
+                "Vélo Z1 35 min"
+              ],
               "duration" : "1 min 30 course + 2 min marche",
-              "name" : "Bloc run/walk",
-              "notes" : "Respiration conversationnelle maintenue. Total bloc : 21 min.",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc run/walk 1m30 / 2 min",
+              "notes" : "Respiration conversationnelle maintenue. Total bloc : 21 min. Marche active = pas trop lente, garde un rythme dynamique pour entretenir la fréquence cardiaque.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 6
+              "sets" : 6,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "sets"
             }
           ],
           "name" : "Run/walk 1m30",
@@ -112,45 +205,107 @@
           "warmup" : "Échauffement standard 8 min."
         },
         {
-          "cooldown" : "Étirements 5 min.",
+          "cooldown" : "Étirements 5 min (mollets, fessiers, ischio-jambiers).",
           "day" : 3,
           "duration_minutes" : 35,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squats partiels 12 reps",
+                "Step-ups bas"
+              ],
               "duration" : "30 sec",
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Wall sit",
+              "notes" : "Progression vs W1. Toujours angle 60-70° au genou.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Pont fessier appui pieds sur chaise",
+                "Bridge isométrique 25 sec"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Pont fessier",
               "reps" : "12",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 40,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Side-lying leg raise 15 reps/côté",
+                "Clamshell avec resistance-band"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Clamshell",
               "reps" : "15 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 35,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Calf raises assis sur chaise",
+                "Wall calf raise"
+              ],
+              "incompatible_constraints" : [
+                "ankle-injury"
+              ],
               "name" : "Calf raises bipodal",
               "reps" : "20",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 30,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Planche genoux au sol 30 sec",
+                "Dead bug 12 reps/côté"
+              ],
               "duration" : "20 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Planche ventrale",
               "notes" : "Coudes sous épaules, corps aligné, fessiers engagés. Introduction du core, minimum ACSM pour les coureurs.",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Renforcement + gainage",
           "type" : "strength",
-          "warmup" : "7 min."
+          "warmup" : "7 min : marche rapide + rotations bassin + talons-fesses + montées de genoux."
         },
         {
           "cooldown" : "5 min marche + étirements 4 min.",
@@ -158,14 +313,29 @@
           "duration_minutes" : 38,
           "exercises" : [
             {
+              "alternatives" : [
+                "Marche rapide 35 min",
+                "Vélo Z1 35 min"
+              ],
               "duration" : "1 min 30 course + 2 min marche",
-              "name" : "Bloc run/walk",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc run/walk 1m30 / 2 min",
               "notes" : "Identique à J1. Consolidation avant le palier W3.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 6
+              "sets" : 6,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "sets"
             }
           ],
-          "name" : "Run/walk 1m30",
+          "name" : "Run/walk 1m30 — consolidation",
           "type" : "mixed",
           "warmup" : "Échauffement standard 8 min."
         }
@@ -174,7 +344,7 @@
       "week_number" : 2
     },
     {
-      "goal" : "Introduire le bloc de 3 min continu via un format laddered. Volume stable (consolidation qualité).",
+      "goal" : "Introduire le bloc de 3 min continu via un format laddered. Volume stable (consolidation qualité, pas de hausse de volume cette semaine).",
       "sessions" : [
         {
           "cooldown" : "5 min marche + étirements 5 min.",
@@ -182,11 +352,26 @@
           "duration_minutes" : 38,
           "exercises" : [
             {
+              "alternatives" : [
+                "Marche rapide 35 min",
+                "Vélo Z1 35 min"
+              ],
               "duration" : "1 min 30 course + 1 min 30 marche + 3 min course + 3 min marche",
-              "name" : "Bloc laddered",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc laddered 1m30 + 3 min",
               "notes" : "Enchaîner 2 fois ce cycle. Total course par cycle : 4 min 30. Le bloc 3 min est nouveau — reste à allure conversationnelle, ne force pas. Total bloc : 18 min.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "sets"
             }
           ],
           "name" : "Run/walk laddered",
@@ -199,48 +384,122 @@
           "duration_minutes" : 37,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squats partiels 15 reps",
+                "Step-ups bas"
+              ],
               "duration" : "40 sec",
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Wall sit",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Fentes mains au mur 8 reps/jambe",
+                "Step-ups bas 10 reps/jambe"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Fentes statiques",
               "notes" : "Genou avant à 90° max. Ne pas laisser le genou dépasser la pointe du pied.",
               "reps" : "8 par jambe",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Pont fessier bipodal 15 reps",
+                "Pont fessier pieds sur chaise"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Pont fessier unilatéral",
               "notes" : "Progression vs W2. Renforce l'équilibre G/D.",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 40,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Calf raises assis sur chaise",
+                "Wall calf raise"
+              ],
+              "incompatible_constraints" : [
+                "ankle-injury"
+              ],
               "name" : "Calf raises bipodal",
               "reps" : "20",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 30,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Planche genoux au sol 40 sec",
+                "Dead bug 12 reps/côté"
+              ],
               "duration" : "30 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Planche ventrale",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Dead bug 8 reps/côté",
+                "Bird-dog avant-bras au sol"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "lower-back-pain"
+              ],
               "name" : "Bird-dog",
               "notes" : "À 4 pattes, tendre bras opposé + jambe opposée. Tenir 2 sec. Cible le core profond et l'anti-rotation lombaire.",
               "reps" : "8 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 30,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             }
           ],
           "name" : "Renforcement + bird-dog",
           "type" : "strength",
-          "warmup" : "7 min."
+          "warmup" : "7 min : marche rapide + mobilité dynamique."
         },
         {
           "cooldown" : "5 min marche + étirements 5 min.",
@@ -248,14 +507,29 @@
           "duration_minutes" : 38,
           "exercises" : [
             {
+              "alternatives" : [
+                "Marche rapide 35 min",
+                "Vélo Z1 35 min"
+              ],
               "duration" : "1 min 30 course + 1 min 30 marche + 3 min course + 3 min marche",
-              "name" : "Bloc laddered",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc laddered 1m30 + 3 min",
               "notes" : "Identique à J1. Répéter la même séance stabilise l'adaptation au bloc 3 min.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "sets"
             }
           ],
-          "name" : "Run/walk laddered",
+          "name" : "Run/walk laddered — consolidation",
           "type" : "mixed",
           "warmup" : "Échauffement standard 8 min."
         }
@@ -272,18 +546,48 @@
           "duration_minutes" : 40,
           "exercises" : [
             {
+              "alternatives" : [
+                "Marche rapide 12 min",
+                "Vélo Z1 12 min"
+              ],
               "duration" : "3 min course + 2 min marche",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
               "name" : "Blocs courts 3 min",
               "notes" : "Deux blocs de 3 min pour préparer le bloc long final.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Marche rapide 5 min",
+                "Vélo Z1 5 min"
+              ],
               "duration" : "5 min course",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
               "name" : "Bloc long 5 min",
-              "notes" : "Enchaîner directement après les blocs courts. Allure TOUJOURS conversationnelle. Si tu ne peux plus parler, ralentis. Total bloc séance : 15 min de course.",
+              "notes" : "Enchaîner directement après les blocs courts. Allure TOUJOURS conversationnelle. Si tu ne peux plus parler, ralentis. Total course séance : 11 min (6 min en blocs courts + 5 min long).",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Run/walk bloc 5",
@@ -296,47 +600,121 @@
           "duration_minutes" : 37,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squats partiels 15 reps",
+                "Step-ups bas"
+              ],
               "duration" : "45 sec",
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Wall sit",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Fentes statiques 10 reps/jambe",
+                "Step-ups 10 reps/jambe"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Fentes dynamiques",
               "notes" : "Alternance G/D avec retour au centre. Progression vs fentes statiques.",
               "reps" : "8 par jambe",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Pont fessier bipodal 18 reps",
+                "Pont fessier pieds sur chaise"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Pont fessier unilatéral",
               "reps" : "12 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 40,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Calf raises bipodal sol 25 reps",
+                "Calf raises assis"
+              ],
+              "incompatible_constraints" : [
+                "ankle-injury"
+              ],
               "name" : "Calf raises surélevés",
               "notes" : "Debout sur le bord d'une marche, talons dans le vide. Amplitude complète (descente sous la marche). Charge accrue sur les mollets.",
               "reps" : "15 par côté",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 30,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Planche genoux 50 sec",
+                "Dead bug 14 reps/côté"
+              ],
               "duration" : "40 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Planche ventrale",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Dead bug 10 reps/côté",
+                "Bird-dog avant-bras au sol"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "lower-back-pain"
+              ],
               "name" : "Bird-dog",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 30,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             }
           ],
           "name" : "Renforcement progression",
           "type" : "strength",
-          "warmup" : "7 min."
+          "warmup" : "7 min : marche rapide + mobilité dynamique."
         },
         {
           "cooldown" : "5 min marche + étirements 5 min.",
@@ -344,20 +722,50 @@
           "duration_minutes" : 40,
           "exercises" : [
             {
+              "alternatives" : [
+                "Marche rapide 12 min",
+                "Vélo Z1 12 min"
+              ],
               "duration" : "3 min course + 2 min marche",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
               "name" : "Blocs courts 3 min",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "sets"
             },
             {
+              "alternatives" : [
+                "Marche rapide 5 min",
+                "Vélo Z1 5 min"
+              ],
               "duration" : "5 min course",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
               "name" : "Bloc long 5 min",
-              "notes" : "Même séance qu'en J1. Le bloc 5 min doit devenir confortable avant d'avancer.",
+              "notes" : "Même séance qu'en J1. Le bloc 5 min doit devenir confortable avant d'avancer. Cadence cible 170-180 pas/min : compte tes appuis pendant 15 sec sur un pied = vise 22-23. Une cadence trop basse (< 160 spm) augmente le risque shin splints.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
             }
           ],
-          "name" : "Run/walk bloc 5",
+          "name" : "Run/walk bloc 5 — consolidation",
           "type" : "mixed",
           "warmup" : "Échauffement standard 8 min."
         }
@@ -366,22 +774,59 @@
       "week_number" : 4
     },
     {
-      "goal" : "Semaine de consolidation (volume -9% vs W4) avec introduction d'un bloc 8 min en 2e séance. Les semaines allégées sont essentielles pour l'adaptation — ne pas les sauter.",
+      "goal" : "Semaine cutback (volume -18% vs W4 : 22 → 18 min de course). Pas de nouveauté — on consolide les acquis avant le palier 8 min continu de W6. Les semaines allégées sont essentielles pour l'adaptation — ne pas les sauter.",
       "sessions" : [
         {
           "cooldown" : "5 min marche + étirements 4 min.",
           "day" : 1,
-          "duration_minutes" : 35,
+          "duration_minutes" : 32,
           "exercises" : [
             {
+              "alternatives" : [
+                "Marche rapide 7 min",
+                "Vélo Z1 7 min"
+              ],
               "duration" : "5 min course + 2 min marche",
-              "name" : "Bloc course",
-              "notes" : "Session allégée pour consolidation. Si tu te sens en forme, c'est bon signe — ça veut dire que l'adaptation se fait. Ne pas pousser au-delà.",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc run/walk 5 min",
+              "notes" : "Premier bloc de la séance allégée. Allure très confortable.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 2
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                "Marche rapide 5 min",
+                "Vélo Z1 5 min"
+              ],
+              "duration" : "3 min course + 2 min marche",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc run/walk 3 min",
+              "notes" : "Session allégée pour consolidation. Total course séance : 8 min (5 + 3). Ne pas pousser au-delà — la cutback week est constitutive de l'adaptation.",
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
             }
           ],
-          "name" : "Cutback — blocs 5 min",
+          "name" : "Cutback — run/walk allégé",
           "type" : "mixed",
           "warmup" : "Échauffement standard 8 min."
         },
@@ -391,84 +836,202 @@
           "duration_minutes" : 35,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squats partiels 15 reps",
+                "Step-ups bas"
+              ],
               "duration" : "45 sec",
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Wall sit",
+              "notes" : "Volume cutback aussi sur le strength : on maintient l'intensité W4 sans la pousser.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Fentes statiques 12 reps/jambe",
+                "Step-ups 12 reps/jambe"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Fentes dynamiques",
               "reps" : "10 par jambe",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Pont fessier bipodal 18 reps",
+                "Pont fessier pieds sur chaise"
+              ],
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Pont fessier unilatéral",
               "reps" : "12 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 40,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Calf raises bipodal sol 25 reps",
+                "Calf raises assis"
+              ],
+              "incompatible_constraints" : [
+                "ankle-injury"
+              ],
               "name" : "Calf raises surélevés",
               "reps" : "15 par côté",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 30,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Planche genoux 40 sec",
+                "Dead bug 12 reps/côté"
+              ],
               "duration" : "30 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Planche ventrale",
               "notes" : "Retour au volume W3 (cutback core aussi).",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Side plank genoux pliés 30 sec/côté",
+                "Bird-dog 10 reps/côté"
+              ],
               "duration" : "20 sec par côté",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
               "name" : "Side plank",
               "notes" : "Nouveauté cutback week : latéral, anti-rotation. Cible les obliques et les moyens fessiers.",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 30,
-              "sets" : 2
+              "sets" : 2,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Renforcement + side plank",
           "type" : "strength",
-          "warmup" : "7 min."
+          "warmup" : "7 min : marche rapide + mobilité dynamique."
         },
         {
           "cooldown" : "5 min marche + étirements 5 min.",
           "day" : 5,
-          "duration_minutes" : 38,
+          "duration_minutes" : 35,
           "exercises" : [
             {
-              "duration" : "8 min course",
-              "name" : "Bloc long 8 min",
-              "notes" : "Premier bloc de 8 min du plan. Allure lente et régulière, si tu dois marcher tu marches mais tu reviens au jogging dès que possible.",
-              "rest_seconds" : 0,
-              "sets" : 1
-            },
-            {
-              "duration" : "3 min",
-              "name" : "Marche récupération",
-              "rest_seconds" : 0,
-              "sets" : 1
-            },
-            {
+              "alternatives" : [
+                "Marche rapide 5 min",
+                "Vélo Z1 5 min"
+              ],
               "duration" : "5 min course",
-              "name" : "Bloc 5 min",
-              "notes" : "Retour à un volume connu après la nouveauté. Total course séance : 13 min.",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc course 5 min",
+              "notes" : "Premier bloc, allure très confortable.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                "Repos passif debout 2 min",
+                "Étirements doux gastrocnémiens 30 sec/côté"
+              ],
+              "duration" : "3 min",
+              "incompatible_constraints" : [
+
+              ],
+              "name" : "Marche récupération",
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "walking-recovery",
+              "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                "Marche rapide 5 min",
+                "Vélo Z1 5 min"
+              ],
+              "duration" : "5 min course",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc course 5 min",
+              "notes" : "Deuxième bloc identique. Total course séance : 10 min. Volume hebdo W5 = 18 min de course (vs 22 min en W4 = -18%). La cutback week consolide l'adaptation avant la reprise W6.",
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
             }
           ],
-          "name" : "Bloc 8 min — palier qualité",
+          "name" : "Cutback — consolidation run/walk",
           "type" : "mixed",
           "warmup" : "Échauffement standard 8 min."
         }
       ],
-      "theme" : "Cutback + bloc 8 min",
+      "theme" : "Cutback — consolidation",
       "week_number" : 5
     },
     {
-      "goal" : "Enchaîner un bloc de 10 min continu. Transition vers un volume plus proche de l'endurance pure. +22% volume vs W5.",
+      "goal" : "Introduire le premier bloc de 8 min continu après la consolidation W5. Volume hebdo +22% vs W5 cutback (18 → 22 min de course).",
       "sessions" : [
         {
           "cooldown" : "5 min marche + étirements 5 min.",
@@ -476,26 +1039,69 @@
           "duration_minutes" : 35,
           "exercises" : [
             {
-              "duration" : "8 min course",
-              "name" : "Bloc long 8 min",
-              "rest_seconds" : 0,
-              "sets" : 1
-            },
-            {
-              "duration" : "2 min",
-              "name" : "Marche récupération",
-              "rest_seconds" : 0,
-              "sets" : 1
-            },
-            {
+              "alternatives" : [
+                "Marche rapide 5 min",
+                "Vélo Z1 5 min"
+              ],
               "duration" : "5 min course",
-              "name" : "Bloc 5 min",
-              "notes" : "Consolidation du bloc 8 min découvert en W5 J5. Total course : 13 min.",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc course 5 min",
+              "notes" : "Reprise progressive après cutback W5. Allure conversationnelle maintenue.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                "Repos passif debout 2 min",
+                "Étirements doux gastrocnémiens 30 sec/côté"
+              ],
+              "duration" : "2 min",
+              "incompatible_constraints" : [
+
+              ],
+              "name" : "Marche récupération",
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "walking-recovery",
+              "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                "Marche rapide 5 min",
+                "Vélo Z1 5 min"
+              ],
+              "duration" : "5 min course",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc course 5 min",
+              "notes" : "Deuxième bloc identique. Total course séance : 10 min. Prépare le palier 8 min continu de J5.",
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
             }
           ],
-          "name" : "Bloc 8 confirmé",
+          "name" : "Reprise — blocs 5 min",
           "type" : "mixed",
           "warmup" : "Échauffement standard 8 min."
         },
@@ -505,99 +1111,231 @@
           "duration_minutes" : 37,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squats partiels 18 reps",
+                "Step-ups bas"
+              ],
               "duration" : "60 sec",
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Wall sit",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Fentes statiques 12 reps/jambe",
+                "Step-ups 12 reps/jambe"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Fentes dynamiques",
               "reps" : "10 par jambe",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Fentes dynamiques 10 reps/jambe",
+                "Squats poids du corps 15 reps"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury",
+                "ankle-injury"
+              ],
               "name" : "Step-ups",
               "notes" : "Sur une marche/chaise stable. Montée jambe d'appel explosive, descente contrôlée. Transfère vers la foulée.",
               "reps" : "10 par jambe",
+              "required_equipment" : [
+                "box"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Calf raises bipodal 25 reps",
+                "Calf raises sur marche en double"
+              ],
+              "incompatible_constraints" : [
+                "ankle-injury"
+              ],
               "name" : "Calf raises excentriques",
-              "notes" : "Monter sur 2 pieds, descendre sur 1 seul en 3 sec. Protection tendon d'Achille, progression majeure vs calf raises classiques.",
+              "notes" : "Monter sur 2 pieds, descendre sur 1 seul en 3 sec. Protection tendon d'Achille (Alfredson protocol-inspired), progression majeure vs calf raises classiques.",
               "reps" : "12 par côté",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 30,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Planche genoux 60 sec",
+                "Dead bug 14 reps/côté"
+              ],
               "duration" : "45 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Planche ventrale",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Dead bug 10 reps/côté",
+                "Bird-dog avant-bras au sol"
+              ],
+              "incompatible_constraints" : [
+                "wrist-pain",
+                "lower-back-pain"
+              ],
               "name" : "Bird-dog",
               "reps" : "10 par côté",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 30,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             }
           ],
           "name" : "Renforcement progression",
           "type" : "strength",
-          "warmup" : "7 min."
+          "warmup" : "7 min : marche rapide + mobilité dynamique."
         },
         {
           "cooldown" : "5 min marche + étirements 5 min.",
           "day" : 5,
-          "duration_minutes" : 40,
+          "duration_minutes" : 38,
           "exercises" : [
             {
-              "duration" : "10 min course",
-              "name" : "Bloc long 10 min",
-              "notes" : "Premier bloc 10 min du plan. Allure très lente. Si la respiration s'emballe, ralentir jusqu'à une allure où tu peux encore parler.",
+              "alternatives" : [
+                "Marche rapide 8 min",
+                "Vélo Z1 8 min"
+              ],
+              "duration" : "8 min course",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc long 8 min",
+              "notes" : "Premier bloc de 8 min continu du plan, introduit après la consolidation W5. Allure lente et régulière, si tu dois marcher tu marches mais tu reviens au jogging dès que possible. Si tu coupes, ce n'est pas un échec — note la durée tenue, ça devient ta référence.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Repos passif debout 2 min",
+                "Étirements doux gastrocnémiens 30 sec/côté"
+              ],
               "duration" : "3 min",
+              "incompatible_constraints" : [
+
+              ],
               "name" : "Marche récupération",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "target_zone" : "walking-recovery",
+              "volume_axis" : "duration"
             },
             {
-              "duration" : "5 min course",
-              "name" : "Bloc 5 min",
-              "notes" : "Total course : 15 min.",
+              "alternatives" : [
+                "Marche rapide 4 min",
+                "Vélo Z1 4 min"
+              ],
+              "duration" : "4 min course",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Bloc course 4 min",
+              "notes" : "Retour à un bloc plus court après la nouveauté. Total course séance : 12 min. Volume hebdo W6 = 22 min (vs 18 min W5 cutback = +22%).",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
             }
           ],
-          "name" : "Premier bloc 10 min",
+          "name" : "Bloc 8 min — palier qualité",
           "type" : "mixed",
           "warmup" : "Échauffement standard 8 min."
         }
       ],
-      "theme" : "Bloc 10 min — passage à l'endurance",
+      "theme" : "Bloc 8 min — introduction de la course continue",
       "week_number" : 6
     },
     {
-      "goal" : "Passer à la course continue sans phases de marche. +25% volume vs W6. Introduction du concept d'allure stable.",
+      "goal" : "Passer à la course continue sans phases de marche. Volume hebdo +36% vs W6 (22 → 30 min). Introduction du concept d'allure stable.",
       "sessions" : [
         {
           "cooldown" : "7 min marche + étirements 5 min.",
           "day" : 1,
-          "duration_minutes" : 40,
+          "duration_minutes" : 32,
           "exercises" : [
             {
-              "duration" : "15 min",
-              "name" : "Course continue",
-              "notes" : "Première course SANS pause marche. Allure conversationnelle maintenue. Si tu n'arrives pas à tenir les 15 min sans marcher, recule d'une semaine — c'est normal et ce n'est pas un échec.",
+              "alternatives" : [
+                "Marche rapide 22 min",
+                "Vélo Z1 22 min"
+              ],
+              "duration" : "12 min",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Course continue 12 min",
+              "notes" : "Première course SANS pause marche. Allure conversationnelle maintenue. Si tu n'arrives pas à tenir les 12 min sans marcher, recule d'une semaine — c'est normal et ce n'est pas un échec.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
             }
           ],
-          "name" : "15 min continu",
+          "name" : "12 min continu",
           "type" : "endurance",
           "warmup" : "Échauffement standard 8 min."
         },
@@ -607,64 +1345,140 @@
           "duration_minutes" : 35,
           "exercises" : [
             {
+              "alternatives" : [
+                "Squats partiels 18 reps",
+                "Step-ups bas"
+              ],
               "duration" : "60 sec",
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Wall sit",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Squats partiels 18 reps",
+                "Wall sit 50 sec"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Squats poids du corps",
               "reps" : "15",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Fentes statiques 12 reps/jambe",
+                "Step-ups 12 reps/jambe"
+              ],
+              "incompatible_constraints" : [
+                "knee-injury"
+              ],
               "name" : "Fentes dynamiques",
               "reps" : "10 par jambe",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Calf raises sur marche en double",
+                "Wall calf raise"
+              ],
+              "incompatible_constraints" : [
+                "ankle-injury"
+              ],
               "name" : "Calf raises bipodal",
               "notes" : "Retour au format simple pour le maintien avant la séance phare W8.",
               "reps" : "20",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 30,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 6-7",
+              "volume_axis" : "reps"
             },
             {
+              "alternatives" : [
+                "Planche genoux 60 sec",
+                "Dead bug 14 reps/côté"
+              ],
               "duration" : "45 sec",
+              "incompatible_constraints" : [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
               "name" : "Planche ventrale",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 45,
-              "sets" : 3
+              "sets" : 3,
+              "target_zone" : "RPE 7-8",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Renforcement maintien",
           "type" : "strength",
-          "warmup" : "7 min."
+          "warmup" : "7 min : marche rapide + mobilité dynamique."
         },
         {
           "cooldown" : "6 min marche + étirements 5 min.",
           "day" : 5,
-          "duration_minutes" : 40,
+          "duration_minutes" : 38,
           "exercises" : [
             {
-              "duration" : "20 min",
-              "name" : "Course continue",
-              "notes" : "Objectif : 20 min d'affilée sans marcher. Si coup dur, marcher 1 min et reprendre — ne pas abandonner. Cadence cible ~170-180 pas/min.",
+              "alternatives" : [
+                "Marche rapide 28 min",
+                "Vélo Z1 28 min"
+              ],
+              "duration" : "18 min",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Course continue 18 min",
+              "notes" : "Objectif : 18 min d'affilée sans marcher. Total course hebdo W7 = 30 min. Si coup dur, marcher 1 min et reprendre — ne pas abandonner. Cadence cible ~170-180 pas/min, attaque médio-pied ou talon léger.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
             }
           ],
-          "name" : "20 min continu",
+          "name" : "18 min continu",
           "type" : "endurance",
           "warmup" : "Échauffement standard 8 min."
         }
       ],
-      "theme" : "Course continue — 15 à 20 min",
+      "theme" : "Course continue — 12 à 18 min",
       "week_number" : 7
     },
     {
-      "goal" : "Tapering sur les deux premières séances, pic W8 J5 à 30 min continu (alignement NHS C25K semaine 9). Équivaut à ~5 km pour un coureur qui tient ~6 min/km, ~3-4 km pour un débutant à 8-10 min/km.",
+      "goal" : "Tapering sur les deux premières séances, pic W8 J5 à 30 min continu (alignement NHS C25K semaine 9). Équivaut à ~5 km pour un coureur qui tient ~6 min/km, ~3-4 km pour un débutant à 8-10 min/km. Le plan se conclut par une checklist d'autonomie 4 critères mesurables (cf. notes séance phare).",
       "sessions" : [
         {
           "cooldown" : "5 min marche + étirements 2 min.",
@@ -672,35 +1486,72 @@
           "duration_minutes" : 35,
           "exercises" : [
             {
+              "alternatives" : [
+                "Marche rapide 30 min",
+                "Vélo Z1 30 min"
+              ],
               "duration" : "20 min",
-              "name" : "Course continue légère",
-              "notes" : "Séance de remise en jambes, PAS un test. Allure très confortable, respiration facile. Tapering = réduire pour arriver frais à la séance phare.",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "name" : "Course continue légère 20 min",
+              "notes" : "Séance de remise en jambes, PAS un test. Allure très confortable, respiration facile. Tapering = réduire pour arriver frais à la séance phare J5.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Activation 20 min",
           "type" : "endurance",
-          "warmup" : "5 min marche + 3 min activation douce."
+          "warmup" : "5 min marche + 3 min activation douce (talons-fesses lents, montées de genoux)."
         },
         {
-          "cooldown" : "5 min respiration profonde + visualisation de la séance phare de J5.",
+          "cooldown" : "5 min respiration profonde + visualisation positive de la séance phare de J5.",
           "day" : 3,
           "duration_minutes" : 30,
           "exercises" : [
             {
+              "alternatives" : [
+                "Yoga doux 15 min",
+                "Étirements statiques globaux 10 min"
+              ],
               "duration" : "10 min",
+              "incompatible_constraints" : [
+
+              ],
               "name" : "Routine mobilité hanches + chevilles",
-              "notes" : "Pas d'intensité, relâchement. Prépare les articulations au pic de W8 J5.",
+              "notes" : "Pas d'intensité, relâchement. Prépare les articulations au pic de W8 J5. Cercles hanches 10/sens, cercles chevilles 10/sens, fentes basses tenues 30 sec/côté, squat profond tenu 30 sec.",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "volume_axis" : "duration"
             },
             {
+              "alternatives" : [
+                "Marche rapide 10 min",
+                "Vélo Z1 10 min"
+              ],
               "duration" : "5 min",
+              "incompatible_constraints" : [
+                "lower-back-pain"
+              ],
               "name" : "Activation fessiers légère",
               "notes" : "10 ponts fessiers + 10 clamshells par côté + 10 bird-dogs par côté, sans charge.",
+              "required_equipment" : [
+                "mat"
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Mobilité pré-test",
@@ -713,11 +1564,26 @@
           "duration_minutes" : 55,
           "exercises" : [
             {
+              "alternatives" : [
+                "Marche rapide 45 min",
+                "Vélo Z1 45 min"
+              ],
               "duration" : "30 min",
+              "incompatible_constraints" : [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
               "name" : "30 min course continue",
-              "notes" : "Objectif : 30 min sans marcher, à TON allure. Si tu couvres 5 km dans ce temps, super. Sinon tu continues au-delà de 30 min jusqu'à atteindre 5 km (max 45 min), ou tu t'arrêtes à 30 min et le 5K sera pour la semaine suivante en course libre. Les deux scénarios sont des réussites — l'objectif réel est la course continue, pas le chrono.",
+              "notes" : "Objectif : 30 min sans marcher, à TON allure. Si tu couvres 5 km dans ce temps, super. Sinon tu continues au-delà de 30 min jusqu'à atteindre 5 km (max 45 min), ou tu t'arrêtes à 30 min et le 5K sera pour la semaine suivante en course libre. Les deux scénarios sont des réussites — l'objectif réel est la course continue, pas le chrono.\n\nCHECKLIST D'AUTONOMIE (à valider après la séance) :\n1. Je tiens 30 min de course sans marcher au moins une fois sur cette séance.\n2. Je respire en phrases complètes pendant la majorité du run (test de la parole maintenu).\n3. Je sens mes mollets fatigués mais sans douleur tibiale (= shin splints sous contrôle).\n4. Je récupère ma fréquence cardiaque en dessous de 100 bpm en moins de 3 min après la course (proxy : je me sens calme et capable de tenir une conversation normale sous 3 min).\n\nSi tu coches 3+ critères, tu es autonome pour enchaîner sur un programme `recreational` 10K. Si 2 critères ou moins, refais W7 et W8 (cycle de 2 sem) avant de progresser.",
+              "required_equipment" : [
+
+              ],
               "rest_seconds" : 0,
-              "sets" : 1
+              "sets" : 1,
+              "target_zone" : "Daniels-E",
+              "volume_axis" : "duration"
             }
           ],
           "name" : "Séance phare — 30 min continu",

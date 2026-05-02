@@ -59,7 +59,7 @@ final class RoundTripTests: XCTestCase {
         )
         XCTAssertThrowsError(try TemplateValidator.validate(bumped)) { err in
             XCTAssertEqual(err as? TemplateValidationError,
-                           .schemaVersionMismatch(expected: 1, got: 99))
+                           .schemaVersionMismatch(expected: 2, got: 99))
         }
     }
 
