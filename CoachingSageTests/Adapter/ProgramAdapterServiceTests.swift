@@ -2,20 +2,16 @@
 // Story 3.3a — vérifie le wiring SwiftData → adapter façades + un appel end-to-end
 // de `ProgramAdapterService.adapt(template:sportProfile:coachingProfile:)`.
 import XCTest
-import SwiftData
 import TemplateModel
 @testable import CoachingSage
 
 @MainActor
 final class ProgramAdapterServiceTests: XCTestCase {
 
-    private var context: ModelContext!
-
-    override func setUpWithError() throws {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Schema(versionedSchema: SchemaV3.self), configurations: config)
-        context = container.mainContext
-    }
+    // Pas de ModelContainer : `CoachingSportProfile` et `CoachingProfile` sont
+    // instanciables via leur init() même sans context. Les bridges
+    // `adapterFacade` ne lisent que les stored properties, ne déclenchent
+    // pas de fetch / save SwiftData.
 
     func testBridgesMapSwiftDataModelsToFacades() {
         let sport = CoachingSportProfile(
