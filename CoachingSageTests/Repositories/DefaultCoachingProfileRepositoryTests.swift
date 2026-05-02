@@ -9,7 +9,7 @@ final class DefaultCoachingProfileRepositoryTests: XCTestCase {
 
     private static func makeInMemoryContext() throws -> ModelContext {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: SchemaV2.self, configurations: config)
+        let container = try ModelContainer(for: Schema(versionedSchema: SchemaV3.self), configurations: config)
         return container.mainContext
     }
 
