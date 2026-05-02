@@ -10,13 +10,26 @@ public protocol AdaptationRule: Sendable {
 
     /// Applique la règle sur les semaines passées. La règle ne mute jamais l'input —
     /// elle retourne une nouvelle version. La cascade se charge de chaîner ces sorties.
+    /// Le `template` original est passé pour lookup des hooks v2 par
+    /// (week, day, exercise.name) — les hooks ne sont pas dupliqués dans
+    /// `AdaptedExercise` pour ne pas alourdir le runtime model.
     func apply(
         weeks: [AdaptedWeek],
+        template: ProgramTemplate,
         sport: Sport,
         level: Level,
         sportProfile: AdapterSportProfile,
         coachingProfile: AdapterCoachingProfile
     ) -> RuleResult
+}
+
+public extension ProgramTemplate {
+    /// Lookup d'un `TemplateExercise` par (week, day, name). Renvoie nil si non trouvé.
+    func findExercise(weekNumber: Int, day: Int, name: String) -> TemplateExercise? {
+        guard let week = weeks.first(where: { $0.weekNumber == weekNumber }) else { return nil }
+        guard let session = week.sessions.first(where: { $0.day == day }) else { return nil }
+        return session.exercises.first(where: { $0.name == name })
+    }
 }
 
 public struct RuleResult: Equatable, Sendable {

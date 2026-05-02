@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0045E3C41EFD4CB387D6F737 /* QuestionAnswerOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31362A2EB1C59474F20C2C69 /* QuestionAnswerOptionsView.swift */; };
 		00FF976DDC2A0623B34A6794 /* EditIdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B017AF1629A841BB1DE70C /* EditIdentityView.swift */; };
+		01F19E996E00F4F8B28A2E3D /* EquipmentSubstitutionRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9D0B00943AA18035FAE063 /* EquipmentSubstitutionRule.swift */; };
 		0319A7A02C6EDEAB3F399F9A /* QuestionnaireTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6EE14AEAE6F86F9A56A8DA /* QuestionnaireTypes.swift */; };
 		03BED48E693584F855C1DDDB /* AccountServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74486CA1CCB28D7592A09 /* AccountServiceTests.swift */; };
 		043F3AD5B9A9221ADF4D8ECD /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D14BBE0C4ED62CE64E0583 /* SupabaseService.swift */; };
@@ -26,6 +27,7 @@
 		275660E41945D64FCF7003D9 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F583C511E407F30A20ACCED7 /* AccountService.swift */; };
 		295A45B77A257CC37867C33C /* Font+Coaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853EC636E8FC829E84AE2F8C /* Font+Coaching.swift */; };
 		2A8ACCF0238CAD4C5B705B1C /* RunningQuestionnaireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB37F747385ABD6B7FD1EAA /* RunningQuestionnaireTests.swift */; };
+		2BD1B69DB7E9DBC2F6895C90 /* ConstraintSubstitutionRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30E01D4808AD24E7E06CB5 /* ConstraintSubstitutionRule.swift */; };
 		2C13B054084056BEA240407D /* EditPersonalDataViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC233657256C05D557BA0151 /* EditPersonalDataViewModelTests.swift */; };
 		3036CC0F771D2EE4F0148333 /* CoachingSageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996ACBB1413DB2AEDAEABD09 /* CoachingSageApp.swift */; };
 		31A87147E42986283B200655 /* CoachingProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8633E1585AA578B1F492E71 /* CoachingProfile.swift */; };
@@ -55,7 +57,9 @@
 		638C91209A629F17273F3B2B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2EB0C8F5D50D573B2B9BC515 /* Localizable.xcstrings */; };
 		63AFBA0CF7030D1A2DA8B28A /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 4FAC1159ED8687BBF9FB176C /* PostgREST */; };
 		644EF2F18A17003FB757F961 /* HealthKitProfileDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38864DEADC1C88CF2740C9B8 /* HealthKitProfileDataTests.swift */; };
+		659CDC4DFE0D0D5351EB7A38 /* MedicalClearanceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788DB6157A574221EC85D189 /* MedicalClearanceRule.swift */; };
 		671F6891D05DE04E6ADAA082 /* MockAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6820E4D33B023589DDB16D /* MockAccountService.swift */; };
+		69267268E4E32FC81FEB52E9 /* VolumeModulationRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CD0AD15ACB11F258D75EA4 /* VolumeModulationRule.swift */; };
 		6BF4574DC00C51E0CCABDD06 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C835AAF7C7FF60A9685A373A /* LanguageManager.swift */; };
 		6CC93D984B040CEA05B93CA8 /* RunningQuestionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC403EF488D7821DDD9B054B /* RunningQuestionnaire.swift */; };
 		7055F12DDF651AE659A6C63B /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8C550ECF6B5EE55503850168 /* Supabase */; };
@@ -91,6 +95,7 @@
 		B6A64FF3B0F8A320A542A680 /* MedicalDisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFDE51E705DA72DDAF1503A /* MedicalDisclaimerView.swift */; };
 		B9040BECBA01FF832AF49020 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 55602A83122E41C314502A6E /* Functions */; };
 		BA26EA86544CC3C0A3B8D54E /* SportQuestionnaireViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21385559EA7CA35AECA3F5D2 /* SportQuestionnaireViewModelTests.swift */; };
+		BA680ABD2BD964BD5144A5C2 /* ProgramAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148EE860E1B9C2E07F2FB094 /* ProgramAdapter.swift */; };
 		BC6577181EDB7DD7289A45FA /* MockCoachingProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61DF44D231A7484C878C468 /* MockCoachingProfileRepository.swift */; };
 		BCBBF8479C459D3E9F55DD5E /* EditActiveSportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FFF0728A81D4935CC8DE26 /* EditActiveSportsView.swift */; };
 		BE7E3A86034C05EAF9D3621E /* PersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EADAE8CB2C4A12FA89F583 /* PersonalDataView.swift */; };
@@ -109,6 +114,7 @@
 		E6388A0891961D80DBB88F4F /* AdaptedProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C386FFD4C1E8B3B3AB15E3E /* AdaptedProgram.swift */; };
 		E8A23128EBFB93E117654E9E /* TemplateModel in Frameworks */ = {isa = PBXBuildFile; productRef = 36070880343E94EA1028E630 /* TemplateModel */; };
 		E94DC99E9D5C62DCB2B2449C /* CoachingProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90271CAE527EEB127D6D5498 /* CoachingProfileRepository.swift */; };
+		E9541516F5AFB01D23060E42 /* LevelPacingRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0139D8ABD3AACC3342119EB3 /* LevelPacingRule.swift */; };
 		EA772B264DE38876B5918EC1 /* SageCore in Frameworks */ = {isa = PBXBuildFile; productRef = D50DFFCB3B420D5A254989C7 /* SageCore */; };
 		EC8A532444DE6A169AB994A0 /* ProgressionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E01746A88F6AE565187197 /* ProgressionView.swift */; };
 		EE12809016D13F546FFEEE59 /* DefaultCoachingProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B63602A900998FD8DF4029 /* DefaultCoachingProfileRepository.swift */; };
@@ -138,12 +144,14 @@
 
 /* Begin PBXFileReference section */
 		00CDA5561C2794DFE9BED43D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		0139D8ABD3AACC3342119EB3 /* LevelPacingRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPacingRule.swift; sourceTree = "<group>"; };
 		08FA9F8272DD2547280CA4D0 /* OnboardingViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModelTests.swift; sourceTree = "<group>"; };
 		097E270614FC76762536F269 /* DisclaimerPARQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerPARQView.swift; sourceTree = "<group>"; };
 		0FF2FBAE3700B0D288B12991 /* AuthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelTests.swift; sourceTree = "<group>"; };
 		10210F100B4F71B634C26C3C /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		1059E4B839F348DE30AE147E /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		146849140205ADEA754F7627 /* EditPersonalDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalDataViewModel.swift; sourceTree = "<group>"; };
+		148EE860E1B9C2E07F2FB094 /* ProgramAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramAdapter.swift; sourceTree = "<group>"; };
 		183088FD9BEE7190609DAF2E /* CoachingProfileDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingProfileDTO.swift; sourceTree = "<group>"; };
 		1A9BAB7D2DDF64FD058DF022 /* HealthKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitService.swift; sourceTree = "<group>"; };
 		1CDCAFA8862C0E986B5DE6BE /* CoachingSportProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingSportProfile.swift; sourceTree = "<group>"; };
@@ -160,6 +168,7 @@
 		2EB0C8F5D50D573B2B9BC515 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		31362A2EB1C59474F20C2C69 /* QuestionAnswerOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerOptionsView.swift; sourceTree = "<group>"; };
 		320F9552DDD606C09C9F016A /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
+		32CD0AD15ACB11F258D75EA4 /* VolumeModulationRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeModulationRule.swift; sourceTree = "<group>"; };
 		38864DEADC1C88CF2740C9B8 /* HealthKitProfileDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitProfileDataTests.swift; sourceTree = "<group>"; };
 		3B1D7C33CFE4977F4BDB7035 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		3EF9054E08CE2E32F463DF7A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -183,6 +192,7 @@
 		6DBB134FE9E01E10EA66716D /* CoachingSage.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CoachingSage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E5E3F83216C1E86CF0D3DF5 /* CoachingSageUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CoachingSageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		76F7302E080C1CF8E6C5FD7A /* DefaultCoachingProfileRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCoachingProfileRepositoryTests.swift; sourceTree = "<group>"; };
+		788DB6157A574221EC85D189 /* MedicalClearanceRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalClearanceRule.swift; sourceTree = "<group>"; };
 		7934E8F88AB9CDBAD7F949D3 /* FirstNameLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNameLanguageView.swift; sourceTree = "<group>"; };
 		794326F734BF647075562516 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		7A2BB2509E404D5AC28F91C8 /* CoachingSportProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingSportProfileRepository.swift; sourceTree = "<group>"; };
@@ -196,6 +206,7 @@
 		89BFA8B7A260C833D10ECE0D /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
 		8BAE590511A838B42E54BCB0 /* EditHealthQuestionsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHealthQuestionsViewModelTests.swift; sourceTree = "<group>"; };
 		8C386FFD4C1E8B3B3AB15E3E /* AdaptedProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptedProgram.swift; sourceTree = "<group>"; };
+		8D9D0B00943AA18035FAE063 /* EquipmentSubstitutionRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentSubstitutionRule.swift; sourceTree = "<group>"; };
 		8DCD1B02C30480FFD945849A /* DangerButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerButtonStyle.swift; sourceTree = "<group>"; };
 		8EAB84EC88BEA5EDB8D2638F /* LeonAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeonAvatarView.swift; sourceTree = "<group>"; };
 		8FA8474B16A1085DC583F637 /* PendingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOperation.swift; sourceTree = "<group>"; };
@@ -212,6 +223,7 @@
 		A54703AA569A5DF3C64122F0 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		AD694BEF0ED16336A47231A5 /* SyncServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncServiceTests.swift; sourceTree = "<group>"; };
 		AECA89A91146FD3FC5486BFB /* CoreProfileDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreProfileDTO.swift; sourceTree = "<group>"; };
+		AF30E01D4808AD24E7E06CB5 /* ConstraintSubstitutionRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintSubstitutionRule.swift; sourceTree = "<group>"; };
 		B37826961FB3093F6CEA4C88 /* EditIdentityViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIdentityViewModelTests.swift; sourceTree = "<group>"; };
 		B75229FDF1730BFAB470F33E /* SageCoreProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SageCoreProfile.swift; sourceTree = "<group>"; };
 		BA55024C693442B9733FAD1F /* DefaultCoreProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCoreProfileRepository.swift; sourceTree = "<group>"; };
@@ -242,9 +254,9 @@
 		F3777EA7028C4E63C42076C7 /* AdaptationRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptationRule.swift; sourceTree = "<group>"; };
 		F583C511E407F30A20ACCED7 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		FE2EBCDA71129879332CF57F /* MockCoachingSportProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoachingSportProfileRepository.swift; sourceTree = "<group>"; };
-		"TEMP_21867462-A709-4631-B028-7AC1C5687193" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_35B1FEB8-6E7D-4296-89BB-09CC142617D2" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_72792CDB-F200-465A-BDF3-8AEACDD53698" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_60FBE73B-29AE-4410-B032-80E0817586AE" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_94DA0057-651A-4130-AA32-DAD81F851A2B" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_A2E02FC0-9FF4-4816-844A-28FA7FEAD2C7" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,8 +311,10 @@
 		160F5D86F1D363E0B66EC457 /* Adapter */ = {
 			isa = PBXGroup;
 			children = (
+				587DD1835C172EB7B0196423 /* Rules */,
 				F3777EA7028C4E63C42076C7 /* AdaptationRule.swift */,
 				8C386FFD4C1E8B3B3AB15E3E /* AdaptedProgram.swift */,
+				148EE860E1B9C2E07F2FB094 /* ProgramAdapter.swift */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -381,6 +395,18 @@
 				996ACBB1413DB2AEDAEABD09 /* CoachingSageApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		587DD1835C172EB7B0196423 /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				AF30E01D4808AD24E7E06CB5 /* ConstraintSubstitutionRule.swift */,
+				8D9D0B00943AA18035FAE063 /* EquipmentSubstitutionRule.swift */,
+				0139D8ABD3AACC3342119EB3 /* LevelPacingRule.swift */,
+				788DB6157A574221EC85D189 /* MedicalClearanceRule.swift */,
+				32CD0AD15ACB11F258D75EA4 /* VolumeModulationRule.swift */,
+			);
+			path = Rules;
 			sourceTree = "<group>";
 		};
 		594C0699C8D61ABD2ADDD1AD /* Questionnaires */ = {
@@ -642,12 +668,12 @@
 			path = Schema;
 			sourceTree = "<group>";
 		};
-		"TEMP_592725B5-2E9D-49B4-A9F7-7ECAA1B3468E" /* CoachingSage */ = {
+		"TEMP_9C5D514F-6F2D-46E5-913A-D73FBFFECD86" /* CoachingSage */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_72792CDB-F200-465A-BDF3-8AEACDD53698" /* Config-Debug.xcconfig */,
-				"TEMP_35B1FEB8-6E7D-4296-89BB-09CC142617D2" /* Config-Release.xcconfig */,
-				"TEMP_21867462-A709-4631-B028-7AC1C5687193" /* Config-Staging.xcconfig */,
+				"TEMP_94DA0057-651A-4130-AA32-DAD81F851A2B" /* Config-Debug.xcconfig */,
+				"TEMP_60FBE73B-29AE-4410-B032-80E0817586AE" /* Config-Release.xcconfig */,
+				"TEMP_A2E02FC0-9FF4-4816-844A-28FA7FEAD2C7" /* Config-Staging.xcconfig */,
 			);
 			path = CoachingSage;
 			sourceTree = "<group>";
@@ -805,6 +831,7 @@
 				54BBA9C3DB209789B0440B01 /* CoachingSportProfileDTO.swift in Sources */,
 				1D0187EE395E785F63FD75E2 /* CoachingSportProfileRepository.swift in Sources */,
 				400002C5E5134C01E60F2F64 /* Color+Coaching.swift in Sources */,
+				2BD1B69DB7E9DBC2F6895C90 /* ConstraintSubstitutionRule.swift in Sources */,
 				8A864EC473867A3659A61AB8 /* CoreProfileDTO.swift in Sources */,
 				473CFBD55514A3D7F16A8692 /* CoreProfileRepository.swift in Sources */,
 				9D8D39449E4C6F3FB836A108 /* DangerButtonStyle.swift in Sources */,
@@ -821,13 +848,16 @@
 				81685808C126A0DEEDBDBBC5 /* EditIdentityViewModel.swift in Sources */,
 				248932584006135D5BDE26CC /* EditPersonalDataView.swift in Sources */,
 				725FA031D6955775B3664D46 /* EditPersonalDataViewModel.swift in Sources */,
+				01F19E996E00F4F8B28A2E3D /* EquipmentSubstitutionRule.swift in Sources */,
 				4EB267BF29B5746A89B51F78 /* FirstNameLanguageView.swift in Sources */,
 				295A45B77A257CC37867C33C /* Font+Coaching.swift in Sources */,
 				4E430F250AF780BCEC30A31D /* HealthKitService.swift in Sources */,
 				6BF4574DC00C51E0CCABDD06 /* LanguageManager.swift in Sources */,
 				CAEDFC81C2BE3E9783C877B3 /* LanguageSelectorView.swift in Sources */,
 				92BB27383616BA8B26C36F45 /* LeonAvatarView.swift in Sources */,
+				E9541516F5AFB01D23060E42 /* LevelPacingRule.swift in Sources */,
 				D38FC9E49DE8DB05D391C141 /* MainTabView.swift in Sources */,
+				659CDC4DFE0D0D5351EB7A38 /* MedicalClearanceRule.swift in Sources */,
 				B6A64FF3B0F8A320A542A680 /* MedicalDisclaimerView.swift in Sources */,
 				519D48190BC092F5D8B498F8 /* NotificationPreferences.swift in Sources */,
 				84FCF18F9EAD2792ABC0F20A /* OnboardingView.swift in Sources */,
@@ -838,6 +868,7 @@
 				0FB62706268DB90CC0FEE9EF /* PrimaryButtonStyle.swift in Sources */,
 				475FF316265DD93431C69AF0 /* ProfileView.swift in Sources */,
 				36EA80BB5B9C5D1FDF785B7A /* ProfileViewModel.swift in Sources */,
+				BA680ABD2BD964BD5144A5C2 /* ProgramAdapter.swift in Sources */,
 				EC8A532444DE6A169AB994A0 /* ProgressionView.swift in Sources */,
 				0045E3C41EFD4CB387D6F737 /* QuestionAnswerOptionsView.swift in Sources */,
 				0EC7A37DFF6A69C631B75877 /* QuestionnaireDTOs.swift in Sources */,
@@ -859,6 +890,7 @@
 				F60A30DDBF1182AF1B05D80E /* TodayView.swift in Sources */,
 				FFF09312274F5D35BCFFB5A0 /* TypingDelayProvider.swift in Sources */,
 				5C2A3512103A2E76484EF635 /* TypingIndicatorView.swift in Sources */,
+				69267268E4E32FC81FEB52E9 /* VolumeModulationRule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -955,7 +987,7 @@
 		};
 		61B5E17E96E19C8E098AA3DC /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_21867462-A709-4631-B028-7AC1C5687193" /* Config-Staging.xcconfig */;
+			baseConfigurationReference = "TEMP_A2E02FC0-9FF4-4816-844A-28FA7FEAD2C7" /* Config-Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1016,7 +1048,7 @@
 		};
 		6444A73E993A0AE7B8936309 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_35B1FEB8-6E7D-4296-89BB-09CC142617D2" /* Config-Release.xcconfig */;
+			baseConfigurationReference = "TEMP_60FBE73B-29AE-4410-B032-80E0817586AE" /* Config-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1165,7 +1197,7 @@
 		};
 		E103FFBD6D87D5F977B573D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_72792CDB-F200-465A-BDF3-8AEACDD53698" /* Config-Debug.xcconfig */;
+			baseConfigurationReference = "TEMP_94DA0057-651A-4130-AA32-DAD81F851A2B" /* Config-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
