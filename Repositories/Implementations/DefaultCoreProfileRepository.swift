@@ -47,9 +47,7 @@ final class DefaultCoreProfileRepository: CoreProfileRepository {
                     .limit(1)
                     .execute()
 
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .iso8601
-                let dtos = try decoder.decode([CoreProfileDTO].self, from: response.data)
+                let dtos = try JSONDecoder.supabase().decode([CoreProfileDTO].self, from: response.data)
                 if let dto = dtos.first {
                     let hydrated = dto.toModel()
                     modelContext.insert(hydrated)
@@ -59,9 +57,11 @@ final class DefaultCoreProfileRepository: CoreProfileRepository {
                     #endif
                     return hydrated
                 }
+            } catch let decodingError as DecodingError {
+                Self.logger.error("Hydrate-on-miss SageCoreProfile DECODER bug: \(String(describing: decodingError))")
             } catch {
                 #if DEBUG
-                Self.logger.debug("Hydrate-on-miss SageCoreProfile failed (acceptable si nouveau user): \(error.localizedDescription)")
+                Self.logger.debug("Hydrate-on-miss SageCoreProfile network/auth: \(error.localizedDescription)")
                 #endif
             }
         }
