@@ -42,11 +42,56 @@ final class ProgramAdapterService {
 extension CoachingSportProfile {
     var adapterFacade: AdapterSportProfile {
         AdapterSportProfile(
-            constraints: constraints,
-            equipment: equipment,
+            constraints: constraints.map(Self.mapConstraintToTemplate),
+            equipment: Self.bridgeEquipment(equipment, sportCode: sportCode),
             frequencyPerWeek: frequencyPerWeek,
             sessionDurationMinutes: sessionDurationMinutes
         )
+    }
+
+    /// Mappe les codes contraintes app (Q4 RunningQuestionnaire : knee/back/ankle/shin)
+    /// vers les codes `incompatible_constraints` des templates V2 (kebab-case anglais).
+    /// Sans ce mapping, ConstraintSubstitutionRule ne match jamais et les exercices
+    /// contraignants (ex: bondissements pour un user `knee`) ne sont pas substitués.
+    /// Mapping 1:1 conservateur — la granularité fine (acl-history, hip-pain…) sera
+    /// adressée par la story autoprofil HealthKit (mémoire epic3_flow_choice_AB).
+    private static func mapConstraintToTemplate(_ code: String) -> String {
+        switch code {
+        case "knee":  return "knee-injury"
+        case "back":  return "lower-back-pain"
+        case "ankle": return "ankle-injury"
+        case "shin":  return "shin-splints"
+        default:      return code
+        }
+    }
+
+    /// Bridge équipement app → templates :
+    /// 1. Convertit les codes Q5 (underscore_case) en codes templates (kebab-case).
+    /// 2. Ajoute l'équipement implicite par sport (chaussures de course, mat de sol)
+    ///    pour éviter qu'EquipmentSubstitutionRule substitue massivement les exercices
+    ///    par leurs alternatives — souvent « tapis » (treadmill), ce qui est l'inverse
+    ///    de ce qu'attend un user qui a juste son corps + ses chaussures + un sol.
+    private static func bridgeEquipment(_ codes: [String], sportCode: String) -> [String] {
+        var mapped: [String] = codes.map { code in
+            switch code {
+            case "gps_watch":          return "gps-watch"
+            case "heart_rate_monitor": return "heart-rate-monitor"
+            case "treadmill_access":   return "treadmill-access"
+            default:                   return code
+            }
+        }
+        switch sportCode {
+        case "running":
+            // 13/60 exos running requirent `mat` (plancher de sol pour gainage), 7/60 `gps-watch`.
+            // running-shoes : assumé acquis pour quelqu'un qui demande un programme running.
+            mapped.append(contentsOf: ["running-shoes", "mat"])
+        default:
+            break
+        }
+        // Dédoublonne en préservant l'ordre — `running-shoes` peut déjà être présent
+        // depuis l'input app, on ne veut pas le voir 2x dans availableEquipment.
+        var seen = Set<String>()
+        return mapped.filter { seen.insert($0).inserted }
     }
 }
 
