@@ -508,11 +508,303 @@ Liste de noms d'exercices substitutifs (cf. tableau Substitutions ci-dessus). Au
 
 ## SWIMMING
 
-_Sera ajoutée Phase C — doctrine Maglischo CSS / EN1-EN3-SP1-SP3 / Sheila Taormina freestyle._
+_Doctrine **light** ajoutée Story 3.3a (2026-05-02). Phase C complète à reprendre avec sources web sourcées avant Story 3.4 (regen Léon+ hebdo)._
+
+### Doctrine référente
+
+| Référence | Auteur | Application |
+|---|---|---|
+| **Swimming Fastest** | Ernest Maglischo | Zones EN1/EN2/EN3 + SP1/SP2/SP3, périodisation block, technique freestyle. Référentiel coach pro. |
+| **Freestyle Tris** / **Swim Speed Secrets** | Sheila Taormina | Technique freestyle haut niveau (pull, catch, rotation), drills par phase. |
+| **USMS Adult Learn-to-Swim** | US Masters Swimming | Plan progression `beginner` (apprentissage technique avant volume). |
+| **Critical Swim Speed (CSS)** | Concept training endurance | Pacing par allure CSS (test 400 m + 200 m), substitut FTP en natation. |
+
+### Zones d'effort (target_zone)
+
+Convention v2 : préfixe `Maglischo-` pour zones, `@CSS` ou `@CSS+5s/100m` pour pacing par allure, `RPE` pour effort perçu.
+
+| Zone | %CSS | RPE | Description | Application |
+|---|---|---|---|---|
+| **Maglischo-EN1** | < 90% CSS | 2-3 | Aérobie de base, conversational | Récupération, échauffement, pull/kick technique |
+| **Maglischo-EN2** | 90-100% CSS | 4-5 | Endurance fondamentale | Bloc continu 1-2 km, base mileage |
+| **Maglischo-EN3** | 100-105% CSS | 5-6 | Threshold lactate, sustained effort | Intervalles longs 4-8 × 200-400 m, recovery 30-60 s |
+| **Maglischo-SP1** | 105-110% CSS | 7-8 | Vitesse aérobie / VO2max | 6-10 × 100 m, recovery 1:1 ou 1:2 |
+| **Maglischo-SP2** | 110-120% CSS | 8-9 | Anaérobie lactique | 8-12 × 50 m, recovery longue 1:3 ou 1:4 |
+| **Maglischo-SP3** | > 120% CSS | 9-10 | Vitesse pure / sprint | 8-16 × 25 m, recovery complète |
+
+**Choix de doctrine** : pacing `%CSS` par défaut (universel, pas besoin de chrono ni FCM en piscine). Pour `beginner` qui n'a pas encore de CSS établi, fallback `RPE` + temps en continu (X min nage continue).
+
+Sources : Maglischo *Swimming Fastest* 3rd ed., Critical Swim Speed concept (Wakayoshi 1992), USMS guidelines.
+
+### Volume hebdo cible par niveau
+
+Volume natation = **mètres totaux nagés / sem** (warmup/cooldown inclus).
+
+| Niveau | Vol pic (m/sem) | Fréquence | Long set max | Doctrine source |
+|---|---|---|---|---|
+| **beginner** | 2 000-3 500 m/sem | 2 séances / sem | 600-1 000 m | USMS Adult Learn-to-Swim, technique-first |
+| **recreational** | 5 000-10 000 m/sem | 2-3 séances / sem | 1 500-2 000 m | Maglischo base 6-10 km/sem |
+| **regular** | 12 000-20 000 m/sem | 3-5 séances / sem | 3 000-4 000 m | Maglischo macrocycle, age-group club |
+| **competitive** | 25 000-50 000+ m/sem | 5-9 séances / sem (doubles fréquents) | 5 000-7 000 m | Coach club / fédération, Olympic age-group |
+
+### Périodisation
+
+#### Cycle de base (build / deload)
+- **3 build + 1 deload** (`recreational`, `regular`) : -20% du pic.
+- **2 build + 1 deload** (`competitive`) : charge plus haute, recovery plus fréquente.
+- **5-6 build + 1 cutback** (`beginner`) : technique avant volume, 1 cutback en milieu de plan.
+
+#### Tapering compétition
+- **J-14** : volume à 70% du pic, intensité maintenue.
+- **J-7** : volume à 50%, race-pace conservée (Maglischo-SP1/SP2 courts).
+- **J-3 à J-1** : 2 séances courtes (1 km) avec 4-6 × 25 m race-pace + repos complet J-1.
+
+#### Distribution d'intensité
+- **`beginner`** : 100% Maglischo-EN1/EN2 + drills technique. Pas d'intervalles avant que le 200 m crawl en continu soit acquis.
+- **`recreational`** : 70-80% EN1/EN2, 20-30% EN3/SP1, pas de SP2/SP3.
+- **`regular`** : 60-65% EN1/EN2, 25-30% EN3/SP1, 5-15% SP2/SP3 (en build/peak).
+- **`competitive`** : polarized 80/20 modulé selon spécialité (sprint vs distance).
+
+### Substitutions classiques (alternatives v2)
+
+| Exercice planifié | Substitution | Trigger |
+|---|---|---|
+| Séance piscine | Aqua-jogging avec ceinture | Piscine fermée / vacances |
+| Séance piscine | Dryland 30-45 min (bande, corde, exercices spécifiques) | Pas d'accès piscine, hiver |
+| Sprint SP2/SP3 | Tempo EN3 continu | Fatigue 3 sem, sommeil dégradé |
+| Pull buoy | Crawl jambes pull-only main paddle | Pas de pull buoy disponible |
+| Long set 2 km continu | 2 × 1 km avec récup 60 s | Contrainte horaire (créneau court) |
+
+### Renforcement préventif (par niveau)
+
+Hooks v2 : `volume_axis: reps` ou `sets`, à inclure dès W1.
+
+- **beginner** : épaule (rotateurs externes, Y-T-W bands), gainage transverse, mobilité dorsale — 1 séance 15 min / sem.
+- **recreational** : ajout pulldown léger, scapular retraction, étirements pectoraux + grand dorsal, 1 séance / sem.
+- **regular** : ajout pull-up assisté, deadlift léger pour postérieur, drills proprio cheville, 1-2 séances / sem.
+- **competitive** : pliométrie horizontale (medicine ball throws), drills neuromusculaires de départ/virage, 2 séances / sem hors-saison.
+
+### Drapeaux rouges (safety)
+
+#### Tous niveaux
+- **Épaule du nageur** (`swimmer's shoulder` / impingement sub-acromial) : douleur antérieure ou supérieure pendant le pull. Cause n°1 = volume excessif sans préparation. Stop séance, repos 5-7 jours, renforcement coiffe rotateurs.
+- **Otite du nageur** : protection auditive si > 4 séances / sem en piscine chlorée.
+- **Mal de dos lombaire** : technique brasse défaillante (extension lombaire excessive). Si récurrent, transition crawl / dos.
+- **Hyperventilation aux apnées** : interdire toute apnée prolongée seule en piscine (risque syncope hypoxique).
+
+#### Recreational et au-delà
+- **Tendinite biceps** sur volume catch agressif.
+- **Conjonctivite chronique** sur exposition chlore intensive sans lunettes étanches.
+
+#### Competitive
+- **RED-S** : déficit énergétique, surentraînement, signaux usuels.
+- **Surentraînement** : baisse tps sur test 400 m étalonné > 5 sec sur 2 sem consécutives.
+
+### Mots EU MDR à bannir (swimming spécifique)
+
+Liste globale + spécifique :
+- "soigner [pathologie]", "traitement [pathologie]", "guérir", "remède"
+- "rééducation post-opératoire", "post-blessure"
+- "soulager [douleur]" (préférer : "réduire l'inconfort")
+- "réparer l'épaule" (préférer : "renforcer", "stabiliser")
+
+**Triggers medical clearance obligatoire** :
+- Antécédents cardiaques (`cardiac-clearance-required`).
+- Grossesse (`pregnancy`) — natation Z1-Z2 reste accessible mais avis médical de principe.
+- Reprise post-chirurgie épaule / dos / genou (< 6 mois).
+- Otite chronique ou tympan perforé non cicatrisé.
+
+### Hooks metadata standards (swimming)
+
+#### `target_zone`
+- `Maglischo-EN1`, `Maglischo-EN2`, `Maglischo-EN3`, `Maglischo-SP1`, `Maglischo-SP2`, `Maglischo-SP3`
+- `@CSS`, `@CSS+5s/100m`, `@CSS-5s/100m`
+- `RPE 4-5`, `RPE 6-7`, `RPE 7-8`, `RPE 8-9` (fallback sans chrono)
+
+#### `required_equipment`
+- `swim-suit`, `goggles`, `swim-cap` : assumés partout, peuvent être omis.
+- `pool-access` : implicite tout template natation — flag de garde si profil mal renseigné.
+- `pull-buoy`, `kickboard`, `paddles`, `fins`, `snorkel-frontal` : optionnels selon drill.
+- `mat`, `resistance-band`, `medicine-ball` : renforcement à domicile.
+
+#### `incompatible_constraints`
+- `shoulder-injury`, `lower-back-pain`, `knee-injury` (brasse), `cervical-injury`
+- `cardiac-clearance-required`, `pregnancy`, `postpartum-early`
+- `chlorine-allergy`, `ear-infection-active` (otite chronique / tympan perforé)
+- `no-pool-access` (template natation impossible — flag de garde)
+
+#### `alternatives`
+Liste de noms d'exercices substitutifs (cf. tableau Substitutions). Toléré vide pour drill très spécifique mais recommandé non-vide.
+
+#### `volume_axis`
+- `distance` (par défaut, mètres)
+- `duration` (séance continue chiffrée en min)
+- `sets` (séance structurée : `sets: 8` × `distance: "100m EN3 + 30s récup"`)
+- `reps` (renforcement : pulldowns, scapular retraction, etc.)
+
+### `week_structure` typique par niveau
+
+| Niveau | type | micro_pattern | recovery_cadence |
+|---|---|---|---|
+| **beginner** | `linear` | `technique + endurance EN1-EN2 + technique` (2 séances) | `1 cutback W4-W5` |
+| **recreational** | `linear` | `technique + endurance EN2 + sprint léger SP1` | `1 deload toutes les 4 semaines` |
+| **regular** | `block` | `tech + EN2 long + EN3 intervals + SP1 + recovery EN1` | `1 deload toutes les 3-4 semaines` |
+| **competitive** | `polarized` | `tech + EN1 recovery + SP2/SP3 + EN2 + EN3 + sprint + EN1 recovery` | `1 deload toutes les 3 semaines` |
+
+---
 
 ## STRENGTH
 
-_Sera ajoutée Phase C — doctrine Israetel RP / Helms Muscle & Strength / NSCA / 5/3/1 Wendler._
+_Doctrine **light** ajoutée Story 3.3a (2026-05-02). Phase C complète à reprendre avec sources web sourcées avant Story 3.4._
+
+### Doctrine référente
+
+| Référence | Auteur | Application |
+|---|---|---|
+| **Renaissance Periodization** | Mike Israetel | Volume landmarks (MV / MEV / MAV / MRV) par groupe musculaire, mésocycles. |
+| **Muscle and Strength Pyramid** | Eric Helms | Hiérarchie principes (adhérence > volume > intensité > fréquence > tempo > exercice), périodisation undulating. |
+| **5/3/1** | Jim Wendler | Périodisation linéaire conservative pour intermédiaire-avancé, big 4 (squat/bench/deadlift/OHP). |
+| **NSCA Essentials of Strength Training** | NSCA | Référence tertiaire, programmation block, base scientifique. |
+| **Starting Strength** | Mark Rippetoe | Linear progression débutant (+2.5-5 kg/séance) sur big 5 (squat/bench/dead/OHP/row). |
+
+### Zones d'effort (target_zone)
+
+Convention v2 : `%1RM-X-Y` pour zones charge relative, `RPE X-Y` pour effort perçu (méthode RIR Reps In Reserve).
+
+| Zone | %1RM | RPE | RIR | Application |
+|---|---|---|---|---|
+| **%1RM-50-60** | 50-60% | 4-5 | 4-5 | Échauffement, drill technique, hypertrophie léger |
+| **%1RM-65-75** | 65-75% | 6-7 | 2-3 | Hypertrophie classique (8-12 reps), volume MEV-MAV |
+| **%1RM-80-85** | 80-85% | 7-8 | 1-2 | Strength building (5-8 reps), bloc heavy |
+| **%1RM-87-92** | 87-92% | 8-9 | 0-1 | Heavy strength (3-5 reps), peaking |
+| **%1RM-95+** | 95+% | 9-10 | 0 | Test 1RM, max single, peak race |
+| **RPE 4-6** | — | 4-6 | 4-6 | Recovery / déload, mobilité |
+
+**Choix de doctrine** : pacing par **`%1RM` quand 1RM est connu**, sinon **RPE/RIR** (méthode Helms). Pour `beginner`, RPE simplifie (pas besoin de tester 1RM avant W4).
+
+### Volume hebdo cible par niveau (par groupe musculaire)
+
+Convention v2 : volume = **sets work / muscle group / sem** (warmup non compté). Référentiel Israetel volume landmarks.
+
+| Niveau | MEV (volume minimum effectif) | MAV (volume adaptation) | MRV (volume max recoverable) | Doctrine source |
+|---|---|---|---|---|
+| **beginner** | 6-8 sets/muscle/sem | 8-10 sets | 10-12 sets | Starting Strength + Renaissance Periodization beginner |
+| **recreational** | 8-10 sets | 10-14 sets | 14-18 sets | Helms Muscle and Strength Pyramid intermediate |
+| **regular** | 10-12 sets | 14-18 sets | 18-22 sets | Israetel RP intermediate |
+| **competitive** | 12-15 sets | 18-24 sets | 24-30+ sets | Israetel RP advanced (powerlifter / bodybuilder) |
+
+**Fréquence par muscle** : 2× / sem minimum (Helms), 3× / sem optimal pour `regular`+. Big 4 (squat/bench/dead/OHP) peuvent monter à 4× / sem en `competitive`.
+
+### Périodisation
+
+#### Cycle de base (build / deload)
+- **3-5 build + 1 deload** : standard `recreational`, `regular`. Deload = volume -40% à -50%, intensité -10% (Israetel).
+- **2-3 build + 1 deload** : `competitive` charge plus haute.
+- **Linear progression** (`beginner` Starting Strength) : pas de deload tant que l'utilisateur progresse +2.5-5 kg / séance. Premier deload quand 3 séances consécutives sans progression.
+
+#### Phases (intermédiaire+)
+- **Hypertrophie** (8-12 sem) : %1RM-65-75, volume MAV, fréquence 2-3× / muscle.
+- **Strength** (4-8 sem) : %1RM-80-87, volume MEV-MAV, fréquence 2-4× big 4.
+- **Peaking** (2-4 sem) : %1RM-90+, singles + doubles, volume MEV, fréquence ↓.
+
+#### Distribution d'intensité
+- **`beginner`** : 100% %1RM-65-75 (zone hypertrophie large). Linear progression sur 12-16 semaines avant tout bloc autre.
+- **`recreational`** : 70-80% hypertrophie, 20-30% strength building.
+- **`regular`** : undulating (DUP) ou block, 50-60% hypertrophie / 30% strength / 10% peak.
+- **`competitive`** : block selon spécialité (powerlifter peak / bodybuilder volume), peut atteindre 30% en %1RM-90+.
+
+### Substitutions classiques (alternatives v2)
+
+| Exercice planifié | Substitution | Trigger |
+|---|---|---|
+| Back squat barbell | Goblet squat haltère / Bulgarian split squat | Pas de rack, lower-back-pain modéré, débutant |
+| Bench press barbell | Push-up overload (sac à dos) / dumbbell bench | Pas de bench, salle fermée, shoulder-pain modéré |
+| Conventional deadlift | Romanian deadlift / kettlebell deadlift | Lower-back-pain modéré, débutant, pas d'accès lourd |
+| Pull-up | Lat pulldown / band-assisted pull-up / inverted row | Pas encore force pull-up, pas de barre fixe |
+| Overhead press | Landmine press / push press léger | Shoulder-pain anterieur, mobilité limitée |
+| Barbell row | Dumbbell row / inverted row TRX | Pas de barre, contrainte logistique |
+| Plyo box jumps | Squat jumps / step-up explosif | Pas de box, knee-injury modéré |
+
+### Renforcement préventif (par niveau)
+
+Auto-référent : c'est déjà du renforcement. Focus sur les exercices accessoires :
+
+- **beginner** : core (planche, side plank, dead bug), mobilité hanche+épaule, étirements gastrocs / psoas / pectoraux. Inclus à chaque séance.
+- **recreational** : ajout face pulls (santé épaule, bench balance), reverse fly, hip thrust dédié (compense quad-dominance).
+- **regular** : ajout drills neuromusculaires (broad jump, kettlebell swing), single-leg work obligatoire.
+- **competitive** : pliométrie spécialisée selon discipline, prehab dédié (rotateurs externes, glute medius, ischios excentriques), foam-rolling structuré post-séance.
+
+### Drapeaux rouges (safety)
+
+#### Tous niveaux
+- **Lombalgie aiguë** sur deadlift / squat heavy : technique défaillante, charge excessive, hip-hinge pas maîtrisé. Stop séance, ne pas reprendre lourd avant 7-10 jours sans douleur.
+- **Tendinite épaule (coiffe / biceps long)** : volume bench excessif sans pull, OHP technique défaillante. Réduire volume push -30%, ajouter face pulls, éviter dips.
+- **Tendinite genou (rotule / quad)** : volume squat excessif, manque de mobilité hanche, dos plat bas trop serré. Mobiliser, alléger amplitude.
+- **Hernie discale** : bug-out médical immédiat, ne JAMAIS programmer charge axiale sans clearance médicale.
+- **Hyperventilation Valsalva** sur 1RM heavy : risque syncope. Encadrer respiration, jamais 1RM sans pareur ou rack à sécurité.
+
+#### Recreational et au-delà
+- **Bicipital tendinosis** sur volume curl + pull excessif.
+- **Stress fractures** (rare, possible chez `competitive` haltérophile junior) : volume + impact + déficit calcique.
+
+#### Competitive
+- **RED-S** : sous-alimentation chronique, surtout chez catégories de poids légères.
+- **Surentraînement** : baisse 1RM > 5% sur 2 sem, sommeil dégradé, motivation effondrée.
+
+### Mots EU MDR à bannir (strength spécifique)
+
+Liste globale + spécifique :
+- "soigner [pathologie]", "traitement [pathologie]", "guérir", "remède"
+- "rééducation post-opératoire", "post-blessure"
+- "soulager la douleur" (préférer : "réduire l'inconfort", "gérer la fatigue")
+- "réparer le dos / l'épaule" (préférer : "renforcer", "stabiliser")
+- "diagnostic" (préférer : "auto-évaluation")
+
+**Triggers medical clearance obligatoire** :
+- Antécédents cardiaques (`cardiac-clearance-required`) — Valsalva sur charges lourdes contre-indiqué.
+- Hernie discale connue, sciatique active, lombalgie chronique > 3 mois.
+- Grossesse (`pregnancy`) — strength modérée OK avec adaptations T2/T3.
+- Reprise post-chirurgie tendineuse / ligamentaire (< 6 mois).
+- Hypertension non équilibrée.
+
+### Hooks metadata standards (strength)
+
+#### `target_zone`
+- `%1RM-50-60`, `%1RM-65-75`, `%1RM-80-85`, `%1RM-87-92`, `%1RM-95+`
+- `RPE 4-5`, `RPE 6-7`, `RPE 7-8`, `RPE 8-9`, `RPE 9-10`
+- Pour échauffement / mobilité / pré-hab : `RPE 4-5`
+
+#### `required_equipment`
+- `barbell`, `dumbbell`, `kettlebell`, `resistance-band`, `pull-up-bar`
+- `bench`, `squat-rack`, `power-rack`, `cable-machine`, `lat-pulldown-machine`
+- `plates-light` (≤ 50 kg), `plates-heavy` (≥ 50 kg)
+- `mat`, `foam-roller`
+- `home-only` ou `gym-only` : flag de profil pour sélectionner les bons templates
+
+#### `incompatible_constraints`
+- `lower-back-pain`, `shoulder-injury`, `knee-injury`, `wrist-injury`, `elbow-injury`
+- `cardiac-clearance-required`, `pregnancy`, `postpartum-early`, `hypertension-uncontrolled`
+- `disc-herniation`, `sciatica-active`
+- `no-rack` (impacte squat/bench/OHP)
+- `no-heavy-plates` (cap volume %1RM-80+ en home gym)
+
+#### `alternatives`
+Liste de noms d'exercices substitutifs. **Non-vide** pour tout exercice composé (squat, deadlift, bench, OHP, pull-up) — ces patterns ont toujours une alternative.
+
+#### `volume_axis`
+- `sets` (par défaut, X sets × Y reps)
+- `reps` (séance EMOM ou drop-set)
+- `duration` (séance circuit timing : "30s travail + 30s repos")
+- Pas de `distance` ni `elevation` en strength.
+
+### `week_structure` typique par niveau
+
+| Niveau | type | micro_pattern | recovery_cadence |
+|---|---|---|---|
+| **beginner** | `linear` | `full body A + repos + full body B + repos + full body A + repos × 2` | `1 cutback toutes les 4-5 sem` |
+| **recreational** | `linear` | `upper / lower / repos / upper / lower / repos / repos` | `1 deload toutes les 4 sem` |
+| **regular** | `block` | `push / pull / legs / repos / push / pull / repos` (PPL 6 séances) | `1 deload toutes les 3-4 sem` |
+| **competitive** | `polarized` | `squat heavy / bench / deadlift heavy / accessory / squat light / bench / accessory` (varié peaking) | `1 deload toutes les 3 sem` |
 
 ## YOGA
 

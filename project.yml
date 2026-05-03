@@ -37,6 +37,8 @@ packages:
   Supabase:
     url: https://github.com/supabase/supabase-swift
     from: "2.43.0"
+  Templates:
+    path: Templates
 
 targets:
   CoachingSage:
@@ -118,6 +120,10 @@ targets:
         product: Storage
       - package: Supabase
         product: Functions
+      - package: Templates
+        product: TemplateModel
+      - package: Templates
+        product: TemplateLoader
 
   CoachingSageTests:
     type: bundle.unit-test

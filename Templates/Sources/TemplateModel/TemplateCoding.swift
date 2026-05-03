@@ -1,7 +1,9 @@
 import Foundation
 
 public enum TemplateCoding {
-    public static let currentSchemaVersion = 1
+    /// Schema 2 — Story 3.3a : ajout des hooks `target_zone`, `required_equipment`,
+    /// `incompatible_constraints`, `alternatives`, `volume_axis` sur `TemplateExercise`.
+    public static let currentSchemaVersion = 2
 
     public static func makeDecoder() -> JSONDecoder {
         let decoder = JSONDecoder()
@@ -81,7 +83,10 @@ public enum TemplateValidator {
                 throw TemplateValidationError.duplicateWeekNumber(week.weekNumber)
             }
             let active = week.sessions.filter { $0.type != .rest }
-            if active.count > t.sessionsPerWeek {
+            // sessions_per_week = cadence moyenne. Une semaine peak/taper/tournoi peut
+            // ajouter 1 session de transition (match, review post-tournoi, etc.). On tolère +1
+            // mais on garde le garde-fou contre les vrais bugs de saisie.
+            if active.count > t.sessionsPerWeek + 1 {
                 throw TemplateValidationError.sessionCountExceedsDeclared(
                     weekNumber: week.weekNumber,
                     declared: t.sessionsPerWeek,

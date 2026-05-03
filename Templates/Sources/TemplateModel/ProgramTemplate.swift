@@ -102,13 +102,25 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
     public let restSeconds: Int?
     public let notes: String?
 
+    /// Hooks v2 — drive l'algo deterministic Story 3.3a (ProgramAdapter).
+    public let targetZone: String?
+    public let requiredEquipment: [String]
+    public let incompatibleConstraints: [String]
+    public let alternatives: [String]
+    public let volumeAxis: VolumeAxis?
+
     public init(
         name: String,
         sets: Int? = nil,
         reps: String? = nil,
         duration: String? = nil,
         restSeconds: Int? = nil,
-        notes: String? = nil
+        notes: String? = nil,
+        targetZone: String? = nil,
+        requiredEquipment: [String] = [],
+        incompatibleConstraints: [String] = [],
+        alternatives: [String] = [],
+        volumeAxis: VolumeAxis? = nil
     ) {
         self.name = name
         self.sets = sets
@@ -116,5 +128,30 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
         self.duration = duration
         self.restSeconds = restSeconds
         self.notes = notes
+        self.targetZone = targetZone
+        self.requiredEquipment = requiredEquipment
+        self.incompatibleConstraints = incompatibleConstraints
+        self.alternatives = alternatives
+        self.volumeAxis = volumeAxis
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case name, sets, reps, duration, restSeconds, notes
+        case targetZone, requiredEquipment, incompatibleConstraints, alternatives, volumeAxis
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try c.decode(String.self, forKey: .name)
+        self.sets = try c.decodeIfPresent(Int.self, forKey: .sets)
+        self.reps = try c.decodeIfPresent(String.self, forKey: .reps)
+        self.duration = try c.decodeIfPresent(String.self, forKey: .duration)
+        self.restSeconds = try c.decodeIfPresent(Int.self, forKey: .restSeconds)
+        self.notes = try c.decodeIfPresent(String.self, forKey: .notes)
+        self.targetZone = try c.decodeIfPresent(String.self, forKey: .targetZone)
+        self.requiredEquipment = try c.decodeIfPresent([String].self, forKey: .requiredEquipment) ?? []
+        self.incompatibleConstraints = try c.decodeIfPresent([String].self, forKey: .incompatibleConstraints) ?? []
+        self.alternatives = try c.decodeIfPresent([String].self, forKey: .alternatives) ?? []
+        self.volumeAxis = try c.decodeIfPresent(VolumeAxis.self, forKey: .volumeAxis)
     }
 }

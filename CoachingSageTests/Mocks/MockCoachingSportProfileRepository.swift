@@ -10,6 +10,11 @@ final class MockCoachingSportProfileRepository: CoachingSportProfileRepository {
     var saveCallCount: Int = 0
     var fetchCallCount: Int = 0
 
+    /// Permet l'instanciation depuis un contexte nonisolated (defaults de
+    /// paramètres de tests `@MainActor`). Les stored properties initialisées
+    /// par défaut ne touchent à aucun état partagé.
+    nonisolated init() {}
+
     func fetchProfile(for sportCode: String) async throws -> CoachingSportProfile? {
         fetchCallCount += 1
         return stored[sportCode]

@@ -9,7 +9,11 @@ final class DefaultCoachingProfileRepositoryTests: XCTestCase {
 
     private static func makeInMemoryContext() throws -> ModelContext {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Schema(versionedSchema: SchemaV3.self), configurations: config)
+        // Container minimal : on teste uniquement CoachingProfile, pas besoin du
+        // schema versionné complet. Le wrapping `Schema(versionedSchema:)` faisait
+        // hang `modelContext.save()` sur le 2e test (machinerie de migration
+        // déclenchée même en in-memory neuf).
+        let container = try ModelContainer(for: CoachingProfile.self, configurations: config)
         return container.mainContext
     }
 
