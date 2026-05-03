@@ -42,9 +42,7 @@ final class DefaultCoachingProfileRepository: CoachingProfileRepository {
                 .limit(1)
                 .execute()
 
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            let dtos = try decoder.decode([CoachingProfileDTO].self, from: response.data)
+            let dtos = try JSONDecoder.supabase().decode([CoachingProfileDTO].self, from: response.data)
             guard let dto = dtos.first else { return nil }
 
             let hydrated = dto.toModel()
@@ -54,9 +52,12 @@ final class DefaultCoachingProfileRepository: CoachingProfileRepository {
             Self.logger.debug("Hydrated CoachingProfile from Supabase for user \(authUserId)")
             #endif
             return hydrated
+        } catch let decodingError as DecodingError {
+            Self.logger.error("Hydrate-on-miss CoachingProfile DECODER bug: \(String(describing: decodingError))")
+            return nil
         } catch {
             #if DEBUG
-            Self.logger.debug("Hydrate-on-miss failed (acceptable si nouveau user): \(error.localizedDescription)")
+            Self.logger.debug("Hydrate-on-miss CoachingProfile network/auth: \(error.localizedDescription)")
             #endif
             return nil
         }
