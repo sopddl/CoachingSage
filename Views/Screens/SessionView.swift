@@ -1,7 +1,10 @@
 // Views/Screens/SessionView.swift
-// Story 3.1 — entry point « Demander un programme [sport] » sur l'onglet Séance.
-// Pour chaque sport actif (coachingProfile.activeSports), capsule cliquable.
-// Tap → si CoachingSportProfile existe : placeholder Story 3.2 + bouton Refaire ; sinon : ouvre questionnaire.
+// Story 3.2 — entry point « Demander un programme [sport] » sur l'onglet Séance.
+// Hot path : tap capsule → si profile sport existe, push direct AdaptedProgramView ;
+// sinon, ouvre le questionnaire ; à la fin du questionnaire, hand-off immédiat
+// (sélection template + adaptation algo) puis push AdaptedProgramView.
+//
+// 100% local, 0 réseau, 0 token côté hot path.
 // V1 : seul Running a un questionnaire (RunningQuestionnaire). Les 9 autres = capsule disabled + badge "Bientôt".
 import SwiftUI
 
@@ -10,16 +13,20 @@ struct SessionView: View {
 
     @State private var coachingProfile: CoachingProfile?
     @State private var loadingProfile: Bool = true
+    @State private var library: ProgramTemplateLibrary?
+    @State private var libraryLoadFailed: Bool = false
     @State private var sheetSelection: SheetSelection?
+    @State private var adaptedRoute: AdaptedProgramRoute?
+    @State private var presentationError: String?
+
+    private let adapterService = ProgramAdapterService()
 
     enum SheetSelection: Identifiable {
         case questionnaire(sportCode: String)
-        case alreadyExists(sportCode: String, profile: CoachingSportProfile)
 
         var id: String {
             switch self {
             case .questionnaire(let s): return "questionnaire_\(s)"
-            case .alreadyExists(let s, _): return "exists_\(s)"
             }
         }
     }
@@ -45,6 +52,13 @@ struct SessionView: View {
                             .foregroundStyle(Color.coachingTextSecondary)
                             .padding(.vertical, 16)
                     }
+
+                    if let presentationError {
+                        Text(verbatim: presentationError)
+                            .font(.footnote)
+                            .foregroundStyle(Color.coachingError)
+                            .padding(.vertical, 8)
+                    }
                 }
                 .padding(.horizontal, 16)
             }
@@ -53,10 +67,14 @@ struct SessionView: View {
             .navigationBarTitleDisplayMode(.large)
             .task {
                 await reloadProfile()
+                await loadLibraryIfNeeded()
             }
             .onAppear {
                 // Refetch silencieux à chaque retour pour cohérence multi-device (review P1-1).
                 Task { await reloadProfile(silent: true) }
+            }
+            .navigationDestination(item: $adaptedRoute) { route in
+                AdaptedProgramView(program: route.program)
             }
         }
         .sheet(item: $sheetSelection) { selection in
@@ -95,7 +113,7 @@ struct SessionView: View {
         guard questionnaireFor(sportCode: sportCode) != nil else { return }
         let existing = try? await deps.coachingSportProfileRepository.fetchProfile(for: sportCode)
         if let existing {
-            sheetSelection = SheetSelection.alreadyExists(sportCode: sportCode, profile: existing)
+            await presentAdaptedProgram(for: existing)
         } else {
             sheetSelection = SheetSelection.questionnaire(sportCode: sportCode)
         }
@@ -108,14 +126,6 @@ struct SessionView: View {
         switch selection {
         case .questionnaire(let code):
             questionnaireSheet(sportCode: code)
-        case .alreadyExists(let code, let profile):
-            ProgramAlreadyExistsView(
-                sportCode: code,
-                profile: profile,
-                onRedo: {
-                    sheetSelection = .questionnaire(sportCode: code)
-                }
-            )
         }
     }
 
@@ -130,12 +140,53 @@ struct SessionView: View {
             SportQuestionnaireView(
                 viewModel: vm,
                 requiresMedicalClearance: coachingProfile?.requiresMedicalClearance ?? false,
-                onCompleted: { _ in
-                    Task { await reloadProfile(silent: true) }
+                onCompleted: { sportProfile in
+                    sheetSelection = nil
+                    Task {
+                        await reloadProfile(silent: true)
+                        await presentAdaptedProgram(for: sportProfile)
+                    }
                 }
             )
         } else {
             Text("session.requestProgram.unsupportedSport")
+        }
+    }
+
+    // MARK: - Hot path : selector → adapter → push
+
+    private func presentAdaptedProgram(for sportProfile: CoachingSportProfile) async {
+        await loadLibraryIfNeeded()
+        guard let library else {
+            presentationError = String(localized: "session.adapter.libraryUnavailable")
+            return
+        }
+        guard let coachingProfile else {
+            // CoachingProfile nécessaire pour MedicalClearanceRule. Pas de profile → pas de programme.
+            presentationError = String(localized: "session.adapter.profileMissing")
+            return
+        }
+        presentationError = nil
+
+        let selector = ProgramTemplateSelector(library: library)
+        let template = selector.select(profile: sportProfile)
+        let adapted = adapterService.adapt(
+            template: template,
+            sportProfile: sportProfile,
+            coachingProfile: coachingProfile
+        )
+        adaptedRoute = AdaptedProgramRoute(program: adapted)
+    }
+
+    // MARK: - Library loading
+
+    private func loadLibraryIfNeeded() async {
+        guard library == nil, !libraryLoadFailed else { return }
+        do {
+            library = try await ProgramTemplateLibrary.bundled()
+        } catch {
+            libraryLoadFailed = true
+            presentationError = String(localized: "session.adapter.libraryUnavailable")
         }
     }
 
@@ -160,6 +211,16 @@ struct SessionView: View {
         coachingProfile = try? await deps.coachingProfileRepository.fetchCurrentProfile()
         loadingProfile = false
     }
+}
+
+// MARK: - AdaptedProgramRoute (wrapper Hashable pour navigationDestination)
+
+private struct AdaptedProgramRoute: Hashable {
+    let id: UUID = UUID()
+    let program: AdaptedProgram
+
+    func hash(into hasher: inout Hasher) { hasher.combine(id) }
+    static func == (lhs: AdaptedProgramRoute, rhs: AdaptedProgramRoute) -> Bool { lhs.id == rhs.id }
 }
 
 // MARK: - SportCapsule
@@ -238,82 +299,6 @@ private struct SportCapsule: View {
         case "tennis": return "figure.tennis"
         case "football": return "soccerball"
         default: return "questionmark.circle"
-        }
-    }
-}
-
-// MARK: - ProgramAlreadyExistsView (placeholder Story 3.2)
-
-private struct ProgramAlreadyExistsView: View {
-    let sportCode: String
-    let profile: CoachingSportProfile
-    let onRedo: () -> Void
-
-    @Environment(\.dismiss) private var dismiss
-
-    private var olderThan90Days: Bool {
-        let days = Calendar.current.dateComponents([.day], from: profile.createdAt, to: Date()).day ?? 0
-        return days > 90
-    }
-
-    var body: some View {
-        NavigationStack {
-            VStack(spacing: 24) {
-                Image(systemName: "checkmark.seal.fill")
-                    .font(.system(size: 56))
-                    .foregroundStyle(Color.coachingPrimary)
-                    .padding(.top, 32)
-
-                Text("session.programExists.title")
-                    .font(.title2.bold())
-
-                Text(SportCapsule.requestProgramKey(for: sportCode))
-                    .font(.body)
-                    .foregroundStyle(Color.coachingTextSecondary)
-
-                Text("session.programExists.story32Hint")
-                    .font(.body)
-                    .foregroundStyle(Color.coachingTextSecondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 24)
-
-                Spacer()
-
-                if olderThan90Days {
-                    Text("session.profileOlderThan90Days")
-                        .font(.footnote)
-                        .foregroundStyle(Color.coachingTextSecondary)
-                        .padding(.horizontal, 32)
-                        .multilineTextAlignment(.center)
-                }
-
-                VStack(spacing: 10) {
-                    Button {
-                        onRedo()
-                    } label: {
-                        Text("session.button.refaire")
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 14)
-                    }
-                    .buttonStyle(.plain)
-                    .background(Color.coachingPrimary)
-                    .foregroundStyle(Color.coachingOnPrimary)
-                    .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text("questionnaire.exit.cancel")
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 14)
-                    }
-                    .buttonStyle(.plain)
-                }
-                .padding(.horizontal, 24)
-                .padding(.bottom, 24)
-            }
-            .background(Color.coachingBackground.ignoresSafeArea())
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

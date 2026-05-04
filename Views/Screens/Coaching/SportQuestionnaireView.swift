@@ -80,6 +80,12 @@ struct SportQuestionnaireView: View {
         VStack(spacing: 0) {
             chatScroll
             errorSection
+            // Sépare visuellement la zone chat (historique + question) de la zone options.
+            // Sans ce divider, la dernière bulle de question se confond avec les bulles précédentes
+            // et l'user perd le contexte de la question courante (Sophie 2026-05-03).
+            if viewModel.currentQuestion != nil {
+                Divider()
+            }
             optionsSection
         }
     }

@@ -36,7 +36,6 @@ struct RunningQuestionnaireLocalizationTests {
             "chat.a11y.leonTyping",
             "chat.a11y.userReplied",
             "session.requestProgram.title",
-            "session.button.refaire",
             "session.button.comingSoon"
         ]
         // Ajouter les textKeys et labelKeys de toutes les questions
