@@ -219,4 +219,77 @@ final class OnboardingViewModelTests: XCTestCase {
             EquipmentCode.indoorBike.rawValue
         ])
     }
+
+    // MARK: - Apple Watch suggestion (Story Autoprofil HealthKit)
+
+    func testImportFromHealthKitSetsAppleWatchDetected() async {
+        let healthKit = MockHealthKitService()
+        healthKit.stubbedWorkoutSummary = HealthKitWorkoutSummary(
+            totalCount: 12,
+            weeklyAverage: 1.5,
+            dominantActivityRawValue: nil,
+            appleWatchDetected: true
+        )
+        let vm = makeViewModel(healthKit: healthKit)
+        await vm.importFromHealthKit()
+        XCTAssertTrue(vm.appleWatchDetected)
+    }
+
+    func testApplyAppleWatchEquipmentSuggestionViaImport() async {
+        let healthKit = MockHealthKitService()
+        healthKit.stubbedWorkoutSummary = HealthKitWorkoutSummary(
+            totalCount: 5,
+            weeklyAverage: 0.6,
+            dominantActivityRawValue: nil,
+            appleWatchDetected: true
+        )
+        let vm = makeViewModel(healthKit: healthKit)
+        await vm.importFromHealthKit()
+
+        XCTAssertTrue(vm.equipment.isEmpty, "pas pré-coché tant que screen 4 pas atteint")
+
+        vm.applyAppleWatchEquipmentSuggestionIfNeeded()
+        XCTAssertEqual(
+            vm.equipment,
+            [EquipmentCode.gpsWatch.rawValue, EquipmentCode.heartRateMonitor.rawValue]
+        )
+        XCTAssertTrue(vm.isAppleWatchSuggested(.gpsWatch))
+        XCTAssertTrue(vm.isAppleWatchSuggested(.heartRateMonitor))
+        XCTAssertFalse(vm.isAppleWatchSuggested(.roadBike))
+    }
+
+    func testApplyAppleWatchEquipmentSuggestionSkippedWhenUserAlreadyEdited() async {
+        let healthKit = MockHealthKitService()
+        healthKit.stubbedWorkoutSummary = HealthKitWorkoutSummary(
+            totalCount: 5, weeklyAverage: 0.6,
+            dominantActivityRawValue: nil, appleWatchDetected: true
+        )
+        let vm = makeViewModel(healthKit: healthKit)
+        await vm.importFromHealthKit()
+        vm.toggleEquipment(.roadBike)
+        vm.applyAppleWatchEquipmentSuggestionIfNeeded()
+        // L'utilisateur a déjà touché → pas de pré-cochage automatique.
+        XCTAssertFalse(vm.equipment.contains(EquipmentCode.gpsWatch.rawValue))
+        XCTAssertFalse(vm.isAppleWatchSuggested(.gpsWatch))
+    }
+
+    func testApplyAppleWatchEquipmentSuggestionSkippedWhenNoWatchDetected() async {
+        let healthKit = MockHealthKitService()
+        healthKit.stubbedWorkoutSummary = .empty
+        let vm = makeViewModel(healthKit: healthKit)
+        await vm.importFromHealthKit()
+        vm.applyAppleWatchEquipmentSuggestionIfNeeded()
+        XCTAssertTrue(vm.equipment.isEmpty)
+        XCTAssertFalse(vm.appleWatchDetected)
+    }
+
+    func testToggleEquipmentMarksUserEdited() {
+        let vm = makeViewModel()
+        XCTAssertFalse(vm.hasUserEditedEquipment)
+        vm.toggleEquipment(.indoorBike)
+        XCTAssertTrue(vm.hasUserEditedEquipment)
+        XCTAssertTrue(vm.equipment.contains(EquipmentCode.indoorBike.rawValue))
+        vm.toggleEquipment(.indoorBike)
+        XCTAssertFalse(vm.equipment.contains(EquipmentCode.indoorBike.rawValue))
+    }
 }

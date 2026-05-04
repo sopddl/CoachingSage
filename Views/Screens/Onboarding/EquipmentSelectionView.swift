@@ -26,15 +26,26 @@ struct EquipmentSelectionView: View {
                         EquipmentCell(
                             item: item,
                             isSelected: viewModel.equipment.contains(item.rawValue),
-                            onToggle: { toggle(item) }
+                            isAppleWatchSuggested: viewModel.isAppleWatchSuggested(item),
+                            onToggle: { viewModel.toggleEquipment(item) }
                         )
                     }
                 }
                 .padding(.top, 8)
 
+                if viewModel.appleWatchDetected, !viewModel.hasUserEditedEquipment {
+                    Label("onboarding.equipment.apple_watch_detected", systemImage: "applewatch")
+                        .font(.coachingCaption)
+                        .foregroundStyle(Color.coachingTextSecondary)
+                        .padding(.top, 4)
+                }
+
                 Spacer(minLength: 32)
             }
             .padding(.horizontal, 24)
+        }
+        .onAppear {
+            viewModel.applyAppleWatchEquipmentSuggestionIfNeeded()
         }
         .safeAreaInset(edge: .bottom) {
             Button(action: { viewModel.goNext() }) {
@@ -51,18 +62,12 @@ struct EquipmentSelectionView: View {
         }
     }
 
-    private func toggle(_ item: EquipmentCode) {
-        if viewModel.equipment.contains(item.rawValue) {
-            viewModel.equipment.remove(item.rawValue)
-        } else {
-            viewModel.equipment.insert(item.rawValue)
-        }
-    }
 }
 
 private struct EquipmentCell: View {
     let item: EquipmentCode
     let isSelected: Bool
+    let isAppleWatchSuggested: Bool
     let onToggle: () -> Void
 
     var body: some View {
@@ -82,6 +87,14 @@ private struct EquipmentCell: View {
                 RoundedRectangle(cornerRadius: CoachingRadius.md)
                     .fill(isSelected ? Color.coachingPrimary : Color.coachingCard)
             )
+            .overlay(alignment: .topTrailing) {
+                if isAppleWatchSuggested {
+                    Image(systemName: "sparkles")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(isSelected ? Color.coachingOnPrimary : Color.coachingPrimary)
+                        .padding(8)
+                }
+            }
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("onboarding.equipment.\(item.rawValue)")

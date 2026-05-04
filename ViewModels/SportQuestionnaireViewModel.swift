@@ -102,6 +102,27 @@ final class SportQuestionnaireViewModel {
         startFreshFlow()
     }
 
+    /// Variante autoprofil HealthKit : démarre en pré-remplissant Q1 (level) et Q3 (frequency)
+    /// depuis les valeurs validées par l'utilisateur dans `AutoProfileReviewView`.
+    /// Toujours soumis à la même recovery logic — un brouillon en attente prime.
+    func startWithAutoProfile(
+        level: LevelEstimate,
+        frequency: FrequencyEstimate,
+        requiresMedicalClearance: Bool
+    ) {
+        flowStartedAt = Date()
+        capturedUserId = currentAuthUserId()
+        medicalClearanceAcknowledgedSnapshot = requiresMedicalClearance
+
+        if let draft = loadPendingDraft() {
+            pendingDraftToOffer = draft
+            showRecoveryPrompt = true
+            return
+        }
+
+        startPreFilledFlow(level: level, frequency: frequency)
+    }
+
     /// Choisi par l'user au prompt recovery → restaure les réponses + currentQuestion.
     func resumeFromDraft() {
         guard let draft = pendingDraftToOffer else {
@@ -168,8 +189,12 @@ final class SportQuestionnaireViewModel {
         // Persister le brouillon à chaque progression (review P1-6).
         savePendingDraft(currentQuestionId: nil)
 
-        // Question suivante
-        let next = questionnaire.nextQuestion(after: asked.id, answer: value, accumulated: accumulatedAnswers)
+        // Question suivante. Avance par-dessus les questions déjà pré-remplies par l'autoprofil
+        // (Story Autoprofil HealthKit) — leurs bulles user sont déjà dans `messages` depuis startPreFilledFlow.
+        var next = questionnaire.nextQuestion(after: asked.id, answer: value, accumulated: accumulatedAnswers)
+        while let candidate = next, let cachedValue = accumulatedAnswers[candidate.id] {
+            next = questionnaire.nextQuestion(after: candidate.id, answer: cachedValue, accumulated: accumulatedAnswers)
+        }
 
         // Si une question intermédiaire a été skippée par le moteur (ex: Q4 si beginner), tracer dans l'historique.
         if let next = next, let skippedId = detectSkippedBetween(current: asked.id, next: next.id) {
@@ -267,6 +292,74 @@ final class SportQuestionnaireViewModel {
         messages.append(.leonText(id: UUID(), key: first.textKey))
         currentQuestion = first
         savePendingDraft(currentQuestionId: first.id)
+    }
+
+    /// Démarre le flow en pré-remplissant Q1 (level) et Q3 (frequency) depuis l'autoprofil HK.
+    /// Q2 reste à demander à l'utilisateur (objectif sport — non inférable depuis HK).
+    /// Q4+ continuent normalement à partir de Q2 répondu.
+    private func startPreFilledFlow(level: LevelEstimate, frequency: FrequencyEstimate) {
+        accumulatedAnswers = [:]
+        conversationHistory = []
+        freeTextDraft = ""
+        messages = []
+        purgePendingDraft()
+
+        appendIntroBubbles()
+        // Bulle de transparence sur l'autoprofil.
+        messages.append(.leonText(id: UUID(), key: "questionnaire.autoprofile.summary"))
+
+        // Pré-remplir Q1 + Q3.
+        let q1Id = "q1_level"
+        let q3Id = "q3_frequency"
+        let q1Value = AnswerValue.single(level.rawValue)
+        let q3Value = AnswerValue.single(frequency.rawValue)
+
+        accumulatedAnswers[q1Id] = q1Value
+        accumulatedAnswers[q3Id] = q3Value
+        let now = Date()
+        conversationHistory.append(ConversationEntry(
+            questionId: q1Id,
+            questionTextKey: "questionnaire.running.q1.text",
+            answer: q1Value.asDTO,
+            askedAt: now,
+            autoFilled: true
+        ))
+        conversationHistory.append(ConversationEntry(
+            questionId: q3Id,
+            questionTextKey: "questionnaire.running.q3.text",
+            answer: q3Value.asDTO,
+            askedAt: now,
+            autoFilled: true
+        ))
+
+        // Bulles user de confirmation.
+        messages.append(.userText(id: UUID(), text: "questionnaire.running.q1.option.\(level.rawValue)"))
+        messages.append(.userText(id: UUID(), text: "questionnaire.running.q3.option.\(frequency.rawValue)"))
+
+        // Première question non-répondue = Q2 (goal).
+        let next = firstUnansweredQuestion()
+        if let q = next {
+            messages.append(.leonText(id: UUID(), key: q.textKey))
+            currentQuestion = q
+            savePendingDraft(currentQuestionId: q.id)
+        } else {
+            // Cas extrême : tout est déjà rempli. submit() direct.
+            currentQuestion = nil
+            Task { await submit() }
+        }
+    }
+
+    /// Walk le flow depuis la première question, en suivant `nextQuestion`, et retourne la 1re non-répondue.
+    private func firstUnansweredQuestion() -> QuestionnaireQuestion? {
+        var current: QuestionnaireQuestion? = questionnaire.firstQuestion
+        while let q = current {
+            if let value = accumulatedAnswers[q.id] {
+                current = questionnaire.nextQuestion(after: q.id, answer: value, accumulated: accumulatedAnswers)
+            } else {
+                return q
+            }
+        }
+        return nil
     }
 
     private func appendIntroBubbles() {

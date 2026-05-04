@@ -20,6 +20,9 @@ struct ConversationEntry: Codable, Equatable, Identifiable {
     let askedAt: Date
     let skipped: Bool
     let skipReason: String?
+    /// `true` si la réponse a été pré-remplie depuis HealthKit (Story Autoprofil).
+    /// Optionnel pour rétro-compat des rows JSONB existantes (decode → nil → false côté usage).
+    let autoFilled: Bool?
 
     init(
         id: UUID = UUID(),
@@ -28,7 +31,8 @@ struct ConversationEntry: Codable, Equatable, Identifiable {
         answer: AnswerValueDTO?,
         askedAt: Date,
         skipped: Bool = false,
-        skipReason: String? = nil
+        skipReason: String? = nil,
+        autoFilled: Bool? = nil
     ) {
         self.id = id
         self.questionId = questionId
@@ -37,6 +41,7 @@ struct ConversationEntry: Codable, Equatable, Identifiable {
         self.askedAt = askedAt
         self.skipped = skipped
         self.skipReason = skipReason
+        self.autoFilled = autoFilled
     }
 }
 

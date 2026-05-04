@@ -1,18 +1,41 @@
 // Services/HealthKitService.swift
 // PRIMARY HealthKit impl — synchroniser GardenSage/TailorSage si port futur (voir mémoire architecture_decisions.md).
-// Read-only V1 : sex/DOB/poids/taille pour onboarding (Story 2.2).
-// Hub universel (workouts, HR, écriture sessions) reporté Epic 7.
+// Read-only V1 : profil (sex/DOB/poids/taille) pour onboarding (Story 2.2)
+// + autoprofil (vo2Max, workouts récents) pour Story Autoprofil HealthKit (Epic 3 Phase 2 #4).
+// Hub universel (écriture sessions, HR streaming) reporté Epic 7.
 import Foundation
 import HealthKit
 import os
 
-// MARK: - Result struct
+// MARK: - Result structs
 
 struct HealthKitProfileData: Equatable, Sendable {
     let biologicalSex: HKBiologicalSex?
     let dateOfBirth: Date?
     let bodyMassKg: Double?
     let heightCm: Double?
+}
+
+struct HealthKitVO2MaxSample: Equatable, Sendable {
+    let value: Double // mL/(kg·min)
+    let date: Date
+    let sourceName: String?
+}
+
+struct HealthKitWorkoutSummary: Equatable, Sendable {
+    let totalCount: Int
+    let weeklyAverage: Double
+    /// Le sport dominant sur la fenêtre (par count). nil si vide.
+    let dominantActivityRawValue: UInt?
+    /// `true` si au moins un workout est sourcé par un appareil watchOS (productType "Watch...").
+    let appleWatchDetected: Bool
+
+    static let empty = HealthKitWorkoutSummary(
+        totalCount: 0,
+        weeklyAverage: 0,
+        dominantActivityRawValue: nil,
+        appleWatchDetected: false
+    )
 }
 
 // MARK: - Errors
@@ -38,13 +61,30 @@ protocol HealthKitServiceProtocol: Sendable {
     /// Permet à Story 2.2 de différencier « première fois → afficher CTA » vs « déjà demandé → ne pas re-prompter ».
     var hasRequestedAuthorization: Bool { get }
 
-    /// Demande l'autorisation pour 4 types READ (sex, DOB, bodyMass, height). Aucun WRITE V1.
+    /// Demande l'autorisation pour les types READ : profil (sex, DOB, bodyMass, height) + autoprofil (vo2Max, workouts, heartRate).
+    /// Aucun WRITE V1. Une seule pop-up système groupée.
     /// Throw uniquement si HealthKit est indisponible (iPad incompatible) ou erreur HKError critique.
-    /// Apple ne révèle pas le refus côté READ — la sémantique « refusé » se mesure via nil dans `fetchProfileData()`.
+    /// Apple ne révèle pas le refus côté READ — la sémantique « refusé » se mesure via nil dans les fetch.
     func requestProfileAuthorization() async throws
 
-    /// Lit les 4 caractéristiques. Ne throw jamais : un champ nil = donnée non disponible / refusée silencieusement.
+    /// Lit les 4 caractéristiques profil. Ne throw jamais : un champ nil = donnée non disponible / refusée silencieusement.
     func fetchProfileData() async -> HealthKitProfileData
+
+    /// Sample VO2max le plus récent dans la fenêtre `monthsBack` (défaut 6 mois). nil si refus/absence.
+    func fetchVO2MaxRecent(monthsBack: Int) async -> HealthKitVO2MaxSample?
+
+    /// Résumé des workouts sur la fenêtre `weeksBack` (défaut 8 semaines). Struct vide si refus/absence.
+    func fetchWorkoutSummary(weeksBack: Int) async -> HealthKitWorkoutSummary
+}
+
+extension HealthKitServiceProtocol {
+    func fetchVO2MaxRecent() async -> HealthKitVO2MaxSample? {
+        await fetchVO2MaxRecent(monthsBack: 6)
+    }
+
+    func fetchWorkoutSummary() async -> HealthKitWorkoutSummary {
+        await fetchWorkoutSummary(weeksBack: 8)
+    }
 }
 
 // MARK: - Default impl
@@ -75,7 +115,7 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
             throw HealthKitError.notAvailable
         }
 
-        var typesToRead: Set<HKObjectType> = []
+        var typesToRead: Set<HKObjectType> = [HKObjectType.workoutType()]
         if let sex = HKCharacteristicType.characteristicType(forIdentifier: .biologicalSex) {
             typesToRead.insert(sex)
         }
@@ -87,6 +127,12 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
         }
         if let height = HKQuantityType.quantityType(forIdentifier: .height) {
             typesToRead.insert(height)
+        }
+        if let vo2 = HKQuantityType.quantityType(forIdentifier: .vo2Max) {
+            typesToRead.insert(vo2)
+        }
+        if let hr = HKQuantityType.quantityType(forIdentifier: .heartRate) {
+            typesToRead.insert(hr)
         }
 
         try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
@@ -111,6 +157,94 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
             dateOfBirth: dob,
             bodyMassKg: bodyMass,
             heightCm: height
+        )
+    }
+
+    func fetchVO2MaxRecent(monthsBack: Int) async -> HealthKitVO2MaxSample? {
+        guard !Self.isUITesting else { return nil }
+        guard HKHealthStore.isHealthDataAvailable() else { return nil }
+        guard let type = HKQuantityType.quantityType(forIdentifier: .vo2Max) else { return nil }
+
+        let startDate = Calendar(identifier: .gregorian).date(byAdding: .month, value: -monthsBack, to: Date()) ?? Date()
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: nil, options: [])
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+
+        return await withCheckedContinuation { (continuation: CheckedContinuation<HealthKitVO2MaxSample?, Never>) in
+            let query = HKSampleQuery(
+                sampleType: type,
+                predicate: predicate,
+                limit: 1,
+                sortDescriptors: [sortDescriptor]
+            ) { _, results, error in
+                #if DEBUG
+                if let error {
+                    Self.logger.debug("vo2Max query error: \(error.localizedDescription)")
+                }
+                #endif
+                guard let sample = (results as? [HKQuantitySample])?.first else {
+                    continuation.resume(returning: nil)
+                    return
+                }
+                let unit = HKUnit(from: "ml/kg*min")
+                let value = sample.quantity.doubleValue(for: unit)
+                continuation.resume(returning: HealthKitVO2MaxSample(
+                    value: value,
+                    date: sample.endDate,
+                    sourceName: sample.sourceRevision.source.name
+                ))
+            }
+            healthStore.execute(query)
+        }
+    }
+
+    func fetchWorkoutSummary(weeksBack: Int) async -> HealthKitWorkoutSummary {
+        guard !Self.isUITesting else { return .empty }
+        guard HKHealthStore.isHealthDataAvailable() else { return .empty }
+
+        let now = Date()
+        guard let startDate = Calendar(identifier: .gregorian).date(byAdding: .weekOfYear, value: -weeksBack, to: now) else {
+            return .empty
+        }
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: now, options: [])
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+
+        let workouts: [HKWorkout] = await withCheckedContinuation { (continuation: CheckedContinuation<[HKWorkout], Never>) in
+            let query = HKSampleQuery(
+                sampleType: HKObjectType.workoutType(),
+                predicate: predicate,
+                limit: HKObjectQueryNoLimit,
+                sortDescriptors: [sortDescriptor]
+            ) { _, results, error in
+                #if DEBUG
+                if let error {
+                    Self.logger.debug("workout query error: \(error.localizedDescription)")
+                }
+                #endif
+                continuation.resume(returning: (results as? [HKWorkout]) ?? [])
+            }
+            healthStore.execute(query)
+        }
+
+        guard !workouts.isEmpty else { return .empty }
+
+        let weeklyAverage = Double(workouts.count) / Double(max(weeksBack, 1))
+
+        var counts: [UInt: Int] = [:]
+        for workout in workouts {
+            counts[workout.workoutActivityType.rawValue, default: 0] += 1
+        }
+        let dominant = counts.max(by: { $0.value < $1.value })?.key
+
+        let appleWatchDetected = workouts.contains { workout in
+            let productType = workout.sourceRevision.productType ?? ""
+            return productType.lowercased().hasPrefix("watch")
+        }
+
+        return HealthKitWorkoutSummary(
+            totalCount: workouts.count,
+            weeklyAverage: weeklyAverage,
+            dominantActivityRawValue: dominant,
+            appleWatchDetected: appleWatchDetected
         )
     }
 
