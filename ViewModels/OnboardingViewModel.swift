@@ -56,6 +56,11 @@ final class OnboardingViewModel {
     /// Équipement générique multi-sport. Vide possible (user sans matériel).
     /// L'équipement spécifique sport (treadmill, etc.) reste dans le questionnaire sport.
     var equipment: Set<String> = []
+    private(set) var hasUserEditedEquipment: Bool = false
+
+    /// `true` si HealthKit voit un workout sourcé par un appareil watchOS dans la fenêtre récente.
+    /// Utilisé pour pré-cocher gps_watch + heart_rate_monitor à l'écran équipement (overridable).
+    private(set) var appleWatchDetected: Bool = false
 
     // MARK: - Écran 5
 
@@ -133,6 +138,29 @@ final class OnboardingViewModel {
     /// Équipement = facultatif (l'user peut n'avoir aucun matériel).
     var canContinueScreen4: Bool { true }
 
+    /// Pré-coche `gps_watch + heart_rate_monitor` si HealthKit a vu un workout sourcé Apple Watch
+    /// et que l'utilisateur n'a pas encore édité l'équipement. Idempotent.
+    func applyAppleWatchEquipmentSuggestionIfNeeded() {
+        guard appleWatchDetected, !hasUserEditedEquipment, equipment.isEmpty else { return }
+        equipment.insert(EquipmentCode.gpsWatch.rawValue)
+        equipment.insert(EquipmentCode.heartRateMonitor.rawValue)
+    }
+
+    func toggleEquipment(_ code: EquipmentCode) {
+        hasUserEditedEquipment = true
+        if equipment.contains(code.rawValue) {
+            equipment.remove(code.rawValue)
+        } else {
+            equipment.insert(code.rawValue)
+        }
+    }
+
+    /// Vrai si une capsule équipement a été pré-cochée depuis l'Apple Watch et n'a pas encore été touchée.
+    func isAppleWatchSuggested(_ code: EquipmentCode) -> Bool {
+        guard appleWatchDetected, !hasUserEditedEquipment else { return false }
+        return code == .gpsWatch || code == .heartRateMonitor
+    }
+
     var anyParqYes: Bool {
         parqResponses.values.contains(true)
     }
@@ -165,6 +193,10 @@ final class OnboardingViewModel {
         }
 
         let data = await healthKitService.fetchProfileData()
+
+        // Détection Apple Watch (orthogonale au pré-fill profil ; ne dépend pas de hasUserEditedScreen2).
+        let summary = await healthKitService.fetchWorkoutSummary(weeksBack: 8)
+        appleWatchDetected = summary.appleWatchDetected
 
         // Préserve toute saisie utilisateur déjà faite (review P1-1).
         guard !hasUserEditedScreen2 else { return }

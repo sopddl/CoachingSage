@@ -7,14 +7,25 @@ import SwiftUI
 struct SportQuestionnaireView: View {
     @State var viewModel: SportQuestionnaireViewModel
     let requiresMedicalClearance: Bool
+    let healthKitService: any HealthKitServiceProtocol
     let onCompleted: (CoachingSportProfile) -> Void
+
+    private let inference: AutoProfileInference = AutoProfileInference()
 
     @Environment(\.dismiss) private var dismiss
     @State private var showExitConfirm: Bool = false
+    @State private var autoProfileLoadState: AutoProfileLoadState = .loading
+    @State private var hasStartedFlow: Bool = false
+
+    private enum AutoProfileLoadState: Equatable {
+        case loading
+        case suggested(AutoProfileSuggestion)
+        case unavailable // pas de signal HK exploitable → fallback standard
+    }
 
     var body: some View {
         NavigationStack {
-            mainContent
+            content
             .background(Color.coachingBackground.ignoresSafeArea())
             .navigationTitle(Text("questionnaire.title"))
             .navigationBarTitleDisplayMode(.inline)
@@ -59,9 +70,22 @@ struct SportQuestionnaireView: View {
                     Text("questionnaire.recovery.restart")
                 }
             }
-            .onAppear {
-                if viewModel.messages.isEmpty {
-                    viewModel.start(requiresMedicalClearance: requiresMedicalClearance)
+            .task {
+                guard autoProfileLoadState == .loading else { return }
+                let summary = await healthKitService.fetchWorkoutSummary()
+                let vo2 = await healthKitService.fetchVO2MaxRecent()
+                if let suggestion = inference.suggest(
+                    vo2Max: vo2?.value,
+                    workoutSummary: summary,
+                    sportCode: viewModel.questionnaire.sportCode
+                ) {
+                    autoProfileLoadState = .suggested(suggestion)
+                } else {
+                    autoProfileLoadState = .unavailable
+                    if !hasStartedFlow, viewModel.messages.isEmpty {
+                        hasStartedFlow = true
+                        viewModel.start(requiresMedicalClearance: requiresMedicalClearance)
+                    }
                 }
             }
             .onChange(of: isCompleted) { _, newValue in
@@ -74,6 +98,33 @@ struct SportQuestionnaireView: View {
     }
 
     // MARK: - Sub-views (split pour aider le type-checker SwiftUI)
+
+    @ViewBuilder
+    private var content: some View {
+        switch autoProfileLoadState {
+        case .loading:
+            ProgressView()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        case .suggested(let suggestion) where !hasStartedFlow:
+            AutoProfileReviewView(
+                suggestion: suggestion,
+                onContinue: { level, frequency in
+                    hasStartedFlow = true
+                    viewModel.startWithAutoProfile(
+                        level: level,
+                        frequency: frequency,
+                        requiresMedicalClearance: requiresMedicalClearance
+                    )
+                },
+                onSkip: {
+                    hasStartedFlow = true
+                    viewModel.start(requiresMedicalClearance: requiresMedicalClearance)
+                }
+            )
+        case .suggested, .unavailable:
+            mainContent
+        }
+    }
 
     @ViewBuilder
     private var mainContent: some View {

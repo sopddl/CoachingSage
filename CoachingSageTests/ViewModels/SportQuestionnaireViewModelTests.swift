@@ -27,6 +27,11 @@ struct SportQuestionnaireViewModelTests {
         authService: MutableMockAuthService = MutableMockAuthService(),
         repo: MockCoachingSportProfileRepository = MockCoachingSportProfileRepository()
     ) -> (SportQuestionnaireViewModel, MutableMockAuthService, MockCoachingSportProfileRepository) {
+        // Purge tout brouillon UserDefaults résiduel pour ce (user × running) — sinon recovery prompt
+        // s'enclenche et `startFreshFlow` n'est jamais appelé (tests pollués entre runs).
+        if let uid = authService.stubbedUserId {
+            UserDefaults.standard.removeObject(forKey: "pending_questionnaire_\(uid.uuidString.lowercased())_running")
+        }
         let vm = SportQuestionnaireViewModel(
             questionnaire: RunningQuestionnaire(),
             repository: repo,
@@ -160,5 +165,39 @@ struct SportQuestionnaireViewModelTests {
 
         // Cleanup
         UserDefaults.standard.removeObject(forKey: key)
+    }
+
+    // MARK: - Autoprofil HealthKit (Story Autoprofil)
+
+    @Test("startWithAutoProfile pré-remplit q1+q3 et démarre à Q2")
+    func startWithAutoProfile_prefillsAndAdvances() {
+        let (vm, _, _) = makeViewModel()
+        vm.startWithAutoProfile(level: .regular, frequency: .three, requiresMedicalClearance: false)
+
+        #expect(vm.currentQuestion?.id == "q2_goal")
+        #expect(vm.accumulatedAnswers["q1_level"] == .single("regular"))
+        #expect(vm.accumulatedAnswers["q3_frequency"] == .single("3"))
+        // 2 entrées historique flaggées autoFilled
+        let autoFilled = vm.conversationHistory.filter { $0.autoFilled == true }
+        #expect(autoFilled.count == 2)
+        let ids = Set(autoFilled.map { $0.questionId })
+        #expect(ids == ["q1_level", "q3_frequency"])
+    }
+
+    @Test("startWithAutoProfile + suite Q2..Q6 → save profil cohérent")
+    func startWithAutoProfile_fullFlowSaves() async {
+        let auth = MutableMockAuthService()
+        let (vm, _, repo) = makeViewModel(authService: auth)
+        vm.startWithAutoProfile(level: .competitive, frequency: .fourOrMore, requiresMedicalClearance: false)
+        await vm.answer(.single("10k"))           // Q2
+        // Q3 déjà pré-remplie → on saute à Q4
+        await vm.answer(.multi(["knee"]))         // Q4
+        await vm.answer(.multi(["gps_watch"]))    // Q5
+        await vm.answer(.text(nil))               // Q6
+
+        #expect(repo.saveCallCount == 1)
+        #expect(repo.stored["running"]?.level == "competitive")
+        #expect(repo.stored["running"]?.frequencyLabel == "4_or_more")
+        #expect(repo.stored["running"]?.frequencyPerWeek == 4)
     }
 }

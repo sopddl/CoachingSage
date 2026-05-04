@@ -140,6 +140,7 @@ struct SessionView: View {
             SportQuestionnaireView(
                 viewModel: vm,
                 requiresMedicalClearance: coachingProfile?.requiresMedicalClearance ?? false,
+                healthKitService: deps.healthKitService,
                 onCompleted: { sportProfile in
                     sheetSelection = nil
                     Task {
