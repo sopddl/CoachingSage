@@ -31,7 +31,7 @@ final class ProgramAdapterService {
     ) -> AdaptedProgram {
         adapter.adapt(
             template: template,
-            sportProfile: sportProfile.adapterFacade,
+            sportProfile: sportProfile.adapterFacade(merging: coachingProfile.equipment),
             coachingProfile: coachingProfile.adapterFacade
         )
     }
@@ -41,9 +41,16 @@ final class ProgramAdapterService {
 
 extension CoachingSportProfile {
     var adapterFacade: AdapterSportProfile {
+        adapterFacade(merging: [])
+    }
+
+    /// Variante qui fusionne l'équipement global onboarding (`CoachingProfile.equipment`)
+    /// avec l'équipement spécifique sport avant le bridge templates. Le mapping
+    /// snake_case → kebab-case est fait sur l'union, et `bridgeEquipment` dédoublonne.
+    func adapterFacade(merging globalEquipment: [String]) -> AdapterSportProfile {
         AdapterSportProfile(
             constraints: constraints.map(Self.mapConstraintToTemplate),
-            equipment: Self.bridgeEquipment(equipment, sportCode: sportCode),
+            equipment: Self.bridgeEquipment(equipment + globalEquipment, sportCode: sportCode),
             frequencyPerWeek: frequencyPerWeek,
             sessionDurationMinutes: sessionDurationMinutes
         )

@@ -10,6 +10,7 @@ struct CoachingProfileDTO: Decodable {
     let weightKg: Double?
     let heightCm: Double?
     let activeSports: [String]
+    let equipment: [String]
     let parqResponses: [String: Bool]
     let requiresMedicalClearance: Bool
     let disclaimerVersionAccepted: String?
@@ -27,6 +28,7 @@ struct CoachingProfileDTO: Decodable {
         case weightKg = "weight_kg"
         case heightCm = "height_cm"
         case activeSports = "active_sports"
+        case equipment
         case parqResponses = "parq_responses"
         case requiresMedicalClearance = "requires_medical_clearance"
         case disclaimerVersionAccepted = "disclaimer_version_accepted"
@@ -51,6 +53,7 @@ struct CoachingProfileDTO: Decodable {
         weightKg = try container.decodeIfPresent(Double.self, forKey: .weightKg)
         heightCm = try container.decodeIfPresent(Double.self, forKey: .heightCm)
         activeSports = try container.decodeIfPresent([String].self, forKey: .activeSports) ?? []
+        equipment = try container.decodeIfPresent([String].self, forKey: .equipment) ?? []
         parqResponses = try container.decodeIfPresent([String: Bool].self, forKey: .parqResponses) ?? [:]
         requiresMedicalClearance = try container.decode(Bool.self, forKey: .requiresMedicalClearance)
         disclaimerVersionAccepted = try container.decodeIfPresent(String.self, forKey: .disclaimerVersionAccepted)
@@ -69,6 +72,7 @@ struct CoachingProfileDTO: Decodable {
         profile.weightKg = weightKg
         profile.heightCm = heightCm
         profile.activeSports = activeSports
+        profile.equipment = equipment
         profile.parqResponses = parqResponses
         profile.requiresMedicalClearance = requiresMedicalClearance
         profile.disclaimerVersionAccepted = disclaimerVersionAccepted
@@ -98,6 +102,7 @@ struct CoachingProfileUpsertDTO: Codable {
     let weightKg: Double?
     let heightCm: Double?
     let activeSports: [String]
+    let equipment: [String]
     let parqResponses: [String: Bool]
     let requiresMedicalClearance: Bool
     let disclaimerVersionAccepted: String?
@@ -113,6 +118,7 @@ struct CoachingProfileUpsertDTO: Codable {
         case weightKg = "weight_kg"
         case heightCm = "height_cm"
         case activeSports = "active_sports"
+        case equipment
         case parqResponses = "parq_responses"
         case requiresMedicalClearance = "requires_medical_clearance"
         case disclaimerVersionAccepted = "disclaimer_version_accepted"
@@ -129,6 +135,7 @@ struct CoachingProfileUpsertDTO: Codable {
         self.weightKg = profile.weightKg
         self.heightCm = profile.heightCm
         self.activeSports = profile.activeSports
+        self.equipment = profile.equipment
         self.parqResponses = profile.parqResponses
         self.requiresMedicalClearance = profile.requiresMedicalClearance
         self.disclaimerVersionAccepted = profile.disclaimerVersionAccepted

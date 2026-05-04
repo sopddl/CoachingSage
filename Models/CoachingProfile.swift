@@ -15,6 +15,7 @@ final class CoachingProfile {
     var heightCm: Double?
 
     var activeSports: [String]              // sérialisé Postgres TEXT[]
+    var equipment: [String]                 // sérialisé Postgres TEXT[] — codes EquipmentCode
     var parqResponses: [String: Bool]       // 5 keys figées via PARQQuestion enum
     var requiresMedicalClearance: Bool      // calc Swift : true si toute réponse PARQ == true
 
@@ -34,6 +35,7 @@ final class CoachingProfile {
         self.weightKg = nil
         self.heightCm = nil
         self.activeSports = []
+        self.equipment = []
         self.parqResponses = PARQQuestion.defaultResponses
         self.requiresMedicalClearance = false
         self.disclaimerVersionAccepted = nil
@@ -57,6 +59,31 @@ enum PARQQuestion: String, CaseIterable {
 
     static var defaultResponses: [String: Bool] {
         Dictionary(uniqueKeysWithValues: allCases.map { ($0.rawValue, false) })
+    }
+}
+
+/// Équipement générique multi-sport déclaré à l'onboarding.
+/// L'équipement spécifique sport (treadmill, home-trainer, etc.) reste dans CoachingSportProfile.
+/// L'adapter consomme l'union onboarding ∪ sport.
+enum EquipmentCode: String, CaseIterable {
+    case gpsWatch = "gps_watch"
+    case heartRateMonitor = "heart_rate_monitor"
+    case roadBike = "road_bike"
+    case indoorBike = "indoor_bike"
+    case homeWeights = "home_weights"
+
+    var sfSymbol: String {
+        switch self {
+        case .gpsWatch: return "applewatch"
+        case .heartRateMonitor: return "heart.fill"
+        case .roadBike: return "bicycle"
+        case .indoorBike: return "figure.indoor.cycle"
+        case .homeWeights: return "dumbbell.fill"
+        }
+    }
+
+    var localizationKey: String {
+        "onboarding.equipment.option.\(rawValue)"
     }
 }
 

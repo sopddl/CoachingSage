@@ -9,7 +9,8 @@ enum OnboardingScreen: Int, CaseIterable {
     case firstNameLanguage = 0
     case personalData = 1
     case sportsSelection = 2
-    case disclaimerPARQ = 3
+    case equipment = 3
+    case disclaimerPARQ = 4
 
     var next: OnboardingScreen? {
         OnboardingScreen(rawValue: rawValue + 1)
@@ -51,6 +52,12 @@ final class OnboardingViewModel {
     var activeSports: Set<String> = []
 
     // MARK: - Écran 4
+
+    /// Équipement générique multi-sport. Vide possible (user sans matériel).
+    /// L'équipement spécifique sport (treadmill, etc.) reste dans le questionnaire sport.
+    var equipment: Set<String> = []
+
+    // MARK: - Écran 5
 
     var parqResponses: [String: Bool] = PARQQuestion.defaultResponses
     var analyticsConsent: Bool = false
@@ -122,6 +129,9 @@ final class OnboardingViewModel {
     var canContinueScreen3: Bool {
         !activeSports.isEmpty
     }
+
+    /// Équipement = facultatif (l'user peut n'avoir aucun matériel).
+    var canContinueScreen4: Bool { true }
 
     var anyParqYes: Bool {
         parqResponses.values.contains(true)
@@ -219,6 +229,7 @@ final class OnboardingViewModel {
             coaching.weightKg = weightKg
             coaching.heightCm = heightCm
             coaching.activeSports = Array(activeSports).sorted()
+            coaching.equipment = Array(equipment).sorted()
             coaching.parqResponses = parqResponses
             coaching.requiresMedicalClearance = anyParqYes
             coaching.disclaimerVersionAccepted = Self.disclaimerCurrentVersion
