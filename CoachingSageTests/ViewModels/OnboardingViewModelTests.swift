@@ -182,6 +182,41 @@ final class OnboardingViewModelTests: XCTestCase {
         vm.goNext()
         XCTAssertEqual(vm.currentScreen, .sportsSelection)
         vm.goNext()
+        XCTAssertEqual(vm.currentScreen, .equipment)
+        vm.goNext()
         XCTAssertEqual(vm.currentScreen, .disclaimerPARQ)
+    }
+
+    func testCanContinueScreen4IsAlwaysTrue() {
+        let vm = makeViewModel()
+        XCTAssertTrue(vm.canContinueScreen4, "Equipment optionnel — toujours valide")
+        vm.equipment.insert(EquipmentCode.gpsWatch.rawValue)
+        XCTAssertTrue(vm.canContinueScreen4)
+    }
+
+    func testFinalizePersistsEquipmentSorted() async {
+        let coreRepo = MockCoreProfileRepository()
+        coreRepo.stubbedProfile = SageCoreProfile(id: UUID())
+        let coachingRepo = MockCoachingProfileRepository()
+        let vm = makeViewModel(coreRepo: coreRepo, coachingRepo: coachingRepo)
+
+        vm.firstName = "Sophie"
+        vm.biologicalSex = "female"
+        vm.dateOfBirth = Date()
+        vm.weightKg = 60
+        vm.heightCm = 170
+        vm.activeSports = ["running"]
+        vm.equipment = [
+            EquipmentCode.indoorBike.rawValue,
+            EquipmentCode.gpsWatch.rawValue
+        ]
+
+        await vm.finalize()
+
+        // Tri ASC déterministe pour stabilité Postgres TEXT[].
+        XCTAssertEqual(coachingRepo.savedProfiles.first?.equipment, [
+            EquipmentCode.gpsWatch.rawValue,
+            EquipmentCode.indoorBike.rawValue
+        ])
     }
 }

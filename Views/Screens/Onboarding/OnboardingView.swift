@@ -23,6 +23,8 @@ struct OnboardingView: View {
                         PersonalDataView(viewModel: viewModel)
                     case .sportsSelection:
                         SportsSelectionView(viewModel: viewModel)
+                    case .equipment:
+                        EquipmentSelectionView(viewModel: viewModel)
                     case .disclaimerPARQ:
                         DisclaimerPARQView(viewModel: viewModel)
                     }

@@ -114,6 +114,35 @@ final class ProgramAdapterServiceTests: XCTestCase {
         )
     }
 
+    // MARK: - adapterFacade(merging:) — équipement onboarding ∪ sport
+
+    /// L'équipement déclaré à l'onboarding (CoachingProfile.equipment) est unifié avec
+    /// l'équipement spécifique sport, mappé snake_case → kebab-case et dédoublonné
+    /// avant que les règles n'évaluent les `requiredEquipment` du template.
+    func testAdapterFacadeMergingUnionsOnboardingAndSportEquipment() {
+        let sport = makeSport(equipment: ["treadmill_access"])
+        let merged = sport.adapterFacade(merging: ["gps_watch", "heart_rate_monitor"])
+
+        XCTAssertEqual(merged.equipment, [
+            "treadmill-access", "gps-watch", "heart-rate-monitor", "running-shoes", "mat"
+        ])
+    }
+
+    /// Doublon onboarding ↔ sport (ex: l'user a coché gps_watch onboarding ET Q5 sport)
+    /// : dédup l'effet via `bridgeEquipment` au global.
+    func testAdapterFacadeMergingDeduplicatesOverlap() {
+        let sport = makeSport(equipment: ["gps_watch"])
+        let merged = sport.adapterFacade(merging: ["gps_watch"])
+
+        XCTAssertEqual(merged.equipment, ["gps-watch", "running-shoes", "mat"])
+    }
+
+    /// adapterFacade sans paramètre = adapterFacade(merging: []) — backward-compat.
+    func testAdapterFacadeWithoutMergingEqualsEmptyMerge() {
+        let sport = makeSport(equipment: ["gps_watch"])
+        XCTAssertEqual(sport.adapterFacade.equipment, sport.adapterFacade(merging: []).equipment)
+    }
+
     func testServiceRunsAdapterEndToEnd() {
         let template = AdapterTestFixtures.makeRunningTemplate()
         let sport = CoachingSportProfile(

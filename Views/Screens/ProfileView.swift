@@ -60,6 +60,7 @@ struct ProfileView: View {
                 identitySection(core: profiles.core)
                 personalDataSection(coaching: profiles.coaching)
                 sportsSection(coaching: profiles.coaching)
+                equipmentSection(coaching: profiles.coaching)
                 healthSection(coaching: profiles.coaching)
                 privacySection(vm: vm)
                 aboutSection(coaching: profiles.coaching)
@@ -159,6 +160,21 @@ struct ProfileView: View {
                 }
             }
             .accessibilityIdentifier("profile.sports.link")
+        }
+    }
+
+    @ViewBuilder
+    private func equipmentSection(coaching: CoachingProfile) -> some View {
+        Section("profile.section.equipment") {
+            NavigationLink {
+                EditEquipmentView(coachingProfile: coaching)
+            } label: {
+                LabeledContent("profile.equipment.edit") {
+                    Text("profile.equipment.count \(coaching.equipment.count)")
+                        .foregroundStyle(Color.coachingTextSecondary)
+                }
+            }
+            .accessibilityIdentifier("profile.equipment.link")
         }
     }
 
