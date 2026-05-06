@@ -2,6 +2,7 @@
 // Story 2.2 — state machine 4 écrans + import HealthKit + finalize.
 import Foundation
 import HealthKit
+import os
 import SwiftUI
 import SageCore
 
@@ -20,7 +21,11 @@ enum OnboardingScreen: Int, CaseIterable {
 @MainActor
 @Observable
 final class OnboardingViewModel {
+    private static let logger = Logger(subsystem: "com.sopddl.coachingsage", category: "onboarding")
     static let disclaimerCurrentVersion = "1.0"
+    /// Délai max de la finalize Supabase. Au-delà, bascule en .error visible plutôt que de
+    /// laisser un spinner infini sur le bouton Démarrer (cas hang Supabase SDK / réseau lent).
+    static let finalizeTimeoutSeconds: TimeInterval = 10
 
     // MARK: - State machine
 
@@ -233,13 +238,31 @@ final class OnboardingViewModel {
 
     func finalize() async {
         saveState = .loading
+        Self.logger.info("finalize: start")
+
+        // Watchdog : si Supabase hang (cas réseau dégradé, SDK qui ne return jamais),
+        // on bascule saveState en .error après 10s pour libérer le user du spinner.
+        let watchdog = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(Self.finalizeTimeoutSeconds))
+            guard let self else { return }
+            await MainActor.run {
+                if case .loading = self.saveState {
+                    Self.logger.error("finalize: TIMEOUT after \(Self.finalizeTimeoutSeconds)s — Supabase save did not return")
+                    self.saveState = .error(.sync(String(localized: "onboarding.finalize.timeout")))
+                }
+            }
+        }
+        defer { watchdog.cancel() }
+
         do {
             // 1. Update core_profiles : first_name + language + analytics_consent.
+            Self.logger.info("finalize: fetchCurrentProfile core")
             let coreProfile: SageCoreProfile
             if let existing = try await coreProfileRepository.fetchCurrentProfile() {
                 coreProfile = existing
             } else {
                 guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else {
+                    Self.logger.error("finalize: no auth session")
                     saveState = .error(.sync("Session utilisateur introuvable"))
                     return
                 }
@@ -249,11 +272,14 @@ final class OnboardingViewModel {
             coreProfile.language = language
             coreProfile.analyticsConsent = analyticsConsent
             coreProfile.updatedAt = Date()
+            Self.logger.info("finalize: save core")
             try await coreProfileRepository.save(coreProfile)
+            Self.logger.info("finalize: core saved")
 
             // 2. Save coaching_profiles avec onboarding_completed_at.
             // Réutilise une row existante (cas hydrate-on-miss : reprise sur nouveau device après réinstall)
             // pour éviter un conflit @Attribute(.unique) var id.
+            Self.logger.info("finalize: fetchCurrentProfile coaching")
             let coaching = (try? await coachingProfileRepository.fetchCurrentProfile())
                 ?? CoachingProfile(id: coreProfile.id)
             coaching.biologicalSex = biologicalSex
@@ -267,11 +293,22 @@ final class OnboardingViewModel {
             coaching.disclaimerVersionAccepted = Self.disclaimerCurrentVersion
             coaching.disclaimerAcceptedAt = Date()
             coaching.onboardingCompletedAt = Date()
+            Self.logger.info("finalize: save coaching")
             try await coachingProfileRepository.save(coaching)
+            Self.logger.info("finalize: coaching saved")
 
-            saveState = .success(())
+            // Si on a déjà timeout, ne pas écraser .error avec .success.
+            if case .loading = saveState {
+                saveState = .success(())
+                Self.logger.info("finalize: success")
+            } else {
+                Self.logger.info("finalize: completed but state already \(String(describing: self.saveState))")
+            }
         } catch {
-            saveState = .error(error as? AppError ?? .sync(error.localizedDescription))
+            Self.logger.error("finalize: error \(error.localizedDescription)")
+            if case .loading = saveState {
+                saveState = .error(error as? AppError ?? .sync(error.localizedDescription))
+            }
         }
     }
 }

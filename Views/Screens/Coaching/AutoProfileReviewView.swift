@@ -160,10 +160,10 @@ struct AutoProfileReviewView: View {
     }
 
     private func levelLabelKey(_ level: LevelEstimate) -> String {
-        "questionnaire.running.q1.option.\(level.rawValue)"
+        "questionnaire.universal.q1.option.\(level.rawValue)"
     }
 
     private func frequencyLabelKey(_ freq: FrequencyEstimate) -> String {
-        "questionnaire.running.q3.option.\(freq.rawValue)"
+        "questionnaire.universal.q3.option.\(freq.rawValue)"
     }
 }

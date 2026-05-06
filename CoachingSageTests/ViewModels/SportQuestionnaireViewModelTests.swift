@@ -1,6 +1,7 @@
 // CoachingSageTests/ViewModels/SportQuestionnaireViewModelTests.swift
-// Story 3.1 — tests ViewModel critiques (review pré-implem 2026-04-29).
+// Story 3.1 (Phase 2 #5 update) — tests ViewModel critiques.
 // Focus : cross-user race au submit (P0-4), idempotence double-tap (P1-8), recovery UserDefaults (P1-6).
+// Phase 2 #5 : flow universel 3 questions (Q1 level → Q2 goal → Q3 frequency).
 import Testing
 import Foundation
 import Supabase
@@ -24,16 +25,17 @@ struct SportQuestionnaireViewModelTests {
     }
 
     private func makeViewModel(
+        sportCode: String = "running",
         authService: MutableMockAuthService = MutableMockAuthService(),
         repo: MockCoachingSportProfileRepository = MockCoachingSportProfileRepository()
     ) -> (SportQuestionnaireViewModel, MutableMockAuthService, MockCoachingSportProfileRepository) {
-        // Purge tout brouillon UserDefaults résiduel pour ce (user × running) — sinon recovery prompt
+        // Purge tout brouillon UserDefaults résiduel pour ce (user × sport) — sinon recovery prompt
         // s'enclenche et `startFreshFlow` n'est jamais appelé (tests pollués entre runs).
         if let uid = authService.stubbedUserId {
-            UserDefaults.standard.removeObject(forKey: "pending_questionnaire_\(uid.uuidString.lowercased())_running")
+            UserDefaults.standard.removeObject(forKey: "pending_questionnaire_\(uid.uuidString.lowercased())_\(sportCode)")
         }
         let vm = SportQuestionnaireViewModel(
-            questionnaire: RunningQuestionnaire(),
+            questionnaire: UniversalQuestionnaire(sportCode: sportCode),
             repository: repo,
             authService: authService,
             typingDelay: NoTypingDelay()
@@ -79,15 +81,11 @@ struct SportQuestionnaireViewModelTests {
         let auth = MutableMockAuthService()
         let (vm, _, repo) = makeViewModel(authService: auth)
         vm.start(requiresMedicalClearance: false)
-        // Compléter rapidement les 6 questions
+        // Compléter Q1 + Q2, puis cross-user avant Q3 (qui déclenche submit).
         await vm.answer(.single("regular"))
         await vm.answer(.single("5k"))
-        await vm.answer(.single("3"))
-        await vm.answer(.multi(["none"]))
-        await vm.answer(.multi(["none"]))
-        // Cross-user : changer le userId AVANT le dernier answer (qui déclenche submit)
         auth.stubbedUserId = UUID()  // user différent
-        await vm.answer(.text(nil))
+        await vm.answer(.single("3"))
         // Le repo NE DOIT PAS avoir saved (cross-user race aborte avant le save)
         #expect(repo.saveCallCount == 0)
         // State doit être .error
@@ -118,24 +116,40 @@ struct SportQuestionnaireViewModelTests {
         let auth = MutableMockAuthService()
         let (vm, _, repo) = makeViewModel(authService: auth)
         vm.start(requiresMedicalClearance: false)
-        await vm.answer(.single("regular"))
-        await vm.answer(.single("10k"))
-        await vm.answer(.single("3"))
-        await vm.answer(.multi(["knee"]))
-        await vm.answer(.multi(["gps_watch"]))
-        vm.freeTextDraft = "Test note"
-        await vm.answer(.text("Test note"))
+        await vm.answer(.single("regular"))     // Q1 level
+        await vm.answer(.single("10k"))         // Q2 goal
+        await vm.answer(.single("3"))           // Q3 frequency
 
         #expect(repo.saveCallCount == 1)
         #expect(repo.stored["running"] != nil)
         #expect(repo.stored["running"]?.level == "regular")
         #expect(repo.stored["running"]?.goals.primary == "10k")
-        #expect(repo.stored["running"]?.constraints == ["knee"])
+        #expect(repo.stored["running"]?.frequencyPerWeek == 3)
+        // Phase 2 #5 : equipment + constraints sont vides côté SportProfile (équipement = onboarding global).
+        #expect(repo.stored["running"]?.equipment == [])
+        #expect(repo.stored["running"]?.constraints == [])
         if case .success(let profile) = vm.state {
             #expect(profile.sportCode == "running")
         } else {
             Issue.record("Expected .success after happy path")
         }
+    }
+
+    @Test("Flow universel sur sport non-running (cycling)")
+    func fullFlow_savesProfileForCycling() async {
+        let auth = MutableMockAuthService()
+        let (vm, _, repo) = makeViewModel(sportCode: "cycling", authService: auth)
+        vm.start(requiresMedicalClearance: false)
+        await vm.answer(.single("competitive"))
+        await vm.answer(.single("cyclosportive"))
+        await vm.answer(.single("4_or_more"))
+
+        #expect(repo.saveCallCount == 1)
+        #expect(repo.stored["cycling"]?.level == "competitive")
+        #expect(repo.stored["cycling"]?.goals.primary == "cyclosportive")
+        #expect(repo.stored["cycling"]?.frequencyPerWeek == 4)
+        #expect(repo.stored["cycling"]?.frequencyLabel == "4_or_more")
+        #expect(repo.stored["cycling"]?.questionnaireVersion == "universal_v1")
     }
 
     // MARK: - Recovery UserDefaults (review P1-6)
@@ -152,9 +166,6 @@ struct SportQuestionnaireViewModelTests {
         await vm.answer(.single("regular"))
         await vm.answer(.single("5k"))
         await vm.answer(.single("3"))
-        await vm.answer(.multi(["none"]))
-        await vm.answer(.multi(["none"]))
-        await vm.answer(.text(nil))
 
         if case .error = vm.state {} else {
             Issue.record("Expected .error after save failure")
@@ -184,16 +195,12 @@ struct SportQuestionnaireViewModelTests {
         #expect(ids == ["q1_level", "q3_frequency"])
     }
 
-    @Test("startWithAutoProfile + suite Q2..Q6 → save profil cohérent")
+    @Test("startWithAutoProfile + Q2 → save profil cohérent (Q3 déjà pré-remplie)")
     func startWithAutoProfile_fullFlowSaves() async {
         let auth = MutableMockAuthService()
         let (vm, _, repo) = makeViewModel(authService: auth)
         vm.startWithAutoProfile(level: .competitive, frequency: .fourOrMore, requiresMedicalClearance: false)
-        await vm.answer(.single("10k"))           // Q2
-        // Q3 déjà pré-remplie → on saute à Q4
-        await vm.answer(.multi(["knee"]))         // Q4
-        await vm.answer(.multi(["gps_watch"]))    // Q5
-        await vm.answer(.text(nil))               // Q6
+        await vm.answer(.single("10k"))   // Q2 — Q3 déjà pré-remplie, le ViewModel saute direct au submit
 
         #expect(repo.saveCallCount == 1)
         #expect(repo.stored["running"]?.level == "competitive")

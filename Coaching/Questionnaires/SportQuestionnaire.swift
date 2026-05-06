@@ -17,12 +17,15 @@ protocol SportQuestionnaire {
 
     /// Question suivante après une réponse, en fonction des réponses accumulées.
     /// Retourne nil = fin du questionnaire (déclenche le buildProfile + save).
-    /// Branchements conditionnels : Q4 skip si Q1=beginner par exemple.
     func nextQuestion(
         after questionId: QuestionId,
         answer: AnswerValue,
         accumulated: [QuestionId: AnswerValue]
     ) -> QuestionnaireQuestion?
+
+    /// Lookup d'une question par id — utilisé par le ViewModel pour reconstruire l'état au resume
+    /// et pour pré-remplir des réponses depuis l'autoprofil HealthKit (sans hardcoder les textKeys).
+    func findQuestion(byId id: QuestionId) -> QuestionnaireQuestion?
 
     /// Construit le draft du profil sport à partir des réponses + historique conversationnel.
     /// `medicalClearanceAcknowledged` doit être passé par le ViewModel = snapshot
