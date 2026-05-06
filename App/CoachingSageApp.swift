@@ -94,6 +94,7 @@ struct CoachingSageApp: App {
             .environment(\.appDependencies, deps)
             .environment(\.languageManager, languageManager)
             .environment(\.locale, languageManager.currentLocale)
+            .debugGridOverlay()
             .onAppear {
                 // NFR7 cold start : mesuré du `init()` de l'@main jusqu'au 1er rendu.
                 // Cible < 3s (NFR7). Log une seule fois par lancement.
