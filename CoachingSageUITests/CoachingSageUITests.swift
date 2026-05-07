@@ -15,7 +15,7 @@ final class CoachingSageUITests: XCTestCase {
     func testAppLaunchesToMainTabView() throws {
         let tabBar = app.tabBars.firstMatch
         XCTAssertTrue(tabBar.waitForExistence(timeout: 5), "Tab bar should be visible after auto-auth in UI testing mode")
-        XCTAssertEqual(tabBar.buttons.count, 4, "MainTabView should expose 4 tabs")
+        XCTAssertEqual(tabBar.buttons.count, 3, "MainTabView should expose 3 tabs (Story 3.8)")
     }
 
     func testEachTabShowsItsPlaceholder() throws {
@@ -23,8 +23,7 @@ final class CoachingSageUITests: XCTestCase {
         XCTAssertTrue(tabBar.waitForExistence(timeout: 5))
 
         let tabs: [(id: String, label: String)] = [
-            ("tab.today", "Today"),
-            ("tab.session", "Workout"),
+            ("tab.session", "Workouts"),
             ("tab.progress", "Progress"),
             ("tab.profile", "Profile")
         ]

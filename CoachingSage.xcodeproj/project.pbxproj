@@ -87,6 +87,7 @@
 		8A864EC473867A3659A61AB8 /* CoreProfileDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECA89A91146FD3FC5486BFB /* CoreProfileDTO.swift */; };
 		8AA41A3B96ED5CB6EEC58784 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794326F734BF647075562516 /* SessionView.swift */; };
 		8F19906C558D486B4DFB6FC7 /* SageCoreProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75229FDF1730BFAB470F33E /* SageCoreProfile.swift */; };
+		91CD7948BC56F119DBAEACFF /* LeonFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419D46AC01C561634543225 /* LeonFloatingButton.swift */; };
 		924E073E04B26053E702D1F9 /* SyncBannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E73747D7F8294A984BA9A6 /* SyncBannerUITests.swift */; };
 		9266674344C255E0270AD787 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 387E901F3003338D1D455F57 /* Storage */; };
 		92BB27383616BA8B26C36F45 /* LeonAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAB84EC88BEA5EDB8D2638F /* LeonAvatarView.swift */; };
@@ -105,6 +106,7 @@
 		AE7B11F7F4076D070A79C6F4 /* AccountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DF96692AD6EE1B50103B26 /* AccountViewModelTests.swift */; };
 		AFF8F953167F6A3E34F9A594 /* CoachingRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B298A62312506D41778AB2 /* CoachingRadius.swift */; };
 		B0ACAEA9D06C953324FEF8F1 /* ProgramTemplateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB38EDA31E3E416A851692C2 /* ProgramTemplateSelector.swift */; };
+		B16EFDE18148884426A369C1 /* LeonChatPlaceholderSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2343DA66F2AD3BD341466574 /* LeonChatPlaceholderSheet.swift */; };
 		B215BA8BE2CC40B6AD5B3A7A /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FBFF7B81DFD25F150C64B6 /* AppDependencies.swift */; };
 		B3E20BFFE0F9C1D3315ABD2E /* AutoProfileInferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D221EC554A840F3386957D /* AutoProfileInferenceTests.swift */; };
 		B5D249487F31AAA2C62F443E /* EquipmentSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5284280C4FBCFC84D9FD663 /* EquipmentSelectionView.swift */; };
@@ -180,6 +182,7 @@
 		20B63602A900998FD8DF4029 /* DefaultCoachingProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCoachingProfileRepository.swift; sourceTree = "<group>"; };
 		21385559EA7CA35AECA3F5D2 /* SportQuestionnaireViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportQuestionnaireViewModelTests.swift; sourceTree = "<group>"; };
 		21C9BF1B6582AF431E9F64D8 /* SportQuestionnaireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportQuestionnaireView.swift; sourceTree = "<group>"; };
+		2343DA66F2AD3BD341466574 /* LeonChatPlaceholderSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeonChatPlaceholderSheet.swift; sourceTree = "<group>"; };
 		23F8E19E5BED6B375A764B60 /* EditIdentityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIdentityViewModel.swift; sourceTree = "<group>"; };
 		242338C6A253BA0C07D92BE7 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		251FB5D7FE8B97058766FCDF /* TypingDelayProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingDelayProvider.swift; sourceTree = "<group>"; };
@@ -260,6 +263,7 @@
 		AECA89A91146FD3FC5486BFB /* CoreProfileDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreProfileDTO.swift; sourceTree = "<group>"; };
 		AF30E01D4808AD24E7E06CB5 /* ConstraintSubstitutionRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintSubstitutionRule.swift; sourceTree = "<group>"; };
 		B37826961FB3093F6CEA4C88 /* EditIdentityViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIdentityViewModelTests.swift; sourceTree = "<group>"; };
+		B419D46AC01C561634543225 /* LeonFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeonFloatingButton.swift; sourceTree = "<group>"; };
 		B750A8C5DE18154EA50064FA /* ProgramTemplateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramTemplateLibrary.swift; sourceTree = "<group>"; };
 		B75229FDF1730BFAB470F33E /* SageCoreProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SageCoreProfile.swift; sourceTree = "<group>"; };
 		B950CF8A1733A10CB9605130 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
@@ -294,9 +298,9 @@
 		F583C511E407F30A20ACCED7 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		FD16032A07CE30E27DE86BCA /* JSONDecoder+Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Supabase.swift"; sourceTree = "<group>"; };
 		FE2EBCDA71129879332CF57F /* MockCoachingSportProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoachingSportProfileRepository.swift; sourceTree = "<group>"; };
-		"TEMP_2BC0AB55-5021-40A6-8F51-8F02CA126078" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_A4565DDC-2407-4B7F-8485-1EB3982FEE4E" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_F6803960-42A5-4A7A-B511-5CADC826C6BF" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_28CDD9E9-378A-4DB7-A46F-171866026BB4" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_8D906AB6-EA34-4237-9FCA-91077C7E7634" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_ECEB7095-CB89-4634-B617-C84DAF0CEA14" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -428,6 +432,8 @@
 				9C468BDF0002353284DC322F /* DebugGridOverlay.swift */,
 				CC3BD552E6869C2D947BB067 /* LanguageSelectorView.swift */,
 				8EAB84EC88BEA5EDB8D2638F /* LeonAvatarView.swift */,
+				2343DA66F2AD3BD341466574 /* LeonChatPlaceholderSheet.swift */,
+				B419D46AC01C561634543225 /* LeonFloatingButton.swift */,
 				7CBF2077E78382BFBC8DF087 /* PlaceholderScreen.swift */,
 				31362A2EB1C59474F20C2C69 /* QuestionAnswerOptionsView.swift */,
 				1D578C7C8A74F895B24C68DC /* TypingIndicatorView.swift */,
@@ -760,12 +766,12 @@
 			path = Schema;
 			sourceTree = "<group>";
 		};
-		"TEMP_D60BCA38-81C3-46D3-891D-7B44E9343153" /* CoachingSage */ = {
+		"TEMP_5FCD1BA6-5557-40F3-8775-FAC0DC440321" /* CoachingSage */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_F6803960-42A5-4A7A-B511-5CADC826C6BF" /* Config-Debug.xcconfig */,
-				"TEMP_A4565DDC-2407-4B7F-8485-1EB3982FEE4E" /* Config-Release.xcconfig */,
-				"TEMP_2BC0AB55-5021-40A6-8F51-8F02CA126078" /* Config-Staging.xcconfig */,
+				"TEMP_28CDD9E9-378A-4DB7-A46F-171866026BB4" /* Config-Debug.xcconfig */,
+				"TEMP_8D906AB6-EA34-4237-9FCA-91077C7E7634" /* Config-Release.xcconfig */,
+				"TEMP_ECEB7095-CB89-4634-B617-C84DAF0CEA14" /* Config-Staging.xcconfig */,
 			);
 			path = CoachingSage;
 			sourceTree = "<group>";
@@ -955,6 +961,8 @@
 				6BF4574DC00C51E0CCABDD06 /* LanguageManager.swift in Sources */,
 				CAEDFC81C2BE3E9783C877B3 /* LanguageSelectorView.swift in Sources */,
 				92BB27383616BA8B26C36F45 /* LeonAvatarView.swift in Sources */,
+				B16EFDE18148884426A369C1 /* LeonChatPlaceholderSheet.swift in Sources */,
+				91CD7948BC56F119DBAEACFF /* LeonFloatingButton.swift in Sources */,
 				E9541516F5AFB01D23060E42 /* LevelPacingRule.swift in Sources */,
 				D38FC9E49DE8DB05D391C141 /* MainTabView.swift in Sources */,
 				659CDC4DFE0D0D5351EB7A38 /* MedicalClearanceRule.swift in Sources */,
@@ -1099,7 +1107,7 @@
 		};
 		61B5E17E96E19C8E098AA3DC /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_2BC0AB55-5021-40A6-8F51-8F02CA126078" /* Config-Staging.xcconfig */;
+			baseConfigurationReference = "TEMP_ECEB7095-CB89-4634-B617-C84DAF0CEA14" /* Config-Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1160,7 +1168,7 @@
 		};
 		6444A73E993A0AE7B8936309 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_A4565DDC-2407-4B7F-8485-1EB3982FEE4E" /* Config-Release.xcconfig */;
+			baseConfigurationReference = "TEMP_8D906AB6-EA34-4237-9FCA-91077C7E7634" /* Config-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1309,7 +1317,7 @@
 		};
 		E103FFBD6D87D5F977B573D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_F6803960-42A5-4A7A-B511-5CADC826C6BF" /* Config-Debug.xcconfig */;
+			baseConfigurationReference = "TEMP_28CDD9E9-378A-4DB7-A46F-171866026BB4" /* Config-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
