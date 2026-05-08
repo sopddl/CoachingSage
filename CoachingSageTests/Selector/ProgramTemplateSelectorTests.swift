@@ -138,6 +138,117 @@ final class ProgramTemplateSelectorTests: XCTestCase {
         XCTAssertEqual(chosen.id, "strength-training-beginner-split-12sem")
     }
 
+    // MARK: - selectTopN — Story 3.8 mode vide
+
+    func testSelectTopNReturnsExactMatchesForEachDeclaredSport() async throws {
+        let library = try await bundledLibrary()
+        let selector = ProgramTemplateSelector(library: library)
+
+        let profile = TopNSelectionProfile(
+            level: "beginner",
+            sportCodes: ["running", "cycling", "swimming"]
+        )
+        let suggestions = selector.selectTopN(profile: profile, n: 3)
+
+        XCTAssertEqual(suggestions.count, 3)
+        XCTAssertEqual(Set(suggestions.map(\.sport)), [.running, .cycling, .swimming])
+        XCTAssertTrue(suggestions.allSatisfy { $0.level == .beginner })
+    }
+
+    func testSelectTopNFallsBackToNearestLevelWhenDeclaredSportsExhausted() {
+        // 1 sport déclaré (running) × 2 levels disponibles (beginner, regular).
+        // Profile = beginner, n=3 → tier 1: 1 template, tier 2: 1 template, tier 3: 1 autre sport au level beginner.
+        let runningBeginner = makeMinimalTemplate(id: "running-beginner-x", sport: .running, level: .beginner)
+        let runningRegular = makeMinimalTemplate(id: "running-regular-x", sport: .running, level: .regular)
+        let cyclingBeginner = makeMinimalTemplate(id: "cycling-beginner-x", sport: .cycling, level: .beginner)
+        let library = ProgramTemplateLibrary(templates: [runningBeginner, runningRegular, cyclingBeginner])
+        let selector = ProgramTemplateSelector(library: library)
+
+        let profile = TopNSelectionProfile(level: "beginner", sportCodes: ["running"])
+        let suggestions = selector.selectTopN(profile: profile, n: 3)
+
+        XCTAssertEqual(suggestions.count, 3)
+        XCTAssertEqual(suggestions[0].id, "running-beginner-x")  // tier 1
+        XCTAssertEqual(suggestions[1].id, "running-regular-x")   // tier 2 (sport déclaré, level proche)
+        XCTAssertEqual(suggestions[2].id, "cycling-beginner-x")  // tier 3 (autre sport, level exact)
+    }
+
+    func testSelectTopNFallsBackToAnySportAtLevelWhenNoSportsDeclared() {
+        let runningBeginner = makeMinimalTemplate(id: "running-beginner-x", sport: .running, level: .beginner)
+        let cyclingBeginner = makeMinimalTemplate(id: "cycling-beginner-x", sport: .cycling, level: .beginner)
+        let yogaRegular = makeMinimalTemplate(id: "yoga-regular-x", sport: .yoga, level: .regular)
+        let library = ProgramTemplateLibrary(templates: [yogaRegular, runningBeginner, cyclingBeginner])
+        let selector = ProgramTemplateSelector(library: library)
+
+        let profile = TopNSelectionProfile(level: "beginner", sportCodes: [])
+        let suggestions = selector.selectTopN(profile: profile, n: 3)
+
+        XCTAssertEqual(suggestions.count, 3)
+        // Tier 3 d'abord (level exact), trié par id : cycling- < running- ; tier 4 ensuite avec yoga.
+        XCTAssertEqual(suggestions.map(\.id), ["cycling-beginner-x", "running-beginner-x", "yoga-regular-x"])
+    }
+
+    func testSelectTopNTieBreakAlphabeticByTemplateId() {
+        let aaa = makeMinimalTemplate(id: "running-beginner-aaa", sport: .running, level: .beginner)
+        let bbb = makeMinimalTemplate(id: "running-beginner-bbb", sport: .running, level: .beginner)
+        let ccc = makeMinimalTemplate(id: "running-beginner-ccc", sport: .running, level: .beginner)
+        let library = ProgramTemplateLibrary(templates: [ccc, bbb, aaa]) // ordre inverse
+        let selector = ProgramTemplateSelector(library: library)
+
+        let profile = TopNSelectionProfile(level: "beginner", sportCodes: ["running"])
+        let suggestions = selector.selectTopN(profile: profile, n: 2)
+
+        XCTAssertEqual(suggestions.map(\.id), ["running-beginner-aaa", "running-beginner-bbb"])
+    }
+
+    func testSelectTopNReturnsEmptyWhenNIsZeroOrNegative() async throws {
+        let library = try await bundledLibrary()
+        let selector = ProgramTemplateSelector(library: library)
+        let profile = TopNSelectionProfile(level: "beginner", sportCodes: ["running"])
+
+        XCTAssertEqual(selector.selectTopN(profile: profile, n: 0), [])
+        XCTAssertEqual(selector.selectTopN(profile: profile, n: -1), [])
+    }
+
+    func testSelectTopNCapsAtLibrarySizeWithoutDuplicates() {
+        let only = makeMinimalTemplate(id: "running-beginner-x", sport: .running, level: .beginner)
+        let library = ProgramTemplateLibrary(templates: [only])
+        let selector = ProgramTemplateSelector(library: library)
+
+        let profile = TopNSelectionProfile(level: "beginner", sportCodes: ["running"])
+        let suggestions = selector.selectTopN(profile: profile, n: 5)
+
+        XCTAssertEqual(suggestions.count, 1)
+        XCTAssertEqual(suggestions.first?.id, "running-beginner-x")
+    }
+
+    func testSelectTopNIsDeterministic() async throws {
+        let library = try await bundledLibrary()
+        let selector = ProgramTemplateSelector(library: library)
+        let profile = TopNSelectionProfile(
+            level: "regular",
+            sportCodes: ["running", "cycling", "swimming", "triathlon"]
+        )
+
+        let first = selector.selectTopN(profile: profile, n: 3)
+        let second = selector.selectTopN(profile: profile, n: 3)
+        XCTAssertEqual(first.map(\.id), second.map(\.id))
+    }
+
+    func testSelectTopNMapsStrengthTrainingSportCode() async throws {
+        let library = try await bundledLibrary()
+        let selector = ProgramTemplateSelector(library: library)
+
+        let profile = TopNSelectionProfile(
+            level: "beginner",
+            sportCodes: ["strengthTraining"]
+        )
+        let suggestions = selector.selectTopN(profile: profile, n: 1)
+        XCTAssertEqual(suggestions.count, 1)
+        XCTAssertEqual(suggestions.first?.sport, .strengthTraining)
+        XCTAssertEqual(suggestions.first?.level, .beginner)
+    }
+
     // MARK: - Library minimale fixture
 
     private func makeMinimalTemplate(id: String, sport: Sport, level: Level) -> ProgramTemplate {
