@@ -5,8 +5,12 @@
 // sinon, ouvre le questionnaire ; à la fin du questionnaire, hand-off immédiat
 // (sélection template + adaptation algo) puis push AdaptedProgramView.
 //
+// Story 3.8 — sur le hand-off, on persiste l'AdaptedProgram en
+// AdaptedProgramRecord SwiftData (best-effort, ne bloque pas la nav).
+//
 // 100% local, 0 réseau, 0 token côté hot path.
 import SwiftUI
+import os
 
 struct SessionView: View {
     @Environment(\.appDependencies) private var deps
@@ -20,6 +24,7 @@ struct SessionView: View {
     @State private var presentationError: String?
 
     private let adapterService = ProgramAdapterService()
+    private static let persistLogger = Logger(subsystem: "com.sopddl.coachingsage", category: "session-view")
 
     enum SheetSelection: Identifiable {
         case questionnaire(sportCode: String)
@@ -185,7 +190,28 @@ struct SessionView: View {
             sportProfile: sportProfile,
             coachingProfile: coachingProfile
         )
+        await persistAdaptedProgram(adapted)
         adaptedRoute = AdaptedProgramRoute(program: adapted)
+    }
+
+    /// Story 3.8 — persiste l'AdaptedProgram en `AdaptedProgramRecord` SwiftData
+    /// pour alimenter le dashboard Séances (prochaine séance, tri, drag&drop, complétion).
+    /// Best-effort : un échec n'empêche pas la navigation vers `AdaptedProgramView`
+    /// (l'utilisateur conserve l'expérience temps-réel). L'erreur est loguée.
+    private func persistAdaptedProgram(_ adapted: AdaptedProgram) async {
+        guard let deps else { return }
+        guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else {
+            #if DEBUG
+            Self.persistLogger.debug("persistAdaptedProgram skipped: no auth session")
+            #endif
+            return
+        }
+        do {
+            let record = AdaptedProgramRecord(from: adapted, userId: userId)
+            try await deps.adaptedProgramRepository.save(record)
+        } catch {
+            Self.persistLogger.error("persistAdaptedProgram FAILED: \(error.localizedDescription)")
+        }
     }
 
     // MARK: - Library loading
