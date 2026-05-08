@@ -112,8 +112,11 @@ struct CoachingSageApp: App {
                 await refreshOnboardingState()
             }
             .task {
-                // En UI testing, ne pas écouter authStateChanges (placeholder client → .signedOut parasite).
-                guard ProcessInfo.processInfo.environment["IS_UI_TESTING"] == nil else { return }
+                // En UI testing OU unit tests Cmd+U, ne pas écouter authStateChanges
+                // (placeholder client → .signedOut parasite qui bascule vers AuthView
+                // alors que `init()` a posé `isAuthenticated = true`).
+                let env = ProcessInfo.processInfo.environment
+                guard env["IS_UI_TESTING"] == nil, env["XCTestConfigurationFilePath"] == nil else { return }
                 for await stateChange in SupabaseService.shared.client.auth.authStateChanges {
                     switch stateChange.event {
                     case .signedIn, .initialSession:
@@ -146,8 +149,9 @@ struct CoachingSageApp: App {
             return
         }
 
-        // En UI testing, l'init a déjà tout posé.
-        guard ProcessInfo.processInfo.environment["IS_UI_TESTING"] == nil else { return }
+        // En UI testing OU unit tests Cmd+U, l'init a déjà tout posé.
+        let env = ProcessInfo.processInfo.environment
+        guard env["IS_UI_TESTING"] == nil, env["XCTestConfigurationFilePath"] == nil else { return }
 
         isLoadingOnboardingState = true
         Self.logger.debug("refreshOnboardingState: starting fetchCurrentProfile")

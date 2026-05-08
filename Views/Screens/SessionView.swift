@@ -134,6 +134,9 @@ struct SessionView: View {
                 dominant: dominantNextSession(vm: vm),
                 programs: vm.activeProgramSummaries,
                 routines: vm.routines,
+                weeklyStats: vm.weeklyStats,
+                nextAfterDominant: vm.nextAfterDominant,
+                restDayHintKey: vm.restDayHintKey,
                 nowProvider: { nowTick },
                 onTapDominantStart: { result in
                     pushAdaptedProgram(record: result.program)

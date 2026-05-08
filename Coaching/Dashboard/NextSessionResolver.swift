@@ -37,6 +37,35 @@ struct NextSessionResolver {
         }
     }
 
+    /// Liste **toutes** les sessions à venir d'un programme, triées par
+    /// `effectiveDate` ascendant. Sert au mode 1-prog pour exposer la 2e
+    /// séance (card « Et après » TrainingPeaks-style, sous-tâche 8) sans
+    /// dupliquer la logique de filtrage / tri du `nextSession(for:)`.
+    func upcomingSessions(for record: AdaptedProgramRecord, now: Date) -> [Result] {
+        let completedIds = Set(record.completionState.sessionRecords.keys)
+        let pending = record.sessions.filter { !completedIds.contains($0.id) }
+        guard !pending.isEmpty else { return [] }
+
+        switch record.mode {
+        case .planned:
+            let startOfDay = Calendar.current.startOfDay(for: now)
+            return pending
+                .compactMap { session -> Result? in
+                    guard let date = session.plannedDate, date >= startOfDay else { return nil }
+                    return Result(program: record, session: session, effectiveDate: date)
+                }
+                .sorted { $0.effectiveDate < $1.effectiveDate }
+
+        case .ondemand:
+            let ordered = pending.sorted {
+                $0.weekNumber != $1.weekNumber
+                    ? $0.weekNumber < $1.weekNumber
+                    : $0.day < $1.day
+            }
+            return ordered.map { Result(program: record, session: $0, effectiveDate: now) }
+        }
+    }
+
     func nextSession(for record: AdaptedProgramRecord, now: Date) -> Result? {
         let completedIds = Set(record.completionState.sessionRecords.keys)
         let pending = record.sessions.filter { !completedIds.contains($0.id) }

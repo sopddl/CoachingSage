@@ -13,6 +13,7 @@
 // **VM lecture** : pas d'écriture programme/routine. Sous-tâche 6 ajoute le
 // chargement des suggestions `selectTopN` pour alimenter le mode vide.
 import Foundation
+import SwiftUI
 import TemplateModel
 
 @MainActor
@@ -57,10 +58,28 @@ final class SessionDashboardViewModel {
     /// `MES PROGRAMMES` du mode actif.
     private(set) var activeProgramSummaries: [ActiveProgramSummary] = []
 
+    /// Stats inline du mini-widget « Cette semaine » (3 metrics). Set uniquement
+    /// quand `mode == .singleProgram` (décision party #2 — B+C combinés en mode 1-prog).
+    /// `nil` en mode vide / multi-prog.
+    private(set) var weeklyStats: WeeklyStats?
+
+    /// Card secondaire « Et après » sous la card dominante (style TrainingPeaks).
+    /// Set uniquement quand `mode == .singleProgram` ET le programme a ≥ 2 sessions
+    /// non complétées à venir. `nil` sinon.
+    private(set) var nextAfterDominant: NextSessionResolver.Result?
+
+    /// Hint italique Léon affichée en mode rest day, dérivée du compteur de séances
+    /// complétées cette semaine via `CoachLineEngine`. `nil` quand la prochaine
+    /// session est aujourd'hui (pas un jour de récup).
+    private(set) var restDayHintKey: LocalizedStringKey?
+
     /// Library bundlée chargée à la première `refresh` qui en a besoin
     /// (mode vide pour `selectTopN`, mode actif pour résoudre les `name` de templates).
     /// Cachée pour éviter un reload à chaque `onAppear`.
     private var cachedLibrary: ProgramTemplateLibrary?
+
+    private let weeklyStatsService = WeeklyStatsService()
+    private let coachLineEngine = CoachLineEngine()
 
     private let programRepository: any AdaptedProgramRepository
     private let routineRepository: any RoutineRepository
@@ -108,21 +127,32 @@ final class SessionDashboardViewModel {
             case 0:
                 mode = .empty
                 activeProgramSummaries = []
+                weeklyStats = nil
+                nextAfterDominant = nil
+                restDayHintKey = nil
                 await loadEmptyModeSuggestions(profile: profile)
             case 1:
                 let only = programs[0]
-                mode = .singleProgram(only, next: resolver.nextSession(for: only, now: now))
+                let upcoming = resolver.upcomingSessions(for: only, now: now)
+                let next = upcoming.first
+                mode = .singleProgram(only, next: next)
                 emptyModeSuggestions = []
                 await ensureLibraryCached()
                 activeProgramSummaries = makeSummaries(programs: programs, now: now)
+                let stats = weeklyStatsService.computeCurrentWeek(programs: programs, now: now)
+                weeklyStats = stats
+                nextAfterDominant = upcoming.dropFirst().first
+                restDayHintKey = restDayHint(dominant: next, weeklyStats: stats, now: now)
             default:
-                mode = .multiProgram(
-                    programs: programs,
-                    dominant: resolver.nextSession(across: programs, now: now)
-                )
+                let dominant = resolver.nextSession(across: programs, now: now)
+                mode = .multiProgram(programs: programs, dominant: dominant)
                 emptyModeSuggestions = []
                 await ensureLibraryCached()
                 activeProgramSummaries = makeSummaries(programs: programs, now: now)
+                weeklyStats = nil
+                nextAfterDominant = nil
+                let stats = weeklyStatsService.computeCurrentWeek(programs: programs, now: now)
+                restDayHintKey = restDayHint(dominant: dominant, weeklyStats: stats, now: now)
             }
         } catch {
             self.error = error.localizedDescription
@@ -130,8 +160,26 @@ final class SessionDashboardViewModel {
             routines = []
             emptyModeSuggestions = []
             activeProgramSummaries = []
+            weeklyStats = nil
+            nextAfterDominant = nil
+            restDayHintKey = nil
         }
         loading = false
+    }
+
+    /// Renvoie la hint Léon pour la card rest day quand la prochaine séance
+    /// dominante n'est PAS aujourd'hui. `nil` quand la séance est aujourd'hui
+    /// (mode actif normal) ou absente (programmes complétés).
+    private func restDayHint(
+        dominant: NextSessionResolver.Result?,
+        weeklyStats: WeeklyStats,
+        now: Date
+    ) -> LocalizedStringKey? {
+        guard let dominant else { return nil }
+        let calendar = Calendar.current
+        let isToday = calendar.isDate(dominant.effectiveDate, inSameDayAs: now)
+        guard !isToday else { return nil }
+        return coachLineEngine.restDayHint(weeklyCompletedCount: weeklyStats.completedCount)
     }
 
     /// Charge la library bundlée et calcule les 3 suggestions via

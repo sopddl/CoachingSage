@@ -213,6 +213,94 @@ final class SessionDashboardViewModelTests: XCTestCase {
         XCTAssertEqual(progress, 0.25, accuracy: 0.01)
     }
 
+    // MARK: - Mode rest day + WeeklyStats + nextAfter (sous-tâche 8)
+
+    func testRefreshSetsRestDayHintWhenDominantIsTomorrow() async {
+        let cal = Calendar.current
+        let tomorrow = cal.date(byAdding: .day, value: 1, to: cal.startOfDay(for: now))!
+        let prog = makePlannedRecord(sportCode: "running", date: tomorrow)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        let vm = makeVM(programRepo: progRepo, profileRepo: MockCoachingProfileRepository(),
+                        library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]))
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertNotNil(vm.restDayHintKey, "Hint Léon doit être set quand prochaine séance > J+0")
+    }
+
+    func testRefreshClearsRestDayHintWhenDominantIsToday() async {
+        let prog = makePlannedRecord(sportCode: "running", date: now)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        let vm = makeVM(programRepo: progRepo, profileRepo: MockCoachingProfileRepository(),
+                        library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]))
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertNil(vm.restDayHintKey, "Hint rest day doit être nil quand prochaine séance aujourd'hui")
+    }
+
+    func testRefreshSetsNextAfterDominantWhenSingleProgramHas2PlusSessions() async {
+        let cal = Calendar.current
+        let day0 = cal.startOfDay(for: now)
+        let day1 = cal.date(byAdding: .day, value: 1, to: day0)!
+        // Programme planned avec 2 sessions futures.
+        let s1 = PersistedSession(
+            id: UUID(), weekNumber: 1, weekTheme: "W1", weekGoal: "G1",
+            day: 1, name: "S1", durationMinutes: 30,
+            type: .endurance, warmup: nil, exercises: [], cooldown: nil,
+            plannedDate: day0
+        )
+        let s2 = PersistedSession(
+            id: UUID(), weekNumber: 1, weekTheme: "W1", weekGoal: "G1",
+            day: 2, name: "S2", durationMinutes: 30,
+            type: .endurance, warmup: nil, exercises: [], cooldown: nil,
+            plannedDate: day1
+        )
+        let prog = AdaptedProgramRecord(
+            userId: userId, sportCode: "running", level: "beginner",
+            templateId: "t", adaptedAt: Date(), weekStartDate: Date(),
+            mode: .planned, sessions: [s1, s2]
+        )
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        let vm = makeVM(programRepo: progRepo, profileRepo: MockCoachingProfileRepository(),
+                        library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]))
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertNotNil(vm.nextAfterDominant, "nextAfterDominant doit être set en mode 1-prog ≥ 2 sessions")
+        XCTAssertEqual(vm.nextAfterDominant?.session.day, 2)
+    }
+
+    func testRefreshLeavesNextAfterNilInMultiProgramMode() async {
+        let progA = makeRecord(sportCode: "running", sessionsCount: 2)
+        let progB = makeRecord(sportCode: "cycling", sessionsCount: 2)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [progA, progB]
+        let vm = makeVM(programRepo: progRepo, profileRepo: MockCoachingProfileRepository(),
+                        library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]))
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertNil(vm.nextAfterDominant)
+        XCTAssertNil(vm.weeklyStats, "weeklyStats reste nil en multi-prog (mini-widget single only)")
+    }
+
+    func testRefreshComputesWeeklyStatsInSingleProgramMode() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 3)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        let vm = makeVM(programRepo: progRepo, profileRepo: MockCoachingProfileRepository(),
+                        library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]))
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertNotNil(vm.weeklyStats)
+        XCTAssertEqual(vm.weeklyStats?.completedCount, 0)
+    }
+
     func testRefreshLeavesSuggestionsEmptyWhenLibraryThrows() async {
         let profileRepo = MockCoachingProfileRepository()
         profileRepo.stubbedProfile = CoachingProfile(id: userId)
