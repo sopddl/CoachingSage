@@ -104,6 +104,63 @@ final class SessionDashboardViewModelTests: XCTestCase {
         XCTAssertFalse(vm.loading)
     }
 
+    // MARK: - Mode vide — suggestions selectTopN
+
+    func testRefreshLoadsThreeSuggestionsInEmptyMode() async {
+        let library = ProgramTemplateLibrary(templates: [
+            makeTemplate(id: "running-beginner-x", sport: .running, level: .beginner),
+            makeTemplate(id: "cycling-beginner-x", sport: .cycling, level: .beginner),
+            makeTemplate(id: "swimming-beginner-x", sport: .swimming, level: .beginner),
+            makeTemplate(id: "yoga-regular-x", sport: .yoga, level: .regular)
+        ])
+        let profile = CoachingProfile(id: userId)
+        profile.activeSports = ["running", "cycling", "swimming"]
+        let profileRepo = MockCoachingProfileRepository()
+        profileRepo.stubbedProfile = profile
+
+        let vm = makeVM(profileRepo: profileRepo, library: library)
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(vm.mode, .empty)
+        XCTAssertEqual(vm.emptyModeSuggestions.count, 3)
+        XCTAssertEqual(Set(vm.emptyModeSuggestions.map(\.sport)), [.running, .cycling, .swimming])
+        XCTAssertEqual(vm.declaredSportCodes, ["running", "cycling", "swimming"])
+    }
+
+    func testRefreshClearsSuggestionsWhenLeavingEmptyMode() async {
+        let library = ProgramTemplateLibrary(templates: [
+            makeTemplate(id: "running-beginner-x", sport: .running, level: .beginner)
+        ])
+        let profileRepo = MockCoachingProfileRepository()
+        profileRepo.stubbedProfile = CoachingProfile(id: userId)
+        let progRepo = MockAdaptedProgramRepository()
+        let vm = makeVM(programRepo: progRepo, profileRepo: profileRepo, library: library)
+
+        await vm.refresh(userId: userId)
+        XCTAssertEqual(vm.mode, .empty)
+        XCTAssertFalse(vm.emptyModeSuggestions.isEmpty)
+
+        progRepo.stubbedActive = [makeRecord(sportCode: "running", sessionsCount: 1)]
+        await vm.refresh(userId: userId)
+        XCTAssertTrue(vm.emptyModeSuggestions.isEmpty)
+    }
+
+    func testRefreshLeavesSuggestionsEmptyWhenLibraryThrows() async {
+        let profileRepo = MockCoachingProfileRepository()
+        profileRepo.stubbedProfile = CoachingProfile(id: userId)
+        let vm = SessionDashboardViewModel(
+            programRepository: { let r = MockAdaptedProgramRepository(); return r }(),
+            routineRepository: MockRoutineRepository(),
+            coachingProfileRepository: profileRepo,
+            templateLibraryProvider: { throw URLError(.cannotLoadFromNetwork) },
+            nowProvider: { self.now }
+        )
+
+        await vm.refresh(userId: userId)
+        XCTAssertEqual(vm.mode, .empty)
+        XCTAssertTrue(vm.emptyModeSuggestions.isEmpty)
+    }
+
     // MARK: - Helpers
 
     private func makeVM(
@@ -124,7 +181,42 @@ final class SessionDashboardViewModelTests: XCTestCase {
         return SessionDashboardViewModel(
             programRepository: programRepo,
             routineRepository: routineRepo,
+            coachingProfileRepository: MockCoachingProfileRepository(),
+            templateLibraryProvider: { ProgramTemplateLibrary(templates: [
+                Self.placeholderTemplate
+            ]) },
             nowProvider: { self.now }
+        )
+    }
+
+    private func makeVM(
+        programRepo: MockAdaptedProgramRepository = MockAdaptedProgramRepository(),
+        profileRepo: MockCoachingProfileRepository,
+        library: ProgramTemplateLibrary
+    ) -> SessionDashboardViewModel {
+        let routineRepo = MockRoutineRepository()
+        return SessionDashboardViewModel(
+            programRepository: programRepo,
+            routineRepository: routineRepo,
+            coachingProfileRepository: profileRepo,
+            templateLibraryProvider: { library },
+            nowProvider: { self.now }
+        )
+    }
+
+    private static let placeholderTemplate: ProgramTemplate = ProgramTemplate(
+        id: "placeholder", schemaVersion: 1, sport: .running, level: .beginner,
+        name: "ph", durationWeeks: 4, sessionsPerWeek: 1,
+        defaultObjective: "n/a", assumedProfile: "n/a", summary: "n/a",
+        weeks: [], safetyNotes: "n/a", progressionLogic: "n/a"
+    )
+
+    private func makeTemplate(id: String, sport: Sport, level: Level) -> ProgramTemplate {
+        ProgramTemplate(
+            id: id, schemaVersion: 1, sport: sport, level: level,
+            name: id, durationWeeks: 8, sessionsPerWeek: 3,
+            defaultObjective: "test", assumedProfile: "test", summary: "test",
+            weeks: [], safetyNotes: "n/a", progressionLogic: "n/a"
         )
     }
 

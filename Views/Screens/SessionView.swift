@@ -1,20 +1,22 @@
 // Views/Screens/SessionView.swift
-// Story 3.2 — entry point « Demander un programme [sport] » sur l'onglet Séance.
-// Phase 2 #5 — les 10 sports sont accessibles via UniversalQuestionnaire (décision Sophie 2026-05-04).
-// Hot path : tap capsule → si profile sport existe, push direct AdaptedProgramView ;
-// sinon, ouvre le questionnaire ; à la fin du questionnaire, hand-off immédiat
-// (sélection template + adaptation algo) puis push AdaptedProgramView.
+// Story 3.8 — onglet « Séances » dashboard. Bascule mode vide ↔ mode actif via
+// `SessionDashboardViewModel`. Le hot path questionnaire → adapter → push
+// `AdaptedProgramView` reste branché (entrée depuis card suggestion mode vide
+// ou « Crée sur mesure »).
 //
-// Story 3.8 — sur le hand-off, on persiste l'AdaptedProgram en
-// AdaptedProgramRecord SwiftData (best-effort, ne bloque pas la nav).
+// Sous-tâche 6 livrée : mode vide complet (hint Léon + hero + 3 suggestions
+// `selectTopN` + lien sur mesure). Modes actifs (singleProgram / multiProgram)
+// restent en placeholder léger jusqu'à la sous-tâche 7.
 //
-// 100% local, 0 réseau, 0 token côté hot path.
+// 100% local sur le hot path : 0 réseau, 0 token côté adaptation.
 import SwiftUI
 import os
+import TemplateModel
 
 struct SessionView: View {
     @Environment(\.appDependencies) private var deps
 
+    @State private var dashboardViewModel: SessionDashboardViewModel?
     @State private var coachingProfile: CoachingProfile?
     @State private var loadingProfile: Bool = true
     @State private var library: ProgramTemplateLibrary?
@@ -22,102 +24,142 @@ struct SessionView: View {
     @State private var sheetSelection: SheetSelection?
     @State private var adaptedRoute: AdaptedProgramRoute?
     @State private var presentationError: String?
+    @State private var weeklyCalendarPresented: Bool = false
 
     private let adapterService = ProgramAdapterService()
     private static let persistLogger = Logger(subsystem: "com.sopddl.coachingsage", category: "session-view")
 
     enum SheetSelection: Identifiable {
         case questionnaire(sportCode: String)
+        case sportPicker
 
         var id: String {
             switch self {
             case .questionnaire(let s): return "questionnaire_\(s)"
+            case .sportPicker:          return "sport_picker"
             }
         }
     }
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    Text("session.requestProgram.title")
-                        .font(.title2.bold())
-                        .foregroundStyle(Color.coachingTextPrimary)
-                        .padding(.top, 8)
-
-                    if loadingProfile {
-                        ProgressView()
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 40)
-                    } else if coachingProfile != nil {
-                        sportsList(activeSports: coachingProfile?.activeSports ?? [])
-                    } else {
-                        Text("session.requestProgram.noProfile")
-                            .font(.body)
-                            .foregroundStyle(Color.coachingTextSecondary)
-                            .padding(.vertical, 16)
-                    }
-
-                    if let presentationError {
-                        Text(verbatim: presentationError)
-                            .font(.footnote)
-                            .foregroundStyle(Color.coachingError)
-                            .padding(.vertical, 8)
+            content
+                .background(Color.coachingBackground.ignoresSafeArea())
+                .navigationTitle(Text("tab.session"))
+                .navigationBarTitleDisplayMode(.large)
+                .toolbar { calendarToolbar }
+                .navigationDestination(isPresented: $weeklyCalendarPresented) {
+                    WeeklyCalendarPlaceholderView()
+                }
+                .navigationDestination(item: $adaptedRoute) { route in
+                    AdaptedProgramView(program: route.program)
+                }
+                .task {
+                    await bootstrapVMIfNeeded()
+                    await reloadProfile()
+                    await loadLibraryIfNeeded()
+                    await refreshDashboard()
+                }
+                .onAppear {
+                    Task {
+                        await reloadProfile(silent: true)
+                        await refreshDashboard()
                     }
                 }
-                .padding(.horizontal, 16)
-            }
-            .background(Color.coachingBackground.ignoresSafeArea())
-            .navigationTitle(Text("tab.session"))
-            .navigationBarTitleDisplayMode(.large)
-            .task {
-                await reloadProfile()
-                await loadLibraryIfNeeded()
-            }
-            .onAppear {
-                // Refetch silencieux à chaque retour pour cohérence multi-device (review P1-1).
-                Task { await reloadProfile(silent: true) }
-            }
-            .navigationDestination(item: $adaptedRoute) { route in
-                AdaptedProgramView(program: route.program)
-            }
         }
         .sheet(item: $sheetSelection) { selection in
             sheet(for: selection)
         }
     }
 
-    // MARK: - Sports list
-
-    /// Tous les sports sont tappables (décision Sophie 2026-05-04 — Phase 2 #5).
-    /// `activeSports` sert uniquement de tri : favoris remontés en haut, autres en dessous.
-    @ViewBuilder
-    private func sportsList(activeSports: [String]) -> some View {
-        let ordered = orderedSportCodes(activeSports: activeSports)
-        VStack(spacing: 10) {
-            ForEach(ordered, id: \.self) { code in
-                SportCapsule(
-                    sportCode: code,
-                    onTap: {
-                        Task { await handleTap(sportCode: code) }
-                    }
-                )
+    @ToolbarContentBuilder
+    private var calendarToolbar: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Button {
+                weeklyCalendarPresented = true
+            } label: {
+                Image(systemName: "calendar")
+                    .accessibilityLabel(Text("dashboard.toolbar.calendar"))
             }
+            .accessibilityIdentifier("dashboard.toolbar.calendar")
         }
     }
 
-    /// Sports actifs en premier (ordre profil), puis les autres `SportCode.allCases` non-actifs
-    /// (ordre enum déterministe). Doublons éliminés.
-    private func orderedSportCodes(activeSports: [String]) -> [String] {
-        let allCodes = SportCode.allCases.map { $0.rawValue }
-        let activeFiltered = activeSports.filter { allCodes.contains($0) }
-        var seen = Set<String>(activeFiltered)
-        var ordered = activeFiltered
-        for code in allCodes where !seen.contains(code) {
-            ordered.append(code)
-            seen.insert(code)
+    @ViewBuilder
+    private var content: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                if let dashboardViewModel, !dashboardViewModel.loading || coachingProfile != nil {
+                    modeContent(vm: dashboardViewModel)
+                } else if loadingProfile || dashboardViewModel?.loading == true {
+                    ProgressView()
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 40)
+                } else {
+                    Text("session.requestProgram.noProfile")
+                        .font(.body)
+                        .foregroundStyle(Color.coachingTextSecondary)
+                        .padding(.vertical, 16)
+                }
+
+                if let presentationError {
+                    Text(verbatim: presentationError)
+                        .font(.footnote)
+                        .foregroundStyle(Color.coachingError)
+                        .padding(.vertical, 8)
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 8)
         }
-        return ordered
+    }
+
+    @ViewBuilder
+    private func modeContent(vm: SessionDashboardViewModel) -> some View {
+        switch vm.mode {
+        case .empty:
+            EmptyDashboardView(
+                suggestions: vm.emptyModeSuggestions,
+                hintKey: hintKey(for: vm),
+                onTapSuggestion: { template in
+                    Task { await handleTap(sportCode: template.sport.rawValue) }
+                },
+                onTapCustom: {
+                    sheetSelection = .sportPicker
+                }
+            )
+        case .singleProgram, .multiProgram:
+            // Sous-tâche 7 livrera le mode actif (cards programmes + dominante).
+            // Placeholder neutre pour l'instant.
+            ActiveModePlaceholder()
+        }
+    }
+
+    /// Texte hint Léon — calibré sur autoprofil HK quand `CoachingProfile.healthAutofill`
+    /// existera (sous-tâche 8 + flux A/B). Pour V1, on choisit le texte selon la
+    /// présence de sports déclarés à l'onboarding.
+    private func hintKey(for vm: SessionDashboardViewModel) -> LocalizedStringKey {
+        vm.declaredSportCodes.isEmpty
+            ? "dashboard.empty.hint.default"
+            : "dashboard.empty.hint.declared"
+    }
+
+    // MARK: - Bootstrap VM
+
+    private func bootstrapVMIfNeeded() async {
+        guard dashboardViewModel == nil, let deps else { return }
+        dashboardViewModel = SessionDashboardViewModel(
+            programRepository: deps.adaptedProgramRepository,
+            routineRepository: deps.routineRepository,
+            coachingProfileRepository: deps.coachingProfileRepository
+        )
+    }
+
+    private func refreshDashboard() async {
+        guard let vm = dashboardViewModel,
+              let userId = SupabaseService.shared.client.auth.currentSession?.user.id
+        else { return }
+        await vm.refresh(userId: userId)
     }
 
     // MARK: - Tap handler
@@ -128,7 +170,7 @@ struct SessionView: View {
         if let existing {
             await presentAdaptedProgram(for: existing)
         } else {
-            sheetSelection = SheetSelection.questionnaire(sportCode: sportCode)
+            sheetSelection = .questionnaire(sportCode: sportCode)
         }
     }
 
@@ -139,6 +181,10 @@ struct SessionView: View {
         switch selection {
         case .questionnaire(let code):
             questionnaireSheet(sportCode: code)
+        case .sportPicker:
+            SportPickerSheet { code in
+                sheetSelection = .questionnaire(sportCode: code)
+            }
         }
     }
 
@@ -177,7 +223,6 @@ struct SessionView: View {
             return
         }
         guard let coachingProfile else {
-            // CoachingProfile nécessaire pour MedicalClearanceRule. Pas de profile → pas de programme.
             presentationError = String(localized: "session.adapter.profileMissing")
             return
         }
@@ -192,12 +237,12 @@ struct SessionView: View {
         )
         await persistAdaptedProgram(adapted)
         adaptedRoute = AdaptedProgramRoute(program: adapted)
+        await refreshDashboard()
     }
 
     /// Story 3.8 — persiste l'AdaptedProgram en `AdaptedProgramRecord` SwiftData
-    /// pour alimenter le dashboard Séances (prochaine séance, tri, drag&drop, complétion).
-    /// Best-effort : un échec n'empêche pas la navigation vers `AdaptedProgramView`
-    /// (l'utilisateur conserve l'expérience temps-réel). L'erreur est loguée.
+    /// pour alimenter le dashboard Séances. Best-effort : un échec n'empêche pas
+    /// la navigation vers `AdaptedProgramView`.
     private func persistAdaptedProgram(_ adapted: AdaptedProgram) async {
         guard let deps else { return }
         guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else {
@@ -256,71 +301,22 @@ private struct AdaptedProgramRoute: Hashable {
     static func == (lhs: AdaptedProgramRoute, rhs: AdaptedProgramRoute) -> Bool { lhs.id == rhs.id }
 }
 
-// MARK: - SportCapsule
+// MARK: - Mode actif placeholder (sous-tâche 7)
 
-private struct SportCapsule: View {
-    let sportCode: String
-    let onTap: () -> Void
-
+private struct ActiveModePlaceholder: View {
     var body: some View {
-        Button(action: onTap) {
-            HStack(spacing: 12) {
-                Image(systemName: sfSymbol(for: sportCode))
-                    .font(.title3)
-                    .foregroundStyle(Color.coachingPrimary)
-                    .frame(width: 28)
+        VStack(spacing: 12) {
+            Image(systemName: "hourglass")
+                .font(.system(size: 36, weight: .light))
+                .foregroundStyle(Color.coachingPrimary.opacity(0.6))
 
-                Text(SportCapsule.requestProgramKey(for: sportCode))
-                    .font(.body)
-                    .foregroundStyle(Color.coachingTextPrimary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-
-                Image(systemName: "chevron.right")
-                    .font(.footnote)
-                    .foregroundStyle(Color.coachingTextSecondary)
-            }
-            .padding(.vertical, 14)
-            .padding(.horizontal, 16)
-            .background(Color.coachingCard)
-            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+            Text("dashboard.active.placeholder")
+                .font(.coachingBody)
+                .foregroundStyle(Color.coachingTextSecondary)
+                .multilineTextAlignment(.center)
         }
-        .buttonStyle(.plain)
-    }
-
-    /// Mapping explicite sport → clé i18n.
-    /// `LocalizedStringKey("...\(var)...")` avec interpolation dynamique ne résout PAS la lookup
-    /// (SwiftUI traite l'interpolation comme un format spec). Switch verbose mais fiable.
-    static func requestProgramKey(for sportCode: String) -> LocalizedStringKey {
-        switch sportCode {
-        case "running":          return "session.button.requestProgram.running"
-        case "cycling":          return "session.button.requestProgram.cycling"
-        case "swimming":         return "session.button.requestProgram.swimming"
-        case "triathlon":        return "session.button.requestProgram.triathlon"
-        case "strengthTraining": return "session.button.requestProgram.strengthTraining"
-        case "yoga":             return "session.button.requestProgram.yoga"
-        case "hiit":             return "session.button.requestProgram.hiit"
-        case "hiking":           return "session.button.requestProgram.hiking"
-        case "tennis":           return "session.button.requestProgram.tennis"
-        case "football":         return "session.button.requestProgram.football"
-        default:                 return "session.requestProgram.unsupportedSport"
-        }
-    }
-
-    /// SF Symbol par code sport — aligné enum SportCode.
-    private func sfSymbol(for sportCode: String) -> String {
-        switch sportCode {
-        case "running": return "figure.run"
-        case "cycling": return "figure.outdoor.cycle"
-        case "swimming": return "figure.pool.swim"
-        case "triathlon": return "figure.mixed.cardio"
-        case "strengthTraining": return "dumbbell.fill"
-        case "yoga": return "figure.yoga"
-        case "hiit": return "bolt.heart.fill"
-        case "hiking": return "figure.hiking"
-        case "tennis": return "figure.tennis"
-        case "football": return "soccerball"
-        default: return "questionmark.circle"
-        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 60)
     }
 }
 
