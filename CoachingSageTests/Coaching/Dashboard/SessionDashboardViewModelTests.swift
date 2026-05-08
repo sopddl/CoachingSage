@@ -118,7 +118,7 @@ final class SessionDashboardViewModelTests: XCTestCase {
         let profileRepo = MockCoachingProfileRepository()
         profileRepo.stubbedProfile = profile
 
-        let vm = makeVM(profileRepo: profileRepo, library: library)
+        let vm = makeVM(programRepo: MockAdaptedProgramRepository(), profileRepo: profileRepo, library: library)
         await vm.refresh(userId: userId)
 
         XCTAssertEqual(vm.mode, .empty)
@@ -143,6 +143,74 @@ final class SessionDashboardViewModelTests: XCTestCase {
         progRepo.stubbedActive = [makeRecord(sportCode: "running", sessionsCount: 1)]
         await vm.refresh(userId: userId)
         XCTAssertTrue(vm.emptyModeSuggestions.isEmpty)
+    }
+
+    // MARK: - Mode actif — tri programmes par date prochaine séance
+
+    func testRefreshSortsActiveProgramsByNextDateAscending() async {
+        // 3 progs planned avec sessions datées : J+1, J+0, J+5.
+        // Tri attendu : J+0, J+1, J+5 (la plus proche en haut, décision party #3).
+        let cal = Calendar.current
+        let day0 = cal.startOfDay(for: now)
+        let day1 = cal.date(byAdding: .day, value: 1, to: day0)!
+        let day5 = cal.date(byAdding: .day, value: 5, to: day0)!
+
+        let progLate = makePlannedRecord(sportCode: "running", date: day5)
+        let progNow = makePlannedRecord(sportCode: "swimming", date: day0)
+        let progSoon = makePlannedRecord(sportCode: "cycling", date: day1)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [progLate, progNow, progSoon]
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate])
+        )
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(vm.activeProgramSummaries.count, 3)
+        XCTAssertEqual(vm.activeProgramSummaries.map(\.record.sportCode),
+                       ["swimming", "cycling", "running"])
+    }
+
+    func testRefreshActiveSummariesResolveTemplateNameFromLibrary() async {
+        let templateId = "running-beginner-5k-8sem"
+        let library = ProgramTemplateLibrary(templates: [
+            ProgramTemplate(
+                id: templateId, schemaVersion: 1, sport: .running, level: .beginner,
+                name: "Mon premier 5K", durationWeeks: 8, sessionsPerWeek: 3,
+                defaultObjective: "n/a", assumedProfile: "n/a", summary: "s",
+                weeks: [], safetyNotes: "n/a", progressionLogic: "n/a"
+            )
+        ])
+        let prog = makeRecord(sportCode: "running", sessionsCount: 3, templateId: templateId)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+
+        let vm = makeVM(programRepo: progRepo, profileRepo: MockCoachingProfileRepository(), library: library)
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(vm.activeProgramSummaries.first?.templateName, "Mon premier 5K")
+    }
+
+    func testRefreshActiveSummariesProgressFractionFromCompletionState() async throws {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 4)
+        // Marque 1 sur 4 sessions complétées.
+        var state = ProgramCompletionState.empty
+        state.sessionRecords[prog.sessions[0].id] = SessionCompletionRecord(completedAt: Date())
+        prog.completionState = state
+
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate])
+        )
+        await vm.refresh(userId: userId)
+
+        let progress = try XCTUnwrap(vm.activeProgramSummaries.first?.progress)
+        XCTAssertEqual(progress, 0.25, accuracy: 0.01)
     }
 
     func testRefreshLeavesSuggestionsEmptyWhenLibraryThrows() async {
@@ -190,7 +258,7 @@ final class SessionDashboardViewModelTests: XCTestCase {
     }
 
     private func makeVM(
-        programRepo: MockAdaptedProgramRepository = MockAdaptedProgramRepository(),
+        programRepo: MockAdaptedProgramRepository,
         profileRepo: MockCoachingProfileRepository,
         library: ProgramTemplateLibrary
     ) -> SessionDashboardViewModel {
@@ -222,7 +290,8 @@ final class SessionDashboardViewModelTests: XCTestCase {
 
     private func makeRecord(
         sportCode: String,
-        sessionsCount: Int
+        sessionsCount: Int,
+        templateId: String? = nil
     ) -> AdaptedProgramRecord {
         let sessions = (1...sessionsCount).map { day in
             PersistedSession(
@@ -243,11 +312,32 @@ final class SessionDashboardViewModelTests: XCTestCase {
             userId: userId,
             sportCode: sportCode,
             level: "beginner",
-            templateId: "test-\(sportCode)",
+            templateId: templateId ?? "test-\(sportCode)",
             adaptedAt: Date(timeIntervalSince1970: 1_699_000_000),
             weekStartDate: Date(),
             mode: .ondemand,
             sessions: sessions
+        )
+    }
+
+    /// Record en mode `.planned` avec une seule session datée — teste le tri
+    /// `activeProgramSummaries` par `effectiveDate` ascendant.
+    private func makePlannedRecord(sportCode: String, date: Date) -> AdaptedProgramRecord {
+        let session = PersistedSession(
+            id: UUID(), weekNumber: 1, weekTheme: "W1", weekGoal: "G1",
+            day: 1, name: "Session", durationMinutes: 30,
+            type: .endurance, warmup: nil, exercises: [], cooldown: nil,
+            plannedDate: date
+        )
+        return AdaptedProgramRecord(
+            userId: userId,
+            sportCode: sportCode,
+            level: "beginner",
+            templateId: "test-\(sportCode)",
+            adaptedAt: Date(timeIntervalSince1970: 1_699_000_000),
+            weekStartDate: Date(),
+            mode: .planned,
+            sessions: [session]
         )
     }
 }

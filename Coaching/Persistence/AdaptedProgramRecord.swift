@@ -9,6 +9,7 @@
 // (lesson lessons_swiftdata #1).
 import Foundation
 import SwiftData
+import TemplateModel
 
 /// Mode de planification d'un programme adapté.
 /// - `.ondemand` : pool de séances non datées, l'utilisateur déclenche au feeling.
@@ -149,5 +150,46 @@ extension AdaptedProgramRecord {
         cal.firstWeekday = 2
         let comps = cal.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now)
         return cal.date(from: comps) ?? now
+    }
+
+    /// Reconstruction inverse vers `AdaptedProgram` mémoire. Utilisée par les
+    /// vues qui consomment la struct (ex. `AdaptedProgramView` push depuis
+    /// dashboard Séances mode actif). Les `appliedRules` ne sont pas persistés
+    /// (audit-only), donc reconstitués à `[]` — comportement attendu.
+    func toAdaptedProgram() -> AdaptedProgram? {
+        guard let sport = Sport(sportCode: sportCode),
+              let level = Level(profileLevel: level)
+        else { return nil }
+        let grouped = Dictionary(grouping: sessions, by: \.weekNumber)
+        let weeks = grouped.keys.sorted().compactMap { wn -> AdaptedWeek? in
+            let weekSessions = (grouped[wn] ?? []).sorted(by: { $0.day < $1.day })
+            guard let first = weekSessions.first else { return nil }
+            let adapted = weekSessions.map { ps in
+                AdaptedSession(
+                    day: ps.day,
+                    name: ps.name,
+                    durationMinutes: ps.durationMinutes,
+                    type: ps.type,
+                    warmup: ps.warmup,
+                    exercises: ps.exercises,
+                    cooldown: ps.cooldown
+                )
+            }
+            return AdaptedWeek(
+                weekNumber: wn,
+                theme: first.weekTheme,
+                goal: first.weekGoal,
+                sessions: adapted
+            )
+        }
+        return AdaptedProgram(
+            templateId: templateId,
+            sport: sport,
+            level: level,
+            appliedAt: adaptedAt,
+            weeks: weeks,
+            appliedRules: [],
+            requiresAIAssist: false
+        )
     }
 }

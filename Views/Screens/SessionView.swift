@@ -25,6 +25,7 @@ struct SessionView: View {
     @State private var adaptedRoute: AdaptedProgramRoute?
     @State private var presentationError: String?
     @State private var weeklyCalendarPresented: Bool = false
+    @State private var nowTick: Date = Date()
 
     private let adapterService = ProgramAdapterService()
     private static let persistLogger = Logger(subsystem: "com.sopddl.coachingsage", category: "session-view")
@@ -129,10 +130,49 @@ struct SessionView: View {
                 }
             )
         case .singleProgram, .multiProgram:
-            // Sous-tâche 7 livrera le mode actif (cards programmes + dominante).
-            // Placeholder neutre pour l'instant.
-            ActiveModePlaceholder()
+            ActiveDashboardView(
+                dominant: dominantNextSession(vm: vm),
+                programs: vm.activeProgramSummaries,
+                routines: vm.routines,
+                nowProvider: { nowTick },
+                onTapDominantStart: { result in
+                    pushAdaptedProgram(record: result.program)
+                },
+                onTapProgram: { summary in
+                    pushAdaptedProgram(record: summary.record)
+                },
+                onTapCreateProgram: {
+                    sheetSelection = .sportPicker
+                },
+                onTapCreateRoutine: {
+                    presentationError = String(localized: "dashboard.active.create.routine.placeholder")
+                },
+                onTapWeeklyReorder: {
+                    weeklyCalendarPresented = true
+                }
+            )
         }
+    }
+
+    /// Récupère le `NextSessionResolver.Result` selon le mode courant — la
+    /// View le passe à la card dominante quand pertinent.
+    private func dominantNextSession(vm: SessionDashboardViewModel) -> NextSessionResolver.Result? {
+        switch vm.mode {
+        case .empty: return nil
+        case .singleProgram(_, let next): return next
+        case .multiProgram(_, let dominant): return dominant
+        }
+    }
+
+    /// Reconstruit l'`AdaptedProgram` mémoire depuis le record persisté et push
+    /// la vue maître. Si la conversion échoue (sport/level non mappable, hors
+    /// V1), on flag l'erreur visible plutôt que de silencer la nav.
+    private func pushAdaptedProgram(record: AdaptedProgramRecord) {
+        guard let program = record.toAdaptedProgram() else {
+            presentationError = String(localized: "session.adapter.profileMissing")
+            return
+        }
+        adaptedRoute = AdaptedProgramRoute(program: program)
     }
 
     /// Texte hint Léon — calibré sur autoprofil HK quand `CoachingProfile.healthAutofill`
@@ -299,25 +339,6 @@ private struct AdaptedProgramRoute: Hashable {
 
     func hash(into hasher: inout Hasher) { hasher.combine(id) }
     static func == (lhs: AdaptedProgramRoute, rhs: AdaptedProgramRoute) -> Bool { lhs.id == rhs.id }
-}
-
-// MARK: - Mode actif placeholder (sous-tâche 7)
-
-private struct ActiveModePlaceholder: View {
-    var body: some View {
-        VStack(spacing: 12) {
-            Image(systemName: "hourglass")
-                .font(.system(size: 36, weight: .light))
-                .foregroundStyle(Color.coachingPrimary.opacity(0.6))
-
-            Text("dashboard.active.placeholder")
-                .font(.coachingBody)
-                .foregroundStyle(Color.coachingTextSecondary)
-                .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 60)
-    }
 }
 
 #Preview {
