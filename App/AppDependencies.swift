@@ -16,6 +16,7 @@ struct AppDependencies {
     let syncService: any SyncServiceProtocol
     let accountService: any AccountServiceProtocol
     let healthKitService: any HealthKitServiceProtocol
+    let sageCoachingAIService: any SageCoachingAIServiceProtocol
 
     @MainActor
     static func live(modelContext: ModelContext) -> AppDependencies {
@@ -34,7 +35,8 @@ struct AppDependencies {
             authService: authService,
             syncService: SyncService(modelContext: modelContext),
             accountService: AccountService(coreProfileRepository: coreProfileRepository),
-            healthKitService: DefaultHealthKitService()
+            healthKitService: DefaultHealthKitService(),
+            sageCoachingAIService: DefaultSageCoachingAIService()
         )
     }
 }

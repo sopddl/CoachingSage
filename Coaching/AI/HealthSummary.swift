@@ -50,6 +50,18 @@ public struct HealthSummary: Codable, Equatable, Sendable {
         self.hasAppleWatch = hasAppleWatch
     }
 
+    /// snake_case côté JSON pour correspondre au contrat de l'Edge Function (cf
+    /// supabase/functions/sage-coaching-ai/prompts.ts qui réfère aux clés
+    /// "vo2max_bucket", "resting_heart_rate_bpm", etc.).
+    enum CodingKeys: String, CodingKey {
+        case vo2maxBucket = "vo2max_bucket"
+        case restingHeartRateBpm = "resting_heart_rate_bpm"
+        case maxObservedHeartRateBpm = "max_observed_heart_rate_bpm"
+        case weeklyWorkoutsAverage4w = "weekly_workouts_average_4w"
+        case recentWorkouts = "recent_workouts"
+        case hasAppleWatch = "has_apple_watch"
+    }
+
     /// Snapshot d'un workout. Anonymisé : `daysAgo` relatif, pas de date absolue.
     public struct WorkoutSnapshot: Codable, Equatable, Sendable {
         /// `Sport.rawValue` si HK activity type matche, sinon nil (Léon ignorera).
@@ -71,6 +83,14 @@ public struct HealthSummary: Codable, Equatable, Sendable {
             self.averageHeartRateBpm = averageHeartRateBpm
             self.maxHeartRateBpm = maxHeartRateBpm
             self.daysAgo = daysAgo
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sportCode = "sport_code"
+            case durationMinutes = "duration_minutes"
+            case averageHeartRateBpm = "average_heart_rate_bpm"
+            case maxHeartRateBpm = "max_heart_rate_bpm"
+            case daysAgo = "days_ago"
         }
     }
 
