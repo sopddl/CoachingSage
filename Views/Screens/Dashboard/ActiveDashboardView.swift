@@ -252,9 +252,10 @@ private struct RestDayCard: View {
                 .tracking(1.2)
                 .foregroundStyle(Color.coachingOnPrimary.opacity(0.92))
 
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
-                Text(verbatim: "🌿")
-                    .font(.system(size: 22))
+            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                Image(systemName: "hourglass.bottomhalf.filled")
+                    .font(.system(size: 20, weight: .semibold))
+                    .foregroundStyle(Color.coachingOnPrimary)
                 Text("dashboard.active.rest.title")
                     .font(.system(size: 19, weight: .semibold, design: .serif))
                     .foregroundStyle(Color.coachingOnPrimary)

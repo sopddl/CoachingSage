@@ -55,8 +55,10 @@ struct EmptyDashboardView: View {
 private struct HeroCard: View {
     var body: some View {
         HStack(alignment: .top, spacing: 14) {
-            Text(verbatim: "🌱")
-                .font(.system(size: 32))
+            Image(systemName: "figure.run")
+                .font(.system(size: 32, weight: .semibold))
+                .foregroundStyle(Color.coachingOnPrimary)
+                .frame(width: 38, height: 38)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text("dashboard.empty.hero.title")

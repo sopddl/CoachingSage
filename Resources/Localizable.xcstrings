@@ -962,8 +962,18 @@
     },
     "dashboard.active.next.after.title" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "And then" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Et après" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "And then"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Et après"
+          }
+        }
       }
     },
     "dashboard.active.next.cta" : {
@@ -980,90 +990,6 @@
             "value" : "Démarrer la séance"
           }
         }
-      }
-    },
-    "dashboard.active.rest.hint.balanced" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Two sessions this week — your body will love today's pause." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Deux séances cette semaine — ton corps appréciera la pause d'aujourd'hui." } }
-      }
-    },
-    "dashboard.active.rest.hint.fresh" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Fully rested today — let yourself recharge." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Repos complet aujourd'hui — laisse-toi recharger." } }
-      }
-    },
-    "dashboard.active.rest.hint.intense" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Three+ sessions in the books this week. Hydrate, sleep well — your body is consolidating." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "3+ séances déjà cette semaine. Hydrate-toi, dors bien — ton corps consolide." } }
-      }
-    },
-    "dashboard.active.rest.hint.warmingUp" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "One session done — a well-earned break." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Une séance déjà faite — repos bien mérité." } }
-      }
-    },
-    "dashboard.active.rest.label" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "RECOVERY" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "RÉCUPÉRATION" } }
-      }
-    },
-    "dashboard.active.rest.meta" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Hydrate, walk easy, sleep well. Your body is consolidating." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Hydrate-toi, marche tranquille, dors bien. Ton corps consolide." } }
-      }
-    },
-    "dashboard.active.rest.next" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Next session · %1$@ — %2$@" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Prochaine séance · %1$@ — %2$@" } }
-      }
-    },
-    "dashboard.active.rest.section.title" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Today" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aujourd'hui" } }
-      }
-    },
-    "dashboard.active.rest.title" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "🌿 Recovery day" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "🌿 Jour de récup" } }
-      }
-    },
-    "dashboard.active.weekly.completed" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "SESSIONS" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "SÉANCES" } }
-      }
-    },
-    "dashboard.active.weekly.streak" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "STREAK" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "STREAK" } }
-      }
-    },
-    "dashboard.active.weekly.unit.day" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "d" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "j" } }
-      }
-    },
-    "dashboard.active.weekly.unit.min" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "min" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "min" } }
-      }
-    },
-    "dashboard.active.weekly.volume" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "VOLUME" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "VOLUME" } }
       }
     },
     "dashboard.active.next.meta" : {
@@ -1181,6 +1107,150 @@
         }
       }
     },
+    "dashboard.active.rest.hint.balanced" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Two sessions this week — your body will love today's pause."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deux séances cette semaine — ton corps appréciera la pause d'aujourd'hui."
+          }
+        }
+      }
+    },
+    "dashboard.active.rest.hint.fresh" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fully rested today — let yourself recharge."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repos complet aujourd'hui — laisse-toi recharger."
+          }
+        }
+      }
+    },
+    "dashboard.active.rest.hint.intense" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Three+ sessions in the books this week. Hydrate, sleep well — your body is consolidating."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3+ séances déjà cette semaine. Hydrate-toi, dors bien — ton corps consolide."
+          }
+        }
+      }
+    },
+    "dashboard.active.rest.hint.warmingUp" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One session done — a well-earned break."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une séance déjà faite — repos bien mérité."
+          }
+        }
+      }
+    },
+    "dashboard.active.rest.label" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RECOVERY"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RÉCUPÉRATION"
+          }
+        }
+      }
+    },
+    "dashboard.active.rest.meta" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hydrate, walk easy, sleep well. Your body is consolidating."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hydrate-toi, marche tranquille, dors bien. Ton corps consolide."
+          }
+        }
+      }
+    },
+    "dashboard.active.rest.next" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next session · %1$@ — %2$@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prochaine séance · %1$@ — %2$@"
+          }
+        }
+      }
+    },
+    "dashboard.active.rest.section.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aujourd'hui"
+          }
+        }
+      }
+    },
+    "dashboard.active.rest.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🌿 Recovery day"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🌿 Jour de récup"
+          }
+        }
+      }
+    },
     "dashboard.active.routine.duration" : {
       "comment" : "ex. 12 min",
       "localizations" : {
@@ -1214,6 +1284,22 @@
         }
       }
     },
+    "dashboard.active.weekly.completed" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SESSIONS"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SÉANCES"
+          }
+        }
+      }
+    },
     "dashboard.active.weekly.reorder" : {
       "localizations" : {
         "en" : {
@@ -1226,6 +1312,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réorganiser ma semaine"
+          }
+        }
+      }
+    },
+    "dashboard.active.weekly.streak" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "STREAK"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "STREAK"
+          }
+        }
+      }
+    },
+    "dashboard.active.weekly.unit.day" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "d"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "j"
+          }
+        }
+      }
+    },
+    "dashboard.active.weekly.unit.min" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "min"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "min"
+          }
+        }
+      }
+    },
+    "dashboard.active.weekly.volume" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VOLUME"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VOLUME"
           }
         }
       }
@@ -1423,50 +1573,102 @@
         }
       }
     },
-    "dashboard.weekly.placeholder.navtitle" : {
+    "dashboard.weekly.day.empty" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "My week"
+            "value" : "Rest day"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ma semaine"
+            "value" : "Repos"
           }
         }
       }
     },
-    "dashboard.weekly.placeholder.subtitle" : {
+    "dashboard.weekly.error" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reschedule your sessions across the week with a tap. Arrives in the next sub-task."
+            "value" : "Couldn't load your week. Pull to refresh."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Réorganise tes séances sur la semaine d'un geste. Arrive à la prochaine sous-tâche."
+            "value" : "Ta semaine n'a pas pu être chargée. Tire pour rafraîchir."
           }
         }
       }
     },
-    "dashboard.weekly.placeholder.title" : {
+    "dashboard.weekly.pool.empty" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Weekly drag & drop coming soon"
+            "value" : "All sessions placed in the week."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Drag & drop hebdo bientôt"
+            "value" : "Toutes les séances sont placées dans la semaine."
+          }
+        }
+      }
+    },
+    "dashboard.weekly.pool.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To plan"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À planifier"
+          }
+        }
+      }
+    },
+    "dashboard.weekly.session.duration" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        }
+      }
+    },
+    "dashboard.weekly.session.duration %lld" : {
+
+    },
+    "dashboard.weekly.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reorganize my week"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réorganiser ma semaine"
           }
         }
       }

@@ -45,6 +45,32 @@ extension Color {
     static let coachingLeon = Color(hex: 0x1E5090)
     /// #E8F0FA — Blanc bleuté, texte sur bulle Léon.
     static let coachingLeonText = Color(hex: 0xE8F0FA)
+
+    // MARK: - Identité Sages (FAB Léon, badges)
+    /// #F3EDE2 — Sable iOS partagé GS/TS pour le fond du FAB et badge étoile.
+    static let coachingSand = Color(hex: 0xF3EDE2)
+    /// #5C5248 — Marron Sages pour l'étoile 8 branches du badge.
+    static let coachingSageStar = Color(hex: 0x5C5248)
+
+    // MARK: - Identité sport (calendrier hebdo multi-prog)
+    /// Mapping `Sport.rawValue` → couleur signature, choisie pour distinguabilité
+    /// sur fond `coachingCard` (#EDE9E3). Fallback `coachingTextSecondary` pour
+    /// les sport codes inconnus (futurs ajouts au manifest).
+    static func coachingSport(forCode code: String) -> Color {
+        switch code {
+        case "running":           return Color(hex: 0x1E5090)
+        case "cycling":           return Color(hex: 0x2D8A4E)
+        case "swimming":          return Color(hex: 0x4FB3D9)
+        case "triathlon":         return Color(hex: 0xD4A85A)
+        case "strength_training": return Color(hex: 0x8C4A2E)
+        case "yoga":              return Color(hex: 0x9B6BB3)
+        case "hiit":              return Color(hex: 0xC43D3D)
+        case "hiking":            return Color(hex: 0x4A7044)
+        case "tennis":            return Color(hex: 0xE08A3A)
+        case "football":          return Color(hex: 0x1B3A5C)
+        default:                  return .coachingTextSecondary
+        }
+    }
 }
 
 extension Color {

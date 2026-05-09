@@ -14,6 +14,14 @@ struct AdaptedProgramView: View {
     /// sera livrée en Story 3.3b.
     var onRequestAIAssist: (() -> Void)? = nil
 
+    /// Story 3.8 sous-tâche drag&drop — id de l'`AdaptedProgramRecord` persisté.
+    /// Set par le push depuis le dashboard Séances mode actif (entry point #2 du
+    /// `WeeklyCalendarView`). `nil` sur le hot path post-adapt (le record vient
+    /// d'être créé, l'utilisateur n'a pas encore manipulé son calendrier).
+    var recordId: UUID? = nil
+
+    @State private var weeklyCalendarPresented: Bool = false
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
@@ -37,6 +45,24 @@ struct AdaptedProgramView: View {
         }
         .navigationTitle(Text("coaching.adapter.title"))
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            if recordId != nil {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        weeklyCalendarPresented = true
+                    } label: {
+                        Image(systemName: "calendar")
+                            .accessibilityLabel(Text("dashboard.toolbar.calendar"))
+                    }
+                    .accessibilityIdentifier("coaching.adapter.toolbar.calendar")
+                }
+            }
+        }
+        .navigationDestination(isPresented: $weeklyCalendarPresented) {
+            if let recordId {
+                WeeklyCalendarView(mode: .singleProgram(id: recordId))
+            }
+        }
     }
 
     // MARK: - Header

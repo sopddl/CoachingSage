@@ -13,9 +13,16 @@ final class CoachingSageUITests: XCTestCase {
     }
 
     func testAppLaunchesToMainTabView() throws {
-        let tabBar = app.tabBars.firstMatch
-        XCTAssertTrue(tabBar.waitForExistence(timeout: 5), "Tab bar should be visible after auto-auth in UI testing mode")
-        XCTAssertEqual(tabBar.buttons.count, 3, "MainTabView should expose 3 tabs (Story 3.8)")
+        // Story 3.8 (UI fix 2026-05-09) — passage en custom HStack tab bar
+        // (pattern GardenSage). `app.tabBars` ne matche plus, on cible directement
+        // les `accessibilityIdentifier` des boutons.
+        XCTAssertTrue(
+            app.buttons["tab.session"].waitForExistence(timeout: 5),
+            "Onglet Séances doit être visible après auto-auth en mode UI testing"
+        )
+        XCTAssertTrue(app.buttons["tab.progress"].exists, "Onglet Progrès doit être visible")
+        XCTAssertTrue(app.buttons["tab.profile"].exists, "Onglet Profil doit être visible")
+        XCTAssertTrue(app.buttons["leon.fab"].exists, "FAB Léon doit être visible (3.8)")
     }
 
     func testEachTabShowsItsPlaceholder() throws {

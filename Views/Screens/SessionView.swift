@@ -50,10 +50,10 @@ struct SessionView: View {
                 .navigationBarTitleDisplayMode(.large)
                 .toolbar { calendarToolbar }
                 .navigationDestination(isPresented: $weeklyCalendarPresented) {
-                    WeeklyCalendarPlaceholderView()
+                    WeeklyCalendarView(mode: .allActivePrograms)
                 }
                 .navigationDestination(item: $adaptedRoute) { route in
-                    AdaptedProgramView(program: route.program)
+                    AdaptedProgramView(program: route.program, recordId: route.recordId)
                 }
                 .task {
                     await bootstrapVMIfNeeded()
@@ -175,7 +175,7 @@ struct SessionView: View {
             presentationError = String(localized: "session.adapter.profileMissing")
             return
         }
-        adaptedRoute = AdaptedProgramRoute(program: program)
+        adaptedRoute = AdaptedProgramRoute(program: program, recordId: record.id)
     }
 
     /// Texte hint Léon — calibré sur autoprofil HK quand `CoachingProfile.healthAutofill`
@@ -279,7 +279,7 @@ struct SessionView: View {
             coachingProfile: coachingProfile
         )
         await persistAdaptedProgram(adapted)
-        adaptedRoute = AdaptedProgramRoute(program: adapted)
+        adaptedRoute = AdaptedProgramRoute(program: adapted, recordId: nil)
         await refreshDashboard()
     }
 
@@ -339,6 +339,9 @@ struct SessionView: View {
 private struct AdaptedProgramRoute: Hashable {
     let id: UUID = UUID()
     let program: AdaptedProgram
+    /// Story 3.8 — id du `AdaptedProgramRecord` persisté ; alimente le toolbar 📅
+    /// (entry point #2 `WeeklyCalendarView`). `nil` sur le hot path post-adapt.
+    let recordId: UUID?
 
     func hash(into hasher: inout Hasher) { hasher.combine(id) }
     static func == (lhs: AdaptedProgramRoute, rhs: AdaptedProgramRoute) -> Bool { lhs.id == rhs.id }
