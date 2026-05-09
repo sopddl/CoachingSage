@@ -9,9 +9,8 @@ import TemplateModel
 struct AdaptedProgramView: View {
     let program: AdaptedProgram
 
-    /// Callback déclenché par le bouton "Demander à Léon". Stub Story 3.3a
-    /// — l'implémentation réelle (appel Edge Function `sage-coaching-ai?mode=adapt-rare`)
-    /// sera livrée en Story 3.3b.
+    /// Callback déclenché par le bouton "Demander à Léon". Câblé en Story 3.3b
+    /// par AdaptedProgramScreen (wrapper VM). `nil` côté Preview (rendu statique).
     var onRequestAIAssist: (() -> Void)? = nil
 
     /// Story 3.8 sous-tâche drag&drop — id de l'`AdaptedProgramRecord` persisté.
@@ -19,6 +18,14 @@ struct AdaptedProgramView: View {
     /// `WeeklyCalendarView`). `nil` sur le hot path post-adapt (le record vient
     /// d'être créé, l'utilisateur n'a pas encore manipulé son calendrier).
     var recordId: UUID? = nil
+
+    /// Story 3.3b — notes Léon overlay (perso + safety + adjustments). `nil` si
+    /// pas de patch appliqué (état initial OU loading OU erreur).
+    var leonNotes: LeonAppliedNotes? = nil
+
+    /// Story 3.3b — état de la requête Léon en cours, exposé par le ViewModel.
+    /// La View réagit avec un overlay loader / banner d'erreur correspondant.
+    var requestState: AdaptedProgramViewModel.LeonRequestState = .idle
 
     @State private var weeklyCalendarPresented: Bool = false
 
@@ -29,6 +36,14 @@ struct AdaptedProgramView: View {
 
                 if program.requiresAIAssist {
                     aiAssistBanner
+                }
+
+                if case let .error(error) = requestState {
+                    leonErrorBanner(error)
+                }
+
+                if let notes = leonNotes, notes.hasAnything {
+                    leonNotesSection(notes)
                 }
 
                 ForEach(program.weeks, id: \.weekNumber) { week in
@@ -42,6 +57,11 @@ struct AdaptedProgramView: View {
                 medicalReminderFooter
             }
             .padding()
+        }
+        .overlay {
+            if requestState == .loading {
+                leonLoadingOverlay
+            }
         }
         .navigationTitle(Text("coaching.adapter.title"))
         .navigationBarTitleDisplayMode(.inline)
@@ -98,7 +118,7 @@ struct AdaptedProgramView: View {
                     }
                 }
             }
-            if let onRequestAIAssist {
+            if let onRequestAIAssist, leonNotes == nil, requestState != .loading {
                 Button {
                     onRequestAIAssist()
                 } label: {
@@ -107,6 +127,107 @@ struct AdaptedProgramView: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
+            }
+        }
+        .padding()
+        .background(Color.accentColor.opacity(0.08))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    // MARK: - Story 3.3b — Léon overlay UI
+
+    private var leonLoadingOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.35).ignoresSafeArea()
+            VStack(spacing: 16) {
+                Image(systemName: "sparkles")
+                    .font(.system(size: 36))
+                    .foregroundStyle(.tint)
+                ProgressView()
+                Text("coaching.adapter.leon.loading.title")
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
+                Text("coaching.adapter.leon.loading.subtitle")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+            }
+            .padding(24)
+            .background(Color(uiColor: .systemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .shadow(radius: 12)
+            .padding()
+        }
+    }
+
+    @ViewBuilder
+    private func leonErrorBanner(_ error: LeonError) -> some View {
+        HStack(alignment: .top, spacing: 10) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .foregroundStyle(.orange)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("coaching.adapter.leon.error.title")
+                    .font(.subheadline.bold())
+                Text(verbatim: leonErrorSubtitle(error))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer()
+        }
+        .padding()
+        .background(Color.orange.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+
+    private func leonErrorSubtitle(_ error: LeonError) -> String {
+        switch error {
+        case .quotaExceeded: return String(localized: "coaching.adapter.leon.error.quota")
+        case .anthropicUnavailable: return String(localized: "coaching.adapter.leon.error.unavailable")
+        case .invalidPatch: return String(localized: "coaching.adapter.leon.error.invalidPatch")
+        case .unauthorized: return String(localized: "coaching.adapter.leon.error.unauthorized")
+        case .invalidRequest: return String(localized: "coaching.adapter.leon.error.invalidRequest")
+        case .network: return String(localized: "coaching.adapter.leon.error.network")
+        case .server: return String(localized: "coaching.adapter.leon.error.server")
+        }
+    }
+
+    @ViewBuilder
+    private func leonNotesSection(_ notes: LeonAppliedNotes) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 8) {
+                Image(systemName: "sparkles")
+                    .foregroundStyle(.tint)
+                Text("coaching.adapter.leon.notes.title")
+                    .font(.headline)
+            }
+            if let perso = notes.personalizationNote, !perso.isEmpty {
+                Text(verbatim: perso)
+                    .font(.body)
+                    .padding(.vertical, 2)
+            }
+            if !notes.adjustmentNotes.isEmpty {
+                VStack(alignment: .leading, spacing: 4) {
+                    ForEach(notes.adjustmentNotes, id: \.self) { line in
+                        HStack(alignment: .top, spacing: 6) {
+                            Text(verbatim: "•").foregroundStyle(.secondary)
+                            Text(verbatim: line).font(.callout)
+                        }
+                    }
+                }
+            }
+            if !notes.safetyNotes.isEmpty {
+                VStack(alignment: .leading, spacing: 4) {
+                    ForEach(notes.safetyNotes, id: \.self) { note in
+                        HStack(alignment: .top, spacing: 6) {
+                            Image(systemName: "shield.lefthalf.filled")
+                                .font(.caption)
+                                .foregroundStyle(.orange)
+                            Text(verbatim: note).font(.caption).foregroundStyle(.secondary)
+                        }
+                    }
+                }
+                .padding(.top, 4)
             }
         }
         .padding()

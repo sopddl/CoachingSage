@@ -32,4 +32,15 @@ final class MockAdaptedProgramRepository: AdaptedProgramRepository {
         record.isActive = false
         record.archivedAt = Date()
     }
+
+    var appliedLeonPatches: [(recordId: UUID, patch: AdaptationPatch)] = []
+    var applyLeonPatchShouldThrow: Bool = false
+
+    func applyLeonPatch(recordId: UUID, patch: AdaptationPatch) async throws {
+        if applyLeonPatchShouldThrow { throw URLError(.cannotConnectToHost) }
+        appliedLeonPatches.append((recordId: recordId, patch: patch))
+        if let record = stubbedActive.first(where: { $0.id == recordId }) {
+            try? record.applyLeonPatch(patch)
+        }
+    }
 }

@@ -17,4 +17,9 @@ protocol AdaptedProgramRepository {
 
     /// Archive un record (`isActive = false`, `archivedAt = now`).
     func archive(_ record: AdaptedProgramRecord) async throws
+
+    /// Story 3.3b — applique un patch Léon sur un record persisté et sauvegarde
+    /// l'idempotence (aiPatchApplied + aiPatchJSON). No-op silencieux si le record
+    /// n'existe plus (cas dégénéré : user a archivé pendant qu'on call Léon).
+    func applyLeonPatch(recordId: UUID, patch: AdaptationPatch) async throws
 }

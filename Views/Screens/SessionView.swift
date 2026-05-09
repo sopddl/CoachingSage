@@ -53,7 +53,21 @@ struct SessionView: View {
                     WeeklyCalendarView(mode: .allActivePrograms)
                 }
                 .navigationDestination(item: $adaptedRoute) { route in
-                    AdaptedProgramView(program: route.program, recordId: route.recordId)
+                    if let deps {
+                        AdaptedProgramScreen(viewModel: AdaptedProgramViewModel(
+                            program: route.program,
+                            initialLeonNotes: route.initialLeonNotes,
+                            recordId: route.recordId,
+                            aiService: deps.sageCoachingAIService,
+                            healthSummaryBuilder: DefaultHealthSummaryBuilder(healthKit: deps.healthKitService),
+                            coreRepo: deps.coreProfileRepository,
+                            coachingRepo: deps.coachingProfileRepository,
+                            adaptedRepo: deps.adaptedProgramRepository
+                        ))
+                    } else {
+                        // Fallback : pas de deps (preview sans dependencies) → rendu statique sans Léon.
+                        AdaptedProgramView(program: route.program, recordId: route.recordId)
+                    }
                 }
                 .task {
                     await bootstrapVMIfNeeded()
@@ -171,11 +185,15 @@ struct SessionView: View {
     /// la vue maître. Si la conversion échoue (sport/level non mappable, hors
     /// V1), on flag l'erreur visible plutôt que de silencer la nav.
     private func pushAdaptedProgram(record: AdaptedProgramRecord) {
-        guard let program = record.toAdaptedProgram() else {
+        guard let applied = record.toAppliedAdaptedProgram() else {
             presentationError = String(localized: "session.adapter.profileMissing")
             return
         }
-        adaptedRoute = AdaptedProgramRoute(program: program, recordId: record.id)
+        adaptedRoute = AdaptedProgramRoute(
+            program: applied.program,
+            recordId: record.id,
+            initialLeonNotes: applied.leonNotes
+        )
     }
 
     /// Texte hint Léon — calibré sur autoprofil HK quand `CoachingProfile.healthAutofill`
@@ -342,6 +360,15 @@ private struct AdaptedProgramRoute: Hashable {
     /// Story 3.8 — id du `AdaptedProgramRecord` persisté ; alimente le toolbar 📅
     /// (entry point #2 `WeeklyCalendarView`). `nil` sur le hot path post-adapt.
     let recordId: UUID?
+    /// Story 3.3b — notes Léon pré-existantes si push depuis dashboard d'un programme
+    /// déjà raffiné par Léon (record.aiPatchApplied=true). `nil` sur hot path.
+    let initialLeonNotes: LeonAppliedNotes?
+
+    init(program: AdaptedProgram, recordId: UUID?, initialLeonNotes: LeonAppliedNotes? = nil) {
+        self.program = program
+        self.recordId = recordId
+        self.initialLeonNotes = initialLeonNotes
+    }
 
     func hash(into hasher: inout Hasher) { hasher.combine(id) }
     static func == (lhs: AdaptedProgramRoute, rhs: AdaptedProgramRoute) -> Bool { lhs.id == rhs.id }
