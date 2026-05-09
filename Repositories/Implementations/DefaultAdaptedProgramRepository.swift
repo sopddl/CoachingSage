@@ -25,6 +25,11 @@ final class DefaultAdaptedProgramRepository: AdaptedProgramRepository {
         try modelContext.save()
     }
 
+    func update(_ record: AdaptedProgramRecord) async throws {
+        record.lastUpdatedAt = Date()
+        try modelContext.save()
+    }
+
     func archive(_ record: AdaptedProgramRecord) async throws {
         record.isActive = false
         record.archivedAt = Date()

@@ -11,6 +11,10 @@ protocol AdaptedProgramRepository {
     /// Persiste un nouveau record (sortie du bridge Story 3.3a).
     func save(_ record: AdaptedProgramRecord) async throws
 
+    /// Persiste les mutations d'un record déjà tracké (drag&drop hebdo Story 3.8 :
+    /// `sessions[i].plannedDate` modifiée + bascule éventuelle de `mode`).
+    func update(_ record: AdaptedProgramRecord) async throws
+
     /// Archive un record (`isActive = false`, `archivedAt = now`).
     func archive(_ record: AdaptedProgramRecord) async throws
 }

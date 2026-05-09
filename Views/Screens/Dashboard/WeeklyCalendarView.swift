@@ -1,11 +1,13 @@
 // Views/Screens/Dashboard/WeeklyCalendarView.swift
-// Story 3.8 sous-tâche drag&drop (commit 10/3) — vue lecture seule du calendrier
-// hebdo. Le drag&drop arrive en commit 11.
+// Story 3.8 sous-tâche drag&drop — vue du calendrier hebdo. Lecture +
+// `.draggable()` / `.dropDestination()` SwiftUI iOS 17+.
 //
 // **Layout** (verticale, iPhone portrait) :
-//   - Section « 📦 À planifier » : pool des sessions sans `plannedDate`
+//   - Section « 📦 À planifier » : pool des sessions sans `plannedDate` (drop
+//     target → clear `plannedDate`)
 //   - 7 sections jour (Lun→Dim) : sessions placées dans la semaine courante
-//   - Chaque session = pastille couleur sport + nom + durée
+//     (drop target → set `plannedDate = weekStart + idx jours`)
+//   - Chaque session = pastille couleur sport + nom + durée, draggable
 //
 // La couleur sport vient de `Color.coachingSport(forCode:)` — utile en mode
 // `.allActivePrograms` (multi-prog). En mode `.singleProgram` toutes les
@@ -15,6 +17,11 @@
 //   1. CTA `↻ Réorganiser ma semaine` depuis `ActiveDashboardView` (mode `.allActivePrograms`)
 //   2. Toolbar 📅 dans `AdaptedProgramView` (mode `.singleProgram(id:)`)
 //   3. Icône 📅 nav bar `SessionView` (mode `.allActivePrograms`)
+//
+// Drag&drop : `.draggable(uuidString)` sur SessionRow, `.dropDestination(for:String.self)`
+// sur DayRow + pool section. La logique de mutation + persistance vit dans
+// `WeeklyCalendarViewModel.handleDrop`. Debounce 100ms anti-double-fire iOS 17.x
+// est appliqué côté VM.
 import SwiftUI
 
 struct WeeklyCalendarView: View {
@@ -53,36 +60,18 @@ struct WeeklyCalendarView: View {
 
     @ViewBuilder
     private func poolSection(_ vm: WeeklyCalendarViewModel) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("dashboard.weekly.pool.title")
-                .font(.coachingCaption.weight(.semibold))
-                .foregroundStyle(Color.coachingTextSecondary)
-                .textCase(.uppercase)
-                .tracking(0.8)
-            if vm.pool.isEmpty {
-                Text("dashboard.weekly.pool.empty")
-                    .font(.coachingBody)
-                    .foregroundStyle(Color.coachingTextSecondary)
-                    .padding(12)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color.coachingCard.opacity(0.5))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-            } else {
-                VStack(spacing: 6) {
-                    ForEach(vm.pool) { item in
-                        SessionRow(item: item)
-                    }
-                }
-            }
+        PoolSection(items: vm.pool) { sessionId in
+            Task { await vm.handleDrop(sessionId: sessionId, to: .pool) }
         }
-        .accessibilityIdentifier("dashboard.weekly.pool")
     }
 
     @ViewBuilder
     private func weekSection(_ vm: WeeklyCalendarViewModel) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             ForEach(vm.daySlots) { slot in
-                DayRow(slot: slot)
+                DayRow(slot: slot) { sessionId in
+                    Task { await vm.handleDrop(sessionId: sessionId, to: .day(slot.id)) }
+                }
             }
         }
     }
@@ -116,10 +105,70 @@ struct WeeklyCalendarView: View {
     }
 }
 
+// MARK: - Pool section
+
+private struct PoolSection: View {
+    let items: [WeeklyCalendarViewModel.SessionItem]
+    let onDrop: (UUID) -> Void
+
+    @State private var isTargeted = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("dashboard.weekly.pool.title")
+                .font(.coachingCaption.weight(.semibold))
+                .foregroundStyle(Color.coachingTextSecondary)
+                .textCase(.uppercase)
+                .tracking(0.8)
+            content
+        }
+        .padding(8)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.coachingCard.opacity(isTargeted ? 0.9 : 0))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(
+                    Color.coachingRecord,
+                    style: StrokeStyle(lineWidth: isTargeted ? 2 : 0, dash: [5])
+                )
+        )
+        .accessibilityIdentifier("dashboard.weekly.pool")
+        .dropDestination(for: String.self) { dropped, _ in
+            guard let first = dropped.first, let id = UUID(uuidString: first) else { return false }
+            onDrop(id)
+            return true
+        } isTargeted: { isTargeted = $0 }
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        if items.isEmpty {
+            Text("dashboard.weekly.pool.empty")
+                .font(.coachingBody)
+                .foregroundStyle(Color.coachingTextSecondary)
+                .padding(12)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.coachingCard.opacity(0.5))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        } else {
+            VStack(spacing: 6) {
+                ForEach(items) { item in
+                    SessionRow(item: item)
+                }
+            }
+        }
+    }
+}
+
 // MARK: - Day row
 
 private struct DayRow: View {
     let slot: WeeklyCalendarViewModel.WeekDaySlot
+    let onDrop: (UUID) -> Void
+
+    @State private var isTargeted = false
 
     private static let dayLabelFormatter: DateFormatter = {
         let f = DateFormatter()
@@ -157,7 +206,19 @@ private struct DayRow: View {
         .padding(12)
         .background(Color.coachingCard.opacity(slot.items.isEmpty ? 0.4 : 0.7))
         .clipShape(RoundedRectangle(cornerRadius: 10))
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(
+                    Color.coachingRecord,
+                    style: StrokeStyle(lineWidth: isTargeted ? 2 : 0, dash: [5])
+                )
+        )
         .accessibilityIdentifier("dashboard.weekly.day.\(slot.id)")
+        .dropDestination(for: String.self) { dropped, _ in
+            guard let first = dropped.first, let id = UUID(uuidString: first) else { return false }
+            onDrop(id)
+            return true
+        } isTargeted: { isTargeted = $0 }
     }
 
     /// Convertit l'index ISO (lundi=0..dimanche=6) vers le symbole `standalone`
@@ -196,5 +257,10 @@ private struct SessionRow: View {
         .background(Color.coachingBackground.opacity(0.7))
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .accessibilityIdentifier("dashboard.weekly.session.\(item.id)")
+        .draggable(item.id.uuidString) {
+            // Aperçu glissé : la même row, opacité réduite pour l'effet « ghost ».
+            SessionRow(item: item)
+                .opacity(0.85)
+        }
     }
 }

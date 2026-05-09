@@ -1,6 +1,5 @@
 // Coaching/Dashboard/WeeklyCalendarViewModel.swift
-// Story 3.8 sous-tâche drag&drop (commit 10/3) — VM lecture seule du calendrier
-// hebdo. Le drag&drop arrive en commit 11.
+// Story 3.8 sous-tâche drag&drop — VM du calendrier hebdo, lecture + handleDrop.
 //
 // **Logique buckets** (per record × per session) :
 //   - session complétée → ignorée (passée, pas pertinent pour replan)
@@ -13,9 +12,14 @@
 //   - `.allActivePrograms` : agrège tous les records actifs (CTA Réorganiser ma
 //     semaine + icône 📅 nav bar)
 //
-// 100% local, 0 réseau, déterministe. Sert de source de vérité au commit 11
-// (drag&drop) qui mutera `loadedPrograms[i].sessions[j].plannedDate` puis
-// rappellera `recomputeBuckets()`.
+// **Drag&drop** (`handleDrop`) :
+//   - mute `loadedPrograms[i].sessions[j].plannedDate` selon `DropTarget`
+//   - bascule `mode .ondemand → .planned` au premier drop sur un jour (one-way,
+//     spec ligne 619 « le premier drop EST la conversion ») ; un retour pool
+//     n'auto-révoque pas le mode (interprétation conservatrice, V1)
+//   - debounce 100ms anti-double-fire iOS 17.x : drops identiques dans la
+//     fenêtre sont ignorés (spec ligne 630)
+//   - persistance best-effort via `programRepository.update(_:)`
 import Foundation
 import SwiftUI
 
@@ -30,6 +34,14 @@ final class WeeklyCalendarViewModel {
         /// Calendrier agrégé tous programmes actifs (CTA `↻ Réorganiser ma semaine`
         /// + icône 📅 nav bar Séances — entry points #1 et #3 spec ligne 623+625).
         case allActivePrograms
+    }
+
+    /// Cible d'un drop drag&drop hebdo.
+    enum DropTarget: Hashable {
+        /// Bucket jour de la semaine courante (0=lundi, 6=dimanche).
+        case day(Int)
+        /// Pool « À planifier » (clear `plannedDate`).
+        case pool
     }
 
     /// Bucket d'un jour de la semaine courante (lundi=0 ... dimanche=6).
@@ -70,15 +82,25 @@ final class WeeklyCalendarViewModel {
     let mode: Mode
     private let programRepository: any AdaptedProgramRepository
     private let nowProvider: () -> Date
+    private let dropClock: () -> Date
+    private let debounceWindow: TimeInterval
+
+    /// Dernier drop appliqué (sessionId, target, timestamp wall-clock). Sert au
+    /// debounce 100ms anti-double-fire iOS 17.x sur `.dropDestination()`.
+    private var lastDrop: (sessionId: UUID, target: DropTarget, at: Date)?
 
     init(
         mode: Mode,
         programRepository: any AdaptedProgramRepository,
-        nowProvider: @escaping () -> Date = Date.init
+        nowProvider: @escaping () -> Date = Date.init,
+        dropClock: @escaping () -> Date = Date.init,
+        debounceWindow: TimeInterval = 0.1
     ) {
         self.mode = mode
         self.programRepository = programRepository
         self.nowProvider = nowProvider
+        self.dropClock = dropClock
+        self.debounceWindow = debounceWindow
     }
 
     /// Charge les programmes actifs filtrés selon `mode`, puis recalcule pool +
@@ -169,6 +191,56 @@ final class WeeklyCalendarViewModel {
                 items: []
             )
         }
+    }
+
+    /// Applique un drop drag&drop : déplace la session vers `target` (jour ou
+    /// pool), bascule éventuellement le mode du programme parent, recompute
+    /// les buckets, et persiste via `update(_:)`. Idempotent + debouncé 100ms.
+    ///
+    /// - Drop sur `.day(idx)` : `plannedDate = weekStart + idx jours` (00:00
+    ///   local) ; bascule `.ondemand → .planned` si c'était le 1er drop daté
+    ///   sur ce programme.
+    /// - Drop sur `.pool` : `plannedDate = nil` ; ne révoque pas le mode (V1).
+    /// - SessionId inconnu, drop identique au state actuel, ou drop debouncé
+    ///   → no-op (pas d'appel `update`).
+    func handleDrop(sessionId: UUID, to target: DropTarget) async {
+        let now = dropClock()
+        if let last = lastDrop,
+           last.sessionId == sessionId,
+           last.target == target,
+           now.timeIntervalSince(last.at) < debounceWindow {
+            return
+        }
+
+        guard let progIdx = loadedPrograms.firstIndex(where: { record in
+            record.sessions.contains(where: { $0.id == sessionId })
+        }) else { return }
+        var sessions = loadedPrograms[progIdx].sessions
+        guard let sessIdx = sessions.firstIndex(where: { $0.id == sessionId }) else { return }
+
+        let cal = Calendar.current
+        let newPlannedDate: Date?
+        switch target {
+        case .pool:
+            newPlannedDate = nil
+        case .day(let dayIdx):
+            let safe = max(0, min(6, dayIdx))
+            newPlannedDate = cal.date(byAdding: .day, value: safe, to: weekStart) ?? weekStart
+        }
+
+        if sessions[sessIdx].plannedDate == newPlannedDate { return }
+
+        lastDrop = (sessionId: sessionId, target: target, at: now)
+
+        sessions[sessIdx].plannedDate = newPlannedDate
+        loadedPrograms[progIdx].sessions = sessions
+        if newPlannedDate != nil, loadedPrograms[progIdx].mode == .ondemand {
+            loadedPrograms[progIdx].mode = .planned
+        }
+        recomputeBuckets()
+
+        let recordToPersist = loadedPrograms[progIdx]
+        try? await programRepository.update(recordToPersist)
     }
 
     /// Lundi 00:00 (heure locale) de la semaine ISO contenant `now`.

@@ -111,6 +111,148 @@ final class WeeklyCalendarViewModelTests: XCTestCase {
         XCTAssertEqual(vm.pool.count, 2, "Session complétée ne doit pas apparaître dans le calendrier")
     }
 
+    // MARK: - handleDrop
+
+    func testHandleDropPoolToDayMovesSessionAndSwitchesModeToPlanned() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 2)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        let vm = WeeklyCalendarViewModel(
+            mode: .singleProgram(id: prog.id),
+            programRepository: progRepo,
+            nowProvider: { self.now },
+            dropClock: { self.now },
+            debounceWindow: 0
+        )
+        await vm.refresh(userId: userId)
+        let target = prog.sessions[0]
+        XCTAssertEqual(prog.mode, .ondemand)
+
+        await vm.handleDrop(sessionId: target.id, to: .day(2))
+
+        XCTAssertEqual(vm.daySlots[2].items.count, 1)
+        XCTAssertEqual(vm.daySlots[2].items.first?.id, target.id)
+        XCTAssertEqual(vm.pool.count, 1, "L'autre session reste dans le pool")
+        XCTAssertEqual(vm.loadedPrograms.first?.mode, .planned, "1er drop bascule .ondemand → .planned")
+        XCTAssertEqual(progRepo.updatedRecords.count, 1)
+        XCTAssertEqual(progRepo.updatedRecords.first?.id, prog.id)
+    }
+
+    func testHandleDropDayToDayMovesSessionToNewBucket() async {
+        let cal = Calendar.current
+        let weekStart = WeeklyCalendarViewModel.startOfWeek(for: now)
+        let wednesday = cal.date(byAdding: .day, value: 2, to: weekStart)!
+        let prog = makePlannedRecord(sportCode: "running", date: wednesday)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        let vm = WeeklyCalendarViewModel(
+            mode: .singleProgram(id: prog.id),
+            programRepository: progRepo,
+            nowProvider: { self.now },
+            dropClock: { self.now },
+            debounceWindow: 0
+        )
+        await vm.refresh(userId: userId)
+        let target = prog.sessions[0]
+        XCTAssertEqual(vm.daySlots[2].items.count, 1)
+
+        await vm.handleDrop(sessionId: target.id, to: .day(5))
+
+        XCTAssertEqual(vm.daySlots[2].items.count, 0, "Mercredi vidé")
+        XCTAssertEqual(vm.daySlots[5].items.count, 1, "Samedi rempli")
+        XCTAssertEqual(progRepo.updatedRecords.count, 1)
+    }
+
+    func testHandleDropDayToPoolClearsPlannedDate() async {
+        let cal = Calendar.current
+        let weekStart = WeeklyCalendarViewModel.startOfWeek(for: now)
+        let wednesday = cal.date(byAdding: .day, value: 2, to: weekStart)!
+        let prog = makePlannedRecord(sportCode: "running", date: wednesday)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        let vm = WeeklyCalendarViewModel(
+            mode: .singleProgram(id: prog.id),
+            programRepository: progRepo,
+            nowProvider: { self.now },
+            dropClock: { self.now },
+            debounceWindow: 0
+        )
+        await vm.refresh(userId: userId)
+        let target = prog.sessions[0]
+
+        await vm.handleDrop(sessionId: target.id, to: .pool)
+
+        XCTAssertTrue(vm.daySlots.allSatisfy { $0.items.isEmpty })
+        XCTAssertEqual(vm.pool.count, 1)
+        XCTAssertNil(vm.pool.first?.plannedDate)
+        XCTAssertEqual(progRepo.updatedRecords.count, 1)
+    }
+
+    func testHandleDropUnknownSessionIdIsNoop() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 2)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        let vm = WeeklyCalendarViewModel(
+            mode: .singleProgram(id: prog.id),
+            programRepository: progRepo,
+            nowProvider: { self.now },
+            dropClock: { self.now },
+            debounceWindow: 0
+        )
+        await vm.refresh(userId: userId)
+        let bogus = UUID()
+
+        await vm.handleDrop(sessionId: bogus, to: .day(3))
+
+        XCTAssertEqual(vm.pool.count, 2, "Pool inchangé")
+        XCTAssertTrue(progRepo.updatedRecords.isEmpty)
+    }
+
+    func testHandleDropSameTargetIsNoop() async {
+        let cal = Calendar.current
+        let weekStart = WeeklyCalendarViewModel.startOfWeek(for: now)
+        let wednesday = cal.date(byAdding: .day, value: 2, to: weekStart)!
+        let prog = makePlannedRecord(sportCode: "running", date: wednesday)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        let vm = WeeklyCalendarViewModel(
+            mode: .singleProgram(id: prog.id),
+            programRepository: progRepo,
+            nowProvider: { self.now },
+            dropClock: { self.now },
+            debounceWindow: 0
+        )
+        await vm.refresh(userId: userId)
+        let target = prog.sessions[0]
+
+        await vm.handleDrop(sessionId: target.id, to: .day(2))
+
+        XCTAssertTrue(progRepo.updatedRecords.isEmpty, "Drop sur le bucket actuel = no-op")
+    }
+
+    func testHandleDropDebouncesIdenticalDropsWithinWindow() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 2)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        // Clock figé : les 2 drops sont à 0ms d'écart < 100ms → 2e ignoré
+        let vm = WeeklyCalendarViewModel(
+            mode: .singleProgram(id: prog.id),
+            programRepository: progRepo,
+            nowProvider: { self.now },
+            dropClock: { self.now },
+            debounceWindow: 0.1
+        )
+        await vm.refresh(userId: userId)
+        let target = prog.sessions[0]
+
+        await vm.handleDrop(sessionId: target.id, to: .day(3))
+        // 2e drop identique dans la fenêtre → debouncé
+        await vm.handleDrop(sessionId: target.id, to: .day(3))
+
+        XCTAssertEqual(vm.daySlots[3].items.count, 1)
+        XCTAssertEqual(progRepo.updatedRecords.count, 1, "1 seul update persisté malgré 2 callbacks")
+    }
+
     // MARK: - Erreurs
 
     func testRefreshOnRepositoryFailureSetsErrorAndEmptyState() async {
