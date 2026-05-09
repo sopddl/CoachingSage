@@ -11,6 +11,9 @@ struct AuthView: View {
     @State private var isSignUp = false
     @State private var showResetPasswordAlert = false
     @State private var resetEmail = ""
+    @FocusState private var focusedField: Field?
+
+    private enum Field: Hashable { case email, password }
 
     init(authService: any AuthServiceProtocol,
          coreProfileRepository: any CoreProfileRepository) {
@@ -68,6 +71,9 @@ struct AuthView: View {
                             .keyboardType(.emailAddress)
                             .autocorrectionDisabled()
                             .textInputAutocapitalization(.never)
+                            .focused($focusedField, equals: .email)
+                            .submitLabel(.next)
+                            .onSubmit { focusedField = .password }
                             .accessibilityIdentifier("auth.email")
                             .padding(.vertical, 10)
                             .padding(.horizontal, 16)
@@ -76,6 +82,9 @@ struct AuthView: View {
 
                         SecureField("auth.password.placeholder", text: $password)
                             .textContentType(isSignUp ? .newPassword : .password)
+                            .focused($focusedField, equals: .password)
+                            .submitLabel(.go)
+                            .onSubmit { focusedField = nil }
                             .padding(.vertical, 10)
                             .padding(.horizontal, 16)
                             .background(.regularMaterial)
@@ -151,7 +160,14 @@ struct AuthView: View {
                 Spacer(minLength: 40)
             }
         }
+        // Fix curseur (port du fix TailorSage S5-7-2 bug t) :
+        // `.interactively` (défaut SwiftUI) intercepte des taps comme drags-de-dismiss
+        // et fait perdre le focus du TextField (effet "10 taps avant saisie").
+        // `.immediately` ne dismiss qu'avec un vrai scroll vertical.
+        .scrollDismissesKeyboard(.immediately)
         .background(Color.coachingBackground)
+        // Focus initial sur email pour que la 1re saisie se fasse immédiatement.
+        .onAppear { focusedField = .email }
         .alert(String(localized: "auth.forgotPassword.title"), isPresented: $showResetPasswordAlert) {
             TextField(String(localized: "auth.email.placeholder"), text: $resetEmail)
                 .textContentType(.emailAddress)

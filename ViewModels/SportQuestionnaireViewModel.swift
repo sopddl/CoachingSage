@@ -147,7 +147,7 @@ final class SportQuestionnaireViewModel {
 
         // Reprendre à la prochaine question non répondue.
         if let currentId = draft.currentQuestionId,
-           let q = findQuestion(byId: currentId) {
+           let q = questionnaire.findQuestion(byId: currentId) {
             currentQuestion = q
         } else {
             currentQuestion = questionnaire.firstQuestion
@@ -194,20 +194,6 @@ final class SportQuestionnaireViewModel {
         var next = questionnaire.nextQuestion(after: asked.id, answer: value, accumulated: accumulatedAnswers)
         while let candidate = next, let cachedValue = accumulatedAnswers[candidate.id] {
             next = questionnaire.nextQuestion(after: candidate.id, answer: cachedValue, accumulated: accumulatedAnswers)
-        }
-
-        // Si une question intermédiaire a été skippée par le moteur (ex: Q4 si beginner), tracer dans l'historique.
-        if let next = next, let skippedId = detectSkippedBetween(current: asked.id, next: next.id) {
-            conversationHistory.append(
-                ConversationEntry(
-                    questionId: skippedId,
-                    questionTextKey: nil,
-                    answer: nil,
-                    askedAt: Date(),
-                    skipped: true,
-                    skipReason: "level_beginner"
-                )
-            )
         }
 
         currentQuestion = nil
@@ -308,33 +294,38 @@ final class SportQuestionnaireViewModel {
         // Bulle de transparence sur l'autoprofil.
         messages.append(.leonText(id: UUID(), key: "questionnaire.autoprofile.summary"))
 
-        // Pré-remplir Q1 + Q3.
-        let q1Id = "q1_level"
-        let q3Id = "q3_frequency"
+        // Pré-remplir Q1 + Q3 — clés textKey/labelKey lookupées via le protocol pour rester
+        // sport-agnostique (UniversalQuestionnaire pour les 10 sports).
+        let q1Id = UniversalQuestionnaire.q1LevelId
+        let q3Id = UniversalQuestionnaire.q3FrequencyId
         let q1Value = AnswerValue.single(level.rawValue)
         let q3Value = AnswerValue.single(frequency.rawValue)
 
         accumulatedAnswers[q1Id] = q1Value
         accumulatedAnswers[q3Id] = q3Value
         let now = Date()
+        let q1Question = questionnaire.findQuestion(byId: q1Id)
+        let q3Question = questionnaire.findQuestion(byId: q3Id)
         conversationHistory.append(ConversationEntry(
             questionId: q1Id,
-            questionTextKey: "questionnaire.running.q1.text",
+            questionTextKey: q1Question?.textKey,
             answer: q1Value.asDTO,
             askedAt: now,
             autoFilled: true
         ))
         conversationHistory.append(ConversationEntry(
             questionId: q3Id,
-            questionTextKey: "questionnaire.running.q3.text",
+            questionTextKey: q3Question?.textKey,
             answer: q3Value.asDTO,
             askedAt: now,
             autoFilled: true
         ))
 
-        // Bulles user de confirmation.
-        messages.append(.userText(id: UUID(), text: "questionnaire.running.q1.option.\(level.rawValue)"))
-        messages.append(.userText(id: UUID(), text: "questionnaire.running.q3.option.\(frequency.rawValue)"))
+        // Bulles user de confirmation — labelKey de l'option correspondante (résolue View).
+        let q1Label = q1Question?.options.first(where: { $0.code == level.rawValue })?.labelKey ?? level.rawValue
+        let q3Label = q3Question?.options.first(where: { $0.code == frequency.rawValue })?.labelKey ?? frequency.rawValue
+        messages.append(.userText(id: UUID(), text: q1Label))
+        messages.append(.userText(id: UUID(), text: q3Label))
 
         // Première question non-répondue = Q2 (goal).
         let next = firstUnansweredQuestion()
@@ -363,8 +354,8 @@ final class SportQuestionnaireViewModel {
     }
 
     private func appendIntroBubbles() {
-        // Intro principale
-        messages.append(.leonText(id: UUID(), key: "questionnaire.\(questionnaire.sportCode).intro"))
+        // Intro universelle (10 sports utilisent UniversalQuestionnaire)
+        messages.append(.leonText(id: UUID(), key: "questionnaire.universal.intro"))
         // Bulle medical clearance (review P0-6)
         if medicalClearanceAcknowledgedSnapshot {
             messages.append(.leonText(id: UUID(), key: "questionnaire.intro.medicalClearance"))
@@ -398,26 +389,6 @@ final class SportQuestionnaireViewModel {
         case .text(let s):
             return s ?? ""
         }
-    }
-
-    private func detectSkippedBetween(current: QuestionId, next: QuestionId) -> QuestionId? {
-        // V1 spécifique RunningQuestionnaire : Q3 → Q5 = Q4 skippée.
-        if current == "q3_frequency" && next == "q5_equipment" { return "q4_constraints" }
-        return nil
-    }
-
-    private func findQuestion(byId id: QuestionId) -> QuestionnaireQuestion? {
-        // V1 RunningQuestionnaire : on cherche dans les questions statiques.
-        // Si on étend à d'autres sports, ajouter une méthode au protocol SportQuestionnaire.
-        let all: [QuestionnaireQuestion] = [
-            RunningQuestionnaire.q1Level,
-            RunningQuestionnaire.q2Goal,
-            RunningQuestionnaire.q3Frequency,
-            RunningQuestionnaire.q4Constraints,
-            RunningQuestionnaire.q5Equipment,
-            RunningQuestionnaire.q6FreeText
-        ]
-        return all.first { $0.id == id }
     }
 
     // MARK: - UserDefaults pending draft
