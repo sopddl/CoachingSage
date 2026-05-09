@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoachingSage — Onglet Progrès (4 options)</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #141E2B;
+    color: #F5F2EE;
+    padding: 40px 24px 80px;
+    margin: 0 auto;
+  }
+
+  .page-header { text-align: center; margin-bottom: 30px; }
+  .page-header h1 { font-family: 'Lora', serif; font-size: 28px; color: #D4A85A; margin-bottom: 6px; }
+  .page-header p { color: #5A6577; font-size: 13px; max-width: 720px; margin: 0 auto; line-height: 1.5; }
+  .page-header .meta { color: #2B5F8A; font-size: 11px; margin-top: 6px; font-family: monospace; }
+
+  .reco-banner {
+    margin: 0 auto 30px; max-width: 720px;
+    padding: 14px 18px;
+    background: rgba(212,168,90,0.1);
+    border: 1px solid rgba(212,168,90,0.3);
+    border-radius: 12px;
+    color: #F5F2EE;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .reco-banner strong { color: #D4A85A; }
+
+  .mockups-row {
+    display: flex; gap: 24px;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    overflow-x: auto;
+    padding: 8px 24px 24px;
+    scroll-snap-type: x mandatory;
+  }
+  .mockups-row::-webkit-scrollbar { height: 12px; }
+  .mockups-row::-webkit-scrollbar-track { background: rgba(212,168,90,0.06); border-radius: 6px; }
+  .mockups-row::-webkit-scrollbar-thumb { background: rgba(212,168,90,0.4); border-radius: 6px; }
+  .phone-wrapper { scroll-snap-align: start; flex-shrink: 0; }
+
+  .phone-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 320px; }
+  .phone-label {
+    text-align: center;
+    font-family: 'Lora', serif; font-size: 16px; color: #F5F2EE;
+  }
+  .phone-label .badge {
+    display: inline-block; margin-left: 4px;
+    padding: 2px 8px; border-radius: 8px;
+    background: rgba(212,168,90,0.2); color: #D4A85A;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .phone-label .badge.reco { background: #D4A85A; color: #141E2B; }
+  .phone-sub { font-size: 11px; color: #5A6577; max-width: 280px; text-align: center; line-height: 1.4; }
+
+  .phone {
+    width: 320px; height: 700px;
+    border-radius: 42px;
+    border: 2px solid rgba(212,168,90,0.3);
+    overflow: hidden; position: relative;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    background: #F5F2EE;
+  }
+  .phone-screen {
+    width: 100%; height: 100%;
+    overflow-y: auto; padding-top: 44px; padding-bottom: 64px;
+    background: #F5F2EE;
+  }
+  .phone-screen::-webkit-scrollbar { display: none; }
+
+  .status-bar {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 44px; display: flex; align-items: flex-end;
+    justify-content: space-between; padding: 0 22px 8px;
+    font-size: 12px; font-weight: 600; color: #141E2B;
+  }
+
+  .nav-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 18px 12px;
+  }
+  .nav-bar .title-grp { display: flex; flex-direction: column; }
+  .nav-bar .greeting { font-size: 11px; color: #5A6577; font-weight: 500; }
+  .nav-bar .nav-title { font-family: 'Lora', serif; font-size: 26px; color: #141E2B; line-height: 1.1; }
+  .nav-bar .actions { display: flex; gap: 10px; }
+  .nav-bar .icon-btn {
+    width: 32px; height: 32px; border-radius: 10px;
+    background: rgba(20,30,43,0.06);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; color: #141E2B;
+  }
+
+  .sec-lbl {
+    padding: 14px 20px 6px;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.2px; color: #D4A85A;
+  }
+
+  /* ═══ Stats widget (Option A & C) ═══ */
+  .stats-widget {
+    margin: 0 18px 12px;
+    padding: 14px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    display: flex; gap: 10px;
+  }
+  .stat-block { flex: 1; text-align: center; }
+  .stat-block + .stat-block { border-left: 1px solid #EDE9E3; }
+  .stat-value {
+    font-family: 'Lora', serif; font-size: 22px;
+    color: #D4A85A; font-weight: 600; line-height: 1;
+  }
+  .stat-label {
+    font-size: 9px; color: #5A6577;
+    text-transform: uppercase; letter-spacing: 0.7px;
+    margin-top: 4px;
+  }
+  .stat-unit { font-size: 11px; color: #5A6577; font-weight: 500; }
+
+  /* Mini chart (sem 4 dernières) */
+  .mini-chart {
+    margin: 0 18px 12px;
+    padding: 14px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .mini-chart .chart-title {
+    font-size: 12px; font-weight: 600; color: #141E2B; margin-bottom: 10px;
+  }
+  .mini-chart .chart-row {
+    display: flex; justify-content: space-around; align-items: flex-end;
+    height: 70px; gap: 6px;
+  }
+  .mini-chart .bar-col {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; gap: 4px; height: 100%;
+    justify-content: flex-end;
+  }
+  .mini-chart .bar {
+    width: 70%; max-width: 28px; border-radius: 4px 4px 0 0;
+    background: #D4A85A;
+  }
+  .mini-chart .bar-lbl { font-size: 9px; color: #5A6577; }
+  .mini-chart .chart-meta {
+    font-size: 11px; color: #5A6577; margin-top: 8px; text-align: center;
+  }
+  .mini-chart .chart-meta strong { color: #7BC142; }
+
+  /* Sport volume bars (Option A) */
+  .vol-row {
+    margin: 0 18px 8px;
+    padding: 11px 14px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .vol-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .vol-icon { font-size: 18px; }
+  .vol-name { font-size: 12px; font-weight: 600; color: #141E2B; flex: 1; }
+  .vol-amount { font-size: 12px; font-weight: 700; color: #D4A85A; }
+  .vol-bar {
+    height: 6px; background: #EDE9E3; border-radius: 3px; overflow: hidden;
+  }
+  .vol-fill {
+    height: 100%; background: linear-gradient(90deg, #D4A85A, #C09548);
+    border-radius: 3px;
+  }
+
+  /* Trend rows (Option A — RHR/HRV/Sleep) */
+  .trend-card {
+    margin: 0 18px 12px;
+    padding: 14px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .trend-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 0;
+  }
+  .trend-row + .trend-row { border-top: 1px solid #F2EFEA; }
+  .trend-icon { font-size: 18px; width: 28px; text-align: center; }
+  .trend-info { flex: 1; }
+  .trend-name { font-size: 12px; font-weight: 600; color: #141E2B; }
+  .trend-meta { font-size: 10px; color: #5A6577; margin-top: 1px; }
+  .trend-value { font-size: 14px; font-weight: 700; color: #1E5090; }
+  .trend-arrow { font-size: 11px; color: #7BC142; margin-left: 4px; }
+  .trend-arrow.down { color: #C0584F; }
+
+  /* Programme cards (Option B & C) */
+  .prog-card {
+    margin: 0 18px 8px; padding: 12px 14px;
+    background: white; border-radius: 13px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .prog-icon {
+    font-size: 22px; width: 36px; height: 36px;
+    background: rgba(212,168,90,0.12); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .prog-info { flex: 1; min-width: 0; }
+  .prog-name { font-size: 13px; font-weight: 600; color: #141E2B; }
+  .prog-meta { font-size: 10px; color: #5A6577; margin-top: 1px; }
+  .prog-bar {
+    height: 4px; background: #EDE9E3; border-radius: 2px;
+    margin-top: 6px; overflow: hidden;
+  }
+  .prog-fill { height: 100%; border-radius: 2px; background: #D4A85A; }
+  .prog-pct {
+    font-size: 13px; font-weight: 700; color: #D4A85A;
+    min-width: 36px; text-align: right;
+  }
+  .prog-arrow { color: #5A6577; font-size: 14px; margin-left: 4px; }
+
+  /* Empty state (Option D) */
+  .empty-hero {
+    margin: 60px 24px 14px;
+    text-align: center;
+  }
+  .empty-hero .emoji { font-size: 56px; margin-bottom: 12px; display: block; }
+  .empty-hero .title {
+    font-family: 'Lora', serif; font-size: 20px;
+    color: #141E2B; margin-bottom: 8px; line-height: 1.3;
+  }
+  .empty-hero .desc {
+    font-size: 13px; color: #5A6577; line-height: 1.5;
+    max-width: 240px; margin: 0 auto;
+  }
+  .empty-cta {
+    margin: 24px 24px 0;
+    padding: 14px;
+    background: rgba(212,168,90,0.12);
+    border-radius: 12px;
+    text-align: center;
+    color: #D4A85A;
+    font-size: 13px; font-weight: 600;
+  }
+
+  /* PR / Récents Option A */
+  .pr-card {
+    margin: 0 18px 8px; padding: 12px 14px;
+    background: linear-gradient(135deg, rgba(212,168,90,0.08), rgba(123,193,66,0.05));
+    border-radius: 12px;
+    border: 1px solid rgba(212,168,90,0.2);
+  }
+  .pr-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .pr-emoji { font-size: 16px; }
+  .pr-tag {
+    font-size: 9px; font-weight: 700; color: #D4A85A;
+    text-transform: uppercase; letter-spacing: 0.7px;
+  }
+  .pr-text { font-size: 12px; color: #141E2B; line-height: 1.4; }
+
+  /* Tab bar */
+  .tab-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 64px; background: white;
+    border-top: 1px solid #EDE9E3;
+    display: flex; align-items: center;
+    padding: 0 8px; z-index: 10;
+    box-shadow: 0 -2px 8px rgba(20,30,43,0.06);
+  }
+  .tab-item {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    font-size: 9px; color: #5A6577;
+  }
+  .tab-item.active { color: #D4A85A; }
+  .tab-item .tab-icon { font-size: 22px; line-height: 1; }
+  .fab-leon-slot {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+  }
+  .fab-leon {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: #1E5090;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 22px;
+    margin-top: -28px;
+    box-shadow:
+      0 8px 18px rgba(30,80,144,0.35),
+      0 2px 4px rgba(0,0,0,0.12);
+    position: relative;
+  }
+  .fab-leon::after {
+    content: 'Léon';
+    position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
+    font-size: 9px; color: #1E5090; font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Annot mini */
+  .annot-list { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; max-width: 300px; }
+  .annot-list .annot-mini {
+    font-size: 11px; color: #5A6577; line-height: 1.5;
+    padding-left: 12px; border-left: 2px solid rgba(212,168,90,0.3);
+  }
+  .annot-list .annot-mini strong { color: #D4A85A; font-weight: 600; }
+
+  .pros-cons {
+    margin-top: 12px; max-width: 300px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .pros-cons .row {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 11px; line-height: 1.5;
+  }
+  .pros-cons .row .icon { width: 14px; flex-shrink: 0; }
+  .pros-cons .pro { color: #C5DDA8; }
+  .pros-cons .con { color: #E6A29C; }
+  .pros-cons .pro .icon { color: #7BC142; }
+  .pros-cons .con .icon { color: #C0584F; }
+
+  /* Phone reco highlight */
+  .phone-wrapper.reco .phone {
+    border: 2px solid #D4A85A;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 4px rgba(212,168,90,0.2);
+  }
+
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Onglet « Progrès » — 4 options comparées</h1>
+  <p>Décision 1/5 du party — quel contenu derrière le 2e onglet de la tab bar (Séances · <strong>Progrès</strong> · Profil) ?</p>
+  <p class="meta">Party 2026-05-07 · ✅ décision tranchée · contexte FR36 PRD + 4 personas (Sophie / Maxime / Philippe / Nathalie)</p>
+</div>
+
+<div class="reco-banner">
+  <strong>✅ Décision finale Sophie : Option A — Agrégé multi-sport complet</strong> (et non l'option C reco initiale).
+  Justification user-first : les 4 personas demandent du visuel motivant — Sophie « progression 3 disciplines un seul écran », Maxime « courbe monter », Philippe « VMA et allure sur graphiques », Nathalie « kilos baisser et forme monter ». Option C sous-livrait. Option A marque le différenciateur « la seule app gratuite qui te montre ta progression sur tous tes sports ».
+  Coût : charts HK (RHR/HRV/Sleep) + volume par sport + section PR/records → +3-5j d'impl vs C. Sophie : « je veux le mieux pour le user tant pis si plus de boulot ».
+  <span style="display:block; margin-top:8px; color:#D4A85A;">→ Story 3.9 dédiée dans Epic 3 (cf <code>epics-CoachingSage-v2-proposal.md</code>).</span>
+</div>
+
+<div class="mockups-row">
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- OPTION A — AGRÉGÉ MULTI-SPORT (DÉCISION)  -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone-wrapper reco">
+    <div class="phone-label">A · Agrégé multi-sport <span class="badge reco">★ Décision finale</span></div>
+    <div class="phone-sub">Stats globales + charts HK + volume par sport + PRs — couvre les 4 personas</div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar"><span>9:41</span><span>•••</span></div>
+        <div class="nav-bar">
+          <div class="title-grp">
+            <div class="greeting">Tes données</div>
+            <div class="nav-title">Progrès</div>
+          </div>
+          <div class="actions"><div class="icon-btn">⏱</div></div>
+        </div>
+
+        <div class="sec-lbl">Cette semaine</div>
+        <div class="stats-widget">
+          <div class="stat-block">
+            <div class="stat-value">3<span class="stat-unit">h12</span></div>
+            <div class="stat-label">Volume</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-value">5</div>
+            <div class="stat-label">Séances</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-value">12<span class="stat-unit">j</span></div>
+            <div class="stat-label">Streak</div>
+          </div>
+        </div>
+
+        <div class="sec-lbl">Forme physique (HealthKit)</div>
+        <div class="trend-card">
+          <div class="trend-row">
+            <div class="trend-icon">❤️</div>
+            <div class="trend-info">
+              <div class="trend-name">Fréquence cardiaque repos</div>
+              <div class="trend-meta">Moy. 7 derniers j</div>
+            </div>
+            <div class="trend-value">52<span class="trend-arrow down">↓ -3</span></div>
+          </div>
+          <div class="trend-row">
+            <div class="trend-icon">📈</div>
+            <div class="trend-info">
+              <div class="trend-name">Variabilité (HRV)</div>
+              <div class="trend-meta">Moy. 7 derniers j</div>
+            </div>
+            <div class="trend-value">68<span class="trend-arrow">↑ +4</span></div>
+          </div>
+          <div class="trend-row">
+            <div class="trend-icon">😴</div>
+            <div class="trend-info">
+              <div class="trend-name">Sommeil</div>
+              <div class="trend-meta">Moy. 7 derniers j</div>
+            </div>
+            <div class="trend-value">7h21<span class="trend-arrow">↑ +12m</span></div>
+          </div>
+        </div>
+
+        <div class="sec-lbl">Volume par sport</div>
+        <div class="vol-row">
+          <div class="vol-head">
+            <span class="vol-icon">🏊‍♀️</span>
+            <span class="vol-name">Natation</span>
+            <span class="vol-amount">1h05</span>
+          </div>
+          <div class="vol-bar"><div class="vol-fill" style="width:62%"></div></div>
+        </div>
+        <div class="vol-row">
+          <div class="vol-head">
+            <span class="vol-icon">🚴‍♀️</span>
+            <span class="vol-name">Vélo</span>
+            <span class="vol-amount">1h15</span>
+          </div>
+          <div class="vol-bar"><div class="vol-fill" style="width:72%"></div></div>
+        </div>
+        <div class="vol-row">
+          <div class="vol-head">
+            <span class="vol-icon">🏃‍♀️</span>
+            <span class="vol-name">Course</span>
+            <span class="vol-amount">52 min</span>
+          </div>
+          <div class="vol-bar"><div class="vol-fill" style="width:50%"></div></div>
+        </div>
+
+        <div class="sec-lbl">Performances récentes</div>
+        <div class="pr-card">
+          <div class="pr-head">
+            <span class="pr-emoji">🏅</span>
+            <span class="pr-tag">Record</span>
+          </div>
+          <div class="pr-text">Tu as battu ton allure 5K natation cette semaine — 1:48/100m.</div>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item"><span class="tab-icon">🏃‍♀️</span><span>Séances</span></div>
+        <div class="tab-item active"><span class="tab-icon">📊</span><span>Progrès</span></div>
+        <div class="fab-leon-slot"><div class="fab-leon">💬</div></div>
+        <div class="tab-item"><span class="tab-icon">👤</span><span>Profil</span></div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="row pro"><span class="icon">+</span><span>Vue 360° santé + perf — couvre Sophie/Maxime/Philippe/Nathalie</span></div>
+      <div class="row pro"><span class="icon">+</span><span>Différenciateur visuel "app data-driven" assumé</span></div>
+      <div class="row pro"><span class="icon">+</span><span>EU MDR clean : valeurs HK affichées sans interprétation médicale</span></div>
+      <div class="row con"><span class="icon">−</span><span>Coût HK = gros (charts RHR/HRV/Sleep, gestion permissions, perf) — assumé</span></div>
+      <div class="row con"><span class="icon">−</span><span>Discipline UX requise pour éviter le bloat Runna : densité maîtrisée, sections clairement séparées</span></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- OPTION B — INDEX DE ZOOMS                 -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone-wrapper">
+    <div class="phone-label">B · Liste de zooms <span class="badge">Maigre</span></div>
+    <div class="phone-sub">Pas de stats agrégées — juste la liste des programmes pour push vers le détail</div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar"><span>9:41</span><span>•••</span></div>
+        <div class="nav-bar">
+          <div class="title-grp">
+            <div class="greeting">Tes programmes</div>
+            <div class="nav-title">Progrès</div>
+          </div>
+        </div>
+
+        <div class="sec-lbl">Programmes en cours</div>
+
+        <div class="prog-card">
+          <div class="prog-icon">🏊‍♀️</div>
+          <div class="prog-info">
+            <div class="prog-name">Triathlon — Natation</div>
+            <div class="prog-meta">Sem 4 · 5 séances complétées</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:38%"></div></div>
+          </div>
+          <div class="prog-pct">38%</div>
+          <span class="prog-arrow">›</span>
+        </div>
+
+        <div class="prog-card">
+          <div class="prog-icon">🚴‍♀️</div>
+          <div class="prog-info">
+            <div class="prog-name">Triathlon — Vélo</div>
+            <div class="prog-meta">Sem 4 · 6 séances complétées</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:42%"></div></div>
+          </div>
+          <div class="prog-pct">42%</div>
+          <span class="prog-arrow">›</span>
+        </div>
+
+        <div class="prog-card">
+          <div class="prog-icon">🏃‍♀️</div>
+          <div class="prog-info">
+            <div class="prog-name">Triathlon — Course</div>
+            <div class="prog-meta">Sem 4 · 4 séances complétées</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:35%"></div></div>
+          </div>
+          <div class="prog-pct">35%</div>
+          <span class="prog-arrow">›</span>
+        </div>
+
+        <div class="sec-lbl">Programmes terminés</div>
+
+        <div class="prog-card" style="opacity:0.7">
+          <div class="prog-icon">💪</div>
+          <div class="prog-info">
+            <div class="prog-name">Renfo débutant 6 sem</div>
+            <div class="prog-meta">Terminé le 12 mars</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:100%; background:#7BC142"></div></div>
+          </div>
+          <div class="prog-pct" style="color:#7BC142">100%</div>
+          <span class="prog-arrow">›</span>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item"><span class="tab-icon">🏃‍♀️</span><span>Séances</span></div>
+        <div class="tab-item active"><span class="tab-icon">📊</span><span>Progrès</span></div>
+        <div class="fab-leon-slot"><div class="fab-leon">💬</div></div>
+        <div class="tab-item"><span class="tab-icon">👤</span><span>Profil</span></div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="row pro"><span class="icon">+</span><span>Hyper simple à implémenter (réutilise prog-card existant)</span></div>
+      <div class="row pro"><span class="icon">+</span><span>Section "Programmes terminés" = motivation persona Maxime</span></div>
+      <div class="row con"><span class="icon">−</span><span>Pas de vraie valeur ajoutée vs Séances → onglet "doublon"</span></div>
+      <div class="row con"><span class="icon">−</span><span>Maxime ne voit "ses lifts monter" qu'en pushant 1 programme</span></div>
+      <div class="row con"><span class="icon">−</span><span>Aucune vue agrégée multi-programme</span></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- OPTION C — HYBRIDE (reco initiale, non retenue) -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone-wrapper">
+    <div class="phone-label">C · Hybride <span class="badge">Reco initiale</span></div>
+    <div class="phone-sub">Widget léger + chart 4 sem + liste programmes — option Léna recadrée par Sophie en faveur d'A</div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar"><span>9:41</span><span>•••</span></div>
+        <div class="nav-bar">
+          <div class="title-grp">
+            <div class="greeting">Bilan</div>
+            <div class="nav-title">Progrès</div>
+          </div>
+          <div class="actions"><div class="icon-btn">⏱</div></div>
+        </div>
+
+        <div class="sec-lbl">Cette semaine</div>
+        <div class="stats-widget">
+          <div class="stat-block">
+            <div class="stat-value">3<span class="stat-unit">h12</span></div>
+            <div class="stat-label">Volume</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-value">5</div>
+            <div class="stat-label">Séances</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-value">12<span class="stat-unit">j</span></div>
+            <div class="stat-label">Streak</div>
+          </div>
+        </div>
+
+        <div class="mini-chart">
+          <div class="chart-title">Séances complétées · 4 dernières sem</div>
+          <div class="chart-row">
+            <div class="bar-col">
+              <div class="bar" style="height:50%"></div>
+              <div class="bar-lbl">S-3</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:65%"></div>
+              <div class="bar-lbl">S-2</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:80%"></div>
+              <div class="bar-lbl">S-1</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:100%; background:#7BC142"></div>
+              <div class="bar-lbl">Sem.</div>
+            </div>
+          </div>
+          <div class="chart-meta">Tendance : <strong>+2 séances</strong> vs sem dernière 🎯</div>
+        </div>
+
+        <div class="sec-lbl">Mes programmes</div>
+
+        <div class="prog-card">
+          <div class="prog-icon">🏊‍♀️</div>
+          <div class="prog-info">
+            <div class="prog-name">Triathlon — Natation</div>
+            <div class="prog-meta">Sem 4 · 5 séances</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:38%"></div></div>
+          </div>
+          <div class="prog-pct">38%</div>
+          <span class="prog-arrow">›</span>
+        </div>
+
+        <div class="prog-card">
+          <div class="prog-icon">🚴‍♀️</div>
+          <div class="prog-info">
+            <div class="prog-name">Triathlon — Vélo</div>
+            <div class="prog-meta">Sem 4 · 6 séances</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:42%"></div></div>
+          </div>
+          <div class="prog-pct">42%</div>
+          <span class="prog-arrow">›</span>
+        </div>
+
+        <div class="prog-card">
+          <div class="prog-icon">🏃‍♀️</div>
+          <div class="prog-info">
+            <div class="prog-name">Triathlon — Course</div>
+            <div class="prog-meta">Sem 4 · 4 séances</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:35%"></div></div>
+          </div>
+          <div class="prog-pct">35%</div>
+          <span class="prog-arrow">›</span>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item"><span class="tab-icon">🏃‍♀️</span><span>Séances</span></div>
+        <div class="tab-item active"><span class="tab-icon">📊</span><span>Progrès</span></div>
+        <div class="fab-leon-slot"><div class="fab-leon">💬</div></div>
+        <div class="tab-item"><span class="tab-icon">👤</span><span>Profil</span></div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="row pro"><span class="icon">+</span><span>Vue agrégée légère = motivation visible (chart séances/sem)</span></div>
+      <div class="row pro"><span class="icon">+</span><span>Coût impl raisonnable Phase 2 (pas de HK lourd)</span></div>
+      <div class="row pro"><span class="icon">+</span><span>Permet d'élargir Phase 3 (ajouter charts HK / volume sport sans refonte)</span></div>
+      <div class="row con"><span class="icon">−</span><span>Cards programmes en doublon avec Séances → bien différencier copy</span></div>
+      <div class="row con"><span class="icon">−</span><span>Le widget "cette semaine" peut paraître creux pour Nathalie 0 prog</span></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- OPTION D — PLACEHOLDER PHASE 3            -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone-wrapper">
+    <div class="phone-label">D · Placeholder <span class="badge">MVP</span></div>
+    <div class="phone-sub">Onglet vide en Phase 2 — on shippe sans, on cible Phase 3</div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar"><span>9:41</span><span>•••</span></div>
+        <div class="nav-bar">
+          <div class="title-grp">
+            <div class="nav-title">Progrès</div>
+          </div>
+        </div>
+
+        <div class="empty-hero">
+          <span class="emoji">📊</span>
+          <div class="title">Bientôt disponible</div>
+          <div class="desc">Léon va bientôt te montrer comment tu progresses avec des graphes clairs et personnalisés.</div>
+        </div>
+
+        <div class="empty-cta">
+          ← Retour à mes séances
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item"><span class="tab-icon">🏃‍♀️</span><span>Séances</span></div>
+        <div class="tab-item active"><span class="tab-icon">📊</span><span>Progrès</span></div>
+        <div class="fab-leon-slot"><div class="fab-leon">💬</div></div>
+        <div class="tab-item"><span class="tab-icon">👤</span><span>Profil</span></div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="row pro"><span class="icon">+</span><span>0 coût impl en Phase 2 — focus sur Séances et Léon</span></div>
+      <div class="row pro"><span class="icon">+</span><span>Permet de ship rapide MVP TestFlight</span></div>
+      <div class="row con"><span class="icon">−</span><span>3e onglet vide = mauvaise expérience, "App pas finie"</span></div>
+      <div class="row con"><span class="icon">−</span><span>Risque rejet App Store ("placeholder content")</span></div>
+      <div class="row con"><span class="icon">−</span><span>Maxime / Philippe ne voient aucune progression visible</span></div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

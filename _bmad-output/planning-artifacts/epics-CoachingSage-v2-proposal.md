@@ -533,6 +533,223 @@ So que j'aie un vrai coach à disposition.
 **And** chaque question décompte du quota quotidien, les packs de 50 (1,99€) alimentent un compteur `pack_questions_remaining`
 **And** history limité pour éviter la dérive des tokens en entrée (summarization après 10+ messages)
 
+### Story 3.8 : Refonte SessionView en dashboard « Séances » *(nouveau, ajouté 2026-05-07 — issu du party design)*
+
+As a utilisateur qui ouvre l'app au quotidien,
+I want que le 1er onglet me dise immédiatement « qu'est-ce que je fais à ma prochaine séance ? » — pas un catalogue de 10 sports « Demander un programme »,
+So that l'écran d'usage quotidien soit actionnable, et que mon ou mes programmes en cours soient le centre de gravité.
+
+**Contexte** : refonte issue du party design 2026-05-07 (`_bmad-output/planning-artifacts/party-seances-dashboard-2026-05-07.md`) — 5 décisions tranchées user-first par Sophie. Maquettes de référence : `ux-design-CoachingSage-seances-dashboard-2026-05-07.html`. Annule et remplace la décision #6 « dashboard simple » de la mémoire `epic3_flow_choice_AB.md` (2026-05-04).
+
+**Acceptance Criteria — Tab bar refondue** :
+
+**Given** l'app actuelle a 4 onglets (Séance · Programmes · Progrès placeholder · Profil)
+**When** Story 3.8 est livrée
+**Then** la tab bar est réduite à **3 onglets** : `Séances` (SF Symbol `figure.run`) · `Progrès` (SF Symbol `chart.bar.fill`) · `Profil` (SF Symbol `person.fill`)
+**And** un **FAB Léon** circulaire (54×54, fond `#1E5090` bleu coach, icône chat blanche) est ajouté à cheval sur la tab bar — pattern transposé depuis `~/CL3/GardenSage/Views/Components/FloreFloatingButton.swift` (Circle 56×56, ombre `0.35` radius 8 offset y 4 → adapté en 54×54 offset y -32)
+**And** le FAB ouvre une bottom sheet placeholder « Léon arrive bientôt » tant que Story 3.6 n'est pas livrée — pas d'entrée chat fonctionnelle (anti-pattern « UI bloated » Runna)
+**And** le FAB est visible sur les 3 onglets (Séances / Progrès / Profil) — accessible depuis tous les écrans (FR9 amorcé)
+**And** l'onglet `Progrès` reçoit un placeholder léger « Bientôt — Léon te montrera tes progrès ici » (remplacé par Story 3.9)
+
+**Acceptance Criteria — Mode vide (Nathalie, 0 programme)** :
+
+**Given** un utilisateur authentifié sans aucun `AdaptedProgramRecord`
+**When** il ouvre l'onglet Séances
+**Then** la nav bar affiche `Bienvenue, [prénom]` (greeting Lora italique 11pt) + titre `Séances` (Lora 26pt)
+**And** une seule action nav bar à droite : icône 📅 (calendrier — push `WeeklyCalendarView` placeholder en mode vide)
+**And** une **hint italique Léon** (composant existant, fond `rgba(30,80,144,0.08)`, border-left 3px `#1E5090`) affiche un texte calibré sur l'autoprofil HK : *« Tu m'as dit reprise progressive — voici 3 pistes adaptées à ton profil HealthKit. »* — texte dérivé deterministically du `CoachingProfile.healthAutofill` (pas d'appel IA)
+**And** une **hero card** gradient doré (`#D4A85A → #C09548`, border-radius 18px, padding 22×18) affiche : icône 🌱 + titre Lora « Prêt·e à commencer ? » + sous-titre DM Sans « Léon a préparé 3 programmes calibrés sur ton onboarding et tes données santé. »
+**And** une section `SUGGESTIONS POUR TOI` affiche **exactement 3 templates** suggérés en **réutilisant le `ProgramTemplateSelector` (Story 3.2)** avec une nouvelle entrée `selectTopN(profile:n:) -> [ProgramTemplate]` : sélection deterministic des `n` meilleurs matches `level` autoprofil + sports déclarés onboarding, tie-break alphabétique sur `templateId`. **Pas de nouveau composant** — extension de Story 3.2.
+**And** chaque card template a : icône sport + nom + tag durée (« 8 sem ») + 1 ligne descriptif + CTA « Voir → »
+**And** un lien dashed bottom (« Tu veux autre chose ? **Crée un programme sur mesure →** ») ouvre la `RequestProgramSheet` (questionnaire universel Phase 2 #5)
+**And** **aucune** section « Mes routines » ni « + ajouter routine » n'apparaît en mode vide (décision party #4 — A : jamais en mode vide)
+
+**Acceptance Criteria — Mode actif multi-programmes (Sophie 3 progs triathlon)** :
+
+**Given** un utilisateur avec ≥ 1 `AdaptedProgramRecord` actif
+**When** il ouvre l'onglet Séances
+**Then** la nav bar affiche `Bonjour [prénom],` + titre `Séances` + 2 icônes droite : 📅 + bouton primary `+` doré (`#D4A85A`)
+**And** une section `PROCHAINE SÉANCE` affiche une **card dominante** gradient bleu coach (`#1E5090 → #2B5F8A`, border-radius 18px, padding 16px) calculée comme suit :
+  - parcourir tous les `AdaptedProgramRecord` actifs
+  - pour chaque, calculer la prochaine session non complétée (en mode `planned` = date posée ; en mode `ondemand` = la première session du pool)
+  - retenir celle dont la date est la plus proche dans le futur (ou aujourd'hui)
+  - en cas d'égalité (2 séances même jour) : retenir celle avec heure la plus proche, sinon ordre alphabétique sport
+**And** la card affiche : label MAJ when/heure (« AUJOURD'HUI · 18:30 ») + titre Lora 19pt avec emoji sport + meta DM Sans 12pt (description séance) + CTA pill blanche « Démarrer la séance → »
+**And** une section `MES PROGRAMMES` affiche **toutes** les cards programmes actifs, **triées par date de prochaine séance** (la plus proche en haut — décision party #3 — A)
+**And** chaque card programme : icône sport (36×36 fond doré transparent) + nom + meta « Sem N · prochaine : [date courte] » + barre progression 4px doré + % à droite
+**And** tap sur une card programme push vers `AdaptedProgramView` (master existant — réutilisé tel quel)
+**And** si l'utilisateur a **exactement 1 programme actif**, le mode actif affiche en plus (décision party #2 — B+C combinés) :
+  - un **mini-widget « Cette semaine »** (3 stats inline : volume, séances complétées, streak) dérivées de `WeeklyStatsService.computeCurrentWeek()` — composant nouveau, sync local, < 50ms
+  - une **card secondaire « Et après »** sous la card prochaine séance (gradient plus pâle ou border simple), affichant la **2e** séance dans le futur (`Today + Tomorrow` style TrainingPeaks) — utilise le même composant que la card dominante, avec variante visuelle `compact: true`
+**And** une section `MES ROUTINES` (si l'utilisateur a ≥ 1 `RoutineRecord`) liste les routines en pointillé (border dashed `#D4A85A`)
+**And** une card dashed bottom `+ Créer une routine ou un programme` ouvre une bottom sheet « Programme / Routine »
+**And** un lien CTA discret bas (`↻ Réorganiser ma semaine →`, fond `rgba(212,168,90,0.08)`, texte doré) ouvre la vue `WeeklyCalendarView` avec drag & drop hebdo (décision party #5 — A)
+
+**Acceptance Criteria — Mode rest day (jour de récup)** :
+
+**Given** un utilisateur avec ≥ 1 programme actif, et la prochaine session calculée tombe à `> J+0` (pas aujourd'hui)
+**When** il ouvre l'onglet Séances
+**Then** la card dominante est en variante **rest day** : gradient vert nature (`#7BC142 → #5A9A30`) au lieu de bleu coach
+**And** label MAJ « RÉCUPÉRATION » + titre Lora « 🌿 Jour de récup » + meta « Hydrate-toi, marche tranquille, dors bien. Ton corps consolide. »
+**And** un séparateur 1px blanc opacity 0.25 + ligne info bas : « ↗︎ Prochaine séance · [jour court] [heure] — [sport], [nom séance] »
+**And** une hint italique Léon contextuelle (texte tiré de `CoachLineEngine.restDayHint(sessions: lastWeek)`) — pas un appel IA, calcul deterministic depuis l'historique séances locales
+**And** sections `MES PROGRAMMES` et `MES ROUTINES` rendues à l'identique du mode actif
+**And** le lien `↻ Réorganiser ma semaine →` reste visible
+
+**Acceptance Criteria — Persistance & data model** :
+
+**Given** la couche data CoachingSage actuelle (CoreProfileRepository + `AdaptedProgram` retourné par Story 3.3a, **uniquement en mémoire** — non persisté avant cette story)
+**When** Story 3.8 est livrée
+**Then** un nouveau `@Model AdaptedProgramRecord` SwiftData est **créé from-scratch** (pas de migration de données existantes — l'app pré-3.8 ne persistait pas les programmes adaptés). Champs : `id UUID, sportCode, level, templateId, adaptedAt Date, weekStartDate Date, mode: ProgramMode (.ondemand par défaut, .planned si l'utilisateur réorganise via drag&drop), sessionsJSON, completionStateJSON, isActive Bool, archivedAt Date?`
+**And** un **bridge** est ajouté en sortie de Story 3.3a : après `ProgramAdapter.adapt(...)`, on convertit `AdaptedProgram` (struct mémoire) → `AdaptedProgramRecord` (SwiftData) et on persiste avec `isActive = true`. Les programmes pré-existants pré-3.8 sont perdus (acceptable : pas encore d'utilisateurs réels)
+**And** un nouveau `@Model RoutineRecord` SwiftData persiste les routines (champs : id, name, durationMinutes, equipmentRequired array, createdAt, lastUsedAt) — composant **nouveau**
+**And** un nouveau composant `SessionDashboardViewModel` (composant **nouveau**) charge les `AdaptedProgramRecord.isActive == true` + `RoutineRecord` au `onAppear` et observe les changements via `@Query`
+**And** un nouveau composant `NextSessionResolver` (composant **nouveau**, sync local) implémente la sélection prochaine séance + tri (cf AC mode actif multi-prog)
+**And** un nouveau composant `WeeklyStatsService` (composant **nouveau**) calcule volume / séances / streak sur la semaine courante (réutilisé par Story 3.9 avec extension period `month`/`quarter`)
+**And** un nouveau composant `CoachLineEngine.restDayHint(sessions: [AdaptedProgramRecord]) -> String` (composant **nouveau**) calcule deterministically la phrase italique Léon en mode rest day depuis l'historique séances locales — pas d'appel IA
+**And** un test paramétrique vérifie le tri prochaine séance (3 cas : toutes futures, 1 aujourd'hui + 1 demain, égalité même jour)
+**And** un test vérifie le bascule mode-vide ↔ mode-actif quand `AdaptedProgramRecord.isActive` change
+**And** un test vérifie la card rest day quand la prochaine séance est à J+1 ou plus
+
+**Acceptance Criteria — Drag & drop calendrier hebdo** :
+
+**Given** un utilisateur sur l'écran Séances en mode actif, qui tape `↻ Réorganiser ma semaine` ou l'icône 📅
+**When** la `WeeklyCalendarView` s'ouvre
+**Then** elle affiche une grille 7 jours × N programmes avec les sessions positionnées par date
+**And** l'utilisateur peut **glisser une session** d'un jour à un autre (drag & drop natif SwiftUI iOS 17+ via `.draggable()` / `.dropDestination()`)
+**And** le drop met à jour `AdaptedProgramRecord.sessionsJSON[i].plannedDate` + persiste en SwiftData
+**And** **règle data model** : un programme nouvellement créé naît en `mode = .ondemand` (pool de séances non datées). Le **premier drop drag&drop** sur une session fait basculer le programme correspondant en `mode = .planned` + assigne `plannedDate` à la session déplacée (les autres sessions restent sans date jusqu'à ce qu'elles soient elles aussi déplacées). Pas de modal de confirmation — l'action de réorganiser EST la conversion. Le mode global `planned` (calendrier généré automatiquement par l'app) reste hors-scope, déféré au flux A/B.
+**And** la vue est réutilisable depuis 3 entrées (décision party #5 amortissement) :
+  1. Lien `Réorganiser ma semaine` depuis Séances
+  2. Push depuis card programme dans `AdaptedProgramView`
+  3. Icône 📅 nav bar Séances (mode global, agrège tous les progs)
+**And** le composant est packagé dans `Views/Common/WeeklyCalendarView.swift` avec un `WeeklyCalendarMode` enum (`.singleProgram(id:)` / `.allActivePrograms`)
+**And** **risque connu iOS 17** : `.dropDestination()` callback peut double-fire sur certaines versions early 17.x — vérifier sur iOS 17.4+, ajouter debounce 100ms si reproduit
+
+**Pré-requis bloquants** :
+- Phase 2 #5 mergée (questionnaire universel `epic-3/universal-questionnaire`, commit 17defa7) — nécessaire pour la `RequestProgramSheet`
+- Décision data model `AdaptedProgramRecord` + `RoutineRecord` validée (cf flow A/B mémoire `epic3_flow_choice_AB.md`) — la story commence en mode `ondemand` par défaut, mode `planned` géré par story future « Flux A/B »
+
+**Hors scope (déférés)** :
+- Implémentation chat Léon dans le FAB (Story 3.6)
+- Calculs perf complets HK pour widget « cette semaine » au-delà de volume/séances/streak (Story 3.9)
+- Notif push « rappels de séances » paramètre profil (Story future, pattern Nathalie procrastination)
+- Mode `planned` **global** (calendrier généré automatiquement à la création du programme) — déféré au flux A/B Story future. Story 3.8 ne livre que le **mode `planned` per-session** activé par drag&drop manuel.
+- Synchronisation `AdaptedProgramRecord` ↔ Supabase (V1 = local-first)
+
+**Effort estimé** : **7-8 jours** (révisé après review — 6-7j initial était optimiste, marge requise pour drag&drop iOS 17 et tests bascule modes) :
+- Tab bar 3 onglets + FAB Léon (transposition `FloreFloatingButton`) : 0.5j
+- Data model `AdaptedProgramRecord` + `RoutineRecord` SwiftData + bridge sortie 3.3a : 1j
+- `SessionDashboardViewModel` + `NextSessionResolver` + tests paramétriques + tests bascule modes : 1.5j
+- Extension `ProgramTemplateSelector.selectTopN()` + AC test : 0.25j
+- Vue mode vide (hero + 3 templates suggérés + lien sur mesure) : 1j
+- Vue mode actif multi-prog (cards dominante + programmes empilés + routines + replan) : 1.5j
+- Variante rest day + `CoachLineEngine.restDayHint` + `WeeklyStatsService` + mini-widget + card « Et après » mode 1-prog : 1.25j
+- `WeeklyCalendarView` drag & drop (3 entry points + bascule mode `.ondemand`→`.planned` per-session + risque dropDestination iOS 17) : 2-2.5j
+- Tests unit + UI snapshot critiques + ui-reviewer (process livraison UI) : 0.5j
+
+**Mitigation si dépassement effort** : virer le mini-widget « Cette semaine » du mode 1-prog (réinjecté via Story 3.9 qui le réutilise déjà) — économise ~0.5j.
+
+### Story 3.9 : Onglet Progrès — agrégé multi-sport complet *(nouveau, ajouté 2026-05-07)*
+
+As a utilisateur qui suit ≥ 1 programme,
+I want voir un onglet Progrès qui me montre ma forme physique (HealthKit), mon volume par sport et mes records sur **un seul écran**,
+So that je sois motivé visuellement par ma progression cross-disciplines (différenciateur vs Nike Training Club / Runna mono-sport).
+
+**Contexte** : décision party 2026-05-07 #1 — Sophie tranche **Option A « Agrégé multi-sport complet »** plutôt que Option C hybride (reco initiale Léna). Justification user-first : les 4 personas demandent du visuel motivant (Sophie « progression 3 disciplines un seul écran », Maxime « courbe monter », Philippe « VMA et allure », Nathalie « kilos baisser et forme monter »). Maquette de référence : `ux-design-CoachingSage-progres-options-2026-05-07.html` (Option A + reco finale).
+
+**Acceptance Criteria — Structure de l'écran** :
+
+**Given** un utilisateur authentifié avec ≥ 1 `AdaptedProgramRecord` actif et permissions HK accordées (Story 2.1)
+**When** il ouvre l'onglet Progrès
+**Then** la nav bar affiche `Tes données` + titre `Progrès` + icône ⏱ à droite (sélecteur période)
+**And** l'icône ⏱ ouvre une bottom sheet picker `Période` : `Cette semaine` (par défaut) · `Ce mois` · `3 derniers mois`
+**And** le contenu est sectionné en 4 blocs verticaux dans cet ordre : `Cette semaine` (widget stats) · `Forme physique (HealthKit)` · `Volume par sport` · `Performances récentes`
+
+**Acceptance Criteria — Bloc 1 : widget stats** :
+
+**Given** la période sélectionnée
+**When** l'écran charge
+**Then** un widget 3 colonnes affiche : **Volume** (h/min calculé via `HKWorkoutType` agrégé sur la période) · **Séances** (count completion `AdaptedProgramRecord.completionStateJSON`) · **Streak** (jours consécutifs avec ≥ 1 séance, depuis le début) — chaque stat en chiffre Lora 22pt doré
+**And** les unités sont localisées (« 3h12 » FR / « 3h12m » EN minimal — fallback sur `MeasurementFormatter`)
+**And** le calcul est fait via `WeeklyStatsService` (composant Story 3.8) étendu pour gérer la période `month` / `quarter`
+
+**Acceptance Criteria — Bloc 2 : Forme physique HealthKit** :
+
+**Given** la story upstream `Story 3.9.0 — Extension HK auth` livrée (cf bloc dédié ci-dessous), donc lecture autorisée pour `HKQuantityType.restingHeartRate`, `HKQuantityType.heartRateVariabilitySDNN`, `HKCategoryType.sleepAnalysis`
+**When** l'écran charge
+**Then** une card blanche affiche 3 lignes (Fréquence cardiaque repos · Variabilité HRV · Sommeil), avec :
+  - icône (❤️ / 📈 / 😴) + nom + meta « Moy. 7 derniers j »
+  - valeur courante (e.g. `52`, `68`, `7h21`) en couleur bleu coach `#1E5090`
+  - flèche delta vs période précédente (↑ vert `#7BC142` / ↓ rouge `#C0584F`) — calcul via `HKStatisticsCollectionQuery` sur deux fenêtres (J-7→J0 vs J-14→J-7)
+**And** si une métrique HK est indisponible (permission refusée OU 0 sample sur la période — Apple ne distingue pas les deux côté READ), la ligne affiche état vide « — » + tooltip « Active dans Réglages > Santé » (pas d'erreur bloquante)
+**And** **garde-fou EU MDR** : aucune valeur HK n'est interprétée en termes médicaux (pas de label « Fatigue », « Récupération mauvaise », etc.) — affichage neutre des chiffres uniquement
+**And** un test unitaire vérifie le fallback complet HK indisponible (3 lignes en `—`)
+
+**Acceptance Criteria — Story 3.9.0 (sous-story extraite, à livrer AVANT 3.9 pour débloquer le bloc 2)** :
+
+**Given** l'app actuelle dont `HealthKitService.requestProfileAuthorization()` ne demande **PAS** `restingHeartRate`, `heartRateVariabilitySDNN`, `sleepAnalysis` (vérifié dans `Services/HealthKitService.swift` post-Story 2.1)
+**When** Story 3.9.0 est livrée
+**Then** `HealthKitService.requestProfileAuthorization()` étend la liste des `readTypes` HK avec les 3 nouveaux `HKObjectType` (RHR, HRV SDNN, Sleep Analysis)
+**And** un nouveau flow `HealthKitService.requestProgressAuthorizationIfNeeded()` est ajouté : invoqué au premier `onAppear` de l'onglet Progrès, vérifie si l'extension a été demandée, sinon prompt iOS natif HK (HK ne distinguant pas refus historique vs jamais demandé, on stocke en `UserDefaults` un flag `progressHKRequestedAt: Date?` pour ne pas re-prompt en boucle)
+**And** si l'utilisateur refuse → onglet Progrès s'affiche normalement avec les 3 lignes en `—` + bouton CTA « Active HealthKit dans Réglages » (deep link `UIApplication.openSettingsURLString`)
+**And** test : utilisateur post-Story 2.1 sans permissions étendues → onglet Progrès propose le re-prompt → après acceptation, données chargent
+**And** **effort 3.9.0 = 0.5j** (extension `readTypes` + flag UserDefaults + bouton deep-link Settings)
+
+**Acceptance Criteria — Bloc 3 : Volume par sport** :
+
+**Given** ≥ 1 sport pratiqué dans la période
+**When** l'écran charge
+**Then** une liste de `vol-row` (1 par sport actif dans la période, triées par volume desc) affiche : icône sport + nom + amount (h/min) + barre 6px gradient doré (largeur = ratio volume sport / volume max)
+**And** seuls les sports avec ≥ 1 séance complétée dans la période sont affichés (pas de ligne « 0 min » polluante)
+**And** le calcul agrège `HKWorkout` matchés sur le code sport mappé via un nouveau composant `SportCodeMapper.toHKWorkoutActivityType(SportCode) -> HKWorkoutActivityType` (composant **nouveau**, table de mapping pour les 10 SportCode iOS)
+**And** un test paramétrique sur 3 cas : 1 sport, 3 sports, 0 sport (état vide → bloc masqué)
+
+**Acceptance Criteria — Bloc 4 : Performances récentes** :
+
+**Given** ≥ 1 PR (personal record) détecté sur la période
+**When** l'écran charge
+**Then** une `pr-card` (gradient doré + vert très transparent) affiche : emoji 🏅 + tag MAJ « RECORD » + texte description « Tu as battu ton allure 5K natation cette semaine — 1:48/100m. »
+**And** la détection PR est faite par un nouveau composant `PersonalRecordsEngine.detectRecent(period:) -> [PRRecord]` (composant **nouveau**) qui compare contre l'historique `AdaptedProgramRecord.completionStateJSON.metrics`
+**And** **maximum 3 PR cards** affichées (les 3 plus récents) — pas de liste infinie
+**And** si aucun PR détecté → bloc masqué (pas de message « Pas de records » qui démotive)
+**And** un test vérifie : utilisateur sans historique → bloc absent ; utilisateur avec 5 PR → 3 cards affichées
+
+**Acceptance Criteria — État vide global (Nathalie 0 prog)** :
+
+**Given** un utilisateur sans aucun `AdaptedProgramRecord`
+**When** il ouvre l'onglet Progrès
+**Then** l'écran affiche un état vide bienveillant : icône 📊 + titre Lora « Bientôt tes progrès » + sous-titre « Démarre un programme depuis l'onglet Séances et Léon te montrera tes statistiques ici. »
+**And** un CTA discret « ← Retour aux Séances » re-bascule sur l'onglet Séances
+
+**Acceptance Criteria — Performance & permissions** :
+
+**Given** l'écran Progrès en mode actif
+**When** il charge
+**Then** le rendu initial < 200ms (chargement des SwiftData locaux)
+**And** les charts HK chargent en différé (loader Skeleton jusqu'à `HKStatisticsCollectionQuery` complète, < 2s P90)
+**And** si HK non autorisé : bouton « Activer HealthKit » ouvre `Settings.app` ou bottom sheet onboarding HK
+**And** un test perf snapshot vérifie le scroll fluide (60fps) sur un user avec 50 séances historiques
+
+**Pré-requis bloquants** :
+- Story 3.8 livrée (tab bar 3 onglets + FAB Léon + persistance `AdaptedProgramRecord`)
+- **Story 3.9.0 livrée** (extension HK auth RHR/HRV/Sleep — cf bloc dédié dans cette story) — **trou P0 corrigé 2026-05-07** : `HealthKitService.requestProfileAuthorization()` post-Story 2.1 ne couvre PAS ces 3 types, il faut étendre AVANT 3.9 sinon `HKStatisticsCollectionQuery` retournera 0 sample silencieusement
+- `HealthKitService` (AppDependencies, ajouté Story 2.1) étendu avec **3 nouveaux composants** : `fetchRestingHR(period:)`, `fetchHRV(period:)`, `fetchSleep(period:)` (composants **nouveaux**)
+- Composants **nouveaux** créés dans cette story : `SportCodeMapper`, `PersonalRecordsEngine`, `ProgressViewModel`, extension `WeeklyStatsService` (period `month`/`quarter`)
+
+**Hors scope (déférés Phase 3)** :
+- Charts détaillés par sport (courbe VMA running, FTP cycling, CSS natation) → Story future
+- Comparaison cross-users / leaderboards → jamais (positionnement CoachingSage)
+- Export PDF/CSV des progrès → Story future
+- Sync HK depuis Apple Watch en temps réel pendant séance → géré par Epic 4 tracking
+
+**Effort estimé** : **4.5-5.5 jours** détaillés (révisé après review — +0.5j Story 3.9.0 extension auth) :
+- **Story 3.9.0 — Extension HK auth RHR/HRV/Sleep + flow re-prompt** : 0.5j
+- `HealthKitService` extensions RHR/HRV/Sleep + `HKStatisticsCollectionQuery` deux-fenêtres : 1.5j
+- `PersonalRecordsEngine` + `SportCodeMapper` (detect + tests sur historique completion) : 1j
+- `ProgressView` (4 blocs + sélecteur période + état vide + extension `WeeklyStatsService`) : 1.5j
+- Tests + ui-reviewer (process livraison UI) + perf snapshot : 0.5j
+
 ## Couverture des FRs avec le nouveau découpage
 
 | FR original | Couvert par |
@@ -702,13 +919,16 @@ So que je détecte rapidement les dérives et améliore les prompts/templates en
 4. **Story 3.2** — ProgramTemplateSelector (jamais nil après 0.5.10 ; couverture structurelle dès 0.5.8)
 5. **Story 3.3a** — Adaptation algo deterministic (cœur free tier illimité)
 6. **Story 3.3b** — Adaptation IA fallback (rate-limité 10/j cumulé)
-7. **Story 3.6** — Questions ad-hoc + adapt-session (FR12, IA, même quota)
-8. **Story 3.7** — Challenge Pipeline N2/N3
-9. **Story 3.4** — Regen hebdo Léon+
-10. **Story 3.5** — From-scratch Pro (FR17)
-11. **Story 3.1.5** — HealthKit pre-fill Q1 niveau (idée Sophie 2026-04-29, +0.5j) — peut être glissée entre 3.3a et 3.3b si HK estimation level débloque pacing 3.3a
-12. **Epic 10** — Monétisation Léon Pro
-13. **Epics 4-9** (ordre inchangé)
+7. **Story 3.8** — Refonte SessionView dashboard Séances *(ajouté 2026-05-07, party design)* — 7-8j (révisé après review : marge requise drag&drop iOS 17 et tests bascule modes), débloque le différenciateur multi-prog visible et la nav 3 onglets + FAB Léon
+8. **Story 3.9.0** — Extension HK auth RHR/HRV/Sleep *(ajouté 2026-05-07 review)* — 0.5j, débloque Story 3.9
+9. **Story 3.9** — Onglet Progrès Option A *(ajouté 2026-05-07)* — 4-5j, dépend Story 3.8 + 3.9.0
+10. **Story 3.6** — Questions ad-hoc + adapt-session (FR12, IA, même quota) — débloquée par FAB Léon Story 3.8
+11. **Story 3.7** — Challenge Pipeline N2/N3
+12. **Story 3.4** — Regen hebdo Léon+
+13. **Story 3.5** — From-scratch Pro (FR17)
+14. **Story 3.1.5** — HealthKit pre-fill Q1 niveau (idée Sophie 2026-04-29, +0.5j) — peut être glissée entre 3.3a et 3.3b si HK estimation level débloque pacing 3.3a
+15. **Epic 10** — Monétisation Léon Pro
+16. **Epics 4-9** (ordre inchangé)
 
 ---
 

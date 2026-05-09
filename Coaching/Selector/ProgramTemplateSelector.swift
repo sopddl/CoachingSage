@@ -18,6 +18,16 @@
 import Foundation
 import TemplateModel
 
+/// Profil léger consommé par `selectTopN` (Story 3.8 mode vide).
+/// Bundle : `level` autoprofil HK + `sportCodes` déclarés à l'onboarding
+/// (`CoachingProfile.activeSports`). Pas de goals/equipment ici — la suggestion
+/// mode vide est une vitrine, le profil sport détaillé arrive au moment où
+/// l'utilisateur tape « Voir → » sur une card et entre dans le questionnaire.
+struct TopNSelectionProfile: Equatable {
+    let level: String
+    let sportCodes: [String]
+}
+
 struct ProgramTemplateSelector {
     private let library: ProgramTemplateLibrary
 
@@ -47,6 +57,67 @@ struct ProgramTemplateSelector {
 
         // Library non vide (precondition init), tri deterministic par id.
         return library.templates.min(by: idAscending)!
+    }
+
+    /// Sélectionne jusqu'à `n` templates calibrés sur (level autoprofil ∩ sports onboarding).
+    /// 100% local, deterministic, tie-break alphabétique sur `templateId`.
+    ///
+    /// Cascade pour atteindre `n` quand l'utilisateur déclare moins de sports
+    /// que demandé, ou quand la library bundlée ne couvre pas tout :
+    ///   1. Sports déclarés × level exact
+    ///   2. Sports déclarés × level proche (distance ascendante, level inférieur préféré à égalité)
+    ///   3. Tous sports × level exact
+    ///   4. Tout le reste (precondition library non vide pour CoachingSage v2)
+    /// À chaque tier : tri `id` ascendant, dédup par `id`, on s'arrête dès `n` atteint.
+    func selectTopN(profile: TopNSelectionProfile, n: Int) -> [ProgramTemplate] {
+        guard n > 0 else { return [] }
+
+        let level = Level(profileLevel: profile.level) ?? .beginner
+        let declaredSports = Set(profile.sportCodes.compactMap { Sport(sportCode: $0) })
+
+        var picked: [ProgramTemplate] = []
+        var pickedIds = Set<String>()
+
+        func append(_ candidates: [ProgramTemplate]) {
+            for tpl in candidates {
+                guard picked.count < n, !pickedIds.contains(tpl.id) else { continue }
+                picked.append(tpl)
+                pickedIds.insert(tpl.id)
+            }
+        }
+
+        // Tier 1 — sports déclarés × level exact, tri id ascendant.
+        let tier1 = library.templates
+            .filter { declaredSports.contains($0.sport) && $0.level == level }
+            .sorted(by: idAscending)
+        append(tier1)
+        if picked.count >= n { return picked }
+
+        // Tier 2 — sports déclarés × level proche (distance asc, level inférieur préféré, puis id).
+        let targetRank = level.rank
+        let tier2 = library.templates
+            .filter { declaredSports.contains($0.sport) && $0.level != level }
+            .sorted { lhs, rhs in
+                let dl = abs(lhs.level.rank - targetRank)
+                let dr = abs(rhs.level.rank - targetRank)
+                if dl != dr { return dl < dr }
+                if lhs.level.rank != rhs.level.rank { return lhs.level.rank < rhs.level.rank }
+                return lhs.id < rhs.id
+            }
+        append(tier2)
+        if picked.count >= n { return picked }
+
+        // Tier 3 — n'importe quel sport, level exact, tri id ascendant.
+        let tier3 = library.templates
+            .filter { $0.level == level }
+            .sorted(by: idAscending)
+        append(tier3)
+        if picked.count >= n { return picked }
+
+        // Tier 4 — tout le reste, tri id ascendant.
+        let tier4 = library.templates.sorted(by: idAscending)
+        append(tier4)
+        return picked
     }
 
     // MARK: - Internal

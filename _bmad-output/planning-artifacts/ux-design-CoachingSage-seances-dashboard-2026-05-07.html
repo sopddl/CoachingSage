@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoachingSage — Onglet Séances (4 modes)</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #141E2B;
+    color: #F5F2EE;
+    padding: 40px 24px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .page-header { text-align: center; margin-bottom: 32px; }
+  .page-header h1 { font-family: 'Lora', serif; font-size: 30px; color: #D4A85A; margin-bottom: 8px; }
+  .page-header p { color: #5A6577; font-size: 13px; max-width: 760px; margin: 0 auto; line-height: 1.5; }
+  .page-header .meta { color: #2B5F8A; font-size: 11px; margin-top: 6px; font-family: monospace; }
+
+  .legend {
+    background: rgba(212,168,90,0.06);
+    border: 1px solid rgba(212,168,90,0.2);
+    border-radius: 14px;
+    padding: 18px 24px;
+    margin: 0 auto 40px;
+    max-width: 900px;
+    color: #F5F2EE;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .legend strong { color: #D4A85A; font-family: 'Lora', serif; font-style: italic; }
+  .legend ul { margin-top: 8px; padding-left: 22px; }
+  .legend li { margin-bottom: 4px; }
+
+  .mockups-row {
+    display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .phone-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 340px; }
+  .phone-label {
+    text-align: center;
+    font-family: 'Lora', serif; font-size: 17px; color: #F5F2EE;
+    margin-bottom: 2px;
+  }
+  .phone-sub { font-size: 11px; color: #5A6577; max-width: 280px; text-align: center; }
+
+  .phone {
+    width: 340px; height: 720px;
+    border-radius: 44px;
+    border: 2px solid rgba(212,168,90,0.3);
+    overflow: hidden; position: relative;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    background: #F5F2EE;
+  }
+  .phone-screen {
+    width: 100%; height: 100%;
+    overflow-y: auto; padding-top: 44px; padding-bottom: 64px;
+    background: #F5F2EE;
+  }
+  .phone-screen::-webkit-scrollbar { display: none; }
+
+  /* Status bar fake */
+  .status-bar {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 44px; display: flex; align-items: flex-end;
+    justify-content: space-between; padding: 0 22px 8px;
+    font-size: 12px; font-weight: 600; color: #141E2B;
+  }
+
+  /* Header bar avec titre Séances + actions */
+  .nav-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 18px 12px;
+  }
+  .nav-bar .title-grp { display: flex; flex-direction: column; }
+  .nav-bar .greeting { font-size: 11px; color: #5A6577; font-weight: 500; }
+  .nav-bar .nav-title { font-family: 'Lora', serif; font-size: 26px; color: #141E2B; line-height: 1.1; }
+  .nav-bar .actions { display: flex; gap: 12px; }
+  .nav-bar .icon-btn {
+    width: 34px; height: 34px; border-radius: 11px;
+    background: rgba(20,30,43,0.06);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: #141E2B;
+  }
+  .nav-bar .icon-btn.primary { background: #D4A85A; color: white; font-weight: 700; font-size: 18px; }
+
+  /* Section labels */
+  .sec-lbl {
+    padding: 14px 20px 6px;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.2px; color: #D4A85A;
+  }
+
+  /* Coach hint italic msg (info-ligne, pas chat) */
+  .hint-line {
+    margin: 4px 20px 10px;
+    padding: 9px 12px;
+    background: rgba(30,80,144,0.08);
+    border-left: 3px solid #1E5090;
+    border-radius: 8px;
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 12px; color: #1E5090;
+    line-height: 1.4;
+  }
+
+  /* ═══ Card "Prochaine séance" dominante ═══ */
+  .next-card {
+    margin: 0 20px 14px;
+    padding: 16px;
+    background: linear-gradient(135deg, #1E5090 0%, #2B5F8A 100%);
+    color: white;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(30,80,144,0.25);
+  }
+  .next-card .when {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; opacity: 0.8; margin-bottom: 4px;
+  }
+  .next-card .session-title {
+    font-family: 'Lora', serif; font-size: 19px;
+    line-height: 1.2; margin-bottom: 8px;
+  }
+  .next-card .session-meta {
+    font-size: 12px; opacity: 0.9; margin-bottom: 14px; line-height: 1.4;
+  }
+  .next-card .cta {
+    background: white; color: #1E5090;
+    padding: 10px 16px; border-radius: 11px;
+    font-size: 13px; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .next-card .cta .arrow { font-size: 11px; }
+
+  /* Variation rest day */
+  .rest-card {
+    margin: 0 20px 14px;
+    padding: 16px;
+    background: linear-gradient(135deg, #7BC142 0%, #5A9A30 100%);
+    color: white;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(123,193,66,0.2);
+  }
+  .rest-card .when {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; opacity: 0.85; margin-bottom: 4px;
+  }
+  .rest-card .session-title {
+    font-family: 'Lora', serif; font-size: 19px;
+    line-height: 1.25; margin-bottom: 6px;
+  }
+  .rest-card .session-meta {
+    font-size: 12px; opacity: 0.9; margin-bottom: 12px; line-height: 1.4;
+  }
+  .rest-card .next-info {
+    font-size: 11px; padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.25);
+  }
+
+  /* Programme card compacte */
+  .prog-card {
+    margin: 0 20px 8px; padding: 12px 14px;
+    background: white; border-radius: 13px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .prog-icon {
+    font-size: 22px; width: 36px; height: 36px;
+    background: rgba(212,168,90,0.12); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .prog-info { flex: 1; min-width: 0; }
+  .prog-name { font-size: 13px; font-weight: 600; color: #141E2B; }
+  .prog-meta { font-size: 10px; color: #5A6577; margin-top: 1px; }
+  .prog-bar {
+    height: 4px; background: #EDE9E3; border-radius: 2px;
+    margin-top: 6px; overflow: hidden;
+  }
+  .prog-fill { height: 100%; border-radius: 2px; background: #D4A85A; }
+  .prog-pct {
+    font-size: 13px; font-weight: 700; color: #D4A85A;
+    min-width: 36px; text-align: right;
+  }
+
+  /* Card routine (séance libre) */
+  .routine-card {
+    margin: 0 20px 8px; padding: 12px 14px;
+    background: white; border-radius: 13px;
+    border: 1px dashed rgba(212,168,90,0.3);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .routine-icon {
+    font-size: 18px; width: 32px; height: 32px;
+    background: rgba(20,30,43,0.05); border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .routine-info { flex: 1; }
+  .routine-name { font-size: 12px; font-weight: 600; color: #141E2B; }
+  .routine-meta { font-size: 10px; color: #5A6577; margin-top: 1px; }
+
+  /* Card "+" création nouveau programme */
+  .add-card {
+    margin: 8px 20px 0; padding: 14px;
+    background: transparent;
+    border: 1.5px dashed rgba(212,168,90,0.4);
+    border-radius: 13px;
+    text-align: center;
+    color: #D4A85A;
+    font-size: 12px; font-weight: 600;
+  }
+  .add-card .plus { font-size: 18px; margin-right: 4px; }
+
+  /* ═══ Mini widget "Cette semaine" (mode 1-prog) ═══ */
+  .week-widget {
+    margin: 0 20px 10px;
+    padding: 12px 14px;
+    background: white;
+    border-radius: 13px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    display: flex; gap: 10px;
+  }
+  .week-widget .stat-blk { flex: 1; text-align: center; }
+  .week-widget .stat-blk + .stat-blk { border-left: 1px solid #EDE9E3; }
+  .week-widget .stat-val {
+    font-family: 'Lora', serif; font-size: 18px;
+    color: #D4A85A; font-weight: 600; line-height: 1;
+  }
+  .week-widget .stat-val .unit { font-size: 10px; color: #5A6577; font-weight: 500; }
+  .week-widget .stat-lbl {
+    font-size: 9px; color: #5A6577;
+    text-transform: uppercase; letter-spacing: 0.7px;
+    margin-top: 4px;
+  }
+
+  /* Card "Et après" — secondaire compacte (Today+Tomorrow style) */
+  .next-after {
+    margin: 0 20px 12px;
+    padding: 11px 14px;
+    background: white;
+    border: 1px solid rgba(30,80,144,0.15);
+    border-radius: 13px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .next-after .arrow-ico {
+    font-size: 14px; color: #1E5090; flex-shrink: 0;
+  }
+  .next-after .info { flex: 1; }
+  .next-after .label {
+    font-size: 9px; font-weight: 700;
+    color: #1E5090; text-transform: uppercase; letter-spacing: 0.7px;
+    margin-bottom: 2px;
+  }
+  .next-after .body {
+    font-size: 12px; color: #141E2B; font-weight: 500;
+    line-height: 1.3;
+  }
+  .next-after .body em { font-family: 'Lora', serif; font-style: italic; color: #5A6577; }
+
+  /* CTA "Réorganiser ma semaine" (Runna replan pattern) */
+  .replan-link {
+    margin: 12px 20px 0;
+    padding: 11px 14px;
+    background: rgba(212,168,90,0.08);
+    border-radius: 11px;
+    font-size: 12px; font-weight: 600;
+    color: #D4A85A;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  /* ═══ Empty / first-run mode ═══ */
+  .first-hero {
+    margin: 12px 20px 18px;
+    padding: 22px 18px;
+    background: linear-gradient(135deg, #D4A85A 0%, #C09548 100%);
+    border-radius: 18px;
+    color: #141E2B;
+    text-align: center;
+  }
+  .first-hero .icon { font-size: 32px; margin-bottom: 8px; display: block; }
+  .first-hero .title {
+    font-family: 'Lora', serif; font-size: 18px;
+    line-height: 1.25; margin-bottom: 6px;
+  }
+  .first-hero .sub {
+    font-size: 12px; opacity: 0.85; line-height: 1.4;
+  }
+
+  .template-card {
+    margin: 0 20px 8px; padding: 14px;
+    background: white; border-radius: 13px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .template-card .top-row {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 6px;
+  }
+  .template-card .t-icon {
+    font-size: 20px; width: 32px; height: 32px;
+    background: rgba(212,168,90,0.12); border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .template-card .t-name {
+    font-size: 13px; font-weight: 600; color: #141E2B;
+  }
+  .template-card .t-tag {
+    font-size: 9px; padding: 2px 7px; border-radius: 6px;
+    background: rgba(123,193,66,0.18); color: #5A9A30;
+    text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;
+    margin-left: auto;
+  }
+  .template-card .t-desc {
+    font-size: 11px; color: #5A6577; line-height: 1.4; margin-top: 4px;
+  }
+  .template-card .t-cta {
+    margin-top: 10px;
+    padding: 7px 12px; border-radius: 9px;
+    background: rgba(212,168,90,0.12); color: #D4A85A;
+    font-size: 11px; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+
+  .custom-link {
+    margin: 12px 20px 0; padding: 13px;
+    background: transparent;
+    border: 1px dashed rgba(20,30,43,0.2);
+    border-radius: 12px;
+    text-align: center;
+    color: #5A6577;
+    font-size: 12px;
+  }
+  .custom-link strong { color: #1E5090; }
+
+  /* Tab bar bottom — pattern GardenSage : 3 onglets + FAB Léon à cheval */
+  .tab-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 64px; background: white;
+    border-top: 1px solid #EDE9E3;
+    display: flex; align-items: center;
+    padding: 0 8px; z-index: 10;
+    box-shadow: 0 -2px 8px rgba(20,30,43,0.06);
+  }
+  .tab-item {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    font-size: 9px; color: #5A6577;
+  }
+  .tab-item.active { color: #D4A85A; }
+  .tab-item .tab-icon { font-size: 22px; line-height: 1; }
+
+  /* FAB Léon — bleu coach, à cheval sur la tab bar */
+  .fab-leon-slot {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .fab-leon {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    background: #1E5090;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 24px;
+    margin-top: -32px;
+    box-shadow:
+      0 8px 18px rgba(30,80,144,0.35),
+      0 2px 4px rgba(0,0,0,0.12);
+    position: relative;
+  }
+  .fab-leon::after {
+    content: 'Léon';
+    position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
+    font-size: 9px; color: #1E5090; font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Annotations callouts */
+  .annot {
+    background: rgba(212,168,90,0.08);
+    border-left: 3px solid #D4A85A;
+    padding: 12px 14px;
+    border-radius: 0 10px 10px 0;
+    font-size: 12px;
+    color: #F5F2EE;
+    line-height: 1.5;
+    max-width: 280px;
+  }
+  .annot strong { color: #D4A85A; }
+  .annot-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; max-width: 320px; }
+  .annot-list .annot-mini {
+    font-size: 11px; color: #5A6577; line-height: 1.5;
+    padding-left: 12px; border-left: 2px solid rgba(212,168,90,0.3);
+  }
+  .annot-list .annot-mini strong { color: #D4A85A; font-weight: 600; }
+
+  .decisions-block {
+    background: rgba(30,80,144,0.08);
+    border: 1px solid rgba(30,80,144,0.25);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin: 50px auto 0;
+    max-width: 900px;
+    color: #F5F2EE;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .decisions-block h3 {
+    font-family: 'Lora', serif; color: #D4A85A;
+    font-size: 18px; margin-bottom: 12px;
+  }
+  .decisions-block .pending { color: #C09548; font-weight: 600; }
+
+  @media (max-width: 1100px) {
+    .mockups-row { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Onglet « Séances » — 4 modes</h1>
+  <p>
+    Refonte SessionView vers un dashboard <em>Séances</em> (pas <em>Aujourd'hui</em>) — centre de gravité = <strong>prochaine séance</strong>, pas le calendrier.
+    Inspiration : pattern <em>Multi-day peek</em> (TrainingPeaks) + <em>rest day narratif</em> (Runna) + <em>routines persos</em> (Hevy).
+    Différenciateur CoachingSage : <strong>multi-program assumé</strong> (vs Nike Training Club qui force 1 prog à la fois).
+  </p>
+  <p class="meta">Party 2026-05-07 · 5 décisions tranchées user-first · personas Sophie / Nathalie / Philippe / Maxime</p>
+</div>
+
+<div class="legend">
+  <strong>4 modes du même squelette</strong> — la grammaire (cards, tab bar, "+"" en nav, hint italique Léon) reste identique.
+  <ul>
+    <li><strong>① Mode vide</strong> (Nathalie, 0 programme) — hero CTA + 2-3 templates suggérés depuis l'autoprofil HK + onboarding (raccourci) ; lien "sur mesure" en secondaire vers le questionnaire universel Phase 2 #5. <em>Pas de routines en mode vide (décision party #4).</em></li>
+    <li><strong>② Mode actif multi-prog</strong> (Sophie, 3 programmes triathlon) — card prochaine séance dominante (couleur sport), liste programmes en cours compactes <strong>triées par date prochaine séance</strong> (décision party #3), 1-2 routines persos, "+" nav bar, CTA Réorganiser ma semaine.</li>
+    <li><strong>③ Mode actif 1-prog</strong> (Philippe, plan semi-marathon seul) — card prochaine séance + <strong>mini-widget "Cette semaine"</strong> (volume / séances / streak) <strong>+ card "Et après" Today+Tomorrow</strong> style TrainingPeaks (décision party #2 — B+C combinés). Réutilise les composants existants.</li>
+    <li><strong>④ Mode rest day</strong> (1 programme actif, jour de récup) — card verte narrative "Récup", info "prochaine séance dans 2j", CTA "Réorganiser ma semaine" si l'envie.</li>
+  </ul>
+  <em>Léon = <strong>FAB flottant bleu coach</strong> à cheval sur la tab bar (pattern <code>FloreFloatingButton</code> GardenSage : circle 54pt, ombre soft, offset y -32). Accessible depuis tous les écrans, pas un onglet — la chat sheet ouvre par-dessus tant que Story 3.6 pas livrée. Tab bar = <strong>3 onglets seulement</strong> : Séances · Progrès · Profil.</em>
+</div>
+
+<div class="mockups-row">
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- MODE 1 — VIDE / FIRST RUN (Nathalie)     -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone-wrapper">
+    <div class="phone-label">① Mode <em>vide</em></div>
+    <div class="phone-sub">Nathalie · 0 programme · post-onboarding · autoprofil HK = niveau « reprise »</div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar">
+          <span>9:41</span>
+          <span>•••</span>
+        </div>
+
+        <div class="nav-bar">
+          <div class="title-grp">
+            <div class="greeting">Bienvenue,</div>
+            <div class="nav-title">Séances</div>
+          </div>
+          <div class="actions">
+            <div class="icon-btn" title="Calendrier">📅</div>
+          </div>
+        </div>
+
+        <div class="hint-line">
+          Léon : « tu m'as dit reprise progressive — voici 3 pistes adaptées à ton profil HealthKit. »
+        </div>
+
+        <div class="first-hero">
+          <span class="icon">🌱</span>
+          <div class="title">Prêt·e à commencer ?</div>
+          <div class="sub">Léon a préparé 3 programmes calibrés sur ton onboarding et tes données santé.</div>
+        </div>
+
+        <div class="sec-lbl">Suggestions pour toi</div>
+
+        <div class="template-card">
+          <div class="top-row">
+            <div class="t-icon">🚶‍♀️</div>
+            <div class="t-name">Reprise douce</div>
+            <div class="t-tag">8 sem</div>
+          </div>
+          <div class="t-desc">3 séances marche + renfo léger par sem · 20-30 min · pour redémarrer en douceur.</div>
+          <div class="t-cta">Voir →</div>
+        </div>
+
+        <div class="template-card">
+          <div class="top-row">
+            <div class="t-icon">💪</div>
+            <div class="t-name">Renfo débutant</div>
+            <div class="t-tag">6 sem</div>
+          </div>
+          <div class="t-desc">Bodyweight maison · 3×/sem · poste tonification + base musculaire.</div>
+          <div class="t-cta">Voir →</div>
+        </div>
+
+        <div class="template-card">
+          <div class="top-row">
+            <div class="t-icon">🧘‍♀️</div>
+            <div class="t-name">Yoga & mobilité</div>
+            <div class="t-tag">4 sem</div>
+          </div>
+          <div class="t-desc">Sessions 15-20 min · sans équipement · respiration + souplesse.</div>
+          <div class="t-cta">Voir →</div>
+        </div>
+
+        <div class="custom-link">
+          Tu veux autre chose ? <strong>Crée un programme sur mesure →</strong>
+        </div>
+      </div>
+
+      <!-- Tab bar 3 onglets + FAB Léon à cheval -->
+      <div class="tab-bar">
+        <div class="tab-item active"><span class="tab-icon">🏃‍♀️</span><span>Séances</span></div>
+        <div class="tab-item"><span class="tab-icon">📊</span><span>Progrès</span></div>
+        <div class="fab-leon-slot"><div class="fab-leon">💬</div></div>
+        <div class="tab-item"><span class="tab-icon">👤</span><span>Profil</span></div>
+      </div>
+    </div>
+
+    <div class="annot-list">
+      <div class="annot-mini"><strong>Hero CTA</strong> sans bouton dur : on raconte ce que Léon a fait, on n'agresse pas.</div>
+      <div class="annot-mini"><strong>Templates suggérés</strong> = raccourci depuis autoprofil HK + réponses onboarding (pas 38 templates ; 3 max).</div>
+      <div class="annot-mini"><strong>« Sur mesure »</strong> = lien secondaire qui ouvre le questionnaire universel Phase 2 #5 (flow conservé, juste déplacé d'un cran).</div>
+      <div class="annot-mini"><strong>Pas de "+ ajouter routine"</strong> ici : 0 programme = on ne propose pas encore les séances libres.</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- MODE 2 — ACTIF MULTI-PROGRAM (Sophie)    -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone-wrapper">
+    <div class="phone-label">② Mode <em>actif</em> · multi-programmes</div>
+    <div class="phone-sub">Sophie · triathlon : 3 programmes parallèles (running + cycling + swimming) + 1 routine perso</div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar">
+          <span>9:41</span>
+          <span>•••</span>
+        </div>
+
+        <div class="nav-bar">
+          <div class="title-grp">
+            <div class="greeting">Bonjour Sophie,</div>
+            <div class="nav-title">Séances</div>
+          </div>
+          <div class="actions">
+            <div class="icon-btn" title="Calendrier">📅</div>
+            <div class="icon-btn primary" title="Créer">+</div>
+          </div>
+        </div>
+
+        <div class="sec-lbl">Prochaine séance</div>
+
+        <div class="next-card">
+          <div class="when">Aujourd'hui · 18:30</div>
+          <div class="session-title">🏊‍♀️ Endurance — 1500 m</div>
+          <div class="session-meta">5×300 m allure aérobie · récup 30 s · cooldown 200 m</div>
+          <div class="cta">Démarrer la séance <span class="arrow">→</span></div>
+        </div>
+
+        <div class="sec-lbl">Mes programmes</div>
+
+        <div class="prog-card">
+          <div class="prog-icon">🏊‍♀️</div>
+          <div class="prog-info">
+            <div class="prog-name">Triathlon — Natation</div>
+            <div class="prog-meta">Sem 4 · prochaine : aujourd'hui</div>
+            <div class="prog-bar"><div class="prog-fill" style="width: 38%;"></div></div>
+          </div>
+          <div class="prog-pct">38%</div>
+        </div>
+
+        <div class="prog-card">
+          <div class="prog-icon">🚴‍♀️</div>
+          <div class="prog-info">
+            <div class="prog-name">Triathlon — Vélo</div>
+            <div class="prog-meta">Sem 4 · prochaine : mer. 8h</div>
+            <div class="prog-bar"><div class="prog-fill" style="width: 42%;"></div></div>
+          </div>
+          <div class="prog-pct">42%</div>
+        </div>
+
+        <div class="prog-card">
+          <div class="prog-icon">🏃‍♀️</div>
+          <div class="prog-info">
+            <div class="prog-name">Triathlon — Course</div>
+            <div class="prog-meta">Sem 4 · prochaine : ven. 7h</div>
+            <div class="prog-bar"><div class="prog-fill" style="width: 35%;"></div></div>
+          </div>
+          <div class="prog-pct">35%</div>
+        </div>
+
+        <div class="sec-lbl">Mes routines</div>
+
+        <div class="routine-card">
+          <div class="routine-icon">🧘‍♀️</div>
+          <div class="routine-info">
+            <div class="routine-name">Stretching d'après-séance</div>
+            <div class="routine-meta">10 min · sans équipement</div>
+          </div>
+        </div>
+
+        <div class="add-card">
+          <span class="plus">+</span> Créer une routine ou un programme
+        </div>
+
+        <div class="replan-link">
+          <span>↻ Réorganiser ma semaine</span>
+          <span style="font-size:11px; opacity:0.7;">→</span>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item active"><span class="tab-icon">🏃‍♀️</span><span>Séances</span></div>
+        <div class="tab-item"><span class="tab-icon">📊</span><span>Progrès</span></div>
+        <div class="fab-leon-slot"><div class="fab-leon">💬</div></div>
+        <div class="tab-item"><span class="tab-icon">👤</span><span>Profil</span></div>
+      </div>
+    </div>
+
+    <div class="annot-list">
+      <div class="annot-mini"><strong>Card prochaine séance</strong> = mise en avant unique avec couleur du sport (ici natation/bleu coach), CTA "Démarrer" direct. Pattern TrainingPeaks "Today" mais 1 seule par défaut.</div>
+      <div class="annot-mini"><strong>3 programmes empilés triés par date</strong> (décision party #3) = différenciateur vs Nike Training Club. Le programme dont la prochaine séance arrive le plus vite passe en haut.</div>
+      <div class="annot-mini"><strong>Tap card programme</strong> → push vers l'écran zoom programme (avec progression détaillée, calendrier hebdo, historique séances) — vue triathlon complète à ce niveau-là.</div>
+      <div class="annot-mini"><strong>Routines en pointillé</strong> = signaler visuellement que c'est de l'ad-hoc créé par toi (pas un programme structuré). Hevy convention.</div>
+      <div class="annot-mini"><strong>"+" en nav bar</strong> (iOS HIG natif, pas de FAB Material) → bottom sheet "Programme / Routine".</div>
+      <div class="annot-mini"><strong>« Réorganiser ma semaine »</strong> visible aussi en mode actif (pas que rest day) — drag &amp; drop hebdo (décision party #5 — A) répond à Philippe (séance ratée → replan) et Sophie (voyage mardi).</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- MODE 3 — ACTIF 1 SEUL PROGRAMME           -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone-wrapper">
+    <div class="phone-label">③ Mode <em>actif</em> · 1 seul programme</div>
+    <div class="phone-sub">Philippe · plan semi-marathon · widget cette sem + card Et après (TrainingPeaks Today+Tomorrow) — décision party #2 B+C combinés</div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar">
+          <span>9:41</span>
+          <span>•••</span>
+        </div>
+
+        <div class="nav-bar">
+          <div class="title-grp">
+            <div class="greeting">Bonjour Philippe,</div>
+            <div class="nav-title">Séances</div>
+          </div>
+          <div class="actions">
+            <div class="icon-btn" title="Calendrier">📅</div>
+            <div class="icon-btn primary" title="Créer">+</div>
+          </div>
+        </div>
+
+        <div class="sec-lbl">Prochaine séance</div>
+
+        <div class="next-card">
+          <div class="when">Aujourd'hui · 7:00</div>
+          <div class="session-title">🏃‍♀️ Tempo — 8 km</div>
+          <div class="session-meta">Échauffement 15 min · 6 km allure tempo · cooldown 10 min</div>
+          <div class="cta">Démarrer la séance <span class="arrow">→</span></div>
+        </div>
+
+        <div class="week-widget">
+          <div class="stat-blk">
+            <div class="stat-val">2<span class="unit">h45</span></div>
+            <div class="stat-lbl">Volume sem</div>
+          </div>
+          <div class="stat-blk">
+            <div class="stat-val">3<span class="unit">/4</span></div>
+            <div class="stat-lbl">Séances</div>
+          </div>
+          <div class="stat-blk">
+            <div class="stat-val">8<span class="unit">j</span></div>
+            <div class="stat-lbl">Streak</div>
+          </div>
+        </div>
+
+        <div class="next-after">
+          <span class="arrow-ico">↗︎</span>
+          <div class="info">
+            <div class="label">Et après</div>
+            <div class="body">Mer. 18:30 · <em>Sortie longue 12 km</em> — allure facile</div>
+          </div>
+        </div>
+
+        <div class="sec-lbl">Mes programmes</div>
+
+        <div class="prog-card">
+          <div class="prog-icon">🏃‍♀️</div>
+          <div class="prog-info">
+            <div class="prog-name">Semi-marathon — 12 sem</div>
+            <div class="prog-meta">Sem 6 · prochaine : aujourd'hui</div>
+            <div class="prog-bar"><div class="prog-fill" style="width: 50%;"></div></div>
+          </div>
+          <div class="prog-pct">50%</div>
+        </div>
+
+        <div class="sec-lbl">Mes routines</div>
+
+        <div class="routine-card">
+          <div class="routine-icon">🧘‍♀️</div>
+          <div class="routine-info">
+            <div class="routine-name">Stretching d'après-séance</div>
+            <div class="routine-meta">10 min · sans équipement</div>
+          </div>
+        </div>
+
+        <div class="add-card">
+          <span class="plus">+</span> Créer une routine ou un programme
+        </div>
+
+        <div class="replan-link">
+          <span>↻ Réorganiser ma semaine</span>
+          <span style="font-size:11px; opacity:0.7;">→</span>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item active"><span class="tab-icon">🏃‍♀️</span><span>Séances</span></div>
+        <div class="tab-item"><span class="tab-icon">📊</span><span>Progrès</span></div>
+        <div class="fab-leon-slot"><div class="fab-leon">💬</div></div>
+        <div class="tab-item"><span class="tab-icon">👤</span><span>Profil</span></div>
+      </div>
+    </div>
+
+    <div class="annot-list">
+      <div class="annot-mini"><strong>Mini-widget "Cette semaine"</strong> (décision party #2 — B) = 3 stats inline (volume, séances complétées, streak). Composant nouveau, calcul sync local &lt; 50ms — réutilisé par Story 3.9 onglet Progrès.</div>
+      <div class="annot-mini"><strong>Card "Et après"</strong> (décision party #2 — C) = pattern TrainingPeaks Today+Tomorrow. La 2e séance dans le futur, format secondaire compact (border 1px bleu coach transparent). User voit ses stats <strong>et</strong> anticipe.</div>
+      <div class="annot-mini"><strong>1 seul programme empilé</strong> = la card programme est légèrement redondante avec la prochaine séance, mais on garde la grammaire identique aux autres modes (cohérence multi-program assumé).</div>
+      <div class="annot-mini"><strong>Coût impl faible</strong> : composants déjà spec, juste assemblage conditionnel `if activePrograms.count == 1`.</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- MODE 4 — REST DAY                        -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="phone-wrapper">
+    <div class="phone-label">④ Mode <em>rest day</em></div>
+    <div class="phone-sub">Sophie · 1 programme actif · prochaine séance dans 2 jours · valoriser la récup (Runna pattern)</div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status-bar">
+          <span>9:41</span>
+          <span>•••</span>
+        </div>
+
+        <div class="nav-bar">
+          <div class="title-grp">
+            <div class="greeting">Bonjour Sophie,</div>
+            <div class="nav-title">Séances</div>
+          </div>
+          <div class="actions">
+            <div class="icon-btn" title="Calendrier">📅</div>
+            <div class="icon-btn primary" title="Créer">+</div>
+          </div>
+        </div>
+
+        <div class="sec-lbl">Aujourd'hui</div>
+
+        <div class="rest-card">
+          <div class="when">Récupération</div>
+          <div class="session-title">🌿 Jour de récup</div>
+          <div class="session-meta">Hydrate-toi, marche tranquille, dors bien. Ton corps consolide.</div>
+          <div class="next-info">↗︎ Prochaine séance · <strong>jeudi 8h</strong> — Vélo, sortie longue 90 min</div>
+        </div>
+
+        <div class="hint-line">
+          Léon : « tu as enchaîné 3 séances cette semaine, le repos est aussi important que l'effort. »
+        </div>
+
+        <div class="sec-lbl">Mes programmes</div>
+
+        <div class="prog-card">
+          <div class="prog-icon">🚴‍♀️</div>
+          <div class="prog-info">
+            <div class="prog-name">Cycling — Endurance 12 sem</div>
+            <div class="prog-meta">Sem 5 · prochaine : jeu. 8h</div>
+            <div class="prog-bar"><div class="prog-fill" style="width: 48%;"></div></div>
+          </div>
+          <div class="prog-pct">48%</div>
+        </div>
+
+        <div class="sec-lbl">Mes routines</div>
+
+        <div class="routine-card">
+          <div class="routine-icon">🧘‍♀️</div>
+          <div class="routine-info">
+            <div class="routine-name">Stretching d'après-séance</div>
+            <div class="routine-meta">10 min · sans équipement</div>
+          </div>
+        </div>
+
+        <div class="replan-link">
+          <span>↻ Réorganiser ma semaine</span>
+          <span style="font-size:11px; opacity:0.7;">→</span>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item active"><span class="tab-icon">🏃‍♀️</span><span>Séances</span></div>
+        <div class="tab-item"><span class="tab-icon">📊</span><span>Progrès</span></div>
+        <div class="fab-leon-slot"><div class="fab-leon">💬</div></div>
+        <div class="tab-item"><span class="tab-icon">👤</span><span>Profil</span></div>
+      </div>
+    </div>
+
+    <div class="annot-list">
+      <div class="annot-mini"><strong>Rest day = card narrative verte</strong>, pas du vide. Tu valorises la récup au lieu de te culpabiliser. Pattern Runna.</div>
+      <div class="annot-mini"><strong>Lien "prochaine séance dans 2j"</strong> en bas de la card rest = on garde la visibilité du futur (pattern TrainingPeaks Today+Tomorrow allégé).</div>
+      <div class="annot-mini"><strong>Hint italique Léon</strong> = pas du chat (Phase 2 #6 pas livré), juste une ligne contextuelle calculée par l'algo (basée sur historique séances). Réutilise le composant qui existe déjà.</div>
+      <div class="annot-mini"><strong>« Réorganiser ma semaine »</strong> CTA discret = répond à Philippe (rate 2 séances → replan semaine). Clic = ouvre vue calendrier hebdo avec drag & drop.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="decisions-block">
+  <h3>Décisions tranchées 5/5 — user-first</h3>
+  <p style="color:#5A6577; font-size:12px; margin-bottom:14px;">
+    Sophie 2026-05-07 : « je veux le mieux pour le user tant pis si plus de boulot ». Coût total révisé : <strong style="color:#D4A85A;">~10-12j d'impl</strong> (Story 3.8 Séances 6-7j + Story 3.9 Progrès 4-5j) vs 5j si on était resté sur recos initiales.
+  </p>
+  <ul>
+    <li><strong style="color:#D4A85A;">①</strong> <strong>Onglet Progrès = A — Agrégé multi-sport complet</strong> (charts HK + volume par sport + PRs). Couvre les 4 personas qui demandent du visuel motivant. Story 3.9 dédiée, +3-5j vs hybride.</li>
+    <li><strong style="color:#D4A85A;">②</strong> <strong>Mode actif 1 prog = B+C combinés</strong> — mini-widget "Cette semaine" + card "Et après" (Today+Tomorrow style TrainingPeaks). Composants existants, faible coût.</li>
+    <li><strong style="color:#D4A85A;">③</strong> <strong>Tri cards programmes = par date prochaine séance</strong> (actionnable &gt; sentimental). Logique simple, le programme qui réclame attention aujourd'hui passe en haut.</li>
+    <li><strong style="color:#D4A85A;">④</strong> <strong>Routines en mode vide = jamais</strong>. Nathalie surchargée si on parle de routines en arrivée. Apparaissent dès 1ère séance complétée.</li>
+    <li><strong style="color:#D4A85A;">⑤</strong> <strong>Réorganiser ma semaine = drag &amp; drop hebdo Phase 2</strong>. Complémentaire Léon (drag &amp; drop = timing, Léon = contenu). Composant <code>WeeklyCalendarView</code> amorti sur 3 usages (Séances + zoom prog + calendrier global). +2-3j.</li>
+  </ul>
+  <p style="color:#5A6577; font-size:12px; margin-top:14px;">
+    <strong style="color:#D4A85A;">Décisions structurelles tranchées</strong> : nom = <em>Séances</em> (pas <em>Aujourd'hui</em>), tab bar 3 onglets + FAB Léon bleu coach <code>#1E5090</code> (pattern <code>FloreFloatingButton</code> GardenSage), Léon chat absent tant que Phase 2 #6 (Story 3.6) pas livré, multi-program assumé comme différenciateur, progression triathlon = écran zoom séparé.
+  </p>
+  <p style="color:#5A6577; font-size:11px; margin-top:14px; padding:10px; background:rgba(123,193,66,0.06); border-radius:8px; border-left:2px solid rgba(123,193,66,0.3);">
+    <strong style="color:#7BC142;">✅ Tranché 2026-05-07</strong> : icône tab Séances = SF Symbol <code>figure.run</code> (équivalent emoji 🏃‍♀️). Sophie : <em>runner</em>. Cohérent avec la persona triathlète/runner principale et le standard iOS apps de coaching.
+  </p>
+</div>
+
+</body>
+</html>
