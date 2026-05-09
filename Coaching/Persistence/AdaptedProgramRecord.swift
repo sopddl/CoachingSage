@@ -62,6 +62,21 @@ final class AdaptedProgramRecord {
     var isActive: Bool                          // false = archivé (programme terminé/abandonné)
     var archivedAt: Date?                       // timestamp d'archivage, nil tant qu'`isActive`
 
+    /// Story 3.3a : émis par `ProgramAdapter` quand l'algo deterministic n'a pas trouvé
+    /// d'alternative propre pour au moins un exercice. Story 3.3b auto-déclenche le
+    /// hand-off Léon IA fallback à l'arrivée sur `AdaptedProgramView` si == true.
+    var requiresAIAssist: Bool = false
+    /// Phrase courte expliquant POURQUOI `requiresAIAssist` est vrai (cas atypique
+    /// détecté). Affiché en sous-titre du loader Léon. Nil tant que `requiresAIAssist == false`.
+    var aiAssistReason: String?
+
+    /// Story 3.3b : true après application réussie d'un patch IA Léon. Empêche
+    /// la ré-application automatique au prochain reload (idempotence).
+    var aiPatchApplied: Bool = false
+    /// JSON brut du dernier `AdaptationPatch` reçu de Léon. Persisté pour audit
+    /// + re-application éventuelle après mise à jour algo. Nil avant 1er patch.
+    var aiPatchJSON: String?
+
     var createdAt: Date
     var lastUpdatedAt: Date
 
@@ -78,6 +93,10 @@ final class AdaptedProgramRecord {
         completionState: ProgramCompletionState = .empty,
         isActive: Bool = true,
         archivedAt: Date? = nil,
+        requiresAIAssist: Bool = false,
+        aiAssistReason: String? = nil,
+        aiPatchApplied: Bool = false,
+        aiPatchJSON: String? = nil,
         createdAt: Date = Date(),
         lastUpdatedAt: Date = Date()
     ) {
@@ -93,6 +112,10 @@ final class AdaptedProgramRecord {
         self.completionStateJsonData = (try? JSONEncoder().encode(completionState)) ?? Data()
         self.isActive = isActive
         self.archivedAt = archivedAt
+        self.requiresAIAssist = requiresAIAssist
+        self.aiAssistReason = aiAssistReason
+        self.aiPatchApplied = aiPatchApplied
+        self.aiPatchJSON = aiPatchJSON
         self.createdAt = createdAt
         self.lastUpdatedAt = lastUpdatedAt
     }
@@ -139,7 +162,9 @@ extension AdaptedProgramRecord {
             sessions: sessions,
             completionState: .empty,
             isActive: true,
-            archivedAt: nil
+            archivedAt: nil,
+            requiresAIAssist: adapted.requiresAIAssist,
+            aiAssistReason: adapted.aiAssistReason
         )
     }
 
@@ -189,7 +214,8 @@ extension AdaptedProgramRecord {
             appliedAt: adaptedAt,
             weeks: weeks,
             appliedRules: [],
-            requiresAIAssist: false
+            requiresAIAssist: requiresAIAssist,
+            aiAssistReason: aiAssistReason
         )
     }
 }
