@@ -218,4 +218,41 @@ extension AdaptedProgramRecord {
             aiAssistReason: aiAssistReason
         )
     }
+
+    // MARK: - Story 3.3b — patch IA Léon
+
+    /// Applique un patch IA reçu de l'Edge Function sage-coaching-ai et persiste
+    /// les flags d'idempotence (`aiPatchApplied = true`, `aiPatchJSON = JSON brut`).
+    /// Le caller doit appeler `try modelContext.save()` après pour persister sur disque.
+    func applyLeonPatch(_ patch: AdaptationPatch) throws {
+        let data = try JSONEncoder().encode(patch)
+        guard let json = String(data: data, encoding: .utf8) else {
+            throw AppliedPatchError.encodingFailed
+        }
+        self.aiPatchJSON = json
+        self.aiPatchApplied = true
+        self.lastUpdatedAt = Date()
+    }
+
+    /// Decode le patch IA persisté. Nil si aucun patch n'a été appliqué ou si le
+    /// JSON stocké est corrompu (cas dégénéré : migration future qui aurait cassé le format).
+    func decodedLeonPatch() -> AdaptationPatch? {
+        guard aiPatchApplied,
+              let json = aiPatchJSON,
+              let data = json.data(using: .utf8)
+        else { return nil }
+        return try? JSONDecoder().decode(AdaptationPatch.self, from: data)
+    }
+
+    /// Reconstruit l'`AppliedAdaptedProgram` (programme + notes Léon) à partir
+    /// du record. C'est la méthode appelée par l'UI au reload du programme depuis
+    /// SwiftData (Story 3.8 dashboard Séances).
+    func toAppliedAdaptedProgram() -> AppliedAdaptedProgram? {
+        guard let program = toAdaptedProgram() else { return nil }
+        return PatchApplier.apply(decodedLeonPatch(), to: program)
+    }
+}
+
+enum AppliedPatchError: Error {
+    case encodingFailed
 }

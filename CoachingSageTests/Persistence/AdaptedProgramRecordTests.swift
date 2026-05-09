@@ -168,6 +168,62 @@ final class AdaptedProgramRecordTests: XCTestCase {
         XCTAssertEqual(Set(ids).count, 6)
     }
 
+    // MARK: - Story 3.3b — patch IA Léon
+
+    func testApplyLeonPatchPersistsFlagsAndJSON() throws {
+        let record = AdaptedProgramRecord(from: makeAdaptedFixture(requiresAIAssist: true), userId: UUID())
+        XCTAssertFalse(record.aiPatchApplied)
+        XCTAssertNil(record.aiPatchJSON)
+
+        let patch = AdaptationPatch(personalizationNote: "Bien joué Sarah")
+        try record.applyLeonPatch(patch)
+
+        XCTAssertTrue(record.aiPatchApplied)
+        XCTAssertNotNil(record.aiPatchJSON)
+    }
+
+    func testDecodedLeonPatchRoundtripsCleanly() throws {
+        let record = AdaptedProgramRecord(from: makeAdaptedFixture(requiresAIAssist: true), userId: UUID())
+        let original = AdaptationPatch(
+            exerciseSubstitutions: [
+                .init(weekNumber: 1, day: 2, originalExerciseName: "Footing 30 min",
+                      replacementExerciseName: "Marche", reason: "knee")
+            ],
+            personalizationNote: "Hi"
+        )
+        try record.applyLeonPatch(original)
+
+        let decoded = record.decodedLeonPatch()
+        XCTAssertEqual(decoded?.personalizationNote, "Hi")
+        XCTAssertEqual(decoded?.exerciseSubstitutions?.count, 1)
+        XCTAssertEqual(decoded?.exerciseSubstitutions?.first?.replacementExerciseName, "Marche")
+    }
+
+    func testDecodedLeonPatchReturnsNilWhenNoPatchApplied() {
+        let record = AdaptedProgramRecord(from: makeAdaptedFixture(), userId: UUID())
+        XCTAssertNil(record.decodedLeonPatch())
+    }
+
+    func testToAppliedAdaptedProgramAppliesPersistedPatch() throws {
+        let record = AdaptedProgramRecord(from: makeAdaptedFixture(requiresAIAssist: true), userId: UUID())
+        try record.applyLeonPatch(AdaptationPatch(personalizationNote: "Hi Sarah"))
+
+        let applied = record.toAppliedAdaptedProgram()
+
+        XCTAssertNotNil(applied)
+        XCTAssertEqual(applied?.leonNotes?.personalizationNote, "Hi Sarah")
+        XCTAssertEqual(applied?.program.requiresAIAssist, true)
+    }
+
+    func testToAppliedAdaptedProgramReturnsBareProgramIfNoPatch() {
+        let record = AdaptedProgramRecord(from: makeAdaptedFixture(), userId: UUID())
+
+        let applied = record.toAppliedAdaptedProgram()
+
+        XCTAssertNotNil(applied)
+        XCTAssertNil(applied?.leonNotes)
+    }
+
     // MARK: - Persistance ModelContext
 
     func testInsertAndFetchAdaptedProgramRecord() throws {
