@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Suggestions cards — variantes icones</title>
+<style>
+  :root {
+    --bg: #F5F2EE;
+    --card: #EDE9E3;
+    --primary: #1E5090;
+    --record: #D4A85A;
+    --sand: #F3EDE2;
+    --text: #141E2B;
+    --text-secondary: #5A6577;
+    --green: #2D8A4E;
+    --blue-water: #4FB3D9;
+    --purple: #9B6BB3;
+    --red: #C43D3D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; background: var(--bg); color: var(--text); padding: 24px; }
+  h1 { font-size: 24px; margin-bottom: 6px; }
+  h1 .num { color: var(--record); font-weight: 700; }
+  .subtitle { font-size: 13px; color: var(--text-secondary); margin-bottom: 32px; }
+  .variant { margin-bottom: 36px; }
+  .variant-title { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+  .variant-desc { font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; }
+  .phone-mock { max-width: 380px; background: var(--bg); border-radius: 16px; padding: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .card { background: var(--card); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+  .card .icon-wrap { flex-shrink: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+  .card .meta { flex: 1; min-width: 0; }
+  .card .meta .row1 { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .card .name { font-size: 15px; font-weight: 600; color: var(--text); }
+  .card .duration { font-size: 11px; font-weight: 500; color: var(--text-secondary); }
+  .card .summary { font-size: 12px; color: var(--text-secondary); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chevron { font-size: 12px; color: var(--text-secondary); margin-left: 4px; }
+
+  /* SVG icones (plus contrôle qu'emoji) */
+  .ico { width: 22px; height: 22px; }
+
+  /* === VARIANTES === */
+  /* A — actuel (fade, référence) */
+  .v-A .icon-wrap { background: rgba(212, 168, 90, 0.18); border-radius: 50%; }
+  .v-A .ico { color: var(--record); }
+
+  /* B — icone blanche sur rond doré plein */
+  .v-B .icon-wrap { background: var(--record); border-radius: 50%; }
+  .v-B .ico { color: white; }
+
+  /* C — icone blanche sur rond bleu primaire plein */
+  .v-C .icon-wrap { background: var(--primary); border-radius: 50%; }
+  .v-C .ico { color: white; }
+
+  /* D — icone bleue sur rond doré plein */
+  .v-D .icon-wrap { background: var(--record); border-radius: 50%; }
+  .v-D .ico { color: var(--primary); }
+
+  /* E — icone blanche sur rond bleu+gradient or */
+  .v-E .icon-wrap { background: linear-gradient(135deg, var(--primary) 0%, var(--record) 100%); border-radius: 50%; }
+  .v-E .ico { color: white; }
+
+  /* F — icone par couleur sport (chaque card a sa couleur) sur rond plein */
+  .v-F .icon-wrap { border-radius: 50%; }
+  .v-F .ico { color: white; }
+  .v-F .sport-running .icon-wrap { background: var(--primary); }
+  .v-F .sport-cycling .icon-wrap { background: var(--green); }
+  .v-F .sport-swimming .icon-wrap { background: var(--blue-water); }
+
+  /* G — icone bleue sur carré arrondi sable+bordure or */
+  .v-G .icon-wrap { background: var(--sand); border: 1.5px solid var(--record); border-radius: 10px; }
+  .v-G .ico { color: var(--primary); }
+
+  /* H — icone blanche sur carré arrondi bleu plein */
+  .v-H .icon-wrap { background: var(--primary); border-radius: 10px; }
+  .v-H .ico { color: white; }
+</style>
+</head>
+<body>
+<h1>Suggestions de programmes — <span class="num">8 variantes</span></h1>
+<p class="subtitle">Mode vide dashboard Séances · 3 cards de templates suggérés. Choix de design pour les icones devant.</p>
+
+<div class="variant v-A">
+  <p class="variant-title">A — Actuel (référence "trop fade")</p>
+  <p class="variant-desc">Rond doré 18% opacité + icone dorée. Sophie : trop pâle, manque de contraste.</p>
+  <div class="phone-mock">
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><div class="meta"><div class="row1"><span class="name">Couch to 5K</span><span class="duration">8 sem</span></div><div class="summary">Reprise course progressive en 8 semaines</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><div class="meta"><div class="row1"><span class="name">Cycling endurance</span><span class="duration">12 sem</span></div><div class="summary">Construire l'aérobie sur le vélo</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zM6 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><div class="meta"><div class="row1"><span class="name">Yoga initiation</span><span class="duration">4 sem</span></div><div class="summary">Postures de base + respiration</div></div><span class="chevron">›</span></div>
+  </div>
+</div>
+
+<div class="variant v-B">
+  <p class="variant-title">B — Rond doré plein + icone blanche</p>
+  <p class="variant-desc">Maximum contraste sur le doré signature. Pop le plus.</p>
+  <div class="phone-mock">
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><div class="meta"><div class="row1"><span class="name">Couch to 5K</span><span class="duration">8 sem</span></div><div class="summary">Reprise course progressive en 8 semaines</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><div class="meta"><div class="row1"><span class="name">Cycling endurance</span><span class="duration">12 sem</span></div><div class="summary">Construire l'aérobie sur le vélo</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zM6 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><div class="meta"><div class="row1"><span class="name">Yoga initiation</span><span class="duration">4 sem</span></div><div class="summary">Postures de base + respiration</div></div><span class="chevron">›</span></div>
+  </div>
+</div>
+
+<div class="variant v-C">
+  <p class="variant-title">C — Rond bleu primaire plein + icone blanche</p>
+  <p class="variant-desc">Lisible, signature CoachingSage marquée. Plus formel.</p>
+  <div class="phone-mock">
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><div class="meta"><div class="row1"><span class="name">Couch to 5K</span><span class="duration">8 sem</span></div><div class="summary">Reprise course progressive en 8 semaines</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><div class="meta"><div class="row1"><span class="name">Cycling endurance</span><span class="duration">12 sem</span></div><div class="summary">Construire l'aérobie sur le vélo</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zM6 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><div class="meta"><div class="row1"><span class="name">Yoga initiation</span><span class="duration">4 sem</span></div><div class="summary">Postures de base + respiration</div></div><span class="chevron">›</span></div>
+  </div>
+</div>
+
+<div class="variant v-D">
+  <p class="variant-title">D — Rond doré plein + icone bleu primaire</p>
+  <p class="variant-desc">Inversion de B. Plus chic, contraste haut.</p>
+  <div class="phone-mock">
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><div class="meta"><div class="row1"><span class="name">Couch to 5K</span><span class="duration">8 sem</span></div><div class="summary">Reprise course progressive en 8 semaines</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><div class="meta"><div class="row1"><span class="name">Cycling endurance</span><span class="duration">12 sem</span></div><div class="summary">Construire l'aérobie sur le vélo</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zM6 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><div class="meta"><div class="row1"><span class="name">Yoga initiation</span><span class="duration">4 sem</span></div><div class="summary">Postures de base + respiration</div></div><span class="chevron">›</span></div>
+  </div>
+</div>
+
+<div class="variant v-E">
+  <p class="variant-title">E — Gradient bleu→doré + icone blanche</p>
+  <p class="variant-desc">Sophistiqué. Rappelle l'identité Sages.</p>
+  <div class="phone-mock">
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><div class="meta"><div class="row1"><span class="name">Couch to 5K</span><span class="duration">8 sem</span></div><div class="summary">Reprise course progressive en 8 semaines</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><div class="meta"><div class="row1"><span class="name">Cycling endurance</span><span class="duration">12 sem</span></div><div class="summary">Construire l'aérobie sur le vélo</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zM6 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><div class="meta"><div class="row1"><span class="name">Yoga initiation</span><span class="duration">4 sem</span></div><div class="summary">Postures de base + respiration</div></div><span class="chevron">›</span></div>
+  </div>
+</div>
+
+<div class="variant v-F">
+  <p class="variant-title">F — Couleur par sport (Color.coachingSport)</p>
+  <p class="variant-desc">Chaque card adopte la couleur signature du sport. Diversité visuelle, rappel du calendrier hebdo.</p>
+  <div class="phone-mock">
+    <div class="card sport-running"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><div class="meta"><div class="row1"><span class="name">Couch to 5K</span><span class="duration">8 sem</span></div><div class="summary">Reprise course progressive en 8 semaines</div></div><span class="chevron">›</span></div>
+    <div class="card sport-cycling"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><div class="meta"><div class="row1"><span class="name">Cycling endurance</span><span class="duration">12 sem</span></div><div class="summary">Construire l'aérobie sur le vélo</div></div><span class="chevron">›</span></div>
+    <div class="card sport-swimming"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M2 18c1 1 2 2 4 2s3-1 4-2 2-2 4-2 3 1 4 2 2 2 4 2 3-1 4-2v-2c-1 1-2 2-4 2s-3-1-4-2-2-2-4-2-3 1-4 2-2 2-4 2-3-1-4-2v2zm0-6c1 1 2 2 4 2s3-1 4-2 2-2 4-2 3 1 4 2 2 2 4 2 3-1 4-2V8c-1 1-2 2-4 2s-3-1-4-2-2-2-4-2-3 1-4 2-2 2-4 2-3-1-4-2v4z"/></svg></span><div class="meta"><div class="row1"><span class="name">Natation découverte</span><span class="duration">6 sem</span></div><div class="summary">Crawl et brasse, technique et endurance</div></div><span class="chevron">›</span></div>
+  </div>
+</div>
+
+<div class="variant v-G">
+  <p class="variant-title">G — Carré arrondi sable + bordure or + icone bleue</p>
+  <p class="variant-desc">Forme carrée discrète, teinte papier+or rappel "carnet du coach".</p>
+  <div class="phone-mock">
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><div class="meta"><div class="row1"><span class="name">Couch to 5K</span><span class="duration">8 sem</span></div><div class="summary">Reprise course progressive en 8 semaines</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><div class="meta"><div class="row1"><span class="name">Cycling endurance</span><span class="duration">12 sem</span></div><div class="summary">Construire l'aérobie sur le vélo</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zM6 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><div class="meta"><div class="row1"><span class="name">Yoga initiation</span><span class="duration">4 sem</span></div><div class="summary">Postures de base + respiration</div></div><span class="chevron">›</span></div>
+  </div>
+</div>
+
+<div class="variant v-H">
+  <p class="variant-title">H — Carré arrondi bleu plein + icone blanche</p>
+  <p class="variant-desc">Plus moderne (apps fitness type Strava/Nike). Rond → carré change l'identité.</p>
+  <div class="phone-mock">
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><div class="meta"><div class="row1"><span class="name">Couch to 5K</span><span class="duration">8 sem</span></div><div class="summary">Reprise course progressive en 8 semaines</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><div class="meta"><div class="row1"><span class="name">Cycling endurance</span><span class="duration">12 sem</span></div><div class="summary">Construire l'aérobie sur le vélo</div></div><span class="chevron">›</span></div>
+    <div class="card"><span class="icon-wrap"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zM6 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><div class="meta"><div class="row1"><span class="name">Yoga initiation</span><span class="duration">4 sem</span></div><div class="summary">Postures de base + respiration</div></div><span class="chevron">›</span></div>
+  </div>
+</div>
+
+</body>
+</html>
