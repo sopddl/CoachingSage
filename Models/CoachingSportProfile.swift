@@ -30,10 +30,23 @@ final class CoachingSportProfile {
     /// records_json — struct dédiée V2 (records perso par sport), nullable.
     private var recordsJsonData: Data?
 
-    var frequencyPerWeek: Int                   // 2/3/4 (mappé depuis Q3)
-    var frequencyLabel: String                  // "2" | "3" | "4_or_more" — préserve l'intention (review P1-3)
+    var frequencyPerWeek: Int                   // 2/3/4 (mappé depuis Q3 ; "dont_know" → 3 sensible default)
+    var frequencyLabel: String                  // "2" | "3" | "4_or_more" | "dont_know" — préserve l'intention (review P1-3)
     var sessionDurationMinutes: Int?            // nullable, calculé Story 3.2/3.3
     var freeTextNotes: String?                  // nullable, max 200 chars (CHECK SQL)
+
+    /// Story sœur — mode de durée du programme. RawValue de `ProgramDurationMode`.
+    /// Default `.routineCyclic` (12 semaines cyclique) car compatible avec tous les
+    /// sports/objectifs sans hypothèse de date cible.
+    var durationModeRaw: String = ProgramDurationMode.routineCyclic.rawValue
+    var durationMode: ProgramDurationMode {
+        get { ProgramDurationMode(rawValue: durationModeRaw) ?? .routineCyclic }
+        set { durationModeRaw = newValue.rawValue }
+    }
+
+    /// Story sœur — date cible explicite (`deadlineFixed`) ou estimée par algo (`deadlineEstimated`).
+    /// Nil pour `routineCyclic`. Source de vérité pour `ProgramAdapter` qui calcule N semaines.
+    var targetDate: Date?
 
     /// conversation_history_json — [ConversationEntry] encodée en Data (lesson lessons_swiftdata #1 pour struct list).
     private var conversationHistoryData: Data
@@ -68,6 +81,8 @@ final class CoachingSportProfile {
         conversationHistory: [ConversationEntry],
         medicalClearanceAcknowledged: Bool,
         questionnaireVersion: String,
+        durationMode: ProgramDurationMode = .routineCyclic,
+        targetDate: Date? = nil,
         createdAt: Date = Date(),
         lastUpdatedAt: Date = Date()
     ) {
@@ -86,6 +101,8 @@ final class CoachingSportProfile {
         self.conversationHistoryData = (try? JSONEncoder().encode(conversationHistory)) ?? Data()
         self.medicalClearanceAcknowledged = medicalClearanceAcknowledged
         self.questionnaireVersion = questionnaireVersion
+        self.durationModeRaw = durationMode.rawValue
+        self.targetDate = targetDate
         self.createdAt = createdAt
         self.lastUpdatedAt = lastUpdatedAt
     }

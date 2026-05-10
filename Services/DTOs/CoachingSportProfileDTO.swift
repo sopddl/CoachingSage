@@ -20,6 +20,8 @@ struct CoachingSportProfileDTO: Decodable {
     let conversationHistoryJson: [ConversationEntry]
     let medicalClearanceAcknowledged: Bool
     let questionnaireVersion: String
+    let durationMode: String?            // story sœur — nullable pour rétro-compat lecture (default routineCyclic)
+    let targetDate: Date?                // story sœur — nullable (deadlineFixed/Estimated only)
     let createdAt: Date
     let lastUpdatedAt: Date
 
@@ -39,12 +41,15 @@ struct CoachingSportProfileDTO: Decodable {
         case conversationHistoryJson = "conversation_history_json"
         case medicalClearanceAcknowledged = "medical_clearance_acknowledged"
         case questionnaireVersion = "questionnaire_version"
+        case durationMode = "duration_mode"
+        case targetDate = "target_date"
         case createdAt = "created_at"
         case lastUpdatedAt = "last_updated_at"
     }
 
     func toModel() -> CoachingSportProfile {
-        CoachingSportProfile(
+        let mode = durationMode.flatMap { ProgramDurationMode(rawValue: $0) } ?? .routineCyclic
+        return CoachingSportProfile(
             id: id,
             userId: userId,
             sportCode: sport,
@@ -59,6 +64,8 @@ struct CoachingSportProfileDTO: Decodable {
             conversationHistory: conversationHistoryJson,
             medicalClearanceAcknowledged: medicalClearanceAcknowledged,
             questionnaireVersion: questionnaireVersion,
+            durationMode: mode,
+            targetDate: targetDate,
             createdAt: createdAt,
             lastUpdatedAt: lastUpdatedAt
         )
@@ -81,6 +88,8 @@ struct CoachingSportProfileUpsertDTO: Codable {
     let conversationHistoryJson: [ConversationEntry]
     let medicalClearanceAcknowledged: Bool
     let questionnaireVersion: String
+    let durationMode: String              // story sœur — toujours présent au write
+    let targetDate: Date?                 // story sœur — null si routineCyclic
     let createdAt: Date
     let lastUpdatedAt: Date
 
@@ -99,6 +108,8 @@ struct CoachingSportProfileUpsertDTO: Codable {
         case conversationHistoryJson = "conversation_history_json"
         case medicalClearanceAcknowledged = "medical_clearance_acknowledged"
         case questionnaireVersion = "questionnaire_version"
+        case durationMode = "duration_mode"
+        case targetDate = "target_date"
         case createdAt = "created_at"
         case lastUpdatedAt = "last_updated_at"
     }
@@ -118,6 +129,8 @@ struct CoachingSportProfileUpsertDTO: Codable {
         self.conversationHistoryJson = profile.conversationHistory
         self.medicalClearanceAcknowledged = profile.medicalClearanceAcknowledged
         self.questionnaireVersion = profile.questionnaireVersion
+        self.durationMode = profile.durationMode.rawValue
+        self.targetDate = profile.targetDate
         self.createdAt = profile.createdAt
         self.lastUpdatedAt = profile.lastUpdatedAt
     }

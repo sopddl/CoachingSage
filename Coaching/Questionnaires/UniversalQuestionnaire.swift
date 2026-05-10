@@ -1,9 +1,21 @@
 // Coaching/Questionnaires/UniversalQuestionnaire.swift
 // Phase 2 #5 (Epic 3) — questionnaire universel applicable aux 10 sports.
-// Remplace RunningQuestionnaire (supprimé). 3 questions max :
+// Remplace RunningQuestionnaire (supprimé).
+// Story sœur post-3.3b — ajout dimension durée du programme :
 //   Q1 — niveau/forme actuelle (options universelles, pré-remplie par autoprofil HK)
 //   Q2 — objectif (options sport-specific alignées sur les slugs templates v2)
 //   Q3 — fréquence (options universelles, pré-remplie par autoprofil HK)
+//        + nouvelle option "dont_know" → bascule en mode routine cyclique
+//   Q4 — durée du programme (conditionnelle : skip si Q3=dont_know OU si Q2 non
+//        deadline-eligible ; pose si Q2=goal compétition + Q3≠dont_know)
+//   Q4Date — date picker (conditionnelle Q4=target_date)
+//
+// Sémantique des combinaisons → durationMode :
+//   • Q3=dont_know                              → routineCyclic
+//   • Q3=N + goal non eligible                   → routineCyclic
+//   • Q3=N + goal eligible + Q4=routine_3_months → routineCyclic
+//   • Q3=N + goal eligible + Q4=let_me_estimate  → deadlineEstimated
+//   • Q3=N + goal eligible + Q4=target_date + Q4Date=DATE → deadlineFixed
 //
 // Equipement et contraintes ne sont PLUS demandés ici :
 //   - équipement = onboarding global (CoachingProfile.equipment, story Phase 2 #3)
@@ -27,6 +39,18 @@ struct UniversalQuestionnaire: SportQuestionnaire {
     static let q1LevelId: QuestionId = "q1_level"
     static let q2GoalId: QuestionId = "q2_goal"
     static let q3FrequencyId: QuestionId = "q3_frequency"
+    static let q4DurationId: QuestionId = "q4_duration"
+    static let q4DateId: QuestionId = "q4_date"
+
+    // MARK: - Q3 frequency option codes (refs partagés)
+
+    static let q3DontKnowCode = "dont_know"
+
+    // MARK: - Q4 duration option codes (refs partagés)
+
+    static let q4TargetDateCode = "target_date"
+    static let q4LetMeEstimateCode = "let_me_estimate"
+    static let q4Routine3MonthsCode = "routine_3_months"
 
     // MARK: - Q1 niveau (universel)
 
@@ -51,9 +75,55 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         options: [
             QuestionOption(code: "2",          labelKey: "questionnaire.universal.q3.option.2"),
             QuestionOption(code: "3",          labelKey: "questionnaire.universal.q3.option.3"),
-            QuestionOption(code: "4_or_more",  labelKey: "questionnaire.universal.q3.option.4_or_more")
+            QuestionOption(code: "4_or_more",  labelKey: "questionnaire.universal.q3.option.4_or_more"),
+            QuestionOption(code: q3DontKnowCode, labelKey: "questionnaire.universal.q3.option.dont_know")
         ]
     )
+
+    // MARK: - Q4 durée (universel, conditionnel)
+
+    static let q4Duration = QuestionnaireQuestion(
+        id: q4DurationId,
+        textKey: "questionnaire.universal.q4.text",
+        answerType: .singleChoice,
+        options: [
+            QuestionOption(code: q4TargetDateCode,     labelKey: "questionnaire.universal.q4.option.target_date"),
+            QuestionOption(code: q4LetMeEstimateCode,  labelKey: "questionnaire.universal.q4.option.let_me_estimate"),
+            QuestionOption(code: q4Routine3MonthsCode, labelKey: "questionnaire.universal.q4.option.routine_3_months")
+        ]
+    )
+
+    /// Q4Date : date picker rendu spécial côté View (`QuestionAnswerOptionsView` détecte par `id`).
+    /// answerType `.freeText` réutilisé : la View pose un DatePicker au lieu d'un TextField,
+    /// et stocke la date au format ISO8601 dans `AnswerValue.text(...)`.
+    static let q4Date = QuestionnaireQuestion(
+        id: q4DateId,
+        textKey: "questionnaire.universal.q4_date.text",
+        answerType: .freeText,
+        options: []
+    )
+
+    // MARK: - Deadline-eligible goals (= goals avec date cible possible)
+
+    /// Goals qui autorisent une date cible explicite (vs routine cyclique). Liste alignée
+    /// avec les slugs des templates v2 (`templates-manifest.json`). Si le goal Q2 n'est PAS
+    /// dans cette liste → Q4 skip → routineCyclic forcé.
+    static func goalAllowsDeadline(_ goal: String, in sportCode: String) -> Bool {
+        let eligible = deadlineEligibleGoals(for: sportCode)
+        return eligible.contains(goal)
+    }
+
+    static func deadlineEligibleGoals(for sportCode: String) -> Set<String> {
+        switch sportCode {
+        case "running":  return ["5k", "10k", "half_marathon", "marathon"]
+        case "cycling":  return ["cyclosportive"]
+        case "triathlon": return ["sprint", "distance-m", "half-ironman"]
+        case "tennis":   return ["tournoi-prep", "match-prep"]
+        case "football": return ["saison-regional"]
+        // swimming, strengthTraining, yoga, hiit, hiking → tous routine V1
+        default: return []
+        }
+    }
 
     // MARK: - Q2 objectif (sport-specific — options alignées sur les slugs templates v2)
 
@@ -165,11 +235,41 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         accumulated: [QuestionId: AnswerValue]
     ) -> QuestionnaireQuestion? {
         switch questionId {
-        case Self.q1LevelId:     return q2Goal
-        case Self.q2GoalId:      return Self.q3Frequency
-        case Self.q3FrequencyId: return nil  // fin
-        default:                 return nil
+        case Self.q1LevelId:
+            return q2Goal
+        case Self.q2GoalId:
+            return Self.q3Frequency
+        case Self.q3FrequencyId:
+            return nextAfterFrequency(answer: answer, accumulated: accumulated)
+        case Self.q4DurationId:
+            // Si target_date → poser le date picker. Sinon fin (mode = estimated ou routine).
+            if case .single(let code) = answer, code == Self.q4TargetDateCode {
+                return Self.q4Date
+            }
+            return nil
+        case Self.q4DateId:
+            return nil
+        default:
+            return nil
         }
+    }
+
+    /// Logique conditionnelle après Q3 :
+    ///   - "dont_know" → fin (forcera routineCyclic au build)
+    ///   - sinon, vérifier si le goal Q2 autorise une date cible :
+    ///       • oui → poser Q4
+    ///       • non → fin (forcera routineCyclic au build)
+    private func nextAfterFrequency(
+        answer: AnswerValue,
+        accumulated: [QuestionId: AnswerValue]
+    ) -> QuestionnaireQuestion? {
+        if case .single(let code) = answer, code == Self.q3DontKnowCode {
+            return nil
+        }
+        guard case .single(let goal) = accumulated[Self.q2GoalId] else {
+            return nil
+        }
+        return Self.goalAllowsDeadline(goal, in: sportCode) ? Self.q4Duration : nil
     }
 
     func findQuestion(byId id: QuestionId) -> QuestionnaireQuestion? {
@@ -177,6 +277,8 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         case Self.q1LevelId:     return Self.q1Level
         case Self.q2GoalId:      return q2Goal
         case Self.q3FrequencyId: return Self.q3Frequency
+        case Self.q4DurationId:  return Self.q4Duration
+        case Self.q4DateId:      return Self.q4Date
         default:                 return nil
         }
     }
@@ -200,9 +302,16 @@ struct UniversalQuestionnaire: SportQuestionnaire {
             case "2": return 2
             case "3": return 3
             case "4_or_more": return 4
+            case Self.q3DontKnowCode: return 3   // routine = mid-range sensible default
             default: return Int(frequencyLabel) ?? 2
             }
         }()
+
+        let (durationMode, targetDate) = Self.resolveDuration(
+            answers: answers,
+            goal: primaryGoal,
+            sportCode: sportCode
+        )
 
         // Free text non collecté dans le universal mais conservé en API : le ViewModel pourra
         // toujours en injecter via `freeTextNotes` si une UI optionnelle l'expose plus tard.
@@ -222,8 +331,51 @@ struct UniversalQuestionnaire: SportQuestionnaire {
             freeTextNotes: notesValue,
             conversationHistory: history,
             medicalClearanceAcknowledged: medicalClearanceAcknowledged,
-            questionnaireVersion: version
+            questionnaireVersion: version,
+            durationMode: durationMode,
+            targetDate: targetDate
         )
+    }
+
+    /// Calcule (durationMode, targetDate) à partir des réponses Q3/Q4/Q4Date.
+    /// - Q3=dont_know → routineCyclic
+    /// - Q3=N + goal non eligible → routineCyclic
+    /// - Q4=routine_3_months → routineCyclic
+    /// - Q4=let_me_estimate → deadlineEstimated (targetDate calculée par adapter)
+    /// - Q4=target_date + Q4Date=ISO8601 → deadlineFixed (targetDate = parsed date)
+    /// - Q4=target_date sans Q4Date valide → fallback routineCyclic (défense en profondeur)
+    static func resolveDuration(
+        answers: [QuestionId: AnswerValue],
+        goal: String,
+        sportCode: String
+    ) -> (ProgramDurationMode, Date?) {
+        // Q3 dont_know → routine
+        if case .single(let freq) = answers[q3FrequencyId], freq == q3DontKnowCode {
+            return (.routineCyclic, nil)
+        }
+        // goal non eligible deadline → routine
+        guard goalAllowsDeadline(goal, in: sportCode) else {
+            return (.routineCyclic, nil)
+        }
+        // Q4 manquant (cas extrême) → routine
+        guard case .single(let q4) = answers[q4DurationId] else {
+            return (.routineCyclic, nil)
+        }
+        switch q4 {
+        case q4Routine3MonthsCode:
+            return (.routineCyclic, nil)
+        case q4LetMeEstimateCode:
+            return (.deadlineEstimated, nil)  // ProgramAdapter remplira targetDate
+        case q4TargetDateCode:
+            // Q4Date = ISO8601 string (cf View date picker)
+            if case .text(let dateString?) = answers[q4DateId],
+               let parsed = ISO8601DateFormatter().date(from: dateString) {
+                return (.deadlineFixed, parsed)
+            }
+            return (.routineCyclic, nil)
+        default:
+            return (.routineCyclic, nil)
+        }
     }
 
     // MARK: - Helpers

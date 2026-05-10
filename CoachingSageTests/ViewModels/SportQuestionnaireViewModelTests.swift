@@ -81,9 +81,10 @@ struct SportQuestionnaireViewModelTests {
         let auth = MutableMockAuthService()
         let (vm, _, repo) = makeViewModel(authService: auth)
         vm.start(requiresMedicalClearance: false)
-        // Compléter Q1 + Q2, puis cross-user avant Q3 (qui déclenche submit).
+        // Compléter Q1 + Q2 (goal NON eligible deadline → flow termine à Q3, pas de Q4)
+        // puis cross-user avant Q3 (qui déclenche submit).
         await vm.answer(.single("regular"))
-        await vm.answer(.single("5k"))
+        await vm.answer(.single("wellness"))   // running wellness = NOT deadline-eligible → submit après Q3
         auth.stubbedUserId = UUID()  // user différent
         await vm.answer(.single("3"))
         // Le repo NE DOIT PAS avoir saved (cross-user race aborte avant le save)
@@ -111,20 +112,24 @@ struct SportQuestionnaireViewModelTests {
 
     // MARK: - Happy path complet → save
 
-    @Test("Flow complet sauve le profil via le repo")
+    @Test("Flow complet (goal eligible) sauve le profil via le repo après Q4")
     func fullFlow_savesProfile() async {
         let auth = MutableMockAuthService()
         let (vm, _, repo) = makeViewModel(authService: auth)
         vm.start(requiresMedicalClearance: false)
         await vm.answer(.single("regular"))     // Q1 level
-        await vm.answer(.single("10k"))         // Q2 goal
-        await vm.answer(.single("3"))           // Q3 frequency
+        await vm.answer(.single("10k"))         // Q2 goal (deadline-eligible)
+        await vm.answer(.single("3"))           // Q3 frequency → goal eligible → poses Q4
+        await vm.answer(.single(UniversalQuestionnaire.q4Routine3MonthsCode))  // Q4 routine → submit
 
         #expect(repo.saveCallCount == 1)
         #expect(repo.stored["running"] != nil)
         #expect(repo.stored["running"]?.level == "regular")
         #expect(repo.stored["running"]?.goals.primary == "10k")
         #expect(repo.stored["running"]?.frequencyPerWeek == 3)
+        // Story sœur : Q4=routine_3_months → routineCyclic
+        #expect(repo.stored["running"]?.durationMode == .routineCyclic)
+        #expect(repo.stored["running"]?.targetDate == nil)
         // Phase 2 #5 : equipment + constraints sont vides côté SportProfile (équipement = onboarding global).
         #expect(repo.stored["running"]?.equipment == [])
         #expect(repo.stored["running"]?.constraints == [])
@@ -135,14 +140,15 @@ struct SportQuestionnaireViewModelTests {
         }
     }
 
-    @Test("Flow universel sur sport non-running (cycling)")
+    @Test("Flow universel sur sport non-running (cycling) avec Q4 let_me_estimate")
     func fullFlow_savesProfileForCycling() async {
         let auth = MutableMockAuthService()
         let (vm, _, repo) = makeViewModel(sportCode: "cycling", authService: auth)
         vm.start(requiresMedicalClearance: false)
         await vm.answer(.single("competitive"))
-        await vm.answer(.single("cyclosportive"))
-        await vm.answer(.single("4_or_more"))
+        await vm.answer(.single("cyclosportive"))    // deadline-eligible
+        await vm.answer(.single("4_or_more"))         // Q3 → poses Q4
+        await vm.answer(.single(UniversalQuestionnaire.q4LetMeEstimateCode))  // Q4 → submit
 
         #expect(repo.saveCallCount == 1)
         #expect(repo.stored["cycling"]?.level == "competitive")
@@ -150,6 +156,7 @@ struct SportQuestionnaireViewModelTests {
         #expect(repo.stored["cycling"]?.frequencyPerWeek == 4)
         #expect(repo.stored["cycling"]?.frequencyLabel == "4_or_more")
         #expect(repo.stored["cycling"]?.questionnaireVersion == "universal_v1")
+        #expect(repo.stored["cycling"]?.durationMode == .deadlineEstimated)
     }
 
     // MARK: - Recovery UserDefaults (review P1-6)
@@ -164,7 +171,7 @@ struct SportQuestionnaireViewModelTests {
 
         vm.start(requiresMedicalClearance: false)
         await vm.answer(.single("regular"))
-        await vm.answer(.single("5k"))
+        await vm.answer(.single("wellness"))    // running wellness = NOT deadline-eligible → submit après Q3
         await vm.answer(.single("3"))
 
         if case .error = vm.state {} else {
@@ -195,16 +202,18 @@ struct SportQuestionnaireViewModelTests {
         #expect(ids == ["q1_level", "q3_frequency"])
     }
 
-    @Test("startWithAutoProfile + Q2 → save profil cohérent (Q3 déjà pré-remplie)")
+    @Test("startWithAutoProfile + Q2 (goal eligible) → pose Q4 puis save")
     func startWithAutoProfile_fullFlowSaves() async {
         let auth = MutableMockAuthService()
         let (vm, _, repo) = makeViewModel(authService: auth)
         vm.startWithAutoProfile(level: .competitive, frequency: .fourOrMore, requiresMedicalClearance: false)
-        await vm.answer(.single("10k"))   // Q2 — Q3 déjà pré-remplie, le ViewModel saute direct au submit
+        await vm.answer(.single("10k"))   // Q2 (eligible) — Q3 déjà pré-remplie, propose Q4
+        await vm.answer(.single(UniversalQuestionnaire.q4Routine3MonthsCode))  // Q4 → submit
 
         #expect(repo.saveCallCount == 1)
         #expect(repo.stored["running"]?.level == "competitive")
         #expect(repo.stored["running"]?.frequencyLabel == "4_or_more")
         #expect(repo.stored["running"]?.frequencyPerWeek == 4)
+        #expect(repo.stored["running"]?.durationMode == .routineCyclic)
     }
 }
