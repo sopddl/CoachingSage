@@ -79,6 +79,7 @@ final class ProfileViewModel {
             }
 
             guard let core, let coaching else {
+                Self.logger.error("ProfileViewModel.refresh: notFound — core=\(core == nil ? "nil" : "ok") coaching=\(coaching == nil ? "nil" : "ok") userId=\(capturedUserId?.uuidString ?? "anon")")
                 state = .error(.notFound)
                 return
             }
