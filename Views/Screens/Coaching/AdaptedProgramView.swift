@@ -95,19 +95,6 @@ struct AdaptedProgramView: View {
             Text(verbatim: "\(program.level.rawValue.capitalized) · \(program.weeks.count) sem")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-
-            #if DEBUG
-            // Bouton debug Story 3.3b — déclenche Léon manuellement, indépendamment
-            // de program.requiresAIAssist (V1 algo n'émet jamais ce flag car tous
-            // les templates ont des alternatives configurées). À retirer quand le
-            // freetext_request sera câblé dans le questionnaire universel.
-            if let onRequestAIAssist, leonNotes == nil, requestState != .loading {
-                Button("🐛 Léon (debug)") { onRequestAIAssist() }
-                    .font(.caption)
-                    .buttonStyle(.bordered)
-                    .padding(.top, 4)
-            }
-            #endif
         }
     }
 
