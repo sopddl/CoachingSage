@@ -584,30 +584,25 @@ private struct SwipeToDeleteRow<Content: View>: View {
                     .accessibilityLabel(Text("dashboard.active.program.delete.label"))
             }
             .opacity((revealed || dragOffset < 0) ? 1 : 0)
-            .confirmationDialog(
-                Text("dashboard.active.program.delete.confirm.title"),
-                isPresented: $showDeleteConfirmation,
-                titleVisibility: .visible
-            ) {
-                Button(role: .destructive) {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                        revealed = false
-                        dragOffset = 0
+            .sheet(isPresented: $showDeleteConfirmation) {
+                DeleteConfirmationSheet(
+                    onConfirm: {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            revealed = false
+                            dragOffset = 0
+                        }
+                        onDelete()
+                    },
+                    onCancel: {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            revealed = false
+                            dragOffset = 0
+                        }
                     }
-                    onDelete()
-                } label: {
-                    Text("dashboard.active.program.delete.confirm.action")
-                }
-                Button(role: .cancel) {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                        revealed = false
-                        dragOffset = 0
-                    }
-                } label: {
-                    Text("common.cancel")
-                }
-            } message: {
-                Text("dashboard.active.program.delete.confirm.message")
+                )
+                .presentationDetents([.height(320)])
+                .presentationBackground(Color.coachingBackground)
+                .presentationDragIndicator(.visible)
             }
 
             content()
@@ -649,6 +644,72 @@ private struct SwipeToDeleteRow<Content: View>: View {
                         }
                 )
         }
+    }
+}
+
+// MARK: - Delete confirmation sheet (cohérence couleurs CoachingSage)
+
+/// Sheet custom utilisé en remplacement du `confirmationDialog` système (fond
+/// blanc qui jurait avec coachingBackground). Pattern alert iOS-like avec
+/// hero icon trash + titre + message + boutons. Sophie 2026-05-10.
+private struct DeleteConfirmationSheet: View {
+    let onConfirm: () -> Void
+    let onCancel: () -> Void
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        VStack(spacing: 18) {
+            ZStack {
+                Circle().fill(Color.coachingError.opacity(0.12))
+                Image(systemName: "trash.fill")
+                    .font(.system(size: 26, weight: .semibold))
+                    .foregroundStyle(Color.coachingError)
+            }
+            .frame(width: 56, height: 56)
+            .padding(.top, 24)
+
+            Text("dashboard.active.program.delete.confirm.title")
+                .font(.title3.weight(.bold))
+                .foregroundStyle(Color.coachingTextPrimary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 24)
+
+            Text("dashboard.active.program.delete.confirm.message")
+                .font(.coachingBody)
+                .foregroundStyle(Color.coachingTextSecondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 24)
+
+            Spacer(minLength: 0)
+
+            VStack(spacing: 10) {
+                Button(role: .destructive) {
+                    onConfirm()
+                    dismiss()
+                } label: {
+                    Text("dashboard.active.program.delete.confirm.action")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 6)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(Color.coachingError)
+
+                Button {
+                    onCancel()
+                    dismiss()
+                } label: {
+                    Text("common.cancel")
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 4)
+                }
+                .foregroundStyle(Color.coachingTextSecondary)
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 18)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.coachingBackground)
     }
 }
 
