@@ -89,6 +89,24 @@ struct SessionView: View {
 
     @ToolbarContentBuilder
     private var calendarToolbar: some ToolbarContent {
+        // Bouton "+" : créer un nouveau programme. Affiché UNIQUEMENT en mode
+        // dashboard actif (déjà ≥ 1 programme) — en mode vide le CTA principal
+        // EmptyDashboardView suffit. Sophie 2026-05-10 : remplace le `CreateProgramOrRoutineCard`
+        // du bas (peu visible). Action directe = SportPickerSheet (la distinction
+        // routine vs programme est cachée au user, pivot via Q3 fréquence).
+        if let mode = dashboardViewModel?.mode, mode != .empty {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    sheetSelection = .sportPicker
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .accessibilityLabel(Text("dashboard.toolbar.create.label"))
+                }
+                .accessibilityHint(Text("dashboard.toolbar.create.hint"))
+                .accessibilityIdentifier("dashboard.toolbar.create")
+            }
+        }
+
         ToolbarItem(placement: .topBarTrailing) {
             Button {
                 weeklyCalendarPresented = true
@@ -157,12 +175,6 @@ struct SessionView: View {
                 },
                 onTapProgram: { summary in
                     pushAdaptedProgram(record: summary.record)
-                },
-                onTapCreateProgram: {
-                    sheetSelection = .sportPicker
-                },
-                onTapCreateRoutine: {
-                    presentationError = String(localized: "dashboard.active.create.routine.placeholder")
                 },
                 onTapWeeklyReorder: {
                     weeklyCalendarPresented = true

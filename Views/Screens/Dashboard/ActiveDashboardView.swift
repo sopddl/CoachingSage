@@ -10,8 +10,12 @@
 //   - WIDGET CETTE SEMAINE  : `WeeklyStatsWidget` 3 stats inline (single only)
 //   - MES PROGRAMMES        : `ProgramCard` × N, triées par date prochaine séance
 //   - MES ROUTINES (si ≥ 1) : `RoutineCard` × M, border dashed doré
-//   - Card dashed bottom    : « + Créer une routine ou un programme »
 //   - Lien CTA discret      : « ↻ Réorganiser ma semaine → »
+//
+// 2026-05-10 — Sophie : suppression `CreateProgramOrRoutineCard` du bas
+// (déplacé en toolbar « + » de SessionView pour découvrabilité). La distinction
+// routine vs programme est désormais cachée au user — pivot via la question
+// fréquence Q3 du questionnaire (voir mémoire `routine_via_freq_onboarding...`).
 //
 // Source design : `ux-design-CoachingSage-seances-dashboard-2026-05-07.html`.
 import SwiftUI
@@ -27,8 +31,6 @@ struct ActiveDashboardView: View {
     let nowProvider: () -> Date
     let onTapDominantStart: (NextSessionResolver.Result) -> Void
     let onTapProgram: (ActiveProgramSummary) -> Void
-    let onTapCreateProgram: () -> Void
-    let onTapCreateRoutine: () -> Void
     let onTapWeeklyReorder: () -> Void
 
     private var isRestDay: Bool {
@@ -96,11 +98,6 @@ struct ActiveDashboardView: View {
                     }
                 }
             }
-
-            CreateProgramOrRoutineCard(
-                onTapProgram: onTapCreateProgram,
-                onTapRoutine: onTapCreateRoutine
-            )
 
             WeeklyReorderLink(onTap: onTapWeeklyReorder)
         }
@@ -513,48 +510,6 @@ private struct RoutineCard: View {
             format: NSLocalizedString("dashboard.active.routine.duration", comment: "ex. 12 min"),
             routine.durationMinutes
         )
-    }
-}
-
-// MARK: - Create program / routine entry
-
-private struct CreateProgramOrRoutineCard: View {
-    let onTapProgram: () -> Void
-    let onTapRoutine: () -> Void
-
-    var body: some View {
-        Menu {
-            Button {
-                onTapProgram()
-            } label: {
-                Label("dashboard.active.create.program", systemImage: "plus.app")
-            }
-            Button {
-                onTapRoutine()
-            } label: {
-                Label("dashboard.active.create.routine", systemImage: "bolt.heart")
-            }
-        } label: {
-            HStack(spacing: 8) {
-                Image(systemName: "plus")
-                    .font(.footnote.weight(.semibold))
-                    .foregroundStyle(Color.coachingPrimary)
-                Text("dashboard.active.create.cta")
-                    .font(.coachingBody)
-                    .foregroundStyle(Color.coachingTextPrimary)
-                Spacer(minLength: 0)
-            }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 12)
-            .background(
-                RoundedRectangle(cornerRadius: 14, style: .continuous)
-                    .strokeBorder(
-                        Color.coachingTextSecondary.opacity(0.45),
-                        style: StrokeStyle(lineWidth: 1, dash: [4, 3])
-                    )
-            )
-        }
-        .accessibilityIdentifier("dashboard.active.create.cta")
     }
 }
 
