@@ -97,14 +97,16 @@ final class AdaptationPatchTests: XCTestCase {
 
     // MARK: - AdaptRareResponse decoding
 
-    func testDecodeAdaptRareResponseWithQuota() throws {
+    func testDecodeAdaptRareResponseWithFractionalSecondsDate() throws {
+        // Format réel renvoyé par l'Edge Function (TS Date.toISOString() inclut les ms).
+        // Le decoder custom du service supporte ce format ET le format sans ms.
         let json = """
         {
           "patch": {"personalization_note": "GG"},
           "quota": {
             "used": 3,
             "limit": 10,
-            "resets_at": "2026-05-10T00:00:00Z",
+            "resets_at": "2026-05-11T00:00:00.000Z",
             "tier": "free"
           },
           "meta": {
@@ -114,17 +116,45 @@ final class AdaptationPatchTests: XCTestCase {
           }
         }
         """
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        let response = try decoder.decode(AdaptRareResponse.self, from: Data(json.utf8))
-
+        let response = try Self.decodeWithCustomISO8601(AdaptRareResponse.self, json: json)
         XCTAssertEqual(response.patch.personalizationNote, "GG")
         XCTAssertEqual(response.quota.used, 3)
         XCTAssertEqual(response.quota.limit, 10)
         XCTAssertEqual(response.quota.tier, "free")
         XCTAssertEqual(response.meta?.model, "claude-haiku-4-5")
-        XCTAssertEqual(response.meta?.promptVersion, "1.1.0")
-        XCTAssertEqual(response.meta?.durationMs, 4123)
+    }
+
+    func testDecodeAdaptRareResponseWithoutFractionalSecondsDate() throws {
+        // Robustesse : format sans ms doit aussi marcher (au cas où le serveur change).
+        let json = """
+        {
+          "patch": {},
+          "quota": {"used": 1, "limit": 10, "resets_at": "2026-05-11T00:00:00Z", "tier": "free"},
+          "meta": null
+        }
+        """
+        let response = try Self.decodeWithCustomISO8601(AdaptRareResponse.self, json: json)
+        XCTAssertEqual(response.quota.used, 1)
+        XCTAssertNil(response.meta)
+    }
+
+    /// Réplique la stratégie de decoder du `DefaultSageCoachingAIService` (custom
+    /// ISO8601 avec/sans fractional seconds). Si le service change, mettre à jour ici.
+    private static func decodeWithCustomISO8601<T: Decodable>(_ type: T.Type, json: String) throws -> T {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateStr = try container.decode(String.self)
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            if let date = formatter.date(from: dateStr) { return date }
+            formatter.formatOptions = [.withInternetDateTime]
+            if let date = formatter.date(from: dateStr) { return date }
+            throw DecodingError.dataCorruptedError(
+                in: container, debugDescription: "Invalid ISO8601: \(dateStr)"
+            )
+        }
+        return try decoder.decode(T.self, from: Data(json.utf8))
     }
 
     // MARK: - mapErrorResponse

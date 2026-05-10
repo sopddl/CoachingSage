@@ -77,19 +77,26 @@ final class DefaultSageCoachingAIService: SageCoachingAIServiceProtocol {
 
         if statusCode == 200 {
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
+            // Supporte les 2 formats ISO8601 : avec fractional seconds ("2026-05-11T00:00:00.000Z"
+            // produit par TS Date.toISOString() côté Edge Function) ET sans ("2026-05-11T00:00:00Z").
+            // Le `.iso8601` natif Swift ne supporte que la 2nd forme → fix custom.
+            decoder.dateDecodingStrategy = .custom { decoder in
+                let container = try decoder.singleValueContainer()
+                let dateStr = try container.decode(String.self)
+                let formatter = ISO8601DateFormatter()
+                formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+                if let date = formatter.date(from: dateStr) { return date }
+                formatter.formatOptions = [.withInternetDateTime]
+                if let date = formatter.date(from: dateStr) { return date }
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Invalid ISO8601 date: \(dateStr)"
+                )
+            }
             do {
                 return try decoder.decode(AdaptRareResponse.self, from: data)
             } catch {
-                #if DEBUG
-                // Diag temporaire (Story 3.3b post-déploiement) : print le raw
-                // payload pour comprendre le mismatch decode. À retirer une fois
-                // le format Edge Function aligné avec le modèle Swift.
-                let raw = String(data: data, encoding: .utf8) ?? "<non-utf8>"
-                Self.logger.error("Failed to decode AdaptRareResponse: \(error.localizedDescription)\nRAW PAYLOAD (first 2000 chars):\n\(raw.prefix(2000))")
-                #else
                 Self.logger.error("Failed to decode AdaptRareResponse: \(error.localizedDescription)")
-                #endif
                 throw LeonError.invalidPatch
             }
         }
