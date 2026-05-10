@@ -52,7 +52,10 @@ extension CoachingSportProfile {
             constraints: constraints.map(Self.mapConstraintToTemplate),
             equipment: Self.bridgeEquipment(equipment + globalEquipment, sportCode: sportCode),
             frequencyPerWeek: frequencyPerWeek,
-            sessionDurationMinutes: sessionDurationMinutes
+            sessionDurationMinutes: sessionDurationMinutes,
+            goal: goals.primary,
+            durationMode: durationMode,
+            targetDate: targetDate
         )
     }
 

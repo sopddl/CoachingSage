@@ -134,13 +134,19 @@ enum AdapterTestFixtures {
     static func sportProfile(
         constraints: [String] = [],
         equipment: [String] = ["running-shoes"],
-        frequencyPerWeek: Int = 3
+        frequencyPerWeek: Int = 3,
+        goal: String = "",
+        durationMode: ProgramDurationMode = .routineCyclic,
+        targetDate: Date? = nil
     ) -> AdapterSportProfile {
         AdapterSportProfile(
             constraints: constraints,
             equipment: equipment,
             frequencyPerWeek: frequencyPerWeek,
-            sessionDurationMinutes: nil
+            sessionDurationMinutes: nil,
+            goal: goal,
+            durationMode: durationMode,
+            targetDate: targetDate
         )
     }
 
