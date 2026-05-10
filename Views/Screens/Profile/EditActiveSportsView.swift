@@ -48,11 +48,12 @@ struct EditActiveSportsView: View {
 
                 LazyVGrid(columns: columns, spacing: 12) {
                     ForEach(SportCode.allCases, id: \.self) { sport in
-                        SportCell(
+                        SportTileView(
                             sport: sport,
                             isSelected: vm.selectedSports.contains(sport.rawValue),
-                            onToggle: { vm.toggle(sport) },
-                            onShowTooltip: { showHIITTooltip = true }
+                            onTap: { vm.toggle(sport) },
+                            onShowTooltip: { showHIITTooltip = true },
+                            identifierPrefix: "profile.sport"
                         )
                     }
                 }
@@ -97,45 +98,5 @@ struct EditActiveSportsView: View {
     }
 }
 
-private struct SportCell: View {
-    let sport: SportCode
-    let isSelected: Bool
-    let onToggle: () -> Void
-    let onShowTooltip: () -> Void
-
-    var body: some View {
-        Button(action: onToggle) {
-            ZStack(alignment: .topTrailing) {
-                VStack(spacing: 8) {
-                    Image(systemName: sport.sfSymbol)
-                        .font(.system(size: 32))
-                        .foregroundStyle(isSelected ? Color.coachingOnPrimary : Color.coachingPrimary)
-                    Text(LocalizedStringKey(sport.localizationKey))
-                        .font(.coachingCaption)
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(isSelected ? Color.coachingOnPrimary : Color.coachingTextPrimary)
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 96)
-                .background(
-                    RoundedRectangle(cornerRadius: CoachingRadius.md)
-                        .fill(isSelected ? Color.coachingPrimary : Color.coachingCard)
-                )
-
-                if sport == .hiit {
-                    Button(action: onShowTooltip) {
-                        Image(systemName: "info.circle.fill")
-                            .font(.system(size: 18))
-                            .foregroundStyle(isSelected ? Color.coachingOnPrimary : Color.coachingPrimary)
-                            .padding(8)
-                    }
-                    .accessibilityIdentifier("profile.sport.hiit.info")
-                    .accessibilityLabel(Text("onboarding.sport.hiit.tooltip.title"))
-                }
-            }
-        }
-        .buttonStyle(.plain)
-        .accessibilityIdentifier("profile.sport.\(sport.rawValue)")
-        .accessibilityAddTraits(isSelected ? [.isSelected, .isButton] : .isButton)
-    }
-}
+// SportCell privée supprimée — refactor en `SportTileView` partagé
+// (Views/Components/SportTileView.swift), aligne le rendu modif profil sur l'onboarding.

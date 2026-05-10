@@ -22,11 +22,12 @@ struct SportsSelectionView: View {
 
                 LazyVGrid(columns: columns, spacing: 12) {
                     ForEach(SportCode.allCases, id: \.self) { sport in
-                        SportCell(
+                        SportTileView(
                             sport: sport,
                             isSelected: viewModel.activeSports.contains(sport.rawValue),
-                            onToggle: { toggle(sport) },
-                            onShowTooltip: { showHIITTooltip = true }
+                            onTap: { toggle(sport) },
+                            onShowTooltip: { showHIITTooltip = true },
+                            identifierPrefix: "onboarding.sport"
                         )
                     }
                 }
@@ -68,53 +69,6 @@ struct SportsSelectionView: View {
     }
 }
 
-private struct SportCell: View {
-    let sport: SportCode
-    let isSelected: Bool
-    let onToggle: () -> Void
-    let onShowTooltip: () -> Void
-
-    private var sportColor: Color {
-        Color.coachingSport(forCode: sport.rawValue)
-    }
-
-    var body: some View {
-        Button(action: onToggle) {
-            ZStack(alignment: .topTrailing) {
-                VStack(spacing: 8) {
-                    Image(systemName: sport.sfSymbol)
-                        .font(.system(size: 32))
-                        .foregroundStyle(isSelected ? Color.coachingOnPrimary : sportColor)
-                    Text(LocalizedStringKey(sport.localizationKey))
-                        .font(.coachingCaption)
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(isSelected ? Color.coachingOnPrimary : Color.coachingTextPrimary)
-                }
-                .frame(maxWidth: .infinity)
-                .aspectRatio(1, contentMode: .fit)   // carré 1:1 (vs 96pt fixe avant — mockup photo 2)
-                .background(
-                    RoundedRectangle(cornerRadius: CoachingRadius.md)
-                        .fill(isSelected ? sportColor : Color.coachingCard)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: CoachingRadius.md)
-                        .strokeBorder(sportColor, lineWidth: 2)
-                )
-
-                if sport == .hiit {
-                    Button(action: onShowTooltip) {
-                        Image(systemName: "info.circle.fill")
-                            .font(.system(size: 18))
-                            .foregroundStyle(isSelected ? Color.coachingOnPrimary : sportColor)
-                            .padding(8)
-                    }
-                    .accessibilityIdentifier("onboarding.sport.hiit.info")
-                    .accessibilityLabel(Text("onboarding.sport.hiit.tooltip.title"))
-                }
-            }
-        }
-        .buttonStyle(.plain)
-        .accessibilityIdentifier("onboarding.sport.\(sport.rawValue)")
-        .accessibilityAddTraits(isSelected ? [.isSelected, .isButton] : .isButton)
-    }
-}
+// SportCell privée supprimée — refactor en `SportTileView` partagé
+// (Views/Components/SportTileView.swift), réutilisé par onboarding,
+// modif profil et sport picker création programme.

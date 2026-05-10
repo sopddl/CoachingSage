@@ -4,8 +4,9 @@
 // un sport en amont (cas mode vide). Tap → callback avec le sport choisi
 // → ouvre `SportQuestionnaireView` (questionnaire universel).
 //
-// Story sœur post-3.3b — refonte en grille 2 colonnes avec icônes (pattern
-// `SportsSelectionView` onboarding) pour cohérence visuelle.
+// Story sœur post-3.3b — alignement layout sur `SportsSelectionView` onboarding :
+// helper text + padding 24 + composant `SportTileView` partagé (carrés couleur sport
+// avec lineLimit(2) pour pas tronquer Musculation/Randonnée).
 import SwiftUI
 
 struct SportPickerSheet: View {
@@ -18,14 +19,27 @@ struct SportPickerSheet: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 12) {
-                    ForEach(SportCode.allCases, id: \.rawValue) { sport in
-                        SportPickerCell(sport: sport) {
-                            onSelect(sport.rawValue)
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("dashboard.sport.picker.helper")
+                        .font(.coachingBody)
+                        .foregroundStyle(Color.coachingTextSecondary)
+                        .padding(.top, 16)
+
+                    LazyVGrid(columns: columns, spacing: 12) {
+                        ForEach(SportCode.allCases, id: \.rawValue) { sport in
+                            SportTileView(
+                                sport: sport,
+                                isSelected: false,            // single-tap, pas de sélection persistée
+                                onTap: { onSelect(sport.rawValue) },
+                                onShowTooltip: nil,           // tooltip HIIT déjà vu à l'onboarding
+                                identifierPrefix: "sport.picker.option"
+                            )
                         }
                     }
+
+                    Spacer(minLength: 32)
                 }
-                .padding(16)
+                .padding(.horizontal, 24)
             }
             .background(Color.coachingBackground.ignoresSafeArea())
             .navigationTitle(Text("dashboard.sport.picker.title"))
@@ -40,42 +54,5 @@ struct SportPickerSheet: View {
                 }
             }
         }
-    }
-}
-
-/// Cellule grille (pattern mockup photo 2 — carré 1:1 + bordure couleur sport).
-/// Pas de sélection multi/toggle : le picker = single-tap → callback immédiat.
-private struct SportPickerCell: View {
-    let sport: SportCode
-    let onTap: () -> Void
-
-    private var sportColor: Color {
-        Color.coachingSport(forCode: sport.rawValue)
-    }
-
-    var body: some View {
-        Button(action: onTap) {
-            VStack(spacing: 8) {
-                Image(systemName: sport.sfSymbol)
-                    .font(.system(size: 32))
-                    .foregroundStyle(sportColor)
-                Text(LocalizedStringKey(sport.localizationKey))
-                    .font(.coachingCaption)
-                    .multilineTextAlignment(.center)
-                    .foregroundStyle(Color.coachingTextPrimary)
-            }
-            .frame(maxWidth: .infinity)
-            .aspectRatio(1, contentMode: .fit)   // carré (vs 96pt fixe avant)
-            .background(
-                RoundedRectangle(cornerRadius: CoachingRadius.md)
-                    .fill(Color.coachingCard)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: CoachingRadius.md)
-                    .strokeBorder(sportColor, lineWidth: 2)
-            )
-        }
-        .buttonStyle(.plain)
-        .accessibilityIdentifier("sport.picker.option.\(sport.rawValue)")
     }
 }
