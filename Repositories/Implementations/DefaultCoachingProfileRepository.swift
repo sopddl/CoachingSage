@@ -43,7 +43,10 @@ final class DefaultCoachingProfileRepository: CoachingProfileRepository {
                 .execute()
 
             let dtos = try JSONDecoder.supabase().decode([CoachingProfileDTO].self, from: response.data)
-            guard let dto = dtos.first else { return nil }
+            guard let dto = dtos.first else {
+                Self.logger.error("Hydrate-on-miss CoachingProfile : pas de row Supabase pour user \(authUserId) — onboarding pas finalisé OU row supprimée OU upsert silently failed")
+                return nil
+            }
 
             let hydrated = dto.toModel()
             modelContext.insert(hydrated)

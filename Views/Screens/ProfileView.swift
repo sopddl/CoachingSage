@@ -67,6 +67,15 @@ struct ProfileView: View {
                     Button("profile.error.refresh") {
                         Task { await vm.refresh() }
                     }
+
+                    // Voie de sortie si le re-fetch ne ramène toujours rien (cas où
+                    // la row Supabase manque vraiment) : sign out → re-login → re-onboarding.
+                    Button(role: .destructive) {
+                        Task { try? await deps?.authService.signOut() }
+                    } label: {
+                        Text("profile.error.signOut")
+                    }
+                    .accessibilityIdentifier("profile.error.signOut")
                 }
             case .error(let err):
                 Section {
