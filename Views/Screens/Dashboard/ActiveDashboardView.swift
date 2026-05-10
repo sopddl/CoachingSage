@@ -374,10 +374,12 @@ private struct ProgramCard: View {
         Button(action: onTap) {
             HStack(spacing: 14) {
                 ZStack {
-                    // Sophie 2026-05-10 : variante B cohérente avec SuggestedTemplateCard
-                    // (rond doré plein + icone blanche +20%).
+                    // Sophie 2026-05-10 : couleur par sport (variante F mockup)
+                    // — cohérent avec le calendrier hebdo qui utilise déjà
+                    // Color.coachingSport(forCode:). Identification visuelle
+                    // immédiate du sport sur le dashboard multi-prog.
                     Circle()
-                        .fill(Color.coachingRecord)
+                        .fill(Color.coachingSport(forCode: summary.record.sportCode))
                     Image(systemName: sfSymbol)
                         .font(.system(size: 22, weight: .semibold))
                         .foregroundStyle(.white)
@@ -584,11 +586,19 @@ private struct SwipeToDeleteRow<Content: View>: View {
 
             content()
                 .offset(x: revealed ? -Self.trashWidth + dragOffset : dragOffset)
-                .gesture(
-                    DragGesture(minimumDistance: 10)
+                // simultaneousGesture + minimumDistance 25 : permet au DragGesture de
+                // coexister avec le Button(onTap) du ProgramCard wrappé. Sans ça
+                // le Button consomme l'event avant le drag (Sophie 2026-05-10
+                // "je n'arrive pas à swipper, j'ouvre systématiquement le programme").
+                // Le seuil 25pt évite les faux positifs de drag sur un tap maladroit.
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 25, coordinateSpace: .local)
                         .onChanged { value in
-                            // Limite : on ne drague que vers la gauche (swipe trash à droite).
-                            // Si déjà revealed, on autorise le drag à droite pour refermer.
+                            // On ne réagit qu'aux mouvements horizontaux dominants
+                            // (sinon scroll vertical dans la liste = aussi déclenché).
+                            guard abs(value.translation.width) > abs(value.translation.height) else {
+                                return
+                            }
                             let raw = value.translation.width
                             if revealed {
                                 dragOffset = max(0, min(Self.trashWidth, raw))

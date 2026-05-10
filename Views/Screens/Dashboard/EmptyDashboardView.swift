@@ -96,10 +96,11 @@ private struct SuggestedTemplateCard: View {
         Button(action: onTap) {
             HStack(spacing: 14) {
                 ZStack {
-                    // Sophie 2026-05-10 : variante B HTML mockup — rond doré plein
-                    // + icone blanche, symbole +20% pour plus de présence visuelle.
+                    // Sophie 2026-05-10 (suite) : passe de rond doré uniforme
+                    // à couleur par sport (variante F mockup) — cohérent avec
+                    // calendrier hebdo et ProgramCard du mode actif.
                     Circle()
-                        .fill(Color.coachingRecord)
+                        .fill(Color.coachingSport(forCode: template.sport.rawValue))
                     Image(systemName: sfSymbol)
                         .font(.system(size: 22, weight: .semibold))
                         .foregroundStyle(.white)
