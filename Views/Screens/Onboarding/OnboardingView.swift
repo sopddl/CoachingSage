@@ -21,6 +21,8 @@ struct OnboardingView: View {
                         FirstNameLanguageView(viewModel: viewModel)
                     case .personalData:
                         PersonalDataView(viewModel: viewModel)
+                    case .howItWorks:
+                        HowItWorksView(viewModel: viewModel)
                     case .sportsSelection:
                         SportsSelectionView(viewModel: viewModel)
                     case .equipment:
