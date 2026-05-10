@@ -22,11 +22,20 @@ struct MainTabView: View {
         case profile = 2
     }
 
+    /// Hauteur réservée pour la custom tab bar dans le safe area inset.
+    /// Garantit que le bas du content scrollable (ex: ProfileView Section "Supprimer
+    /// mon compte") est atteignable, masqué sinon par la tab bar overlay. Sophie
+    /// bug 2026-05-10 : bouton supprimer compte invisible.
+    private static let tabBarReservedHeight: CGFloat = 64
+
     var body: some View {
         ZStack(alignment: .bottom) {
             tabContent
                 .background(Color.coachingBackground.ignoresSafeArea())
                 .overlay(alignment: .top) { syncBanner }
+                .safeAreaInset(edge: .bottom, spacing: 0) {
+                    Color.clear.frame(height: Self.tabBarReservedHeight)
+                }
             customTabBar
         }
         .sheet(isPresented: $isLeonChatPresented) {

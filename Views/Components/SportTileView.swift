@@ -28,22 +28,14 @@ struct SportTileView: View {
 
     var body: some View {
         Button(action: onTap) {
-            ZStack(alignment: .topTrailing) {
-                VStack(spacing: 6) {
-                    Image(systemName: sport.sfSymbol)
-                        .font(.system(size: 28))
-                        .foregroundStyle(isSelected ? Color.coachingOnPrimary : sportColor)
-                    Text(LocalizedStringKey(sport.localizationKey))
-                        .font(.coachingCaption)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.8)
-                        .foregroundStyle(isSelected ? Color.coachingOnPrimary : Color.coachingTextPrimary)
-                        .padding(.horizontal, 4)
-                }
-                .frame(maxWidth: .infinity)
+            // Le carré est porté par `Color` qui s'étire à la largeur de colonne
+            // (Color = greedy) puis aspectRatio(1) force la hauteur = largeur.
+            // VStack en overlay centre l'icône+label. Pattern correct pour avoir
+            // un carré à la taille de la colonne (vs aspectRatio sur VStack qui
+            // collapse à la taille du contenu).
+            Color.clear
                 .aspectRatio(1, contentMode: .fit)
-                .background(
+                .overlay(
                     RoundedRectangle(cornerRadius: CoachingRadius.md)
                         .fill(isSelected ? sportColor : Color.coachingCard)
                 )
@@ -51,18 +43,32 @@ struct SportTileView: View {
                     RoundedRectangle(cornerRadius: CoachingRadius.md)
                         .strokeBorder(sportColor, lineWidth: 2)
                 )
-
-                if sport == .hiit, let onShowTooltip {
-                    Button(action: onShowTooltip) {
-                        Image(systemName: "info.circle.fill")
-                            .font(.system(size: 16))
+                .overlay(
+                    VStack(spacing: 6) {
+                        Image(systemName: sport.sfSymbol)
+                            .font(.system(size: 28))
                             .foregroundStyle(isSelected ? Color.coachingOnPrimary : sportColor)
-                            .padding(6)
+                        Text(LocalizedStringKey(sport.localizationKey))
+                            .font(.coachingCaption)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.8)
+                            .foregroundStyle(isSelected ? Color.coachingOnPrimary : Color.coachingTextPrimary)
+                            .padding(.horizontal, 4)
                     }
-                    .accessibilityIdentifier("\(identifierPrefix).hiit.info")
-                    .accessibilityLabel(Text("onboarding.sport.hiit.tooltip.title"))
+                )
+                .overlay(alignment: .topTrailing) {
+                    if sport == .hiit, let onShowTooltip {
+                        Button(action: onShowTooltip) {
+                            Image(systemName: "info.circle.fill")
+                                .font(.system(size: 16))
+                                .foregroundStyle(isSelected ? Color.coachingOnPrimary : sportColor)
+                                .padding(6)
+                        }
+                        .accessibilityIdentifier("\(identifierPrefix).hiit.info")
+                        .accessibilityLabel(Text("onboarding.sport.hiit.tooltip.title"))
+                    }
                 }
-            }
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("\(identifierPrefix).\(sport.rawValue)")
