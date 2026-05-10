@@ -115,6 +115,53 @@ final class AdaptedProgramRecordTests: XCTestCase {
         XCTAssertTrue(record.isActive)                  // actif à la création
         XCTAssertNil(record.archivedAt)
         XCTAssertEqual(record.completionState.completedCount, 0)
+        // Story sœur — defaults durée : routineCyclic, pas de date cible, cycle 1.
+        XCTAssertEqual(record.durationMode, .routineCyclic)
+        XCTAssertNil(record.targetDate)
+        XCTAssertEqual(record.cycleNumber, 1)
+    }
+
+    // MARK: - Story sœur — durationMode / targetDate / cycleNumber
+
+    func testBridgeFromAdaptedProgramPreservesDeadlineFixed() {
+        let target = Date(timeIntervalSince1970: 1_710_000_000)
+        let adapted = makeAdaptedFixture(durationMode: .deadlineFixed, targetDate: target)
+
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID())
+
+        XCTAssertEqual(record.durationMode, .deadlineFixed)
+        XCTAssertEqual(record.targetDate, target)
+        XCTAssertEqual(record.cycleNumber, 1)
+    }
+
+    func testBridgeFromAdaptedProgramPreservesDeadlineEstimated() {
+        let estimated = Date(timeIntervalSince1970: 1_715_000_000)
+        let adapted = makeAdaptedFixture(durationMode: .deadlineEstimated, targetDate: estimated)
+
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID())
+
+        XCTAssertEqual(record.durationMode, .deadlineEstimated)
+        XCTAssertEqual(record.targetDate, estimated)
+    }
+
+    func testBridgeAcceptsCustomCycleNumber() {
+        let adapted = makeAdaptedFixture()  // routineCyclic par défaut
+
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID(), cycleNumber: 3)
+
+        XCTAssertEqual(record.cycleNumber, 3)
+        XCTAssertEqual(record.durationMode, .routineCyclic)
+    }
+
+    func testToAdaptedProgramRoundtripsDurationFields() {
+        let target = Date(timeIntervalSince1970: 1_720_000_000)
+        let adapted = makeAdaptedFixture(durationMode: .deadlineFixed, targetDate: target)
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID())
+
+        let roundtrip = record.toAdaptedProgram()
+
+        XCTAssertEqual(roundtrip?.durationMode, .deadlineFixed)
+        XCTAssertEqual(roundtrip?.targetDate, target)
     }
 
     func testBridgeFromAdaptedProgramPropagatesAIAssistFlags() {
@@ -251,7 +298,9 @@ final class AdaptedProgramRecordTests: XCTestCase {
         weeksCount: Int = 2,
         sessionsPerWeek: Int = 3,
         requiresAIAssist: Bool = false,
-        aiAssistReason: String? = nil
+        aiAssistReason: String? = nil,
+        durationMode: ProgramDurationMode = .routineCyclic,
+        targetDate: Date? = nil
     ) -> AdaptedProgram {
         let weeks = (1...weeksCount).map { wn in
             AdaptedWeek(
@@ -287,7 +336,9 @@ final class AdaptedProgramRecordTests: XCTestCase {
             weeks: weeks,
             appliedRules: [],
             requiresAIAssist: requiresAIAssist,
-            aiAssistReason: aiAssistReason
+            aiAssistReason: aiAssistReason,
+            durationMode: durationMode,
+            targetDate: targetDate
         )
     }
 }

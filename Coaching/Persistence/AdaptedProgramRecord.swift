@@ -77,6 +77,23 @@ final class AdaptedProgramRecord {
     /// + re-application éventuelle après mise à jour algo. Nil avant 1er patch.
     var aiPatchJSON: String?
 
+    /// Story sœur — mode de durée du programme. Stocké en `String` (rawValue de
+    /// `ProgramDurationMode`). Default `.routineCyclic` (= mode le plus permissif :
+    /// pas de fin, regenable).
+    var durationModeRaw: String = ProgramDurationMode.routineCyclic.rawValue
+    var durationMode: ProgramDurationMode {
+        get { ProgramDurationMode(rawValue: durationModeRaw) ?? .routineCyclic }
+        set { durationModeRaw = newValue.rawValue }
+    }
+
+    /// Story sœur — date cible (deadline). Nil pour `routineCyclic`.
+    var targetDate: Date?
+
+    /// Story sœur — numéro de cycle pour les programmes en `routineCyclic`.
+    /// 1 au premier programme, incrémenté à chaque renouvellement.
+    /// Toujours 1 pour les modes deadline.
+    var cycleNumber: Int = 1
+
     var createdAt: Date
     var lastUpdatedAt: Date
 
@@ -97,6 +114,9 @@ final class AdaptedProgramRecord {
         aiAssistReason: String? = nil,
         aiPatchApplied: Bool = false,
         aiPatchJSON: String? = nil,
+        durationMode: ProgramDurationMode = .routineCyclic,
+        targetDate: Date? = nil,
+        cycleNumber: Int = 1,
         createdAt: Date = Date(),
         lastUpdatedAt: Date = Date()
     ) {
@@ -116,6 +136,9 @@ final class AdaptedProgramRecord {
         self.aiAssistReason = aiAssistReason
         self.aiPatchApplied = aiPatchApplied
         self.aiPatchJSON = aiPatchJSON
+        self.durationModeRaw = durationMode.rawValue
+        self.targetDate = targetDate
+        self.cycleNumber = cycleNumber
         self.createdAt = createdAt
         self.lastUpdatedAt = lastUpdatedAt
     }
@@ -131,7 +154,8 @@ extension AdaptedProgramRecord {
     convenience init(
         from adapted: AdaptedProgram,
         userId: UUID,
-        weekStartDate: Date = AdaptedProgramRecord.startOfCurrentWeek()
+        weekStartDate: Date = AdaptedProgramRecord.startOfCurrentWeek(),
+        cycleNumber: Int = 1
     ) {
         let sessions: [PersistedSession] = adapted.weeks.flatMap { week in
             week.sessions.map { session in
@@ -164,7 +188,10 @@ extension AdaptedProgramRecord {
             isActive: true,
             archivedAt: nil,
             requiresAIAssist: adapted.requiresAIAssist,
-            aiAssistReason: adapted.aiAssistReason
+            aiAssistReason: adapted.aiAssistReason,
+            durationMode: adapted.durationMode,
+            targetDate: adapted.targetDate,
+            cycleNumber: cycleNumber
         )
     }
 
@@ -215,7 +242,9 @@ extension AdaptedProgramRecord {
             weeks: weeks,
             appliedRules: [],
             requiresAIAssist: requiresAIAssist,
-            aiAssistReason: aiAssistReason
+            aiAssistReason: aiAssistReason,
+            durationMode: durationMode,
+            targetDate: targetDate
         )
     }
 
