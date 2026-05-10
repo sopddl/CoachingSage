@@ -7,11 +7,10 @@
 //   3. Cercle bleu coach `coachingPrimary` (#1E5090) plein
 //   4. 5 anneaux entrelacés palette Sages (or · blanc · vert · marine · orange),
 //      pivotés -5° à gauche pour rappeler la dynamique sportive (Sophie 2026-05-09)
-//   5. Badge étoile Sage 8 branches `SageStarShape` en bas-droite
-//      (cercle blanc + halo sable + étoile marron + cœur doré)
 //
-// Tailles : 60×60 extérieur, badge 18×18 offset (+22, +22).
-// Cohérent avec AppIcon GS/TS (cercle métier + anneau or 36pt + badge étoile).
+// Tailles : 60×60 extérieur. Badge sage retiré 2026-05-10 (Sophie : la croix
+// fait doublon visuel sur le FAB, le cercle bleu + 5 anneaux suffit).
+// Cohérent avec AppIcon GS/TS (cercle métier + anneau or 36pt).
 import SwiftUI
 
 struct LeonFloatingButton: View {
@@ -20,7 +19,6 @@ struct LeonFloatingButton: View {
     private static let fabSize: CGFloat = 60
     private static let goldRingDiameter: CGFloat = 54
     private static let blueCoreDiameter: CGFloat = 46
-    private static let badgeSize: CGFloat = 18
 
     var body: some View {
         Button {
@@ -46,14 +44,6 @@ struct LeonFloatingButton: View {
                 fiveRingsSages
                     .rotationEffect(.degrees(-5))
                     .frame(width: Self.blueCoreDiameter - 6, height: Self.blueCoreDiameter - 6)
-
-                // 5. Badge étoile Sage bas-droite
-                sageBadge
-                    .frame(width: Self.badgeSize, height: Self.badgeSize)
-                    .offset(
-                        x: Self.fabSize / 2 - Self.badgeSize / 2 - 1,
-                        y: Self.fabSize / 2 - Self.badgeSize / 2 - 1
-                    )
             }
             .frame(width: Self.fabSize, height: Self.fabSize)
             .shadow(color: Color.coachingPrimary.opacity(0.30), radius: 8, x: 0, y: 4)
@@ -105,22 +95,6 @@ struct LeonFloatingButton: View {
         }
     }
 
-    // MARK: - Badge étoile Sage
-
-    private var sageBadge: some View {
-        ZStack {
-            Circle().fill(Color.coachingSand)
-            Circle()
-                .fill(Color.white)
-                .padding(1)
-            SageStarShape()
-                .fill(Color.coachingSageStar)
-                .padding(2.5)
-            Circle()
-                .fill(Color.coachingRecord)
-                .frame(width: 2.4, height: 2.4)
-        }
-    }
 }
 
 #if DEBUG

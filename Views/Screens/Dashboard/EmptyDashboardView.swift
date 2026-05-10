@@ -96,11 +96,16 @@ private struct SuggestedTemplateCard: View {
         Button(action: onTap) {
             HStack(spacing: 14) {
                 ZStack {
-                    Circle()
-                        .fill(Color.coachingRecord.opacity(0.18))
+                    // Sophie 2026-05-10 (raffinement) : pattern carré arrondi
+                    // + bordure couleur sport + icone couleur sport (mockup
+                    // photo 2 sport picker). Cohérent avec ProgramCard.
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .fill(Color.coachingCard)
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .strokeBorder(Color.coachingSport(forCode: template.sport.rawValue), lineWidth: 2)
                     Image(systemName: sfSymbol)
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundStyle(Color.coachingRecord)
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundStyle(Color.coachingSport(forCode: template.sport.rawValue))
                 }
                 .frame(width: 40, height: 40)
 

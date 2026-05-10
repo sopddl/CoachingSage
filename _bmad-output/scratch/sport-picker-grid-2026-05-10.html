@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Sport picker — grille 3 par ligne</title>
+<style>
+  :root {
+    --bg: #F5F2EE;
+    --card: #EDE9E3;
+    --primary: #1E5090;
+    --record: #D4A85A;
+    --sand: #F3EDE2;
+    --text: #141E2B;
+    --text-secondary: #5A6577;
+    --running: #1E5090;
+    --cycling: #2D8A4E;
+    --swimming: #4FB3D9;
+    --triathlon: #D4A85A;
+    --strength: #8C4A2E;
+    --yoga: #9B6BB3;
+    --hiit: #C43D3D;
+    --hiking: #4A7044;
+    --tennis: #E08A3A;
+    --football: #1B3A5C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; background: var(--bg); color: var(--text); padding: 24px; }
+  h1 { font-size: 24px; margin-bottom: 6px; }
+  h1 .num { color: var(--record); font-weight: 700; }
+  .subtitle { font-size: 13px; color: var(--text-secondary); margin-bottom: 32px; }
+  .variant { margin-bottom: 36px; }
+  .variant-title { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+  .variant-desc { font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; }
+  .phone-mock { max-width: 380px; background: var(--bg); border-radius: 16px; padding: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .header { font-size: 17px; font-weight: 600; text-align: center; margin-bottom: 18px; color: var(--text); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .tile { aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 8px; cursor: pointer; }
+  .tile-icon { display: flex; align-items: center; justify-content: center; }
+  .ico { width: 32px; height: 32px; }
+  .tile-name { font-size: 12px; font-weight: 500; text-align: center; line-height: 1.2; }
+
+  /* === VARIANTES === */
+
+  /* A — Carrés couleur sport plein + icone blanche + nom blanc */
+  .v-A .tile { background: var(--bg-color); border-radius: 16px; }
+  .v-A .ico { color: white; }
+  .v-A .tile-name { color: white; }
+  .v-A .t-running   { --bg-color: var(--running); }
+  .v-A .t-cycling   { --bg-color: var(--cycling); }
+  .v-A .t-swimming  { --bg-color: var(--swimming); }
+  .v-A .t-triathlon { --bg-color: var(--triathlon); }
+  .v-A .t-strength  { --bg-color: var(--strength); }
+  .v-A .t-yoga      { --bg-color: var(--yoga); }
+  .v-A .t-hiit      { --bg-color: var(--hiit); }
+  .v-A .t-hiking    { --bg-color: var(--hiking); }
+  .v-A .t-tennis    { --bg-color: var(--tennis); }
+  .v-A .t-football  { --bg-color: var(--football); }
+
+  /* B — Carrés sable bordure couleur sport + icone couleur sport */
+  .v-B .tile { background: var(--card); border-radius: 16px; border: 2px solid var(--bg-color); }
+  .v-B .ico { color: var(--bg-color); }
+  .v-B .tile-name { color: var(--text); font-weight: 600; }
+  .v-B .t-running   { --bg-color: var(--running); }
+  .v-B .t-cycling   { --bg-color: var(--cycling); }
+  .v-B .t-swimming  { --bg-color: var(--swimming); }
+  .v-B .t-triathlon { --bg-color: var(--triathlon); }
+  .v-B .t-strength  { --bg-color: var(--strength); }
+  .v-B .t-yoga      { --bg-color: var(--yoga); }
+  .v-B .t-hiit      { --bg-color: var(--hiit); }
+  .v-B .t-hiking    { --bg-color: var(--hiking); }
+  .v-B .t-tennis    { --bg-color: var(--tennis); }
+  .v-B .t-football  { --bg-color: var(--football); }
+
+  /* C — Carrés bleu primaire plein partout + icone blanche */
+  .v-C .tile { background: var(--primary); border-radius: 16px; }
+  .v-C .ico { color: white; }
+  .v-C .tile-name { color: white; }
+
+  /* D — Carrés sable + cercle interne couleur sport + icone blanche */
+  .v-D .tile { background: var(--card); border-radius: 16px; }
+  .v-D .tile-icon { width: 48px; height: 48px; border-radius: 50%; background: var(--bg-color); }
+  .v-D .ico { color: white; width: 24px; height: 24px; }
+  .v-D .tile-name { color: var(--text); }
+  .v-D .t-running   { --bg-color: var(--running); }
+  .v-D .t-cycling   { --bg-color: var(--cycling); }
+  .v-D .t-swimming  { --bg-color: var(--swimming); }
+  .v-D .t-triathlon { --bg-color: var(--triathlon); }
+  .v-D .t-strength  { --bg-color: var(--strength); }
+  .v-D .t-yoga      { --bg-color: var(--yoga); }
+  .v-D .t-hiit      { --bg-color: var(--hiit); }
+  .v-D .t-hiking    { --bg-color: var(--hiking); }
+  .v-D .t-tennis    { --bg-color: var(--tennis); }
+  .v-D .t-football  { --bg-color: var(--football); }
+
+  /* E — Carrés couleur sport + halo plus clair sur l'icone */
+  .v-E .tile { background: var(--bg-color); border-radius: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .v-E .tile-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.18); }
+  .v-E .ico { color: white; width: 28px; height: 28px; }
+  .v-E .tile-name { color: white; font-weight: 600; }
+  .v-E .t-running   { --bg-color: var(--running); }
+  .v-E .t-cycling   { --bg-color: var(--cycling); }
+  .v-E .t-swimming  { --bg-color: var(--swimming); }
+  .v-E .t-triathlon { --bg-color: var(--triathlon); }
+  .v-E .t-strength  { --bg-color: var(--strength); }
+  .v-E .t-yoga      { --bg-color: var(--yoga); }
+  .v-E .t-hiit      { --bg-color: var(--hiit); }
+  .v-E .t-hiking    { --bg-color: var(--hiking); }
+  .v-E .t-tennis    { --bg-color: var(--tennis); }
+  .v-E .t-football  { --bg-color: var(--football); }
+</style>
+</head>
+<body>
+<h1>Sport picker — <span class="num">5 variantes grille 3×4</span></h1>
+<p class="subtitle">Bottom sheet "Quel sport ?" · 10 sports + 2 cellules vides en bas. Actuellement liste verticale petite icone : Sophie veut grille de carrés grosses icones plus joli.</p>
+
+<div class="variant v-A">
+  <p class="variant-title">A — Carrés pleins couleur sport + icone+texte blancs</p>
+  <p class="variant-desc">Maximum d'identité par sport. Diversité visuelle directe.</p>
+  <div class="phone-mock">
+    <div class="header">Quel sport ?</div>
+    <div class="grid">
+      <div class="tile t-running"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><span class="tile-name">Course</span></div>
+      <div class="tile t-cycling"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><span class="tile-name">Vélo</span></div>
+      <div class="tile t-swimming"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M2 18c1 1 2 2 4 2s3-1 4-2 2-2 4-2 3 1 4 2 2 2 4 2 3-1 4-2v-2c-1 1-2 2-4 2s-3-1-4-2-2-2-4-2-3 1-4 2-2 2-4 2-3-1-4-2v2zm0-6c1 1 2 2 4 2s3-1 4-2 2-2 4-2 3 1 4 2 2 2 4 2 3-1 4-2V8c-1 1-2 2-4 2s-3-1-4-2-2-2-4-2-3 1-4 2-2 2-4 2-3-1-4-2v4z"/></svg></span><span class="tile-name">Natation</span></div>
+      <div class="tile t-triathlon"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6l-2 4h4l-2-4zm-4 8l2 4 2-4H8zm6 0l2 4 2-4h-4z"/></svg></span><span class="tile-name">Triathlon</span></div>
+      <div class="tile t-strength"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg></span><span class="tile-name">Renfo</span></div>
+      <div class="tile t-yoga"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zM6 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><span class="tile-name">Yoga</span></div>
+      <div class="tile t-hiit"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 11-12h-7l1-8z"/></svg></span><span class="tile-name">HIIT</span></div>
+      <div class="tile t-hiking"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM12 22l1-9 2 1v6h2v-7.5l-2.1-2 .9-4.5c.6.7 1.4 1.3 2.4 1.6 1 .3 2 .4 2.8.4v-2c-.7 0-1.5-.1-2.2-.4-.7-.2-1.3-.6-1.6-1.1l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.7 2.4V11h2V9l1.8-.7L8.6 22h3.4z"/></svg></span><span class="tile-name">Rando</span></div>
+      <div class="tile t-tennis"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12c5 0 10 5 10 10M22 12c-5 0-10 5-10 10M12 2c0 5 5 10 10 10M12 2c0 5-5 10-10 10" stroke="white" stroke-width="1" fill="none"/></svg></span><span class="tile-name">Tennis</span></div>
+      <div class="tile t-football"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20" stroke="white" stroke-width="1.5" fill="none"/></svg></span><span class="tile-name">Football</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="variant v-B">
+  <p class="variant-title">B — Sable bordure couleur sport + icone couleur sport</p>
+  <p class="variant-desc">Plus discret, identité par bordure et accent. Lisible.</p>
+  <div class="phone-mock">
+    <div class="header">Quel sport ?</div>
+    <div class="grid">
+      <div class="tile t-running"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><span class="tile-name">Course</span></div>
+      <div class="tile t-cycling"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><span class="tile-name">Vélo</span></div>
+      <div class="tile t-swimming"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M2 18c1 1 2 2 4 2s3-1 4-2 2-2 4-2 3 1 4 2 2 2 4 2 3-1 4-2v-2c-1 1-2 2-4 2s-3-1-4-2-2-2-4-2-3 1-4 2-2 2-4 2-3-1-4-2v2zm0-6c1 1 2 2 4 2s3-1 4-2 2-2 4-2 3 1 4 2 2 2 4 2 3-1 4-2V8c-1 1-2 2-4 2s-3-1-4-2-2-2-4-2-3 1-4 2-2 2-4 2-3-1-4-2v4z"/></svg></span><span class="tile-name">Natation</span></div>
+      <div class="tile t-triathlon"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6l-2 4h4l-2-4zm-4 8l2 4 2-4H8zm6 0l2 4 2-4h-4z"/></svg></span><span class="tile-name">Triathlon</span></div>
+      <div class="tile t-strength"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg></span><span class="tile-name">Renfo</span></div>
+      <div class="tile t-yoga"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zM6 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><span class="tile-name">Yoga</span></div>
+      <div class="tile t-hiit"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 11-12h-7l1-8z"/></svg></span><span class="tile-name">HIIT</span></div>
+      <div class="tile t-hiking"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM12 22l1-9 2 1v6h2v-7.5l-2.1-2 .9-4.5c.6.7 1.4 1.3 2.4 1.6 1 .3 2 .4 2.8.4v-2c-.7 0-1.5-.1-2.2-.4-.7-.2-1.3-.6-1.6-1.1l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.7 2.4V11h2V9l1.8-.7L8.6 22h3.4z"/></svg></span><span class="tile-name">Rando</span></div>
+      <div class="tile t-tennis"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></span><span class="tile-name">Tennis</span></div>
+      <div class="tile t-football"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span><span class="tile-name">Football</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="variant v-C">
+  <p class="variant-title">C — Tout en bleu primaire (uniforme)</p>
+  <p class="variant-desc">Identité forte CoachingSage, monochrome. Simple.</p>
+  <div class="phone-mock">
+    <div class="header">Quel sport ?</div>
+    <div class="grid">
+      <div class="tile t-running"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><span class="tile-name">Course</span></div>
+      <div class="tile t-cycling"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><span class="tile-name">Vélo</span></div>
+      <div class="tile t-swimming"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M2 18c1 1 2 2 4 2s3-1 4-2 2-2 4-2 3 1 4 2 2 2 4 2 3-1 4-2v-2c-1 1-2 2-4 2s-3-1-4-2-2-2-4-2-3 1-4 2-2 2-4 2-3-1-4-2v2zm0-6c1 1 2 2 4 2s3-1 4-2 2-2 4-2 3 1 4 2 2 2 4 2 3-1 4-2V8c-1 1-2 2-4 2s-3-1-4-2-2-2-4-2-3 1-4 2-2 2-4 2-3-1-4-2v4z"/></svg></span><span class="tile-name">Natation</span></div>
+      <div class="tile t-triathlon"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6l-2 4h4l-2-4zm-4 8l2 4 2-4H8zm6 0l2 4 2-4h-4z"/></svg></span><span class="tile-name">Triathlon</span></div>
+      <div class="tile t-strength"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg></span><span class="tile-name">Renfo</span></div>
+      <div class="tile t-yoga"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zM6 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><span class="tile-name">Yoga</span></div>
+      <div class="tile t-hiit"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 11-12h-7l1-8z"/></svg></span><span class="tile-name">HIIT</span></div>
+      <div class="tile t-hiking"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM12 22l1-9 2 1v6h2v-7.5l-2.1-2 .9-4.5c.6.7 1.4 1.3 2.4 1.6 1 .3 2 .4 2.8.4v-2c-.7 0-1.5-.1-2.2-.4-.7-.2-1.3-.6-1.6-1.1l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.7 2.4V11h2V9l1.8-.7L8.6 22h3.4z"/></svg></span><span class="tile-name">Rando</span></div>
+      <div class="tile t-tennis"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></span><span class="tile-name">Tennis</span></div>
+      <div class="tile t-football"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20" stroke="white" stroke-width="1.5" fill="none"/></svg></span><span class="tile-name">Football</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="variant v-D">
+  <p class="variant-title">D — Sable + cercle interne couleur sport</p>
+  <p class="variant-desc">Hybride : tile neutre, accent au centre. Le plus "design moderne".</p>
+  <div class="phone-mock">
+    <div class="header">Quel sport ?</div>
+    <div class="grid">
+      <div class="tile t-running"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><span class="tile-name">Course</span></div>
+      <div class="tile t-cycling"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><span class="tile-name">Vélo</span></div>
+      <div class="tile t-swimming"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M2 18c1 1 2 2 4 2s3-1 4-2 2-2 4-2 3 1 4 2 2 2 4 2 3-1 4-2v-2c-1 1-2 2-4 2s-3-1-4-2-2-2-4-2-3 1-4 2-2 2-4 2-3-1-4-2v2zm0-6c1 1 2 2 4 2s3-1 4-2 2-2 4-2 3 1 4 2 2 2 4 2 3-1 4-2V8c-1 1-2 2-4 2s-3-1-4-2-2-2-4-2-3 1-4 2-2 2-4 2-3-1-4-2v4z"/></svg></span><span class="tile-name">Natation</span></div>
+      <div class="tile t-triathlon"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6l-2 4h4l-2-4zm-4 8l2 4 2-4H8zm6 0l2 4 2-4h-4z"/></svg></span><span class="tile-name">Triathlon</span></div>
+      <div class="tile t-strength"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg></span><span class="tile-name">Renfo</span></div>
+      <div class="tile t-yoga"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zM6 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><span class="tile-name">Yoga</span></div>
+      <div class="tile t-hiit"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 11-12h-7l1-8z"/></svg></span><span class="tile-name">HIIT</span></div>
+      <div class="tile t-hiking"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM12 22l1-9 2 1v6h2v-7.5l-2.1-2 .9-4.5c.6.7 1.4 1.3 2.4 1.6 1 .3 2 .4 2.8.4v-2c-.7 0-1.5-.1-2.2-.4-.7-.2-1.3-.6-1.6-1.1l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.7 2.4V11h2V9l1.8-.7L8.6 22h3.4z"/></svg></span><span class="tile-name">Rando</span></div>
+      <div class="tile t-tennis"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></span><span class="tile-name">Tennis</span></div>
+      <div class="tile t-football"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20" stroke="white" stroke-width="1.5" fill="none"/></svg></span><span class="tile-name">Football</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="variant v-E">
+  <p class="variant-title">E — Couleur sport pleine + halo blanc 18% sur l'icone</p>
+  <p class="variant-desc">Variante de A avec emphase sur l'icone (halo). Plus "premium".</p>
+  <div class="phone-mock">
+    <div class="header">Quel sport ?</div>
+    <div class="grid">
+      <div class="tile t-running"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg></span><span class="tile-name">Course</span></div>
+      <div class="tile t-cycling"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-2v2h2v3l-3 4h2l3-4V6z"/></svg></span><span class="tile-name">Vélo</span></div>
+      <div class="tile t-swimming"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M2 18c1 1 2 2 4 2s3-1 4-2 2-2 4-2 3 1 4 2 2 2 4 2 3-1 4-2v-2c-1 1-2 2-4 2s-3-1-4-2-2-2-4-2-3 1-4 2-2 2-4 2-3-1-4-2v2zm0-6c1 1 2 2 4 2s3-1 4-2 2-2 4-2 3 1 4 2 2 2 4 2 3-1 4-2V8c-1 1-2 2-4 2s-3-1-4-2-2-2-4-2-3 1-4 2-2 2-4 2-3-1-4-2v4z"/></svg></span><span class="tile-name">Natation</span></div>
+      <div class="tile t-triathlon"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6l-2 4h4l-2-4zm-4 8l2 4 2-4H8zm6 0l2 4 2-4h-4z"/></svg></span><span class="tile-name">Triathlon</span></div>
+      <div class="tile t-strength"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg></span><span class="tile-name">Renfo</span></div>
+      <div class="tile t-yoga"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zM6 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span><span class="tile-name">Yoga</span></div>
+      <div class="tile t-hiit"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 11-12h-7l1-8z"/></svg></span><span class="tile-name">HIIT</span></div>
+      <div class="tile t-hiking"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM12 22l1-9 2 1v6h2v-7.5l-2.1-2 .9-4.5c.6.7 1.4 1.3 2.4 1.6 1 .3 2 .4 2.8.4v-2c-.7 0-1.5-.1-2.2-.4-.7-.2-1.3-.6-1.6-1.1l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.7 2.4V11h2V9l1.8-.7L8.6 22h3.4z"/></svg></span><span class="tile-name">Rando</span></div>
+      <div class="tile t-tennis"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></span><span class="tile-name">Tennis</span></div>
+      <div class="tile t-football"><span class="tile-icon"><svg class="ico" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20" stroke="white" stroke-width="1.5" fill="none"/></svg></span><span class="tile-name">Football</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

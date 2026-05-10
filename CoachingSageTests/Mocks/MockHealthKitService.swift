@@ -17,6 +17,8 @@ final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable 
 
     var stubbedVO2MaxSample: HealthKitVO2MaxSample?
     var stubbedWorkoutSummary: HealthKitWorkoutSummary = .empty
+    var stubbedRestingHeartRateAverage: Double?
+    var stubbedRecentWorkoutDetails: [HealthKitWorkoutDetail] = []
 
     var requestAuthorizationCallCount: Int = 0
     var requestAuthorizationShouldThrow: Error?
@@ -39,5 +41,13 @@ final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable 
 
     func fetchWorkoutSummary(weeksBack: Int) async -> HealthKitWorkoutSummary {
         stubbedWorkoutSummary
+    }
+
+    func fetchRestingHeartRateAverage(daysBack: Int) async -> Double? {
+        stubbedRestingHeartRateAverage
+    }
+
+    func fetchRecentWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitWorkoutDetail] {
+        stubbedRecentWorkoutDetails
     }
 }

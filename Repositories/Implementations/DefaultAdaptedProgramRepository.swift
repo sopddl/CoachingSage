@@ -36,4 +36,13 @@ final class DefaultAdaptedProgramRepository: AdaptedProgramRepository {
         record.lastUpdatedAt = Date()
         try modelContext.save()
     }
+
+    func applyLeonPatch(recordId: UUID, patch: AdaptationPatch) async throws {
+        let descriptor = FetchDescriptor<AdaptedProgramRecord>(
+            predicate: #Predicate { $0.id == recordId }
+        )
+        guard let record = try modelContext.fetch(descriptor).first else { return }
+        try record.applyLeonPatch(patch)
+        try modelContext.save()
+    }
 }

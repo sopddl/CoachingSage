@@ -62,6 +62,21 @@ final class AdaptedProgramRecord {
     var isActive: Bool                          // false = archivé (programme terminé/abandonné)
     var archivedAt: Date?                       // timestamp d'archivage, nil tant qu'`isActive`
 
+    /// Story 3.3a : émis par `ProgramAdapter` quand l'algo deterministic n'a pas trouvé
+    /// d'alternative propre pour au moins un exercice. Story 3.3b auto-déclenche le
+    /// hand-off Léon IA fallback à l'arrivée sur `AdaptedProgramView` si == true.
+    var requiresAIAssist: Bool = false
+    /// Phrase courte expliquant POURQUOI `requiresAIAssist` est vrai (cas atypique
+    /// détecté). Affiché en sous-titre du loader Léon. Nil tant que `requiresAIAssist == false`.
+    var aiAssistReason: String?
+
+    /// Story 3.3b : true après application réussie d'un patch IA Léon. Empêche
+    /// la ré-application automatique au prochain reload (idempotence).
+    var aiPatchApplied: Bool = false
+    /// JSON brut du dernier `AdaptationPatch` reçu de Léon. Persisté pour audit
+    /// + re-application éventuelle après mise à jour algo. Nil avant 1er patch.
+    var aiPatchJSON: String?
+
     var createdAt: Date
     var lastUpdatedAt: Date
 
@@ -78,6 +93,10 @@ final class AdaptedProgramRecord {
         completionState: ProgramCompletionState = .empty,
         isActive: Bool = true,
         archivedAt: Date? = nil,
+        requiresAIAssist: Bool = false,
+        aiAssistReason: String? = nil,
+        aiPatchApplied: Bool = false,
+        aiPatchJSON: String? = nil,
         createdAt: Date = Date(),
         lastUpdatedAt: Date = Date()
     ) {
@@ -93,6 +112,10 @@ final class AdaptedProgramRecord {
         self.completionStateJsonData = (try? JSONEncoder().encode(completionState)) ?? Data()
         self.isActive = isActive
         self.archivedAt = archivedAt
+        self.requiresAIAssist = requiresAIAssist
+        self.aiAssistReason = aiAssistReason
+        self.aiPatchApplied = aiPatchApplied
+        self.aiPatchJSON = aiPatchJSON
         self.createdAt = createdAt
         self.lastUpdatedAt = lastUpdatedAt
     }
@@ -139,7 +162,9 @@ extension AdaptedProgramRecord {
             sessions: sessions,
             completionState: .empty,
             isActive: true,
-            archivedAt: nil
+            archivedAt: nil,
+            requiresAIAssist: adapted.requiresAIAssist,
+            aiAssistReason: adapted.aiAssistReason
         )
     }
 
@@ -189,7 +214,45 @@ extension AdaptedProgramRecord {
             appliedAt: adaptedAt,
             weeks: weeks,
             appliedRules: [],
-            requiresAIAssist: false
+            requiresAIAssist: requiresAIAssist,
+            aiAssistReason: aiAssistReason
         )
     }
+
+    // MARK: - Story 3.3b — patch IA Léon
+
+    /// Applique un patch IA reçu de l'Edge Function sage-coaching-ai et persiste
+    /// les flags d'idempotence (`aiPatchApplied = true`, `aiPatchJSON = JSON brut`).
+    /// Le caller doit appeler `try modelContext.save()` après pour persister sur disque.
+    func applyLeonPatch(_ patch: AdaptationPatch) throws {
+        let data = try JSONEncoder().encode(patch)
+        guard let json = String(data: data, encoding: .utf8) else {
+            throw AppliedPatchError.encodingFailed
+        }
+        self.aiPatchJSON = json
+        self.aiPatchApplied = true
+        self.lastUpdatedAt = Date()
+    }
+
+    /// Decode le patch IA persisté. Nil si aucun patch n'a été appliqué ou si le
+    /// JSON stocké est corrompu (cas dégénéré : migration future qui aurait cassé le format).
+    func decodedLeonPatch() -> AdaptationPatch? {
+        guard aiPatchApplied,
+              let json = aiPatchJSON,
+              let data = json.data(using: .utf8)
+        else { return nil }
+        return try? JSONDecoder().decode(AdaptationPatch.self, from: data)
+    }
+
+    /// Reconstruit l'`AppliedAdaptedProgram` (programme + notes Léon) à partir
+    /// du record. C'est la méthode appelée par l'UI au reload du programme depuis
+    /// SwiftData (Story 3.8 dashboard Séances).
+    func toAppliedAdaptedProgram() -> AppliedAdaptedProgram? {
+        guard let program = toAdaptedProgram() else { return nil }
+        return PatchApplier.apply(decodedLeonPatch(), to: program)
+    }
+}
+
+enum AppliedPatchError: Error {
+    case encodingFailed
 }

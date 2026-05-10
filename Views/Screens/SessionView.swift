@@ -53,7 +53,21 @@ struct SessionView: View {
                     WeeklyCalendarView(mode: .allActivePrograms)
                 }
                 .navigationDestination(item: $adaptedRoute) { route in
-                    AdaptedProgramView(program: route.program, recordId: route.recordId)
+                    if let deps {
+                        AdaptedProgramScreen(viewModel: AdaptedProgramViewModel(
+                            program: route.program,
+                            initialLeonNotes: route.initialLeonNotes,
+                            recordId: route.recordId,
+                            aiService: deps.sageCoachingAIService,
+                            healthSummaryBuilder: DefaultHealthSummaryBuilder(healthKit: deps.healthKitService),
+                            coreRepo: deps.coreProfileRepository,
+                            coachingRepo: deps.coachingProfileRepository,
+                            adaptedRepo: deps.adaptedProgramRepository
+                        ))
+                    } else {
+                        // Fallback : pas de deps (preview sans dependencies) → rendu statique sans Léon.
+                        AdaptedProgramView(program: route.program, recordId: route.recordId)
+                    }
                 }
                 .task {
                     await bootstrapVMIfNeeded()
@@ -71,15 +85,41 @@ struct SessionView: View {
         .sheet(item: $sheetSelection) { selection in
             sheet(for: selection)
         }
+        // Sophie 2026-05-10 : force le tint app sur tous les éléments
+        // navigation (back button "‹ Séances", chevrons, etc.) sinon iOS
+        // applique le bleu système qui jure avec le bleu Léon coachingPrimary.
+        .tint(Color.coachingPrimary)
     }
 
     @ToolbarContentBuilder
     private var calendarToolbar: some ToolbarContent {
+        // Bouton "+" : créer un nouveau programme. Affiché UNIQUEMENT en mode
+        // dashboard actif (déjà ≥ 1 programme) — en mode vide le CTA principal
+        // EmptyDashboardView suffit. Sophie 2026-05-10 : remplace le `CreateProgramOrRoutineCard`
+        // du bas (peu visible). Action directe = SportPickerSheet (la distinction
+        // routine vs programme est cachée au user, pivot via Q3 fréquence).
+        // Tint forcé `coachingPrimary` (#1E5090) sinon iOS applique un bleu
+        // système qui jure avec le bleu Léon (Sophie feedback 2026-05-10).
+        if let mode = dashboardViewModel?.mode, mode != .empty {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    sheetSelection = .sportPicker
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .foregroundStyle(Color.coachingPrimary)
+                        .accessibilityLabel(Text("dashboard.toolbar.create.label"))
+                }
+                .accessibilityHint(Text("dashboard.toolbar.create.hint"))
+                .accessibilityIdentifier("dashboard.toolbar.create")
+            }
+        }
+
         ToolbarItem(placement: .topBarTrailing) {
             Button {
                 weeklyCalendarPresented = true
             } label: {
                 Image(systemName: "calendar")
+                    .foregroundStyle(Color.coachingPrimary)
                     .accessibilityLabel(Text("dashboard.toolbar.calendar"))
             }
             .accessibilityIdentifier("dashboard.toolbar.calendar")
@@ -144,11 +184,8 @@ struct SessionView: View {
                 onTapProgram: { summary in
                     pushAdaptedProgram(record: summary.record)
                 },
-                onTapCreateProgram: {
-                    sheetSelection = .sportPicker
-                },
-                onTapCreateRoutine: {
-                    presentationError = String(localized: "dashboard.active.create.routine.placeholder")
+                onDeleteProgram: { summary in
+                    Task { await deleteProgram(summary) }
                 },
                 onTapWeeklyReorder: {
                     weeklyCalendarPresented = true
@@ -171,11 +208,30 @@ struct SessionView: View {
     /// la vue maître. Si la conversion échoue (sport/level non mappable, hors
     /// V1), on flag l'erreur visible plutôt que de silencer la nav.
     private func pushAdaptedProgram(record: AdaptedProgramRecord) {
-        guard let program = record.toAdaptedProgram() else {
+        guard let applied = record.toAppliedAdaptedProgram() else {
             presentationError = String(localized: "session.adapter.profileMissing")
             return
         }
-        adaptedRoute = AdaptedProgramRoute(program: program, recordId: record.id)
+        adaptedRoute = AdaptedProgramRoute(
+            program: applied.program,
+            recordId: record.id,
+            initialLeonNotes: applied.leonNotes
+        )
+    }
+
+    /// Story 3.3b cleanup 2026-05-10 — swipe-to-delete depuis le dashboard.
+    /// Archive le programme côté SwiftData (`isActive = false`) puis refresh le
+    /// dashboard pour le retirer de la liste. Pas de hard-delete : l'historique
+    /// reste pour audit / re-activation future éventuelle.
+    @MainActor
+    private func deleteProgram(_ summary: ActiveProgramSummary) async {
+        guard let deps else { return }
+        do {
+            try await deps.adaptedProgramRepository.archive(summary.record)
+            await refreshDashboard()
+        } catch {
+            presentationError = error.localizedDescription
+        }
     }
 
     /// Texte hint Léon — calibré sur autoprofil HK quand `CoachingProfile.healthAutofill`
@@ -342,6 +398,15 @@ private struct AdaptedProgramRoute: Hashable {
     /// Story 3.8 — id du `AdaptedProgramRecord` persisté ; alimente le toolbar 📅
     /// (entry point #2 `WeeklyCalendarView`). `nil` sur le hot path post-adapt.
     let recordId: UUID?
+    /// Story 3.3b — notes Léon pré-existantes si push depuis dashboard d'un programme
+    /// déjà raffiné par Léon (record.aiPatchApplied=true). `nil` sur hot path.
+    let initialLeonNotes: LeonAppliedNotes?
+
+    init(program: AdaptedProgram, recordId: UUID?, initialLeonNotes: LeonAppliedNotes? = nil) {
+        self.program = program
+        self.recordId = recordId
+        self.initialLeonNotes = initialLeonNotes
+    }
 
     func hash(into hasher: inout Hasher) { hasher.combine(id) }
     static func == (lhs: AdaptedProgramRoute, rhs: AdaptedProgramRoute) -> Bool { lhs.id == rhs.id }

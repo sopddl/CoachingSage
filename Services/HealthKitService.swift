@@ -38,6 +38,23 @@ struct HealthKitWorkoutSummary: Equatable, Sendable {
     )
 }
 
+/// Story 3.3b — détail d'un workout pour `HealthSummaryBuilder`. Volontairement
+/// minimal et anonymisé : pas de coordonnées GPS, pas de date absolue (uniquement
+/// `daysAgo` relatif), pas d'identifiants. Léon n'a besoin que de calibrer
+/// l'intensité réelle vs prescrite.
+struct HealthKitWorkoutDetail: Equatable, Sendable {
+    let activityTypeRawValue: UInt
+    let durationMinutes: Int
+    /// HR moyenne en BPM si disponible (refus auth ou Watch absente → nil).
+    let averageHeartRateBpm: Int?
+    /// HR max observée pendant le workout en BPM si disponible.
+    let maxHeartRateBpm: Int?
+    /// Jours écoulés depuis la fin du workout (0 = aujourd'hui).
+    let daysAgo: Int
+    /// `true` si workout sourcé par un appareil watchOS.
+    let fromAppleWatch: Bool
+}
+
 // MARK: - Errors
 
 enum HealthKitError: LocalizedError {
@@ -75,6 +92,15 @@ protocol HealthKitServiceProtocol: Sendable {
 
     /// Résumé des workouts sur la fenêtre `weeksBack` (défaut 8 semaines). Struct vide si refus/absence.
     func fetchWorkoutSummary(weeksBack: Int) async -> HealthKitWorkoutSummary
+
+    /// Story 3.3b — moyenne du resting heart rate sur la fenêtre `daysBack` (défaut 30 jours).
+    /// nil si refus/absence/échantillons insuffisants. Utilisé par `HealthSummaryBuilder`
+    /// pour donner à Léon une mesure objective de récupération/forme du jour.
+    func fetchRestingHeartRateAverage(daysBack: Int) async -> Double?
+
+    /// Story 3.3b — derniers `limit` workouts dans la fenêtre `weeksBack`, ordre antichronologique.
+    /// Inclut HR moyenne + max si watchOS présent. Tableau vide si refus/absence.
+    func fetchRecentWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitWorkoutDetail]
 }
 
 extension HealthKitServiceProtocol {
@@ -84,6 +110,14 @@ extension HealthKitServiceProtocol {
 
     func fetchWorkoutSummary() async -> HealthKitWorkoutSummary {
         await fetchWorkoutSummary(weeksBack: 8)
+    }
+
+    func fetchRestingHeartRateAverage() async -> Double? {
+        await fetchRestingHeartRateAverage(daysBack: 30)
+    }
+
+    func fetchRecentWorkoutDetails() async -> [HealthKitWorkoutDetail] {
+        await fetchRecentWorkoutDetails(limit: 4, weeksBack: 4)
     }
 }
 
@@ -133,6 +167,9 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
         }
         if let hr = HKQuantityType.quantityType(forIdentifier: .heartRate) {
             typesToRead.insert(hr)
+        }
+        if let restingHR = HKQuantityType.quantityType(forIdentifier: .restingHeartRate) {
+            typesToRead.insert(restingHR)
         }
 
         try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
@@ -246,6 +283,106 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
             dominantActivityRawValue: dominant,
             appleWatchDetected: appleWatchDetected
         )
+    }
+
+    func fetchRestingHeartRateAverage(daysBack: Int) async -> Double? {
+        guard !Self.isUITesting else { return nil }
+        guard HKHealthStore.isHealthDataAvailable() else { return nil }
+        guard let type = HKQuantityType.quantityType(forIdentifier: .restingHeartRate) else { return nil }
+
+        let now = Date()
+        guard let startDate = Calendar(identifier: .gregorian).date(byAdding: .day, value: -daysBack, to: now) else {
+            return nil
+        }
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: now, options: [])
+
+        return await withCheckedContinuation { (continuation: CheckedContinuation<Double?, Never>) in
+            let query = HKStatisticsQuery(
+                quantityType: type,
+                quantitySamplePredicate: predicate,
+                options: .discreteAverage
+            ) { _, statistics, error in
+                #if DEBUG
+                if let error {
+                    Self.logger.debug("restingHeartRate query error: \(error.localizedDescription)")
+                }
+                #endif
+                let unit = HKUnit.count().unitDivided(by: .minute())
+                let avg = statistics?.averageQuantity()?.doubleValue(for: unit)
+                continuation.resume(returning: avg)
+            }
+            healthStore.execute(query)
+        }
+    }
+
+    func fetchRecentWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitWorkoutDetail] {
+        guard !Self.isUITesting else { return [] }
+        guard HKHealthStore.isHealthDataAvailable() else { return [] }
+
+        let now = Date()
+        guard let startDate = Calendar(identifier: .gregorian).date(byAdding: .weekOfYear, value: -weeksBack, to: now) else {
+            return []
+        }
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: now, options: [])
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+
+        let workouts: [HKWorkout] = await withCheckedContinuation { (continuation: CheckedContinuation<[HKWorkout], Never>) in
+            let query = HKSampleQuery(
+                sampleType: HKObjectType.workoutType(),
+                predicate: predicate,
+                limit: limit,
+                sortDescriptors: [sortDescriptor]
+            ) { _, results, error in
+                #if DEBUG
+                if let error {
+                    Self.logger.debug("workout details query error: \(error.localizedDescription)")
+                }
+                #endif
+                continuation.resume(returning: (results as? [HKWorkout]) ?? [])
+            }
+            healthStore.execute(query)
+        }
+
+        var details: [HealthKitWorkoutDetail] = []
+        details.reserveCapacity(workouts.count)
+        for workout in workouts {
+            let (avgHR, maxHR) = await readHeartRateStats(for: workout)
+            let durationMinutes = Int((workout.duration / 60.0).rounded())
+            let daysAgo = Calendar(identifier: .gregorian).dateComponents([.day], from: workout.endDate, to: now).day ?? 0
+            let productType = workout.sourceRevision.productType ?? ""
+            let fromAppleWatch = productType.lowercased().hasPrefix("watch")
+
+            details.append(HealthKitWorkoutDetail(
+                activityTypeRawValue: workout.workoutActivityType.rawValue,
+                durationMinutes: durationMinutes,
+                averageHeartRateBpm: avgHR.map { Int($0.rounded()) },
+                maxHeartRateBpm: maxHR.map { Int($0.rounded()) },
+                daysAgo: max(0, daysAgo),
+                fromAppleWatch: fromAppleWatch
+            ))
+        }
+        return details
+    }
+
+    private func readHeartRateStats(for workout: HKWorkout) async -> (average: Double?, max: Double?) {
+        guard let hrType = HKQuantityType.quantityType(forIdentifier: .heartRate) else {
+            return (nil, nil)
+        }
+        let predicate = HKQuery.predicateForSamples(withStart: workout.startDate, end: workout.endDate, options: [])
+
+        return await withCheckedContinuation { (continuation: CheckedContinuation<(Double?, Double?), Never>) in
+            let query = HKStatisticsQuery(
+                quantityType: hrType,
+                quantitySamplePredicate: predicate,
+                options: [.discreteAverage, .discreteMax]
+            ) { _, statistics, _ in
+                let unit = HKUnit.count().unitDivided(by: .minute())
+                let avg = statistics?.averageQuantity()?.doubleValue(for: unit)
+                let maxVal = statistics?.maximumQuantity()?.doubleValue(for: unit)
+                continuation.resume(returning: (avg, maxVal))
+            }
+            healthStore.execute(query)
+        }
     }
 
     // MARK: - Private — caractéristiques

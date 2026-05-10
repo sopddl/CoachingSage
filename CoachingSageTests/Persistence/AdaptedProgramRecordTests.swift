@@ -117,6 +117,38 @@ final class AdaptedProgramRecordTests: XCTestCase {
         XCTAssertEqual(record.completionState.completedCount, 0)
     }
 
+    func testBridgeFromAdaptedProgramPropagatesAIAssistFlags() {
+        let adapted = makeAdaptedFixture(requiresAIAssist: true, aiAssistReason: "Combinaison rare contraintes")
+
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID())
+
+        XCTAssertTrue(record.requiresAIAssist)
+        XCTAssertEqual(record.aiAssistReason, "Combinaison rare contraintes")
+        XCTAssertFalse(record.aiPatchApplied)
+        XCTAssertNil(record.aiPatchJSON)
+    }
+
+    func testToAdaptedProgramPreservesAIAssistFlags() {
+        let adapted = makeAdaptedFixture(requiresAIAssist: true, aiAssistReason: "Cas atypique")
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID())
+
+        let roundtrip = record.toAdaptedProgram()
+
+        XCTAssertEqual(roundtrip?.requiresAIAssist, true)
+        XCTAssertEqual(roundtrip?.aiAssistReason, "Cas atypique")
+    }
+
+    func testBridgeDefaultsAIAssistFlagsToFalseWhenAdapterClean() {
+        let adapted = makeAdaptedFixture()  // requiresAIAssist: false par défaut
+
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID())
+
+        XCTAssertFalse(record.requiresAIAssist)
+        XCTAssertNil(record.aiAssistReason)
+        XCTAssertFalse(record.aiPatchApplied)
+        XCTAssertNil(record.aiPatchJSON)
+    }
+
     func testBridgeFlattensWeeksAndSessions() {
         // 2 weeks × 3 sessions = 6 PersistedSession à plat.
         let adapted = makeAdaptedFixture(weeksCount: 2, sessionsPerWeek: 3)
@@ -134,6 +166,62 @@ final class AdaptedProgramRecordTests: XCTestCase {
         // IDs uniques (un par session, pas dérivé du contenu).
         let ids = record.sessions.map(\.id)
         XCTAssertEqual(Set(ids).count, 6)
+    }
+
+    // MARK: - Story 3.3b — patch IA Léon
+
+    func testApplyLeonPatchPersistsFlagsAndJSON() throws {
+        let record = AdaptedProgramRecord(from: makeAdaptedFixture(requiresAIAssist: true), userId: UUID())
+        XCTAssertFalse(record.aiPatchApplied)
+        XCTAssertNil(record.aiPatchJSON)
+
+        let patch = AdaptationPatch(personalizationNote: "Bien joué Sarah")
+        try record.applyLeonPatch(patch)
+
+        XCTAssertTrue(record.aiPatchApplied)
+        XCTAssertNotNil(record.aiPatchJSON)
+    }
+
+    func testDecodedLeonPatchRoundtripsCleanly() throws {
+        let record = AdaptedProgramRecord(from: makeAdaptedFixture(requiresAIAssist: true), userId: UUID())
+        let original = AdaptationPatch(
+            exerciseSubstitutions: [
+                .init(weekNumber: 1, day: 2, originalExerciseName: "Footing 30 min",
+                      replacementExerciseName: "Marche", reason: "knee")
+            ],
+            personalizationNote: "Hi"
+        )
+        try record.applyLeonPatch(original)
+
+        let decoded = record.decodedLeonPatch()
+        XCTAssertEqual(decoded?.personalizationNote, "Hi")
+        XCTAssertEqual(decoded?.exerciseSubstitutions?.count, 1)
+        XCTAssertEqual(decoded?.exerciseSubstitutions?.first?.replacementExerciseName, "Marche")
+    }
+
+    func testDecodedLeonPatchReturnsNilWhenNoPatchApplied() {
+        let record = AdaptedProgramRecord(from: makeAdaptedFixture(), userId: UUID())
+        XCTAssertNil(record.decodedLeonPatch())
+    }
+
+    func testToAppliedAdaptedProgramAppliesPersistedPatch() throws {
+        let record = AdaptedProgramRecord(from: makeAdaptedFixture(requiresAIAssist: true), userId: UUID())
+        try record.applyLeonPatch(AdaptationPatch(personalizationNote: "Hi Sarah"))
+
+        let applied = record.toAppliedAdaptedProgram()
+
+        XCTAssertNotNil(applied)
+        XCTAssertEqual(applied?.leonNotes?.personalizationNote, "Hi Sarah")
+        XCTAssertEqual(applied?.program.requiresAIAssist, true)
+    }
+
+    func testToAppliedAdaptedProgramReturnsBareProgramIfNoPatch() {
+        let record = AdaptedProgramRecord(from: makeAdaptedFixture(), userId: UUID())
+
+        let applied = record.toAppliedAdaptedProgram()
+
+        XCTAssertNotNil(applied)
+        XCTAssertNil(applied?.leonNotes)
     }
 
     // MARK: - Persistance ModelContext
@@ -159,7 +247,12 @@ final class AdaptedProgramRecordTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func makeAdaptedFixture(weeksCount: Int = 2, sessionsPerWeek: Int = 3) -> AdaptedProgram {
+    private func makeAdaptedFixture(
+        weeksCount: Int = 2,
+        sessionsPerWeek: Int = 3,
+        requiresAIAssist: Bool = false,
+        aiAssistReason: String? = nil
+    ) -> AdaptedProgram {
         let weeks = (1...weeksCount).map { wn in
             AdaptedWeek(
                 weekNumber: wn,
@@ -193,7 +286,8 @@ final class AdaptedProgramRecordTests: XCTestCase {
             appliedAt: Date(timeIntervalSince1970: 1_700_000_000),
             weeks: weeks,
             appliedRules: [],
-            requiresAIAssist: false
+            requiresAIAssist: requiresAIAssist,
+            aiAssistReason: aiAssistReason
         )
     }
 }

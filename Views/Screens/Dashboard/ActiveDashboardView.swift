@@ -10,8 +10,12 @@
 //   - WIDGET CETTE SEMAINE  : `WeeklyStatsWidget` 3 stats inline (single only)
 //   - MES PROGRAMMES        : `ProgramCard` × N, triées par date prochaine séance
 //   - MES ROUTINES (si ≥ 1) : `RoutineCard` × M, border dashed doré
-//   - Card dashed bottom    : « + Créer une routine ou un programme »
 //   - Lien CTA discret      : « ↻ Réorganiser ma semaine → »
+//
+// 2026-05-10 — Sophie : suppression `CreateProgramOrRoutineCard` du bas
+// (déplacé en toolbar « + » de SessionView pour découvrabilité). La distinction
+// routine vs programme est désormais cachée au user — pivot via la question
+// fréquence Q3 du questionnaire (voir mémoire `routine_via_freq_onboarding...`).
 //
 // Source design : `ux-design-CoachingSage-seances-dashboard-2026-05-07.html`.
 import SwiftUI
@@ -27,8 +31,9 @@ struct ActiveDashboardView: View {
     let nowProvider: () -> Date
     let onTapDominantStart: (NextSessionResolver.Result) -> Void
     let onTapProgram: (ActiveProgramSummary) -> Void
-    let onTapCreateProgram: () -> Void
-    let onTapCreateRoutine: () -> Void
+    /// Story 3.3b cleanup 2026-05-10 — swipe-to-delete sur la liste des programmes.
+    /// L'action concrète = `adaptedRepo.archive(record)` côté caller (SessionView).
+    let onDeleteProgram: (ActiveProgramSummary) -> Void
     let onTapWeeklyReorder: () -> Void
 
     private var isRestDay: Bool {
@@ -79,10 +84,12 @@ struct ActiveDashboardView: View {
             section(titleKey: "dashboard.active.programs.title") {
                 VStack(spacing: 10) {
                     ForEach(programs, id: \.record.id) { summary in
-                        ProgramCard(
-                            summary: summary,
-                            onTap: { onTapProgram(summary) }
-                        )
+                        SwipeToDeleteRow(onDelete: { onDeleteProgram(summary) }) {
+                            ProgramCard(
+                                summary: summary,
+                                onTap: { onTapProgram(summary) }
+                            )
+                        }
                     }
                 }
             }
@@ -96,11 +103,6 @@ struct ActiveDashboardView: View {
                     }
                 }
             }
-
-            CreateProgramOrRoutineCard(
-                onTapProgram: onTapCreateProgram,
-                onTapRoutine: onTapCreateRoutine
-            )
 
             WeeklyReorderLink(onTap: onTapWeeklyReorder)
         }
@@ -372,13 +374,19 @@ private struct ProgramCard: View {
         Button(action: onTap) {
             HStack(spacing: 14) {
                 ZStack {
-                    Circle()
-                        .fill(Color.coachingRecord.opacity(0.18))
+                    // Sophie 2026-05-10 (raffinement) : pattern carré arrondi
+                    // + bordure couleur sport + icone couleur sport (vs rond
+                    // plein + icone blanche). Référence sport picker mockup
+                    // photo 2 — plus design/élégant. SF symbols figure.* gardés.
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .fill(Color.coachingCard)
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .strokeBorder(Color.coachingSport(forCode: summary.record.sportCode), lineWidth: 2)
                     Image(systemName: sfSymbol)
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundStyle(Color.coachingRecord)
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundStyle(Color.coachingSport(forCode: summary.record.sportCode))
                 }
-                .frame(width: 36, height: 36)
+                .frame(width: 40, height: 40)
 
                 VStack(alignment: .leading, spacing: 6) {
                     HStack(alignment: .firstTextBaseline, spacing: 6) {
@@ -516,48 +524,6 @@ private struct RoutineCard: View {
     }
 }
 
-// MARK: - Create program / routine entry
-
-private struct CreateProgramOrRoutineCard: View {
-    let onTapProgram: () -> Void
-    let onTapRoutine: () -> Void
-
-    var body: some View {
-        Menu {
-            Button {
-                onTapProgram()
-            } label: {
-                Label("dashboard.active.create.program", systemImage: "plus.app")
-            }
-            Button {
-                onTapRoutine()
-            } label: {
-                Label("dashboard.active.create.routine", systemImage: "bolt.heart")
-            }
-        } label: {
-            HStack(spacing: 8) {
-                Image(systemName: "plus")
-                    .font(.footnote.weight(.semibold))
-                    .foregroundStyle(Color.coachingPrimary)
-                Text("dashboard.active.create.cta")
-                    .font(.coachingBody)
-                    .foregroundStyle(Color.coachingTextPrimary)
-                Spacer(minLength: 0)
-            }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 12)
-            .background(
-                RoundedRectangle(cornerRadius: 14, style: .continuous)
-                    .strokeBorder(
-                        Color.coachingTextSecondary.opacity(0.45),
-                        style: StrokeStyle(lineWidth: 1, dash: [4, 3])
-                    )
-            )
-        }
-        .accessibilityIdentifier("dashboard.active.create.cta")
-    }
-}
-
 // MARK: - Weekly reorder link
 
 private struct WeeklyReorderLink: View {
@@ -580,6 +546,170 @@ private struct WeeklyReorderLink: View {
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("dashboard.active.weekly.reorder")
+    }
+}
+
+// MARK: - Swipe to delete row
+
+/// Wrapper qui ajoute un swipe-to-delete (gesture vers la gauche, bouton trash
+/// dévoilé à droite) à n'importe quelle row. Pattern iOS classique. On
+/// n'utilise pas `.swipeActions` natif car il requiert un `List`, ce qui
+/// casserait le design custom des cards (background `coachingCard`, padding,
+/// shadows). Implementation custom DragGesture + offset.
+private struct SwipeToDeleteRow<Content: View>: View {
+    let onDelete: () -> Void
+    @ViewBuilder let content: () -> Content
+
+    @State private var revealed: Bool = false
+    @State private var dragOffset: CGFloat = 0
+    /// Sophie 2026-05-10 : confirmation avant suppression (action destructive +
+    /// archive seulement = pas critique mais on évite les false-positifs swipe).
+    @State private var showDeleteConfirmation: Bool = false
+
+    private static var trashWidth: CGFloat { 80 }
+    private static var revealThreshold: CGFloat { 40 }
+
+    var body: some View {
+        ZStack(alignment: .trailing) {
+            Button {
+                showDeleteConfirmation = true
+            } label: {
+                Image(systemName: "trash.fill")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundStyle(.white)
+                    .frame(width: Self.trashWidth)
+                    .frame(maxHeight: .infinity)
+                    .background(Color.coachingError)
+                    .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                    .accessibilityLabel(Text("dashboard.active.program.delete.label"))
+            }
+            .opacity((revealed || dragOffset < 0) ? 1 : 0)
+            .sheet(isPresented: $showDeleteConfirmation) {
+                DeleteConfirmationSheet(
+                    onConfirm: {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            revealed = false
+                            dragOffset = 0
+                        }
+                        onDelete()
+                    },
+                    onCancel: {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            revealed = false
+                            dragOffset = 0
+                        }
+                    }
+                )
+                .presentationDetents([.height(320)])
+                .presentationBackground(Color.coachingBackground)
+                .presentationDragIndicator(.visible)
+            }
+
+            content()
+                .offset(x: revealed ? -Self.trashWidth + dragOffset : dragOffset)
+                // simultaneousGesture + minimumDistance 25 : permet au DragGesture de
+                // coexister avec le Button(onTap) du ProgramCard wrappé. Sans ça
+                // le Button consomme l'event avant le drag (Sophie 2026-05-10
+                // "je n'arrive pas à swipper, j'ouvre systématiquement le programme").
+                // Le seuil 25pt évite les faux positifs de drag sur un tap maladroit.
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 25, coordinateSpace: .local)
+                        .onChanged { value in
+                            // On ne réagit qu'aux mouvements horizontaux dominants
+                            // (sinon scroll vertical dans la liste = aussi déclenché).
+                            guard abs(value.translation.width) > abs(value.translation.height) else {
+                                return
+                            }
+                            let raw = value.translation.width
+                            if revealed {
+                                dragOffset = max(0, min(Self.trashWidth, raw))
+                            } else {
+                                dragOffset = max(-Self.trashWidth, min(0, raw))
+                            }
+                        }
+                        .onEnded { _ in
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                if revealed {
+                                    if dragOffset > Self.revealThreshold {
+                                        revealed = false
+                                    }
+                                    dragOffset = 0
+                                } else {
+                                    if dragOffset < -Self.revealThreshold {
+                                        revealed = true
+                                    }
+                                    dragOffset = 0
+                                }
+                            }
+                        }
+                )
+        }
+    }
+}
+
+// MARK: - Delete confirmation sheet (cohérence couleurs CoachingSage)
+
+/// Sheet custom utilisé en remplacement du `confirmationDialog` système (fond
+/// blanc qui jurait avec coachingBackground). Pattern alert iOS-like avec
+/// hero icon trash + titre + message + boutons. Sophie 2026-05-10.
+private struct DeleteConfirmationSheet: View {
+    let onConfirm: () -> Void
+    let onCancel: () -> Void
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        VStack(spacing: 18) {
+            ZStack {
+                Circle().fill(Color.coachingError.opacity(0.12))
+                Image(systemName: "trash.fill")
+                    .font(.system(size: 26, weight: .semibold))
+                    .foregroundStyle(Color.coachingError)
+            }
+            .frame(width: 56, height: 56)
+            .padding(.top, 24)
+
+            Text("dashboard.active.program.delete.confirm.title")
+                .font(.title3.weight(.bold))
+                .foregroundStyle(Color.coachingTextPrimary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 24)
+
+            Text("dashboard.active.program.delete.confirm.message")
+                .font(.coachingBody)
+                .foregroundStyle(Color.coachingTextSecondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 24)
+
+            Spacer(minLength: 0)
+
+            VStack(spacing: 10) {
+                Button(role: .destructive) {
+                    onConfirm()
+                    dismiss()
+                } label: {
+                    Text("dashboard.active.program.delete.confirm.action")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 6)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(Color.coachingError)
+
+                Button {
+                    onCancel()
+                    dismiss()
+                } label: {
+                    Text("common.cancel")
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 4)
+                }
+                .foregroundStyle(Color.coachingTextSecondary)
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 18)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.coachingBackground)
     }
 }
 
