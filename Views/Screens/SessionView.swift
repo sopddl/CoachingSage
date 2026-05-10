@@ -94,12 +94,15 @@ struct SessionView: View {
         // EmptyDashboardView suffit. Sophie 2026-05-10 : remplace le `CreateProgramOrRoutineCard`
         // du bas (peu visible). Action directe = SportPickerSheet (la distinction
         // routine vs programme est cachée au user, pivot via Q3 fréquence).
+        // Tint forcé `coachingPrimary` (#1E5090) sinon iOS applique un bleu
+        // système qui jure avec le bleu Léon (Sophie feedback 2026-05-10).
         if let mode = dashboardViewModel?.mode, mode != .empty {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     sheetSelection = .sportPicker
                 } label: {
                     Image(systemName: "plus.circle.fill")
+                        .foregroundStyle(Color.coachingPrimary)
                         .accessibilityLabel(Text("dashboard.toolbar.create.label"))
                 }
                 .accessibilityHint(Text("dashboard.toolbar.create.hint"))
@@ -112,6 +115,7 @@ struct SessionView: View {
                 weeklyCalendarPresented = true
             } label: {
                 Image(systemName: "calendar")
+                    .foregroundStyle(Color.coachingPrimary)
                     .accessibilityLabel(Text("dashboard.toolbar.calendar"))
             }
             .accessibilityIdentifier("dashboard.toolbar.calendar")

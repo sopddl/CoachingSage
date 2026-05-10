@@ -72,6 +72,7 @@ struct AdaptedProgramView: View {
                         weeklyCalendarPresented = true
                     } label: {
                         Image(systemName: "calendar")
+                            .foregroundStyle(Color.coachingPrimary)
                             .accessibilityLabel(Text("dashboard.toolbar.calendar"))
                     }
                     .accessibilityIdentifier("coaching.adapter.toolbar.calendar")
