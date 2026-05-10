@@ -6,7 +6,11 @@ struct SportsSelectionView: View {
     @Bindable var viewModel: OnboardingViewModel
     @State private var showHIITTooltip: Bool = false
 
-    private let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
+    private let columns = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10)
+    ]
 
     var body: some View {
         ScrollView {
@@ -20,7 +24,7 @@ struct SportsSelectionView: View {
                     .font(.coachingBody)
                     .foregroundStyle(Color.coachingTextSecondary)
 
-                LazyVGrid(columns: columns, spacing: 12) {
+                LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(SportCode.allCases, id: \.self) { sport in
                         SportTileView(
                             sport: sport,

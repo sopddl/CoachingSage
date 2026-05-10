@@ -14,7 +14,11 @@ struct SportPickerSheet: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    private let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
+    private let columns = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10)
+    ]
 
     var body: some View {
         NavigationStack {
@@ -25,7 +29,7 @@ struct SportPickerSheet: View {
                         .foregroundStyle(Color.coachingTextSecondary)
                         .padding(.top, 16)
 
-                    LazyVGrid(columns: columns, spacing: 12) {
+                    LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(SportCode.allCases, id: \.rawValue) { sport in
                             SportTileView(
                                 sport: sport,

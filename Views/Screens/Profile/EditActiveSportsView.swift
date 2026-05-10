@@ -12,7 +12,11 @@ struct EditActiveSportsView: View {
     @State private var viewModel: EditActiveSportsViewModel?
     @State private var showHIITTooltip: Bool = false
 
-    private let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
+    private let columns = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10)
+    ]
 
     var body: some View {
         Group {
@@ -46,7 +50,7 @@ struct EditActiveSportsView: View {
                     .foregroundStyle(Color.coachingTextSecondary)
                     .padding(.top, 16)
 
-                LazyVGrid(columns: columns, spacing: 12) {
+                LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(SportCode.allCases, id: \.self) { sport in
                         SportTileView(
                             sport: sport,

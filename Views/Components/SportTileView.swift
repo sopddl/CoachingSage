@@ -29,15 +29,15 @@ struct SportTileView: View {
     var body: some View {
         Button(action: onTap) {
             ZStack(alignment: .topTrailing) {
-                VStack(spacing: 8) {
+                VStack(spacing: 6) {
                     Image(systemName: sport.sfSymbol)
-                        .font(.system(size: 32))
+                        .font(.system(size: 28))
                         .foregroundStyle(isSelected ? Color.coachingOnPrimary : sportColor)
                     Text(LocalizedStringKey(sport.localizationKey))
                         .font(.coachingCaption)
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
-                        .minimumScaleFactor(0.85)
+                        .minimumScaleFactor(0.8)
                         .foregroundStyle(isSelected ? Color.coachingOnPrimary : Color.coachingTextPrimary)
                         .padding(.horizontal, 4)
                 }
@@ -55,9 +55,9 @@ struct SportTileView: View {
                 if sport == .hiit, let onShowTooltip {
                     Button(action: onShowTooltip) {
                         Image(systemName: "info.circle.fill")
-                            .font(.system(size: 18))
+                            .font(.system(size: 16))
                             .foregroundStyle(isSelected ? Color.coachingOnPrimary : sportColor)
-                            .padding(8)
+                            .padding(6)
                     }
                     .accessibilityIdentifier("\(identifierPrefix).hiit.info")
                     .accessibilityLabel(Text("onboarding.sport.hiit.tooltip.title"))
