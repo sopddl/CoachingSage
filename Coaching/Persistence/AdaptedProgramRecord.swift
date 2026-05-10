@@ -177,7 +177,7 @@ extension AdaptedProgramRecord {
         }
         self.init(
             userId: userId,
-            sportCode: adapted.sport.rawValue,
+            sportCode: adapted.sport.appSportCode,
             level: adapted.level.rawValue,
             templateId: adapted.templateId,
             adaptedAt: adapted.appliedAt,

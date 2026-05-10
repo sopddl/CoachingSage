@@ -74,30 +74,38 @@ private struct SportCell: View {
     let onToggle: () -> Void
     let onShowTooltip: () -> Void
 
+    private var sportColor: Color {
+        Color.coachingSport(forCode: sport.rawValue)
+    }
+
     var body: some View {
         Button(action: onToggle) {
             ZStack(alignment: .topTrailing) {
                 VStack(spacing: 8) {
                     Image(systemName: sport.sfSymbol)
                         .font(.system(size: 32))
-                        .foregroundStyle(isSelected ? Color.coachingOnPrimary : Color.coachingPrimary)
+                        .foregroundStyle(isSelected ? Color.coachingOnPrimary : sportColor)
                     Text(LocalizedStringKey(sport.localizationKey))
                         .font(.coachingCaption)
                         .multilineTextAlignment(.center)
                         .foregroundStyle(isSelected ? Color.coachingOnPrimary : Color.coachingTextPrimary)
                 }
                 .frame(maxWidth: .infinity)
-                .frame(height: 96)
+                .aspectRatio(1, contentMode: .fit)   // carré 1:1 (vs 96pt fixe avant — mockup photo 2)
                 .background(
                     RoundedRectangle(cornerRadius: CoachingRadius.md)
-                        .fill(isSelected ? Color.coachingPrimary : Color.coachingCard)
+                        .fill(isSelected ? sportColor : Color.coachingCard)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: CoachingRadius.md)
+                        .strokeBorder(sportColor, lineWidth: 2)
                 )
 
                 if sport == .hiit {
                     Button(action: onShowTooltip) {
                         Image(systemName: "info.circle.fill")
                             .font(.system(size: 18))
-                            .foregroundStyle(isSelected ? Color.coachingOnPrimary : Color.coachingPrimary)
+                            .foregroundStyle(isSelected ? Color.coachingOnPrimary : sportColor)
                             .padding(8)
                     }
                     .accessibilityIdentifier("onboarding.sport.hiit.info")

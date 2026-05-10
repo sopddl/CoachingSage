@@ -43,28 +43,36 @@ struct SportPickerSheet: View {
     }
 }
 
-/// Cellule grille (pattern `SportsSelectionView.SportCell`, simplifié : pas de sélection
-/// multi/toggle puisque le picker = single-tap → callback immédiat).
+/// Cellule grille (pattern mockup photo 2 — carré 1:1 + bordure couleur sport).
+/// Pas de sélection multi/toggle : le picker = single-tap → callback immédiat.
 private struct SportPickerCell: View {
     let sport: SportCode
     let onTap: () -> Void
+
+    private var sportColor: Color {
+        Color.coachingSport(forCode: sport.rawValue)
+    }
 
     var body: some View {
         Button(action: onTap) {
             VStack(spacing: 8) {
                 Image(systemName: sport.sfSymbol)
                     .font(.system(size: 32))
-                    .foregroundStyle(Color.coachingPrimary)
+                    .foregroundStyle(sportColor)
                 Text(LocalizedStringKey(sport.localizationKey))
                     .font(.coachingCaption)
                     .multilineTextAlignment(.center)
                     .foregroundStyle(Color.coachingTextPrimary)
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 96)
+            .aspectRatio(1, contentMode: .fit)   // carré (vs 96pt fixe avant)
             .background(
                 RoundedRectangle(cornerRadius: CoachingRadius.md)
                     .fill(Color.coachingCard)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: CoachingRadius.md)
+                    .strokeBorder(sportColor, lineWidth: 2)
             )
         }
         .buttonStyle(.plain)

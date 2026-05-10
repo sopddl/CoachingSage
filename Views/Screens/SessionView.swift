@@ -163,7 +163,7 @@ struct SessionView: View {
                 suggestions: vm.emptyModeSuggestions,
                 hintKey: hintKey(for: vm),
                 onTapSuggestion: { template in
-                    Task { await handleTap(sportCode: template.sport.rawValue) }
+                    Task { await handleTap(sportCode: template.sport.appSportCode) }
                 },
                 onTapCustom: {
                     sheetSelection = .sportPicker
