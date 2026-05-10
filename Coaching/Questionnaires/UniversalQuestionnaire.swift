@@ -73,6 +73,7 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         textKey: "questionnaire.universal.q3.text",
         answerType: .singleChoice,
         options: [
+            QuestionOption(code: "1",          labelKey: "questionnaire.universal.q3.option.1"),
             QuestionOption(code: "2",          labelKey: "questionnaire.universal.q3.option.2"),
             QuestionOption(code: "3",          labelKey: "questionnaire.universal.q3.option.3"),
             QuestionOption(code: "4_or_more",  labelKey: "questionnaire.universal.q3.option.4_or_more"),
@@ -299,6 +300,7 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         let frequencyLabel = Self.singleAnswer(answers, key: Self.q3FrequencyId, default: "2")
         let frequencyPerWeek: Int = {
             switch frequencyLabel {
+            case "1": return 1
             case "2": return 2
             case "3": return 3
             case "4_or_more": return 4

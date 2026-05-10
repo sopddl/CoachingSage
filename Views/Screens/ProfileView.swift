@@ -48,11 +48,31 @@ struct ProfileView: View {
             switch vm.state {
             case .idle, .loading:
                 skeletonSections
+            case .error(.notFound):
+                // Cas le plus fréquent : profil pas (encore) chargé localement (post-reset
+                // SwiftData ou première synchro après login). Pas d'erreur fatale — wording
+                // humain + bouton de re-fetch explicite.
+                Section {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("profile.error.notLoaded.title")
+                            .font(.coachingH2)
+                            .foregroundStyle(Color.coachingTextPrimary)
+                        Text("profile.error.notLoaded.description")
+                            .font(.coachingBody)
+                            .foregroundStyle(Color.coachingTextSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .padding(.vertical, 4)
+
+                    Button("profile.error.refresh") {
+                        Task { await vm.refresh() }
+                    }
+                }
             case .error(let err):
                 Section {
                     Text(err.localizedDescription)
                         .foregroundStyle(Color.coachingError)
-                    Button("profile.error.retry") {
+                    Button("profile.error.refresh") {
                         Task { await vm.refresh() }
                     }
                 }
