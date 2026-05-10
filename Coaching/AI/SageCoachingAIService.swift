@@ -81,7 +81,15 @@ final class DefaultSageCoachingAIService: SageCoachingAIServiceProtocol {
             do {
                 return try decoder.decode(AdaptRareResponse.self, from: data)
             } catch {
+                #if DEBUG
+                // Diag temporaire (Story 3.3b post-déploiement) : print le raw
+                // payload pour comprendre le mismatch decode. À retirer une fois
+                // le format Edge Function aligné avec le modèle Swift.
+                let raw = String(data: data, encoding: .utf8) ?? "<non-utf8>"
+                Self.logger.error("Failed to decode AdaptRareResponse: \(error.localizedDescription)\nRAW PAYLOAD (first 2000 chars):\n\(raw.prefix(2000))")
+                #else
                 Self.logger.error("Failed to decode AdaptRareResponse: \(error.localizedDescription)")
+                #endif
                 throw LeonError.invalidPatch
             }
         }

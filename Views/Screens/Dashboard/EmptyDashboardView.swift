@@ -96,11 +96,13 @@ private struct SuggestedTemplateCard: View {
         Button(action: onTap) {
             HStack(spacing: 14) {
                 ZStack {
+                    // Sophie 2026-05-10 : variante B HTML mockup — rond doré plein
+                    // + icone blanche, symbole +20% pour plus de présence visuelle.
                     Circle()
-                        .fill(Color.coachingRecord.opacity(0.18))
+                        .fill(Color.coachingRecord)
                     Image(systemName: sfSymbol)
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundStyle(Color.coachingRecord)
+                        .font(.system(size: 22, weight: .semibold))
+                        .foregroundStyle(.white)
                 }
                 .frame(width: 40, height: 40)
 
