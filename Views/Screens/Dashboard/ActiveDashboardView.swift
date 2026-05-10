@@ -374,17 +374,19 @@ private struct ProgramCard: View {
         Button(action: onTap) {
             HStack(spacing: 14) {
                 ZStack {
-                    // Sophie 2026-05-10 : couleur par sport (variante F mockup)
-                    // — cohérent avec le calendrier hebdo qui utilise déjà
-                    // Color.coachingSport(forCode:). Identification visuelle
-                    // immédiate du sport sur le dashboard multi-prog.
-                    Circle()
-                        .fill(Color.coachingSport(forCode: summary.record.sportCode))
+                    // Sophie 2026-05-10 (raffinement) : pattern carré arrondi
+                    // + bordure couleur sport + icone couleur sport (vs rond
+                    // plein + icone blanche). Référence sport picker mockup
+                    // photo 2 — plus design/élégant. SF symbols figure.* gardés.
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .fill(Color.coachingCard)
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .strokeBorder(Color.coachingSport(forCode: summary.record.sportCode), lineWidth: 2)
                     Image(systemName: sfSymbol)
-                        .font(.system(size: 22, weight: .semibold))
-                        .foregroundStyle(.white)
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundStyle(Color.coachingSport(forCode: summary.record.sportCode))
                 }
-                .frame(width: 36, height: 36)
+                .frame(width: 40, height: 40)
 
                 VStack(alignment: .leading, spacing: 6) {
                     HStack(alignment: .firstTextBaseline, spacing: 6) {
@@ -560,6 +562,9 @@ private struct SwipeToDeleteRow<Content: View>: View {
 
     @State private var revealed: Bool = false
     @State private var dragOffset: CGFloat = 0
+    /// Sophie 2026-05-10 : confirmation avant suppression (action destructive +
+    /// archive seulement = pas critique mais on évite les false-positifs swipe).
+    @State private var showDeleteConfirmation: Bool = false
 
     private static var trashWidth: CGFloat { 80 }
     private static var revealThreshold: CGFloat { 40 }
@@ -567,11 +572,7 @@ private struct SwipeToDeleteRow<Content: View>: View {
     var body: some View {
         ZStack(alignment: .trailing) {
             Button {
-                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                    revealed = false
-                    dragOffset = 0
-                }
-                onDelete()
+                showDeleteConfirmation = true
             } label: {
                 Image(systemName: "trash.fill")
                     .font(.system(size: 18, weight: .semibold))
@@ -583,6 +584,31 @@ private struct SwipeToDeleteRow<Content: View>: View {
                     .accessibilityLabel(Text("dashboard.active.program.delete.label"))
             }
             .opacity((revealed || dragOffset < 0) ? 1 : 0)
+            .confirmationDialog(
+                Text("dashboard.active.program.delete.confirm.title"),
+                isPresented: $showDeleteConfirmation,
+                titleVisibility: .visible
+            ) {
+                Button(role: .destructive) {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                        revealed = false
+                        dragOffset = 0
+                    }
+                    onDelete()
+                } label: {
+                    Text("dashboard.active.program.delete.confirm.action")
+                }
+                Button(role: .cancel) {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                        revealed = false
+                        dragOffset = 0
+                    }
+                } label: {
+                    Text("common.cancel")
+                }
+            } message: {
+                Text("dashboard.active.program.delete.confirm.message")
+            }
 
             content()
                 .offset(x: revealed ? -Self.trashWidth + dragOffset : dragOffset)

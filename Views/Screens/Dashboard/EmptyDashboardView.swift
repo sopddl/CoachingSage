@@ -96,14 +96,16 @@ private struct SuggestedTemplateCard: View {
         Button(action: onTap) {
             HStack(spacing: 14) {
                 ZStack {
-                    // Sophie 2026-05-10 (suite) : passe de rond doré uniforme
-                    // à couleur par sport (variante F mockup) — cohérent avec
-                    // calendrier hebdo et ProgramCard du mode actif.
-                    Circle()
-                        .fill(Color.coachingSport(forCode: template.sport.rawValue))
+                    // Sophie 2026-05-10 (raffinement) : pattern carré arrondi
+                    // + bordure couleur sport + icone couleur sport (mockup
+                    // photo 2 sport picker). Cohérent avec ProgramCard.
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .fill(Color.coachingCard)
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .strokeBorder(Color.coachingSport(forCode: template.sport.rawValue), lineWidth: 2)
                     Image(systemName: sfSymbol)
-                        .font(.system(size: 22, weight: .semibold))
-                        .foregroundStyle(.white)
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundStyle(Color.coachingSport(forCode: template.sport.rawValue))
                 }
                 .frame(width: 40, height: 40)
 
