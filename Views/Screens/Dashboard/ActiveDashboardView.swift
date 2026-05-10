@@ -31,6 +31,9 @@ struct ActiveDashboardView: View {
     let nowProvider: () -> Date
     let onTapDominantStart: (NextSessionResolver.Result) -> Void
     let onTapProgram: (ActiveProgramSummary) -> Void
+    /// Story 3.3b cleanup 2026-05-10 — swipe-to-delete sur la liste des programmes.
+    /// L'action concrète = `adaptedRepo.archive(record)` côté caller (SessionView).
+    let onDeleteProgram: (ActiveProgramSummary) -> Void
     let onTapWeeklyReorder: () -> Void
 
     private var isRestDay: Bool {
@@ -81,10 +84,12 @@ struct ActiveDashboardView: View {
             section(titleKey: "dashboard.active.programs.title") {
                 VStack(spacing: 10) {
                     ForEach(programs, id: \.record.id) { summary in
-                        ProgramCard(
-                            summary: summary,
-                            onTap: { onTapProgram(summary) }
-                        )
+                        SwipeToDeleteRow(onDelete: { onDeleteProgram(summary) }) {
+                            ProgramCard(
+                                summary: summary,
+                                onTap: { onTapProgram(summary) }
+                            )
+                        }
                     }
                 }
             }
@@ -369,11 +374,13 @@ private struct ProgramCard: View {
         Button(action: onTap) {
             HStack(spacing: 14) {
                 ZStack {
+                    // Sophie 2026-05-10 : variante B cohérente avec SuggestedTemplateCard
+                    // (rond doré plein + icone blanche +20%).
                     Circle()
-                        .fill(Color.coachingRecord.opacity(0.18))
+                        .fill(Color.coachingRecord)
                     Image(systemName: sfSymbol)
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundStyle(Color.coachingRecord)
+                        .font(.system(size: 22, weight: .semibold))
+                        .foregroundStyle(.white)
                 }
                 .frame(width: 36, height: 36)
 
@@ -535,6 +542,77 @@ private struct WeeklyReorderLink: View {
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("dashboard.active.weekly.reorder")
+    }
+}
+
+// MARK: - Swipe to delete row
+
+/// Wrapper qui ajoute un swipe-to-delete (gesture vers la gauche, bouton trash
+/// dévoilé à droite) à n'importe quelle row. Pattern iOS classique. On
+/// n'utilise pas `.swipeActions` natif car il requiert un `List`, ce qui
+/// casserait le design custom des cards (background `coachingCard`, padding,
+/// shadows). Implementation custom DragGesture + offset.
+private struct SwipeToDeleteRow<Content: View>: View {
+    let onDelete: () -> Void
+    @ViewBuilder let content: () -> Content
+
+    @State private var revealed: Bool = false
+    @State private var dragOffset: CGFloat = 0
+
+    private static var trashWidth: CGFloat { 80 }
+    private static var revealThreshold: CGFloat { 40 }
+
+    var body: some View {
+        ZStack(alignment: .trailing) {
+            Button {
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                    revealed = false
+                    dragOffset = 0
+                }
+                onDelete()
+            } label: {
+                Image(systemName: "trash.fill")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundStyle(.white)
+                    .frame(width: Self.trashWidth)
+                    .frame(maxHeight: .infinity)
+                    .background(Color.coachingError)
+                    .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                    .accessibilityLabel(Text("dashboard.active.program.delete.label"))
+            }
+            .opacity((revealed || dragOffset < 0) ? 1 : 0)
+
+            content()
+                .offset(x: revealed ? -Self.trashWidth + dragOffset : dragOffset)
+                .gesture(
+                    DragGesture(minimumDistance: 10)
+                        .onChanged { value in
+                            // Limite : on ne drague que vers la gauche (swipe trash à droite).
+                            // Si déjà revealed, on autorise le drag à droite pour refermer.
+                            let raw = value.translation.width
+                            if revealed {
+                                dragOffset = max(0, min(Self.trashWidth, raw))
+                            } else {
+                                dragOffset = max(-Self.trashWidth, min(0, raw))
+                            }
+                        }
+                        .onEnded { _ in
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                if revealed {
+                                    if dragOffset > Self.revealThreshold {
+                                        revealed = false
+                                    }
+                                    dragOffset = 0
+                                } else {
+                                    if dragOffset < -Self.revealThreshold {
+                                        revealed = true
+                                    }
+                                    dragOffset = 0
+                                }
+                            }
+                        }
+                )
+        }
     }
 }
 

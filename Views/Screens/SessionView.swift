@@ -85,6 +85,10 @@ struct SessionView: View {
         .sheet(item: $sheetSelection) { selection in
             sheet(for: selection)
         }
+        // Sophie 2026-05-10 : force le tint app sur tous les éléments
+        // navigation (back button "‹ Séances", chevrons, etc.) sinon iOS
+        // applique le bleu système qui jure avec le bleu Léon coachingPrimary.
+        .tint(Color.coachingPrimary)
     }
 
     @ToolbarContentBuilder
@@ -180,6 +184,9 @@ struct SessionView: View {
                 onTapProgram: { summary in
                     pushAdaptedProgram(record: summary.record)
                 },
+                onDeleteProgram: { summary in
+                    Task { await deleteProgram(summary) }
+                },
                 onTapWeeklyReorder: {
                     weeklyCalendarPresented = true
                 }
@@ -210,6 +217,21 @@ struct SessionView: View {
             recordId: record.id,
             initialLeonNotes: applied.leonNotes
         )
+    }
+
+    /// Story 3.3b cleanup 2026-05-10 — swipe-to-delete depuis le dashboard.
+    /// Archive le programme côté SwiftData (`isActive = false`) puis refresh le
+    /// dashboard pour le retirer de la liste. Pas de hard-delete : l'historique
+    /// reste pour audit / re-activation future éventuelle.
+    @MainActor
+    private func deleteProgram(_ summary: ActiveProgramSummary) async {
+        guard let deps else { return }
+        do {
+            try await deps.adaptedProgramRepository.archive(summary.record)
+            await refreshDashboard()
+        } catch {
+            presentationError = error.localizedDescription
+        }
     }
 
     /// Texte hint Léon — calibré sur autoprofil HK quand `CoachingProfile.healthAutofill`
