@@ -157,7 +157,14 @@ final class DefaultCoreProfileRepository: CoreProfileRepository {
                 .upsert(dto)
                 .execute()
         } catch {
-            Self.logger.error("Supabase upsert FAILED: \(error)")
+            // Sophie 2026-05-11 — passage de silent catch à throw. Cause : bug
+            // "Profil non chargé" sur ProfileView, root cause = upsert silently
+            // fail au finalize onboarding (RLS, session, etc.) → user marqué
+            // localement onboarded mais row Supabase absente → fetch retourne nil.
+            // Propager force l'UI à afficher l'erreur réelle et permet au user
+            // de la voir + corriger (vs zombie state).
+            Self.logger.error("Supabase upsert core_profiles FAILED: \(error) — user=\(profile.id)")
+            throw AppError.sync("Erreur de synchronisation Supabase (core_profiles) : \(error.localizedDescription)")
         }
     }
 

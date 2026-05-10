@@ -74,10 +74,13 @@ final class DefaultCoachingProfileRepository: CoachingProfileRepository {
         // En UI testing, pas d'appel Supabase (credentials placeholder → timeout).
         guard ProcessInfo.processInfo.environment["IS_UI_TESTING"] == nil else { return }
 
-        // Aligné DefaultCoreProfileRepository.save: log only en cas d'échec Supabase.
-        // Évite de laisser un état SwiftData/Supabase incohérent (local marqué onboarded
-        // mais row distante absente) qui bloquerait l'UX si Supabase est down.
-        // Le drain offline ressortira via SyncService Epic 7+ (PendingOperation type CoachingProfile à ajouter).
+        // Sophie 2026-05-11 — passage de silent catch à throw. Cause : bug
+        // "Profil non chargé" sur ProfileView, root cause = upsert silently
+        // fail au finalize onboarding (RLS, session, etc.) → user marqué
+        // localement onboarded mais row Supabase absente → fetch retourne nil
+        // → zombie state. Propager force l'UI à afficher l'erreur réelle.
+        // Note : la dette offline-first (drain via SyncService Epic 7+) reste
+        // entière mais n'est pas le sujet du fix ; la cohérence prime à l'onboarding.
         do {
             let dto = CoachingProfileUpsertDTO(from: profile)
             try await SupabaseService.shared.client
@@ -85,7 +88,8 @@ final class DefaultCoachingProfileRepository: CoachingProfileRepository {
                 .upsert(dto)
                 .execute()
         } catch {
-            Self.logger.error("Supabase upsert FAILED: \(error)")
+            Self.logger.error("Supabase upsert coaching_profiles FAILED: \(error) — user=\(profile.id)")
+            throw AppError.sync("Erreur de synchronisation Supabase (coaching_profiles) : \(error.localizedDescription)")
         }
     }
 }
