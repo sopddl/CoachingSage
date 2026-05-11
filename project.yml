@@ -56,6 +56,12 @@ targets:
       - path: Coaching
       - path: Resources
         buildPhase: resources
+        excludes:
+          # Archives de variantes brand (référence design) — ne pas embarquer
+          # dans le bundle, sinon collision de noms avec les icônes courantes.
+          - "Brand/_archive-*"
+          # Scripts de génération d'assets (matplotlib) — pas pour le bundle.
+          - "Brand/*.py"
     info:
       path: CoachingSage-Info.plist
       properties:
