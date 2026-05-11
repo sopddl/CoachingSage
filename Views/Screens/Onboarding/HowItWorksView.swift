@@ -1,11 +1,25 @@
 // Views/Screens/Onboarding/HowItWorksView.swift
 // Story sœur post-3.3b — écran pédagogique inséré entre PersonalData et SportsSelection.
-// Explique en 3 cartes les modes de programme générés par Léon (deadline / routine
-// cyclique / adaptation continue). Visible une seule fois pendant l'onboarding.
+// Story 3.4 prélude (2026-05-11) — enrichi pour annoncer adaptation HK + pause/reprise,
+// et exposé aussi depuis ProfileView via API closure dual-mode (onboarding vs profil).
+//
+// 4 cartes :
+//   1. Deadline (date cible)
+//   2. Routine cyclique (3 mois renouvelable)
+//   3. Adaptation continue (Léon ajuste le programme depuis Apple Santé + apps tierces)
+//   4. Pause & reprise (doctrine ACSM — re-déconditionnement après pause)
+//
+// API : `onContinue` closure permet de réutiliser la vue depuis le profil sans
+// dépendre d'OnboardingViewModel. Si nil → pas de bouton (push nav, retour back).
 import SwiftUI
 
 struct HowItWorksView: View {
-    @Bindable var viewModel: OnboardingViewModel
+    /// Callback du bouton du bas. `nil` masque le bouton (ex: push nav depuis Profil
+    /// où l'utilisateur revient via le back button standard).
+    var onContinue: (() -> Void)?
+
+    /// Label du bouton du bas. Default = "C'est parti" (onboarding).
+    var continueLabelKey: LocalizedStringKey = "onboarding.howItWorks.continue"
 
     var body: some View {
         ScrollView {
@@ -38,21 +52,29 @@ struct HowItWorksView: View {
                     bodyKey: "onboarding.howItWorks.adaptation.body"
                 )
 
+                modeCard(
+                    icon: "pause.circle",
+                    titleKey: "onboarding.howItWorks.pauseRecovery.title",
+                    bodyKey: "onboarding.howItWorks.pauseRecovery.body"
+                )
+
                 Spacer(minLength: 24)
             }
             .padding(.horizontal, 24)
         }
         .safeAreaInset(edge: .bottom) {
-            Button(action: { viewModel.goNext() }) {
-                Text("onboarding.howItWorks.continue")
-                    .frame(maxWidth: .infinity)
+            if let onContinue {
+                Button(action: onContinue) {
+                    Text(continueLabelKey)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(PrimaryButtonStyle())
+                .padding(.horizontal, 24)
+                .padding(.top, 8)
+                .padding(.bottom, 16)
+                .background(Color.coachingBackground.ignoresSafeArea(edges: .bottom))
+                .accessibilityIdentifier("onboarding.howItWorks.continue.button")
             }
-            .buttonStyle(PrimaryButtonStyle())
-            .padding(.horizontal, 24)
-            .padding(.top, 8)
-            .padding(.bottom, 16)
-            .background(Color.coachingBackground.ignoresSafeArea(edges: .bottom))
-            .accessibilityIdentifier("onboarding.howItWorks.continue.button")
         }
     }
 
