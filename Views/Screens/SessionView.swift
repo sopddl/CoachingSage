@@ -26,6 +26,10 @@ struct SessionView: View {
     @State private var presentationError: String?
     @State private var weeklyCalendarPresented: Bool = false
     @State private var nowTick: Date = Date()
+    /// V2 #6 — loader overlay pendant la génération auto déclenchée par tap
+    /// suggestion mode vide (skip questionnaire). True pendant l'aller-retour
+    /// `AutoProgramFactory.generate` (~quelques 100ms en moyenne).
+    @State private var isGeneratingAutoProgram: Bool = false
 
     private let adapterService = ProgramAdapterService()
     private static let persistLogger = Logger(subsystem: "com.sopddl.coachingsage", category: "session-view")
@@ -46,6 +50,9 @@ struct SessionView: View {
         NavigationStack {
             content
                 .background(Color.coachingBackground.ignoresSafeArea())
+                .overlay {
+                    if isGeneratingAutoProgram { autoGeneratingOverlay }
+                }
                 .navigationTitle(Text("tab.session"))
                 .navigationBarTitleDisplayMode(.large)
                 .toolbar { calendarToolbar }
@@ -89,6 +96,26 @@ struct SessionView: View {
         // navigation (back button "‹ Séances", chevrons, etc.) sinon iOS
         // applique le bleu système qui jure avec le bleu Léon coachingPrimary.
         .tint(Color.coachingPrimary)
+    }
+
+    /// V2 #6 — overlay « génération en cours » sur tap suggestion mode vide.
+    /// Le hot path est rapide (<1s) mais l'overlay évite un freeze visuel
+    /// pendant les awaits (fetch coachingProfile + save Supabase).
+    private var autoGeneratingOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.15).ignoresSafeArea()
+            VStack(spacing: 12) {
+                ProgressView()
+                    .tint(Color.coachingPrimary)
+                Text("session.auto.generating")
+                    .font(.footnote)
+                    .foregroundStyle(Color.coachingTextSecondary)
+            }
+            .padding(24)
+            .background(Color.coachingBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .shadow(radius: 8)
+        }
     }
 
     @ToolbarContentBuilder
@@ -268,9 +295,49 @@ struct SessionView: View {
         let existing = try? await deps.coachingSportProfileRepository.fetchProfile(for: sportCode)
         if let existing {
             await presentAdaptedProgram(for: existing)
-        } else {
+            return
+        }
+        // V2 #6 — skip questionnaire pour les suggestions empty mode.
+        // Defaults sensibles (level recreational si pas d'autoprofil, premier
+        // goal du sport, fréquence 3, durée routineCyclic). Sur échec on
+        // tombe sur le questionnaire pour ne pas bloquer l'user.
+        do {
+            try await generateAutoProgram(sportCode: sportCode)
+        } catch {
+            #if DEBUG
+            Self.persistLogger.debug("AutoProgramFactory failed (\(error.localizedDescription)) — fallback questionnaire")
+            #endif
             sheetSelection = .questionnaire(sportCode: sportCode)
         }
+    }
+
+    /// Génère un programme pré-rempli pour `sportCode` sans questionnaire et
+    /// push directement `AdaptedProgramView`. Throws si pré-requis manquant
+    /// (coachingProfile absent, library KO, Supabase save fail).
+    private func generateAutoProgram(sportCode: String) async throws {
+        guard let deps else {
+            throw AutoProgramFactoryError.coachingProfileMissing
+        }
+        guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else {
+            throw AutoProgramFactoryError.coachingProfileMissing
+        }
+        isGeneratingAutoProgram = true
+        defer { isGeneratingAutoProgram = false }
+
+        let factory = AutoProgramFactory(
+            sportProfileRepository: deps.coachingSportProfileRepository,
+            adaptedProgramRepository: deps.adaptedProgramRepository,
+            coachingProfileRepository: deps.coachingProfileRepository
+        )
+        // TODO: brancher `autoprofileLevel` quand `CoachingProfile.healthAutofill`
+        // sera dispo (cf SessionDashboardViewModel.suggestionLevelProvider).
+        let result = try await factory.generate(
+            sportCode: sportCode,
+            userId: userId,
+            autoprofileLevel: nil
+        )
+        await refreshDashboard()
+        adaptedRoute = AdaptedProgramRoute(program: result.program, recordId: result.recordId)
     }
 
     // MARK: - Sheet routing
