@@ -15,6 +15,7 @@ import TemplateModel
 
 public struct ProgramAdapter: Sendable {
     public let rules: [AdaptationRule]
+    public let durationResolver: ProgramDurationResolver
 
     /// Pipeline par défaut, ordre figé (cascade documentée).
     public static let defaultRules: [AdaptationRule] = [
@@ -25,8 +26,12 @@ public struct ProgramAdapter: Sendable {
         MedicalClearanceRule()
     ]
 
-    public init(rules: [AdaptationRule] = ProgramAdapter.defaultRules) {
+    public init(
+        rules: [AdaptationRule] = ProgramAdapter.defaultRules,
+        durationResolver: ProgramDurationResolver = ProgramDurationResolver()
+    ) {
         self.rules = rules
+        self.durationResolver = durationResolver
     }
 
     public func adapt(
@@ -76,6 +81,18 @@ public struct ProgramAdapter: Sendable {
             }
         }
 
+        // Story sœur — resize selon mode + targetDate.
+        let (targetWeeks, finalTargetDate) = durationResolver.resolve(
+            durationMode: sportProfile.durationMode,
+            targetDate: sportProfile.targetDate,
+            goal: sportProfile.goal,
+            sport: template.sport,
+            level: template.level,
+            templateDurationWeeks: template.durationWeeks,
+            now: now
+        )
+        weeks = durationResolver.resize(weeks: weeks, to: targetWeeks)
+
         return AdaptedProgram(
             templateId: template.id,
             sport: template.sport,
@@ -84,7 +101,9 @@ public struct ProgramAdapter: Sendable {
             weeks: weeks,
             appliedRules: allAppliedRules,
             requiresAIAssist: requiresAI,
-            aiAssistReason: aiReason
+            aiAssistReason: aiReason,
+            durationMode: sportProfile.durationMode,
+            targetDate: finalTargetDate
         )
     }
 }

@@ -141,4 +141,210 @@ struct UniversalQuestionnaireTests {
         #expect(profile.goals.primary == UniversalQuestionnaire.defaultGoal(for: "yoga"))
         #expect(profile.goals.primary == "initiation")
     }
+
+    // MARK: - Story sœur — Q3 dont_know
+
+    @Test("Q3=dont_know termine le flow (pas de Q4) et bascule en routineCyclic")
+    func nextQuestion_q3DontKnow_terminatesAndForcesRoutine() {
+        let q = UniversalQuestionnaire(sportCode: "running")
+        let acc: [QuestionId: AnswerValue] = [
+            "q1_level": .single("regular"),
+            "q2_goal": .single("marathon"),  // marathon est deadline-eligible mais dont_know domine
+            "q3_frequency": .single(UniversalQuestionnaire.q3DontKnowCode)
+        ]
+        #expect(q.nextQuestion(after: "q3_frequency", answer: .single(UniversalQuestionnaire.q3DontKnowCode), accumulated: acc) == nil)
+
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: acc,
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        #expect(profile.durationMode == .routineCyclic)
+        #expect(profile.targetDate == nil)
+        #expect(profile.frequencyLabel == "dont_know")
+        #expect(profile.frequencyPerWeek == 3)  // mid-range default
+    }
+
+    // MARK: - Story sœur — Q4 conditionnel selon goal eligibility
+
+    @Test("Q3=3 + goal non eligible → fin (pas de Q4) et routineCyclic")
+    func nextQuestion_goalNotEligible_terminatesAtQ3() {
+        let q = UniversalQuestionnaire(sportCode: "yoga")
+        let acc: [QuestionId: AnswerValue] = [
+            "q1_level": .single("beginner"),
+            "q2_goal": .single("initiation"),  // yoga = aucun goal eligible
+            "q3_frequency": .single("3")
+        ]
+        #expect(q.nextQuestion(after: "q3_frequency", answer: .single("3"), accumulated: acc) == nil)
+
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: acc,
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        #expect(profile.durationMode == .routineCyclic)
+        #expect(profile.targetDate == nil)
+    }
+
+    @Test("Q3=3 + goal eligible → Q4 posée")
+    func nextQuestion_goalEligible_propagatesToQ4() {
+        let q = UniversalQuestionnaire(sportCode: "running")
+        let acc: [QuestionId: AnswerValue] = [
+            "q1_level": .single("regular"),
+            "q2_goal": .single("10k"),  // running 10k = deadline-eligible
+            "q3_frequency": .single("3")
+        ]
+        let next = q.nextQuestion(after: "q3_frequency", answer: .single("3"), accumulated: acc)
+        #expect(next?.id == "q4_duration")
+        #expect(next?.answerType == .singleChoice)
+        #expect(next?.options.count == 3)
+    }
+
+    // MARK: - Story sœur — Q4 → durationMode
+
+    @Test("Q4=routine_3_months → routineCyclic")
+    func buildProfile_q4Routine_buildsRoutineCyclic() {
+        let q = UniversalQuestionnaire(sportCode: "running")
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: [
+                "q1_level": .single("regular"),
+                "q2_goal": .single("marathon"),
+                "q3_frequency": .single("4_or_more"),
+                "q4_duration": .single(UniversalQuestionnaire.q4Routine3MonthsCode)
+            ],
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        #expect(profile.durationMode == .routineCyclic)
+        #expect(profile.targetDate == nil)
+    }
+
+    @Test("Q4=let_me_estimate → deadlineEstimated, targetDate nil (calculé par adapter)")
+    func buildProfile_q4Estimate_buildsDeadlineEstimated() {
+        let q = UniversalQuestionnaire(sportCode: "triathlon")
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: [
+                "q1_level": .single("competitive"),
+                "q2_goal": .single("sprint"),
+                "q3_frequency": .single("3"),
+                "q4_duration": .single(UniversalQuestionnaire.q4LetMeEstimateCode)
+            ],
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        #expect(profile.durationMode == .deadlineEstimated)
+        #expect(profile.targetDate == nil)
+    }
+
+    @Test("Q4=target_date suit Q4Date date picker")
+    func nextQuestion_q4TargetDate_propagatesToQ4Date() {
+        let q = UniversalQuestionnaire(sportCode: "tennis")
+        let acc: [QuestionId: AnswerValue] = [
+            "q1_level": .single("regular"),
+            "q2_goal": .single("tournoi-prep"),
+            "q3_frequency": .single("3")
+        ]
+        let next = q.nextQuestion(
+            after: "q4_duration",
+            answer: .single(UniversalQuestionnaire.q4TargetDateCode),
+            accumulated: acc
+        )
+        #expect(next?.id == "q4_date")
+        #expect(next?.answerType == .freeText)
+    }
+
+    @Test("Q4=target_date + Q4Date ISO8601 → deadlineFixed avec parsed date")
+    func buildProfile_q4TargetDateWithDate_buildsDeadlineFixed() {
+        let q = UniversalQuestionnaire(sportCode: "running")
+        let raceDate = Date(timeIntervalSince1970: 1_750_000_000)  // ~2026 mid-year
+        let iso = ISO8601DateFormatter().string(from: raceDate)
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: [
+                "q1_level": .single("regular"),
+                "q2_goal": .single("half_marathon"),
+                "q3_frequency": .single("3"),
+                "q4_duration": .single(UniversalQuestionnaire.q4TargetDateCode),
+                "q4_date": .text(iso)
+            ],
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        #expect(profile.durationMode == .deadlineFixed)
+        // Tolérance 1s (ISO8601 round-trip arrondit les ms).
+        if let parsed = profile.targetDate {
+            #expect(abs(parsed.timeIntervalSince(raceDate)) < 1.0)
+        } else {
+            Issue.record("targetDate doit être non-nil en deadlineFixed")
+        }
+    }
+
+    @Test("Q4=target_date sans Q4Date → fallback routineCyclic (défense en profondeur)")
+    func buildProfile_q4TargetDateMissingDate_fallsBackToRoutine() {
+        let q = UniversalQuestionnaire(sportCode: "running")
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: [
+                "q1_level": .single("regular"),
+                "q2_goal": .single("10k"),
+                "q3_frequency": .single("3"),
+                "q4_duration": .single(UniversalQuestionnaire.q4TargetDateCode)
+                // q4_date manquant
+            ],
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        #expect(profile.durationMode == .routineCyclic)
+        #expect(profile.targetDate == nil)
+    }
+
+    // MARK: - Story sœur — goalAllowsDeadline mapping
+
+    @Test("Mapping deadline-eligible : running courses oui, wellness non")
+    func goalAllowsDeadline_runningMapping() {
+        #expect(UniversalQuestionnaire.goalAllowsDeadline("5k", in: "running"))
+        #expect(UniversalQuestionnaire.goalAllowsDeadline("marathon", in: "running"))
+        #expect(!UniversalQuestionnaire.goalAllowsDeadline("wellness", in: "running"))
+    }
+
+    @Test("Mapping : sports purement routine (yoga, swimming, hiking) → aucun goal eligible")
+    func goalAllowsDeadline_routineOnlySports() {
+        #expect(UniversalQuestionnaire.deadlineEligibleGoals(for: "yoga").isEmpty)
+        #expect(UniversalQuestionnaire.deadlineEligibleGoals(for: "swimming").isEmpty)
+        #expect(UniversalQuestionnaire.deadlineEligibleGoals(for: "hiking").isEmpty)
+        #expect(UniversalQuestionnaire.deadlineEligibleGoals(for: "strengthTraining").isEmpty)
+        #expect(UniversalQuestionnaire.deadlineEligibleGoals(for: "hiit").isEmpty)
+    }
+
+    @Test("Mapping : tennis tournoi/match-prep, football saison-regional, cycling cyclosportive")
+    func goalAllowsDeadline_otherSports() {
+        #expect(UniversalQuestionnaire.goalAllowsDeadline("tournoi-prep", in: "tennis"))
+        #expect(UniversalQuestionnaire.goalAllowsDeadline("match-prep", in: "tennis"))
+        #expect(!UniversalQuestionnaire.goalAllowsDeadline("regularite", in: "tennis"))
+
+        #expect(UniversalQuestionnaire.goalAllowsDeadline("saison-regional", in: "football"))
+        #expect(!UniversalQuestionnaire.goalAllowsDeadline("loisir", in: "football"))
+
+        #expect(UniversalQuestionnaire.goalAllowsDeadline("cyclosportive", in: "cycling"))
+        #expect(!UniversalQuestionnaire.goalAllowsDeadline("endurance", in: "cycling"))
+    }
+
+    // MARK: - Story sœur — findQuestion étendue
+
+    @Test("findQuestion résout aussi q4_duration et q4_date")
+    func findQuestionIncludesQ4() {
+        let q = UniversalQuestionnaire(sportCode: "running")
+        #expect(q.findQuestion(byId: "q4_duration")?.id == "q4_duration")
+        #expect(q.findQuestion(byId: "q4_date")?.id == "q4_date")
+    }
 }

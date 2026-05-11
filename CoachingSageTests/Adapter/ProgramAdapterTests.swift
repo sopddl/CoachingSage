@@ -101,16 +101,25 @@ final class ProgramAdapterTests: XCTestCase {
     // MARK: - Profil sans contrainte ni équipement manquant ni clearance
 
     func testHappyPathPassthrough() {
-        let template = AdapterTestFixtures.makeRunningTemplate()
+        // Template ≥ 4 sem (= minWeeks resolver) pour que le resize deadlineFixed
+        // soit un no-op. Sinon le clamp minWeeks gonflerait artificiellement le count.
+        let template = AdapterTestFixtures.makeRunningTemplate(sessionsPerWeek: 3, durationWeeks: 6)
         let adapter = ProgramAdapter()
+        let now = Date(timeIntervalSince1970: 1_700_000_000)
 
+        // Story sœur — pour que la durée matche template (resize no-op), passe deadlineFixed
+        // avec targetDate = now + template.durationWeeks * 7j.
+        let target = Calendar.current.date(byAdding: .weekOfYear, value: template.durationWeeks, to: now)!
         let adapted = adapter.adapt(
             template: template,
             sportProfile: AdapterTestFixtures.sportProfile(
                 equipment: ["running-shoes", "track"],  // tout est là
-                frequencyPerWeek: 3                     // matche template
+                frequencyPerWeek: 3,                    // matche template
+                durationMode: .deadlineFixed,
+                targetDate: target
             ),
-            coachingProfile: AdapterTestFixtures.coachingProfile(requiresMedicalClearance: false)
+            coachingProfile: AdapterTestFixtures.coachingProfile(requiresMedicalClearance: false),
+            now: now
         )
 
         XCTAssertFalse(adapted.requiresAIAssist)

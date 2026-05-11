@@ -65,16 +65,34 @@ public struct AdapterSportProfile: Equatable, Sendable {
     public let frequencyPerWeek: Int
     public let sessionDurationMinutes: Int?
 
+    /// Story sœur — primary goal code (`goals.primary`). Utilisé par le
+    /// `ProgramDurationResolver` pour la LUT estimated weeks (sport × goal × level).
+    public let goal: String
+
+    /// Story sœur — mode de durée du programme. Source de vérité pour la durée
+    /// finale en sortie de `ProgramAdapter` (truncate/extend des weeks template).
+    public let durationMode: ProgramDurationMode
+
+    /// Story sœur — date cible explicite (`deadlineFixed` only). Nil pour les
+    /// autres modes ; le resolver calcule la date pour `deadlineEstimated`.
+    public let targetDate: Date?
+
     public init(
         constraints: [String],
         equipment: [String],
         frequencyPerWeek: Int,
-        sessionDurationMinutes: Int? = nil
+        sessionDurationMinutes: Int? = nil,
+        goal: String = "",
+        durationMode: ProgramDurationMode = .routineCyclic,
+        targetDate: Date? = nil
     ) {
         self.constraints = constraints
         self.equipment = equipment
         self.frequencyPerWeek = frequencyPerWeek
         self.sessionDurationMinutes = sessionDurationMinutes
+        self.goal = goal
+        self.durationMode = durationMode
+        self.targetDate = targetDate
     }
 }
 

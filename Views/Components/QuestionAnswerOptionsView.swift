@@ -13,16 +13,27 @@ struct QuestionAnswerOptionsView: View {
     let isLocked: Bool
 
     @State private var multiSelection: Set<String> = []
+    /// Date picker state pour Q4Date story sœur — minimum demain pour éviter date passée.
+    @State private var pickedDate: Date = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+
+    /// Cas spécial story sœur : Q4Date = date picker plutôt que TextField freeText.
+    private var isDatePicker: Bool {
+        question.id == UniversalQuestionnaire.q4DateId
+    }
 
     var body: some View {
         VStack(spacing: 12) {
-            switch question.answerType {
-            case .singleChoice:
-                singleOptions
-            case .multiChoice:
-                multiOptions
-            case .freeText:
-                freeTextEntry
+            if isDatePicker {
+                datePickerEntry
+            } else {
+                switch question.answerType {
+                case .singleChoice:
+                    singleOptions
+                case .multiChoice:
+                    multiOptions
+                case .freeText:
+                    freeTextEntry
+                }
             }
         }
         .padding(16)
@@ -109,6 +120,38 @@ struct QuestionAnswerOptionsView: View {
             .foregroundStyle(Color.coachingOnPrimary)
             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
             .disabled(multiSelection.isEmpty || isLocked)
+        }
+    }
+
+    // MARK: - Date picker (Q4Date story sœur)
+
+    private var datePickerEntry: some View {
+        VStack(spacing: 12) {
+            DatePicker(
+                "",
+                selection: $pickedDate,
+                in: Calendar.current.date(byAdding: .day, value: 1, to: Date())!...,
+                displayedComponents: [.date]
+            )
+            .datePickerStyle(.graphical)
+            .labelsHidden()
+            .tint(Color.coachingPrimary)
+            .disabled(isLocked)
+
+            Button {
+                guard !isLocked else { return }
+                let iso = ISO8601DateFormatter().string(from: pickedDate)
+                onAnswer(.text(iso))
+            } label: {
+                Text("questionnaire.universal.q4_date.continue")
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+            }
+            .buttonStyle(.plain)
+            .background(Color.coachingPrimary)
+            .foregroundStyle(Color.coachingOnPrimary)
+            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+            .disabled(isLocked)
         }
     }
 

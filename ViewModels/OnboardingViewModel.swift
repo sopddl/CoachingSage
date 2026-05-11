@@ -9,9 +9,10 @@ import SageCore
 enum OnboardingScreen: Int, CaseIterable {
     case firstNameLanguage = 0
     case personalData = 1
-    case sportsSelection = 2
-    case equipment = 3
-    case disclaimerPARQ = 4
+    case howItWorks = 2          // Story sœur post-3.3b — écran pédagogique
+    case sportsSelection = 3
+    case equipment = 4
+    case disclaimerPARQ = 5
 
     var next: OnboardingScreen? {
         OnboardingScreen(rawValue: rawValue + 1)

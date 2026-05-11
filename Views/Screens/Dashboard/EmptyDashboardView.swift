@@ -102,10 +102,10 @@ private struct SuggestedTemplateCard: View {
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
                         .fill(Color.coachingCard)
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .strokeBorder(Color.coachingSport(forCode: template.sport.rawValue), lineWidth: 2)
+                        .strokeBorder(Color.coachingSport(forCode: template.sport.appSportCode), lineWidth: 2)
                     Image(systemName: sfSymbol)
                         .font(.system(size: 20, weight: .semibold))
-                        .foregroundStyle(Color.coachingSport(forCode: template.sport.rawValue))
+                        .foregroundStyle(Color.coachingSport(forCode: template.sport.appSportCode))
                 }
                 .frame(width: 40, height: 40)
 
@@ -140,7 +140,7 @@ private struct SuggestedTemplateCard: View {
             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
         }
         .buttonStyle(.plain)
-        .accessibilityIdentifier("dashboard.empty.suggestion.\(template.sport.rawValue)")
+        .accessibilityIdentifier("dashboard.empty.suggestion.\(template.sport.appSportCode)")
     }
 
     private var sfSymbol: String {

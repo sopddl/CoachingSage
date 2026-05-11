@@ -64,9 +64,16 @@ final class DefaultCoreProfileRepository: CoreProfileRepository {
                 Self.logger.debug("Hydrate-on-miss SageCoreProfile network/auth: \(error.localizedDescription)")
                 #endif
             }
+
+            // Sophie 2026-05-11 bug fix : si session active mais pas de match local
+            // ni Supabase → return nil. PAS de fallback "any profile" car ça remontait
+            // le profil du USER PRÉCÉDENT (ex: prefillFromExistingProfile affichait son
+            // prénom) quand on chaîne 2 sign-ups sur le même device.
+            return nil
         }
 
-        // Fallback final : retourne n'importe quel profil non soft-deleted (cas edge sans session).
+        // Fallback final : retourne n'importe quel profil non soft-deleted, UNIQUEMENT
+        // si on n'a PAS de session active (cas edge — ex: pre-auth bootstrap).
         let descriptor = FetchDescriptor<SageCoreProfile>(
             predicate: #Predicate { profile in
                 profile.isSoftDeleted == false
@@ -157,7 +164,14 @@ final class DefaultCoreProfileRepository: CoreProfileRepository {
                 .upsert(dto)
                 .execute()
         } catch {
-            Self.logger.error("Supabase upsert FAILED: \(error)")
+            // Sophie 2026-05-11 — passage de silent catch à throw. Cause : bug
+            // "Profil non chargé" sur ProfileView, root cause = upsert silently
+            // fail au finalize onboarding (RLS, session, etc.) → user marqué
+            // localement onboarded mais row Supabase absente → fetch retourne nil.
+            // Propager force l'UI à afficher l'erreur réelle et permet au user
+            // de la voir + corriger (vs zombie state).
+            Self.logger.error("Supabase upsert core_profiles FAILED: \(error) — user=\(profile.id)")
+            throw AppError.sync("Erreur de synchronisation Supabase (core_profiles) : \(error.localizedDescription)")
         }
     }
 

@@ -53,22 +53,25 @@ extension Color {
     static let coachingSageStar = Color(hex: 0x5C5248)
 
     // MARK: - Identité sport (calendrier hebdo multi-prog)
-    /// Mapping `Sport.rawValue` → couleur signature, choisie pour distinguabilité
+    /// Mapping sport code → couleur signature, choisie pour distinguabilité
     /// sur fond `coachingCard` (#EDE9E3). Fallback `coachingTextSecondary` pour
     /// les sport codes inconnus (futurs ajouts au manifest).
+    /// Accepte les DEUX formats de naming (legacy snake_case `Sport.rawValue` côté
+    /// templates v2 ET camelCase `SportCode.rawValue` côté app/Supabase) pour le
+    /// strengthTraining — bug fix Sophie 2026-05-10.
     static func coachingSport(forCode code: String) -> Color {
         switch code {
-        case "running":           return Color(hex: 0x1E5090)
-        case "cycling":           return Color(hex: 0x2D8A4E)
-        case "swimming":          return Color(hex: 0x4FB3D9)
-        case "triathlon":         return Color(hex: 0xD4A85A)
-        case "strength_training": return Color(hex: 0x8C4A2E)
-        case "yoga":              return Color(hex: 0x9B6BB3)
-        case "hiit":              return Color(hex: 0xC43D3D)
-        case "hiking":            return Color(hex: 0x4A7044)
-        case "tennis":            return Color(hex: 0xE08A3A)
-        case "football":          return Color(hex: 0x1B3A5C)
-        default:                  return .coachingTextSecondary
+        case "running":                                return Color(hex: 0x1E5090)
+        case "cycling":                                return Color(hex: 0x2D8A4E)
+        case "swimming":                               return Color(hex: 0x4FB3D9)
+        case "triathlon":                              return Color(hex: 0xD4A85A)
+        case "strengthTraining", "strength_training": return Color(hex: 0x8C4A2E)
+        case "yoga":                                   return Color(hex: 0x9B6BB3)
+        case "hiit":                                   return Color(hex: 0xC43D3D)
+        case "hiking":                                 return Color(hex: 0x4A7044)
+        case "tennis":                                 return Color(hex: 0xE08A3A)
+        case "football":                               return Color(hex: 0x1B3A5C)
+        default:                                       return .coachingTextSecondary
         }
     }
 }

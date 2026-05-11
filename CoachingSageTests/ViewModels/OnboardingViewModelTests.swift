@@ -180,6 +180,8 @@ final class OnboardingViewModelTests: XCTestCase {
         vm.goNext()
         XCTAssertEqual(vm.currentScreen, .personalData)
         vm.goNext()
+        XCTAssertEqual(vm.currentScreen, .howItWorks)  // Story sœur — écran pédagogique
+        vm.goNext()
         XCTAssertEqual(vm.currentScreen, .sportsSelection)
         vm.goNext()
         XCTAssertEqual(vm.currentScreen, .equipment)

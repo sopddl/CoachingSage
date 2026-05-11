@@ -4,6 +4,22 @@
 import Foundation
 import TemplateModel
 
+/// Mode de durée du programme. Décide combien de semaines durent le programme et
+/// si une date cible existe. Orthogonal à `ProgramMode` (= scheduling des sessions
+/// pour drag&drop hebdo).
+///
+/// - `deadlineFixed` : durée = (`targetDate` − `appliedAt`) arrondie à la semaine.
+///   Ex: course 10K dans 8 semaines → programme 8 semaines.
+/// - `deadlineEstimated` : durée estimée par algo selon objectif + niveau. Ex: marathon
+///   beginner → 16 semaines, semi advanced → 10 semaines.
+/// - `routineCyclic` : durée fixe 12 semaines (= 3 mois), pas de date cible. Au bout
+///   du cycle, `RoutineRegenService` propose un nouveau cycle adapté aux progrès.
+public enum ProgramDurationMode: String, Codable, Equatable, Sendable {
+    case deadlineFixed
+    case deadlineEstimated
+    case routineCyclic
+}
+
 public struct AdaptedProgram: Codable, Equatable, Sendable {
     public let templateId: String
     public let sport: Sport
@@ -21,6 +37,14 @@ public struct AdaptedProgram: Codable, Equatable, Sendable {
     /// `requiresAIAssist == false`.
     public let aiAssistReason: String?
 
+    /// Mode de durée. `routineCyclic` = pas de date cible, programme renouvelable.
+    public let durationMode: ProgramDurationMode
+
+    /// Date cible pour les modes `deadlineFixed` et `deadlineEstimated`. Nil pour
+    /// `routineCyclic`. Pour `deadlineEstimated`, c'est la date calculée par l'algo
+    /// (= `appliedAt` + N semaines selon LUT objectif × niveau).
+    public let targetDate: Date?
+
     public init(
         templateId: String,
         sport: Sport,
@@ -29,7 +53,9 @@ public struct AdaptedProgram: Codable, Equatable, Sendable {
         weeks: [AdaptedWeek],
         appliedRules: [AppliedRule],
         requiresAIAssist: Bool,
-        aiAssistReason: String? = nil
+        aiAssistReason: String? = nil,
+        durationMode: ProgramDurationMode = .routineCyclic,
+        targetDate: Date? = nil
     ) {
         self.templateId = templateId
         self.sport = sport
@@ -39,6 +65,8 @@ public struct AdaptedProgram: Codable, Equatable, Sendable {
         self.appliedRules = appliedRules
         self.requiresAIAssist = requiresAIAssist
         self.aiAssistReason = aiAssistReason
+        self.durationMode = durationMode
+        self.targetDate = targetDate
     }
 }
 

@@ -1,8 +1,12 @@
 // Views/Screens/Dashboard/SportPickerSheet.swift
 // Story 3.8 sous-tâche 6 — bottom sheet « Quel sport ? » utilisée quand
 // l'utilisateur tape « Crée un programme sur mesure → » sans avoir choisi
-// un sport en amont (cas mode vide). Liste les 10 SportCode, tap → callback
-// avec le sport choisi → ouvre `SportQuestionnaireView` (questionnaire universel).
+// un sport en amont (cas mode vide). Tap → callback avec le sport choisi
+// → ouvre `SportQuestionnaireView` (questionnaire universel).
+//
+// Story sœur post-3.3b — alignement layout sur `SportsSelectionView` onboarding :
+// helper text + padding 24 + composant `SportTileView` partagé (carrés couleur sport
+// avec lineLimit(2) pour pas tronquer Musculation/Randonnée).
 import SwiftUI
 
 struct SportPickerSheet: View {
@@ -10,39 +14,36 @@ struct SportPickerSheet: View {
 
     @Environment(\.dismiss) private var dismiss
 
+    private let columns = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10)
+    ]
+
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 10) {
-                    ForEach(SportCode.allCases, id: \.rawValue) { sport in
-                        Button {
-                            onSelect(sport.rawValue)
-                        } label: {
-                            HStack(spacing: 12) {
-                                Image(systemName: sport.sfSymbol)
-                                    .font(.title3)
-                                    .foregroundStyle(Color.coachingPrimary)
-                                    .frame(width: 28)
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("dashboard.sport.picker.helper")
+                        .font(.coachingBody)
+                        .foregroundStyle(Color.coachingTextSecondary)
+                        .padding(.top, 16)
 
-                                Text(sport.localizationKey)
-                                    .font(.coachingBody)
-                                    .foregroundStyle(Color.coachingTextPrimary)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-
-                                Image(systemName: "chevron.right")
-                                    .font(.footnote)
-                                    .foregroundStyle(Color.coachingTextSecondary)
-                            }
-                            .padding(.vertical, 14)
-                            .padding(.horizontal, 16)
-                            .background(Color.coachingCard)
-                            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                    LazyVGrid(columns: columns, spacing: 10) {
+                        ForEach(SportCode.allCases, id: \.rawValue) { sport in
+                            SportTileView(
+                                sport: sport,
+                                isSelected: false,            // single-tap, pas de sélection persistée
+                                onTap: { onSelect(sport.rawValue) },
+                                onShowTooltip: nil,           // tooltip HIIT déjà vu à l'onboarding
+                                identifierPrefix: "sport.picker.option"
+                            )
                         }
-                        .buttonStyle(.plain)
-                        .accessibilityIdentifier("sport.picker.option.\(sport.rawValue)")
                     }
+
+                    Spacer(minLength: 32)
                 }
-                .padding(16)
+                .padding(.horizontal, 24)
             }
             .background(Color.coachingBackground.ignoresSafeArea())
             .navigationTitle(Text("dashboard.sport.picker.title"))
