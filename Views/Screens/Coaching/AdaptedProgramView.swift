@@ -90,7 +90,7 @@ struct AdaptedProgramView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(program.sport.rawValue.capitalized)
+            Text(LocalizedStringKey("onboarding.sport.\(program.sport.appSportCode)"))
                 .font(.title2.bold())
             Text(verbatim: "\(program.level.rawValue.capitalized) · \(program.weeks.count) sem")
                 .font(.subheadline)

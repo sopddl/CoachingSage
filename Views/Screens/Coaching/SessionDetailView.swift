@@ -147,7 +147,9 @@ struct SessionDetailView: View {
                     }
                 }
                 if ex.wasSubstituted, let reason = ex.substitutionReason {
-                    Text(verbatim: "\(String(localized: "coaching.adapter.exercise.replaces")) « \(ex.originalName) » (\(reason))")
+                    // Sophie 2026-05-11 : texte audit "remplace X par Y (equipment:dumbbells)"
+                    // remplacé par un libellé user-friendly basé sur le préfixe de reason.
+                    Text(Self.userFriendlyAdaptationLabel(reason: reason))
                         .font(.caption2)
                         .foregroundStyle(.orange)
                 }
@@ -157,6 +159,19 @@ struct SessionDetailView: View {
         .padding(12)
         .background(Color(uiColor: .secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+
+    /// Sophie 2026-05-11 : libellé user-friendly d'un exercice substitué.
+    /// Le `substitutionReason` brut (ex: "equipment:dumbbells", "constraint:knee-injury")
+    /// est un audit dev — on le mappe à un message court compréhensible par le user.
+    static func userFriendlyAdaptationLabel(reason: String) -> LocalizedStringKey {
+        if reason.hasPrefix("equipment:") {
+            return "coaching.adapter.exercise.adapted.equipment"
+        }
+        if reason.hasPrefix("constraint:") {
+            return "coaching.adapter.exercise.adapted.constraint"
+        }
+        return "coaching.adapter.exercise.adapted.generic"
     }
 
     /// Concatène sets/reps/duration/rest/zone en une ligne compacte, séparés par " · ".
