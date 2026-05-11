@@ -28,6 +28,7 @@ struct SportQuestionnaireView: View {
             content
             .background(Color.coachingBackground.ignoresSafeArea())
             .navigationTitle(Text("questionnaire.title"))
+            .tint(Color.coachingPrimary)  // Sophie 2026-05-11 : sans tint, les boutons confirmationDialog/alert prennent le bleu système iOS hors palette CoachingSage
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
