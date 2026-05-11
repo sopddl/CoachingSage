@@ -14,18 +14,23 @@ final class CoachingProfile {
     var weightKg: Double?
     var heightCm: Double?
 
-    var activeSports: [String]              // sérialisé Postgres TEXT[]
-    var equipment: [String]                 // sérialisé Postgres TEXT[] — codes EquipmentCode
-    var parqResponses: [String: Bool]       // 5 keys figées via PARQQuestion enum
-    var requiresMedicalClearance: Bool      // calc Swift : true si toute réponse PARQ == true
+    // Sophie 2026-05-11 : `= []` / `= [:]` / `= false` indispensables pour la
+    // lightweight migration SwiftData quand un store legacy n'a pas l'attribut
+    // (ex: iPhone réel installé avec un ancien Schema). Sans default, l'erreur
+    // "Validation error missing attribute values on mandatory destination attribute"
+    // bloque le ModelContainer.init.
+    var activeSports: [String] = []         // sérialisé Postgres TEXT[]
+    var equipment: [String] = []            // sérialisé Postgres TEXT[] — codes EquipmentCode
+    var parqResponses: [String: Bool] = [:] // 5 keys figées via PARQQuestion enum
+    var requiresMedicalClearance: Bool = false  // calc Swift : true si toute réponse PARQ == true
 
     var disclaimerVersionAccepted: String?  // "1.0"
     var disclaimerAcceptedAt: Date?
     var onboardingCompletedAt: Date?        // source of truth "onboarding done"
 
-    var createdAt: Date
-    var updatedAt: Date
-    var isSoftDeleted: Bool
+    var createdAt: Date = Date()
+    var updatedAt: Date = Date()
+    var isSoftDeleted: Bool = false
     var deletedAt: Date?
 
     init(id: UUID) {
