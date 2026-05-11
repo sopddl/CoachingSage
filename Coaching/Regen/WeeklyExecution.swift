@@ -4,9 +4,12 @@
 //
 // Pipeline V1 :
 //   1. WorkoutMatcher.match : pour chaque session planifiée, cherche dans les
-//      WorkoutSnapshots HK le candidat le plus proche (sport + date ±2j).
-//   2. ExecutionScore.compute : score 0-100 par match basé sur volume (0.6) +
-//      intensité HR vs target zone (0.4).
+//      WorkoutSnapshots HK le candidat le plus proche (sport + date ±2j),
+//      résolution globalement optimale (distance croissante, pas greedy par
+//      ordre de session).
+//   2. ExecutionScore.compute : score 0-100 par match basé sur volume + intensité
+//      HR vs target zone, pondéré par le type de session (endurance → volume
+//      prime, interval → intensité prime).
 //
 // Réutilisé par 3.4.A.2 (WeeklyExecutionAnalyzer) qui agrège les scores
 // par semaine et calibre la régen S+1.
@@ -42,22 +45,25 @@ public struct HRZone: Equatable, Sendable {
 
     public var midpointPercent: Double { (lowPercent + highPercent) / 2 }
 
-    /// Convertit en BPM si HRmax est connu (ex: 190 BPM). Retourne nil si HRmax nil.
-    public func bpmRange(hrMax: Int?) -> (low: Int, high: Int)? {
-        guard let hrMax else { return nil }
-        return (Int(Double(hrMax) * lowPercent), Int(Double(hrMax) * highPercent))
+    /// Convertit en BPM pour un HRmax donné (ex: 200 BPM).
+    public func bpmRange(hrMax: Int) -> (low: Int, high: Int) {
+        (Int(Double(hrMax) * lowPercent), Int(Double(hrMax) * highPercent))
     }
 
     /// Évalue à quel point un HR avg donné est dans la zone cible (1.0 = pile,
-    /// 0.0 = très loin). Méthode robuste : si dans la zone → 1.0 ; sinon
-    /// pénalité linéaire à la distance au plus proche bord, max distance = 30% HRmax.
+    /// 0.0 = très loin). Si dans la zone → 1.0 ; sinon pénalité linéaire à la
+    /// distance au plus proche bord, max distance = 15% HRmax.
+    ///
+    /// 15% HRmax = ~30 BPM pour un user HRmax 200. Pénalité plus sévère que
+    /// les 30% initialement choisis : un user qui rate la zone de plus de
+    /// 30 BPM est très loin de la doctrine planifiée (ex: Daniels-T 164-176
+    /// fait à 140 BPM = endurance pure, vraiment hors cible).
     public func proximity(to hrAvg: Int, hrMax: Int) -> Double {
-        guard let bpm = bpmRange(hrMax: hrMax) else { return 0.5 }
+        let bpm = bpmRange(hrMax: hrMax)
         if hrAvg >= bpm.low && hrAvg <= bpm.high { return 1.0 }
         let distance = hrAvg < bpm.low ? Double(bpm.low - hrAvg) : Double(hrAvg - bpm.high)
-        let maxDistance = Double(hrMax) * 0.30
-        let normalized = max(0.0, 1.0 - distance / maxDistance)
-        return normalized
+        let maxDistance = Double(hrMax) * 0.15
+        return max(0.0, 1.0 - distance / maxDistance)
     }
 }
 
@@ -65,11 +71,12 @@ public struct HRZone: Equatable, Sendable {
 
 /// Convertit une chaîne `targetZone` (telle que stockée dans `AdaptedExercise.targetZone`)
 /// en `HRZone`. Tolérant : retourne nil si la chaîne n'est pas reconnue.
+///
+/// Zones composées (ex: "Daniels-E/T") non gérées V1 — retourne nil.
 public enum HRZoneMapper {
     public static func zone(for targetZone: String?) -> HRZone? {
         guard let raw = targetZone?.trimmingCharacters(in: .whitespacesAndNewlines),
               !raw.isEmpty else { return nil }
-        // Normalisation : casse + séparateurs (Daniels-E, daniels_e, "Daniels E").
         let normalized = raw.lowercased()
             .replacingOccurrences(of: "_", with: "-")
             .replacingOccurrences(of: " ", with: "-")
@@ -101,8 +108,8 @@ public enum HRZoneMapper {
 // MARK: - WorkoutMatch
 
 /// Lien entre une session planifiée et un workout HK qui l'a probablement
-/// exécutée. `executionScore` peut être nil si le matching n'a pas trouvé de
-/// candidat (session non réalisée).
+/// exécutée. `executionScore` nil si le matching n'a pas trouvé de candidat
+/// (session non réalisée).
 public struct WorkoutMatch: Equatable, Sendable {
     public let session: PersistedSession
     public let workout: HealthSummary.WorkoutSnapshot?
@@ -125,24 +132,40 @@ public struct WorkoutMatch: Equatable, Sendable {
 // MARK: - ExecutionScore
 
 /// Évaluation 0-100 de l'exécution d'une session.
-/// `volumePercent` et `intensityPercent` peuvent être nil si non calculables
-/// (pas de durée planifiée, pas de target zone, pas de HR HK).
 public struct ExecutionScore: Equatable, Sendable {
-    /// 0-150% — borné pour ne pas exploser sur over-execution (l'user qui fait
-    /// 60 min au lieu de 30 → 200% ne donne pas 200/100 mais reste 150%).
+    /// 0-150% — borné pour ne pas exploser sur over-execution (volume raw).
     public let volumePercent: Double
 
     /// 0-100% — proximity à la target zone. nil si pas de HR HK ou pas de target zone.
     public let intensityPercent: Double?
 
-    /// Score composite 0-100. Volume pondéré 0.6, intensity 0.4 si dispo, sinon
-    /// volume seul.
+    /// Score composite 0-100. Pondéré par type de session via `Self.weights(for:)`.
+    /// Volume capped à 100% dans le score (pas de bonus over-training).
     public let overallScore: Double
 
     public init(volumePercent: Double, intensityPercent: Double?, overallScore: Double) {
         self.volumePercent = volumePercent
         self.intensityPercent = intensityPercent
         self.overallScore = overallScore
+    }
+
+    /// Flag dérivé : la session a été sur-réalisée (volume > 110% du planifié).
+    /// L'analyzer A.2 doit lire ce flag séparément pour signaler "tu pousses trop fort"
+    /// dans la régen S+1 (le `overallScore` ne le reflète pas car capped à 100).
+    public var isOverExecuted: Bool { volumePercent > 110 }
+
+    /// Pondération volume/intensité par type de session (somme = 1.0).
+    /// Doctrine sport : intervals et threshold pénalisent fort le sous-pacing
+    /// d'intensité (rater la zone = manquer l'adaptation cardio visée). Endurance
+    /// long et strength pénalisent surtout le sous-volume. Mixed = neutre.
+    public static func weights(for type: SessionType) -> (volume: Double, intensity: Double) {
+        switch type {
+        case .interval:                                   return (0.40, 0.60)
+        case .endurance:                                  return (0.70, 0.30)
+        case .strength, .technique, .mobility:            return (0.75, 0.25)
+        case .mixed:                                      return (0.50, 0.50)
+        case .rest, .other:                               return (0.60, 0.40)
+        }
     }
 
     /// Calcule un ExecutionScore pour un (session, workout) match.
@@ -157,7 +180,7 @@ public struct ExecutionScore: Equatable, Sendable {
         let actualMin = max(0, workout.durationMinutes)
         let volumePct = min(150.0, Double(actualMin) / Double(plannedMin) * 100.0)
 
-        // 2. Intensity : proximity HR avg vs session target zone
+        // 2. Intensity : proximity HR avg vs session target zone (si dispo)
         var intensityPct: Double?
         if let hrMax,
            let targetZone = HRZoneMapper.sessionTargetZone(session),
@@ -165,13 +188,16 @@ public struct ExecutionScore: Equatable, Sendable {
             intensityPct = targetZone.proximity(to: hrAvg, hrMax: hrMax) * 100.0
         }
 
-        // 3. Score composite. Volume "à 100%" vaut 100, dépasser au-delà ne bonus pas
-        // (on n'encourage pas l'over-training : >100% volume = même score que pile).
+        // 3. Score composite pondéré par type. Volume capped à 100% dans le
+        // composite (pas de bonus over-training). Le flag `isOverExecuted`
+        // expose séparément le volume > 110%.
         let cappedVolume = min(100.0, volumePct)
+        let weights = Self.weights(for: session.type)
         let overall: Double
         if let intensityPct {
-            overall = cappedVolume * 0.6 + intensityPct * 0.4
+            overall = cappedVolume * weights.volume + intensityPct * weights.intensity
         } else {
+            // Pas de HR → fallback volume seul (pas de pénalité conjecturale)
             overall = cappedVolume
         }
 
@@ -191,52 +217,74 @@ public struct ExecutionScore: Equatable, Sendable {
 public enum WorkoutMatcher {
 
     /// Tolérance ±N jours pour considérer qu'un workout HK exécute une session
-    /// planifiée à une certaine date. 2 jours pour absorber un report user
-    /// (séance lundi → finie mardi soir).
+    /// planifiée. 2 jours pour absorber un report user (séance lundi → finie mardi).
     public static let dateToleranceDays: Int = 2
 
     /// Match `sessions` ↔ `workouts` pour une semaine cible.
-    /// - Parameters:
-    ///   - sessions: sessions planifiées de la semaine (`PersistedSession`).
-    ///   - workouts: snapshots HK des 7-14 derniers jours.
-    ///   - weekStartDate: lundi 00:00 de la semaine cible (référence pour les dates par défaut).
-    ///   - hrMax: HRmax estimé du user (ex: 220-age).
-    ///   - now: date courante (pour calcul date absolue depuis `daysAgo`).
+    ///
+    /// **Résolution globalement optimale** : on évite le greedy par ordre de
+    /// session (qui pouvait laisser une session à distance 0 sans match si
+    /// une autre session avec distance 1 consommait le workout en premier).
+    /// On trie tous les couples candidats par distance croissante, puis on
+    /// assigne greedy sur cette liste triée.
     public static func match(
         sessions: [PersistedSession],
+        sportCode: String,
         workouts: [HealthSummary.WorkoutSnapshot],
         weekStartDate: Date,
         hrMax: Int?,
         now: Date = Date()
     ) -> [WorkoutMatch] {
-        var availableWorkouts = workouts.enumerated().map { (index: $0.offset, snapshot: $0.element) }
+        // 1. Pré-calculer la date planifiée de chaque session
+        let plannedDates: [Date] = sessions.map { session in
+            session.plannedDate ?? defaultDate(for: session, weekStartDate: weekStartDate)
+        }
 
-        return sessions.map { session in
-            let plannedDate = session.plannedDate
-                ?? defaultDate(for: session, weekStartDate: weekStartDate)
+        // 2. Générer tous les couples candidats (sessionIdx, workoutIdx, distance)
+        //    filtrés par sport + tolerance.
+        struct Candidate {
+            let sessionIdx: Int
+            let workoutIdx: Int
+            let distance: Int
+        }
+        var candidates: [Candidate] = []
+        for (wIdx, workout) in workouts.enumerated() {
+            guard workout.sportCode == sportCode else { continue }
+            let workoutDate = absoluteDate(daysAgo: workout.daysAgo, now: now)
+            for (sIdx, plannedDate) in plannedDates.enumerated() {
+                let diff = abs(daysBetween(plannedDate, workoutDate))
+                guard diff <= dateToleranceDays else { continue }
+                candidates.append(Candidate(sessionIdx: sIdx, workoutIdx: wIdx, distance: diff))
+            }
+        }
 
-            // Cherche le workout candidat : même sport + date dans la tolérance,
-            // minimisant la distance temporelle.
-            let candidate = availableWorkouts
-                .compactMap { entry -> (index: Int, snapshot: HealthSummary.WorkoutSnapshot, distance: Int)? in
-                    guard let sport = entry.snapshot.sportCode,
-                          sport == programSportCode(for: session) else { return nil }
-                    let workoutDate = absoluteDate(daysAgo: entry.snapshot.daysAgo, now: now)
-                    let diff = abs(daysBetween(plannedDate, workoutDate))
-                    guard diff <= dateToleranceDays else { return nil }
-                    return (entry.index, entry.snapshot, diff)
-                }
-                .min(by: { $0.distance < $1.distance })
+        // 3. Trier par distance croissante. Tie-breaker : sessionIdx puis workoutIdx
+        //    (deterministic pour les tests).
+        candidates.sort { lhs, rhs in
+            if lhs.distance != rhs.distance { return lhs.distance < rhs.distance }
+            if lhs.sessionIdx != rhs.sessionIdx { return lhs.sessionIdx < rhs.sessionIdx }
+            return lhs.workoutIdx < rhs.workoutIdx
+        }
 
-            if let candidate {
-                // Consomme le workout pour ne pas le re-matcher sur une autre session.
-                availableWorkouts.removeAll { $0.index == candidate.index }
-                let score = ExecutionScore.compute(
-                    session: session,
-                    workout: candidate.snapshot,
-                    hrMax: hrMax
-                )
-                return WorkoutMatch(session: session, workout: candidate.snapshot, executionScore: score)
+        // 4. Greedy assign : pour chaque candidat trié, assigner si session ET
+        //    workout pas encore consommés.
+        var sessionAssigned = Array(repeating: false, count: sessions.count)
+        var workoutConsumed = Array(repeating: false, count: workouts.count)
+        var matchedWorkoutIdx: [Int?] = Array(repeating: nil, count: sessions.count)
+        for candidate in candidates {
+            guard !sessionAssigned[candidate.sessionIdx],
+                  !workoutConsumed[candidate.workoutIdx] else { continue }
+            sessionAssigned[candidate.sessionIdx] = true
+            workoutConsumed[candidate.workoutIdx] = true
+            matchedWorkoutIdx[candidate.sessionIdx] = candidate.workoutIdx
+        }
+
+        // 5. Reconstruire le résultat dans l'ordre des sessions
+        return sessions.enumerated().map { idx, session in
+            if let wIdx = matchedWorkoutIdx[idx] {
+                let workout = workouts[wIdx]
+                let score = ExecutionScore.compute(session: session, workout: workout, hrMax: hrMax)
+                return WorkoutMatch(session: session, workout: workout, executionScore: score)
             } else {
                 return WorkoutMatch(session: session, workout: nil, executionScore: nil)
             }
@@ -249,58 +297,6 @@ public enum WorkoutMatcher {
         Calendar.current.date(byAdding: .day, value: session.day - 1, to: weekStartDate) ?? weekStartDate
     }
 
-    /// `Sport.rawValue` du programme — passé à travers `PersistedSession`. La
-    /// session ne porte pas le sport explicitement, mais on récupère via le
-    /// premier exercice... actuellement on n'a pas cette info. Pour V1.A.1 on
-    /// passe par le caller (3.4.A.2 connaît le programme.sportCode). Cf
-    /// extension `match(sessions:sportCode:...)` ci-dessous.
-    private static func programSportCode(for session: PersistedSession) -> String {
-        // Hack V1 : on stocke implicitement le sport via le type de session ?
-        // Non — on accepte le défaut, le caller passe le sportCode. Cf overload.
-        return ""
-    }
-
-    /// Overload qui prend explicitement le sportCode du programme. C'est le
-    /// point d'entrée principal (l'autre version sans sportCode renverra des
-    /// matchs vides car sport ne sera jamais "").
-    public static func match(
-        sessions: [PersistedSession],
-        sportCode: String,
-        workouts: [HealthSummary.WorkoutSnapshot],
-        weekStartDate: Date,
-        hrMax: Int?,
-        now: Date = Date()
-    ) -> [WorkoutMatch] {
-        var availableWorkouts = workouts.enumerated().map { (index: $0.offset, snapshot: $0.element) }
-
-        return sessions.map { session in
-            let plannedDate = session.plannedDate
-                ?? defaultDate(for: session, weekStartDate: weekStartDate)
-
-            let candidate = availableWorkouts
-                .compactMap { entry -> (index: Int, snapshot: HealthSummary.WorkoutSnapshot, distance: Int)? in
-                    guard let sport = entry.snapshot.sportCode, sport == sportCode else { return nil }
-                    let workoutDate = absoluteDate(daysAgo: entry.snapshot.daysAgo, now: now)
-                    let diff = abs(daysBetween(plannedDate, workoutDate))
-                    guard diff <= dateToleranceDays else { return nil }
-                    return (entry.index, entry.snapshot, diff)
-                }
-                .min(by: { $0.distance < $1.distance })
-
-            if let candidate {
-                availableWorkouts.removeAll { $0.index == candidate.index }
-                let score = ExecutionScore.compute(
-                    session: session,
-                    workout: candidate.snapshot,
-                    hrMax: hrMax
-                )
-                return WorkoutMatch(session: session, workout: candidate.snapshot, executionScore: score)
-            } else {
-                return WorkoutMatch(session: session, workout: nil, executionScore: nil)
-            }
-        }
-    }
-
     // MARK: - Helpers
 
     static func absoluteDate(daysAgo: Int, now: Date) -> Date {
@@ -308,14 +304,10 @@ public enum WorkoutMatcher {
     }
 
     static func daysBetween(_ a: Date, _ b: Date) -> Int {
-        Calendar.current.dateComponents([.day], from: a.startOfDay(), to: b.startOfDay()).day ?? 0
+        Calendar.current.dateComponents([.day], from: startOfDay(a), to: startOfDay(b)).day ?? 0
     }
-}
 
-// MARK: - Date helper
-
-private extension Date {
-    func startOfDay() -> Date {
-        Calendar.current.startOfDay(for: self)
+    private static func startOfDay(_ date: Date) -> Date {
+        Calendar.current.startOfDay(for: date)
     }
 }
