@@ -20,7 +20,7 @@ struct DisclaimerPARQView: View {
             VStack(alignment: .leading, spacing: 0) {
 
                 // BLOC 1 — Disclaimer médical
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text("onboarding.disclaimer.title")
                         .font(.coachingH1)
                         .foregroundStyle(Color.coachingTextPrimary)
@@ -35,12 +35,12 @@ struct DisclaimerPARQView: View {
                     .font(.coachingCaption)
                     .foregroundStyle(Color.coachingTextSecondary)
                 }
-                .padding(.top, 16)
+                .padding(.top, 8)
 
-                Divider().padding(.vertical, 20)
+                Divider().padding(.vertical, 12)
 
                 // BLOC 2 — PARQ-light
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: 10) {
                     Text("onboarding.parq.title")
                         .font(.coachingH1)
                         .foregroundStyle(Color.coachingTextPrimary)
@@ -65,19 +65,19 @@ struct DisclaimerPARQView: View {
                                 .foregroundStyle(Color.coachingTextPrimary)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
-                        .padding(12)
+                        .padding(10)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .background(Color.coachingWarning.opacity(0.15), in: RoundedRectangle(cornerRadius: CoachingRadius.md))
                         .accessibilityIdentifier("onboarding.parq.warning.banner")
                     }
                 }
 
-                Divider().padding(.vertical, 20)
+                Divider().padding(.vertical, 12)
 
                 // BLOC 3 — Consentement analytics
                 VStack(alignment: .leading, spacing: 8) {
                     Toggle(isOn: $viewModel.analyticsConsent) {
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: 2) {
                             Text("onboarding.analytics.toggle.label")
                                 .font(.coachingBody)
                                 .foregroundStyle(Color.coachingTextPrimary)
@@ -99,10 +99,11 @@ struct DisclaimerPARQView: View {
                         .accessibilityIdentifier("onboarding.save.error")
                 }
 
-                Spacer(minLength: 32)
+                Spacer(minLength: 16)
             }
             .padding(.horizontal, 24)
         }
+        .scrollIndicators(.visible)
         .safeAreaInset(edge: .bottom) {
             Button(action: { viewModel.goNext() }) {
                 HStack(spacing: 8) {
