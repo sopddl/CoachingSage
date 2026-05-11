@@ -22,7 +22,7 @@ struct OnboardingView: View {
                     case .personalData:
                         PersonalDataView(viewModel: viewModel)
                     case .howItWorks:
-                        HowItWorksView(viewModel: viewModel)
+                        HowItWorksView(onContinue: { viewModel.goNext() })
                     case .sportsSelection:
                         SportsSelectionView(viewModel: viewModel)
                     case .equipment:

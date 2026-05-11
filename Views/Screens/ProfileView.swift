@@ -262,6 +262,18 @@ struct ProfileView: View {
     @ViewBuilder
     private func aboutSection(coaching: CoachingProfile) -> some View {
         Section("profile.section.about") {
+            // Story 3.4 prélude (2026-05-11) — réutilise l'écran HowItWorks de
+            // l'onboarding en mode "consultation seule" (pas de bouton du bas,
+            // navigation push retour via back system).
+            NavigationLink {
+                HowItWorksView()
+                    .navigationTitle("profile.howItWorks.title")
+                    .navigationBarTitleDisplayMode(.inline)
+            } label: {
+                Text("profile.howItWorks.title")
+            }
+            .accessibilityIdentifier("profile.about.howItWorks.link")
+
             NavigationLink {
                 MedicalDisclaimerView(
                     versionAccepted: coaching.disclaimerVersionAccepted,
