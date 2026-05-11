@@ -39,7 +39,30 @@ struct DisclaimerPARQView: View {
 
                 Divider().padding(.vertical, 12)
 
-                // BLOC 2 — PARQ-light
+                // BLOC 2 — Consentement analytics (Sophie 2026-05-11 : remonté avant PARQ
+                // sinon caché tout en bas → l'user ne voit jamais le toggle et on n'a jamais
+                // de oui. Mieux placé juste après le disclaimer médical avant les questions
+                // santé qui demandent de la concentration).
+                VStack(alignment: .leading, spacing: 8) {
+                    Toggle(isOn: $viewModel.analyticsConsent) {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("onboarding.analytics.toggle.label")
+                                .font(.coachingBody)
+                                .foregroundStyle(Color.coachingTextPrimary)
+                            Text("onboarding.analytics.toggle.helper")
+                                .font(.coachingCaption)
+                                .foregroundStyle(Color.coachingTextSecondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                    .tint(Color.coachingPrimary)
+                    .accessibilityIdentifier("onboarding.analytics.toggle")
+                }
+
+                Divider().padding(.vertical, 12)
+
+                // BLOC 3 — PARQ-light (en dernier — questions santé requièrent
+                // de bien lire avant de tap Démarrer).
                 VStack(alignment: .leading, spacing: 10) {
                     Text("onboarding.parq.title")
                         .font(.coachingH1)
@@ -70,25 +93,6 @@ struct DisclaimerPARQView: View {
                         .background(Color.coachingWarning.opacity(0.15), in: RoundedRectangle(cornerRadius: CoachingRadius.md))
                         .accessibilityIdentifier("onboarding.parq.warning.banner")
                     }
-                }
-
-                Divider().padding(.vertical, 12)
-
-                // BLOC 3 — Consentement analytics
-                VStack(alignment: .leading, spacing: 8) {
-                    Toggle(isOn: $viewModel.analyticsConsent) {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("onboarding.analytics.toggle.label")
-                                .font(.coachingBody)
-                                .foregroundStyle(Color.coachingTextPrimary)
-                            Text("onboarding.analytics.toggle.helper")
-                                .font(.coachingCaption)
-                                .foregroundStyle(Color.coachingTextSecondary)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                    }
-                    .tint(Color.coachingPrimary)
-                    .accessibilityIdentifier("onboarding.analytics.toggle")
                 }
 
                 if let errorMessage = viewModel.saveErrorMessage {

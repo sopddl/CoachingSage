@@ -64,9 +64,16 @@ final class DefaultCoreProfileRepository: CoreProfileRepository {
                 Self.logger.debug("Hydrate-on-miss SageCoreProfile network/auth: \(error.localizedDescription)")
                 #endif
             }
+
+            // Sophie 2026-05-11 bug fix : si session active mais pas de match local
+            // ni Supabase → return nil. PAS de fallback "any profile" car ça remontait
+            // le profil du USER PRÉCÉDENT (ex: prefillFromExistingProfile affichait son
+            // prénom) quand on chaîne 2 sign-ups sur le même device.
+            return nil
         }
 
-        // Fallback final : retourne n'importe quel profil non soft-deleted (cas edge sans session).
+        // Fallback final : retourne n'importe quel profil non soft-deleted, UNIQUEMENT
+        // si on n'a PAS de session active (cas edge — ex: pre-auth bootstrap).
         let descriptor = FetchDescriptor<SageCoreProfile>(
             predicate: #Predicate { profile in
                 profile.isSoftDeleted == false
