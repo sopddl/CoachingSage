@@ -7,7 +7,7 @@ Generate CoachingSage AppIcon based on FloreSage/GardenSage visual pattern :
 """
 from PIL import Image, ImageDraw, ImageFilter
 
-SRC = "/Users/sophieslama/Downloads/CoachingSage-icon-mosaique-1024.png"
+SRC = "/Users/sophieslama/CL3/CoachingSage/Resources/Brand/coachingsage-mosaic-source.png"
 
 # Output 3 variants
 OUT_LIGHT = "/Users/sophieslama/CL3/CoachingSage/Resources/Brand/coachingsage-icon-light.png"
@@ -19,7 +19,7 @@ CX = CY = 478  # même centre que GardenSage (légèrement décalé)
 R_OUTER = 400  # anneau extérieur radius
 R_DISC = 320   # cercle central radius (mosaïque)
 RING_WIDTH = 36
-SIGIL_CX, SIGIL_CY = 740, 740
+SIGIL_CX, SIGIL_CY = 800, 740
 SIGIL_R = 78
 
 
