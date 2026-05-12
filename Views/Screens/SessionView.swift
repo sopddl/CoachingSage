@@ -277,7 +277,8 @@ struct SessionView: View {
         dashboardViewModel = SessionDashboardViewModel(
             programRepository: deps.adaptedProgramRepository,
             routineRepository: deps.routineRepository,
-            coachingProfileRepository: deps.coachingProfileRepository
+            coachingProfileRepository: deps.coachingProfileRepository,
+            weeklyRegenApplicationService: deps.weeklyRegenApplicationService
         )
     }
 

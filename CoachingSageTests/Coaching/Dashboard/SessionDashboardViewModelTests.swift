@@ -317,6 +317,72 @@ final class SessionDashboardViewModelTests: XCTestCase {
         XCTAssertTrue(vm.emptyModeSuggestions.isEmpty)
     }
 
+    // MARK: - Phase B.4 — auto-trigger regen
+
+    func testRefreshInvokesWeeklyRegenServiceWithUserIdAndNow() async {
+        let service = FakeWeeklyRegenApplicationService()
+        let vm = makeVM(
+            programRepo: MockAdaptedProgramRepository(),
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenService: service
+        )
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(service.checkAndApplyCallCount, 1)
+        XCTAssertEqual(service.lastUserId, userId)
+        XCTAssertEqual(service.lastNow, now)
+    }
+
+    func testRefreshCallsWeeklyRegenServiceBeforeFetchActive() async {
+        // Garantit que la mutation S+1 est faite EN PLACE avant la lecture des
+        // programmes — donc les durations affichées au dashboard sont les
+        // nouvelles, pas les anciennes.
+        let progRepo = MockAdaptedProgramRepository()
+        let service = FakeWeeklyRegenApplicationService()
+
+        var events: [String] = []
+        service.onCheckAndApply = { _, _ in events.append("regen") }
+        progRepo.onFetchActive = { _ in events.append("fetchActive") }
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenService: service
+        )
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(events, ["regen", "fetchActive"],
+                       "Le service de regen doit tick AVANT fetchActive")
+    }
+
+    func testRefreshContinuesWhenWeeklyRegenServiceThrows() async {
+        // Best-effort : un échec côté service ne doit jamais empêcher le dashboard
+        // de se charger ni propager d'erreur visible.
+        let service = FakeWeeklyRegenApplicationService()
+        service.checkShouldThrow = true
+        let prog = makeRecord(sportCode: "running", sessionsCount: 1)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenService: service
+        )
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertNil(vm.error, "L'erreur regen est best-effort, ne remonte pas dans vm.error")
+        guard case .singleProgram = vm.mode else {
+            return XCTFail("Dashboard doit afficher .singleProgram même si la regen a throw, got \(vm.mode)")
+        }
+    }
+
     // MARK: - Helpers
 
     private func makeVM(
@@ -348,13 +414,15 @@ final class SessionDashboardViewModelTests: XCTestCase {
     private func makeVM(
         programRepo: MockAdaptedProgramRepository,
         profileRepo: MockCoachingProfileRepository,
-        library: ProgramTemplateLibrary
+        library: ProgramTemplateLibrary,
+        regenService: (any WeeklyRegenApplicationService)? = nil
     ) -> SessionDashboardViewModel {
         let routineRepo = MockRoutineRepository()
         return SessionDashboardViewModel(
             programRepository: programRepo,
             routineRepository: routineRepo,
             coachingProfileRepository: profileRepo,
+            weeklyRegenApplicationService: regenService,
             templateLibraryProvider: { library },
             nowProvider: { self.now }
         )

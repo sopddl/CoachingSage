@@ -18,6 +18,9 @@ struct AppDependencies {
     let accountService: any AccountServiceProtocol
     let healthKitService: any HealthKitServiceProtocol
     let sageCoachingAIService: any SageCoachingAIServiceProtocol
+    /// Story 3.4 Phase B.4 — orchestrateur regen S+1. Composé sur live() à partir
+    /// de adaptedProgramRepository + weeklyRegenRepository + RegenInputsBuilder.
+    let weeklyRegenApplicationService: any WeeklyRegenApplicationService
 
     @MainActor
     static func live(modelContext: ModelContext) -> AppDependencies {
@@ -28,6 +31,16 @@ struct AppDependencies {
         let routineRepository = DefaultRoutineRepository(modelContext: modelContext)
         let weeklyRegenRepository = DefaultWeeklyRegenRepository(modelContext: modelContext)
         let authService = AuthService()
+        let healthKitService = DefaultHealthKitService()
+        let weeklyRegenApplicationService = DefaultWeeklyRegenApplicationService(
+            adaptedProgramRepository: adaptedProgramRepository,
+            regenRepository: weeklyRegenRepository,
+            inputsProvider: RegenInputsBuilder(
+                healthKit: healthKitService,
+                regenRepository: weeklyRegenRepository,
+                coachingProfileRepository: coachingProfileRepository
+            )
+        )
         return AppDependencies(
             coreProfileRepository: coreProfileRepository,
             coachingProfileRepository: coachingProfileRepository,
@@ -38,8 +51,9 @@ struct AppDependencies {
             authService: authService,
             syncService: SyncService(modelContext: modelContext),
             accountService: AccountService(coreProfileRepository: coreProfileRepository),
-            healthKitService: DefaultHealthKitService(),
-            sageCoachingAIService: DefaultSageCoachingAIService()
+            healthKitService: healthKitService,
+            sageCoachingAIService: DefaultSageCoachingAIService(),
+            weeklyRegenApplicationService: weeklyRegenApplicationService
         )
     }
 }

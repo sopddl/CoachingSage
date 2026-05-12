@@ -12,7 +12,15 @@
 //
 // **VM lecture** : pas d'écriture programme/routine. Sous-tâche 6 ajoute le
 // chargement des suggestions `selectTopN` pour alimenter le mode vide.
+//
+// **Story 3.4 Phase B.4 — auto-trigger regen S+1** : si un
+// `WeeklyRegenApplicationService` est injecté, `refresh()` l'invoque AVANT le
+// `fetchActive`. La regen mute les sessions S+1 des records actifs en place
+// (idempotent côté service : journal `(recordId, targetWeek)` + re-entrance
+// guard par `userId`). Best-effort : un throw est silencé pour ne pas bloquer
+// l'affichage du dashboard.
 import Foundation
+import os
 import SwiftUI
 import TemplateModel
 
@@ -80,10 +88,15 @@ final class SessionDashboardViewModel {
 
     private let weeklyStatsService = WeeklyStatsService()
     private let coachLineEngine = CoachLineEngine()
+    private static let logger = Logger(subsystem: "com.sopddl.coachingsage", category: "session-dashboard-vm")
 
     private let programRepository: any AdaptedProgramRepository
     private let routineRepository: any RoutineRepository
     private let coachingProfileRepository: any CoachingProfileRepository
+    /// Phase B.4 — optionnel pour rester compatible avec les previews + tests
+    /// qui n'ont pas besoin du wiring regen. Quand absent, `refresh()` skip
+    /// silencieusement l'auto-trigger.
+    private let weeklyRegenApplicationService: (any WeeklyRegenApplicationService)?
     private let resolver: NextSessionResolver
     private let templateLibraryProvider: () async throws -> ProgramTemplateLibrary
     private let suggestionLevelProvider: (CoachingProfile?) -> String
@@ -93,6 +106,7 @@ final class SessionDashboardViewModel {
         programRepository: any AdaptedProgramRepository,
         routineRepository: any RoutineRepository,
         coachingProfileRepository: any CoachingProfileRepository,
+        weeklyRegenApplicationService: (any WeeklyRegenApplicationService)? = nil,
         resolver: NextSessionResolver = NextSessionResolver(),
         templateLibraryProvider: @escaping () async throws -> ProgramTemplateLibrary = ProgramTemplateLibrary.bundled,
         suggestionLevelProvider: @escaping (CoachingProfile?) -> String = { _ in "beginner" },
@@ -101,6 +115,7 @@ final class SessionDashboardViewModel {
         self.programRepository = programRepository
         self.routineRepository = routineRepository
         self.coachingProfileRepository = coachingProfileRepository
+        self.weeklyRegenApplicationService = weeklyRegenApplicationService
         self.resolver = resolver
         self.templateLibraryProvider = templateLibraryProvider
         self.suggestionLevelProvider = suggestionLevelProvider
@@ -110,9 +125,15 @@ final class SessionDashboardViewModel {
     /// Charge programmes + routines + profil coaching pour le user, calcule la
     /// bascule mode + la prochaine séance dominante + les suggestions mode vide.
     /// Idempotent : peut être rappelée à chaque `onAppear` ou changement utilisateur.
+    ///
+    /// Phase B.4 : appelle d'abord `weeklyRegenApplicationService.checkAndApplyIfDue`
+    /// pour muter les sessions S+1 des records dont la semaine S est close. La
+    /// mutation est faite EN PLACE sur les records, donc le `fetchActive` qui
+    /// suit voit déjà les bonnes durées. Best-effort : un throw est silencé.
     func refresh(userId: UUID) async {
         loading = true
         error = nil
+        await runAutoRegenIfNeeded(userId: userId)
         do {
             async let programsTask = programRepository.fetchActive(for: userId)
             async let routinesTask = routineRepository.fetchAll(for: userId)
@@ -165,6 +186,19 @@ final class SessionDashboardViewModel {
             restDayHintKey = nil
         }
         loading = false
+    }
+
+    /// Phase B.4 — invoque `WeeklyRegenApplicationService.checkAndApplyIfDue`
+    /// si un service est injecté. Best-effort : un throw est juste loggé. Le
+    /// service est idempotent (journal + re-entrance guard), un appel à chaque
+    /// `refresh()` est sûr et ne mute qu'une fois par `(record, weekS+1)`.
+    private func runAutoRegenIfNeeded(userId: UUID) async {
+        guard let service = weeklyRegenApplicationService else { return }
+        do {
+            try await service.checkAndApplyIfDue(userId: userId, now: nowProvider())
+        } catch {
+            Self.logger.debug("weeklyRegen.checkAndApplyIfDue failed: \(error.localizedDescription)")
+        }
     }
 
     /// Renvoie la hint Léon pour la card rest day quand la prochaine séance
