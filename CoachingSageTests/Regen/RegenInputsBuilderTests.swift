@@ -3,6 +3,8 @@
 //
 // Focus orchestration (wiring inputs → engine, fallbacks hrMax, edge cases).
 // La logique de l'engine elle-même est couverte par les tests Phase A.4.
+// Mocks partagés : `MockHealthKitService` + `MockCoachingProfileRepository`
+// (cf `CoachingSageTests/Mocks/`). `MockWeeklyRegenRepository` local au fichier.
 import XCTest
 import TemplateModel
 @testable import CoachingSage
@@ -64,7 +66,7 @@ final class RegenInputsBuilderTests: XCTestCase {
         XCTAssertEqual(unwrapped.analyzedWeekNumber, 1)
         XCTAssertEqual(unwrapped.targetWeekNumber, 2)
         // Pas de workouts HK + pas de previousReports → tout missed → reduce 25%.
-        XCTAssertEqual(unwrapped.reason, .missedSessions)
+        XCTAssertEqual(unwrapped.reason, RegressionDecision.Reason.missedSessions)
     }
 
     func testMakeDecision_passesPreviousReportsToEngine() async throws {
@@ -85,14 +87,14 @@ final class RegenInputsBuilderTests: XCTestCase {
 
         let unwrapped = try XCTUnwrap(decision)
         // PauseDetector voit 3 sem consécutives sub-seuil → extended → restart.
-        XCTAssertEqual(unwrapped.reason, .pauseExtended)
+        XCTAssertEqual(unwrapped.reason, RegressionDecision.Reason.pauseExtended)
         XCTAssertTrue(unwrapped.adjustment.requiresRebuild)
     }
 
     func testMakeDecision_propagatesDaysSinceLastWorkout() async throws {
         let (builder, hkMock, _, _) = makeSystem()
         // Dernier workout il y a 20 jours → extended pause → restart.
-        hkMock.stubbedWorkoutDetails = [
+        hkMock.stubbedRecentWorkoutDetails = [
             makeWorkoutDetail(daysAgo: 20)
         ]
         let record = makeRecord(sessions: [
@@ -102,8 +104,8 @@ final class RegenInputsBuilderTests: XCTestCase {
         let decision = try await builder.makeDecision(for: record, analyzedWeekNumber: 1, now: Date())
 
         let unwrapped = try XCTUnwrap(decision)
-        XCTAssertEqual(unwrapped.pauseLevel, .extended)
-        XCTAssertEqual(unwrapped.reason, .pauseExtended)
+        XCTAssertEqual(unwrapped.pauseLevel, PauseLevel.extended)
+        XCTAssertEqual(unwrapped.reason, RegressionDecision.Reason.pauseExtended)
     }
 
     // MARK: - HRMax résolution
@@ -228,24 +230,11 @@ final class RegenInputsBuilderTests: XCTestCase {
     }
 }
 
-// MARK: - Mocks (locaux fichier)
+// MARK: - Mocks
 
-@MainActor
-private final class MockHealthKitService: HealthKitServiceProtocol {
-    var isHealthDataAvailable: Bool = true
-    var hasRequestedAuthorization: Bool = true
-
-    var stubbedWorkoutDetails: [HealthKitWorkoutDetail] = []
-
-    func requestProfileAuthorization() async throws {}
-    func fetchProfileData() async -> HealthKitProfileData { HealthKitProfileData() }
-    func fetchVO2MaxRecent(monthsBack: Int) async -> HealthKitVO2MaxSample? { nil }
-    func fetchWorkoutSummary(weeksBack: Int) async -> HealthKitWorkoutSummary { HealthKitWorkoutSummary() }
-    func fetchRestingHeartRateAverage(daysBack: Int) async -> Double? { nil }
-    func fetchRecentWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitWorkoutDetail] {
-        stubbedWorkoutDetails
-    }
-}
+// `MockHealthKitService` (partagé : `CoachingSageTests/Mocks/MockHealthKitService.swift`).
+// `MockCoachingProfileRepository` (partagé : `CoachingSageTests/Mocks/MockCoachingProfileRepository.swift`).
+// `MockWeeklyRegenRepository` local au fichier (pas encore partagé — à factoriser si re-utilisé).
 
 @MainActor
 private final class MockWeeklyRegenRepository: WeeklyRegenRepository {
@@ -265,10 +254,3 @@ private final class MockWeeklyRegenRepository: WeeklyRegenRepository {
     func fetchJournalForCurrentWeek(userId: UUID, weekStart: Date) async throws -> [RegenJournalEntry] { [] }
 }
 
-@MainActor
-private final class MockCoachingProfileRepository: CoachingProfileRepository {
-    var stubbedProfile: CoachingProfile?
-
-    func fetchCurrentProfile() async throws -> CoachingProfile? { stubbedProfile }
-    func save(_ profile: CoachingProfile) async throws {}
-}
