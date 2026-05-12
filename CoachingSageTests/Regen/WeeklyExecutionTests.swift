@@ -9,10 +9,12 @@ final class WeeklyExecutionTests: XCTestCase {
     // MARK: - HRZoneMapper
 
     func testHRZoneMapperResolvesKnownDanielsZones() {
-        XCTAssertEqual(HRZoneMapper.zone(for: "Daniels-E")?.lowPercent, 0.60)
-        XCTAssertEqual(HRZoneMapper.zone(for: "daniels_e")?.highPercent, 0.75)
-        XCTAssertEqual(HRZoneMapper.zone(for: "Daniels T")?.midpointPercent ?? 0, 0.85, accuracy: 0.01)
-        XCTAssertEqual(HRZoneMapper.zone(for: "Daniels-I")?.lowPercent, 0.92)
+        // Bandes recalées 2026-05-12 sur la convention publique Daniels
+        // (cf doctrine WeeklyExecution.swift).
+        XCTAssertEqual(HRZoneMapper.zone(for: "Daniels-E")?.lowPercent, 0.65)
+        XCTAssertEqual(HRZoneMapper.zone(for: "daniels_e")?.highPercent, 0.79)
+        XCTAssertEqual(HRZoneMapper.zone(for: "Daniels T")?.midpointPercent ?? 0, 0.89, accuracy: 0.01)
+        XCTAssertEqual(HRZoneMapper.zone(for: "Daniels-I")?.lowPercent, 0.95)
     }
 
     func testHRZoneMapperResolvesZoneBased() {
@@ -36,7 +38,8 @@ final class WeeklyExecutionTests: XCTestCase {
     func testHRZoneMapperSessionTargetReturnsMostIntense() {
         let session = makeSession(targetZones: ["Z2", "Daniels-T", "Z1"])
         let zone = HRZoneMapper.sessionTargetZone(session)
-        XCTAssertEqual(zone?.midpointPercent ?? 0, 0.85, accuracy: 0.01)
+        // Daniels-T (0.86-0.92) midpoint = 0.89 — la plus intense des 3.
+        XCTAssertEqual(zone?.midpointPercent ?? 0, 0.89, accuracy: 0.01)
     }
 
     func testHRZoneMapperSessionTargetReturnsNilIfNoTargetZones() {
@@ -52,7 +55,8 @@ final class WeeklyExecutionTests: XCTestCase {
     // MARK: - HRZone.proximity (maxDistance = 15% HRmax)
 
     func testHRZoneProximityReturns1WhenInsideZone() {
-        let zone = HRZone(lowPercent: 0.60, highPercent: 0.75) // Daniels-E
+        // Zone arbitraire 60-75% pour tester la math, indépendamment de Daniels.
+        let zone = HRZone(lowPercent: 0.60, highPercent: 0.75)
         // HRmax = 200 → zone = 120-150 BPM
         XCTAssertEqual(zone.proximity(to: 135, hrMax: 200), 1.0)
         XCTAssertEqual(zone.proximity(to: 120, hrMax: 200), 1.0)
@@ -71,6 +75,20 @@ final class WeeklyExecutionTests: XCTestCase {
         let zone = HRZone(lowPercent: 0.60, highPercent: 0.75)
         // HR avg 240, distance 240-150 = 90. maxDistance = 30 → proximity = 0.
         XCTAssertEqual(zone.proximity(to: 240, hrMax: 200), 0.0)
+    }
+
+    /// Garde-fou hrMax <= 0 : un Watch fraîchement appairé peut renvoyer 0.
+    /// proximity doit retourner 0 plutôt que crasher en +Inf / NaN.
+    func testHRZoneProximityReturns0WhenHRMaxIsZero() {
+        let zone = HRZone(lowPercent: 0.60, highPercent: 0.75)
+        XCTAssertEqual(zone.proximity(to: 140, hrMax: 0), 0.0)
+        XCTAssertEqual(zone.proximity(to: 140, hrMax: -10), 0.0)
+    }
+
+    /// Constante de tuning maxProximityDistancePercent : doit rester 15% par
+    /// défaut. Test garde-fou : si quelqu'un la touche par erreur, on saute.
+    func testHRZoneMaxProximityDistancePercentDefault() {
+        XCTAssertEqual(HRZone.maxProximityDistancePercent, 0.15, accuracy: 0.001)
     }
 
     // MARK: - ExecutionScore.weights (pondération par type session)
@@ -179,8 +197,8 @@ final class WeeklyExecutionTests: XCTestCase {
     }
 
     func testExecutionScoreIntervalIntensityWeighsMore() {
-        // Session .interval Daniels-T (82-88%). HRmax 200 → zone 164-176.
-        // Workout HR avg 130 → distance 164-130=34, maxDist 30 → proximity 0.
+        // Session .interval Daniels-T (86-92%). HRmax 200 → zone 172-184.
+        // Workout HR avg 130 → distance 172-130=42, maxDist 30 → proximity 0.
         // Interval weights (0.4, 0.6) : volume 100*0.4 + intensity 0*0.6 = 40.
         let session = makeSession(durationMinutes: 30, type: .interval, targetZones: ["Daniels-T"])
         let workout = HealthSummary.WorkoutSnapshot(
@@ -193,7 +211,8 @@ final class WeeklyExecutionTests: XCTestCase {
     }
 
     func testExecutionScoreEnduranceSameDataLessPenalty() {
-        // Même setup que ci-dessus mais type .endurance (weights 0.7/0.3) :
+        // Même setup que ci-dessus (Daniels-T 86-92%, HRmax 200 → 172-184)
+        // mais type .endurance (weights 0.7/0.3) :
         // overall = 100*0.7 + 0*0.3 = 70. Pénalité plus douce qu'en .interval.
         let session = makeSession(durationMinutes: 30, type: .endurance, targetZones: ["Daniels-T"])
         let workout = HealthSummary.WorkoutSnapshot(
@@ -332,6 +351,48 @@ final class WeeklyExecutionTests: XCTestCase {
         XCTAssertTrue(matches[1].isDone, "session2 doit prendre le workout (distance 0)")
     }
 
+    /// hrMax nil → matcher fonctionne, ExecutionScore.intensityPercent doit être nil.
+    /// Cas réel : user sans Watch / VO2max indispo / formule 220-age non calculable.
+    func testMatcherWithNilHRMaxProducesVolumeOnlyScore() {
+        let weekStart = makeWeekStart()
+        let session = makeSession(weekNumber: 1, day: 1, durationMinutes: 30, type: .endurance, targetZones: ["Z3"])
+        let now = Calendar.current.date(byAdding: .day, value: 6, to: weekStart)!
+        let workouts = [
+            HealthSummary.WorkoutSnapshot(sportCode: "running", durationMinutes: 30,
+                                          averageHeartRateBpm: 150, maxHeartRateBpm: 165, daysAgo: 6)
+        ]
+        let matches = WorkoutMatcher.match(
+            sessions: [session], sportCode: "running",
+            workouts: workouts, weekStartDate: weekStart, hrMax: nil, now: now
+        )
+        XCTAssertTrue(matches[0].isDone)
+        XCTAssertNotNil(matches[0].executionScore)
+        XCTAssertNil(matches[0].executionScore?.intensityPercent,
+                     "hrMax nil → intensityPercent doit rester nil (volume seul)")
+        XCTAssertEqual(matches[0].executionScore?.overallScore, 100.0)
+    }
+
+    /// Garde-fou sportCode vide : matcher doit retourner toutes les sessions
+    /// non-matchées plutôt que matcher silencieusement n'importe quel workout.
+    func testMatcherEmptySportCodeReturnsAllUnmatched() {
+        let weekStart = makeWeekStart()
+        let sessions = [
+            makeSession(weekNumber: 1, day: 1, durationMinutes: 30),
+            makeSession(weekNumber: 1, day: 3, durationMinutes: 45)
+        ]
+        let now = Calendar.current.date(byAdding: .day, value: 6, to: weekStart)!
+        let workouts = [
+            HealthSummary.WorkoutSnapshot(sportCode: "", durationMinutes: 30,
+                                          averageHeartRateBpm: 140, maxHeartRateBpm: 160, daysAgo: 6)
+        ]
+        let matches = WorkoutMatcher.match(
+            sessions: sessions, sportCode: "",
+            workouts: workouts, weekStartDate: weekStart, hrMax: 200, now: now
+        )
+        XCTAssertEqual(matches.count, 2)
+        XCTAssertTrue(matches.allSatisfy { !$0.isDone })
+    }
+
     func testMatcherEmptyWorkoutsAllSessionsUnmatched() {
         let weekStart = makeWeekStart()
         let sessions = [
@@ -348,43 +409,23 @@ final class WeeklyExecutionTests: XCTestCase {
         XCTAssertTrue(matches.allSatisfy { !$0.isDone })
     }
 
-    // MARK: - Helpers
+    // MARK: - Helpers (wrappers vers RegenTestFixtures, source unique)
 
-    /// Lundi 1er juillet 2024, 00:00 local — date stable pour les tests.
-    func makeWeekStart() -> Date {
-        var components = DateComponents()
-        components.year = 2024
-        components.month = 7
-        components.day = 1
-        components.hour = 0
-        return Calendar.current.date(from: components)!
-    }
+    private func makeWeekStart() -> Date { RegenTestFixtures.makeWeekStart() }
 
-    func makeSession(
+    private func makeSession(
         weekNumber: Int = 1,
         day: Int = 1,
         durationMinutes: Int = 30,
         type: SessionType = .endurance,
         targetZones: [String?] = []
     ) -> PersistedSession {
-        let exercises = targetZones.map { zone in
-            AdaptedExercise(
-                name: "Test exercise",
-                originalName: "Test exercise",
-                targetZone: zone
-            )
-        }
-        return PersistedSession(
+        RegenTestFixtures.makeSession(
             weekNumber: weekNumber,
-            weekTheme: "test theme",
-            weekGoal: "test goal",
             day: day,
-            name: "Test session",
             durationMinutes: durationMinutes,
             type: type,
-            warmup: nil,
-            exercises: exercises,
-            cooldown: nil
+            targetZones: targetZones
         )
     }
 }

@@ -15,18 +15,23 @@
 // par semaine et calibre la régen S+1.
 //
 // Doctrine intensité (HR zones en % HRmax) :
-//   - Daniels-E (Easy)      = 60-75%
-//   - Daniels-M (Marathon)  = 75-82%
-//   - Daniels-T (Threshold) = 82-88%
-//   - Daniels-I (Intervals) = 92-98%
-//   - Daniels-R (Reps)      = >98%
+//   - Daniels-E (Easy)      = 65-79%
+//   - Daniels-M (Marathon)  = 80-85%
+//   - Daniels-T (Threshold) = 86-92%
+//   - Daniels-I (Intervals) = 95-100%
+//   - Daniels-R (Reps)      = pace-driven dans la doctrine ; HR fallback >98%
+//     ici car HK fournit averageHR pas pace de référence (zone élargie pour
+//     attraper le travail à pleine vitesse, sans cap réaliste hors élite).
 //   - Z1                    = <60%
 //   - Z2 (aerobic base)     = 60-70%
 //   - Z3 (aerobic threshold)= 70-80%
 //   - Z4 (lactate threshold)= 80-90%
 //   - Z5 (VO2max)           = 90-100%
 //
-// Sources : Daniels' Running Formula (3e éd.) + ACSM Guidelines (10e éd.).
+// Sources : Daniels' Running Formula (3e éd.) + ACSM Guidelines (11e éd.).
+// Bandes %HRmax Daniels alignées sur la convention publique sourcée :
+// articles.sweatelite.co/understand-the-jack-daniels-running-formula-in-15mins/
+// coachray.nz/2023/05/03/jack-daniels-running-intensity/
 import Foundation
 import TemplateModel
 
@@ -38,7 +43,19 @@ public struct HRZone: Equatable, Sendable {
     public let lowPercent: Double
     public let highPercent: Double
 
+    /// Distance max (en % HRmax) au-delà de laquelle `proximity` renvoie 0.
+    /// Exposée pour tuning post-prod : si la régen S+1 sous-pénalise / sur-pénalise
+    /// le sous-pacing sur data réelles, on baisse (12%) ou monte (18%) ici sans
+    /// toucher au reste de l'algo. 15% HRmax ≈ 30 BPM pour HRmax 200 — assez
+    /// sévère pour pénaliser un Daniels-T fait à allure d'endurance, assez souple
+    /// pour ne pas écraser un débutant qui rate la zone de 10 BPM.
+    public static let maxProximityDistancePercent: Double = 0.15
+
     public init(lowPercent: Double, highPercent: Double) {
+        // Defensive : tout le mapper respecte low < high mais un dev pourrait
+        // construire une zone à la main. precondition fail-fast en debug.
+        precondition(lowPercent <= highPercent,
+                     "HRZone : lowPercent (\(lowPercent)) > highPercent (\(highPercent))")
         self.lowPercent = lowPercent
         self.highPercent = highPercent
     }
@@ -52,17 +69,18 @@ public struct HRZone: Equatable, Sendable {
 
     /// Évalue à quel point un HR avg donné est dans la zone cible (1.0 = pile,
     /// 0.0 = très loin). Si dans la zone → 1.0 ; sinon pénalité linéaire à la
-    /// distance au plus proche bord, max distance = 15% HRmax.
+    /// distance au plus proche bord, max distance = `maxProximityDistancePercent`
+    /// (15% HRmax par défaut).
     ///
-    /// 15% HRmax = ~30 BPM pour un user HRmax 200. Pénalité plus sévère que
-    /// les 30% initialement choisis : un user qui rate la zone de plus de
-    /// 30 BPM est très loin de la doctrine planifiée (ex: Daniels-T 164-176
-    /// fait à 140 BPM = endurance pure, vraiment hors cible).
+    /// Garde-fou `hrMax > 0` : un Watch fraîchement appairé sans encore de
+    /// mesure peut renvoyer 0. Retourne 0 (= "hors cible total") plutôt que
+    /// crasher en `+Inf` / `NaN` sur la division.
     public func proximity(to hrAvg: Int, hrMax: Int) -> Double {
+        guard hrMax > 0 else { return 0.0 }
         let bpm = bpmRange(hrMax: hrMax)
         if hrAvg >= bpm.low && hrAvg <= bpm.high { return 1.0 }
         let distance = hrAvg < bpm.low ? Double(bpm.low - hrAvg) : Double(hrAvg - bpm.high)
-        let maxDistance = Double(hrMax) * 0.15
+        let maxDistance = Double(hrMax) * Self.maxProximityDistancePercent
         return max(0.0, 1.0 - distance / maxDistance)
     }
 }
@@ -81,10 +99,10 @@ public enum HRZoneMapper {
             .replacingOccurrences(of: "_", with: "-")
             .replacingOccurrences(of: " ", with: "-")
         switch normalized {
-        case "daniels-e", "easy":               return HRZone(lowPercent: 0.60, highPercent: 0.75)
-        case "daniels-m", "marathon":            return HRZone(lowPercent: 0.75, highPercent: 0.82)
-        case "daniels-t", "threshold", "tempo":  return HRZone(lowPercent: 0.82, highPercent: 0.88)
-        case "daniels-i", "intervals", "vo2":    return HRZone(lowPercent: 0.92, highPercent: 0.98)
+        case "daniels-e", "easy":               return HRZone(lowPercent: 0.65, highPercent: 0.79)
+        case "daniels-m", "marathon":            return HRZone(lowPercent: 0.80, highPercent: 0.85)
+        case "daniels-t", "threshold", "tempo":  return HRZone(lowPercent: 0.86, highPercent: 0.92)
+        case "daniels-i", "intervals", "vo2":    return HRZone(lowPercent: 0.95, highPercent: 1.00)
         case "daniels-r", "reps":                return HRZone(lowPercent: 0.98, highPercent: 1.05)
         case "z1":                                return HRZone(lowPercent: 0.50, highPercent: 0.60)
         case "z2":                                return HRZone(lowPercent: 0.60, highPercent: 0.70)
@@ -235,6 +253,12 @@ public enum WorkoutMatcher {
         hrMax: Int?,
         now: Date = Date()
     ) -> [WorkoutMatch] {
+        // Garde sportCode vide : éviterait de matcher silencieusement tous les
+        // workouts dont sportCode est nil ou "" en cas de bug appelant. Préfère
+        // retourner toutes les sessions non-matchées plutôt qu'un faux match.
+        guard !sportCode.isEmpty else {
+            return sessions.map { WorkoutMatch(session: $0, workout: nil, executionScore: nil) }
+        }
         // 1. Pré-calculer la date planifiée de chaque session
         let plannedDates: [Date] = sessions.map { session in
             session.plannedDate ?? defaultDate(for: session, weekStartDate: weekStartDate)
@@ -304,7 +328,10 @@ public enum WorkoutMatcher {
     }
 
     static func daysBetween(_ a: Date, _ b: Date) -> Int {
-        Calendar.current.dateComponents([.day], from: startOfDay(a), to: startOfDay(b)).day ?? 0
+        // Fallback Int.max (= jamais matcher) plutôt que 0 (= match parfait
+        // accidentel) si Calendar échoue — quasi impossible mais préférable
+        // d'être pessimiste : on rate un match plutôt que d'en inventer un.
+        Calendar.current.dateComponents([.day], from: startOfDay(a), to: startOfDay(b)).day ?? .max
     }
 
     private static func startOfDay(_ date: Date) -> Date {

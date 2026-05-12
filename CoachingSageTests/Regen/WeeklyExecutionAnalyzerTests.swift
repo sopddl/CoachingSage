@@ -279,6 +279,33 @@ final class WeeklyExecutionAnalyzerTests: XCTestCase {
                        "Une seule séance over sur trois ne doit pas déclencher le flag global")
     }
 
+    /// Seuil `overExecuted >= 2` : 1 séance over sur 1 réalisée ne doit PAS
+    /// déclencher le flag global (signal noisy en S1). Doctrine : on attend
+    /// au moins 2 séances over pour parler de "tendance".
+    func testIsOverallOverExecutedFalseWhenOnlyOneOverEvenAt100Percent() {
+        let weekStart = makeWeekStart()
+        let session = makeSession(day: 1, durationMinutes: 30, type: .endurance)
+        let now = Calendar.current.date(byAdding: .day, value: 6, to: weekStart)!
+        // 1 seul workout, en over-volume
+        let workouts = [
+            HealthSummary.WorkoutSnapshot(sportCode: "running", durationMinutes: 60,
+                                          averageHeartRateBpm: nil, maxHeartRateBpm: nil, daysAgo: 6)
+        ]
+        let report = WeeklyExecutionAnalyzer.analyze(
+            weekNumber: 1,
+            weekStartDate: weekStart,
+            sessions: [session],
+            sportCode: "running",
+            workouts: workouts,
+            hrMax: 200,
+            now: now
+        )
+        XCTAssertEqual(report.completedSessionCount, 1)
+        XCTAssertEqual(report.overExecutedCount, 1)
+        XCTAssertFalse(report.isOverallOverExecuted,
+                       "1 over sur 1 ne doit pas déclencher le flag (seuil ≥2)")
+    }
+
     func testIsOverallOverExecutedFalseWhenNothingCompleted() {
         // Aucune réalisation → pas de flag, même si overExecutedCount serait
         // mathématiquement 0 (pas de séances complétées).
@@ -359,43 +386,23 @@ final class WeeklyExecutionAnalyzerTests: XCTestCase {
         XCTAssertEqual(report.missedActiveSessions.count, 1)
     }
 
-    // MARK: - Helpers
+    // MARK: - Helpers (wrappers vers RegenTestFixtures, source unique)
 
-    /// Lundi 1er juillet 2024, 00:00 local — date stable pour les tests.
-    func makeWeekStart() -> Date {
-        var components = DateComponents()
-        components.year = 2024
-        components.month = 7
-        components.day = 1
-        components.hour = 0
-        return Calendar.current.date(from: components)!
-    }
+    private func makeWeekStart() -> Date { RegenTestFixtures.makeWeekStart() }
 
-    func makeSession(
+    private func makeSession(
         weekNumber: Int = 1,
         day: Int = 1,
         durationMinutes: Int = 30,
         type: SessionType = .endurance,
         targetZones: [String?] = []
     ) -> PersistedSession {
-        let exercises = targetZones.map { zone in
-            AdaptedExercise(
-                name: "Test exercise",
-                originalName: "Test exercise",
-                targetZone: zone
-            )
-        }
-        return PersistedSession(
+        RegenTestFixtures.makeSession(
             weekNumber: weekNumber,
-            weekTheme: "test theme",
-            weekGoal: "test goal",
             day: day,
-            name: "Test session",
             durationMinutes: durationMinutes,
             type: type,
-            warmup: nil,
-            exercises: exercises,
-            cooldown: nil
+            targetZones: targetZones
         )
     }
 }

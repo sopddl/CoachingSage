@@ -12,6 +12,13 @@
 // sortie longue de 90 min compte 3× plus qu'une récup 30 min) et reste fidèle
 // au template. Une session manquée pèse 0 dans la qualité — ce qui pénalise le
 // completionRate, mais pas la qualité des séances réalisées.
+//
+// Dette doctrine (Phase B+) : la pondération par durée ignore la non-linéarité
+// intensité×durée du TRIMP (e^(1.92×HRR)) — une séance interval 30 min n'a pas
+// plus de poids qu'un footing 30 min, alors que physiologiquement elle "compte"
+// davantage. Acceptable pour V1 (algo deterministic simple, lisible). À revoir
+// si la régen S+1 sur des semaines à dominante interval s'avère imprécise.
+// Source : journals.lww.com/nsca-scj/fulltext/2018/04000/quantification_of_training_load_in_endurance.12.aspx
 import Foundation
 import TemplateModel
 
@@ -47,8 +54,11 @@ public struct WeeklyExecutionReport: Equatable, Sendable {
     /// Nombre de sessions complétées avec volume > 110% du planifié.
     public let overExecutedCount: Int
 
-    /// `true` si au moins la moitié des sessions complétées sont sur-réalisées.
-    /// Sert à A.4 pour flag "tu pousses fort, écoute-toi" dans la régen S+1.
+    /// `true` si **au moins 2 séances** complétées sont sur-réalisées ET qu'elles
+    /// représentent au moins la moitié des séances complétées. Le seuil
+    /// `completedCount >= 2` évite de flag un user en S1 qui n'a fait qu'une
+    /// seule séance over (signal noisy, pas une tendance). Sert à A.4 pour flag
+    /// "tu pousses fort, écoute-toi" dans la régen S+1.
     public let isOverallOverExecuted: Bool
 
     /// Matches détaillés (1 par session planifiée, dans l'ordre d'entrée).
@@ -154,7 +164,10 @@ public enum WeeklyExecutionAnalyzer {
 
         // Moyenne pondérée par durée. Les sessions complétées sans ExecutionScore
         // (cas dégénéré, ne devrait pas arriver via la pipeline normale) sont
-        // ignorées pour ne pas fausser la moyenne.
+        // ignorées pour ne pas fausser la moyenne. `max(1, duration)` protège
+        // le poids d'une session à durée 0 dans la pipeline (cas .rest matché
+        // accidentellement) — ne devrait pas arriver mais évite weight=0 qui
+        // ferait disparaître la séance du calcul.
         var weightedSum: Double = 0
         var totalWeight: Double = 0
         var overExecuted = 0
@@ -167,10 +180,12 @@ public enum WeeklyExecutionAnalyzer {
         }
         let globalQuality: Double = totalWeight > 0 ? (weightedSum / totalWeight) : 0.0
 
-        // Au moins la moitié des sessions complétées sur-réalisées.
-        // 1 session over sur 1 réalisée → true. 0 réalisée → false.
+        // Flag over global : exige ≥2 séances over ET ≥ moitié des complétées.
+        // Le seuil `overExecuted >= 2` évite de flag prématurément un user en
+        // S1 qui n'a fait qu'une seule séance over (1/1 → 100% mais non
+        // représentatif).
         let isOverallOverExecuted: Bool
-        if completedCount > 0 {
+        if completedCount > 0 && overExecuted >= 2 {
             isOverallOverExecuted = overExecuted * 2 >= completedCount
         } else {
             isOverallOverExecuted = false
