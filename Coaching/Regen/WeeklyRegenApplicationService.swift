@@ -219,7 +219,10 @@ final class DefaultWeeklyRegenApplicationService: WeeklyRegenApplicationService 
     /// `weekStartDate` (= lundi 00:00 de S1). Premier ISO week = 1.
     /// `now` antérieur à `weekStartDate` → retourne 1 (on n'a pas encore démarré
     /// — cas edge où le programme vient juste d'être créé un dimanche soir).
-    static func currentWeekNumber(
+    ///
+    /// `nonisolated` car pure math Date/Calendar, pas besoin de MainActor.
+    /// Évite d'imposer un contexte async à tous les call-sites helpers/tests.
+    nonisolated static func currentWeekNumber(
         weekStartDate: Date,
         now: Date,
         calendar: Calendar = .current
