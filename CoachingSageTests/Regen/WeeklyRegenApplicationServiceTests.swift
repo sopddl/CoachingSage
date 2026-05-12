@@ -99,7 +99,8 @@ final class WeeklyRegenApplicationServiceTests: XCTestCase {
         records: [AdaptedProgramRecord] = [],
         decisionFactory: @escaping (AdaptedProgramRecord, Int) -> WeeklyRegenDecision? = { _, _ in nil }
     ) -> (DefaultWeeklyRegenApplicationService, MockAdaptedProgramRepository, MockWeeklyRegenRepository, MockInputsProvider) {
-        let adaptedRepo = MockAdaptedProgramRepository(records: records)
+        let adaptedRepo = MockAdaptedProgramRepository()
+        adaptedRepo.stubbedActive = records
         let regenRepo = MockWeeklyRegenRepository()
         let provider = MockInputsProvider(factory: decisionFactory)
         let service = DefaultWeeklyRegenApplicationService(
@@ -399,36 +400,7 @@ final class WeeklyRegenApplicationServiceTests: XCTestCase {
 
 // MARK: - Mocks
 
-@MainActor
-private final class MockAdaptedProgramRepository: AdaptedProgramRepository {
-    var records: [AdaptedProgramRecord]
-    var updateCallCount = 0
-
-    init(records: [AdaptedProgramRecord]) {
-        self.records = records
-    }
-
-    func fetchActive(for userId: UUID) async throws -> [AdaptedProgramRecord] {
-        records.filter { $0.userId == userId && $0.isActive }
-    }
-
-    func save(_ record: AdaptedProgramRecord) async throws {
-        records.append(record)
-    }
-
-    func update(_ record: AdaptedProgramRecord) async throws {
-        updateCallCount += 1
-        // Mutation in-place : le test peut inspecter directement `record`.
-    }
-
-    func archive(_ record: AdaptedProgramRecord) async throws {
-        record.isActive = false
-    }
-
-    func applyLeonPatch(recordId: UUID, patch: AdaptationPatch) async throws {
-        // Out-of-scope ces tests.
-    }
-}
+// `MockAdaptedProgramRepository` est partagé : voir `CoachingSageTests/Mocks/MockAdaptedProgramRepository.swift`.
 
 @MainActor
 private final class MockWeeklyRegenRepository: WeeklyRegenRepository {
