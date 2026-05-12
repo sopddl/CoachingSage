@@ -6,47 +6,31 @@
 //   2. Badge dashboard "Léon a ajusté ta semaine N+1".
 //   3. Overlay sur sessions modifiées : `affectedSessionIds`.
 //
-// Pattern SwiftData strict, copié EXACTEMENT sur `WeeklyExecutionReportRecord`
-// qui fonctionne :
-//   - stored properties SANS default value
-//   - `private` sur le Data-JSON field
-//   - computed type-safe accessors en extension (même fichier)
+// **Choix archi V1 (2026-05-12)** : `struct Codable` stocké en JSON file plat,
+// PAS un `@Model` SwiftData. Reproduction de 10 tentatives 2026-05-12 d'un crash
+// silencieux `Lost connection to testmanagerd` sur `FetchDescriptor<@Model>` —
+// cause profonde non identifiée sans accès debugger SwiftData interne. Volumes
+// V1 faibles (~52 entries/yr/user), JSON file plat suffit largement.
 //
-// Toute déviation (defaults, non-private) cause un crash silencieux SwiftData
-// `FetchDescriptor<RegenJournalEntry>` reproduit 2026-05-12. Ne pas toucher.
+// Migration : pas d'utilisateur prod, Schema V7 vient juste d'être ajouté avec
+// ce @Model — on le retire avant migration. Pas de data loss.
 import Foundation
-import SwiftData
 
-@Model
-final class RegenJournalEntry {
-    @Attribute(.unique) var id: UUID
-    var userId: UUID
+/// Trace d'une regen S+1 appliquée. Stocké en JSON file via `WeeklyRegenRepository`.
+struct RegenJournalEntry: Codable, Equatable, Sendable, Identifiable {
+    let id: UUID
+    let userId: UUID
     /// FK logique vers `AdaptedProgramRecord.id`.
-    var recordId: UUID
-
-    /// Numéro de la semaine analysée (= S, celle qui vient de se terminer).
-    var analyzedWeekNumber: Int
-
-    /// Numéro de la semaine cible de la régen (= S+1).
-    var targetWeekNumber: Int
-
-    var appliedAt: Date
-
-    /// `RegressionDecision.Reason.rawValue` — accès type-safe via `reason` en extension.
-    var reasonRaw: String
-
-    /// Multiplicateur effectivement appliqué (clampé) — utile pour l'overlay UI.
-    var multiplier: Double
-
-    /// `PauseLevel.rawValue` — accès type-safe via `pauseLevel` en extension.
-    var pauseLevelRaw: String
-
+    let recordId: UUID
+    let analyzedWeekNumber: Int
+    let targetWeekNumber: Int
+    let appliedAt: Date
+    let reason: RegressionDecision.Reason
+    let multiplier: Double
+    let pauseLevel: PauseLevel
     /// `true` si la regen a déclenché un rebuild from template base (cas `.restart`).
-    var requiresRebuild: Bool
-
-    /// `[UUID]` des sessions de S+1 modifiées par la regen, sérialisé en JSON.
-    /// Accès type-safe via `affectedSessionIds` en extension (file-private OK).
-    private var affectedSessionIdsJsonData: Data
+    let requiresRebuild: Bool
+    let affectedSessionIds: [UUID]
 
     init(
         id: UUID = UUID(),
@@ -67,29 +51,10 @@ final class RegenJournalEntry {
         self.analyzedWeekNumber = analyzedWeekNumber
         self.targetWeekNumber = targetWeekNumber
         self.appliedAt = appliedAt
-        self.reasonRaw = reason.rawValue
+        self.reason = reason
         self.multiplier = multiplier
-        self.pauseLevelRaw = pauseLevel.rawValue
+        self.pauseLevel = pauseLevel
         self.requiresRebuild = requiresRebuild
-        self.affectedSessionIdsJsonData = (try? JSONEncoder().encode(affectedSessionIds)) ?? Data()
-    }
-}
-
-// MARK: - Computed type-safe accessors (file-private accès au Data)
-
-extension RegenJournalEntry {
-    var reason: RegressionDecision.Reason {
-        get { RegressionDecision.Reason(rawValue: reasonRaw) ?? .onTrack }
-        set { reasonRaw = newValue.rawValue }
-    }
-
-    var pauseLevel: PauseLevel {
-        get { PauseLevel(rawValue: pauseLevelRaw) ?? .none }
-        set { pauseLevelRaw = newValue.rawValue }
-    }
-
-    var affectedSessionIds: [UUID] {
-        get { (try? JSONDecoder().decode([UUID].self, from: affectedSessionIdsJsonData)) ?? [] }
-        set { affectedSessionIdsJsonData = (try? JSONEncoder().encode(newValue)) ?? Data() }
+        self.affectedSessionIds = affectedSessionIds
     }
 }

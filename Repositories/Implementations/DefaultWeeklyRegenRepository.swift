@@ -1,27 +1,40 @@
 // Repositories/Implementations/DefaultWeeklyRegenRepository.swift
-// Story 3.4 Phase B.1 — backend SwiftData du `WeeklyRegenRepository`. Local-first
-// V1, pas de synchro Supabase.
+// Story 3.4 Phase B.1 — backend SwiftData (Reports) + JSON file plat (Journal).
+//
+// **Choix archi V1 (2026-05-12)** : `RegenJournalEntry` n'est PAS un @Model
+// SwiftData — crash silencieux `Lost connection to testmanagerd` sur
+// `FetchDescriptor<@Model>` non résolu après 10 tentatives. Le journal vit
+// dans un fichier JSON plat (`<Documents>/regen_journal.json`). Reports
+// restent en SwiftData (`WeeklyExecutionReportRecord`).
+//
+// Volumes V1 faibles (~52 entries/yr/user), pas de risque perf. Le fichier
+// est petit (~10 KB/an max). Lecture/écriture synchrone via `Data` :
+// négligeable côté UI.
 import Foundation
 import SwiftData
 
 @MainActor
 final class DefaultWeeklyRegenRepository: WeeklyRegenRepository {
     private let modelContext: ModelContext
+    private let journalStore: JournalFileStore
 
-    init(modelContext: ModelContext) {
+    init(
+        modelContext: ModelContext,
+        journalStore: JournalFileStore = .documentsDefault()
+    ) {
         self.modelContext = modelContext
+        self.journalStore = journalStore
     }
 
-    // MARK: - Reports
+    // MARK: - Reports (SwiftData)
 
     func fetchReports(
         recordId: UUID,
         before weekNumber: Int,
         limit: Int
     ) async throws -> [WeeklyExecutionReportSnapshot] {
-        // Fetch-all + filter Swift : crash `#Predicate` SwiftData avec capture
-        // `UUID + Int` reproduit 2026-05-12 sur Task 174 EXC_BAD_INSTRUCTION.
-        // Volumes V1 faibles, perf OK.
+        // Fetch-all + filter Swift. `#Predicate` SwiftData avec capture UUID+Int
+        // a crashé 2026-05-12 — pattern maintenu pour safety.
         let descriptor = FetchDescriptor<WeeklyExecutionReportRecord>()
         let all = try modelContext.fetch(descriptor)
         return all
@@ -37,8 +50,6 @@ final class DefaultWeeklyRegenRepository: WeeklyRegenRepository {
         userId: UUID,
         sportCode: String
     ) async throws {
-        // Upsert : un seul rapport par (recordId, weekNumber). Fetch-all +
-        // filter Swift (cf note `fetchReports` — predicate SwiftData crash).
         let weekN = snapshot.weekNumber
         let descriptor = FetchDescriptor<WeeklyExecutionReportRecord>()
         let existing = try modelContext.fetch(descriptor)
@@ -59,44 +70,60 @@ final class DefaultWeeklyRegenRepository: WeeklyRegenRepository {
         try modelContext.save()
     }
 
-    // MARK: - Journal
+    // MARK: - Journal (JSON file)
 
     func fetchJournal(
         recordId: UUID,
         targetWeek: Int
     ) async throws -> RegenJournalEntry? {
-        // Fetch-all + filter-in-Swift : le `#Predicate` SwiftData avec
-        // `recordId UUID + targetWeek Int` sur RegenJournalEntry provoque un
-        // `Lost connection to testmanagerd` (crash test process) 2026-05-12.
-        // Cause exacte non identifiée (combinaison computed enums + private
-        // `[UUID]` JSON Data ?). Volumes V1 faibles (~1 user × 52 weeks/yr ×
-        // N programs), perf OK. À reconsidérer si volumes augmentent.
-        let descriptor = FetchDescriptor<RegenJournalEntry>()
-        let all = try modelContext.fetch(descriptor)
-        return all.first { $0.recordId == recordId && $0.targetWeekNumber == targetWeek }
+        let entries = try journalStore.loadAll()
+        return entries.first { $0.recordId == recordId && $0.targetWeekNumber == targetWeek }
     }
 
     func saveJournal(_ entry: RegenJournalEntry) async throws {
-        modelContext.insert(entry)
-        try modelContext.save()
+        var entries = try journalStore.loadAll()
+        entries.append(entry)
+        try journalStore.saveAll(entries)
     }
 
     func fetchJournalForCurrentWeek(
         userId: UUID,
         weekStart: Date
     ) async throws -> [RegenJournalEntry] {
-        // Filet 7j : un badge dashboard ne s'affiche que pendant la semaine
-        // cible. weekStart est le lundi 00:00 local. On retient les entrées
-        // appliquées entre weekStart - 1j (regen J-1) et weekStart + 7j.
-        // Filtrage en Swift (cf note `fetchJournal` ci-dessus).
         let calendar = Calendar.current
         let lowerBound = calendar.date(byAdding: .day, value: -1, to: weekStart) ?? weekStart
         let upperBound = calendar.date(byAdding: .day, value: 7, to: weekStart) ?? weekStart
-
-        let descriptor = FetchDescriptor<RegenJournalEntry>()
-        let all = try modelContext.fetch(descriptor)
-        return all
+        let entries = try journalStore.loadAll()
+        return entries
             .filter { $0.userId == userId && $0.appliedAt >= lowerBound && $0.appliedAt < upperBound }
             .sorted { $0.appliedAt > $1.appliedAt }
+    }
+}
+
+// MARK: - JournalFileStore
+
+/// Wrapper sur un fichier JSON contenant `[RegenJournalEntry]`. Injectable pour
+/// les tests (en passant un fichier temporaire). Pas de mémoire interne :
+/// chaque opération relit/réécrit le fichier — V1 OK car volumes faibles.
+struct JournalFileStore: Sendable {
+    let fileURL: URL
+
+    /// Variante par défaut : `<Documents>/regen_journal.json`.
+    static func documentsDefault() -> JournalFileStore {
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+            ?? FileManager.default.temporaryDirectory
+        return JournalFileStore(fileURL: docs.appendingPathComponent("regen_journal.json"))
+    }
+
+    func loadAll() throws -> [RegenJournalEntry] {
+        guard FileManager.default.fileExists(atPath: fileURL.path) else { return [] }
+        let data = try Data(contentsOf: fileURL)
+        guard !data.isEmpty else { return [] }
+        return try JSONDecoder().decode([RegenJournalEntry].self, from: data)
+    }
+
+    func saveAll(_ entries: [RegenJournalEntry]) throws {
+        let data = try JSONEncoder().encode(entries)
+        try data.write(to: fileURL, options: .atomic)
     }
 }

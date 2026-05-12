@@ -16,28 +16,39 @@ import SwiftData
 final class DefaultWeeklyRegenRepositoryTests: XCTestCase {
 
     private var modelContext: ModelContext!
+    private var journalFileURL: URL!
     private var repo: DefaultWeeklyRegenRepository!
 
     override func setUpWithError() throws {
-        let url = FileManager.default.temporaryDirectory
+        // SwiftData container pour les Reports (Schema V7 minimal — juste
+        // WeeklyExecutionReportRecord, suffisant maintenant que `RegenJournalEntry`
+        // n'est plus un @Model mais un struct stocké JSON).
+        let sqliteUrl = FileManager.default.temporaryDirectory
             .appendingPathComponent("WeeklyRegenRepo-\(UUID()).sqlite")
-        let config = ModelConfiguration(url: url)
-        // Schema V7 complet (7 @Model) plutôt que les 2 @Model du repo seul :
-        // crash `FetchDescriptor<RegenJournalEntry>` reproduit 2026-05-12 quand
-        // le container ne contient que les 2 @Model Phase B.1. Hypothèse :
-        // SwiftData macro a besoin du schema complet pour résoudre les relations
-        // implicites entre @Model (même si pas de @Relationship déclarée).
+        let config = ModelConfiguration(url: sqliteUrl)
         let container = try ModelContainer(
-            for: Schema(versionedSchema: SchemaV7.self),
+            for: WeeklyExecutionReportRecord.self,
             configurations: config
         )
         self.modelContext = container.mainContext
-        self.repo = DefaultWeeklyRegenRepository(modelContext: modelContext)
+
+        // JSON file store pour le Journal — fichier temp par test pour isolation.
+        self.journalFileURL = FileManager.default.temporaryDirectory
+            .appendingPathComponent("regen_journal-\(UUID()).json")
+        let store = JournalFileStore(fileURL: journalFileURL)
+        self.repo = DefaultWeeklyRegenRepository(
+            modelContext: modelContext,
+            journalStore: store
+        )
     }
 
     override func tearDown() {
+        if let url = journalFileURL {
+            try? FileManager.default.removeItem(at: url)
+        }
         self.repo = nil
         self.modelContext = nil
+        self.journalFileURL = nil
     }
 
     // MARK: - Helpers

@@ -29,7 +29,7 @@ import Foundation
 // MARK: - PauseLevel
 
 /// Niveau d'interruption détecté, mappé sur la doctrine ACSM detraining.
-public enum PauseLevel: String, Equatable, Sendable, CaseIterable {
+public enum PauseLevel: String, Codable, Equatable, Sendable, CaseIterable {
     /// Pas de pause significative — l'user suit son programme (ou en a juste
     /// raté 1-2 séances). Régen S+1 = progression normale.
     case none

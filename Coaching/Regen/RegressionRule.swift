@@ -106,7 +106,7 @@ public struct RegressionDecision: Equatable, Sendable {
     /// on garde le cap"). Pas de string libre côté algo.
     public let reason: Reason
 
-    public enum Reason: String, Equatable, Sendable, CaseIterable {
+    public enum Reason: String, Codable, Equatable, Sendable, CaseIterable {
         /// Programme suivi normalement, on progresse (10% ACSM).
         case onTrack
 
