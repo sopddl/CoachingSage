@@ -3,7 +3,15 @@
 // Le mismatch unique : SportCode.strengthTraining = "strengthTraining"
 // vs Sport.strengthTraining = "strength_training". Tous les autres rawValues
 // sont alignés Story 0.5.8.
+//
+// Hotfix 2026-05-12 : expose aussi `localizedKey: LocalizedStringKey` pour
+// affichage UI i18n-safe. SwiftUI ne résout PAS les clés construites par
+// string interpolation (`LocalizedStringKey("foo.\(bar)")` traite `\(bar)`
+// comme un placeholder `%@`, casse la résolution xcstrings). Le pattern
+// correct = un switch statique sur l'enum qui retourne une `LocalizedStringKey`
+// littérale par cas. Cohérent avec règle `multilangue_extensible_regle`.
 import Foundation
+import SwiftUI
 import TemplateModel
 
 extension Sport {
@@ -33,10 +41,36 @@ extension Sport {
         default: return rawValue
         }
     }
+
+    /// Clé i18n statique pour l'affichage UI. Voir header pour le pourquoi.
+    var localizedKey: LocalizedStringKey {
+        switch self {
+        case .running:          return "onboarding.sport.running"
+        case .cycling:          return "onboarding.sport.cycling"
+        case .swimming:         return "onboarding.sport.swimming"
+        case .triathlon:        return "onboarding.sport.triathlon"
+        case .strengthTraining: return "onboarding.sport.strengthTraining"
+        case .yoga:             return "onboarding.sport.yoga"
+        case .hiit:             return "onboarding.sport.hiit"
+        case .hiking:           return "onboarding.sport.hiking"
+        case .tennis:           return "onboarding.sport.tennis"
+        case .football:         return "onboarding.sport.football"
+        }
+    }
 }
 
 extension Level {
     init?(profileLevel: String) {
         self.init(rawValue: profileLevel)
+    }
+
+    /// Clé i18n statique pour l'affichage UI.
+    var localizedKey: LocalizedStringKey {
+        switch self {
+        case .beginner:     return "onboarding.level.beginner"
+        case .recreational: return "onboarding.level.recreational"
+        case .regular:      return "onboarding.level.regular"
+        case .competitive:  return "onboarding.level.competitive"
+        }
     }
 }
