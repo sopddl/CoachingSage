@@ -36,22 +36,25 @@ final class RegenJournalEntry {
 
     /// `RegressionDecision.Reason.rawValue` — utiliser `reason` (computed,
     /// défini en extension) côté business code.
-    var reasonRaw: String
+    var reasonRaw: String = RegressionDecision.Reason.onTrack.rawValue
 
     /// Multiplicateur effectivement appliqué (clampé) — utile pour l'overlay UI
     /// qui affiche `+10%` / `-25%` sans avoir à dupliquer la logique multiplier.
-    var multiplier: Double
+    /// Default value obligatoire pour SwiftData macro `@Model` (crash runtime
+    /// observé 2026-05-12 sans default sur les types primitifs Double/Bool).
+    var multiplier: Double = 1.0
 
     /// `PauseLevel.rawValue` au moment de la regen. Utile pour le wording du
     /// badge (pauseLight vs pauseModerate vs pauseExtended).
-    var pauseLevelRaw: String
+    var pauseLevelRaw: String = PauseLevel.none.rawValue
 
     /// `true` si la regen a déclenché un rebuild from template base (cas `.restart`).
-    var requiresRebuild: Bool
+    /// Default obligatoire SwiftData (cf note `multiplier`).
+    var requiresRebuild: Bool = false
 
     /// `[UUID]` des sessions de S+1 modifiées par la regen. Sérialisé en `Data`
     /// JSON. Lire/écrire via la computed `affectedSessionIds` en extension.
-    var affectedSessionIdsJsonData: Data
+    var affectedSessionIdsJsonData: Data = Data()
 
     init(
         id: UUID = UUID(),
