@@ -73,12 +73,15 @@ final class DefaultWeeklyRegenRepository: WeeklyRegenRepository {
         recordId: UUID,
         targetWeek: Int
     ) async throws -> RegenJournalEntry? {
-        let descriptor = FetchDescriptor<RegenJournalEntry>(
-            predicate: #Predicate { entry in
-                entry.recordId == recordId && entry.targetWeekNumber == targetWeek
-            }
-        )
-        return try modelContext.fetch(descriptor).first
+        // Fetch-all + filter-in-Swift : le `#Predicate` SwiftData avec
+        // `recordId UUID + targetWeek Int` sur RegenJournalEntry provoque un
+        // `Lost connection to testmanagerd` (crash test process) 2026-05-12.
+        // Cause exacte non identifiée (combinaison computed enums + private
+        // `[UUID]` JSON Data ?). Volumes V1 faibles (~1 user × 52 weeks/yr ×
+        // N programs), perf OK. À reconsidérer si volumes augmentent.
+        let descriptor = FetchDescriptor<RegenJournalEntry>()
+        let all = try modelContext.fetch(descriptor)
+        return all.first { $0.recordId == recordId && $0.targetWeekNumber == targetWeek }
     }
 
     func saveJournal(_ entry: RegenJournalEntry) async throws {
@@ -93,18 +96,15 @@ final class DefaultWeeklyRegenRepository: WeeklyRegenRepository {
         // Filet 7j : un badge dashboard ne s'affiche que pendant la semaine
         // cible. weekStart est le lundi 00:00 local. On retient les entrées
         // appliquées entre weekStart - 1j (regen J-1) et weekStart + 7j.
+        // Filtrage en Swift (cf note `fetchJournal` ci-dessus).
         let calendar = Calendar.current
         let lowerBound = calendar.date(byAdding: .day, value: -1, to: weekStart) ?? weekStart
         let upperBound = calendar.date(byAdding: .day, value: 7, to: weekStart) ?? weekStart
 
-        let descriptor = FetchDescriptor<RegenJournalEntry>(
-            predicate: #Predicate { entry in
-                entry.userId == userId &&
-                entry.appliedAt >= lowerBound &&
-                entry.appliedAt < upperBound
-            }
-        )
+        let descriptor = FetchDescriptor<RegenJournalEntry>()
         let all = try modelContext.fetch(descriptor)
-        return all.sorted { $0.appliedAt > $1.appliedAt }
+        return all
+            .filter { $0.userId == userId && $0.appliedAt >= lowerBound && $0.appliedAt < upperBound }
+            .sorted { $0.appliedAt > $1.appliedAt }
     }
 }
