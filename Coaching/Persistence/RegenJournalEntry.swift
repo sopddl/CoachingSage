@@ -10,8 +10,12 @@
 //   3. Overlay sur sessions modifiées : `affectedSessionIds` permet à la card
 //      de session d'afficher `+10%` / `-25%` / "Reprise".
 //
-// Pattern SwiftData strict : enums stockés en `String` (rawValue), `[UUID]`
-// sérialisé en `Data` JSON.
+// Pattern SwiftData strict : `@Model` body porte UNIQUEMENT les stored properties
+// (les enums sont stockés en rawValue String, `[UUID]` en JSON `Data` privé).
+// Les computed properties type-safe (`reason`, `pauseLevel`, `affectedSessionIds`)
+// vivent en `extension` du même fichier — workaround pour un crash SwiftData
+// `Lost connection to testmanagerd` observé 2026-05-12 quand les computed
+// étaient dans le body `@Model`.
 import Foundation
 import SwiftData
 
@@ -30,13 +34,9 @@ final class RegenJournalEntry {
 
     var appliedAt: Date
 
-    /// `RegressionDecision.Reason.rawValue` — utiliser `reason` (computed) côté
-    /// business code.
+    /// `RegressionDecision.Reason.rawValue` — utiliser `reason` (computed,
+    /// défini en extension) côté business code.
     var reasonRaw: String
-    var reason: RegressionDecision.Reason {
-        get { RegressionDecision.Reason(rawValue: reasonRaw) ?? .onTrack }
-        set { reasonRaw = newValue.rawValue }
-    }
 
     /// Multiplicateur effectivement appliqué (clampé) — utile pour l'overlay UI
     /// qui affiche `+10%` / `-25%` sans avoir à dupliquer la logique multiplier.
@@ -45,21 +45,13 @@ final class RegenJournalEntry {
     /// `PauseLevel.rawValue` au moment de la regen. Utile pour le wording du
     /// badge (pauseLight vs pauseModerate vs pauseExtended).
     var pauseLevelRaw: String
-    var pauseLevel: PauseLevel {
-        get { PauseLevel(rawValue: pauseLevelRaw) ?? .none }
-        set { pauseLevelRaw = newValue.rawValue }
-    }
 
     /// `true` si la regen a déclenché un rebuild from template base (cas `.restart`).
     var requiresRebuild: Bool
 
     /// `[UUID]` des sessions de S+1 modifiées par la regen. Sérialisé en `Data`
-    /// JSON pour rester compatible SwiftData. Lire/écrire via `affectedSessionIds`.
-    private var affectedSessionIdsJsonData: Data
-    var affectedSessionIds: [UUID] {
-        get { (try? JSONDecoder().decode([UUID].self, from: affectedSessionIdsJsonData)) ?? [] }
-        set { affectedSessionIdsJsonData = (try? JSONEncoder().encode(newValue)) ?? Data() }
-    }
+    /// JSON. Lire/écrire via la computed `affectedSessionIds` en extension.
+    var affectedSessionIdsJsonData: Data
 
     init(
         id: UUID = UUID(),
@@ -85,5 +77,24 @@ final class RegenJournalEntry {
         self.pauseLevelRaw = pauseLevel.rawValue
         self.requiresRebuild = requiresRebuild
         self.affectedSessionIdsJsonData = (try? JSONEncoder().encode(affectedSessionIds)) ?? Data()
+    }
+}
+
+// MARK: - Computed type-safe accessors (hors `@Model` body)
+
+extension RegenJournalEntry {
+    var reason: RegressionDecision.Reason {
+        get { RegressionDecision.Reason(rawValue: reasonRaw) ?? .onTrack }
+        set { reasonRaw = newValue.rawValue }
+    }
+
+    var pauseLevel: PauseLevel {
+        get { PauseLevel(rawValue: pauseLevelRaw) ?? .none }
+        set { pauseLevelRaw = newValue.rawValue }
+    }
+
+    var affectedSessionIds: [UUID] {
+        get { (try? JSONDecoder().decode([UUID].self, from: affectedSessionIdsJsonData)) ?? [] }
+        set { affectedSessionIdsJsonData = (try? JSONEncoder().encode(newValue)) ?? Data() }
     }
 }
