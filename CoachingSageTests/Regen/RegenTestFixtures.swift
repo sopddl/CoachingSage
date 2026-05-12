@@ -49,4 +49,32 @@ enum RegenTestFixtures {
             cooldown: nil
         )
     }
+
+    /// Construit un `WeeklyExecutionReport` directement, pour tester les couches
+    /// au-dessus de l'analyzer (PauseDetector, RegressionRule) sans avoir à
+    /// orchestrer un matching complet. `matches` laissé vide par défaut — les
+    /// consommateurs aval (A.3/A.4) ne lisent que les champs agrégés, pas les
+    /// matches individuels.
+    static func makeReport(
+        weekNumber: Int = 1,
+        plannedActiveSessionCount: Int = 3,
+        completedSessionCount: Int = 3,
+        completionRate: Double = 1.0,
+        globalQuality: Double = 100.0,
+        overExecutedCount: Int = 0,
+        isOverallOverExecuted: Bool = false
+    ) -> WeeklyExecutionReport {
+        WeeklyExecutionReport(
+            weekNumber: weekNumber,
+            weekStartDate: makeWeekStart(),
+            plannedSessionCount: plannedActiveSessionCount,
+            plannedActiveSessionCount: plannedActiveSessionCount,
+            completedSessionCount: completedSessionCount,
+            completionRate: completionRate,
+            globalQuality: globalQuality,
+            overExecutedCount: overExecutedCount,
+            isOverallOverExecuted: isOverallOverExecuted,
+            matches: []
+        )
+    }
 }
