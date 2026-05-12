@@ -22,8 +22,13 @@ final class DefaultWeeklyRegenRepositoryTests: XCTestCase {
         let url = FileManager.default.temporaryDirectory
             .appendingPathComponent("WeeklyRegenRepo-\(UUID()).sqlite")
         let config = ModelConfiguration(url: url)
+        // Schema V7 complet (7 @Model) plutôt que les 2 @Model du repo seul :
+        // crash `FetchDescriptor<RegenJournalEntry>` reproduit 2026-05-12 quand
+        // le container ne contient que les 2 @Model Phase B.1. Hypothèse :
+        // SwiftData macro a besoin du schema complet pour résoudre les relations
+        // implicites entre @Model (même si pas de @Relationship déclarée).
         let container = try ModelContainer(
-            for: WeeklyExecutionReportRecord.self, RegenJournalEntry.self,
+            for: Schema(versionedSchema: SchemaV7.self),
             configurations: config
         )
         self.modelContext = container.mainContext
