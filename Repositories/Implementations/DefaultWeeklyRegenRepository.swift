@@ -19,19 +19,16 @@ final class DefaultWeeklyRegenRepository: WeeklyRegenRepository {
         before weekNumber: Int,
         limit: Int
     ) async throws -> [WeeklyExecutionReportSnapshot] {
-        // SwiftData : on filtre puis on trie en mémoire. Trier par `weekNumber`
-        // (= numéro de semaine du programme) reflète l'ordre chronologique
-        // intra-programme. `weekStartDate` est redondant mais utile pour
-        // ordonner deux programmes différents — ici on est filtré par
-        // `recordId` donc `weekNumber` suffit.
-        let descriptor = FetchDescriptor<WeeklyExecutionReportRecord>(
-            predicate: #Predicate { record in
-                record.recordId == recordId && record.weekNumber < weekNumber
-            }
-        )
+        // Fetch-all + filter Swift : crash `#Predicate` SwiftData avec capture
+        // `UUID + Int` reproduit 2026-05-12 sur Task 174 EXC_BAD_INSTRUCTION.
+        // Volumes V1 faibles, perf OK.
+        let descriptor = FetchDescriptor<WeeklyExecutionReportRecord>()
         let all = try modelContext.fetch(descriptor)
-        let sorted = all.sorted { $0.weekNumber > $1.weekNumber }
-        return sorted.prefix(limit).map(\.snapshot)
+        return all
+            .filter { $0.recordId == recordId && $0.weekNumber < weekNumber }
+            .sorted { $0.weekNumber > $1.weekNumber }
+            .prefix(limit)
+            .map(\.snapshot)
     }
 
     func saveReport(
@@ -40,17 +37,12 @@ final class DefaultWeeklyRegenRepository: WeeklyRegenRepository {
         userId: UUID,
         sportCode: String
     ) async throws {
-        // Upsert : un seul rapport par (recordId, weekNumber). Si on re-analyse
-        // une même semaine (cas où l'user a fait une séance tard et re-trigger
-        // la regen), on remplace le snapshot existant plutôt que de doublonner.
+        // Upsert : un seul rapport par (recordId, weekNumber). Fetch-all +
+        // filter Swift (cf note `fetchReports` — predicate SwiftData crash).
         let weekN = snapshot.weekNumber
-        let existing = try modelContext.fetch(
-            FetchDescriptor<WeeklyExecutionReportRecord>(
-                predicate: #Predicate { record in
-                    record.recordId == recordId && record.weekNumber == weekN
-                }
-            )
-        ).first
+        let descriptor = FetchDescriptor<WeeklyExecutionReportRecord>()
+        let existing = try modelContext.fetch(descriptor)
+            .first { $0.recordId == recordId && $0.weekNumber == weekN }
 
         if let existing {
             existing.snapshot = snapshot
