@@ -172,6 +172,7 @@
 		BE7E3A86034C05EAF9D3621E /* PersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EADAE8CB2C4A12FA89F583 /* PersonalDataView.swift */; };
 		C2944125A5A183CBDF30B974 /* JSONDecoderSupabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B36112665D92BB09B0C4272 /* JSONDecoderSupabaseTests.swift */; };
 		C53241C8586B7E4B99E4AF53 /* AutoProfileReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E920108C6CE27F720A7BD4 /* AutoProfileReviewView.swift */; };
+		C5484152A9B1B19FB72A32FD /* WeeklyRegenEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8E32500DD1F46B09278956 /* WeeklyRegenEngineTests.swift */; };
 		C755C0A750882D1CA9BD9BD3 /* MockHealthKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC67B65FAEF299DD0F20CCC7 /* MockHealthKitService.swift */; };
 		CAEDFC81C2BE3E9783C877B3 /* LanguageSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BD552E6869C2D947BB067 /* LanguageSelectorView.swift */; };
 		CD5E0BF06F719771BA6C7CBE /* AdaptedProgramViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3488F02DC9107A6F439140 /* AdaptedProgramViewModel.swift */; };
@@ -208,6 +209,7 @@
 		F60A30DDBF1182AF1B05D80E /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D957E1FAE36AD570B5685 /* TodayView.swift */; };
 		F7EAD359D81F1C68D16FC534 /* PauseDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813033BDB6878991E41737F /* PauseDetector.swift */; };
 		F8063EC7A8DAD8F09EE956CB /* MockRoutineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A40D576FEA56D8C7969B4 /* MockRoutineRepository.swift */; };
+		F83D0FFAD3B3090BA11EB578 /* WeeklyRegenEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CC3529431C4BDE5CB62217 /* WeeklyRegenEngine.swift */; };
 		FC5B9A5E17187C4AB9168D82 /* AdaptedProgramRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F9F913156464E8D46C7BF /* AdaptedProgramRepository.swift */; };
 		FFF09312274F5D35BCFFB5A0 /* TypingDelayProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251FB5D7FE8B97058766FCDF /* TypingDelayProvider.swift */; };
 /* End PBXBuildFile section */
@@ -376,6 +378,7 @@
 		B851BB9EDBC400393E7F935B /* RegressionRuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegressionRuleTests.swift; sourceTree = "<group>"; };
 		B950CF8A1733A10CB9605130 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
 		BA55024C693442B9733FAD1F /* DefaultCoreProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCoreProfileRepository.swift; sourceTree = "<group>"; };
+		BA8E32500DD1F46B09278956 /* WeeklyRegenEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyRegenEngineTests.swift; sourceTree = "<group>"; };
 		BC233657256C05D557BA0151 /* EditPersonalDataViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalDataViewModelTests.swift; sourceTree = "<group>"; };
 		BEBB0C872F920C81B453E3E2 /* SportTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportTileView.swift; sourceTree = "<group>"; };
 		BFFDE51E705DA72DDAF1503A /* MedicalDisclaimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalDisclaimerView.swift; sourceTree = "<group>"; };
@@ -401,6 +404,7 @@
 		D3E522AFF4D6D45816CDC80D /* WeeklyExecutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyExecutionTests.swift; sourceTree = "<group>"; };
 		D406CF7DFD027D6C9BBC1212 /* SportQuestionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportQuestionnaire.swift; sourceTree = "<group>"; };
 		D5B5883998ABA03E051772A5 /* RoutineRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRepository.swift; sourceTree = "<group>"; };
+		D6CC3529431C4BDE5CB62217 /* WeeklyRegenEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyRegenEngine.swift; sourceTree = "<group>"; };
 		D6D207C4511285357A159853 /* EditActiveSportsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActiveSportsViewModelTests.swift; sourceTree = "<group>"; };
 		D748D86D983DE72D41A9DCC8 /* CoachingSageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingSageTests.swift; sourceTree = "<group>"; };
 		D777FCE39A1243C60F370F5F /* Templates */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Templates; path = Templates; sourceTree = SOURCE_ROOT; };
@@ -428,9 +432,9 @@
 		FD16032A07CE30E27DE86BCA /* JSONDecoder+Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Supabase.swift"; sourceTree = "<group>"; };
 		FE2EBCDA71129879332CF57F /* MockCoachingSportProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoachingSportProfileRepository.swift; sourceTree = "<group>"; };
 		FE4D8313E07E639BE62B7644 /* ProgramDurationResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDurationResolverTests.swift; sourceTree = "<group>"; };
-		"TEMP_79388636-6325-4F78-8C05-5F9341E25C13" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_B415D1B4-C83C-4E91-9344-76BAD53BE9B3" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_ECF3092D-9532-403C-9301-8CCE9B8EB742" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_29B9C238-0C13-4C0D-AF7E-83AD7E4062C6" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_888269F1-BFC8-49CB-AE95-3F203A3F92B1" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_8A62DCCF-B01F-4343-8653-3ECD6F89D8B0" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -547,6 +551,7 @@
 				B851BB9EDBC400393E7F935B /* RegressionRuleTests.swift */,
 				D179DCE09448921E3741771E /* WeeklyExecutionAnalyzerTests.swift */,
 				D3E522AFF4D6D45816CDC80D /* WeeklyExecutionTests.swift */,
+				BA8E32500DD1F46B09278956 /* WeeklyRegenEngineTests.swift */,
 			);
 			path = Regen;
 			sourceTree = "<group>";
@@ -785,6 +790,7 @@
 				6FC47F834EC9D61211650F7E /* RegressionRule.swift */,
 				719B84767CFFC136F4973A51 /* WeeklyExecution.swift */,
 				005681BDE5EE871AF4CD78D4 /* WeeklyExecutionAnalyzer.swift */,
+				D6CC3529431C4BDE5CB62217 /* WeeklyRegenEngine.swift */,
 			);
 			path = Regen;
 			sourceTree = "<group>";
@@ -1065,12 +1071,12 @@
 			path = Schema;
 			sourceTree = "<group>";
 		};
-		"TEMP_9E9FADA4-F06F-4F65-9DD1-38F917A6D20F" /* CoachingSage */ = {
+		"TEMP_AE9EE037-CC22-4886-AFFD-90CA08E13E90" /* CoachingSage */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_B415D1B4-C83C-4E91-9344-76BAD53BE9B3" /* Config-Debug.xcconfig */,
-				"TEMP_79388636-6325-4F78-8C05-5F9341E25C13" /* Config-Release.xcconfig */,
-				"TEMP_ECF3092D-9532-403C-9301-8CCE9B8EB742" /* Config-Staging.xcconfig */,
+				"TEMP_29B9C238-0C13-4C0D-AF7E-83AD7E4062C6" /* Config-Debug.xcconfig */,
+				"TEMP_888269F1-BFC8-49CB-AE95-3F203A3F92B1" /* Config-Release.xcconfig */,
+				"TEMP_8A62DCCF-B01F-4343-8653-3ECD6F89D8B0" /* Config-Staging.xcconfig */,
 			);
 			path = CoachingSage;
 			sourceTree = "<group>";
@@ -1347,6 +1353,7 @@
 				BCC04F56646EFF51458AEB69 /* WeeklyCalendarViewModel.swift in Sources */,
 				8995BB6C54CEC6D76F58998E /* WeeklyExecution.swift in Sources */,
 				F1EEEAC67CC6C10EE4BFDDCF /* WeeklyExecutionAnalyzer.swift in Sources */,
+				F83D0FFAD3B3090BA11EB578 /* WeeklyRegenEngine.swift in Sources */,
 				99A982D7A5EB8A58E82985B5 /* WeeklyStatsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1413,6 +1420,7 @@
 				09B3A6AB870B4F588B4F7481 /* WeeklyCalendarViewModelTests.swift in Sources */,
 				452F3DB00B46B845800DE223 /* WeeklyExecutionAnalyzerTests.swift in Sources */,
 				3D517BC77AAB6B69711DECFD /* WeeklyExecutionTests.swift in Sources */,
+				C5484152A9B1B19FB72A32FD /* WeeklyRegenEngineTests.swift in Sources */,
 				2422E35A4BD919E1606D7130 /* WeeklyStatsServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1471,7 +1479,7 @@
 		};
 		61B5E17E96E19C8E098AA3DC /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_ECF3092D-9532-403C-9301-8CCE9B8EB742" /* Config-Staging.xcconfig */;
+			baseConfigurationReference = "TEMP_8A62DCCF-B01F-4343-8653-3ECD6F89D8B0" /* Config-Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1532,7 +1540,7 @@
 		};
 		6444A73E993A0AE7B8936309 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_79388636-6325-4F78-8C05-5F9341E25C13" /* Config-Release.xcconfig */;
+			baseConfigurationReference = "TEMP_888269F1-BFC8-49CB-AE95-3F203A3F92B1" /* Config-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1681,7 +1689,7 @@
 		};
 		E103FFBD6D87D5F977B573D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_B415D1B4-C83C-4E91-9344-76BAD53BE9B3" /* Config-Debug.xcconfig */;
+			baseConfigurationReference = "TEMP_29B9C238-0C13-4C0D-AF7E-83AD7E4062C6" /* Config-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
