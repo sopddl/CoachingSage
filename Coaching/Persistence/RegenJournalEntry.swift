@@ -36,17 +36,19 @@ final class RegenJournalEntry {
 
     /// `RegressionDecision.Reason.rawValue` — utiliser `reason` (computed,
     /// défini en extension) côté business code.
-    var reasonRaw: String = RegressionDecision.Reason.onTrack.rawValue
+    /// String literal en default (pas `RegressionDecision.Reason.onTrack.rawValue`)
+    /// pour éviter un cycle d'init quand SwiftData macro évalue le schema —
+    /// crash `FetchDescriptor<RegenJournalEntry>` reproduit 2026-05-12.
+    var reasonRaw: String = "onTrack"
 
     /// Multiplicateur effectivement appliqué (clampé) — utile pour l'overlay UI
     /// qui affiche `+10%` / `-25%` sans avoir à dupliquer la logique multiplier.
-    /// Default value obligatoire pour SwiftData macro `@Model` (crash runtime
-    /// observé 2026-05-12 sans default sur les types primitifs Double/Bool).
     var multiplier: Double = 1.0
 
     /// `PauseLevel.rawValue` au moment de la regen. Utile pour le wording du
     /// badge (pauseLight vs pauseModerate vs pauseExtended).
-    var pauseLevelRaw: String = PauseLevel.none.rawValue
+    /// Cf note `reasonRaw` pour le string literal en default.
+    var pauseLevelRaw: String = "none"
 
     /// `true` si la regen a déclenché un rebuild from template base (cas `.restart`).
     /// Default obligatoire SwiftData (cf note `multiplier`).
