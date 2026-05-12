@@ -82,8 +82,8 @@ final class RegressionRuleTests: XCTestCase {
     }
 
     func testCompletionRateExactly50_doesNotTriggerMissed() {
-        // 0.50 n'est PAS strictement < 0.50 → on file en lowQuality si applicable,
-        // sinon onTrack.
+        // 0.50 n'est PAS strictement < 0.50 → on file en onTrack ici (qualité
+        // 85 = haute, lowQuality non applicable).
         let report = F.makeReport(
             plannedActiveSessionCount: 4,
             completedSessionCount: 2,
@@ -197,5 +197,26 @@ final class RegressionRuleTests: XCTestCase {
         XCTAssertEqual(VolumeAdjustment.reduce(percent: 0.25).multiplier, 0.75, accuracy: 0.0001)
         XCTAssertEqual(VolumeAdjustment.reduce(percent: 0.50).multiplier, 0.50, accuracy: 0.0001)
         XCTAssertEqual(VolumeAdjustment.restart.multiplier, 0.5)
+    }
+
+    /// Garde-fou : si un appelant construit une valeur hors-contrat (au-delà
+    /// du cap ACSM 10% pour progress, au-delà de 0.99 pour reduce), le getter
+    /// `multiplier` clampe — pas de corruption silencieuse Phase B.
+    func testMultiplierClampsOutOfContractValues() {
+        XCTAssertEqual(VolumeAdjustment.progress(percent: 0.50).multiplier, 1.10, accuracy: 0.0001)
+        XCTAssertEqual(VolumeAdjustment.progress(percent: -0.10).multiplier, 1.0, accuracy: 0.0001)
+        XCTAssertEqual(VolumeAdjustment.reduce(percent: 1.5).multiplier, 0.01, accuracy: 0.0001)
+        XCTAssertEqual(VolumeAdjustment.reduce(percent: -0.5).multiplier, 1.0, accuracy: 0.0001)
+    }
+
+    /// Phase B doit pouvoir distinguer `.restart` (rebuild from base) de
+    /// `.reduce(percent: 0.5)` (multiplier sur le template courant) sans
+    /// repattern-matcher : `requiresRebuild` est ce contrat.
+    func testRequiresRebuildOnlyForRestart() {
+        XCTAssertTrue(VolumeAdjustment.restart.requiresRebuild)
+        XCTAssertFalse(VolumeAdjustment.maintain.requiresRebuild)
+        XCTAssertFalse(VolumeAdjustment.progress(percent: 0.10).requiresRebuild)
+        XCTAssertFalse(VolumeAdjustment.reduce(percent: 0.25).requiresRebuild)
+        XCTAssertFalse(VolumeAdjustment.reduce(percent: 0.50).requiresRebuild)
     }
 }

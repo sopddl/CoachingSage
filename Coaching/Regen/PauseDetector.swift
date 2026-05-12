@@ -43,7 +43,7 @@ public enum PauseLevel: String, Equatable, Sendable, CaseIterable {
     case moderate
 
     /// Pause longue ≥ 2 semaines : >14j sans workout OU 3+ semaines consécutives
-    /// sub-seuil. Régen S+1 = restart progressif (-50%), pas une simple reduction
+    /// sub-seuil. Régen S+1 = restart progressif (-50%), pas une simple réduction
     /// car la doctrine ACSM dit que les adaptations sont en partie perdues.
     case extended
 }
@@ -132,13 +132,20 @@ public enum PauseDetector {
 
     // MARK: - Helpers
 
+    /// Nb max de semaines historique inspectées pour décider du niveau de
+    /// pause. Au-delà de 3 sem consécutives sub-seuil on est déjà au niveau
+    /// `extended` — inutile (et trompeur côté lecteur) de continuer à scanner.
+    public static let historyDepthLimit: Int = 3
+
     /// Compte les semaines consécutives sub-seuil en partant de la plus récente.
     /// Une semaine sans session active planifiée (programme full rest, ex.
     /// semaine de récup pure) n'est PAS comptée comme low (completionRate=0
     /// par convention de l'analyzer, mais ce n'est pas une pause subie).
+    /// Inspecte au plus `historyDepthLimit` semaines — au-delà le niveau ne
+    /// change plus, on évite de balayer un tableau plus long inutilement.
     static func countConsecutiveLowWeeks(reports: [WeeklyExecutionReport]) -> Int {
         var count = 0
-        for report in reports {
+        for report in reports.prefix(historyDepthLimit) {
             if report.plannedActiveSessionCount == 0 {
                 // Semaine "off" planifiée : ne casse pas la série mais ne compte
                 // pas non plus comme low. break pour éviter de continuer à

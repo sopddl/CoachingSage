@@ -45,34 +45,54 @@ import Foundation
 
 /// Ajustement applicable au volume hebdo de la semaine S+1.
 /// Chaque cas porte sa magnitude pour le hook UI (badge, explication) et pour
-/// le moteur A.4 qui applique le facteur à `session.durationMinutes` (ou
+/// le moteur Phase B qui applique le facteur à `session.durationMinutes` (ou
 /// `targetDistanceMeters`, selon le sport).
 public enum VolumeAdjustment: Equatable, Sendable {
-    /// Augmentation, percent ∈ ]0, 0.10] (cap ACSM 10%).
+    /// Augmentation, percent ∈ ]0, 0.10] (cap ACSM 10%). Le getter `multiplier`
+    /// clampe à [0, 0.10] pour blinder un appelant qui construirait une valeur
+    /// hors-contrat.
     case progress(percent: Double)
 
     /// Pas de changement (multiplicateur 1.0).
     case maintain
 
-    /// Réduction, percent ∈ ]0, 0.50[.
+    /// Réduction, percent ∈ ]0, 0.50]. Le getter `multiplier` clampe à
+    /// [0, 0.99] pour éviter `multiplier = 0` (sessions à 0 min → corruption
+    /// silencieuse Phase B).
     case reduce(percent: Double)
 
     /// Restart progressif post-pause longue : -50% du volume planifié.
     /// Sémantiquement distinct de `reduce(percent: 0.5)` : signale à l'UI que
     /// l'user reprend après une coupure (texte d'explication différent) et au
-    /// moteur A.4 que la semaine S+1 doit être "rebuilt from base" plutôt que
-    /// d'appliquer un facteur sur le template courant.
+    /// moteur Phase B que la semaine S+1 doit être « rebuilt from base »
+    /// (cf. `requiresRebuild`) plutôt que d'appliquer un facteur sur le
+    /// template courant.
     case restart
 
     /// Multiplicateur à appliquer au volume planifié de la semaine S+1.
-    /// Maintain = 1.0, restart = 0.5.
+    /// Maintain = 1.0, restart = 0.5. Clamping défensif des `percent` reçus
+    /// (cap ACSM 10% pour progress, ]0, 0.99] pour reduce).
     public var multiplier: Double {
         switch self {
-        case .progress(let percent): return 1.0 + percent
-        case .maintain:               return 1.0
-        case .reduce(let percent):    return 1.0 - percent
-        case .restart:                return 0.5
+        case .progress(let percent):
+            return 1.0 + max(0, min(percent, RegressionRule.maxProgressPercent))
+        case .maintain:
+            return 1.0
+        case .reduce(let percent):
+            return 1.0 - max(0, min(percent, 0.99))
+        case .restart:
+            return 0.5
         }
+    }
+
+    /// `true` si l'ajustement doit pousser Phase B à reconstruire la semaine
+    /// S+1 « from base » (template d'origine + niveau réduit) plutôt qu'à
+    /// multiplier le template courant. Distingue `.restart` de
+    /// `.reduce(percent: 0.5)`. Évite à Phase B de réimplémenter la
+    /// connaissance du cas spécial.
+    public var requiresRebuild: Bool {
+        if case .restart = self { return true }
+        return false
     }
 }
 
@@ -164,17 +184,11 @@ public enum RegressionRule {
     ///
     /// - Parameters:
     ///   - currentWeek: rapport de la semaine S qu'on vient de finir.
-    ///   - previousWeek: rapport S-1, optionnel. Non utilisé V1 (réservé Phase
-    ///     B pour distinguer un over-train de 1 sem vs cumulé). Présent dans
-    ///     l'API pour stabilité du contrat A.3 → A.4.
     ///   - pauseLevel: niveau détecté par `PauseDetector`. `.none` = pas de pause.
     public static func decide(
         currentWeek: WeeklyExecutionReport,
-        previousWeek: WeeklyExecutionReport? = nil,
         pauseLevel: PauseLevel
     ) -> RegressionDecision {
-        _ = previousWeek // réservé Phase B
-
         // 1. Pause extended : restart progressif. Priorité max — la doctrine
         // ACSM detraining dit qu'à ce niveau les adaptations sont en partie
         // perdues, ne pas reprendre comme avant.

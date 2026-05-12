@@ -117,6 +117,55 @@ final class WeeklyRegenEngineTests: XCTestCase {
         XCTAssertEqual(decision.pauseDetection.consecutiveLowWeeks, 2)
     }
 
+    /// Garde-fou ordre : si Phase B branche une query SQLite qui retourne les
+    /// rapports en ordre ASC (plus ancien d'abord), A.4 doit produire le même
+    /// résultat que si l'appelant les avait passés DESC. Sort défensif au pas
+    /// d'entrée du moteur.
+    func testPreviousReportsOrderIndifferent() {
+        let current = RegenTestFixtures.makeReport(completionRate: 1.0)
+        let calendar = Calendar.current
+        let base = RegenTestFixtures.makeWeekStart()
+        // 3 rapports low avec des dates strictement décroissantes en partant
+        // de base (S-1, S-2, S-3). On les passe ASC pour défier le moteur.
+        let weekMinus1Start = calendar.date(byAdding: .day, value: -7, to: base)!
+        let weekMinus2Start = calendar.date(byAdding: .day, value: -14, to: base)!
+        let weekMinus3Start = calendar.date(byAdding: .day, value: -21, to: base)!
+        let report1 = WeeklyExecutionReport(
+            weekNumber: 0, weekStartDate: weekMinus1Start,
+            plannedSessionCount: 3, plannedActiveSessionCount: 3,
+            completedSessionCount: 0, completionRate: 0.1,
+            globalQuality: 40, overExecutedCount: 0,
+            isOverallOverExecuted: false, matches: []
+        )
+        let report2 = WeeklyExecutionReport(
+            weekNumber: -1, weekStartDate: weekMinus2Start,
+            plannedSessionCount: 3, plannedActiveSessionCount: 3,
+            completedSessionCount: 0, completionRate: 0.1,
+            globalQuality: 40, overExecutedCount: 0,
+            isOverallOverExecuted: false, matches: []
+        )
+        let report3 = WeeklyExecutionReport(
+            weekNumber: -2, weekStartDate: weekMinus3Start,
+            plannedSessionCount: 3, plannedActiveSessionCount: 3,
+            completedSessionCount: 0, completionRate: 0.1,
+            globalQuality: 40, overExecutedCount: 0,
+            isOverallOverExecuted: false, matches: []
+        )
+
+        let decisionASC = WeeklyRegenEngine.regenerate(
+            currentReport: current,
+            previousReports: [report3, report2, report1]
+        )
+        let decisionDESC = WeeklyRegenEngine.regenerate(
+            currentReport: current,
+            previousReports: [report1, report2, report3]
+        )
+        XCTAssertEqual(decisionASC.pauseLevel, .extended)
+        XCTAssertEqual(decisionASC.reason, decisionDESC.reason)
+        XCTAssertEqual(decisionASC.adjustment, decisionDESC.adjustment)
+        XCTAssertEqual(decisionASC.pauseDetection, decisionDESC.pauseDetection)
+    }
+
     /// Doctrine A.4 : une seule semaine courante sub-seuil isolée n'est PAS
     /// une pause au sens detraining ACSM — c'est un signal `missedSessions`
     /// (programme trop chargé / mauvais alignement rythme). RegressionRule
@@ -231,7 +280,6 @@ final class WeeklyRegenEngineTests: XCTestCase {
         let regenDecision = WeeklyRegenEngine.regenerate(currentReport: report)
         let ruleDecision = RegressionRule.decide(
             currentWeek: report,
-            previousWeek: nil,
             pauseLevel: .none
         )
         XCTAssertEqual(regenDecision.adjustment, ruleDecision.adjustment)

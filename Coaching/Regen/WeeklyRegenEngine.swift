@@ -122,14 +122,18 @@ public enum WeeklyRegenEngine {
     ///
     /// - Parameters:
     ///   - currentReport: rapport de la semaine S qui vient de se terminer.
-    ///   - previousReports: rapports antérieurs (S-1, S-2…) du plus récent au
-    ///     plus ancien.
+    ///   - previousReports: rapports antérieurs (S-1, S-2…). L'ordre est
+    ///     **indifférent** côté caller — le moteur trie défensivement par
+    ///     `weekStartDate` desc (plus récent en tête) avant de passer à
+    ///     PauseDetector. Évite un bug silencieux si Phase B branche une query
+    ///     SQLite qui retourne ASC par défaut.
     ///   - daysSinceLastWorkout: voir `regenerate(weekNumber:…)`.
     public static func regenerate(
         currentReport: WeeklyExecutionReport,
         previousReports: [WeeklyExecutionReport] = [],
         daysSinceLastWorkout: Int? = nil
     ) -> WeeklyRegenDecision {
+        let sortedPrevious = previousReports.sorted { $0.weekStartDate > $1.weekStartDate }
         // PauseDetector regarde le PASSÉ (semaines déjà archivées), pas la
         // semaine courante. Sinon une sem courante sub-seuil isolée se
         // ferait flagger "pauseLight" et masquerait le signal `missedSessions`
@@ -138,12 +142,11 @@ public enum WeeklyRegenEngine {
         // vraie pause = série historique sub-seuil OU délai HK long ; les
         // deux sont visibles dans `previousReports` + `daysSinceLastWorkout`.
         let pauseDetection = PauseDetector.detect(
-            recentReports: previousReports,
+            recentReports: sortedPrevious,
             daysSinceLastWorkout: daysSinceLastWorkout
         )
         let regression = RegressionRule.decide(
             currentWeek: currentReport,
-            previousWeek: previousReports.first,
             pauseLevel: pauseDetection.level
         )
         return WeeklyRegenDecision(
