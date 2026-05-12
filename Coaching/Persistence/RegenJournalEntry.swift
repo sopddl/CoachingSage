@@ -2,20 +2,18 @@
 // Story 3.4 Phase B.1 — trace chaque application de regen S+1 par
 // `WeeklyRegenApplicationService`. Sert à 3 usages :
 //   1. Idempotence : empêcher la double-application d'une regen pour le même
-//      `(recordId, targetWeekNumber)`. Le check se fait via
-//      `WeeklyRegenRepository.fetchJournal(recordId:targetWeek:)` avant
-//      `applyDecision`.
-//   2. Badge dashboard "Léon a ajusté ta semaine N+1" : affichable jusqu'à la
-//      fin de la semaine cible. Le VM filtre par `appliedAt` récent.
-//   3. Overlay sur sessions modifiées : `affectedSessionIds` permet à la card
-//      de session d'afficher `+10%` / `-25%` / "Reprise".
+//      `(recordId, targetWeekNumber)`.
+//   2. Badge dashboard "Léon a ajusté ta semaine N+1".
+//   3. Overlay sur sessions modifiées : `affectedSessionIds`.
 //
-// Pattern SwiftData strict : `@Model` body porte UNIQUEMENT les stored properties
-// (les enums sont stockés en rawValue String, `[UUID]` en JSON `Data` privé).
-// Les computed properties type-safe (`reason`, `pauseLevel`, `affectedSessionIds`)
-// vivent en `extension` du même fichier — workaround pour un crash SwiftData
-// `Lost connection to testmanagerd` observé 2026-05-12 quand les computed
-// étaient dans le body `@Model`.
+// Pattern SwiftData strict, copié EXACTEMENT sur `WeeklyExecutionReportRecord`
+// qui fonctionne :
+//   - stored properties SANS default value
+//   - `private` sur le Data-JSON field
+//   - computed type-safe accessors en extension (même fichier)
+//
+// Toute déviation (defaults, non-private) cause un crash silencieux SwiftData
+// `FetchDescriptor<RegenJournalEntry>` reproduit 2026-05-12. Ne pas toucher.
 import Foundation
 import SwiftData
 
@@ -34,29 +32,21 @@ final class RegenJournalEntry {
 
     var appliedAt: Date
 
-    /// `RegressionDecision.Reason.rawValue` — utiliser `reason` (computed,
-    /// défini en extension) côté business code.
-    /// String literal en default (pas `RegressionDecision.Reason.onTrack.rawValue`)
-    /// pour éviter un cycle d'init quand SwiftData macro évalue le schema —
-    /// crash `FetchDescriptor<RegenJournalEntry>` reproduit 2026-05-12.
-    var reasonRaw: String = "onTrack"
+    /// `RegressionDecision.Reason.rawValue` — accès type-safe via `reason` en extension.
+    var reasonRaw: String
 
-    /// Multiplicateur effectivement appliqué (clampé) — utile pour l'overlay UI
-    /// qui affiche `+10%` / `-25%` sans avoir à dupliquer la logique multiplier.
-    var multiplier: Double = 1.0
+    /// Multiplicateur effectivement appliqué (clampé) — utile pour l'overlay UI.
+    var multiplier: Double
 
-    /// `PauseLevel.rawValue` au moment de la regen. Utile pour le wording du
-    /// badge (pauseLight vs pauseModerate vs pauseExtended).
-    /// Cf note `reasonRaw` pour le string literal en default.
-    var pauseLevelRaw: String = "none"
+    /// `PauseLevel.rawValue` — accès type-safe via `pauseLevel` en extension.
+    var pauseLevelRaw: String
 
     /// `true` si la regen a déclenché un rebuild from template base (cas `.restart`).
-    /// Default obligatoire SwiftData (cf note `multiplier`).
-    var requiresRebuild: Bool = false
+    var requiresRebuild: Bool
 
-    /// `[UUID]` des sessions de S+1 modifiées par la regen. Sérialisé en `Data`
-    /// JSON. Lire/écrire via la computed `affectedSessionIds` en extension.
-    var affectedSessionIdsJsonData: Data = Data()
+    /// `[UUID]` des sessions de S+1 modifiées par la regen, sérialisé en JSON.
+    /// Accès type-safe via `affectedSessionIds` en extension (file-private OK).
+    private var affectedSessionIdsJsonData: Data
 
     init(
         id: UUID = UUID(),
@@ -85,7 +75,7 @@ final class RegenJournalEntry {
     }
 }
 
-// MARK: - Computed type-safe accessors (hors `@Model` body)
+// MARK: - Computed type-safe accessors (file-private accès au Data)
 
 extension RegenJournalEntry {
     var reason: RegressionDecision.Reason {
