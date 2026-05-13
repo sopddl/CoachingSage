@@ -11,8 +11,16 @@ final class MockAdaptedProgramRepository: AdaptedProgramRepository {
     var archivedRecords: [AdaptedProgramRecord] = []
     var fetchShouldThrow: Bool = false
     var updateShouldThrow: Bool = false
+    /// Story 3.4 Phase B.4 — closure synchrone invoquée à chaque `fetchActive`.
+    /// Utilisée par les tests qui vérifient l'ordering avec un autre collaborateur
+    /// (ex. `FakeWeeklyRegenApplicationService.onCheckAndApply` doit avoir tick
+    /// avant ce callback).
+    var onFetchActive: (@MainActor (UUID) -> Void)?
+    private(set) var fetchActiveCallCount: Int = 0
 
     func fetchActive(for userId: UUID) async throws -> [AdaptedProgramRecord] {
+        fetchActiveCallCount += 1
+        onFetchActive?(userId)
         if fetchShouldThrow { throw URLError(.notConnectedToInternet) }
         return stubbedActive.filter { $0.userId == userId && $0.isActive }
     }

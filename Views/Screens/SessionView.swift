@@ -61,19 +61,26 @@ struct SessionView: View {
                 }
                 .navigationDestination(item: $adaptedRoute) { route in
                     if let deps {
-                        AdaptedProgramScreen(viewModel: AdaptedProgramViewModel(
-                            program: route.program,
-                            initialLeonNotes: route.initialLeonNotes,
-                            recordId: route.recordId,
-                            aiService: deps.sageCoachingAIService,
-                            healthSummaryBuilder: DefaultHealthSummaryBuilder(healthKit: deps.healthKitService),
-                            coreRepo: deps.coreProfileRepository,
-                            coachingRepo: deps.coachingProfileRepository,
-                            adaptedRepo: deps.adaptedProgramRepository
-                        ))
+                        AdaptedProgramScreen(
+                            viewModel: AdaptedProgramViewModel(
+                                program: route.program,
+                                initialLeonNotes: route.initialLeonNotes,
+                                recordId: route.recordId,
+                                aiService: deps.sageCoachingAIService,
+                                healthSummaryBuilder: DefaultHealthSummaryBuilder(healthKit: deps.healthKitService),
+                                coreRepo: deps.coreProfileRepository,
+                                coachingRepo: deps.coachingProfileRepository,
+                                adaptedRepo: deps.adaptedProgramRepository
+                            ),
+                            modifiedSessionCoordinates: route.modifiedSessionCoordinates
+                        )
                     } else {
                         // Fallback : pas de deps (preview sans dependencies) → rendu statique sans Léon.
-                        AdaptedProgramView(program: route.program, recordId: route.recordId)
+                        AdaptedProgramView(
+                            program: route.program,
+                            recordId: route.recordId,
+                            modifiedSessionCoordinates: route.modifiedSessionCoordinates
+                        )
                     }
                 }
                 .task {
@@ -204,6 +211,7 @@ struct SessionView: View {
                 weeklyStats: vm.weeklyStats,
                 nextAfterDominant: vm.nextAfterDominant,
                 restDayHintKey: vm.restDayHintKey,
+                regenBadges: vm.regenBadgesByRecord,
                 nowProvider: { nowTick },
                 onTapDominantStart: { result in
                     pushAdaptedProgram(record: result.program)
@@ -239,10 +247,12 @@ struct SessionView: View {
             presentationError = String(localized: "session.adapter.profileMissing")
             return
         }
+        let modified = dashboardViewModel?.modifiedSessionCoordinates(forRecordId: record.id) ?? []
         adaptedRoute = AdaptedProgramRoute(
             program: applied.program,
             recordId: record.id,
-            initialLeonNotes: applied.leonNotes
+            initialLeonNotes: applied.leonNotes,
+            modifiedSessionCoordinates: modified
         )
     }
 
@@ -277,7 +287,9 @@ struct SessionView: View {
         dashboardViewModel = SessionDashboardViewModel(
             programRepository: deps.adaptedProgramRepository,
             routineRepository: deps.routineRepository,
-            coachingProfileRepository: deps.coachingProfileRepository
+            coachingProfileRepository: deps.coachingProfileRepository,
+            weeklyRegenApplicationService: deps.weeklyRegenApplicationService,
+            weeklyRegenRepository: deps.weeklyRegenRepository
         )
     }
 
@@ -468,11 +480,22 @@ private struct AdaptedProgramRoute: Hashable {
     /// Story 3.3b — notes Léon pré-existantes si push depuis dashboard d'un programme
     /// déjà raffiné par Léon (record.aiPatchApplied=true). `nil` sur hot path.
     let initialLeonNotes: LeonAppliedNotes?
+    /// Phase B.6 — coordonnées `(weekNumber, day)` des sessions S+1 mutées par
+    /// la regen cette semaine. Highlight visuel côté `AdaptedProgramView` +
+    /// `SessionDetailView`. Vide sur hot path post-adapt (record vient d'être
+    /// créé) ou si pas de regen appliquée.
+    let modifiedSessionCoordinates: Set<SessionCoordinate>
 
-    init(program: AdaptedProgram, recordId: UUID?, initialLeonNotes: LeonAppliedNotes? = nil) {
+    init(
+        program: AdaptedProgram,
+        recordId: UUID?,
+        initialLeonNotes: LeonAppliedNotes? = nil,
+        modifiedSessionCoordinates: Set<SessionCoordinate> = []
+    ) {
         self.program = program
         self.recordId = recordId
         self.initialLeonNotes = initialLeonNotes
+        self.modifiedSessionCoordinates = modifiedSessionCoordinates
     }
 
     func hash(into hasher: inout Hasher) { hasher.combine(id) }

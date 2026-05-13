@@ -28,6 +28,10 @@ struct ActiveDashboardView: View {
     let weeklyStats: WeeklyStats?
     let nextAfterDominant: NextSessionResolver.Result?
     let restDayHintKey: LocalizedStringKey?
+    /// Phase B.5 — map `record.id → RegenBadge` peuplée pour les programmes
+    /// dont la regen S+1 a été appliquée cette semaine. Une entrée absente
+    /// signifie "pas de regen, pas de badge".
+    var regenBadges: [UUID: RegenBadge] = [:]
     let nowProvider: () -> Date
     let onTapDominantStart: (NextSessionResolver.Result) -> Void
     let onTapProgram: (ActiveProgramSummary) -> Void
@@ -87,6 +91,7 @@ struct ActiveDashboardView: View {
                         SwipeToDeleteRow(onDelete: { onDeleteProgram(summary) }) {
                             ProgramCard(
                                 summary: summary,
+                                badge: regenBadges[summary.record.id],
                                 onTap: { onTapProgram(summary) }
                             )
                         }
@@ -368,6 +373,9 @@ private struct WeeklyStatsWidget: View {
 
 private struct ProgramCard: View {
     let summary: ActiveProgramSummary
+    /// Phase B.5 — badge regen S+1 si la regen a été appliquée cette semaine
+    /// pour ce record. `nil` sinon. Style varie selon `requiresRebuild`.
+    var badge: RegenBadge?
     let onTap: () -> Void
 
     var body: some View {
@@ -404,6 +412,10 @@ private struct ProgramCard: View {
                         .font(.coachingCaption)
                         .foregroundStyle(Color.coachingTextSecondary)
                         .lineLimit(1)
+
+                    if let badge {
+                        RegenBadgePill(badge: badge)
+                    }
 
                     GeometryReader { geo in
                         ZStack(alignment: .leading) {
@@ -475,6 +487,42 @@ private struct ProgramCard: View {
         case "football": return "soccerball"
         default: return "questionmark.circle"
         }
+    }
+}
+
+// MARK: - Regen badge pill (Phase B.5)
+
+/// Pill discrète affichée sous la `metaLine` du `ProgramCard` quand une regen
+/// S+1 a été appliquée cette semaine. Couleur change selon `requiresRebuild`
+/// (orange/alerte en cas de restart, bleu/info sinon). i18n FR/EN différée à
+/// la B.7 — pour l'instant `reasonKey` se résoud sur la clé brute si absente
+/// du `Localizable.xcstrings`.
+private struct RegenBadgePill: View {
+    let badge: RegenBadge
+
+    private var tint: Color {
+        badge.requiresRebuild ? Color.coachingError : Color.coachingPrimary
+    }
+
+    var body: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "sparkles")
+                .font(.system(size: 10, weight: .semibold))
+            Text(badge.reasonKey)
+                .font(.system(size: 11, weight: .medium))
+                .lineLimit(1)
+            Spacer(minLength: 4)
+            Text(verbatim: badge.percentLabel)
+                .font(.system(size: 11, weight: .semibold, design: .rounded))
+                .monospacedDigit()
+        }
+        .foregroundStyle(tint)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(tint.opacity(0.10))
+        .clipShape(Capsule())
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("dashboard.active.program.regenBadge")
     }
 }
 

@@ -27,6 +27,11 @@ struct AdaptedProgramView: View {
     /// La View réagit avec un overlay loader / banner d'erreur correspondant.
     var requestState: AdaptedProgramViewModel.LeonRequestState = .idle
 
+    /// Phase B.6 — coordonnées `(weekNumber, day)` des sessions mutées par la
+    /// regen S+1 cette semaine. Marker `sparkles` orange sur les rows
+    /// correspondantes + bandeau header dans `SessionDetailView` quand tap.
+    var modifiedSessionCoordinates: Set<SessionCoordinate> = []
+
     @State private var weeklyCalendarPresented: Bool = false
 
     var body: some View {
@@ -268,8 +273,16 @@ struct AdaptedProgramView: View {
     }
 
     private func sessionRow(_ session: AdaptedSession, week: AdaptedWeek) -> some View {
-        NavigationLink {
-            SessionDetailView(session: session, week: week, program: program)
+        let isModifiedByRegen = modifiedSessionCoordinates.contains(
+            SessionCoordinate(weekNumber: week.weekNumber, day: session.day)
+        )
+        return NavigationLink {
+            SessionDetailView(
+                session: session,
+                week: week,
+                program: program,
+                isModifiedByRegen: isModifiedByRegen
+            )
         } label: {
             HStack(spacing: 12) {
                 Image(systemName: AdaptedProgramFormatting.sfSymbol(for: session.type))
@@ -284,6 +297,13 @@ struct AdaptedProgramView: View {
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
+                if isModifiedByRegen {
+                    Image(systemName: "sparkles")
+                        .foregroundStyle(.orange)
+                        .font(.caption.weight(.semibold))
+                        .accessibilityLabel(Text("coaching.adapter.session.regenAdjusted"))
+                        .accessibilityIdentifier("coaching.adapter.session.regenMarker")
+                }
                 if hasAdaptations(week: week.weekNumber, day: session.day) {
                     Image(systemName: "arrow.left.arrow.right.circle.fill")
                         .foregroundStyle(.orange)

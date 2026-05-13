@@ -317,6 +317,256 @@ final class SessionDashboardViewModelTests: XCTestCase {
         XCTAssertTrue(vm.emptyModeSuggestions.isEmpty)
     }
 
+    // MARK: - Phase B.4 — auto-trigger regen
+
+    func testRefreshInvokesWeeklyRegenServiceWithUserIdAndNow() async {
+        let service = FakeWeeklyRegenApplicationService()
+        let vm = makeVM(
+            programRepo: MockAdaptedProgramRepository(),
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenService: service
+        )
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(service.checkAndApplyCallCount, 1)
+        XCTAssertEqual(service.lastUserId, userId)
+        XCTAssertEqual(service.lastNow, now)
+    }
+
+    func testRefreshCallsWeeklyRegenServiceBeforeFetchActive() async {
+        // Garantit que la mutation S+1 est faite EN PLACE avant la lecture des
+        // programmes — donc les durations affichées au dashboard sont les
+        // nouvelles, pas les anciennes.
+        let progRepo = MockAdaptedProgramRepository()
+        let service = FakeWeeklyRegenApplicationService()
+
+        var events: [String] = []
+        service.onCheckAndApply = { _, _ in events.append("regen") }
+        progRepo.onFetchActive = { _ in events.append("fetchActive") }
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenService: service
+        )
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(events, ["regen", "fetchActive"],
+                       "Le service de regen doit tick AVANT fetchActive")
+    }
+
+    func testRefreshContinuesWhenWeeklyRegenServiceThrows() async {
+        // Best-effort : un échec côté service ne doit jamais empêcher le dashboard
+        // de se charger ni propager d'erreur visible.
+        let service = FakeWeeklyRegenApplicationService()
+        service.checkShouldThrow = true
+        let prog = makeRecord(sportCode: "running", sessionsCount: 1)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenService: service
+        )
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertNil(vm.error, "L'erreur regen est best-effort, ne remonte pas dans vm.error")
+        guard case .singleProgram = vm.mode else {
+            return XCTFail("Dashboard doit afficher .singleProgram même si la regen a throw, got \(vm.mode)")
+        }
+    }
+
+    // MARK: - Phase B.5 — regen badges
+
+    func testRefreshLoadsRegenBadgesFromJournalForCurrentWeek() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 3)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+
+        let regenRepo = MockWeeklyRegenRepository()
+        regenRepo.stubbedJournalEntries = [
+            RegenJournalEntry(
+                userId: userId,
+                recordId: prog.id,
+                analyzedWeekNumber: 1,
+                targetWeekNumber: 2,
+                appliedAt: now,
+                reason: .onTrack,
+                multiplier: 1.10,
+                pauseLevel: .none,
+                requiresRebuild: false,
+                affectedSessionIds: []
+            )
+        ]
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenRepo: regenRepo
+        )
+
+        await vm.refresh(userId: userId)
+
+        let badge = vm.regenBadgesByRecord[prog.id]
+        XCTAssertNotNil(badge, "Badge attendu pour le record qui a une entry journal cette semaine")
+        XCTAssertEqual(badge?.percentLabel, "+10%")
+        XCTAssertFalse(badge?.requiresRebuild ?? true)
+        XCTAssertEqual(regenRepo.fetchJournalForCurrentWeekCallCount, 1)
+    }
+
+    func testRefreshKeepsMostRecentEntryPerRecordWhenJournalHasMultipleEntriesSameWeek() async {
+        // Edge case : 2 regens appliquées la même semaine calendrier pour
+        // le même record (ex. Sophie supprime et re-crée → 2 entries). On
+        // veut la plus récente (appliedAt desc → 1re du résultat).
+        let prog = makeRecord(sportCode: "running", sessionsCount: 3)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+
+        let older = RegenJournalEntry(
+            userId: userId, recordId: prog.id,
+            analyzedWeekNumber: 1, targetWeekNumber: 2,
+            appliedAt: now.addingTimeInterval(-3600),
+            reason: .onTrack, multiplier: 1.10, pauseLevel: .none,
+            requiresRebuild: false, affectedSessionIds: []
+        )
+        let newer = RegenJournalEntry(
+            userId: userId, recordId: prog.id,
+            analyzedWeekNumber: 2, targetWeekNumber: 3,
+            appliedAt: now,
+            reason: .pauseExtended, multiplier: 0.5, pauseLevel: .extended,
+            requiresRebuild: true, affectedSessionIds: []
+        )
+        let regenRepo = MockWeeklyRegenRepository()
+        regenRepo.stubbedJournalEntries = [older, newer]
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenRepo: regenRepo
+        )
+
+        await vm.refresh(userId: userId)
+
+        let badge = vm.regenBadgesByRecord[prog.id]
+        XCTAssertEqual(badge?.percentLabel, "-50%", "Doit prendre la plus récente (.pauseExtended ×0.5)")
+        XCTAssertTrue(badge?.requiresRebuild ?? false)
+    }
+
+    func testRefreshLeavesRegenBadgesEmptyWhenRepoAbsent() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 1)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+
+        // makeVM sans `regenRepo` → injection absente → badges vides.
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate])
+        )
+
+        await vm.refresh(userId: userId)
+        XCTAssertTrue(vm.regenBadgesByRecord.isEmpty)
+    }
+
+    func testRefreshLeavesRegenBadgesEmptyWhenRepoThrows() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 1)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        let regenRepo = MockWeeklyRegenRepository()
+        regenRepo.fetchJournalForCurrentWeekShouldThrow = true
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenRepo: regenRepo
+        )
+
+        await vm.refresh(userId: userId)
+        XCTAssertTrue(vm.regenBadgesByRecord.isEmpty)
+        XCTAssertNil(vm.error, "Erreur badges = best-effort, ne remonte pas")
+    }
+
+    func testRegenBadgePercentLabelFormatsSignedDelta() {
+        XCTAssertEqual(RegenBadge.percentLabel(for: 1.10), "+10%")
+        XCTAssertEqual(RegenBadge.percentLabel(for: 1.0), "0%")
+        XCTAssertEqual(RegenBadge.percentLabel(for: 0.75), "-25%")
+        XCTAssertEqual(RegenBadge.percentLabel(for: 0.5), "-50%")
+    }
+
+    // MARK: - Phase B.6 — modifiedSessionCoordinates
+
+    func testModifiedSessionCoordinatesResolvesIdsToWeekDayPairs() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 3)
+        let session1Id = prog.sessions[0].id   // weekNumber=1, day=1
+        let session3Id = prog.sessions[2].id   // weekNumber=1, day=3
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+
+        let regenRepo = MockWeeklyRegenRepository()
+        regenRepo.stubbedJournalEntries = [
+            RegenJournalEntry(
+                userId: userId, recordId: prog.id,
+                analyzedWeekNumber: 1, targetWeekNumber: 2,
+                appliedAt: now,
+                reason: .onTrack, multiplier: 1.10, pauseLevel: .none,
+                requiresRebuild: false,
+                affectedSessionIds: [session1Id, session3Id]
+            )
+        ]
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenRepo: regenRepo
+        )
+
+        await vm.refresh(userId: userId)
+
+        let coords = vm.modifiedSessionCoordinates(forRecordId: prog.id)
+        XCTAssertEqual(coords, [
+            SessionCoordinate(weekNumber: 1, day: 1),
+            SessionCoordinate(weekNumber: 1, day: 3)
+        ])
+    }
+
+    func testModifiedSessionCoordinatesIsEmptyWhenNoBadgeForRecord() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 1)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        // Repo regen avec un journal SUR UN AUTRE record → pas de badge pour `prog`.
+        let regenRepo = MockWeeklyRegenRepository()
+        regenRepo.stubbedJournalEntries = [
+            RegenJournalEntry(
+                userId: userId, recordId: UUID(),
+                analyzedWeekNumber: 1, targetWeekNumber: 2,
+                appliedAt: now,
+                reason: .onTrack, multiplier: 1.10, pauseLevel: .none,
+                requiresRebuild: false, affectedSessionIds: [UUID()]
+            )
+        ]
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenRepo: regenRepo
+        )
+
+        await vm.refresh(userId: userId)
+        XCTAssertTrue(vm.modifiedSessionCoordinates(forRecordId: prog.id).isEmpty)
+    }
+
     // MARK: - Helpers
 
     private func makeVM(
@@ -348,13 +598,17 @@ final class SessionDashboardViewModelTests: XCTestCase {
     private func makeVM(
         programRepo: MockAdaptedProgramRepository,
         profileRepo: MockCoachingProfileRepository,
-        library: ProgramTemplateLibrary
+        library: ProgramTemplateLibrary,
+        regenService: (any WeeklyRegenApplicationService)? = nil,
+        regenRepo: (any WeeklyRegenRepository)? = nil
     ) -> SessionDashboardViewModel {
         let routineRepo = MockRoutineRepository()
         return SessionDashboardViewModel(
             programRepository: programRepo,
             routineRepository: routineRepo,
             coachingProfileRepository: profileRepo,
+            weeklyRegenApplicationService: regenService,
+            weeklyRegenRepository: regenRepo,
             templateLibraryProvider: { library },
             nowProvider: { self.now }
         )

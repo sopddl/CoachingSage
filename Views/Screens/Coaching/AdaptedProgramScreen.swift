@@ -9,9 +9,17 @@ import SwiftUI
 
 struct AdaptedProgramScreen: View {
     @StateObject private var viewModel: AdaptedProgramViewModel
+    /// Phase B.6 — coordonnées sessions S+1 mutées par la regen cette semaine
+    /// (résolu côté `SessionView.pushAdaptedProgram` via
+    /// `SessionDashboardViewModel.modifiedSessionCoordinates`).
+    private let modifiedSessionCoordinates: Set<SessionCoordinate>
 
-    init(viewModel: @autoclosure @escaping () -> AdaptedProgramViewModel) {
+    init(
+        viewModel: @autoclosure @escaping () -> AdaptedProgramViewModel,
+        modifiedSessionCoordinates: Set<SessionCoordinate> = []
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel())
+        self.modifiedSessionCoordinates = modifiedSessionCoordinates
     }
 
     var body: some View {
@@ -20,7 +28,8 @@ struct AdaptedProgramScreen: View {
             onRequestAIAssist: { Task { await viewModel.requestLeonExplicit() } },
             recordId: viewModel.recordId,
             leonNotes: viewModel.leonNotes,
-            requestState: viewModel.requestState
+            requestState: viewModel.requestState,
+            modifiedSessionCoordinates: modifiedSessionCoordinates
         )
         .task {
             await viewModel.triggerLeonIfNeeded()

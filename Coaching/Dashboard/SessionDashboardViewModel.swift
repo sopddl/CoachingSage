@@ -12,7 +12,15 @@
 //
 // **VM lecture** : pas d'écriture programme/routine. Sous-tâche 6 ajoute le
 // chargement des suggestions `selectTopN` pour alimenter le mode vide.
+//
+// **Story 3.4 Phase B.4 — auto-trigger regen S+1** : si un
+// `WeeklyRegenApplicationService` est injecté, `refresh()` l'invoque AVANT le
+// `fetchActive`. La regen mute les sessions S+1 des records actifs en place
+// (idempotent côté service : journal `(recordId, targetWeek)` + re-entrance
+// guard par `userId`). Best-effort : un throw est silencé pour ne pas bloquer
+// l'affichage du dashboard.
 import Foundation
+import os
 import SwiftUI
 import TemplateModel
 
@@ -73,6 +81,12 @@ final class SessionDashboardViewModel {
     /// session est aujourd'hui (pas un jour de récup).
     private(set) var restDayHintKey: LocalizedStringKey?
 
+    /// Phase B.5 — badges regen S+1 indexés par `AdaptedProgramRecord.id`. Une
+    /// entrée par record dont la regen a été appliquée cette semaine (semaine
+    /// courante du calendrier, pas du programme). Vide en l'absence de
+    /// `weeklyRegenRepository` ou si aucune regen n'a été appliquée cette semaine.
+    private(set) var regenBadgesByRecord: [UUID: RegenBadge] = [:]
+
     /// Library bundlée chargée à la première `refresh` qui en a besoin
     /// (mode vide pour `selectTopN`, mode actif pour résoudre les `name` de templates).
     /// Cachée pour éviter un reload à chaque `onAppear`.
@@ -80,10 +94,19 @@ final class SessionDashboardViewModel {
 
     private let weeklyStatsService = WeeklyStatsService()
     private let coachLineEngine = CoachLineEngine()
+    private static let logger = Logger(subsystem: "com.sopddl.coachingsage", category: "session-dashboard-vm")
 
     private let programRepository: any AdaptedProgramRepository
     private let routineRepository: any RoutineRepository
     private let coachingProfileRepository: any CoachingProfileRepository
+    /// Phase B.4 — optionnel pour rester compatible avec les previews + tests
+    /// qui n'ont pas besoin du wiring regen. Quand absent, `refresh()` skip
+    /// silencieusement l'auto-trigger.
+    private let weeklyRegenApplicationService: (any WeeklyRegenApplicationService)?
+    /// Phase B.5 — optionnel. Lecture seule : utilisé pour charger les badges
+    /// regen de la semaine courante (`fetchJournalForCurrentWeek`). Quand
+    /// absent, `regenBadgesByRecord` reste vide.
+    private let weeklyRegenRepository: (any WeeklyRegenRepository)?
     private let resolver: NextSessionResolver
     private let templateLibraryProvider: () async throws -> ProgramTemplateLibrary
     private let suggestionLevelProvider: (CoachingProfile?) -> String
@@ -93,6 +116,8 @@ final class SessionDashboardViewModel {
         programRepository: any AdaptedProgramRepository,
         routineRepository: any RoutineRepository,
         coachingProfileRepository: any CoachingProfileRepository,
+        weeklyRegenApplicationService: (any WeeklyRegenApplicationService)? = nil,
+        weeklyRegenRepository: (any WeeklyRegenRepository)? = nil,
         resolver: NextSessionResolver = NextSessionResolver(),
         templateLibraryProvider: @escaping () async throws -> ProgramTemplateLibrary = ProgramTemplateLibrary.bundled,
         suggestionLevelProvider: @escaping (CoachingProfile?) -> String = { _ in "beginner" },
@@ -101,6 +126,8 @@ final class SessionDashboardViewModel {
         self.programRepository = programRepository
         self.routineRepository = routineRepository
         self.coachingProfileRepository = coachingProfileRepository
+        self.weeklyRegenApplicationService = weeklyRegenApplicationService
+        self.weeklyRegenRepository = weeklyRegenRepository
         self.resolver = resolver
         self.templateLibraryProvider = templateLibraryProvider
         self.suggestionLevelProvider = suggestionLevelProvider
@@ -110,9 +137,16 @@ final class SessionDashboardViewModel {
     /// Charge programmes + routines + profil coaching pour le user, calcule la
     /// bascule mode + la prochaine séance dominante + les suggestions mode vide.
     /// Idempotent : peut être rappelée à chaque `onAppear` ou changement utilisateur.
+    ///
+    /// Phase B.4 : appelle d'abord `weeklyRegenApplicationService.checkAndApplyIfDue`
+    /// pour muter les sessions S+1 des records dont la semaine S est close. La
+    /// mutation est faite EN PLACE sur les records, donc le `fetchActive` qui
+    /// suit voit déjà les bonnes durées. Best-effort : un throw est silencé.
     func refresh(userId: UUID) async {
         loading = true
         error = nil
+        await runAutoRegenIfNeeded(userId: userId)
+        await loadRegenBadges(userId: userId)
         do {
             async let programsTask = programRepository.fetchActive(for: userId)
             async let routinesTask = routineRepository.fetchAll(for: userId)
@@ -165,6 +199,74 @@ final class SessionDashboardViewModel {
             restDayHintKey = nil
         }
         loading = false
+    }
+
+    /// Phase B.4 — invoque `WeeklyRegenApplicationService.checkAndApplyIfDue`
+    /// si un service est injecté. Best-effort : un throw est juste loggé. Le
+    /// service est idempotent (journal + re-entrance guard), un appel à chaque
+    /// `refresh()` est sûr et ne mute qu'une fois par `(record, weekS+1)`.
+    private func runAutoRegenIfNeeded(userId: UUID) async {
+        guard let service = weeklyRegenApplicationService else { return }
+        do {
+            try await service.checkAndApplyIfDue(userId: userId, now: nowProvider())
+        } catch {
+            Self.logger.debug("weeklyRegen.checkAndApplyIfDue failed: \(error.localizedDescription)")
+        }
+    }
+
+    /// Phase B.6 — coordonnées `(weekNumber, day)` des sessions S+1 mutées par
+    /// la regen pour ce record. Vide si pas de badge / pas de record actif
+    /// correspondant. Utilisé côté `SessionView.pushAdaptedProgram` pour
+    /// alimenter `AdaptedProgramView.modifiedSessionCoordinates`.
+    func modifiedSessionCoordinates(forRecordId recordId: UUID) -> Set<SessionCoordinate> {
+        guard let badge = regenBadgesByRecord[recordId] else { return [] }
+        guard let summary = activeProgramSummaries.first(where: { $0.record.id == recordId }) else {
+            return []
+        }
+        let affectedIds = Set(badge.affectedSessionIds)
+        return Set(
+            summary.record.sessions
+                .filter { affectedIds.contains($0.id) }
+                .map { SessionCoordinate(weekNumber: $0.weekNumber, day: $0.day) }
+        )
+    }
+
+    /// Phase B.5 — peuple `regenBadgesByRecord` en lisant le journal des regens
+    /// appliquées cette semaine (lundi 00:00 → lundi+7j). Best-effort : sur
+    /// erreur ou repo absent, la map reste vide (pas de badge affiché).
+    /// Si plusieurs entrées existent pour un même `recordId` (cas edge :
+    /// regen appliquée 2 semaines de suite tombant dans la même fenêtre
+    /// calendrier), on garde la plus récente (`appliedAt` desc).
+    private func loadRegenBadges(userId: UUID) async {
+        guard let repo = weeklyRegenRepository else {
+            regenBadgesByRecord = [:]
+            return
+        }
+        let now = nowProvider()
+        let weekStart = Self.startOfCalendarWeek(for: now)
+        do {
+            let entries = try await repo.fetchJournalForCurrentWeek(
+                userId: userId,
+                weekStart: weekStart
+            )
+            // `entries` est déjà trié desc par `appliedAt`. On garde la 1re
+            // occurrence par `recordId` (la plus récente).
+            var map: [UUID: RegenBadge] = [:]
+            for entry in entries where map[entry.recordId] == nil {
+                map[entry.recordId] = RegenBadge.from(entry: entry)
+            }
+            regenBadgesByRecord = map
+        } catch {
+            Self.logger.debug("weeklyRegen.fetchJournalForCurrentWeek failed: \(error.localizedDescription)")
+            regenBadgesByRecord = [:]
+        }
+    }
+
+    /// Lundi 00:00 de la semaine calendrier contenant `date`. Utilise la
+    /// `Calendar.current` (locale fr-FR → lundi = 1er jour). Fallback `date`
+    /// brut si `dateInterval` retourne nil (extrêmement improbable).
+    private static func startOfCalendarWeek(for date: Date) -> Date {
+        Calendar.current.dateInterval(of: .weekOfYear, for: date)?.start ?? date
     }
 
     /// Renvoie la hint Léon pour la card rest day quand la prochaine séance

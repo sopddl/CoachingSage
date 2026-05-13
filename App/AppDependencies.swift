@@ -12,11 +12,15 @@ struct AppDependencies {
     let coachingSportProfileRepository: any CoachingSportProfileRepository
     let adaptedProgramRepository: any AdaptedProgramRepository
     let routineRepository: any RoutineRepository
+    let weeklyRegenRepository: any WeeklyRegenRepository
     let authService: any AuthServiceProtocol
     let syncService: any SyncServiceProtocol
     let accountService: any AccountServiceProtocol
     let healthKitService: any HealthKitServiceProtocol
     let sageCoachingAIService: any SageCoachingAIServiceProtocol
+    /// Story 3.4 Phase B.4 — orchestrateur regen S+1. Composé sur live() à partir
+    /// de adaptedProgramRepository + weeklyRegenRepository + RegenInputsBuilder.
+    let weeklyRegenApplicationService: any WeeklyRegenApplicationService
 
     @MainActor
     static func live(modelContext: ModelContext) -> AppDependencies {
@@ -25,18 +29,31 @@ struct AppDependencies {
         let coachingSportProfileRepository = DefaultCoachingSportProfileRepository(modelContext: modelContext)
         let adaptedProgramRepository = DefaultAdaptedProgramRepository(modelContext: modelContext)
         let routineRepository = DefaultRoutineRepository(modelContext: modelContext)
+        let weeklyRegenRepository = DefaultWeeklyRegenRepository(modelContext: modelContext)
         let authService = AuthService()
+        let healthKitService = DefaultHealthKitService()
+        let weeklyRegenApplicationService = DefaultWeeklyRegenApplicationService(
+            adaptedProgramRepository: adaptedProgramRepository,
+            regenRepository: weeklyRegenRepository,
+            inputsProvider: RegenInputsBuilder(
+                healthKit: healthKitService,
+                regenRepository: weeklyRegenRepository,
+                coachingProfileRepository: coachingProfileRepository
+            )
+        )
         return AppDependencies(
             coreProfileRepository: coreProfileRepository,
             coachingProfileRepository: coachingProfileRepository,
             coachingSportProfileRepository: coachingSportProfileRepository,
             adaptedProgramRepository: adaptedProgramRepository,
             routineRepository: routineRepository,
+            weeklyRegenRepository: weeklyRegenRepository,
             authService: authService,
             syncService: SyncService(modelContext: modelContext),
             accountService: AccountService(coreProfileRepository: coreProfileRepository),
-            healthKitService: DefaultHealthKitService(),
-            sageCoachingAIService: DefaultSageCoachingAIService()
+            healthKitService: healthKitService,
+            sageCoachingAIService: DefaultSageCoachingAIService(),
+            weeklyRegenApplicationService: weeklyRegenApplicationService
         )
     }
 }
