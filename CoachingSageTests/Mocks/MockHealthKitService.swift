@@ -7,6 +7,7 @@ import HealthKit
 final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable {
     var isHealthDataAvailable: Bool = true
     var hasRequestedAuthorization: Bool = false
+    var hasRequestedProgressAuthorization: Bool = false
 
     var stubbedProfile: HealthKitProfileData = HealthKitProfileData(
         biologicalSex: nil,
@@ -23,12 +24,25 @@ final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable 
     var requestAuthorizationCallCount: Int = 0
     var requestAuthorizationShouldThrow: Error?
 
+    var requestProgressAuthorizationCallCount: Int = 0
+    var requestProgressAuthorizationShouldThrow: Error?
+
     func requestProfileAuthorization() async throws {
         requestAuthorizationCallCount += 1
         if let error = requestAuthorizationShouldThrow {
             throw error
         }
         hasRequestedAuthorization = true
+        hasRequestedProgressAuthorization = true
+    }
+
+    func requestProgressAuthorizationIfNeeded() async throws {
+        if hasRequestedProgressAuthorization { return }
+        requestProgressAuthorizationCallCount += 1
+        if let error = requestProgressAuthorizationShouldThrow {
+            throw error
+        }
+        hasRequestedProgressAuthorization = true
     }
 
     func fetchProfileData() async -> HealthKitProfileData {
