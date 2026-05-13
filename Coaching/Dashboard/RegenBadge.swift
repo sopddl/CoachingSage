@@ -22,6 +22,11 @@ struct RegenBadge: Equatable {
     /// `true` quand la regen est un `.restart` (rebuild forcé). Détermine le
     /// style visuel (ton orange/alerte vs vert/info).
     let requiresRebuild: Bool
+    /// Phase B.6 — UUIDs des `PersistedSession` mutés par la regen S+1.
+    /// Utilisés par le dashboard VM (`modifiedSessionCoordinates(forRecordId:)`)
+    /// pour résoudre les `(weekNumber, day)` à highlight dans
+    /// `AdaptedProgramView` et `SessionDetailView`.
+    let affectedSessionIds: [UUID]
 
     /// Construit le badge à partir d'une entrée du journal. Le `multiplier`
     /// est arrondi entier pour l'affichage utilisateur.
@@ -29,7 +34,8 @@ struct RegenBadge: Equatable {
         RegenBadge(
             reasonKey: reasonKey(for: entry.reason),
             percentLabel: percentLabel(for: entry.multiplier),
-            requiresRebuild: entry.requiresRebuild
+            requiresRebuild: entry.requiresRebuild,
+            affectedSessionIds: entry.affectedSessionIds
         )
     }
 
@@ -58,3 +64,17 @@ struct RegenBadge: Equatable {
         }
     }
 }
+
+// MARK: - SessionCoordinate (Phase B.6)
+
+/// Coordonnée (`weekNumber`, `day`) d'une session dans un `AdaptedProgram`. Le
+/// rendu (`AdaptedProgramView`, `SessionDetailView`) consomme `AdaptedSession`
+/// qui n'a pas d'UUID — on highlight donc par coordonnée. La résolution
+/// `RegenJournalEntry.affectedSessionIds (UUID) → SessionCoordinate` est faite
+/// côté `SessionDashboardViewModel.modifiedSessionCoordinates(forRecordId:)`
+/// en croisant avec le `PersistedSession.weekNumber/day` du record.
+struct SessionCoordinate: Hashable, Sendable {
+    let weekNumber: Int
+    let day: Int
+}
+

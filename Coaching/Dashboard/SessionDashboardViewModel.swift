@@ -214,6 +214,23 @@ final class SessionDashboardViewModel {
         }
     }
 
+    /// Phase B.6 — coordonnées `(weekNumber, day)` des sessions S+1 mutées par
+    /// la regen pour ce record. Vide si pas de badge / pas de record actif
+    /// correspondant. Utilisé côté `SessionView.pushAdaptedProgram` pour
+    /// alimenter `AdaptedProgramView.modifiedSessionCoordinates`.
+    func modifiedSessionCoordinates(forRecordId recordId: UUID) -> Set<SessionCoordinate> {
+        guard let badge = regenBadgesByRecord[recordId] else { return [] }
+        guard let summary = activeProgramSummaries.first(where: { $0.record.id == recordId }) else {
+            return []
+        }
+        let affectedIds = Set(badge.affectedSessionIds)
+        return Set(
+            summary.record.sessions
+                .filter { affectedIds.contains($0.id) }
+                .map { SessionCoordinate(weekNumber: $0.weekNumber, day: $0.day) }
+        )
+    }
+
     /// Phase B.5 — peuple `regenBadgesByRecord` en lisant le journal des regens
     /// appliquées cette semaine (lundi 00:00 → lundi+7j). Best-effort : sur
     /// erreur ou repo absent, la map reste vide (pas de badge affiché).

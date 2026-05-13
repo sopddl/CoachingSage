@@ -10,6 +10,10 @@ struct SessionDetailView: View {
     let session: AdaptedSession
     let week: AdaptedWeek
     let program: AdaptedProgram
+    /// Phase B.6 — true si cette session a été mutée par la regen S+1 cette
+    /// semaine (durée modifiée par `WeeklyRegenApplicationService`). Affiche
+    /// un bandeau header explicatif. Default false côté preview.
+    var isModifiedByRegen: Bool = false
 
     private var rulesForSession: [AppliedRule] {
         program.appliedRules.filter { $0.weekNumber == week.weekNumber && $0.day == session.day }
@@ -19,6 +23,10 @@ struct SessionDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 header
+
+                if isModifiedByRegen {
+                    regenAdjustedBanner
+                }
 
                 if let warmup = session.warmup, !warmup.isEmpty {
                     phaseBlock(systemImage: "flame.fill",
@@ -73,6 +81,32 @@ struct SessionDetailView: View {
                     .padding(.top, 2)
             }
         }
+    }
+
+    // MARK: - Regen adjusted banner (Phase B.6)
+
+    /// Bandeau header affiché quand la session a été ajustée par la regen S+1
+    /// de la semaine courante. Tint orange cohérent avec le marker sparkles
+    /// dans `AdaptedProgramView`. i18n keys remplies en B.7.
+    private var regenAdjustedBanner: some View {
+        HStack(alignment: .top, spacing: 10) {
+            Image(systemName: "sparkles")
+                .foregroundStyle(.orange)
+                .font(.callout.weight(.semibold))
+            VStack(alignment: .leading, spacing: 2) {
+                Text("coaching.adapter.session.regen.banner.title")
+                    .font(.subheadline.bold())
+                Text("coaching.adapter.session.regen.banner.body")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer(minLength: 0)
+        }
+        .padding(12)
+        .background(Color.orange.opacity(0.10))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("coaching.adapter.session.regen.banner")
     }
 
     // MARK: - Phase block (warmup / cooldown)

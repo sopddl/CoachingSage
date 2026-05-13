@@ -503,6 +503,70 @@ final class SessionDashboardViewModelTests: XCTestCase {
         XCTAssertEqual(RegenBadge.percentLabel(for: 0.5), "-50%")
     }
 
+    // MARK: - Phase B.6 — modifiedSessionCoordinates
+
+    func testModifiedSessionCoordinatesResolvesIdsToWeekDayPairs() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 3)
+        let session1Id = prog.sessions[0].id   // weekNumber=1, day=1
+        let session3Id = prog.sessions[2].id   // weekNumber=1, day=3
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+
+        let regenRepo = MockWeeklyRegenRepository()
+        regenRepo.stubbedJournalEntries = [
+            RegenJournalEntry(
+                userId: userId, recordId: prog.id,
+                analyzedWeekNumber: 1, targetWeekNumber: 2,
+                appliedAt: now,
+                reason: .onTrack, multiplier: 1.10, pauseLevel: .none,
+                requiresRebuild: false,
+                affectedSessionIds: [session1Id, session3Id]
+            )
+        ]
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenRepo: regenRepo
+        )
+
+        await vm.refresh(userId: userId)
+
+        let coords = vm.modifiedSessionCoordinates(forRecordId: prog.id)
+        XCTAssertEqual(coords, [
+            SessionCoordinate(weekNumber: 1, day: 1),
+            SessionCoordinate(weekNumber: 1, day: 3)
+        ])
+    }
+
+    func testModifiedSessionCoordinatesIsEmptyWhenNoBadgeForRecord() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 1)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        // Repo regen avec un journal SUR UN AUTRE record → pas de badge pour `prog`.
+        let regenRepo = MockWeeklyRegenRepository()
+        regenRepo.stubbedJournalEntries = [
+            RegenJournalEntry(
+                userId: userId, recordId: UUID(),
+                analyzedWeekNumber: 1, targetWeekNumber: 2,
+                appliedAt: now,
+                reason: .onTrack, multiplier: 1.10, pauseLevel: .none,
+                requiresRebuild: false, affectedSessionIds: [UUID()]
+            )
+        ]
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenRepo: regenRepo
+        )
+
+        await vm.refresh(userId: userId)
+        XCTAssertTrue(vm.modifiedSessionCoordinates(forRecordId: prog.id).isEmpty)
+    }
+
     // MARK: - Helpers
 
     private func makeVM(
