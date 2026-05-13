@@ -78,11 +78,23 @@ protocol HealthKitServiceProtocol: Sendable {
     /// Permet à Story 2.2 de différencier « première fois → afficher CTA » vs « déjà demandé → ne pas re-prompter ».
     var hasRequestedAuthorization: Bool { get }
 
-    /// Demande l'autorisation pour les types READ : profil (sex, DOB, bodyMass, height) + autoprofil (vo2Max, workouts, heartRate).
+    /// Story 3.9.0 — `true` si l'extension Progrès (RHR / HRV SDNN / Sleep Analysis) a déjà été demandée via
+    /// `requestProgressAuthorizationIfNeeded()` ou implicitement via `requestProfileAuthorization()` post-Story 3.9.0.
+    /// Permet à l'onglet Progrès de ne pas re-prompter en boucle (HK ne distingue pas refus historique vs jamais demandé).
+    var hasRequestedProgressAuthorization: Bool { get }
+
+    /// Demande l'autorisation pour les types READ : profil (sex, DOB, bodyMass, height) + autoprofil (vo2Max, workouts, heartRate)
+    /// + Progrès Story 3.9.0 (restingHeartRate, heartRateVariabilitySDNN, sleepAnalysis).
     /// Aucun WRITE V1. Une seule pop-up système groupée.
     /// Throw uniquement si HealthKit est indisponible (iPad incompatible) ou erreur HKError critique.
     /// Apple ne révèle pas le refus côté READ — la sémantique « refusé » se mesure via nil dans les fetch.
     func requestProfileAuthorization() async throws
+
+    /// Story 3.9.0 — demande l'extension Progrès uniquement si elle n'a jamais été demandée
+    /// (utilisateurs existants post-Story 2.1 dont l'onboarding n'a pas couvert RHR / HRV / Sleep).
+    /// Invoquée au premier `onAppear` de l'onglet Progrès. No-op si déjà demandé ou si HealthKit indisponible.
+    /// Throw uniquement si HealthKit est indisponible. Le refus utilisateur reste silencieux côté READ.
+    func requestProgressAuthorizationIfNeeded() async throws
 
     /// Lit les 4 caractéristiques profil. Ne throw jamais : un champ nil = donnée non disponible / refusée silencieusement.
     func fetchProfileData() async -> HealthKitProfileData
@@ -126,6 +138,7 @@ extension HealthKitServiceProtocol {
 final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendable {
     private static let logger = Logger(subsystem: "com.sopddl.coachingsage", category: "service")
     private static let authorizationRequestedKey = "healthkit.authorization.requested"
+    private static let progressAuthorizationRequestedAtKey = "healthkit.progress.authorization.requested.at"
 
     private let healthStore = HKHealthStore()
     private let userDefaults: UserDefaults
@@ -141,6 +154,11 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
     var hasRequestedAuthorization: Bool {
         guard !Self.isUITesting else { return false }
         return userDefaults.bool(forKey: Self.authorizationRequestedKey)
+    }
+
+    var hasRequestedProgressAuthorization: Bool {
+        guard !Self.isUITesting else { return false }
+        return userDefaults.object(forKey: Self.progressAuthorizationRequestedAtKey) is Date
     }
 
     func requestProfileAuthorization() async throws {
@@ -171,9 +189,41 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
         if let restingHR = HKQuantityType.quantityType(forIdentifier: .restingHeartRate) {
             typesToRead.insert(restingHR)
         }
+        for type in Self.progressReadTypes() {
+            typesToRead.insert(type)
+        }
 
         try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
         userDefaults.set(true, forKey: Self.authorizationRequestedKey)
+        userDefaults.set(Date(), forKey: Self.progressAuthorizationRequestedAtKey)
+    }
+
+    func requestProgressAuthorizationIfNeeded() async throws {
+        guard !Self.isUITesting else { return }
+        guard HKHealthStore.isHealthDataAvailable() else {
+            throw HealthKitError.notAvailable
+        }
+        guard !hasRequestedProgressAuthorization else { return }
+
+        let typesToRead = Self.progressReadTypes()
+        try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
+        userDefaults.set(Date(), forKey: Self.progressAuthorizationRequestedAtKey)
+    }
+
+    /// Story 3.9.0 — types HK ajoutés pour le bloc Forme physique de l'onglet Progrès.
+    /// Sleep Analysis est un `HKCategoryType`, les deux autres sont `HKQuantityType`.
+    private static func progressReadTypes() -> Set<HKObjectType> {
+        var types: Set<HKObjectType> = []
+        if let rhr = HKQuantityType.quantityType(forIdentifier: .restingHeartRate) {
+            types.insert(rhr)
+        }
+        if let hrv = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN) {
+            types.insert(hrv)
+        }
+        if let sleep = HKCategoryType.categoryType(forIdentifier: .sleepAnalysis) {
+            types.insert(sleep)
+        }
+        return types
     }
 
     func fetchProfileData() async -> HealthKitProfileData {
