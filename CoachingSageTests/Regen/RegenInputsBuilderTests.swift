@@ -4,7 +4,7 @@
 // Focus orchestration (wiring inputs → engine, fallbacks hrMax, edge cases).
 // La logique de l'engine elle-même est couverte par les tests Phase A.4.
 // Mocks partagés : `MockHealthKitService` + `MockCoachingProfileRepository`
-// (cf `CoachingSageTests/Mocks/`). `MockWeeklyRegenRepository` local au fichier.
+// (cf `CoachingSageTests/Mocks/`). `LocalRegenRepoStub` local au fichier.
 import XCTest
 import TemplateModel
 @testable import CoachingSage
@@ -143,9 +143,9 @@ final class RegenInputsBuilderTests: XCTestCase {
         makeSystem().0
     }
 
-    private func makeSystem() -> (RegenInputsBuilder, MockHealthKitService, MockWeeklyRegenRepository, MockCoachingProfileRepository) {
+    private func makeSystem() -> (RegenInputsBuilder, MockHealthKitService, LocalRegenRepoStub, MockCoachingProfileRepository) {
         let hk = MockHealthKitService()
-        let repo = MockWeeklyRegenRepository()
+        let repo = LocalRegenRepoStub()
         let profileRepo = MockCoachingProfileRepository()
         let builder = RegenInputsBuilder(
             healthKit: hk,
@@ -234,10 +234,10 @@ final class RegenInputsBuilderTests: XCTestCase {
 
 // `MockHealthKitService` (partagé : `CoachingSageTests/Mocks/MockHealthKitService.swift`).
 // `MockCoachingProfileRepository` (partagé : `CoachingSageTests/Mocks/MockCoachingProfileRepository.swift`).
-// `MockWeeklyRegenRepository` local au fichier (pas encore partagé — à factoriser si re-utilisé).
+// `LocalRegenRepoStub` local au fichier (pas encore partagé — à factoriser si re-utilisé).
 
 @MainActor
-private final class MockWeeklyRegenRepository: WeeklyRegenRepository {
+private final class LocalRegenRepoStub: WeeklyRegenRepository {
     var stubbedReports: [WeeklyExecutionReportSnapshot] = []
     var savedJournalEntries: [RegenJournalEntry] = []
 

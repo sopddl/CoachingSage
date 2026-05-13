@@ -383,6 +383,126 @@ final class SessionDashboardViewModelTests: XCTestCase {
         }
     }
 
+    // MARK: - Phase B.5 — regen badges
+
+    func testRefreshLoadsRegenBadgesFromJournalForCurrentWeek() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 3)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+
+        let regenRepo = MockWeeklyRegenRepository()
+        regenRepo.stubbedJournalEntries = [
+            RegenJournalEntry(
+                userId: userId,
+                recordId: prog.id,
+                analyzedWeekNumber: 1,
+                targetWeekNumber: 2,
+                appliedAt: now,
+                reason: .onTrack,
+                multiplier: 1.10,
+                pauseLevel: .none,
+                requiresRebuild: false,
+                affectedSessionIds: []
+            )
+        ]
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenRepo: regenRepo
+        )
+
+        await vm.refresh(userId: userId)
+
+        let badge = vm.regenBadgesByRecord[prog.id]
+        XCTAssertNotNil(badge, "Badge attendu pour le record qui a une entry journal cette semaine")
+        XCTAssertEqual(badge?.percentLabel, "+10%")
+        XCTAssertFalse(badge?.requiresRebuild ?? true)
+        XCTAssertEqual(regenRepo.fetchJournalForCurrentWeekCallCount, 1)
+    }
+
+    func testRefreshKeepsMostRecentEntryPerRecordWhenJournalHasMultipleEntriesSameWeek() async {
+        // Edge case : 2 regens appliquées la même semaine calendrier pour
+        // le même record (ex. Sophie supprime et re-crée → 2 entries). On
+        // veut la plus récente (appliedAt desc → 1re du résultat).
+        let prog = makeRecord(sportCode: "running", sessionsCount: 3)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+
+        let older = RegenJournalEntry(
+            userId: userId, recordId: prog.id,
+            analyzedWeekNumber: 1, targetWeekNumber: 2,
+            appliedAt: now.addingTimeInterval(-3600),
+            reason: .onTrack, multiplier: 1.10, pauseLevel: .none,
+            requiresRebuild: false, affectedSessionIds: []
+        )
+        let newer = RegenJournalEntry(
+            userId: userId, recordId: prog.id,
+            analyzedWeekNumber: 2, targetWeekNumber: 3,
+            appliedAt: now,
+            reason: .pauseExtended, multiplier: 0.5, pauseLevel: .extended,
+            requiresRebuild: true, affectedSessionIds: []
+        )
+        let regenRepo = MockWeeklyRegenRepository()
+        regenRepo.stubbedJournalEntries = [older, newer]
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenRepo: regenRepo
+        )
+
+        await vm.refresh(userId: userId)
+
+        let badge = vm.regenBadgesByRecord[prog.id]
+        XCTAssertEqual(badge?.percentLabel, "-50%", "Doit prendre la plus récente (.pauseExtended ×0.5)")
+        XCTAssertTrue(badge?.requiresRebuild ?? false)
+    }
+
+    func testRefreshLeavesRegenBadgesEmptyWhenRepoAbsent() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 1)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+
+        // makeVM sans `regenRepo` → injection absente → badges vides.
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate])
+        )
+
+        await vm.refresh(userId: userId)
+        XCTAssertTrue(vm.regenBadgesByRecord.isEmpty)
+    }
+
+    func testRefreshLeavesRegenBadgesEmptyWhenRepoThrows() async {
+        let prog = makeRecord(sportCode: "running", sessionsCount: 1)
+        let progRepo = MockAdaptedProgramRepository()
+        progRepo.stubbedActive = [prog]
+        let regenRepo = MockWeeklyRegenRepository()
+        regenRepo.fetchJournalForCurrentWeekShouldThrow = true
+
+        let vm = makeVM(
+            programRepo: progRepo,
+            profileRepo: MockCoachingProfileRepository(),
+            library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]),
+            regenRepo: regenRepo
+        )
+
+        await vm.refresh(userId: userId)
+        XCTAssertTrue(vm.regenBadgesByRecord.isEmpty)
+        XCTAssertNil(vm.error, "Erreur badges = best-effort, ne remonte pas")
+    }
+
+    func testRegenBadgePercentLabelFormatsSignedDelta() {
+        XCTAssertEqual(RegenBadge.percentLabel(for: 1.10), "+10%")
+        XCTAssertEqual(RegenBadge.percentLabel(for: 1.0), "0%")
+        XCTAssertEqual(RegenBadge.percentLabel(for: 0.75), "-25%")
+        XCTAssertEqual(RegenBadge.percentLabel(for: 0.5), "-50%")
+    }
+
     // MARK: - Helpers
 
     private func makeVM(
@@ -415,7 +535,8 @@ final class SessionDashboardViewModelTests: XCTestCase {
         programRepo: MockAdaptedProgramRepository,
         profileRepo: MockCoachingProfileRepository,
         library: ProgramTemplateLibrary,
-        regenService: (any WeeklyRegenApplicationService)? = nil
+        regenService: (any WeeklyRegenApplicationService)? = nil,
+        regenRepo: (any WeeklyRegenRepository)? = nil
     ) -> SessionDashboardViewModel {
         let routineRepo = MockRoutineRepository()
         return SessionDashboardViewModel(
@@ -423,6 +544,7 @@ final class SessionDashboardViewModelTests: XCTestCase {
             routineRepository: routineRepo,
             coachingProfileRepository: profileRepo,
             weeklyRegenApplicationService: regenService,
+            weeklyRegenRepository: regenRepo,
             templateLibraryProvider: { library },
             nowProvider: { self.now }
         )

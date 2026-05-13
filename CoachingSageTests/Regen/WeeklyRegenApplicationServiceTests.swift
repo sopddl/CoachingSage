@@ -327,9 +327,9 @@ final class WeeklyRegenApplicationServiceTests: XCTestCase {
         )
     }
 
-    private func makeSystem() -> (DefaultWeeklyRegenApplicationService, MockAdaptedProgramRepository, MockWeeklyRegenRepository) {
+    private func makeSystem() -> (DefaultWeeklyRegenApplicationService, MockAdaptedProgramRepository, LocalRegenRepoStub) {
         let adaptedRepo = MockAdaptedProgramRepository()
-        let regenRepo = MockWeeklyRegenRepository()
+        let regenRepo = LocalRegenRepoStub()
         let provider = MockInputsProvider { _, _ in nil }
         let service = DefaultWeeklyRegenApplicationService(
             adaptedProgramRepository: adaptedRepo,
@@ -345,7 +345,7 @@ final class WeeklyRegenApplicationServiceTests: XCTestCase {
 // `MockAdaptedProgramRepository` est partagé : `CoachingSageTests/Mocks/MockAdaptedProgramRepository.swift`.
 
 @MainActor
-private final class MockWeeklyRegenRepository: WeeklyRegenRepository {
+private final class LocalRegenRepoStub: WeeklyRegenRepository {
     var savedReports: [(snapshot: WeeklyExecutionReportSnapshot, recordId: UUID, userId: UUID, sportCode: String)] = []
     var savedJournalEntries: [RegenJournalEntry] = []
 

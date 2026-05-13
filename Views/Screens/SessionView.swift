@@ -204,6 +204,7 @@ struct SessionView: View {
                 weeklyStats: vm.weeklyStats,
                 nextAfterDominant: vm.nextAfterDominant,
                 restDayHintKey: vm.restDayHintKey,
+                regenBadges: vm.regenBadgesByRecord,
                 nowProvider: { nowTick },
                 onTapDominantStart: { result in
                     pushAdaptedProgram(record: result.program)
@@ -278,7 +279,8 @@ struct SessionView: View {
             programRepository: deps.adaptedProgramRepository,
             routineRepository: deps.routineRepository,
             coachingProfileRepository: deps.coachingProfileRepository,
-            weeklyRegenApplicationService: deps.weeklyRegenApplicationService
+            weeklyRegenApplicationService: deps.weeklyRegenApplicationService,
+            weeklyRegenRepository: deps.weeklyRegenRepository
         )
     }
 
