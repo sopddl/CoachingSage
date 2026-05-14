@@ -105,10 +105,26 @@ protocol HealthKitServiceProtocol: Sendable {
     /// Résumé des workouts sur la fenêtre `weeksBack` (défaut 8 semaines). Struct vide si refus/absence.
     func fetchWorkoutSummary(weeksBack: Int) async -> HealthKitWorkoutSummary
 
-    /// Story 3.3b — moyenne du resting heart rate sur la fenêtre `daysBack` (défaut 30 jours).
+    /// Story 3.3b — moyenne du resting heart rate sur la fenêtre [endingAt - daysBack, endingAt].
     /// nil si refus/absence/échantillons insuffisants. Utilisé par `HealthSummaryBuilder`
     /// pour donner à Léon une mesure objective de récupération/forme du jour.
-    func fetchRestingHeartRateAverage(daysBack: Int) async -> Double?
+    /// Story 3.9 ajoute `endingAt` pour permettre le calcul delta vs fenêtre précédente.
+    func fetchRestingHeartRateAverage(daysBack: Int, endingAt: Date) async -> Double?
+
+    /// Story 3.9 — moyenne HRV SDNN (ms) sur la fenêtre [endingAt - daysBack, endingAt].
+    /// nil si refus/absence. Affichage neutre uniquement (garde-fou EU MDR : aucune
+    /// interprétation "fatigue/récupération" côté UI).
+    func fetchHRVAverage(daysBack: Int, endingAt: Date) async -> Double?
+
+    /// Story 3.9 — durée moyenne de sommeil (minutes par nuit) sur la fenêtre
+    /// [endingAt - daysBack, endingAt]. Agrège tous les `HKCategoryValueSleepAnalysis.asleep*`
+    /// groupés par jour calendaire de fin de sample. nil si refus/absence.
+    func fetchSleepAverageMinutes(daysBack: Int, endingAt: Date) async -> Double?
+
+    /// Story 3.9 — volume HK par `HKWorkoutActivityType.rawValue` sur la fenêtre `daysBack`.
+    /// Somme des `workout.duration` (secondes) par activityType. Dictionnaire vide si refus/absence.
+    /// Source pour le bloc « Volume par sport » de l'onglet Progrès.
+    func fetchWorkoutVolumeByActivityType(daysBack: Int) async -> [UInt: TimeInterval]
 
     /// Story 3.3b — derniers `limit` workouts dans la fenêtre `weeksBack`, ordre antichronologique.
     /// Inclut HR moyenne + max si watchOS présent. Tableau vide si refus/absence.
@@ -125,7 +141,19 @@ extension HealthKitServiceProtocol {
     }
 
     func fetchRestingHeartRateAverage() async -> Double? {
-        await fetchRestingHeartRateAverage(daysBack: 30)
+        await fetchRestingHeartRateAverage(daysBack: 30, endingAt: Date())
+    }
+
+    func fetchRestingHeartRateAverage(daysBack: Int) async -> Double? {
+        await fetchRestingHeartRateAverage(daysBack: daysBack, endingAt: Date())
+    }
+
+    func fetchHRVAverage(daysBack: Int) async -> Double? {
+        await fetchHRVAverage(daysBack: daysBack, endingAt: Date())
+    }
+
+    func fetchSleepAverageMinutes(daysBack: Int) async -> Double? {
+        await fetchSleepAverageMinutes(daysBack: daysBack, endingAt: Date())
     }
 
     func fetchRecentWorkoutDetails() async -> [HealthKitWorkoutDetail] {
@@ -335,16 +363,15 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
         )
     }
 
-    func fetchRestingHeartRateAverage(daysBack: Int) async -> Double? {
+    func fetchRestingHeartRateAverage(daysBack: Int, endingAt: Date) async -> Double? {
         guard !Self.isUITesting else { return nil }
         guard HKHealthStore.isHealthDataAvailable() else { return nil }
         guard let type = HKQuantityType.quantityType(forIdentifier: .restingHeartRate) else { return nil }
 
-        let now = Date()
-        guard let startDate = Calendar(identifier: .gregorian).date(byAdding: .day, value: -daysBack, to: now) else {
+        guard let startDate = Calendar(identifier: .gregorian).date(byAdding: .day, value: -daysBack, to: endingAt) else {
             return nil
         }
-        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: now, options: [])
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endingAt, options: [])
 
         return await withCheckedContinuation { (continuation: CheckedContinuation<Double?, Never>) in
             let query = HKStatisticsQuery(
@@ -363,6 +390,125 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
             }
             healthStore.execute(query)
         }
+    }
+
+    func fetchHRVAverage(daysBack: Int, endingAt: Date) async -> Double? {
+        guard !Self.isUITesting else { return nil }
+        guard HKHealthStore.isHealthDataAvailable() else { return nil }
+        guard let type = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN) else { return nil }
+
+        guard let startDate = Calendar(identifier: .gregorian).date(byAdding: .day, value: -daysBack, to: endingAt) else {
+            return nil
+        }
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endingAt, options: [])
+
+        return await withCheckedContinuation { (continuation: CheckedContinuation<Double?, Never>) in
+            let query = HKStatisticsQuery(
+                quantityType: type,
+                quantitySamplePredicate: predicate,
+                options: .discreteAverage
+            ) { _, statistics, error in
+                #if DEBUG
+                if let error {
+                    Self.logger.debug("HRV SDNN query error: \(error.localizedDescription)")
+                }
+                #endif
+                let unit = HKUnit.secondUnit(with: .milli)
+                let avg = statistics?.averageQuantity()?.doubleValue(for: unit)
+                continuation.resume(returning: avg)
+            }
+            healthStore.execute(query)
+        }
+    }
+
+    func fetchSleepAverageMinutes(daysBack: Int, endingAt: Date) async -> Double? {
+        guard !Self.isUITesting else { return nil }
+        guard HKHealthStore.isHealthDataAvailable() else { return nil }
+        guard let type = HKCategoryType.categoryType(forIdentifier: .sleepAnalysis) else { return nil }
+
+        let calendar = Calendar(identifier: .gregorian)
+        guard let startDate = calendar.date(byAdding: .day, value: -daysBack, to: endingAt) else {
+            return nil
+        }
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endingAt, options: [])
+
+        let samples: [HKCategorySample] = await withCheckedContinuation { (continuation: CheckedContinuation<[HKCategorySample], Never>) in
+            let query = HKSampleQuery(
+                sampleType: type,
+                predicate: predicate,
+                limit: HKObjectQueryNoLimit,
+                sortDescriptors: nil
+            ) { _, results, error in
+                #if DEBUG
+                if let error {
+                    Self.logger.debug("sleep query error: \(error.localizedDescription)")
+                }
+                #endif
+                continuation.resume(returning: (results as? [HKCategorySample]) ?? [])
+            }
+            healthStore.execute(query)
+        }
+
+        guard !samples.isEmpty else { return nil }
+
+        // Garde uniquement les segments « asleep* » (asleepUnspecified, asleepCore,
+        // asleepDeep, asleepREM). On rejette `inBed` (utilisateur au lit mais éveillé)
+        // et `awake`. iOS 16+ : asleepUnspecified == ancien .asleep deprecated.
+        let asleepValues: Set<Int> = [
+            HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue,
+            HKCategoryValueSleepAnalysis.asleepCore.rawValue,
+            HKCategoryValueSleepAnalysis.asleepDeep.rawValue,
+            HKCategoryValueSleepAnalysis.asleepREM.rawValue
+        ]
+
+        // Groupe par jour calendaire de la fin du sample = nuit qui se termine ce
+        // jour-là. Permet de moyenner sur le nombre de nuits réellement enregistrées
+        // dans la fenêtre (pas sur `daysBack` brut — un user qui ne porte pas la Watch
+        // 3 nuits/7 doit voir la moyenne des 4 nuits, pas une moyenne tirée vers 0).
+        var minutesPerNight: [Date: Double] = [:]
+        for sample in samples where asleepValues.contains(sample.value) {
+            let dayKey = calendar.startOfDay(for: sample.endDate)
+            let durationMin = sample.endDate.timeIntervalSince(sample.startDate) / 60.0
+            minutesPerNight[dayKey, default: 0] += durationMin
+        }
+
+        guard !minutesPerNight.isEmpty else { return nil }
+        let total = minutesPerNight.values.reduce(0, +)
+        return total / Double(minutesPerNight.count)
+    }
+
+    func fetchWorkoutVolumeByActivityType(daysBack: Int) async -> [UInt: TimeInterval] {
+        guard !Self.isUITesting else { return [:] }
+        guard HKHealthStore.isHealthDataAvailable() else { return [:] }
+
+        let now = Date()
+        guard let startDate = Calendar(identifier: .gregorian).date(byAdding: .day, value: -daysBack, to: now) else {
+            return [:]
+        }
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: now, options: [])
+
+        let workouts: [HKWorkout] = await withCheckedContinuation { (continuation: CheckedContinuation<[HKWorkout], Never>) in
+            let query = HKSampleQuery(
+                sampleType: HKObjectType.workoutType(),
+                predicate: predicate,
+                limit: HKObjectQueryNoLimit,
+                sortDescriptors: nil
+            ) { _, results, error in
+                #if DEBUG
+                if let error {
+                    Self.logger.debug("workout volume query error: \(error.localizedDescription)")
+                }
+                #endif
+                continuation.resume(returning: (results as? [HKWorkout]) ?? [])
+            }
+            healthStore.execute(query)
+        }
+
+        var byType: [UInt: TimeInterval] = [:]
+        for workout in workouts {
+            byType[workout.workoutActivityType.rawValue, default: 0] += workout.duration
+        }
+        return byType
     }
 
     func fetchRecentWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitWorkoutDetail] {

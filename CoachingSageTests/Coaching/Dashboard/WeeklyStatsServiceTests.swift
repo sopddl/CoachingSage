@@ -109,4 +109,67 @@ final class WeeklyStatsServiceTests: XCTestCase {
             type: .endurance, warmup: nil, exercises: [], cooldown: nil
         )
     }
+
+    // MARK: - Story 3.9 — period extension
+
+    func testMonthPeriodAggregatesLast30Days() {
+        let session1 = makeSession(day: 1)
+        let session2 = makeSession(day: 2)
+        let prog = AdaptedProgramRecord(
+            userId: userId, sportCode: "running", level: "beginner",
+            templateId: "t", adaptedAt: now, weekStartDate: now,
+            mode: .ondemand, sessions: [session1, session2]
+        )
+        // 1 séance il y a 5 jours (DANS la fenêtre 30j), 1 séance il y a 40 jours (HORS).
+        let fiveDaysAgo = calendar.date(byAdding: .day, value: -5, to: now)!
+        let fortyDaysAgo = calendar.date(byAdding: .day, value: -40, to: now)!
+        var state = ProgramCompletionState.empty
+        state.sessionRecords[session1.id] = SessionCompletionRecord(completedAt: fiveDaysAgo, actualDurationMinutes: 45)
+        state.sessionRecords[session2.id] = SessionCompletionRecord(completedAt: fortyDaysAgo, actualDurationMinutes: 60)
+        prog.completionState = state
+
+        let stats = WeeklyStatsService().compute(programs: [prog], now: now, period: .month, calendar: calendar)
+        XCTAssertEqual(stats.completedCount, 1, "Seule la séance dans la fenêtre 30j compte")
+        XCTAssertEqual(stats.totalMinutes, 45)
+    }
+
+    func testQuarterPeriodAggregatesLast90Days() {
+        let session1 = makeSession(day: 1)
+        let session2 = makeSession(day: 2)
+        let prog = AdaptedProgramRecord(
+            userId: userId, sportCode: "running", level: "beginner",
+            templateId: "t", adaptedAt: now, weekStartDate: now,
+            mode: .ondemand, sessions: [session1, session2]
+        )
+        let sixtyDaysAgo = calendar.date(byAdding: .day, value: -60, to: now)!
+        let hundredDaysAgo = calendar.date(byAdding: .day, value: -100, to: now)!
+        var state = ProgramCompletionState.empty
+        state.sessionRecords[session1.id] = SessionCompletionRecord(completedAt: sixtyDaysAgo, actualDurationMinutes: 50)
+        state.sessionRecords[session2.id] = SessionCompletionRecord(completedAt: hundredDaysAgo, actualDurationMinutes: 70)
+        prog.completionState = state
+
+        let stats = WeeklyStatsService().compute(programs: [prog], now: now, period: .quarter, calendar: calendar)
+        XCTAssertEqual(stats.completedCount, 1, "Seule la séance dans la fenêtre 90j compte")
+        XCTAssertEqual(stats.totalMinutes, 50)
+    }
+
+    func testStreakIndependentOfPeriod() {
+        let s1 = makeSession(day: 1)
+        let s2 = makeSession(day: 2)
+        let prog = AdaptedProgramRecord(
+            userId: userId, sportCode: "running", level: "beginner",
+            templateId: "t", adaptedAt: now, weekStartDate: now,
+            mode: .ondemand, sessions: [s1, s2]
+        )
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: now)!
+        var state = ProgramCompletionState.empty
+        state.sessionRecords[s1.id] = SessionCompletionRecord(completedAt: yesterday)
+        state.sessionRecords[s2.id] = SessionCompletionRecord(completedAt: now)
+        prog.completionState = state
+
+        let week = WeeklyStatsService().compute(programs: [prog], now: now, period: .week, calendar: calendar)
+        let quarter = WeeklyStatsService().compute(programs: [prog], now: now, period: .quarter, calendar: calendar)
+        XCTAssertEqual(week.streakDays, 2)
+        XCTAssertEqual(quarter.streakDays, 2, "Streak global, ne dépend pas de la fenêtre")
+    }
 }
