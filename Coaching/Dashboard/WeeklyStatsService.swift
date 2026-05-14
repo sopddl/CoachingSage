@@ -2,22 +2,41 @@
 // Story 3.8 sous-tâche 8 — calcule les 3 stats inline du mini-widget « Cette
 // semaine » du mode actif single program (volume, séances complétées, streak).
 //
-// 100% local, sync, < 50ms attendu (cf spec ligne 582). Story 3.9 réutilisera
-// ce service avec extension `period: .month / .quarter` (NE PAS coupler à la
-// semaine en dur côté API publique — déjà paramétrisé via `now` + Calendar).
+// 100% local, sync, < 50ms attendu (cf spec ligne 582). Story 3.9 ajoute
+// `compute(programs:, now:, period:, calendar:)` pour les fenêtres month/quarter
+// de l'onglet Progrès. Le calcul streak reste global (ne dépend pas de la fenêtre).
 import Foundation
 
+/// Story 3.9 — fenêtre temporelle du widget stats / onglet Progrès.
+/// `.week` = semaine ISO courante (lundi 00:00 → maintenant) — back-compat dashboard 3.8.
+/// `.month` = 30 jours glissants. `.quarter` = 90 jours glissants.
+enum ProgressPeriod: String, CaseIterable, Sendable {
+    case week
+    case month
+    case quarter
+
+    /// Nombre de jours pour les fenêtres glissantes. `.week` n'utilise pas cette
+    /// valeur (calcul ISO-8601 spécifique).
+    var slidingDays: Int {
+        switch self {
+        case .week:    return 7
+        case .month:   return 30
+        case .quarter: return 90
+        }
+    }
+}
+
 struct WeeklyStats: Equatable, Sendable {
-    /// Durée totale (minutes) effectivement réalisée cette semaine.
+    /// Durée totale (minutes) effectivement réalisée sur la fenêtre.
     /// Source : `SessionCompletionRecord.actualDurationMinutes` quand présent,
     /// fallback `PersistedSession.durationMinutes` (estimation template).
     let totalMinutes: Int
 
-    /// Nombre de sessions complétées cette semaine.
+    /// Nombre de sessions complétées sur la fenêtre.
     let completedCount: Int
 
     /// Nombre de jours consécutifs avec ≥ 1 session complétée jusqu'à aujourd'hui
-    /// (inclus). 0 si rien aujourd'hui ni hier.
+    /// (inclus). Global — ne dépend pas de la fenêtre. 0 si rien aujourd'hui ni hier.
     let streakDays: Int
 
     static let empty = WeeklyStats(totalMinutes: 0, completedCount: 0, streakDays: 0)
@@ -34,9 +53,28 @@ struct WeeklyStatsService: Sendable {
         now: Date,
         calendar: Calendar = .current
     ) -> WeeklyStats {
+        compute(programs: programs, now: now, period: .week, calendar: calendar)
+    }
+
+    /// Story 3.9 — version paramétrisée par `ProgressPeriod`. `.week` délègue au
+    /// calcul ISO-8601 historique (back-compat dashboard 3.8). `.month` / `.quarter`
+    /// utilisent une fenêtre glissante en jours. Streak reste global dans tous les cas.
+    func compute(
+        programs: [AdaptedProgramRecord],
+        now: Date,
+        period: ProgressPeriod,
+        calendar: Calendar = .current
+    ) -> WeeklyStats {
         var cal = calendar
         cal.firstWeekday = 2 // ISO-8601 lundi
-        let weekStart = startOfCurrentWeek(now: now, calendar: cal)
+        let windowStart: Date
+        switch period {
+        case .week:
+            windowStart = startOfCurrentWeek(now: now, calendar: cal)
+        case .month, .quarter:
+            windowStart = cal.date(byAdding: .day, value: -period.slidingDays, to: now)
+                ?? startOfCurrentWeek(now: now, calendar: cal)
+        }
 
         var totalMinutes = 0
         var completedCount = 0
@@ -47,11 +85,11 @@ struct WeeklyStatsService: Sendable {
             for (sessionId, completion) in record.completionState.sessionRecords {
                 guard completion.completedAt <= now else { continue }
                 // Streak : on garde tout l'historique pour mesurer la chaîne consécutive
-                // au-delà de la semaine courante (un user 30j d'affilée veut voir streak=30,
-                // pas réinitialisé chaque lundi).
+                // au-delà de la fenêtre (un user 30j d'affilée veut voir streak=30,
+                // peu importe la fenêtre sélectionnée à l'écran Progrès).
                 completionDays.insert(cal.startOfDay(for: completion.completedAt))
-                // Volume + completed : cantonnés à la semaine courante (intent du widget).
-                guard completion.completedAt >= weekStart else { continue }
+                // Volume + completed : cantonnés à la fenêtre.
+                guard completion.completedAt >= windowStart else { continue }
                 completedCount += 1
                 let estimated = sessionsById[sessionId]?.durationMinutes ?? 0
                 totalMinutes += completion.actualDurationMinutes ?? estimated
