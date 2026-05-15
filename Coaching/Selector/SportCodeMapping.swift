@@ -57,6 +57,26 @@ extension Sport {
         case .football:         return "onboarding.sport.football"
         }
     }
+
+    /// SF Symbol sport-specific pour affichage UI. Sophie 2026-05-15 bug B1 :
+    /// SessionDetailView affichait `figure.run` sur toutes les séances `endurance`
+    /// (runner sur vélo) car `AdaptedProgramFormatting.sfSymbol(for:)` mappait sur
+    /// `SessionType`. Le sport est porté par le programme, pas par le type de
+    /// session — on utilise donc ce mapping sport-aware.
+    var sfSymbol: String {
+        switch self {
+        case .running:          return "figure.run"
+        case .cycling:          return "figure.outdoor.cycle"
+        case .swimming:         return "figure.pool.swim"
+        case .triathlon:        return "figure.mixed.cardio"
+        case .strengthTraining: return "dumbbell.fill"
+        case .yoga:             return "figure.yoga"
+        case .hiit:             return "bolt.heart.fill"
+        case .hiking:           return "figure.hiking"
+        case .tennis:           return "figure.tennis"
+        case .football:         return "soccerball"
+        }
+    }
 }
 
 extension Level {

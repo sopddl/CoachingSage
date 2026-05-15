@@ -281,11 +281,12 @@ struct AdaptedProgramView: View {
                 session: session,
                 week: week,
                 program: program,
-                isModifiedByRegen: isModifiedByRegen
+                isModifiedByRegen: isModifiedByRegen,
+                recordId: recordId
             )
         } label: {
             HStack(spacing: 12) {
-                Image(systemName: AdaptedProgramFormatting.sfSymbol(for: session.type))
+                Image(systemName: program.sport.sfSymbol)
                     .frame(width: 24)
                     .foregroundStyle(.tint)
                 VStack(alignment: .leading, spacing: 2) {

@@ -22,4 +22,26 @@ protocol AdaptedProgramRepository {
     /// l'idempotence (aiPatchApplied + aiPatchJSON). No-op silencieux si le record
     /// n'existe plus (cas dégénéré : user a archivé pendant qu'on call Léon).
     func applyLeonPatch(recordId: UUID, patch: AdaptationPatch) async throws
+
+    /// Phase A boucle complétion — lit la SessionCompletionRecord existante pour
+    /// une session identifiée par (weekNumber, day). Renvoie nil si la session
+    /// n'a pas encore été marquée terminée. Throw recordNotFound si le programme
+    /// n'existe plus.
+    func loadSessionCompletion(recordId: UUID, weekNumber: Int, day: Int) async throws -> SessionCompletionRecord?
+
+    /// Phase A boucle complétion — set ou clear (record == nil) la
+    /// SessionCompletionRecord pour une session. Le mapping (weekNumber, day) →
+    /// PersistedSession.id est résolu par le repo. Throw si record/session
+    /// introuvables.
+    func recordSessionCompletion(
+        recordId: UUID,
+        weekNumber: Int,
+        day: Int,
+        record: SessionCompletionRecord?
+    ) async throws
+}
+
+enum SessionCompletionRepositoryError: Error, Equatable {
+    case recordNotFound
+    case sessionNotFound
 }
