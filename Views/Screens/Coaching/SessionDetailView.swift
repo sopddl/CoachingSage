@@ -175,7 +175,7 @@ struct SessionDetailView: View {
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
             HStack(spacing: 10) {
-                Image(systemName: AdaptedProgramFormatting.sfSymbol(for: session.type))
+                Image(systemName: program.sport.sfSymbol)
                     .font(.title3)
                     .foregroundStyle(.tint)
                 Text(verbatim: session.name)

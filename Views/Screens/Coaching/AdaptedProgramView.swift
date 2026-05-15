@@ -286,7 +286,7 @@ struct AdaptedProgramView: View {
             )
         } label: {
             HStack(spacing: 12) {
-                Image(systemName: AdaptedProgramFormatting.sfSymbol(for: session.type))
+                Image(systemName: program.sport.sfSymbol)
                     .frame(width: 24)
                     .foregroundStyle(.tint)
                 VStack(alignment: .leading, spacing: 2) {

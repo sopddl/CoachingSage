@@ -30,15 +30,21 @@ struct SessionCompleteSheet: View {
         NavigationStack {
             Form {
                 Section {
-                    HStack {
+                    HStack(spacing: 12) {
                         Text("coaching.session.complete.duration.label")
                         Spacer()
-                        Stepper(value: $actualDuration, in: 1...300, step: 5) {
-                            Text(verbatim: "\(actualDuration) min")
-                                .monospacedDigit()
-                                .foregroundStyle(.secondary)
-                        }
-                        .labelsHidden()
+                        // Sophie 2026-05-15 bug B2 : Stepper seul empêchait la saisie
+                        // directe au clavier. TextField numérique + Stepper combo →
+                        // tap TextField pour taper 75, Stepper pour ajuster ±5.
+                        TextField("", value: $actualDuration, format: .number)
+                            .multilineTextAlignment(.trailing)
+                            .keyboardType(.numberPad)
+                            .monospacedDigit()
+                            .frame(minWidth: 50)
+                        Text("coaching.session.complete.duration.unit")
+                            .foregroundStyle(.secondary)
+                        Stepper("", value: $actualDuration, in: 1...300, step: 5)
+                            .labelsHidden()
                     }
                 } header: {
                     Text("coaching.session.complete.duration.section")
