@@ -15,6 +15,15 @@ struct SessionDetailView: View {
     /// un bandeau header explicatif. Default false côté preview.
     var isModifiedByRegen: Bool = false
 
+    /// Phase A boucle complétion — id du `AdaptedProgramRecord` persistant.
+    /// Nil sur le hot path post-adapt (programme tout frais) et sur Previews.
+    /// Quand non-nil, expose le bouton "Marquer comme terminée".
+    var recordId: UUID? = nil
+
+    @Environment(\.appDependencies) private var deps
+    @State private var completionVM: SessionCompletionViewModel?
+    @State private var showCompleteSheet: Bool = false
+
     private var rulesForSession: [AppliedRule] {
         program.appliedRules.filter { $0.weekNumber == week.weekNumber && $0.day == session.day }
     }
@@ -44,6 +53,10 @@ struct SessionDetailView: View {
                                tint: .blue)
                 }
 
+                if let vm = completionVM {
+                    completionSection(vm: vm)
+                }
+
                 if !rulesForSession.isEmpty {
                     sessionAdaptationsSection
                 }
@@ -54,7 +67,104 @@ struct SessionDetailView: View {
         }
         .navigationTitle(Text(verbatim: session.name))
         .navigationBarTitleDisplayMode(.inline)
+        .task {
+            await bootstrapCompletionVMIfNeeded()
+        }
+        .sheet(isPresented: $showCompleteSheet) {
+            if let vm = completionVM {
+                SessionCompleteSheet(vm: vm, plannedDurationMinutes: session.durationMinutes)
+            }
+        }
     }
+
+    private func bootstrapCompletionVMIfNeeded() async {
+        guard let recordId, let deps, completionVM == nil else { return }
+        let vm = SessionCompletionViewModel(
+            recordId: recordId,
+            weekNumber: week.weekNumber,
+            day: session.day,
+            repository: deps.adaptedProgramRepository
+        )
+        completionVM = vm
+        await vm.load()
+    }
+
+    // MARK: - Completion section (Phase A)
+
+    @ViewBuilder
+    private func completionSection(vm: SessionCompletionViewModel) -> some View {
+        if let record = vm.completion {
+            completedCard(record: record, vm: vm)
+        } else {
+            Button {
+                showCompleteSheet = true
+            } label: {
+                HStack(spacing: 10) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.title3)
+                    Text("coaching.session.complete.button")
+                        .font(.callout.bold())
+                    Spacer()
+                }
+                .padding(.vertical, 14)
+                .padding(.horizontal, 16)
+                .foregroundStyle(.white)
+                .background(Color.coachingPrimary)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            .accessibilityIdentifier("coaching.session.complete.button")
+        }
+    }
+
+    private func completedCard(record: SessionCompletionRecord, vm: SessionCompletionViewModel) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(spacing: 8) {
+                Image(systemName: "checkmark.seal.fill")
+                    .foregroundStyle(.green)
+                Text("coaching.session.complete.completedAt \(Self.completionDateFormatter.string(from: record.completedAt))")
+                    .font(.subheadline.bold())
+                Spacer()
+            }
+            if let duration = record.actualDurationMinutes {
+                Text("coaching.session.complete.duration.recorded \(duration)")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            if let rpe = record.perceivedEffort {
+                Text("coaching.session.complete.rpe.recorded \(rpe)")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            if let notes = record.notes, !notes.isEmpty {
+                Text(verbatim: notes)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 2)
+            }
+            HStack(spacing: 12) {
+                Button("coaching.session.complete.modify") {
+                    showCompleteSheet = true
+                }
+                .buttonStyle(.bordered)
+                Button("coaching.session.complete.undo", role: .destructive) {
+                    Task { await vm.clear() }
+                }
+                .buttonStyle(.bordered)
+            }
+            .padding(.top, 4)
+        }
+        .padding(12)
+        .background(Color.green.opacity(0.08))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .accessibilityIdentifier("coaching.session.complete.completedCard")
+    }
+
+    private static let completionDateFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateStyle = .medium
+        f.timeStyle = .short
+        return f
+    }()
 
     // MARK: - Header
 
@@ -162,27 +272,26 @@ struct SessionDetailView: View {
                     .font(.system(size: 7))
                     .padding(.top, 7)
             }
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(verbatim: ex.name)
                     .font(.callout.bold())
-                if let metrics = exerciseMetrics(ex), !metrics.isEmpty {
-                    Text(verbatim: metrics)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
+                    .foregroundStyle(.primary)
+
+                // Phase A — description user-friendly promue en primary text :
+                // les `notes` des templates v2 expliquent le geste / la sensation /
+                // la consigne d'exécution. C'est ce qui rend la séance faisable
+                // pour un débutant. Avant Phase A elles étaient en caption grise
+                // peu lisibles.
                 if let notes = ex.notes, !notes.isEmpty {
-                    HStack(alignment: .top, spacing: 4) {
-                        Text("coaching.adapter.exercise.notes")
-                            .font(.caption2.bold())
-                            .foregroundStyle(.secondary)
-                        Text(verbatim: notes)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
+                    Text(verbatim: notes)
+                        .font(.footnote)
+                        .foregroundStyle(.primary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
+
+                metricsChipsRow(ex)
+
                 if ex.wasSubstituted, let reason = ex.substitutionReason {
-                    // Sophie 2026-05-11 : texte audit "remplace X par Y (equipment:dumbbells)"
-                    // remplacé par un libellé user-friendly basé sur le préfixe de reason.
                     Text(Self.userFriendlyAdaptationLabel(reason: reason))
                         .font(.caption2)
                         .foregroundStyle(.orange)
@@ -208,27 +317,59 @@ struct SessionDetailView: View {
         return "coaching.adapter.exercise.adapted.generic"
     }
 
-    /// Concatène sets/reps/duration/rest/zone en une ligne compacte, séparés par " · ".
-    /// Renvoie nil si rien d'affichable.
-    private func exerciseMetrics(_ ex: AdaptedExercise) -> String? {
-        var parts: [String] = []
-        if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
-            parts.append("\(sets) × \(reps)")
-        } else if let sets = ex.sets {
-            parts.append("\(sets) ×")
-        } else if let reps = ex.reps, !reps.isEmpty {
-            parts.append(reps)
+    /// Phase A — chips compacts pour sets×reps / duration / rest / targetZone.
+    /// Le `targetZone` est rendu via `GlossaryTermBadge` (tap → popover définition
+    /// quand le terme matche le glossaire ; sinon texte plat). Pré-Phase A,
+    /// tout était concaténé en une string grise séparée par " · " — illisible
+    /// et impossible à tap.
+    @ViewBuilder
+    private func metricsChipsRow(_ ex: AdaptedExercise) -> some View {
+        let hasAnyMetric = ex.sets != nil
+            || (ex.reps?.isEmpty == false)
+            || (ex.duration?.isEmpty == false)
+            || (ex.restSeconds ?? 0) > 0
+            || (ex.targetZone?.isEmpty == false)
+        if hasAnyMetric {
+            HStack(spacing: 6) {
+                if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
+                    metricChip { Text(verbatim: "\(sets) × \(reps)") }
+                } else if let reps = ex.reps, !reps.isEmpty {
+                    metricChip { Text(verbatim: reps) }
+                } else if let sets = ex.sets {
+                    metricChip { Text(verbatim: "\(sets) ×") }
+                }
+                if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
+                    metricChip { Text(verbatim: duration) }
+                }
+                if let rest = ex.restSeconds, rest > 0 {
+                    metricChip { Text("coaching.adapter.exercise.rest \(rest)") }
+                }
+                if let zone = ex.targetZone, !zone.isEmpty {
+                    glossaryChip(zone)
+                }
+                Spacer(minLength: 0)
+            }
+            .padding(.top, 2)
         }
-        if let duration = ex.duration, !duration.isEmpty {
-            parts.append(duration)
-        }
-        if let rest = ex.restSeconds, rest > 0 {
-            parts.append(String(localized: "coaching.adapter.exercise.rest \(rest)"))
-        }
-        if let zone = ex.targetZone, !zone.isEmpty {
-            parts.append(zone)
-        }
-        return parts.isEmpty ? nil : parts.joined(separator: " · ")
+    }
+
+    private func metricChip<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
+        content()
+            .font(.caption2)
+            .foregroundStyle(.secondary)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(Color(uiColor: .tertiarySystemBackground))
+            .clipShape(Capsule())
+    }
+
+    private func glossaryChip(_ term: String) -> some View {
+        GlossaryTermBadge(term: term)
+            .font(.caption2.bold())
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(Color.coachingPrimary.opacity(0.10))
+            .clipShape(Capsule())
     }
 
     // MARK: - Adaptations propres à cette séance

@@ -281,7 +281,8 @@ struct AdaptedProgramView: View {
                 session: session,
                 week: week,
                 program: program,
-                isModifiedByRegen: isModifiedByRegen
+                isModifiedByRegen: isModifiedByRegen,
+                recordId: recordId
             )
         } label: {
             HStack(spacing: 12) {

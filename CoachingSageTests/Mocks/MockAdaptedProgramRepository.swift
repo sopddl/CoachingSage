@@ -51,4 +51,42 @@ final class MockAdaptedProgramRepository: AdaptedProgramRepository {
             try? record.applyLeonPatch(patch)
         }
     }
+
+    var loadCompletionShouldThrow: Bool = false
+    var recordCompletionShouldThrow: Bool = false
+    private(set) var recordedCompletions: [(recordId: UUID, weekNumber: Int, day: Int, record: SessionCompletionRecord?)] = []
+
+    func loadSessionCompletion(recordId: UUID, weekNumber: Int, day: Int) async throws -> SessionCompletionRecord? {
+        if loadCompletionShouldThrow { throw URLError(.notConnectedToInternet) }
+        guard let program = stubbedActive.first(where: { $0.id == recordId }) else {
+            throw SessionCompletionRepositoryError.recordNotFound
+        }
+        guard let session = program.sessions.first(where: { $0.weekNumber == weekNumber && $0.day == day }) else {
+            return nil
+        }
+        return program.completionState.sessionRecords[session.id]
+    }
+
+    func recordSessionCompletion(
+        recordId: UUID,
+        weekNumber: Int,
+        day: Int,
+        record: SessionCompletionRecord?
+    ) async throws {
+        if recordCompletionShouldThrow { throw URLError(.cannotConnectToHost) }
+        recordedCompletions.append((recordId, weekNumber, day, record))
+        guard let program = stubbedActive.first(where: { $0.id == recordId }) else {
+            throw SessionCompletionRepositoryError.recordNotFound
+        }
+        guard let session = program.sessions.first(where: { $0.weekNumber == weekNumber && $0.day == day }) else {
+            throw SessionCompletionRepositoryError.sessionNotFound
+        }
+        var state = program.completionState
+        if let record {
+            state.sessionRecords[session.id] = record
+        } else {
+            state.sessionRecords.removeValue(forKey: session.id)
+        }
+        program.completionState = state
+    }
 }

@@ -734,6 +734,7 @@
       }
     },
     "coaching.adapter.exercise.notes" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1194,6 +1195,342 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld semaines"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.button" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mark as completed"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marquer comme terminée"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.cancel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.completedAt %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed on %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terminée le %@"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.duration.label" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duration"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durée"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.duration.recorded %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actual duration: %lld min"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durée réelle : %lld min"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.duration.section" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actual duration"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durée réelle"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.modify" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.notes.placeholder" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How did you feel? Conditions, sensations…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment t'es-tu senti(e) ? Conditions, sensations…"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.notes.section" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.rpe.easy" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Easy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Facile"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.rpe.hard" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hard"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Difficile"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.rpe.hint" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scale 1 (very easy) → 10 (maximal)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échelle 1 (très facile) → 10 (maximal)"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.rpe.maximal" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximal"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximal"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.rpe.moderate" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Moderate"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modéré"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.rpe.recorded %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perceived effort: %lld/10"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effort ressenti : %lld/10"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.rpe.section" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perceived effort"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effort ressenti"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.rpe.toggle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log perceived effort"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renseigner l'effort ressenti"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.rpe.veryEasy" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Very easy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Très facile"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.submit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How was the session?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment s'est passée la séance ?"
+          }
+        }
+      }
+    },
+    "coaching.session.complete.undo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Undo completion"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler la complétion"
           }
         }
       }
@@ -2269,6 +2606,618 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réorganiser ma semaine"
+          }
+        }
+      }
+    },
+    "glossary.1rm.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your 1RM is the heaviest load you can lift once with proper form. %1RM expresses the working load as a fraction (e.g. 80% 1RM ≈ heavy strength work, 65% ≈ hypertrophy)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ton 1RM est la charge la plus lourde que tu peux soulever 1 seule fois en bonne forme. %1RM exprime la charge de travail (ex. 80% 1RM ≈ force lourde, 65% ≈ hypertrophie)."
+          }
+        }
+      }
+    },
+    "glossary.1rm.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1RM — Percentage of one-rep max"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1RM — Pourcentage du 1RM"
+          }
+        }
+      }
+    },
+    "glossary.amrap.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A timed block where you do as many reps (or rounds of a circuit) as possible. Stop the clock, not the work, when you're done."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un bloc chronométré où tu fais autant de reps (ou de tours de circuit) que possible. Quand le temps est écoulé, tu t'arrêtes — pas avant."
+          }
+        }
+      }
+    },
+    "glossary.amrap.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AMRAP — As Many Reps/Rounds As Possible"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AMRAP — Le plus de reps/tours possible"
+          }
+        }
+      }
+    },
+    "glossary.css.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your sustainable maximum swimming pace over ~30 min. Used to calibrate threshold sets. Often measured with a 400m + 200m time-trial test."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta vitesse maximale tenable en nage continue sur ~30 min. Sert à calibrer les séances au seuil. Souvent mesurée via un test 400m + 200m chronométré."
+          }
+        }
+      }
+    },
+    "glossary.css.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS — Critical Swim Speed"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS — Vitesse critique natation"
+          }
+        }
+      }
+    },
+    "glossary.daniels.e.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conversational, very aerobic pace from Jack Daniels' running formula. ~65-79% HRmax, all-day-able. The bulk of training volume sits here."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allure conversationnelle, très aérobie, issue de la méthode Jack Daniels. ~65-79% FC max, tenable longtemps. La majorité du volume d'entraînement se fait à cette allure."
+          }
+        }
+      }
+    },
+    "glossary.daniels.e.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daniels-E — Easy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daniels-E — Endurance facile"
+          }
+        }
+      }
+    },
+    "glossary.daniels.i.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hard intervals (~95-100% HRmax) targeting VO2max. Reps of 3-5 min with equal recovery. Improves aerobic ceiling."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intervalles durs (~95-100% FC max) ciblant la VO2max. Répétitions de 3-5 min avec récupération équivalente. Améliore le plafond aérobie."
+          }
+        }
+      }
+    },
+    "glossary.daniels.i.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daniels-I — Interval (VO2max)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daniels-I — Intervalles VO2max"
+          }
+        }
+      }
+    },
+    "glossary.daniels.m.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The pace you'd hold for a marathon (~80-89% HRmax). Comfortable-hard, sustainable for 1-3h depending on fitness."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'allure tenable sur un marathon (~80-89% FC max). Confortable-soutenue, tenable 1 à 3h selon le niveau."
+          }
+        }
+      }
+    },
+    "glossary.daniels.m.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daniels-M — Marathon pace"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daniels-M — Allure marathon"
+          }
+        }
+      }
+    },
+    "glossary.daniels.r.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Short fast reps (~30s-2 min) at mile pace or faster, with full recovery. Improves running economy, speed, and neuromuscular power."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Répétitions courtes (~30s-2 min) à allure 1500m-1 mile ou plus rapide, avec récupération complète. Améliore l'économie de course, la vitesse, la puissance neuromusculaire."
+          }
+        }
+      }
+    },
+    "glossary.daniels.r.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daniels-R — Repetition"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daniels-R — Répétitions rapides"
+          }
+        }
+      }
+    },
+    "glossary.daniels.t.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lactate threshold pace, ~88-92% HRmax. Sustained ~20-40 min at this pace, in continuous blocks or 6-12 min cruise intervals."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allure au seuil lactique, ~88-92% FC max. Tenable ~20-40 min, soit en bloc continu, soit en intervalles 6-12 min (cruise intervals)."
+          }
+        }
+      }
+    },
+    "glossary.daniels.t.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daniels-T — Threshold (tempo)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daniels-T — Seuil (tempo)"
+          }
+        }
+      }
+    },
+    "glossary.emom.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At the start of each minute, complete the prescribed work (e.g. 5 thrusters). The remaining time in the minute is your rest. Repeat for N minutes."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Au début de chaque minute, tu fais le travail prescrit (ex. 5 thrusters). Le reste de la minute est ta récupération. Tu enchaînes N minutes."
+          }
+        }
+      }
+    },
+    "glossary.emom.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EMOM — Every Minute On the Minute"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EMOM — Chaque minute, à la minute"
+          }
+        }
+      }
+    },
+    "glossary.en.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swimming aerobic zones: EN1 = easy (warm-up, recovery), EN2 = steady aerobic (most training volume), EN3 = upper aerobic (sustained, just below threshold)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zones aérobie en natation : EN1 = facile (échauffement, récup), EN2 = aérobie soutenue (la majorité du volume), EN3 = aérobie haute (juste sous le seuil)."
+          }
+        }
+      }
+    },
+    "glossary.en.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EN1 / EN2 / EN3 — Swim endurance zones"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EN1 / EN2 / EN3 — Zones d'endurance natation"
+          }
+        }
+      }
+    },
+    "glossary.ftp.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Power (watts) you can hold for ~1 hour on the bike. FTP-Z1 to Z7 are training zones derived from it. Z2 = endurance, Z4 = threshold, Z5+ = VO2max and above."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puissance (watts) tenable ~1h sur le vélo. FTP-Z1 à Z7 sont les zones d'entraînement dérivées. Z2 = endurance, Z4 = seuil, Z5+ = VO2max et plus."
+          }
+        }
+      }
+    },
+    "glossary.ftp.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FTP — Functional Threshold Power (cycling)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FTP — Seuil fonctionnel (vélo)"
+          }
+        }
+      }
+    },
+    "glossary.hmp.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The pace you'd hold for a half marathon (~85-90% HRmax). Between Daniels-M and Daniels-T. Common reference for tempo and long-run blocks."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'allure tenable sur un semi-marathon (~85-90% FC max). Entre Daniels-M et Daniels-T. Référence courante pour les blocs tempo et sortie longue."
+          }
+        }
+      }
+    },
+    "glossary.hmp.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HMP — Half-marathon pace"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HMP — Allure semi-marathon"
+          }
+        }
+      }
+    },
+    "glossary.race.pace.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The pace you'd hold for that distance in a race. 5K pace ≈ Daniels-I/T, 10K pace ≈ Daniels-T. Used as a concrete intensity target."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'allure tenable sur cette distance en course. Allure 5K ≈ Daniels-I/T, allure 10K ≈ Daniels-T. Sert de cible d'intensité concrète."
+          }
+        }
+      }
+    },
+    "glossary.race.pace.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Race pace (5K, 10K…)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allure course (5K, 10K…)"
+          }
+        }
+      }
+    },
+    "glossary.rpe.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borg 1-10 scale: how hard a session feels. 1 = very easy, 5 = moderate, 10 = maximal sprint. Subjective but reliable to gauge intensity without sensors."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échelle de Borg 1-10 : à quel point la séance est dure. 1 = très facile, 5 = modéré, 10 = sprint maximal. Subjectif mais fiable pour jauger l'intensité sans capteur."
+          }
+        }
+      }
+    },
+    "glossary.rpe.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RPE — Perceived effort"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RPE — Effort ressenti"
+          }
+        }
+      }
+    },
+    "glossary.sweetspot.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "88-94% of FTP. Sustainable for 15-40 min, very effective stimulus for FTP gains without the recovery cost of pure threshold work."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "88-94% de la FTP. Tenable 15-40 min, stimulus très efficace pour augmenter la FTP sans le coût de récupération du seuil pur."
+          }
+        }
+      }
+    },
+    "glossary.sweetspot.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sweet-Spot (cycling)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sweet-Spot (vélo)"
+          }
+        }
+      }
+    },
+    "glossary.tabata.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8 rounds of 20 sec all-out effort + 10 sec rest = 4 minutes total. Originally designed for VO2max + anaerobic capacity research."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8 répétitions de 20 sec à fond + 10 sec de repos = 4 min au total. Protocole d'origine japonaise pour cibler VO2max + capacité anaérobie."
+          }
+        }
+      }
+    },
+    "glossary.tabata.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabata 20/10"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabata 20/10"
+          }
+        }
+      }
+    },
+    "glossary.vdot.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A number derived from a recent race that predicts your training paces (E, M, T, I, R). Higher VDOT = fitter runner. Often estimated from a 5K or 10K time."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un nombre dérivé d'une course récente qui prédit tes allures d'entraînement (E, M, T, I, R). Plus le VDOT est élevé, plus tu es performant. Souvent estimé à partir d'un 5K ou 10K."
+          }
+        }
+      }
+    },
+    "glossary.vdot.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VDOT — Daniels' running fitness score"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VDOT — Score de forme Daniels"
+          }
+        }
+      }
+    },
+    "glossary.zones.definition" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heart-rate zones based on your max HR. Z1-Z2 = easy aerobic (chat possible), Z3 = tempo (short sentences), Z4 = threshold (1-2 words), Z5 = maximal (no talking)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zones de fréquence cardiaque calculées sur ta FC max. Z1-Z2 = aérobie facile (tu peux discuter), Z3 = tempo (phrases courtes), Z4 = seuil (1-2 mots), Z5 = maximal (parler impossible)."
+          }
+        }
+      }
+    },
+    "glossary.zones.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HR zones (Z1-Z5)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zones FC (Z1-Z5)"
           }
         }
       }

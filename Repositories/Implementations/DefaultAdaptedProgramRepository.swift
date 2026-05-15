@@ -45,4 +45,43 @@ final class DefaultAdaptedProgramRepository: AdaptedProgramRepository {
         try record.applyLeonPatch(patch)
         try modelContext.save()
     }
+
+    func loadSessionCompletion(recordId: UUID, weekNumber: Int, day: Int) async throws -> SessionCompletionRecord? {
+        let descriptor = FetchDescriptor<AdaptedProgramRecord>(
+            predicate: #Predicate { $0.id == recordId }
+        )
+        guard let record = try modelContext.fetch(descriptor).first else {
+            throw SessionCompletionRepositoryError.recordNotFound
+        }
+        guard let session = record.sessions.first(where: { $0.weekNumber == weekNumber && $0.day == day }) else {
+            return nil
+        }
+        return record.completionState.sessionRecords[session.id]
+    }
+
+    func recordSessionCompletion(
+        recordId: UUID,
+        weekNumber: Int,
+        day: Int,
+        record: SessionCompletionRecord?
+    ) async throws {
+        let descriptor = FetchDescriptor<AdaptedProgramRecord>(
+            predicate: #Predicate { $0.id == recordId }
+        )
+        guard let programRecord = try modelContext.fetch(descriptor).first else {
+            throw SessionCompletionRepositoryError.recordNotFound
+        }
+        guard let session = programRecord.sessions.first(where: { $0.weekNumber == weekNumber && $0.day == day }) else {
+            throw SessionCompletionRepositoryError.sessionNotFound
+        }
+        var state = programRecord.completionState
+        if let record {
+            state.sessionRecords[session.id] = record
+        } else {
+            state.sessionRecords.removeValue(forKey: session.id)
+        }
+        programRecord.completionState = state
+        programRecord.lastUpdatedAt = Date()
+        try modelContext.save()
+    }
 }
