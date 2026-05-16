@@ -11,14 +11,36 @@ struct OnboardingView: View {
             Color.coachingBackground.ignoresSafeArea()
 
             VStack(spacing: 0) {
+                HStack {
+                    if viewModel.canGoPrevious {
+                        Button {
+                            viewModel.goPrevious()
+                        } label: {
+                            HStack(spacing: 4) {
+                                Image(systemName: "chevron.left")
+                                Text("common.back")
+                            }
+                            .font(.subheadline)
+                            .foregroundStyle(Color.coachingPrimary)
+                        }
+                        .accessibilityIdentifier("onboarding.back")
+                    }
+                    Spacer()
+                }
+                .frame(height: 24)
+                .padding(.top, 8)
+                .padding(.horizontal, 24)
+
                 ProgressIndicator(currentIndex: viewModel.currentScreen.rawValue, total: OnboardingScreen.allCases.count)
-                    .padding(.top, 16)
+                    .padding(.top, 8)
                     .padding(.horizontal, 24)
 
                 Group {
                     switch viewModel.currentScreen {
                     case .firstNameLanguage:
                         FirstNameLanguageView(viewModel: viewModel)
+                    case .thirdPartyAppsSync:
+                        ThirdPartyAppsSyncView(viewModel: viewModel)
                     case .personalData:
                         PersonalDataView(viewModel: viewModel)
                     case .howItWorks:

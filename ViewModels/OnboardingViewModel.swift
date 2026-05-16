@@ -8,15 +8,27 @@ import SageCore
 
 enum OnboardingScreen: Int, CaseIterable {
     case firstNameLanguage = 0
-    case personalData = 1
-    case howItWorks = 2          // Story sœur post-3.3b — écran pédagogique
-    case sportsSelection = 3
-    case equipment = 4
-    case disclaimerPARQ = 5
+    case thirdPartyAppsSync = 1  // Story 3.z — apps non sync Apple Santé, avant la pop-up HK
+    case personalData = 2
+    case howItWorks = 3          // Story sœur post-3.3b — écran pédagogique
+    case sportsSelection = 4
+    case equipment = 5
+    case disclaimerPARQ = 6
 
     var next: OnboardingScreen? {
         OnboardingScreen(rawValue: rawValue + 1)
     }
+}
+
+/// Story 3.z — apps sport tierces déclarées par l'utilisateur à l'onboarding
+/// (cas user qui logge avec Strava/Decathlon/Garmin/Runkeeper sans avoir
+/// activé la sync Apple Santé). Persisté en UserDefaults V1 — la donnée sert
+/// à afficher un rappel doux dans Progrès si l'historique est vide (V2).
+enum ThirdPartyApp: String, CaseIterable, Codable, Sendable {
+    case strava
+    case decathlon
+    case runkeeper
+    case garmin
 }
 
 @MainActor
@@ -37,21 +49,60 @@ final class OnboardingViewModel {
     var firstName: String = ""
     var language: String = Locale.current.language.languageCode?.identifier ?? "fr"
 
-    // MARK: - Écran 2 (HealthKit-pre-fillable)
+    // MARK: - Écran 2 (apps tierces — Story 3.z)
 
-    var biologicalSex: String? {
-        didSet { if biologicalSex != nil { hasUserEditedScreen2 = true } }
+    /// `nil` tant que l'écran n'est pas répondu ; `true` = "Oui j'utilise des apps non sync"
+    /// → on affiche la checklist ; `false` = "Non, suivant" → on skippe.
+    var usesUnsyncedApps: Bool?
+
+    /// Apps cochées si `usesUnsyncedApps == true`. Set rawValues `ThirdPartyApp.rawValue`.
+    var declaredThirdPartyApps: Set<String> = []
+
+    /// Texte libre optionnel (champ "Autre app"). Max 60 chars, non bloquant.
+    var otherAppText: String = ""
+
+    /// L'écran apps tierces n'est jamais bloquant — on peut passer "Oui" sans rien cocher
+    /// ou "Non" tout court.
+    var canContinueScreen2AppsSync: Bool { true }
+
+    func toggleThirdPartyApp(_ app: ThirdPartyApp) {
+        if declaredThirdPartyApps.contains(app.rawValue) {
+            declaredThirdPartyApps.remove(app.rawValue)
+        } else {
+            declaredThirdPartyApps.insert(app.rawValue)
+        }
     }
-    var dateOfBirth: Date? {
-        didSet { if dateOfBirth != nil { hasUserEditedScreen2 = true } }
+
+    /// Persiste la déclaration en UserDefaults (V1 — en attendant un champ JSONB côté Supabase).
+    /// Appelé au goNext depuis l'écran thirdPartyAppsSync.
+    func saveThirdPartyAppsDeclaration() {
+        guard let answered = usesUnsyncedApps else { return }
+        struct Declaration: Codable {
+            let usesUnsyncedApps: Bool
+            let apps: [String]
+            let other: String?
+            let timestamp: Date
+        }
+        let trimmed = otherAppText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let payload = Declaration(
+            usesUnsyncedApps: answered,
+            apps: Array(declaredThirdPartyApps).sorted(),
+            other: trimmed.isEmpty ? nil : String(trimmed.prefix(60)),
+            timestamp: Date()
+        )
+        if let data = try? JSONEncoder().encode(payload) {
+            UserDefaults.standard.set(data, forKey: Self.thirdPartyAppsDefaultsKey)
+        }
     }
-    var weightKg: Double? {
-        didSet { if weightKg != nil { hasUserEditedScreen2 = true } }
-    }
-    var heightCm: Double? {
-        didSet { if heightCm != nil { hasUserEditedScreen2 = true } }
-    }
-    private(set) var hasUserEditedScreen2: Bool = false
+
+    static let thirdPartyAppsDefaultsKey = "onboarding_declared_apps"
+
+    // MARK: - Écran 3 (HealthKit-pre-fillable)
+
+    var biologicalSex: String?
+    var dateOfBirth: Date?
+    var weightKg: Double?
+    var heightCm: Double?
 
     // MARK: - Écran 3
 
@@ -182,9 +233,27 @@ final class OnboardingViewModel {
             Task { await finalize() }
             return
         }
+        // Story 3.z — quand on quitte l'écran apps tierces, persiste la déclaration
+        // utilisateur (V1 UserDefaults) avant de basculer sur personalData (qui déclenche
+        // la pop-up HK).
+        if currentScreen == .thirdPartyAppsSync {
+            saveThirdPartyAppsDeclaration()
+        }
         if let next = currentScreen.next {
             currentScreen = next
         }
+    }
+
+    /// Story 3.z — revenir à l'écran précédent. No-op sur le premier écran.
+    /// On ne reset aucune donnée saisie : si l'user revient sur l'écran apps tierces
+    /// après l'avoir validé, ses réponses sont conservées.
+    func goPrevious() {
+        guard let previous = OnboardingScreen(rawValue: currentScreen.rawValue - 1) else { return }
+        currentScreen = previous
+    }
+
+    var canGoPrevious: Bool {
+        currentScreen != .firstNameLanguage
     }
 
     // MARK: - HealthKit import (écran 2)
@@ -200,13 +269,14 @@ final class OnboardingViewModel {
 
         let data = await healthKitService.fetchProfileData()
 
-        // Détection Apple Watch (orthogonale au pré-fill profil ; ne dépend pas de hasUserEditedScreen2).
-        let summary = await healthKitService.fetchWorkoutSummary(weeksBack: 8)
+        // Détection Apple Watch.
+        // Story 3.z — fenêtre 12 sem pour aligner sur la promesse "3 mois" du premier topo Progrès.
+        let summary = await healthKitService.fetchWorkoutSummary(weeksBack: 12)
         appleWatchDetected = summary.appleWatchDetected
 
-        // Préserve toute saisie utilisateur déjà faite (review P1-1).
-        guard !hasUserEditedScreen2 else { return }
-
+        // Pré-fill per-field, uniquement si l'utilisateur n'a pas déjà saisi cette valeur
+        // (le check `== nil` protège la saisie user — pas besoin d'un flag global racy
+        // qui se déclenchait à l'ouverture de la pop-up HK, cf bug 2026-05-15).
         if biologicalSex == nil, let sex = data.biologicalSex {
             biologicalSex = Self.mapBiologicalSex(sex)
         }
@@ -219,10 +289,6 @@ final class OnboardingViewModel {
         if heightCm == nil, let h = data.heightCm, (100.0...230.0).contains(h) {
             heightCm = h
         }
-
-        // Les setters ont marqué hasUserEditedScreen2=true via didSet.
-        // On reset car l'edit vient de la machine, pas de l'utilisateur.
-        hasUserEditedScreen2 = false
     }
 
     static func mapBiologicalSex(_ value: HKBiologicalSex) -> String? {

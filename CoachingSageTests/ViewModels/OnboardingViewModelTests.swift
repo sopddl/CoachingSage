@@ -156,13 +156,16 @@ final class OnboardingViewModelTests: XCTestCase {
         )
         let vm = makeViewModel(healthKit: healthKit)
 
-        // L'utilisateur a déjà saisi un sex → le flag hasUserEditedScreen2 doit bloquer l'override.
+        // L'utilisateur a déjà saisi un sex → l'import ne doit pas l'écraser (check per-field `== nil`).
+        // Les autres champs (vides) sont en revanche bien remplis par HK (corrige bug régression 2026-05-15).
         vm.biologicalSex = "female"
 
         await vm.importFromHealthKit()
 
         XCTAssertEqual(vm.biologicalSex, "female", "L'import ne doit pas écraser la saisie utilisateur")
-        XCTAssertNil(vm.weightKg, "Aucun champ ne doit être touché si l'utilisateur a édité")
+        XCTAssertEqual(vm.weightKg, 80, "Les champs vides doivent être remplis par HK même si un autre champ a été saisi")
+        XCTAssertEqual(vm.heightCm, 180, "Idem pour la taille")
+        XCTAssertNotNil(vm.dateOfBirth, "Idem pour la date de naissance")
     }
 
     func testImportFromHealthKitMapsBiologicalSex() {
@@ -178,6 +181,8 @@ final class OnboardingViewModelTests: XCTestCase {
         let vm = makeViewModel()
         XCTAssertEqual(vm.currentScreen, .firstNameLanguage)
         vm.goNext()
+        XCTAssertEqual(vm.currentScreen, .thirdPartyAppsSync)  // Story 3.z — apps tierces
+        vm.goNext()
         XCTAssertEqual(vm.currentScreen, .personalData)
         vm.goNext()
         XCTAssertEqual(vm.currentScreen, .howItWorks)  // Story sœur — écran pédagogique
@@ -187,6 +192,55 @@ final class OnboardingViewModelTests: XCTestCase {
         XCTAssertEqual(vm.currentScreen, .equipment)
         vm.goNext()
         XCTAssertEqual(vm.currentScreen, .disclaimerPARQ)
+    }
+
+    // MARK: - Story 3.z — écran apps tierces (AC14)
+
+    func testThirdPartyAppsSyncOuiDoesNotBlockGoNext() {
+        // Purge le défaut résiduel d'un test précédent (UserDefaults.standard partagé).
+        UserDefaults.standard.removeObject(forKey: OnboardingViewModel.thirdPartyAppsDefaultsKey)
+        let vm = makeViewModel()
+        vm.goNext() // → thirdPartyAppsSync
+        XCTAssertEqual(vm.currentScreen, .thirdPartyAppsSync)
+        vm.usesUnsyncedApps = true
+        vm.toggleThirdPartyApp(.strava)
+        vm.toggleThirdPartyApp(.garmin)
+        vm.goNext() // → personalData (pas bloquant même sans "tutoriel suivi")
+        XCTAssertEqual(vm.currentScreen, .personalData)
+        // Persistance UserDefaults.
+        XCTAssertNotNil(UserDefaults.standard.data(forKey: OnboardingViewModel.thirdPartyAppsDefaultsKey))
+        UserDefaults.standard.removeObject(forKey: OnboardingViewModel.thirdPartyAppsDefaultsKey)
+    }
+
+    func testThirdPartyAppsSyncNonSkipsToPersonalData() {
+        UserDefaults.standard.removeObject(forKey: OnboardingViewModel.thirdPartyAppsDefaultsKey)
+        let vm = makeViewModel()
+        vm.goNext() // → thirdPartyAppsSync
+        vm.usesUnsyncedApps = false
+        vm.goNext()
+        XCTAssertEqual(vm.currentScreen, .personalData)
+        // Persisté quand même (donne info "user a répondu Non" pour V2).
+        XCTAssertNotNil(UserDefaults.standard.data(forKey: OnboardingViewModel.thirdPartyAppsDefaultsKey))
+        UserDefaults.standard.removeObject(forKey: OnboardingViewModel.thirdPartyAppsDefaultsKey)
+    }
+
+    func testThirdPartyAppsSyncSkippedWithoutAnswerDoesNotPersist() {
+        UserDefaults.standard.removeObject(forKey: OnboardingViewModel.thirdPartyAppsDefaultsKey)
+        let vm = makeViewModel()
+        vm.goNext() // → thirdPartyAppsSync
+        // L'utilisateur n'a pas répondu (cas impossible via UI mais defensif).
+        vm.saveThirdPartyAppsDeclaration()
+        XCTAssertNil(UserDefaults.standard.data(forKey: OnboardingViewModel.thirdPartyAppsDefaultsKey))
+    }
+
+    func testToggleThirdPartyAppIsAdditive() {
+        let vm = makeViewModel()
+        vm.toggleThirdPartyApp(.strava)
+        XCTAssertTrue(vm.declaredThirdPartyApps.contains("strava"))
+        vm.toggleThirdPartyApp(.garmin)
+        XCTAssertEqual(vm.declaredThirdPartyApps, ["strava", "garmin"])
+        vm.toggleThirdPartyApp(.strava)
+        XCTAssertEqual(vm.declaredThirdPartyApps, ["garmin"])
     }
 
     func testCanContinueScreen4IsAlwaysTrue() {

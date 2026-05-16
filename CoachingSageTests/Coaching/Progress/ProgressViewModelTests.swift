@@ -12,7 +12,7 @@ final class ProgressViewModelTests: XCTestCase {
 
     func testEmptyProgramsTriggersEmptyState() async {
         let hk = MockHealthKitService()
-        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now })
+        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now }, userDefaults: seenDefaults())
 
         await vm.reload(programs: [])
         XCTAssertTrue(vm.isEmpty)
@@ -22,7 +22,7 @@ final class ProgressViewModelTests: XCTestCase {
     func testHKFullyUnavailableReturnsThreeNilLines() async {
         let hk = MockHealthKitService()
         // Pas de stubs → toutes les méthodes HK retournent nil par défaut.
-        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now })
+        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now }, userDefaults: seenDefaults())
         let prog = makeProgramWithOneSession()
 
         await vm.reload(programs: [prog])
@@ -42,7 +42,7 @@ final class ProgressViewModelTests: XCTestCase {
         hk.stubbedRestingHeartRateAverage = 52
         hk.stubbedHRVAverage = 68
         // sleep reste nil → ligne sleep "—"
-        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now })
+        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now }, userDefaults: seenDefaults())
         let prog = makeProgramWithOneSession()
 
         await vm.reload(programs: [prog])
@@ -64,7 +64,7 @@ final class ProgressViewModelTests: XCTestCase {
             // .cycling = 13
             13: 30 * 60 // 30min cycling
         ]
-        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now })
+        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now }, userDefaults: seenDefaults())
         let prog = makeProgramWithOneSession()
 
         await vm.reload(programs: [prog])
@@ -82,7 +82,7 @@ final class ProgressViewModelTests: XCTestCase {
 
     func testSelectPeriodTriggersReload() async {
         let hk = MockHealthKitService()
-        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now })
+        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now }, userDefaults: seenDefaults())
         let prog = makeProgramWithOneSession()
 
         await vm.reload(programs: [prog])
@@ -90,6 +90,52 @@ final class ProgressViewModelTests: XCTestCase {
 
         await vm.selectPeriod(.month, programs: [prog])
         XCTAssertEqual(vm.period, .month)
+    }
+
+    // MARK: - Story 3.z — premier launch wow (AC15)
+
+    func testFirstLaunchSetsQuarterPeriod() {
+        let defaults = isolatedDefaults()
+        // Flag absent → premier launch.
+        let vm = ProgressViewModel(healthKit: MockHealthKitService(), nowProvider: { self.now }, userDefaults: defaults)
+        XCTAssertEqual(vm.period, .quarter, "Premier launch doit forcer la période sur .quarter (effet wow 3 mois)")
+    }
+
+    func testSecondLaunchKeepsWeekPeriod() {
+        let defaults = isolatedDefaults()
+        defaults.set(true, forKey: ProgressViewModel.firstLaunchSeenKey)
+        let vm = ProgressViewModel(healthKit: MockHealthKitService(), nowProvider: { self.now }, userDefaults: defaults)
+        XCTAssertEqual(vm.period, .week, "Launchs suivants doivent revenir au défaut .week")
+    }
+
+    func testMarkFirstLaunchSeenPersistsFlag() {
+        let defaults = isolatedDefaults()
+        let vm = ProgressViewModel(healthKit: MockHealthKitService(), nowProvider: { self.now }, userDefaults: defaults)
+        XCTAssertFalse(defaults.bool(forKey: ProgressViewModel.firstLaunchSeenKey))
+        vm.markFirstLaunchSeen()
+        XCTAssertTrue(defaults.bool(forKey: ProgressViewModel.firstLaunchSeenKey))
+        // Idempotent : un 2e appel ne crash pas et ne ré-écrit pas le flag.
+        vm.markFirstLaunchSeen()
+        XCTAssertTrue(defaults.bool(forKey: ProgressViewModel.firstLaunchSeenKey))
+    }
+
+    // MARK: - Helpers
+
+    /// `UserDefaults` isolé avec suiteName aléatoire — pas de pollution croisée
+    /// entre tests ni avec l'environnement de l'app.
+    private func isolatedDefaults() -> UserDefaults {
+        let suite = "test.progress.\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suite)!
+        defaults.removePersistentDomain(forName: suite)
+        return defaults
+    }
+
+    /// Variante d'`isolatedDefaults` avec le flag premier-launch déjà à `true`
+    /// — pour les tests qui veulent observer le défaut `.week` historique.
+    private func seenDefaults() -> UserDefaults {
+        let defaults = isolatedDefaults()
+        defaults.set(true, forKey: ProgressViewModel.firstLaunchSeenKey)
+        return defaults
     }
 
     // MARK: - Helpers
