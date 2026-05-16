@@ -87,6 +87,11 @@ struct ProgressionView: View {
         let vm = viewModel ?? ProgressViewModel(healthKit: deps.healthKitService)
         if viewModel == nil { viewModel = vm }
 
+        // Story 3.z — l'init de la VM a déjà setté period selon le flag UserDefaults
+        // (.quarter au premier launch, .week ensuite). Ici on bascule le flag à true
+        // pour que les launchs suivants reviennent au défaut .week.
+        vm.markFirstLaunchSeen()
+
         await vm.ensureProgressAuthorization()
         await refreshPrograms(deps: deps, viewModel: vm)
     }

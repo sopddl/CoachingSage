@@ -98,6 +98,7 @@ struct ProfileView: View {
         }
         .scrollContentBackground(.hidden)
         .background(Color.coachingBackground)
+        .contentMargins(.bottom, 60, for: .scrollContent)
     }
 
     // MARK: - Skeleton placeholders

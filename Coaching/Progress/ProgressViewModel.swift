@@ -85,10 +85,17 @@ final class ProgressViewModel {
         case loaded(T)
     }
 
+    /// Story 3.z — clé UserDefaults pour l'effet "wow" au premier launch
+    /// de l'onglet Progrès : période initiale `.quarter` (3 mois) au lieu de
+    /// `.week`, pour montrer l'historique HK déjà sync.
+    static let firstLaunchSeenKey = "progress_first_launch_seen"
+
     // MARK: Inputs / state utilisateur
 
-    /// Période sélectionnée par le picker bottom sheet (icône ⏱). Défaut `.week`.
-    var period: ProgressPeriod = .week
+    /// Période sélectionnée par le picker bottom sheet (icône ⏱).
+    /// Défaut `.week`, override à `.quarter` au premier launch (cf. AC4-AC7
+    /// Story 3.z), flag UserDefaults `progress_first_launch_seen`.
+    var period: ProgressPeriod
 
     // MARK: Output
 
@@ -115,17 +122,30 @@ final class ProgressViewModel {
     private let statsService: WeeklyStatsService
     private let prEngine: PersonalRecordsEngine
     private let nowProvider: () -> Date
+    private let userDefaults: UserDefaults
 
     init(
         healthKit: HealthKitServiceProtocol,
         statsService: WeeklyStatsService = WeeklyStatsService(),
         prEngine: PersonalRecordsEngine = PersonalRecordsEngine(),
-        nowProvider: @escaping () -> Date = { Date() }
+        nowProvider: @escaping () -> Date = { Date() },
+        userDefaults: UserDefaults = .standard
     ) {
         self.healthKit = healthKit
         self.statsService = statsService
         self.prEngine = prEngine
         self.nowProvider = nowProvider
+        self.userDefaults = userDefaults
+        let hasSeenFirstLaunch = userDefaults.bool(forKey: Self.firstLaunchSeenKey)
+        self.period = hasSeenFirstLaunch ? .week : .quarter
+    }
+
+    /// Marque le premier launch comme vu. Idempotent. À appeler au `.task` /
+    /// `.onAppear` de la View Progrès (pas seulement au switch de période),
+    /// afin que l'effet wow `.quarter` ne s'enregistre qu'une fois.
+    func markFirstLaunchSeen() {
+        guard !userDefaults.bool(forKey: Self.firstLaunchSeenKey) else { return }
+        userDefaults.set(true, forKey: Self.firstLaunchSeenKey)
     }
 
     // MARK: API
