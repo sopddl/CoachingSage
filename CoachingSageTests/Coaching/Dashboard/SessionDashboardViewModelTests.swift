@@ -145,6 +145,70 @@ final class SessionDashboardViewModelTests: XCTestCase {
         XCTAssertTrue(vm.emptyModeSuggestions.isEmpty)
     }
 
+    // MARK: - Story sœur 3.z — verrou non-régression "preview-and-back"
+
+    /// Verrou : après un tap suggestion empty mode qui déclenche `previewGenerate`,
+    /// puis un back sans confirm (utilisateur change d'avis), le dashboard refresh
+    /// doit RESTER en mode `.empty` avec les 3 suggestions intactes.
+    ///
+    /// Régression historique (story sœur 3.z, 2026-05-17) : avant le fix, le tap
+    /// suggestion appelait `generate()` qui persistait sport profile + record →
+    /// au back, refresh basculait en `.singleProgram` et les autres suggestions
+    /// disparaissaient. Le fix split en `previewGenerate` (no persist) +
+    /// `commit(preview:)` (sur tap CTA "Démarrer ce programme").
+    ///
+    /// Ce test verrouille les 2 invariants liés au bug :
+    ///   1. `previewGenerate` ne persiste NI sport profile NI record
+    ///   2. Le dashboard refresh post-preview reste en mode `.empty` 3 suggestions
+    func testPreviewGenerateDoesNotChangeEmptyModeOnRefresh() async throws {
+        let library = ProgramTemplateLibrary(templates: [
+            makeTemplate(id: "running-beginner-x", sport: .running, level: .beginner),
+            makeTemplate(id: "cycling-beginner-x", sport: .cycling, level: .beginner),
+            makeTemplate(id: "swimming-beginner-x", sport: .swimming, level: .beginner)
+        ])
+        let profile = CoachingProfile(id: userId)
+        profile.activeSports = ["running", "cycling", "swimming"]
+        let profileRepo = MockCoachingProfileRepository()
+        profileRepo.stubbedProfile = profile
+        let progRepo = MockAdaptedProgramRepository()
+        let sportRepo = MockCoachingSportProfileRepository()
+
+        let vm = makeVM(programRepo: progRepo, profileRepo: profileRepo, library: library)
+
+        // 1er refresh : mode empty avec 3 suggestions.
+        await vm.refresh(userId: userId)
+        XCTAssertEqual(vm.mode, .empty)
+        XCTAssertEqual(vm.emptyModeSuggestions.count, 3)
+
+        // Simule un tap suggestion "running" en mode empty → previewGenerate.
+        let factory = AutoProgramFactory(
+            sportProfileRepository: sportRepo,
+            adaptedProgramRepository: progRepo,
+            coachingProfileRepository: profileRepo,
+            templateLibraryProvider: { library }
+        )
+        _ = try await factory.previewGenerate(
+            sportCode: "running",
+            userId: userId,
+            autoprofileLevel: nil
+        )
+
+        // Invariant 1 : previewGenerate ne doit avoir persisté NI sport profile NI record.
+        XCTAssertEqual(sportRepo.saveCallCount, 0,
+                       "previewGenerate ne doit pas persister le sport profile")
+        XCTAssertEqual(progRepo.stubbedActive.count, 0,
+                       "previewGenerate ne doit pas créer de record actif")
+
+        // Invariant 2 : 2e refresh "back from preview sans confirm" reste empty 3 suggestions.
+        await vm.refresh(userId: userId)
+        XCTAssertEqual(vm.mode, .empty,
+                       "Après preview+back sans commit, le dashboard doit rester en mode .empty")
+        XCTAssertEqual(vm.emptyModeSuggestions.count, 3,
+                       "Les 3 suggestions doivent rester intactes (verrou story sœur 3.z Bug #2)")
+        XCTAssertEqual(Set(vm.emptyModeSuggestions.map(\.sport)),
+                       [.running, .cycling, .swimming])
+    }
+
     // MARK: - Mode actif — tri programmes par date prochaine séance
 
     func testRefreshSortsActiveProgramsByNextDateAscending() async {
