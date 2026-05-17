@@ -33,7 +33,10 @@ struct ProgressionView: View {
                             .accessibilityHidden(true)
                     }
                     ToolbarItem(placement: .topBarTrailing) {
-                        if viewModel != nil && !programs.isEmpty {
+                        // Story sœur 3.z — picker accessible dès qu'il y a du contenu
+                        // (programme actif OU historique HK), pas seulement si programs
+                        // non vide. Empty state masque le picker.
+                        if let viewModel, !viewModel.isEmpty {
                             Button {
                                 periodPickerPresented = true
                             } label: {
@@ -121,10 +124,16 @@ struct ProgressionView: View {
     private func loadedScrollView(viewModel: ProgressViewModel) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                weeklyStatsBlock(stats: viewModel.stats)
+                // Stats hebdo + PR n'ont de sens qu'avec un programme actif (séances
+                // trackées par l'app). En mode "HK history only", on les masque.
+                if viewModel.hasActivePrograms {
+                    weeklyStatsBlock(stats: viewModel.stats)
+                }
                 hkFitnessBlock(state: viewModel.hkFitness)
                 volumeBySportBlock(state: viewModel.volumeRows)
-                personalRecordsBlock(state: viewModel.personalRecords)
+                if viewModel.hasActivePrograms {
+                    personalRecordsBlock(state: viewModel.personalRecords)
+                }
             }
             .padding(.horizontal, 16)
             .padding(.top, 8)

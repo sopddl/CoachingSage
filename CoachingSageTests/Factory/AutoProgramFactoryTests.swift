@@ -158,6 +158,96 @@ final class AutoProgramFactoryTests: XCTestCase {
         XCTAssertEqual(programRepo.savedRecords.count, 0)
     }
 
+    // MARK: - Story sœur 3.z — previewGenerate + commit (no auto-commit on tap)
+
+    /// `previewGenerate` ne persiste NI le sport profile NI le record. Retourne
+    /// l'AdaptedProgram + sportProfile in-memory pour l'écran preview.
+    func testPreviewGenerateDoesNotPersist() async throws {
+        let sportRepo = MockCoachingSportProfileRepository()
+        let programRepo = MockAdaptedProgramRepository()
+        let coachingRepo = MockCoachingProfileRepository()
+        coachingRepo.stubbedProfile = CoachingProfile(id: UUID())
+
+        let factory = AutoProgramFactory(
+            sportProfileRepository: sportRepo,
+            adaptedProgramRepository: programRepo,
+            coachingProfileRepository: coachingRepo,
+            templateLibraryProvider: { ProgramTemplateLibrary(templates: [AdapterTestFixtures.makeRunningTemplate()]) }
+        )
+
+        let preview = try await factory.previewGenerate(
+            sportCode: "running",
+            userId: UUID(),
+            autoprofileLevel: "recreational"
+        )
+
+        XCTAssertEqual(sportRepo.saveCallCount, 0, "previewGenerate ne doit pas persister le sport profile")
+        XCTAssertEqual(programRepo.savedRecords.count, 0, "previewGenerate ne doit pas persister le record")
+        XCTAssertEqual(preview.sportProfile.sportCode, "running")
+        XCTAssertEqual(preview.sportProfile.level, "recreational")
+        XCTAssertEqual(preview.program.weeks.count, 12) // routineCyclic = 12 sem
+    }
+
+    /// `commit(preview:userId:)` persiste sport profile + record. Retourne le
+    /// recordId persisté. C'est l'action déclenchée par "Démarrer ce programme"
+    /// depuis l'écran preview.
+    func testCommitPersistsSportProfileAndProgram() async throws {
+        let sportRepo = MockCoachingSportProfileRepository()
+        let programRepo = MockAdaptedProgramRepository()
+        let coachingRepo = MockCoachingProfileRepository()
+        coachingRepo.stubbedProfile = CoachingProfile(id: UUID())
+
+        let factory = AutoProgramFactory(
+            sportProfileRepository: sportRepo,
+            adaptedProgramRepository: programRepo,
+            coachingProfileRepository: coachingRepo,
+            templateLibraryProvider: { ProgramTemplateLibrary(templates: [AdapterTestFixtures.makeRunningTemplate()]) }
+        )
+
+        let userId = UUID()
+        let preview = try await factory.previewGenerate(
+            sportCode: "running",
+            userId: userId,
+            autoprofileLevel: "recreational"
+        )
+        XCTAssertEqual(sportRepo.saveCallCount, 0)
+        XCTAssertEqual(programRepo.savedRecords.count, 0)
+
+        let recordId = try await factory.commit(preview: preview, userId: userId)
+
+        XCTAssertEqual(sportRepo.saveCallCount, 1)
+        XCTAssertEqual(programRepo.savedRecords.count, 1)
+        XCTAssertEqual(programRepo.savedRecords.first?.id, recordId)
+        XCTAssertEqual(programRepo.savedRecords.first?.userId, userId)
+    }
+
+    /// `previewGenerate` throw `coachingProfileMissing` si pré-requis manquant —
+    /// le caller doit tomber sur le questionnaire au lieu de pousser un écran
+    /// preview avec des données sentinelles.
+    func testPreviewGenerateThrowsWhenCoachingProfileMissing() async {
+        let sportRepo = MockCoachingSportProfileRepository()
+        let programRepo = MockAdaptedProgramRepository()
+        let coachingRepo = MockCoachingProfileRepository()
+        // stubbedProfile reste nil
+        let factory = AutoProgramFactory(
+            sportProfileRepository: sportRepo,
+            adaptedProgramRepository: programRepo,
+            coachingProfileRepository: coachingRepo,
+            templateLibraryProvider: { ProgramTemplateLibrary(templates: [AdapterTestFixtures.makeRunningTemplate()]) }
+        )
+
+        do {
+            _ = try await factory.previewGenerate(sportCode: "running", userId: UUID(), autoprofileLevel: nil)
+            XCTFail("Expected coachingProfileMissing to be thrown")
+        } catch AutoProgramFactoryError.coachingProfileMissing {
+            // Expected
+        } catch {
+            XCTFail("Expected AutoProgramFactoryError.coachingProfileMissing, got \(error)")
+        }
+        XCTAssertEqual(sportRepo.saveCallCount, 0)
+        XCTAssertEqual(programRepo.savedRecords.count, 0)
+    }
+
     /// `medicalClearanceAcknowledged` est snapshot depuis `coachingProfile.requiresMedicalClearance`
     /// au moment de la génération (cf review P0-6 Story 3.1).
     func testGenerateSnapshotsRequiresMedicalClearance() async throws {

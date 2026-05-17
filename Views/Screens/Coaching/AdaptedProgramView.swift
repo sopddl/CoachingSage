@@ -32,11 +32,31 @@ struct AdaptedProgramView: View {
     /// correspondantes + bandeau header dans `SessionDetailView` quand tap.
     var modifiedSessionCoordinates: Set<SessionCoordinate> = []
 
+    /// Story sœur 3.z (2026-05-17) — callback "Démarrer ce programme" pour le
+    /// mode preview. Quand non-nil, l'écran est en mode "aperçu" : aucune
+    /// persistance n'a encore eu lieu, un sticky CTA s'affiche en bas. Tap
+    /// déclenche la commit (persistance sportProfile + record) côté caller,
+    /// puis pop de la nav vers le dashboard Séances. Sur le hot path normal
+    /// (programme déjà actif), `onConfirmStart == nil` et le sticky CTA disparaît.
+    var onConfirmStart: (() async -> Void)? = nil
+
     @State private var weeklyCalendarPresented: Bool = false
+    /// Story sœur 3.z — true pendant l'aller-retour `commit` async. Disable le
+    /// bouton "Démarrer" pour éviter le double-tap (qui créerait 2 records).
+    @State private var isConfirmingStart: Bool = false
+    /// Story sœur 3.z (Bug #3) — la section "Adaptations apportées" est repliée
+    /// par défaut : sur un programme 12 sem cyclé, la liste peut faire 20+ lignes
+    /// peu actionnables pour l'utilisateur (méta-info adapter). Le badge collapsed
+    /// montre uniquement le nombre. L'utilisateur peut déplier s'il veut le détail.
+    @State private var appliedRulesExpanded: Bool = false
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
+                if onConfirmStart != nil {
+                    previewModeBadge
+                }
+
                 header
 
                 if program.requiresAIAssist {
@@ -60,8 +80,19 @@ struct AdaptedProgramView: View {
                 }
 
                 medicalReminderFooter
+
+                if onConfirmStart != nil {
+                    // Padding bottom pour que le contenu ne soit pas masqué par le
+                    // sticky CTA. Hauteur ≈ bouton (52) + padding (32) = 84.
+                    Color.clear.frame(height: 84)
+                }
             }
             .padding()
+        }
+        .overlay(alignment: .bottom) {
+            if let onConfirmStart {
+                confirmStartCTA(action: onConfirmStart)
+            }
         }
         .overlay {
             if requestState == .loading {
@@ -89,6 +120,64 @@ struct AdaptedProgramView: View {
                 WeeklyCalendarView(mode: .singleProgram(id: recordId))
             }
         }
+    }
+
+    // MARK: - Story sœur 3.z — Preview mode (visualiser avant démarrer)
+
+    private var previewModeBadge: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "eye")
+                .font(.footnote.bold())
+                .foregroundStyle(Color.coachingTextSecondary)
+            Text("coaching.adapter.preview.badge")
+                .font(.footnote)
+                .foregroundStyle(Color.coachingTextSecondary)
+            Spacer(minLength: 0)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.coachingTextSecondary.opacity(0.08))
+        )
+        .accessibilityElement(children: .combine)
+    }
+
+    private func confirmStartCTA(action: @escaping () async -> Void) -> some View {
+        VStack(spacing: 0) {
+            Button {
+                guard !isConfirmingStart else { return }
+                isConfirmingStart = true
+                Task {
+                    await action()
+                    isConfirmingStart = false
+                }
+            } label: {
+                HStack {
+                    if isConfirmingStart {
+                        ProgressView()
+                            .tint(.white)
+                    } else {
+                        Image(systemName: "play.circle.fill")
+                    }
+                    Text("coaching.adapter.preview.confirmStart")
+                        .font(.headline)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(Color.coachingPrimary)
+            .disabled(isConfirmingStart)
+            .accessibilityIdentifier("coaching.adapter.preview.confirmStart")
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+        }
+        .background(
+            Color.coachingBackground
+                .opacity(0.96)
+                .ignoresSafeArea(edges: .bottom)
+        )
     }
 
     // MARK: - Header
@@ -329,22 +418,41 @@ struct AdaptedProgramView: View {
     // MARK: - Applied rules log (résumé global)
 
     private var appliedRulesSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("coaching.adapter.appliedRules.title")
-                .font(.headline)
-            ForEach(Array(program.appliedRules.enumerated()), id: \.offset) { _, rule in
-                HStack(alignment: .top, spacing: 8) {
-                    Image(systemName: AdaptedProgramFormatting.outcomeSFSymbol(rule.outcome))
-                        .foregroundStyle(AdaptedProgramFormatting.outcomeColor(rule.outcome))
-                        .font(.caption)
-                    Text(verbatim: "S\(rule.weekNumber) J\(rule.day) — \(rule.detail)")
-                        .font(.caption)
+        DisclosureGroup(isExpanded: $appliedRulesExpanded) {
+            VStack(alignment: .leading, spacing: 6) {
+                ForEach(Array(program.appliedRules.enumerated()), id: \.offset) { _, rule in
+                    HStack(alignment: .top, spacing: 8) {
+                        Image(systemName: AdaptedProgramFormatting.outcomeSFSymbol(rule.outcome))
+                            .foregroundStyle(AdaptedProgramFormatting.outcomeColor(rule.outcome))
+                            .font(.caption)
+                        Text(verbatim: "S\(rule.weekNumber) J\(rule.day) — \(rule.detail)")
+                            .font(.caption)
+                    }
                 }
+            }
+            .padding(.top, 8)
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: "wand.and.stars")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text("coaching.adapter.appliedRules.title")
+                    .font(.headline)
+                Spacer(minLength: 4)
+                Text(verbatim: "\(program.appliedRules.count)")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 2)
+                    .background(
+                        Capsule().fill(Color.secondary.opacity(0.15))
+                    )
             }
         }
         .padding()
         .background(Color(uiColor: .tertiarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10))
+        .accessibilityIdentifier("coaching.adapter.appliedRules.disclosure")
     }
 
     // MARK: - Medical reminder
