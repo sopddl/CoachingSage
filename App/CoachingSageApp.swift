@@ -69,7 +69,9 @@ struct CoachingSageApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-                if !isAuthenticated {
+                if let scenario = ProcessInfo.processInfo.environment["UI_TEST_SCENARIO"] {
+                    UIReviewScenarioContainer(scenario: scenario)
+                } else if !isAuthenticated {
                     AuthView(
                         authService: deps.authService,
                         coreProfileRepository: deps.coreProfileRepository

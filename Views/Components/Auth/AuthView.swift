@@ -85,6 +85,7 @@ struct AuthView: View {
                             .focused($focusedField, equals: .password)
                             .submitLabel(.go)
                             .onSubmit { focusedField = nil }
+                            .accessibilityIdentifier("auth.password")
                             .padding(.vertical, 10)
                             .padding(.horizontal, 16)
                             .background(.regularMaterial)
@@ -113,6 +114,7 @@ struct AuthView: View {
                         }
                         .primaryButtonStyle()
                         .disabled(email.isEmpty || password.isEmpty || isLoading)
+                        .accessibilityIdentifier("auth.signIn")
                     }
 
                     // Mot de passe oublié (visible uniquement en mode connexion)
@@ -144,6 +146,7 @@ struct AuthView: View {
                     }
                     .font(.coachingCaption)
                     .foregroundStyle(.secondary)
+                    .accessibilityIdentifier("auth.devLogin")
                     #endif
 
                     // Message d'erreur
