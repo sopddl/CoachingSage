@@ -99,9 +99,18 @@ final class ProgressViewModel {
 
     // MARK: Output
 
-    /// `true` si l'utilisateur n'a aucun `AdaptedProgramRecord` actif → état vide
-    /// global (icône 📊 + "Bientôt tes progrès" + CTA retour Séances).
+    /// `true` si aucun programme actif ET aucun workout HK sur la période →
+    /// état vide global (icône 📊 + "Bientôt tes progrès" + CTA retour Séances).
+    /// Story sœur 3.z (2026-05-17) : prend en compte l'historique HK (Strava→Santé)
+    /// pour ne pas masquer la valeur produit de la Story 3.z aux users fresh
+    /// onboarding qui ont 3 mois d'activités synchronisées.
     private(set) var isEmpty: Bool = false
+
+    /// `true` si l'utilisateur a au moins un `AdaptedProgramRecord` actif.
+    /// Pilote l'affichage des blocs qui dépendent des séances trackées par l'app
+    /// (widget stats hebdo + performances récentes). Les blocs HK fitness et
+    /// Volume par sport s'affichent indépendamment (alimentés HK uniquement).
+    private(set) var hasActivePrograms: Bool = false
 
     /// Bloc 1 — toujours synchrone (SwiftData local), pas de loading state.
     private(set) var stats: WeeklyStats = .empty
@@ -157,37 +166,38 @@ final class ProgressViewModel {
         try? await healthKit.requestProgressAuthorizationIfNeeded()
     }
 
-    /// Recharge les 4 blocs pour `period` courante. Les 3 blocs async chargent
-    /// en parallèle. Les programmes sont passés par la View (View récupère via
-    /// `@Query` SwiftData).
+    /// Recharge les 4 blocs pour `period` courante. Les 2 blocs HK (fitness +
+    /// volume) chargent toujours, même sans programme actif — la décision
+    /// "empty state" se fait après leur retour, en croisant `hasActivePrograms`
+    /// et la présence de workouts HK sur la période (cf. Story sœur 3.z).
+    /// Les programmes sont passés par la View (View récupère via `@Query`).
     func reload(programs: [AdaptedProgramRecord]) async {
         let now = nowProvider()
         let activePrograms = programs.filter { $0.isActive }
-        isEmpty = activePrograms.isEmpty
-        guard !isEmpty else {
+        hasActivePrograms = !activePrograms.isEmpty
+
+        // Blocs 1 et 4 — dépendent des séances trackées par l'app. Sans programme
+        // actif, on les met à vide (la View masque les blocs concernés).
+        if hasActivePrograms {
+            stats = statsService.compute(
+                programs: activePrograms,
+                now: now,
+                period: period
+            )
+            let prs = prEngine.detectRecent(
+                period: period,
+                programs: activePrograms,
+                now: now
+            )
+            personalRecords = .loaded(prs)
+        } else {
             stats = .empty
-            hkFitness = .loaded(.empty)
-            volumeRows = .loaded([])
             personalRecords = .loaded([])
-            return
         }
 
-        // Bloc 1 — sync local
-        stats = statsService.compute(
-            programs: activePrograms,
-            now: now,
-            period: period
-        )
-
-        // Bloc 4 — sync local (PR computed sur completionState)
-        let prs = prEngine.detectRecent(
-            period: period,
-            programs: activePrograms,
-            now: now
-        )
-        personalRecords = .loaded(prs)
-
-        // Blocs 2 et 3 — async HK en parallèle
+        // Blocs 2 et 3 — async HK en parallèle. Toujours chargés : permet à un
+        // user fresh onboarding (0 programme) avec historique Strava→Santé de
+        // voir tout de suite son volume — effet wow Story 3.z préservé.
         hkFitness = .loading
         volumeRows = .loading
 
@@ -197,6 +207,12 @@ final class ProgressViewModel {
         let (hk, vols) = await (hkTask, volTask)
         hkFitness = .loaded(hk)
         volumeRows = .loaded(vols)
+
+        // Empty state = aucun signal côté app (pas de programme actif) ET aucun
+        // signal côté HK (pas de workout sur la période). HK fitness seul (RHR
+        // sans workout) ne suffit pas — sans workout on n'a rien à raconter
+        // comme « progrès » d'entraînement.
+        isEmpty = !hasActivePrograms && vols.isEmpty
     }
 
     /// Bascule la période et recharge.

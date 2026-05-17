@@ -13,13 +13,18 @@ struct AdaptedProgramScreen: View {
     /// (résolu côté `SessionView.pushAdaptedProgram` via
     /// `SessionDashboardViewModel.modifiedSessionCoordinates`).
     private let modifiedSessionCoordinates: Set<SessionCoordinate>
+    /// Story sœur 3.z (2026-05-17) — closure "Démarrer ce programme" forwardée
+    /// à `AdaptedProgramView`. Non-nil = preview mode (sticky CTA bottom).
+    private let onConfirmStart: (() async -> Void)?
 
     init(
         viewModel: @autoclosure @escaping () -> AdaptedProgramViewModel,
-        modifiedSessionCoordinates: Set<SessionCoordinate> = []
+        modifiedSessionCoordinates: Set<SessionCoordinate> = [],
+        onConfirmStart: (() async -> Void)? = nil
     ) {
         _viewModel = StateObject(wrappedValue: viewModel())
         self.modifiedSessionCoordinates = modifiedSessionCoordinates
+        self.onConfirmStart = onConfirmStart
     }
 
     var body: some View {
@@ -29,9 +34,14 @@ struct AdaptedProgramScreen: View {
             recordId: viewModel.recordId,
             leonNotes: viewModel.leonNotes,
             requestState: viewModel.requestState,
-            modifiedSessionCoordinates: modifiedSessionCoordinates
+            modifiedSessionCoordinates: modifiedSessionCoordinates,
+            onConfirmStart: onConfirmStart
         )
         .task {
+            // En preview mode, on évite de déclencher Léon (pas de record persisté,
+            // pas de raison de consommer une requête IA pour un programme qui peut
+            // ne jamais être démarré).
+            guard onConfirmStart == nil else { return }
             await viewModel.triggerLeonIfNeeded()
         }
         .sheet(isPresented: $viewModel.showQuotaSheet) {

@@ -72,7 +72,8 @@ struct SessionView: View {
                                 coachingRepo: deps.coachingProfileRepository,
                                 adaptedRepo: deps.adaptedProgramRepository
                             ),
-                            modifiedSessionCoordinates: route.modifiedSessionCoordinates
+                            modifiedSessionCoordinates: route.modifiedSessionCoordinates,
+                            onConfirmStart: confirmStartClosure(for: route, deps: deps)
                         )
                     } else {
                         // Fallback : pas de deps (preview sans dependencies) → rendu statique sans Léon.
@@ -309,24 +310,27 @@ struct SessionView: View {
             await presentAdaptedProgram(for: existing)
             return
         }
-        // V2 #6 — skip questionnaire pour les suggestions empty mode.
-        // Defaults sensibles (level recreational si pas d'autoprofil, premier
-        // goal du sport, fréquence 3, durée routineCyclic). Sur échec on
-        // tombe sur le questionnaire pour ne pas bloquer l'user.
+        // Story sœur 3.z (2026-05-17) — tap suggestion empty mode = preview, pas
+        // commit. L'utilisateur visualise le programme adapté ; les 2 autres
+        // suggestions restent dispo via le back. Tap "Démarrer ce programme" sur
+        // l'écran preview déclenche la commit (`confirmStartClosure`). Sur échec
+        // on tombe sur le questionnaire pour ne pas bloquer l'user.
         do {
-            try await generateAutoProgram(sportCode: sportCode)
+            try await previewAutoProgram(sportCode: sportCode)
         } catch {
             #if DEBUG
-            Self.persistLogger.debug("AutoProgramFactory failed (\(error.localizedDescription)) — fallback questionnaire")
+            Self.persistLogger.debug("AutoProgramFactory preview failed (\(error.localizedDescription)) — fallback questionnaire")
             #endif
             sheetSelection = .questionnaire(sportCode: sportCode)
         }
     }
 
-    /// Génère un programme pré-rempli pour `sportCode` sans questionnaire et
-    /// push directement `AdaptedProgramView`. Throws si pré-requis manquant
-    /// (coachingProfile absent, library KO, Supabase save fail).
-    private func generateAutoProgram(sportCode: String) async throws {
+    /// Story sœur 3.z (2026-05-17) — génère un programme pré-rempli en mémoire
+    /// (pas de persistance) et push `AdaptedProgramView` en mode preview.
+    /// L'utilisateur peut revenir à la liste de suggestions sans avoir commit.
+    /// La commit se fait via `confirmStartClosure(for:deps:)` quand l'utilisateur
+    /// tape "Démarrer ce programme".
+    private func previewAutoProgram(sportCode: String) async throws {
         guard let deps else {
             throw AutoProgramFactoryError.coachingProfileMissing
         }
@@ -341,15 +345,45 @@ struct SessionView: View {
             adaptedProgramRepository: deps.adaptedProgramRepository,
             coachingProfileRepository: deps.coachingProfileRepository
         )
-        // TODO: brancher `autoprofileLevel` quand `CoachingProfile.healthAutofill`
-        // sera dispo (cf SessionDashboardViewModel.suggestionLevelProvider).
-        let result = try await factory.generate(
+        let preview = try await factory.previewGenerate(
             sportCode: sportCode,
             userId: userId,
             autoprofileLevel: nil
         )
-        await refreshDashboard()
-        adaptedRoute = AdaptedProgramRoute(program: result.program, recordId: result.recordId)
+        adaptedRoute = AdaptedProgramRoute(
+            program: preview.program,
+            recordId: nil,
+            previewSportProfile: preview.sportProfile
+        )
+    }
+
+    /// Story sœur 3.z (2026-05-17) — closure passée à `AdaptedProgramScreen` pour
+    /// le sticky CTA "Démarrer ce programme". `nil` si la route n'est pas en
+    /// mode preview (programme déjà actif ouvert depuis dashboard). Sur tap :
+    /// persiste sportProfile + record, refresh dashboard, pop la nav.
+    private func confirmStartClosure(
+        for route: AdaptedProgramRoute,
+        deps: AppDependencies
+    ) -> (() async -> Void)? {
+        guard let previewProfile = route.previewSportProfile else { return nil }
+        return {
+            guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else { return }
+            do {
+                let factory = AutoProgramFactory(
+                    sportProfileRepository: deps.coachingSportProfileRepository,
+                    adaptedProgramRepository: deps.adaptedProgramRepository,
+                    coachingProfileRepository: deps.coachingProfileRepository
+                )
+                let preview = AutoProgramPreview(program: route.program, sportProfile: previewProfile)
+                _ = try await factory.commit(preview: preview, userId: userId)
+                await refreshDashboard()
+                // Pop vers Séances : dashboard refresh montre maintenant le programme
+                // démarré en mode active.
+                adaptedRoute = nil
+            } catch {
+                presentationError = error.localizedDescription
+            }
+        }
     }
 
     // MARK: - Sheet routing
@@ -485,17 +519,25 @@ private struct AdaptedProgramRoute: Hashable {
     /// `SessionDetailView`. Vide sur hot path post-adapt (record vient d'être
     /// créé) ou si pas de regen appliquée.
     let modifiedSessionCoordinates: Set<SessionCoordinate>
+    /// Story sœur 3.z (2026-05-17) — sportProfile généré pour la preview mode
+    /// (tap suggestion empty dashboard). Non-nil = pas encore persisté ; le tap
+    /// "Démarrer ce programme" déclenche `commit(preview:)` via
+    /// `SessionView.confirmStartClosure`. nil = ouverture d'un programme déjà
+    /// actif depuis le dashboard active mode.
+    let previewSportProfile: CoachingSportProfile?
 
     init(
         program: AdaptedProgram,
         recordId: UUID?,
         initialLeonNotes: LeonAppliedNotes? = nil,
-        modifiedSessionCoordinates: Set<SessionCoordinate> = []
+        modifiedSessionCoordinates: Set<SessionCoordinate> = [],
+        previewSportProfile: CoachingSportProfile? = nil
     ) {
         self.program = program
         self.recordId = recordId
         self.initialLeonNotes = initialLeonNotes
         self.modifiedSessionCoordinates = modifiedSessionCoordinates
+        self.previewSportProfile = previewSportProfile
     }
 
     func hash(into hasher: inout Hasher) { hasher.combine(id) }

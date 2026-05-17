@@ -10,13 +10,58 @@ final class ProgressViewModelTests: XCTestCase {
     private let userId = UUID()
     private let now = Date(timeIntervalSince1970: 1_715_000_000)
 
-    func testEmptyProgramsTriggersEmptyState() async {
+    func testEmptyProgramsAndNoHKHistoryTriggersEmptyState() async {
         let hk = MockHealthKitService()
+        // Aucun workout HK sur la période → vrai cas d'empty state.
         let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now }, userDefaults: seenDefaults())
 
         await vm.reload(programs: [])
         XCTAssertTrue(vm.isEmpty)
+        XCTAssertFalse(vm.hasActivePrograms)
         XCTAssertEqual(vm.stats, .empty)
+    }
+
+    // Story sœur 3.z — un user fresh onboarding (0 programme actif) avec
+    // historique Strava→Santé doit voir son volume HK, pas l'empty state.
+    // Casse la promesse de la Story 3.z si on régresse là-dessus.
+    func testZeroProgramsButHKHistoryShowsVolumeBlock() async {
+        let hk = MockHealthKitService()
+        hk.stubbedWorkoutVolumeByActivityType = [
+            37: 90 * 60  // 1h30 running (Strava→Santé sync) — HKWorkoutActivityType.running = 37
+        ]
+        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now }, userDefaults: seenDefaults())
+
+        await vm.reload(programs: [])
+
+        XCTAssertFalse(vm.isEmpty, "0 programs mais workouts HK historiques → pas d'empty state")
+        XCTAssertFalse(vm.hasActivePrograms)
+        guard case .loaded(let rows) = vm.volumeRows else {
+            return XCTFail("Volume block doit être loaded")
+        }
+        XCTAssertEqual(rows.count, 1)
+        XCTAssertEqual(rows.first?.sportCode, .running)
+        XCTAssertEqual(rows.first?.totalMinutes, 90)
+        // Stats et PR restent vides — dépendent des séances trackées par l'app.
+        XCTAssertEqual(vm.stats, .empty)
+        if case .loaded(let prs) = vm.personalRecords {
+            XCTAssertTrue(prs.isEmpty)
+        } else {
+            XCTFail("PR block doit être loaded vide quand 0 program actif")
+        }
+    }
+
+    // Edge case : 0 programme + HK RHR/HRV présent mais aucun workout → empty
+    // state quand même. Sans historique d'activité, on n'a rien à raconter.
+    func testZeroProgramsAndHKFitnessOnlyButNoVolumeTriggersEmptyState() async {
+        let hk = MockHealthKitService()
+        hk.stubbedRestingHeartRateAverage = 55
+        hk.stubbedHRVAverage = 70
+        // Pas de workouts.
+        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now }, userDefaults: seenDefaults())
+
+        await vm.reload(programs: [])
+
+        XCTAssertTrue(vm.isEmpty, "RHR seul sans aucun workout ne suffit pas à sortir de l'empty state")
     }
 
     func testHKFullyUnavailableReturnsThreeNilLines() async {

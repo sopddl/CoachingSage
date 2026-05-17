@@ -44,6 +44,26 @@ final class AutoProgramFactory {
         userId: UUID,
         autoprofileLevel: String? = nil
     ) async throws -> AutoProgramResult {
+        let preview = try await previewGenerate(
+            sportCode: sportCode,
+            userId: userId,
+            autoprofileLevel: autoprofileLevel
+        )
+        let recordId = try await commit(preview: preview, userId: userId)
+        return AutoProgramResult(program: preview.program, recordId: recordId, sportProfile: preview.sportProfile)
+    }
+
+    /// Story sœur 3.z (2026-05-17) — variant "preview" : adapte le programme en
+    /// mémoire SANS persister (ni sportProfile ni AdaptedProgramRecord). Utilisé
+    /// par le tap suggestion empty mode pour permettre à l'utilisateur de
+    /// visualiser un programme avant de le démarrer. Conserve les 3 suggestions
+    /// affichées tant qu'il ne confirme pas. La commit ultérieure se fait via
+    /// `commit(preview:userId:)`.
+    func previewGenerate(
+        sportCode: String,
+        userId: UUID,
+        autoprofileLevel: String? = nil
+    ) async throws -> AutoProgramPreview {
         guard let coachingProfile = try await coachingProfileRepository.fetchCurrentProfile() else {
             throw AutoProgramFactoryError.coachingProfileMissing
         }
@@ -55,8 +75,6 @@ final class AutoProgramFactory {
             medicalClearanceAcknowledged: coachingProfile.requiresMedicalClearance
         )
 
-        try await sportProfileRepository.save(sportProfile)
-
         let library = try await templateLibraryProvider()
         let selector = ProgramTemplateSelector(library: library)
         let template = selector.select(profile: sportProfile)
@@ -67,10 +85,21 @@ final class AutoProgramFactory {
             coachingProfile: coachingProfile
         )
 
-        let record = AdaptedProgramRecord(from: adapted, userId: userId)
-        try await adaptedProgramRepository.save(record)
+        return AutoProgramPreview(program: adapted, sportProfile: sportProfile)
+    }
 
-        return AutoProgramResult(program: adapted, recordId: record.id, sportProfile: sportProfile)
+    /// Story sœur 3.z (2026-05-17) — persiste la preview (sportProfile +
+    /// AdaptedProgramRecord). Retourne le recordId pour navigation/dashboard.
+    /// Appelée quand l'utilisateur confirme "Démarrer ce programme" depuis
+    /// l'écran de preview.
+    func commit(
+        preview: AutoProgramPreview,
+        userId: UUID
+    ) async throws -> UUID {
+        try await sportProfileRepository.save(preview.sportProfile)
+        let record = AdaptedProgramRecord(from: preview.program, userId: userId)
+        try await adaptedProgramRepository.save(record)
+        return record.id
     }
 
     /// Construit le `CoachingSportProfile` defaults sans aucune persistance.
@@ -122,5 +151,13 @@ enum AutoProgramFactoryError: LocalizedError {
 struct AutoProgramResult {
     let program: AdaptedProgram
     let recordId: UUID
+    let sportProfile: CoachingSportProfile
+}
+
+/// Story sœur 3.z (2026-05-17) — résultat in-memory d'`previewGenerate`. Pas
+/// encore persisté. La commit se fait via `AutoProgramFactory.commit(preview:userId:)`
+/// quand l'utilisateur valide "Démarrer ce programme" depuis l'écran preview.
+struct AutoProgramPreview {
+    let program: AdaptedProgram
     let sportProfile: CoachingSportProfile
 }
