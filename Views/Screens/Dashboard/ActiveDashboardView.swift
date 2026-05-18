@@ -53,10 +53,15 @@ struct ActiveDashboardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             section(titleKey: "dashboard.active.programs.title") {
-                programCarousel
+                programsLayout
             }
 
-            if let selectedSummary {
+            // **Story 3.12** — NextSessionCard affichée uniquement quand on a UN
+            // SEUL programme (raccourci "Démarrer la prochaine séance") ou quand
+            // ≥ 4 programmes (carrousel swipable + détail de la card sélectionnée).
+            // En 2-3 programmes, les cards visibles à l'écran sont suffisantes,
+            // l'user tap directement la card du programme qu'il veut faire.
+            if shouldShowNextSessionCard, let selectedSummary {
                 section(titleKey: "dashboard.active.next.title") {
                     NextSessionCard(
                         summary: selectedSummary,
@@ -71,14 +76,75 @@ struct ActiveDashboardView: View {
         }
     }
 
-    /// **Story 3.10** — carrousel horizontal façon Decathlon Coach.
-    /// Cards ~280pt large, height fixe ~120pt. `.scrollTargetBehavior(.viewAligned)`
-    /// snap natif iOS 17+.
-    ///
-    /// **P1 #3 fix ui-reviewer** — bind `.scrollPosition(id:)` à la sélection
-    /// logique : quand l'user swipe le carrousel, la card snap au centre devient
-    /// automatiquement la card sélectionnée → la NextSessionCard suit. Évite la
-    /// confusion "card visible ≠ card en dessous" pointée par l'agent.
+    /// **Story 3.12** — 4 layouts adaptatifs selon `programs.count` :
+    ///   - 1 prog : 1 card full-width portrait, présence maximale + NextSessionCard sous.
+    ///   - 2 prog : 2 cards demi-largeur portrait côte à côte.
+    ///   - 3 prog : 3 cards tiers-largeur portrait côte à côte.
+    ///   - ≥ 4 prog : carrousel horizontal swipable (snap natif iOS 17).
+    @ViewBuilder
+    private var programsLayout: some View {
+        switch programs.count {
+        case 0:
+            EmptyView()
+        case 1:
+            singleProgramLayout
+        case 2, 3:
+            adaptiveGridLayout
+        default:
+            programCarousel
+        }
+    }
+
+    /// Décide si la `NextSessionCard` (raccourci "Démarrer la prochaine séance")
+    /// est affichée. Logique Story 3.12 : seulement quand on a 1 programme
+    /// (présence + raccourci utile) ou ≥ 4 programmes (carrousel swipable où la
+    /// card centrale "sélectionnée" mérite un détail dessous).
+    private var shouldShowNextSessionCard: Bool {
+        programs.count == 1 || programs.count >= 4
+    }
+
+    /// Layout N=1 : 1 card programme prenant toute la largeur. Hauteur portrait
+    /// ~180pt pour donner de la présence + accommoder les badges regen + statut.
+    @ViewBuilder
+    private var singleProgramLayout: some View {
+        if let summary = programs.first {
+            SwipeToDeleteRow(onDelete: { onDeleteProgram(summary) }) {
+                ProgramCard(
+                    summary: summary,
+                    badge: regenBadges[summary.id],
+                    isSelected: false, // pas de notion de sélection en mode 1
+                    onTap: { onTapProgram(summary) }
+                )
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 180)
+        }
+    }
+
+    /// Layout N=2 ou N=3 : HStack avec cards qui se partagent la largeur via
+    /// `.frame(maxWidth: .infinity)`. Pas de scroll, tout visible. Tap card =
+    /// ouvre directement le programme (pas de sélection puisque toutes visibles).
+    @ViewBuilder
+    private var adaptiveGridLayout: some View {
+        HStack(spacing: 10) {
+            ForEach(programs) { summary in
+                SwipeToDeleteRow(onDelete: { onDeleteProgram(summary) }) {
+                    ProgramCard(
+                        summary: summary,
+                        badge: regenBadges[summary.id],
+                        isSelected: false,
+                        onTap: { onTapProgram(summary) }
+                    )
+                }
+                .frame(maxWidth: .infinity)
+            }
+        }
+        .frame(height: 170)
+    }
+
+    /// **Story 3.10 → 3.12** — carrousel horizontal swipable activé à partir de
+    /// 4 programmes. Snap natif iOS 17, `.scrollPosition(id:)` bind à la
+    /// sélection (la card centrale = card sélectionnée → NextSessionCard suit).
     @ViewBuilder
     private var programCarousel: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -89,18 +155,17 @@ struct ActiveDashboardView: View {
                             summary: summary,
                             badge: regenBadges[summary.id],
                             isSelected: summary.id == (selectedId ?? programs.first?.id),
-                            onTap: {
-                                onSelectProgram(summary.id)
-                            }
+                            onTap: { onTapProgram(summary) }
                         )
                     }
-                    .frame(width: 280)
+                    .frame(width: 200)
                     .id(summary.id)
                 }
             }
             .scrollTargetLayout()
             .padding(.horizontal, 1)
         }
+        .frame(height: 170)
         .scrollTargetBehavior(.viewAligned)
         .scrollPosition(
             id: Binding(
@@ -151,30 +216,32 @@ private struct ProgramCard: View {
 
     var body: some View {
         Button(action: onTap) {
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .firstTextBaseline, spacing: 10) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .strokeBorder(Color.coachingSport(forCode: sportCode), lineWidth: 1.5)
-                        Image(systemName: sfSymbol)
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundStyle(Color.coachingSport(forCode: sportCode))
-                    }
-                    .frame(width: 32, height: 32)
+            VStack(alignment: .center, spacing: 10) {
+                // **Story 3.12** — Header card en mode portrait : icône sport
+                // agrandie centrée + titre + statut empilés verticalement, tous
+                // alignés au centre pour un look "tile" cohérent.
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .strokeBorder(Color.coachingSport(forCode: sportCode), lineWidth: 2)
+                    Image(systemName: sfSymbol)
+                        .font(.system(size: 24, weight: .semibold))
+                        .foregroundStyle(Color.coachingSport(forCode: sportCode))
+                }
+                .frame(width: 48, height: 48)
 
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(verbatim: summary.templateName)
-                            .font(.coachingBody.weight(.semibold))
-                            .foregroundStyle(Color.coachingTextPrimary)
-                            .lineLimit(1)
-                        statusTextView
-                            .font(.coachingCaption)
-                            .foregroundStyle(summary.isDormant
-                                             ? Color.coachingTextSecondary
-                                             : Color.coachingTextPrimary)
-                            .lineLimit(1)
-                    }
-                    Spacer(minLength: 0)
+                VStack(alignment: .center, spacing: 2) {
+                    Text(verbatim: summary.templateName)
+                        .font(.coachingBody.weight(.semibold))
+                        .foregroundStyle(Color.coachingTextPrimary)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.center)
+                    statusTextView
+                        .font(.coachingCaption)
+                        .foregroundStyle(summary.isDormant
+                                         ? Color.coachingTextSecondary
+                                         : Color.coachingTextPrimary)
+                        .lineLimit(1)
+                        .multilineTextAlignment(.center)
                 }
 
                 if let badge {
@@ -210,7 +277,7 @@ private struct ProgramCard: View {
                 .frame(height: 4)
             }
             .padding(14)
-            .frame(height: 120, alignment: .topLeading)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(Color.coachingCard)
             .overlay(
                 RoundedRectangle(cornerRadius: 14, style: .continuous)
