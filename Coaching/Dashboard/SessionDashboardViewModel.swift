@@ -316,6 +316,19 @@ final class SessionDashboardViewModel {
                 .filter { $0.weekNumber == currentWeek }
                 .filter { record.completionState.sessionRecords[$0.id] != nil }
                 .count
+            // **Story 3.11 AC6** — late = blocage doux actif ET prochaine
+            // séance pointe sur une semaine antérieure à `currentWeek`.
+            let isLate: Bool
+            switch record.durationMode {
+            case .deadlineFixed, .deadlineEstimated:
+                if let nextWeek = nextResult?.session.weekNumber {
+                    isLate = nextWeek < currentWeek
+                } else {
+                    isLate = false
+                }
+            case .routineCyclic:
+                isLate = false
+            }
             return ProgramSummary(
                 id: record.id,
                 templateName: resolvedName,
@@ -330,7 +343,8 @@ final class SessionDashboardViewModel {
                 weekTotalSessions: weekTotalSessions,
                 totalSessionsCompleted: completed,
                 totalSessions: total,
-                lastUpdatedAt: record.lastUpdatedAt
+                lastUpdatedAt: record.lastUpdatedAt,
+                nextSessionIsLate: isLate
             )
         }
         return summaries.sorted(by: Self.compareSummariesForCarousel)
@@ -369,7 +383,9 @@ final class SessionDashboardViewModel {
 /// NextSessionCard. Découplage VM/Vue : la View consomme un type sans replonger
 /// dans `AdaptedProgramRecord.sessions` ni dans la library à chaque render.
 ///
-/// Story 3.11 ajoutera : `nextSessionIsLate: Bool` pour le badge "En retard".
+/// **Story 3.11** — ajoute `nextSessionIsLate: Bool` pour le badge "En retard"
+/// (blocage doux des modes deadline) + `nextSessionWeekNumber: Int?` pour le
+/// label "Cette séance était prévue semaine du ...".
 struct ProgramSummary: Equatable, Identifiable {
     /// = `AdaptedProgramRecord.id`
     let id: UUID
@@ -395,6 +411,11 @@ struct ProgramSummary: Equatable, Identifiable {
     let totalSessions: Int
     /// Pour le tri AC22 niveau 3 (dormants).
     let lastUpdatedAt: Date
+    /// **Story 3.11 AC6** — `true` quand la prochaine séance appartient à une
+    /// semaine `N < currentWeekNumber` du programme ET durationMode est un mode
+    /// deadline. Faux pour routineCyclic, dormant, ondemand pur, ou si la séance
+    /// affichée est de la semaine courante / future.
+    let nextSessionIsLate: Bool
 
     /// **Story 3.10 AC21** — `true` quand `weekStartDate == nil`.
     var isDormant: Bool { weekStartDate == nil }

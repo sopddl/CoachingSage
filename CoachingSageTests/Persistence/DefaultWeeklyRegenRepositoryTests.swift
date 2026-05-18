@@ -173,7 +173,7 @@ final class DefaultWeeklyRegenRepositoryTests: XCTestCase {
     // MARK: - Journal
 
     func testFetchJournal_returnsNilIfNotFound() async throws {
-        let result = try await repo.fetchJournal(recordId: UUID(), targetWeek: 5)
+        let result = try await repo.fetchJournal(recordId: UUID(), targetWeek: 5, shiftGeneration: 0)
         XCTAssertNil(result)
     }
 
@@ -192,10 +192,61 @@ final class DefaultWeeklyRegenRepositoryTests: XCTestCase {
         )
         try await repo.saveJournal(entry)
 
-        let found = try await repo.fetchJournal(recordId: recordId, targetWeek: 3)
+        let found = try await repo.fetchJournal(recordId: recordId, targetWeek: 3, shiftGeneration: 0)
         let entryFound = try XCTUnwrap(found)
         XCTAssertEqual(entryFound.reason, .missedSessions)
         XCTAssertEqual(entryFound.multiplier, 0.75, accuracy: 1e-6)
+    }
+
+    // **Story 3.11 AC18** — idempotence post-shift week : la clé inclut
+    // `shiftGeneration`. Une entry shiftGen=0 ne bloque PAS une lookup shiftGen=1.
+    func testFetchJournal_includesShiftGenerationInKey() async throws {
+        let recordId = UUID()
+        let entry = RegenJournalEntry(
+            userId: UUID(),
+            recordId: recordId,
+            analyzedWeekNumber: 2,
+            targetWeekNumber: 3,
+            reason: .missedSessions,
+            multiplier: 0.75,
+            pauseLevel: .none,
+            requiresRebuild: false,
+            affectedSessionIds: [],
+            shiftGeneration: 0
+        )
+        try await repo.saveJournal(entry)
+
+        // Lookup shiftGen=0 → trouvé.
+        let foundOriginal = try await repo.fetchJournal(recordId: recordId, targetWeek: 3, shiftGeneration: 0)
+        XCTAssertNotNil(foundOriginal)
+        // Lookup shiftGen=1 → nil (la regen peut être ré-appliquée).
+        let foundPostShift = try await repo.fetchJournal(recordId: recordId, targetWeek: 3, shiftGeneration: 1)
+        XCTAssertNil(foundPostShift)
+    }
+
+    // **Story 3.11 AC27** — Decoding rétro-compat : une entry sérialisée sans
+    // le champ `shiftGeneration` (cas des entries écrites avant Story 3.10)
+    // décode avec `shiftGeneration = 0` (default `decodeIfPresent`).
+    func testRegenJournalEntry_decodesWithoutShiftGenerationAsZero() throws {
+        let legacyJSON = """
+        {
+            "id": "\(UUID().uuidString)",
+            "userId": "\(UUID().uuidString)",
+            "recordId": "\(UUID().uuidString)",
+            "analyzedWeekNumber": 2,
+            "targetWeekNumber": 3,
+            "appliedAt": -1000,
+            "reason": "missedSessions",
+            "multiplier": 0.75,
+            "pauseLevel": "none",
+            "requiresRebuild": false,
+            "affectedSessionIds": []
+        }
+        """
+        let data = try XCTUnwrap(legacyJSON.data(using: .utf8))
+        let decoded = try JSONDecoder().decode(RegenJournalEntry.self, from: data)
+        XCTAssertEqual(decoded.shiftGeneration, 0)
+        XCTAssertEqual(decoded.targetWeekNumber, 3)
     }
 
     func testFetchJournalForCurrentWeek_includesEntriesAppliedWithinWindow() async throws {

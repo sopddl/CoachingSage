@@ -164,6 +164,7 @@ private final class PreviewAdaptedProgramRepository: AdaptedProgramRepository {
     func save(_ record: AdaptedProgramRecord) async throws {}
     func update(_ record: AdaptedProgramRecord) async throws {}
     func markStarted(recordId: UUID) async throws {}
+    func fetchById(recordId: UUID) async throws -> AdaptedProgramRecord? { nil }
     func archive(_ record: AdaptedProgramRecord) async throws {}
     func applyLeonPatch(recordId: UUID, patch: AdaptationPatch) async throws {}
     func loadSessionCompletion(recordId: UUID, weekNumber: Int, day: Int) async throws -> SessionCompletionRecord? { nil }

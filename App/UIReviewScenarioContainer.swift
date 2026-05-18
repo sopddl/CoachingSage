@@ -229,7 +229,8 @@ private struct DashboardActiveScenarioView: View {
             weekTotalSessions: weekTotal,
             totalSessionsCompleted: totalCompleted,
             totalSessions: totalSessions,
-            lastUpdatedAt: lastUpdated
+            lastUpdatedAt: lastUpdated,
+            nextSessionIsLate: false
         )
     }
 

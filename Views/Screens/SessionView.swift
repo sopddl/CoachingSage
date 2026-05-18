@@ -34,6 +34,9 @@ struct SessionView: View {
     /// cap de programmes dormants (10) ou démarrés (5) est atteint. Tap "OK"
     /// dismiss, tap "Voir mes programmes" scrolle vers le carrousel haut.
     @State private var capAlertContext: ProgramCapAlertContext?
+    /// **Story 3.11** — Programme courant pour la sheet Replanifier. Non-nil
+    /// = sheet présentée. Le caller câble `onSelect` côté `replanifyService`.
+    @State private var replanifyTarget: ProgramSummary?
 
     /// **Story 3.10** — Contexte de l'alerte cap pour résoudre titre/message
     /// i18n côté View. `Identifiable` pour `.alert(item:)` SwiftUI.
@@ -119,6 +122,19 @@ struct SessionView: View {
         }
         .sheet(item: $sheetSelection) { selection in
             sheet(for: selection)
+        }
+        // **Story 3.11** — sheet Replanifier (medium/large detents).
+        .sheet(item: $replanifyTarget) { summary in
+            ReplanifySheet(
+                onSelect: { action in
+                    Task { await handleReplanifyAction(action, summary: summary) }
+                },
+                onCancel: {
+                    replanifyTarget = nil
+                }
+            )
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
         }
         // **Story 3.10 AC12/AC13** — alerte cap dormant ou démarré atteint.
         // CTA primary "OK" dismiss. Pas de "Voir mes programmes" en V1
@@ -269,6 +285,9 @@ struct SessionView: View {
                 },
                 onTapWeeklyReorder: {
                     weeklyCalendarPresented = true
+                },
+                onTapReplanify: { summary in
+                    replanifyTarget = summary
                 }
             )
         }
@@ -317,6 +336,34 @@ struct SessionView: View {
               let record = vm.recordsByID[summary.id]
         else { return }
         pushAdaptedProgram(record: record)
+    }
+
+    /// **Story 3.11** — handle action choisie dans `ReplanifySheet`.
+    /// `reportSession` ou `shiftWeek` selon l'action, puis ferme la sheet,
+    /// refresh le dashboard et affiche l'erreur en cas d'échec.
+    @MainActor
+    private func handleReplanifyAction(_ action: ReplanifyAction, summary: ProgramSummary) async {
+        guard let deps else { return }
+        do {
+            switch action {
+            case .reportSession:
+                guard let sessionId = summary.nextSession?.id else {
+                    replanifyTarget = nil
+                    return
+                }
+                try await deps.replanifyService.reportSession(
+                    programId: summary.id,
+                    sessionId: sessionId
+                )
+            case .shiftWeek(let date):
+                try await deps.replanifyService.shiftWeek(programId: summary.id, to: date)
+            }
+            replanifyTarget = nil
+            await refreshDashboard()
+        } catch {
+            presentationError = error.localizedDescription
+            replanifyTarget = nil
+        }
     }
 
     /// **Story 3.10** — tap "Démarrer" sur NextSessionCard.

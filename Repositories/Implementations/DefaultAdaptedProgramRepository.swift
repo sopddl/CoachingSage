@@ -62,6 +62,16 @@ final class DefaultAdaptedProgramRepository: AdaptedProgramRepository {
         try modelContext.save()
     }
 
+    /// **Story 3.11** — fetch d'un record par son id. Retourne nil si introuvable
+    /// ou archivé (cohérent avec les call-sites `ReplanifyService` qui ne
+    /// devraient pas opérer sur un record archivé).
+    func fetchById(recordId: UUID) async throws -> AdaptedProgramRecord? {
+        let descriptor = FetchDescriptor<AdaptedProgramRecord>(
+            predicate: #Predicate { $0.id == recordId && $0.isActive }
+        )
+        return try modelContext.fetch(descriptor).first
+    }
+
     /// **Story 3.10 AC8/AC13** — bascule un dormant en démarré + check cap.
     /// Le record est fetché par `recordId`, `markStarted()` est idempotent.
     /// No-op silencieux si le record n'existe plus (cas dégénéré : user archive

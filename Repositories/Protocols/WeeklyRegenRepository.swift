@@ -33,11 +33,15 @@ protocol WeeklyRegenRepository {
 
     // MARK: - Journal
 
-    /// Retourne l'entrée du journal pour `(recordId, targetWeekNumber)` si elle
-    /// existe — utilisée pour l'idempotence (no-op si déjà appliquée).
+    /// Retourne l'entrée du journal pour `(recordId, targetWeekNumber, shiftGeneration)`
+    /// si elle existe — utilisée pour l'idempotence (no-op si déjà appliquée).
+    /// **Story 3.11 AC18** : on inclut `shiftGeneration` dans la clé — une entry
+    /// pour un `shiftGeneration` antérieur N'EST PAS retournée (= une regen
+    /// peut être ré-appliquée post-shift).
     func fetchJournal(
         recordId: UUID,
-        targetWeek: Int
+        targetWeek: Int,
+        shiftGeneration: Int
     ) async throws -> RegenJournalEntry?
 
     /// Insère une nouvelle entrée du journal. L'appelant DOIT avoir vérifié
