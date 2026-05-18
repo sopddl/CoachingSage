@@ -31,6 +31,12 @@ struct RegenJournalEntry: Codable, Equatable, Sendable, Identifiable {
     /// `true` si la regen a déclenché un rebuild from template base (cas `.restart`).
     let requiresRebuild: Bool
     let affectedSessionIds: [UUID]
+    /// **Story 3.10** — snapshot du `AdaptedProgramRecord.shiftGeneration` au
+    /// moment où la regen a été appliquée. Sert à Story 3.11 pour l'idempotence
+    /// post-shift week (une regen sur generation N est invalidée si le user
+    /// shift à N+1, le service peut alors la rappliquer). Default 0 pour
+    /// décodage rétro-compatible des entries écrites avant 3.10.
+    let shiftGeneration: Int
 
     init(
         id: UUID = UUID(),
@@ -43,7 +49,8 @@ struct RegenJournalEntry: Codable, Equatable, Sendable, Identifiable {
         multiplier: Double,
         pauseLevel: PauseLevel,
         requiresRebuild: Bool,
-        affectedSessionIds: [UUID]
+        affectedSessionIds: [UUID],
+        shiftGeneration: Int = 0
     ) {
         self.id = id
         self.userId = userId
@@ -56,5 +63,34 @@ struct RegenJournalEntry: Codable, Equatable, Sendable, Identifiable {
         self.pauseLevel = pauseLevel
         self.requiresRebuild = requiresRebuild
         self.affectedSessionIds = affectedSessionIds
+        self.shiftGeneration = shiftGeneration
+    }
+
+    // MARK: - Codable rétro-compatible
+    //
+    // Les entries écrites avant Story 3.10 n'ont pas le champ `shiftGeneration`.
+    // On le décode via `decodeIfPresent` avec default 0 pour ne pas casser le
+    // load JSON existant. `encode(to:)` synthétisé par défaut écrit le champ.
+
+    private enum CodingKeys: String, CodingKey {
+        case id, userId, recordId, analyzedWeekNumber, targetWeekNumber,
+             appliedAt, reason, multiplier, pauseLevel, requiresRebuild,
+             affectedSessionIds, shiftGeneration
+    }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try c.decode(UUID.self, forKey: .id)
+        self.userId = try c.decode(UUID.self, forKey: .userId)
+        self.recordId = try c.decode(UUID.self, forKey: .recordId)
+        self.analyzedWeekNumber = try c.decode(Int.self, forKey: .analyzedWeekNumber)
+        self.targetWeekNumber = try c.decode(Int.self, forKey: .targetWeekNumber)
+        self.appliedAt = try c.decode(Date.self, forKey: .appliedAt)
+        self.reason = try c.decode(RegressionDecision.Reason.self, forKey: .reason)
+        self.multiplier = try c.decode(Double.self, forKey: .multiplier)
+        self.pauseLevel = try c.decode(PauseLevel.self, forKey: .pauseLevel)
+        self.requiresRebuild = try c.decode(Bool.self, forKey: .requiresRebuild)
+        self.affectedSessionIds = try c.decode([UUID].self, forKey: .affectedSessionIds)
+        self.shiftGeneration = try c.decodeIfPresent(Int.self, forKey: .shiftGeneration) ?? 0
     }
 }

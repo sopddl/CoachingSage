@@ -64,12 +64,16 @@ final class RegenInputsBuilder: WeeklyRegenInputsProviding {
         // Garde semaine valide : S ≥ 1.
         guard analyzedWeekNumber >= 1 else { return nil }
 
+        // **Story 3.10** : programme dormant (`weekStartDate == nil`) → pas de
+        // semaine close à analyser. Skip silencieux (no-op).
+        guard let programStart = record.weekStartDate else { return nil }
+
         let sessionsOfAnalyzedWeek = record.sessions.filter { $0.weekNumber == analyzedWeekNumber }
         guard !sessionsOfAnalyzedWeek.isEmpty else { return nil }
 
         let weekStartOfAnalyzed = weekStartDate(
             of: analyzedWeekNumber,
-            programStart: record.weekStartDate
+            programStart: programStart
         )
 
         // Lectures en parallèle : HK workouts + previousReports.

@@ -15,8 +15,8 @@ enum SchemaV5: VersionedSchema {
             PendingOperation.self,
             CoachingProfile.self,
             CoachingSportProfile.self,
-            AdaptedProgramRecord.self,
-            RoutineRecord.self
+            AdaptedProgramRecord.self
+            // RoutineRecord.self retiré en Story 3.10 (V8) — @Model supprimé.
         ]
     }
 }

@@ -19,6 +19,12 @@ struct AdaptedProgramView: View {
     /// d'être créé, l'utilisateur n'a pas encore manipulé son calendrier).
     var recordId: UUID? = nil
 
+    /// **Story 3.10 AC37** — `true` quand le programme a une `weekStartDate`
+    /// posée (i.e. le user a tapé "Démarrer ma séance" au moins une fois).
+    /// L'icône calendar de la toolbar n'est affichée que pour les programmes
+    /// démarrés — un dormant n'a pas de semaine à drag&drop.
+    var hasStarted: Bool = false
+
     /// Story 3.3b — notes Léon overlay (perso + safety + adjustments). `nil` si
     /// pas de patch appliqué (état initial OU loading OU erreur).
     var leonNotes: LeonAppliedNotes? = nil
@@ -102,7 +108,10 @@ struct AdaptedProgramView: View {
         .navigationTitle(Text("coaching.adapter.title"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            if recordId != nil {
+            // **Story 3.10 AC37** : drag&drop hebdo requiert un programme démarré
+            // (`weekStartDate != nil`). Sur un dormant, l'icône est cachée pour
+            // éviter d'"initier implicitement" la date via le calendrier.
+            if recordId != nil && hasStarted {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         weeklyCalendarPresented = true

@@ -16,6 +16,7 @@
 //      `SIMCTL_CHILD_UI_TEST_SCENARIO=ui_review_<target> xcrun simctl launch ...`
 //   3. Screenshot avec `xcrun simctl io booted screenshot /tmp/X.png`
 import SwiftUI
+import TemplateModel
 
 #if DEBUG
 struct UIReviewScenarioContainer: View {
@@ -65,9 +66,181 @@ struct UIReviewScenarioContainer: View {
             // `AppDependencies` + `SupabaseService` pour un bypass simple.
             // Validé via `#Preview` SwiftUI + RenderPreview MCP côté agent.
             UnsupportedScenarioView(scenario: scenario)
+        case "ui_review_dashboard_active_mixed":
+            // **Story 3.10** — dashboard carrousel avec 2 démarrés (running +
+            // cycling, planned) + 3 dormants (swimming, yoga, tennis). Tri AC22
+            // visible : démarrés en tête. ProgramCard + NextSessionCard sous le
+            // carrousel pour le programme sélectionné (= running, premier).
+            DashboardActiveScenarioView(scenario: .mixed)
+        case "ui_review_dashboard_active_dormant_only":
+            // **Story 3.10** — dashboard avec UN programme dormant. NextSessionCard
+            // doit afficher "Non commencé" + bouton "Démarrer" (sans next session
+            // calculée).
+            DashboardActiveScenarioView(scenario: .dormantOnly)
+        case "ui_review_dashboard_active_week_completed":
+            // **Story 3.10** — NextSessionCard cas "semaine complétée". Le user
+            // a coché toutes les sessions de la semaine 1 mais le programme a 4
+            // semaines. Affiche "Semaine 1 complétée — patience, la semaine
+            // prochaine arrive".
+            DashboardActiveScenarioView(scenario: .weekCompleted)
+        case "ui_review_dashboard_active_program_completed":
+            // **Story 3.10** — NextSessionCard cas transitoire "Programme
+            // terminé" (avant que l'auto-archive AC14 ne flip isActive=false au
+            // prochain refresh). Affiche checkmark + CTA "Voir le détail".
+            DashboardActiveScenarioView(scenario: .programCompleted)
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
+    }
+}
+
+// MARK: - Story 3.10 — DashboardActiveScenarioView
+
+/// Container pour rendre `ActiveDashboardView` avec un fixture in-memory.
+/// Permet à l'agent ui-reviewer de screenshot le carrousel + NextSessionCard
+/// sans déclencher Auth/Onboarding/SwiftData/Supabase.
+private struct DashboardActiveScenarioView: View {
+    enum Scenario {
+        case mixed
+        case dormantOnly
+        case weekCompleted
+        case programCompleted
+    }
+
+    let scenario: Scenario
+
+    var body: some View {
+        ScrollView {
+            ActiveDashboardView(
+                programs: programs,
+                selectedId: selectedId,
+                regenBadges: [:],
+                onSelectProgram: { _ in },
+                onTapStartSession: { _ in },
+                onTapProgram: { _ in },
+                onDeleteProgram: { _ in },
+                onTapWeeklyReorder: { }
+            )
+            .padding(16)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+
+    private var programs: [ProgramSummary] {
+        switch scenario {
+        case .mixed:
+            return [
+                makeProgram(
+                    id: idRunning, sport: .running, templateName: "Couch to 5k — Semaine 2",
+                    weekStartDate: Date().addingTimeInterval(-7 * 86_400),
+                    currentWeek: 2, weekCompleted: 1, weekTotal: 3,
+                    totalCompleted: 4, totalSessions: 12,
+                    nextSession: makeSession(name: "Footing 30 min", week: 2, day: 3, dur: 30),
+                    lastUpdated: Date().addingTimeInterval(-3600)
+                ),
+                makeProgram(
+                    id: idCycling, sport: .cycling, templateName: "Cycling Endurance",
+                    weekStartDate: Date().addingTimeInterval(-14 * 86_400),
+                    currentWeek: 3, weekCompleted: 2, weekTotal: 4,
+                    totalCompleted: 8, totalSessions: 16,
+                    nextSession: makeSession(name: "Sortie longue 90 min", week: 3, day: 5, dur: 90),
+                    lastUpdated: Date().addingTimeInterval(-7200)
+                ),
+                makeProgram(
+                    id: UUID(), sport: .swimming, templateName: "Triathlon Sprint Swim",
+                    weekStartDate: nil, currentWeek: 1, weekCompleted: 0, weekTotal: 3,
+                    totalCompleted: 0, totalSessions: 12,
+                    nextSession: nil,
+                    lastUpdated: Date().addingTimeInterval(-300)
+                ),
+                makeProgram(
+                    id: UUID(), sport: .yoga, templateName: "Yoga Flow Matinal",
+                    weekStartDate: nil, currentWeek: 1, weekCompleted: 0, weekTotal: 5,
+                    totalCompleted: 0, totalSessions: 20,
+                    nextSession: nil,
+                    lastUpdated: Date().addingTimeInterval(-7_200)
+                ),
+                makeProgram(
+                    id: UUID(), sport: .tennis, templateName: "Tennis Prep Saison",
+                    weekStartDate: nil, currentWeek: 1, weekCompleted: 0, weekTotal: 2,
+                    totalCompleted: 0, totalSessions: 8,
+                    nextSession: nil,
+                    lastUpdated: Date().addingTimeInterval(-86_400)
+                )
+            ]
+        case .dormantOnly:
+            return [
+                makeProgram(
+                    id: idRunning, sport: .running, templateName: "10k en 12 semaines",
+                    weekStartDate: nil, currentWeek: 1, weekCompleted: 0, weekTotal: 3,
+                    totalCompleted: 0, totalSessions: 36,
+                    nextSession: nil,
+                    lastUpdated: Date()
+                )
+            ]
+        case .weekCompleted:
+            return [
+                makeProgram(
+                    id: idRunning, sport: .running, templateName: "Couch to 5k",
+                    weekStartDate: Date().addingTimeInterval(-2 * 86_400),
+                    currentWeek: 1, weekCompleted: 3, weekTotal: 3,
+                    totalCompleted: 3, totalSessions: 12,
+                    nextSession: nil,
+                    lastUpdated: Date()
+                )
+            ]
+        case .programCompleted:
+            return [
+                makeProgram(
+                    id: idRunning, sport: .running, templateName: "Couch to 5k",
+                    weekStartDate: Date().addingTimeInterval(-30 * 86_400),
+                    currentWeek: 4, weekCompleted: 3, weekTotal: 3,
+                    totalCompleted: 12, totalSessions: 12,
+                    nextSession: nil,
+                    lastUpdated: Date()
+                )
+            ]
+        }
+    }
+
+    private var selectedId: UUID { idRunning }
+
+    // IDs fixes pour reproductibilité (le carrousel sélectionne toujours le running).
+    private var idRunning: UUID { UUID(uuidString: "11111111-1111-1111-1111-111111111111")! }
+    private var idCycling: UUID { UUID(uuidString: "22222222-2222-2222-2222-222222222222")! }
+
+    private func makeProgram(
+        id: UUID, sport: Sport, templateName: String,
+        weekStartDate: Date?, currentWeek: Int, weekCompleted: Int, weekTotal: Int,
+        totalCompleted: Int, totalSessions: Int,
+        nextSession: PersistedSession?, lastUpdated: Date
+    ) -> ProgramSummary {
+        ProgramSummary(
+            id: id,
+            templateName: templateName,
+            sport: sport,
+            weekStartDate: weekStartDate,
+            durationMode: .routineCyclic,
+            mode: .planned,
+            nextSession: nextSession,
+            nextDate: nextSession?.plannedDate ?? Date().addingTimeInterval(86_400),
+            currentWeekNumber: currentWeek,
+            weekCompletedSessions: weekCompleted,
+            weekTotalSessions: weekTotal,
+            totalSessionsCompleted: totalCompleted,
+            totalSessions: totalSessions,
+            lastUpdatedAt: lastUpdated
+        )
+    }
+
+    private func makeSession(name: String, week: Int, day: Int, dur: Int) -> PersistedSession {
+        PersistedSession(
+            id: UUID(),
+            weekNumber: week, weekTheme: "Sem \(week)", weekGoal: "Endurance",
+            day: day, name: name, durationMinutes: dur, type: .endurance,
+            warmup: "10 min échauffement", exercises: [], cooldown: "5 min retour au calme",
+            plannedDate: Date().addingTimeInterval(86_400)
+        )
     }
 }
 

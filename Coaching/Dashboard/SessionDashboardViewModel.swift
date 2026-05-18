@@ -1,14 +1,17 @@
 // Coaching/Dashboard/SessionDashboardViewModel.swift
 // Story 3.8 — VM lecture seule du dashboard Séances.
 //
-// **Bascule modes** (`Mode` enum) :
-//   - `.empty`        : 0 programme actif → vue mode vide (hero + 3 templates).
-//   - `.singleProgram`: 1 programme actif → cards + mini-widget « Cette semaine ».
-//   - `.multiProgram` : ≥ 2 programmes actifs → card dominante + cards programmes.
+// **Story 3.10 (2026-05-17)** — Refonte `Mode` :
+//   - `.empty`              : 0 programme actif → vue mode vide (hero + 3 templates).
+//   - `.active(programs, selectedId)` : ≥ 1 programme actif → carrousel horizontal
+//     façon Decathlon Coach + NextSessionCard pour le programme sélectionné.
+//
+// Avant 3.10, on avait `.singleProgram` et `.multiProgram` (avec card dominante).
+// Le pattern carrousel unifie les deux : un seul card type = `ProgramCard`,
+// sélection par défaut = première card.
 //
 // Le mode `.restDay` (gradient vert nature) est une **variante visuelle** du
-// mode actif (mono ou multi) — il dépend de la prochaine session > J+0, pas
-// d'un état VM distinct. On le calcule au render, pas ici (cf sous-tâche 5).
+// mode actif — il dépend de la prochaine session > J+0, pas d'un état VM distinct.
 //
 // **VM lecture** : pas d'écriture programme/routine. Sous-tâche 6 ajoute le
 // chargement des suggestions `selectTopN` pour alimenter le mode vide.
@@ -27,19 +30,22 @@ import TemplateModel
 @MainActor
 @Observable
 final class SessionDashboardViewModel {
+    /// **Story 3.10** — modes du dashboard Séances.
+    ///   - `.empty`  : aucun programme actif → placeholder + suggestions.
+    ///   - `.active(programs, selectedId)` : carrousel + NextSessionCard.
+    ///
+    /// `selectedId` est le `record.id` de la card sélectionnée dans le carrousel.
+    /// `nil` = première card par défaut (cf `currentSelectedSummary`).
     enum Mode: Equatable {
         case empty
-        case singleProgram(AdaptedProgramRecord, next: NextSessionResolver.Result?)
-        case multiProgram(programs: [AdaptedProgramRecord], dominant: NextSessionResolver.Result?)
+        case active(programs: [ProgramSummary], selectedId: UUID?)
 
         static func == (lhs: Mode, rhs: Mode) -> Bool {
             switch (lhs, rhs) {
             case (.empty, .empty):
                 return true
-            case let (.singleProgram(la, ln), .singleProgram(ra, rn)):
-                return la.id == ra.id && ln == rn
-            case let (.multiProgram(lp, ld), .multiProgram(rp, rd)):
-                return lp.map(\.id) == rp.map(\.id) && ld == rd
+            case let (.active(lp, lsel), .active(rp, rsel)):
+                return lp == rp && lsel == rsel
             default:
                 return false
             }
@@ -47,9 +53,14 @@ final class SessionDashboardViewModel {
     }
 
     private(set) var mode: Mode = .empty
-    private(set) var routines: [RoutineRecord] = []
     private(set) var loading: Bool = true
     private(set) var error: String?
+
+    /// **Story 3.10** — map interne `record.id → AdaptedProgramRecord` mise à jour
+    /// à chaque `refresh`. Sert aux helpers (`modifiedSessionCoordinates`,
+    /// `pushAdaptedProgram` côté View) qui ont besoin du `record` complet alors
+    /// que `ProgramSummary` ne porte que les champs plats nécessaires à l'UI.
+    private(set) var recordsByID: [UUID: AdaptedProgramRecord] = [:]
 
     /// Templates suggérés en mode vide (3 par défaut, calibrés sur autoprofil
     /// + sports onboarding). Vide tant que `mode != .empty`.
@@ -60,26 +71,16 @@ final class SessionDashboardViewModel {
     /// `CoachingProfile.activeSports` pour ne pas relancer un fetch côté Vue.
     private(set) var declaredSportCodes: [String] = []
 
-    /// Programmes actifs enrichis (name template résolu + progression + prochaine date),
-    /// triés par date de prochaine séance ascendante (la plus proche en haut, décision
-    /// party #3 — A). Vide tant que `mode == .empty`. Source de vérité de la section
-    /// `MES PROGRAMMES` du mode actif.
-    private(set) var activeProgramSummaries: [ActiveProgramSummary] = []
-
-    /// Stats inline du mini-widget « Cette semaine » (3 metrics). Set uniquement
-    /// quand `mode == .singleProgram` (décision party #2 — B+C combinés en mode 1-prog).
-    /// `nil` en mode vide / multi-prog.
-    private(set) var weeklyStats: WeeklyStats?
-
-    /// Card secondaire « Et après » sous la card dominante (style TrainingPeaks).
-    /// Set uniquement quand `mode == .singleProgram` ET le programme a ≥ 2 sessions
-    /// non complétées à venir. `nil` sinon.
-    private(set) var nextAfterDominant: NextSessionResolver.Result?
-
-    /// Hint italique Léon affichée en mode rest day, dérivée du compteur de séances
-    /// complétées cette semaine via `CoachLineEngine`. `nil` quand la prochaine
-    /// session est aujourd'hui (pas un jour de récup).
-    private(set) var restDayHintKey: LocalizedStringKey?
+    /// **Story 3.10** — programmes actifs triés selon AC22 : démarrés AVANT
+    /// dormants, puis nextDate asc entre démarrés, puis lastUpdatedAt desc entre
+    /// dormants. Mirror de `mode.active.programs` pour les call-sites internes
+    /// (regen badges, modifiedSessionCoordinates).
+    var activeProgramSummaries: [ProgramSummary] {
+        switch mode {
+        case .empty: return []
+        case let .active(programs, _): return programs
+        }
+    }
 
     /// Phase B.5 — badges regen S+1 indexés par `AdaptedProgramRecord.id`. Une
     /// entrée par record dont la regen a été appliquée cette semaine (semaine
@@ -92,12 +93,9 @@ final class SessionDashboardViewModel {
     /// Cachée pour éviter un reload à chaque `onAppear`.
     private var cachedLibrary: ProgramTemplateLibrary?
 
-    private let weeklyStatsService = WeeklyStatsService()
-    private let coachLineEngine = CoachLineEngine()
     private static let logger = Logger(subsystem: "com.sopddl.coachingsage", category: "session-dashboard-vm")
 
     private let programRepository: any AdaptedProgramRepository
-    private let routineRepository: any RoutineRepository
     private let coachingProfileRepository: any CoachingProfileRepository
     /// Phase B.4 — optionnel pour rester compatible avec les previews + tests
     /// qui n'ont pas besoin du wiring regen. Quand absent, `refresh()` skip
@@ -114,7 +112,6 @@ final class SessionDashboardViewModel {
 
     init(
         programRepository: any AdaptedProgramRepository,
-        routineRepository: any RoutineRepository,
         coachingProfileRepository: any CoachingProfileRepository,
         weeklyRegenApplicationService: (any WeeklyRegenApplicationService)? = nil,
         weeklyRegenRepository: (any WeeklyRegenRepository)? = nil,
@@ -124,7 +121,6 @@ final class SessionDashboardViewModel {
         nowProvider: @escaping () -> Date = Date.init
     ) {
         self.programRepository = programRepository
-        self.routineRepository = routineRepository
         self.coachingProfileRepository = coachingProfileRepository
         self.weeklyRegenApplicationService = weeklyRegenApplicationService
         self.weeklyRegenRepository = weeklyRegenRepository
@@ -149,56 +145,61 @@ final class SessionDashboardViewModel {
         await loadRegenBadges(userId: userId)
         do {
             async let programsTask = programRepository.fetchActive(for: userId)
-            async let routinesTask = routineRepository.fetchAll(for: userId)
             async let profileTask: CoachingProfile? = try? coachingProfileRepository.fetchCurrentProfile()
             let programs = try await programsTask
-            routines = try await routinesTask
             let profile = await profileTask
             declaredSportCodes = profile?.activeSports ?? []
 
+            // Map records pour les helpers internes (regen, push detail view).
+            recordsByID = Dictionary(uniqueKeysWithValues: programs.map { ($0.id, $0) })
+
             let now = nowProvider()
-            switch programs.count {
-            case 0:
+            if programs.isEmpty {
                 mode = .empty
-                activeProgramSummaries = []
-                weeklyStats = nil
-                nextAfterDominant = nil
-                restDayHintKey = nil
                 await loadEmptyModeSuggestions(profile: profile)
-            case 1:
-                let only = programs[0]
-                let upcoming = resolver.upcomingSessions(for: only, now: now)
-                let next = upcoming.first
-                mode = .singleProgram(only, next: next)
+            } else {
                 emptyModeSuggestions = []
                 await ensureLibraryCached()
-                activeProgramSummaries = makeSummaries(programs: programs, now: now)
-                let stats = weeklyStatsService.computeCurrentWeek(programs: programs, now: now)
-                weeklyStats = stats
-                nextAfterDominant = upcoming.dropFirst().first
-                restDayHintKey = restDayHint(dominant: next, weeklyStats: stats, now: now)
-            default:
-                let dominant = resolver.nextSession(across: programs, now: now)
-                mode = .multiProgram(programs: programs, dominant: dominant)
-                emptyModeSuggestions = []
-                await ensureLibraryCached()
-                activeProgramSummaries = makeSummaries(programs: programs, now: now)
-                weeklyStats = nil
-                nextAfterDominant = nil
-                let stats = weeklyStatsService.computeCurrentWeek(programs: programs, now: now)
-                restDayHintKey = restDayHint(dominant: dominant, weeklyStats: stats, now: now)
+                let summaries = makeProgramSummaries(programs: programs, now: now)
+                // Sélection par défaut = première card du carrousel (= démarré
+                // avec next session la plus proche, sinon dormant le plus récent).
+                let defaultSelection = summaries.first?.id
+                let previousSelection = currentSelectedId
+                let selectedId = previousSelection.flatMap { id in
+                    summaries.contains(where: { $0.id == id }) ? id : nil
+                } ?? defaultSelection
+                mode = .active(programs: summaries, selectedId: selectedId)
             }
         } catch {
             self.error = error.localizedDescription
             mode = .empty
-            routines = []
             emptyModeSuggestions = []
-            activeProgramSummaries = []
-            weeklyStats = nil
-            nextAfterDominant = nil
-            restDayHintKey = nil
+            recordsByID = [:]
         }
         loading = false
+    }
+
+    /// **Story 3.10** — selectedId courant (extrait de `mode.active`).
+    /// `nil` en mode empty.
+    var currentSelectedId: UUID? {
+        if case let .active(_, selectedId) = mode { return selectedId }
+        return nil
+    }
+
+    /// **Story 3.10** — ProgramSummary correspondant au selectedId courant.
+    /// Source de vérité pour `NextSessionCard`. `nil` en mode empty ou si la
+    /// sélection a été flushée par un refresh (cas dégénéré).
+    var currentSelectedSummary: ProgramSummary? {
+        guard case let .active(programs, selectedId) = mode else { return nil }
+        return programs.first { $0.id == selectedId }
+    }
+
+    /// **Story 3.10** — bascule la sélection sur une card du carrousel. No-op
+    /// si l'id n'existe pas dans `mode.active.programs`.
+    func selectProgram(id: UUID) {
+        guard case let .active(programs, _) = mode else { return }
+        guard programs.contains(where: { $0.id == id }) else { return }
+        mode = .active(programs: programs, selectedId: id)
     }
 
     /// Phase B.4 — invoque `WeeklyRegenApplicationService.checkAndApplyIfDue`
@@ -220,12 +221,10 @@ final class SessionDashboardViewModel {
     /// alimenter `AdaptedProgramView.modifiedSessionCoordinates`.
     func modifiedSessionCoordinates(forRecordId recordId: UUID) -> Set<SessionCoordinate> {
         guard let badge = regenBadgesByRecord[recordId] else { return [] }
-        guard let summary = activeProgramSummaries.first(where: { $0.record.id == recordId }) else {
-            return []
-        }
+        guard let record = recordsByID[recordId] else { return [] }
         let affectedIds = Set(badge.affectedSessionIds)
         return Set(
-            summary.record.sessions
+            record.sessions
                 .filter { affectedIds.contains($0.id) }
                 .map { SessionCoordinate(weekNumber: $0.weekNumber, day: $0.day) }
         )
@@ -262,26 +261,16 @@ final class SessionDashboardViewModel {
         }
     }
 
-    /// Lundi 00:00 de la semaine calendrier contenant `date`. Utilise la
-    /// `Calendar.current` (locale fr-FR → lundi = 1er jour). Fallback `date`
-    /// brut si `dateInterval` retourne nil (extrêmement improbable).
+    /// Lundi 00:00 de la semaine calendrier contenant `date`.
+    /// **Story 3.10 AC6** : harmonisé sur ISO firstWeekday=2 (cohérence avec
+    /// `AdaptedProgramRecord.startOfCurrentWeek()`). Avant 3.10, utilisait
+    /// `Calendar.current.dateInterval` qui dépend de la locale système et pouvait
+    /// renvoyer dimanche dans certaines locales (en_US etc.).
     private static func startOfCalendarWeek(for date: Date) -> Date {
-        Calendar.current.dateInterval(of: .weekOfYear, for: date)?.start ?? date
-    }
-
-    /// Renvoie la hint Léon pour la card rest day quand la prochaine séance
-    /// dominante n'est PAS aujourd'hui. `nil` quand la séance est aujourd'hui
-    /// (mode actif normal) ou absente (programmes complétés).
-    private func restDayHint(
-        dominant: NextSessionResolver.Result?,
-        weeklyStats: WeeklyStats,
-        now: Date
-    ) -> LocalizedStringKey? {
-        guard let dominant else { return nil }
-        let calendar = Calendar.current
-        let isToday = calendar.isDate(dominant.effectiveDate, inSameDayAs: now)
-        guard !isToday else { return nil }
-        return coachLineEngine.restDayHint(weeklyCompletedCount: weeklyStats.completedCount)
+        var cal = Calendar.current
+        cal.firstWeekday = 2
+        let comps = cal.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
+        return cal.date(from: comps) ?? date
     }
 
     /// Charge la library bundlée et calcule les 3 suggestions via
@@ -308,50 +297,119 @@ final class SessionDashboardViewModel {
         cachedLibrary = try? await templateLibraryProvider()
     }
 
-    /// Construit les `ActiveProgramSummary` triés par date de prochaine séance
-    /// ascendante. Programmes sans next session (tout complété) repoussés en
-    /// bas — ils restent visibles mais n'occupent pas le créneau prioritaire.
-    private func makeSummaries(programs: [AdaptedProgramRecord], now: Date) -> [ActiveProgramSummary] {
-        let summaries = programs.map { record -> ActiveProgramSummary in
-            let next = resolver.nextSession(for: record, now: now)
-            let total = max(record.sessions.count, 1)
-            let completed = record.completionState.completedCount
-            let progress = min(max(Double(completed) / Double(total), 0), 1)
+    /// **Story 3.10** — Construit les `ProgramSummary` plats pour le carrousel.
+    /// Tri 3 niveaux (AC22) :
+    ///   1. démarrés (`weekStartDate != nil`) AVANT dormants
+    ///   2. entre démarrés : nextDate ascending
+    ///   3. entre dormants : `lastUpdatedAt` desc (le dernier créé en tête)
+    private func makeProgramSummaries(programs: [AdaptedProgramRecord], now: Date) -> [ProgramSummary] {
+        let summaries = programs.map { record -> ProgramSummary in
+            let nextResult = resolver.nextSession(for: record, now: now)
             let resolvedName = cachedLibrary?.templates
-                .first { $0.id == record.templateId }?.name
-            return ActiveProgramSummary(
-                record: record,
-                nextDate: next?.effectiveDate,
-                progress: progress,
-                templateName: resolvedName
+                .first { $0.id == record.templateId }?.name ?? record.templateId
+            let sport = Sport(sportCode: record.sportCode) ?? .running
+            let total = record.sessions.count
+            let completed = record.completionState.completedCount
+            let currentWeek = currentWeekNumber(for: record, now: now)
+            let weekTotalSessions = record.sessions.filter { $0.weekNumber == currentWeek }.count
+            let weekCompletedSessions = record.sessions
+                .filter { $0.weekNumber == currentWeek }
+                .filter { record.completionState.sessionRecords[$0.id] != nil }
+                .count
+            return ProgramSummary(
+                id: record.id,
+                templateName: resolvedName,
+                sport: sport,
+                weekStartDate: record.weekStartDate,
+                durationMode: record.durationMode,
+                mode: record.mode,
+                nextSession: nextResult?.session,
+                nextDate: nextResult?.effectiveDate,
+                currentWeekNumber: currentWeek,
+                weekCompletedSessions: weekCompletedSessions,
+                weekTotalSessions: weekTotalSessions,
+                totalSessionsCompleted: completed,
+                totalSessions: total,
+                lastUpdatedAt: record.lastUpdatedAt
             )
         }
-        return summaries.sorted { lhs, rhs in
+        return summaries.sorted(by: Self.compareSummariesForCarousel)
+    }
+
+    /// **Story 3.10 AC22** — comparator du carrousel.
+    static func compareSummariesForCarousel(_ lhs: ProgramSummary, _ rhs: ProgramSummary) -> Bool {
+        let lhsStarted = lhs.weekStartDate != nil
+        let rhsStarted = rhs.weekStartDate != nil
+        if lhsStarted != rhsStarted { return lhsStarted } // démarrés AVANT dormants
+        if lhsStarted {
+            // Entre démarrés : nextDate ascending, nil en queue.
             switch (lhs.nextDate, rhs.nextDate) {
             case let (l?, r?): return l < r
             case (_?, nil):    return true
             case (nil, _?):    return false
-            case (nil, nil):   return lhs.record.sportCode < rhs.record.sportCode
+            case (nil, nil):   return lhs.id.uuidString < rhs.id.uuidString
             }
+        } else {
+            // Entre dormants : lastUpdatedAt desc (le dernier créé en tête).
+            return lhs.lastUpdatedAt > rhs.lastUpdatedAt
         }
+    }
+
+    /// Numéro de semaine courante du programme (1-indexed). 1 si dormant
+    /// (`weekStartDate == nil`) — on considère qu'à l'instant du markStarted,
+    /// l'utilisateur attaque la semaine 1.
+    private func currentWeekNumber(for record: AdaptedProgramRecord, now: Date) -> Int {
+        guard let start = record.weekStartDate else { return 1 }
+        let days = Calendar.current.dateComponents([.day], from: start, to: now).day ?? 0
+        return max(1, (days / 7) + 1)
     }
 }
 
-/// Résumé enrichi d'un programme actif pour la section MES PROGRAMMES du mode actif.
-/// Découplage VM/Vue : la View consomme un type plat sans replonger dans
-/// `AdaptedProgramRecord.sessions` ni dans la library à chaque render.
-struct ActiveProgramSummary: Equatable {
-    let record: AdaptedProgramRecord
+/// **Story 3.10** — Résumé plat d'un programme actif pour le carrousel et la
+/// NextSessionCard. Découplage VM/Vue : la View consomme un type sans replonger
+/// dans `AdaptedProgramRecord.sessions` ni dans la library à chaque render.
+///
+/// Story 3.11 ajoutera : `nextSessionIsLate: Bool` pour le badge "En retard".
+struct ProgramSummary: Equatable, Identifiable {
+    /// = `AdaptedProgramRecord.id`
+    let id: UUID
+    let templateName: String
+    let sport: Sport
+    /// `nil` = programme dormant (jamais démarré).
+    let weekStartDate: Date?
+    let durationMode: ProgramDurationMode
+    let mode: ProgramMode
+    /// La prochaine session à faire. `nil` = dormant ou programme tout complété.
+    let nextSession: PersistedSession?
+    /// Date effective de la prochaine session (plannedDate ou défaut calculé).
     let nextDate: Date?
-    /// 0...1
-    let progress: Double
-    /// `nil` quand la library n'a pas pu résoudre le templateId (fallback côté Vue).
-    let templateName: String?
+    /// Semaine en cours du programme (1-indexed). 1 si dormant.
+    let currentWeekNumber: Int
+    /// Sessions cochées dans la semaine courante.
+    let weekCompletedSessions: Int
+    /// Nombre total de sessions de la semaine courante.
+    let weekTotalSessions: Int
+    /// Sessions cochées sur l'ensemble du programme.
+    let totalSessionsCompleted: Int
+    /// Nombre total de sessions du programme.
+    let totalSessions: Int
+    /// Pour le tri AC22 niveau 3 (dormants).
+    let lastUpdatedAt: Date
 
-    static func == (lhs: ActiveProgramSummary, rhs: ActiveProgramSummary) -> Bool {
-        lhs.record.id == rhs.record.id
-            && lhs.nextDate == rhs.nextDate
-            && lhs.progress == rhs.progress
-            && lhs.templateName == rhs.templateName
+    /// **Story 3.10 AC21** — `true` quand `weekStartDate == nil`.
+    var isDormant: Bool { weekStartDate == nil }
+
+    /// `true` quand toutes les sessions de la semaine courante sont cochées
+    /// mais qu'il reste des semaines à venir. Sert au cas "Semaine X complétée"
+    /// (placeholder en attente Story 3.11 — vrai blocage doux livré là).
+    var isWeekCompleted: Bool {
+        weekTotalSessions > 0 && weekCompletedSessions == weekTotalSessions
+    }
+
+    /// `true` quand toutes les sessions du programme sont cochées.
+    /// L'auto-archive (AC14) flip `isActive` à false et le record disparaît du
+    /// carrousel au prochain refresh — état transitoire.
+    var isProgramCompleted: Bool {
+        totalSessions > 0 && totalSessionsCompleted == totalSessions
     }
 }

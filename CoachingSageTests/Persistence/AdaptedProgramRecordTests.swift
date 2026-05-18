@@ -23,14 +23,6 @@ final class AdaptedProgramRecordTests: XCTestCase {
         return container.mainContext
     }
 
-    private static func makeRoutineContext() throws -> ModelContext {
-        let url = FileManager.default.temporaryDirectory
-            .appendingPathComponent("RoutineRecord-\(UUID()).sqlite")
-        let config = ModelConfiguration(url: url)
-        let container = try ModelContainer(for: RoutineRecord.self, configurations: config)
-        return container.mainContext
-    }
-
     // MARK: - JSON round-trip
 
     func testSessionsJsonRoundTrip() throws {
@@ -287,9 +279,86 @@ final class AdaptedProgramRecordTests: XCTestCase {
         throw XCTSkip("SwiftData iOS 18 simu hang sur archive AdaptedProgramRecord")
     }
 
-    func testRoutineRecordPersistsAndQueries() throws {
-        // SKIPPED 2026-05-08 — même hang. cf `lessons_swiftdata_inmemory_test_hang`.
-        throw XCTSkip("SwiftData iOS 18 simu hang sur insert/save RoutineRecord")
+    // MARK: - Story 3.10 AC31 — markStarted + decode rétro-compat
+
+    func testCommitFactoryProducesDormantRecord() {
+        let adapted = makeAdaptedFixture()
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID())
+        // **AC4** — convenience init `(from:)` default `weekStartDate: nil` → dormant.
+        XCTAssertNil(record.weekStartDate)
+        XCTAssertTrue(record.isActive)
+        XCTAssertEqual(record.shiftGeneration, 0)
+    }
+
+    func testMarkStartedPosesWeekStartDateOnDormant() {
+        let adapted = makeAdaptedFixture()
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID())
+        XCTAssertNil(record.weekStartDate)
+
+        let now = Date(timeIntervalSince1970: 1_700_000_000)
+        record.markStarted(now: now)
+
+        XCTAssertNotNil(record.weekStartDate)
+        // Lundi 00:00 (ISO firstWeekday=2) de la semaine de `now`
+        XCTAssertEqual(record.weekStartDate, AdaptedProgramRecord.startOfCurrentWeek(now: now))
+    }
+
+    func testMarkStartedIsIdempotent() {
+        let adapted = makeAdaptedFixture()
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID())
+        let firstNow = Date(timeIntervalSince1970: 1_700_000_000)
+        record.markStarted(now: firstNow)
+        let posedDate = record.weekStartDate
+
+        // 2ᵉ appel avec un autre `now` → no-op, date inchangée.
+        let laterNow = Date(timeIntervalSince1970: 1_710_000_000)
+        record.markStarted(now: laterNow)
+
+        XCTAssertEqual(record.weekStartDate, posedDate)
+    }
+
+    func testRegenJournalEntryDecodesWithoutShiftGenerationDefaultsToZero() throws {
+        // Cas rétro-compat : entries écrites avant Story 3.10 n'ont pas le champ
+        // `shiftGeneration`. Le decode custom doit poser default 0.
+        let legacyJSON = """
+        {
+          "id": "11111111-1111-1111-1111-111111111111",
+          "userId": "22222222-2222-2222-2222-222222222222",
+          "recordId": "33333333-3333-3333-3333-333333333333",
+          "analyzedWeekNumber": 1,
+          "targetWeekNumber": 2,
+          "appliedAt": -978307200,
+          "reason": "onTrack",
+          "multiplier": 1.10,
+          "pauseLevel": "none",
+          "requiresRebuild": false,
+          "affectedSessionIds": []
+        }
+        """.data(using: .utf8)!
+
+        let entry = try JSONDecoder().decode(RegenJournalEntry.self, from: legacyJSON)
+        XCTAssertEqual(entry.shiftGeneration, 0)
+        XCTAssertEqual(entry.multiplier, 1.10, accuracy: 0.0001)
+        XCTAssertEqual(entry.targetWeekNumber, 2)
+    }
+
+    func testRegenJournalEntryRoundTripPreservesShiftGeneration() throws {
+        let original = RegenJournalEntry(
+            userId: UUID(),
+            recordId: UUID(),
+            analyzedWeekNumber: 3,
+            targetWeekNumber: 4,
+            reason: .onTrack,
+            multiplier: 1.0,
+            pauseLevel: .none,
+            requiresRebuild: false,
+            affectedSessionIds: [UUID()],
+            shiftGeneration: 7
+        )
+        let data = try JSONEncoder().encode(original)
+        let decoded = try JSONDecoder().decode(RegenJournalEntry.self, from: data)
+        XCTAssertEqual(decoded.shiftGeneration, 7)
+        XCTAssertEqual(decoded, original)
     }
 
     // MARK: - Helpers

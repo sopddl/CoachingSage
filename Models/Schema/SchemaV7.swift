@@ -24,7 +24,7 @@ enum SchemaV7: VersionedSchema {
             CoachingProfile.self,
             CoachingSportProfile.self,
             AdaptedProgramRecord.self,
-            RoutineRecord.self,
+            // RoutineRecord.self retiré en Story 3.10 (V8) — @Model supprimé.
             WeeklyExecutionReportRecord.self
         ]
     }

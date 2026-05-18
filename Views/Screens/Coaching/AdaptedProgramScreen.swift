@@ -16,15 +16,20 @@ struct AdaptedProgramScreen: View {
     /// Story sœur 3.z (2026-05-17) — closure "Démarrer ce programme" forwardée
     /// à `AdaptedProgramView`. Non-nil = preview mode (sticky CTA bottom).
     private let onConfirmStart: (() async -> Void)?
+    /// **Story 3.10** — programme démarré (weekStartDate != nil) ; forwardé à
+    /// `AdaptedProgramView.hasStarted`.
+    private let hasStarted: Bool
 
     init(
         viewModel: @autoclosure @escaping () -> AdaptedProgramViewModel,
         modifiedSessionCoordinates: Set<SessionCoordinate> = [],
-        onConfirmStart: (() async -> Void)? = nil
+        onConfirmStart: (() async -> Void)? = nil,
+        hasStarted: Bool = false
     ) {
         _viewModel = StateObject(wrappedValue: viewModel())
         self.modifiedSessionCoordinates = modifiedSessionCoordinates
         self.onConfirmStart = onConfirmStart
+        self.hasStarted = hasStarted
     }
 
     var body: some View {
@@ -32,6 +37,7 @@ struct AdaptedProgramScreen: View {
             program: viewModel.program,
             onRequestAIAssist: { Task { await viewModel.requestLeonExplicit() } },
             recordId: viewModel.recordId,
+            hasStarted: hasStarted,
             leonNotes: viewModel.leonNotes,
             requestState: viewModel.requestState,
             modifiedSessionCoordinates: modifiedSessionCoordinates,

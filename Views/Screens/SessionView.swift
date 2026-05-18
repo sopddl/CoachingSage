@@ -30,6 +30,24 @@ struct SessionView: View {
     /// suggestion mode vide (skip questionnaire). True pendant l'aller-retour
     /// `AutoProgramFactory.generate` (~quelques 100ms en moyenne).
     @State private var isGeneratingAutoProgram: Bool = false
+    /// **Story 3.10** — Set non-nil → présente une `.alert` informant que le
+    /// cap de programmes dormants (10) ou démarrés (5) est atteint. Tap "OK"
+    /// dismiss, tap "Voir mes programmes" scrolle vers le carrousel haut.
+    @State private var capAlertContext: ProgramCapAlertContext?
+
+    /// **Story 3.10** — Contexte de l'alerte cap pour résoudre titre/message
+    /// i18n côté View. `Identifiable` pour `.alert(item:)` SwiftUI.
+    enum ProgramCapAlertContext: Identifiable {
+        case dormant(limit: Int)
+        case started(limit: Int)
+
+        var id: String {
+            switch self {
+            case .dormant: return "dormant"
+            case .started: return "started"
+            }
+        }
+    }
 
     private let adapterService = ProgramAdapterService()
     private static let persistLogger = Logger(subsystem: "com.sopddl.coachingsage", category: "session-view")
@@ -73,13 +91,15 @@ struct SessionView: View {
                                 adaptedRepo: deps.adaptedProgramRepository
                             ),
                             modifiedSessionCoordinates: route.modifiedSessionCoordinates,
-                            onConfirmStart: confirmStartClosure(for: route, deps: deps)
+                            onConfirmStart: confirmStartClosure(for: route, deps: deps),
+                            hasStarted: route.hasStarted
                         )
                     } else {
                         // Fallback : pas de deps (preview sans dependencies) → rendu statique sans Léon.
                         AdaptedProgramView(
                             program: route.program,
                             recordId: route.recordId,
+                            hasStarted: route.hasStarted,
                             modifiedSessionCoordinates: route.modifiedSessionCoordinates
                         )
                     }
@@ -100,6 +120,28 @@ struct SessionView: View {
         .sheet(item: $sheetSelection) { selection in
             sheet(for: selection)
         }
+        // **Story 3.10 AC12/AC13** — alerte cap dormant ou démarré atteint.
+        // CTA primary "OK" dismiss. Pas de "Voir mes programmes" en V1
+        // (l'écran courant est déjà le dashboard où l'user voit ses programmes).
+        .alert(
+            item: $capAlertContext,
+            content: { ctx in
+                switch ctx {
+                case .dormant:
+                    Alert(
+                        title: Text("dashboard.program.cap.dormant.alert.title"),
+                        message: Text("dashboard.program.cap.dormant.alert.message"),
+                        dismissButton: .default(Text("common.ok"))
+                    )
+                case .started:
+                    Alert(
+                        title: Text("dashboard.program.cap.started.alert.title"),
+                        message: Text("dashboard.program.cap.started.alert.message"),
+                        dismissButton: .default(Text("common.ok"))
+                    )
+                }
+            }
+        )
         // Sophie 2026-05-10 : force le tint app sur tous les éléments
         // navigation (back button "‹ Séances", chevrons, etc.) sinon iOS
         // applique le bleu système qui jure avec le bleu Léon coachingPrimary.
@@ -204,39 +246,31 @@ struct SessionView: View {
                     sheetSelection = .sportPicker
                 }
             )
-        case .singleProgram, .multiProgram:
+        case let .active(programs, selectedId):
+            // **Story 3.10** — refonte façon Decathlon Coach :
+            //   - carrousel horizontal de ProgramCard
+            //   - NextSessionCard du programme sélectionné en dessous
+            //   - lien "Réorganiser ma semaine →" inchangé
             ActiveDashboardView(
-                dominant: dominantNextSession(vm: vm),
-                programs: vm.activeProgramSummaries,
-                routines: vm.routines,
-                weeklyStats: vm.weeklyStats,
-                nextAfterDominant: vm.nextAfterDominant,
-                restDayHintKey: vm.restDayHintKey,
+                programs: programs,
+                selectedId: selectedId,
                 regenBadges: vm.regenBadgesByRecord,
-                nowProvider: { nowTick },
-                onTapDominantStart: { result in
-                    pushAdaptedProgram(record: result.program)
+                onSelectProgram: { id in
+                    vm.selectProgram(id: id)
+                },
+                onTapStartSession: { summary in
+                    Task { await handleStartSession(summary: summary) }
                 },
                 onTapProgram: { summary in
-                    pushAdaptedProgram(record: summary.record)
+                    pushAdaptedProgramSummary(summary)
                 },
                 onDeleteProgram: { summary in
-                    Task { await deleteProgram(summary) }
+                    Task { await deleteProgramSummary(summary) }
                 },
                 onTapWeeklyReorder: {
                     weeklyCalendarPresented = true
                 }
             )
-        }
-    }
-
-    /// Récupère le `NextSessionResolver.Result` selon le mode courant — la
-    /// View le passe à la card dominante quand pertinent.
-    private func dominantNextSession(vm: SessionDashboardViewModel) -> NextSessionResolver.Result? {
-        switch vm.mode {
-        case .empty: return nil
-        case .singleProgram(_, let next): return next
-        case .multiProgram(_, let dominant): return dominant
         }
     }
 
@@ -253,7 +287,8 @@ struct SessionView: View {
             program: applied.program,
             recordId: record.id,
             initialLeonNotes: applied.leonNotes,
-            modifiedSessionCoordinates: modified
+            modifiedSessionCoordinates: modified,
+            hasStarted: record.weekStartDate != nil
         )
     }
 
@@ -262,13 +297,55 @@ struct SessionView: View {
     /// dashboard pour le retirer de la liste. Pas de hard-delete : l'historique
     /// reste pour audit / re-activation future éventuelle.
     @MainActor
-    private func deleteProgram(_ summary: ActiveProgramSummary) async {
-        guard let deps else { return }
+    private func deleteProgramSummary(_ summary: ProgramSummary) async {
+        guard let deps, let vm = dashboardViewModel else { return }
+        guard let record = vm.recordsByID[summary.id] else { return }
         do {
-            try await deps.adaptedProgramRepository.archive(summary.record)
+            try await deps.adaptedProgramRepository.archive(record)
             await refreshDashboard()
         } catch {
             presentationError = error.localizedDescription
+        }
+    }
+
+    /// **Story 3.10** — push AdaptedProgramView pour le programme représenté
+    /// par le ProgramSummary. Résout le record via la map interne du VM, puis
+    /// délègue à `pushAdaptedProgram(record:)`. No-op si record introuvable.
+    @MainActor
+    private func pushAdaptedProgramSummary(_ summary: ProgramSummary) {
+        guard let vm = dashboardViewModel,
+              let record = vm.recordsByID[summary.id]
+        else { return }
+        pushAdaptedProgram(record: record)
+    }
+
+    /// **Story 3.10** — tap "Démarrer" sur NextSessionCard.
+    ///
+    /// Si le programme est dormant (`weekStartDate == nil`), on appelle d'abord
+    /// `markStarted(recordId:)` côté repo (qui check le cap démarrés AC13 et
+    /// pose `weekStartDate`). Si le cap est atteint, on affiche l'alerte
+    /// `dashboard.program.cap.started`. Puis on push AdaptedProgramView.
+    @MainActor
+    private func handleStartSession(summary: ProgramSummary) async {
+        guard let deps, let vm = dashboardViewModel else { return }
+        guard let record = vm.recordsByID[summary.id] else { return }
+        if record.weekStartDate == nil {
+            do {
+                try await deps.adaptedProgramRepository.markStarted(recordId: record.id)
+            } catch ProgramCapReached.started(let limit) {
+                capAlertContext = .started(limit: limit)
+                return
+            } catch {
+                presentationError = error.localizedDescription
+                return
+            }
+            await refreshDashboard()
+        }
+        // Re-fetch après markStarted (record peut être stale).
+        if let refreshed = vm.recordsByID[summary.id] {
+            pushAdaptedProgram(record: refreshed)
+        } else {
+            pushAdaptedProgram(record: record)
         }
     }
 
@@ -287,7 +364,6 @@ struct SessionView: View {
         guard dashboardViewModel == nil, let deps else { return }
         dashboardViewModel = SessionDashboardViewModel(
             programRepository: deps.adaptedProgramRepository,
-            routineRepository: deps.routineRepository,
             coachingProfileRepository: deps.coachingProfileRepository,
             weeklyRegenApplicationService: deps.weeklyRegenApplicationService,
             weeklyRegenRepository: deps.weeklyRegenRepository
@@ -380,6 +456,11 @@ struct SessionView: View {
                 // Pop vers Séances : dashboard refresh montre maintenant le programme
                 // démarré en mode active.
                 adaptedRoute = nil
+            } catch ProgramCapReached.dormant(let limit) {
+                // **Story 3.10 AC12** — cap dormant atteint : on garde l'écran
+                // preview ouvert, on affiche l'alerte. L'user peut choisir
+                // d'archiver un dormant existant puis retenter.
+                capAlertContext = .dormant(limit: limit)
             } catch {
                 presentationError = error.localizedDescription
             }
@@ -525,18 +606,24 @@ private struct AdaptedProgramRoute: Hashable {
     /// `SessionView.confirmStartClosure`. nil = ouverture d'un programme déjà
     /// actif depuis le dashboard active mode.
     let previewSportProfile: CoachingSportProfile?
+    /// **Story 3.10** — `true` quand le programme correspondant à `recordId` a
+    /// `weekStartDate != nil` (a été démarré au moins une fois). Forwardé à
+    /// `AdaptedProgramView.hasStarted` pour cacher l'icône calendar des dormants.
+    let hasStarted: Bool
 
     init(
         program: AdaptedProgram,
         recordId: UUID?,
         initialLeonNotes: LeonAppliedNotes? = nil,
         modifiedSessionCoordinates: Set<SessionCoordinate> = [],
-        previewSportProfile: CoachingSportProfile? = nil
+        previewSportProfile: CoachingSportProfile? = nil,
+        hasStarted: Bool = false
     ) {
         self.program = program
         self.recordId = recordId
         self.initialLeonNotes = initialLeonNotes
         self.modifiedSessionCoordinates = modifiedSessionCoordinates
+        self.hasStarted = hasStarted
         self.previewSportProfile = previewSportProfile
     }
 

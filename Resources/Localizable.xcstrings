@@ -1921,6 +1921,90 @@
         }
       }
     },
+    "dashboard.program.notStarted": {
+      "comment": "Story 3.10 — état dormant d'un programme (jamais démarré)",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Not started" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Non commencé" } }
+      }
+    },
+    "dashboard.program.notStarted.subtitle": {
+      "comment": "Story 3.10 — sous-titre NextSessionCard dormant (P0 #1 fix ui-reviewer)",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Start when you feel ready." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Démarre quand tu te sens prêt." } }
+      }
+    },
+    "dashboard.program.weekStatus.format": {
+      "comment": "Story 3.10 — statut semaine en cours, params: weekNumber, completed, total",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Week %1$lld — %2$lld/%3$lld sessions" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Semaine %1$lld — %2$lld/%3$lld séances" } }
+      }
+    },
+    "dashboard.program.weekCompleted.format": {
+      "comment": "Story 3.10 — semaine entière complétée, param: weekNumber",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Week %lld completed" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Semaine %lld complétée" } }
+      }
+    },
+    "dashboard.program.weekCompleted.subtitle": {
+      "comment": "Story 3.10 — sous-titre quand semaine complétée",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Patience, next week is coming." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Patience, la semaine prochaine arrive." } }
+      }
+    },
+    "dashboard.program.completed": {
+      "comment": "Story 3.10 — programme entièrement complété",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Program completed" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Programme terminé" } }
+      }
+    },
+    "dashboard.program.viewDetail": {
+      "comment": "Story 3.10 — CTA voir détail programme",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "View details" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Voir le détail" } }
+      }
+    },
+    "dashboard.program.cap.started.alert.title": {
+      "comment": "Story 3.10 — cap démarrés (5) atteint, titre alerte",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "You already have 5 active programs" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Tu as déjà 5 programmes en cours" } }
+      }
+    },
+    "dashboard.program.cap.started.alert.message": {
+      "comment": "Story 3.10 — cap démarrés atteint, message",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Finish or archive one to start this one." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Termine ou archive l'un d'eux pour commencer celui-ci." } }
+      }
+    },
+    "dashboard.program.cap.dormant.alert.title": {
+      "comment": "Story 3.10 — cap dormants (10) atteint, titre alerte",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "10 programs queued" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "10 programmes en attente" } }
+      }
+    },
+    "dashboard.program.cap.dormant.alert.message": {
+      "comment": "Story 3.10 — cap dormants atteint, message",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Archive or start one to generate a new one." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Archive ou démarre l'un d'eux pour en générer un nouveau." } }
+      }
+    },
+    "dashboard.program.start.button": {
+      "comment": "Story 3.10 — bouton Démarrer sur NextSessionCard",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Start" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Démarrer" } }
+      }
+    },
     "dashboard.active.rest.hint.balanced": {
       "localizations": {
         "en": {
