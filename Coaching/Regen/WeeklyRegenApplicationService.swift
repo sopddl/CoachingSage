@@ -103,8 +103,12 @@ final class DefaultWeeklyRegenApplicationService: WeeklyRegenApplicationService 
 
         let records = try await adaptedProgramRepository.fetchActive(for: userId)
         for record in records {
+            // **Story 3.10** — programme dormant (`weekStartDate == nil`) :
+            // pas de semaine close à analyser, skip silencieux.
+            guard let weekStartDate = record.weekStartDate else { continue }
+
             let currentWeekNumber = Self.currentWeekNumber(
-                weekStartDate: record.weekStartDate,
+                weekStartDate: weekStartDate,
                 now: now
             )
             // currentWeek ≤ 1 → on est encore dans S1, pas de S à analyser.

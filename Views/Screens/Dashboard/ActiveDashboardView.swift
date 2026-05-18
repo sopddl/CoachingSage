@@ -9,8 +9,11 @@
 //                              variante compact de `DominantNextSessionCard`
 //   - WIDGET CETTE SEMAINE  : `WeeklyStatsWidget` 3 stats inline (single only)
 //   - MES PROGRAMMES        : `ProgramCard` × N, triées par date prochaine séance
-//   - MES ROUTINES (si ≥ 1) : `RoutineCard` × M, border dashed doré
 //   - Lien CTA discret      : « ↻ Réorganiser ma semaine → »
+//
+// **Story 3.10 (2026-05-17)** : section "Mes routines" supprimée (aucun row
+// jamais créé en base, pas d'UI de création, code mort). Le `@Model
+// RoutineRecord` est drop du Schema V8.
 //
 // 2026-05-10 — Sophie : suppression `CreateProgramOrRoutineCard` du bas
 // (déplacé en toolbar « + » de SessionView pour découvrabilité). La distinction
@@ -22,95 +25,91 @@ import SwiftUI
 import TemplateModel
 
 struct ActiveDashboardView: View {
-    let dominant: NextSessionResolver.Result?
-    let programs: [ActiveProgramSummary]
-    let routines: [RoutineRecord]
-    let weeklyStats: WeeklyStats?
-    let nextAfterDominant: NextSessionResolver.Result?
-    let restDayHintKey: LocalizedStringKey?
+    /// **Story 3.10** — programmes affichés dans le carrousel horizontal.
+    /// Tri déjà appliqué côté VM (cf `compareSummariesForCarousel`).
+    let programs: [ProgramSummary]
+    /// `record.id` de la card sélectionnée dans le carrousel. La `NextSessionCard`
+    /// sous le carrousel reflète ce programme. `nil` (cas dégénéré) = première card.
+    let selectedId: UUID?
     /// Phase B.5 — map `record.id → RegenBadge` peuplée pour les programmes
     /// dont la regen S+1 a été appliquée cette semaine. Une entrée absente
     /// signifie "pas de regen, pas de badge".
     var regenBadges: [UUID: RegenBadge] = [:]
-    let nowProvider: () -> Date
-    let onTapDominantStart: (NextSessionResolver.Result) -> Void
-    let onTapProgram: (ActiveProgramSummary) -> Void
+    let onSelectProgram: (UUID) -> Void
+    let onTapStartSession: (ProgramSummary) -> Void
+    let onTapProgram: (ProgramSummary) -> Void
     /// Story 3.3b cleanup 2026-05-10 — swipe-to-delete sur la liste des programmes.
     /// L'action concrète = `adaptedRepo.archive(record)` côté caller (SessionView).
-    let onDeleteProgram: (ActiveProgramSummary) -> Void
+    let onDeleteProgram: (ProgramSummary) -> Void
     let onTapWeeklyReorder: () -> Void
 
-    private var isRestDay: Bool {
-        guard let dominant else { return false }
-        return !Calendar.current.isDate(dominant.effectiveDate, inSameDayAs: nowProvider())
+    private var selectedSummary: ProgramSummary? {
+        if let selectedId, let s = programs.first(where: { $0.id == selectedId }) { return s }
+        return programs.first
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
-            if let dominant {
-                section(titleKey: isRestDay ? "dashboard.active.rest.section.title" : "dashboard.active.next.title") {
-                    if isRestDay {
-                        VStack(alignment: .leading, spacing: 12) {
-                            RestDayCard(
-                                upcoming: dominant,
-                                onTapStart: { onTapDominantStart(dominant) }
-                            )
-                            if let restDayHintKey {
-                                LeonHintView(restDayHintKey)
-                            }
-                        }
-                    } else {
-                        DominantNextSessionCard(
-                            result: dominant,
-                            now: nowProvider(),
-                            style: .full,
-                            onTapStart: { onTapDominantStart(dominant) }
-                        )
-                    }
-                }
-            }
-
-            if let nextAfter = nextAfterDominant, !isRestDay {
-                section(titleKey: "dashboard.active.next.after.title") {
-                    DominantNextSessionCard(
-                        result: nextAfter,
-                        now: nowProvider(),
-                        style: .compact,
-                        onTapStart: { onTapDominantStart(nextAfter) }
-                    )
-                }
-            }
-
-            if let stats = weeklyStats {
-                WeeklyStatsWidget(stats: stats)
-            }
-
             section(titleKey: "dashboard.active.programs.title") {
-                VStack(spacing: 10) {
-                    ForEach(programs, id: \.record.id) { summary in
-                        SwipeToDeleteRow(onDelete: { onDeleteProgram(summary) }) {
-                            ProgramCard(
-                                summary: summary,
-                                badge: regenBadges[summary.record.id],
-                                onTap: { onTapProgram(summary) }
-                            )
-                        }
-                    }
-                }
+                programCarousel
             }
 
-            if !routines.isEmpty {
-                section(titleKey: "dashboard.active.routines.title") {
-                    VStack(spacing: 10) {
-                        ForEach(routines, id: \.id) { routine in
-                            RoutineCard(routine: routine)
-                        }
-                    }
+            if let selectedSummary {
+                section(titleKey: "dashboard.active.next.title") {
+                    NextSessionCard(
+                        summary: selectedSummary,
+                        onTapStart: { onTapStartSession(selectedSummary) },
+                        onTapDetail: { onTapProgram(selectedSummary) }
+                    )
                 }
             }
 
             WeeklyReorderLink(onTap: onTapWeeklyReorder)
         }
+    }
+
+    /// **Story 3.10** — carrousel horizontal façon Decathlon Coach.
+    /// Cards ~280pt large, height fixe ~120pt. `.scrollTargetBehavior(.viewAligned)`
+    /// snap natif iOS 17+.
+    ///
+    /// **P1 #3 fix ui-reviewer** — bind `.scrollPosition(id:)` à la sélection
+    /// logique : quand l'user swipe le carrousel, la card snap au centre devient
+    /// automatiquement la card sélectionnée → la NextSessionCard suit. Évite la
+    /// confusion "card visible ≠ card en dessous" pointée par l'agent.
+    @ViewBuilder
+    private var programCarousel: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack(spacing: 12) {
+                ForEach(programs) { summary in
+                    SwipeToDeleteRow(onDelete: { onDeleteProgram(summary) }) {
+                        ProgramCard(
+                            summary: summary,
+                            badge: regenBadges[summary.id],
+                            isSelected: summary.id == (selectedId ?? programs.first?.id),
+                            onTap: {
+                                onSelectProgram(summary.id)
+                            }
+                        )
+                    }
+                    .frame(width: 280)
+                    .id(summary.id)
+                }
+            }
+            .scrollTargetLayout()
+            .padding(.horizontal, 1)
+        }
+        .scrollTargetBehavior(.viewAligned)
+        .scrollPosition(
+            id: Binding(
+                get: { selectedId ?? programs.first?.id },
+                set: { newID in
+                    if let newID, newID != selectedId {
+                        onSelectProgram(newID)
+                    }
+                }
+            )
+        )
+        .accessibilityIdentifier("dashboard.active.carousel")
     }
 
     @ViewBuilder
@@ -126,355 +125,120 @@ struct ActiveDashboardView: View {
     }
 }
 
-// MARK: - Dominant next session card
-
-private struct DominantNextSessionCard: View {
-    enum Style {
-        /// Card pleine taille, bleu coach plein, gros titre + meta + CTA pill blanche.
-        case full
-        /// Variante « Et après » : padding réduit, gradient pâle, pas de CTA pill.
-        case compact
-    }
-
-    let result: NextSessionResolver.Result
-    let now: Date
-    let style: Style
-    let onTapStart: () -> Void
-
-    var body: some View {
-        Button(action: onTapStart) {
-            VStack(alignment: .leading, spacing: style == .compact ? 8 : 12) {
-                Text(verbatim: whenLabel)
-                    .font(.system(size: 11, weight: .semibold, design: .default))
-                    .tracking(1.2)
-                    .foregroundStyle(Color.coachingOnPrimary.opacity(style == .compact ? 0.78 : 0.85))
-
-                HStack(alignment: .firstTextBaseline, spacing: 8) {
-                    Text(verbatim: emoji)
-                        .font(.system(size: style == .compact ? 18 : 22))
-                    Text(verbatim: result.session.name)
-                        .font(.system(size: style == .compact ? 16 : 19, weight: .semibold, design: .serif))
-                        .foregroundStyle(Color.coachingOnPrimary)
-                        .lineLimit(2)
-                    Spacer(minLength: 0)
-                }
-
-                Text(verbatim: metaLine)
-                    .font(.system(size: 12, weight: .regular, design: .default))
-                    .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
-                    .lineLimit(2)
-
-                if style == .full {
-                    HStack(spacing: 6) {
-                        Text("dashboard.active.next.cta")
-                            .font(.coachingBody.weight(.semibold))
-                        Image(systemName: "arrow.right")
-                            .font(.footnote.weight(.semibold))
-                    }
-                    .foregroundStyle(Color.coachingPrimary)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 10)
-                    .background(Color.coachingOnPrimary)
-                    .clipShape(Capsule())
-                    .accessibilityIdentifier("dashboard.active.next.cta")
-                }
-            }
-            .padding(style == .compact ? 14 : 16)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                LinearGradient(
-                    colors: style == .compact
-                        ? [Color(hex: 0x4A7BB5), Color(hex: 0x6593C7)]
-                        : [Color(hex: 0x1E5090), Color(hex: 0x2B5F8A)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            )
-            .clipShape(RoundedRectangle(cornerRadius: style == .compact ? 14 : 18, style: .continuous))
-        }
-        .buttonStyle(.plain)
-        .accessibilityElement(children: .contain)
-        .accessibilityIdentifier(style == .compact ? "dashboard.active.next.after" : "dashboard.active.next")
-    }
-
-    private var emoji: String {
-        switch result.program.sportCode {
-        case "running": return "🏃"
-        case "cycling": return "🚴"
-        case "swimming": return "🏊"
-        case "triathlon": return "🥇"
-        case "strengthTraining": return "🏋️"
-        case "yoga": return "🧘"
-        case "hiit": return "🔥"
-        case "hiking": return "🥾"
-        case "tennis": return "🎾"
-        case "football": return "⚽"
-        default: return "💪"
-        }
-    }
-
-    private var whenLabel: String {
-        let cal = Calendar.current
-        let start = cal.startOfDay(for: now)
-        let date = result.effectiveDate
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        if cal.isDate(date, inSameDayAs: start) {
-            formatter.dateFormat = "HH:mm"
-            let isMidnight = cal.component(.hour, from: date) == 0 && cal.component(.minute, from: date) == 0
-            return isMidnight
-                ? String(localized: "dashboard.active.when.today")
-                : "\(String(localized: "dashboard.active.when.today")) · \(formatter.string(from: date))"
-        }
-        if cal.isDate(date, inSameDayAs: cal.date(byAdding: .day, value: 1, to: start) ?? start) {
-            formatter.dateFormat = "HH:mm"
-            let isMidnight = cal.component(.hour, from: date) == 0 && cal.component(.minute, from: date) == 0
-            return isMidnight
-                ? String(localized: "dashboard.active.when.tomorrow")
-                : "\(String(localized: "dashboard.active.when.tomorrow")) · \(formatter.string(from: date))"
-        }
-        formatter.setLocalizedDateFormatFromTemplate("EEEd")
-        return formatter.string(from: date).uppercased()
-    }
-
-    private var metaLine: String {
-        String(
-            format: NSLocalizedString("dashboard.active.next.meta", comment: "ex. Sem 3 · 45 min"),
-            result.session.weekNumber,
-            result.session.durationMinutes
-        )
-    }
-}
-
-// MARK: - Rest day card
-
-private struct RestDayCard: View {
-    let upcoming: NextSessionResolver.Result
-    let onTapStart: () -> Void
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("dashboard.active.rest.label")
-                .font(.system(size: 11, weight: .semibold, design: .default))
-                .tracking(1.2)
-                .foregroundStyle(Color.coachingOnPrimary.opacity(0.92))
-
-            HStack(alignment: .firstTextBaseline, spacing: 10) {
-                Image(systemName: "hourglass.bottomhalf.filled")
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundStyle(Color.coachingOnPrimary)
-                Text("dashboard.active.rest.title")
-                    .font(.system(size: 19, weight: .semibold, design: .serif))
-                    .foregroundStyle(Color.coachingOnPrimary)
-                Spacer(minLength: 0)
-            }
-
-            Text("dashboard.active.rest.meta")
-                .font(.system(size: 12, weight: .regular, design: .default))
-                .foregroundStyle(Color.coachingOnPrimary.opacity(0.92))
-                .fixedSize(horizontal: false, vertical: true)
-
-            Rectangle()
-                .fill(Color.coachingOnPrimary.opacity(0.25))
-                .frame(height: 1)
-
-            Button(action: onTapStart) {
-                HStack(spacing: 6) {
-                    Image(systemName: "arrow.up.right")
-                        .font(.footnote.weight(.semibold))
-                    Text(verbatim: nextLabel)
-                        .font(.system(size: 12, weight: .regular, design: .default))
-                        .lineLimit(1)
-                    Spacer(minLength: 0)
-                }
-                .foregroundStyle(Color.coachingOnPrimary)
-            }
-            .buttonStyle(.plain)
-            .accessibilityIdentifier("dashboard.active.rest.next")
-        }
-        .padding(16)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            LinearGradient(
-                colors: [Color(hex: 0x7BC142), Color(hex: 0x5A9A30)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-        )
-        .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-        .accessibilityElement(children: .contain)
-        .accessibilityIdentifier("dashboard.active.rest")
-    }
-
-    private var nextLabel: String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.setLocalizedDateFormatFromTemplate("EEEd HH:mm")
-        let dateLabel = formatter.string(from: upcoming.effectiveDate)
-        return String(
-            format: NSLocalizedString("dashboard.active.rest.next", comment: ""),
-            dateLabel,
-            upcoming.session.name
-        )
-    }
-}
-
-// MARK: - Weekly stats widget (mode 1-prog)
-
-private struct WeeklyStatsWidget: View {
-    let stats: WeeklyStats
-
-    var body: some View {
-        HStack(spacing: 0) {
-            stat(value: "\(stats.totalMinutes)", unitKey: "dashboard.active.weekly.unit.min", labelKey: "dashboard.active.weekly.volume")
-            divider
-            stat(value: "\(stats.completedCount)", unitKey: nil, labelKey: "dashboard.active.weekly.completed")
-            divider
-            stat(value: "\(stats.streakDays)", unitKey: "dashboard.active.weekly.unit.day", labelKey: "dashboard.active.weekly.streak")
-        }
-        .padding(.vertical, 14)
-        .padding(.horizontal, 16)
-        .background(Color.coachingCard)
-        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-        .accessibilityElement(children: .combine)
-        .accessibilityIdentifier("dashboard.active.weekly.widget")
-    }
-
-    @ViewBuilder
-    private func stat(value: String, unitKey: LocalizedStringKey?, labelKey: LocalizedStringKey) -> some View {
-        VStack(alignment: .center, spacing: 2) {
-            HStack(alignment: .firstTextBaseline, spacing: 2) {
-                Text(verbatim: value)
-                    .font(.system(size: 20, weight: .semibold, design: .rounded))
-                    .foregroundStyle(Color.coachingTextPrimary)
-                if let unitKey {
-                    Text(unitKey)
-                        .font(.coachingCaption)
-                        .foregroundStyle(Color.coachingTextSecondary)
-                }
-            }
-            Text(labelKey)
-                .font(.system(size: 10, weight: .regular, design: .default))
-                .foregroundStyle(Color.coachingTextSecondary)
-                .textCase(.uppercase)
-                .tracking(0.6)
-        }
-        .frame(maxWidth: .infinity)
-    }
-
-    private var divider: some View {
-        Rectangle()
-            .fill(Color.coachingTextSecondary.opacity(0.18))
-            .frame(width: 1, height: 28)
-    }
-}
-
-// MARK: - Program card
+// MARK: - Program card (Story 3.10 — carrousel horizontal)
+//
+// Anciennes vues `DominantNextSessionCard`, `RestDayCard` et `WeeklyStatsWidget`
+// supprimées en Story 3.10 — la card dominante a été remplacée par le
+// `ProgramCard` + `NextSessionCard` du carrousel.
 
 private struct ProgramCard: View {
-    let summary: ActiveProgramSummary
+    let summary: ProgramSummary
     /// Phase B.5 — badge regen S+1 si la regen a été appliquée cette semaine
     /// pour ce record. `nil` sinon. Style varie selon `requiresRebuild`.
     var badge: RegenBadge?
+    /// **Story 3.10** — card sélectionnée dans le carrousel : border accentuée.
+    let isSelected: Bool
     let onTap: () -> Void
+
+    /// **P0 #2 fix ui-reviewer** — locale courante pour resolve les strings
+    /// interpolées via `String.localized(_:locale:)`.
+    @Environment(\.locale) private var locale
+
+    private var sportCode: String { summary.sport.appSportCode }
 
     var body: some View {
         Button(action: onTap) {
-            HStack(spacing: 14) {
-                ZStack {
-                    // Sophie 2026-05-10 (raffinement) : pattern carré arrondi
-                    // + bordure couleur sport + icone couleur sport (vs rond
-                    // plein + icone blanche). Référence sport picker mockup
-                    // photo 2 — plus design/élégant. SF symbols figure.* gardés.
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(Color.coachingCard)
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .strokeBorder(Color.coachingSport(forCode: summary.record.sportCode), lineWidth: 2)
-                    Image(systemName: sfSymbol)
-                        .font(.system(size: 20, weight: .semibold))
-                        .foregroundStyle(Color.coachingSport(forCode: summary.record.sportCode))
-                }
-                .frame(width: 40, height: 40)
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(alignment: .firstTextBaseline, spacing: 10) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            .strokeBorder(Color.coachingSport(forCode: sportCode), lineWidth: 1.5)
+                        Image(systemName: sfSymbol)
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundStyle(Color.coachingSport(forCode: sportCode))
+                    }
+                    .frame(width: 32, height: 32)
 
-                VStack(alignment: .leading, spacing: 6) {
-                    HStack(alignment: .firstTextBaseline, spacing: 6) {
-                        Text(verbatim: displayName)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(verbatim: summary.templateName)
                             .font(.coachingBody.weight(.semibold))
                             .foregroundStyle(Color.coachingTextPrimary)
                             .lineLimit(1)
-                        Spacer(minLength: 8)
-                        Text(verbatim: percentLabel)
-                            .font(.coachingCaption.weight(.semibold))
-                            .foregroundStyle(Color.coachingTextSecondary)
+                        statusTextView
+                            .font(.coachingCaption)
+                            .foregroundStyle(summary.isDormant
+                                             ? Color.coachingTextSecondary
+                                             : Color.coachingTextPrimary)
+                            .lineLimit(1)
                     }
-
-                    Text(verbatim: metaLine)
-                        .font(.coachingCaption)
-                        .foregroundStyle(Color.coachingTextSecondary)
-                        .lineLimit(1)
-
-                    if let badge {
-                        RegenBadgePill(badge: badge)
-                    }
-
-                    GeometryReader { geo in
-                        ZStack(alignment: .leading) {
-                            Capsule()
-                                .fill(Color.coachingRecord.opacity(0.15))
-                                .frame(height: 4)
-                            Capsule()
-                                .fill(Color.coachingRecord)
-                                .frame(width: max(4, geo.size.width * summary.progress), height: 4)
-                        }
-                    }
-                    .frame(height: 4)
+                    Spacer(minLength: 0)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
 
-                Image(systemName: "chevron.right")
-                    .font(.footnote)
-                    .foregroundStyle(Color.coachingTextSecondary)
+                if let badge {
+                    RegenBadgePill(badge: badge)
+                }
+
+                Spacer(minLength: 0)
+
+                // Barre de progression (programme entier).
+                GeometryReader { geo in
+                    ZStack(alignment: .leading) {
+                        Capsule()
+                            .fill(Color.coachingRecord.opacity(0.15))
+                            .frame(height: 4)
+                        Capsule()
+                            .fill(Color.coachingRecord)
+                            .frame(width: max(4, geo.size.width * progress), height: 4)
+                    }
+                }
+                .frame(height: 4)
             }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 12)
+            .padding(14)
+            .frame(height: 120, alignment: .topLeading)
             .background(Color.coachingCard)
+            .overlay(
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .strokeBorder(
+                        isSelected ? Color.coachingPrimary : Color.clear,
+                        lineWidth: 2
+                    )
+            )
             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
         }
         .buttonStyle(.plain)
-        .accessibilityIdentifier("dashboard.active.program.\(summary.record.sportCode)")
+        .accessibilityIdentifier("dashboard.active.program.\(sportCode)")
     }
 
-    private var displayName: String {
-        if let name = summary.templateName, !name.isEmpty { return name }
-        return String(format: NSLocalizedString("dashboard.active.program.fallback", comment: ""), summary.record.sportCode.capitalized)
+    private var progress: Double {
+        guard summary.totalSessions > 0 else { return 0 }
+        return min(max(Double(summary.totalSessionsCompleted) / Double(summary.totalSessions), 0), 1)
     }
 
-    private var percentLabel: String {
-        "\(Int((summary.progress * 100).rounded()))%"
-    }
-
-    private var metaLine: String {
-        let weekNumber = summary.record.sessions
-            .first { !summary.record.completionState.sessionRecords.keys.contains($0.id) }?
-            .weekNumber ?? 1
-        let nextLabel: String
-        if let date = summary.nextDate {
-            let formatter = DateFormatter()
-            formatter.locale = Locale.current
-            formatter.setLocalizedDateFormatFromTemplate("EEEd")
-            nextLabel = formatter.string(from: date)
+    /// **Story 3.10 AC21** — texte de statut affiché sous le `templateName`.
+    ///   - dormant             → "Non commencé"
+    ///   - programme complété  → "Programme terminé" (P1 #4 ui-reviewer)
+    ///   - démarré, semaine X  → "Semaine X — Y/Z séances"
+    ///
+    /// Pour la branche interpolée, on passe par `String.localized(_:locale:)`
+    /// qui utilise le bundle de la langue applicative (P0 #2 ui-reviewer fix).
+    @ViewBuilder
+    private var statusTextView: some View {
+        if summary.isDormant {
+            Text("dashboard.program.notStarted")
+        } else if summary.isProgramCompleted {
+            Text("dashboard.program.completed")
         } else {
-            nextLabel = String(localized: "dashboard.active.program.complete")
+            Text(verbatim: String(
+                format: String.localized("dashboard.program.weekStatus.format", locale: locale),
+                summary.currentWeekNumber,
+                summary.weekCompletedSessions,
+                summary.weekTotalSessions
+            ))
         }
-        return String(
-            format: NSLocalizedString("dashboard.active.program.meta", comment: "ex. Sem 3 · prochaine : lun. 12"),
-            weekNumber,
-            nextLabel
-        )
     }
 
     private var sfSymbol: String {
-        switch summary.record.sportCode {
+        switch sportCode {
         case "running": return "figure.run"
         case "cycling": return "figure.outdoor.cycle"
         case "swimming": return "figure.pool.swim"
@@ -487,6 +251,175 @@ private struct ProgramCard: View {
         case "football": return "soccerball"
         default: return "questionmark.circle"
         }
+    }
+}
+
+// MARK: - Next session card (Story 3.10 — sous le carrousel)
+
+/// **Story 3.10 AC24** — card de la prochaine séance du programme sélectionné.
+/// Cas couverts (AC24) :
+///   - **Dormant** → "Non commencé" + bouton "Démarrer".
+///   - **Démarré, séance dispo** → titre + meta + bouton "Démarrer".
+///   - **Semaine complétée** → placeholder "Semaine X complétée — patience"
+///     (vrai blocage doux livré Story 3.11).
+///   - **Programme complété** → "Programme terminé" (transitoire avant
+///     auto-archive AC14).
+private struct NextSessionCard: View {
+    let summary: ProgramSummary
+    let onTapStart: () -> Void
+    let onTapDetail: () -> Void
+
+    /// **Story 3.10 P0 #2 fix ui-reviewer** — locale courante pour résoudre les
+    /// `String.localizedStringWithFormat` via le bundle de la langue applicative
+    /// (cf `LanguageManager` → `String.localized(_:locale:)`). Sinon les strings
+    /// interpolées restent dans la locale système iOS et créent un mix FR/EN
+    /// quand l'user a sélectionné EN dans le picker langue mais que iOS est FR.
+    @Environment(\.locale) private var locale
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            content
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            LinearGradient(
+                colors: [Color(hex: 0x1E5090), Color(hex: 0x2B5F8A)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .accessibilityIdentifier("dashboard.active.next")
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        // **Story 3.10 P0 #1 fix ui-reviewer** — programmes dormants en TÊTE
+        // de la cascade. Sans ce check, la chaîne tombe sur `nextSession == nil`
+        // (logique : pas démarré = pas de next) puis fallback à
+        // `programCompletedState`, ce qui montre "Programme terminé" sur un
+        // programme jamais démarré. Bug fonctionnel rendu par ui-reviewer.
+        if summary.isDormant {
+            dormantState
+        } else if summary.isProgramCompleted {
+            programCompletedState
+        } else if summary.isWeekCompleted {
+            weekCompletedState
+        } else if let session = summary.nextSession {
+            sessionState(session: session)
+        } else {
+            // Programme démarré sans next session disponible (cas dégénéré).
+            programCompletedState
+        }
+    }
+
+    /// **Story 3.10 P0 #1** — état dormant : titre "Non commencé" + CTA pill
+    /// "Démarrer" (qui appelle `markStarted` + push AdaptedProgramView via
+    /// le caller).
+    private var dormantState: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 8) {
+                Image(systemName: "hourglass.bottomhalf.filled")
+                    .font(.system(size: 22, weight: .semibold))
+                    .foregroundStyle(Color.coachingOnPrimary)
+                Text("dashboard.program.notStarted")
+                    .font(.system(size: 19, weight: .semibold, design: .serif))
+                    .foregroundStyle(Color.coachingOnPrimary)
+            }
+            Text("dashboard.program.notStarted.subtitle")
+                .font(.system(size: 12, weight: .regular))
+                .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
+            startButton
+        }
+    }
+
+    private func sessionState(session: PersistedSession) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                Text(verbatim: session.name)
+                    .font(.system(size: 19, weight: .semibold, design: .serif))
+                    .foregroundStyle(Color.coachingOnPrimary)
+                    .lineLimit(2)
+                Spacer(minLength: 0)
+            }
+            Text(verbatim: metaLine(session: session))
+                .font(.system(size: 12, weight: .regular))
+                .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
+            startButton
+        }
+    }
+
+    private var programCompletedState: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 8) {
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.system(size: 22, weight: .semibold))
+                    .foregroundStyle(Color.coachingOnPrimary)
+                Text("dashboard.program.completed")
+                    .font(.system(size: 18, weight: .semibold, design: .serif))
+                    .foregroundStyle(Color.coachingOnPrimary)
+            }
+            Button(action: onTapDetail) {
+                Text("dashboard.program.viewDetail")
+                    .font(.coachingBody.weight(.semibold))
+                    .foregroundStyle(Color.coachingPrimary)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(Color.coachingOnPrimary)
+                    .clipShape(Capsule())
+            }
+            .buttonStyle(.plain)
+        }
+    }
+
+    private var weekCompletedState: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 8) {
+                Image(systemName: "calendar.badge.checkmark")
+                    .font(.system(size: 22, weight: .semibold))
+                    .foregroundStyle(Color.coachingOnPrimary)
+                // P0 #2 ui-reviewer — pass via `String.localized(_:locale:)` qui
+                // utilise le bundle de la langue applicative, pas la locale
+                // système iOS.
+                Text(verbatim: String(
+                    format: String.localized("dashboard.program.weekCompleted.format", locale: locale),
+                    summary.currentWeekNumber
+                ))
+                .font(.system(size: 18, weight: .semibold, design: .serif))
+                .foregroundStyle(Color.coachingOnPrimary)
+            }
+            Text("dashboard.program.weekCompleted.subtitle")
+                .font(.system(size: 12, weight: .regular))
+                .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
+        }
+    }
+
+    private var startButton: some View {
+        Button(action: onTapStart) {
+            HStack(spacing: 6) {
+                Text("dashboard.program.start.button")
+                    .font(.coachingBody.weight(.semibold))
+                Image(systemName: "arrow.right")
+                    .font(.footnote.weight(.semibold))
+            }
+            .foregroundStyle(Color.coachingPrimary)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+            .background(Color.coachingOnPrimary)
+            .clipShape(Capsule())
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("dashboard.active.next.cta")
+    }
+
+    private func metaLine(session: PersistedSession) -> String {
+        // P0 #2 ui-reviewer — utilise locale courante (LanguageManager).
+        String(
+            format: String.localized("dashboard.active.next.meta", locale: locale),
+            session.weekNumber,
+            session.durationMinutes
+        )
     }
 }
 
@@ -523,52 +456,6 @@ private struct RegenBadgePill: View {
         .clipShape(Capsule())
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("dashboard.active.program.regenBadge")
-    }
-}
-
-// MARK: - Routine card
-
-private struct RoutineCard: View {
-    let routine: RoutineRecord
-
-    var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: "bolt.heart.fill")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundStyle(Color.coachingRecord)
-                .frame(width: 28)
-
-            VStack(alignment: .leading, spacing: 2) {
-                Text(verbatim: routine.name)
-                    .font(.coachingBody.weight(.semibold))
-                    .foregroundStyle(Color.coachingTextPrimary)
-                    .lineLimit(1)
-                Text(verbatim: durationLabel)
-                    .font(.coachingCaption)
-                    .foregroundStyle(Color.coachingTextSecondary)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-
-            Image(systemName: "chevron.right")
-                .font(.footnote)
-                .foregroundStyle(Color.coachingTextSecondary)
-        }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 12)
-        .background(
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .strokeBorder(
-                    Color.coachingRecord.opacity(0.55),
-                    style: StrokeStyle(lineWidth: 1, dash: [4, 3])
-                )
-        )
-    }
-
-    private var durationLabel: String {
-        String(
-            format: NSLocalizedString("dashboard.active.routine.duration", comment: "ex. 12 min"),
-            routine.durationMinutes
-        )
     }
 }
 

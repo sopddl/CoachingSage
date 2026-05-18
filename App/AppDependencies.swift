@@ -11,7 +11,6 @@ struct AppDependencies {
     let coachingProfileRepository: any CoachingProfileRepository
     let coachingSportProfileRepository: any CoachingSportProfileRepository
     let adaptedProgramRepository: any AdaptedProgramRepository
-    let routineRepository: any RoutineRepository
     let weeklyRegenRepository: any WeeklyRegenRepository
     let authService: any AuthServiceProtocol
     let syncService: any SyncServiceProtocol
@@ -28,7 +27,6 @@ struct AppDependencies {
         let coachingProfileRepository = DefaultCoachingProfileRepository(modelContext: modelContext)
         let coachingSportProfileRepository = DefaultCoachingSportProfileRepository(modelContext: modelContext)
         let adaptedProgramRepository = DefaultAdaptedProgramRepository(modelContext: modelContext)
-        let routineRepository = DefaultRoutineRepository(modelContext: modelContext)
         let weeklyRegenRepository = DefaultWeeklyRegenRepository(modelContext: modelContext)
         let authService = AuthService()
         let healthKitService = DefaultHealthKitService()
@@ -46,7 +44,6 @@ struct AppDependencies {
             coachingProfileRepository: coachingProfileRepository,
             coachingSportProfileRepository: coachingSportProfileRepository,
             adaptedProgramRepository: adaptedProgramRepository,
-            routineRepository: routineRepository,
             weeklyRegenRepository: weeklyRegenRepository,
             authService: authService,
             syncService: SyncService(modelContext: modelContext),

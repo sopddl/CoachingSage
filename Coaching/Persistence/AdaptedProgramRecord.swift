@@ -32,7 +32,17 @@ final class AdaptedProgramRecord {
     var level: String                           // Level.rawValue (beginner, ...)
     var templateId: String                      // ProgramTemplate.id (pour audit + re-adapt)
     var adaptedAt: Date                         // = AdaptedProgram.appliedAt
-    var weekStartDate: Date                     // début de semaine du programme (lundi 00:00 local)
+    /// Début de semaine du programme (lundi 00:00 local).
+    /// **Story 3.10** : nullable. `nil` = programme "dormant" (généré en avance,
+    /// jamais démarré). La date se pose uniquement au premier tap "Démarrer ma
+    /// séance" via `markStarted()`. Un programme reste dormant tant que
+    /// `weekStartDate == nil`.
+    var weekStartDate: Date?
+
+    /// **Story 3.10** — Câblage Story 3.11 (idempotence regen post-shift) introduit
+    /// ici pour ne pas refaire de migration breaking en 3.11. Incrémenté par
+    /// chaque "shift week" effectué par Replanifier (Story 3.11). Default 0.
+    var shiftGeneration: Int = 0
 
     /// Stocké en `String` car SwiftData ne supporte pas les enums comme attribute type.
     /// Utiliser `mode` (computed) plutôt que `modeRaw` côté business code.
@@ -104,7 +114,7 @@ final class AdaptedProgramRecord {
         level: String,
         templateId: String,
         adaptedAt: Date,
-        weekStartDate: Date,
+        weekStartDate: Date? = nil,
         mode: ProgramMode = .ondemand,
         sessions: [PersistedSession],
         completionState: ProgramCompletionState = .empty,
@@ -117,6 +127,7 @@ final class AdaptedProgramRecord {
         durationMode: ProgramDurationMode = .routineCyclic,
         targetDate: Date? = nil,
         cycleNumber: Int = 1,
+        shiftGeneration: Int = 0,
         createdAt: Date = Date(),
         lastUpdatedAt: Date = Date()
     ) {
@@ -139,6 +150,7 @@ final class AdaptedProgramRecord {
         self.durationModeRaw = durationMode.rawValue
         self.targetDate = targetDate
         self.cycleNumber = cycleNumber
+        self.shiftGeneration = shiftGeneration
         self.createdAt = createdAt
         self.lastUpdatedAt = lastUpdatedAt
     }
@@ -151,10 +163,12 @@ extension AdaptedProgramRecord {
     /// en `AdaptedProgramRecord` SwiftData prêt à insérer dans le `ModelContext`.
     /// Le programme nait en `mode = .ondemand` (pool de séances non datées) ;
     /// le premier drop drag&drop bascule en `.planned` (Story 3.8 AC drag&drop).
+    /// **Story 3.10** : default `weekStartDate = nil` → programme nait "dormant",
+    /// la date se pose au premier `markStarted()`.
     convenience init(
         from adapted: AdaptedProgram,
         userId: UUID,
-        weekStartDate: Date = AdaptedProgramRecord.startOfCurrentWeek(),
+        weekStartDate: Date? = nil,
         cycleNumber: Int = 1
     ) {
         let sessions: [PersistedSession] = adapted.weeks.flatMap { week in
@@ -202,6 +216,18 @@ extension AdaptedProgramRecord {
         cal.firstWeekday = 2
         let comps = cal.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now)
         return cal.date(from: comps) ?? now
+    }
+
+    /// **Story 3.10** — Bascule le programme de "dormant" à "démarré" en posant
+    /// `weekStartDate` sur la semaine courante. Idempotent : si déjà démarré
+    /// (`weekStartDate != nil`), no-op.
+    ///
+    /// Appelée par le call-site "Démarrer ma séance" sur un programme dormant.
+    /// Le caller doit ensuite appeler `repository.update(record)` pour persister.
+    func markStarted(now: Date = Date()) {
+        guard weekStartDate == nil else { return }
+        weekStartDate = AdaptedProgramRecord.startOfCurrentWeek(now: now)
+        lastUpdatedAt = now
     }
 
     /// Reconstruction inverse vers `AdaptedProgram` mémoire. Utilisée par les

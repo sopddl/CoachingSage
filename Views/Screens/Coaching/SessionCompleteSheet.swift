@@ -159,8 +159,11 @@ struct SessionCompleteSheet: View {
 
 private final class PreviewAdaptedProgramRepository: AdaptedProgramRepository {
     func fetchActive(for userId: UUID) async throws -> [AdaptedProgramRecord] { [] }
+    func fetchStartedCount(for userId: UUID) async throws -> Int { 0 }
+    func fetchDormantCount(for userId: UUID) async throws -> Int { 0 }
     func save(_ record: AdaptedProgramRecord) async throws {}
     func update(_ record: AdaptedProgramRecord) async throws {}
+    func markStarted(recordId: UUID) async throws {}
     func archive(_ record: AdaptedProgramRecord) async throws {}
     func applyLeonPatch(recordId: UUID, patch: AdaptationPatch) async throws {}
     func loadSessionCompletion(recordId: UUID, weekNumber: Int, day: Int) async throws -> SessionCompletionRecord? { nil }

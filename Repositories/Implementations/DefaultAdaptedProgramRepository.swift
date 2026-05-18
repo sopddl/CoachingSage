@@ -1,10 +1,16 @@
 // Repositories/Implementations/DefaultAdaptedProgramRepository.swift
 // Story 3.8 — backend SwiftData. Pas de Supabase V1 (local-first, cf Story 3.8 « Hors scope »).
+// Story 3.10 — caps dormant/démarré (10 / 5) + markStarted + auto-archive à complétion.
 import Foundation
 import SwiftData
 
 @MainActor
 final class DefaultAdaptedProgramRepository: AdaptedProgramRepository {
+    /// **Story 3.10** — cap programmes dormants simultanés actifs (`weekStartDate == nil`).
+    static let dormantCap = 10
+    /// **Story 3.10** — cap programmes démarrés simultanés actifs (`weekStartDate != nil`).
+    static let startedCap = 5
+
     private let modelContext: ModelContext
 
     init(modelContext: ModelContext) {
@@ -19,7 +25,33 @@ final class DefaultAdaptedProgramRepository: AdaptedProgramRepository {
         return try modelContext.fetch(descriptor)
     }
 
+    func fetchStartedCount(for userId: UUID) async throws -> Int {
+        // SwiftData #Predicate ne supporte pas `weekStartDate != nil` directement
+        // dans toutes les versions iOS — filtre côté Swift après fetchActive
+        // (volumes V1 < 15 rows par user, perf non-critique).
+        let active = try await fetchActive(for: userId)
+        return active.filter { $0.weekStartDate != nil }.count
+    }
+
+    func fetchDormantCount(for userId: UUID) async throws -> Int {
+        let active = try await fetchActive(for: userId)
+        return active.filter { $0.weekStartDate == nil }.count
+    }
+
     func save(_ record: AdaptedProgramRecord) async throws {
+        // **Story 3.10** — check cap selon le type du record entrant.
+        let active = try await fetchActive(for: record.userId)
+        if record.weekStartDate == nil {
+            let dormantCount = active.filter { $0.weekStartDate == nil }.count
+            guard dormantCount < Self.dormantCap else {
+                throw ProgramCapReached.dormant(limit: Self.dormantCap)
+            }
+        } else {
+            let startedCount = active.filter { $0.weekStartDate != nil }.count
+            guard startedCount < Self.startedCap else {
+                throw ProgramCapReached.started(limit: Self.startedCap)
+            }
+        }
         record.lastUpdatedAt = Date()
         modelContext.insert(record)
         try modelContext.save()
@@ -27,6 +59,26 @@ final class DefaultAdaptedProgramRepository: AdaptedProgramRepository {
 
     func update(_ record: AdaptedProgramRecord) async throws {
         record.lastUpdatedAt = Date()
+        try modelContext.save()
+    }
+
+    /// **Story 3.10 AC8/AC13** — bascule un dormant en démarré + check cap.
+    /// Le record est fetché par `recordId`, `markStarted()` est idempotent.
+    /// No-op silencieux si le record n'existe plus (cas dégénéré : user archive
+    /// pendant qu'on tape le bouton démarrer).
+    func markStarted(recordId: UUID) async throws {
+        let descriptor = FetchDescriptor<AdaptedProgramRecord>(
+            predicate: #Predicate { $0.id == recordId }
+        )
+        guard let record = try modelContext.fetch(descriptor).first else { return }
+        // Déjà démarré : no-op idempotent (pas de check cap, on garde tel quel).
+        guard record.weekStartDate == nil else { return }
+        // Check cap démarrés AVANT mutation.
+        let startedCount = try await fetchStartedCount(for: record.userId)
+        guard startedCount < Self.startedCap else {
+            throw ProgramCapReached.started(limit: Self.startedCap)
+        }
+        record.markStarted()
         try modelContext.save()
     }
 
@@ -82,6 +134,18 @@ final class DefaultAdaptedProgramRepository: AdaptedProgramRepository {
         }
         programRecord.completionState = state
         programRecord.lastUpdatedAt = Date()
+
+        // **Story 3.10 AC14** — auto-archive à complétion : si toutes les
+        // sessions du programme sont cochées, on flip `isActive = false`
+        // silencieusement (libère le slot du cap). Seul l'ajout (record != nil)
+        // peut compléter — un retrait ne déclenche pas l'auto-archive.
+        if record != nil,
+           programRecord.completionState.completedCount == programRecord.sessions.count,
+           !programRecord.sessions.isEmpty {
+            programRecord.isActive = false
+            programRecord.archivedAt = Date()
+        }
+
         try modelContext.save()
     }
 }

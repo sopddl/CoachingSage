@@ -25,9 +25,39 @@ final class MockAdaptedProgramRepository: AdaptedProgramRepository {
         return stubbedActive.filter { $0.userId == userId && $0.isActive }
     }
 
+    /// **Story 3.10** — set par les tests AC32 cap dormant atteint pour forcer le
+    /// throw `ProgramCapReached.dormant` sans monter un fixture à 10 dormants.
+    var saveShouldThrow: Error?
+
     func save(_ record: AdaptedProgramRecord) async throws {
+        if let saveShouldThrow { throw saveShouldThrow }
         savedRecords.append(record)
         stubbedActive.append(record)
+    }
+
+    func fetchStartedCount(for userId: UUID) async throws -> Int {
+        if fetchShouldThrow { throw URLError(.notConnectedToInternet) }
+        return stubbedActive
+            .filter { $0.userId == userId && $0.isActive && $0.weekStartDate != nil }
+            .count
+    }
+
+    func fetchDormantCount(for userId: UUID) async throws -> Int {
+        if fetchShouldThrow { throw URLError(.notConnectedToInternet) }
+        return stubbedActive
+            .filter { $0.userId == userId && $0.isActive && $0.weekStartDate == nil }
+            .count
+    }
+
+    /// **Story 3.10** — set par les tests AC32 cap démarré atteint.
+    var markStartedShouldThrow: Error?
+    private(set) var markStartedCalls: [UUID] = []
+
+    func markStarted(recordId: UUID) async throws {
+        markStartedCalls.append(recordId)
+        if let markStartedShouldThrow { throw markStartedShouldThrow }
+        guard let record = stubbedActive.first(where: { $0.id == recordId }) else { return }
+        record.markStarted()
     }
 
     func update(_ record: AdaptedProgramRecord) async throws {

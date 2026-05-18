@@ -1,6 +1,6 @@
 // Models/Schema/CoachingSageMigrationPlan.swift
 // Plan de migration SwiftData. Historique git :
-//   V1 (Story 1.1a) → V2 (Story 2.2) → V3 (Story 3.1) → V4 (Story 3.8) → V5 (Story 3.3b) → V6 (Story sœur post-3.3b) → V7 (Story 3.4 Phase B)
+//   V1 (Story 1.1a) → V2 (Story 2.2) → V3 (Story 3.1) → V4 (Story 3.8) → V5 (Story 3.3b) → V6 (Story sœur post-3.3b) → V7 (Story 3.4 Phase B) → V8 (Story 3.10)
 //
 // 2026-05-09 : drop des V1-V4 du plan runtime suite à un crash SwiftData
 // "Duplicate version checksums detected". Cause : SchemaV4 et SchemaV5 référencent
@@ -12,12 +12,15 @@
 // En dev solo sans utilisateurs prod, on simplifie : seul le dernier schema
 // reste dans `schemas`. Conséquence : les stores locaux antérieurs (= juste les
 // simus de Sophie) doivent être reset (uninstall app sur simu). Les fichiers
-// SchemaV1-V6 restent en historique git mais ne sont plus exposés au runtime.
+// SchemaV1-V7 restent en historique git mais ne sont plus exposés au runtime.
+//
+// Story 3.10 (V8) — migration breaking weekStartDate nullable + drop
+// RoutineRecord. Wipe simu obligatoire au premier run post-merge.
 import SwiftData
 
 enum CoachingSageMigrationPlan: SchemaMigrationPlan {
     static var schemas: [any VersionedSchema.Type] {
-        [SchemaV7.self]
+        [SchemaV8.self]
     }
 
     static var stages: [MigrationStage] {
