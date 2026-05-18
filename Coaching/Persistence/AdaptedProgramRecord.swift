@@ -43,6 +43,13 @@ final class AdaptedProgramRecord {
     /// chaque "shift week" effectué par Replanifier (Story 3.11). Default 0.
     var shiftGeneration: Int = 0
 
+    /// **Story 3.12** — Titre du programme affiché en nav bar + carrousel.
+    /// Posé à la création au format "{Sport} — {Goal}" via `AutoTitleBuilder`.
+    /// Modifiable par l'utilisateur via le rename sheet (tap sur le titre nav).
+    /// Nullable pour rétro-compat (records pré-Story 3.12) — fallback côté UI
+    /// vers le sport seul si nil.
+    var customTitle: String?
+
     /// Stocké en `String` car SwiftData ne supporte pas les enums comme attribute type.
     /// Utiliser `mode` (computed) plutôt que `modeRaw` côté business code.
     var modeRaw: String
@@ -126,6 +133,7 @@ final class AdaptedProgramRecord {
         targetDate: Date? = nil,
         cycleNumber: Int = 1,
         shiftGeneration: Int = 0,
+        customTitle: String? = nil,
         createdAt: Date = Date(),
         lastUpdatedAt: Date = Date()
     ) {
@@ -149,6 +157,7 @@ final class AdaptedProgramRecord {
         self.targetDate = targetDate
         self.cycleNumber = cycleNumber
         self.shiftGeneration = shiftGeneration
+        self.customTitle = customTitle
         self.createdAt = createdAt
         self.lastUpdatedAt = lastUpdatedAt
     }
@@ -165,7 +174,9 @@ extension AdaptedProgramRecord {
         from adapted: AdaptedProgram,
         userId: UUID,
         weekStartDate: Date? = nil,
-        cycleNumber: Int = 1
+        cycleNumber: Int = 1,
+        goal: String? = nil,
+        locale: Locale = .current
     ) {
         let sessions: [PersistedSession] = adapted.weeks.flatMap { week in
             week.sessions.map { session in
@@ -184,6 +195,11 @@ extension AdaptedProgramRecord {
                 )
             }
         }
+        let autoTitle = AutoTitleBuilder.build(
+            sportCode: adapted.sport.appSportCode,
+            goal: goal,
+            locale: locale
+        )
         self.init(
             userId: userId,
             sportCode: adapted.sport.appSportCode,
@@ -200,7 +216,8 @@ extension AdaptedProgramRecord {
             aiAssistReason: adapted.aiAssistReason,
             durationMode: adapted.durationMode,
             targetDate: adapted.targetDate,
-            cycleNumber: cycleNumber
+            cycleNumber: cycleNumber,
+            customTitle: autoTitle
         )
     }
 

@@ -329,9 +329,16 @@ final class SessionDashboardViewModel {
             case .routineCyclic:
                 isLate = false
             }
+            // **Story 3.12** : titre affiché = `customTitle` édité par l'user
+            // (priorité), sinon le `templateName` du template (fallback rétro-compat
+            // records pré-Story 3.12 sans `customTitle`).
+            let displayTitle: String = {
+                if let title = record.customTitle, !title.isEmpty { return title }
+                return resolvedName
+            }()
             return ProgramSummary(
                 id: record.id,
-                templateName: resolvedName,
+                templateName: displayTitle,
                 sport: sport,
                 weekStartDate: record.weekStartDate,
                 durationMode: record.durationMode,

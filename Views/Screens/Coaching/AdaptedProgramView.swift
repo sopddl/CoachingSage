@@ -14,6 +14,7 @@ import TemplateModel
 
 struct AdaptedProgramView: View {
     @Environment(\.appDependencies) private var deps
+    @Environment(\.languageManager) private var languageManager
 
     let program: AdaptedProgram
 
@@ -63,6 +64,10 @@ struct AdaptedProgramView: View {
     /// sur un programme dormant. Affichée en `.alert`. nil = pas d'alerte.
     @State private var startCapAlertLimit: Int? = nil
 
+    /// **Story 3.12** — état de la sheet rename (tap sur le titre nav → alert
+    /// TextField). nil = sheet fermée, non-nil = sheet ouverte avec ce buffer.
+    @State private var renameBuffer: String? = nil
+
     /// **Story 3.12** — Record SwiftData fetché au montage de la vue. Source des
     /// `PersistedSession.id` (pour mapper le completionState) + `weekStartDate`
     /// (pour calculer la semaine courante). `nil` tant qu'on n'a pas reçu de
@@ -76,12 +81,6 @@ struct AdaptedProgramView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                if onConfirmStart != nil {
-                    previewModeBadge
-                }
-
-                header
-
                 if program.requiresAIAssist {
                     aiAssistBanner
                 }
@@ -103,21 +102,8 @@ struct AdaptedProgramView: View {
                 }
 
                 medicalReminderFooter
-
-                if onConfirmStart != nil || isDormantRecord {
-                    // Padding bottom pour que le contenu ne soit pas masqué par le
-                    // sticky CTA. Hauteur ≈ bouton (52) + padding (32) = 84.
-                    Color.clear.frame(height: 84)
-                }
             }
             .padding()
-        }
-        .overlay(alignment: .bottom) {
-            if let onConfirmStart {
-                confirmStartCTA(action: onConfirmStart)
-            } else if isDormantRecord {
-                startProgramCTA
-            }
         }
         .alert(
             "dashboard.program.cap.started.alert.title",
@@ -131,14 +117,114 @@ struct AdaptedProgramView: View {
         } message: { _ in
             Text("dashboard.program.cap.started.alert.message")
         }
+        .alert(
+            "coaching.adapter.rename.title",
+            isPresented: Binding(
+                get: { renameBuffer != nil },
+                set: { if !$0 { renameBuffer = nil } }
+            )
+        ) {
+            TextField(
+                "coaching.adapter.rename.placeholder",
+                text: Binding(
+                    get: { renameBuffer ?? "" },
+                    set: { renameBuffer = $0 }
+                )
+            )
+            Button("common.ok") { Task { await saveRename() } }
+            Button("common.cancel", role: .cancel) { renameBuffer = nil }
+        } message: {
+            Text("coaching.adapter.rename.message")
+        }
         .overlay {
             if requestState == .loading {
                 leonLoadingOverlay
             }
         }
-        .navigationTitle(Text("coaching.adapter.title"))
+        .navigationTitle(Text(verbatim: displayTitle))
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            // Bouton "Démarrer" toolbar trailing (preview ou dormant). Le tap
+            // déclenche soit la commit + activation (preview), soit `markStarted`
+            // (dormant existant). Sur un programme déjà actif, pas de bouton.
+            if onConfirmStart != nil || isDormantRecord {
+                ToolbarItem(placement: .topBarTrailing) {
+                    startToolbarButton
+                }
+            }
+            // Menu titre (rename) — disponible dans tous les modes où on a un
+            // record SwiftData persisté.
+            if record != nil {
+                ToolbarTitleMenu {
+                    Button {
+                        renameBuffer = displayTitle
+                    } label: {
+                        Label("coaching.adapter.rename.action", systemImage: "pencil")
+                    }
+                }
+            }
+        }
         .task(id: recordId) { await loadRecord() }
+    }
+
+    // MARK: - Story 3.12 — Toolbar start button + rename
+
+    /// Titre affiché en nav bar. Priorité au `customTitle` du record, fallback
+    /// vers `"{Sport} — {Goal}"` calculé à la volée (= cas record nil = preview,
+    /// ou record pré-Story 3.12 sans customTitle).
+    private var displayTitle: String {
+        if let title = record?.customTitle, !title.isEmpty {
+            return title
+        }
+        return AutoTitleBuilder.build(
+            sportCode: program.sport.appSportCode,
+            goal: nil, // pas dispo en fallback ; le sport seul suffit comme aperçu
+            locale: languageManager.currentLocale
+        )
+    }
+
+    @ViewBuilder
+    private var startToolbarButton: some View {
+        Button {
+            if let onConfirmStart {
+                guard !isConfirmingStart else { return }
+                isConfirmingStart = true
+                Task {
+                    await onConfirmStart()
+                    isConfirmingStart = false
+                }
+            } else if isDormantRecord {
+                guard !isStartingProgram else { return }
+                Task { await handleStartProgram() }
+            }
+        } label: {
+            HStack(spacing: 4) {
+                if isConfirmingStart || isStartingProgram {
+                    ProgressView()
+                        .controlSize(.mini)
+                } else {
+                    Image(systemName: "play.fill")
+                        .font(.footnote.weight(.semibold))
+                }
+                Text("coaching.adapter.action.start")
+                    .font(.subheadline.weight(.semibold))
+            }
+        }
+        .disabled(isConfirmingStart || isStartingProgram)
+        .accessibilityIdentifier("coaching.adapter.toolbar.start")
+    }
+
+    /// Sauve le `customTitle` côté record SwiftData + refresh la vue. Trim +
+    /// guard non-vide : un titre vide retombe sur l'autoTitle (fallback).
+    @MainActor
+    private func saveRename() async {
+        guard let buffer = renameBuffer else { return }
+        let trimmed = buffer.trimmingCharacters(in: .whitespacesAndNewlines)
+        renameBuffer = nil
+        guard let record, let deps else { return }
+        record.customTitle = trimmed.isEmpty ? nil : trimmed
+        record.lastUpdatedAt = Date()
+        try? await deps.adaptedProgramRepository.update(record)
     }
 
     // MARK: - Story 3.12 — Fetch record + accordéon helpers
@@ -201,43 +287,6 @@ struct AdaptedProgramView: View {
         return record.weekStartDate == nil
     }
 
-    /// Sticky CTA "Démarrer le programme" affiché en bas d'`AdaptedProgramView`
-    /// quand le programme est dormant. Tap = `markStarted` + reload du record
-    /// (la vue passe en mode actif : header progress visible, semaine 1 dépliée
-    /// avec sessions tappables).
-    private var startProgramCTA: some View {
-        VStack(spacing: 0) {
-            Button {
-                guard !isStartingProgram else { return }
-                Task { await handleStartProgram() }
-            } label: {
-                HStack {
-                    if isStartingProgram {
-                        ProgressView()
-                            .tint(.white)
-                    } else {
-                        Image(systemName: "play.circle.fill")
-                    }
-                    Text("coaching.adapter.dormant.startProgram")
-                        .font(.headline)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 12)
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(Color.coachingPrimary)
-            .disabled(isStartingProgram)
-            .accessibilityIdentifier("coaching.adapter.dormant.startProgram")
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-        }
-        .background(
-            Color.coachingBackground
-                .opacity(0.96)
-                .ignoresSafeArea(edges: .bottom)
-        )
-    }
-
     @MainActor
     private func handleStartProgram() async {
         guard let recordId, let deps else { return }
@@ -267,80 +316,6 @@ struct AdaptedProgramView: View {
                 }
             }
         )
-    }
-
-    // MARK: - Story sœur 3.z — Preview mode (visualiser avant démarrer)
-
-    private var previewModeBadge: some View {
-        HStack(spacing: 8) {
-            Image(systemName: "eye")
-                .font(.footnote.bold())
-                .foregroundStyle(Color.coachingTextSecondary)
-            Text("coaching.adapter.preview.badge")
-                .font(.footnote)
-                .foregroundStyle(Color.coachingTextSecondary)
-            Spacer(minLength: 0)
-        }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.coachingTextSecondary.opacity(0.08))
-        )
-        .accessibilityElement(children: .combine)
-    }
-
-    private func confirmStartCTA(action: @escaping () async -> Void) -> some View {
-        VStack(spacing: 0) {
-            Button {
-                guard !isConfirmingStart else { return }
-                isConfirmingStart = true
-                Task {
-                    await action()
-                    isConfirmingStart = false
-                }
-            } label: {
-                HStack {
-                    if isConfirmingStart {
-                        ProgressView()
-                            .tint(.white)
-                    } else {
-                        Image(systemName: "play.circle.fill")
-                    }
-                    Text("coaching.adapter.preview.confirmStart")
-                        .font(.headline)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 12)
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(Color.coachingPrimary)
-            .disabled(isConfirmingStart)
-            .accessibilityIdentifier("coaching.adapter.preview.confirmStart")
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-        }
-        .background(
-            Color.coachingBackground
-                .opacity(0.96)
-                .ignoresSafeArea(edges: .bottom)
-        )
-    }
-
-    // MARK: - Header
-
-    private var header: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(program.sport.localizedKey)
-                .font(.title2.bold())
-            HStack(spacing: 4) {
-                Text(program.level.localizedKey)
-                Text(verbatim: "·")
-                Text("coaching.adapter.weeks \(program.weeks.count)")
-            }
-            .font(.subheadline)
-            .foregroundStyle(.secondary)
-        }
     }
 
     // MARK: - AI assist banner

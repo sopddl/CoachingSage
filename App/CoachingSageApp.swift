@@ -35,7 +35,7 @@ struct CoachingSageApp: App {
 
         do {
             let container = try ModelContainer(
-                for: Schema(versionedSchema: SchemaV7.self),
+                for: Schema(versionedSchema: SchemaV9.self),
                 migrationPlan: CoachingSageMigrationPlan.self,
                 configurations: config
             )

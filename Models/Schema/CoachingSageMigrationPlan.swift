@@ -16,11 +16,13 @@
 //
 // Story 3.10 (V8) — migration breaking weekStartDate nullable + drop
 // RoutineRecord. Wipe simu obligatoire au premier run post-merge.
+// Story 3.12 (V9) — ajout AdaptedProgramRecord.customTitle. Wipe simu
+// obligatoire au premier run post-merge.
 import SwiftData
 
 enum CoachingSageMigrationPlan: SchemaMigrationPlan {
     static var schemas: [any VersionedSchema.Type] {
-        [SchemaV8.self]
+        [SchemaV9.self]
     }
 
     static var stages: [MigrationStage] {
