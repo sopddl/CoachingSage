@@ -5,8 +5,7 @@
 //   - `reportSession(programId:sessionId:)` (AC12-13) :
 //       déplace la séance en fin de semaine bloquante.
 //       Si la semaine est pleine (`maxDayInWeek == 7`), fallback en 1ʳᵉ
-//       position de la semaine suivante. La `plannedDate` est nullifiée
-//       (mode mixte toléré AC13).
+//       position de la semaine suivante.
 //   - `shiftWeek(programId:to:)` (AC15-16) :
 //       décale la semaine en cours à la date choisie. Sémantique :
 //       `newWeekStartDate = pickedWeekStart - (currentWeekNumber - 1) * 7j`
@@ -22,7 +21,7 @@ import Foundation
 @MainActor
 protocol ReplanifyService {
     /// **AC12** — Déplace la séance courante en fin de semaine, ou en 1ʳᵉ position
-    /// S+1 si débordement. Nullifie `plannedDate`.
+    /// S+1 si débordement.
     /// Throw `ReplanifyError.programNotFound` si record introuvable.
     /// Throw `ReplanifyError.sessionNotFound` si session introuvable.
     /// Throw `ReplanifyError.unsupportedForRoutineMode` si durationMode = .routineCyclic.
@@ -93,8 +92,7 @@ final class DefaultReplanifyService: ReplanifyService {
                 type: target.type,
                 warmup: target.warmup,
                 exercises: target.exercises,
-                cooldown: target.cooldown,
-                plannedDate: nil
+                cooldown: target.cooldown
             )
         } else {
             // Fallback S+1, day=1 (AC12 reco B).
@@ -109,8 +107,7 @@ final class DefaultReplanifyService: ReplanifyService {
                 type: target.type,
                 warmup: target.warmup,
                 exercises: target.exercises,
-                cooldown: target.cooldown,
-                plannedDate: nil
+                cooldown: target.cooldown
             )
         }
         record.sessions = newSessions

@@ -3,7 +3,6 @@
 //   - `reportSession` : fin de semaine OU fallback S+1
 //   - `shiftWeek` : `weekStartDate` muté, `shiftGeneration` incrémenté
 //   - garde-fou routineCyclic
-//   - `plannedDate` nullifiée post-reportSession
 import XCTest
 import TemplateModel
 @testable import CoachingSage
@@ -22,7 +21,7 @@ final class ReplanifyServiceTests: XCTestCase {
     // MARK: - reportSession (AC12)
 
     func testReportSession_whenMaxDayBelow7_movesToEndOfWeek() async throws {
-        let target = makeSession(weekNumber: 1, day: 2, plannedDate: Date())
+        let target = makeSession(weekNumber: 1, day: 2)
         let other = makeSession(weekNumber: 1, day: 5)
         let record = makeRecord(
             sessions: [target, other],
@@ -37,11 +36,10 @@ final class ReplanifyServiceTests: XCTestCase {
         let movedSession = try XCTUnwrap(updated.sessions.first { $0.id == target.id })
         XCTAssertEqual(movedSession.weekNumber, 1)
         XCTAssertEqual(movedSession.day, 6, "maxDay (5) + 1")
-        XCTAssertNil(movedSession.plannedDate, "AC12 : plannedDate nullifiée")
     }
 
     func testReportSession_whenMaxDayIs7_fallbacksToWeekPlusOne() async throws {
-        let target = makeSession(weekNumber: 1, day: 3, plannedDate: Date())
+        let target = makeSession(weekNumber: 1, day: 3)
         let lastOfWeek = makeSession(weekNumber: 1, day: 7)
         let record = makeRecord(
             sessions: [target, lastOfWeek],
@@ -56,7 +54,6 @@ final class ReplanifyServiceTests: XCTestCase {
         let movedSession = try XCTUnwrap(updated.sessions.first { $0.id == target.id })
         XCTAssertEqual(movedSession.weekNumber, 2, "Fallback S+1")
         XCTAssertEqual(movedSession.day, 1)
-        XCTAssertNil(movedSession.plannedDate)
     }
 
     func testReportSession_throwsForRoutineCyclic() async {
@@ -205,8 +202,7 @@ final class ReplanifyServiceTests: XCTestCase {
 
     private func makeSession(
         weekNumber: Int,
-        day: Int,
-        plannedDate: Date? = nil
+        day: Int
     ) -> PersistedSession {
         PersistedSession(
             id: UUID(),
@@ -219,8 +215,7 @@ final class ReplanifyServiceTests: XCTestCase {
             type: .endurance,
             warmup: nil,
             exercises: [],
-            cooldown: nil,
-            plannedDate: plannedDate
+            cooldown: nil
         )
     }
 

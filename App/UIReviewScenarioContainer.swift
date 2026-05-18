@@ -150,7 +150,6 @@ private struct DashboardActiveScenarioView: View {
                 onTapStartSession: { _ in },
                 onTapProgram: { _ in },
                 onDeleteProgram: { _ in },
-                onTapWeeklyReorder: { },
                 onTapReplanify: { _ in }
             )
             .padding(16)
@@ -300,7 +299,6 @@ private struct DashboardActiveScenarioView: View {
             durationMode: durationMode,
             mode: .planned,
             nextSession: nextSession,
-            nextDate: nextSession?.plannedDate ?? Date().addingTimeInterval(86_400),
             currentWeekNumber: currentWeek,
             weekCompletedSessions: weekCompleted,
             weekTotalSessions: weekTotal,
@@ -316,8 +314,7 @@ private struct DashboardActiveScenarioView: View {
             id: UUID(),
             weekNumber: week, weekTheme: "Sem \(week)", weekGoal: "Endurance",
             day: day, name: name, durationMinutes: dur, type: .endurance,
-            warmup: "10 min échauffement", exercises: [], cooldown: "5 min retour au calme",
-            plannedDate: Date().addingTimeInterval(86_400)
+            warmup: "10 min échauffement", exercises: [], cooldown: "5 min retour au calme"
         )
     }
 }

@@ -337,7 +337,6 @@ final class SessionDashboardViewModel {
                 durationMode: record.durationMode,
                 mode: record.mode,
                 nextSession: nextResult?.session,
-                nextDate: nextResult?.effectiveDate,
                 currentWeekNumber: currentWeek,
                 weekCompletedSessions: weekCompletedSessions,
                 weekTotalSessions: weekTotalSessions,
@@ -350,23 +349,20 @@ final class SessionDashboardViewModel {
         return summaries.sorted(by: Self.compareSummariesForCarousel)
     }
 
-    /// **Story 3.10 AC22** — comparator du carrousel.
+    /// **Story 3.10 AC22 — refondue Story 3.12** : tri 2 niveaux.
+    ///   1. démarrés (`weekStartDate != nil`) AVANT dormants
+    ///   2. `lastUpdatedAt` desc (programme manipulé récemment en tête)
+    ///
+    /// Avant Story 3.12 le tri secondaire entre démarrés était `nextDate asc`,
+    /// mais depuis la refonte vue semaine l'`effectiveDate` du resolver est
+    /// toujours `now` (les séances n'ont plus de date individuelle).
+    /// `lastUpdatedAt desc` met en tête le programme touché en dernier, qui est
+    /// le candidat le plus probable pour le focus utilisateur.
     static func compareSummariesForCarousel(_ lhs: ProgramSummary, _ rhs: ProgramSummary) -> Bool {
         let lhsStarted = lhs.weekStartDate != nil
         let rhsStarted = rhs.weekStartDate != nil
         if lhsStarted != rhsStarted { return lhsStarted } // démarrés AVANT dormants
-        if lhsStarted {
-            // Entre démarrés : nextDate ascending, nil en queue.
-            switch (lhs.nextDate, rhs.nextDate) {
-            case let (l?, r?): return l < r
-            case (_?, nil):    return true
-            case (nil, _?):    return false
-            case (nil, nil):   return lhs.id.uuidString < rhs.id.uuidString
-            }
-        } else {
-            // Entre dormants : lastUpdatedAt desc (le dernier créé en tête).
-            return lhs.lastUpdatedAt > rhs.lastUpdatedAt
-        }
+        return lhs.lastUpdatedAt > rhs.lastUpdatedAt
     }
 
     /// Numéro de semaine courante du programme (1-indexed). 1 si dormant
@@ -397,8 +393,6 @@ struct ProgramSummary: Equatable, Identifiable {
     let mode: ProgramMode
     /// La prochaine session à faire. `nil` = dormant ou programme tout complété.
     let nextSession: PersistedSession?
-    /// Date effective de la prochaine session (plannedDate ou défaut calculé).
-    let nextDate: Date?
     /// Semaine en cours du programme (1-indexed). 1 si dormant.
     let currentWeekNumber: Int
     /// Sessions cochées dans la semaine courante.
