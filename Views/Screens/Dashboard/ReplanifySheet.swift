@@ -22,13 +22,23 @@ struct ReplanifySheet: View {
     let onSelect: (ReplanifyAction) -> Void
     let onCancel: () -> Void
 
-    @State private var step: Step = .choice
+    @State private var step: Step
     @State private var pickedDate: Date = Date()
     @Environment(\.dismiss) private var dismiss
 
     enum Step {
         case choice
         case pickDate
+    }
+
+    init(
+        initialStep: Step = .choice,
+        onSelect: @escaping (ReplanifyAction) -> Void,
+        onCancel: @escaping () -> Void
+    ) {
+        self.onSelect = onSelect
+        self.onCancel = onCancel
+        self._step = State(initialValue: initialStep)
     }
 
     var body: some View {
@@ -165,14 +175,28 @@ struct ReplanifySheet: View {
                 }
                 .accessibilityIdentifier("replanify.shiftWeek.confirm")
 
-                Button(action: { step = .choice }) {
-                    Text("common.back")
-                        .font(.coachingBody.weight(.semibold))
-                        .foregroundStyle(Color.coachingTextSecondary)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 10)
+                HStack(spacing: 16) {
+                    Button(action: { step = .choice }) {
+                        Text("common.back")
+                            .font(.coachingBody.weight(.semibold))
+                            .foregroundStyle(Color.coachingTextSecondary)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                    }
+                    .accessibilityIdentifier("replanify.shiftWeek.back")
+
+                    Button(action: {
+                        onCancel()
+                        dismiss()
+                    }) {
+                        Text("replanify.cancel")
+                            .font(.coachingBody.weight(.semibold))
+                            .foregroundStyle(Color.coachingTextSecondary)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                    }
+                    .accessibilityIdentifier("replanify.shiftWeek.cancel")
                 }
-                .accessibilityIdentifier("replanify.shiftWeek.back")
             }
         }
         .padding(.horizontal, 20)
