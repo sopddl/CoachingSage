@@ -24,10 +24,6 @@ struct SessionDetailView: View {
     @State private var completionVM: SessionCompletionViewModel?
     @State private var showCompleteSheet: Bool = false
 
-    private var rulesForSession: [AppliedRule] {
-        program.appliedRules.filter { $0.weekNumber == week.weekNumber && $0.day == session.day }
-    }
-
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
@@ -55,10 +51,6 @@ struct SessionDetailView: View {
 
                 if let vm = completionVM {
                     completionSection(vm: vm)
-                }
-
-                if !rulesForSession.isEmpty {
-                    sessionAdaptationsSection
                 }
 
                 medicalReminderFooter
@@ -370,30 +362,6 @@ struct SessionDetailView: View {
             .padding(.vertical, 4)
             .background(Color.coachingPrimary.opacity(0.10))
             .clipShape(Capsule())
-    }
-
-    // MARK: - Adaptations propres à cette séance
-
-    private var sessionAdaptationsSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("coaching.adapter.appliedRules.title")
-                .font(.caption.bold())
-                .foregroundStyle(.secondary)
-                .textCase(.uppercase)
-            ForEach(Array(rulesForSession.enumerated()), id: \.offset) { _, rule in
-                HStack(alignment: .top, spacing: 8) {
-                    Image(systemName: AdaptedProgramFormatting.outcomeSFSymbol(rule.outcome))
-                        .foregroundStyle(AdaptedProgramFormatting.outcomeColor(rule.outcome))
-                        .font(.caption)
-                        .padding(.top, 2)
-                    Text(verbatim: rule.detail)
-                        .font(.caption)
-                }
-            }
-        }
-        .padding(12)
-        .background(Color(uiColor: .tertiarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 
     // MARK: - Medical footer
