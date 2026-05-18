@@ -1956,6 +1956,97 @@
         "fr": { "stringUnit": { "state": "translated", "value": "Patience, la semaine prochaine arrive." } }
       }
     },
+    "dashboard.session.late.badge": {
+      "comment": "Story 3.11 — badge En retard sur NextSessionCard",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Late" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "En retard" } }
+      }
+    },
+    "dashboard.session.late.subtitle.format": {
+      "comment": "Story 3.11 — sous-titre NextSessionCard pour séance en retard, param: weekStartDate formatée",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "This session was scheduled for the week of %@" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Cette séance était prévue semaine du %@" } }
+      }
+    },
+    "dashboard.program.weekLate.format": {
+      "comment": "Story 3.11 — badge ProgramCard semaine en attente, param: weekNumber",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Week %lld pending" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Semaine %lld en attente" } }
+      }
+    },
+    "replanify.button": {
+      "comment": "Story 3.11 — bouton secondaire Replanifier",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Reschedule" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Replanifier" } }
+      }
+    },
+    "replanify.sheet.title": {
+      "comment": "Story 3.11 — titre sheet Replanifier",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Couldn't make it?" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Tu n'as pas pu faire ta séance ?" } }
+      }
+    },
+    "replanify.sheet.subtitle": {
+      "comment": "Story 3.11 — sous-titre sheet Replanifier",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "No worries, two ways to adjust." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Pas de souci, voici 2 façons de t'adapter." } }
+      }
+    },
+    "replanify.action.report.title": {
+      "comment": "Story 3.11 — bouton action Reporter cette séance",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Move this session" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Reporter cette séance" } }
+      }
+    },
+    "replanify.action.report.subtitle": {
+      "comment": "Story 3.11 — sous-titre action Reporter cette séance",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Moves to end of week." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Cette séance passe en fin de semaine." } }
+      }
+    },
+    "replanify.action.shiftWeek.title": {
+      "comment": "Story 3.11 — bouton action Décaler ma semaine",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Shift my week" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Décaler ma semaine" } }
+      }
+    },
+    "replanify.action.shiftWeek.subtitle": {
+      "comment": "Story 3.11 — sous-titre action Décaler ma semaine",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Something came up (sick, travel). Restart on the date I pick." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "J'ai eu un imprévu (malade, voyage). Reprends quand je te dis." } }
+      }
+    },
+    "replanify.action.shiftWeek.datePickerTitle": {
+      "comment": "Story 3.11 — titre du DatePicker shift week",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "When do you restart?" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Tu reprends quand ?" } }
+      }
+    },
+    "replanify.action.shiftWeek.confirm": {
+      "comment": "Story 3.11 — bouton Valider du DatePicker shift week",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Confirm" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Valider" } }
+      }
+    },
+    "replanify.cancel": {
+      "comment": "Story 3.11 — bouton Annuler de la sheet Replanifier",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Cancel" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Annuler" } }
+      }
+    },
     "dashboard.program.completed": {
       "comment": "Story 3.10 — programme entièrement complété",
       "localizations": {

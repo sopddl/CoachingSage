@@ -117,11 +117,14 @@ final class DefaultWeeklyRegenApplicationService: WeeklyRegenApplicationService 
             let analyzedWeek = currentWeekNumber - 1
             let targetWeek = currentWeekNumber
 
-            // Idempotence stricte : si une regen a déjà été appliquée pour
-            // (recordId, targetWeek), on n'écrit rien.
+            // **Story 3.11 AC18** — Idempotence par `(recordId, targetWeek,
+            // shiftGeneration)`. Les entries d'un shiftGeneration antérieur
+            // sont ignorées : un shift week invalide les regens passées et
+            // permet de re-recevoir une regen sur la même `targetWeek`.
             if try await regenRepository.fetchJournal(
                 recordId: record.id,
-                targetWeek: targetWeek
+                targetWeek: targetWeek,
+                shiftGeneration: record.shiftGeneration
             ) != nil {
                 continue
             }
@@ -192,6 +195,8 @@ final class DefaultWeeklyRegenApplicationService: WeeklyRegenApplicationService 
         try await adaptedProgramRepository.update(record)
 
         // 3. Journal — trace machine-readable de la regen appliquée.
+        // **Story 3.11 AC18** — porte le `shiftGeneration` courant du record
+        // pour permettre la ré-application post-shift week.
         let entry = RegenJournalEntry(
             userId: userId,
             recordId: record.id,
@@ -202,7 +207,8 @@ final class DefaultWeeklyRegenApplicationService: WeeklyRegenApplicationService 
             multiplier: multiplier,
             pauseLevel: decision.pauseLevel,
             requiresRebuild: decision.adjustment.requiresRebuild,
-            affectedSessionIds: affected
+            affectedSessionIds: affected,
+            shiftGeneration: record.shiftGeneration
         )
         try await regenRepository.saveJournal(entry)
 

@@ -74,10 +74,15 @@ final class DefaultWeeklyRegenRepository: WeeklyRegenRepository {
 
     func fetchJournal(
         recordId: UUID,
-        targetWeek: Int
+        targetWeek: Int,
+        shiftGeneration: Int
     ) async throws -> RegenJournalEntry? {
         let entries = try journalStore.loadAll()
-        return entries.first { $0.recordId == recordId && $0.targetWeekNumber == targetWeek }
+        return entries.first {
+            $0.recordId == recordId
+                && $0.targetWeekNumber == targetWeek
+                && $0.shiftGeneration == shiftGeneration
+        }
     }
 
     func saveJournal(_ entry: RegenJournalEntry) async throws {

@@ -49,6 +49,12 @@ final class MockAdaptedProgramRepository: AdaptedProgramRepository {
             .count
     }
 
+    /// **Story 3.11** — fetchById, retourne le 1er record actif matching ou nil.
+    func fetchById(recordId: UUID) async throws -> AdaptedProgramRecord? {
+        if fetchShouldThrow { throw URLError(.notConnectedToInternet) }
+        return stubbedActive.first(where: { $0.id == recordId && $0.isActive })
+    }
+
     /// **Story 3.10** — set par les tests AC32 cap démarré atteint.
     var markStartedShouldThrow: Error?
     private(set) var markStartedCalls: [UUID] = []

@@ -42,9 +42,14 @@ final class MockWeeklyRegenRepository: WeeklyRegenRepository {
 
     func fetchJournal(
         recordId: UUID,
-        targetWeek: Int
+        targetWeek: Int,
+        shiftGeneration: Int
     ) async throws -> RegenJournalEntry? {
-        stubbedJournalEntries.first { $0.recordId == recordId && $0.targetWeekNumber == targetWeek }
+        stubbedJournalEntries.first {
+            $0.recordId == recordId
+                && $0.targetWeekNumber == targetWeek
+                && $0.shiftGeneration == shiftGeneration
+        }
     }
 
     func saveJournal(_ entry: RegenJournalEntry) async throws {

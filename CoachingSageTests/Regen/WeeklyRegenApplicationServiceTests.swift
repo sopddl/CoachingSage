@@ -230,6 +230,34 @@ final class WeeklyRegenApplicationServiceTests: XCTestCase {
         XCTAssertEqual(record.sessions.first?.durationMinutes, 20, "40 × 0.5")
     }
 
+    // **Story 3.11 AC18/AC26** — `applyDecision` écrit l'entry avec le
+    // `shiftGeneration` courant du record. Permet la ré-application des regens
+    // post-shift week sans conflit d'idempotence avec l'historique.
+    func testApplyDecision_writesEntryWithCurrentShiftGeneration() async throws {
+        let record = AdaptedProgramRecord(
+            userId: UUID(),
+            sportCode: "running",
+            level: Level.regular.rawValue,
+            templateId: "running_regular_v2",
+            adaptedAt: Date(),
+            weekStartDate: Self.makeWeekStart(),
+            mode: .ondemand,
+            sessions: [makeSession(weekNumber: 2, day: 1, durationMinutes: 30)],
+            shiftGeneration: 2
+        )
+        let (service, _, regenRepo) = makeSystem()
+
+        let entry = try await service.applyDecision(
+            makeDecision(adjustment: .progress(percent: 0.10), reason: .onTrack),
+            to: record,
+            userId: record.userId,
+            now: Date()
+        )
+
+        XCTAssertEqual(entry.shiftGeneration, 2)
+        XCTAssertEqual(regenRepo.savedJournalEntries.first?.shiftGeneration, 2)
+    }
+
     func testApplyDecision_restartFromBeginnerStaysBeginner() async throws {
         let record = makeRecord(
             level: .beginner,
@@ -365,8 +393,12 @@ private final class LocalRegenRepoStub: WeeklyRegenRepository {
         }
     }
 
-    func fetchJournal(recordId: UUID, targetWeek: Int) async throws -> RegenJournalEntry? {
-        savedJournalEntries.first { $0.recordId == recordId && $0.targetWeekNumber == targetWeek }
+    func fetchJournal(recordId: UUID, targetWeek: Int, shiftGeneration: Int) async throws -> RegenJournalEntry? {
+        savedJournalEntries.first {
+            $0.recordId == recordId
+                && $0.targetWeekNumber == targetWeek
+                && $0.shiftGeneration == shiftGeneration
+        }
     }
 
     func saveJournal(_ entry: RegenJournalEntry) async throws {

@@ -88,6 +88,35 @@ struct UIReviewScenarioContainer: View {
             // terminé" (avant que l'auto-archive AC14 ne flip isActive=false au
             // prochain refresh). Affiche checkmark + CTA "Voir le détail".
             DashboardActiveScenarioView(scenario: .programCompleted)
+        case "ui_review_dashboard_late_with_replanify":
+            // **Story 3.11** — NextSessionCard avec `nextSessionIsLate = true` :
+            // badge "En retard" + sous-titre "Cette séance était prévue semaine
+            // du {date}" + bouton "Replanifier" à côté de "Démarrer". ProgramCard
+            // du carrousel affiche le badge discret "Semaine N en attente".
+            // Programme deadlineFixed pour câbler le bouton (AC9).
+            DashboardActiveScenarioView(scenario: .lateWithReplanify)
+        case "ui_review_dashboard_routine_cyclic":
+            // **Story 3.11 AC21** — programme `.routineCyclic` ne doit JAMAIS
+            // afficher le badge "En retard" ni le bouton "Replanifier", même si
+            // l'utilisateur n'a pas fait sa séance. Filet visuel anti-régression.
+            DashboardActiveScenarioView(scenario: .routineCyclicNoReplanify)
+        case "ui_review_replanify_sheet_choice":
+            // **Story 3.11** — ReplanifySheet step `.choice` : titre + sous-titre
+            // + 2 actions (Reporter / Décaler ma semaine) + Annuler. Rendue sur
+            // fond `coachingBackground` pour matcher la presentation sheet réelle.
+            ReplanifySheet(
+                onSelect: { _ in },
+                onCancel: { }
+            )
+        case "ui_review_replanify_sheet_pickdate":
+            // **Story 3.11** — ReplanifySheet step `.pickDate` : DatePicker
+            // graphical + bouton Valider + bouton Retour. Step initial forcé
+            // via le param `initialStep: .pickDate`.
+            ReplanifySheet(
+                initialStep: .pickDate,
+                onSelect: { _ in },
+                onCancel: { }
+            )
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -105,6 +134,8 @@ private struct DashboardActiveScenarioView: View {
         case dormantOnly
         case weekCompleted
         case programCompleted
+        case lateWithReplanify
+        case routineCyclicNoReplanify
     }
 
     let scenario: Scenario
@@ -119,7 +150,8 @@ private struct DashboardActiveScenarioView: View {
                 onTapStartSession: { _ in },
                 onTapProgram: { _ in },
                 onDeleteProgram: { _ in },
-                onTapWeeklyReorder: { }
+                onTapWeeklyReorder: { },
+                onTapReplanify: { _ in }
             )
             .padding(16)
         }
@@ -200,6 +232,49 @@ private struct DashboardActiveScenarioView: View {
                     lastUpdated: Date()
                 )
             ]
+        case .lateWithReplanify:
+            // L'utilisateur est en semaine 2 (weekStart il y a 8j) mais sa
+            // séance restante de semaine 1 est encore là (`nextSession.week = 1`)
+            // → blocage doux activé, badge "En retard" + bouton "Replanifier".
+            // Mode `.deadlineFixed` pour câbler le bouton (AC9).
+            return [
+                makeProgram(
+                    id: idRunning, sport: .running, templateName: "10k en 12 semaines",
+                    weekStartDate: Date().addingTimeInterval(-8 * 86_400),
+                    currentWeek: 2, weekCompleted: 0, weekTotal: 3,
+                    totalCompleted: 2, totalSessions: 36,
+                    nextSession: makeSession(name: "Fractionné 8×400m", week: 1, day: 3, dur: 45),
+                    lastUpdated: Date().addingTimeInterval(-86_400),
+                    durationMode: .deadlineFixed,
+                    nextSessionIsLate: true
+                ),
+                makeProgram(
+                    id: idCycling, sport: .cycling, templateName: "Cycling Endurance",
+                    weekStartDate: Date().addingTimeInterval(-14 * 86_400),
+                    currentWeek: 3, weekCompleted: 2, weekTotal: 4,
+                    totalCompleted: 8, totalSessions: 16,
+                    nextSession: makeSession(name: "Sortie longue 90 min", week: 3, day: 5, dur: 90),
+                    lastUpdated: Date().addingTimeInterval(-7200),
+                    durationMode: .deadlineFixed,
+                    nextSessionIsLate: false
+                )
+            ]
+        case .routineCyclicNoReplanify:
+            // AC21 — routine cyclique : aucun badge "En retard", aucun bouton
+            // "Replanifier" même si la prochaine séance pourrait sembler en
+            // retard côté calendrier. `nextSessionIsLate` reste à false par VM.
+            return [
+                makeProgram(
+                    id: idRunning, sport: .running, templateName: "Routine running 3 mois",
+                    weekStartDate: Date().addingTimeInterval(-14 * 86_400),
+                    currentWeek: 3, weekCompleted: 1, weekTotal: 3,
+                    totalCompleted: 5, totalSessions: 36,
+                    nextSession: makeSession(name: "Footing 40 min", week: 1, day: 4, dur: 40),
+                    lastUpdated: Date().addingTimeInterval(-3600),
+                    durationMode: .routineCyclic,
+                    nextSessionIsLate: false
+                )
+            ]
         }
     }
 
@@ -213,14 +288,16 @@ private struct DashboardActiveScenarioView: View {
         id: UUID, sport: Sport, templateName: String,
         weekStartDate: Date?, currentWeek: Int, weekCompleted: Int, weekTotal: Int,
         totalCompleted: Int, totalSessions: Int,
-        nextSession: PersistedSession?, lastUpdated: Date
+        nextSession: PersistedSession?, lastUpdated: Date,
+        durationMode: ProgramDurationMode = .routineCyclic,
+        nextSessionIsLate: Bool = false
     ) -> ProgramSummary {
         ProgramSummary(
             id: id,
             templateName: templateName,
             sport: sport,
             weekStartDate: weekStartDate,
-            durationMode: .routineCyclic,
+            durationMode: durationMode,
             mode: .planned,
             nextSession: nextSession,
             nextDate: nextSession?.plannedDate ?? Date().addingTimeInterval(86_400),
@@ -229,7 +306,8 @@ private struct DashboardActiveScenarioView: View {
             weekTotalSessions: weekTotal,
             totalSessionsCompleted: totalCompleted,
             totalSessions: totalSessions,
-            lastUpdatedAt: lastUpdated
+            lastUpdatedAt: lastUpdated,
+            nextSessionIsLate: nextSessionIsLate
         )
     }
 

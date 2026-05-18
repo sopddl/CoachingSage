@@ -42,6 +42,10 @@ struct ActiveDashboardView: View {
     /// L'action concrète = `adaptedRepo.archive(record)` côté caller (SessionView).
     let onDeleteProgram: (ProgramSummary) -> Void
     let onTapWeeklyReorder: () -> Void
+    /// **Story 3.11** — tap "Replanifier" (visible uniquement quand la prochaine
+    /// séance affichée est `late` ET le programme est en mode deadline).
+    /// Ouvre la `ReplanifySheet`. No-op si nil (cas tests / preview).
+    var onTapReplanify: ((ProgramSummary) -> Void)? = nil
 
     private var selectedSummary: ProgramSummary? {
         if let selectedId, let s = programs.first(where: { $0.id == selectedId }) { return s }
@@ -59,7 +63,10 @@ struct ActiveDashboardView: View {
                     NextSessionCard(
                         summary: selectedSummary,
                         onTapStart: { onTapStartSession(selectedSummary) },
-                        onTapDetail: { onTapProgram(selectedSummary) }
+                        onTapDetail: { onTapProgram(selectedSummary) },
+                        onTapReplanify: onTapReplanify.map { handler in
+                            { handler(selectedSummary) }
+                        }
                     )
                 }
             }
@@ -178,6 +185,19 @@ private struct ProgramCard: View {
                     RegenBadgePill(badge: badge)
                 }
 
+                // **Story 3.11 AC8** — indicateur discret quand la prochaine
+                // séance de ce programme est late (semaine en attente).
+                if summary.nextSessionIsLate, let weekN = summary.nextSession?.weekNumber {
+                    Text(verbatim: String(
+                        format: String.localized("dashboard.program.weekLate.format", locale: locale),
+                        weekN
+                    ))
+                    .font(.caption2.weight(.semibold))
+                    .foregroundStyle(Color.coachingWarning)
+                    .lineLimit(1)
+                    .accessibilityIdentifier("dashboard.active.program.weekLate")
+                }
+
                 Spacer(minLength: 0)
 
                 // Barre de progression (programme entier).
@@ -268,6 +288,10 @@ private struct NextSessionCard: View {
     let summary: ProgramSummary
     let onTapStart: () -> Void
     let onTapDetail: () -> Void
+    /// **Story 3.11** — handler du bouton "Replanifier". nil = bouton caché
+    /// (cas non-late ou routine cyclique). Ouvert par le parent qui détient
+    /// l'état de la sheet.
+    var onTapReplanify: (() -> Void)? = nil
 
     /// **Story 3.10 P0 #2 fix ui-reviewer** — locale courante pour résoudre les
     /// `String.localizedStringWithFormat` via le bundle de la langue applicative
@@ -336,6 +360,11 @@ private struct NextSessionCard: View {
 
     private func sessionState(session: PersistedSession) -> some View {
         VStack(alignment: .leading, spacing: 12) {
+            // **Story 3.11 AC7** — badge "En retard" en TÊTE de la card quand
+            // la prochaine séance est late.
+            if summary.nextSessionIsLate {
+                lateBadge
+            }
             HStack(alignment: .firstTextBaseline, spacing: 8) {
                 Text(verbatim: session.name)
                     .font(.system(size: 19, weight: .semibold, design: .serif))
@@ -346,8 +375,81 @@ private struct NextSessionCard: View {
             Text(verbatim: metaLine(session: session))
                 .font(.system(size: 12, weight: .regular))
                 .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
-            startButton
+            // **Story 3.11 AC7** — sous-titre "Cette séance était prévue
+            // semaine du {date}" — date = lundi de la semaine de la séance.
+            if summary.nextSessionIsLate, let weekStartLabel = lateSessionWeekStartLabel(session: session) {
+                Text(verbatim: String(
+                    format: String.localized("dashboard.session.late.subtitle.format", locale: locale),
+                    weekStartLabel
+                ))
+                .font(.system(size: 12, weight: .regular))
+                .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
+            }
+            HStack(spacing: 10) {
+                startButton
+                // **Story 3.11 AC9** — bouton Replanifier secondaire à droite de
+                // Démarrer. Visible UNIQUEMENT si late + callback fourni (qui n'est
+                // câblé par SessionView que pour les modes deadline non-cyclic).
+                if summary.nextSessionIsLate, let onTapReplanify {
+                    replanifyButton(action: onTapReplanify)
+                }
+            }
         }
+    }
+
+    /// **Story 3.11 AC7** — pill "En retard" avec icône `clock.badge.exclamationmark`.
+    private var lateBadge: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "clock.badge.exclamationmark")
+                .font(.system(size: 11, weight: .semibold))
+            Text("dashboard.session.late.badge")
+                .font(.system(size: 11, weight: .semibold))
+        }
+        .foregroundStyle(Color.coachingWarning)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(Color.coachingWarning.opacity(0.18))
+        .clipShape(Capsule())
+        .accessibilityIdentifier("dashboard.active.next.lateBadge")
+    }
+
+    /// **Story 3.11 AC9** — bouton secondaire "Replanifier" (style ghost on dark).
+    private func replanifyButton(action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: 6) {
+                Image(systemName: "calendar.badge.clock")
+                    .font(.footnote.weight(.semibold))
+                Text("replanify.button")
+                    .font(.coachingBody.weight(.semibold))
+            }
+            .foregroundStyle(Color.coachingOnPrimary)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
+            .overlay(
+                Capsule()
+                    .strokeBorder(Color.coachingOnPrimary.opacity(0.7), lineWidth: 1)
+            )
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("dashboard.active.next.replanify")
+    }
+
+    /// **Story 3.11 AC7** — date début de la semaine de la séance en retard,
+    /// formatée selon la locale courante (FR "EEEE d MMMM" / EN "EEEE, MMMM d").
+    /// Retourne `nil` si `weekStartDate` du programme est absent (cas dégénéré).
+    private func lateSessionWeekStartLabel(session: PersistedSession) -> String? {
+        guard let programStart = summary.weekStartDate else { return nil }
+        let weekIndex = max(0, session.weekNumber - 1)
+        let sessionWeekStart = Calendar.current.date(
+            byAdding: .day,
+            value: weekIndex * 7,
+            to: programStart
+        ) ?? programStart
+        let formatter = DateFormatter()
+        formatter.locale = locale
+        let langCode = locale.language.languageCode?.identifier ?? "en"
+        formatter.dateFormat = langCode == "fr" ? "EEEE d MMMM" : "EEEE, MMMM d"
+        return formatter.string(from: sessionWeekStart)
     }
 
     private var programCompletedState: some View {

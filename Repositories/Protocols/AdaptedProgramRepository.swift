@@ -36,6 +36,12 @@ protocol AdaptedProgramRepository {
     /// cap de programmes démarrés est atteint pour le user.
     func markStarted(recordId: UUID) async throws
 
+    /// **Story 3.11** — Récupère un record par son `id` (cross-user, V1
+    /// local-first mono-user). Retourne nil si le record n'existe pas ou
+    /// est archivé. Utilisé par `ReplanifyService` qui n'a que l'id du
+    /// programme courant (la sheet est invoquée depuis le carrousel).
+    func fetchById(recordId: UUID) async throws -> AdaptedProgramRecord?
+
     /// Archive un record (`isActive = false`, `archivedAt = now`).
     func archive(_ record: AdaptedProgramRecord) async throws
 

@@ -4,6 +4,7 @@
 import os
 import SwiftUI
 import SwiftData
+import SageCore
 
 @main
 struct CoachingSageApp: App {
@@ -44,6 +45,13 @@ struct CoachingSageApp: App {
             fatalError("Impossible d'initialiser le ModelContainer SwiftData : \(error)")
         }
         self.languageManager = LanguageManager()
+
+        // **Story 3.11 UI review** — `UI_TEST_LANG=fr|en` permet à l'agent ui-reviewer
+        // de forcer la langue au launch (sans devoir passer par le selecteur in-app
+        // ni les leviers OS qui sont mal interceptés en mode `UI_TEST_SCENARIO`).
+        if let testLang = env["UI_TEST_LANG"], let lang = SupportedLanguage(rawValue: testLang) {
+            self.languageManager.switchLanguage(to: lang)
+        }
 
         if isUITesting {
             // Mode UI testing : pré-authentifié + onboarding bypass (cohérent flow existant).

@@ -249,7 +249,7 @@ private final class LocalRegenRepoStub: WeeklyRegenRepository {
             .map { $0 }
     }
     func saveReport(_ snapshot: WeeklyExecutionReportSnapshot, recordId: UUID, userId: UUID, sportCode: String) async throws {}
-    func fetchJournal(recordId: UUID, targetWeek: Int) async throws -> RegenJournalEntry? { nil }
+    func fetchJournal(recordId: UUID, targetWeek: Int, shiftGeneration: Int) async throws -> RegenJournalEntry? { nil }
     func saveJournal(_ entry: RegenJournalEntry) async throws { savedJournalEntries.append(entry) }
     func fetchJournalForCurrentWeek(userId: UUID, weekStart: Date) async throws -> [RegenJournalEntry] { [] }
 }

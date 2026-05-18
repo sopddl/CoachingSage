@@ -20,6 +20,9 @@ struct AppDependencies {
     /// Story 3.4 Phase B.4 — orchestrateur regen S+1. Composé sur live() à partir
     /// de adaptedProgramRepository + weeklyRegenRepository + RegenInputsBuilder.
     let weeklyRegenApplicationService: any WeeklyRegenApplicationService
+    /// Story 3.11 — re-planification d'un programme (reportSession + shiftWeek).
+    /// Câblé sur live() à partir de l'`adaptedProgramRepository` uniquement.
+    let replanifyService: any ReplanifyService
 
     @MainActor
     static func live(modelContext: ModelContext) -> AppDependencies {
@@ -39,6 +42,9 @@ struct AppDependencies {
                 coachingProfileRepository: coachingProfileRepository
             )
         )
+        let replanifyService = DefaultReplanifyService(
+            adaptedProgramRepository: adaptedProgramRepository
+        )
         return AppDependencies(
             coreProfileRepository: coreProfileRepository,
             coachingProfileRepository: coachingProfileRepository,
@@ -50,7 +56,8 @@ struct AppDependencies {
             accountService: AccountService(coreProfileRepository: coreProfileRepository),
             healthKitService: healthKitService,
             sageCoachingAIService: DefaultSageCoachingAIService(),
-            weeklyRegenApplicationService: weeklyRegenApplicationService
+            weeklyRegenApplicationService: weeklyRegenApplicationService,
+            replanifyService: replanifyService
         )
     }
 }

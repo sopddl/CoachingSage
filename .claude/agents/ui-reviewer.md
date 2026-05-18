@@ -67,6 +67,15 @@ Pour chaque screenshot, valider :
 4. **Découvrabilité** — comment un user qui ne sait PAS que la feature existe la découvre ? Si la réponse est "il faut qu'il tape le bon mot dans la search", c'est faible.
 5. **Filtres persistants** — si la feature dépend d'une search, vérifier qu'avec les filtres saisonnier / catégorie par défaut, l'user peut quand même atteindre le contenu. Sinon flag.
 6. **Locale FR/EN** — tous les labels traduits, pas de raw enum cases visibles à l'user (`longBlooming`, `upright`, etc.).
+   - **Pour switch FR ↔ EN sur les scénarios `UI_TEST_SCENARIO` (bypass MainTabView)** : utiliser **les deux** leviers ensemble :
+     ```bash
+     xcrun simctl launch <UDID> com.sopddl.coachingsage.app \
+       -AppleLanguages '(fr)' -AppleLocale 'fr_FR' \
+       -UI_TEST_SCENARIO ui_review_<target> -UI_TEST_LANG fr
+     ```
+     - `-AppleLanguages '(fr)'` : indispensable pour que `Text(LocalizedStringKey)` lookup le bon `.lproj` du `Bundle.main`. `SwiftUI` ignore `.environment(\.locale, ...)` pour le bundle lookup.
+     - `-UI_TEST_LANG fr` : synchronise `LanguageManager.currentLanguage` côté in-app (cohérence selecteur Profil > Langue + features qui lisent `languageManager`).
+     - Pareil pour EN : `-AppleLanguages '(en)' -AppleLocale 'en_US' -UI_TEST_LANG en`.
 7. **Cas data vide / nil** — section masquée vs message explicite ? Pas de placeholder cassé, pas de hole UX.
 8. **Layout** — pas de débordement, pas de texte tronqué injustement, pas de boutons inaccessibles.
 
