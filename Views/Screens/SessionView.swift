@@ -15,6 +15,7 @@ import TemplateModel
 
 struct SessionView: View {
     @Environment(\.appDependencies) private var deps
+    @Environment(\.languageManager) private var languageManager
 
     @State private var dashboardViewModel: SessionDashboardViewModel?
     @State private var coachingProfile: CoachingProfile?
@@ -480,7 +481,24 @@ struct SessionView: View {
                     coachingProfileRepository: deps.coachingProfileRepository
                 )
                 let preview = AutoProgramPreview(program: route.program, sportProfile: previewProfile)
-                _ = try await factory.commit(preview: preview, userId: userId)
+                let recordId = try await factory.commit(
+                    preview: preview,
+                    userId: userId,
+                    locale: languageManager.currentLocale
+                )
+                // **Story 3.12** : commit + markStarted dans la foulée → programme
+                // ACTIF directement après tap "Démarrer" (preview). Évite l'étape
+                // intermédiaire "dormant" qui obligeait l'user à re-tap "Démarrer"
+                // depuis le carrousel pour vraiment activer.
+                // Si cap démarré atteint, on garde le programme dormant et on
+                // affiche l'alerte cap.
+                do {
+                    try await deps.adaptedProgramRepository.markStarted(recordId: recordId)
+                } catch ProgramCapReached.started(let limit) {
+                    capAlertContext = .started(limit: limit)
+                    // Le programme reste persisté en dormant. User peut archiver
+                    // un programme démarré puis re-démarrer celui-ci depuis le carrousel.
+                }
                 await refreshDashboard()
                 // Pop vers Séances : dashboard refresh montre maintenant le programme
                 // démarré en mode active.
@@ -557,7 +575,7 @@ struct SessionView: View {
             sportProfile: sportProfile,
             coachingProfile: coachingProfile
         )
-        await persistAdaptedProgram(adapted)
+        await persistAdaptedProgram(adapted, goal: sportProfile.goals.primary)
         adaptedRoute = AdaptedProgramRoute(program: adapted, recordId: nil)
         await refreshDashboard()
     }
@@ -565,7 +583,7 @@ struct SessionView: View {
     /// Story 3.8 — persiste l'AdaptedProgram en `AdaptedProgramRecord` SwiftData
     /// pour alimenter le dashboard Séances. Best-effort : un échec n'empêche pas
     /// la navigation vers `AdaptedProgramView`.
-    private func persistAdaptedProgram(_ adapted: AdaptedProgram) async {
+    private func persistAdaptedProgram(_ adapted: AdaptedProgram, goal: String?) async {
         guard let deps else { return }
         guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else {
             #if DEBUG
@@ -574,7 +592,12 @@ struct SessionView: View {
             return
         }
         do {
-            let record = AdaptedProgramRecord(from: adapted, userId: userId)
+            let record = AdaptedProgramRecord(
+                from: adapted,
+                userId: userId,
+                goal: goal,
+                locale: languageManager.currentLocale
+            )
             try await deps.adaptedProgramRepository.save(record)
         } catch {
             Self.persistLogger.error("persistAdaptedProgram FAILED: \(error.localizedDescription)")

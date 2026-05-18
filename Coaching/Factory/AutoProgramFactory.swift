@@ -92,12 +92,21 @@ final class AutoProgramFactory {
     /// AdaptedProgramRecord). Retourne le recordId pour navigation/dashboard.
     /// Appelée quand l'utilisateur confirme "Démarrer ce programme" depuis
     /// l'écran de preview.
+    ///
+    /// **Story 3.12** : `locale` permet de générer le `customTitle` auto dans
+    /// la langue in-app courante (cf `LanguageManager.currentLocale`).
     func commit(
         preview: AutoProgramPreview,
-        userId: UUID
+        userId: UUID,
+        locale: Locale = .current
     ) async throws -> UUID {
         try await sportProfileRepository.save(preview.sportProfile)
-        let record = AdaptedProgramRecord(from: preview.program, userId: userId)
+        let record = AdaptedProgramRecord(
+            from: preview.program,
+            userId: userId,
+            goal: preview.sportProfile.goals.primary,
+            locale: locale
+        )
         try await adaptedProgramRepository.save(record)
         return record.id
     }
