@@ -1,19 +1,18 @@
 // Views/Screens/Dashboard/ActiveDashboardView.swift
 // Story 3.8 sous-tâches 7-8 — vue mode actif (single + multi programmes).
 //
-// Composition (cf spec ligne 567-597) :
-//   - PROCHAINE SÉANCE      : `DominantNextSessionCard` (bleu coach) OU
-//                              `RestDayCard` (gradient vert nature) si
-//                              `effectiveDate > J+0`
-//   - Card « Et après » (single program ≥ 2 sessions à venir, sous-tâche 8) :
-//                              variante compact de `DominantNextSessionCard`
-//   - WIDGET CETTE SEMAINE  : `WeeklyStatsWidget` 3 stats inline (single only)
-//   - MES PROGRAMMES        : `ProgramCard` × N, triées par date prochaine séance
-//   - Lien CTA discret      : « ↻ Réorganiser ma semaine → »
+// Composition (Story 3.10 carrousel + Story 3.12 refonte vue semaine) :
+//   - PROGRAMMES ACTIFS     : carrousel horizontal `ProgramCard` × N
+//                              (snap, scrollPosition bind selectedId)
+//   - PROCHAINE SÉANCE      : `NextSessionCard` du programme sélectionné
+//                              (cas : dormant / dispo / semaine complétée / programme complété)
 //
 // **Story 3.10 (2026-05-17)** : section "Mes routines" supprimée (aucun row
 // jamais créé en base, pas d'UI de création, code mort). Le `@Model
 // RoutineRecord` est drop du Schema V8.
+// **Story 3.12 (2026-05-18)** : suppression `WeeklyReorderLink` ("Réorganiser
+// ma semaine") + drag&drop par jour. Modèle "semaine atomique" : l'utilisateur
+// fait ses séances dans l'ordre qu'il veut au cours de la semaine.
 //
 // 2026-05-10 — Sophie : suppression `CreateProgramOrRoutineCard` du bas
 // (déplacé en toolbar « + » de SessionView pour découvrabilité). La distinction
@@ -41,7 +40,6 @@ struct ActiveDashboardView: View {
     /// Story 3.3b cleanup 2026-05-10 — swipe-to-delete sur la liste des programmes.
     /// L'action concrète = `adaptedRepo.archive(record)` côté caller (SessionView).
     let onDeleteProgram: (ProgramSummary) -> Void
-    let onTapWeeklyReorder: () -> Void
     /// **Story 3.11** — tap "Replanifier" (visible uniquement quand la prochaine
     /// séance affichée est `late` ET le programme est en mode deadline).
     /// Ouvre la `ReplanifySheet`. No-op si nil (cas tests / preview).
@@ -70,8 +68,6 @@ struct ActiveDashboardView: View {
                     )
                 }
             }
-
-            WeeklyReorderLink(onTap: onTapWeeklyReorder)
         }
     }
 
@@ -558,31 +554,6 @@ private struct RegenBadgePill: View {
         .clipShape(Capsule())
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("dashboard.active.program.regenBadge")
-    }
-}
-
-// MARK: - Weekly reorder link
-
-private struct WeeklyReorderLink: View {
-    let onTap: () -> Void
-
-    var body: some View {
-        Button(action: onTap) {
-            HStack(spacing: 6) {
-                Image(systemName: "arrow.triangle.2.circlepath")
-                    .font(.footnote.weight(.semibold))
-                Text("dashboard.active.weekly.reorder")
-                    .font(.coachingCaption.weight(.semibold))
-                Spacer(minLength: 0)
-            }
-            .foregroundStyle(Color.coachingRecord)
-            .padding(.horizontal, 14)
-            .padding(.vertical, 10)
-            .background(Color.coachingRecord.opacity(0.08))
-            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-        }
-        .buttonStyle(.plain)
-        .accessibilityIdentifier("dashboard.active.weekly.reorder")
     }
 }
 

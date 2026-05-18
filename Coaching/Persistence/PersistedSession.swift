@@ -1,11 +1,7 @@
 // Coaching/Persistence/PersistedSession.swift
-// Story 3.8 — représentation flattenée d'une session d'`AdaptedProgram` enrichie
-// d'un état mutable (`plannedDate`) modifiable par le drag&drop hebdo.
-//
-// On flatten weeks/sessions car le drag&drop écrit dans `sessionsJSON[i].plannedDate`
-// (cf AC Story 3.8) et le tri prochaine séance opère sur un tableau plat de sessions.
-// Les méta de week (theme/goal) sont conservées sur chaque session — coût mémoire
-// négligeable (12 sessions × 1 string), gain ergonomique majeur côté UI.
+// Représentation flattenée d'une session d'`AdaptedProgram`. Tableau plat de
+// sessions ordonnées par `(weekNumber, day)`. Les méta de week (theme/goal) sont
+// conservées sur chaque session — coût mémoire négligeable, gain ergo côté UI.
 import Foundation
 import TemplateModel
 
@@ -14,18 +10,16 @@ public struct PersistedSession: Codable, Equatable, Identifiable, Sendable {
     public let weekNumber: Int
     public let weekTheme: String
     public let weekGoal: String
-    public let day: Int                         // 1-7 (lundi-dimanche)
+    /// Index d'ordre dans la semaine (1..N). N'a plus de sémantique de jour calendaire
+    /// depuis la refonte vue semaine — l'utilisateur fait les séances dans l'ordre qu'il
+    /// veut au cours de la semaine. Conservé pour le tri déterministe.
+    public let day: Int
     public let name: String
     public let durationMinutes: Int
     public let type: SessionType
     public let warmup: String?
     public let exercises: [AdaptedExercise]
     public let cooldown: String?
-
-    /// Date posée par drag&drop hebdo. `nil` quand la session est dans le pool
-    /// `.ondemand`. Le premier drag&drop sur une session bascule le `AdaptedProgramRecord`
-    /// en `.planned` mode.
-    public var plannedDate: Date?
 
     public init(
         id: UUID = UUID(),
@@ -38,8 +32,7 @@ public struct PersistedSession: Codable, Equatable, Identifiable, Sendable {
         type: SessionType,
         warmup: String?,
         exercises: [AdaptedExercise],
-        cooldown: String?,
-        plannedDate: Date? = nil
+        cooldown: String?
     ) {
         self.id = id
         self.weekNumber = weekNumber
@@ -52,7 +45,6 @@ public struct PersistedSession: Codable, Equatable, Identifiable, Sendable {
         self.warmup = warmup
         self.exercises = exercises
         self.cooldown = cooldown
-        self.plannedDate = plannedDate
     }
 }
 

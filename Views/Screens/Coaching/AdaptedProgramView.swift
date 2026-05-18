@@ -1,28 +1,33 @@
 // Views/Screens/Coaching/AdaptedProgramView.swift
-// Master view : liste compacte de toutes les séances du programme adapté
-// (header + AI banner si requis + sessions tap → push SessionDetailView +
-// résumé adaptations + footer médical EU MDR).
-// Détail riche d'une séance = SessionDetailView.
+// Vue accordéon des semaines du programme adapté. Story 3.12 (refonte vue
+// semaine vs jour) :
+//   - Header progress global (X/N séances faites)
+//   - Pour chaque semaine, un DisclosureGroup :
+//       • Semaine courante = dépliée par défaut (sessions tap → SessionDetailView)
+//       • Semaines passées = repliées, label "✓ N/N"
+//       • Semaines futures = repliées, label thème (aperçu)
+//   - En preview mode (`recordId == nil`) : pas de completionState, S1 dépliée.
+//   - Pas de notion de jour calendaire : l'utilisateur fait ses séances dans
+//     l'ordre qu'il veut au cours de la semaine.
 import SwiftUI
 import TemplateModel
 
 struct AdaptedProgramView: View {
+    @Environment(\.appDependencies) private var deps
+
     let program: AdaptedProgram
 
     /// Callback déclenché par le bouton "Demander à Léon". Câblé en Story 3.3b
     /// par AdaptedProgramScreen (wrapper VM). `nil` côté Preview (rendu statique).
     var onRequestAIAssist: (() -> Void)? = nil
 
-    /// Story 3.8 sous-tâche drag&drop — id de l'`AdaptedProgramRecord` persisté.
-    /// Set par le push depuis le dashboard Séances mode actif (entry point #2 du
-    /// `WeeklyCalendarView`). `nil` sur le hot path post-adapt (le record vient
-    /// d'être créé, l'utilisateur n'a pas encore manipulé son calendrier).
+    /// Id de l'`AdaptedProgramRecord` persisté. Set par le push depuis le
+    /// dashboard Séances mode actif. `nil` sur le hot path post-adapt (le record
+    /// vient d'être créé).
     var recordId: UUID? = nil
 
-    /// **Story 3.10 AC37** — `true` quand le programme a une `weekStartDate`
-    /// posée (i.e. le user a tapé "Démarrer ma séance" au moins une fois).
-    /// L'icône calendar de la toolbar n'est affichée que pour les programmes
-    /// démarrés — un dormant n'a pas de semaine à drag&drop.
+    /// **Story 3.10** — `true` quand le programme a une `weekStartDate` posée
+    /// (i.e. le user a tapé "Démarrer ma séance" au moins une fois).
     var hasStarted: Bool = false
 
     /// Story 3.3b — notes Léon overlay (perso + safety + adjustments). `nil` si
@@ -46,7 +51,6 @@ struct AdaptedProgramView: View {
     /// (programme déjà actif), `onConfirmStart == nil` et le sticky CTA disparaît.
     var onConfirmStart: (() async -> Void)? = nil
 
-    @State private var weeklyCalendarPresented: Bool = false
     /// Story sœur 3.z — true pendant l'aller-retour `commit` async. Disable le
     /// bouton "Démarrer" pour éviter le double-tap (qui créerait 2 records).
     @State private var isConfirmingStart: Bool = false
@@ -55,6 +59,16 @@ struct AdaptedProgramView: View {
     /// peu actionnables pour l'utilisateur (méta-info adapter). Le badge collapsed
     /// montre uniquement le nombre. L'utilisateur peut déplier s'il veut le détail.
     @State private var appliedRulesExpanded: Bool = false
+
+    /// **Story 3.12** — Record SwiftData fetché au montage de la vue. Source des
+    /// `PersistedSession.id` (pour mapper le completionState) + `weekStartDate`
+    /// (pour calculer la semaine courante). `nil` tant qu'on n'a pas reçu de
+    /// `recordId` (preview mode) ou pendant le fetch initial.
+    @State private var record: AdaptedProgramRecord? = nil
+    /// **Story 3.12** — Set des numéros de semaines dépliées. Init à
+    /// `{currentWeekNumber}` au mount (ou `{1}` en preview). L'utilisateur peut
+    /// déplier/replier toutes les semaines manuellement.
+    @State private var expandedWeeks: Set<Int> = []
 
     var body: some View {
         ScrollView {
@@ -77,8 +91,12 @@ struct AdaptedProgramView: View {
                     leonNotesSection(notes)
                 }
 
+                if record != nil {
+                    progressHeader
+                }
+
                 ForEach(program.weeks, id: \.weekNumber) { week in
-                    weekSection(week)
+                    weekAccordion(week)
                 }
 
                 if !program.appliedRules.isEmpty {
@@ -107,28 +125,71 @@ struct AdaptedProgramView: View {
         }
         .navigationTitle(Text("coaching.adapter.title"))
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            // **Story 3.10 AC37** : drag&drop hebdo requiert un programme démarré
-            // (`weekStartDate != nil`). Sur un dormant, l'icône est cachée pour
-            // éviter d'"initier implicitement" la date via le calendrier.
-            if recordId != nil && hasStarted {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        weeklyCalendarPresented = true
-                    } label: {
-                        Image(systemName: "calendar")
-                            .foregroundStyle(Color.coachingPrimary)
-                            .accessibilityLabel(Text("dashboard.toolbar.calendar"))
-                    }
-                    .accessibilityIdentifier("coaching.adapter.toolbar.calendar")
+        .task(id: recordId) { await loadRecord() }
+    }
+
+    // MARK: - Story 3.12 — Fetch record + accordéon helpers
+
+    private func loadRecord() async {
+        guard let recordId, let deps else {
+            // Preview mode (pas de record) → S1 dépliée par défaut.
+            if let firstWeek = program.weeks.first {
+                expandedWeeks = [firstWeek.weekNumber]
+            }
+            return
+        }
+        let fetched = try? await deps.adaptedProgramRepository.fetchById(recordId: recordId)
+        record = fetched
+        expandedWeeks = [currentWeekNumber]
+    }
+
+    /// Semaine courante du programme (1-indexed). Calculée depuis `weekStartDate`
+    /// du record. Vaut 1 si le programme est dormant ou en preview.
+    private var currentWeekNumber: Int {
+        guard let start = record?.weekStartDate else { return 1 }
+        let days = Calendar.current.dateComponents([.day], from: start, to: Date()).day ?? 0
+        return max(1, (days / 7) + 1)
+    }
+
+    /// Nombre total de séances de tout le programme.
+    private var totalSessionCount: Int {
+        program.weeks.reduce(0) { $0 + $1.sessions.count }
+    }
+
+    /// Nombre de séances cochées sur l'ensemble du programme.
+    private var globalCompletedCount: Int {
+        record?.completionState.completedCount ?? 0
+    }
+
+    /// Nombre de séances cochées dans une semaine donnée.
+    private func completedCount(inWeekNumber weekNumber: Int) -> Int {
+        guard let record else { return 0 }
+        let weekSessionIds = record.sessions
+            .filter { $0.weekNumber == weekNumber }
+            .map(\.id)
+        return weekSessionIds.filter { record.completionState.sessionRecords[$0] != nil }.count
+    }
+
+    private enum WeekState { case past, current, future }
+
+    private func state(of week: AdaptedWeek) -> WeekState {
+        guard record != nil else { return .future }
+        if week.weekNumber < currentWeekNumber { return .past }
+        if week.weekNumber == currentWeekNumber { return .current }
+        return .future
+    }
+
+    private func expansionBinding(for weekNumber: Int) -> Binding<Bool> {
+        Binding(
+            get: { expandedWeeks.contains(weekNumber) },
+            set: { expanded in
+                if expanded {
+                    expandedWeeks.insert(weekNumber)
+                } else {
+                    expandedWeeks.remove(weekNumber)
                 }
             }
-        }
-        .navigationDestination(isPresented: $weeklyCalendarPresented) {
-            if let recordId {
-                WeeklyCalendarView(mode: .singleProgram(id: recordId))
-            }
-        }
+        )
     }
 
     // MARK: - Story sœur 3.z — Preview mode (visualiser avant démarrer)
@@ -343,31 +404,99 @@ struct AdaptedProgramView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
-    // MARK: - Week section
+    // MARK: - Progress header (Story 3.12)
 
-    private func weekSection(_ week: AdaptedWeek) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
+    /// Compteur global de séances faites sur le programme + barre de progression.
+    /// Affiché uniquement quand on a un record SwiftData chargé (mode actif).
+    private var progressHeader: some View {
+        VStack(alignment: .leading, spacing: 6) {
             HStack(alignment: .firstTextBaseline) {
-                Text("coaching.adapter.week.label \(week.weekNumber)")
-                    .font(.headline)
+                Text("coaching.adapter.progress.label")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(Color.coachingTextSecondary)
+                    .textCase(.uppercase)
+                    .tracking(0.6)
                 Spacer()
-                Text(verbatim: week.theme)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                Text("coaching.adapter.progress.count \(globalCompletedCount) \(totalSessionCount)")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(Color.coachingTextPrimary)
+                    .monospacedDigit()
             }
-            if !week.goal.isEmpty {
-                Text(verbatim: week.goal)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-            VStack(spacing: 6) {
-                ForEach(week.sessions, id: \.day) { session in
-                    sessionRow(session, week: week)
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    Capsule()
+                        .fill(Color.coachingRecord.opacity(0.15))
+                        .frame(height: 6)
+                    Capsule()
+                        .fill(Color.coachingRecord)
+                        .frame(width: max(6, geo.size.width * progressFraction), height: 6)
                 }
             }
-            .padding(.top, 2)
+            .frame(height: 6)
+        }
+        .accessibilityIdentifier("coaching.adapter.progress")
+    }
+
+    private var progressFraction: Double {
+        guard totalSessionCount > 0 else { return 0 }
+        return min(max(Double(globalCompletedCount) / Double(totalSessionCount), 0), 1)
+    }
+
+    // MARK: - Week accordion (Story 3.12)
+
+    private func weekAccordion(_ week: AdaptedWeek) -> some View {
+        let state = state(of: week)
+        return DisclosureGroup(isExpanded: expansionBinding(for: week.weekNumber)) {
+            VStack(alignment: .leading, spacing: 8) {
+                if !week.goal.isEmpty {
+                    Text(verbatim: week.goal)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                VStack(spacing: 6) {
+                    ForEach(week.sessions, id: \.day) { session in
+                        sessionRow(session, week: week)
+                    }
+                }
+            }
+            .padding(.top, 6)
+        } label: {
+            weekAccordionLabel(week: week, state: state)
         }
         .padding(.vertical, 4)
+        .accessibilityIdentifier("coaching.adapter.week.\(week.weekNumber)")
+    }
+
+    @ViewBuilder
+    private func weekAccordionLabel(week: AdaptedWeek, state: WeekState) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: 8) {
+            Text("coaching.adapter.week.label \(week.weekNumber)")
+                .font(.headline)
+                .foregroundStyle(Color.coachingTextPrimary)
+            switch state {
+            case .past:
+                Text("coaching.adapter.week.completed \(completedCount(inWeekNumber: week.weekNumber)) \(week.sessions.count)")
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(Color.coachingRecord)
+                    .monospacedDigit()
+            case .current:
+                Text("coaching.adapter.week.current")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(Color.coachingPrimary)
+                    .textCase(.uppercase)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(Color.coachingPrimary.opacity(0.12))
+                    .clipShape(Capsule())
+            case .future:
+                EmptyView()
+            }
+            Spacer(minLength: 8)
+            Text(verbatim: week.theme)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+        }
     }
 
     private func sessionRow(_ session: AdaptedSession, week: AdaptedWeek) -> some View {

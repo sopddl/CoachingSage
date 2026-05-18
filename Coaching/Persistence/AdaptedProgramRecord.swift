@@ -12,13 +12,12 @@ import SwiftData
 import TemplateModel
 
 /// Mode de planification d'un programme adapté.
-/// - `.ondemand` : pool de séances non datées, l'utilisateur déclenche au feeling.
-/// - `.planned` : sessions avec `plannedDate` posées (par drag&drop hebdo).
-///
-/// Story 3.8 livre uniquement le mode `.planned` per-session (drag&drop manuel
-/// sur une session bascule juste celle-ci sans toucher aux autres). Le mode global
-/// `.planned` (calendrier généré automatiquement par l'app à la création du programme)
-/// est déféré au flux A/B (Story future).
+/// - `.ondemand` : pas de calendrier de semaine ; séances disponibles à tout moment
+///   (sport sans deadline, routine cyclique).
+/// - `.planned` : programme avec calendrier de semaine (`weekStartDate` posée).
+///   Blocage doux par semaine : S(N+1) débloquée quand S(N) complétée (Story 3.11).
+///   Pas de prescription de jour calendaire — l'utilisateur fait ses séances dans
+///   l'ordre qu'il veut au cours de la semaine.
 public enum ProgramMode: String, Codable, Equatable, Sendable {
     case ondemand
     case planned
@@ -53,7 +52,6 @@ final class AdaptedProgramRecord {
     }
 
     /// `[PersistedSession]` flatten des weeks/sessions, encodé en `Data`.
-    /// Contient l'état mutable (`plannedDate`) modifié par le drag&drop hebdo.
     /// Story 3.9 lit `sessionStates` pour le tri prochaine séance + completion.
     private var sessionsJsonData: Data
     var sessions: [PersistedSession] {
@@ -161,10 +159,8 @@ final class AdaptedProgramRecord {
 extension AdaptedProgramRecord {
     /// Bridge appliqué en sortie de Story 3.3a : convertit l'`AdaptedProgram` mémoire
     /// en `AdaptedProgramRecord` SwiftData prêt à insérer dans le `ModelContext`.
-    /// Le programme nait en `mode = .ondemand` (pool de séances non datées) ;
-    /// le premier drop drag&drop bascule en `.planned` (Story 3.8 AC drag&drop).
-    /// **Story 3.10** : default `weekStartDate = nil` → programme nait "dormant",
-    /// la date se pose au premier `markStarted()`.
+    /// Le programme nait en `mode = .ondemand` ; `markStarted()` le bascule en
+    /// `.planned` (Story 3.10) en posant `weekStartDate` sur la semaine courante.
     convenience init(
         from adapted: AdaptedProgram,
         userId: UUID,
@@ -184,8 +180,7 @@ extension AdaptedProgramRecord {
                     type: session.type,
                     warmup: session.warmup,
                     exercises: session.exercises,
-                    cooldown: session.cooldown,
-                    plannedDate: nil
+                    cooldown: session.cooldown
                 )
             }
         }

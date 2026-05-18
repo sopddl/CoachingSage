@@ -37,8 +37,7 @@ final class AdaptedProgramRecordTests: XCTestCase {
                     volumeAxis: .duration
                 )
             ],
-            cooldown: "5 min étirements",
-            plannedDate: Date(timeIntervalSince1970: 1_700_000_000)
+            cooldown: "5 min étirements"
         )
 
         let record = AdaptedProgramRecord(
@@ -52,13 +51,27 @@ final class AdaptedProgramRecordTests: XCTestCase {
 
         XCTAssertEqual(record.sessions.count, 1)
         XCTAssertEqual(record.sessions.first?.name, "Footing 30 min")
-        XCTAssertEqual(record.sessions.first?.plannedDate?.timeIntervalSince1970, 1_700_000_000)
+        XCTAssertEqual(record.sessions.first?.day, 1)
 
         // Ré-écriture via setter doit re-encoder correctement.
         var sessions = record.sessions
-        sessions[0].plannedDate = nil
+        let renamed = PersistedSession(
+            id: sessions[0].id,
+            weekNumber: sessions[0].weekNumber,
+            weekTheme: sessions[0].weekTheme,
+            weekGoal: sessions[0].weekGoal,
+            day: sessions[0].day,
+            name: "Footing 35 min",
+            durationMinutes: 35,
+            type: sessions[0].type,
+            warmup: sessions[0].warmup,
+            exercises: sessions[0].exercises,
+            cooldown: sessions[0].cooldown
+        )
+        sessions[0] = renamed
         record.sessions = sessions
-        XCTAssertNil(record.sessions.first?.plannedDate)
+        XCTAssertEqual(record.sessions.first?.name, "Footing 35 min")
+        XCTAssertEqual(record.sessions.first?.durationMinutes, 35)
     }
 
     func testCompletionStateJsonRoundTrip() throws {
@@ -200,8 +213,6 @@ final class AdaptedProgramRecordTests: XCTestCase {
         XCTAssertEqual(record.sessions[0].weekTheme, "Semaine 1")
         XCTAssertEqual(record.sessions[3].weekNumber, 2)
         XCTAssertEqual(record.sessions[3].weekTheme, "Semaine 2")
-        // Aucune session ne nait avec une plannedDate (mode .ondemand).
-        XCTAssertTrue(record.sessions.allSatisfy { $0.plannedDate == nil })
         // IDs uniques (un par session, pas dérivé du contenu).
         let ids = record.sessions.map(\.id)
         XCTAssertEqual(Set(ids).count, 6)

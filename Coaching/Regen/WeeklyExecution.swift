@@ -259,9 +259,9 @@ public enum WorkoutMatcher {
         guard !sportCode.isEmpty else {
             return sessions.map { WorkoutMatch(session: $0, workout: nil, executionScore: nil) }
         }
-        // 1. Pré-calculer la date planifiée de chaque session
+        // 1. Pré-calculer la date attendue de chaque session (weekStart + (day-1)j).
         let plannedDates: [Date] = sessions.map { session in
-            session.plannedDate ?? defaultDate(for: session, weekStartDate: weekStartDate)
+            defaultDate(for: session, weekStartDate: weekStartDate)
         }
 
         // 2. Générer tous les couples candidats (sessionIdx, workoutIdx, distance)
@@ -315,8 +315,9 @@ public enum WorkoutMatcher {
         }
     }
 
-    /// Date par défaut d'une session = weekStart + (day-1) jours. Utilisée quand
-    /// l'user n'a pas modifié `plannedDate` via drag&drop.
+    /// Date attendue d'une séance = weekStart + (day-1) jours. Utilisée pour le
+    /// matching HK : on suppose que la séance d'index `day` a été faite ce jour-là
+    /// de la semaine (à `dateToleranceDays` près).
     static func defaultDate(for session: PersistedSession, weekStartDate: Date) -> Date {
         Calendar.current.date(byAdding: .day, value: session.day - 1, to: weekStartDate) ?? weekStartDate
     }

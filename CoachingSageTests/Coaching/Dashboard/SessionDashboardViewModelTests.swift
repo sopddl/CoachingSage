@@ -63,16 +63,16 @@ final class SessionDashboardViewModelTests: XCTestCase {
         XCTAssertEqual(selectedId, started.id)
     }
 
-    /// **Story 3.10 AC22** — tri 3 niveaux.
-    /// Setup : 2 démarrés (différentes nextDate) + 3 dormants (différents lastUpdatedAt).
-    /// Attendu : démarrés en tête (nextDate asc), puis dormants (lastUpdatedAt desc).
+    /// **Story 3.10 AC22 — refondu Story 3.12** : tri 2 niveaux.
+    /// Setup : 2 démarrés + 3 dormants, tous avec lastUpdatedAt distincts.
+    /// Attendu : démarrés en tête (par lastUpdatedAt desc), puis dormants (lastUpdatedAt desc).
     func testActiveMode_FiveStartedTenDormant_Sorted() async {
-        let cal = Calendar.current
-        let day1 = cal.date(byAdding: .day, value: 1, to: now)!
-        let day2 = cal.date(byAdding: .day, value: 2, to: now)!
-
-        let startedSoon = makePlannedRecord(sportCode: "running", date: day1, weekStartDate: now)
-        let startedLater = makePlannedRecord(sportCode: "cycling", date: day2, weekStartDate: now)
+        let startedRecent = makeRecord(sportCode: "running", sessionsCount: 1,
+                                       weekStartDate: now,
+                                       lastUpdatedAt: Date(timeIntervalSince1970: 9_000))
+        let startedOlder = makeRecord(sportCode: "cycling", sessionsCount: 1,
+                                      weekStartDate: now,
+                                      lastUpdatedAt: Date(timeIntervalSince1970: 8_000))
         let dormantOldest = makeRecord(sportCode: "swimming", sessionsCount: 1, weekStartDate: nil,
                                        lastUpdatedAt: Date(timeIntervalSince1970: 1_000))
         let dormantMid = makeRecord(sportCode: "yoga", sessionsCount: 1, weekStartDate: nil,
@@ -80,30 +80,30 @@ final class SessionDashboardViewModelTests: XCTestCase {
         let dormantNewest = makeRecord(sportCode: "tennis", sessionsCount: 1, weekStartDate: nil,
                                        lastUpdatedAt: Date(timeIntervalSince1970: 3_000))
 
-        let vm = makeVM(programs: [dormantOldest, startedLater, dormantNewest, startedSoon, dormantMid])
+        let vm = makeVM(programs: [dormantOldest, startedOlder, dormantNewest, startedRecent, dormantMid])
         await vm.refresh(userId: userId)
 
         guard case let .active(programs, _) = vm.mode else {
             return XCTFail("Expected .active")
         }
-        // Tous démarrés AVANT tous dormants
+        // Démarrés AVANT dormants, et entre chaque groupe : lastUpdatedAt desc
         XCTAssertEqual(programs.map(\.sport.appSportCode), [
-            "running",  // démarré, nextDate jour+1
-            "cycling",  // démarré, nextDate jour+2
+            "running",  // démarré, lastUpdatedAt 9000
+            "cycling",  // démarré, lastUpdatedAt 8000
             "tennis",   // dormant, lastUpdatedAt 3000 (le plus récent)
             "yoga",     // dormant, lastUpdatedAt 2000
             "swimming"  // dormant, lastUpdatedAt 1000 (le plus ancien)
         ])
     }
 
-    /// **Story 3.10 AC22 niveau 2** — entre démarrés, nextDate ascending.
-    func testRefreshSortsActiveProgramsByNextDateAscending_DormantsLast() async {
-        let cal = Calendar.current
-        let near = cal.date(byAdding: .day, value: 1, to: now)!
-        let far = cal.date(byAdding: .day, value: 5, to: now)!
-
-        let progFar = makePlannedRecord(sportCode: "cycling", date: far, weekStartDate: now)
-        let progNear = makePlannedRecord(sportCode: "running", date: near, weekStartDate: now)
+    /// **Story 3.10 AC22 niveau 2 — refondu Story 3.12** : entre démarrés, `lastUpdatedAt desc`.
+    func testRefreshSortsActiveProgramsByLastUpdatedDescending_DormantsLast() async {
+        let progFar = makeRecord(sportCode: "cycling", sessionsCount: 1,
+                                 weekStartDate: now,
+                                 lastUpdatedAt: Date(timeIntervalSince1970: 5_000))
+        let progNear = makeRecord(sportCode: "running", sessionsCount: 1,
+                                  weekStartDate: now,
+                                  lastUpdatedAt: Date(timeIntervalSince1970: 7_000))
         let dormant = makeRecord(sportCode: "yoga", sessionsCount: 1, weekStartDate: nil)
 
         let vm = makeVM(programs: [progFar, dormant, progNear])
@@ -298,30 +298,6 @@ final class SessionDashboardViewModelTests: XCTestCase {
         )
     }
 
-    /// Record en mode `.planned` avec une seule session datée — teste le tri
-    /// `activeProgramSummaries` par `effectiveDate` ascendant.
-    private func makePlannedRecord(
-        sportCode: String,
-        date: Date,
-        weekStartDate: Date? = Date()
-    ) -> AdaptedProgramRecord {
-        let session = PersistedSession(
-            id: UUID(), weekNumber: 1, weekTheme: "W1", weekGoal: "G1",
-            day: 1, name: "Session", durationMinutes: 30,
-            type: .endurance, warmup: nil, exercises: [], cooldown: nil,
-            plannedDate: date
-        )
-        return AdaptedProgramRecord(
-            userId: userId,
-            sportCode: sportCode,
-            level: "beginner",
-            templateId: "test-\(sportCode)",
-            adaptedAt: Date(timeIntervalSince1970: 1_699_000_000),
-            weekStartDate: weekStartDate,
-            mode: .planned,
-            sessions: [session]
-        )
-    }
 }
 
 // FakeWeeklyRegenApplicationService et MockWeeklyRegenRepository sont définis

@@ -24,7 +24,6 @@ struct SessionView: View {
     @State private var sheetSelection: SheetSelection?
     @State private var adaptedRoute: AdaptedProgramRoute?
     @State private var presentationError: String?
-    @State private var weeklyCalendarPresented: Bool = false
     @State private var nowTick: Date = Date()
     /// V2 #6 — loader overlay pendant la génération auto déclenchée par tap
     /// suggestion mode vide (skip questionnaire). True pendant l'aller-retour
@@ -76,10 +75,7 @@ struct SessionView: View {
                 }
                 .navigationTitle(Text("tab.session"))
                 .navigationBarTitleDisplayMode(.large)
-                .toolbar { calendarToolbar }
-                .navigationDestination(isPresented: $weeklyCalendarPresented) {
-                    WeeklyCalendarView(mode: .allActivePrograms)
-                }
+                .toolbar { topToolbar }
                 .navigationDestination(item: $adaptedRoute) { route in
                     if let deps {
                         AdaptedProgramScreen(
@@ -185,7 +181,7 @@ struct SessionView: View {
     }
 
     @ToolbarContentBuilder
-    private var calendarToolbar: some ToolbarContent {
+    private var topToolbar: some ToolbarContent {
         // Bouton "+" : créer un nouveau programme. Affiché UNIQUEMENT en mode
         // dashboard actif (déjà ≥ 1 programme) — en mode vide le CTA principal
         // EmptyDashboardView suffit. Sophie 2026-05-10 : remplace le `CreateProgramOrRoutineCard`
@@ -205,17 +201,6 @@ struct SessionView: View {
                 .accessibilityHint(Text("dashboard.toolbar.create.hint"))
                 .accessibilityIdentifier("dashboard.toolbar.create")
             }
-        }
-
-        ToolbarItem(placement: .topBarTrailing) {
-            Button {
-                weeklyCalendarPresented = true
-            } label: {
-                Image(systemName: "calendar")
-                    .foregroundStyle(Color.coachingPrimary)
-                    .accessibilityLabel(Text("dashboard.toolbar.calendar"))
-            }
-            .accessibilityIdentifier("dashboard.toolbar.calendar")
         }
     }
 
@@ -282,9 +267,6 @@ struct SessionView: View {
                 },
                 onDeleteProgram: { summary in
                     Task { await deleteProgramSummary(summary) }
-                },
-                onTapWeeklyReorder: {
-                    weeklyCalendarPresented = true
                 },
                 onTapReplanify: { summary in
                     replanifyTarget = summary
@@ -636,8 +618,8 @@ struct SessionView: View {
 private struct AdaptedProgramRoute: Hashable {
     let id: UUID = UUID()
     let program: AdaptedProgram
-    /// Story 3.8 — id du `AdaptedProgramRecord` persisté ; alimente le toolbar 📅
-    /// (entry point #2 `WeeklyCalendarView`). `nil` sur le hot path post-adapt.
+    /// Id de l'`AdaptedProgramRecord` persisté ; alimente le fetch progress +
+    /// semaine courante dans `AdaptedProgramView`. `nil` sur le hot path post-adapt.
     let recordId: UUID?
     /// Story 3.3b — notes Léon pré-existantes si push depuis dashboard d'un programme
     /// déjà raffiné par Léon (record.aiPatchApplied=true). `nil` sur hot path.
@@ -655,7 +637,7 @@ private struct AdaptedProgramRoute: Hashable {
     let previewSportProfile: CoachingSportProfile?
     /// **Story 3.10** — `true` quand le programme correspondant à `recordId` a
     /// `weekStartDate != nil` (a été démarré au moins une fois). Forwardé à
-    /// `AdaptedProgramView.hasStarted` pour cacher l'icône calendar des dormants.
+    /// `AdaptedProgramView.hasStarted`.
     let hasStarted: Bool
 
     init(
