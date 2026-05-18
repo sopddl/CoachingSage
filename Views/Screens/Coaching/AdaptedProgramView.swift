@@ -54,11 +54,14 @@ struct AdaptedProgramView: View {
     /// Story sœur 3.z — true pendant l'aller-retour `commit` async. Disable le
     /// bouton "Démarrer" pour éviter le double-tap (qui créerait 2 records).
     @State private var isConfirmingStart: Bool = false
-    /// Story sœur 3.z (Bug #3) — la section "Adaptations apportées" est repliée
-    /// par défaut : sur un programme 12 sem cyclé, la liste peut faire 20+ lignes
-    /// peu actionnables pour l'utilisateur (méta-info adapter). Le badge collapsed
-    /// montre uniquement le nombre. L'utilisateur peut déplier s'il veut le détail.
-    @State private var appliedRulesExpanded: Bool = false
+
+    /// **Story 3.12 hotfix** — true pendant l'aller-retour `markStarted` async.
+    /// Disable le sticky CTA "Démarrer le programme" pour éviter le double-tap.
+    @State private var isStartingProgram: Bool = false
+
+    /// **Story 3.12 hotfix** — alerte cap démarré atteint lors du `markStarted`
+    /// sur un programme dormant. Affichée en `.alert`. nil = pas d'alerte.
+    @State private var startCapAlertLimit: Int? = nil
 
     /// **Story 3.12** — Record SwiftData fetché au montage de la vue. Source des
     /// `PersistedSession.id` (pour mapper le completionState) + `weekStartDate`
@@ -99,13 +102,9 @@ struct AdaptedProgramView: View {
                     weekAccordion(week)
                 }
 
-                if !program.appliedRules.isEmpty {
-                    appliedRulesSection
-                }
-
                 medicalReminderFooter
 
-                if onConfirmStart != nil {
+                if onConfirmStart != nil || isDormantRecord {
                     // Padding bottom pour que le contenu ne soit pas masqué par le
                     // sticky CTA. Hauteur ≈ bouton (52) + padding (32) = 84.
                     Color.clear.frame(height: 84)
@@ -116,7 +115,21 @@ struct AdaptedProgramView: View {
         .overlay(alignment: .bottom) {
             if let onConfirmStart {
                 confirmStartCTA(action: onConfirmStart)
+            } else if isDormantRecord {
+                startProgramCTA
             }
+        }
+        .alert(
+            "dashboard.program.cap.started.alert.title",
+            isPresented: Binding(
+                get: { startCapAlertLimit != nil },
+                set: { if !$0 { startCapAlertLimit = nil } }
+            ),
+            presenting: startCapAlertLimit
+        ) { _ in
+            Button("common.ok", role: .cancel) { startCapAlertLimit = nil }
+        } message: { _ in
+            Text("dashboard.program.cap.started.alert.message")
         }
         .overlay {
             if requestState == .loading {
@@ -173,10 +186,74 @@ struct AdaptedProgramView: View {
     private enum WeekState { case past, current, future }
 
     private func state(of week: AdaptedWeek) -> WeekState {
-        guard record != nil else { return .future }
+        guard let record, record.weekStartDate != nil else { return .future }
+        _ = record  // silence unused warning if record is dormant guard above changes
         if week.weekNumber < currentWeekNumber { return .past }
         if week.weekNumber == currentWeekNumber { return .current }
         return .future
+    }
+
+    /// **Story 3.12 hotfix** — `true` quand un record SwiftData a été fetché
+    /// ET le programme est dormant (jamais démarré). Affiche le sticky CTA
+    /// "Démarrer le programme" en bas de la vue.
+    private var isDormantRecord: Bool {
+        guard let record else { return false }
+        return record.weekStartDate == nil
+    }
+
+    /// Sticky CTA "Démarrer le programme" affiché en bas d'`AdaptedProgramView`
+    /// quand le programme est dormant. Tap = `markStarted` + reload du record
+    /// (la vue passe en mode actif : header progress visible, semaine 1 dépliée
+    /// avec sessions tappables).
+    private var startProgramCTA: some View {
+        VStack(spacing: 0) {
+            Button {
+                guard !isStartingProgram else { return }
+                Task { await handleStartProgram() }
+            } label: {
+                HStack {
+                    if isStartingProgram {
+                        ProgressView()
+                            .tint(.white)
+                    } else {
+                        Image(systemName: "play.circle.fill")
+                    }
+                    Text("coaching.adapter.dormant.startProgram")
+                        .font(.headline)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(Color.coachingPrimary)
+            .disabled(isStartingProgram)
+            .accessibilityIdentifier("coaching.adapter.dormant.startProgram")
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+        }
+        .background(
+            Color.coachingBackground
+                .opacity(0.96)
+                .ignoresSafeArea(edges: .bottom)
+        )
+    }
+
+    @MainActor
+    private func handleStartProgram() async {
+        guard let recordId, let deps else { return }
+        isStartingProgram = true
+        defer { isStartingProgram = false }
+        do {
+            try await deps.adaptedProgramRepository.markStarted(recordId: recordId)
+            // Reload du record : `weekStartDate` est maintenant posée, la vue
+            // bascule en mode actif (progressHeader visible, accordéon S1 dépliée).
+            await loadRecord()
+        } catch ProgramCapReached.started(let limit) {
+            startCapAlertLimit = limit
+        } catch {
+            // Erreur générique silencieuse (cas dégénéré, ex. record disparu) ;
+            // le retour dashboard via back nav reste accessible.
+        }
     }
 
     private func expansionBinding(for weekNumber: Int) -> Binding<Bool> {
@@ -551,46 +628,6 @@ struct AdaptedProgramView: View {
 
     private func hasAdaptations(week: Int, day: Int) -> Bool {
         program.appliedRules.contains { $0.weekNumber == week && $0.day == day }
-    }
-
-    // MARK: - Applied rules log (résumé global)
-
-    private var appliedRulesSection: some View {
-        DisclosureGroup(isExpanded: $appliedRulesExpanded) {
-            VStack(alignment: .leading, spacing: 6) {
-                ForEach(Array(program.appliedRules.enumerated()), id: \.offset) { _, rule in
-                    HStack(alignment: .top, spacing: 8) {
-                        Image(systemName: AdaptedProgramFormatting.outcomeSFSymbol(rule.outcome))
-                            .foregroundStyle(AdaptedProgramFormatting.outcomeColor(rule.outcome))
-                            .font(.caption)
-                        Text(verbatim: "S\(rule.weekNumber) J\(rule.day) — \(rule.detail)")
-                            .font(.caption)
-                    }
-                }
-            }
-            .padding(.top, 8)
-        } label: {
-            HStack(spacing: 8) {
-                Image(systemName: "wand.and.stars")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                Text("coaching.adapter.appliedRules.title")
-                    .font(.headline)
-                Spacer(minLength: 4)
-                Text(verbatim: "\(program.appliedRules.count)")
-                    .font(.caption.bold())
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 2)
-                    .background(
-                        Capsule().fill(Color.secondary.opacity(0.15))
-                    )
-            }
-        }
-        .padding()
-        .background(Color(uiColor: .tertiarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-        .accessibilityIdentifier("coaching.adapter.appliedRules.disclosure")
     }
 
     // MARK: - Medical reminder
