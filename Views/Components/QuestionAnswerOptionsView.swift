@@ -11,6 +11,10 @@ struct QuestionAnswerOptionsView: View {
     @Binding var freeTextDraft: String
     /// Désactive les contrôles pendant l'avancement (review P1-8 idempotence — feedback visuel).
     let isLocked: Bool
+    /// Story 3.13 Phase B — sportCode du questionnaire courant. Utilisé par `multiOptions` pour
+    /// appliquer la matrice de compatibilité goals Q2 (grisage incompatibles + swap exclusif).
+    /// Optionnel pour rétrocompat call sites historiques (autres questions multi sans matrice).
+    var sportCode: String? = nil
 
     @State private var multiSelection: Set<String> = []
     /// Date picker state pour Q4Date story sœur — minimum demain pour éviter date passée.
@@ -74,6 +78,21 @@ struct QuestionAnswerOptionsView: View {
 
     // MARK: - Multi
 
+    /// Story 3.13 Phase B — calcule si l'option doit être grisée selon la matrice goals.
+    /// Active uniquement si `sportCode` fourni ET question = Q2 goal du questionnaire universel
+    /// (les autres questions multi historiques ne sont pas sujettes à la matrice).
+    private func goalOptionDisabled(_ optionCode: String) -> Bool {
+        guard let sport = sportCode,
+              question.id == UniversalQuestionnaire.q2GoalId else {
+            return false
+        }
+        return GoalCompatibilityMatrix.isDisabled(
+            option: optionCode,
+            given: multiSelection,
+            sportCode: sport
+        )
+    }
+
     private var multiOptions: some View {
         VStack(spacing: 8) {
             Text("questionnaire.options.multi.hint")
@@ -83,23 +102,15 @@ struct QuestionAnswerOptionsView: View {
                 .padding(.bottom, 4)
 
             ForEach(question.options) { option in
+                let isSelected = multiSelection.contains(option.code)
+                let isDisabledByMatrix = goalOptionDisabled(option.code)
                 Button {
-                    guard !isLocked else { return }
-                    if multiSelection.contains(option.code) {
-                        multiSelection.remove(option.code)
-                    } else {
-                        // Si on sélectionne "none", désélectionner tout le reste (cohérence sémantique).
-                        if option.code == "none" {
-                            multiSelection = ["none"]
-                        } else {
-                            multiSelection.remove("none")
-                            multiSelection.insert(option.code)
-                        }
-                    }
+                    guard !isLocked, !isDisabledByMatrix else { return }
+                    handleMultiTap(optionCode: option.code, isSelected: isSelected)
                 } label: {
                     HStack {
-                        Image(systemName: multiSelection.contains(option.code) ? "checkmark.square.fill" : "square")
-                            .foregroundStyle(multiSelection.contains(option.code) ? Color.coachingPrimary : Color.coachingTextSecondary)
+                        Image(systemName: isSelected ? "checkmark.square.fill" : "square")
+                            .foregroundStyle(isSelected ? Color.coachingPrimary : Color.coachingTextSecondary)
                         Text(LocalizedStringKey(option.labelKey))
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -108,9 +119,10 @@ struct QuestionAnswerOptionsView: View {
                     .background(Color.coachingCard)
                     .foregroundStyle(Color.coachingTextPrimary)
                     .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                    .opacity(isDisabledByMatrix ? 0.35 : 1.0)
                 }
                 .buttonStyle(.plain)
-                .disabled(isLocked)
+                .disabled(isLocked || isDisabledByMatrix)
             }
 
             Button {
@@ -127,6 +139,32 @@ struct QuestionAnswerOptionsView: View {
             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
             .disabled(multiSelection.isEmpty || isLocked)
         }
+    }
+
+    /// Logique tap multi-choice avec règles Story 3.13 Phase B :
+    ///   • "none" → reset à ["none"] (cohérence sémantique legacy)
+    ///   • Q2 goals + sportCode fourni + option exclusive → reset à [exclusive] (swap auto AC6)
+    ///   • option non-exclusive tapée alors qu'un exclusif est dans selection → ignore (impossible
+    ///     car isDisabled bloque déjà, mais défense en profondeur)
+    ///   • sinon : toggle classique
+    private func handleMultiTap(optionCode: String, isSelected: Bool) {
+        if isSelected {
+            multiSelection.remove(optionCode)
+            return
+        }
+        if optionCode == "none" {
+            multiSelection = ["none"]
+            return
+        }
+        if let sport = sportCode,
+           question.id == UniversalQuestionnaire.q2GoalId,
+           GoalCompatibilityMatrix.isExclusive(optionCode, sportCode: sport) {
+            // AC6 — exclusif désélectionne tout le reste
+            multiSelection = [optionCode]
+            return
+        }
+        multiSelection.remove("none")
+        multiSelection.insert(optionCode)
     }
 
     // MARK: - Date picker (Q4Date story sœur)

@@ -267,9 +267,11 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         if case .single(let code) = answer, code == Self.q3DontKnowCode {
             return nil
         }
-        // Story 3.13 Phase A : Q2 = .multiChoice. On utilise le premier goal coché comme
-        // pivot pour le branchement Q4 (le primary algo Phase B raffinera selon doctrine).
-        guard let primaryGoal = Self.firstGoal(in: accumulated) else {
+        // Story 3.13 Phase B : Q2 = .multiChoice. On utilise le primary canonique (selon ordre
+        // sport-specifique GoalCompatibilityMatrix.primaryPriority) comme pivot pour le branchement Q4,
+        // pour rester cohérent avec ce que buildProfile() finira par persister comme `goals.primary`.
+        let goalsList = Self.goalsList(accumulated, sportCode: sportCode)
+        guard let primaryGoal = GoalCompatibilityMatrix.pickPrimary(from: goalsList, sportCode: sportCode) else {
             return nil
         }
         return Self.goalAllowsDeadline(primaryGoal, in: sportCode) ? Self.q4Duration : nil
@@ -298,13 +300,15 @@ struct UniversalQuestionnaire: SportQuestionnaire {
 
         let level = Self.singleAnswer(answers, key: Self.q1LevelId, default: "beginner")
 
-        // Story 3.13 Phase A : Q2 = .multiChoice → on extrait goals = [primary, ...secondary].
-        // Phase B introduira l'algo de ranking sport-specifique (cf GoalCompatibilityMatrix).
-        // En Phase A : primary = premier coché, secondary = reste.
+        // Story 3.13 Phase B (AC8-9) : Q2 = .multiChoice → on extrait goals = [...].
+        // Primary algo : premier de l'ordre canonique sport-specifique qui matche la sélection user
+        // (cf GoalCompatibilityMatrix.primaryPriority). Fallback : premier goal user.
+        // Secondary = autres goals (ordre user préservé), primary exclu.
         // Compat : si rows legacy .single (DB ou tests) → migré en .multi([primary]).
         let goalsList = Self.goalsList(answers, sportCode: sportCode)
-        let primaryGoal = goalsList.first ?? Self.defaultGoal(for: sportCode)
-        let secondaryGoals = Array(goalsList.dropFirst())
+        let primaryGoal = GoalCompatibilityMatrix.pickPrimary(from: goalsList, sportCode: sportCode)
+            ?? Self.defaultGoal(for: sportCode)
+        let secondaryGoals = goalsList.filter { $0 != primaryGoal }
 
         let frequencyLabel = Self.singleAnswer(answers, key: Self.q3FrequencyId, default: "2")
         let frequencyPerWeek: Int = {
