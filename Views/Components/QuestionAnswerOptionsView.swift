@@ -76,6 +76,12 @@ struct QuestionAnswerOptionsView: View {
 
     private var multiOptions: some View {
         VStack(spacing: 8) {
+            Text("questionnaire.options.multi.hint")
+                .font(.footnote)
+                .foregroundStyle(Color.coachingTextSecondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 4)
+
             ForEach(question.options) { option in
                 Button {
                     guard !isLocked else { return }

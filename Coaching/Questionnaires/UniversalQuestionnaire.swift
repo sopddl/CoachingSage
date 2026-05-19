@@ -132,7 +132,7 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         QuestionnaireQuestion(
             id: Self.q2GoalId,
             textKey: "questionnaire.\(sportCode).q2.text",
-            answerType: .singleChoice,
+            answerType: .multiChoice,
             options: Self.goalOptions(for: sportCode)
         )
     }
@@ -267,10 +267,12 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         if case .single(let code) = answer, code == Self.q3DontKnowCode {
             return nil
         }
-        guard case .single(let goal) = accumulated[Self.q2GoalId] else {
+        // Story 3.13 Phase A : Q2 = .multiChoice. On utilise le premier goal coché comme
+        // pivot pour le branchement Q4 (le primary algo Phase B raffinera selon doctrine).
+        guard let primaryGoal = Self.firstGoal(in: accumulated) else {
             return nil
         }
-        return Self.goalAllowsDeadline(goal, in: sportCode) ? Self.q4Duration : nil
+        return Self.goalAllowsDeadline(primaryGoal, in: sportCode) ? Self.q4Duration : nil
     }
 
     func findQuestion(byId id: QuestionId) -> QuestionnaireQuestion? {
@@ -295,7 +297,14 @@ struct UniversalQuestionnaire: SportQuestionnaire {
     ) -> CoachingSportProfile {
 
         let level = Self.singleAnswer(answers, key: Self.q1LevelId, default: "beginner")
-        let primaryGoal = Self.singleAnswer(answers, key: Self.q2GoalId, default: Self.defaultGoal(for: sportCode))
+
+        // Story 3.13 Phase A : Q2 = .multiChoice → on extrait goals = [primary, ...secondary].
+        // Phase B introduira l'algo de ranking sport-specifique (cf GoalCompatibilityMatrix).
+        // En Phase A : primary = premier coché, secondary = reste.
+        // Compat : si rows legacy .single (DB ou tests) → migré en .multi([primary]).
+        let goalsList = Self.goalsList(answers, sportCode: sportCode)
+        let primaryGoal = goalsList.first ?? Self.defaultGoal(for: sportCode)
+        let secondaryGoals = Array(goalsList.dropFirst())
 
         let frequencyLabel = Self.singleAnswer(answers, key: Self.q3FrequencyId, default: "2")
         let frequencyPerWeek: Int = {
@@ -324,7 +333,7 @@ struct UniversalQuestionnaire: SportQuestionnaire {
             userId: userId,
             sportCode: sportCode,
             level: level,
-            goals: GoalsPayload(primary: primaryGoal),
+            goals: GoalsPayload(primary: primaryGoal, secondary: secondaryGoals),
             equipment: [],         // décision Sophie 2026-05-04 : équipement = CoachingProfile.equipment (onboarding global)
             constraints: [],       // décision Sophie 2026-05-04 : contraintes = PARQ onboarding (requiresMedicalClearance)
             frequencyPerWeek: frequencyPerWeek,
@@ -389,5 +398,36 @@ struct UniversalQuestionnaire: SportQuestionnaire {
     ) -> String {
         guard let v = answers[key], case .single(let s) = v else { return fallback }
         return s
+    }
+
+    /// Story 3.13 Phase A — extrait la liste des goals cochés à Q2.
+    /// Tolère 3 formats : `.multi([codes])` (nominal post-3.13), `.single(code)` (legacy pre-3.13),
+    /// rien → []. Filtre les codes vides pour robustesse.
+    static func goalsList(
+        _ answers: [QuestionId: AnswerValue],
+        sportCode: String
+    ) -> [String] {
+        guard let v = answers[q2GoalId] else { return [] }
+        switch v {
+        case .multi(let codes):
+            return codes.filter { !$0.isEmpty }
+        case .single(let code):
+            return code.isEmpty ? [] : [code]
+        case .text:
+            return []
+        }
+    }
+
+    /// Premier goal coché (= primary en Phase A). Phase B raffinera via ranking sport-specifique.
+    static func firstGoal(in answers: [QuestionId: AnswerValue]) -> String? {
+        guard let v = answers[q2GoalId] else { return nil }
+        switch v {
+        case .multi(let codes):
+            return codes.first { !$0.isEmpty }
+        case .single(let code):
+            return code.isEmpty ? nil : code
+        case .text:
+            return nil
+        }
     }
 }

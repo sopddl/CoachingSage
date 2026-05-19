@@ -4,10 +4,26 @@
 import Foundation
 
 /// Payload du champ `goals_json` (Postgres JSONB).
-/// V1 contient seulement `primary` (5k/10k/half_marathon/marathon/wellness).
-/// Évolutif : ajouter des fields optionnels Codable, le parser ignorera les anciens.
+/// V1 (Story 3.1) contenait `primary` seul. Story 3.13 ajoute `secondary: [String]` pour
+/// le multi-objectifs. Le decoder est tolérant : rows historiques sans `secondary` → `[]`.
 struct GoalsPayload: Codable, Equatable {
     let primary: String
+    let secondary: [String]
+
+    init(primary: String, secondary: [String] = []) {
+        self.primary = primary
+        self.secondary = secondary
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case primary, secondary
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.primary = try container.decode(String.self, forKey: .primary)
+        self.secondary = try container.decodeIfPresent([String].self, forKey: .secondary) ?? []
+    }
 }
 
 /// Entrée d'historique de conversation, stockée dans `conversation_history_json`.
