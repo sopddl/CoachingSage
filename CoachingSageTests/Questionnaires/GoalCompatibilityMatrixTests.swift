@@ -7,31 +7,29 @@ import Foundation
 @Suite("GoalCompatibilityMatrix")
 struct GoalCompatibilityMatrixTests {
 
-    // MARK: - Exclusifs par sport
+    // MARK: - Exclusifs par sport (vidés Phase E — wellness/initiation/etc. ne sont plus exclusifs)
 
     @Test
-    func exclusiveGoals_running() {
-        #expect(GoalCompatibilityMatrix.exclusiveGoals(for: "running") == ["wellness"])
-        #expect(GoalCompatibilityMatrix.isExclusive("wellness", sportCode: "running"))
-        #expect(!GoalCompatibilityMatrix.isExclusive("10k", sportCode: "running"))
-    }
-
-    @Test
-    func exclusiveGoals_strengthTraining_twoExclusives() {
-        let exclusives = GoalCompatibilityMatrix.exclusiveGoals(for: "strengthTraining")
-        #expect(exclusives == ["home-basics", "strength-5x5"])
-    }
-
-    @Test
-    func exclusiveGoals_yoga_initiationAndAdvanced() {
-        let exclusives = GoalCompatibilityMatrix.exclusiveGoals(for: "yoga")
-        #expect(exclusives == ["initiation", "advanced"])
-    }
-
-    @Test
-    func exclusiveGoals_unknownSport_isEmpty() {
-        #expect(GoalCompatibilityMatrix.exclusiveGoals(for: "kitesurfing").isEmpty)
-        #expect(!GoalCompatibilityMatrix.isExclusive("wellness", sportCode: "kitesurfing"))
+    func exclusiveGoals_postPhaseE_emptyEverywhere() {
+        // Décision Sophie 2026-05-19 (Phase E) : les "modes" type wellness/initiation/
+        // reprise/decouverte/home-basics/strength-5x5 ne sont plus marqués exclusifs.
+        // L'algo primary canonique tranche déjà la priorité, et l'overlay couvre les
+        // secondary proprement. API conservée pour permettre une réintroduction ciblée
+        // si on découvre un cas réel V2.
+        let sports = [
+            "running", "cycling", "swimming", "triathlon", "strengthTraining",
+            "yoga", "hiit", "hiking", "tennis", "football", "kitesurfing"
+        ]
+        for sport in sports {
+            #expect(
+                GoalCompatibilityMatrix.exclusiveGoals(for: sport).isEmpty,
+                "exclusiveGoals(\(sport)) doit être vide post-Phase E"
+            )
+        }
+        // isExclusive cohérent avec un set vide
+        #expect(!GoalCompatibilityMatrix.isExclusive("wellness", sportCode: "running"))
+        #expect(!GoalCompatibilityMatrix.isExclusive("home-basics", sportCode: "strengthTraining"))
+        #expect(!GoalCompatibilityMatrix.isExclusive("initiation", sportCode: "yoga"))
     }
 
     // MARK: - Paires incompatibles par sport
@@ -100,9 +98,12 @@ struct GoalCompatibilityMatrixTests {
     }
 
     @Test
-    func isCompatible_running_exclusiveWellness_excludesEverything() {
-        #expect(!GoalCompatibilityMatrix.isCompatible("wellness", "10k", sportCode: "running"))
-        #expect(!GoalCompatibilityMatrix.isCompatible("5k", "wellness", sportCode: "running"))
+    func isCompatible_running_wellnessWithOthers_compatiblePostPhaseE() {
+        // Phase E : wellness n'est plus exclusif. Aucune paire wellness/X n'est listée
+        // dans incompatiblePairs(running) → wellness est compatible avec n'importe quel goal.
+        #expect(GoalCompatibilityMatrix.isCompatible("wellness", "10k", sportCode: "running"))
+        #expect(GoalCompatibilityMatrix.isCompatible("5k", "wellness", sportCode: "running"))
+        #expect(GoalCompatibilityMatrix.isCompatible("wellness", "marathon", sportCode: "running"))
     }
 
     @Test
@@ -130,11 +131,14 @@ struct GoalCompatibilityMatrixTests {
     }
 
     @Test
-    func isCompatible_strengthTraining_upperlowerAndPpl_incompatible() {
+    func isCompatible_strengthTraining_upperlowerAndPpl_incompatibleByPair() {
+        // Seule la paire structurelle upperlower/ppl reste incompatible (templates ≠).
         #expect(!GoalCompatibilityMatrix.isCompatible("upperlower", "ppl", sportCode: "strengthTraining"))
-        // Exclusifs strength : home-basics & strength-5x5 → bloquent tout
-        #expect(!GoalCompatibilityMatrix.isCompatible("strength-5x5", "ppl", sportCode: "strengthTraining"))
-        #expect(!GoalCompatibilityMatrix.isCompatible("home-basics", "ppl", sportCode: "strengthTraining"))
+        // Phase E : home-basics et strength-5x5 ne sont plus exclusifs → compat avec autres
+        // (toute la matrice strengthTraining est moot en pratique car Q2 forcée en .singleChoice,
+        // mais on garde le test sémantique pour vérifier l'absence de blocage parasitaire).
+        #expect(GoalCompatibilityMatrix.isCompatible("strength-5x5", "ppl", sportCode: "strengthTraining"))
+        #expect(GoalCompatibilityMatrix.isCompatible("home-basics", "upperlower", sportCode: "strengthTraining"))
     }
 
     // MARK: - primaryPriority canonique
@@ -232,19 +236,12 @@ struct GoalCompatibilityMatrixTests {
     }
 
     @Test
-    func isDisabled_exclusiveSelected_allOthersGreyed() {
-        // wellness exclusif coché → toutes les autres grisées
-        #expect(GoalCompatibilityMatrix.isDisabled(option: "10k", given: ["wellness"], sportCode: "running"))
-        #expect(GoalCompatibilityMatrix.isDisabled(option: "marathon", given: ["wellness"], sportCode: "running"))
-        // wellness lui-même reste interactif (uncheck)
-        #expect(!GoalCompatibilityMatrix.isDisabled(option: "wellness", given: ["wellness"], sportCode: "running"))
-    }
-
-    @Test
-    func isDisabled_exclusiveOptionWhenNonExclusiveSelected_isAllowed_forSwapTap() {
-        // 10k coché (non-exclusif). User tape wellness (exclusif) — doit être autorisé
-        // pour que le tap déclenche le swap exclusif AC6 côté View/VM.
+    func isDisabled_wellnessWithOthersSelected_compatiblePostPhaseE() {
+        // Phase E : wellness n'étant plus exclusif, il reste cliquable peu importe la sélection.
+        // Idem pour les autres goals non-paire.
+        #expect(!GoalCompatibilityMatrix.isDisabled(option: "10k", given: ["wellness"], sportCode: "running"))
         #expect(!GoalCompatibilityMatrix.isDisabled(option: "wellness", given: ["10k"], sportCode: "running"))
+        #expect(!GoalCompatibilityMatrix.isDisabled(option: "wellness", given: ["wellness"], sportCode: "running"))
     }
 
     @Test
@@ -258,23 +255,25 @@ struct GoalCompatibilityMatrixTests {
     }
 
     @Test
-    func isDisabled_swimming_noConstraintsMultiSelect() {
-        // swimming = aucune incompat, initiation exclusif seul.
-        // endurance coché → technique reste cliquable
+    func isDisabled_swimming_noConstraints_allMultiSelectFree() {
+        // swimming = aucune paire incompat dans la matrice + initiation plus exclusif (Phase E).
+        // Toutes les combinaisons restent cliquables.
         #expect(!GoalCompatibilityMatrix.isDisabled(option: "technique", given: ["endurance"], sportCode: "swimming"))
-        // initiation exclusif coché → endurance grisé
-        #expect(GoalCompatibilityMatrix.isDisabled(option: "endurance", given: ["initiation"], sportCode: "swimming"))
+        #expect(!GoalCompatibilityMatrix.isDisabled(option: "endurance", given: ["initiation"], sportCode: "swimming"))
+        #expect(!GoalCompatibilityMatrix.isDisabled(option: "perfectionnement", given: ["technique"], sportCode: "swimming"))
     }
 
     @Test
-    func isDisabled_strengthTraining_upperlowerAndPpl() {
-        // upperlower coché → ppl grisé (pair-incompat catalogue)
+    func isDisabled_strengthTraining_pairOnlyPostPhaseE() {
+        // Seule la paire upperlower/ppl reste incompatible. home-basics/strength-5x5 ne sont
+        // plus exclusifs (Phase E) — en pratique la Q2 strengthTraining est en `.singleChoice`
+        // donc isDisabled n'est jamais appelée avec une selection > 1, mais on vérifie
+        // l'invariant matrice pour éviter une régression silencieuse.
         #expect(GoalCompatibilityMatrix.isDisabled(option: "ppl", given: ["upperlower"], sportCode: "strengthTraining"))
-        // ppl coché → upperlower grisé
         #expect(GoalCompatibilityMatrix.isDisabled(option: "upperlower", given: ["ppl"], sportCode: "strengthTraining"))
-        // strength-5x5 exclusif coché → tout le reste grisé
-        #expect(GoalCompatibilityMatrix.isDisabled(option: "ppl", given: ["strength-5x5"], sportCode: "strengthTraining"))
-        #expect(GoalCompatibilityMatrix.isDisabled(option: "upperlower", given: ["strength-5x5"], sportCode: "strengthTraining"))
+        // strength-5x5 n'est plus exclusif → autres goals NON grisés
+        #expect(!GoalCompatibilityMatrix.isDisabled(option: "ppl", given: ["strength-5x5"], sportCode: "strengthTraining"))
+        #expect(!GoalCompatibilityMatrix.isDisabled(option: "upperlower", given: ["strength-5x5"], sportCode: "strengthTraining"))
     }
 
     // MARK: - UnorderedPair invariants

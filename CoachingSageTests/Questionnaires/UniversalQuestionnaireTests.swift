@@ -347,4 +347,132 @@ struct UniversalQuestionnaireTests {
         #expect(q.findQuestion(byId: "q4_duration")?.id == "q4_duration")
         #expect(q.findQuestion(byId: "q4_date")?.id == "q4_date")
     }
+
+    // MARK: - Story 3.13 Phase E (AC22) — Q2 multi-choice end-to-end
+
+    @Test("Q2 est multiChoice pour la majorité des sports + textKey sport-spécifique")
+    func q2Goal_isMultiChoice() {
+        let q = UniversalQuestionnaire(sportCode: "running")
+        #expect(q.q2Goal.answerType == .multiChoice)
+        #expect(q.q2Goal.textKey == "questionnaire.running.q2.text")
+    }
+
+    @Test("Q2 forcé en singleChoice pour strengthTraining + triathlon (catalogue exclusif)")
+    func q2Goal_isSingleChoiceForCycleExclusiveSports() {
+        // Phase E : ces 2 sports ont un catalogue structurellement exclusif (1 split / 1 distance
+        // par cycle). On force single-choice + hint pédagogique côté UI plutôt que d'autoriser
+        // multi et ignorer secondary silencieusement.
+        #expect(UniversalQuestionnaire(sportCode: "strengthTraining").q2Goal.answerType == .singleChoice)
+        #expect(UniversalQuestionnaire(sportCode: "triathlon").q2Goal.answerType == .singleChoice)
+        #expect(UniversalQuestionnaire.isCycleExclusiveSport("strengthTraining"))
+        #expect(UniversalQuestionnaire.isCycleExclusiveSport("triathlon"))
+        // Autres sports restent multiChoice
+        #expect(!UniversalQuestionnaire.isCycleExclusiveSport("running"))
+        #expect(!UniversalQuestionnaire.isCycleExclusiveSport("swimming"))
+    }
+
+    @Test("buildProfile multi running [10k, wellness] → primary=10k, secondary=[wellness]")
+    func buildProfile_multiGoals_picksPrimaryFromCanonical() {
+        let q = UniversalQuestionnaire(sportCode: "running")
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: [
+                "q1_level": .single("regular"),
+                "q2_goal": .multi(["10k", "wellness"]),
+                "q3_frequency": .single("3")
+            ],
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        #expect(profile.goals.primary == "10k")
+        #expect(profile.goals.secondary == ["wellness"])
+    }
+
+    @Test("buildProfile multi est order-independent — primary suit l'ordre canonique sport")
+    func buildProfile_multiGoals_orderIndependent() {
+        let q = UniversalQuestionnaire(sportCode: "running")
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: [
+                "q1_level": .single("regular"),
+                "q2_goal": .multi(["wellness", "10k"]),  // ordre user inverse
+                "q3_frequency": .single("3")
+            ],
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        // Canonical running : [marathon, half_marathon, 10k, 5k, wellness] → 10k > wellness.
+        #expect(profile.goals.primary == "10k")
+        #expect(profile.goals.secondary == ["wellness"])
+    }
+
+    @Test("buildProfile multi swimming [technique, endurance] → primary=endurance (post-review reviewer)")
+    func buildProfile_multiGoals_swimmingEnduranceBackbone() {
+        let q = UniversalQuestionnaire(sportCode: "swimming")
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: [
+                "q1_level": .single("regular"),
+                "q2_goal": .multi(["technique", "endurance"]),
+                "q3_frequency": .single("3")
+            ],
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        // Swimming canonical post-review : [endurance, perfectionnement, technique, initiation].
+        #expect(profile.goals.primary == "endurance")
+        #expect(profile.goals.secondary == ["technique"])
+    }
+
+    @Test("buildProfile single legacy (.single) migré en .multi([primary]) → secondary vide")
+    func buildProfile_singleLegacyGoal_secondaryEmpty() {
+        let q = UniversalQuestionnaire(sportCode: "running")
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: [
+                "q1_level": .single("regular"),
+                "q2_goal": .single("10k"),     // legacy single
+                "q3_frequency": .single("3")
+            ],
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        #expect(profile.goals.primary == "10k")
+        #expect(profile.goals.secondary.isEmpty)
+    }
+
+    @Test("Multi avec un seul goal coché → secondary vide (pas de bruit)")
+    func buildProfile_multiGoals_singleCheckedYieldsEmptySecondary() {
+        let q = UniversalQuestionnaire(sportCode: "cycling")
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: [
+                "q1_level": .single("regular"),
+                "q2_goal": .multi(["cyclosportive"]),
+                "q3_frequency": .single("3")
+            ],
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        #expect(profile.goals.primary == "cyclosportive")
+        #expect(profile.goals.secondary.isEmpty)
+    }
+
+    @Test("nextAfterFrequency utilise le primary canonique du multi (deadline-eligible)")
+    func nextAfterFrequency_usesCanonicalPrimary() {
+        let q = UniversalQuestionnaire(sportCode: "running")
+        // multi [wellness, 10k] → primary canonique = 10k = deadline-eligible
+        // → Q4 duration doit s'enclencher.
+        let acc: [QuestionId: AnswerValue] = [
+            "q1_level": .single("regular"),
+            "q2_goal": .multi(["wellness", "10k"])
+        ]
+        let next = q.nextQuestion(after: "q3_frequency", answer: .single("3"), accumulated: acc)
+        #expect(next?.id == "q4_duration")
+    }
 }

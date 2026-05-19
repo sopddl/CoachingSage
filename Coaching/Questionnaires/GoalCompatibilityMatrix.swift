@@ -1,10 +1,20 @@
 // Coaching/Questionnaires/GoalCompatibilityMatrix.swift
 // Story 3.13 Phase B (Epic 3) — matrice compatibilité goals multi-choice Q2.
 //
-// Doctrine validée par `template-quality-reviewer` 2026-05-19 :
-//   • Exclusifs par sport (wellness/initiation/reprise/decouverte selon sport)
-//   • Paires incompatibles par sport (5k+marathon, sprint+distance-m, etc.)
-//   • Ordre canonique primary (sport-specifique, ranking depuis doctrine entraineurs)
+// Doctrine validée par `template-quality-reviewer` 2026-05-19 (Phase B) puis
+// refonte Phase E (2026-05-19) :
+//   • EXCLUSIFS RETIRÉS — décision Sophie : ces "modes" (wellness, initiation, etc.)
+//     créaient une frustration UX sans vrai bénéfice doctrinal. Un user qui vise
+//     marathon entraîne déjà sa forme générale par construction ; mettre wellness
+//     "exclusif" sur-contraint le mental model. L'algo primary canonique tranche
+//     déjà la priorité (marathon > wellness), donc l'overlay couvre proprement.
+//     L'API `exclusiveGoals(for:)` reste exposée et retourne [] partout — code swap
+//     + toast reste dormant (filet sécurité futur si on découvre un cas réel).
+//   • Paires incompatibles par sport (5k+marathon, sprint+distance-m, etc.) — INCHANGÉES
+//   • Ordre canonique primary (sport-specifique, ranking depuis doctrine entraineurs) — INCHANGÉ
+//   • `strengthTraining` + `triathlon` : catalogue structurellement exclusif → Q2 forcée en
+//     `.singleChoice` côté `UniversalQuestionnaire`, donc la matrice ici n'est appelée
+//     qu'avec un seul goal. Pas besoin de gérer paires/exclusifs pour ces 2 sports.
 //
 // API consommée par :
 //   • UniversalQuestionnaire.buildProfile() pour choisir le primary algo (AC8-9)
@@ -27,22 +37,14 @@ enum GoalCompatibilityMatrix {
 
     // MARK: - Exclusifs
 
-    /// Goals qui ne peuvent jamais être combinés avec un autre objectif dans le même
-    /// programme. Cocher un exclusif désélectionne tout le reste (AC6).
+    /// Phase E (2026-05-19) — TOUS LES SPORTS retournent désormais [].
+    /// Les "modes" (wellness, initiation, reprise, etc.) ne sont plus exclusifs : l'algo
+    /// primary canonique gère la priorité, l'overlay traite les secondary normalement.
+    /// API conservée pour rester un filet (`isExclusive` est appelée par `isCompatible`,
+    /// `handleMultiTap`, etc.) et permettre une réintroduction ciblée si besoin V2.
     static func exclusiveGoals(for sportCode: String) -> Set<String> {
-        switch sportCode {
-        case "running":          return ["wellness"]
-        case "cycling":          return ["reprise"]
-        case "swimming":         return ["initiation"]
-        case "triathlon":        return ["decouverte"]
-        case "strengthTraining": return ["home-basics", "strength-5x5"]
-        case "yoga":             return ["initiation", "advanced"]
-        case "hiit":             return ["wellness"]
-        case "hiking":           return ["decouverte"]
-        case "tennis":           return ["initiation"]
-        case "football":         return ["initiation"]
-        default:                 return []
-        }
+        _ = sportCode  // explicit no-op pour signaler que la branche est intentionnellement vide
+        return []
     }
 
     static func isExclusive(_ goal: String, sportCode: String) -> Bool {

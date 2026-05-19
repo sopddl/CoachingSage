@@ -108,6 +108,26 @@ struct UIReviewScenarioContainer: View {
                 onSelect: { _ in },
                 onCancel: { }
             )
+        case "ui_review_q2_multichoice_running":
+            // **Story 3.13 Phase E (AC26)** — Q2 multi-choice running. Pré-sélectionne
+            // `5k` pour montrer les paires incompatibles grisées (`marathon`, `half_marathon`).
+            // Test du grisage matrice + bouton Confirmer désactivé tant qu'aucune sélection.
+            Q2MultiChoiceScenarioView(sportCode: "running", preselected: ["5k"])
+        case "ui_review_q2_singlecycle_strength":
+            // **Story 3.13 Phase E (AC26)** — strengthTraining a un catalogue
+            // structurellement exclusif (split ≠ programme combinable). Q2 forcée en
+            // `.singleChoice` + hint pédagogique "Choisis ton cycle actuel. Tu pourras
+            // en enchaîner d'autres ensuite." pour ne pas frustrer l'user.
+            Q2SingleCycleScenarioView(sportCode: "strengthTraining")
+        case "ui_review_q2_singlecycle_triathlon":
+            // **Story 3.13 Phase E (AC26)** — triathlon : 1 distance cible = 1 cycle.
+            // Même logique single-choice + hint cycle que strengthTraining.
+            Q2SingleCycleScenarioView(sportCode: "triathlon")
+        case "ui_review_q2_multichoice_swimming":
+            // **Story 3.13 Phase E (AC26)** — Q2 swimming aucune incompatible matrice.
+            // Pré-sélectionne `endurance` + `technique` (combinaison la plus fréquente,
+            // doctrine Maglischo). Aucun grisage attendu = baseline visuelle.
+            Q2MultiChoiceScenarioView(sportCode: "swimming", preselected: ["endurance", "technique"])
         case "ui_review_replanify_sheet_pickdate":
             // **Story 3.11** — ReplanifySheet step `.pickDate` : DatePicker
             // graphical + bouton Valider + bouton Retour. Step initial forcé
@@ -316,6 +336,113 @@ private struct DashboardActiveScenarioView: View {
             day: day, name: name, durationMinutes: dur, type: .endurance,
             warmup: "10 min échauffement", exercises: [], cooldown: "5 min retour au calme"
         )
+    }
+}
+
+// MARK: - Story 3.13 Phase E — Q2 multi-choice scenarios
+
+/// Container minimaliste rendant la `QuestionAnswerOptionsView` sur la Q2 du
+/// `UniversalQuestionnaire(sportCode:)` avec une pré-sélection injectée
+/// directement (le `@State` privé de `QuestionAnswerOptionsView` n'est pas
+/// accessible donc on reproduit ici la même logique via un wrapper qui force
+/// l'état initial via `selection`). Permet à l'agent ui-reviewer de screenshot
+/// le grisage matrice + paires incompatibles + exclusif sans avoir à taper.
+private struct Q2MultiChoiceScenarioView: View {
+    let sportCode: String
+    let preselected: [String]
+
+    var body: some View {
+        let q = UniversalQuestionnaire(sportCode: sportCode).q2Goal
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                Text(LocalizedStringKey(q.textKey))
+                    .font(.title3.weight(.semibold))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Q2MultiChoiceFixtureBody(
+                    question: q,
+                    sportCode: sportCode,
+                    preselected: Set(preselected)
+                )
+            }
+            .padding(16)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+/// Phase E — Container pour les sports à catalogue structurellement exclusif
+/// (`strengthTraining`, `triathlon`). Rend la Q2 avec `QuestionAnswerOptionsView`
+/// directement (qui détecte `isCycleExclusiveSport` et affiche la hint pédagogique
+/// "Choisis ton cycle actuel..." sous les options single-choice).
+private struct Q2SingleCycleScenarioView: View {
+    let sportCode: String
+    @State private var freeTextDraft: String = ""
+
+    var body: some View {
+        let q = UniversalQuestionnaire(sportCode: sportCode).q2Goal
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                Text(LocalizedStringKey(q.textKey))
+                    .font(.title3.weight(.semibold))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                QuestionAnswerOptionsView(
+                    question: q,
+                    onAnswer: { _ in /* noop ui-review */ },
+                    freeTextDraft: $freeTextDraft,
+                    isLocked: false,
+                    sportCode: sportCode
+                )
+            }
+            .padding(16)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+/// Reproduit le rendu visuel de `QuestionAnswerOptionsView` (cases à cocher +
+/// grisage matrice + bouton Confirmer) pour un set pré-sélectionné. NE PAS
+/// utiliser en prod : c'est un fixture pour ui-reviewer uniquement.
+private struct Q2MultiChoiceFixtureBody: View {
+    let question: QuestionnaireQuestion
+    let sportCode: String
+    @State var preselected: Set<String>
+
+    var body: some View {
+        VStack(spacing: 8) {
+            Text("questionnaire.universal.q2.hint.multi")
+                .font(.footnote)
+                .foregroundStyle(Color.coachingTextSecondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 4)
+
+            ForEach(question.options) { option in
+                let isSelected = preselected.contains(option.code)
+                let isDisabledByMatrix = GoalCompatibilityMatrix.isDisabled(
+                    option: option.code,
+                    given: preselected,
+                    sportCode: sportCode
+                )
+                HStack {
+                    Image(systemName: isSelected ? "checkmark.square.fill" : "square")
+                        .foregroundStyle(isSelected ? Color.coachingPrimary : Color.coachingTextSecondary)
+                    Text(LocalizedStringKey(option.labelKey))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding(.vertical, 12)
+                .padding(.horizontal, 16)
+                .background(Color.coachingCard)
+                .foregroundStyle(Color.coachingTextPrimary)
+                .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                .opacity(isDisabledByMatrix ? 0.35 : 1.0)
+            }
+
+            Text("questionnaire.options.confirm")
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 14)
+                .background(preselected.isEmpty ? Color.coachingDisabled : Color.coachingPrimary)
+                .foregroundStyle(Color.coachingOnPrimary)
+                .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+        }
     }
 }
 

@@ -191,6 +191,27 @@ Total : **~5j**.
 - Templates "hybrides" pré-construits (ex: template "5k + endurance"). Aujourd'hui overlay programmatique.
 - Cycling overlay `hybrid` (sweet spot injectable dans sortie longue) — V1 reste `dedicatedSession` pour simplicité (cf reviewer minor).
 
+## Pivot doctrine Phase E 2026-05-19 (post-ui-reviewer P1)
+
+L'agent `ui-reviewer` a remonté en Phase E (AC26) un finding P1 : les goals exclusifs (`wellness` running, `home-basics`/`strength-5x5` strength) n'étaient pas grisés visuellement quand un autre goal était sélectionné, créant une dissonance UX (l'user voit l'exclusif tappable alors que tapper déclenche un swap auto AC6 → perd sa sélection).
+
+Diagnostic Sophie : la matrice est **sur-contrainte**. Un user qui vise marathon entraîne déjà sa forme générale par construction ; classer `wellness` "exclusif" mélange "objectif" et "mode" — sans bénéfice doctrinal (le primary canonique tranche déjà).
+
+**Décisions Sophie 2026-05-19** :
+
+1. **Vider les exclusifs de la matrice pour tous les sports.** `GoalCompatibilityMatrix.exclusiveGoals(for:)` retourne `[]` partout. L'API + code swap + toast restent (filet sécurité, ré-introduction ciblée si besoin V2). Tous les "modes" (wellness, initiation, reprise, home-basics, etc.) deviennent simplement des goals comme les autres, soumis aux paires incompat uniquement.
+
+2. **Forcer `.singleChoice` pour `strengthTraining` + `triathlon`.** Catalogue structurellement exclusif (1 split = 1 programme strength ; 1 distance = 1 cycle triathlon). Multi-choice masquerait silencieusement le secondary (overlay `notApplicable`). Single + hint pédagogique "Choisis ton cycle actuel. Tu pourras en enchaîner d'autres ensuite." (FR) / "Pick your current cycle. You can chain others afterward." (EN) = honnête sans frustrer.
+
+3. **`UniversalQuestionnaire.isCycleExclusiveSport(_:)`** centralise cette décision. La View (`QuestionAnswerOptionsView.singleOptions`) affiche la hint cycle uniquement si Q2 + sport ∈ {strengthTraining, triathlon}.
+
+**Tests adaptés** :
+- `GoalCompatibilityMatrixTests` : 4 tests réécrits (exclusifs returns [], wellness compat, strength pair-only, swimming all free).
+- `UniversalQuestionnaireTests` : nouveau `q2Goal_isSingleChoiceForCycleExclusiveSports`.
+- Net : 83 tests verts couvrant les 3 suites Story 3.13.
+
+**Hint i18n key ajoutée** : `questionnaire.universal.q2.hint.cycle` FR/EN. La key `goal.exclusive.toast` reste dans le bundle (code dormant cas V2).
+
 ## Verdict reviewer doctrine 2026-05-19
 
 `template-quality-reviewer` : **APPROVED après 4 patches appliqués** :

@@ -132,9 +132,18 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         QuestionnaireQuestion(
             id: Self.q2GoalId,
             textKey: "questionnaire.\(sportCode).q2.text",
-            answerType: .multiChoice,
+            answerType: Self.isCycleExclusiveSport(sportCode) ? .singleChoice : .multiChoice,
             options: Self.goalOptions(for: sportCode)
         )
+    }
+
+    /// Story 3.13 Phase E — `strengthTraining` + `triathlon` ont un catalogue de templates
+    /// structurellement exclusif (1 split = 1 programme ; 1 distance = 1 cycle). Pour ces
+    /// 2 sports, Q2 reste en `.singleChoice` : on force l'user à choisir un cycle à la fois
+    /// + hint pédagogique "tu pourras en enchaîner d'autres ensuite" affichée par la View.
+    /// Les 8 autres sports passent en `.multiChoice` (objectifs combinables via overlay).
+    static func isCycleExclusiveSport(_ sportCode: String) -> Bool {
+        sportCode == "strengthTraining" || sportCode == "triathlon"
     }
 
     /// Codes goal alignés avec les slugs des templates `templates-manifest.json` (Story 0.5.10).
