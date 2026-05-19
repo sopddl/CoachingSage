@@ -176,6 +176,7 @@ extension AdaptedProgramRecord {
         weekStartDate: Date? = nil,
         cycleNumber: Int = 1,
         goal: String? = nil,
+        secondary: [String] = [],
         locale: Locale = .current
     ) {
         let sessions: [PersistedSession] = adapted.weeks.flatMap { week in
@@ -198,6 +199,7 @@ extension AdaptedProgramRecord {
         let autoTitle = AutoTitleBuilder.build(
             sportCode: adapted.sport.appSportCode,
             goal: goal,
+            secondary: secondary,
             locale: locale
         )
         self.init(

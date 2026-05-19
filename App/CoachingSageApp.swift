@@ -77,7 +77,7 @@ struct CoachingSageApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-                if let scenario = ProcessInfo.processInfo.environment["UI_TEST_SCENARIO"] {
+                if let scenario = Self.resolveUITestScenario() {
                     UIReviewScenarioContainer(scenario: scenario)
                 } else if !isAuthenticated {
                     AuthView(
@@ -147,6 +147,31 @@ struct CoachingSageApp: App {
             }
         }
         .modelContainer(container)
+    }
+
+    /// Résout le scenario `ui_review_*` au launch en lisant 3 sources successives :
+    ///   1. env var `UI_TEST_SCENARIO` (préférée, set via `SIMCTL_CHILD_UI_TEST_SCENARIO` ou `xcrun simctl launch --env`)
+    ///   2. launch arg flag `-UI_TEST_SCENARIO <value>` (`xcrun simctl launch ... -UI_TEST_SCENARIO ...`)
+    ///   3. launch arg prefix `ui_review_*` (passé directement comme argv)
+    ///
+    /// Le fallback launch args est nécessaire pour les agents (sandbox Bash + MCP `app_launch`)
+    /// qui ne peuvent pas injecter d'env var sur `xcrun simctl`. Cf finding ui-reviewer
+    /// 2026-05-19 + mémoire `epic3_ui_review_pattern_ported_cs`. À propager TS/GS.
+    private static func resolveUITestScenario() -> String? {
+        if let envScenario = ProcessInfo.processInfo.environment["UI_TEST_SCENARIO"],
+           !envScenario.isEmpty {
+            return envScenario
+        }
+        let args = ProcessInfo.processInfo.arguments
+        if let flagIndex = args.firstIndex(of: "-UI_TEST_SCENARIO"),
+           flagIndex + 1 < args.count {
+            let value = args[flagIndex + 1]
+            if !value.isEmpty { return value }
+        }
+        if let prefixed = args.first(where: { $0.hasPrefix("ui_review_") }) {
+            return prefixed
+        }
+        return nil
     }
 
     @MainActor

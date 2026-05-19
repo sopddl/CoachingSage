@@ -11,10 +11,16 @@ struct QuestionAnswerOptionsView: View {
     @Binding var freeTextDraft: String
     /// Désactive les contrôles pendant l'avancement (review P1-8 idempotence — feedback visuel).
     let isLocked: Bool
+    /// Story 3.13 Phase B — sportCode du questionnaire courant. Utilisé par `multiOptions` pour
+    /// appliquer la matrice de compatibilité goals Q2 (grisage incompatibles + swap exclusif).
+    /// Optionnel pour rétrocompat call sites historiques (autres questions multi sans matrice).
+    var sportCode: String? = nil
 
     @State private var multiSelection: Set<String> = []
     /// Date picker state pour Q4Date story sœur — minimum demain pour éviter date passée.
     @State private var pickedDate: Date = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+    /// Story 3.13 Phase E (AC25) — toast léger quand un goal exclusif est tapé (auto-désélection).
+    @State private var showExclusiveToast: Bool = false
 
     /// Cas spécial story sœur : Q4Date = date picker plutôt que TextField freeText.
     private var isDatePicker: Bool {
@@ -41,13 +47,34 @@ struct QuestionAnswerOptionsView: View {
         .background(Color.coachingBackground)
         .onChange(of: question.id) { _, _ in
             multiSelection.removeAll()  // reset à chaque nouvelle question
+            showExclusiveToast = false
         }
     }
 
     // MARK: - Single
 
+    /// Story 3.13 Phase E — hint pédagogique affichée sous Q2 quand le sport a un catalogue
+    /// structurellement exclusif (strengthTraining, triathlon). Rassure l'user que choisir
+    /// un seul cycle maintenant n'est pas une frustration finale : il pourra en enchaîner
+    /// d'autres après. Nil dans tous les autres cas (= pas de hint cycle parasitaire).
+    private var cycleHintKey: LocalizedStringKey? {
+        guard let sport = sportCode,
+              question.id == UniversalQuestionnaire.q2GoalId,
+              UniversalQuestionnaire.isCycleExclusiveSport(sport) else {
+            return nil
+        }
+        return "questionnaire.universal.q2.hint.cycle"
+    }
+
     private var singleOptions: some View {
         VStack(spacing: 8) {
+            if let hint = cycleHintKey {
+                Text(hint)
+                    .font(.footnote)
+                    .foregroundStyle(Color.coachingTextSecondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.bottom, 4)
+            }
             ForEach(question.options) { option in
                 Button {
                     guard !isLocked else { return }
@@ -74,26 +101,62 @@ struct QuestionAnswerOptionsView: View {
 
     // MARK: - Multi
 
+    /// Story 3.13 Phase E (AC25) — hint i18n key pour la zone multi-choice. Spécifique Q2 goals
+    /// quand sportCode présent (mention "compatibles" pour clarifier les grisages matrice),
+    /// sinon hint générique historique.
+    private var multiHintKey: LocalizedStringKey {
+        if sportCode != nil, question.id == UniversalQuestionnaire.q2GoalId {
+            return "questionnaire.universal.q2.hint.multi"
+        }
+        return "questionnaire.options.multi.hint"
+    }
+
+    /// Story 3.13 Phase B — calcule si l'option doit être grisée selon la matrice goals.
+    /// Active uniquement si `sportCode` fourni ET question = Q2 goal du questionnaire universel
+    /// (les autres questions multi historiques ne sont pas sujettes à la matrice).
+    private func goalOptionDisabled(_ optionCode: String) -> Bool {
+        guard let sport = sportCode,
+              question.id == UniversalQuestionnaire.q2GoalId else {
+            return false
+        }
+        return GoalCompatibilityMatrix.isDisabled(
+            option: optionCode,
+            given: multiSelection,
+            sportCode: sport
+        )
+    }
+
     private var multiOptions: some View {
         VStack(spacing: 8) {
+            Text(multiHintKey)
+                .font(.footnote)
+                .foregroundStyle(Color.coachingTextSecondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 4)
+
+            if showExclusiveToast {
+                Text("goal.exclusive.toast")
+                    .font(.footnote)
+                    .foregroundStyle(Color.coachingOnPrimary)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 12)
+                    .background(Color.coachingPrimary.opacity(0.85))
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .transition(.opacity)
+                    .accessibilityIdentifier("goalExclusiveToast")
+            }
+
             ForEach(question.options) { option in
+                let isSelected = multiSelection.contains(option.code)
+                let isDisabledByMatrix = goalOptionDisabled(option.code)
                 Button {
-                    guard !isLocked else { return }
-                    if multiSelection.contains(option.code) {
-                        multiSelection.remove(option.code)
-                    } else {
-                        // Si on sélectionne "none", désélectionner tout le reste (cohérence sémantique).
-                        if option.code == "none" {
-                            multiSelection = ["none"]
-                        } else {
-                            multiSelection.remove("none")
-                            multiSelection.insert(option.code)
-                        }
-                    }
+                    guard !isLocked, !isDisabledByMatrix else { return }
+                    handleMultiTap(optionCode: option.code, isSelected: isSelected)
                 } label: {
                     HStack {
-                        Image(systemName: multiSelection.contains(option.code) ? "checkmark.square.fill" : "square")
-                            .foregroundStyle(multiSelection.contains(option.code) ? Color.coachingPrimary : Color.coachingTextSecondary)
+                        Image(systemName: isSelected ? "checkmark.square.fill" : "square")
+                            .foregroundStyle(isSelected ? Color.coachingPrimary : Color.coachingTextSecondary)
                         Text(LocalizedStringKey(option.labelKey))
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -102,9 +165,10 @@ struct QuestionAnswerOptionsView: View {
                     .background(Color.coachingCard)
                     .foregroundStyle(Color.coachingTextPrimary)
                     .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                    .opacity(isDisabledByMatrix ? 0.35 : 1.0)
                 }
                 .buttonStyle(.plain)
-                .disabled(isLocked)
+                .disabled(isLocked || isDisabledByMatrix)
             }
 
             Button {
@@ -120,6 +184,42 @@ struct QuestionAnswerOptionsView: View {
             .foregroundStyle(Color.coachingOnPrimary)
             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
             .disabled(multiSelection.isEmpty || isLocked)
+        }
+    }
+
+    /// Logique tap multi-choice avec règles Story 3.13 Phase B :
+    ///   • "none" → reset à ["none"] (cohérence sémantique legacy)
+    ///   • Q2 goals + sportCode fourni + option exclusive → reset à [exclusive] (swap auto AC6)
+    ///   • option non-exclusive tapée alors qu'un exclusif est dans selection → ignore (impossible
+    ///     car isDisabled bloque déjà, mais défense en profondeur)
+    ///   • sinon : toggle classique
+    private func handleMultiTap(optionCode: String, isSelected: Bool) {
+        if isSelected {
+            multiSelection.remove(optionCode)
+            return
+        }
+        if optionCode == "none" {
+            multiSelection = ["none"]
+            return
+        }
+        if let sport = sportCode,
+           question.id == UniversalQuestionnaire.q2GoalId,
+           GoalCompatibilityMatrix.isExclusive(optionCode, sportCode: sport) {
+            // AC6 — exclusif désélectionne tout le reste
+            let hadOther = !multiSelection.subtracting([optionCode]).isEmpty
+            multiSelection = [optionCode]
+            if hadOther { flashExclusiveToast() }
+            return
+        }
+        multiSelection.remove("none")
+        multiSelection.insert(optionCode)
+    }
+
+    /// Affiche le toast exclusif pendant 2.5s puis le retire (animation opacity).
+    private func flashExclusiveToast() {
+        withAnimation(.easeInOut(duration: 0.2)) { showExclusiveToast = true }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            withAnimation(.easeInOut(duration: 0.3)) { showExclusiveToast = false }
         }
     }
 

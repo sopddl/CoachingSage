@@ -132,9 +132,18 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         QuestionnaireQuestion(
             id: Self.q2GoalId,
             textKey: "questionnaire.\(sportCode).q2.text",
-            answerType: .singleChoice,
+            answerType: Self.isCycleExclusiveSport(sportCode) ? .singleChoice : .multiChoice,
             options: Self.goalOptions(for: sportCode)
         )
+    }
+
+    /// Story 3.13 Phase E — `strengthTraining` + `triathlon` ont un catalogue de templates
+    /// structurellement exclusif (1 split = 1 programme ; 1 distance = 1 cycle). Pour ces
+    /// 2 sports, Q2 reste en `.singleChoice` : on force l'user à choisir un cycle à la fois
+    /// + hint pédagogique "tu pourras en enchaîner d'autres ensuite" affichée par la View.
+    /// Les 8 autres sports passent en `.multiChoice` (objectifs combinables via overlay).
+    static func isCycleExclusiveSport(_ sportCode: String) -> Bool {
+        sportCode == "strengthTraining" || sportCode == "triathlon"
     }
 
     /// Codes goal alignés avec les slugs des templates `templates-manifest.json` (Story 0.5.10).
@@ -267,10 +276,14 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         if case .single(let code) = answer, code == Self.q3DontKnowCode {
             return nil
         }
-        guard case .single(let goal) = accumulated[Self.q2GoalId] else {
+        // Story 3.13 Phase B : Q2 = .multiChoice. On utilise le primary canonique (selon ordre
+        // sport-specifique GoalCompatibilityMatrix.primaryPriority) comme pivot pour le branchement Q4,
+        // pour rester cohérent avec ce que buildProfile() finira par persister comme `goals.primary`.
+        let goalsList = Self.goalsList(accumulated, sportCode: sportCode)
+        guard let primaryGoal = GoalCompatibilityMatrix.pickPrimary(from: goalsList, sportCode: sportCode) else {
             return nil
         }
-        return Self.goalAllowsDeadline(goal, in: sportCode) ? Self.q4Duration : nil
+        return Self.goalAllowsDeadline(primaryGoal, in: sportCode) ? Self.q4Duration : nil
     }
 
     func findQuestion(byId id: QuestionId) -> QuestionnaireQuestion? {
@@ -295,7 +308,16 @@ struct UniversalQuestionnaire: SportQuestionnaire {
     ) -> CoachingSportProfile {
 
         let level = Self.singleAnswer(answers, key: Self.q1LevelId, default: "beginner")
-        let primaryGoal = Self.singleAnswer(answers, key: Self.q2GoalId, default: Self.defaultGoal(for: sportCode))
+
+        // Story 3.13 Phase B (AC8-9) : Q2 = .multiChoice → on extrait goals = [...].
+        // Primary algo : premier de l'ordre canonique sport-specifique qui matche la sélection user
+        // (cf GoalCompatibilityMatrix.primaryPriority). Fallback : premier goal user.
+        // Secondary = autres goals (ordre user préservé), primary exclu.
+        // Compat : si rows legacy .single (DB ou tests) → migré en .multi([primary]).
+        let goalsList = Self.goalsList(answers, sportCode: sportCode)
+        let primaryGoal = GoalCompatibilityMatrix.pickPrimary(from: goalsList, sportCode: sportCode)
+            ?? Self.defaultGoal(for: sportCode)
+        let secondaryGoals = goalsList.filter { $0 != primaryGoal }
 
         let frequencyLabel = Self.singleAnswer(answers, key: Self.q3FrequencyId, default: "2")
         let frequencyPerWeek: Int = {
@@ -324,7 +346,7 @@ struct UniversalQuestionnaire: SportQuestionnaire {
             userId: userId,
             sportCode: sportCode,
             level: level,
-            goals: GoalsPayload(primary: primaryGoal),
+            goals: GoalsPayload(primary: primaryGoal, secondary: secondaryGoals),
             equipment: [],         // décision Sophie 2026-05-04 : équipement = CoachingProfile.equipment (onboarding global)
             constraints: [],       // décision Sophie 2026-05-04 : contraintes = PARQ onboarding (requiresMedicalClearance)
             frequencyPerWeek: frequencyPerWeek,
@@ -389,5 +411,36 @@ struct UniversalQuestionnaire: SportQuestionnaire {
     ) -> String {
         guard let v = answers[key], case .single(let s) = v else { return fallback }
         return s
+    }
+
+    /// Story 3.13 Phase A — extrait la liste des goals cochés à Q2.
+    /// Tolère 3 formats : `.multi([codes])` (nominal post-3.13), `.single(code)` (legacy pre-3.13),
+    /// rien → []. Filtre les codes vides pour robustesse.
+    static func goalsList(
+        _ answers: [QuestionId: AnswerValue],
+        sportCode: String
+    ) -> [String] {
+        guard let v = answers[q2GoalId] else { return [] }
+        switch v {
+        case .multi(let codes):
+            return codes.filter { !$0.isEmpty }
+        case .single(let code):
+            return code.isEmpty ? [] : [code]
+        case .text:
+            return []
+        }
+    }
+
+    /// Premier goal coché (= primary en Phase A). Phase B raffinera via ranking sport-specifique.
+    static func firstGoal(in answers: [QuestionId: AnswerValue]) -> String? {
+        guard let v = answers[q2GoalId] else { return nil }
+        switch v {
+        case .multi(let codes):
+            return codes.first { !$0.isEmpty }
+        case .single(let code):
+            return code.isEmpty ? nil : code
+        case .text:
+            return nil
+        }
     }
 }

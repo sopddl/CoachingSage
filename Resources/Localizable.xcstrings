@@ -3577,6 +3577,23 @@
         }
       }
     },
+    "goal.exclusive.toast" : {
+      "comment" : "Story 3.13 Phase E — feedback affiché quand l'user tape un goal exclusif et que les autres sélections sont auto-désélectionnées (cf GoalCompatibilityMatrix.isExclusive).",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This goal is practiced solo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet objectif se pratique seul."
+          }
+        }
+      }
+    },
     "leon.fab.accessibility.hint" : {
       "localizations" : {
         "en" : {
@@ -5843,6 +5860,42 @@
         }
       }
     },
+    "program.title.and" : {
+      "comment" : "Story 3.13 — séparateur entre primary goal et secondary goals dans le titre auto du programme.",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " + "
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " + "
+          }
+        }
+      }
+    },
+    "program.title.others_count" : {
+      "comment" : "Story 3.13 — suffixe quand le titre composite dépasse 40 chars : '+N autre(s)' / '+N more'.",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%lld more"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%lld autre(s)"
+          }
+        }
+      }
+    },
     "progress.delta.down.a11y" : {
       "localizations" : {
         "en" : {
@@ -7019,6 +7072,22 @@
         }
       }
     },
+    "questionnaire.options.multi.hint" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can pick one or several."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu peux en choisir une ou plusieurs."
+          }
+        }
+      }
+    },
     "questionnaire.recovery.prompt" : {
       "localizations" : {
         "en" : {
@@ -8047,6 +8116,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comment tu te sens en ce moment dans ce sport ?"
+          }
+        }
+      }
+    },
+    "questionnaire.universal.q2.hint.cycle" : {
+      "comment" : "Story 3.13 Phase E — hint pédagogique affichée sous Q2 pour les sports à catalogue structurellement exclusif (strengthTraining, triathlon). Rassure l'user qu'il n'est pas bloqué : il peut enchaîner d'autres cycles après celui-ci.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pick your current cycle. You can chain others afterward."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisis ton cycle actuel. Tu pourras en enchaîner d'autres ensuite."
+          }
+        }
+      }
+    },
+    "questionnaire.universal.q2.hint.multi" : {
+      "comment" : "Story 3.13 Phase E — hint affichée sous Q2 goals (multi-choice) précisant qu'on peut choisir plusieurs goals compatibles (grisage matrice).",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can pick several compatible goals."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu peux en choisir plusieurs compatibles."
           }
         }
       }

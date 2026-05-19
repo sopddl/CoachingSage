@@ -248,6 +248,85 @@ final class AutoProgramFactoryTests: XCTestCase {
         XCTAssertEqual(programRepo.savedRecords.count, 0)
     }
 
+    // MARK: - Story 3.13 Phase D — propagation secondary
+
+    /// `commit(preview:userId:)` propage `goals.secondary` jusqu'au record persisté
+    /// via le titre composite. Vérifie ici qu'un sportProfile multi-objectifs
+    /// produit bien un customTitle composite (présence du séparateur ' + ').
+    func testCommitPropagatesSecondaryIntoCustomTitle() async throws {
+        let sportRepo = MockCoachingSportProfileRepository()
+        let programRepo = MockAdaptedProgramRepository()
+        let coachingRepo = MockCoachingProfileRepository()
+        coachingRepo.stubbedProfile = CoachingProfile(id: UUID())
+
+        let factory = AutoProgramFactory(
+            sportProfileRepository: sportRepo,
+            adaptedProgramRepository: programRepo,
+            coachingProfileRepository: coachingRepo,
+            templateLibraryProvider: { ProgramTemplateLibrary(templates: [AdapterTestFixtures.makeRunningTemplate()]) }
+        )
+
+        // Override le sportProfile pour injecter un secondary valide pour running.
+        var preview = try await factory.previewGenerate(
+            sportCode: "running", userId: UUID(), autoprofileLevel: "recreational"
+        )
+        preview = AutoProgramPreview(
+            program: preview.program,
+            sportProfile: CoachingSportProfile(
+                userId: preview.sportProfile.userId,
+                sportCode: "running",
+                level: preview.sportProfile.level,
+                goals: GoalsPayload(primary: "10k", secondary: ["wellness"]),
+                equipment: [],
+                constraints: [],
+                frequencyPerWeek: 3,
+                frequencyLabel: "3",
+                sessionDurationMinutes: nil,
+                freeTextNotes: nil,
+                conversationHistory: [],
+                medicalClearanceAcknowledged: false,
+                questionnaireVersion: "auto_v1",
+                durationMode: .routineCyclic,
+                targetDate: nil
+            )
+        )
+
+        _ = try await factory.commit(preview: preview, userId: preview.sportProfile.userId)
+
+        let saved = try XCTUnwrap(programRepo.savedRecords.first)
+        let customTitle = try XCTUnwrap(saved.customTitle, "customTitle doit être posé via AutoTitleBuilder")
+        XCTAssertTrue(customTitle.contains(" + "),
+                      "customTitle doit contenir séparateur ' + ' pour secondary non vide : '\(customTitle)'")
+    }
+
+    /// Cas secondary vide → titre composite NON appliqué (format Story 3.12 préservé).
+    func testCommitWithEmptySecondaryKeepsSimpleTitle() async throws {
+        let sportRepo = MockCoachingSportProfileRepository()
+        let programRepo = MockAdaptedProgramRepository()
+        let coachingRepo = MockCoachingProfileRepository()
+        coachingRepo.stubbedProfile = CoachingProfile(id: UUID())
+
+        let factory = AutoProgramFactory(
+            sportProfileRepository: sportRepo,
+            adaptedProgramRepository: programRepo,
+            coachingProfileRepository: coachingRepo,
+            templateLibraryProvider: { ProgramTemplateLibrary(templates: [AdapterTestFixtures.makeRunningTemplate()]) }
+        )
+
+        let preview = try await factory.previewGenerate(
+            sportCode: "running", userId: UUID(), autoprofileLevel: "recreational"
+        )
+        // Profile par défaut a goals.secondary = [].
+        XCTAssertTrue(preview.sportProfile.goals.secondary.isEmpty)
+
+        _ = try await factory.commit(preview: preview, userId: preview.sportProfile.userId)
+
+        let saved = try XCTUnwrap(programRepo.savedRecords.first)
+        let customTitle = try XCTUnwrap(saved.customTitle)
+        XCTAssertFalse(customTitle.contains(" + "),
+                       "Empty secondary doit produire titre simple sans ' + '")
+    }
+
     /// `medicalClearanceAcknowledged` est snapshot depuis `coachingProfile.requiresMedicalClearance`
     /// au moment de la génération (cf review P0-6 Story 3.1).
     func testGenerateSnapshotsRequiresMedicalClearance() async throws {

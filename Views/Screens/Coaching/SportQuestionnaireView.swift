@@ -181,7 +181,8 @@ struct SportQuestionnaireView: View {
                     Task { await viewModel.answer(value) }
                 },
                 freeTextDraft: $viewModel.freeTextDraft,
-                isLocked: viewModel.isAdvancing || isLoadingState
+                isLocked: viewModel.isAdvancing || isLoadingState,
+                sportCode: viewModel.questionnaire.sportCode
             )
         } else if isLoadingState {
             ProgressView()

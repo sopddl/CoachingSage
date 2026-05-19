@@ -29,10 +29,41 @@ final class ProgramAdapterService {
         sportProfile: CoachingSportProfile,
         coachingProfile: CoachingProfile
     ) -> AdaptedProgram {
-        adapter.adapt(
+        let facade = sportProfile.adapterFacade(merging: coachingProfile.equipment)
+        let adapted = adapter.adapt(
             template: template,
-            sportProfile: sportProfile.adapterFacade(merging: coachingProfile.equipment),
+            sportProfile: facade,
             coachingProfile: coachingProfile.adapterFacade
+        )
+
+        // Story 3.13 Phase C — Overlay secondary goals après l'adapter, avant
+        // persistence. Noop si secondary vide ou sport `notApplicable`.
+        guard !facade.secondaryGoals.isEmpty, !facade.sportCode.isEmpty else {
+            return adapted
+        }
+        let strategy = GoalCompatibilityMatrix.overlayStrategy(for: facade.sportCode)
+        let overlay = SecondaryGoalOverlay.apply(
+            weeks: adapted.weeks,
+            template: template,
+            primary: facade.goal,
+            secondary: facade.secondaryGoals,
+            frequency: facade.frequencyPerWeek,
+            sportCode: facade.sportCode,
+            strategy: strategy
+        )
+        guard !overlay.appliedOverlays.isEmpty else { return adapted }
+
+        return AdaptedProgram(
+            templateId: adapted.templateId,
+            sport: adapted.sport,
+            level: adapted.level,
+            appliedAt: adapted.appliedAt,
+            weeks: overlay.weeks,
+            appliedRules: adapted.appliedRules,
+            requiresAIAssist: adapted.requiresAIAssist,
+            aiAssistReason: adapted.aiAssistReason,
+            durationMode: adapted.durationMode,
+            targetDate: adapted.targetDate
         )
     }
 }
@@ -54,6 +85,8 @@ extension CoachingSportProfile {
             frequencyPerWeek: frequencyPerWeek,
             sessionDurationMinutes: sessionDurationMinutes,
             goal: goals.primary,
+            secondaryGoals: goals.secondary,
+            sportCode: sportCode,
             durationMode: durationMode,
             targetDate: targetDate
         )

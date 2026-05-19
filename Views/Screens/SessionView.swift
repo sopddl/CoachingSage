@@ -575,7 +575,11 @@ struct SessionView: View {
             sportProfile: sportProfile,
             coachingProfile: coachingProfile
         )
-        await persistAdaptedProgram(adapted, goal: sportProfile.goals.primary)
+        await persistAdaptedProgram(
+            adapted,
+            goal: sportProfile.goals.primary,
+            secondary: sportProfile.goals.secondary
+        )
         adaptedRoute = AdaptedProgramRoute(program: adapted, recordId: nil)
         await refreshDashboard()
     }
@@ -583,7 +587,12 @@ struct SessionView: View {
     /// Story 3.8 — persiste l'AdaptedProgram en `AdaptedProgramRecord` SwiftData
     /// pour alimenter le dashboard Séances. Best-effort : un échec n'empêche pas
     /// la navigation vers `AdaptedProgramView`.
-    private func persistAdaptedProgram(_ adapted: AdaptedProgram, goal: String?) async {
+    /// Story 3.13 Phase D — propage `secondary` pour titre composite multi-objectifs.
+    private func persistAdaptedProgram(
+        _ adapted: AdaptedProgram,
+        goal: String?,
+        secondary: [String] = []
+    ) async {
         guard let deps else { return }
         guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else {
             #if DEBUG
@@ -596,6 +605,7 @@ struct SessionView: View {
                 from: adapted,
                 userId: userId,
                 goal: goal,
+                secondary: secondary,
                 locale: languageManager.currentLocale
             )
             try await deps.adaptedProgramRepository.save(record)
