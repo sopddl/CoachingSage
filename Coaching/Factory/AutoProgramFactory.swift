@@ -105,6 +105,7 @@ final class AutoProgramFactory {
             from: preview.program,
             userId: userId,
             goal: preview.sportProfile.goals.primary,
+            secondary: preview.sportProfile.goals.secondary,
             locale: locale
         )
         try await adaptedProgramRepository.save(record)
