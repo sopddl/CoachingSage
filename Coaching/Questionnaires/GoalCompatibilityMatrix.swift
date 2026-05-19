@@ -13,6 +13,16 @@
 // Aucun état, tout statique. Sport inconnu → matrice vide (fail-safe).
 import Foundation
 
+/// Stratégie d'overlay pour appliquer les goals secondaires par-dessus le template
+/// primary. Décidé par sport via `GoalCompatibilityMatrix.overlayStrategy(for:)` (AC10).
+/// Consommé par `SecondaryGoalOverlay.apply(...)` (AC14-15).
+public enum OverlayStrategy: String, Equatable, Sendable {
+    case dedicatedSession    // 1 session/sem dédiée au secondary (si freq ≥ 2)
+    case mixInSession        // drills/exos secondary injectés en début de chaque session
+    case hybrid              // dedicated si freq ≥ 3, sinon mixInSession
+    case notApplicable       // sport single de facto (triathlon, strengthTraining)
+}
+
 enum GoalCompatibilityMatrix {
 
     // MARK: - Exclusifs
@@ -132,6 +142,32 @@ enum GoalCompatibilityMatrix {
             return canonical
         }
         return goals.first
+    }
+
+    // MARK: - Overlay strategy
+
+    /// Stratégie d'overlay secondary goals sur le template primary par sport.
+    /// Doctrine (cf doc Story 3.13 lignes 102-116) :
+    ///   • dedicatedSession  : remplacer N sessions du bloc par sessions thématiques secondary
+    ///                         (séances vitesse ≠ endurance long, splits cardio incompatibles)
+    ///   • mixInSession      : injecter drills/exos secondary en début de session
+    ///                         (drills technique + main set endurance = standard natation/yoga)
+    ///   • hybrid            : dedicated si freq ≥ 3, sinon mixIn (tennis fitness+match)
+    ///   • notApplicable     : sport single de facto, secondary devrait être bloqué en amont
+    static func overlayStrategy(for sportCode: String) -> OverlayStrategy {
+        switch sportCode {
+        case "running":          return .dedicatedSession  // vitesse/seuil ≠ endurance long (Daniels)
+        case "cycling":          return .dedicatedSession  // endurance/sorties-longues = séances dédiées (Friel)
+        case "swimming":         return .mixInSession      // drills + main set = standard natation (Maglischo)
+        case "yoga":             return .mixInSession      // hatha + vinyasa peuvent alterner postures
+        case "hiit":             return .dedicatedSession  // séances très spécifiques
+        case "hiking":           return .dedicatedSession  // day-hikes ≠ mountain-trek
+        case "tennis":           return .hybrid            // fitness drills + match practice
+        case "football":         return .dedicatedSession  // physique vs tactique
+        case "strengthTraining": return .notApplicable     // splits exclusifs par design catalogue
+        case "triathlon":        return .notApplicable     // distance unique de facto
+        default:                 return .notApplicable     // sport inconnu → fail-safe noop
+        }
     }
 
     // MARK: - UI helper

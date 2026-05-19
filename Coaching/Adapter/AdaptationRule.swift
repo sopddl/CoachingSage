@@ -69,6 +69,14 @@ public struct AdapterSportProfile: Equatable, Sendable {
     /// `ProgramDurationResolver` pour la LUT estimated weeks (sport × goal × level).
     public let goal: String
 
+    /// Story 3.13 — secondary goals (`goals.secondary`). Vide par défaut.
+    /// Consommé par `SecondaryGoalOverlay` après l'adapter pour moduler les séances.
+    public let secondaryGoals: [String]
+
+    /// Story 3.13 — code sport (`sportCode`) propagé pour les rules + overlay strategy.
+    /// Optionnel pour rétrocompat des call sites historiques.
+    public let sportCode: String
+
     /// Story sœur — mode de durée du programme. Source de vérité pour la durée
     /// finale en sortie de `ProgramAdapter` (truncate/extend des weeks template).
     public let durationMode: ProgramDurationMode
@@ -83,6 +91,8 @@ public struct AdapterSportProfile: Equatable, Sendable {
         frequencyPerWeek: Int,
         sessionDurationMinutes: Int? = nil,
         goal: String = "",
+        secondaryGoals: [String] = [],
+        sportCode: String = "",
         durationMode: ProgramDurationMode = .routineCyclic,
         targetDate: Date? = nil
     ) {
@@ -91,6 +101,8 @@ public struct AdapterSportProfile: Equatable, Sendable {
         self.frequencyPerWeek = frequencyPerWeek
         self.sessionDurationMinutes = sessionDurationMinutes
         self.goal = goal
+        self.secondaryGoals = secondaryGoals
+        self.sportCode = sportCode
         self.durationMode = durationMode
         self.targetDate = targetDate
     }
