@@ -90,6 +90,34 @@ final class UniversalQuestionnaireSupabaseConstraintTests: XCTestCase {
 
     // MARK: - routineCyclic (Q4=routine_3_months)
 
+    // MARK: - triathlon + sprint + routine — reproduit bug Sophie 2026-05-20
+
+    func test_triathlonSprintRoutine_targetDateKeyExplicitlyPresent() throws {
+        // Hotfix 2026-05-20 : avec le default JSONEncoder, `target_date` était
+        // ABSENT du payload (Optional nil → omis). L'UPSERT Supabase laissait
+        // alors une ancienne `target_date` non-null en DB → violation CHECK.
+        // Désormais le DTO custom-encode force `target_date: null` explicite.
+        let (json, profile) = try buildAndEncode(answers: [
+            "q1_level": .single("recreational"),
+            "q2_goal": .single("sprint"),
+            "q3_frequency": .single("2"),
+            "q4_duration": .single(UniversalQuestionnaire.q4Routine3MonthsCode)
+        ], sportCode: "triathlon")
+        XCTAssertEqual(profile.durationMode, .routineCyclic)
+        XCTAssertNil(profile.targetDate)
+        XCTAssertEqual(json["duration_mode"] as? String, "routineCyclic")
+        // Le test critique : la KEY `target_date` DOIT être présente dans le JSON
+        // (avec une valeur null), pas absente.
+        XCTAssertTrue(
+            json.keys.contains("target_date"),
+            "target_date doit apparaître explicitement dans le JSON pour qu'un UPSERT efface une ancienne valeur"
+        )
+        XCTAssertTrue(
+            json["target_date"] is NSNull,
+            "target_date doit être NSNull (= JSON null), pas une date résiduelle"
+        )
+    }
+
     func test_routine3Months_payloadHasNullTargetDate() throws {
         let (json, profile) = try buildAndEncode(answers: [
             "q1_level": .single("recreational"),
