@@ -203,14 +203,15 @@ struct SportQuestionnaireView: View {
 
     @ViewBuilder
     private func bubble(for message: ChatMessage) -> some View {
+        let sportCode = viewModel.questionnaire.sportCode
         switch message {
         case .leonText(_, let key):
-            ChatBubbleView(sender: .leon, textRaw: key)
+            ChatBubbleView(sender: .leon, textRaw: key, avatarStyle: .sport(code: sportCode))
         case .userText(_, let text):
             ChatBubbleView(sender: .user, textRaw: text)
         case .typingIndicator:
             HStack(alignment: .top, spacing: 8) {
-                LeonAvatarView(size: 32)
+                SportAvatarView(sportCode: sportCode, size: 32)
                 TypingIndicatorView()
                 Spacer(minLength: 40)
             }
