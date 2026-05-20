@@ -24,6 +24,7 @@
 // Aucun switch FR/EN, aucun LocalizedStringKey ici (mémoire `multilangue_extensible_regle`).
 // Tous les textes sont des clés xcstrings résolues côté View via Text(LocalizedStringKey(textKey)).
 import Foundation
+import TemplateModel
 
 struct UniversalQuestionnaire: SportQuestionnaire {
 
@@ -334,7 +335,8 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         let (durationMode, targetDate) = Self.resolveDuration(
             answers: answers,
             goal: primaryGoal,
-            sportCode: sportCode
+            sportCode: sportCode,
+            level: level
         )
 
         // Free text non collecté dans le universal mais conservé en API : le ViewModel pourra
@@ -365,13 +367,20 @@ struct UniversalQuestionnaire: SportQuestionnaire {
     /// - Q3=dont_know → routineCyclic
     /// - Q3=N + goal non eligible → routineCyclic
     /// - Q4=routine_3_months → routineCyclic
-    /// - Q4=let_me_estimate → deadlineEstimated (targetDate calculée par adapter)
+    /// - Q4=let_me_estimate → deadlineEstimated (targetDate **pré-calculée**
+    ///   ici via `ProgramDurationResolver` pour respecter la CHECK constraint
+    ///   Supabase `coaching_sport_profiles_target_date_consistency` qui exige
+    ///   `target_date NOT NULL` pour ce mode. L'ancienne version retournait
+    ///   `nil` et déléguait au ProgramAdapter, mais le profile est sauvegardé
+    ///   AVANT que l'adapter ne s'exécute → insert rejeté).
     /// - Q4=target_date + Q4Date=ISO8601 → deadlineFixed (targetDate = parsed date)
     /// - Q4=target_date sans Q4Date valide → fallback routineCyclic (défense en profondeur)
     static func resolveDuration(
         answers: [QuestionId: AnswerValue],
         goal: String,
-        sportCode: String
+        sportCode: String,
+        level: String,
+        now: Date = Date()
     ) -> (ProgramDurationMode, Date?) {
         // Q3 dont_know → routine
         if case .single(let freq) = answers[q3FrequencyId], freq == q3DontKnowCode {
@@ -389,7 +398,24 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         case q4Routine3MonthsCode:
             return (.routineCyclic, nil)
         case q4LetMeEstimateCode:
-            return (.deadlineEstimated, nil)  // ProgramAdapter remplira targetDate
+            // Hotfix CHECK constraint Supabase : on pré-calcule la date estimée
+            // ICI plutôt que de la déléguer au ProgramAdapter (qui s'exécute après
+            // le save du profile). Sport/Level invalides → fallback routineCyclic
+            // (défense en profondeur, ne devrait jamais arriver en prod).
+            guard let sport = Sport(sportCode: sportCode),
+                  let levelEnum = Level(rawValue: level) else {
+                return (.routineCyclic, nil)
+            }
+            let (_, estimated) = ProgramDurationResolver().resolve(
+                durationMode: .deadlineEstimated,
+                targetDate: nil,
+                goal: goal,
+                sport: sport,
+                level: levelEnum,
+                templateDurationWeeks: 12, // ignoré par le resolver en .deadlineEstimated
+                now: now
+            )
+            return (.deadlineEstimated, estimated)
         case q4TargetDateCode:
             // Q4Date = ISO8601 string (cf View date picker)
             if case .text(let dateString?) = answers[q4DateId],
