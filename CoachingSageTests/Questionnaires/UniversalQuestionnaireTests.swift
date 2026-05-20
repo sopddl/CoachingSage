@@ -225,8 +225,13 @@ struct UniversalQuestionnaireTests {
         #expect(profile.targetDate == nil)
     }
 
-    @Test("Q4=let_me_estimate → deadlineEstimated, targetDate nil (calculé par adapter)")
+    @Test("Q4=let_me_estimate → deadlineEstimated, targetDate pré-calculée (CHECK constraint)")
     func buildProfile_q4Estimate_buildsDeadlineEstimated() {
+        // Hotfix CHECK constraint Supabase : la targetDate est pré-calculée par
+        // `resolveDuration` via `ProgramDurationResolver` (sport×goal×level → LUT
+        // semaines → date). L'ancienne version retournait nil et déléguait au
+        // ProgramAdapter, mais le profile est sauvegardé AVANT l'adapter → la
+        // CHECK `coaching_sport_profiles_target_date_consistency` rejetait l'insert.
         let q = UniversalQuestionnaire(sportCode: "triathlon")
         let profile = q.buildProfile(
             userId: UUID(),
@@ -241,7 +246,8 @@ struct UniversalQuestionnaireTests {
             medicalClearanceAcknowledged: false
         )
         #expect(profile.durationMode == .deadlineEstimated)
-        #expect(profile.targetDate == nil)
+        #expect(profile.targetDate != nil)
+        #expect(profile.targetDate! > Date())  // futur, jamais dans le passé
     }
 
     @Test("Q4=target_date suit Q4Date date picker")
