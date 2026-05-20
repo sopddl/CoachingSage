@@ -28,6 +28,11 @@ final class CoachingProfile {
     var disclaimerAcceptedAt: Date?
     var onboardingCompletedAt: Date?        // source of truth "onboarding done"
 
+    // Story 3.15 : flag idempotent du bootstrap dormants (selectTopN ×3 au 1er
+    // launch post-onboarding). Mis à `true` par `DormantBootstrapService.bootstrapIfNeeded()`
+    // avant toute persistance — pas de retry, pas de regénération auto.
+    var bootstrappedDormants: Bool = false
+
     var createdAt: Date = Date()
     var updatedAt: Date = Date()
     var isSoftDeleted: Bool = false
@@ -46,6 +51,7 @@ final class CoachingProfile {
         self.disclaimerVersionAccepted = nil
         self.disclaimerAcceptedAt = nil
         self.onboardingCompletedAt = nil
+        self.bootstrappedDormants = false
         self.createdAt = Date()
         self.updatedAt = Date()
         self.isSoftDeleted = false

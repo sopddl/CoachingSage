@@ -23,6 +23,9 @@ struct AppDependencies {
     /// Story 3.11 — re-planification d'un programme (reportSession + shiftWeek).
     /// Câblé sur live() à partir de l'`adaptedProgramRepository` uniquement.
     let replanifyService: any ReplanifyService
+    /// Story 3.15 — bootstrap 3 dormants au 1er launch post-onboarding via
+    /// `selectTopN`. Appelé UNIQUEMENT depuis `OnboardingViewModel.finalize()`.
+    let dormantBootstrapService: DormantBootstrapService
 
     @MainActor
     static func live(modelContext: ModelContext) -> AppDependencies {
@@ -45,6 +48,16 @@ struct AppDependencies {
         let replanifyService = DefaultReplanifyService(
             adaptedProgramRepository: adaptedProgramRepository
         )
+        let autoProgramFactory = AutoProgramFactory(
+            sportProfileRepository: coachingSportProfileRepository,
+            adaptedProgramRepository: adaptedProgramRepository,
+            coachingProfileRepository: coachingProfileRepository
+        )
+        let dormantBootstrapService = DormantBootstrapService(
+            coachingProfileRepository: coachingProfileRepository,
+            adaptedProgramRepository: adaptedProgramRepository,
+            factory: autoProgramFactory
+        )
         return AppDependencies(
             coreProfileRepository: coreProfileRepository,
             coachingProfileRepository: coachingProfileRepository,
@@ -57,7 +70,8 @@ struct AppDependencies {
             healthKitService: healthKitService,
             sageCoachingAIService: DefaultSageCoachingAIService(),
             weeklyRegenApplicationService: weeklyRegenApplicationService,
-            replanifyService: replanifyService
+            replanifyService: replanifyService,
+            dormantBootstrapService: dormantBootstrapService
         )
     }
 }

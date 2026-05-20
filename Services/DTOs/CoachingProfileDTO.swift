@@ -16,6 +16,9 @@ struct CoachingProfileDTO: Decodable {
     let disclaimerVersionAccepted: String?
     let disclaimerAcceptedAt: Date?
     let onboardingCompletedAt: Date?
+    /// Story 3.15 — flag bootstrap dormants. Default `false` au decoder pour
+    /// rétrocompat des rows pre-migration 008 (race deploy).
+    let bootstrappedDormants: Bool
     let createdAt: Date
     let updatedAt: Date
     let isSoftDeleted: Bool
@@ -34,6 +37,7 @@ struct CoachingProfileDTO: Decodable {
         case disclaimerVersionAccepted = "disclaimer_version_accepted"
         case disclaimerAcceptedAt = "disclaimer_accepted_at"
         case onboardingCompletedAt = "onboarding_completed_at"
+        case bootstrappedDormants = "bootstrapped_dormants"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case isSoftDeleted = "is_soft_deleted"
@@ -59,6 +63,9 @@ struct CoachingProfileDTO: Decodable {
         disclaimerVersionAccepted = try container.decodeIfPresent(String.self, forKey: .disclaimerVersionAccepted)
         disclaimerAcceptedAt = try container.decodeIfPresent(Date.self, forKey: .disclaimerAcceptedAt)
         onboardingCompletedAt = try container.decodeIfPresent(Date.self, forKey: .onboardingCompletedAt)
+        // Story 3.15 — default `false` si la colonne est absente (rétrocompat
+        // migration 008 pas encore déployée OU rows pre-migration).
+        bootstrappedDormants = try container.decodeIfPresent(Bool.self, forKey: .bootstrappedDormants) ?? false
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
         isSoftDeleted = try container.decode(Bool.self, forKey: .isSoftDeleted)
@@ -78,6 +85,7 @@ struct CoachingProfileDTO: Decodable {
         profile.disclaimerVersionAccepted = disclaimerVersionAccepted
         profile.disclaimerAcceptedAt = disclaimerAcceptedAt
         profile.onboardingCompletedAt = onboardingCompletedAt
+        profile.bootstrappedDormants = bootstrappedDormants
         profile.createdAt = createdAt
         profile.updatedAt = updatedAt
         profile.isSoftDeleted = isSoftDeleted
@@ -108,6 +116,9 @@ struct CoachingProfileUpsertDTO: Codable {
     let disclaimerVersionAccepted: String?
     let disclaimerAcceptedAt: Date?
     let onboardingCompletedAt: Date?
+    /// Story 3.15 — flag bootstrap dormants, persisté en UPSERT pour
+    /// idempotence cross-device.
+    let bootstrappedDormants: Bool
     let createdAt: Date
     let updatedAt: Date
 
@@ -124,6 +135,7 @@ struct CoachingProfileUpsertDTO: Codable {
         case disclaimerVersionAccepted = "disclaimer_version_accepted"
         case disclaimerAcceptedAt = "disclaimer_accepted_at"
         case onboardingCompletedAt = "onboarding_completed_at"
+        case bootstrappedDormants = "bootstrapped_dormants"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
@@ -141,6 +153,7 @@ struct CoachingProfileUpsertDTO: Codable {
         self.disclaimerVersionAccepted = profile.disclaimerVersionAccepted
         self.disclaimerAcceptedAt = profile.disclaimerAcceptedAt
         self.onboardingCompletedAt = profile.onboardingCompletedAt
+        self.bootstrappedDormants = profile.bootstrappedDormants
         self.createdAt = profile.createdAt
         self.updatedAt = profile.updatedAt
     }

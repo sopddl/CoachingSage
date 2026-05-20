@@ -24,15 +24,21 @@ import SwiftUI
 import TemplateModel
 
 struct ActiveDashboardView: View {
-    /// **Story 3.10** — programmes affichés dans le carrousel horizontal.
-    /// Tri déjà appliqué côté VM (cf `compareSummariesForCarousel`).
-    let programs: [ProgramSummary]
-    /// `record.id` de la card sélectionnée dans le carrousel. La `NextSessionCard`
-    /// sous le carrousel reflète ce programme. `nil` (cas dégénéré) = première card.
+    /// **Story 3.15** — programmes lancés (`weekStartDate != nil`) affichés dans
+    /// le carrousel horizontal Zone 1. Tri `lastUpdatedAt desc` appliqué côté VM.
+    let startedPrograms: [ProgramSummary]
+    /// **Story 3.15** — programmes dormants (`weekStartDate == nil`) affichés
+    /// dans la Zone 3 (liste verticale "Préparés"). Vide → zone 3 absente.
+    let dormantPrograms: [ProgramSummary]
+    /// `record.id` de la card sélectionnée dans le carrousel. Toujours un
+    /// `startedPrograms` (jamais un dormant). `nil` (cas dégénéré) = première card.
     let selectedId: UUID?
+    /// **Story 3.15 AC7** — session N+1 du programme sélectionné (teaser sous
+    /// la séance focale). `nil` = pas de N+1, on affiche "Dernière séance de
+    /// la semaine" si focal existe.
+    let teaserSession: PersistedSession?
     /// Phase B.5 — map `record.id → RegenBadge` peuplée pour les programmes
-    /// dont la regen S+1 a été appliquée cette semaine. Une entrée absente
-    /// signifie "pas de regen, pas de badge".
+    /// dont la regen S+1 a été appliquée cette semaine.
     var regenBadges: [UUID: RegenBadge] = [:]
     let onSelectProgram: (UUID) -> Void
     let onTapStartSession: (ProgramSummary) -> Void
@@ -42,119 +48,82 @@ struct ActiveDashboardView: View {
     let onDeleteProgram: (ProgramSummary) -> Void
     /// **Story 3.11** — tap "Replanifier" (visible uniquement quand la prochaine
     /// séance affichée est `late` ET le programme est en mode deadline).
-    /// Ouvre la `ReplanifySheet`. No-op si nil (cas tests / preview).
     var onTapReplanify: ((ProgramSummary) -> Void)? = nil
+    /// **Story 3.15 AC7** — tap sur le teaser N+1. Navigue vers le programme
+    /// sélectionné (la session ciblée est traitée par le caller — coordonnée
+    /// éventuellement passée à `AdaptedProgramView`). No-op si nil.
+    var onTapTeaser: ((ProgramSummary, PersistedSession) -> Void)? = nil
 
     private var selectedSummary: ProgramSummary? {
-        if let selectedId, let s = programs.first(where: { $0.id == selectedId }) { return s }
-        return programs.first
+        if let selectedId, let s = startedPrograms.first(where: { $0.id == selectedId }) { return s }
+        return startedPrograms.first
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
-            section(titleKey: "dashboard.active.programs.title") {
-                programsLayout
-            }
-
-            // **Story 3.12** — NextSessionCard affichée uniquement quand on a UN
-            // SEUL programme (raccourci "Démarrer la prochaine séance") ou quand
-            // ≥ 4 programmes (carrousel swipable + détail de la card sélectionnée).
-            // En 2-3 programmes, les cards visibles à l'écran sont suffisantes,
-            // l'user tap directement la card du programme qu'il veut faire.
-            if shouldShowNextSessionCard, let selectedSummary {
-                section(titleKey: "dashboard.active.next.title") {
-                    NextSessionCard(
-                        summary: selectedSummary,
-                        onTapStart: { onTapStartSession(selectedSummary) },
-                        onTapDetail: { onTapProgram(selectedSummary) },
-                        onTapReplanify: onTapReplanify.map { handler in
-                            { handler(selectedSummary) }
-                        }
-                    )
+            // **Story 3.15** — Zone 1 : carrousel "Programmes en cours" (started only).
+            // Carrousel snap unique (suppression layouts adaptatifs 1/2/3 hérités
+            // de Story 3.12 : le carrousel marche aussi bien à 1 card qu'à 5).
+            if !startedPrograms.isEmpty {
+                section(titleKey: "dashboard.section.in_progress.title") {
+                    programCarousel
                 }
             }
-        }
-    }
 
-    /// **Story 3.12** — 4 layouts adaptatifs selon `programs.count` :
-    ///   - 1 prog : 1 card full-width portrait, présence maximale + NextSessionCard sous.
-    ///   - 2 prog : 2 cards demi-largeur portrait côte à côte.
-    ///   - 3 prog : 3 cards tiers-largeur portrait côte à côte.
-    ///   - ≥ 4 prog : carrousel horizontal swipable (snap natif iOS 17).
-    @ViewBuilder
-    private var programsLayout: some View {
-        switch programs.count {
-        case 0:
-            EmptyView()
-        case 1:
-            singleProgramLayout
-        case 2, 3:
-            adaptiveGridLayout
-        default:
-            programCarousel
-        }
-    }
+            // **Story 3.15** — Zone 2 : séance focale (NextSessionCard) +
+            // teaser N+1 (NextSessionTeaser) — toujours visibles ensemble dès
+            // qu'on a une sélection. Suppression du `shouldShowNextSessionCard`
+            // hérité (seuils 1 ou ≥4) : la focale s'affiche désormais TOUJOURS
+            // quand un programme est sélectionné.
+            if let selectedSummary {
+                section(titleKey: "dashboard.section.next_session.title") {
+                    VStack(spacing: 12) {
+                        NextSessionCard(
+                            summary: selectedSummary,
+                            onTapStart: { onTapStartSession(selectedSummary) },
+                            onTapDetail: { onTapProgram(selectedSummary) },
+                            onTapReplanify: onTapReplanify.map { handler in
+                                { handler(selectedSummary) }
+                            }
+                        )
+                        // Teaser N+1 toujours visible juste sous la focale
+                        // (décision Sophie 2026-05-20 figée).
+                        NextSessionTeaser(
+                            teaserSession: teaserSession,
+                            hasFocal: selectedSummary.nextSession != nil,
+                            onTapTeaser: { session in
+                                onTapTeaser?(selectedSummary, session)
+                            }
+                        )
+                    }
+                }
+            }
 
-    /// Décide si la `NextSessionCard` (raccourci "Démarrer la prochaine séance")
-    /// est affichée. Logique Story 3.12 : seulement quand on a 1 programme
-    /// (présence + raccourci utile) ou ≥ 4 programmes (carrousel swipable où la
-    /// card centrale "sélectionnée" mérite un détail dessous).
-    private var shouldShowNextSessionCard: Bool {
-        programs.count == 1 || programs.count >= 4
-    }
-
-    /// Layout N=1 : 1 card programme prenant toute la largeur. Hauteur portrait
-    /// ~180pt pour donner de la présence + accommoder les badges regen + statut.
-    @ViewBuilder
-    private var singleProgramLayout: some View {
-        if let summary = programs.first {
-            SwipeToDeleteRow(onDelete: { onDeleteProgram(summary) }) {
-                ProgramCard(
-                    summary: summary,
-                    badge: regenBadges[summary.id],
-                    isSelected: false, // pas de notion de sélection en mode 1
-                    onTap: { onTapProgram(summary) }
+            // **Story 3.15** — Zone 3 : liste "Préparés" (dormants en liste
+            // verticale scrollable). Affichée uniquement si dormantPrograms ≠ ∅.
+            if !dormantPrograms.isEmpty {
+                DormantProgramsList(
+                    dormants: dormantPrograms,
+                    onTapProgram: onTapProgram,
+                    onDeleteProgram: onDeleteProgram
                 )
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 180)
         }
     }
 
-    /// Layout N=2 ou N=3 : HStack avec cards qui se partagent la largeur via
-    /// `.frame(maxWidth: .infinity)`. Pas de scroll, tout visible. Tap card =
-    /// ouvre directement le programme (pas de sélection puisque toutes visibles).
-    @ViewBuilder
-    private var adaptiveGridLayout: some View {
-        HStack(spacing: 10) {
-            ForEach(programs) { summary in
-                SwipeToDeleteRow(onDelete: { onDeleteProgram(summary) }) {
-                    ProgramCard(
-                        summary: summary,
-                        badge: regenBadges[summary.id],
-                        isSelected: false,
-                        onTap: { onTapProgram(summary) }
-                    )
-                }
-                .frame(maxWidth: .infinity)
-            }
-        }
-        .frame(height: 170)
-    }
-
-    /// **Story 3.10 → 3.12** — carrousel horizontal swipable activé à partir de
-    /// 4 programmes. Snap natif iOS 17, `.scrollPosition(id:)` bind à la
-    /// sélection (la card centrale = card sélectionnée → NextSessionCard suit).
+    /// **Story 3.15** — carrousel horizontal swipable unique pour les started.
+    /// Snap natif iOS 17, `.scrollPosition(id:)` bind à la sélection (la card
+    /// centrale = card sélectionnée → NextSessionCard suit).
     @ViewBuilder
     private var programCarousel: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 12) {
-                ForEach(programs) { summary in
+                ForEach(startedPrograms) { summary in
                     SwipeToDeleteRow(onDelete: { onDeleteProgram(summary) }) {
                         ProgramCard(
                             summary: summary,
                             badge: regenBadges[summary.id],
-                            isSelected: summary.id == (selectedId ?? programs.first?.id),
+                            isSelected: summary.id == (selectedId ?? startedPrograms.first?.id),
                             onTap: { onTapProgram(summary) }
                         )
                     }
@@ -169,7 +138,7 @@ struct ActiveDashboardView: View {
         .scrollTargetBehavior(.viewAligned)
         .scrollPosition(
             id: Binding(
-                get: { selectedId ?? programs.first?.id },
+                get: { selectedId ?? startedPrograms.first?.id },
                 set: { newID in
                     if let newID, newID != selectedId {
                         onSelectProgram(newID)

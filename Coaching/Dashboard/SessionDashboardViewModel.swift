@@ -30,22 +30,32 @@ import TemplateModel
 @MainActor
 @Observable
 final class SessionDashboardViewModel {
-    /// **Story 3.10** — modes du dashboard Séances.
-    ///   - `.empty`  : aucun programme actif → placeholder + suggestions.
-    ///   - `.active(programs, selectedId)` : carrousel + NextSessionCard.
+    /// **Story 3.15** — 3 modes du dashboard Séances après refonte hiérarchique :
+    ///   - `.empty`         : 0 lancé + 0 dormant → CTA central simple
+    ///   - `.dormantOnly(dormants)` : 0 lancé + N dormants → liste "Préparés"
+    ///                                 remontée en tête, pas de carrousel ni
+    ///                                 séance focale
+    ///   - `.active(started, dormants, selectedId)` : ≥ 1 lancé → carrousel +
+    ///                                                 séance focale + teaser
+    ///                                                 N+1 + (optionnel) liste
+    ///                                                 "Préparés" dessous
     ///
-    /// `selectedId` est le `record.id` de la card sélectionnée dans le carrousel.
-    /// `nil` = première card par défaut (cf `currentSelectedSummary`).
+    /// Le mode hérité Story 3.10 `.active(programs:, selectedId:)` est remplacé
+    /// pour refléter la nouvelle hiérarchie 3 zones. `selectedId` ne référence
+    /// QUE des `started` (jamais un dormant).
     enum Mode: Equatable {
         case empty
-        case active(programs: [ProgramSummary], selectedId: UUID?)
+        case dormantOnly(dormants: [ProgramSummary])
+        case active(started: [ProgramSummary], dormants: [ProgramSummary], selectedId: UUID?)
 
         static func == (lhs: Mode, rhs: Mode) -> Bool {
             switch (lhs, rhs) {
             case (.empty, .empty):
                 return true
-            case let (.active(lp, lsel), .active(rp, rsel)):
-                return lp == rp && lsel == rsel
+            case let (.dormantOnly(ld), .dormantOnly(rd)):
+                return ld == rd
+            case let (.active(ls, ld, lsel), .active(rs, rd, rsel)):
+                return ls == rs && ld == rd && lsel == rsel
             default:
                 return false
             }
@@ -64,6 +74,9 @@ final class SessionDashboardViewModel {
 
     /// Templates suggérés en mode vide (3 par défaut, calibrés sur autoprofil
     /// + sports onboarding). Vide tant que `mode != .empty`.
+    /// **Story 3.15** : déprécié — Phase 3 supprime cette propriété et le call-site
+    /// `SessionView.swift:242`. Les "suggestions" deviennent des dormants persistés
+    /// via `DormantBootstrapService` au post-onboarding.
     private(set) var emptyModeSuggestions: [ProgramTemplate] = []
 
     /// Sports actifs déclarés à l'onboarding (passé au questionnaire universel
@@ -71,15 +84,21 @@ final class SessionDashboardViewModel {
     /// `CoachingProfile.activeSports` pour ne pas relancer un fetch côté Vue.
     private(set) var declaredSportCodes: [String] = []
 
-    /// **Story 3.10** — programmes actifs triés selon AC22 : démarrés AVANT
-    /// dormants, puis nextDate asc entre démarrés, puis lastUpdatedAt desc entre
-    /// dormants. Mirror de `mode.active.programs` pour les call-sites internes
-    /// (regen badges, modifiedSessionCoordinates).
+    /// **Story 3.15 AC1** — programmes démarrés (`weekStartDate != nil`), triés
+    /// par `lastUpdatedAt desc`. Source de vérité pour le carrousel Zone 1.
+    private(set) var startedSummaries: [ProgramSummary] = []
+
+    /// **Story 3.15 AC1** — programmes dormants (`weekStartDate == nil` ET
+    /// `isActive == true`), triés par `lastUpdatedAt desc`. Source de vérité pour
+    /// la liste "Préparés" Zone 3.
+    private(set) var dormantSummaries: [ProgramSummary] = []
+
+    /// **Story 3.15** — concaténation started + dormant (started en tête) pour
+    /// les call-sites internes (regen badges, modifiedSessionCoordinates,
+    /// tests rétrocompat). Le tri intra-liste suit `lastUpdatedAt desc`.
+    /// Les sous-listes pures sont exposées via `startedSummaries` / `dormantSummaries`.
     var activeProgramSummaries: [ProgramSummary] {
-        switch mode {
-        case .empty: return []
-        case let .active(programs, _): return programs
-        }
+        startedSummaries + dormantSummaries
     }
 
     /// Phase B.5 — badges regen S+1 indexés par `AdaptedProgramRecord.id`. Une
@@ -156,50 +175,83 @@ final class SessionDashboardViewModel {
             let now = nowProvider()
             if programs.isEmpty {
                 mode = .empty
-                await loadEmptyModeSuggestions(profile: profile)
+                startedSummaries = []
+                dormantSummaries = []
+                emptyModeSuggestions = []
             } else {
                 emptyModeSuggestions = []
                 await ensureLibraryCached()
-                let summaries = makeProgramSummaries(programs: programs, now: now)
-                // Sélection par défaut = première card du carrousel (= démarré
-                // avec next session la plus proche, sinon dormant le plus récent).
-                let defaultSelection = summaries.first?.id
-                let previousSelection = currentSelectedId
-                let selectedId = previousSelection.flatMap { id in
-                    summaries.contains(where: { $0.id == id }) ? id : nil
-                } ?? defaultSelection
-                mode = .active(programs: summaries, selectedId: selectedId)
+                // **Story 3.15 AC1** — split started/dormant à la racine.
+                let split = makeProgramSummaries(programs: programs, now: now)
+                startedSummaries = split.started
+                dormantSummaries = split.dormant
+                // **Story 3.15 AC3** — bascule sur 3 modes :
+                //   - 0 started + N dormants → `.dormantOnly`
+                //   - ≥ 1 started → `.active`, selectedId ne référence QUE des started
+                if startedSummaries.isEmpty {
+                    mode = .dormantOnly(dormants: dormantSummaries)
+                } else {
+                    let defaultSelection = startedSummaries.first?.id
+                    let previousSelection = currentSelectedId
+                    let selectedId = previousSelection.flatMap { id in
+                        startedSummaries.contains(where: { $0.id == id }) ? id : nil
+                    } ?? defaultSelection
+                    mode = .active(
+                        started: startedSummaries,
+                        dormants: dormantSummaries,
+                        selectedId: selectedId
+                    )
+                }
             }
         } catch {
             self.error = error.localizedDescription
             mode = .empty
+            startedSummaries = []
+            dormantSummaries = []
             emptyModeSuggestions = []
             recordsByID = [:]
         }
         loading = false
     }
 
-    /// **Story 3.10** — selectedId courant (extrait de `mode.active`).
-    /// `nil` en mode empty.
+    /// **Story 3.15** — selectedId courant (extrait de `mode.active`).
+    /// `nil` en `.empty` ou `.dormantOnly` (pas de notion de selection dans ces
+    /// modes — le carrousel n'apparaît pas).
     var currentSelectedId: UUID? {
-        if case let .active(_, selectedId) = mode { return selectedId }
+        if case let .active(_, _, selectedId) = mode { return selectedId }
         return nil
     }
 
-    /// **Story 3.10** — ProgramSummary correspondant au selectedId courant.
-    /// Source de vérité pour `NextSessionCard`. `nil` en mode empty ou si la
-    /// sélection a été flushée par un refresh (cas dégénéré).
+    /// **Story 3.15** — ProgramSummary correspondant au selectedId courant.
+    /// Source de vérité pour `NextSessionCard` + `NextSessionTeaser`. `nil` en
+    /// `.empty`/`.dormantOnly` ou si la sélection a été flushée par un refresh.
+    /// La sélection ne référence QUE des started (jamais un dormant).
     var currentSelectedSummary: ProgramSummary? {
-        guard case let .active(programs, selectedId) = mode else { return nil }
-        return programs.first { $0.id == selectedId }
+        guard case let .active(started, _, selectedId) = mode else { return nil }
+        return started.first { $0.id == selectedId }
     }
 
-    /// **Story 3.10** — bascule la sélection sur une card du carrousel. No-op
-    /// si l'id n'existe pas dans `mode.active.programs`.
+    /// **Story 3.15** — bascule la sélection sur une card du carrousel. No-op si :
+    ///   - mode ≠ `.active` (notamment `.dormantOnly`)
+    ///   - l'id ne référence pas un started (un dormant tap → push direct via
+    ///     `DormantProgramsList`, pas via `selectProgram`)
     func selectProgram(id: UUID) {
-        guard case let .active(programs, _) = mode else { return }
-        guard programs.contains(where: { $0.id == id }) else { return }
-        mode = .active(programs: programs, selectedId: id)
+        guard case let .active(started, dormants, _) = mode else { return }
+        guard started.contains(where: { $0.id == id }) else { return }
+        mode = .active(started: started, dormants: dormants, selectedId: id)
+    }
+
+    /// **Story 3.15 AC7** — session N+1 (teaser) du programme sélectionné,
+    /// calculée via `NextSessionResolver.nextTwoSessions(for:now:).teaser`.
+    /// `nil` quand pas de programme sélectionné, ou quand la blockingWeek
+    /// deadline ne contient qu'1 seule pending (cas "Dernière séance de la
+    /// semaine"). Recalculée à chaque accès (peu coûteux : un sort sur les
+    /// sessions pending du record).
+    var currentTeaserSession: PersistedSession? {
+        guard case let .active(_, _, selectedId) = mode,
+              let id = selectedId,
+              let record = recordsByID[id] else { return nil }
+        return resolver.nextTwoSessions(for: record, now: nowProvider()).teaser?.session
     }
 
     /// Phase B.4 — invoque `WeeklyRegenApplicationService.checkAndApplyIfDue`
@@ -297,12 +349,23 @@ final class SessionDashboardViewModel {
         cachedLibrary = try? await templateLibraryProvider()
     }
 
-    /// **Story 3.10** — Construit les `ProgramSummary` plats pour le carrousel.
-    /// Tri 3 niveaux (AC22) :
-    ///   1. démarrés (`weekStartDate != nil`) AVANT dormants
-    ///   2. entre démarrés : nextDate ascending
-    ///   3. entre dormants : `lastUpdatedAt` desc (le dernier créé en tête)
-    private func makeProgramSummaries(programs: [AdaptedProgramRecord], now: Date) -> [ProgramSummary] {
+    /// **Story 3.15 AC1** — Construit les `ProgramSummary` plats + split en
+    /// `(started, dormant)`. Chaque sous-liste triée par `lastUpdatedAt desc`
+    /// (programme manipulé récemment en tête).
+    ///
+    /// **Tuple convention** :
+    ///   - `started` : `weekStartDate != nil`
+    ///   - `dormant` : `weekStartDate == nil` (et `isActive == true`, déjà
+    ///     filtré par `programRepository.fetchActive`)
+    ///
+    /// Le tri intra-liste n'utilise plus `nextDate asc` (Story 3.10) : depuis
+    /// Story 3.12 la refonte vue semaine fait que `effectiveDate` du resolver
+    /// est toujours `now`. `lastUpdatedAt desc` met en tête le programme touché
+    /// en dernier.
+    private func makeProgramSummaries(
+        programs: [AdaptedProgramRecord],
+        now: Date
+    ) -> (started: [ProgramSummary], dormant: [ProgramSummary]) {
         let summaries = programs.map { record -> ProgramSummary in
             let nextResult = resolver.nextSession(for: record, now: now)
             let resolvedName = cachedLibrary?.templates
@@ -353,23 +416,13 @@ final class SessionDashboardViewModel {
                 nextSessionIsLate: isLate
             )
         }
-        return summaries.sorted(by: Self.compareSummariesForCarousel)
-    }
-
-    /// **Story 3.10 AC22 — refondue Story 3.12** : tri 2 niveaux.
-    ///   1. démarrés (`weekStartDate != nil`) AVANT dormants
-    ///   2. `lastUpdatedAt` desc (programme manipulé récemment en tête)
-    ///
-    /// Avant Story 3.12 le tri secondaire entre démarrés était `nextDate asc`,
-    /// mais depuis la refonte vue semaine l'`effectiveDate` du resolver est
-    /// toujours `now` (les séances n'ont plus de date individuelle).
-    /// `lastUpdatedAt desc` met en tête le programme touché en dernier, qui est
-    /// le candidat le plus probable pour le focus utilisateur.
-    static func compareSummariesForCarousel(_ lhs: ProgramSummary, _ rhs: ProgramSummary) -> Bool {
-        let lhsStarted = lhs.weekStartDate != nil
-        let rhsStarted = rhs.weekStartDate != nil
-        if lhsStarted != rhsStarted { return lhsStarted } // démarrés AVANT dormants
-        return lhs.lastUpdatedAt > rhs.lastUpdatedAt
+        let started = summaries
+            .filter { $0.weekStartDate != nil }
+            .sorted { $0.lastUpdatedAt > $1.lastUpdatedAt }
+        let dormant = summaries
+            .filter { $0.weekStartDate == nil }
+            .sorted { $0.lastUpdatedAt > $1.lastUpdatedAt }
+        return (started: started, dormant: dormant)
     }
 
     /// Numéro de semaine courante du programme (1-indexed). 1 si dormant

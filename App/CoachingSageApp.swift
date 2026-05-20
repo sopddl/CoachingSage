@@ -212,7 +212,8 @@ struct CoachingSageApp: App {
             onboardingViewModel = OnboardingViewModel(
                 coreProfileRepository: deps.coreProfileRepository,
                 coachingProfileRepository: deps.coachingProfileRepository,
-                healthKitService: deps.healthKitService
+                healthKitService: deps.healthKitService,
+                dormantBootstrapService: deps.dormantBootstrapService
             )
         }
         isLoadingOnboardingState = false

@@ -202,6 +202,119 @@ final class NextSessionResolverTests: XCTestCase {
         XCTAssertNil(resolver.nextSession(for: record, now: now))
     }
 
+    // MARK: - Story 3.15 AC7 / AC23 — nextTwoSessions (focal + teaser N+1)
+
+    /// **AC23** — programme avec ≥ 2 sessions pending → tuple `(focal, teaser)` rempli.
+    func testNextTwoSessions_returnsFocalAndTeaser_whenAvailable() {
+        let s1 = makeSession(weekNumber: 1, day: 1)
+        let s2 = makeSession(weekNumber: 1, day: 2)
+        let s3 = makeSession(weekNumber: 2, day: 1)
+        let record = makeRecord(mode: .ondemand, sessions: [s3, s1, s2])
+
+        let result = resolver.nextTwoSessions(for: record, now: now)
+
+        XCTAssertEqual(result.focal?.session.id, s1.id)
+        XCTAssertEqual(result.teaser?.session.id, s2.id)
+        XCTAssertEqual(result.focal?.effectiveDate, now)
+        XCTAssertEqual(result.teaser?.effectiveDate, now)
+    }
+
+    /// **AC23** — programme avec 1 seule session pending → `teaser = nil` (label
+    /// UI "Dernière séance de la semaine" possible).
+    func testNextTwoSessions_returnsFocalOnly_whenLastOfWeek() {
+        let s1 = makeSession(weekNumber: 1, day: 1)
+        let s2 = makeSession(weekNumber: 1, day: 2)
+        let record = makeRecord(
+            mode: .ondemand,
+            sessions: [s1, s2],
+            completed: [s1.id]
+        )
+
+        let result = resolver.nextTwoSessions(for: record, now: now)
+
+        XCTAssertEqual(result.focal?.session.id, s2.id)
+        XCTAssertNil(result.teaser)
+    }
+
+    /// **AC23** — dormant → (nil, nil).
+    func testNextTwoSessions_dormantReturnsNilNil() {
+        let s = makeSession(weekNumber: 1, day: 1)
+        let record = makeRecord(mode: .ondemand, sessions: [s], weekStartDate: nil)
+
+        let result = resolver.nextTwoSessions(for: record, now: now)
+
+        XCTAssertNil(result.focal)
+        XCTAssertNil(result.teaser)
+    }
+
+    /// **AC23 (critique)** — en mode `.planned + .deadlineFixed`, focal ET
+    /// teaser doivent appartenir à la même `blockingWeek`. Pas de spillover sur
+    /// la semaine suivante tant que la blockingWeek n'est pas terminée.
+    ///
+    /// Setup : S1 entièrement complétée, S2 avec 2 pending, S3 avec 1 pending.
+    /// `currentWeek` = S3 (weekStartDate = now − 2 semaines). `blockingWeek` = S2.
+    /// Attendu : focal = 1ère pending S2, teaser = 2e pending S2 (PAS S3).
+    func testNextTwoSessions_respectsDeadlineBlock_focalAndTeaserSameBlockingWeek() {
+        let s1d1 = makeSession(weekNumber: 1, day: 1)
+        let s2d1 = makeSession(weekNumber: 2, day: 1)
+        let s2d2 = makeSession(weekNumber: 2, day: 2)
+        let s3d1 = makeSession(weekNumber: 3, day: 1)
+        let record = makeRecord(
+            mode: .planned,
+            sessions: [s1d1, s2d1, s2d2, s3d1],
+            completed: [s1d1.id],
+            durationMode: .deadlineFixed,
+            weekStartDate: weekStart(weeksAgo: 2, from: now)
+        )
+
+        let result = resolver.nextTwoSessions(for: record, now: now)
+
+        XCTAssertEqual(result.focal?.session.id, s2d1.id)
+        XCTAssertEqual(result.focal?.session.weekNumber, 2)
+        XCTAssertEqual(result.teaser?.session.id, s2d2.id)
+        XCTAssertEqual(result.teaser?.session.weekNumber, 2,
+                       "Teaser doit rester dans la blockingWeek S2, pas de spillover sur S3")
+    }
+
+    /// **AC23** — blockingWeek S2 avec 1 seule pending → focal=S2, teaser=nil
+    /// (PAS la session S3 pending). Vérifie qu'on ne déborde pas la blockingWeek.
+    func testNextTwoSessions_deadlineBlock_singlePendingInBlockingWeek_teaserNil() {
+        let s2d1 = makeSession(weekNumber: 2, day: 1)
+        let s3d1 = makeSession(weekNumber: 3, day: 1)
+        let record = makeRecord(
+            mode: .planned,
+            sessions: [s2d1, s3d1],
+            completed: [],
+            durationMode: .deadlineFixed,
+            weekStartDate: weekStart(weeksAgo: 2, from: now)
+        )
+
+        let result = resolver.nextTwoSessions(for: record, now: now)
+
+        XCTAssertEqual(result.focal?.session.id, s2d1.id)
+        XCTAssertNil(result.teaser, "Teaser doit être nil : pas de spillover S3 tant que S2 incomplete")
+    }
+
+    /// **AC23** — cohérence : focal de `nextTwoSessions` == focal de `nextSession(for:now:)`.
+    func testNextTwoSessions_focalIsConsistentWithNextSession() {
+        let s1d1 = makeSession(weekNumber: 1, day: 1)
+        let s1d2 = makeSession(weekNumber: 1, day: 2)
+        let s2d1 = makeSession(weekNumber: 2, day: 1)
+        let record = makeRecord(
+            mode: .planned,
+            sessions: [s1d1, s1d2, s2d1],
+            completed: [s1d1.id],
+            durationMode: .deadlineFixed,
+            weekStartDate: weekStart(weeksAgo: 1, from: now)
+        )
+
+        let nextResult = resolver.nextSession(for: record, now: now)
+        let twoResult = resolver.nextTwoSessions(for: record, now: now)
+
+        XCTAssertEqual(nextResult?.session.id, twoResult.focal?.session.id,
+                       "focal doit être identique à nextSession(for:now:)")
+    }
+
     // MARK: - Helpers
 
     private func makeSession(

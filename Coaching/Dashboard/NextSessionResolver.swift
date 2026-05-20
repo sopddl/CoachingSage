@@ -144,4 +144,84 @@ struct NextSessionResolver {
             return lhs.program.sportCode < rhs.program.sportCode
         }
     }
+
+    /// **Story 3.15 AC7** — Renvoie la séance focale + son teaser N+1 d'un
+    /// programme, dans le respect du blocage doux deadline. Garantit la
+    /// cohérence focale↔teaser : en mode `.planned + .deadline*`, les 2 sessions
+    /// retournées appartiennent à la même `blockingWeek` (la 1ère semaine
+    /// ≤ currentWeek qui contient du pending). Si la blockingWeek n'a qu'1
+    /// session pending → `teaser = nil` (on ne révèle pas une session de S+1
+    /// tant que la semaine bloquante n'est pas terminée).
+    ///
+    /// Cas particuliers :
+    ///   - `weekStartDate == nil` (dormant) → `(focal: nil, teaser: nil)`
+    ///   - Aucune session pending (programme complété) → `(nil, nil)`
+    ///   - 1 seule session pending → `(focal: not nil, teaser: nil)` ("dernière
+    ///     séance de la semaine" affichable côté UI)
+    func nextTwoSessions(
+        for record: AdaptedProgramRecord,
+        now: Date
+    ) -> (focal: Result?, teaser: Result?) {
+        let ordered = orderedPendingSessions(for: record, now: now)
+        guard let first = ordered.first else { return (focal: nil, teaser: nil) }
+        let focalResult = Result(program: record, session: first, effectiveDate: now)
+        guard ordered.count >= 2 else { return (focal: focalResult, teaser: nil) }
+        let teaserResult = Result(program: record, session: ordered[1], effectiveDate: now)
+        return (focal: focalResult, teaser: teaserResult)
+    }
+
+    /// **Story 3.15** — helper privé : sessions pending triées selon la même
+    /// règle que `nextSession(for:now:)`. Centralise la logique de filtrage et
+    /// tri pour permettre à `nextTwoSessions` de respecter `blockingWeek`.
+    /// Retourne `[]` si dormant ou programme complété.
+    private func orderedPendingSessions(
+        for record: AdaptedProgramRecord,
+        now: Date
+    ) -> [PersistedSession] {
+        guard let weekStart = record.weekStartDate else { return [] }
+        let completedIds = Set(record.completionState.sessionRecords.keys)
+        let pending = record.sessions.filter { !completedIds.contains($0.id) }
+        guard !pending.isEmpty else { return [] }
+
+        switch record.mode {
+        case .planned:
+            switch record.durationMode {
+            case .deadlineFixed, .deadlineEstimated:
+                let currentWeek = Self.currentWeekNumber(weekStartDate: weekStart, now: now)
+                // **Story 3.11 AC1** — blocage doux : on prend la 1ère semaine
+                // ≤ currentWeek qui contient du pending. focal + teaser doivent
+                // tous deux appartenir à cette blockingWeek.
+                let blockingWeek = pending
+                    .map(\.weekNumber)
+                    .filter { $0 <= currentWeek }
+                    .min()
+                if let blockingWeek {
+                    return pending
+                        .filter { $0.weekNumber == blockingWeek }
+                        .sorted {
+                            if $0.day != $1.day { return $0.day < $1.day }
+                            return $0.id.uuidString < $1.id.uuidString
+                        }
+                }
+                // Pas de blockingWeek (toutes semaines ≤ currentWeek complétées)
+                // → tri linéaire sur les semaines futures.
+                return pending.sorted {
+                    if $0.weekNumber != $1.weekNumber { return $0.weekNumber < $1.weekNumber }
+                    return $0.day < $1.day
+                }
+
+            case .routineCyclic:
+                return pending.sorted {
+                    if $0.weekNumber != $1.weekNumber { return $0.weekNumber < $1.weekNumber }
+                    return $0.day < $1.day
+                }
+            }
+
+        case .ondemand:
+            return pending.sorted {
+                if $0.weekNumber != $1.weekNumber { return $0.weekNumber < $1.weekNumber }
+                return $0.day < $1.day
+            }
+        }
+    }
 }
