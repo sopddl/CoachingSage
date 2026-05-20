@@ -247,14 +247,15 @@ final class NextSessionResolverTests: XCTestCase {
         XCTAssertNil(result.teaser)
     }
 
-    /// **AC23 (critique)** — en mode `.planned + .deadlineFixed`, focal ET
-    /// teaser doivent appartenir à la même `blockingWeek`. Pas de spillover sur
-    /// la semaine suivante tant que la blockingWeek n'est pas terminée.
+    /// **AC23 (raffiné Sophie 2026-05-20)** — en mode deadline, focal respecte
+    /// le blocage doux MAIS le teaser saute en cross-week pour donner un
+    /// horizon visuel à l'user.
     ///
-    /// Setup : S1 entièrement complétée, S2 avec 2 pending, S3 avec 1 pending.
-    /// `currentWeek` = S3 (weekStartDate = now − 2 semaines). `blockingWeek` = S2.
-    /// Attendu : focal = 1ère pending S2, teaser = 2e pending S2 (PAS S3).
-    func testNextTwoSessions_respectsDeadlineBlock_focalAndTeaserSameBlockingWeek() {
+    /// Setup : S1 complétée, S2 = [s2d1, s2d2], S3 = [s3d1]. blockingWeek = S2.
+    /// Attendu : focal = s2d1 (blocage doux), teaser = s2d2 (linéaire 2e).
+    /// (Dans ce cas, le teaser reste dans S2 parce qu'il y a 2 pending en S2
+    /// avant S3. Mais voir le test suivant pour cross-week.)
+    func testNextTwoSessions_deadlineBlock_teaserIsLinearSecondPending() {
         let s1d1 = makeSession(weekNumber: 1, day: 1)
         let s2d1 = makeSession(weekNumber: 2, day: 1)
         let s2d2 = makeSession(weekNumber: 2, day: 2)
@@ -269,16 +270,14 @@ final class NextSessionResolverTests: XCTestCase {
 
         let result = resolver.nextTwoSessions(for: record, now: now)
 
-        XCTAssertEqual(result.focal?.session.id, s2d1.id)
-        XCTAssertEqual(result.focal?.session.weekNumber, 2)
-        XCTAssertEqual(result.teaser?.session.id, s2d2.id)
-        XCTAssertEqual(result.teaser?.session.weekNumber, 2,
-                       "Teaser doit rester dans la blockingWeek S2, pas de spillover sur S3")
+        XCTAssertEqual(result.focal?.session.id, s2d1.id, "Focal = blockingWeek S2 (blocage doux)")
+        XCTAssertEqual(result.teaser?.session.id, s2d2.id, "Teaser = 2e session linéaire pending")
     }
 
-    /// **AC23** — blockingWeek S2 avec 1 seule pending → focal=S2, teaser=nil
-    /// (PAS la session S3 pending). Vérifie qu'on ne déborde pas la blockingWeek.
-    func testNextTwoSessions_deadlineBlock_singlePendingInBlockingWeek_teaserNil() {
+    /// **AC23 (raffiné Sophie 2026-05-20)** — blockingWeek S2 avec 1 seule
+    /// pending → focal=S2, teaser=S3 (cross-week !). Décision Sophie : « même
+    /// si c'est sur une autre semaine il faut que ça apparaisse ».
+    func testNextTwoSessions_deadlineBlock_teaserCrossesWeek() {
         let s2d1 = makeSession(weekNumber: 2, day: 1)
         let s3d1 = makeSession(weekNumber: 3, day: 1)
         let record = makeRecord(
@@ -291,8 +290,10 @@ final class NextSessionResolverTests: XCTestCase {
 
         let result = resolver.nextTwoSessions(for: record, now: now)
 
-        XCTAssertEqual(result.focal?.session.id, s2d1.id)
-        XCTAssertNil(result.teaser, "Teaser doit être nil : pas de spillover S3 tant que S2 incomplete")
+        XCTAssertEqual(result.focal?.session.id, s2d1.id, "Focal reste sur blockingWeek S2")
+        XCTAssertEqual(result.teaser?.session.id, s3d1.id,
+                       "Teaser saute en S3 (cross-week) — décision Sophie 2026-05-20")
+        XCTAssertEqual(result.teaser?.session.weekNumber, 3)
     }
 
     /// **AC23** — cohérence : focal de `nextTwoSessions` == focal de `nextSession(for:now:)`.

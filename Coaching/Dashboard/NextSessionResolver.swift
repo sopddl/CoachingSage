@@ -145,28 +145,53 @@ struct NextSessionResolver {
         }
     }
 
-    /// **Story 3.15 AC7** — Renvoie la séance focale + son teaser N+1 d'un
-    /// programme, dans le respect du blocage doux deadline. Garantit la
-    /// cohérence focale↔teaser : en mode `.planned + .deadline*`, les 2 sessions
-    /// retournées appartiennent à la même `blockingWeek` (la 1ère semaine
-    /// ≤ currentWeek qui contient du pending). Si la blockingWeek n'a qu'1
-    /// session pending → `teaser = nil` (on ne révèle pas une session de S+1
-    /// tant que la semaine bloquante n'est pas terminée).
+    /// **Story 3.15 AC7 (raffiné Sophie 2026-05-20 test simu)** — Renvoie la
+    /// séance focale + son teaser N+1.
+    ///
+    /// **Focal** : respecte le blocage doux deadline (1ère semaine ≤ currentWeek
+    /// qui contient du pending, sinon tri linéaire).
+    ///
+    /// **Teaser** : la 2e session pending par tri linéaire `(weekNumber, day)`,
+    /// **sans contrainte blockingWeek**. Si la focale est S2J3 (blockingWeek S2)
+    /// et que S2 n'a qu'1 pending, le teaser affichera S3J1 (semaine suivante).
+    ///
+    /// Décision produit Sophie 2026-05-20 : « même si c'est sur une autre
+    /// semaine, il faut que ça apparaisse » — le teaser est un horizon visuel
+    /// utile pour l'user qui veut anticiper, indépendamment de la règle de
+    /// blocage doux focale.
     ///
     /// Cas particuliers :
     ///   - `weekStartDate == nil` (dormant) → `(focal: nil, teaser: nil)`
     ///   - Aucune session pending (programme complété) → `(nil, nil)`
-    ///   - 1 seule session pending → `(focal: not nil, teaser: nil)` ("dernière
-    ///     séance de la semaine" affichable côté UI)
+    ///   - 1 seule session pending dans tout le programme → `(focal: not nil,
+    ///     teaser: nil)` (vrai "Dernière séance de la semaine" / fin programme)
     func nextTwoSessions(
         for record: AdaptedProgramRecord,
         now: Date
     ) -> (focal: Result?, teaser: Result?) {
-        let ordered = orderedPendingSessions(for: record, now: now)
-        guard let first = ordered.first else { return (focal: nil, teaser: nil) }
-        let focalResult = Result(program: record, session: first, effectiveDate: now)
-        guard ordered.count >= 2 else { return (focal: focalResult, teaser: nil) }
-        let teaserResult = Result(program: record, session: ordered[1], effectiveDate: now)
+        // Focal : on respecte le blocage doux deadline via `nextSession`.
+        guard let focalResult = nextSession(for: record, now: now) else {
+            return (focal: nil, teaser: nil)
+        }
+        // Teaser : 2e session pending par tri linéaire (weekNumber, day), HORS
+        // contrainte blockingWeek (l'user veut voir l'horizon même cross-week).
+        // On exclut la session focale de la recherche pour éviter le doublon
+        // quand la focale est elle-même la 1ère du tri linéaire.
+        guard let weekStart = record.weekStartDate else {
+            return (focal: focalResult, teaser: nil)
+        }
+        _ = weekStart // reservé pour use future (date calcul cross-week label)
+        let completedIds = Set(record.completionState.sessionRecords.keys)
+        let linearPending = record.sessions
+            .filter { !completedIds.contains($0.id) && $0.id != focalResult.session.id }
+            .sorted {
+                if $0.weekNumber != $1.weekNumber { return $0.weekNumber < $1.weekNumber }
+                return $0.day < $1.day
+            }
+        guard let teaserSession = linearPending.first else {
+            return (focal: focalResult, teaser: nil)
+        }
+        let teaserResult = Result(program: record, session: teaserSession, effectiveDate: now)
         return (focal: focalResult, teaser: teaserResult)
     }
 

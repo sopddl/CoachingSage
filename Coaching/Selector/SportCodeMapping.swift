@@ -94,3 +94,23 @@ extension Level {
         }
     }
 }
+
+extension SessionType {
+    /// Story 3.15 — Clé i18n statique pour le pill intensité affiché sur la
+    /// NextSessionCard focale. Mapping court : "Endurance", "Fractionné",
+    /// "Technique", "Renforcement", "Mixte", "Mobilité", "Récup", "Séance".
+    /// Pattern statique (anti `LocalizedStringKey("foo.\(bar)")` cf hotfix
+    /// 2026-05-12).
+    var localizedKey: LocalizedStringKey {
+        switch self {
+        case .endurance: return "session.type.endurance"
+        case .interval:  return "session.type.interval"
+        case .technique: return "session.type.technique"
+        case .strength:  return "session.type.strength"
+        case .mixed:     return "session.type.mixed"
+        case .mobility:  return "session.type.mobility"
+        case .rest:      return "session.type.rest"
+        case .other:     return "session.type.other"
+        }
+    }
+}

@@ -112,10 +112,17 @@ struct ActiveDashboardView: View {
     }
 
     /// **Story 3.15** — carrousel horizontal swipable unique pour les started.
-    /// Snap natif iOS 17, `.scrollPosition(id:)` bind à la sélection (la card
-    /// centrale = card sélectionnée → NextSessionCard suit).
+    /// Snap natif iOS 17, `.scrollPosition(id:)` bind à la sélection.
+    ///
+    /// **Sophie 2026-05-20 (test simu)** — bug "je n'arrive pas à sélectionner
+    /// le second" : à 2 cards le snap iOS 17 ne switche pas toujours (le
+    /// pointeur souris simu reconnaît mal le swipe court). Solution :
+    /// **double-clic / double-tap pour push, simple tap pour sélectionner**.
+    /// L'user tap une fois pour focaliser le programme (séance focale + teaser
+    /// mis à jour), puis tap à nouveau pour ouvrir `AdaptedProgramView`.
     @ViewBuilder
     private var programCarousel: some View {
+        let effectiveSelectedId = selectedId ?? startedPrograms.first?.id
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 12) {
                 ForEach(startedPrograms) { summary in
@@ -123,8 +130,20 @@ struct ActiveDashboardView: View {
                         ProgramCard(
                             summary: summary,
                             badge: regenBadges[summary.id],
-                            isSelected: summary.id == (selectedId ?? startedPrograms.first?.id),
-                            onTap: { onTapProgram(summary) }
+                            isSelected: summary.id == effectiveSelectedId,
+                            onTap: {
+                                if summary.id == effectiveSelectedId {
+                                    // 2e tap sur card déjà focalisée → push vers AdaptedProgramView
+                                    onTapProgram(summary)
+                                } else {
+                                    // 1er tap sur card non-focalisée → la
+                                    // sélectionne (séance focale + teaser
+                                    // suivent). Plus fiable que le snap iOS 17
+                                    // sur simu où la souris ne reconnaît pas
+                                    // toujours les swipes courts.
+                                    onSelectProgram(summary.id)
+                                }
+                            }
                         )
                     }
                     .frame(width: 200)
@@ -138,7 +157,7 @@ struct ActiveDashboardView: View {
         .scrollTargetBehavior(.viewAligned)
         .scrollPosition(
             id: Binding(
-                get: { selectedId ?? startedPrograms.first?.id },
+                get: { effectiveSelectedId },
                 set: { newID in
                     if let newID, newID != selectedId {
                         onSelectProgram(newID)
@@ -404,9 +423,15 @@ private struct NextSessionCard: View {
                     .lineLimit(2)
                 Spacer(minLength: 0)
             }
-            Text(verbatim: metaLine(session: session))
-                .font(.system(size: 12, weight: .regular))
-                .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
+            // **Story 3.15 (raffinement Sophie 2026-05-20)** — pill intensité
+            // (type de séance) à côté du metaLine pour enrichir visuellement la
+            // card focale (avant : juste "Sem 2 · 30 min" → ressentait vide).
+            HStack(spacing: 8) {
+                sessionTypePill(session: session)
+                Text(verbatim: metaLine(session: session))
+                    .font(.system(size: 12, weight: .regular))
+                    .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
+            }
             // **Story 3.11 AC7** — sous-titre "Cette séance était prévue
             // semaine du {date}" — date = lundi de la semaine de la séance.
             if summary.nextSessionIsLate, let weekStartLabel = lateSessionWeekStartLabel(session: session) {
@@ -427,6 +452,20 @@ private struct NextSessionCard: View {
                 }
             }
         }
+    }
+
+    /// **Story 3.15** — pill intensité (type de séance) inscrit dans la card
+    /// focale. Mapping i18n statique via `SessionType.localizedKey` (cf
+    /// `SportCodeMapping.swift`). Style : capsule pâle sur fond bleu coach.
+    private func sessionTypePill(session: PersistedSession) -> some View {
+        Text(session.type.localizedKey)
+            .font(.system(size: 11, weight: .semibold))
+            .foregroundStyle(Color.coachingOnPrimary)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 3)
+            .background(Color.coachingOnPrimary.opacity(0.18))
+            .clipShape(Capsule())
+            .accessibilityIdentifier("dashboard.active.next.sessionType")
     }
 
     /// **Story 3.11 AC7** — pill "En retard" avec icône `clock.badge.exclamationmark`.
