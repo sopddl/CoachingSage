@@ -7,20 +7,45 @@ import SwiftUI
 struct ChatBubbleView: View {
     enum Sender { case leon, user }
 
+    /// Story 3.14 — avatar à gauche des bulles Léon. Default `.leon` préserve
+    /// la rétro-compat 100% sur tous les call sites existants. Le questionnaire
+    /// passe `.sport(code:)` pour contextualiser le sport en cours de génération.
+    enum AvatarStyle: Equatable {
+        case leon
+        case sport(code: String)
+    }
+
     let sender: Sender
     /// Pour Léon : clé xcstrings unique. Pour user : clé unique OU "key1|key2|..." pour multi-choix.
     let textRaw: String
+    let avatarStyle: AvatarStyle
+
+    init(sender: Sender, textRaw: String, avatarStyle: AvatarStyle = .leon) {
+        self.sender = sender
+        self.textRaw = textRaw
+        self.avatarStyle = avatarStyle
+    }
 
     var body: some View {
         HStack(alignment: .top, spacing: 8) {
             if sender == .leon {
-                LeonAvatarView(size: 32)
+                avatar
                 bubble
                 Spacer(minLength: 40)
             } else {
                 Spacer(minLength: 40)
                 bubble
             }
+        }
+    }
+
+    @ViewBuilder
+    private var avatar: some View {
+        switch avatarStyle {
+        case .leon:
+            LeonAvatarView(size: 32)
+        case .sport(let code):
+            SportAvatarView(sportCode: code, size: 32)
         }
     }
 
@@ -73,6 +98,10 @@ struct ChatBubbleView: View {
         ChatBubbleView(sender: .user, textRaw: "questionnaire.running.q1.option.regular")
         ChatBubbleView(sender: .leon, textRaw: "questionnaire.running.q4.text")
         ChatBubbleView(sender: .user, textRaw: "questionnaire.running.q4.option.knee|questionnaire.running.q4.option.back")
+        Divider()
+        ChatBubbleView(sender: .leon, textRaw: "questionnaire.running.intro", avatarStyle: .sport(code: "running"))
+        ChatBubbleView(sender: .leon, textRaw: "questionnaire.swimming.intro", avatarStyle: .sport(code: "swimming"))
+        ChatBubbleView(sender: .leon, textRaw: "questionnaire.triathlon.intro", avatarStyle: .sport(code: "triathlon"))
     }
     .padding()
     .background(Color.coachingBackground)

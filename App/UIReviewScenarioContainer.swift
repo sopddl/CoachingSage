@@ -128,6 +128,18 @@ struct UIReviewScenarioContainer: View {
             // Pré-sélectionne `endurance` + `technique` (combinaison la plus fréquente,
             // doctrine Maglischo). Aucun grisage attendu = baseline visuelle.
             Q2MultiChoiceScenarioView(sportCode: "swimming", preselected: ["endurance", "technique"])
+        case "ui_review_sport_avatar_running":
+            // **Story 3.14 (AC16)** — questionnaire running : avatar sport
+            // (figure.run sur cercle bleu marine) sur bulles Léon + typing.
+            SportAvatarScenarioView(sportCode: "running")
+        case "ui_review_sport_avatar_swimming":
+            // **Story 3.14 (AC16)** — questionnaire swimming : avatar sport
+            // (figure.pool.swim sur cercle bleu clair) sur bulles Léon + typing.
+            SportAvatarScenarioView(sportCode: "swimming")
+        case "ui_review_sport_avatar_triathlon":
+            // **Story 3.14 (AC16)** — questionnaire triathlon : avatar sport
+            // (figure.mixed.cardio sur cercle or) sur bulles Léon + typing.
+            SportAvatarScenarioView(sportCode: "triathlon")
         case "ui_review_replanify_sheet_pickdate":
             // **Story 3.11** — ReplanifySheet step `.pickDate` : DatePicker
             // graphical + bouton Valider + bouton Retour. Step initial forcé
@@ -443,6 +455,49 @@ private struct Q2MultiChoiceFixtureBody: View {
                 .foregroundStyle(Color.coachingOnPrimary)
                 .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
         }
+    }
+}
+
+// MARK: - Story 3.14 — SportAvatarScenarioView
+
+/// Story 3.14 — Rend un échantillon de bulles Léon avec l'avatar sport contextuel
+/// + typing indicator + bulle user. Permet à l'agent ui-reviewer de vérifier que
+/// l'icône sport est correctement mappée (running, swimming, triathlon, etc.) et
+/// que la couleur de fond `Color.coachingSport(forCode:)` matche le sport.
+private struct SportAvatarScenarioView: View {
+    let sportCode: String
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 12) {
+                ChatBubbleView(
+                    sender: .leon,
+                    textRaw: "questionnaire.universal.intro",
+                    avatarStyle: .sport(code: sportCode)
+                )
+                ChatBubbleView(
+                    sender: .leon,
+                    textRaw: "questionnaire.universal.q1.text",
+                    avatarStyle: .sport(code: sportCode)
+                )
+                ChatBubbleView(
+                    sender: .user,
+                    textRaw: "questionnaire.universal.q1.option.beginner"
+                )
+                ChatBubbleView(
+                    sender: .leon,
+                    textRaw: "questionnaire.\(sportCode).q2.text",
+                    avatarStyle: .sport(code: sportCode)
+                )
+                HStack(alignment: .top, spacing: 8) {
+                    SportAvatarView(sportCode: sportCode, size: 32)
+                    TypingIndicatorView()
+                    Spacer(minLength: 40)
+                }
+            }
+            .padding(16)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
     }
 }
 
