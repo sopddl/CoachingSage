@@ -53,6 +53,31 @@ final class AutoProgramFactory {
         return AutoProgramResult(program: preview.program, recordId: recordId, sportProfile: preview.sportProfile)
     }
 
+    /// Story 3.15 AC12bis — variant "preview" avec **template + sportProfile
+    /// injectés** : skip la sélection interne (`selector.select`) pour
+    /// permettre au `DormantBootstrapService` de générer N dormants à partir
+    /// de templates choisis par `selectTopN`. Sans cette variante, la méthode
+    /// existante `previewGenerate(sportCode:userId:autoprofileLevel:)` re-pick
+    /// le template via la matrice `(sport, level)` → impossible de générer 3
+    /// templates running de levels différents si `selectTopN` les retourne.
+    ///
+    /// `userId` est conservé pour symétrie + sanity check possible côté caller.
+    func previewGenerate(
+        template: ProgramTemplate,
+        sportProfile: CoachingSportProfile,
+        userId: UUID
+    ) async throws -> AutoProgramPreview {
+        guard let coachingProfile = try await coachingProfileRepository.fetchCurrentProfile() else {
+            throw AutoProgramFactoryError.coachingProfileMissing
+        }
+        let adapted = adapterService.adapt(
+            template: template,
+            sportProfile: sportProfile,
+            coachingProfile: coachingProfile
+        )
+        return AutoProgramPreview(program: adapted, sportProfile: sportProfile)
+    }
+
     /// Story sœur 3.z (2026-05-17) — variant "preview" : adapte le programme en
     /// mémoire SANS persister (ni sportProfile ni AdaptedProgramRecord). Utilisé
     /// par le tap suggestion empty mode pour permettre à l'utilisateur de

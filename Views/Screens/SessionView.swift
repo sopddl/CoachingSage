@@ -238,24 +238,41 @@ struct SessionView: View {
     private func modeContent(vm: SessionDashboardViewModel) -> some View {
         switch vm.mode {
         case .empty:
+            // **Story 3.15** — mode atteint UNIQUEMENT si l'user a supprimé
+            // tous ses programmes (lancés + dormants). Cas edge, pas le chemin
+            // d'usage principal — les suggestions sont désormais persistées
+            // comme dormants via `DormantBootstrapService` au post-onboarding.
             EmptyDashboardView(
-                suggestions: vm.emptyModeSuggestions,
                 hintKey: hintKey(for: vm),
-                onTapSuggestion: { template in
-                    Task { await handleTap(sportCode: template.sport.appSportCode) }
-                },
                 onTapCustom: {
                     sheetSelection = .sportPicker
                 }
             )
-        case let .active(programs, selectedId):
-            // **Story 3.10** — refonte façon Decathlon Coach :
-            //   - carrousel horizontal de ProgramCard
-            //   - NextSessionCard du programme sélectionné en dessous
-            //   - lien "Réorganiser ma semaine →" inchangé
+        case let .dormantOnly(dormants):
+            // **Story 3.15** — 0 lancé + N dormants : la liste "Préparés"
+            // est remontée en tête, pas de carrousel ni séance focale. Pas
+            // de header de page distinct (le titre `Séances` de la navbar
+            // suffit, le titre de section "Préparés" est affiché par
+            // `DormantProgramsList`).
+            DormantProgramsList(
+                dormants: dormants,
+                onTapProgram: { summary in
+                    pushAdaptedProgramSummary(summary)
+                },
+                onDeleteProgram: { summary in
+                    Task { await deleteProgramSummary(summary) }
+                }
+            )
+        case let .active(started, dormants, selectedId):
+            // **Story 3.15** — refonte hiérarchique 3 zones :
+            //   - Zone 1 : carrousel "Programmes en cours" (started only)
+            //   - Zone 2 : séance focale + teaser N+1
+            //   - Zone 3 : liste "Préparés" (dormants), si dormants ≠ ∅
             ActiveDashboardView(
-                programs: programs,
+                startedPrograms: started,
+                dormantPrograms: dormants,
                 selectedId: selectedId,
+                teaserSession: vm.currentTeaserSession,
                 regenBadges: vm.regenBadgesByRecord,
                 onSelectProgram: { id in
                     vm.selectProgram(id: id)
@@ -271,6 +288,13 @@ struct SessionView: View {
                 },
                 onTapReplanify: { summary in
                     replanifyTarget = summary
+                },
+                onTapTeaser: { summary, _ in
+                    // Phase 4 raffinement : passer la session ciblée à
+                    // AdaptedProgramView via une coordonnée. Pour V1 on push
+                    // simplement le programme et l'user trouve la session
+                    // suivante depuis là.
+                    pushAdaptedProgramSummary(summary)
                 }
             )
         }

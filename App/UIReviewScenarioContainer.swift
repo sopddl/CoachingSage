@@ -174,9 +174,17 @@ private struct DashboardActiveScenarioView: View {
 
     var body: some View {
         ScrollView {
+            // **Story 3.15** — split started/dormant pour la nouvelle signature
+            // 3 zones d'`ActiveDashboardView`. Le container UI review ne calcule
+            // pas de teaser N+1 (pas critique pour le test visuel).
+            let allPrograms = programs
+            let started = allPrograms.filter { $0.weekStartDate != nil }
+            let dormants = allPrograms.filter { $0.weekStartDate == nil }
             ActiveDashboardView(
-                programs: programs,
+                startedPrograms: started,
+                dormantPrograms: dormants,
                 selectedId: selectedId,
+                teaserSession: nil,
                 regenBadges: [:],
                 onSelectProgram: { _ in },
                 onTapStartSession: { _ in },

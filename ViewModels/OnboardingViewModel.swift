@@ -150,15 +150,20 @@ final class OnboardingViewModel {
     private let coreProfileRepository: any CoreProfileRepository
     private let coachingProfileRepository: any CoachingProfileRepository
     private let healthKitService: any HealthKitServiceProtocol
+    /// Story 3.15 — bootstrap 3 dormants post-onboarding. Optional pour
+    /// tests qui n'ont pas besoin de tester le bootstrap.
+    private let dormantBootstrapService: DormantBootstrapService?
 
     init(
         coreProfileRepository: any CoreProfileRepository,
         coachingProfileRepository: any CoachingProfileRepository,
-        healthKitService: any HealthKitServiceProtocol
+        healthKitService: any HealthKitServiceProtocol,
+        dormantBootstrapService: DormantBootstrapService? = nil
     ) {
         self.coreProfileRepository = coreProfileRepository
         self.coachingProfileRepository = coachingProfileRepository
         self.healthKitService = healthKitService
+        self.dormantBootstrapService = dormantBootstrapService
     }
 
     /// Pré-remplit `firstName` depuis le profil core existant (cas user qui revient — ex. après réinstall).
@@ -363,6 +368,15 @@ final class OnboardingViewModel {
             Self.logger.info("finalize: save coaching")
             try await coachingProfileRepository.save(coaching)
             Self.logger.info("finalize: coaching saved")
+
+            // Story 3.15 — bootstrap 3 dormants si possible. Best-effort,
+            // ne bloque pas le succès onboarding si bootstrap échoue. Le service
+            // est idempotent : si flag déjà true ou si l'user a déjà des
+            // programmes (cas pre-3.15 / hydrate-on-miss), no-op.
+            if let bootstrap = dormantBootstrapService {
+                let persisted = await bootstrap.bootstrapIfNeeded()
+                Self.logger.info("finalize: bootstrap persisted \(persisted) dormant(s)")
+            }
 
             // Si on a déjà timeout, ne pas écraser .error avec .success.
             if case .loading = saveState {

@@ -32,20 +32,23 @@ final class SessionDashboardViewModelTests: XCTestCase {
         XCTAssertTrue(vm.activeProgramSummaries.isEmpty)
     }
 
+    /// **Story 3.15** — 1 dormant seul : passe désormais en `.dormantOnly`
+    /// (avant 3.15, c'était `.active([dormant], dormant.id)`). `selectedId`
+    /// n'est plus défini pour un dormant — il est `nil` via `currentSelectedId`.
     func testActiveMode_OneDormant() async {
         let dormant = makeRecord(sportCode: "running", sessionsCount: 3, weekStartDate: nil)
         let vm = makeVM(programs: [dormant])
 
         await vm.refresh(userId: userId)
 
-        guard case let .active(programs, selectedId) = vm.mode else {
-            return XCTFail("Expected .active, got \(vm.mode)")
+        guard case let .dormantOnly(dormants) = vm.mode else {
+            return XCTFail("Expected .dormantOnly, got \(vm.mode)")
         }
-        XCTAssertEqual(programs.count, 1)
-        XCTAssertEqual(programs[0].id, dormant.id)
-        XCTAssertTrue(programs[0].isDormant)
-        XCTAssertNil(programs[0].weekStartDate)
-        XCTAssertEqual(selectedId, dormant.id) // sélection par défaut = première card
+        XCTAssertEqual(dormants.count, 1)
+        XCTAssertEqual(dormants[0].id, dormant.id)
+        XCTAssertTrue(dormants[0].isDormant)
+        XCTAssertNil(dormants[0].weekStartDate)
+        XCTAssertNil(vm.currentSelectedId, "Pas de sélection en .dormantOnly")
     }
 
     func testActiveMode_OneStarted() async {
@@ -54,18 +57,19 @@ final class SessionDashboardViewModelTests: XCTestCase {
 
         await vm.refresh(userId: userId)
 
-        guard case let .active(programs, selectedId) = vm.mode else {
+        guard case let .active(startedList, dormants, selectedId) = vm.mode else {
             return XCTFail("Expected .active, got \(vm.mode)")
         }
-        XCTAssertEqual(programs.count, 1)
-        XCTAssertFalse(programs[0].isDormant)
-        XCTAssertNotNil(programs[0].weekStartDate)
+        XCTAssertEqual(startedList.count, 1)
+        XCTAssertTrue(dormants.isEmpty)
+        XCTAssertFalse(startedList[0].isDormant)
+        XCTAssertNotNil(startedList[0].weekStartDate)
         XCTAssertEqual(selectedId, started.id)
     }
 
-    /// **Story 3.10 AC22 — refondu Story 3.12** : tri 2 niveaux.
-    /// Setup : 2 démarrés + 3 dormants, tous avec lastUpdatedAt distincts.
-    /// Attendu : démarrés en tête (par lastUpdatedAt desc), puis dormants (lastUpdatedAt desc).
+    /// **Story 3.15** — tri started d'abord (lastUpdatedAt desc), puis dormants
+    /// (lastUpdatedAt desc). On vérifie via `activeProgramSummaries` (concat
+    /// rétrocompat) qui aplatit started + dormants dans l'ordre attendu.
     func testActiveMode_FiveStartedTenDormant_Sorted() async {
         let startedRecent = makeRecord(sportCode: "running", sessionsCount: 1,
                                        weekStartDate: now,
@@ -83,11 +87,11 @@ final class SessionDashboardViewModelTests: XCTestCase {
         let vm = makeVM(programs: [dormantOldest, startedOlder, dormantNewest, startedRecent, dormantMid])
         await vm.refresh(userId: userId)
 
-        guard case let .active(programs, _) = vm.mode else {
+        guard case .active = vm.mode else {
             return XCTFail("Expected .active")
         }
         // Démarrés AVANT dormants, et entre chaque groupe : lastUpdatedAt desc
-        XCTAssertEqual(programs.map(\.sport.appSportCode), [
+        XCTAssertEqual(vm.activeProgramSummaries.map(\.sport.appSportCode), [
             "running",  // démarré, lastUpdatedAt 9000
             "cycling",  // démarré, lastUpdatedAt 8000
             "tennis",   // dormant, lastUpdatedAt 3000 (le plus récent)
