@@ -17,6 +17,11 @@ struct QuestionAnswerOptionsView: View {
     var sportCode: String? = nil
 
     @State private var multiSelection: Set<String> = []
+    /// **Story 3.16 (Sophie 2026-05-21)** — sélection single avant confirmation
+    /// explicite. Avant Story 3.16, le tap singleChoice avançait immédiatement
+    /// → inconsistant avec multi/freeText qui ont un bouton Confirmer. Désormais
+    /// le tap sélectionne, et l'user doit appuyer "Continuer" pour avancer.
+    @State private var singleSelection: String? = nil
     /// Date picker state pour Q4Date story sœur — minimum demain pour éviter date passée.
     @State private var pickedDate: Date = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
     /// Story 3.13 Phase E (AC25) — toast léger quand un goal exclusif est tapé (auto-désélection).
@@ -47,6 +52,7 @@ struct QuestionAnswerOptionsView: View {
         .background(Color.coachingBackground)
         .onChange(of: question.id) { _, _ in
             multiSelection.removeAll()  // reset à chaque nouvelle question
+            singleSelection = nil       // Story 3.16
             showExclusiveToast = false
         }
     }
@@ -66,6 +72,11 @@ struct QuestionAnswerOptionsView: View {
         return "questionnaire.universal.q2.hint.cycle"
     }
 
+    /// **Story 3.16 (Sophie 2026-05-21)** — singleChoice avec confirmation.
+    /// Tap option = sélection (state local), bouton "Continuer" pour confirmer.
+    /// Cohérent avec multi/freeText/datePicker. L'user peut changer d'avis
+    /// avant de valider et utiliser "Retour" pour revenir à la question
+    /// précédente (cf `goBack()` dans le ViewModel).
     private var singleOptions: some View {
         VStack(spacing: 8) {
             if let hint = cycleHintKey {
@@ -76,16 +87,16 @@ struct QuestionAnswerOptionsView: View {
                     .padding(.bottom, 4)
             }
             ForEach(question.options) { option in
+                let isSelected = singleSelection == option.code
                 Button {
                     guard !isLocked else { return }
-                    onAnswer(.single(option.code))
+                    singleSelection = option.code
                 } label: {
                     HStack {
+                        Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                            .foregroundStyle(isSelected ? Color.coachingPrimary : Color.coachingTextSecondary)
                         Text(LocalizedStringKey(option.labelKey))
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        Image(systemName: "chevron.right")
-                            .font(.footnote)
-                            .opacity(0.6)
                     }
                     .padding(.vertical, 12)
                     .padding(.horizontal, 16)
@@ -96,6 +107,22 @@ struct QuestionAnswerOptionsView: View {
                 .buttonStyle(.plain)
                 .disabled(isLocked)
             }
+
+            // **Story 3.16** — bouton Continuer cohérent avec multi/freeText.
+            Button {
+                guard !isLocked, let code = singleSelection else { return }
+                onAnswer(.single(code))
+            } label: {
+                Text("questionnaire.options.continue")
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+            }
+            .buttonStyle(.plain)
+            .background(singleSelection == nil ? Color.coachingDisabled : Color.coachingPrimary)
+            .foregroundStyle(Color.coachingOnPrimary)
+            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+            .disabled(singleSelection == nil || isLocked)
+            .padding(.top, 4)
         }
     }
 

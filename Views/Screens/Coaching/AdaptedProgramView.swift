@@ -52,6 +52,14 @@ struct AdaptedProgramView: View {
     /// (programme déjà actif), `onConfirmStart == nil` et le sticky CTA disparaît.
     var onConfirmStart: (() async -> Void)? = nil
 
+    /// **Story 3.16 (Sophie 2026-05-21)** — callback "Retour à la home page"
+    /// pour le mode preview. Sophie : « quand je termine de préparer avec Léon
+    /// le programme la navigation est bizarre je devrait avoir deux bouton :
+    /// Démarrer ou Lancer, et Retour à la home page ». Quand non-nil ET
+    /// `onConfirmStart` non-nil, un sticky bottom 2 boutons remplace la simple
+    /// toolbar trailing. Pop la nav vers le dashboard sans persistance.
+    var onDismissPreview: (() -> Void)? = nil
+
     /// Story sœur 3.z — true pendant l'aller-retour `commit` async. Disable le
     /// bouton "Démarrer" pour éviter le double-tap (qui créerait 2 records).
     @State private var isConfirmingStart: Bool = false
@@ -143,11 +151,19 @@ struct AdaptedProgramView: View {
         }
         .navigationTitle(Text(verbatim: displayTitle))
         .navigationBarTitleDisplayMode(.inline)
+        // **Story 3.16 (Sophie 2026-05-21)** — sticky bottom 2 boutons en mode
+        // preview post-questionnaire. "Retour" (sans persistance) + "Démarrer"
+        // (commit). Avant : seul un bouton toolbar trailing (nav "bizarre").
+        .safeAreaInset(edge: .bottom) {
+            if onConfirmStart != nil, onDismissPreview != nil {
+                previewBottomCTA
+            }
+        }
         .toolbar {
-            // Bouton "Démarrer" toolbar trailing (preview ou dormant). Le tap
-            // déclenche soit la commit + activation (preview), soit `markStarted`
-            // (dormant existant). Sur un programme déjà actif, pas de bouton.
-            if onConfirmStart != nil || isDormantRecord {
+            // Bouton "Démarrer" toolbar trailing — UNIQUEMENT si pas de sticky
+            // bottom 2-boutons (Story 3.16). Sinon redondant avec le CTA bottom.
+            // Le mode dormant garde la toolbar (pas de sticky en dormant).
+            if (onConfirmStart != nil && onDismissPreview == nil) || isDormantRecord {
                 ToolbarItem(placement: .topBarTrailing) {
                     startToolbarButton
                 }
@@ -181,6 +197,63 @@ struct AdaptedProgramView: View {
             goal: nil, // pas dispo en fallback ; le sport seul suffit comme aperçu
             locale: languageManager.currentLocale
         )
+    }
+
+    /// **Story 3.16 (Sophie 2026-05-21)** — sticky bottom 2 CTAs en mode
+    /// preview post-questionnaire Léon. "Retour" pop la nav sans persistance.
+    /// "Démarrer ce programme" commit + active + navigue vers le dashboard.
+    private var previewBottomCTA: some View {
+        HStack(spacing: 12) {
+            Button {
+                onDismissPreview?()
+            } label: {
+                Text("coaching.adapter.preview.dismiss")
+                    .font(.subheadline.weight(.semibold))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+            }
+            .buttonStyle(.plain)
+            .background(Color.coachingCard)
+            .foregroundStyle(Color.coachingTextPrimary)
+            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+            .accessibilityIdentifier("coaching.adapter.preview.dismiss")
+
+            Button {
+                if let onConfirmStart {
+                    guard !isConfirmingStart else { return }
+                    isConfirmingStart = true
+                    Task {
+                        await onConfirmStart()
+                        isConfirmingStart = false
+                    }
+                }
+            } label: {
+                HStack(spacing: 6) {
+                    if isConfirmingStart {
+                        ProgressView()
+                            .controlSize(.mini)
+                            .tint(Color.coachingOnPrimary)
+                    } else {
+                        Image(systemName: "play.fill")
+                            .font(.footnote.weight(.semibold))
+                    }
+                    Text("coaching.adapter.action.start")
+                        .font(.subheadline.weight(.semibold))
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 14)
+            }
+            .buttonStyle(.plain)
+            .background(Color.coachingPrimary)
+            .foregroundStyle(Color.coachingOnPrimary)
+            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+            .disabled(isConfirmingStart)
+            .accessibilityIdentifier("coaching.adapter.preview.confirmStart")
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 10)
+        .padding(.bottom, 8)
+        .background(.thinMaterial)
     }
 
     @ViewBuilder

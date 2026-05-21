@@ -92,6 +92,12 @@ struct SessionView: View {
                             ),
                             modifiedSessionCoordinates: route.modifiedSessionCoordinates,
                             onConfirmStart: confirmStartClosure(for: route, deps: deps),
+                            // **Story 3.16 (Sophie 2026-05-21)** — bouton "Retour
+                            // à la home page" en mode preview. Pop la nav sans
+                            // persistance (= dismiss du programme adapté généré).
+                            onDismissPreview: route.previewSportProfile == nil
+                                ? nil
+                                : { adaptedRoute = nil },
                             hasStarted: route.hasStarted
                         )
                     } else {

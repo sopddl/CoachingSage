@@ -55,6 +55,13 @@ final class SportQuestionnaireViewModel {
     /// Idempotence : empêche le double-tap option de sauter une question (review P1-8).
     private(set) var isAdvancing: Bool = false
 
+    /// **Story 3.16 (Sophie 2026-05-21)** — stack des questions déjà répondues
+    /// (FIFO, dernière pushée = question pop par `goBack()`). Maintenu en
+    /// parallèle de `conversationHistory` pour pouvoir restaurer le
+    /// `currentQuestion` lors d'un retour arrière sans avoir à dépendre de la
+    /// logique de navigation forward (`nextQuestion(after:)`).
+    private(set) var questionHistory: [QuestionnaireQuestion] = []
+
     /// Capture du userId au start pour détecter cross-user race (review P0-4).
     private var capturedUserId: UUID?
 
@@ -175,8 +182,9 @@ final class SportQuestionnaireViewModel {
         // Bulle user
         messages.append(.userText(id: UUID(), text: userBubbleText(for: value)))
 
-        // Stocker la réponse
+        // Stocker la réponse + push dans le stack history pour goBack() (Story 3.16)
         accumulatedAnswers[asked.id] = value
+        questionHistory.append(asked)
         conversationHistory.append(
             ConversationEntry(
                 questionId: asked.id,
@@ -215,6 +223,50 @@ final class SportQuestionnaireViewModel {
 
         // Sauvegarder l'avancée (currentQuestionId pour reprise)
         savePendingDraft(currentQuestionId: nextQuestion.id)
+    }
+
+    /// **Story 3.16 (Sophie 2026-05-21)** — retour arrière depuis la question
+    /// courante vers la précédente. Pop la dernière réponse (`accumulatedAnswers`
+    /// + `conversationHistory` + `questionHistory`), pop les 2 derniers messages
+    /// (la bubble Léon de la question actuelle + la bubble user de la dernière
+    /// réponse), et restaure `currentQuestion` à celle d'avant.
+    ///
+    /// No-op si :
+    ///   - `isAdvancing` (idempotence : pas de retour pendant typing indicator)
+    ///   - `questionHistory.isEmpty` (1ère question, rien avant)
+    ///
+    /// La 1ère question reste atteignable mais le bouton retour est masqué côté
+    /// View via `canGoBack`.
+    func goBack() {
+        guard !isAdvancing else { return }
+        guard let previousQuestion = questionHistory.popLast() else { return }
+
+        // Pop accumulatedAnswers + conversationHistory en parallèle
+        accumulatedAnswers.removeValue(forKey: previousQuestion.id)
+        if !conversationHistory.isEmpty {
+            conversationHistory.removeLast()
+        }
+
+        // Pop les 2 derniers messages (bubble Léon question actuelle + bubble
+        // user réponse de la question précédente). Garde-fou : on ne pop pas
+        // un typing indicator si présent (rare, mais robust).
+        var popped = 0
+        while popped < 2, let last = messages.last {
+            messages.removeLast()
+            // Le typing indicator est déjà retiré par answer() avant le push
+            // de la bulle Léon, donc on devrait toujours pop 2 messages
+            // (user answer + Léon next). Mais filtre par sécurité.
+            if case .typingIndicator = last { continue }
+            popped += 1
+        }
+
+        currentQuestion = previousQuestion
+        savePendingDraft(currentQuestionId: previousQuestion.id)
+    }
+
+    /// `true` quand `goBack()` peut être appelé (au moins 1 question répondue).
+    var canGoBack: Bool {
+        !questionHistory.isEmpty && !isAdvancing
     }
 
     // MARK: - Submit

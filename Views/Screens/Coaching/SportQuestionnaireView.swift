@@ -39,6 +39,23 @@ struct SportQuestionnaireView: View {
                             .foregroundStyle(Color.coachingTextPrimary)
                     }
                 }
+                // **Story 3.16 (Sophie 2026-05-21)** — retour à la question
+                // précédente. Visible uniquement quand `canGoBack` (≥ 1 réponse
+                // déjà donnée + pas en cours d'avancement).
+                if viewModel.canGoBack {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            viewModel.goBack()
+                        } label: {
+                            HStack(spacing: 4) {
+                                Image(systemName: "arrow.uturn.backward")
+                                Text("questionnaire.back")
+                            }
+                            .foregroundStyle(Color.coachingPrimary)
+                        }
+                        .accessibilityIdentifier("questionnaire.back")
+                    }
+                }
             }
             .confirmationDialog(
                 Text("questionnaire.exit.confirm.title"),

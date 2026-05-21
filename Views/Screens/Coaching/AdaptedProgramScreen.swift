@@ -16,6 +16,10 @@ struct AdaptedProgramScreen: View {
     /// Story sœur 3.z (2026-05-17) — closure "Démarrer ce programme" forwardée
     /// à `AdaptedProgramView`. Non-nil = preview mode (sticky CTA bottom).
     private let onConfirmStart: (() async -> Void)?
+    /// **Story 3.16 (Sophie 2026-05-21)** — closure "Retour à la home page"
+    /// forwardée. Non-nil = sticky bottom devient 2 boutons (cf
+    /// `AdaptedProgramView.previewBottomCTA`).
+    private let onDismissPreview: (() -> Void)?
     /// **Story 3.10** — programme démarré (weekStartDate != nil) ; forwardé à
     /// `AdaptedProgramView.hasStarted`.
     private let hasStarted: Bool
@@ -24,11 +28,13 @@ struct AdaptedProgramScreen: View {
         viewModel: @autoclosure @escaping () -> AdaptedProgramViewModel,
         modifiedSessionCoordinates: Set<SessionCoordinate> = [],
         onConfirmStart: (() async -> Void)? = nil,
+        onDismissPreview: (() -> Void)? = nil,
         hasStarted: Bool = false
     ) {
         _viewModel = StateObject(wrappedValue: viewModel())
         self.modifiedSessionCoordinates = modifiedSessionCoordinates
         self.onConfirmStart = onConfirmStart
+        self.onDismissPreview = onDismissPreview
         self.hasStarted = hasStarted
     }
 
@@ -41,7 +47,8 @@ struct AdaptedProgramScreen: View {
             leonNotes: viewModel.leonNotes,
             requestState: viewModel.requestState,
             modifiedSessionCoordinates: modifiedSessionCoordinates,
-            onConfirmStart: onConfirmStart
+            onConfirmStart: onConfirmStart,
+            onDismissPreview: onDismissPreview
         )
         .task {
             // En preview mode, on évite de déclencher Léon (pas de record persisté,
