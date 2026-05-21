@@ -98,6 +98,15 @@ struct SessionView: View {
                             onDismissPreview: route.previewSportProfile == nil
                                 ? nil
                                 : { adaptedRoute = nil },
+                            // **Story 3.15 v3 (Sophie 2026-05-21)** — bouton bas
+                            // "Supprimer le programme" pour les records
+                            // persistés (hors preview). Migration du
+                            // swipe-to-delete carrousel.
+                            onDeleteProgram: route.previewSportProfile == nil && route.recordId != nil
+                                ? {
+                                    Task { await deleteProgramByRecordId(route.recordId!) }
+                                }
+                                : nil,
                             hasStarted: route.hasStarted
                         )
                     } else {
@@ -327,6 +336,23 @@ struct SessionView: View {
         guard let record = vm.recordsByID[summary.id] else { return }
         do {
             try await deps.adaptedProgramRepository.archive(record)
+            await refreshDashboard()
+        } catch {
+            presentationError = error.localizedDescription
+        }
+    }
+
+    /// **Story 3.15 v3 (Sophie 2026-05-21)** — archive un programme depuis
+    /// `AdaptedProgramView` (bouton "Supprimer le programme" en bas, post
+    /// migration du swipe-to-delete carrousel). Pop la nav vers le dashboard
+    /// + refresh pour retirer la card.
+    @MainActor
+    private func deleteProgramByRecordId(_ recordId: UUID) async {
+        guard let deps, let vm = dashboardViewModel else { return }
+        guard let record = vm.recordsByID[recordId] else { return }
+        do {
+            try await deps.adaptedProgramRepository.archive(record)
+            adaptedRoute = nil
             await refreshDashboard()
         } catch {
             presentationError = error.localizedDescription

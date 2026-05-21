@@ -60,6 +60,17 @@ struct AdaptedProgramView: View {
     /// toolbar trailing. Pop la nav vers le dashboard sans persistance.
     var onDismissPreview: (() -> Void)? = nil
 
+    /// **Story 3.15 v3 (Sophie 2026-05-21)** — callback "Supprimer le
+    /// programme" pour les programmes persistés (hors preview). Migré depuis
+    /// le swipe-to-delete du carrousel dashboard (retiré pour ne plus masquer
+    /// la border de la card sélectionnée). Quand non-nil, un bouton bas
+    /// `deleteProgramFooter` apparaît avec confirmation.
+    var onDeleteProgram: (() -> Void)? = nil
+
+    /// **Story 3.15 v3** — alert confirmation suppression. Visible quand l'user
+    /// tape "Supprimer le programme" en bas de la vue.
+    @State private var showDeleteConfirmation: Bool = false
+
     /// Story sœur 3.z — true pendant l'aller-retour `commit` async. Disable le
     /// bouton "Démarrer" pour éviter le double-tap (qui créerait 2 records).
     @State private var isConfirmingStart: Bool = false
@@ -110,6 +121,15 @@ struct AdaptedProgramView: View {
                 }
 
                 medicalReminderFooter
+
+                // **Story 3.15 v3 (Sophie 2026-05-21)** — bouton "Supprimer le
+                // programme" en bas, uniquement pour les programmes persistés
+                // (record != nil) et hors mode preview (onConfirmStart == nil).
+                // Le swipe-to-delete carrousel ayant été supprimé, c'est la
+                // seule porte de sortie pour archiver/supprimer.
+                if record != nil, onConfirmStart == nil, onDeleteProgram != nil {
+                    deleteProgramFooter
+                }
             }
             .padding()
         }
@@ -197,6 +217,42 @@ struct AdaptedProgramView: View {
             goal: nil, // pas dispo en fallback ; le sport seul suffit comme aperçu
             locale: languageManager.currentLocale
         )
+    }
+
+    /// **Story 3.15 v3 (Sophie 2026-05-21)** — footer bas "Supprimer le
+    /// programme" (avec confirmation). Migration du swipe-to-delete carrousel
+    /// pour libérer la border visuelle de la card sélectionnée.
+    private var deleteProgramFooter: some View {
+        VStack(spacing: 8) {
+            Divider().padding(.vertical, 4)
+            Button(role: .destructive) {
+                showDeleteConfirmation = true
+            } label: {
+                HStack(spacing: 6) {
+                    Image(systemName: "trash")
+                    Text("coaching.adapter.delete.action")
+                        .font(.subheadline.weight(.semibold))
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(Color.coachingError)
+            .background(Color.coachingError.opacity(0.08))
+            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+            .accessibilityIdentifier("coaching.adapter.delete")
+        }
+        .alert(
+            "coaching.adapter.delete.confirm.title",
+            isPresented: $showDeleteConfirmation
+        ) {
+            Button("coaching.adapter.delete.confirm.action", role: .destructive) {
+                onDeleteProgram?()
+            }
+            Button("common.cancel", role: .cancel) {}
+        } message: {
+            Text("coaching.adapter.delete.confirm.message")
+        }
     }
 
     /// **Story 3.16 (Sophie 2026-05-21)** — sticky bottom 2 CTAs en mode

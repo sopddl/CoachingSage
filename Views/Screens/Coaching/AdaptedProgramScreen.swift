@@ -20,6 +20,10 @@ struct AdaptedProgramScreen: View {
     /// forwardée. Non-nil = sticky bottom devient 2 boutons (cf
     /// `AdaptedProgramView.previewBottomCTA`).
     private let onDismissPreview: (() -> Void)?
+    /// **Story 3.15 v3 (Sophie 2026-05-21)** — closure "Supprimer le programme"
+    /// forwardée. Non-nil + record persisté + hors preview = bouton bas
+    /// `deleteProgramFooter` visible avec confirmation alert.
+    private let onDeleteProgram: (() -> Void)?
     /// **Story 3.10** — programme démarré (weekStartDate != nil) ; forwardé à
     /// `AdaptedProgramView.hasStarted`.
     private let hasStarted: Bool
@@ -29,12 +33,14 @@ struct AdaptedProgramScreen: View {
         modifiedSessionCoordinates: Set<SessionCoordinate> = [],
         onConfirmStart: (() async -> Void)? = nil,
         onDismissPreview: (() -> Void)? = nil,
+        onDeleteProgram: (() -> Void)? = nil,
         hasStarted: Bool = false
     ) {
         _viewModel = StateObject(wrappedValue: viewModel())
         self.modifiedSessionCoordinates = modifiedSessionCoordinates
         self.onConfirmStart = onConfirmStart
         self.onDismissPreview = onDismissPreview
+        self.onDeleteProgram = onDeleteProgram
         self.hasStarted = hasStarted
     }
 
@@ -48,7 +54,8 @@ struct AdaptedProgramScreen: View {
             requestState: viewModel.requestState,
             modifiedSessionCoordinates: modifiedSessionCoordinates,
             onConfirmStart: onConfirmStart,
-            onDismissPreview: onDismissPreview
+            onDismissPreview: onDismissPreview,
+            onDeleteProgram: onDeleteProgram
         )
         .task {
             // En preview mode, on évite de déclencher Léon (pas de record persisté,

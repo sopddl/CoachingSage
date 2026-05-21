@@ -37,23 +37,39 @@ struct NextSessionTeaser: View {
     /// l'user voit la séance suivante mais ne navigue pas depuis ici. Pour
     /// agir, il scroll la page (geste vertical sur les cards en-dessous).
     private func teaserRow(session: PersistedSession) -> some View {
-        HStack(spacing: 10) {
-            Text("dashboard.next_session.teaser.prefix")
-                .font(.coachingCaption.weight(.semibold))
-                .foregroundStyle(Color.coachingTextSecondary)
-                .textCase(.uppercase)
-                .tracking(0.8)
+        VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: 8) {
+                Text("dashboard.next_session.teaser.prefix")
+                    .font(.coachingCaption.weight(.semibold))
+                    .foregroundStyle(Color.coachingTextSecondary)
+                    .textCase(.uppercase)
+                    .tracking(0.8)
+                // **Story 3.15 v3 (Sophie 2026-05-21)** — coordonnée séance S·J
+                // dans le préfixe pour identifier ce qu'est la séance suivante.
+                Text(verbatim: coordinateLabel(session: session))
+                    .font(.coachingCaption.weight(.semibold))
+                    .foregroundStyle(Color.coachingPrimary)
+                Spacer(minLength: 0)
+            }
             Text(verbatim: session.name)
                 .font(.coachingBody)
                 .foregroundStyle(Color.coachingTextPrimary)
-                .lineLimit(1)
-            Spacer(minLength: 0)
+                .lineLimit(2)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 14)
-        .padding(.vertical, 12)
+        .padding(.vertical, 10)
         .background(Color.coachingCard)
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .accessibilityIdentifier("dashboard.next_session.teaser")
+    }
+
+    private func coordinateLabel(session: PersistedSession) -> String {
+        String(
+            format: NSLocalizedString("dashboard.active.next.coordinate.format", comment: ""),
+            session.weekNumber,
+            session.day
+        )
     }
 
     private var lastOfWeekRow: some View {

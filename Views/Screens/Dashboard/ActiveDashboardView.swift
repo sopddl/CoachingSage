@@ -119,36 +119,35 @@ struct ActiveDashboardView: View {
     private var programCarousel: some View {
         let effectiveSelectedId = selectedId ?? startedPrograms.first?.id
         ScrollView(.horizontal, showsIndicators: false) {
+            // **Story 3.15 v3 (Sophie 2026-05-21)** — SwipeToDeleteRow retiré du
+            // carrousel : le swipe ne déclenchait pas le snap iOS 17 proprement
+            // et la border de la card sélectionnée était masquée. Suppression
+            // du programme désormais accessible depuis `AdaptedProgramView` (en
+            // bas, bouton "Supprimer le programme").
+            // Padding vertical 4pt pour laisser respirer la border 2pt selected.
             LazyHStack(spacing: 12) {
                 ForEach(startedPrograms) { summary in
-                    SwipeToDeleteRow(onDelete: { onDeleteProgram(summary) }) {
-                        ProgramCard(
-                            summary: summary,
-                            badge: regenBadges[summary.id],
-                            isSelected: summary.id == effectiveSelectedId,
-                            onTap: {
-                                if summary.id == effectiveSelectedId {
-                                    // 2e tap sur card déjà focalisée → push vers AdaptedProgramView
-                                    onTapProgram(summary)
-                                } else {
-                                    // 1er tap sur card non-focalisée → la
-                                    // sélectionne (séance focale + teaser
-                                    // suivent). Plus fiable que le snap iOS 17
-                                    // sur simu où la souris ne reconnaît pas
-                                    // toujours les swipes courts.
-                                    onSelectProgram(summary.id)
-                                }
+                    ProgramCard(
+                        summary: summary,
+                        badge: regenBadges[summary.id],
+                        isSelected: summary.id == effectiveSelectedId,
+                        onTap: {
+                            if summary.id == effectiveSelectedId {
+                                onTapProgram(summary)
+                            } else {
+                                onSelectProgram(summary.id)
                             }
-                        )
-                    }
-                    .frame(width: 200)
+                        }
+                    )
+                    .frame(width: 180)
                     .id(summary.id)
                 }
             }
             .scrollTargetLayout()
-            .padding(.horizontal, 1)
+            .padding(.horizontal, 2)
+            .padding(.vertical, 4)
         }
-        .frame(height: 140)
+        .frame(height: 152) // 140 contenu + 8 padding vertical + 4 marge border
         .scrollTargetBehavior(.viewAligned)
         .scrollPosition(
             id: Binding(
@@ -199,24 +198,27 @@ private struct ProgramCard: View {
 
     var body: some View {
         Button(action: onTap) {
-            VStack(alignment: .center, spacing: 10) {
+            VStack(alignment: .center, spacing: 6) {
                 // **Story 3.12** — Header card en mode portrait : icône sport
-                // agrandie centrée + titre + statut empilés verticalement, tous
-                // alignés au centre pour un look "tile" cohérent.
+                // agrandie centrée + titre + statut empilés verticalement.
+                // **Story 3.15 v3 (Sophie 2026-05-21)** : compact (padding 10,
+                // spacing 6, progression remontée sous le statut sans Spacer)
+                // pour que tout le contenu rentre dans une card 140pt sans
+                // que la border soit masquée par overflow.
                 ZStack {
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
                         .strokeBorder(Color.coachingSport(forCode: sportCode), lineWidth: 2)
                     Image(systemName: sfSymbol)
-                        .font(.system(size: 24, weight: .semibold))
+                        .font(.system(size: 22, weight: .semibold))
                         .foregroundStyle(Color.coachingSport(forCode: sportCode))
                 }
-                .frame(width: 48, height: 48)
+                .frame(width: 42, height: 42)
 
                 VStack(alignment: .center, spacing: 2) {
                     Text(verbatim: summary.templateName)
                         .font(.coachingBody.weight(.semibold))
                         .foregroundStyle(Color.coachingTextPrimary)
-                        .lineLimit(2)
+                        .lineLimit(1)
                         .multilineTextAlignment(.center)
                     statusTextView
                         .font(.coachingCaption)
@@ -226,6 +228,20 @@ private struct ProgramCard: View {
                         .lineLimit(1)
                         .multilineTextAlignment(.center)
                 }
+
+                // **Story 3.15 v3 (Sophie 2026-05-21)** — barre progression
+                // remontée juste sous le statut, gain place vs Spacer + bas.
+                GeometryReader { geo in
+                    ZStack(alignment: .leading) {
+                        Capsule()
+                            .fill(Color.coachingRecord.opacity(0.15))
+                            .frame(height: 4)
+                        Capsule()
+                            .fill(Color.coachingRecord)
+                            .frame(width: max(4, geo.size.width * progress), height: 4)
+                    }
+                }
+                .frame(height: 4)
 
                 if let badge {
                     RegenBadgePill(badge: badge)
@@ -245,30 +261,13 @@ private struct ProgramCard: View {
                 }
 
                 Spacer(minLength: 0)
-
-                // Barre de progression (programme entier).
-                GeometryReader { geo in
-                    ZStack(alignment: .leading) {
-                        Capsule()
-                            .fill(Color.coachingRecord.opacity(0.15))
-                            .frame(height: 4)
-                        Capsule()
-                            .fill(Color.coachingRecord)
-                            .frame(width: max(4, geo.size.width * progress), height: 4)
-                    }
-                }
-                .frame(height: 4)
             }
-            .padding(14)
+            .padding(10)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(Color.coachingCard)
             .overlay(
                 RoundedRectangle(cornerRadius: 14, style: .continuous)
                     .strokeBorder(
-                        // **Story 3.15 raffinement 2026-05-21** — border
-                        // selected = couleur du sport (avant bleu coach fixe).
-                        // Renforce le lien visuel programme ↔ couleur identité
-                        // sport (cf coachingSport mapping).
                         isSelected ? Color.coachingSport(forCode: sportCode) : Color.clear,
                         lineWidth: 2
                     )
@@ -423,27 +422,32 @@ private struct NextSessionCard: View {
     }
 
     private func sessionState(session: PersistedSession) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 10) {
             // **Story 3.11 AC7** — badge "En retard" en TÊTE de la card quand
             // la prochaine séance est late.
             if summary.nextSessionIsLate {
                 lateBadge
             }
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
-                // **Story 3.15 raffinement 2026-05-21** — taille titre réduite
-                // (19→17pt) pour alléger la présence visuelle.
+            // **Story 3.15 v3 (Sophie 2026-05-21)** — titre + bouton Démarrer
+            // en icône compact sur la même ligne (avant : bouton large sous le
+            // metaLine prenait trop de place). Bouton circulaire à droite avec
+            // play.fill + accessibilityLabel pour le tooltip VoiceOver / long-press.
+            HStack(alignment: .center, spacing: 10) {
                 Text(verbatim: session.name)
                     .font(.system(size: 17, weight: .semibold, design: .serif))
                     .foregroundStyle(Color.coachingOnPrimary)
                     .lineLimit(2)
                 Spacer(minLength: 0)
+                startButton
             }
-            // **Story 3.15 (raffinement Sophie 2026-05-20)** — pill intensité
-            // (type de séance) à côté du metaLine pour enrichir visuellement la
-            // card focale (avant : juste "Sem 2 · 30 min" → ressentait vide).
+            // **Story 3.15 v3 (Sophie 2026-05-21)** — ajout numéro séance
+            // "S2 · J3" à côté du pill intensité pour répondre au "sous Sortie
+            // à venir on ne sait pas du tout ce que c'est". Indication
+            // hiérarchique du programme (semaine N, jour M).
             HStack(spacing: 8) {
+                sessionCoordinatePill(session: session)
                 sessionTypePill(session: session)
-                Text(verbatim: metaLine(session: session))
+                Text(verbatim: durationLine(session: session))
                     .font(.system(size: 12, weight: .regular))
                     .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
             }
@@ -457,16 +461,40 @@ private struct NextSessionCard: View {
                 .font(.system(size: 12, weight: .regular))
                 .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
             }
-            HStack(spacing: 10) {
-                startButton
-                // **Story 3.11 AC9** — bouton Replanifier secondaire à droite de
-                // Démarrer. Visible UNIQUEMENT si late + callback fourni (qui n'est
-                // câblé par SessionView que pour les modes deadline non-cyclic).
-                if summary.nextSessionIsLate, let onTapReplanify {
-                    replanifyButton(action: onTapReplanify)
-                }
+            // **Story 3.11 AC9** — bouton Replanifier secondaire (visible
+            // uniquement si late + callback fourni).
+            if summary.nextSessionIsLate, let onTapReplanify {
+                replanifyButton(action: onTapReplanify)
             }
         }
+    }
+
+    /// **Story 3.15 v3 (Sophie 2026-05-21)** — pill "S2 · J3" qui localise la
+    /// séance dans le programme (semaine N · jour M). Identité claire avant le
+    /// type d'intensité.
+    private func sessionCoordinatePill(session: PersistedSession) -> some View {
+        Text(verbatim: String(
+            format: String.localized("dashboard.active.next.coordinate.format", locale: locale),
+            session.weekNumber,
+            session.day
+        ))
+        .font(.system(size: 11, weight: .semibold))
+        .foregroundStyle(Color.coachingOnPrimary)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 3)
+        .background(Color.coachingOnPrimary.opacity(0.18))
+        .clipShape(Capsule())
+        .accessibilityIdentifier("dashboard.active.next.coordinate")
+    }
+
+    /// **Story 3.15 v3** — extrait "30 min" depuis le metaLine (sem · durée
+    /// avant). La semaine est désormais portée par le pill coordinate, donc
+    /// la durée seule reste ici.
+    private func durationLine(session: PersistedSession) -> String {
+        String(
+            format: String.localized("dashboard.active.next.duration.format", locale: locale),
+            session.durationMinutes
+        )
     }
 
     /// **Story 3.15** — pill intensité (type de séance) inscrit dans la card
@@ -583,31 +611,22 @@ private struct NextSessionCard: View {
         }
     }
 
+    /// **Story 3.15 v3 (Sophie 2026-05-21)** — bouton Démarrer compact en
+    /// icône circulaire (avant : pill texte + flèche prenait toute la largeur).
+    /// `play.fill` symbole universel (cf Apple Fitness, Strava, Nike TC).
+    /// AccessibilityLabel pour VoiceOver + long-press iOS = tooltip natif.
     private var startButton: some View {
         Button(action: onTapStart) {
-            HStack(spacing: 6) {
-                Text("dashboard.program.start.button")
-                    .font(.coachingBody.weight(.semibold))
-                Image(systemName: "arrow.right")
-                    .font(.footnote.weight(.semibold))
-            }
-            .foregroundStyle(Color.coachingPrimary)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(Color.coachingOnPrimary)
-            .clipShape(Capsule())
+            Image(systemName: "play.fill")
+                .font(.system(size: 16, weight: .bold))
+                .foregroundStyle(Color.coachingPrimary)
+                .frame(width: 40, height: 40)
+                .background(Color.coachingOnPrimary)
+                .clipShape(Circle())
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(Text("dashboard.program.start.button"))
         .accessibilityIdentifier("dashboard.active.next.cta")
-    }
-
-    private func metaLine(session: PersistedSession) -> String {
-        // P0 #2 ui-reviewer — utilise locale courante (LanguageManager).
-        String(
-            format: String.localized("dashboard.active.next.meta", locale: locale),
-            session.weekNumber,
-            session.durationMinutes
-        )
     }
 }
 
