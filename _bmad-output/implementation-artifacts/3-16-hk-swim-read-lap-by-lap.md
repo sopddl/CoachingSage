@@ -1,6 +1,6 @@
 # Story 3.16 — Lecture HealthKit natation lap-by-lap + écran d'inspection DEBUG
 
-Status: **draft** (rédigée 2026-05-21, review Sonnet 2026-05-21 → 3 P0 + 5 P1 + 3 AC manquants patchés, en attente Cmd-go Sophie)
+Status: **code-complete, pending test iPhone réel** (Phase 1 livrée 2026-05-21 sur branche `epic-3/story-3.16-hk-swim-read` commit `7fbdb58`, pushée origin)
 Branche cible : `epic-3/story-3.16-hk-swim-read`
 Effort estimé : **~2j** (Phase 1 read-only + UI inspection). Phase 2 wiring (autoprofile / records / calibration adapter / SportProfileView) = story séparée à scoper après analyse de la donnée réelle.
 
@@ -189,6 +189,18 @@ Estimation Phase 2 : **~3j** si on prend les 5 items. À découper et prioriser 
 
 ## Validation Sophie
 
-- [ ] Cadrage produit OK (décisions 1-5 figées 2026-05-21)
+- [x] Cadrage produit OK (décisions 1-5 figées 2026-05-21)
 - [x] Review Sonnet 2026-05-21 → 3 P0 + 5 P1 + 3 AC manquants patchés (AC3 privacy UX, AC5/AC6/AC7 allStatistics + iOS 16+, AC11 loading + différenciation Open Water, AC13 hook View pas VM, Phase 2 caveat T400)
-- [ ] Cmd-go pour démarrage impl (création branche `epic-3/story-3.16-hk-swim-read`)
+- [x] Cmd-go pour démarrage impl 2026-05-21 → branche `epic-3/story-3.16-hk-swim-read` créée + pushée
+- [x] Phase 1 code-complete commit `7fbdb58` (10 fichiers, +964 lignes) :
+  - DTOs + service HealthKit AC1-AC8
+  - Tests AC9 7/7 PASS
+  - Écran DEBUG AC11 + bouton ProfileView AC12
+  - Hooks AC13 (SessionView) + AC14 (OnboardingViewModel)
+  - `xcodebuild ... build` → ** BUILD SUCCEEDED **
+- [ ] **Test iPhone réel Sophie** : Profil → "🐞 Inspecter HK natation (DEBUG)" → vérifier ≥ 3 séances natation des 12 dernières semaines avec laps + stroke style + pace + HR
+- [ ] Capture donnée brute → arbitrage Phase 2 (autoprofile / records / adapter / SportProfileView)
+- [ ] Merge main si test OK (else fix + re-test)
+
+**Stand-by 2026-05-21** : Sophie part en week-end. Branche pushée propre,
+commit WIP. Reprise au retour, pas de merge avant validation iPhone réel.
