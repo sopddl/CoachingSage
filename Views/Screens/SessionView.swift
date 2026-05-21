@@ -134,6 +134,7 @@ struct SessionView: View {
                     await reloadProfile()
                     await loadLibraryIfNeeded()
                     await refreshDashboard()
+                    await requestSwimAuthIfNeeded()
                 }
                 .onAppear {
                     Task {
@@ -516,6 +517,18 @@ struct SessionView: View {
               let userId = SupabaseService.shared.client.auth.currentSession?.user.id
         else { return }
         await vm.refresh(userId: userId)
+    }
+
+    /// Story 3.16 AC13 — hook best-effort silencieux pour demander l'autorisation HK
+    /// natation (distanceSwimming + swimmingStrokeCount) si l'user a un sport
+    /// natation actif. Idempotent (no-op si déjà demandée via le service).
+    /// Pas de surface UI sur échec.
+    private func requestSwimAuthIfNeeded() async {
+        guard let deps,
+              let coachingProfile,
+              coachingProfile.activeSports.contains(SportCode.swimming.rawValue)
+        else { return }
+        try? await deps.healthKitService.requestSwimAuthorizationIfNeeded()
     }
 
     // MARK: - Tap handler

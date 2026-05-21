@@ -83,6 +83,12 @@ protocol HealthKitServiceProtocol: Sendable {
     /// Permet à l'onglet Progrès de ne pas re-prompter en boucle (HK ne distingue pas refus historique vs jamais demandé).
     var hasRequestedProgressAuthorization: Bool { get }
 
+    /// Story 3.16 — `true` si l'extension natation (distanceSwimming + swimmingStrokeCount)
+    /// a déjà été demandée via `requestSwimAuthorizationIfNeeded()`. Permet de ne pas
+    /// re-prompter en boucle. **Délibérément séparé** du batch `requestProfileAuthorization()`
+    /// (privacy UX : un user "running only" ne doit pas voir la popup HK swim au onboarding).
+    var hasRequestedSwimAuthorization: Bool { get }
+
     /// Demande l'autorisation pour les types READ : profil (sex, DOB, bodyMass, height) + autoprofil (vo2Max, workouts, heartRate)
     /// + Progrès Story 3.9.0 (restingHeartRate, heartRateVariabilitySDNN, sleepAnalysis).
     /// Aucun WRITE V1. Une seule pop-up système groupée.
@@ -95,6 +101,13 @@ protocol HealthKitServiceProtocol: Sendable {
     /// Invoquée au premier `onAppear` de l'onglet Progrès. No-op si déjà demandé ou si HealthKit indisponible.
     /// Throw uniquement si HealthKit est indisponible. Le refus utilisateur reste silencieux côté READ.
     func requestProgressAuthorizationIfNeeded() async throws
+
+    /// Story 3.16 — demande l'extension natation (distanceSwimming + swimmingStrokeCount)
+    /// uniquement si elle n'a jamais été demandée. Déclenchée conditionnellement à la
+    /// présence d'un profil sport natation actif (hook dashboard refresh + finalize onboarding).
+    /// No-op si déjà demandé, si HealthKit indisponible, ou en UI testing. Le refus utilisateur
+    /// reste silencieux côté READ — la sémantique se mesure via tableau vide dans `fetchRecentSwimWorkoutDetails`.
+    func requestSwimAuthorizationIfNeeded() async throws
 
     /// Lit les 4 caractéristiques profil. Ne throw jamais : un champ nil = donnée non disponible / refusée silencieusement.
     func fetchProfileData() async -> HealthKitProfileData
@@ -129,6 +142,12 @@ protocol HealthKitServiceProtocol: Sendable {
     /// Story 3.3b — derniers `limit` workouts dans la fenêtre `weeksBack`, ordre antichronologique.
     /// Inclut HR moyenne + max si watchOS présent. Tableau vide si refus/absence.
     func fetchRecentWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitWorkoutDetail]
+
+    /// Story 3.16 — derniers `limit` workouts natation dans la fenêtre `weeksBack`,
+    /// ordre antichronologique. Lit la décomposition lap-by-lap (stroke style, pace,
+    /// HR par lap) quand disponible. Tableau vide si refus/absence/aucun workout swim.
+    /// Jamais throw.
+    func fetchRecentSwimWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitSwimWorkoutDetail]
 }
 
 extension HealthKitServiceProtocol {
@@ -159,6 +178,10 @@ extension HealthKitServiceProtocol {
     func fetchRecentWorkoutDetails() async -> [HealthKitWorkoutDetail] {
         await fetchRecentWorkoutDetails(limit: 4, weeksBack: 4)
     }
+
+    func fetchRecentSwimWorkoutDetails() async -> [HealthKitSwimWorkoutDetail] {
+        await fetchRecentSwimWorkoutDetails(limit: 12, weeksBack: 12)
+    }
 }
 
 // MARK: - Default impl
@@ -167,6 +190,7 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
     private static let logger = Logger(subsystem: "com.sopddl.coachingsage", category: "service")
     private static let authorizationRequestedKey = "healthkit.authorization.requested"
     private static let progressAuthorizationRequestedAtKey = "healthkit.progress.authorization.requested.at"
+    private static let swimAuthorizationRequestedAtKey = "healthkit.swim.authorization.requested.at"
 
     private let healthStore = HKHealthStore()
     private let userDefaults: UserDefaults
@@ -187,6 +211,11 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
     var hasRequestedProgressAuthorization: Bool {
         guard !Self.isUITesting else { return false }
         return userDefaults.object(forKey: Self.progressAuthorizationRequestedAtKey) is Date
+    }
+
+    var hasRequestedSwimAuthorization: Bool {
+        guard !Self.isUITesting else { return false }
+        return userDefaults.object(forKey: Self.swimAuthorizationRequestedAtKey) is Date
     }
 
     func requestProfileAuthorization() async throws {
@@ -236,6 +265,32 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
         let typesToRead = Self.progressReadTypes()
         try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
         userDefaults.set(Date(), forKey: Self.progressAuthorizationRequestedAtKey)
+    }
+
+    func requestSwimAuthorizationIfNeeded() async throws {
+        guard !Self.isUITesting else { return }
+        guard HKHealthStore.isHealthDataAvailable() else {
+            throw HealthKitError.notAvailable
+        }
+        guard !hasRequestedSwimAuthorization else { return }
+
+        let typesToRead = Self.swimReadTypes()
+        try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
+        userDefaults.set(Date(), forKey: Self.swimAuthorizationRequestedAtKey)
+    }
+
+    /// Story 3.16 — types HK ajoutés pour la lecture lap-by-lap natation.
+    /// `HKObjectType.workoutType()` reste autorisé via `requestProfileAuthorization`,
+    /// on n'ajoute ici que les quantités spécifiques natation.
+    private static func swimReadTypes() -> Set<HKObjectType> {
+        var types: Set<HKObjectType> = []
+        if let distance = HKQuantityType.quantityType(forIdentifier: .distanceSwimming) {
+            types.insert(distance)
+        }
+        if let strokes = HKQuantityType.quantityType(forIdentifier: .swimmingStrokeCount) {
+            types.insert(strokes)
+        }
+        return types
     }
 
     /// Story 3.9.0 — types HK ajoutés pour le bloc Forme physique de l'onglet Progrès.
@@ -558,6 +613,184 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
             ))
         }
         return details
+    }
+
+    func fetchRecentSwimWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitSwimWorkoutDetail] {
+        guard !Self.isUITesting else { return [] }
+        guard HKHealthStore.isHealthDataAvailable() else { return [] }
+
+        let now = Date()
+        guard let startDate = Calendar(identifier: .gregorian).date(byAdding: .weekOfYear, value: -weeksBack, to: now) else {
+            return []
+        }
+        let datePredicate = HKQuery.predicateForSamples(withStart: startDate, end: now, options: [])
+        let swimPredicate = HKQuery.predicateForWorkouts(with: .swimming)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate, swimPredicate])
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+
+        let workouts: [HKWorkout] = await withCheckedContinuation { (continuation: CheckedContinuation<[HKWorkout], Never>) in
+            let query = HKSampleQuery(
+                sampleType: HKObjectType.workoutType(),
+                predicate: predicate,
+                limit: limit,
+                sortDescriptors: [sortDescriptor]
+            ) { _, results, error in
+                #if DEBUG
+                if let error {
+                    Self.logger.debug("swim workout query error: \(error.localizedDescription)")
+                }
+                #endif
+                continuation.resume(returning: (results as? [HKWorkout]) ?? [])
+            }
+            healthStore.execute(query)
+        }
+
+        var details: [HealthKitSwimWorkoutDetail] = []
+        details.reserveCapacity(workouts.count)
+        for workout in workouts {
+            details.append(await buildSwimWorkoutDetail(workout))
+        }
+        return details
+    }
+
+    private func buildSwimWorkoutDetail(_ workout: HKWorkout) async -> HealthKitSwimWorkoutDetail {
+        // Distance et strokes via `allStatistics` (iOS 16+) — `totalDistance` et
+        // `totalSwimmingStrokeCount` sont deprecated iOS 18.
+        var totalDistanceMeters: Double?
+        if let distanceType = HKQuantityType.quantityType(forIdentifier: .distanceSwimming),
+           let sum = workout.allStatistics[distanceType]?.sumQuantity() {
+            totalDistanceMeters = sum.doubleValue(for: .meter())
+        }
+
+        var totalStrokes: Int?
+        if let strokeType = HKQuantityType.quantityType(forIdentifier: .swimmingStrokeCount),
+           let sum = workout.allStatistics[strokeType]?.sumQuantity() {
+            totalStrokes = Int(sum.doubleValue(for: HKUnit.count()))
+        }
+
+        let (avgHR, maxHR) = await readHeartRateStats(for: workout)
+
+        let poolLengthMeters = (workout.metadata?[HKMetadataKeyLapLength] as? HKQuantity)?
+            .doubleValue(for: .meter())
+
+        var swimLocationType: SwimLocationType?
+        if let raw = workout.metadata?[HKMetadataKeySwimmingLocationType] as? Int {
+            swimLocationType = SwimLocationType(rawValueSafe: raw)
+        }
+
+        let productType = workout.sourceRevision.productType
+        let appleWatchDetected = (productType ?? "").lowercased().hasPrefix("watch")
+
+        let laps = await extractSwimLaps(workout: workout, poolLengthMeters: poolLengthMeters)
+
+        return HealthKitSwimWorkoutDetail(
+            id: workout.uuid,
+            startDate: workout.startDate,
+            endDate: workout.endDate,
+            durationSeconds: workout.duration,
+            totalDistanceMeters: totalDistanceMeters,
+            totalStrokes: totalStrokes,
+            averageHeartRateBpm: avgHR.map { Int($0.rounded()) },
+            maxHeartRateBpm: maxHR.map { Int($0.rounded()) },
+            poolLengthMeters: poolLengthMeters,
+            swimLocationType: swimLocationType,
+            sourceProductType: productType,
+            appleWatchDetected: appleWatchDetected,
+            laps: laps
+        )
+    }
+
+    /// Story 3.16 AC7 — extraction lap-by-lap.
+    /// Path 1 : `workout.workoutActivities` non vide (watchOS 9+) → on itère
+    /// les activities et filtre les `.lap` events par fenêtre temporelle.
+    /// Path 2 : `workoutActivities` vide (Watch legacy ou app tierce) → on
+    /// itère directement `workout.workoutEvents` filtrés `.lap`.
+    /// Path 3 : aucun lap event → `[]`.
+    /// Borne max 200 laps pour éviter UI ingérable.
+    private func extractSwimLaps(workout: HKWorkout, poolLengthMeters: Double?) async -> [HealthKitSwimLap] {
+        let activities = workout.workoutActivities
+
+        let lapEvents: [HKWorkoutEvent]
+        if !activities.isEmpty {
+            // Path 1 : récupère les lap events de tous les workoutActivities en
+            // filtrant ceux dont la fenêtre temporelle tombe dans une activity.
+            let activityWindows = activities.map { $0.startDate...($0.endDate ?? workout.endDate) }
+            lapEvents = (workout.workoutEvents ?? []).filter { event in
+                event.type == .lap && activityWindows.contains { $0.contains(event.dateInterval.start) }
+            }
+        } else {
+            // Path 2 : fallback workout legacy sans activities.
+            #if DEBUG
+            Self.logger.debug("swim laps: fallback legacy workout sans activities (uuid=\(workout.uuid))")
+            #endif
+            lapEvents = (workout.workoutEvents ?? []).filter { $0.type == .lap }
+        }
+
+        guard !lapEvents.isEmpty else { return [] }
+
+        let boundedEvents = lapEvents.prefix(200)
+
+        var laps: [HealthKitSwimLap] = []
+        laps.reserveCapacity(boundedEvents.count)
+        for (offset, event) in boundedEvents.enumerated() {
+            let lap = await buildSwimLap(
+                event: event,
+                index: offset + 1,
+                poolLengthMeters: poolLengthMeters
+            )
+            laps.append(lap)
+        }
+        return laps
+    }
+
+    private func buildSwimLap(
+        event: HKWorkoutEvent,
+        index: Int,
+        poolLengthMeters: Double?
+    ) async -> HealthKitSwimLap {
+        let interval = event.dateInterval
+        let duration = interval.duration
+        let distance = poolLengthMeters
+        let pace = HealthKitSwimLap.computePaceSecondsPer100m(
+            durationSeconds: duration,
+            distanceMeters: distance
+        )
+
+        var strokeStyle: SwimStrokeStyle?
+        if let raw = event.metadata?[HKMetadataKeySwimmingStrokeStyle] as? Int {
+            strokeStyle = SwimStrokeStyle(rawValueSafe: raw)
+        }
+
+        let avgHR = await readHeartRateAverage(start: interval.start, end: interval.end)
+
+        return HealthKitSwimLap(
+            index: index,
+            startDate: interval.start,
+            durationSeconds: duration,
+            distanceMeters: distance,
+            strokeStyle: strokeStyle,
+            paceSecondsPer100m: pace,
+            averageHeartRateBpm: avgHR.map { Int($0.rounded()) }
+        )
+    }
+
+    private func readHeartRateAverage(start: Date, end: Date) async -> Double? {
+        guard let hrType = HKQuantityType.quantityType(forIdentifier: .heartRate) else {
+            return nil
+        }
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: [])
+
+        return await withCheckedContinuation { (continuation: CheckedContinuation<Double?, Never>) in
+            let query = HKStatisticsQuery(
+                quantityType: hrType,
+                quantitySamplePredicate: predicate,
+                options: [.discreteAverage]
+            ) { _, statistics, _ in
+                let unit = HKUnit.count().unitDivided(by: .minute())
+                continuation.resume(returning: statistics?.averageQuantity()?.doubleValue(for: unit))
+            }
+            healthStore.execute(query)
+        }
     }
 
     private func readHeartRateStats(for workout: HKWorkout) async -> (average: Double?, max: Double?) {

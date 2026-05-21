@@ -7,6 +7,7 @@ final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable 
     var isHealthDataAvailable: Bool = true
     var hasRequestedAuthorization: Bool = false
     var hasRequestedProgressAuthorization: Bool = false
+    var hasRequestedSwimAuthorization: Bool = false
 
     var stubbedProfile: HealthKitProfileData = HealthKitProfileData(
         biologicalSex: nil,
@@ -22,12 +23,16 @@ final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable 
     var stubbedSleepAverageMinutes: Double?
     var stubbedWorkoutVolumeByActivityType: [UInt: TimeInterval] = [:]
     var stubbedRecentWorkoutDetails: [HealthKitWorkoutDetail] = []
+    var stubbedSwimWorkoutDetails: [HealthKitSwimWorkoutDetail] = []
 
     var requestAuthorizationCallCount: Int = 0
     var requestAuthorizationShouldThrow: Error?
 
     var requestProgressAuthorizationCallCount: Int = 0
     var requestProgressAuthorizationShouldThrow: Error?
+
+    var requestSwimAuthorizationCallCount: Int = 0
+    var requestSwimAuthorizationShouldThrow: Error?
 
     func requestProfileAuthorization() async throws {
         requestAuthorizationCallCount += 1
@@ -45,6 +50,15 @@ final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable 
             throw error
         }
         hasRequestedProgressAuthorization = true
+    }
+
+    func requestSwimAuthorizationIfNeeded() async throws {
+        if hasRequestedSwimAuthorization { return }
+        requestSwimAuthorizationCallCount += 1
+        if let error = requestSwimAuthorizationShouldThrow {
+            throw error
+        }
+        hasRequestedSwimAuthorization = true
     }
 
     func fetchProfileData() async -> HealthKitProfileData {
@@ -77,5 +91,9 @@ final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable 
 
     func fetchRecentWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitWorkoutDetail] {
         stubbedRecentWorkoutDetails
+    }
+
+    func fetchRecentSwimWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitSwimWorkoutDetail] {
+        stubbedSwimWorkoutDetails
     }
 }

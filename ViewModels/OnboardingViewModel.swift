@@ -369,6 +369,13 @@ final class OnboardingViewModel {
             try await coachingProfileRepository.save(coaching)
             Self.logger.info("finalize: coaching saved")
 
+            // Story 3.16 AC14 — best-effort silencieux : demande l'extension HK
+            // natation (distanceSwimming + swimmingStrokeCount) si l'user a choisi
+            // natation à l'onboarding. Idempotent côté service.
+            if activeSports.contains(SportCode.swimming.rawValue) {
+                try? await healthKitService.requestSwimAuthorizationIfNeeded()
+            }
+
             // Story 3.15 — bootstrap 3 dormants si possible. Best-effort,
             // ne bloque pas le succès onboarding si bootstrap échoue. Le service
             // est idempotent : si flag déjà true ou si l'user a déjà des
