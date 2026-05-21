@@ -72,6 +72,16 @@ struct UIReviewScenarioContainer: View {
             // visible : démarrés en tête. ProgramCard + NextSessionCard sous le
             // carrousel pour le programme sélectionné (= running, premier).
             DashboardActiveScenarioView(scenario: .mixed)
+        case "ui_review_dashboard_empty":
+            // **Story 3.15 v7 (Sophie 2026-05-21)** — mode `.empty` simplifié :
+            // icone hero + titre + sous-titre + CTA "Crée mon premier programme".
+            EmptyDashboardView(
+                hintKey: "dashboard.empty.hint.default",
+                onTapCustom: { /* noop scenario */ }
+            )
+            .padding(.horizontal, 16)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.coachingBackground.ignoresSafeArea())
         case "ui_review_dashboard_active_dormant_only":
             // **Story 3.10** — dashboard avec UN programme dormant. NextSessionCard
             // doit afficher "Non commencé" + bouton "Démarrer" (sans next session

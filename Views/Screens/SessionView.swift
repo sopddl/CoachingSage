@@ -198,14 +198,13 @@ struct SessionView: View {
 
     @ToolbarContentBuilder
     private var topToolbar: some ToolbarContent {
-        // Bouton "+" : créer un nouveau programme. Affiché UNIQUEMENT en mode
-        // dashboard actif (déjà ≥ 1 programme) — en mode vide le CTA principal
-        // EmptyDashboardView suffit. Sophie 2026-05-10 : remplace le `CreateProgramOrRoutineCard`
-        // du bas (peu visible). Action directe = SportPickerSheet (la distinction
-        // routine vs programme est cachée au user, pivot via Q3 fréquence).
-        // Tint forcé `coachingPrimary` (#1E5090) sinon iOS applique un bleu
-        // système qui jure avec le bleu Léon (Sophie feedback 2026-05-10).
-        if let mode = dashboardViewModel?.mode, mode != .empty {
+        // Bouton "+" : créer un nouveau programme. **Story 3.15 v7 (Sophie
+        // 2026-05-21)** — toujours visible. Avant, masqué en mode `.empty` car
+        // on comptait sur le CTA dans EmptyDashboardView, mais Sophie a remonté
+        // qu'en mode vide elle n'a "même pas de bouton" pour créer.
+        // Action directe = SportPickerSheet (la distinction routine vs
+        // programme est cachée au user, pivot via Q3 fréquence).
+        if dashboardViewModel != nil {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     sheetSelection = .sportPicker
