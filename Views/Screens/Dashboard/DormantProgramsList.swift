@@ -121,3 +121,57 @@ private struct DormantProgramRow: View {
         }
     }
 }
+
+/// **Story 3.15 v7.2 (Sophie 2026-05-21)** — header "accueil" du mode
+/// `.dormantOnly` (0 lancé + N dormants, typiquement post-onboarding avec 3
+/// programmes bootstrappés). Reprend le layout de l'ancien accueil (cf maquette
+/// `CL3/4.png`) : bandeau bleu marine clair en intro + grosse carte dorée Léon
+/// "Prêt·e à commencer ?". La liste des Préparés reste affichée en dessous via
+/// `DormantProgramsList` (inchangée).
+struct DormantHeroHeader: View {
+    let dormantCount: Int
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            // Bandeau intro — bleu marine clair, texte italique.
+            Text(verbatim: String(
+                format: NSLocalizedString("dashboard.dormants.intro.format", comment: ""),
+                dormantCount
+            ))
+            .font(.subheadline.italic())
+            .foregroundStyle(Color.coachingTextPrimary)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 12)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.coachingPrimary.opacity(0.10))
+            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+            .accessibilityIdentifier("dashboard.dormants.intro")
+
+            // Carte dorée — hero "Prêt·e à commencer ?"
+            HStack(alignment: .top, spacing: 14) {
+                Image(systemName: "figure.run")
+                    .font(.system(size: 30, weight: .semibold))
+                    .foregroundStyle(.white)
+                    .padding(.top, 2)
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("dashboard.empty.hero.title")
+                        .font(.system(size: 18, weight: .semibold, design: .serif))
+                        .foregroundStyle(.white)
+                    Text(verbatim: String(
+                        format: NSLocalizedString("dashboard.dormants.hero.subtitle.format", comment: ""),
+                        dormantCount
+                    ))
+                    .font(.callout)
+                    .foregroundStyle(.white.opacity(0.95))
+                    .fixedSize(horizontal: false, vertical: true)
+                }
+                Spacer(minLength: 0)
+            }
+            .padding(16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.coachingRecord)
+            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+            .accessibilityIdentifier("dashboard.dormants.hero")
+        }
+    }
+}

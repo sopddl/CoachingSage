@@ -327,19 +327,22 @@ struct AdaptedProgramView: View {
                 Task { await handleStartProgram() }
             }
         } label: {
-            HStack(spacing: 4) {
+            // Story 3.15 v7.3 (Sophie 2026-05-21) — play seul (Sophie : « le
+            // play est suffisant ne pas ajouter démarrer dans la fiche
+            // programme »). Le label est porté par l'accessibilityLabel pour
+            // VoiceOver.
+            Group {
                 if isConfirmingStart || isStartingProgram {
                     ProgressView()
                         .controlSize(.mini)
                 } else {
                     Image(systemName: "play.fill")
-                        .font(.footnote.weight(.semibold))
+                        .font(.headline.weight(.semibold))
                 }
-                Text("coaching.adapter.action.start")
-                    .font(.subheadline.weight(.semibold))
             }
         }
         .disabled(isConfirmingStart || isStartingProgram)
+        .accessibilityLabel(Text("coaching.adapter.action.start"))
         .accessibilityIdentifier("coaching.adapter.toolbar.start")
     }
 
@@ -694,9 +697,9 @@ struct AdaptedProgramView: View {
             )
         } label: {
             HStack(spacing: 12) {
-                Image(systemName: program.sport.sfSymbol)
+                Image(systemName: sessionSymbol(for: session))
                     .frame(width: 24)
-                    .foregroundStyle(.tint)
+                    .foregroundStyle(Color.coachingSport(forCode: sessionEffectiveSportCode(for: session)))
                 VStack(alignment: .leading, spacing: 2) {
                     Text(verbatim: session.name)
                         .font(.subheadline.bold())
@@ -732,6 +735,42 @@ struct AdaptedProgramView: View {
 
     private func hasAdaptations(week: Int, day: Int) -> Bool {
         program.appliedRules.contains { $0.weekNumber == week && $0.day == day }
+    }
+
+    /// Story 3.15 v7.2 (Sophie 2026-05-21) — symbole par session, sport-aware.
+    /// Pour un programme **mono-sport** (running / cycling / …) → symbole du
+    /// sport parent (inchangé). Pour **triathlon**, on parse le nom de session
+    /// via `SessionSportInference` pour distinguer Swim / Bike / Run ; si
+    /// aucun match (séances S&C ou Mobilité), on retombe sur le `SessionType`
+    /// (`AdaptedProgramFormatting.sfSymbol(for:)`) pour avoir un symbole utile
+    /// (dumbbell pour strength, cooldown pour mobility) plutôt que toujours
+    /// `figure.mixed.cardio`.
+    private func sessionSymbol(for session: AdaptedSession) -> String {
+        let parentCode = program.sport.appSportCode
+        let effective = SessionSportInference.sportCode(
+            forSessionName: session.name,
+            programSportCode: parentCode
+        )
+        if effective != parentCode {
+            return SportSymbol.symbol(forCode: effective)
+        }
+        if parentCode == "triathlon" {
+            return AdaptedProgramFormatting.sfSymbol(for: session.type)
+        }
+        return SportSymbol.symbol(forCode: parentCode)
+    }
+
+    /// Story 3.15 v7.3 (Sophie 2026-05-21) — code sport effectif d'une session,
+    /// utilisé pour coloriser le symbole (`Color.coachingSport(forCode:)`).
+    /// Aligné sur `sessionSymbol(for:)` : pour triathlon multi-sport, retourne
+    /// `running` / `cycling` / `swimming` selon le nom de session, sinon
+    /// le sport parent.
+    private func sessionEffectiveSportCode(for session: AdaptedSession) -> String {
+        let parentCode = program.sport.appSportCode
+        return SessionSportInference.sportCode(
+            forSessionName: session.name,
+            programSportCode: parentCode
+        )
     }
 
     // MARK: - Medical reminder

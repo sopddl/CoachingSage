@@ -267,20 +267,26 @@ struct SessionView: View {
                 }
             )
         case let .dormantOnly(dormants):
-            // **Story 3.15** — 0 lancé + N dormants : la liste "Préparés"
-            // est remontée en tête, pas de carrousel ni séance focale. Pas
-            // de header de page distinct (le titre `Séances` de la navbar
-            // suffit, le titre de section "Préparés" est affiché par
-            // `DormantProgramsList`).
-            DormantProgramsList(
-                dormants: dormants,
-                onTapProgram: { summary in
-                    pushAdaptedProgramSummary(summary)
-                },
-                onDeleteProgram: { summary in
-                    Task { await deleteProgramSummary(summary) }
+            // **Story 3.15 v7.2 (Sophie 2026-05-21)** — reprise du layout
+            // "accueil" de référence (cf `CL3/4.png`) : bandeau intro bleu
+            // marine clair + carte dorée Léon "Prêt·e à commencer ?" en haut,
+            // suivi de la liste des Préparés. ScrollView englobant car
+            // l'ensemble peut déborder.
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 16) {
+                    DormantHeroHeader(dormantCount: dormants.count)
+                    DormantProgramsList(
+                        dormants: dormants,
+                        onTapProgram: { summary in
+                            pushAdaptedProgramSummary(summary)
+                        },
+                        onDeleteProgram: { summary in
+                            Task { await deleteProgramSummary(summary) }
+                        }
+                    )
                 }
-            )
+                .padding(.bottom, 16)
+            }
         case let .active(started, dormants, selectedId):
             // **Story 3.15** — refonte hiérarchique 3 zones :
             //   - Zone 1 : carrousel "Programmes en cours" (started only)
@@ -632,12 +638,17 @@ struct SessionView: View {
             sportProfile: sportProfile,
             coachingProfile: coachingProfile
         )
-        await persistAdaptedProgram(
+        // **Story 3.15 v7.4 (Sophie 2026-05-21)** — récupérer le recordId pour
+        // que `AdaptedProgramView` puisse fetch le record SwiftData et afficher
+        // le bouton "Démarrer" toolbar (sinon `isDormantRecord` reste false et
+        // le programme nouvellement créé n'est jamais démarrable depuis la
+        // fiche). Avant : `recordId: nil` → record jamais loadé → bouton absent.
+        let recordId = await persistAdaptedProgram(
             adapted,
             goal: sportProfile.goals.primary,
             secondary: sportProfile.goals.secondary
         )
-        adaptedRoute = AdaptedProgramRoute(program: adapted, recordId: nil)
+        adaptedRoute = AdaptedProgramRoute(program: adapted, recordId: recordId)
         await refreshDashboard()
     }
 
@@ -645,17 +656,20 @@ struct SessionView: View {
     /// pour alimenter le dashboard Séances. Best-effort : un échec n'empêche pas
     /// la navigation vers `AdaptedProgramView`.
     /// Story 3.13 Phase D — propage `secondary` pour titre composite multi-objectifs.
+    /// Story 3.15 v7.4 (Sophie 2026-05-21) — retourne le `recordId` créé pour
+    /// que la nav puisse fetch le record côté `AdaptedProgramView` et exposer
+    /// le bouton "Démarrer" toolbar. `nil` si la persistance échoue.
     private func persistAdaptedProgram(
         _ adapted: AdaptedProgram,
         goal: String?,
         secondary: [String] = []
-    ) async {
-        guard let deps else { return }
+    ) async -> UUID? {
+        guard let deps else { return nil }
         guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else {
             #if DEBUG
             Self.persistLogger.debug("persistAdaptedProgram skipped: no auth session")
             #endif
-            return
+            return nil
         }
         do {
             let record = AdaptedProgramRecord(
@@ -666,8 +680,10 @@ struct SessionView: View {
                 locale: languageManager.currentLocale
             )
             try await deps.adaptedProgramRepository.save(record)
+            return record.id
         } catch {
             Self.persistLogger.error("persistAdaptedProgram FAILED: \(error.localizedDescription)")
+            return nil
         }
     }
 

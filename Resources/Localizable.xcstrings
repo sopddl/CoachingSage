@@ -2537,7 +2537,59 @@
         }
       }
     },
+    "dashboard.dormants.hero.subtitle.format" : {
+      "comment" : "Story 3.15 v7.2 — sous-titre carte dorée mode .dormantOnly (cf CL3/4.png)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Léon has lined up %lld programs tuned to your onboarding and health data."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Léon a préparé %lld programmes calibrés sur ton onboarding et tes données santé."
+          }
+        }
+      }
+    },
+    "dashboard.dormants.intro.format" : {
+      "comment" : "Story 3.15 v7.2 — bandeau intro mode .dormantOnly (cf CL3/4.png)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Here are %lld programs tuned to the sports you flagged at onboarding."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voici %lld programmes calibrés sur les sports que tu as déclarés à l'onboarding."
+          }
+        }
+      }
+    },
+    "dashboard.empty.cta.create" : {
+      "comment" : "Story 3.15 v7 (Sophie 2026-05-21) — CTA centré sur EmptyDashboardView",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create my first program"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créer mon premier programme"
+          }
+        }
+      }
+    },
     "dashboard.empty.custom.cta" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2554,6 +2606,7 @@
       }
     },
     "dashboard.empty.hero.subtitle" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2583,20 +2636,6 @@
             "value" : "Prêt·e à commencer ?"
           }
         }
-      }
-    },
-    "dashboard.empty.cta.create" : {
-      "comment" : "Story 3.15 v7 (Sophie 2026-05-21) — CTA centré sur EmptyDashboardView",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create my first program" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Créer mon premier programme" } }
-      }
-    },
-    "dashboard.empty.title" : {
-      "comment" : "Story 3.15 v7 (Sophie 2026-05-21) — titre hero centré EmptyDashboardView",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No program yet" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Pas encore de programme" } }
       }
     },
     "dashboard.empty.hint.declared" : {
@@ -2681,6 +2720,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suggestions indisponibles — essaie l'option sur mesure ci-dessous."
+          }
+        }
+      }
+    },
+    "dashboard.empty.title" : {
+      "comment" : "Story 3.15 v7 (Sophie 2026-05-21) — titre hero centré EmptyDashboardView",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No program yet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas encore de programme"
           }
         }
       }

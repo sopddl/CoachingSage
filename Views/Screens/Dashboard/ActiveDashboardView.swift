@@ -66,12 +66,19 @@ struct ActiveDashboardView: View {
         // autre scroll pour les programmes préparés ». Section Séances et
         // Programmes préparés ont chacune leur ScrollView interne avec flex
         // height pour se partager l'espace restant.
+        //
+        // **v7.3 (Sophie 2026-05-21)** — fond solide sur chaque section +
+        // `scrollClipDisabled()` retiré : les rows du scroll Séances étaient
+        // visibles sous le titre "Programmes préparés" et inversement. Chaque
+        // section a maintenant son `Color.coachingBackground` + le scroll est
+        // clip-natif, donc tout reste à sa place visuellement.
         VStack(alignment: .leading, spacing: 16) {
             // Zone 1 : carrousel "Programmes en cours" — hauteur fixe.
             if !startedPrograms.isEmpty {
                 section(titleKey: "dashboard.section.in_progress.title") {
                     programCarousel
                 }
+                .background(Color.coachingBackground)
             }
 
             // Zone 2 : "Séances" = focal (fixe) + scroll interne pour la
@@ -111,26 +118,34 @@ struct ActiveDashboardView: View {
                                     )
                                 }
                             }
+                            .padding(.bottom, 8)
                         }
-                        .scrollClipDisabled()
                     }
                 }
                 .frame(maxHeight: .infinity, alignment: .top)
+                .background(Color.coachingBackground)
             }
 
             // Zone 3 : "Programmes préparés" — ScrollView interne distinct du
             // scroll Séances pour que Sophie puisse parcourir ses dormants
-            // sans pousser la zone Séances hors écran.
+            // sans pousser la zone Séances hors écran. `padding(.bottom, 16)`
+            // pour garantir que le dernier dormant reste atteignable au scroll
+            // (sinon il restait collé à la tab bar et non visible).
             if !dormantPrograms.isEmpty {
-                ScrollView(.vertical, showsIndicators: false) {
-                    DormantProgramsList(
-                        dormants: dormantPrograms,
-                        onTapProgram: onTapProgram,
-                        onDeleteProgram: onDeleteProgram
-                    )
+                section(titleKey: "dashboard.section.dormants.title") {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        DormantProgramsList(
+                            dormants: dormantPrograms,
+                            onTapProgram: onTapProgram,
+                            onDeleteProgram: onDeleteProgram,
+                            hideHeader: true
+                        )
+                        .padding(.bottom, 16)
+                    }
+                    .frame(maxHeight: .infinity, alignment: .top)
                 }
                 .frame(maxHeight: .infinity, alignment: .top)
-                .scrollClipDisabled()
+                .background(Color.coachingBackground)
             }
         }
     }

@@ -151,8 +151,17 @@ struct UpcomingSessionRow: View {
 ///     le data model (story future, demande migration SwiftData).
 enum SessionSportInference {
     static func sportCode(for session: PersistedSession, programSportCode: String) -> String {
+        sportCode(forSessionName: session.name, programSportCode: programSportCode)
+    }
+
+    /// Variante name+parent — utilisée par `AdaptedProgramView` / `SessionDetailView`
+    /// qui manipulent des `AdaptedSession` (pas des `PersistedSession`). Story 3.15
+    /// v7.2 (Sophie 2026-05-21) : avant ce fix, la liste sessions du programme
+    /// triathlon affichait `figure.mixed.cardio` partout (sport parent), au lieu
+    /// du symbole spécifique Swim/Bike/Run par session.
+    static func sportCode(forSessionName name: String, programSportCode: String) -> String {
         guard programSportCode == "triathlon" else { return programSportCode }
-        let name = session.name.lowercased()
+        let lower = name.lowercased()
         // **Story 3.15 v5 fix (Sophie 2026-05-21)** — keywords strictement
         // sport-specific. Avant : "z2" / "daniels" / "fractionn" causaient
         // un faux match running pour "Bike FTP-Z2" (Z2 = zone d'intensité
@@ -161,9 +170,9 @@ enum SessionSportInference {
         let bikeKeywords = ["bike", "vélo", "velo", "cycling", "cycle", "ftp", "rouleau"]
         let swimKeywords = ["swim", "natation", "nage", "crawl", "brasse"]
         let runKeywords = ["run", "running", "course", "footing"]
-        if bikeKeywords.contains(where: { name.contains($0) }) { return "cycling" }
-        if swimKeywords.contains(where: { name.contains($0) }) { return "swimming" }
-        if runKeywords.contains(where: { name.contains($0) }) { return "running" }
+        if bikeKeywords.contains(where: { lower.contains($0) }) { return "cycling" }
+        if swimKeywords.contains(where: { lower.contains($0) }) { return "swimming" }
+        if runKeywords.contains(where: { lower.contains($0) }) { return "running" }
         return programSportCode
     }
 }
