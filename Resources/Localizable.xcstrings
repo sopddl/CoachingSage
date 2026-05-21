@@ -573,22 +573,6 @@
         }
       }
     },
-    "chat.a11y.questionnaireSportAvatar" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sport avatar"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Avatar du sport"
-          }
-        }
-      }
-    },
     "chat.a11y.leonSays" : {
       "localizations" : {
         "en" : {
@@ -617,6 +601,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Léon est en train d'écrire"
+          }
+        }
+      }
+    },
+    "chat.a11y.questionnaireSportAvatar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sport avatar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avatar du sport"
           }
         }
       }
@@ -1937,6 +1937,7 @@
       }
     },
     "dashboard.active.next.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2086,6 +2087,7 @@
       }
     },
     "dashboard.active.programs.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2502,6 +2504,7 @@
     },
     "dashboard.empty.suggestion.weeks" : {
       "comment" : "ex. 8 sem",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2518,6 +2521,7 @@
       }
     },
     "dashboard.empty.suggestions.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2534,6 +2538,7 @@
       }
     },
     "dashboard.empty.suggestions.unavailable" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2951,13 +2956,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your next session"
+            "value" : "Coming up"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ta prochaine séance"
+            "value" : "À venir"
           }
         }
       }
@@ -9061,50 +9066,130 @@
     },
     "session.type.endurance" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Endurance" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Endurance" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endurance"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endurance"
+          }
+        }
       }
     },
     "session.type.interval" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Intervals" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Fractionné" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intervals"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fractionné"
+          }
+        }
       }
     },
     "session.type.mixed" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Mixed" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Mixte" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mixed"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mixte"
+          }
+        }
       }
     },
     "session.type.mobility" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Mobility" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Mobilité" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mobility"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mobilité"
+          }
+        }
       }
     },
     "session.type.other" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Session" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Séance" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Session"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Séance"
+          }
+        }
       }
     },
     "session.type.rest" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Recovery" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Récup" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recovery"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Récup"
+          }
+        }
       }
     },
     "session.type.strength" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Strength" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Renforcement" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strength"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renforcement"
+          }
+        }
       }
     },
     "session.type.technique" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Technique" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Technique" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Technique"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Technique"
+          }
+        }
       }
     },
     "sync.error" : {

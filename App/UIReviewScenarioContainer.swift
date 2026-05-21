@@ -175,8 +175,9 @@ private struct DashboardActiveScenarioView: View {
     var body: some View {
         ScrollView {
             // **Story 3.15** — split started/dormant pour la nouvelle signature
-            // 3 zones d'`ActiveDashboardView`. Le container UI review ne calcule
-            // pas de teaser N+1 (pas critique pour le test visuel).
+            // 3 zones d'`ActiveDashboardView`. Teaser N+1 fourni en fixture
+            // pour démontrer visuellement la séance suivante (raffinement
+            // Sophie 2026-05-21).
             let allPrograms = programs
             let started = allPrograms.filter { $0.weekStartDate != nil }
             let dormants = allPrograms.filter { $0.weekStartDate == nil }
@@ -184,7 +185,7 @@ private struct DashboardActiveScenarioView: View {
                 startedPrograms: started,
                 dormantPrograms: dormants,
                 selectedId: selectedId,
-                teaserSession: nil,
+                teaserSession: teaserSessionFixture,
                 regenBadges: [:],
                 onSelectProgram: { _ in },
                 onTapStartSession: { _ in },
@@ -195,6 +196,20 @@ private struct DashboardActiveScenarioView: View {
             .padding(16)
         }
         .background(Color.coachingBackground.ignoresSafeArea())
+    }
+
+    /// **Story 3.15 raffinement 2026-05-21** — fixture teaser N+1 du programme
+    /// sélectionné. Démontre l'affichage de la séance suivante sous la card
+    /// focale. Nil pour les scenarios où ce n'est pas pertinent.
+    private var teaserSessionFixture: PersistedSession? {
+        switch scenario {
+        case .mixed:
+            return makeSession(name: "Sortie longue 1h", week: 2, day: 5, dur: 60)
+        case .lateWithReplanify:
+            return makeSession(name: "Footing récup 30 min", week: 1, day: 5, dur: 30)
+        default:
+            return nil
+        }
     }
 
     private var programs: [ProgramSummary] {

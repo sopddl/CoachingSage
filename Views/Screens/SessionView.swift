@@ -288,13 +288,6 @@ struct SessionView: View {
                 },
                 onTapReplanify: { summary in
                     replanifyTarget = summary
-                },
-                onTapTeaser: { summary, _ in
-                    // Phase 4 raffinement : passer la session ciblée à
-                    // AdaptedProgramView via une coordonnée. Pour V1 on push
-                    // simplement le programme et l'user trouve la session
-                    // suivante depuis là.
-                    pushAdaptedProgramSummary(summary)
                 }
             )
         }

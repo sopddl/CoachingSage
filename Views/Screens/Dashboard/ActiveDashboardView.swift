@@ -49,10 +49,6 @@ struct ActiveDashboardView: View {
     /// **Story 3.11** — tap "Replanifier" (visible uniquement quand la prochaine
     /// séance affichée est `late` ET le programme est en mode deadline).
     var onTapReplanify: ((ProgramSummary) -> Void)? = nil
-    /// **Story 3.15 AC7** — tap sur le teaser N+1. Navigue vers le programme
-    /// sélectionné (la session ciblée est traitée par le caller — coordonnée
-    /// éventuellement passée à `AdaptedProgramView`). No-op si nil.
-    var onTapTeaser: ((ProgramSummary, PersistedSession) -> Void)? = nil
 
     private var selectedSummary: ProgramSummary? {
         if let selectedId, let s = startedPrograms.first(where: { $0.id == selectedId }) { return s }
@@ -87,13 +83,12 @@ struct ActiveDashboardView: View {
                             }
                         )
                         // Teaser N+1 toujours visible juste sous la focale
-                        // (décision Sophie 2026-05-20 figée).
+                        // (décision Sophie 2026-05-20 figée). Display-only :
+                        // pas de tap → push. L'user scroll la page pour
+                        // interagir avec les sections suivantes.
                         NextSessionTeaser(
                             teaserSession: teaserSession,
-                            hasFocal: selectedSummary.nextSession != nil,
-                            onTapTeaser: { session in
-                                onTapTeaser?(selectedSummary, session)
-                            }
+                            hasFocal: selectedSummary.nextSession != nil
                         )
                     }
                 }
@@ -153,7 +148,7 @@ struct ActiveDashboardView: View {
             .scrollTargetLayout()
             .padding(.horizontal, 1)
         }
-        .frame(height: 170)
+        .frame(height: 140)
         .scrollTargetBehavior(.viewAligned)
         .scrollPosition(
             id: Binding(
@@ -270,7 +265,11 @@ private struct ProgramCard: View {
             .overlay(
                 RoundedRectangle(cornerRadius: 14, style: .continuous)
                     .strokeBorder(
-                        isSelected ? Color.coachingPrimary : Color.clear,
+                        // **Story 3.15 raffinement 2026-05-21** — border
+                        // selected = couleur du sport (avant bleu coach fixe).
+                        // Renforce le lien visuel programme ↔ couleur identité
+                        // sport (cf coachingSport mapping).
+                        isSelected ? Color.coachingSport(forCode: sportCode) : Color.clear,
                         lineWidth: 2
                     )
             )
@@ -352,19 +351,33 @@ private struct NextSessionCard: View {
     @Environment(\.locale) private var locale
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 10) {
             content
         }
-        .padding(16)
+        // **Story 3.15 raffinement 2026-05-21** — padding réduit (16→12) pour
+        // alléger visuellement la card focale (retour Sophie : "un peu moins
+        // grosse").
+        .padding(12)
         .frame(maxWidth: .infinity, alignment: .leading)
+        // **Story 3.15 raffinement 2026-05-21** — fond gradient couleur du sport
+        // du programme sélectionné (avant : bleu coach fixe, "bizarre quand
+        // course"). Renforce l'identité visuelle du programme actif.
         .background(
             LinearGradient(
-                colors: [Color(hex: 0x1E5090), Color(hex: 0x2B5F8A)],
+                colors: [
+                    Color.coachingSport(forCode: summary.sport.appSportCode),
+                    Color.coachingSport(forCode: summary.sport.appSportCode).opacity(0.82)
+                ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
         )
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+        // **Story 3.15 raffinement 2026-05-21** — tap sur la card focal (n'importe
+        // où sauf le bouton Démarrer) → push SessionDetailView. Avant : seul le
+        // bouton agissait, le reste de la card était inerte.
+        .contentShape(Rectangle())
+        .onTapGesture { onTapDetail() }
         .accessibilityIdentifier("dashboard.active.next")
     }
 
@@ -417,8 +430,10 @@ private struct NextSessionCard: View {
                 lateBadge
             }
             HStack(alignment: .firstTextBaseline, spacing: 8) {
+                // **Story 3.15 raffinement 2026-05-21** — taille titre réduite
+                // (19→17pt) pour alléger la présence visuelle.
                 Text(verbatim: session.name)
-                    .font(.system(size: 19, weight: .semibold, design: .serif))
+                    .font(.system(size: 17, weight: .semibold, design: .serif))
                     .foregroundStyle(Color.coachingOnPrimary)
                     .lineLimit(2)
                 Spacer(minLength: 0)

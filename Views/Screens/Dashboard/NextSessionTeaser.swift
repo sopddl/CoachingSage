@@ -22,9 +22,6 @@ struct NextSessionTeaser: View {
     /// `true` quand la séance focale est affichée — sert à savoir si on doit
     /// montrer le label "Dernière séance de la semaine" en fallback.
     let hasFocal: Bool
-    /// Tap sur le teaser → push `AdaptedProgramView` ciblé sur cette session
-    /// (à raffiner Phase 4 si besoin de scrolling automatique).
-    let onTapTeaser: (PersistedSession) -> Void
 
     var body: some View {
         if let teaserSession {
@@ -34,31 +31,28 @@ struct NextSessionTeaser: View {
         }
     }
 
+    /// **Story 3.15 raffinement 2026-05-21** — display-only (pas de tap → push).
+    /// Sophie : "les seance c'est pas un scroll comme j'ai demandé mais on
+    /// bascule ds le programme". Le teaser est désormais en lecture pure :
+    /// l'user voit la séance suivante mais ne navigue pas depuis ici. Pour
+    /// agir, il scroll la page (geste vertical sur les cards en-dessous).
     private func teaserRow(session: PersistedSession) -> some View {
-        Button {
-            onTapTeaser(session)
-        } label: {
-            HStack(spacing: 10) {
-                Text("dashboard.next_session.teaser.prefix")
-                    .font(.coachingCaption.weight(.semibold))
-                    .foregroundStyle(Color.coachingTextSecondary)
-                    .textCase(.uppercase)
-                    .tracking(0.8)
-                Text(verbatim: session.name)
-                    .font(.coachingBody)
-                    .foregroundStyle(Color.coachingTextPrimary)
-                    .lineLimit(1)
-                Spacer(minLength: 6)
-                Image(systemName: "chevron.right")
-                    .font(.footnote.weight(.medium))
-                    .foregroundStyle(Color.coachingTextSecondary)
-            }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 12)
-            .background(Color.coachingCard)
-            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        HStack(spacing: 10) {
+            Text("dashboard.next_session.teaser.prefix")
+                .font(.coachingCaption.weight(.semibold))
+                .foregroundStyle(Color.coachingTextSecondary)
+                .textCase(.uppercase)
+                .tracking(0.8)
+            Text(verbatim: session.name)
+                .font(.coachingBody)
+                .foregroundStyle(Color.coachingTextPrimary)
+                .lineLimit(1)
+            Spacer(minLength: 0)
         }
-        .buttonStyle(.plain)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
+        .background(Color.coachingCard)
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .accessibilityIdentifier("dashboard.next_session.teaser")
     }
 
