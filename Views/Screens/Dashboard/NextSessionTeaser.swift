@@ -103,38 +103,26 @@ struct UpcomingSessionRow: View {
 
     var body: some View {
         let effectiveSport = SessionSportInference.sportCode(for: session, programSportCode: sportCode)
+        // **Story 3.15 v5 (Sophie 2026-05-21)** — row compact (padding réduit,
+        // font caption). Pill semaine retirée : la semaine est désormais
+        // portée par le séparateur `weekSeparatorHeader` au-dessus du groupe.
         HStack(spacing: 10) {
-            // Badge sport : icône + bordure couleur sport.
             ZStack {
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                RoundedRectangle(cornerRadius: 7, style: .continuous)
                     .strokeBorder(Color.coachingSport(forCode: effectiveSport), lineWidth: 1.5)
                 Image(systemName: SportSymbol.symbol(forCode: effectiveSport))
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.system(size: 13, weight: .semibold))
                     .foregroundStyle(Color.coachingSport(forCode: effectiveSport))
             }
-            .frame(width: 32, height: 32)
+            .frame(width: 28, height: 28)
 
-            // Pill semaine "S2"
-            Text(verbatim: String(
-                format: NSLocalizedString("dashboard.active.next.coordinate.format", comment: ""),
-                session.weekNumber
-            ))
-            .font(.caption.weight(.semibold))
-            .foregroundStyle(Color.coachingTextSecondary)
-            .padding(.horizontal, 6)
-            .padding(.vertical, 2)
-            .background(Color.coachingTextSecondary.opacity(0.10))
-            .clipShape(Capsule())
-
-            // Titre séance
             Text(verbatim: session.name)
-                .font(.coachingBody)
+                .font(.subheadline)
                 .foregroundStyle(Color.coachingTextPrimary)
                 .lineLimit(1)
 
             Spacer(minLength: 6)
 
-            // Durée
             Text(verbatim: String(
                 format: NSLocalizedString("dashboard.active.next.duration.format", comment: ""),
                 session.durationMinutes
@@ -143,9 +131,9 @@ struct UpcomingSessionRow: View {
             .foregroundStyle(Color.coachingTextSecondary)
         }
         .padding(.horizontal, 12)
-        .padding(.vertical, 10)
+        .padding(.vertical, 8)
         .background(Color.coachingCard)
-        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         .accessibilityIdentifier("dashboard.upcoming.session.\(effectiveSport)")
     }
 }

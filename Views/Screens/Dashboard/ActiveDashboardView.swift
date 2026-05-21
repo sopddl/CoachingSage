@@ -87,11 +87,19 @@ struct ActiveDashboardView: View {
                                 { handler(selectedSummary) }
                             }
                         )
-                        // **Story 3.15 v4 (Sophie 2026-05-21)** — liste des
-                        // séances suivantes (au-delà de la focale), display
-                        // only. Pas de préfixe "PUIS". Cohérence avec le
-                        // titre section "Séances" (avant : "Prochaine séance").
-                        ForEach(upcomingSessions, id: \.id) { session in
+                        // **Story 3.15 v5 (Sophie 2026-05-21)** — liste avec
+                        // header semaine quand la semaine change (résout le
+                        // "pourquoi 2 fois S1" : la S1 du focal + S1 du teaser).
+                        // Header "S2" affiché uniquement entre les sessions de
+                        // semaines différentes. Les sessions n'ont plus de pill
+                        // semaine individuel (déplacé vers le header).
+                        ForEach(Array(upcomingSessions.enumerated()), id: \.element.id) { index, session in
+                            let prevWeek: Int = index == 0
+                                ? (selectedSummary.nextSession?.weekNumber ?? session.weekNumber)
+                                : upcomingSessions[index - 1].weekNumber
+                            if session.weekNumber != prevWeek {
+                                weekSeparatorHeader(weekNumber: session.weekNumber)
+                            }
                             UpcomingSessionRow(
                                 session: session,
                                 sportCode: selectedSummary.sport.appSportCode
@@ -119,6 +127,24 @@ struct ActiveDashboardView: View {
                 )
             }
         }
+    }
+
+    /// **Story 3.15 v5 (Sophie 2026-05-21)** — header séparateur de semaine
+    /// dans la liste "Séances". Affiché entre les sessions quand la semaine
+    /// change. Évite la répétition du pill semaine sur chaque row.
+    @ViewBuilder
+    private func weekSeparatorHeader(weekNumber: Int) -> some View {
+        Text(verbatim: String(
+            format: NSLocalizedString("dashboard.active.next.coordinate.format", comment: ""),
+            weekNumber
+        ))
+        .font(.coachingCaption.weight(.semibold))
+        .foregroundStyle(Color.coachingTextSecondary)
+        .textCase(.uppercase)
+        .tracking(0.6)
+        .padding(.top, 6)
+        .padding(.leading, 4)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     /// **Story 3.15** — carrousel horizontal swipable unique pour les started.
@@ -246,13 +272,16 @@ private struct ProgramCard: View {
 
                 // **Story 3.15 v3 (Sophie 2026-05-21)** — barre progression
                 // remontée juste sous le statut, gain place vs Spacer + bas.
+                // **Story 3.15 v5 (Sophie 2026-05-21)** — couleur barre progress
+                // = sport (avant doré coachingRecord). Identité visuelle sport
+                // cohérente avec border isSelected + icone.
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
                         Capsule()
-                            .fill(Color.coachingRecord.opacity(0.15))
+                            .fill(Color.coachingSport(forCode: sportCode).opacity(0.18))
                             .frame(height: 4)
                         Capsule()
-                            .fill(Color.coachingRecord)
+                            .fill(Color.coachingSport(forCode: sportCode))
                             .frame(width: max(4, geo.size.width * progress), height: 4)
                     }
                 }
@@ -278,10 +307,12 @@ private struct ProgramCard: View {
                 // poussait le contenu en haut, laissait une grande marge sous la
                 // barre progression). Maintenant contenu compact + padding bas
                 // réduit pour libérer l'espace visuel.
+                // **Story 3.15 v5 (Sophie 2026-05-21)** — padding bas réduit
+                // encore (8→4) pour gagner de la place sous la barre progression.
             }
             .padding(.horizontal, 10)
             .padding(.top, 10)
-            .padding(.bottom, 8)
+            .padding(.bottom, 4)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(Color.coachingCard)
             .overlay(
