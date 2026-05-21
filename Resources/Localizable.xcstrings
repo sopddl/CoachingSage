@@ -653,30 +653,6 @@
         }
       }
     },
-    "coaching.adapter.delete.action" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete program" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Supprimer le programme" } }
-      }
-    },
-    "coaching.adapter.delete.confirm.action" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Supprimer" } }
-      }
-    },
-    "coaching.adapter.delete.confirm.message" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "The program will be archived. Your history is preserved." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Le programme sera archivé. Ton historique est conservé." } }
-      }
-    },
-    "coaching.adapter.delete.confirm.title" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete this program?" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Supprimer ce programme ?" } }
-      }
-    },
     "coaching.adapter.aiAssist.banner.subtitle" : {
       "localizations" : {
         "en" : {
@@ -721,6 +697,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Demander à Léon"
+          }
+        }
+      }
+    },
+    "coaching.adapter.delete.action" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete program"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer le programme"
+          }
+        }
+      }
+    },
+    "coaching.adapter.delete.confirm.action" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer"
+          }
+        }
+      }
+    },
+    "coaching.adapter.delete.confirm.message" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The program will be archived. Your history is preserved."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le programme sera archivé. Ton historique est conservé."
+          }
+        }
+      }
+    },
+    "coaching.adapter.delete.confirm.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete this program?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer ce programme ?"
           }
         }
       }
@@ -1099,8 +1139,18 @@
     },
     "coaching.adapter.preview.dismiss" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Home" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Retour" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retour"
+          }
+        }
       }
     },
     "coaching.adapter.progress.count %lld %lld" : {
@@ -1932,6 +1982,23 @@
         }
       }
     },
+    "dashboard.active.next.coordinate.format" : {
+      "comment" : "Story 3.15 v4 — pill S2 (semaine seule, on ne gère plus le jour Sophie 2026-05-21)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W%1$lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S%1$lld"
+          }
+        }
+      }
+    },
     "dashboard.active.next.cta" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1949,22 +2016,26 @@
         }
       }
     },
-    "dashboard.active.next.coordinate.format" : {
-      "comment" : "Story 3.15 v3 — pill S2·J3 sur card focale (Sophie 2026-05-21)",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "W%lld · D%lld" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "S%lld · J%lld" } }
-      }
-    },
     "dashboard.active.next.duration.format" : {
       "comment" : "Story 3.15 v3 — durée seule sur card focale (la semaine passe via coordinate.format)",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld min" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld min" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        }
       }
     },
     "dashboard.active.next.meta" : {
       "comment" : "ex. Sem 3 · 45 min — déprécié Story 3.15 v3 (remplacé par coordinate.format + duration.format)",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3000,13 +3071,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Next session"
+            "value" : "Sessions"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prochaine séance"
+            "value" : "Séances"
           }
         }
       }
@@ -6749,6 +6820,22 @@
         }
       }
     },
+    "questionnaire.back" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retour"
+          }
+        }
+      }
+    },
     "questionnaire.cycling.q2.option.cyclosportive" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -6880,12 +6967,6 @@
             "value" : "Le compte connecté a changé. Le questionnaire est annulé."
           }
         }
-      }
-    },
-    "questionnaire.back" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Back" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Retour" } }
       }
     },
     "questionnaire.exit.cancel" : {

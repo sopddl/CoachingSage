@@ -244,14 +244,26 @@ final class SessionDashboardViewModel {
     /// **Story 3.15 AC7** — session N+1 (teaser) du programme sélectionné,
     /// calculée via `NextSessionResolver.nextTwoSessions(for:now:).teaser`.
     /// `nil` quand pas de programme sélectionné, ou quand la blockingWeek
-    /// deadline ne contient qu'1 seule pending (cas "Dernière séance de la
-    /// semaine"). Recalculée à chaque accès (peu coûteux : un sort sur les
-    /// sessions pending du record).
+    /// deadline ne contient qu'1 seule pending. Recalculée à chaque accès.
     var currentTeaserSession: PersistedSession? {
         guard case let .active(_, _, selectedId) = mode,
               let id = selectedId,
               let record = recordsByID[id] else { return nil }
         return resolver.nextTwoSessions(for: record, now: nowProvider()).teaser?.session
+    }
+
+    /// **Story 3.15 v4 (Sophie 2026-05-21)** — toutes les sessions pending du
+    /// programme sélectionné, APRÈS la séance focale (= drop first). Sert à
+    /// la liste verticale "Séances" sous la card focale (avant : 1 seul
+    /// teaser "PUIS : ..."). Permet le scroll vertical sur l'écran.
+    /// Retourne `[]` quand pas de programme sélectionné ou que la focale est
+    /// la dernière session pending.
+    var upcomingSessionsAfterFocal: [PersistedSession] {
+        guard case let .active(_, _, selectedId) = mode,
+              let id = selectedId,
+              let record = recordsByID[id] else { return [] }
+        let upcoming = resolver.upcomingSessions(for: record, now: nowProvider())
+        return Array(upcoming.dropFirst().map(\.session))
     }
 
     /// Phase B.4 — invoque `WeeklyRegenApplicationService.checkAndApplyIfDue`

@@ -175,9 +175,9 @@ private struct DashboardActiveScenarioView: View {
     var body: some View {
         ScrollView {
             // **Story 3.15** — split started/dormant pour la nouvelle signature
-            // 3 zones d'`ActiveDashboardView`. Teaser N+1 fourni en fixture
-            // pour démontrer visuellement la séance suivante (raffinement
-            // Sophie 2026-05-21).
+            // 3 zones d'`ActiveDashboardView`. Teaser + upcomingSessions fournis
+            // en fixture pour démontrer visuellement la section "Séances"
+            // (raffinement Sophie 2026-05-21 v4).
             let allPrograms = programs
             let started = allPrograms.filter { $0.weekStartDate != nil }
             let dormants = allPrograms.filter { $0.weekStartDate == nil }
@@ -186,6 +186,7 @@ private struct DashboardActiveScenarioView: View {
                 dormantPrograms: dormants,
                 selectedId: selectedId,
                 teaserSession: teaserSessionFixture,
+                upcomingSessions: upcomingSessionsFixture,
                 regenBadges: [:],
                 onSelectProgram: { _ in },
                 onTapStartSession: { _ in },
@@ -196,6 +197,23 @@ private struct DashboardActiveScenarioView: View {
             .padding(16)
         }
         .background(Color.coachingBackground.ignoresSafeArea())
+    }
+
+    /// **Story 3.15 v4 (Sophie 2026-05-21)** — fixture liste des séances
+    /// suivantes affichée sous la card focale. Démontre la section "Séances"
+    /// avec plusieurs items + le badge sport déduit pour Triathlon.
+    private var upcomingSessionsFixture: [PersistedSession] {
+        switch scenario {
+        case .mixed:
+            return [
+                makeSession(name: "Sortie longue 1h", week: 2, day: 5, dur: 60),
+                makeSession(name: "Footing récup 30 min", week: 3, day: 1, dur: 30),
+                makeSession(name: "Fractionné 8×400m", week: 3, day: 3, dur: 45),
+                makeSession(name: "Footing 35 min", week: 3, day: 5, dur: 35)
+            ]
+        default:
+            return []
+        }
     }
 
     /// **Story 3.15 raffinement 2026-05-21** — fixture teaser N+1 du programme

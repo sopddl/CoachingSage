@@ -89,3 +89,108 @@ struct NextSessionTeaser: View {
         .accessibilityIdentifier("dashboard.next_session.teaser.lastOfWeek")
     }
 }
+
+/// **Story 3.15 v4 (Sophie 2026-05-21)** — row compacte d'une session à venir
+/// dans la liste "Séances" sous la card focale. Pas de préfixe "PUIS" (Sophie :
+/// « enleve le PUIS »). Badge sport déduit (heuristique pour Triathlon
+/// multi-sport sur le nom de session, sinon sport du programme parent).
+struct UpcomingSessionRow: View {
+    let session: PersistedSession
+    /// Sport du programme parent (running / cycling / triathlon / etc).
+    /// Pour Triathlon, on déduit le sport spécifique de la session via
+    /// `sportCodeForSession(:in:)`.
+    let sportCode: String
+
+    var body: some View {
+        let effectiveSport = SessionSportInference.sportCode(for: session, programSportCode: sportCode)
+        HStack(spacing: 10) {
+            // Badge sport : icône + bordure couleur sport.
+            ZStack {
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .strokeBorder(Color.coachingSport(forCode: effectiveSport), lineWidth: 1.5)
+                Image(systemName: SportSymbol.symbol(forCode: effectiveSport))
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(Color.coachingSport(forCode: effectiveSport))
+            }
+            .frame(width: 32, height: 32)
+
+            // Pill semaine "S2"
+            Text(verbatim: String(
+                format: NSLocalizedString("dashboard.active.next.coordinate.format", comment: ""),
+                session.weekNumber
+            ))
+            .font(.caption.weight(.semibold))
+            .foregroundStyle(Color.coachingTextSecondary)
+            .padding(.horizontal, 6)
+            .padding(.vertical, 2)
+            .background(Color.coachingTextSecondary.opacity(0.10))
+            .clipShape(Capsule())
+
+            // Titre séance
+            Text(verbatim: session.name)
+                .font(.coachingBody)
+                .foregroundStyle(Color.coachingTextPrimary)
+                .lineLimit(1)
+
+            Spacer(minLength: 6)
+
+            // Durée
+            Text(verbatim: String(
+                format: NSLocalizedString("dashboard.active.next.duration.format", comment: ""),
+                session.durationMinutes
+            ))
+            .font(.caption)
+            .foregroundStyle(Color.coachingTextSecondary)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
+        .background(Color.coachingCard)
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .accessibilityIdentifier("dashboard.upcoming.session.\(effectiveSport)")
+    }
+}
+
+/// **Story 3.15 v4** — heuristique pour déduire le sport spécifique d'une
+/// session d'un programme **multi-sport** (Triathlon). Pour les programmes
+/// mono-sport (Running, Cycling, etc.), retourne directement le sport du
+/// programme. Pour Triathlon, parse le `session.name` à la recherche de
+/// keywords (FR + EN) → running / cycling / swimming.
+///
+/// Limitations connues (V1) :
+///   - Fragile : si un template ne suit pas la convention "Run X / Bike X /
+///     Swim X" dans le nom de session, le fallback retombe sur "triathlon".
+///   - À remplacer par un champ `PersistedSession.sport` quand on enrichira
+///     le data model (story future, demande migration SwiftData).
+enum SessionSportInference {
+    static func sportCode(for session: PersistedSession, programSportCode: String) -> String {
+        guard programSportCode == "triathlon" else { return programSportCode }
+        let name = session.name.lowercased()
+        let runKeywords = ["run", "running", "course", "footing", "z2", "daniels", "fractionn"]
+        let bikeKeywords = ["bike", "vélo", "velo", "cycling", "cycle", "ftp", "rouleau"]
+        let swimKeywords = ["swim", "natation", "nage", "crawl", "brasse"]
+        if runKeywords.contains(where: { name.contains($0) }) { return "running" }
+        if bikeKeywords.contains(where: { name.contains($0) }) { return "cycling" }
+        if swimKeywords.contains(where: { name.contains($0) }) { return "swimming" }
+        return programSportCode
+    }
+}
+
+/// **Story 3.15 v4** — central mapping sport code → SF Symbol. Évite la
+/// duplication dans `ProgramCard`, `DormantProgramRow`, `UpcomingSessionRow`.
+enum SportSymbol {
+    static func symbol(forCode code: String) -> String {
+        switch code {
+        case "running": return "figure.run"
+        case "cycling": return "figure.outdoor.cycle"
+        case "swimming": return "figure.pool.swim"
+        case "triathlon": return "figure.mixed.cardio"
+        case "strengthTraining", "strength_training": return "dumbbell.fill"
+        case "yoga": return "figure.yoga"
+        case "hiit": return "bolt.heart.fill"
+        case "hiking": return "figure.hiking"
+        case "tennis": return "figure.tennis"
+        case "football": return "soccerball"
+        default: return "questionmark.circle"
+        }
+    }
+}

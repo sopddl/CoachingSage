@@ -37,6 +37,11 @@ struct ActiveDashboardView: View {
     /// la séance focale). `nil` = pas de N+1, on affiche "Dernière séance de
     /// la semaine" si focal existe.
     let teaserSession: PersistedSession?
+    /// **Story 3.15 v4 (Sophie 2026-05-21)** — sessions pending APRÈS la
+    /// focale, listées verticalement sous la card focale ("Séances"). Vide
+    /// pour le scenario `_mixed` du UIReviewScenarioContainer (peuplé par
+    /// `SessionDashboardViewModel.upcomingSessionsAfterFocal`).
+    var upcomingSessions: [PersistedSession] = []
     /// Phase B.5 — map `record.id → RegenBadge` peuplée pour les programmes
     /// dont la regen S+1 a été appliquée cette semaine.
     var regenBadges: [UUID: RegenBadge] = [:]
@@ -82,14 +87,24 @@ struct ActiveDashboardView: View {
                                 { handler(selectedSummary) }
                             }
                         )
-                        // Teaser N+1 toujours visible juste sous la focale
-                        // (décision Sophie 2026-05-20 figée). Display-only :
-                        // pas de tap → push. L'user scroll la page pour
-                        // interagir avec les sections suivantes.
-                        NextSessionTeaser(
-                            teaserSession: teaserSession,
-                            hasFocal: selectedSummary.nextSession != nil
-                        )
+                        // **Story 3.15 v4 (Sophie 2026-05-21)** — liste des
+                        // séances suivantes (au-delà de la focale), display
+                        // only. Pas de préfixe "PUIS". Cohérence avec le
+                        // titre section "Séances" (avant : "Prochaine séance").
+                        ForEach(upcomingSessions, id: \.id) { session in
+                            UpcomingSessionRow(
+                                session: session,
+                                sportCode: selectedSummary.sport.appSportCode
+                            )
+                        }
+                        // Fallback "Dernière séance de la semaine" si pas
+                        // d'upcoming mais focal présent.
+                        if upcomingSessions.isEmpty, selectedSummary.nextSession != nil {
+                            NextSessionTeaser(
+                                teaserSession: nil,
+                                hasFocal: true
+                            )
+                        }
                     }
                 }
             }
@@ -259,10 +274,14 @@ private struct ProgramCard: View {
                     .lineLimit(1)
                     .accessibilityIdentifier("dashboard.active.program.weekLate")
                 }
-
-                Spacer(minLength: 0)
+                // **Story 3.15 v4 (Sophie 2026-05-21)** — Spacer retiré (avant :
+                // poussait le contenu en haut, laissait une grande marge sous la
+                // barre progression). Maintenant contenu compact + padding bas
+                // réduit pour libérer l'espace visuel.
             }
-            .padding(10)
+            .padding(.horizontal, 10)
+            .padding(.top, 10)
+            .padding(.bottom, 8)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(Color.coachingCard)
             .overlay(
@@ -350,6 +369,15 @@ private struct NextSessionCard: View {
     @Environment(\.locale) private var locale
 
     var body: some View {
+        let focalSportCode: String = {
+            if let session = summary.nextSession {
+                return SessionSportInference.sportCode(
+                    for: session,
+                    programSportCode: summary.sport.appSportCode
+                )
+            }
+            return summary.sport.appSportCode
+        }()
         VStack(alignment: .leading, spacing: 10) {
             content
         }
@@ -358,14 +386,15 @@ private struct NextSessionCard: View {
         // grosse").
         .padding(12)
         .frame(maxWidth: .infinity, alignment: .leading)
-        // **Story 3.15 raffinement 2026-05-21** — fond gradient couleur du sport
-        // du programme sélectionné (avant : bleu coach fixe, "bizarre quand
-        // course"). Renforce l'identité visuelle du programme actif.
+        // **Story 3.15 v4 (Sophie 2026-05-21)** — fond gradient couleur du sport
+        // DE LA SÉANCE (déduit via heuristique pour Triathlon). Avant : sport
+        // du programme → "Run Daniels-E" dans Triathlon avait fond doré
+        // triathlon. Maintenant : fond bleu running car la séance est running.
         .background(
             LinearGradient(
                 colors: [
-                    Color.coachingSport(forCode: summary.sport.appSportCode),
-                    Color.coachingSport(forCode: summary.sport.appSportCode).opacity(0.82)
+                    Color.coachingSport(forCode: focalSportCode),
+                    Color.coachingSport(forCode: focalSportCode).opacity(0.82)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -469,14 +498,14 @@ private struct NextSessionCard: View {
         }
     }
 
-    /// **Story 3.15 v3 (Sophie 2026-05-21)** — pill "S2 · J3" qui localise la
-    /// séance dans le programme (semaine N · jour M). Identité claire avant le
-    /// type d'intensité.
+    /// **Story 3.15 v4 (Sophie 2026-05-21)** — pill "S2" (semaine seule). Avant
+    /// : "S2 · J3" mais Sophie a confirmé qu'on ne gère plus la sémantique du
+    /// jour calendaire (cf refonte vue semaine Story 3.12). Localisation
+    /// `dashboard.active.next.coordinate.format` ne prend qu'un argument.
     private func sessionCoordinatePill(session: PersistedSession) -> some View {
         Text(verbatim: String(
             format: String.localized("dashboard.active.next.coordinate.format", locale: locale),
-            session.weekNumber,
-            session.day
+            session.weekNumber
         ))
         .font(.system(size: 11, weight: .semibold))
         .foregroundStyle(Color.coachingOnPrimary)

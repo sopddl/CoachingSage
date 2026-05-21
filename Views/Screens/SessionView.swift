@@ -288,6 +288,7 @@ struct SessionView: View {
                 dormantPrograms: dormants,
                 selectedId: selectedId,
                 teaserSession: vm.currentTeaserSession,
+                upcomingSessions: vm.upcomingSessionsAfterFocal,
                 regenBadges: vm.regenBadgesByRecord,
                 onSelectProgram: { id in
                     vm.selectProgram(id: id)
