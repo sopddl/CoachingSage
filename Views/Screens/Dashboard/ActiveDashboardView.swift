@@ -61,24 +61,24 @@ struct ActiveDashboardView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 24) {
-            // **Story 3.15** — Zone 1 : carrousel "Programmes en cours" (started only).
-            // Carrousel snap unique (suppression layouts adaptatifs 1/2/3 hérités
-            // de Story 3.12 : le carrousel marche aussi bien à 1 card qu'à 5).
+        // **Story 3.15 v6 (Sophie 2026-05-21)** — 3 sections rigides via VStack
+        // sans ScrollView global. Sophie : « pas de scroll global mais un
+        // autre scroll pour les programmes préparés ». Section Séances et
+        // Programmes préparés ont chacune leur ScrollView interne avec flex
+        // height pour se partager l'espace restant.
+        VStack(alignment: .leading, spacing: 16) {
+            // Zone 1 : carrousel "Programmes en cours" — hauteur fixe.
             if !startedPrograms.isEmpty {
                 section(titleKey: "dashboard.section.in_progress.title") {
                     programCarousel
                 }
             }
 
-            // **Story 3.15** — Zone 2 : séance focale (NextSessionCard) +
-            // teaser N+1 (NextSessionTeaser) — toujours visibles ensemble dès
-            // qu'on a une sélection. Suppression du `shouldShowNextSessionCard`
-            // hérité (seuils 1 ou ≥4) : la focale s'affiche désormais TOUJOURS
-            // quand un programme est sélectionné.
+            // Zone 2 : "Séances" = focal (fixe) + scroll interne pour la
+            // liste des séances suivantes.
             if let selectedSummary {
                 section(titleKey: "dashboard.section.next_session.title") {
-                    VStack(spacing: 12) {
+                    VStack(spacing: 10) {
                         NextSessionCard(
                             summary: selectedSummary,
                             onTapStart: { onTapStartSession(selectedSummary) },
@@ -87,44 +87,50 @@ struct ActiveDashboardView: View {
                                 { handler(selectedSummary) }
                             }
                         )
-                        // **Story 3.15 v5 (Sophie 2026-05-21)** — liste avec
-                        // header semaine quand la semaine change (résout le
-                        // "pourquoi 2 fois S1" : la S1 du focal + S1 du teaser).
-                        // Header "S2" affiché uniquement entre les sessions de
-                        // semaines différentes. Les sessions n'ont plus de pill
-                        // semaine individuel (déplacé vers le header).
-                        ForEach(Array(upcomingSessions.enumerated()), id: \.element.id) { index, session in
-                            let prevWeek: Int = index == 0
-                                ? (selectedSummary.nextSession?.weekNumber ?? session.weekNumber)
-                                : upcomingSessions[index - 1].weekNumber
-                            if session.weekNumber != prevWeek {
-                                weekSeparatorHeader(weekNumber: session.weekNumber)
+                        // ScrollView interne pour la liste des séances
+                        // suivantes du programme courant. Hauteur flex : prend
+                        // l'espace restant après la focal + sections fixes.
+                        ScrollView(.vertical, showsIndicators: false) {
+                            VStack(spacing: 6) {
+                                ForEach(Array(upcomingSessions.enumerated()), id: \.element.id) { index, session in
+                                    let prevWeek: Int = index == 0
+                                        ? (selectedSummary.nextSession?.weekNumber ?? session.weekNumber)
+                                        : upcomingSessions[index - 1].weekNumber
+                                    if session.weekNumber != prevWeek {
+                                        weekSeparatorHeader(weekNumber: session.weekNumber)
+                                    }
+                                    UpcomingSessionRow(
+                                        session: session,
+                                        sportCode: selectedSummary.sport.appSportCode
+                                    )
+                                }
+                                if upcomingSessions.isEmpty, selectedSummary.nextSession != nil {
+                                    NextSessionTeaser(
+                                        teaserSession: nil,
+                                        hasFocal: true
+                                    )
+                                }
                             }
-                            UpcomingSessionRow(
-                                session: session,
-                                sportCode: selectedSummary.sport.appSportCode
-                            )
                         }
-                        // Fallback "Dernière séance de la semaine" si pas
-                        // d'upcoming mais focal présent.
-                        if upcomingSessions.isEmpty, selectedSummary.nextSession != nil {
-                            NextSessionTeaser(
-                                teaserSession: nil,
-                                hasFocal: true
-                            )
-                        }
+                        .scrollClipDisabled()
                     }
                 }
+                .frame(maxHeight: .infinity, alignment: .top)
             }
 
-            // **Story 3.15** — Zone 3 : liste "Préparés" (dormants en liste
-            // verticale scrollable). Affichée uniquement si dormantPrograms ≠ ∅.
+            // Zone 3 : "Programmes préparés" — ScrollView interne distinct du
+            // scroll Séances pour que Sophie puisse parcourir ses dormants
+            // sans pousser la zone Séances hors écran.
             if !dormantPrograms.isEmpty {
-                DormantProgramsList(
-                    dormants: dormantPrograms,
-                    onTapProgram: onTapProgram,
-                    onDeleteProgram: onDeleteProgram
-                )
+                ScrollView(.vertical, showsIndicators: false) {
+                    DormantProgramsList(
+                        dormants: dormantPrograms,
+                        onTapProgram: onTapProgram,
+                        onDeleteProgram: onDeleteProgram
+                    )
+                }
+                .frame(maxHeight: .infinity, alignment: .top)
+                .scrollClipDisabled()
             }
         }
     }
@@ -188,7 +194,7 @@ struct ActiveDashboardView: View {
             .padding(.horizontal, 2)
             .padding(.vertical, 4)
         }
-        .frame(height: 152) // 140 contenu + 8 padding vertical + 4 marge border
+        .frame(height: 122) // 110pt contenu (icon + titre + statut + progress + padding) + 8 padding vert + 4 marge border (v6)
         .scrollTargetBehavior(.viewAligned)
         .scrollPosition(
             id: Binding(
@@ -303,17 +309,17 @@ private struct ProgramCard: View {
                     .lineLimit(1)
                     .accessibilityIdentifier("dashboard.active.program.weekLate")
                 }
-                // **Story 3.15 v4 (Sophie 2026-05-21)** — Spacer retiré (avant :
-                // poussait le contenu en haut, laissait une grande marge sous la
-                // barre progression). Maintenant contenu compact + padding bas
-                // réduit pour libérer l'espace visuel.
-                // **Story 3.15 v5 (Sophie 2026-05-21)** — padding bas réduit
-                // encore (8→4) pour gagner de la place sous la barre progression.
+                // **Story 3.15 v6 (Sophie 2026-05-21)** — fix vide bas card :
+                // retiré le `maxHeight: .infinity, alignment: .top` qui étirait
+                // la card sur toute la hauteur du carrousel (152pt) en laissant
+                // ~50pt de vide sous la barre progression. Maintenant : hauteur
+                // intrinsèque, frame ScrollView descendue à 118pt pour fit
+                // pile le contenu.
             }
             .padding(.horizontal, 10)
             .padding(.top, 10)
-            .padding(.bottom, 4)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .padding(.bottom, 8)
+            .frame(maxWidth: .infinity)
             .background(Color.coachingCard)
             .overlay(
                 RoundedRectangle(cornerRadius: 14, style: .continuous)

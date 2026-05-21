@@ -205,11 +205,19 @@ private struct DashboardActiveScenarioView: View {
     private var upcomingSessionsFixture: [PersistedSession] {
         switch scenario {
         case .mixed:
+            // **Story 3.15 v6** — sessions multi-sport pour le programme
+            // Triathlon focal. Vérifie visuellement l'heuristique :
+            //   - Bike FTP-Z2 → cycling (vert) — bug v5 fix : "z2" retiré des
+            //     keywords running
+            //   - Swim — endurance EN1 → swimming (cyan)
+            //   - Run Daniels-E → running (bleu)
             return [
-                makeSession(name: "Sortie longue 1h", week: 2, day: 5, dur: 60),
-                makeSession(name: "Footing récup 30 min", week: 3, day: 1, dur: 30),
-                makeSession(name: "Fractionné 8×400m", week: 3, day: 3, dur: 45),
-                makeSession(name: "Footing 35 min", week: 3, day: 5, dur: 35)
+                makeSession(name: "Bike FTP-Z2 — sortie endurance", week: 1, day: 2, dur: 70),
+                makeSession(name: "Swim — endurance EN1 + respiration", week: 1, day: 3, dur: 50),
+                makeSession(name: "Run Daniels-E — endurance", week: 2, day: 1, dur: 45),
+                makeSession(name: "Bike FTP-Z2 — sortie endurance", week: 2, day: 3, dur: 85),
+                makeSession(name: "Swim — drills technique", week: 2, day: 5, dur: 45),
+                makeSession(name: "Run Daniels-E — fractionné", week: 3, day: 1, dur: 50)
             ]
         default:
             return []
@@ -234,6 +242,18 @@ private struct DashboardActiveScenarioView: View {
         switch scenario {
         case .mixed:
             return [
+                // **Story 3.15 v6 (Sophie 2026-05-21)** — Triathlon en focal pour
+                // valider visuellement l'heuristique multi-sport
+                // (`SessionSportInference`). La card focale prendra la couleur
+                // running car la nextSession est "Run Daniels-E".
+                makeProgram(
+                    id: idTriathlon, sport: .triathlon, templateName: "Triathlon Sprint",
+                    weekStartDate: Date().addingTimeInterval(-7 * 86_400),
+                    currentWeek: 1, weekCompleted: 0, weekTotal: 3,
+                    totalCompleted: 0, totalSessions: 12,
+                    nextSession: makeSession(name: "Run Daniels-E — sortie endurance", week: 1, day: 1, dur: 40),
+                    lastUpdated: Date().addingTimeInterval(-1800)
+                ),
                 makeProgram(
                     id: idRunning, sport: .running, templateName: "Couch to 5k — Semaine 2",
                     weekStartDate: Date().addingTimeInterval(-7 * 86_400),
@@ -350,11 +370,17 @@ private struct DashboardActiveScenarioView: View {
         }
     }
 
-    private var selectedId: UUID { idRunning }
+    /// **Story 3.15 v6 (Sophie 2026-05-21)** — selectedId par défaut sur
+    /// Triathlon pour le scenario `.mixed` (démontre l'heuristique multi-sport).
+    /// Pour les autres scénarios qui n'ont pas de Triathlon, fallback idRunning.
+    private var selectedId: UUID {
+        scenario == .mixed ? idTriathlon : idRunning
+    }
 
     // IDs fixes pour reproductibilité (le carrousel sélectionne toujours le running).
     private var idRunning: UUID { UUID(uuidString: "11111111-1111-1111-1111-111111111111")! }
     private var idCycling: UUID { UUID(uuidString: "22222222-2222-2222-2222-222222222222")! }
+    private var idTriathlon: UUID { UUID(uuidString: "33333333-3333-3333-3333-333333333333")! }
 
     private func makeProgram(
         id: UUID, sport: Sport, templateName: String,

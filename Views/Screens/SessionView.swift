@@ -222,31 +222,35 @@ struct SessionView: View {
 
     @ViewBuilder
     private var content: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                if let dashboardViewModel, !dashboardViewModel.loading || coachingProfile != nil {
-                    modeContent(vm: dashboardViewModel)
-                } else if loadingProfile || dashboardViewModel?.loading == true {
-                    ProgressView()
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 40)
-                } else {
-                    Text("session.requestProgram.noProfile")
-                        .font(.body)
-                        .foregroundStyle(Color.coachingTextSecondary)
-                        .padding(.vertical, 16)
-                }
-
-                if let presentationError {
-                    Text(verbatim: presentationError)
-                        .font(.footnote)
-                        .foregroundStyle(Color.coachingError)
-                        .padding(.vertical, 8)
-                }
+        // **Story 3.15 v6 (Sophie 2026-05-21)** — ScrollView global retiré.
+        // Sophie : « pas de scroll global mais un autre scroll pour les
+        // programmes préparés ». Les 3 sections (Programmes en cours / Séances
+        // / Programmes préparés) sont désormais rigides via VStack, avec
+        // scroll interne dédié pour Séances et Programmes préparés (cf
+        // `ActiveDashboardView` v6).
+        VStack(alignment: .leading, spacing: 16) {
+            if let dashboardViewModel, !dashboardViewModel.loading || coachingProfile != nil {
+                modeContent(vm: dashboardViewModel)
+            } else if loadingProfile || dashboardViewModel?.loading == true {
+                ProgressView()
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 40)
+            } else {
+                Text("session.requestProgram.noProfile")
+                    .font(.body)
+                    .foregroundStyle(Color.coachingTextSecondary)
+                    .padding(.vertical, 16)
             }
-            .padding(.horizontal, 16)
-            .padding(.top, 8)
+
+            if let presentationError {
+                Text(verbatim: presentationError)
+                    .font(.footnote)
+                    .foregroundStyle(Color.coachingError)
+                    .padding(.vertical, 8)
+            }
         }
+        .padding(.horizontal, 16)
+        .padding(.top, 8)
     }
 
     @ViewBuilder

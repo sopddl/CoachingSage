@@ -153,12 +153,17 @@ enum SessionSportInference {
     static func sportCode(for session: PersistedSession, programSportCode: String) -> String {
         guard programSportCode == "triathlon" else { return programSportCode }
         let name = session.name.lowercased()
-        let runKeywords = ["run", "running", "course", "footing", "z2", "daniels", "fractionn"]
+        // **Story 3.15 v5 fix (Sophie 2026-05-21)** — keywords strictement
+        // sport-specific. Avant : "z2" / "daniels" / "fractionn" causaient
+        // un faux match running pour "Bike FTP-Z2" (Z2 = zone d'intensité
+        // utilisée tous sports). Ordre check : Bike → Swim → Run (Run en
+        // dernier car ses keywords génériques sont rares maintenant).
         let bikeKeywords = ["bike", "vélo", "velo", "cycling", "cycle", "ftp", "rouleau"]
         let swimKeywords = ["swim", "natation", "nage", "crawl", "brasse"]
-        if runKeywords.contains(where: { name.contains($0) }) { return "running" }
+        let runKeywords = ["run", "running", "course", "footing"]
         if bikeKeywords.contains(where: { name.contains($0) }) { return "cycling" }
         if swimKeywords.contains(where: { name.contains($0) }) { return "swimming" }
+        if runKeywords.contains(where: { name.contains($0) }) { return "running" }
         return programSportCode
     }
 }
