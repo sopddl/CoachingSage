@@ -449,7 +449,11 @@ struct SessionView: View {
             programRepository: deps.adaptedProgramRepository,
             coachingProfileRepository: deps.coachingProfileRepository,
             weeklyRegenApplicationService: deps.weeklyRegenApplicationService,
-            weeklyRegenRepository: deps.weeklyRegenRepository
+            weeklyRegenRepository: deps.weeklyRegenRepository,
+            // **Story 3.15 v7 (Sophie 2026-05-21)** — bootstrap dormants
+            // câblé au load dashboard (en plus de finalize()). Le service
+            // est idempotent.
+            dormantBootstrapService: deps.dormantBootstrapService
         )
     }
 

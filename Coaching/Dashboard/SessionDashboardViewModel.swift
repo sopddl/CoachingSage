@@ -128,12 +128,20 @@ final class SessionDashboardViewModel {
     private let templateLibraryProvider: () async throws -> ProgramTemplateLibrary
     private let suggestionLevelProvider: (CoachingProfile?) -> String
     private let nowProvider: () -> Date
+    /// **Story 3.15 v7 (Sophie 2026-05-21)** — bootstrap 3 dormants au load
+    /// dashboard quand `bootstrappedDormants == false` ET aucun programme.
+    /// Sophie : « si moi je veux mes 3 programmes au démarrage ». Le service
+    /// est idempotent (set flag avant persistance) donc safe à appeler à
+    /// chaque refresh. Avant : trigger uniquement depuis OnboardingViewModel.
+    /// finalize(), donc users existants n'avaient jamais le bootstrap.
+    private let dormantBootstrapService: DormantBootstrapService?
 
     init(
         programRepository: any AdaptedProgramRepository,
         coachingProfileRepository: any CoachingProfileRepository,
         weeklyRegenApplicationService: (any WeeklyRegenApplicationService)? = nil,
         weeklyRegenRepository: (any WeeklyRegenRepository)? = nil,
+        dormantBootstrapService: DormantBootstrapService? = nil,
         resolver: NextSessionResolver = NextSessionResolver(),
         templateLibraryProvider: @escaping () async throws -> ProgramTemplateLibrary = ProgramTemplateLibrary.bundled,
         suggestionLevelProvider: @escaping (CoachingProfile?) -> String = { _ in "beginner" },
@@ -143,6 +151,7 @@ final class SessionDashboardViewModel {
         self.coachingProfileRepository = coachingProfileRepository
         self.weeklyRegenApplicationService = weeklyRegenApplicationService
         self.weeklyRegenRepository = weeklyRegenRepository
+        self.dormantBootstrapService = dormantBootstrapService
         self.resolver = resolver
         self.templateLibraryProvider = templateLibraryProvider
         self.suggestionLevelProvider = suggestionLevelProvider
@@ -160,6 +169,13 @@ final class SessionDashboardViewModel {
     func refresh(userId: UUID) async {
         loading = true
         error = nil
+        // **Story 3.15 v7** — bootstrap idempotent. Si flag déjà true ou si
+        // l'user a déjà des programmes, no-op. Sinon, génère jusqu'à 3 dormants
+        // via selectTopN. Appelé AVANT fetchActive pour que les dormants frais
+        // soient visibles au premier render.
+        if let bootstrap = dormantBootstrapService {
+            _ = await bootstrap.bootstrapIfNeeded()
+        }
         await runAutoRegenIfNeeded(userId: userId)
         await loadRegenBadges(userId: userId)
         do {
