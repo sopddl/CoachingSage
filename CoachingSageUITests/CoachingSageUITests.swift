@@ -25,16 +25,42 @@ final class CoachingSageUITests: XCTestCase {
         XCTAssertTrue(app.buttons["leon.fab"].exists, "FAB Léon doit être visible (3.8)")
     }
 
-    func testEachTabShowsItsPlaceholder() throws {
-        // SKIPPED 2026-05-08 — dette UI test post-Story 3.8 :
-        // - tab.session : refondu en dashboard Séances (sous-tâche 8) — l'ancien
-        //   placeholder a disparu, le test attend "Coming soon" ; à reprendre
-        //   avec assertions sur la card dominante / hero card mode vide selon état.
-        // - tab.profile : `app.buttons["Sign out"]` ne matche plus sur iOS 18
-        //   simu (Form items pas exposés en `app.buttons` direct, faut passer par
-        //   `app.descendants(matching: .any)["profile.account.signOut"]`).
-        // Couverture sign-out maintenue côté unit via `AuthViewModelTests`.
-        // Reprendre dans une story dédiée cleanup UI tests.
-        throw XCTSkip("UI test à reprendre post-refonte dashboard + iOS 18 Form item discovery")
+    func testEachTabShowsItsContent() throws {
+        // En mode IS_UI_TESTING : ModelContainer in-memory, user pré-authentifié,
+        // onboarding complété, mais session Supabase absente → les VMs `refresh`
+        // sont gardés hors d'atteinte (pas d'userId). On cible donc des éléments
+        // stables qui ne dépendent pas du chargement de données.
+
+        // tab.session — bouton "+" toolbar exposé dès que dashboardViewModel
+        // est bootstrappé (indépendant du mode empty/dormantOnly/active).
+        app.buttons["tab.session"].tap()
+        XCTAssertTrue(
+            app.buttons["dashboard.toolbar.create"].waitForExistence(timeout: 5),
+            "Tab Séances doit exposer le bouton '+' de création programme"
+        )
+
+        // tab.progress — la NavigationBar avec le titre traduit "Progress" (EN)
+        // est toujours présente (cf navigationTitle("progress.title")).
+        app.buttons["tab.progress"].tap()
+        XCTAssertTrue(
+            app.navigationBars["Progress"].waitForExistence(timeout: 5),
+            "Tab Progrès doit afficher la NavigationBar 'Progress'"
+        )
+
+        // tab.profile — sans CoachingProfile inséré, le VM passe en
+        // `.error(.notFound)` → bouton `profile.error.signOut` visible. En cas
+        // de succès (data seedée future), c'est `profile.account.signOut`.
+        // Predicate pour couvrir les deux états sans XCTSkip.
+        app.buttons["tab.profile"].tap()
+        let signOutPredicate = NSPredicate(
+            format: "identifier == 'profile.error.signOut' OR identifier == 'profile.account.signOut'"
+        )
+        let signOutElement = app.descendants(matching: .any)
+            .matching(signOutPredicate)
+            .firstMatch
+        XCTAssertTrue(
+            signOutElement.waitForExistence(timeout: 5),
+            "Tab Profil doit exposer un bouton 'Sign out' (state error.notFound ou success)"
+        )
     }
 }

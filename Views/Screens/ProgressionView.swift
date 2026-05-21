@@ -477,6 +477,7 @@ struct ProgressionView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .accessibilityIdentifier("progress.empty.state")
     }
 
     // MARK: - Error
