@@ -173,8 +173,10 @@ schemes:
       config: Debug
       gatherCoverageData: true
       targets:
-        - CoachingSageTests
-        - CoachingSageUITests
+        - name: CoachingSageTests
+          parallelizable: false
+        - name: CoachingSageUITests
+          parallelizable: false
     profile:
       config: Release
     analyze:
