@@ -159,14 +159,19 @@ struct UIReviewScenarioContainer: View {
                 onSelect: { _ in },
                 onCancel: { }
             )
-        case "ui_review_session_detail_glossary":
-            // **Story 3.17 Phase 1** — SessionDetailView avec une séance riche
-            // en termes glossaire (tempo, threshold, cadence, Daniels-T, EN1,
-            // push-off, strides, intervals, plyometric, etc.) couvrant warmup,
-            // notes exercices et cooldown. Permet de vérifier visuellement :
-            // - les termes soulignés pointillés en couleur primary
-            // - le tap → popover définition
-            // - le toast bottom de découvrabilité (1ère ouverture)
+        case "ui_review_session_detail_glossary",
+             "ui_review_session_detail_v2":
+            // **Story 3.17 Phase 1 + Story 3.18 Phase 2** — SessionDetailView
+            // avec une séance running riche couvrant :
+            // - Story 3.17 : termes glossaire inline (tempo, threshold, cadence,
+            //   Daniels-T, EN1, push-off, strides, intervals, plyometric...) →
+            //   underline pointillé primary, tap popover définition, toast
+            //   découvrabilité.
+            // - Story 3.18 : hero bandeau couleur sport + stats grille (durée,
+            //   zone dominante, RPE estimé, nb blocs) ; panel "Pourquoi cette
+            //   séance ?" expandable avec justification heuristique ; timeline
+            //   stepper vertical (rail + pastilles warmup ⓪ flamme · exos
+            //   numérotés · cooldown ⓝ flocon).
             SessionDetailGlossaryScenarioView()
         default:
             UnsupportedScenarioView(scenario: scenario)
