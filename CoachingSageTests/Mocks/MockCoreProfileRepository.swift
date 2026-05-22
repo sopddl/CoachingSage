@@ -1,7 +1,6 @@
 // CoachingSageTests/Mocks/MockCoreProfileRepository.swift
 // [COPIE IDENTIQUE] — synchroniser avec GardenSage et TailorSage.
 import Foundation
-@testable import CoachingSage
 import SageCore
 
 final class MockCoreProfileRepository: CoreProfileRepository {

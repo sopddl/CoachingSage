@@ -15,7 +15,6 @@
 //   7. pas de coaching profile → no-op (paranoid)
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class DormantBootstrapServiceTests: XCTestCase {

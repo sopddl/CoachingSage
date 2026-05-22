@@ -1,7 +1,6 @@
 // CoachingSageTests/ViewModels/EditIdentityViewModelTests.swift
 // Story 2.3 — édition prénom + langue.
 import XCTest
-@testable import CoachingSage
 import SageCore
 
 @MainActor

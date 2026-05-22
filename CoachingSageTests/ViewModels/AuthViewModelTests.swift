@@ -1,6 +1,5 @@
 // CoachingSageTests/ViewModels/AuthViewModelTests.swift
 import XCTest
-@testable import CoachingSage
 import SageCore
 
 @MainActor

@@ -4,7 +4,6 @@
 // + showQuotaSheet, persistance via repo, application patch in-place.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 import SageCore
 
 @MainActor

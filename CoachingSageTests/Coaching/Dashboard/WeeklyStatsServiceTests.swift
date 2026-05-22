@@ -2,7 +2,6 @@
 // Story 3.8 sous-tâche 8 — couvre les 3 stats du mini-widget « Cette semaine ».
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class WeeklyStatsServiceTests: XCTestCase {

@@ -2,7 +2,6 @@
 // Story 2.3 — édition données perso + import HealthKit (overwrite TOUJOURS, contrairement à Story 2.2).
 import XCTest
 import HealthKit
-@testable import CoachingSage
 import SageCore
 
 @MainActor

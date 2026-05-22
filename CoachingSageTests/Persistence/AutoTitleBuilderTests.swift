@@ -5,7 +5,6 @@
 //   - troncature "+N autre(s)" si dépasse 40 chars
 //   - fallback sans goal / sans secondary valides
 import XCTest
-@testable import CoachingSage
 
 @MainActor
 final class AutoTitleBuilderTests: XCTestCase {

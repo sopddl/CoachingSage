@@ -3,7 +3,6 @@
 // de `ProgramAdapterService.adapt(template:sportProfile:coachingProfile:)`.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class ProgramAdapterServiceTests: XCTestCase {

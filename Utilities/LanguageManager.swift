@@ -49,11 +49,22 @@ extension Locale {
     /// Returns the Bundle for this locale's language, for use with String(localized:bundle:).
     /// String(localized:locale:) does NOT change which localization is loaded —
     /// only the bundle approach works for in-app language switching.
+    ///
+    /// Fallback `Bundle.allBundles` (2026-05-22) : nécessaire en logic test mode
+    /// (dette SwiftData test_host hang) où `Bundle.main` pointe sur le binary
+    /// `xctest` agent qui ne contient pas les `.lproj`. Le test bundle `.xctest`
+    /// les contient.
     var localizedBundle: Bundle {
         let langCode = language.languageCode?.identifier ?? "en"
         if let path = Bundle.main.path(forResource: langCode, ofType: "lproj"),
            let bundle = Bundle(path: path) {
             return bundle
+        }
+        for candidate in Bundle.allBundles {
+            if let path = candidate.path(forResource: langCode, ofType: "lproj"),
+               let bundle = Bundle(path: path) {
+                return bundle
+            }
         }
         return Bundle.main
     }

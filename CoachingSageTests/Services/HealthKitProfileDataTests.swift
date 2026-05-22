@@ -2,7 +2,6 @@
 // Story 2.1 — sanity check struct Equatable + 4 champs optionnels.
 import XCTest
 import HealthKit
-@testable import CoachingSage
 
 final class HealthKitProfileDataTests: XCTestCase {
 

@@ -2,7 +2,6 @@
 // Story 3.9 — VM onglet Progrès. Empty state, fallback HK indisponible, reload.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class ProgressViewModelTests: XCTestCase {

@@ -1,7 +1,6 @@
 // CoachingSageTests/Mocks/MockAdaptedProgramRepository.swift
 // Story 3.8 — pattern MockCoachingProfileRepository.
 import Foundation
-@testable import CoachingSage
 
 @MainActor
 final class MockAdaptedProgramRepository: AdaptedProgramRepository {

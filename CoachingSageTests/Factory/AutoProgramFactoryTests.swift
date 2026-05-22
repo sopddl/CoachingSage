@@ -3,7 +3,6 @@
 // suggestion empty mode dashboard).
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class AutoProgramFactoryTests: XCTestCase {

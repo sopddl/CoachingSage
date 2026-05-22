@@ -3,7 +3,6 @@
 // Story 3.9.0 — ajoute la sémantique du flag `progressAuthorizationRequestedAt` + flow re-prompt.
 // HealthKit lui-même n'est pas mockable côté unit — la vraie validation se fait via Story 2.2 sur device.
 import XCTest
-@testable import CoachingSage
 
 final class DefaultHealthKitServiceTests: XCTestCase {
 

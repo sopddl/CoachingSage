@@ -1,7 +1,6 @@
 // CoachingSageTests/ViewModels/EditActiveSportsViewModelTests.swift
 // Story 2.3 — édition active_sports.
 import XCTest
-@testable import CoachingSage
 import SageCore
 
 @MainActor

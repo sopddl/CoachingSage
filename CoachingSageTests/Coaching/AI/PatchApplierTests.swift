@@ -3,7 +3,6 @@
 // Vérifie : substitutions in-place, idempotence, formatage notes, no-op si patch nil/vide.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 final class PatchApplierTests: XCTestCase {
 

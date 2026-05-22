@@ -9,7 +9,6 @@
 // `plannedDate` — l'`effectiveDate` retournée par le resolver est toujours `now`.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class NextSessionResolverTests: XCTestCase {

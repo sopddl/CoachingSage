@@ -2,7 +2,6 @@
 // Story 3.13 Phase B (AC20) — matrice compatibilité goals multi-choice Q2.
 import Testing
 import Foundation
-@testable import CoachingSage
 
 @Suite("GoalCompatibilityMatrix")
 struct GoalCompatibilityMatrixTests {

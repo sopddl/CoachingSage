@@ -1,7 +1,6 @@
 // CoachingSageTests/AutoProfile/AutoProfileInferenceTests.swift
 // Story Autoprofil HealthKit (Epic 3 Phase 2 #4)
 import XCTest
-@testable import CoachingSage
 
 final class AutoProfileInferenceTests: XCTestCase {
 

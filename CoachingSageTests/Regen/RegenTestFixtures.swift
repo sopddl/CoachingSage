@@ -3,7 +3,6 @@
 // A.2 (WeeklyExecutionAnalyzer), et à venir A.3/A.4. Évite la duplication.
 import Foundation
 import TemplateModel
-@testable import CoachingSage
 
 enum RegenTestFixtures {
 

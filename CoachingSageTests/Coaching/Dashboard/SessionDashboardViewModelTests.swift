@@ -11,7 +11,6 @@
 // désormais remplacés par `.active`).
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class SessionDashboardViewModelTests: XCTestCase {

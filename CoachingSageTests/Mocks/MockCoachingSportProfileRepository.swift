@@ -1,7 +1,6 @@
 // CoachingSageTests/Mocks/MockCoachingSportProfileRepository.swift
 // Story 3.1 — mock en mémoire pour les tests ViewModel + Repository.
 import Foundation
-@testable import CoachingSage
 
 @MainActor
 final class MockCoachingSportProfileRepository: CoachingSportProfileRepository {

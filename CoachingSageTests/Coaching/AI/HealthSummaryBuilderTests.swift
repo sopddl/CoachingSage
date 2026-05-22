@@ -9,7 +9,6 @@
 // critiques `LeonAdaptRareTests` (Edge Function + prompt système).
 import XCTest
 import HealthKit
-@testable import CoachingSage
 
 @MainActor
 final class HealthSummaryBuilderTests: XCTestCase {

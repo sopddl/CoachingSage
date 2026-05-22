@@ -13,7 +13,6 @@
 //   - selectedId ne référence que des `startedSummaries` quand il y a des started
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class SessionDashboardViewModelSplitTests: XCTestCase {

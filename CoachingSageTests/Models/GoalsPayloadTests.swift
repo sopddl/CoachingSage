@@ -3,7 +3,6 @@
 // Tests rétrocompat decoder + roundtrip.
 import Testing
 import Foundation
-@testable import CoachingSage
 
 @Suite("GoalsPayload")
 struct GoalsPayloadTests {

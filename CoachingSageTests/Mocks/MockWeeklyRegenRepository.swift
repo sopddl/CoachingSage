@@ -7,7 +7,6 @@
 // filter de `fetchJournalForCurrentWeek` reproduit celui du Default (filtre
 // fenêtre [weekStart-1j, weekStart+7j[ sur `appliedAt`, tri desc).
 import Foundation
-@testable import CoachingSage
 
 @MainActor
 final class MockWeeklyRegenRepository: WeeklyRegenRepository {

@@ -2,7 +2,6 @@
 // Story 2.1 — mock pour les tests Story 2.2 (onboarding HealthKit pré-fill).
 import Foundation
 import HealthKit
-@testable import CoachingSage
 
 final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable {
     var isHealthDataAvailable: Bool = true

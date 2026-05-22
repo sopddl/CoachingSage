@@ -2,7 +2,6 @@
 // Story 3.3a — tests unitaires des 5 règles deterministic en isolation.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 final class AdapterRuleTests: XCTestCase {
 

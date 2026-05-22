@@ -3,7 +3,6 @@
 // avec fractions de secondes (cas réel timestamptz) et sans, refuser le reste.
 // Bug d'origine : .iso8601 strict refusait les fractions → DecodingError dans hydrate-on-miss.
 import XCTest
-@testable import CoachingSage
 
 final class JSONDecoderSupabaseTests: XCTestCase {
 
