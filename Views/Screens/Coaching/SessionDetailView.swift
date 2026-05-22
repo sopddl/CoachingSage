@@ -29,7 +29,7 @@ struct SessionDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
-                header
+                SessionHeroHeader(session: session, week: week, program: program)
 
                 if isModifiedByRegen {
                     regenAdjustedBanner
@@ -171,60 +171,6 @@ struct SessionDetailView: View {
         f.timeStyle = .short
         return f
     }()
-
-    // MARK: - Header
-
-    /// Story 3.15 v7.2 (Sophie 2026-05-21) — symbole sport-aware par session.
-    /// Cf `AdaptedProgramView.sessionSymbol(for:)` pour la logique (triathlon
-    /// → parse name puis fallback type).
-    private var sessionSymbol: String {
-        let parentCode = program.sport.appSportCode
-        let effective = SessionSportInference.sportCode(
-            forSessionName: session.name,
-            programSportCode: parentCode
-        )
-        if effective != parentCode {
-            return SportSymbol.symbol(forCode: effective)
-        }
-        if parentCode == "triathlon" {
-            return AdaptedProgramFormatting.sfSymbol(for: session.type)
-        }
-        return SportSymbol.symbol(forCode: parentCode)
-    }
-
-    /// Story 3.15 v7.3 (Sophie 2026-05-21) — code sport effectif pour la
-    /// couleur d'accent du symbole. Cf `AdaptedProgramView.sessionEffectiveSportCode`.
-    private var sessionEffectiveSportCode: String {
-        SessionSportInference.sportCode(
-            forSessionName: session.name,
-            programSportCode: program.sport.appSportCode
-        )
-    }
-
-    private var header: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text("coaching.adapter.session.fullLabel \(week.weekNumber) \(session.day)")
-                .font(.caption.bold())
-                .foregroundStyle(.secondary)
-                .textCase(.uppercase)
-            HStack(spacing: 10) {
-                Image(systemName: sessionSymbol)
-                    .font(.title3)
-                    .foregroundStyle(Color.coachingSport(forCode: sessionEffectiveSportCode))
-                Text(verbatim: session.name)
-                    .font(.title2.bold())
-            }
-            Text(verbatim: "\(session.durationMinutes) min")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-            if !week.theme.isEmpty {
-                // Story 3.17 — rendu via GlossaryRichText pour auto-détecter
-                // les termes glossaire dans le thème de semaine.
-                GlossaryRichText(text: week.theme, font: .footnote, foreground: .secondary)
-                    .padding(.top, 2)
-            }
-        }
-    }
 
     // MARK: - Regen adjusted banner (Phase B.6)
 

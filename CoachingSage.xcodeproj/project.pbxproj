@@ -37,6 +37,7 @@
 		0B572FDEED61A3F3F3838179 /* coachingsage-icon-light.svg in Resources */ = {isa = PBXBuildFile; fileRef = 94B65034FE3B7EE576DB883C /* coachingsage-icon-light.svg */; };
 		0D2B67C9070BAFE66B7FA52E /* HowItWorksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C133C92E30AC41B91127C93 /* HowItWorksView.swift */; };
 		0E2B4BF803F465B206124E57 /* CoreProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C795F3D7C4B0D0010E47E0FC /* CoreProfileRepository.swift */; };
+		0E5A1490CFE853FE502BD9AB /* SessionStatsCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD7A60F34E721E5DDCCC0C /* SessionStatsCalculatorTests.swift */; };
 		0EC7A37DFF6A69C631B75877 /* QuestionnaireDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633F4421043C728EBE0DA6CF /* QuestionnaireDTOs.swift */; };
 		0F1EFC3BA7C10F61EDEB7343 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1059E4B839F348DE30AE147E /* InfoPlist.xcstrings */; };
 		0F21EF919EA089E107E37897 /* coachingsage-icon-tinted.png in Resources */ = {isa = PBXBuildFile; fileRef = EC182FCA02D11BF1F842A0FD /* coachingsage-icon-tinted.png */; };
@@ -192,7 +193,9 @@
 		6528C115A3626EB6166A567A /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C835AAF7C7FF60A9685A373A /* LanguageManager.swift */; };
 		653074D733F197153A895D31 /* ProgramAdapterServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724413EC87FEA7E5B19207E8 /* ProgramAdapterServiceTests.swift */; };
 		655F7C92A683D03273FB5AED /* DormantBootstrapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B59FD31AA4968828F5DE2E4 /* DormantBootstrapService.swift */; };
+		65902080144BE3246E5E949F /* SessionHeroHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D6ABE476A99119084C37BC /* SessionHeroHeader.swift */; };
 		659CDC4DFE0D0D5351EB7A38 /* MedicalClearanceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788DB6157A574221EC85D189 /* MedicalClearanceRule.swift */; };
+		66A79BD754B44E6F63041F96 /* SessionHeroHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D6ABE476A99119084C37BC /* SessionHeroHeader.swift */; };
 		671F6891D05DE04E6ADAA082 /* MockAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6820E4D33B023589DDB16D /* MockAccountService.swift */; };
 		679042BA6F89E9F8E93E923C /* AutoProgramFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13ED969E0EA9CDA3232A0A5 /* AutoProgramFactoryTests.swift */; };
 		68B906FB7B2B787B8814E0B1 /* Level+Regression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D2D480744B08EFEAB585A9 /* Level+Regression.swift */; };
@@ -276,6 +279,7 @@
 		96041685908C62800A211C0D /* SportQuestionnaireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C9BF1B6582AF431E9F64D8 /* SportQuestionnaireView.swift */; };
 		96A7A0EACFFD0BC7F2B8AAB2 /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66088B1D7A2BE3E61A939502 /* ProgressViewModel.swift */; };
 		97F1BACB00CC4DAE6B4FB8DF /* PersonalRecordsEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE4773C7A3BB46ED9F2C5C5 /* PersonalRecordsEngineTests.swift */; };
+		98B2EA0F59A3C1D8C5A8D9A3 /* SessionStatsCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D88E20CFC822FFF0012A76 /* SessionStatsCalculator.swift */; };
 		98B44F95B71A3051C532FDEF /* CoachingProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8633E1585AA578B1F492E71 /* CoachingProfile.swift */; };
 		996A440ABF7B473837D97568 /* ProgramTemplateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB38EDA31E3E416A851692C2 /* ProgramTemplateSelector.swift */; };
 		996E085A80497941996B96DC /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20DB657D3395503D4C7C654 /* MockAuthService.swift */; };
@@ -313,6 +317,7 @@
 		AB69AAA3B0E65EB728E24D91 /* CoachLineEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90018DB0321B0207B39B06A3 /* CoachLineEngine.swift */; };
 		ACB9745E66560AB0CF654D13 /* SportAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4398F6181C5693E0EE37EBC9 /* SportAvatarView.swift */; };
 		AD203218439F8D583C1904CC /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42241D18ACACFD2E0DD6DB8B /* MainTabView.swift */; };
+		AD445B9BCA8BB89787B0381F /* SessionStatsCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D88E20CFC822FFF0012A76 /* SessionStatsCalculator.swift */; };
 		AE7B11F7F4076D070A79C6F4 /* AccountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DF96692AD6EE1B50103B26 /* AccountViewModelTests.swift */; };
 		AEA7747C87A05039508B81D0 /* HealthSummaryBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6277E933BCF98049B534452E /* HealthSummaryBuilderTests.swift */; };
 		AED5732FB4C9C90354CF8201 /* EmptyDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676C18636A0BA894B61040D4 /* EmptyDashboardView.swift */; };
@@ -511,6 +516,7 @@
 		35E920108C6CE27F720A7BD4 /* AutoProfileReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoProfileReviewView.swift; sourceTree = "<group>"; };
 		3614FE87214CBAB0121EFC68 /* AdapterRuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterRuleTests.swift; sourceTree = "<group>"; };
 		36CA0891A3C33D59D666AE89 /* RegenBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegenBadge.swift; sourceTree = "<group>"; };
+		37DD7A60F34E721E5DDCCC0C /* SessionStatsCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStatsCalculatorTests.swift; sourceTree = "<group>"; };
 		38864DEADC1C88CF2740C9B8 /* HealthKitProfileDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitProfileDataTests.swift; sourceTree = "<group>"; };
 		38919BCD92C6F6E78FBD1B73 /* LeonHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeonHintView.swift; sourceTree = "<group>"; };
 		3B1D7C33CFE4977F4BDB7035 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -554,6 +560,7 @@
 		61D12EFE1050B3F1472E7354 /* coachingsage-icon-light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coachingsage-icon-light.png"; sourceTree = "<group>"; };
 		6277E933BCF98049B534452E /* HealthSummaryBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSummaryBuilderTests.swift; sourceTree = "<group>"; };
 		633F4421043C728EBE0DA6CF /* QuestionnaireDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireDTOs.swift; sourceTree = "<group>"; };
+		63D6ABE476A99119084C37BC /* SessionHeroHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHeroHeader.swift; sourceTree = "<group>"; };
 		65F875D8FCB0EC250D640371 /* GlossaryDiscoveryTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryDiscoveryTooltip.swift; sourceTree = "<group>"; };
 		66088B1D7A2BE3E61A939502 /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
 		6692E5D63506022D83A73659 /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
@@ -634,6 +641,7 @@
 		B419D46AC01C561634543225 /* LeonFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeonFloatingButton.swift; sourceTree = "<group>"; };
 		B5754280F0AFE191F1C7D76C /* SchemaV7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV7.swift; sourceTree = "<group>"; };
 		B6C404D9306A80D5C582650A /* ReplanifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplanifyService.swift; sourceTree = "<group>"; };
+		B6D88E20CFC822FFF0012A76 /* SessionStatsCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStatsCalculator.swift; sourceTree = "<group>"; };
 		B750A8C5DE18154EA50064FA /* ProgramTemplateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramTemplateLibrary.swift; sourceTree = "<group>"; };
 		B75229FDF1730BFAB470F33E /* SageCoreProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SageCoreProfile.swift; sourceTree = "<group>"; };
 		B851BB9EDBC400393E7F935B /* RegressionRuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegressionRuleTests.swift; sourceTree = "<group>"; };
@@ -708,9 +716,9 @@
 		FD16032A07CE30E27DE86BCA /* JSONDecoder+Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Supabase.swift"; sourceTree = "<group>"; };
 		FE2EBCDA71129879332CF57F /* MockCoachingSportProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoachingSportProfileRepository.swift; sourceTree = "<group>"; };
 		FE4D8313E07E639BE62B7644 /* ProgramDurationResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDurationResolverTests.swift; sourceTree = "<group>"; };
-		"TEMP_0597EFC3-3E25-4CC3-8AAC-6A076C3C2FE6" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_2DE3D80E-9700-4729-8545-772EC4A774E2" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_935F0F98-B5C4-4FA4-B202-1C3D4FC09738" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_04467814-E61D-4C67-B913-4EDB25694E93" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_0DD0ECCB-3F64-4D99-9357-5BF1BAEB0BB7" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_49DDDDE0-474F-4673-9AC2-696CE9FA72DF" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -837,6 +845,7 @@
 				925E223395A8BE8A5D132948 /* Regen */,
 				E20791E959C6272C2AB60CFF /* Replanify */,
 				D451EFCEAD86062759EFE262 /* Selector */,
+				8C5D18A9DC5955AFF3539F90 /* Session */,
 				412500AA0F191E07AD4B15F1 /* SessionCompletion */,
 				251FB5D7FE8B97058766FCDF /* TypingDelayProvider.swift */,
 			);
@@ -917,6 +926,7 @@
 				7CBF2077E78382BFBC8DF087 /* PlaceholderScreen.swift */,
 				31362A2EB1C59474F20C2C69 /* QuestionAnswerOptionsView.swift */,
 				4C69AB61252E123C9DF205D7 /* SageStarShape.swift */,
+				63D6ABE476A99119084C37BC /* SessionHeroHeader.swift */,
 				4398F6181C5693E0EE37EBC9 /* SportAvatarView.swift */,
 				BEBB0C872F920C81B453E3E2 /* SportTileView.swift */,
 				1D578C7C8A74F895B24C68DC /* TypingIndicatorView.swift */,
@@ -1148,6 +1158,14 @@
 			path = Bootstrap;
 			sourceTree = "<group>";
 		};
+		8C5D18A9DC5955AFF3539F90 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				B6D88E20CFC822FFF0012A76 /* SessionStatsCalculator.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
 		8C6A31DDF7838F93BC1EF977 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1304,6 +1322,7 @@
 				679D2FF8C833A595C7BC9BA8 /* Glossary */,
 				A48AFFE19A0C55A20C7C0B99 /* Progress */,
 				8824647B31685857315376E0 /* Replanify */,
+				CC73A7598465B20D057000DD /* Session */,
 				FC6E9B24B0D729552E7560E4 /* SessionCompletion */,
 			);
 			path = Coaching;
@@ -1327,6 +1346,14 @@
 				4B85113EF582AFE50995A0F0 /* DefaultWeeklyRegenRepository.swift */,
 			);
 			path = Implementations;
+			sourceTree = "<group>";
+		};
+		CC73A7598465B20D057000DD /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				37DD7A60F34E721E5DDCCC0C /* SessionStatsCalculatorTests.swift */,
+			);
+			path = Session;
 			sourceTree = "<group>";
 		};
 		CCF6397C1529B48ABB1B4C03 /* Repositories */ = {
@@ -1518,12 +1545,12 @@
 			path = Schema;
 			sourceTree = "<group>";
 		};
-		"TEMP_0288B134-2C50-4CB1-9466-5164DE1F71A6" /* CoachingSage */ = {
+		"TEMP_B8A13989-6FD1-4F62-8883-1C6575543E6E" /* CoachingSage */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_2DE3D80E-9700-4729-8545-772EC4A774E2" /* Config-Debug.xcconfig */,
-				"TEMP_0597EFC3-3E25-4CC3-8AAC-6A076C3C2FE6" /* Config-Release.xcconfig */,
-				"TEMP_935F0F98-B5C4-4FA4-B202-1C3D4FC09738" /* Config-Staging.xcconfig */,
+				"TEMP_49DDDDE0-474F-4673-9AC2-696CE9FA72DF" /* Config-Debug.xcconfig */,
+				"TEMP_04467814-E61D-4C67-B913-4EDB25694E93" /* Config-Release.xcconfig */,
+				"TEMP_0DD0ECCB-3F64-4D99-9357-5BF1BAEB0BB7" /* Config-Staging.xcconfig */,
 			);
 			path = CoachingSage;
 			sourceTree = "<group>";
@@ -1830,6 +1857,8 @@
 				2B1A565E7061B567237BE497 /* SessionCompletionViewModel.swift in Sources */,
 				185A27EEEE5C824118A11085 /* SessionDashboardViewModel.swift in Sources */,
 				3D894075C5368C824B2AEC68 /* SessionDetailView.swift in Sources */,
+				65902080144BE3246E5E949F /* SessionHeroHeader.swift in Sources */,
+				AD445B9BCA8BB89787B0381F /* SessionStatsCalculator.swift in Sources */,
 				8AA41A3B96ED5CB6EEC58784 /* SessionView.swift in Sources */,
 				3D65908983E8C3E075C98FB6 /* SessionVolumeScaler.swift in Sources */,
 				AA9634DD1A4190D25D9C37D3 /* SignInWithAppleButton.swift in Sources */,
@@ -2068,6 +2097,9 @@
 				2BE557F6DD49C82328B64906 /* SessionDashboardViewModelSplitTests.swift in Sources */,
 				26F0A00983B61FC0C3F19B4A /* SessionDashboardViewModelTests.swift in Sources */,
 				60C6C4AE56E5D8C0A7274CA6 /* SessionDetailView.swift in Sources */,
+				66A79BD754B44E6F63041F96 /* SessionHeroHeader.swift in Sources */,
+				98B2EA0F59A3C1D8C5A8D9A3 /* SessionStatsCalculator.swift in Sources */,
+				0E5A1490CFE853FE502BD9AB /* SessionStatsCalculatorTests.swift in Sources */,
 				8FA3C8C1A325668EF596DD00 /* SessionView.swift in Sources */,
 				9AAE9391C632045003F410ED /* SessionVolumeScaler.swift in Sources */,
 				DBDE73DFCF462780C3F36CFE /* SignInWithAppleButton.swift in Sources */,
@@ -2163,7 +2195,7 @@
 		};
 		61B5E17E96E19C8E098AA3DC /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_935F0F98-B5C4-4FA4-B202-1C3D4FC09738" /* Config-Staging.xcconfig */;
+			baseConfigurationReference = "TEMP_0DD0ECCB-3F64-4D99-9357-5BF1BAEB0BB7" /* Config-Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2224,7 +2256,7 @@
 		};
 		6444A73E993A0AE7B8936309 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_0597EFC3-3E25-4CC3-8AAC-6A076C3C2FE6" /* Config-Release.xcconfig */;
+			baseConfigurationReference = "TEMP_04467814-E61D-4C67-B913-4EDB25694E93" /* Config-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2375,7 +2407,7 @@
 		};
 		E103FFBD6D87D5F977B573D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_2DE3D80E-9700-4729-8545-772EC4A774E2" /* Config-Debug.xcconfig */;
+			baseConfigurationReference = "TEMP_49DDDDE0-474F-4673-9AC2-696CE9FA72DF" /* Config-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
