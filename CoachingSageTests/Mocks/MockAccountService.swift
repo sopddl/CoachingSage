@@ -1,7 +1,6 @@
 // CoachingSageTests/Mocks/MockAccountService.swift
 // Mock pour AccountViewModel tests.
 import Foundation
-@testable import CoachingSage
 import SageCore
 
 final class MockAccountService: AccountServiceProtocol {

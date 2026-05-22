@@ -5,7 +5,6 @@
 import Testing
 import Foundation
 import Supabase
-@testable import CoachingSage
 
 @MainActor
 @Suite("SportQuestionnaireViewModel")

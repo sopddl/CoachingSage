@@ -3,7 +3,6 @@
 // pondéré par durée, overExecutedCount, missedActiveSessions).
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 final class WeeklyExecutionAnalyzerTests: XCTestCase {
 

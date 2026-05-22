@@ -2,7 +2,6 @@
 // Story 3.8 sous-tâche 8 — couvre le mapping deterministic mood → hint key
 // (pas d'IA, validation EU MDR garde-fou cf epic3_leon_legal_constraints).
 import XCTest
-@testable import CoachingSage
 
 @MainActor
 final class CoachLineEngineTests: XCTestCase {

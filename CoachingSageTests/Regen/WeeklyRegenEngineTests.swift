@@ -7,7 +7,6 @@
 //   - les edge cases d'orchestration (history vide, current vs previous)
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 final class WeeklyRegenEngineTests: XCTestCase {
 

@@ -2,7 +2,6 @@
 // Story 3.4 Phase A.1 — tests algo deterministic execution score (volume + intensité).
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 final class WeeklyExecutionTests: XCTestCase {
 

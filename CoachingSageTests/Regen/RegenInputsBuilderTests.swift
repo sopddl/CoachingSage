@@ -7,7 +7,6 @@
 // (cf `CoachingSageTests/Mocks/`). `LocalRegenRepoStub` local au fichier.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class RegenInputsBuilderTests: XCTestCase {

@@ -2,7 +2,6 @@
 // Story 3.9 — mapping app SportCode ↔ HKWorkoutActivityType (bloc Volume par sport).
 import XCTest
 import HealthKit
-@testable import CoachingSage
 
 final class SportCodeMapperTests: XCTestCase {
 

@@ -3,7 +3,6 @@
 // sans charger le bundle Resources. Garde les tests rapides et déterministes.
 import Foundation
 import TemplateModel
-@testable import CoachingSage
 
 enum AdapterTestFixtures {
 

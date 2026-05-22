@@ -4,7 +4,6 @@
 // `stubbedActive`.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class SessionCompletionViewModelTests: XCTestCase {

@@ -8,7 +8,6 @@
 // Avant ce hotfix, le mode `deadlineEstimated` envoyait `target_date=null` →
 // INSERT rejeté + bandeau d'erreur Supabase rouge en bas du questionnaire.
 import XCTest
-@testable import CoachingSage
 
 final class UniversalQuestionnaireSupabaseConstraintTests: XCTestCase {
 

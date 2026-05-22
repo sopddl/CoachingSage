@@ -12,7 +12,6 @@
 // `CoachingSageTests/Mocks/`, WeeklyRegenRepository local au fichier).
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class WeeklyRegenApplicationServiceTests: XCTestCase {

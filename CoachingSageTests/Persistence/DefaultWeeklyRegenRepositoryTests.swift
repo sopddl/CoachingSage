@@ -10,29 +10,30 @@
 // in-memory hang sur try save() avec @Attribute(.unique) UUID).
 import XCTest
 import SwiftData
-@testable import CoachingSage
 
 @MainActor
 final class DefaultWeeklyRegenRepositoryTests: XCTestCase {
 
+    // **Dette SwiftData test_host hang (2026-05-22)** — le `container` DOIT être
+    // retenu en property, sinon il est déalloué à la sortie de setUp et le
+    // mainContext crash au fetch (`Crash: xctest at fetch`). En mode TEST_HOST
+    // le crash était masqué par retention via l'app host ; en logic test la
+    // retention dépend uniquement de notre code.
+    private var container: ModelContainer!
     private var modelContext: ModelContext!
     private var journalFileURL: URL!
     private var repo: DefaultWeeklyRegenRepository!
 
     override func setUpWithError() throws {
-        // SwiftData container pour les Reports (Schema V7 minimal — juste
-        // WeeklyExecutionReportRecord, suffisant maintenant que `RegenJournalEntry`
-        // n'est plus un @Model mais un struct stocké JSON).
         let sqliteUrl = FileManager.default.temporaryDirectory
             .appendingPathComponent("WeeklyRegenRepo-\(UUID()).sqlite")
         let config = ModelConfiguration(url: sqliteUrl)
-        let container = try ModelContainer(
+        self.container = try ModelContainer(
             for: WeeklyExecutionReportRecord.self,
             configurations: config
         )
         self.modelContext = container.mainContext
 
-        // JSON file store pour le Journal — fichier temp par test pour isolation.
         self.journalFileURL = FileManager.default.temporaryDirectory
             .appendingPathComponent("regen_journal-\(UUID()).json")
         let store = JournalFileStore(fileURL: journalFileURL)
@@ -48,6 +49,7 @@ final class DefaultWeeklyRegenRepositoryTests: XCTestCase {
         }
         self.repo = nil
         self.modelContext = nil
+        self.container = nil
         self.journalFileURL = nil
     }
 

@@ -3,7 +3,6 @@
 // Vérifie l'ordre des règles et le wiring `requiresAIAssist`.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 final class ProgramAdapterTests: XCTestCase {
 

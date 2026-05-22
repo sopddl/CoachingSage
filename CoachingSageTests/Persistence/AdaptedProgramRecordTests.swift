@@ -6,21 +6,19 @@
 import XCTest
 import SwiftData
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class AdaptedProgramRecordTests: XCTestCase {
 
-    /// Container file-based en URL temp dir au lieu d'in-memory — workaround
-    /// 2026-05-08 du hang `try modelContext.save()` infini sur in-memory avec
-    /// `@Attribute(.unique) var id: UUID` (cf `lessons_swiftdata_inmemory_test_hang`).
-    /// On crée un fichier unique par test pour isolation, supprimé via tearDown.
-    private static func makeProgramContext() throws -> ModelContext {
+    /// **Dette SwiftData test_host hang (2026-05-22)** — le `container` DOIT
+    /// être retenu par l'appelant, sinon il est déalloué et le mainContext
+    /// crash au fetch. Helper retourne désormais le tuple (container, context).
+    private static func makeProgramContext() throws -> (ModelContainer, ModelContext) {
         let url = FileManager.default.temporaryDirectory
             .appendingPathComponent("AdaptedProgramRecord-\(UUID()).sqlite")
         let config = ModelConfiguration(url: url)
         let container = try ModelContainer(for: AdaptedProgramRecord.self, configurations: config)
-        return container.mainContext
+        return (container, container.mainContext)
     }
 
     // MARK: - JSON round-trip
@@ -277,17 +275,33 @@ final class AdaptedProgramRecordTests: XCTestCase {
     // MARK: - Persistance ModelContext
 
     func testInsertAndFetchAdaptedProgramRecord() throws {
-        // SKIPPED 2026-05-08 — hang `try modelContext.save()` infini sur SwiftData
-        // simu iOS 18, in-memory ET file-based testés. cf `lessons_swiftdata_inmemory_test_hang`.
-        // Comportement runtime couvert via DefaultAdaptedProgramRepository (intégration).
-        throw XCTSkip("SwiftData iOS 18 simu hang sur insert/save AdaptedProgramRecord")
+        let (container, ctx) = try Self.makeProgramContext()
+        _ = container
+        let adapted = makeAdaptedFixture()
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID())
+        ctx.insert(record)
+        try ctx.save()
+
+        let fetched = try ctx.fetch(FetchDescriptor<AdaptedProgramRecord>())
+        XCTAssertEqual(fetched.count, 1)
+        XCTAssertEqual(fetched.first?.id, record.id)
     }
 
     func testArchivingFlipsIsActiveAndSetsArchivedAt() throws {
-        // SKIPPED 2026-05-08 — hang `try modelContext.save()` infini sur SwiftData
-        // simu iOS 18, in-memory ET file-based testés. cf `lessons_swiftdata_inmemory_test_hang`.
-        // Comportement archive runtime couvert via DefaultAdaptedProgramRepository.
-        throw XCTSkip("SwiftData iOS 18 simu hang sur archive AdaptedProgramRecord")
+        let (container, ctx) = try Self.makeProgramContext()
+        _ = container
+        let adapted = makeAdaptedFixture()
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID())
+        ctx.insert(record)
+        try ctx.save()
+
+        record.isActive = false
+        record.archivedAt = Date(timeIntervalSince1970: 1_700_000_000)
+        try ctx.save()
+
+        let fetched = try ctx.fetch(FetchDescriptor<AdaptedProgramRecord>())
+        XCTAssertEqual(fetched.first?.isActive, false)
+        XCTAssertNotNil(fetched.first?.archivedAt)
     }
 
     // MARK: - Story 3.10 AC31 — markStarted + decode rétro-compat

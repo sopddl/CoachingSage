@@ -4,12 +4,17 @@
 // Test 2 : aucun mot banni EU MDR (FR + EN) dans les valeurs (mémoire epic3_leon_legal_constraints).
 import Testing
 import Foundation
-@testable import CoachingSage
+
+/// Marker ObjC class pour récupérer le bundle du test target en logic test mode
+/// (sans TEST_HOST, `Bundle.main` = le binary xctest agent, pas le `.xctest`
+/// bundle qui contient les `Localizable.xcstrings`).
+private final class _LocalizationTestBundleLocator: NSObject {}
 
 @Suite("UniversalQuestionnaireLocalization")
 struct UniversalQuestionnaireLocalizationTests {
 
     private let allSportCodes: [String] = SportCode.allCases.map { $0.rawValue }
+    private static let testBundle = Bundle(for: _LocalizationTestBundleLocator.self)
 
     // MARK: - Toutes les clés existent en FR + EN
 
@@ -53,8 +58,8 @@ struct UniversalQuestionnaireLocalizationTests {
         }
 
         for key in keys {
-            let frValue = String(localized: String.LocalizationValue(key), bundle: .main, locale: Locale(identifier: "fr"))
-            let enValue = String(localized: String.LocalizationValue(key), bundle: .main, locale: Locale(identifier: "en"))
+            let frValue = String(localized: String.LocalizationValue(key), bundle: Self.testBundle, locale: Locale(identifier: "fr"))
+            let enValue = String(localized: String.LocalizationValue(key), bundle: Self.testBundle, locale: Locale(identifier: "en"))
             #expect(frValue != key, "Clé manquante en FR : \(key)")
             #expect(enValue != key, "Clé manquante en EN : \(key)")
         }
@@ -66,7 +71,7 @@ struct UniversalQuestionnaireLocalizationTests {
     func noBannedTerms_FR() {
         let bannedFR = ["soin", "thérapie", "traitement", "guérir", "diagnostiquer", "prévenir", "pathologie", "blessure"]
         for key in collectAllKeys() {
-            let value = String(localized: String.LocalizationValue(key), bundle: .main, locale: Locale(identifier: "fr")).lowercased()
+            let value = String(localized: String.LocalizationValue(key), bundle: Self.testBundle, locale: Locale(identifier: "fr")).lowercased()
             for word in bannedFR {
                 #expect(!value.contains(word), "Mot banni FR « \(word) » dans la clé « \(key) » : \(value)")
             }
@@ -77,7 +82,7 @@ struct UniversalQuestionnaireLocalizationTests {
     func noBannedTerms_EN() {
         let bannedEN = ["therapy", "treatment", "cure", "diagnose", "prevent", "pathology", "injury"]
         for key in collectAllKeys() {
-            let value = String(localized: String.LocalizationValue(key), bundle: .main, locale: Locale(identifier: "en")).lowercased()
+            let value = String(localized: String.LocalizationValue(key), bundle: Self.testBundle, locale: Locale(identifier: "en")).lowercased()
             for word in bannedEN {
                 #expect(!value.contains(word), "Mot banni EN « \(word) » dans la clé « \(key) » : \(value)")
             }

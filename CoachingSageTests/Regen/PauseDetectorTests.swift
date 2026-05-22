@@ -6,7 +6,6 @@
 // (full rest week, daysSinceLastWorkout négatif/nil, série brisée par semaine
 // haute).
 import XCTest
-@testable import CoachingSage
 
 final class PauseDetectorTests: XCTestCase {
 

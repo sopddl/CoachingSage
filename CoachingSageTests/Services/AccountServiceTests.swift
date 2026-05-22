@@ -2,7 +2,6 @@
 // Story 1.4 — vérifie l'orchestration ceinture-bretelles côté serveur (softDelete → deleteAuthUser).
 // signOut est testé côté AccountViewModel (séparé pour éviter race authStateChanges → démontage VM).
 import XCTest
-@testable import CoachingSage
 import SageCore
 
 @MainActor

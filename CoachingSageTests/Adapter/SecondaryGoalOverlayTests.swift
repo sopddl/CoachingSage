@@ -4,7 +4,6 @@
 import Testing
 import Foundation
 import TemplateModel
-@testable import CoachingSage
 
 @Suite("SecondaryGoalOverlay")
 struct SecondaryGoalOverlayTests {

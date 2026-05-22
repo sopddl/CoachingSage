@@ -6,7 +6,6 @@
 import XCTest
 import TemplateLoader
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class ProgramTemplateSelectorTests: XCTestCase {

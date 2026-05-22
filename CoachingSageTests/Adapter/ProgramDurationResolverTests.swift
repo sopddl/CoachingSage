@@ -2,7 +2,6 @@
 // Story sœur post-3.3b — tests métier du resolver durée + resize.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 final class ProgramDurationResolverTests: XCTestCase {
 

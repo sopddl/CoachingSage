@@ -2,7 +2,6 @@
 // Phase 2 #5 — tests métier du moteur questionnaire universel.
 import Testing
 import Foundation
-@testable import CoachingSage
 
 @Suite("UniversalQuestionnaire")
 struct UniversalQuestionnaireTests {

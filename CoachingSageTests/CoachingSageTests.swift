@@ -1,5 +1,4 @@
 import XCTest
-@testable import CoachingSage
 
 final class CoachingSageTests: XCTestCase {
     func testBootstrap() throws {

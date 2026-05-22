@@ -1,7 +1,6 @@
 // CoachingSageTests/Mocks/MockAuthService.swift
 // [COPIE IDENTIQUE] — synchroniser avec GardenSage et TailorSage.
 import Foundation
-@testable import CoachingSage
 import Supabase
 import SageCore
 

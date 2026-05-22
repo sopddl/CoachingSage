@@ -2,7 +2,6 @@
 // Phase A — couvre le matcher `Glossary.entry(forZone:)` sur les targetZone
 // concrets utilisés par les 40 templates v2.
 import XCTest
-@testable import CoachingSage
 
 final class GlossaryTests: XCTestCase {
 

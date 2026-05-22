@@ -1,7 +1,6 @@
 // CoachingSageTests/ViewModels/AccountViewModelTests.swift
 // Story 1.4 — transitions ViewState pour DeleteAccountView + orchestration .success → signOut.
 import XCTest
-@testable import CoachingSage
 import SageCore
 
 @MainActor

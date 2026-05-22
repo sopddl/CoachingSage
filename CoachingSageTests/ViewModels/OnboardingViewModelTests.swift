@@ -2,7 +2,6 @@
 // Story 2.2 — validators + finalize + import HealthKit.
 import XCTest
 import HealthKit
-@testable import CoachingSage
 import SageCore
 
 @MainActor

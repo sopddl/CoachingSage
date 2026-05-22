@@ -3,7 +3,6 @@
 import XCTest
 import SwiftData
 import SageCore
-@testable import CoachingSage
 
 @MainActor
 final class SyncServiceTests: XCTestCase {

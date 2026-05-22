@@ -5,7 +5,6 @@
 // > overExecuting > missedSessions > lowQuality > onTrack) + edge cases
 // (full rest week, 1 seule séance complétée, multiplicateur math).
 import XCTest
-@testable import CoachingSage
 
 final class RegressionRuleTests: XCTestCase {
 

@@ -1,7 +1,6 @@
 // CoachingSageTests/ViewModels/EditHealthQuestionsViewModelTests.swift
 // Story 2.3 — édition PARQ + recalcul requires_medical_clearance.
 import XCTest
-@testable import CoachingSage
 import SageCore
 
 @MainActor

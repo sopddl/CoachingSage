@@ -1,7 +1,6 @@
 // CoachingSageTests/Views/SportAvatarViewTests.swift
 // Story 3.14 AC12 — résolution sport code → SF Symbol et fallback unknown.
 import XCTest
-@testable import CoachingSage
 
 final class SportAvatarViewTests: XCTestCase {
     func test_symbolName_mapsTenKnownSports() {

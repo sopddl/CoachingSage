@@ -1,7 +1,6 @@
 // CoachingSageTests/Mocks/MockCoachingProfileRepository.swift
 // Story 2.2 — pattern MockCoreProfileRepository.
 import Foundation
-@testable import CoachingSage
 import SageCore
 
 final class MockCoachingProfileRepository: CoachingProfileRepository {

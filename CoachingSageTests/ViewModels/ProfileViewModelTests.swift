@@ -1,7 +1,6 @@
 // CoachingSageTests/ViewModels/ProfileViewModelTests.swift
 // Story 2.3 — fetch + analytics toggle debouncé + revert sur erreur.
 import XCTest
-@testable import CoachingSage
 import SageCore
 
 @MainActor

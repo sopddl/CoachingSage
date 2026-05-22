@@ -1,7 +1,6 @@
 // CoachingSageTests/Mocks/MockSageCoachingAIService.swift
 // Story 3.3b — mock pour tests AdaptedProgramViewModel.
 import Foundation
-@testable import CoachingSage
 
 final class MockSageCoachingAIService: SageCoachingAIServiceProtocol, @unchecked Sendable {
     var stubbedResponse: AdaptRareResponse?

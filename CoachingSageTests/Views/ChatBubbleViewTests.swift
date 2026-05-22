@@ -4,7 +4,6 @@
 // `.leon`, switch sur sport, user inchangée) via init + Equatable.
 import XCTest
 import SwiftUI
-@testable import CoachingSage
 
 final class ChatBubbleViewTests: XCTestCase {
     // MARK: - AvatarStyle equality

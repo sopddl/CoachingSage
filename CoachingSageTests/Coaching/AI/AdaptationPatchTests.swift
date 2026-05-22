@@ -2,7 +2,6 @@
 // Story 3.3b — tests unitaires du modèle AdaptationPatch (decoding alignement
 // 1:1 avec types.ts Edge Function, hasContent flag, error mapping).
 import XCTest
-@testable import CoachingSage
 
 final class AdaptationPatchTests: XCTestCase {
 

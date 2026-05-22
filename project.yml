@@ -135,16 +135,69 @@ targets:
     type: bundle.unit-test
     platform: iOS
     deploymentTarget: "17.0"
+    # Dette SwiftData test_host hang (2026-05-21).
+    # ------------------------------------------------------------------------
+    # Symptôme historique : depuis iOS 18, `try modelContext.save()` / `fetch()`
+    # hang silencieusement quand l'app ET le test bundle déclarent les @Model du
+    # même Schema dans le même process. Persiste en iOS 26.4.
+    # Cf mémoires `dette_swiftdata_test_host_hang`, `dette_story_310_ac32_*`,
+    # `lessons_swiftdata_inmemory_test_hang`.
+    #
+    # Fix retenu (2026-05-21) : bascule en logic test pur.
+    #   - TEST_HOST + BUNDLE_LOADER vidés → pas de chargement du binary app.
+    #   - Sources de l'app compilées DANS le module CoachingSageTests (logic).
+    #   - Pas de `@testable import CoachingSage` (même module).
+    #   - Pas de dépendance vers `target: CoachingSage` (sinon xcodegen
+    #     auto-injecte TEST_HOST). Dépendances SPM répliquées explicitement.
+    #   - `App/CoachingSageApp.swift` exclu (sinon `@main` duplicate).
+    # ------------------------------------------------------------------------
     sources:
       - path: CoachingSageTests
+      - path: App
+        excludes:
+          - "CoachingSageApp.swift"
+      - path: Models
+      - path: Views
+      - path: ViewModels
+      - path: Repositories
+      - path: Services
+      - path: Utilities
+      - path: Coaching
+      # Resources (Localizable.xcstrings, .lproj, xcassets) inclus pour que
+      # `Bundle.main` (= test bundle en logic test) puisse résoudre les clés
+      # de localisation dans les unit tests (cf
+      # `UniversalQuestionnaireLocalizationTests`).
+      - path: Resources
+        buildPhase: resources
+        excludes:
+          - "Brand/_archive-*"
+          - "Brand/*.py"
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.sopddl.coachingsage.app.tests
-        BUNDLE_LOADER: "$(TEST_HOST)"
-        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/CoachingSage.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CoachingSage"
         GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: ""
+        BUNDLE_LOADER: ""
+        INFOPLIST_KEY_SUPABASE_HOST: "test.placeholder.invalid"
+        INFOPLIST_KEY_SUPABASE_ANON_KEY: "test-anon-key-placeholder"
     dependencies:
-      - target: CoachingSage
+      - package: SageCore
+      - package: Supabase
+        product: Supabase
+      - package: Supabase
+        product: Auth
+      - package: Supabase
+        product: PostgREST
+      - package: Supabase
+        product: Realtime
+      - package: Supabase
+        product: Storage
+      - package: Supabase
+        product: Functions
+      - package: Templates
+        product: TemplateModel
+      - package: Templates
+        product: TemplateLoader
 
   CoachingSageUITests:
     type: bundle.ui-testing

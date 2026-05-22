@@ -2,7 +2,6 @@
 // Story 3.9 — détection PR (V1 : longestSession par sport).
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class PersonalRecordsEngineTests: XCTestCase {

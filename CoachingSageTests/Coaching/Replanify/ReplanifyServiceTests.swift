@@ -5,7 +5,6 @@
 //   - garde-fou routineCyclic
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class ReplanifyServiceTests: XCTestCase {

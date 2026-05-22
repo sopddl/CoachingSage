@@ -7,7 +7,6 @@
 // `onCheckAndApply` pour observer l'ordering vis-à-vis d'autres collaborateurs
 // (ex. `MockAdaptedProgramRepository.fetchActive`).
 import Foundation
-@testable import CoachingSage
 
 @MainActor
 final class FakeWeeklyRegenApplicationService: WeeklyRegenApplicationService {
