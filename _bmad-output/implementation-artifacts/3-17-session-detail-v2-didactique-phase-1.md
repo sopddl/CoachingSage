@@ -1,6 +1,6 @@
 # Story 3.17 — SessionDetail v2 didactique — Phase 1 : Fondations glossaire
 
-Status: **ready-for-dev** (décisions Sophie 2026-05-22 figées)
+Status: **code-complete, pending test visuel Sophie** (livré 2026-05-22 sur branche `epic-3/story-3.17-glossary-foundations` commit `1df30b3`)
 Branche cible : `epic-3/story-3.17-glossary-foundations`
 Effort estimé : **~3-4j** (Phase 1 seule ; Phases 2 et 3 stories suivantes)
 
@@ -158,6 +158,28 @@ Effort estimé : **~3-4j** (Phase 1 seule ; Phases 2 et 3 stories suivantes)
 - `Coaching/Glossary/Glossary.swift` — +8 entrées
 - `Views/Screens/Coaching/SessionDetailView.swift` — remplace Text par GlossaryRichText sur notes/warmup/cooldown/theme + intègre tooltip
 - `Resources/Localizable.xcstrings` — +23 keys (11×2 glossaire + 1 tooltip)
+
+## Dette ouverte — test visuel ui-reviewer
+
+**Skippé côté Claude 2026-05-22** (Sophie en WE, MCP prompts invisibles cf
+`feedback_mcp_prompts_invisible.md`). À valider par Sophie au retour :
+
+1. Lancer scenario `ui_review_session_detail_glossary` sur simu en FR puis EN :
+   ```
+   SIMCTL_CHILD_UI_TEST_SCENARIO=ui_review_session_detail_glossary \
+     xcrun simctl launch <udid> com.sopddl.coachingsage.app \
+     -AppleLanguages '(fr)' -AppleLocale fr_FR
+   ```
+2. Vérifications :
+   - Tooltip toast bottom visible 1ère ouverture (texte i18n FR/EN).
+   - Tap tooltip → dismiss + persistance UserDefaults.
+   - Termes soulignés pointillés couleur primary visibles dans warmup +
+     notes exos + cooldown + thème semaine (≥ 8 termes distincts).
+   - Tap sur un terme → sheet popover avec titre + définition correctes.
+   - Switch FR↔EN → re-rend les définitions dans la bonne langue.
+   - `targetZone` chip continue d'afficher l'info.circle (rétrocompat AC15).
+   - Pas de régression visuelle ailleurs (header, regen banner, complétion).
+3. Si findings P0/P1 : fix sur la branche, recommit, relancer le test.
 
 ## Décisions Sophie 2026-05-22 (figées)
 
