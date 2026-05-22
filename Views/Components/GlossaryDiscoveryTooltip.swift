@@ -84,7 +84,11 @@ enum GlossaryDiscoveryTooltip {
     /// dédié (qui veut justement capturer le toast visuellement).
     static func shouldPresent(userDefaults: UserDefaults = .standard) -> Bool {
         let scenario = ProcessInfo.processInfo.environment["UI_TEST_SCENARIO"]
-        if let scenario, scenario != "ui_review_session_detail_glossary" {
+        let glossaryReviewScenarios: Set<String> = [
+            "ui_review_session_detail_glossary",
+            "ui_review_session_detail_v2"
+        ]
+        if let scenario, !glossaryReviewScenarios.contains(scenario) {
             return false
         }
         return !userDefaults.bool(forKey: userDefaultsKey)
