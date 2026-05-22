@@ -76,4 +76,22 @@ enum SessionStatsCalculator {
         default:     return .coachingError
         }
     }
+
+    /// Raccourci d'affichage pour une zone d'entraînement (utilisé dans la
+    /// grille stats du hero où l'espace est contraint). Les noms Daniels
+    /// (Daniels-E/M/T/I/R) sont compactés en "D-x" pour éviter la troncature
+    /// "Dani…" sur les écrans étroits. Les autres zones (Z1, EN1, FTP-Z2,
+    /// Sweetspot, race.pace…) sont déjà courtes et passent telles quelles.
+    static func displayZone(_ zone: String) -> String {
+        let lower = zone.lowercased()
+        if lower.hasPrefix("daniels-") {
+            // "Daniels-E" → "D-E", "Daniels-T" → "D-T", etc.
+            let suffix = zone.dropFirst("daniels-".count).uppercased()
+            return "D-\(suffix)"
+        }
+        if lower == "sweetspot" || lower == "sweet-spot" {
+            return "SS"
+        }
+        return zone
+    }
 }

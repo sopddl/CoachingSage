@@ -152,6 +152,28 @@ final class SessionStatsCalculatorTests: XCTestCase {
         XCTAssertEqual(SessionStatsCalculator.rpeColor(10), Color.coachingError)
     }
 
+    // MARK: - displayZone
+
+    func test_displayZone_danielsCompactsToDx() {
+        XCTAssertEqual(SessionStatsCalculator.displayZone("Daniels-E"), "D-E")
+        XCTAssertEqual(SessionStatsCalculator.displayZone("Daniels-M"), "D-M")
+        XCTAssertEqual(SessionStatsCalculator.displayZone("Daniels-T"), "D-T")
+        XCTAssertEqual(SessionStatsCalculator.displayZone("Daniels-I"), "D-I")
+        XCTAssertEqual(SessionStatsCalculator.displayZone("Daniels-R"), "D-R")
+    }
+
+    func test_displayZone_sweetspotCompactsToSS() {
+        XCTAssertEqual(SessionStatsCalculator.displayZone("Sweetspot"), "SS")
+        XCTAssertEqual(SessionStatsCalculator.displayZone("sweet-spot"), "SS")
+    }
+
+    func test_displayZone_shortZonesPassthrough() {
+        XCTAssertEqual(SessionStatsCalculator.displayZone("Z2"), "Z2")
+        XCTAssertEqual(SessionStatsCalculator.displayZone("EN1"), "EN1")
+        XCTAssertEqual(SessionStatsCalculator.displayZone("FTP-Z2"), "FTP-Z2")
+        XCTAssertEqual(SessionStatsCalculator.displayZone("race.pace"), "race.pace")
+    }
+
     // MARK: - Helpers
 
     private func makeSession(type: SessionType, exercises: [AdaptedExercise]) -> AdaptedSession {

@@ -97,7 +97,7 @@ struct SessionHeroHeader: View {
             )
             statCell(
                 systemImage: "chart.bar.fill",
-                value: dominantZone ?? "—",
+                value: dominantZone.map(SessionStatsCalculator.displayZone) ?? "—",
                 labelKey: "coaching.session.stats.zone",
                 tint: sportColor
             )
