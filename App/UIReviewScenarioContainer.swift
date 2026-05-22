@@ -159,6 +159,15 @@ struct UIReviewScenarioContainer: View {
                 onSelect: { _ in },
                 onCancel: { }
             )
+        case "ui_review_session_detail_glossary":
+            // **Story 3.17 Phase 1** — SessionDetailView avec une séance riche
+            // en termes glossaire (tempo, threshold, cadence, Daniels-T, EN1,
+            // push-off, strides, intervals, plyometric, etc.) couvrant warmup,
+            // notes exercices et cooldown. Permet de vérifier visuellement :
+            // - les termes soulignés pointillés en couleur primary
+            // - le tap → popover définition
+            // - le toast bottom de découvrabilité (1ère ouverture)
+            SessionDetailGlossaryScenarioView()
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -575,6 +584,91 @@ private struct SportAvatarScenarioView: View {
             .padding(16)
         }
         .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+// MARK: - Story 3.17 Phase 1 — SessionDetailGlossaryScenarioView
+
+/// Container pour Story 3.17 — affiche `SessionDetailView` avec une séance
+/// running enrichie en termes glossaire pour vérifier visuellement le rendu
+/// inline (underline pointillé + couleur primary + tap popover définition) +
+/// le toast de découvrabilité.
+private struct SessionDetailGlossaryScenarioView: View {
+    init() {
+        // Reset le flag tooltip pour garantir qu'il s'affiche à chaque ouverture
+        // du scenario (capture visuelle reproductible). `shouldPresent` autorise
+        // le scenario "ui_review_session_detail_glossary" en exception du skip
+        // général UI_TEST_SCENARIO.
+        GlossaryDiscoveryTooltip.resetForTesting()
+    }
+
+    var body: some View {
+        SessionDetailView(
+            session: glossaryRichSession,
+            week: glossaryRichWeek,
+            program: AdaptedProgramPreviewFixtures.happyPath
+        )
+    }
+
+    private var glossaryRichWeek: AdaptedWeek {
+        AdaptedWeek(
+            weekNumber: 3,
+            theme: "Semaine de tempo et intervals — focus threshold et cadence",
+            goal: "Travailler le seuil lactique",
+            sessions: []
+        )
+    }
+
+    private var glossaryRichSession: AdaptedSession {
+        AdaptedSession(
+            day: 2,
+            name: "Tempo continu + strides",
+            durationMinutes: 55,
+            type: .endurance,
+            warmup: "15 min footing très lent en Z2 (cadence souple ~175 ppm) puis 6×80m strides progressifs avec récupération marche complète. Travail technique pour préparer le tempo.",
+            exercises: [
+                AdaptedExercise(
+                    name: "Tempo continu",
+                    originalName: "Tempo continu",
+                    sets: 1,
+                    reps: nil,
+                    duration: "25 min",
+                    restSeconds: 0,
+                    notes: "Tiens un effort soutenu mais conversationnel court — c'est l'allure tempo (RPE 6-7). En dessous du threshold mais juste sous l'inconfort. Tu dois sentir le lactate monter doucement vers la fin sans saturation.",
+                    targetZone: "Daniels-T",
+                    volumeAxis: .duration,
+                    wasSubstituted: false,
+                    substitutionReason: nil
+                ),
+                AdaptedExercise(
+                    name: "Récupération active",
+                    originalName: "Récupération active",
+                    sets: 1,
+                    reps: nil,
+                    duration: "5 min",
+                    restSeconds: 0,
+                    notes: "Footing très facile Z1-Z2 pour évacuer le lactate avant les intervals suivants. La cadence reste haute, l'allure très lente.",
+                    targetZone: "Z2",
+                    volumeAxis: .duration,
+                    wasSubstituted: false,
+                    substitutionReason: nil
+                ),
+                AdaptedExercise(
+                    name: "Intervals courts VO2max",
+                    originalName: "Intervals VO2max 6×400m",
+                    sets: 6,
+                    reps: "400m",
+                    duration: nil,
+                    restSeconds: 90,
+                    notes: "Effort intense type Daniels-I pour cibler le VO2max. Cadence rapide, foulée explosive proche du plyometric. Si trop dur en série 5-6, raccourcis plutôt que ralentir.",
+                    targetZone: "Daniels-I",
+                    volumeAxis: .reps,
+                    wasSubstituted: false,
+                    substitutionReason: nil
+                ),
+            ],
+            cooldown: "10 min footing très lent + étirements doux. Idéal pour évacuer le lactate accumulé pendant les intervals et préparer la récupération."
+        )
     }
 }
 

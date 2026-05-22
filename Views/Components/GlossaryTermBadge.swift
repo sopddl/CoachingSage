@@ -36,7 +36,8 @@ struct GlossaryTermBadge: View {
     }
 }
 
-private struct GlossaryDefinitionPopover: View {
+// Story 3.17 — promu de private à internal pour partage avec GlossaryRichText.
+struct GlossaryDefinitionPopover: View {
     let entry: GlossaryEntry
     let term: String
 
