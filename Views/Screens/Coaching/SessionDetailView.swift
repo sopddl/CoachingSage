@@ -37,21 +37,7 @@ struct SessionDetailView: View {
                     regenAdjustedBanner
                 }
 
-                if let warmup = session.warmup, !warmup.isEmpty {
-                    phaseBlock(systemImage: "flame.fill",
-                               labelKey: "coaching.adapter.session.warmup",
-                               text: warmup,
-                               tint: .orange)
-                }
-
-                exercisesSection
-
-                if let cooldown = session.cooldown, !cooldown.isEmpty {
-                    phaseBlock(systemImage: "snowflake",
-                               labelKey: "coaching.adapter.session.cooldown",
-                               text: cooldown,
-                               tint: .blue)
-                }
+                SessionTimelineView(session: session, sportColor: sessionSportColor)
 
                 if let vm = completionVM {
                     completionSection(vm: vm)
@@ -200,156 +186,17 @@ struct SessionDetailView: View {
         .accessibilityIdentifier("coaching.adapter.session.regen.banner")
     }
 
-    // MARK: - Phase block (warmup / cooldown)
+    // MARK: - Sport color helper
 
-    private func phaseBlock(systemImage: String, labelKey: LocalizedStringKey, text: String, tint: Color) -> some View {
-        HStack(alignment: .top, spacing: 10) {
-            Image(systemName: systemImage)
-                .foregroundStyle(tint)
-                .font(.callout)
-                .frame(width: 20)
-                .padding(.top, 2)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(labelKey)
-                    .font(.caption.bold())
-                    .foregroundStyle(.secondary)
-                    .textCase(.uppercase)
-                // Story 3.17 — rendu via GlossaryRichText pour auto-détecter
-                // les termes glossaire dans warmup/cooldown (ex: "strides",
-                // "intervals", "Daniels-T", etc.).
-                GlossaryRichText(text: text, font: .callout, foreground: .primary)
-            }
-            Spacer()
-        }
-        .padding(12)
-        .background(Color(uiColor: .secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-    }
-
-    // MARK: - Exercises
-
-    private var exercisesSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("coaching.adapter.session.exercises.title")
-                .font(.caption.bold())
-                .foregroundStyle(.secondary)
-                .textCase(.uppercase)
-            VStack(spacing: 8) {
-                ForEach(session.exercises, id: \.originalName) { ex in
-                    exerciseRow(ex)
-                }
-            }
-        }
-    }
-
-    private func exerciseRow(_ ex: AdaptedExercise) -> some View {
-        HStack(alignment: .top, spacing: 10) {
-            if ex.wasSubstituted {
-                Image(systemName: "arrow.left.arrow.right.circle.fill")
-                    .foregroundStyle(.orange)
-                    .font(.callout)
-                    .padding(.top, 2)
-            } else {
-                Image(systemName: "circle.fill")
-                    .foregroundStyle(.tint)
-                    .font(.system(size: 7))
-                    .padding(.top, 7)
-            }
-            VStack(alignment: .leading, spacing: 8) {
-                Text(verbatim: ex.name)
-                    .font(.callout.bold())
-                    .foregroundStyle(.primary)
-
-                // Phase A — description user-friendly promue en primary text.
-                // Story 3.17 — rendu via GlossaryRichText : auto-détection des
-                // termes glossaire (tempo, threshold, cadence, etc.) avec underline
-                // pointillé tappable → popover définition.
-                if let notes = ex.notes, !notes.isEmpty {
-                    GlossaryRichText(text: notes, font: .footnote, foreground: .primary)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-
-                metricsChipsRow(ex)
-
-                if ex.wasSubstituted, let reason = ex.substitutionReason {
-                    Text(Self.userFriendlyAdaptationLabel(reason: reason))
-                        .font(.caption2)
-                        .foregroundStyle(.orange)
-                }
-            }
-            Spacer()
-        }
-        .padding(12)
-        .background(Color(uiColor: .secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-    }
-
-    /// Sophie 2026-05-11 : libellé user-friendly d'un exercice substitué.
-    /// Le `substitutionReason` brut (ex: "equipment:dumbbells", "constraint:knee-injury")
-    /// est un audit dev — on le mappe à un message court compréhensible par le user.
-    static func userFriendlyAdaptationLabel(reason: String) -> LocalizedStringKey {
-        if reason.hasPrefix("equipment:") {
-            return "coaching.adapter.exercise.adapted.equipment"
-        }
-        if reason.hasPrefix("constraint:") {
-            return "coaching.adapter.exercise.adapted.constraint"
-        }
-        return "coaching.adapter.exercise.adapted.generic"
-    }
-
-    /// Phase A — chips compacts pour sets×reps / duration / rest / targetZone.
-    /// Le `targetZone` est rendu via `GlossaryTermBadge` (tap → popover définition
-    /// quand le terme matche le glossaire ; sinon texte plat). Pré-Phase A,
-    /// tout était concaténé en une string grise séparée par " · " — illisible
-    /// et impossible à tap.
-    @ViewBuilder
-    private func metricsChipsRow(_ ex: AdaptedExercise) -> some View {
-        let hasAnyMetric = ex.sets != nil
-            || (ex.reps?.isEmpty == false)
-            || (ex.duration?.isEmpty == false)
-            || (ex.restSeconds ?? 0) > 0
-            || (ex.targetZone?.isEmpty == false)
-        if hasAnyMetric {
-            HStack(spacing: 6) {
-                if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
-                    metricChip { Text(verbatim: "\(sets) × \(reps)") }
-                } else if let reps = ex.reps, !reps.isEmpty {
-                    metricChip { Text(verbatim: reps) }
-                } else if let sets = ex.sets {
-                    metricChip { Text(verbatim: "\(sets) ×") }
-                }
-                if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
-                    metricChip { Text(verbatim: duration) }
-                }
-                if let rest = ex.restSeconds, rest > 0 {
-                    metricChip { Text("coaching.adapter.exercise.rest \(rest)") }
-                }
-                if let zone = ex.targetZone, !zone.isEmpty {
-                    glossaryChip(zone)
-                }
-                Spacer(minLength: 0)
-            }
-            .padding(.top, 2)
-        }
-    }
-
-    private func metricChip<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
-        content()
-            .font(.caption2)
-            .foregroundStyle(.secondary)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(Color(uiColor: .tertiarySystemBackground))
-            .clipShape(Capsule())
-    }
-
-    private func glossaryChip(_ term: String) -> some View {
-        GlossaryTermBadge(term: term)
-            .font(.caption2.bold())
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(Color.coachingPrimary.opacity(0.10))
-            .clipShape(Capsule())
+    /// Couleur sport effective pour la séance (utilisée par la timeline
+    /// pour tinter les pastilles exercices). Triathlon → sub-sport inféré
+    /// par `SessionSportInference`.
+    private var sessionSportColor: Color {
+        let effective = SessionSportInference.sportCode(
+            forSessionName: session.name,
+            programSportCode: program.sport.appSportCode
+        )
+        return Color.coachingSport(forCode: effective)
     }
 
     // MARK: - Medical footer
