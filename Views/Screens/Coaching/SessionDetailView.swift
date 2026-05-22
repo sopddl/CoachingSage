@@ -23,6 +23,8 @@ struct SessionDetailView: View {
     @Environment(\.appDependencies) private var deps
     @State private var completionVM: SessionCompletionViewModel?
     @State private var showCompleteSheet: Bool = false
+    /// Story 3.17 Phase 1 — tooltip 1ère ouverture découvrabilité glossaire.
+    @State private var showDiscoveryTooltip: Bool = false
 
     var body: some View {
         ScrollView {
@@ -59,8 +61,10 @@ struct SessionDetailView: View {
         }
         .navigationTitle(Text(verbatim: session.name))
         .navigationBarTitleDisplayMode(.inline)
+        .glossaryDiscoveryTooltip(isPresented: $showDiscoveryTooltip)
         .task {
             await bootstrapCompletionVMIfNeeded()
+            await presentDiscoveryTooltipIfNeeded()
         }
         .sheet(isPresented: $showCompleteSheet) {
             if let vm = completionVM {
@@ -79,6 +83,16 @@ struct SessionDetailView: View {
         )
         completionVM = vm
         await vm.load()
+    }
+
+    /// Story 3.17 — présente le tooltip de découvrabilité glossaire à la 1ère
+    /// ouverture. Délai 0.6s pour laisser la vue se stabiliser, puis fade-in
+    /// via animation du modifier. Skip si déjà vu OU en UI testing.
+    private func presentDiscoveryTooltipIfNeeded() async {
+        guard GlossaryDiscoveryTooltip.shouldPresent() else { return }
+        try? await Task.sleep(nanoseconds: 600_000_000)
+        guard !Task.isCancelled else { return }
+        showDiscoveryTooltip = true
     }
 
     // MARK: - Completion section (Phase A)
@@ -204,9 +218,9 @@ struct SessionDetailView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             if !week.theme.isEmpty {
-                Text(verbatim: week.theme)
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
+                // Story 3.17 — rendu via GlossaryRichText pour auto-détecter
+                // les termes glossaire dans le thème de semaine.
+                GlossaryRichText(text: week.theme, font: .footnote, foreground: .secondary)
                     .padding(.top, 2)
             }
         }
@@ -252,8 +266,10 @@ struct SessionDetailView: View {
                     .font(.caption.bold())
                     .foregroundStyle(.secondary)
                     .textCase(.uppercase)
-                Text(verbatim: text)
-                    .font(.callout)
+                // Story 3.17 — rendu via GlossaryRichText pour auto-détecter
+                // les termes glossaire dans warmup/cooldown (ex: "strides",
+                // "intervals", "Daniels-T", etc.).
+                GlossaryRichText(text: text, font: .callout, foreground: .primary)
             }
             Spacer()
         }
@@ -296,15 +312,12 @@ struct SessionDetailView: View {
                     .font(.callout.bold())
                     .foregroundStyle(.primary)
 
-                // Phase A — description user-friendly promue en primary text :
-                // les `notes` des templates v2 expliquent le geste / la sensation /
-                // la consigne d'exécution. C'est ce qui rend la séance faisable
-                // pour un débutant. Avant Phase A elles étaient en caption grise
-                // peu lisibles.
+                // Phase A — description user-friendly promue en primary text.
+                // Story 3.17 — rendu via GlossaryRichText : auto-détection des
+                // termes glossaire (tempo, threshold, cadence, etc.) avec underline
+                // pointillé tappable → popover définition.
                 if let notes = ex.notes, !notes.isEmpty {
-                    Text(verbatim: notes)
-                        .font(.footnote)
-                        .foregroundStyle(.primary)
+                    GlossaryRichText(text: notes, font: .footnote, foreground: .primary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
 

@@ -1,12 +1,17 @@
 // Coaching/Glossary/Glossary.swift
-// Phase A — mini-glossaire de termes techniques affichés dans SessionDetailView
-// (targetZone des AdaptedExercise). 18 entrées couvrant les familles principales
-// utilisées par les 40 templates v2 : zones FC (Z1-5), allures Daniels (E/M/T/I/R),
-// natation (EN1/2/3, CSS), vélo (FTP, Sweet-Spot), protocoles (AMRAP, EMOM, Tabata),
-// effort (RPE, %1RM, VDOT).
+// Phase A — mini-glossaire de termes techniques affichés dans SessionDetailView.
+// Story 3.17 (2026-05-22) — étendu à 29 entrées + API `matches(in:)` pour détecter
+// les termes inline dans tout texte (notes exercices, warmup, cooldown, theme).
 //
-// Pas un glossaire exhaustif sport-par-sport (V2 #1 — story dédiée 3-4j). Ici on
-// vise les termes les plus opaques pour un user débutant.
+// Familles couvertes :
+// - Zones FC (Z1-5), allures Daniels (E/M/T/I/R, VDOT, HMP)
+// - Natation : EN1-3, CSS, push-off
+// - Vélo : FTP, Sweet-Spot
+// - Protocoles : AMRAP, EMOM, Tabata, intervals (générique), fartlek, strides
+// - Effort : RPE, %1RM, race.pace
+// - Physio : VO2max, lactate, threshold (générique)
+// - Strength : hypertrophy, plyometric
+// - Multi-sport : tempo (générique), cadence (run/cycle/swim)
 import Foundation
 
 public struct GlossaryEntry: Identifiable, Equatable, Sendable {
@@ -41,6 +46,18 @@ public enum Glossary {
         GlossaryEntry(id: "tabata",     titleKey: "glossary.tabata.title",     definitionKey: "glossary.tabata.definition"),
         GlossaryEntry(id: "hmp",        titleKey: "glossary.hmp.title",        definitionKey: "glossary.hmp.definition"),
         GlossaryEntry(id: "race.pace",  titleKey: "glossary.race.pace.title",  definitionKey: "glossary.race.pace.definition"),
+        // Story 3.17 Phase 1 — +11 termes opaques sourcés audit templates.
+        GlossaryEntry(id: "cadence",    titleKey: "glossary.cadence.title",    definitionKey: "glossary.cadence.definition"),
+        GlossaryEntry(id: "tempo",      titleKey: "glossary.tempo.title",      definitionKey: "glossary.tempo.definition"),
+        GlossaryEntry(id: "threshold",  titleKey: "glossary.threshold.title",  definitionKey: "glossary.threshold.definition"),
+        GlossaryEntry(id: "vo2max",     titleKey: "glossary.vo2max.title",     definitionKey: "glossary.vo2max.definition"),
+        GlossaryEntry(id: "intervals",  titleKey: "glossary.intervals.title",  definitionKey: "glossary.intervals.definition"),
+        GlossaryEntry(id: "strides",    titleKey: "glossary.strides.title",    definitionKey: "glossary.strides.definition"),
+        GlossaryEntry(id: "fartlek",    titleKey: "glossary.fartlek.title",    definitionKey: "glossary.fartlek.definition"),
+        GlossaryEntry(id: "plyometric", titleKey: "glossary.plyometric.title", definitionKey: "glossary.plyometric.definition"),
+        GlossaryEntry(id: "hypertrophy",titleKey: "glossary.hypertrophy.title",definitionKey: "glossary.hypertrophy.definition"),
+        GlossaryEntry(id: "lactate",    titleKey: "glossary.lactate.title",    definitionKey: "glossary.lactate.definition"),
+        GlossaryEntry(id: "pushoff",    titleKey: "glossary.pushoff.title",    definitionKey: "glossary.pushoff.definition"),
     ]
 
     private static let byId: [String: GlossaryEntry] = Dictionary(
