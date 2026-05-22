@@ -31,6 +31,8 @@ struct SessionDetailView: View {
             VStack(alignment: .leading, spacing: 18) {
                 SessionHeroHeader(session: session, week: week, program: program)
 
+                SessionWhyPanel(session: session, week: week, program: program)
+
                 if isModifiedByRegen {
                     regenAdjustedBanner
                 }
