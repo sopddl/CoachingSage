@@ -174,12 +174,15 @@ struct UIReviewScenarioContainer: View {
             //   numérotés · cooldown ⓝ flocon).
             SessionDetailGlossaryScenarioView()
         case "ui_review_session_detail_v3_illustrations":
-            // **Story 3.19 Jalon 1** — SessionDetailView avec séance strength
-            // pour valider les 4 illus pilotes (squat / hinge / pullVertical /
-            // core plank). Cibles : strip illustrations dans la card exo (sous
-            // le nom), palette silhouette `coachingSport(forCode: "strengthTraining")`
-            // brun rouille + équipement bleu marine + charges or.
+            // **Story 3.19 Jalon 1+2a** — SessionDetailView avec séance strength
+            // étendue couvrant les patterns pilotes (squat / hinge / pullVertical
+            // / core plank) + patterns Jalon 2a (push H/V / pull H / lunge /
+            // plyo / mobility). Cibles : strip illustrations dans la card exo.
             SessionDetailIllustrationsScenarioView()
+        case "ui_review_session_detail_v3_running":
+            // **Story 3.19 Jalon 2a** — SessionDetailView running pour valider
+            // les illus running endurance + interval.
+            SessionDetailRunningScenarioView()
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -763,8 +766,126 @@ private struct SessionDetailIllustrationsScenarioView: View {
                     notes: "Le side plank (planche latérale) renforce les obliques. Ligne droite épaules-bassin-talons, un seul avant-bras au sol. Pas de bassin qui tombe.",
                     targetZone: nil
                 ),
+                AdaptedExercise(
+                    name: "Pompe diamant (pattern push horizontal)",
+                    originalName: "Pompe diamant",
+                    sets: 3,
+                    reps: "10",
+                    restSeconds: 60,
+                    notes: "Mains rapprochées en triangle sous la poitrine. Coudes contre le corps. Descente contrôlée jusqu'à effleurer.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Overhead press haltères (pattern push vertical)",
+                    originalName: "Overhead press haltères",
+                    sets: 4,
+                    reps: "8",
+                    restSeconds: 90,
+                    notes: "Verrouille le gainage. Haltères des épaules au-dessus de la tête, bras tendus. Pas de cambrure lombaire.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Bent-over row barre (pattern pull horizontal)",
+                    originalName: "Bent-over row barre",
+                    sets: 4,
+                    reps: "10",
+                    restSeconds: 90,
+                    notes: "Tronc penché 45°, dos droit. Tire la barre vers le bas du sternum en serrant les omoplates. Coudes proches du corps.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Fente avant alternée (pattern lunge)",
+                    originalName: "Fente avant alternée",
+                    sets: 3,
+                    reps: "12 (6/jambe)",
+                    restSeconds: 60,
+                    notes: "Genou avant dans l'axe du pied. Genou arrière descend vers le sol sans toucher. Buste droit, regard horizon.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Jump squat (pattern plyo)",
+                    originalName: "Jump squat",
+                    sets: 3,
+                    reps: "8",
+                    restSeconds: 90,
+                    notes: "Squat puis saut explosif vertical. Atterrissage moelleux genoux fléchis — pas de bruit à la réception.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Étirement quadriceps (pattern mobility)",
+                    originalName: "Étirement quadriceps",
+                    sets: 2,
+                    duration: "30s/jambe",
+                    restSeconds: 0,
+                    notes: "Talon vers le fessier, main qui tient le pied. Bassin neutre, ne pas cambrer le dos. Respiration profonde.",
+                    targetZone: nil
+                ),
             ],
             cooldown: "Étirements quadriceps + ischios + dorsaux 5 min"
+        )
+    }
+}
+
+// MARK: - Story 3.19 Jalon 2a — SessionDetailRunningScenarioView
+
+/// Container Story 3.19 Jalon 2a — séance running avec exos couvrant les
+/// patterns running (endurance + interval). Validation visuelle drift Sophie #2.
+private struct SessionDetailRunningScenarioView: View {
+    var body: some View {
+        SessionDetailView(
+            session: runSession,
+            week: runWeek,
+            program: runProgram
+        )
+    }
+
+    private var runWeek: AdaptedWeek {
+        AdaptedWeek(
+            weekNumber: 3,
+            theme: "Endurance + qualité fractionné",
+            goal: "Allure de course soutenue",
+            sessions: []
+        )
+    }
+
+    private var runProgram: AdaptedProgram {
+        AdaptedProgram(
+            templateId: "running-jalon2a-fixture",
+            sport: .running,
+            level: .regular,
+            appliedAt: Date(),
+            weeks: [runWeek],
+            appliedRules: [],
+            requiresAIAssist: false
+        )
+    }
+
+    private var runSession: AdaptedSession {
+        AdaptedSession(
+            day: 2,
+            name: "Endurance + fractionné court",
+            durationMinutes: 50,
+            type: .interval,
+            warmup: "10 min footing très lent en Z2 puis 4 strides progressifs",
+            exercises: [
+                AdaptedExercise(
+                    name: "Footing endurance",
+                    originalName: "Footing endurance",
+                    duration: "20 min",
+                    notes: "Allure de conversation Z2, cadence souple ~175 ppm.",
+                    targetZone: "Daniels-E"
+                ),
+                AdaptedExercise(
+                    name: "Fractionné 8 × 400m",
+                    originalName: "Fractionné 8 × 400m",
+                    sets: 8,
+                    reps: "400m",
+                    restSeconds: 90,
+                    notes: "Allure Daniels-I, cadence rapide. Récup trot relâché entre.",
+                    targetZone: "Daniels-I"
+                ),
+            ],
+            cooldown: "10 min footing très lent + étirements"
         )
     }
 }

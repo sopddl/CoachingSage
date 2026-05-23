@@ -36,8 +36,10 @@ struct ExercisePatternIllustration: View {
         switch pattern {
         case .core:
             CoreIllustration(sportCode: sportCode, variant: coreVariant)
+        case .mobility:
+            MobilityIllustration(sportCode: sportCode)
         default:
-            // Patterns statiques pas encore dessinés (Jalon 2+) → fallback générique en attendant
+            // Patterns statiques pas encore dessinés (Jalon 2b cycle/swim drills) → fallback
             ExercisePatternGenericFallback(sportCode: sportCode, size: size)
         }
     }
@@ -59,8 +61,22 @@ struct ExercisePatternIllustration: View {
             tripletStrip { HingeIllustration(sportCode: sportCode, frame: $0) }
         case .pullVertical:
             tripletStrip { PullVerticalIllustration(sportCode: sportCode, frame: $0) }
+        case .pushHorizontal:
+            tripletStrip { PushHorizontalIllustration(sportCode: sportCode, frame: $0) }
+        case .pushVertical:
+            tripletStrip { PushVerticalIllustration(sportCode: sportCode, frame: $0) }
+        case .pullHorizontal:
+            tripletStrip { PullHorizontalIllustration(sportCode: sportCode, frame: $0) }
+        case .lunge:
+            tripletStrip { LungeIllustration(sportCode: sportCode, frame: $0) }
+        case .plyo:
+            tripletStrip { PlyoIllustration(sportCode: sportCode, frame: $0) }
+        case .runEndurance:
+            tripletStrip { RunEnduranceIllustration(sportCode: sportCode, frame: $0) }
+        case .runInterval:
+            tripletStrip { RunIntervalIllustration(sportCode: sportCode, frame: $0) }
         default:
-            // Patterns dynamiques pas encore dessinés (Jalon 2+) → fallback générique
+            // Patterns dynamiques pas encore dessinés (Jalon 2b swim) → fallback
             ExercisePatternGenericFallback(sportCode: sportCode, size: size)
         }
     }
