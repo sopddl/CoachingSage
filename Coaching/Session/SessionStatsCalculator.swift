@@ -77,6 +77,25 @@ enum SessionStatsCalculator {
         }
     }
 
+    /// Mapping RPE 1-10 → niveau jauge effort 1-5 (Story 3.19 Jalon 3).
+    /// Clampé : valeurs hors plage tombent dans le bucket le plus proche.
+    /// 1-2 → 1 (Doux), 3-4 → 2 (Modéré), 5-6 → 3 (Soutenu), 7-8 → 4 (Difficile), 9-10 → 5 (Maximal).
+    static func effortLevel(rpe: Int) -> Int {
+        let clamped = min(10, max(1, rpe))
+        return min(5, max(1, (clamped + 1) / 2))
+    }
+
+    /// Clé i18n du label sémantique du niveau d'effort (1-5). Clampé.
+    static func effortLabel(level: Int) -> LocalizedStringKey {
+        switch min(5, max(1, level)) {
+        case 1: return "coaching.effort.level.1"
+        case 2: return "coaching.effort.level.2"
+        case 3: return "coaching.effort.level.3"
+        case 4: return "coaching.effort.level.4"
+        default: return "coaching.effort.level.5"
+        }
+    }
+
     /// Raccourci d'affichage pour une zone d'entraînement (utilisé dans la
     /// grille stats du hero où l'espace est contraint). Les noms Daniels
     /// (Daniels-E/M/T/I/R) sont compactés en "D-x" pour éviter la troncature

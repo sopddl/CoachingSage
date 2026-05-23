@@ -177,6 +177,11 @@ struct SessionTimelineView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             metricsChipsRow(ex)
+            if let pattern = resolvedPattern,
+               let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.name) {
+                SessionTipBubble(tip: tipKey)
+                    .padding(.top, 2)
+            }
             if ex.wasSubstituted, let reason = ex.substitutionReason {
                 Text(Self.userFriendlyAdaptationLabel(reason: reason))
                     .font(.caption2)

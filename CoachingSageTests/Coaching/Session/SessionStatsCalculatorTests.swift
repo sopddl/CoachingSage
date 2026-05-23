@@ -174,6 +174,75 @@ final class SessionStatsCalculatorTests: XCTestCase {
         XCTAssertEqual(SessionStatsCalculator.displayZone("race.pace"), "race.pace")
     }
 
+    // MARK: - effortLevel (Story 3.19 Jalon 3)
+
+    func test_effortLevel_rpe1_returnsLevel1() {
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 1), 1)
+    }
+
+    func test_effortLevel_rpe2_returnsLevel1() {
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 2), 1)
+    }
+
+    func test_effortLevel_rpe3_returnsLevel2() {
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 3), 2)
+    }
+
+    func test_effortLevel_rpe4_returnsLevel2() {
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 4), 2)
+    }
+
+    func test_effortLevel_rpe5_returnsLevel3() {
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 5), 3)
+    }
+
+    func test_effortLevel_rpe6_returnsLevel3() {
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 6), 3)
+    }
+
+    func test_effortLevel_rpe7_returnsLevel4() {
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 7), 4)
+    }
+
+    func test_effortLevel_rpe8_returnsLevel4() {
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 8), 4)
+    }
+
+    func test_effortLevel_rpe9_returnsLevel5() {
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 9), 5)
+    }
+
+    func test_effortLevel_rpe10_returnsLevel5() {
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 10), 5)
+    }
+
+    func test_effortLevel_belowRange_clampedToLevel1() {
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 0), 1)
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: -5), 1)
+    }
+
+    func test_effortLevel_aboveRange_clampedToLevel5() {
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 11), 5)
+        XCTAssertEqual(SessionStatsCalculator.effortLevel(rpe: 99), 5)
+    }
+
+    // MARK: - effortLabel
+
+    func test_effortLabel_returnsExpectedKeysForEachLevel() {
+        XCTAssertEqual(SessionStatsCalculator.effortLabel(level: 1), "coaching.effort.level.1")
+        XCTAssertEqual(SessionStatsCalculator.effortLabel(level: 2), "coaching.effort.level.2")
+        XCTAssertEqual(SessionStatsCalculator.effortLabel(level: 3), "coaching.effort.level.3")
+        XCTAssertEqual(SessionStatsCalculator.effortLabel(level: 4), "coaching.effort.level.4")
+        XCTAssertEqual(SessionStatsCalculator.effortLabel(level: 5), "coaching.effort.level.5")
+    }
+
+    func test_effortLabel_clampsOutOfRange() {
+        XCTAssertEqual(SessionStatsCalculator.effortLabel(level: 0), "coaching.effort.level.1")
+        XCTAssertEqual(SessionStatsCalculator.effortLabel(level: -3), "coaching.effort.level.1")
+        XCTAssertEqual(SessionStatsCalculator.effortLabel(level: 6), "coaching.effort.level.5")
+        XCTAssertEqual(SessionStatsCalculator.effortLabel(level: 99), "coaching.effort.level.5")
+    }
+
     // MARK: - Helpers
 
     private func makeSession(type: SessionType, exercises: [AdaptedExercise]) -> AdaptedSession {

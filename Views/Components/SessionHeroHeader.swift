@@ -101,12 +101,7 @@ struct SessionHeroHeader: View {
                 labelKey: "coaching.session.stats.zone",
                 tint: sportColor
             )
-            statCell(
-                systemImage: "flame.fill",
-                value: "\(estimatedRPE)/10",
-                labelKey: "coaching.session.stats.rpe",
-                tint: SessionStatsCalculator.rpeColor(estimatedRPE)
-            )
+            effortCell(rpe: estimatedRPE)
             statCell(
                 systemImage: "square.stack.3d.up.fill",
                 value: "\(session.exercises.count)",
@@ -114,6 +109,35 @@ struct SessionHeroHeader: View {
                 tint: .coachingTextSecondary
             )
         }
+    }
+
+    /// Cellule stat dédiée à l'intensité (Story 3.19 Jalon 3) : remplace le
+    /// "7/10" texte par `EffortGauge` 5 niveaux + label sémantique sous la jauge.
+    /// La donnée numérique RPE est conservée dans l'a11y label combiné.
+    private func effortCell(rpe: Int) -> some View {
+        let level = SessionStatsCalculator.effortLevel(rpe: rpe)
+        let labelKey = SessionStatsCalculator.effortLabel(level: level)
+        return VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: 6) {
+                Image(systemName: "flame.fill")
+                    .font(.caption2.bold())
+                    .foregroundStyle(SessionStatsCalculator.rpeColor(rpe))
+                EffortGauge(level: level)
+            }
+            Text(labelKey)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 6)
+        .padding(.horizontal, 8)
+        .background(Color(uiColor: .secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("coaching.session.stats.effort.a11y \(level) \(rpe)"))
+        .accessibilityValue(Text(labelKey))
     }
 
     private func statCell(systemImage: String, value: String, labelKey: LocalizedStringKey, tint: Color) -> some View {

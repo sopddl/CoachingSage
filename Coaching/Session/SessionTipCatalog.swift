@@ -1,0 +1,65 @@
+// Coaching/Session/SessionTipCatalog.swift
+// Story 3.19 Jalon 3 — catalogue 1 tip Léon court par pattern biomécanique.
+// Algo deterministic (pas IA), 1 tip × 2 langues × 18 patterns = 36 strings xcstrings.
+//
+// Garde-fous EU MDR (cf `epic3_leon_legal_constraints.md`) :
+// - aucun "tu dois", "il faut" prescriptif → tips reformulés en suggestion ("vise…", "concentre-toi sur…", "atterrissage moelleux…")
+// - pas de prescription médicale (douleur, blessure, articulation = OK contexte technique uniquement)
+// - tips P1 review Plan reformulés sur la doctrine publique :
+//   Israetel (strength), Daniels (run), Maglischo (swim), Friel (cycling).
+//
+// Source des keys : `Resources/Localizable.xcstrings` (cf AC19, 18 keys × 2 langues).
+import Foundation
+import SwiftUI
+
+public enum SessionTipCatalog {
+
+    /// Renvoie une LocalizedStringKey courte (≤ 200 chars FR) pour le pattern.
+    /// `.generic` → `nil` (pas de tip, on n'affiche pas la bubble).
+    ///
+    /// `exerciseName` est passé pour permettre, plus tard, une variante par
+    /// sous-pose yoga ou drill swim spécifique (V2). En V1, le tip dépend
+    /// uniquement du pattern enum.
+    public static func tip(for pattern: ExercisePattern, exerciseName: String) -> LocalizedStringKey? {
+        switch pattern {
+        case .squat:
+            return "coaching.tip.squat"
+        case .hinge:
+            return "coaching.tip.hinge"
+        case .pushHorizontal:
+            return "coaching.tip.push.horizontal"
+        case .pushVertical:
+            return "coaching.tip.push.vertical"
+        case .pullHorizontal:
+            return "coaching.tip.pull.horizontal"
+        case .pullVertical:
+            return "coaching.tip.pull.vertical"
+        case .lunge:
+            return "coaching.tip.lunge"
+        case .core:
+            return "coaching.tip.core"
+        case .plyo:
+            return "coaching.tip.plyo"
+        case .mobility:
+            return "coaching.tip.mobility"
+        case .runEndurance:
+            return "coaching.tip.run.endurance"
+        case .runInterval:
+            return "coaching.tip.run.interval"
+        case .runDrills:
+            return "coaching.tip.run.drills"
+        case .swimEndurance:
+            return "coaching.tip.swim.endurance"
+        case .swimDrill:
+            return "coaching.tip.swim.drill"
+        case .cycleEndurance:
+            return "coaching.tip.cycle.endurance"
+        case .cycleInterval:
+            return "coaching.tip.cycle.interval"
+        case .yoga:
+            return "coaching.tip.yoga"
+        case .generic:
+            return nil
+        }
+    }
+}
