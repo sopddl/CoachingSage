@@ -39,7 +39,12 @@ struct SessionTimelineView: View {
     var body: some View {
         VStack(spacing: 0) {
             ForEach(Array(items.enumerated()), id: \.offset) { idx, item in
-                row(item: item, exerciseIndex: exerciseIndex(in: items, at: idx), isLast: idx == items.count - 1)
+                row(
+                    item: item,
+                    exerciseIndex: exerciseIndex(in: items, at: idx),
+                    isLast: idx == items.count - 1,
+                    isFirstExercise: isFirstExercise(in: items, at: idx)
+                )
             }
         }
         .accessibilityIdentifier("coaching.session.timeline")
@@ -53,8 +58,19 @@ struct SessionTimelineView: View {
         return count + 1
     }
 
+    /// True si l'item à l'index `idx` est la **première** card exo dans la
+    /// timeline (warmup et cooldown exclus). Utilisé pour cibler le pulse
+    /// glossaire AC13 (Story 3.19 Jalon 4).
+    private func isFirstExercise(in items: [TimelineItem], at idx: Int) -> Bool {
+        guard case .exercise = items[idx] else { return false }
+        for i in 0..<idx {
+            if case .exercise = items[i] { return false }
+        }
+        return true
+    }
+
     @ViewBuilder
-    private func row(item: TimelineItem, exerciseIndex: Int, isLast: Bool) -> some View {
+    private func row(item: TimelineItem, exerciseIndex: Int, isLast: Bool, isFirstExercise: Bool) -> some View {
         HStack(alignment: .top, spacing: 12) {
             // Colonne rail + pastille
             VStack(spacing: 0) {
@@ -70,7 +86,7 @@ struct SessionTimelineView: View {
             .frame(width: 32)
 
             // Colonne content
-            content(for: item)
+            content(for: item, isFirstExercise: isFirstExercise)
                 .padding(.bottom, isLast ? 0 : 12)
         }
     }
@@ -117,7 +133,7 @@ struct SessionTimelineView: View {
     // MARK: - Card content
 
     @ViewBuilder
-    private func content(for item: TimelineItem) -> some View {
+    private func content(for item: TimelineItem, isFirstExercise: Bool) -> some View {
         switch item {
         case .warmup(let text):
             phaseCard(
@@ -132,7 +148,11 @@ struct SessionTimelineView: View {
                 tint: .blue
             )
         case .exercise(let ex):
-            exerciseCard(ex)
+            ExerciseTimelineCard(
+                exercise: ex,
+                sportCode: sportCode,
+                isFirstExercise: isFirstExercise
+            )
         }
     }
 
@@ -150,50 +170,6 @@ struct SessionTimelineView: View {
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 
-    private func exerciseCard(_ ex: AdaptedExercise) -> some View {
-        let resolvedPattern: ExercisePattern? = sportCode.map { code in
-            ExercisePatternResolver.resolve(ex, sportCode: code)
-        }
-        return VStack(alignment: .leading, spacing: 8) {
-            HStack(spacing: 6) {
-                if ex.wasSubstituted {
-                    Image(systemName: "arrow.left.arrow.right.circle.fill")
-                        .foregroundStyle(.orange)
-                        .font(.caption)
-                }
-                Text(verbatim: ex.name)
-                    .font(.callout.bold())
-                    .foregroundStyle(.primary)
-            }
-            if let pattern = resolvedPattern, let code = sportCode, pattern != .generic {
-                ExercisePatternIllustration(pattern: pattern, sportCode: code, exerciseName: ex.name)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(8)
-                    .background(Color(uiColor: .tertiarySystemBackground))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-            }
-            if let notes = ex.notes, !notes.isEmpty {
-                GlossaryRichText(text: notes, font: .footnote, foreground: .primary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            metricsChipsRow(ex)
-            if let pattern = resolvedPattern,
-               let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.name) {
-                SessionTipBubble(tip: tipKey)
-                    .padding(.top, 2)
-            }
-            if ex.wasSubstituted, let reason = ex.substitutionReason {
-                Text(Self.userFriendlyAdaptationLabel(reason: reason))
-                    .font(.caption2)
-                    .foregroundStyle(.orange)
-            }
-        }
-        .padding(12)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(uiColor: .secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-    }
-
     static func userFriendlyAdaptationLabel(reason: String) -> LocalizedStringKey {
         if reason.hasPrefix("equipment:") {
             return "coaching.adapter.exercise.adapted.equipment"
@@ -202,56 +178,6 @@ struct SessionTimelineView: View {
             return "coaching.adapter.exercise.adapted.constraint"
         }
         return "coaching.adapter.exercise.adapted.generic"
-    }
-
-    @ViewBuilder
-    private func metricsChipsRow(_ ex: AdaptedExercise) -> some View {
-        let hasAnyMetric = ex.sets != nil
-            || (ex.reps?.isEmpty == false)
-            || (ex.duration?.isEmpty == false)
-            || (ex.restSeconds ?? 0) > 0
-            || (ex.targetZone?.isEmpty == false)
-        if hasAnyMetric {
-            HStack(spacing: 6) {
-                if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
-                    metricChip { Text(verbatim: "\(sets) × \(reps)") }
-                } else if let reps = ex.reps, !reps.isEmpty {
-                    metricChip { Text(verbatim: reps) }
-                } else if let sets = ex.sets {
-                    metricChip { Text(verbatim: "\(sets) ×") }
-                }
-                if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
-                    metricChip { Text(verbatim: duration) }
-                }
-                if let rest = ex.restSeconds, rest > 0 {
-                    metricChip { Text("coaching.adapter.exercise.rest \(rest)") }
-                }
-                if let zone = ex.targetZone, !zone.isEmpty {
-                    glossaryChip(zone)
-                }
-                Spacer(minLength: 0)
-            }
-            .padding(.top, 2)
-        }
-    }
-
-    private func metricChip<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
-        content()
-            .font(.caption2)
-            .foregroundStyle(.secondary)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(Color(uiColor: .tertiarySystemBackground))
-            .clipShape(Capsule())
-    }
-
-    private func glossaryChip(_ term: String) -> some View {
-        GlossaryTermBadge(term: term)
-            .font(.caption2.bold())
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(Color.coachingPrimary.opacity(0.10))
-            .clipShape(Capsule())
     }
 
     // MARK: - Item type

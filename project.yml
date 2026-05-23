@@ -39,6 +39,9 @@ packages:
     from: "2.43.0"
   Templates:
     path: Templates
+  SnapshotTesting:
+    url: https://github.com/pointfreeco/swift-snapshot-testing
+    from: "1.17.0"
 
 targets:
   CoachingSage:
@@ -198,6 +201,8 @@ targets:
         product: TemplateModel
       - package: Templates
         product: TemplateLoader
+      - package: SnapshotTesting
+        product: SnapshotTesting
 
   CoachingSageUITests:
     type: bundle.ui-testing
