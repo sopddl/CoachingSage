@@ -10,6 +10,16 @@ import TemplateModel
 struct SessionTimelineView: View {
     let session: AdaptedSession
     let sportColor: Color
+    /// Code sport (camelCase) utilisé pour résoudre les illustrations exo
+    /// (`ExercisePatternResolver`) et leur palette silhouette. Optionnel :
+    /// si nil, les illus tombent en `.generic` SF Symbol fallback générique.
+    let sportCode: String?
+
+    init(session: AdaptedSession, sportColor: Color, sportCode: String? = nil) {
+        self.session = session
+        self.sportColor = sportColor
+        self.sportCode = sportCode
+    }
 
     /// Items dérivés (ordre stable : warmup si présent, exos, cooldown si présent).
     private var items: [TimelineItem] {
@@ -141,7 +151,10 @@ struct SessionTimelineView: View {
     }
 
     private func exerciseCard(_ ex: AdaptedExercise) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
+        let resolvedPattern: ExercisePattern? = sportCode.map { code in
+            ExercisePatternResolver.resolve(ex, sportCode: code)
+        }
+        return VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 6) {
                 if ex.wasSubstituted {
                     Image(systemName: "arrow.left.arrow.right.circle.fill")
@@ -151,6 +164,13 @@ struct SessionTimelineView: View {
                 Text(verbatim: ex.name)
                     .font(.callout.bold())
                     .foregroundStyle(.primary)
+            }
+            if let pattern = resolvedPattern, let code = sportCode, pattern != .generic {
+                ExercisePatternIllustration(pattern: pattern, sportCode: code, exerciseName: ex.name)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(8)
+                    .background(Color(uiColor: .tertiarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
             }
             if let notes = ex.notes, !notes.isEmpty {
                 GlossaryRichText(text: notes, font: .footnote, foreground: .primary)

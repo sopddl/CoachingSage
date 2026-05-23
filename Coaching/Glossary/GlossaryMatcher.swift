@@ -55,6 +55,10 @@ extension Glossary {
         ("plyometrics", "plyometric"),
         ("hypertrophic", "hypertrophy"),
         ("plyo", "plyometric"),
+        // Plank / planche (Story 3.19) — variante latérale gérée via "side plank"
+        ("side plank", "plank"),
+        ("planche", "plank"),
+        ("plank", "plank"),
         ("fartlek", "fartlek"),
         ("tabata", "tabata"),
         ("amrap", "amrap"),

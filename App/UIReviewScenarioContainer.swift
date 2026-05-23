@@ -173,6 +173,13 @@ struct UIReviewScenarioContainer: View {
             //   stepper vertical (rail + pastilles warmup ⓪ flamme · exos
             //   numérotés · cooldown ⓝ flocon).
             SessionDetailGlossaryScenarioView()
+        case "ui_review_session_detail_v3_illustrations":
+            // **Story 3.19 Jalon 1** — SessionDetailView avec séance strength
+            // pour valider les 4 illus pilotes (squat / hinge / pullVertical /
+            // core plank). Cibles : strip illustrations dans la card exo (sous
+            // le nom), palette silhouette `coachingSport(forCode: "strengthTraining")`
+            // brun rouille + équipement bleu marine + charges or.
+            SessionDetailIllustrationsScenarioView()
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -673,6 +680,91 @@ private struct SessionDetailGlossaryScenarioView: View {
                 ),
             ],
             cooldown: "10 min footing très lent + étirements doux. Idéal pour évacuer le lactate accumulé pendant les intervals et préparer la récupération."
+        )
+    }
+}
+
+// MARK: - Story 3.19 Jalon 1 — SessionDetailIllustrationsScenarioView
+
+/// Container Story 3.19 Jalon 1 — séance strength avec 4 exos couvrant les
+/// patterns pilotes (squat, hinge, pullVertical, core). Affiche le strip
+/// d'illustrations dans la card exo pour validation visuelle Sophie #1.
+private struct SessionDetailIllustrationsScenarioView: View {
+    var body: some View {
+        SessionDetailView(
+            session: strengthSession,
+            week: strengthWeek,
+            program: strengthProgram
+        )
+    }
+
+    private var strengthWeek: AdaptedWeek {
+        AdaptedWeek(
+            weekNumber: 2,
+            theme: "Force générale — patterns fondamentaux",
+            goal: "Travailler les 4 patterns biomécaniques majeurs",
+            sessions: []
+        )
+    }
+
+    private var strengthProgram: AdaptedProgram {
+        AdaptedProgram(
+            templateId: "strength-pilot-fixture",
+            sport: .strengthTraining,
+            level: .beginner,
+            appliedAt: Date(),
+            weeks: [strengthWeek],
+            appliedRules: [],
+            requiresAIAssist: false
+        )
+    }
+
+    private var strengthSession: AdaptedSession {
+        AdaptedSession(
+            day: 1,
+            name: "Full body fondamentaux",
+            durationMinutes: 50,
+            type: .strength,
+            warmup: "5 min vélo facile + mobilité épaules + activation glutes (band)",
+            exercises: [
+                AdaptedExercise(
+                    name: "Goblet squat (pattern squat)",
+                    originalName: "Goblet squat",
+                    sets: 4,
+                    reps: "8",
+                    restSeconds: 90,
+                    notes: "Descente contrôlée 3 secondes, poussée par les talons. Genoux dans l'axe des pieds.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Romanian Deadlift haltères (pattern hinge)",
+                    originalName: "Romanian Deadlift haltères",
+                    sets: 3,
+                    reps: "10",
+                    restSeconds: 90,
+                    notes: "Le mouvement vient de la hanche, pas du dos. Bassin recule, ischio-jambiers s'étirent.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Pull-up assisté (pattern pull vertical)",
+                    originalName: "Pull-up assisté",
+                    sets: 4,
+                    reps: "6",
+                    restSeconds: 120,
+                    notes: "Engage les omoplates en premier. Menton au-dessus de la barre, descente contrôlée.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Plank latéral",
+                    originalName: "Plank latéral",
+                    sets: 3,
+                    duration: "30s",
+                    restSeconds: 60,
+                    notes: "Le side plank (planche latérale) renforce les obliques. Ligne droite épaules-bassin-talons, un seul avant-bras au sol. Pas de bassin qui tombe.",
+                    targetZone: nil
+                ),
+            ],
+            cooldown: "Étirements quadriceps + ischios + dorsaux 5 min"
         )
     }
 }
