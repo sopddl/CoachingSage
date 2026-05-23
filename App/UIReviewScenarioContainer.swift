@@ -896,16 +896,17 @@ private struct SessionDetailRunningScenarioView: View {
 
 // MARK: - Story 3.19 Jalon 2b — IllustrationsShowcaseScenarioView
 
-/// Showcase des 10 illustrations strength + 2 variantes core (plank frontal +
-/// latéral). Décision produit Sophie 2026-05-23 : on n'illustre QUE les gestes
-/// strength techniques où l'image clarifie la position. Running / cycling /
-/// swim → pas de dessin (gestes universels connus) → fallback SF Symbol sport
-/// + glossaire pour les mots opaques (`drill`, `tempo`, `Daniels-T`...).
+/// Showcase 10 strength + 10 poses yoga (Sophie 2026-05-23). Décision produit :
+/// on n'illustre QUE les gestes où l'image clarifie (positions techniques
+/// strength + poses statiques yoga). Running / cycling / swim continu → pas de
+/// dessin (gestes universels) → fallback SF Symbol sport + glossaire pour les
+/// mots opaques (`drill`, `tempo`, `Daniels-T`...).
 private struct IllustrationsShowcaseScenarioView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 Group {
+                    Text(verbatim: "STRENGTH").font(.headline)
                     showcaseSection(title: "Squat", pattern: .squat, sportCode: "strengthTraining")
                     showcaseSection(title: "Hinge (Romanian Deadlift)", pattern: .hinge, sportCode: "strengthTraining")
                     showcaseSection(title: "Push horizontal (pompe / bench)", pattern: .pushHorizontal, sportCode: "strengthTraining")
@@ -919,6 +920,21 @@ private struct IllustrationsShowcaseScenarioView: View {
                     showcaseStatic(title: "Core — plank frontal (planche)", pattern: .core, sportCode: "strengthTraining", exerciseName: "Plank")
                     showcaseStatic(title: "Core — plank latéral (side plank)", pattern: .core, sportCode: "strengthTraining", exerciseName: "Plank latéral")
                     showcaseStatic(title: "Mobility (étirement quadriceps)", pattern: .mobility, sportCode: "strengthTraining", exerciseName: nil)
+                }
+                Group {
+                    Text(verbatim: "YOGA").font(.headline).padding(.top, 8)
+                    showcaseStatic(title: "Chien tête en bas (Adho Mukha Svanasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Chien tête en bas")
+                    showcaseStatic(title: "Guerrier I (Virabhadrasana I)", pattern: .yoga, sportCode: "yoga", exerciseName: "Guerrier I")
+                    showcaseStatic(title: "Guerrier II (Virabhadrasana II)", pattern: .yoga, sportCode: "yoga", exerciseName: "Guerrier II")
+                    showcaseStatic(title: "Arbre (Vrksasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Arbre")
+                    showcaseStatic(title: "Cobra (Bhujangasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Cobra")
+                }
+                Group {
+                    showcaseStatic(title: "Enfant (Balasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Enfant")
+                    showcaseStatic(title: "Pince debout (Uttanasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Pince debout")
+                    showcaseStatic(title: "Triangle (Trikonasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Triangle")
+                    showcaseStatic(title: "Bateau (Navasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Bateau")
+                    showcaseStatic(title: "Savasana (cadavre / relaxation)", pattern: .yoga, sportCode: "yoga", exerciseName: "Savasana")
                 }
             }
             .padding(16)

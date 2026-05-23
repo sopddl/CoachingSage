@@ -38,6 +38,8 @@ struct ExercisePatternIllustration: View {
             CoreIllustration(sportCode: sportCode, variant: coreVariant)
         case .mobility:
             MobilityIllustration(sportCode: sportCode)
+        case .yoga:
+            YogaIllustration(sportCode: sportCode, exerciseName: exerciseName)
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels connus (running, cycling, swim continu).

@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Story 3.19 — 10 illustrations strength CoachingSage</title>
+<title>Story 3.19 — 20 illustrations CoachingSage (strength + yoga)</title>
 <style>
   body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -17,6 +17,14 @@
     font-size: 28px;
     margin: 0 0 8px;
   }
+  h2.section {
+    color: #8C4A2E;
+    font-size: 20px;
+    margin: 32px 0 12px;
+    border-bottom: 2px solid rgba(140, 74, 46, 0.2);
+    padding-bottom: 4px;
+  }
+  h2.section.yoga { color: #9B6BB3; border-bottom-color: rgba(155, 107, 179, 0.2); }
   .subtitle {
     color: #5A6577;
     font-size: 14px;
@@ -38,8 +46,8 @@
     margin-bottom: 32px;
     max-width: 920px;
   }
-  .legend h2 {
-    font-size: 15px;
+  .legend h3 {
+    font-size: 13px;
     color: #1E5090;
     margin: 0 0 12px;
     text-transform: uppercase;
@@ -62,9 +70,9 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    max-width: 980px;
+    max-width: 1400px;
   }
   .col {
     background: white;
@@ -72,7 +80,7 @@
     padding: 16px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
-  .col h2 {
+  .col h3 {
     font-size: 13px;
     color: #1E5090;
     margin: 0 0 12px;
@@ -119,63 +127,68 @@
 </head>
 <body>
 
-<h1>Story 3.19 — 10 illustrations strength</h1>
-<div class="subtitle">CoachingSage · Jalon 1 + 2 finalisé · 2026-05-23 · Grille didactique validée Sophie</div>
+<h1>Story 3.19 — 20 illustrations (10 strength + 10 yoga)</h1>
+<div class="subtitle">CoachingSage · Jalon 1 + 2 + 2c yoga · 2026-05-23 · Grille didactique validée Sophie</div>
 
 <div class="principle">
-  <strong>Principe produit Sophie 2026-05-23</strong> : on n'illustre QUE les gestes où l'image est nécessaire à la compréhension. Les sports cardio universels (running, swim, cycling) n'ont pas besoin d'illustration — le geste est connu de tous. Le glossaire fait le travail pour les mots opaques (<code>drill</code>, <code>tempo</code>, <code>Daniels-T</code>...).
+  <strong>Principe produit Sophie 2026-05-23</strong> : on n'illustre QUE les gestes où l'image est nécessaire à la compréhension. Strength (positions techniques) + Yoga (poses inconnues du débutant) = OUI. Cardio universel (running, swim, cycling continu) = NON, fallback SF Symbol sport + glossaire pour les mots opaques.
 </div>
 
 <div class="legend">
-  <h2>🎨 Palette tokens (réutilisée de Color+Coaching.swift)</h2>
+  <h3>🎨 Palette tokens (réutilisée de Color+Coaching.swift)</h3>
   <div class="palette">
     <div><span class="swatch" style="background:#8C4A2E"></span>Silhouette strength (brun rouille)</div>
+    <div><span class="swatch" style="background:#9B6BB3"></span>Silhouette yoga (violet)</div>
     <div><span class="swatch" style="background:#1B3A5C"></span>Équipement / barre (bleu marine)</div>
     <div><span class="swatch" style="background:#D4A85A"></span>Charges / haltères (or)</div>
-    <div><span class="swatch" style="background:#E08A3A"></span>Flèches mouvement + annotations (orange)</div>
+    <div><span class="swatch" style="background:#E08A3A"></span>Annotations / chevrons (orange)</div>
     <div><span class="swatch" style="background:#5A6577;opacity:0.5"></span>Sol pointillé (gris 50%)</div>
-    <div>&nbsp;</div>
   </div>
 </div>
 
+<h2 class="section">Strength — 10 illustrations</h2>
 <div class="grid">
   <div class="col">
-    <h2>① Strength — Squat à Plyo</h2>
-    <img src="showcase-illustrations-1-top.png" alt="Squat, Hinge (RDL), Push H, Push V, Pull H, Pull V, Lunge, Plyo">
+    <h3>① Squat à Plyo</h3>
+    <img src="showcase-illustrations-1-strength-top.png" alt="Squat, Hinge, Push H, Push V, Pull H, Pull V, Lunge, Plyo">
   </div>
   <div class="col">
-    <h2>② Strength — Core + Mobility</h2>
-    <img src="showcase-illustrations-2-mid.png" alt="Push V, Pull H/V, Lunge, Plyo, Core plank frontal + latéral, Mobility">
+    <h3>② Core + Mobility</h3>
+    <img src="showcase-illustrations-2-strength-yoga-top.png" alt="Plyo, Core frontal, Core latéral, Mobility (étirement)">
+  </div>
+  <div class="col">
+    <h3>③ Yoga 1-5</h3>
+    <img src="showcase-illustrations-2-strength-yoga-top.png" alt="Chien tête en bas, Guerrier I, Guerrier II, Arbre, Cobra">
+  </div>
+</div>
+
+<h2 class="section yoga">Yoga — 10 poses</h2>
+<div class="grid">
+  <div class="col">
+    <h3>Poses fondamentales 6-10</h3>
+    <img src="showcase-illustrations-3-yoga-bottom.png" alt="Guerrier II, Arbre, Cobra, Enfant, Pince debout, Triangle, Bateau, Savasana">
   </div>
 </div>
 
 <div class="decision">
-  <strong>Patterns SANS dessin (décision produit) :</strong> Running endurance / interval / drills · Swim endurance / drill rattrapé · Cycle endurance / interval. Ces 7 patterns tombent automatiquement sur le SF Symbol sport en mode <code>.palette</code> multi-couleurs (<code>ExercisePatternGenericFallback</code>).
+  <strong>Patterns SANS dessin (décision produit) :</strong> Running endurance / interval / drills · Swim endurance / drill rattrapé · Cycle endurance / interval. Ces 7 patterns tombent automatiquement sur le SF Symbol sport (<code>ExercisePatternGenericFallback</code>).
   <br><br>
   <strong>Glossaire enrichi pour compenser :</strong>
   <ul>
-    <li><code>drill</code> (FR + EN) — définition générique avec exemple du drill rattrapé natation : « <em>un bras tendu devant attend que l'autre bras fasse le cycle complet et vienne le toucher, puis ce dernier redémarre. Isole la glisse et la coordination.</em> »</li>
-    <li><code>plank / planche / side plank</code> — déjà ajouté Jalon 1</li>
+    <li><code>drill</code> (FR + EN) — définition générique avec exemple du drill rattrapé natation : « <em>un bras tendu devant attend que l'autre bras fasse le cycle complet et vienne le toucher, puis ce dernier redémarre</em> »</li>
+    <li><code>plank / planche / side plank</code> — Jalon 1</li>
   </ul>
 </div>
 
 <div class="footer">
-  <strong>Récap des 10 patterns strength illustrés :</strong>
+  <strong>Récap exhaustif des 20 patterns illustrés (Story 3.19) :</strong>
   <ul>
-    <li><strong>Squat</strong> — 3 frames : debout barre épaules → mi-squat → fond</li>
-    <li><strong>Hinge (RDL)</strong> — 3 frames : debout haltères → 45° → 80° (hanche recule, dos droit)</li>
-    <li><strong>Push horizontal (pompe / bench)</strong> — 3 frames vue profil : position haute → descente → poitrine près du sol</li>
-    <li><strong>Push vertical (overhead press)</strong> — 3 frames : haltères épaules → mi-hauteur → bras tendus au-dessus tête</li>
-    <li><strong>Pull horizontal (row / rameur)</strong> — 3 frames : corps penché fixe + barre qui se rapproche du tronc</li>
-    <li><strong>Pull vertical (pull-up / chin-up)</strong> — 3 frames référentiel observateur : corps fixe pieds au sol + barre qui descend au menton</li>
-    <li><strong>Lunge (fente avant)</strong> — 3 frames : pieds joints → fente arrière → fond fente</li>
-    <li><strong>Plyo (jump squat)</strong> — 3 frames exception saut explicite : squat préparation → saut pieds décollés + chevrons → atterrissage genoux fléchis</li>
-    <li><strong>Core — plank frontal (planche)</strong> — 1 frame statique + ligne d'alignement pointillée orange</li>
-    <li><strong>Core — plank latéral (side plank)</strong> — 1 frame statique : 1 seul avant-bras au sol + bras libre tendu vers le haut</li>
-    <li><strong>Mobility (étirement quadriceps)</strong> — 1 frame statique + arc pointillé orange suggérant l'étirement</li>
+    <li><strong>Strength (10)</strong> : Squat · Hinge (RDL) · Push horizontal (pompe/bench) · Push vertical (overhead press) · Pull horizontal (row) · Pull vertical (pull-up) · Lunge · Plyo (jump squat) · Core (frontal + latéral) · Mobility (étirement)</li>
+    <li><strong>Yoga (10)</strong> : Chien tête en bas (Adho Mukha Svanasana) · Guerrier I (Virabhadrasana I) · Guerrier II (Virabhadrasana II) · Arbre (Vrksasana) · Cobra (Bhujangasana) · Enfant (Balasana) · Pince debout (Uttanasana) · Triangle (Trikonasana) · Bateau (Navasana) · Savasana (cadavre)</li>
+    <li><strong>Fallback SF Symbol</strong> : Running / Swim / Cycle (7 patterns)</li>
   </ul>
   <br>
-  <strong>Stack technique :</strong> SwiftUI <code>Canvas</code> Path-based, viewbox 48×48 dynamiques / 80×48 statiques, stroke widths centralisés <code>IllustrationStyle</code>, dispatcher <code>ExercisePatternIllustration</code> avec Dynamic Type clamp <code>.medium...accessibility2</code>.
+  <strong>Stack technique :</strong> SwiftUI <code>Canvas</code> Path-based, viewbox 48×48 dynamiques / 80×48 statiques, stroke widths centralisés <code>IllustrationStyle</code>. Yoga dispatch via <code>YogaIllustration</code> (1 pattern ombrelle <code>.yoga</code> + 10 sub-poses détectées via keyword <code>exerciseName</code>). Dispatcher principal <code>ExercisePatternIllustration</code> avec Dynamic Type clamp <code>.medium...accessibility2</code>.
 </div>
 
 </body>

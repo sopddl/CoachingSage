@@ -34,6 +34,10 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
     case cycleEndurance
     case cycleInterval
 
+    // Yoga (1 case ombrelle, sous-poses dispatchées via `exerciseName` dans
+    // `YogaIllustration` — Sophie 2026-05-23 : V1 yoga 10 poses fondamentales)
+    case yoga
+
     // Fallback ultime — pas d'illustration custom, délègue à
     // `ExercisePatternGenericFallback` (SF Symbol sport iOS 17 `.palette`).
     case generic
@@ -43,7 +47,7 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
     /// 0 pour `.generic` (rendu via SF Symbol fallback).
     public var frameCount: Int {
         switch self {
-        case .core, .mobility, .runDrills, .cycleEndurance, .cycleInterval:
+        case .core, .mobility, .runDrills, .cycleEndurance, .cycleInterval, .yoga:
             return 1
         case .generic:
             return 0

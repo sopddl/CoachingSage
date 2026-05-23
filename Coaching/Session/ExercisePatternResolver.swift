@@ -227,6 +227,11 @@ public enum ExercisePatternResolver {
                 return .cycleInterval
             }
             return .cycleEndurance
+        case "yoga":
+            // Toute pose yoga tombe sur `.yoga` ombrelle. Le dispatch fin
+            // (chien tête en bas, guerrier, etc.) se fait dans
+            // `YogaIllustration` via détection keyword sur `exerciseName`.
+            return .yoga
         default:
             return nil
         }
