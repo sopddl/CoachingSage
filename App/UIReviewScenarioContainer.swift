@@ -183,6 +183,10 @@ struct UIReviewScenarioContainer: View {
             // **Story 3.19 Jalon 2a** — SessionDetailView running pour valider
             // les illus running endurance + interval.
             SessionDetailRunningScenarioView()
+        case "ui_review_illustrations_showcase":
+            // **Story 3.19 Jalon 2b** — showcase TOUTES les illustrations
+            // (15 patterns) en grille pour screenshot HTML overview Sophie.
+            IllustrationsShowcaseScenarioView()
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -887,6 +891,67 @@ private struct SessionDetailRunningScenarioView: View {
             ],
             cooldown: "10 min footing très lent + étirements"
         )
+    }
+}
+
+// MARK: - Story 3.19 Jalon 2b — IllustrationsShowcaseScenarioView
+
+/// Showcase des 10 illustrations strength + 2 variantes core (plank frontal +
+/// latéral). Décision produit Sophie 2026-05-23 : on n'illustre QUE les gestes
+/// strength techniques où l'image clarifie la position. Running / cycling /
+/// swim → pas de dessin (gestes universels connus) → fallback SF Symbol sport
+/// + glossaire pour les mots opaques (`drill`, `tempo`, `Daniels-T`...).
+private struct IllustrationsShowcaseScenarioView: View {
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                Group {
+                    showcaseSection(title: "Squat", pattern: .squat, sportCode: "strengthTraining")
+                    showcaseSection(title: "Hinge (Romanian Deadlift)", pattern: .hinge, sportCode: "strengthTraining")
+                    showcaseSection(title: "Push horizontal (pompe / bench)", pattern: .pushHorizontal, sportCode: "strengthTraining")
+                    showcaseSection(title: "Push vertical (overhead press)", pattern: .pushVertical, sportCode: "strengthTraining")
+                    showcaseSection(title: "Pull horizontal (row / rameur)", pattern: .pullHorizontal, sportCode: "strengthTraining")
+                }
+                Group {
+                    showcaseSection(title: "Pull vertical (pull-up / chin-up)", pattern: .pullVertical, sportCode: "strengthTraining")
+                    showcaseSection(title: "Lunge (fente avant)", pattern: .lunge, sportCode: "strengthTraining")
+                    showcaseSection(title: "Plyo (jump squat / box jump)", pattern: .plyo, sportCode: "strengthTraining")
+                    showcaseStatic(title: "Core — plank frontal (planche)", pattern: .core, sportCode: "strengthTraining", exerciseName: "Plank")
+                    showcaseStatic(title: "Core — plank latéral (side plank)", pattern: .core, sportCode: "strengthTraining", exerciseName: "Plank latéral")
+                    showcaseStatic(title: "Mobility (étirement quadriceps)", pattern: .mobility, sportCode: "strengthTraining", exerciseName: nil)
+                }
+            }
+            .padding(16)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+
+    @ViewBuilder
+    private func showcaseSection(title: String, pattern: ExercisePattern, sportCode: String) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(verbatim: title)
+                .font(.caption.bold())
+                .foregroundStyle(.secondary)
+            ExercisePatternIllustration(pattern: pattern, sportCode: sportCode)
+                .padding(8)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(uiColor: .tertiarySystemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
+    }
+
+    @ViewBuilder
+    private func showcaseStatic(title: String, pattern: ExercisePattern, sportCode: String, exerciseName: String?) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(verbatim: title)
+                .font(.caption.bold())
+                .foregroundStyle(.secondary)
+            ExercisePatternIllustration(pattern: pattern, sportCode: sportCode, exerciseName: exerciseName)
+                .padding(8)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(uiColor: .tertiarySystemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
     }
 }
 

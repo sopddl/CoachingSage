@@ -59,6 +59,11 @@ extension Glossary {
         ("side plank", "plank"),
         ("planche", "plank"),
         ("plank", "plank"),
+        // Drill / éducatif (Story 3.19 Jalon 2)
+        ("éducatif", "drill"),
+        ("educatif", "drill"),
+        ("drills", "drill"),
+        ("drill", "drill"),
         ("fartlek", "fartlek"),
         ("tabata", "tabata"),
         ("amrap", "amrap"),

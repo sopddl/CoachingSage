@@ -39,7 +39,9 @@ struct ExercisePatternIllustration: View {
         case .mobility:
             MobilityIllustration(sportCode: sportCode)
         default:
-            // Patterns statiques pas encore dessinés (Jalon 2b cycle/swim drills) → fallback
+            // Décision produit Sophie 2026-05-23 : pas de dessin pour les
+            // gestes universels connus (running, cycling, swim continu).
+            // .runDrills / .cycleEndurance / .cycleInterval → fallback SF Symbol sport.
             ExercisePatternGenericFallback(sportCode: sportCode, size: size)
         }
     }
@@ -71,12 +73,10 @@ struct ExercisePatternIllustration: View {
             tripletStrip { LungeIllustration(sportCode: sportCode, frame: $0) }
         case .plyo:
             tripletStrip { PlyoIllustration(sportCode: sportCode, frame: $0) }
-        case .runEndurance:
-            tripletStrip { RunEnduranceIllustration(sportCode: sportCode, frame: $0) }
-        case .runInterval:
-            tripletStrip { RunIntervalIllustration(sportCode: sportCode, frame: $0) }
         default:
-            // Patterns dynamiques pas encore dessinés (Jalon 2b swim) → fallback
+            // Décision produit Sophie 2026-05-23 : pas de dessin pour les
+            // gestes universels (foulée running, crawl, fractionné, drill rattrapé).
+            // → fallback SF Symbol sport, le texte de la note décrit le geste.
             ExercisePatternGenericFallback(sportCode: sportCode, size: size)
         }
     }
