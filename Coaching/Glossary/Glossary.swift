@@ -62,6 +62,18 @@ public enum Glossary {
         GlossaryEntry(id: "plank",      titleKey: "glossary.plank.title",      definitionKey: "glossary.plank.definition"),
         // Story 3.19 Jalon 2 — mot opaque universel sports cardio (running, swim, cycle).
         GlossaryEntry(id: "drill",      titleKey: "glossary.drill.title",      definitionKey: "glossary.drill.definition"),
+        // Story 3.24a — 10 termes strength + mobilité non glossariés (test simu Sophie 2026-05-24).
+        // RIR, CARs, scapular, mobilité thoracique, band pull apart, dislocations, cat-cow, ramp up, barre vide, reps.
+        GlossaryEntry(id: "rir",            titleKey: "glossary.rir.title",            definitionKey: "glossary.rir.definition"),
+        GlossaryEntry(id: "cars",           titleKey: "glossary.cars.title",           definitionKey: "glossary.cars.definition"),
+        GlossaryEntry(id: "scapular",       titleKey: "glossary.scapular.title",       definitionKey: "glossary.scapular.definition"),
+        GlossaryEntry(id: "thoracic",       titleKey: "glossary.thoracic.title",       definitionKey: "glossary.thoracic.definition"),
+        GlossaryEntry(id: "bandpullapart",  titleKey: "glossary.bandpullapart.title",  definitionKey: "glossary.bandpullapart.definition"),
+        GlossaryEntry(id: "dislocation",    titleKey: "glossary.dislocation.title",    definitionKey: "glossary.dislocation.definition"),
+        GlossaryEntry(id: "catcow",         titleKey: "glossary.catcow.title",         definitionKey: "glossary.catcow.definition"),
+        GlossaryEntry(id: "rampup",         titleKey: "glossary.rampup.title",         definitionKey: "glossary.rampup.definition"),
+        GlossaryEntry(id: "barrevide",      titleKey: "glossary.barrevide.title",      definitionKey: "glossary.barrevide.definition"),
+        GlossaryEntry(id: "reps",           titleKey: "glossary.reps.title",           definitionKey: "glossary.reps.definition"),
     ]
 
     private static let byId: [String: GlossaryEntry] = Dictionary(
