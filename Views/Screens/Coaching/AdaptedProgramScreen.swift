@@ -15,10 +15,7 @@ struct AdaptedProgramScreen: View {
     private let modifiedSessionCoordinates: Set<SessionCoordinate>
     /// Story sœur 3.z (2026-05-17) — closure "Démarrer ce programme" forwardée
     /// à `AdaptedProgramView`. Non-nil = preview mode (sticky CTA bottom).
-    /// **Story 3.22-G (Sophie 2026-05-24)** — retourne le `recordId` créé sur
-    /// commit + markStarted OK ; `nil` sur cap atteint ou erreur. Permet à la
-    /// vue de basculer en mode actif inline sans pop la nav.
-    private let onConfirmStart: (() async -> UUID?)?
+    private let onConfirmStart: (() async -> Void)?
     /// **Story 3.16 (Sophie 2026-05-21)** — closure "Retour à la home page"
     /// forwardée. Non-nil = sticky bottom devient 2 boutons (cf
     /// `AdaptedProgramView.previewBottomCTA`).
@@ -34,7 +31,7 @@ struct AdaptedProgramScreen: View {
     init(
         viewModel: @autoclosure @escaping () -> AdaptedProgramViewModel,
         modifiedSessionCoordinates: Set<SessionCoordinate> = [],
-        onConfirmStart: (() async -> UUID?)? = nil,
+        onConfirmStart: (() async -> Void)? = nil,
         onDismissPreview: (() -> Void)? = nil,
         onDeleteProgram: (() -> Void)? = nil,
         hasStarted: Bool = false
