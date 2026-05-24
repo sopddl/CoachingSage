@@ -81,7 +81,7 @@ struct ExerciseTimelineCard: View {
                         .foregroundStyle(.orange)
                         .font(.caption)
                 }
-                Text(verbatim: exercise.name)
+                Text(verbatim: exercise.displayName)
                     .font(.callout.bold())
                     .foregroundStyle(.primary)
             }
