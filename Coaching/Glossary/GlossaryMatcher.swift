@@ -90,6 +90,28 @@ extension Glossary {
         // Effort (3 chars — risqué : need strict word boundary)
         ("rpe", "rpe"),
         ("1rm", "1rm"),
+        // Story 3.24a — strength + mobilité (test simu Sophie 2026-05-24)
+        // Multi-mots d'abord (longest-first via sortedPatterns)
+        ("shoulder dislocations", "dislocation"),
+        ("mobilité thoracique", "thoracic"),
+        ("thoracic extension", "thoracic"),
+        ("thoracic mobility", "thoracic"),
+        ("reps in reserve", "rir"),
+        ("band pull apart", "bandpullapart"),
+        ("dislocations", "dislocation"),
+        ("répétitions", "reps"),
+        ("pull apart", "bandpullapart"),
+        ("barre vide", "barrevide"),
+        ("empty bar", "barrevide"),
+        ("scapular", "scapular"),
+        ("ramp-up", "rampup"),
+        ("ramp up", "rampup"),
+        ("rampup", "rampup"),
+        ("cat-cow", "catcow"),
+        ("cat cow", "catcow"),
+        ("reps", "reps"),
+        ("cars", "cars"),
+        ("rir", "rir"),
         // Acronymes zones (Z1-Z5, EN1-EN3) gérés par regex spécial, pas via cette liste.
     ]
 

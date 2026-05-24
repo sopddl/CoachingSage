@@ -191,4 +191,101 @@ final class GlossaryMatcherTests: XCTestCase {
         XCTAssertEqual(Glossary.entry(forZone: nil)?.id, nil)
         XCTAssertEqual(Glossary.entry(forZone: "")?.id, nil)
     }
+
+    // MARK: - Story 3.24a — 10 termes strength + mobilité (test simu Sophie 2026-05-24)
+
+    func testRIRMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Garde RIR 2 sur la dernière série.").first?.entry.id, "rir")
+        XCTAssertEqual(Glossary.matches(in: "rir 3").first?.entry.id, "rir")
+    }
+
+    func testRepsInReserveMatchesAsRIRMultiword() {
+        let matches = Glossary.matches(in: "Reps in reserve 2 max.")
+        XCTAssertEqual(matches.count, 1, "Multi-mot 'reps in reserve' doit matcher RIR seul, pas reps+rir séparés")
+        XCTAssertEqual(matches.first?.entry.id, "rir")
+    }
+
+    func testCARsMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Ankle CARs 5 reps").first?.entry.id, "cars")
+        XCTAssertEqual(Glossary.matches(in: "hip cars").first?.entry.id, "cars")
+    }
+
+    func testScapularCARsMatchesBothTerms() {
+        let matches = Glossary.matches(in: "Scapular CARs 5 reps")
+        let ids = Set(matches.map { $0.entry.id })
+        XCTAssertTrue(ids.contains("scapular"), "Scapular doit matcher")
+        XCTAssertTrue(ids.contains("cars"), "CARs doit matcher en plus")
+        XCTAssertTrue(ids.contains("reps"), "reps doit matcher aussi")
+    }
+
+    func testThoracicMobilityMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Mobilité thoracique 1 min").first?.entry.id, "thoracic")
+        XCTAssertEqual(Glossary.matches(in: "Thoracic mobility drill").first(where: { $0.entry.id == "thoracic" })?.entry.id, "thoracic")
+        XCTAssertEqual(Glossary.matches(in: "Thoracic extension").first?.entry.id, "thoracic")
+    }
+
+    func testBandPullApartMatches() {
+        let matches = Glossary.matches(in: "Band pull apart × 15")
+        XCTAssertEqual(matches.first?.entry.id, "bandpullapart")
+        XCTAssertEqual(matches.count, 1, "Multi-mot doit matcher en un seul, pas band+pull+apart")
+    }
+
+    func testPullApartShortMatchesBandpullapart() {
+        XCTAssertEqual(Glossary.matches(in: "Pull apart pour échauffer.").first?.entry.id, "bandpullapart")
+    }
+
+    func testShoulderDislocationsMatches() {
+        let matches = Glossary.matches(in: "Shoulder dislocations × 10")
+        XCTAssertEqual(matches.first?.entry.id, "dislocation")
+    }
+
+    func testCatCowMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Cat-cow 8 reps").first?.entry.id, "catcow")
+        XCTAssertEqual(Glossary.matches(in: "cat cow lent").first?.entry.id, "catcow")
+    }
+
+    func testRampUpMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Ramp up bench 3 séries").first?.entry.id, "rampup")
+        XCTAssertEqual(Glossary.matches(in: "ramp-up progressif").first?.entry.id, "rampup")
+    }
+
+    func testBarreVideMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Échauffement barre vide ×5").first?.entry.id, "barrevide")
+        XCTAssertEqual(Glossary.matches(in: "Warm up with empty bar").first?.entry.id, "barrevide")
+    }
+
+    func testRepsMatches() {
+        XCTAssertEqual(Glossary.matches(in: "10 reps").first?.entry.id, "reps")
+        XCTAssertEqual(Glossary.matches(in: "Faire 8 répétitions lentes.").first?.entry.id, "reps")
+    }
+
+    func testRepsDoesNotMatchInsideRepresent() {
+        // word boundary : "represent" / "représenter" ne doit pas matcher "reps"
+        XCTAssertTrue(Glossary.matches(in: "représenter").isEmpty)
+        XCTAssertTrue(Glossary.matches(in: "represent").isEmpty)
+    }
+
+    func testCarsMatchesEvenInNonExerciseContext() {
+        // Word boundary catche "cars" comme mot isolé, donc va matcher même hors contexte exo.
+        // Note documentation : c'est ATTENDU (pattern 4 chars). Si ce devient un pain dans des
+        // textes user non-glossariables, ajouter un guard contextuel ('cars' suivi d'un verbe
+        // d'exo ou précédé d'une articulation). V1 : laisser, peu probable dans les notes exo.
+        XCTAssertEqual(Glossary.matches(in: "Cars dans le parking").first?.entry.id, "cars")
+        // Anti-régression : ne matche PAS dans "scars" ni "carstone"
+        XCTAssertTrue(Glossary.matches(in: "scars").isEmpty)
+        XCTAssertTrue(Glossary.matches(in: "carstone").isEmpty)
+    }
+
+    // MARK: - Smoke : tous les nouveaux termes ont des entries valides
+
+    func testAll10NewEntriesExistInGlossary() {
+        let expectedIds = ["rir", "cars", "scapular", "thoracic", "bandpullapart",
+                           "dislocation", "catcow", "rampup", "barrevide", "reps"]
+        for id in expectedIds {
+            XCTAssertNotNil(
+                Glossary.entries.first(where: { $0.id == id }),
+                "Entry manquante pour id '\(id)' (Story 3.24a)"
+            )
+        }
+    }
 }
