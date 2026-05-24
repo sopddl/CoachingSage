@@ -41,7 +41,7 @@ struct UIReviewScenarioContainer: View {
             // défaut (badge count visible, contenu masqué).
             AdaptedProgramView(
                 program: AdaptedProgramPreviewFixtures.kneeInjury,
-                onConfirmStart: { /* noop pour la review */ }
+                onConfirmStart: { /* noop pour la review */ nil }
             )
         case "ui_review_adapter_preview_rules_expanded":
             // Variante Bug #3 — même vue, mais avec le DisclosureGroup déployé
@@ -49,7 +49,7 @@ struct UIReviewScenarioContainer: View {
             // appliedRules dépliée pour vérifier le rendu de chaque ligne.
             AdaptedProgramView(
                 program: AdaptedProgramPreviewFixtures.kneeInjury,
-                onConfirmStart: { /* noop pour la review */ }
+                onConfirmStart: { /* noop pour la review */ nil }
             )
             .task {
                 // Hacky mais suffisant : on injecte un NotificationCenter pour

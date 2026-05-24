@@ -47,10 +47,16 @@ struct AdaptedProgramView: View {
     /// Story sœur 3.z (2026-05-17) — callback "Démarrer ce programme" pour le
     /// mode preview. Quand non-nil, l'écran est en mode "aperçu" : aucune
     /// persistance n'a encore eu lieu, un sticky CTA s'affiche en bas. Tap
-    /// déclenche la commit (persistance sportProfile + record) côté caller,
-    /// puis pop de la nav vers le dashboard Séances. Sur le hot path normal
-    /// (programme déjà actif), `onConfirmStart == nil` et le sticky CTA disparaît.
-    var onConfirmStart: (() async -> Void)? = nil
+    /// déclenche la commit (persistance sportProfile + record) côté caller.
+    /// Sur le hot path normal (programme déjà actif), `onConfirmStart == nil`
+    /// et le sticky CTA disparaît.
+    ///
+    /// **Story 3.22-G (Sophie 2026-05-24)** — Le caller retourne le `recordId`
+    /// du programme nouvellement démarré (commit + markStarted OK), `nil` sur
+    /// cap atteint ou erreur. Avant 3.22-G : caller pop la nav. Désormais on
+    /// reste sur l'écran, on bascule en mode actif (record fetché +
+    /// `NextSessionInlineCard` en haut + sticky CTA preview masqué).
+    var onConfirmStart: (() async -> UUID?)? = nil
 
     /// **Story 3.16 (Sophie 2026-05-21)** — callback "Retour à la home page"
     /// pour le mode preview. Sophie : « quand je termine de préparer avec Léon
@@ -74,6 +80,19 @@ struct AdaptedProgramView: View {
     /// Story sœur 3.z — true pendant l'aller-retour `commit` async. Disable le
     /// bouton "Démarrer" pour éviter le double-tap (qui créerait 2 records).
     @State private var isConfirmingStart: Bool = false
+
+    /// **Story 3.22-G (Sophie 2026-05-24)** — `recordId` du programme commit
+    /// + démarré via `onConfirmStart`. Non-nil → la vue passe en mode actif
+    /// inline (fetch du record + `NextSessionInlineCard` haut, sticky CTA
+    /// preview masqué). Reset à `nil` à chaque nouveau push de la vue.
+    @State private var committedRecordId: UUID? = nil
+
+    /// **Story 3.22-G** — résolu post-`loadRecord()` via `NextSessionResolver`.
+    /// Non-nil = on affiche `NextSessionInlineCard` au-dessus de la liste des
+    /// semaines. Nil = mode preview, dormant, ou toutes séances complétées.
+    /// Multi-contexte : visible aussi sur push depuis dashboard d'un programme
+    /// déjà actif (cas AC-G5 = card persistante).
+    @State private var nextPendingResult: NextSessionResolver.Result? = nil
 
     /// **Story 3.12 hotfix** — true pendant l'aller-retour `markStarted` async.
     /// Disable le sticky CTA "Démarrer le programme" pour éviter le double-tap.
@@ -114,6 +133,21 @@ struct AdaptedProgramView: View {
 
                 if record != nil {
                     progressHeader
+                }
+
+                // **Story 3.22-G (Sophie 2026-05-24)** — quand le programme
+                // est actif (record fetché, `weekStartDate` posée) et qu'il
+                // reste au moins 1 séance pending, on guide l'user vers la
+                // prochaine séance via une card inline cliquable. Évite
+                // l'effet "boutton Démarrer disparaît, je ne sais pas où
+                // aller" remonté par Sophie au test simu.
+                if let nextResult = nextPendingResult {
+                    NextSessionInlineCard(
+                        session: nextResult.session,
+                        program: program,
+                        record: nextResult.program,
+                        modifiedSessionCoordinates: modifiedSessionCoordinates
+                    )
                 }
 
                 ForEach(program.weeks, id: \.weekNumber) { week in
@@ -174,8 +208,12 @@ struct AdaptedProgramView: View {
         // **Story 3.16 (Sophie 2026-05-21)** — sticky bottom 2 boutons en mode
         // preview post-questionnaire. "Retour" (sans persistance) + "Démarrer"
         // (commit). Avant : seul un bouton toolbar trailing (nav "bizarre").
+        // **Story 3.22-G** — `committedRecordId != nil` cache le sticky CTA :
+        // le programme vient d'être démarré, on bascule en mode actif inline,
+        // le user doit voir la `NextSessionInlineCard` plutôt qu'un bouton
+        // "Démarrer" qui n'a plus de sens.
         .safeAreaInset(edge: .bottom) {
-            if onConfirmStart != nil, onDismissPreview != nil {
+            if onConfirmStart != nil, onDismissPreview != nil, committedRecordId == nil {
                 previewBottomCTA
             }
         }
@@ -183,7 +221,8 @@ struct AdaptedProgramView: View {
             // Bouton "Démarrer" toolbar trailing — UNIQUEMENT si pas de sticky
             // bottom 2-boutons (Story 3.16). Sinon redondant avec le CTA bottom.
             // Le mode dormant garde la toolbar (pas de sticky en dormant).
-            if (onConfirmStart != nil && onDismissPreview == nil) || isDormantRecord {
+            // Story 3.22-G : caché aussi quand `committedRecordId != nil`.
+            if ((onConfirmStart != nil && onDismissPreview == nil) || isDormantRecord) && committedRecordId == nil {
                 ToolbarItem(placement: .topBarTrailing) {
                     startToolbarButton
                 }
@@ -200,8 +239,38 @@ struct AdaptedProgramView: View {
                 }
             }
         }
-        .task(id: recordId) { await loadRecord() }
+        // Story 3.22-G : `effectiveRecordId` = `committedRecordId ?? recordId`.
+        // Permet de refire `loadRecord` après le tap "Démarrer" en preview
+        // (passage `recordId == nil` → `committedRecordId != nil`).
+        .task(id: effectiveRecordId) { await loadRecord() }
     }
+
+    /// **Story 3.22-G** — recordId effectif utilisé pour fetch le record SwiftData.
+    /// `committedRecordId` prend la priorité (post-commit preview → actif
+    /// inline), sinon `recordId` fourni par le caller (push depuis dashboard).
+    private var effectiveRecordId: UUID? {
+        committedRecordId ?? recordId
+    }
+
+    /// **Story 3.22-G** — wrapper appelé par `previewBottomCTA` et
+    /// `startToolbarButton` quand `onConfirmStart != nil`. Capture le
+    /// `recordId` retourné par le caller pour basculer en mode actif inline
+    /// sans pop la nav. Sur `nil` retourné (cap atteint), on laisse l'alert
+    /// cap (attachée à SessionView parent) gérer le feedback.
+    @MainActor
+    private func handleConfirmStart() async {
+        guard let onConfirmStart else { return }
+        guard !isConfirmingStart else { return }
+        isConfirmingStart = true
+        defer { isConfirmingStart = false }
+        let resultRecordId = await onConfirmStart()
+        if let resultRecordId {
+            committedRecordId = resultRecordId
+            // `.task(id: effectiveRecordId)` va re-déclencher `loadRecord()`
+            // et calculer `nextPendingResult`. Pas besoin d'appeler ici.
+        }
+    }
+
 
     // MARK: - Story 3.12 — Toolbar start button + rename
 
@@ -275,14 +344,7 @@ struct AdaptedProgramView: View {
             .accessibilityIdentifier("coaching.adapter.preview.dismiss")
 
             Button {
-                if let onConfirmStart {
-                    guard !isConfirmingStart else { return }
-                    isConfirmingStart = true
-                    Task {
-                        await onConfirmStart()
-                        isConfirmingStart = false
-                    }
-                }
+                Task { await handleConfirmStart() }
             } label: {
                 HStack(spacing: 6) {
                     if isConfirmingStart {
@@ -315,13 +377,8 @@ struct AdaptedProgramView: View {
     @ViewBuilder
     private var startToolbarButton: some View {
         Button {
-            if let onConfirmStart {
-                guard !isConfirmingStart else { return }
-                isConfirmingStart = true
-                Task {
-                    await onConfirmStart()
-                    isConfirmingStart = false
-                }
+            if onConfirmStart != nil {
+                Task { await handleConfirmStart() }
             } else if isDormantRecord {
                 guard !isStartingProgram else { return }
                 Task { await handleStartProgram() }
@@ -362,16 +419,26 @@ struct AdaptedProgramView: View {
     // MARK: - Story 3.12 — Fetch record + accordéon helpers
 
     private func loadRecord() async {
-        guard let recordId, let deps else {
+        guard let effectiveRecordId, let deps else {
             // Preview mode (pas de record) → S1 dépliée par défaut.
             if let firstWeek = program.weeks.first {
                 expandedWeeks = [firstWeek.weekNumber]
             }
+            nextPendingResult = nil
             return
         }
-        let fetched = try? await deps.adaptedProgramRepository.fetchById(recordId: recordId)
+        let fetched = try? await deps.adaptedProgramRepository.fetchById(recordId: effectiveRecordId)
         record = fetched
         expandedWeeks = [currentWeekNumber]
+        // **Story 3.22-G** — recalcule la 1ère pending pour piloter la
+        // visibilité de `NextSessionInlineCard`. Nil si dormant
+        // (`weekStartDate == nil`) ou si tout est complété — `NextSessionResolver`
+        // gère ces deux cas.
+        if let fetched {
+            nextPendingResult = NextSessionResolver().nextSession(for: fetched, now: Date())
+        } else {
+            nextPendingResult = nil
+        }
     }
 
     /// Semaine courante du programme (1-indexed). Calculée depuis `weekStartDate`

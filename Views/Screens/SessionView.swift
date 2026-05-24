@@ -525,14 +525,22 @@ struct SessionView: View {
     /// Story sœur 3.z (2026-05-17) — closure passée à `AdaptedProgramScreen` pour
     /// le sticky CTA "Démarrer ce programme". `nil` si la route n'est pas en
     /// mode preview (programme déjà actif ouvert depuis dashboard). Sur tap :
-    /// persiste sportProfile + record, refresh dashboard, pop la nav.
+    /// persiste sportProfile + record, refresh dashboard.
+    ///
+    /// **Story 3.22-G (Sophie 2026-05-24)** — Ne pop plus la nav.
+    /// Retourne le `recordId` créé si commit + markStarted OK (= programme
+    /// démarré, `weekStartDate != nil`). Retourne `nil` sur cap dormant
+    /// (rien n'a été persisté) OU sur cap démarré (record dormant en base,
+    /// pas de bascule active). `AdaptedProgramView` consomme la valeur pour
+    /// fetch le nouveau record et basculer en mode actif inline (avec
+    /// `NextSessionInlineCard`).
     private func confirmStartClosure(
         for route: AdaptedProgramRoute,
         deps: AppDependencies
-    ) -> (() async -> Void)? {
+    ) -> (() async -> UUID?)? {
         guard let previewProfile = route.previewSportProfile else { return nil }
         return {
-            guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else { return }
+            guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else { return nil }
             do {
                 let factory = AutoProgramFactory(
                     sportProfileRepository: deps.coachingSportProfileRepository,
@@ -551,24 +559,30 @@ struct SessionView: View {
                 // depuis le carrousel pour vraiment activer.
                 // Si cap démarré atteint, on garde le programme dormant et on
                 // affiche l'alerte cap.
+                var startedOK = true
                 do {
                     try await deps.adaptedProgramRepository.markStarted(recordId: recordId)
                 } catch ProgramCapReached.started(let limit) {
                     capAlertContext = .started(limit: limit)
+                    startedOK = false
                     // Le programme reste persisté en dormant. User peut archiver
                     // un programme démarré puis re-démarrer celui-ci depuis le carrousel.
                 }
                 await refreshDashboard()
-                // Pop vers Séances : dashboard refresh montre maintenant le programme
-                // démarré en mode active.
-                adaptedRoute = nil
+                // Story 3.22-G : on ne pop plus. Retourne le recordId si le
+                // programme est bien actif (markStarted OK). Sur cap démarré,
+                // pas de recordId retourné → AdaptedProgramView ne basculera
+                // pas en mode actif, l'alerte cap s'affiche par-dessus.
+                return startedOK ? recordId : nil
             } catch ProgramCapReached.dormant(let limit) {
                 // **Story 3.10 AC12** — cap dormant atteint : on garde l'écran
                 // preview ouvert, on affiche l'alerte. L'user peut choisir
                 // d'archiver un dormant existant puis retenter.
                 capAlertContext = .dormant(limit: limit)
+                return nil
             } catch {
                 presentationError = error.localizedDescription
+                return nil
             }
         }
     }
