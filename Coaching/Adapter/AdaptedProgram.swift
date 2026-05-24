@@ -161,6 +161,18 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
         self.substitutionReason = substitutionReason
     }
 
+    /// Nom à afficher à l'user : retire le suffixe technique `(pattern xxx)` issu
+    /// des templates JSON (utilisé par `ExercisePatternResolver` étape 1 regex,
+    /// jamais destiné à l'affichage). 14 templates strength embarquent ce suffixe.
+    public var displayName: String {
+        let cleaned = name.replacingOccurrences(
+            of: #"\s*\(pattern[\s:]+[^)]+\)\s*"#,
+            with: " ",
+            options: .regularExpression
+        )
+        return cleaned.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
     /// Lift d'un `TemplateExercise` vers `AdaptedExercise` sans modification.
     /// Point d'entrée de la cascade : avant que les règles agissent, tout exercice
     /// est en version "passthrough".

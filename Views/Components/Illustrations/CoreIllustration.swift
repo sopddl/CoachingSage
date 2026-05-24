@@ -1,0 +1,191 @@
+// Views/Components/Illustrations/CoreIllustration.swift
+// Story 3.19 — plank statique 1 frame + annotations.
+// Variantes :
+//   - `.frontal` (default) : plank classique vue de profil, 2 avant-bras au sol,
+//     ligne d'alignement épaules-bassin-talons.
+//   - `.lateral` : side plank vue de face, 1 SEUL avant-bras au sol côté gauche,
+//     corps en diagonale, autre bras tendu vers le haut.
+import SwiftUI
+
+struct CoreIllustration: View {
+    enum Variant {
+        case frontal
+        case lateral
+    }
+
+    let sportCode: String
+    var variant: Variant = .frontal
+
+    var body: some View {
+        Canvas { ctx, size in
+            let sx = size.width / IllustrationStyle.staticFrameSize.width
+            let sy = size.height / IllustrationStyle.staticFrameSize.height
+            let s = min(sx, sy)
+            let stroke = StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s, lineCap: .round, lineJoin: .round)
+
+            switch variant {
+            case .frontal: drawFrontal(ctx: ctx, s: s, stroke: stroke)
+            case .lateral: drawLateral(ctx: ctx, s: s, stroke: stroke)
+            }
+        }
+        .frame(width: IllustrationStyle.staticFrameSize.width,
+               height: IllustrationStyle.staticFrameSize.height)
+    }
+
+    // MARK: - Frontal plank
+
+    private func drawFrontal(ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        // Sol
+        var ground = Path()
+        ground.move(to: CGPoint(x: 4 * s, y: 42 * s))
+        ground.addLine(to: CGPoint(x: 76 * s, y: 42 * s))
+        ctx.stroke(ground, with: .color(IllustrationStyle.groundLine),
+                   style: StrokeStyle(lineWidth: 1 * s, dash: [2 * s, 2 * s]))
+
+        // Coordonnées plank (tête à droite, pieds à gauche)
+        let headX: CGFloat = 68 * s
+        let headY: CGFloat = 24 * s
+        let hipX: CGFloat = 44 * s
+        let hipY: CGFloat = 24 * s
+        let heelX: CGFloat = 14 * s
+        let heelY: CGFloat = 24 * s
+
+        let headSize: CGFloat = 6 * s
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: headX - headSize / 2, y: headY - headSize / 2,
+                                    width: headSize, height: headSize)),
+            with: .color(IllustrationStyle.silhouette(sportCode: sportCode)),
+            style: stroke
+        )
+
+        // Tronc horizontal
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: headX - headSize / 2, y: headY))
+        trunk.addLine(to: CGPoint(x: hipX, y: hipY))
+        ctx.stroke(trunk, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
+
+        // Jambes
+        var legs = Path()
+        legs.move(to: CGPoint(x: hipX, y: hipY))
+        legs.addLine(to: CGPoint(x: heelX, y: heelY))
+        ctx.stroke(legs, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
+
+        // Avant-bras d'appui frontal — DEUX bras visibles, sous la tête vers le sol
+        var forearm = Path()
+        forearm.move(to: CGPoint(x: hipX + 14 * s, y: headY + 2 * s))
+        forearm.addLine(to: CGPoint(x: hipX + 14 * s, y: 38 * s))
+        forearm.addLine(to: CGPoint(x: hipX + 22 * s, y: 38 * s))
+        ctx.stroke(forearm, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
+
+        // Pointes de pieds (talon → orteils)
+        var feet = Path()
+        feet.move(to: CGPoint(x: heelX, y: heelY))
+        feet.addLine(to: CGPoint(x: heelX - 4 * s, y: 38 * s))
+        ctx.stroke(feet, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
+
+        // Ligne d'alignement pointillée
+        var alignment = Path()
+        alignment.move(to: CGPoint(x: headX - headSize / 2 - 1 * s, y: headY - 4 * s))
+        alignment.addLine(to: CGPoint(x: heelX + 1 * s, y: heelY - 4 * s))
+        ctx.stroke(alignment, with: .color(IllustrationStyle.movementArrow),
+                   style: StrokeStyle(lineWidth: 1.2 * s, dash: [3 * s, 2 * s]))
+    }
+
+    // MARK: - Side plank (latéral)
+
+    private func drawLateral(ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        // Sol
+        var ground = Path()
+        ground.move(to: CGPoint(x: 4 * s, y: 42 * s))
+        ground.addLine(to: CGPoint(x: 76 * s, y: 42 * s))
+        ctx.stroke(ground, with: .color(IllustrationStyle.groundLine),
+                   style: StrokeStyle(lineWidth: 1 * s, dash: [2 * s, 2 * s]))
+
+        // Side plank vu de face : corps en diagonale du coin haut-droit
+        // (tête) au coin bas-gauche (pieds empilés). UN SEUL avant-bras d'appui
+        // côté gauche (sous la tête) descend vers le sol.
+        let headX: CGFloat = 60 * s
+        let headY: CGFloat = 10 * s
+        let hipX: CGFloat = 38 * s
+        let hipY: CGFloat = 24 * s
+        let feetX: CGFloat = 16 * s
+        let feetY: CGFloat = 38 * s
+
+        let headSize: CGFloat = 6 * s
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: headX - headSize / 2, y: headY - headSize / 2,
+                                    width: headSize, height: headSize)),
+            with: .color(IllustrationStyle.silhouette(sportCode: sportCode)),
+            style: stroke
+        )
+
+        // Tronc tête → hanche (diagonale haut-droite → milieu)
+        var trunk = Path()
+        let headBottomX = headX - headSize / 2 * cos(.pi / 4) * 0.5
+        let headBottomY = headY + headSize / 2 * sin(.pi / 4) * 0.5 + 1 * s
+        trunk.move(to: CGPoint(x: headBottomX, y: headBottomY))
+        trunk.addLine(to: CGPoint(x: hipX, y: hipY))
+        ctx.stroke(trunk, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
+
+        // Jambes hanche → pieds (diagonale milieu → bas-gauche)
+        var legs = Path()
+        legs.move(to: CGPoint(x: hipX, y: hipY))
+        legs.addLine(to: CGPoint(x: feetX, y: feetY))
+        ctx.stroke(legs, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
+
+        // Pieds empilés (petite ligne perpendiculaire au sol)
+        var feet = Path()
+        feet.move(to: CGPoint(x: feetX, y: feetY))
+        feet.addLine(to: CGPoint(x: feetX - 5 * s, y: feetY + 2 * s))
+        ctx.stroke(feet, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
+
+        // SEUL avant-bras d'appui (bras du bas) — part de l'épaule à mi-tronc vers sol
+        let shoulderT: CGFloat = 0.18 // 18% du tronc en partant de la tête
+        let shoulderX = headBottomX + (hipX - headBottomX) * shoulderT
+        let shoulderY = headBottomY + (hipY - headBottomY) * shoulderT
+        // Coude descend vers le sol côté gauche
+        let elbowX = shoulderX - 6 * s
+        let elbowY = 36 * s
+        let handX = elbowX + 6 * s
+        let handY = 38 * s
+
+        var forearm = Path()
+        forearm.move(to: CGPoint(x: shoulderX, y: shoulderY))
+        forearm.addLine(to: CGPoint(x: elbowX, y: elbowY))
+        forearm.addLine(to: CGPoint(x: handX, y: handY))
+        ctx.stroke(forearm, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
+
+        // Bras LIBRE tendu vers le haut (signature side plank) — bras tendu
+        // vertical visible, point d'attache distinct du tronc pour lisibilité.
+        var freeArm = Path()
+        freeArm.move(to: CGPoint(x: shoulderX + 1 * s, y: shoulderY - 1 * s))
+        freeArm.addLine(to: CGPoint(x: shoulderX + 6 * s, y: 4 * s))
+        ctx.stroke(freeArm, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
+        // Petite main au bout (cercle minimal)
+        let handSize: CGFloat = 2 * s
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: shoulderX + 6 * s - handSize / 2, y: 4 * s - handSize / 2,
+                                    width: handSize, height: handSize)),
+            with: .color(IllustrationStyle.silhouette(sportCode: sportCode)),
+            style: StrokeStyle(lineWidth: 1.5 * s)
+        )
+
+        // Ligne d'alignement pointillée tête → pieds (en diagonale)
+        var alignment = Path()
+        alignment.move(to: CGPoint(x: headX + 2 * s, y: headY - 2 * s))
+        alignment.addLine(to: CGPoint(x: feetX - 2 * s, y: feetY + 4 * s))
+        ctx.stroke(alignment, with: .color(IllustrationStyle.movementArrow),
+                   style: StrokeStyle(lineWidth: 1.2 * s, dash: [3 * s, 2 * s]))
+    }
+}
+
+#if DEBUG
+#Preview("Core — frontal vs latéral") {
+    VStack(spacing: 16) {
+        CoreIllustration(sportCode: "strengthTraining", variant: .frontal)
+        CoreIllustration(sportCode: "strengthTraining", variant: .lateral)
+    }
+    .padding()
+    .background(Color.coachingBackground)
+}
+#endif

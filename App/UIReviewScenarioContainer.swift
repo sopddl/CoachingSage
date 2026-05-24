@@ -173,6 +173,20 @@ struct UIReviewScenarioContainer: View {
             //   stepper vertical (rail + pastilles warmup ⓪ flamme · exos
             //   numérotés · cooldown ⓝ flocon).
             SessionDetailGlossaryScenarioView()
+        case "ui_review_session_detail_v3_illustrations":
+            // **Story 3.19 Jalon 1+2a** — SessionDetailView avec séance strength
+            // étendue couvrant les patterns pilotes (squat / hinge / pullVertical
+            // / core plank) + patterns Jalon 2a (push H/V / pull H / lunge /
+            // plyo / mobility). Cibles : strip illustrations dans la card exo.
+            SessionDetailIllustrationsScenarioView()
+        case "ui_review_session_detail_v3_running":
+            // **Story 3.19 Jalon 2a** — SessionDetailView running pour valider
+            // les illus running endurance + interval.
+            SessionDetailRunningScenarioView()
+        case "ui_review_illustrations_showcase":
+            // **Story 3.19 Jalon 2b** — showcase TOUTES les illustrations
+            // (15 patterns) en grille pour screenshot HTML overview Sophie.
+            IllustrationsShowcaseScenarioView()
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -674,6 +688,286 @@ private struct SessionDetailGlossaryScenarioView: View {
             ],
             cooldown: "10 min footing très lent + étirements doux. Idéal pour évacuer le lactate accumulé pendant les intervals et préparer la récupération."
         )
+    }
+}
+
+// MARK: - Story 3.19 Jalon 1 — SessionDetailIllustrationsScenarioView
+
+/// Container Story 3.19 Jalon 1 — séance strength avec 4 exos couvrant les
+/// patterns pilotes (squat, hinge, pullVertical, core). Affiche le strip
+/// d'illustrations dans la card exo pour validation visuelle Sophie #1.
+private struct SessionDetailIllustrationsScenarioView: View {
+    var body: some View {
+        SessionDetailView(
+            session: strengthSession,
+            week: strengthWeek,
+            program: strengthProgram
+        )
+    }
+
+    private var strengthWeek: AdaptedWeek {
+        AdaptedWeek(
+            weekNumber: 2,
+            theme: "Force générale — patterns fondamentaux",
+            goal: "Travailler les 4 patterns biomécaniques majeurs",
+            sessions: []
+        )
+    }
+
+    private var strengthProgram: AdaptedProgram {
+        AdaptedProgram(
+            templateId: "strength-pilot-fixture",
+            sport: .strengthTraining,
+            level: .beginner,
+            appliedAt: Date(),
+            weeks: [strengthWeek],
+            appliedRules: [],
+            requiresAIAssist: false
+        )
+    }
+
+    private var strengthSession: AdaptedSession {
+        AdaptedSession(
+            day: 1,
+            name: "Full body fondamentaux",
+            durationMinutes: 50,
+            type: .strength,
+            warmup: "5 min vélo facile + mobilité épaules + activation glutes (band)",
+            exercises: [
+                AdaptedExercise(
+                    name: "Goblet squat (pattern squat)",
+                    originalName: "Goblet squat",
+                    sets: 4,
+                    reps: "8",
+                    restSeconds: 90,
+                    notes: "Descente contrôlée 3 secondes, poussée par les talons. Genoux dans l'axe des pieds.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Romanian Deadlift haltères (pattern hinge)",
+                    originalName: "Romanian Deadlift haltères",
+                    sets: 3,
+                    reps: "10",
+                    restSeconds: 90,
+                    notes: "Le mouvement vient de la hanche, pas du dos. Bassin recule, ischio-jambiers s'étirent.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Pull-up assisté (pattern pull vertical)",
+                    originalName: "Pull-up assisté",
+                    sets: 4,
+                    reps: "6",
+                    restSeconds: 120,
+                    notes: "Engage les omoplates en premier. Menton au-dessus de la barre, descente contrôlée.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Plank latéral",
+                    originalName: "Plank latéral",
+                    sets: 3,
+                    duration: "30s",
+                    restSeconds: 60,
+                    notes: "Le side plank (planche latérale) renforce les obliques. Ligne droite épaules-bassin-talons, un seul avant-bras au sol. Pas de bassin qui tombe.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Pompe diamant (pattern push horizontal)",
+                    originalName: "Pompe diamant",
+                    sets: 3,
+                    reps: "10",
+                    restSeconds: 60,
+                    notes: "Mains rapprochées en triangle sous la poitrine. Coudes contre le corps. Descente contrôlée jusqu'à effleurer.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Overhead press haltères (pattern push vertical)",
+                    originalName: "Overhead press haltères",
+                    sets: 4,
+                    reps: "8",
+                    restSeconds: 90,
+                    notes: "Verrouille le gainage. Haltères des épaules au-dessus de la tête, bras tendus. Pas de cambrure lombaire.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Bent-over row barre (pattern pull horizontal)",
+                    originalName: "Bent-over row barre",
+                    sets: 4,
+                    reps: "10",
+                    restSeconds: 90,
+                    notes: "Tronc penché 45°, dos droit. Tire la barre vers le bas du sternum en serrant les omoplates. Coudes proches du corps.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Fente avant alternée (pattern lunge)",
+                    originalName: "Fente avant alternée",
+                    sets: 3,
+                    reps: "12 (6/jambe)",
+                    restSeconds: 60,
+                    notes: "Genou avant dans l'axe du pied. Genou arrière descend vers le sol sans toucher. Buste droit, regard horizon.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Jump squat (pattern plyo)",
+                    originalName: "Jump squat",
+                    sets: 3,
+                    reps: "8",
+                    restSeconds: 90,
+                    notes: "Squat puis saut explosif vertical. Atterrissage moelleux genoux fléchis — pas de bruit à la réception.",
+                    targetZone: nil
+                ),
+                AdaptedExercise(
+                    name: "Étirement quadriceps (pattern mobility)",
+                    originalName: "Étirement quadriceps",
+                    sets: 2,
+                    duration: "30s/jambe",
+                    restSeconds: 0,
+                    notes: "Talon vers le fessier, main qui tient le pied. Bassin neutre, ne pas cambrer le dos. Respiration profonde.",
+                    targetZone: nil
+                ),
+            ],
+            cooldown: "Étirements quadriceps + ischios + dorsaux 5 min"
+        )
+    }
+}
+
+// MARK: - Story 3.19 Jalon 2a — SessionDetailRunningScenarioView
+
+/// Container Story 3.19 Jalon 2a — séance running avec exos couvrant les
+/// patterns running (endurance + interval). Validation visuelle drift Sophie #2.
+private struct SessionDetailRunningScenarioView: View {
+    var body: some View {
+        SessionDetailView(
+            session: runSession,
+            week: runWeek,
+            program: runProgram
+        )
+    }
+
+    private var runWeek: AdaptedWeek {
+        AdaptedWeek(
+            weekNumber: 3,
+            theme: "Endurance + qualité fractionné",
+            goal: "Allure de course soutenue",
+            sessions: []
+        )
+    }
+
+    private var runProgram: AdaptedProgram {
+        AdaptedProgram(
+            templateId: "running-jalon2a-fixture",
+            sport: .running,
+            level: .regular,
+            appliedAt: Date(),
+            weeks: [runWeek],
+            appliedRules: [],
+            requiresAIAssist: false
+        )
+    }
+
+    private var runSession: AdaptedSession {
+        AdaptedSession(
+            day: 2,
+            name: "Endurance + fractionné court",
+            durationMinutes: 50,
+            type: .interval,
+            warmup: "10 min footing très lent en Z2 puis 4 strides progressifs",
+            exercises: [
+                AdaptedExercise(
+                    name: "Footing endurance",
+                    originalName: "Footing endurance",
+                    duration: "20 min",
+                    notes: "Allure de conversation Z2, cadence souple ~175 ppm.",
+                    targetZone: "Daniels-E"
+                ),
+                AdaptedExercise(
+                    name: "Fractionné 8 × 400m",
+                    originalName: "Fractionné 8 × 400m",
+                    sets: 8,
+                    reps: "400m",
+                    restSeconds: 90,
+                    notes: "Allure Daniels-I, cadence rapide. Récup trot relâché entre.",
+                    targetZone: "Daniels-I"
+                ),
+            ],
+            cooldown: "10 min footing très lent + étirements"
+        )
+    }
+}
+
+// MARK: - Story 3.19 Jalon 2b — IllustrationsShowcaseScenarioView
+
+/// Showcase 10 strength + 10 poses yoga (Sophie 2026-05-23). Décision produit :
+/// on n'illustre QUE les gestes où l'image clarifie (positions techniques
+/// strength + poses statiques yoga). Running / cycling / swim continu → pas de
+/// dessin (gestes universels) → fallback SF Symbol sport + glossaire pour les
+/// mots opaques (`drill`, `tempo`, `Daniels-T`...).
+private struct IllustrationsShowcaseScenarioView: View {
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                Group {
+                    Text(verbatim: "STRENGTH").font(.headline)
+                    showcaseSection(title: "Squat", pattern: .squat, sportCode: "strengthTraining")
+                    showcaseSection(title: "Hinge (Romanian Deadlift)", pattern: .hinge, sportCode: "strengthTraining")
+                    showcaseSection(title: "Push horizontal (pompe / bench)", pattern: .pushHorizontal, sportCode: "strengthTraining")
+                    showcaseSection(title: "Push vertical (overhead press)", pattern: .pushVertical, sportCode: "strengthTraining")
+                    showcaseSection(title: "Pull horizontal (row / rameur)", pattern: .pullHorizontal, sportCode: "strengthTraining")
+                }
+                Group {
+                    showcaseSection(title: "Pull vertical (pull-up / chin-up)", pattern: .pullVertical, sportCode: "strengthTraining")
+                    showcaseSection(title: "Lunge (fente avant)", pattern: .lunge, sportCode: "strengthTraining")
+                    showcaseSection(title: "Plyo (jump squat / box jump)", pattern: .plyo, sportCode: "strengthTraining")
+                    showcaseStatic(title: "Core — plank frontal (planche)", pattern: .core, sportCode: "strengthTraining", exerciseName: "Plank")
+                    showcaseStatic(title: "Core — plank latéral (side plank)", pattern: .core, sportCode: "strengthTraining", exerciseName: "Plank latéral")
+                    showcaseStatic(title: "Mobility (étirement quadriceps)", pattern: .mobility, sportCode: "strengthTraining", exerciseName: nil)
+                }
+                Group {
+                    Text(verbatim: "YOGA").font(.headline).padding(.top, 8)
+                    showcaseStatic(title: "Chien tête en bas (Adho Mukha Svanasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Chien tête en bas")
+                    showcaseStatic(title: "Guerrier I (Virabhadrasana I)", pattern: .yoga, sportCode: "yoga", exerciseName: "Guerrier I")
+                    showcaseStatic(title: "Guerrier II (Virabhadrasana II)", pattern: .yoga, sportCode: "yoga", exerciseName: "Guerrier II")
+                    showcaseStatic(title: "Arbre (Vrksasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Arbre")
+                    showcaseStatic(title: "Cobra (Bhujangasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Cobra")
+                }
+                Group {
+                    showcaseStatic(title: "Enfant (Balasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Enfant")
+                    showcaseStatic(title: "Pince debout (Uttanasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Pince debout")
+                    showcaseStatic(title: "Triangle (Trikonasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Triangle")
+                    showcaseStatic(title: "Bateau (Navasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Bateau")
+                    showcaseStatic(title: "Savasana (cadavre / relaxation)", pattern: .yoga, sportCode: "yoga", exerciseName: "Savasana")
+                }
+            }
+            .padding(16)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+
+    @ViewBuilder
+    private func showcaseSection(title: String, pattern: ExercisePattern, sportCode: String) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(verbatim: title)
+                .font(.caption.bold())
+                .foregroundStyle(.secondary)
+            ExercisePatternIllustration(pattern: pattern, sportCode: sportCode)
+                .padding(8)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(uiColor: .tertiarySystemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
+    }
+
+    @ViewBuilder
+    private func showcaseStatic(title: String, pattern: ExercisePattern, sportCode: String, exerciseName: String?) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(verbatim: title)
+                .font(.caption.bold())
+                .foregroundStyle(.secondary)
+            ExercisePatternIllustration(pattern: pattern, sportCode: sportCode, exerciseName: exerciseName)
+                .padding(8)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(uiColor: .tertiarySystemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
     }
 }
 

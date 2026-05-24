@@ -107,6 +107,35 @@ enum GlossaryDiscoveryTooltip {
     #endif
 }
 
+/// Story 3.19 Jalon 4 — pulse découvrabilité du 1er terme glossaire à la 1ère
+/// ouverture d'une SessionDetailView (AC13). Distinct du tooltip Phase 1 :
+/// signal visuel ciblé (scale + opacity × 3) sur le mot lui-même, plutôt qu'un
+/// toast bas. Persisté UserDefaults — une seule fois par compte/device.
+enum GlossaryFirstVisitPulse {
+    static let userDefaultsKey = "coaching.session.glossary.firstVisitDone"
+
+    /// True si on doit déclencher le pulse à l'ouverture (jamais pulsé encore).
+    /// Skip systématiquement si `UI_TEST_SCENARIO` est set : les scénarios
+    /// d'agent visuel cherchent un état stable, pas une animation transitoire.
+    static func shouldPulse(userDefaults: UserDefaults = .standard) -> Bool {
+        if ProcessInfo.processInfo.environment["UI_TEST_SCENARIO"] != nil {
+            return false
+        }
+        return !userDefaults.bool(forKey: userDefaultsKey)
+    }
+
+    /// Marque le pulse comme déclenché (persisté UserDefaults).
+    static func markPulsed(userDefaults: UserDefaults = .standard) {
+        userDefaults.set(true, forKey: userDefaultsKey)
+    }
+
+    #if DEBUG
+    static func resetForTesting(userDefaults: UserDefaults = .standard) {
+        userDefaults.removeObject(forKey: userDefaultsKey)
+    }
+    #endif
+}
+
 extension View {
     /// Modifier d'ajout du toast découvrabilité. Le caller contrôle `isPresented`
     /// et est responsable de l'init à `true` au bon moment (cf `.task` in

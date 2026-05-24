@@ -37,7 +37,7 @@ struct SessionDetailView: View {
                     regenAdjustedBanner
                 }
 
-                SessionTimelineView(session: session, sportColor: sessionSportColor)
+                SessionTimelineView(session: session, sportColor: sessionSportColor, sportCode: effectiveSessionSportCode)
 
                 if let vm = completionVM {
                     completionSection(vm: vm)
@@ -192,11 +192,17 @@ struct SessionDetailView: View {
     /// pour tinter les pastilles exercices). Triathlon → sub-sport inféré
     /// par `SessionSportInference`.
     private var sessionSportColor: Color {
-        let effective = SessionSportInference.sportCode(
+        Color.coachingSport(forCode: effectiveSessionSportCode)
+    }
+
+    /// Story 3.19 — code sport effectif de la séance (triathlon → sub-sport inféré).
+    /// Utilisé par `SessionTimelineView` pour résoudre le pattern biomécanique +
+    /// la palette silhouette des illustrations exo.
+    private var effectiveSessionSportCode: String {
+        SessionSportInference.sportCode(
             forSessionName: session.name,
             programSportCode: program.sport.appSportCode
         )
-        return Color.coachingSport(forCode: effective)
     }
 
     // MARK: - Medical footer

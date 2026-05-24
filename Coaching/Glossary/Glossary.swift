@@ -58,6 +58,10 @@ public enum Glossary {
         GlossaryEntry(id: "hypertrophy",titleKey: "glossary.hypertrophy.title",definitionKey: "glossary.hypertrophy.definition"),
         GlossaryEntry(id: "lactate",    titleKey: "glossary.lactate.title",    definitionKey: "glossary.lactate.definition"),
         GlossaryEntry(id: "pushoff",    titleKey: "glossary.pushoff.title",    definitionKey: "glossary.pushoff.definition"),
+        // Story 3.19 — terme strength fréquent (plank / planche / gainage).
+        GlossaryEntry(id: "plank",      titleKey: "glossary.plank.title",      definitionKey: "glossary.plank.definition"),
+        // Story 3.19 Jalon 2 — mot opaque universel sports cardio (running, swim, cycle).
+        GlossaryEntry(id: "drill",      titleKey: "glossary.drill.title",      definitionKey: "glossary.drill.definition"),
     ]
 
     private static let byId: [String: GlossaryEntry] = Dictionary(
