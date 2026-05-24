@@ -75,8 +75,9 @@ struct UIReviewScenarioContainer: View {
         case "ui_review_dashboard_empty":
             // **Story 3.15 v7 (Sophie 2026-05-21)** — mode `.empty` simplifié :
             // icone hero + titre + sous-titre + CTA "Crée mon premier programme".
+            // **Story 3.22-F-bis** — variante `.noPrograms` (cas par défaut).
             EmptyDashboardView(
-                hintKey: "dashboard.empty.hint.default",
+                state: .noPrograms,
                 onTapCustom: { /* noop scenario */ }
             )
             .padding(.horizontal, 16)

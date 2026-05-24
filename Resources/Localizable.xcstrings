@@ -3429,7 +3429,7 @@
       }
     },
     "dashboard.empty.title" : {
-      "comment" : "Story 3.15 v7 (Sophie 2026-05-21) — titre hero centré EmptyDashboardView",
+      "comment" : "Story 3.15 v7 (Sophie 2026-05-21) — titre hero centré EmptyDashboardView (variante .noPrograms)",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3441,6 +3441,132 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pas encore de programme"
+          }
+        }
+      }
+    },
+    "dashboard.empty.noPrograms.hint" : {
+      "comment" : "Story 3.22-F-bis — hint variante .noPrograms (cas normal post-onboarding, 0 programme créé).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pick a sport to create your first program."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisis un sport pour créer ton premier programme."
+          }
+        }
+      }
+    },
+    "dashboard.empty.noProfile.title" : {
+      "comment" : "Story 3.22-F-bis — title variante .noProfile (onboarding non finalisé, edge case).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile incomplete"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profil incomplet"
+          }
+        }
+      }
+    },
+    "dashboard.empty.noProfile.hint" : {
+      "comment" : "Story 3.22-F-bis — hint variante .noProfile.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish setting up your sport profile first."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termine d'abord la création de ton profil sport."
+          }
+        }
+      }
+    },
+    "dashboard.empty.noProfile.actionHint" : {
+      "comment" : "Story 3.22-F-bis — sous-hint variante .noProfile (pas de CTA actif). Edge case rare car l'app force normalement l'onboarding au cold launch quand profile == nil — relancer l'app résout.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quit and relaunch the app to resume setup."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quitte et relance l'app pour reprendre la configuration."
+          }
+        }
+      }
+    },
+    "dashboard.empty.crossDevice.title" : {
+      "comment" : "Story 3.22-F-bis — title variante .crossDeviceMissing (flag bootstrap=true Supabase mais 0 record local : cross-device, store local-first non sync).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Programs elsewhere"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Programmes ailleurs"
+          }
+        }
+      }
+    },
+    "dashboard.empty.crossDevice.hint" : {
+      "comment" : "Story 3.22-F-bis — hint variante .crossDeviceMissing. Préciser 'compte' pour que la débutante fasse le lien et 'quelques minutes' pour expliciter l'attente.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your programs exist on another iPhone connected to your account. Create a new one here, or wait a few minutes for sync."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tes programmes existent sur un autre iPhone connecté à ton compte. Crée-en un nouveau ici, ou attends quelques minutes que la synchro se fasse."
+          }
+        }
+      }
+    },
+    "dashboard.empty.crossDevice.cta" : {
+      "comment" : "Story 3.22-F-bis — CTA variante .crossDeviceMissing (créer un programme local).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create a program here"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créer un programme ici"
           }
         }
       }

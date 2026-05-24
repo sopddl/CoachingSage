@@ -136,6 +136,11 @@ final class SessionDashboardViewModel {
     /// finalize(), donc users existants n'avaient jamais le bootstrap.
     private let dormantBootstrapService: DormantBootstrapService?
 
+    /// **Story 3.22-F-bis** — snapshot du `CoachingProfile` chargé au dernier
+    /// `refresh()`. Utilisé pour calculer `emptyState` (variante d'affichage
+    /// d'`EmptyDashboardView` selon profil + flag bootstrap).
+    private(set) var coachingProfileSnapshot: CoachingProfile?
+
     init(
         programRepository: any AdaptedProgramRepository,
         coachingProfileRepository: any CoachingProfileRepository,
@@ -183,6 +188,7 @@ final class SessionDashboardViewModel {
             async let profileTask: CoachingProfile? = try? coachingProfileRepository.fetchCurrentProfile()
             let programs = try await programsTask
             let profile = await profileTask
+            coachingProfileSnapshot = profile
             declaredSportCodes = profile?.activeSports ?? []
 
             // Map records pour les helpers internes (regen, push detail view).
@@ -228,6 +234,15 @@ final class SessionDashboardViewModel {
             recordsByID = [:]
         }
         loading = false
+    }
+
+    /// **Story 3.22-F-bis** — variante d'`EmptyDashboardView` à afficher en
+    /// `mode == .empty`. Calculé à partir de `coachingProfileSnapshot` +
+    /// flag `bootstrappedDormants`. Cf `EmptyDashboardState` pour le détail
+    /// des conditions.
+    var emptyState: EmptyDashboardState {
+        guard let profile = coachingProfileSnapshot else { return .noProfile }
+        return profile.bootstrappedDormants ? .crossDeviceMissing : .noPrograms
     }
 
     /// **Story 3.15** — selectedId courant (extrait de `mode.active`).

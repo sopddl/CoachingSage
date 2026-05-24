@@ -31,6 +31,52 @@ final class SessionDashboardViewModelTests: XCTestCase {
         XCTAssertTrue(vm.activeProgramSummaries.isEmpty)
     }
 
+    // MARK: - Story 3.22-F-bis — `emptyState` (3 variantes EmptyDashboardView)
+
+    func testEmptyState_NoProfile_whenProfileNilAndNoPrograms() async {
+        let programRepo = MockAdaptedProgramRepository()
+        let profileRepo = MockCoachingProfileRepository()
+        profileRepo.stubbedProfile = nil // Onboarding non finalisé
+        let vm = makeVM(programRepo: programRepo, profileRepo: profileRepo,
+                        library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]))
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(vm.mode, .empty)
+        XCTAssertEqual(vm.emptyState, .noProfile)
+    }
+
+    func testEmptyState_NoPrograms_whenProfileExistsButBootstrapFalse() async {
+        let programRepo = MockAdaptedProgramRepository()
+        let profileRepo = MockCoachingProfileRepository()
+        profileRepo.stubbedProfile = CoachingProfile(id: UUID()) // bootstrappedDormants défaut false
+        let vm = makeVM(programRepo: programRepo, profileRepo: profileRepo,
+                        library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]))
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(vm.mode, .empty)
+        XCTAssertEqual(vm.emptyState, .noPrograms,
+                       "Cas normal : profil OK mais bootstrap pas encore fait")
+    }
+
+    func testEmptyState_CrossDeviceMissing_whenBootstrappedTrueButZeroLocalPrograms() async {
+        let programRepo = MockAdaptedProgramRepository()
+        let profileRepo = MockCoachingProfileRepository()
+        let profile = CoachingProfile(id: UUID())
+        profile.bootstrappedDormants = true // Flag global Supabase sync OK
+        profileRepo.stubbedProfile = profile
+        // Mais 0 record local (cross-device) → mode .empty atteint
+        let vm = makeVM(programRepo: programRepo, profileRepo: profileRepo,
+                        library: ProgramTemplateLibrary(templates: [Self.placeholderTemplate]))
+
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(vm.mode, .empty)
+        XCTAssertEqual(vm.emptyState, .crossDeviceMissing,
+                       "Flag bootstrap=true côté Supabase mais 0 record local : cross-device")
+    }
+
     /// **Story 3.15** — 1 dormant seul : passe désormais en `.dormantOnly`
     /// (avant 3.15, c'était `.active([dormant], dormant.id)`). `selectedId`
     /// n'est plus défini pour un dormant — il est `nil` via `currentSelectedId`.
