@@ -260,8 +260,13 @@ struct SessionView: View {
             // tous ses programmes (lancés + dormants). Cas edge, pas le chemin
             // d'usage principal — les suggestions sont désormais persistées
             // comme dormants via `DormantBootstrapService` au post-onboarding.
+            //
+            // **Story 3.22-F-bis (Sophie 2026-05-24)** — 3 variantes selon
+            // `vm.emptyState` (noProfile / noPrograms / crossDeviceMissing).
+            // Le callback ouvre `sportPicker` dans les 2 derniers cas, no-op
+            // dans `.noProfile` (pas de CTA actif, juste hint).
             EmptyDashboardView(
-                hintKey: hintKey(for: vm),
+                state: vm.emptyState,
                 onTapCustom: {
                     sheetSelection = .sportPicker
                 }
@@ -436,15 +441,6 @@ struct SessionView: View {
         } else {
             pushAdaptedProgram(record: record)
         }
-    }
-
-    /// Texte hint Léon — calibré sur autoprofil HK quand `CoachingProfile.healthAutofill`
-    /// existera (sous-tâche 8 + flux A/B). Pour V1, on choisit le texte selon la
-    /// présence de sports déclarés à l'onboarding.
-    private func hintKey(for vm: SessionDashboardViewModel) -> LocalizedStringKey {
-        vm.declaredSportCodes.isEmpty
-            ? "dashboard.empty.hint.default"
-            : "dashboard.empty.hint.declared"
     }
 
     // MARK: - Bootstrap VM
