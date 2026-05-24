@@ -224,6 +224,13 @@ final class GlossaryMatcherTests: XCTestCase {
         XCTAssertEqual(Glossary.matches(in: "Thoracic extension").first?.entry.id, "thoracic")
     }
 
+    func testTSpineMatchesAsThoracic() {
+        // Synonyme alias très utilisé dans les templates strength.
+        XCTAssertEqual(Glossary.matches(in: "Rotations T-spine 8/côté").first?.entry.id, "thoracic")
+        XCTAssertEqual(Glossary.matches(in: "T spine rotation").first?.entry.id, "thoracic")
+        XCTAssertEqual(Glossary.matches(in: "Thoracic rotation 8/côté").first?.entry.id, "thoracic")
+    }
+
     func testBandPullApartMatches() {
         let matches = Glossary.matches(in: "Band pull apart × 15")
         XCTAssertEqual(matches.first?.entry.id, "bandpullapart")
