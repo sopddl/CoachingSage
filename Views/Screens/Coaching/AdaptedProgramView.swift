@@ -87,6 +87,12 @@ struct AdaptedProgramView: View {
     /// TextField). nil = sheet fermée, non-nil = sheet ouverte avec ce buffer.
     @State private var renameBuffer: String? = nil
 
+    /// **Story 3.20 Jalon 1** — namespace partagé pour la transition zoom iOS 18
+    /// natif entre la card session (`sessionRow`) et `SessionDetailView`.
+    /// Propagé au `SessionDetailView` via init param ; chaque card source pose
+    /// un `.matchedTransitionSource` avec id `"session-W{n}-D{n}"`.
+    @Namespace private var heroNamespace
+
     /// **Story 3.12** — Record SwiftData fetché au montage de la vue. Source des
     /// `PersistedSession.id` (pour mapper le completionState) + `weekStartDate`
     /// (pour calculer la semaine courante). `nil` tant qu'on n'a pas reçu de
@@ -687,13 +693,16 @@ struct AdaptedProgramView: View {
         let isModifiedByRegen = modifiedSessionCoordinates.contains(
             SessionCoordinate(weekNumber: week.weekNumber, day: session.day)
         )
+        let sourceID = "session-W\(week.weekNumber)-D\(session.day)"
         return NavigationLink {
             SessionDetailView(
                 session: session,
                 week: week,
                 program: program,
                 isModifiedByRegen: isModifiedByRegen,
-                recordId: recordId
+                recordId: recordId,
+                heroNamespace: heroNamespace,
+                heroSourceID: sourceID
             )
         } label: {
             HStack(spacing: 12) {
@@ -729,6 +738,7 @@ struct AdaptedProgramView: View {
             .padding(.vertical, 10)
             .background(Color(uiColor: .secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 10))
+            .matchedTransitionSource(id: sourceID, in: heroNamespace)
         }
         .buttonStyle(.plain)
     }

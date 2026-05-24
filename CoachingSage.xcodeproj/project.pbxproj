@@ -203,6 +203,7 @@
 		60611C6FDD8493F3EC29044F /* DefaultCoreProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA55024C693442B9733FAD1F /* DefaultCoreProfileRepository.swift */; };
 		6079FD08FBF2605EA4D02A82 /* QuestionnaireDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633F4421043C728EBE0DA6CF /* QuestionnaireDTOs.swift */; };
 		60C6C4AE56E5D8C0A7274CA6 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B950CF8A1733A10CB9605130 /* SessionDetailView.swift */; };
+		61BEC72F4D31DE2701BE7DCD /* testCardSubstituted_strength.1.png in Resources */ = {isa = PBXBuildFile; fileRef = F633886CC3220453BAFDB265 /* testCardSubstituted_strength.1.png */; };
 		61FEC6B5DF7CB6CDA281CEEE /* NextSessionResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D869F7DA3CD0BF35404AE3E4 /* NextSessionResolver.swift */; };
 		62115643DD79B68221B14913 /* ProgramTemplateSelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B538A1706E05535192A6CCE /* ProgramTemplateSelectorTests.swift */; };
 		62D4734EF3138279BE8A8585 /* SportAvatarViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2ABFAEE2121BA5833481AB /* SportAvatarViewTests.swift */; };
@@ -800,15 +801,16 @@
 		EF9A08E9B9965525830E6707 /* YogaIllustration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YogaIllustration.swift; sourceTree = "<group>"; };
 		F3777EA7028C4E63C42076C7 /* AdaptationRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptationRule.swift; sourceTree = "<group>"; };
 		F583C511E407F30A20ACCED7 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		F633886CC3220453BAFDB265 /* testCardSubstituted_strength.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testCardSubstituted_strength.1.png; sourceTree = "<group>"; };
 		F902496F0DFEBE9CB8E3FF36 /* PullHorizontalIllustration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullHorizontalIllustration.swift; sourceTree = "<group>"; };
 		FBA4271AD80F076F1926A10A /* SchemaV6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV6.swift; sourceTree = "<group>"; };
 		FC2ABFAEE2121BA5833481AB /* SportAvatarViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportAvatarViewTests.swift; sourceTree = "<group>"; };
 		FD16032A07CE30E27DE86BCA /* JSONDecoder+Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Supabase.swift"; sourceTree = "<group>"; };
 		FE2EBCDA71129879332CF57F /* MockCoachingSportProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoachingSportProfileRepository.swift; sourceTree = "<group>"; };
 		FE4D8313E07E639BE62B7644 /* ProgramDurationResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDurationResolverTests.swift; sourceTree = "<group>"; };
-		"TEMP_573EDEC6-2CFB-45F0-9250-4DC6F6BA9A91" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_7902A5B4-37DC-4579-B51A-B28061CFB7B3" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_F0A33AD1-EB8E-4315-976E-256266039EB2" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_563599DF-37BB-49FF-8F22-DF8D38BDCCC3" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_6614BBF6-9D65-4724-AF8E-E69544C109FA" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_AFF9020B-13BB-4890-954C-A293A5CC40A1" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1689,16 +1691,17 @@
 			children = (
 				AE7325A7C49DD9E798619ACB /* testCardFirstExercise_postPulseDone_running.1.png */,
 				7F32694614AA0D701A58E1FD /* testCardStableState_running.1.png */,
+				F633886CC3220453BAFDB265 /* testCardSubstituted_strength.1.png */,
 			);
 			path = ExerciseTimelineCardSnapshotTests;
 			sourceTree = "<group>";
 		};
-		"TEMP_B70A82E3-7080-4FA0-84C4-06DE64E9290C" /* CoachingSage */ = {
+		"TEMP_31E178BF-031A-45CF-85E0-5BEA0B3BD1DC" /* CoachingSage */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_573EDEC6-2CFB-45F0-9250-4DC6F6BA9A91" /* Config-Debug.xcconfig */,
-				"TEMP_F0A33AD1-EB8E-4315-976E-256266039EB2" /* Config-Release.xcconfig */,
-				"TEMP_7902A5B4-37DC-4579-B51A-B28061CFB7B3" /* Config-Staging.xcconfig */,
+				"TEMP_AFF9020B-13BB-4890-954C-A293A5CC40A1" /* Config-Debug.xcconfig */,
+				"TEMP_563599DF-37BB-49FF-8F22-DF8D38BDCCC3" /* Config-Release.xcconfig */,
+				"TEMP_6614BBF6-9D65-4724-AF8E-E69544C109FA" /* Config-Staging.xcconfig */,
 			);
 			path = CoachingSage;
 			sourceTree = "<group>";
@@ -1848,6 +1851,7 @@
 				DE84E22EC79469164BE8EA7A /* coachingsage-mosaic-source.png in Resources */,
 				C73825A98110D173AEDB9CC8 /* testCardFirstExercise_postPulseDone_running.1.png in Resources */,
 				404C8DC4DF2E064552FEC67E /* testCardStableState_running.1.png in Resources */,
+				61BEC72F4D31DE2701BE7DCD /* testCardSubstituted_strength.1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2366,7 +2370,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2386,7 +2390,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_SUPABASE_ANON_KEY = "test-anon-key-placeholder";
 				INFOPLIST_KEY_SUPABASE_HOST = test.placeholder.invalid;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2401,7 +2405,7 @@
 		};
 		61B5E17E96E19C8E098AA3DC /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_7902A5B4-37DC-4579-B51A-B28061CFB7B3" /* Config-Staging.xcconfig */;
+			baseConfigurationReference = "TEMP_6614BBF6-9D65-4724-AF8E-E69544C109FA" /* Config-Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2448,7 +2452,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -2462,7 +2466,7 @@
 		};
 		6444A73E993A0AE7B8936309 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_F0A33AD1-EB8E-4315-976E-256266039EB2" /* Config-Release.xcconfig */;
+			baseConfigurationReference = "TEMP_563599DF-37BB-49FF-8F22-DF8D38BDCCC3" /* Config-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2509,7 +2513,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -2526,7 +2530,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2551,7 +2555,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2572,7 +2576,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_SUPABASE_ANON_KEY = "test-anon-key-placeholder";
 				INFOPLIST_KEY_SUPABASE_HOST = test.placeholder.invalid;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2597,7 +2601,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2613,7 +2617,7 @@
 		};
 		E103FFBD6D87D5F977B573D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_573EDEC6-2CFB-45F0-9250-4DC6F6BA9A91" /* Config-Debug.xcconfig */;
+			baseConfigurationReference = "TEMP_AFF9020B-13BB-4890-954C-A293A5CC40A1" /* Config-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2666,7 +2670,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2686,7 +2690,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_SUPABASE_ANON_KEY = "test-anon-key-placeholder";
 				INFOPLIST_KEY_SUPABASE_HOST = test.placeholder.invalid;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2711,7 +2715,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2730,7 +2734,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

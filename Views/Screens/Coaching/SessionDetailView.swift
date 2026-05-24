@@ -20,6 +20,17 @@ struct SessionDetailView: View {
     /// Quand non-nil, expose le bouton "Marquer comme terminée".
     var recordId: UUID? = nil
 
+    /// **Story 3.20 Jalon 1** — namespace partagé pour la transition zoom iOS
+    /// 18 natif depuis la card session source dans `AdaptedProgramView`. Nil
+    /// sur Previews / scenarios UI test / autres entry points → push
+    /// NavigationStack stock (fallback gracieux).
+    var heroNamespace: Namespace.ID? = nil
+
+    /// **Story 3.20 Jalon 1** — id de transition couplé au `matchedTransitionSource`
+    /// posé sur la card source (`"session-W{n}-D{n}"`). Doit matcher pour
+    /// déclencher l'animation zoom. Nil si `heroNamespace` est nil.
+    var heroSourceID: String? = nil
+
     @Environment(\.appDependencies) private var deps
     @State private var completionVM: SessionCompletionViewModel?
     @State private var showCompleteSheet: Bool = false
@@ -57,6 +68,23 @@ struct SessionDetailView: View {
         .sheet(isPresented: $showCompleteSheet) {
             if let vm = completionVM {
                 SessionCompleteSheet(vm: vm, plannedDurationMinutes: session.durationMinutes)
+            }
+        }
+        .modifier(SessionHeroZoomTransition(sourceID: heroSourceID, namespace: heroNamespace))
+    }
+
+    /// **Story 3.20 Jalon 1** — applique `.navigationTransition(.zoom(...))` iOS
+    /// 18 si le namespace + sourceID sont fournis. Sinon no-op (push stock).
+    /// Reduce Motion géré nativement par Apple (cross-dissolve fallback).
+    private struct SessionHeroZoomTransition: ViewModifier {
+        let sourceID: String?
+        let namespace: Namespace.ID?
+
+        func body(content: Content) -> some View {
+            if let sourceID, let namespace {
+                content.navigationTransition(.zoom(sourceID: sourceID, in: namespace))
+            } else {
+                content
             }
         }
     }
