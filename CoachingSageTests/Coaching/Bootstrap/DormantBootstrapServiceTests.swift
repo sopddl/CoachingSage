@@ -13,6 +13,10 @@
 //   5. dormantCap déjà atteint → no-op + flag flipped
 //   6. ProgramCapReached.dormant pendant la boucle → break silently
 //   7. pas de coaching profile → no-op (paranoid)
+//   8. **Story 3.21** — cross-device : flag global=true mais flag local=false →
+//      bootstrap re-trigger (fix Bug F).
+//   9. **Story 3.21** — idempotence locale : flag global=true ET flag local=true
+//      → skip (user a déjà bootstrap sur CE device).
 import XCTest
 import TemplateModel
 
@@ -35,11 +39,49 @@ final class DormantBootstrapServiceTests: XCTestCase {
                        "Le flag doit être flippé à true")
     }
 
-    /// **AC22 #2** — flag déjà true → no-op (ni save, ni persist).
+    /// **AC22 #2** — LES DEUX flags déjà true → no-op (ni save, ni persist).
+    /// Note Story 3.21 : la skip condition exige flag global ET flag local
+    /// à `true`. Cf test #9 pour idempotence locale explicite.
     func testSkip_WhenFlagAlreadyTrue() async {
-        let env = makeEnv(includeProfile: true, profileBootstrapped: true)
+        let env = makeEnv(includeProfile: true, profileBootstrapped: true, profileBootstrappedLocal: true)
         let persisted = await env.service.bootstrapIfNeeded()
         XCTAssertEqual(persisted, 0)
+        XCTAssertTrue(env.programRepo.savedRecords.isEmpty)
+    }
+
+    /// **Story 3.21 #8** — cross-device : flag global `true` (sync depuis
+    /// Supabase) mais flag local `false` (fresh SwiftData sur ce device) +
+    /// 0 dormant local → bootstrap doit re-déclencher pour repeupler.
+    func testCrossDevice_GlobalFlagTrueButLocalFlagFalse_Rebootstraps() async {
+        let env = makeEnv(
+            includeProfile: true,
+            profileBootstrapped: true,
+            profileBootstrappedLocal: false
+        )
+        let persisted = await env.service.bootstrapIfNeeded()
+        XCTAssertEqual(persisted, 3,
+                       "Cross-device : doit re-bootstrap 3 dormants malgré flag global=true")
+        XCTAssertEqual(env.programRepo.savedRecords.count, 3)
+        XCTAssertEqual(env.coachingRepo.stubbedProfile?.bootstrappedDormants, true,
+                       "Flag global déjà true reste true (no-op)")
+        XCTAssertEqual(env.coachingRepo.stubbedProfile?.bootstrappedDormantsLocal, true,
+                       "Flag local doit être flippé pour éviter retry au prochain launch")
+    }
+
+    /// **Story 3.21 #9** — idempotence locale : si user a déjà bootstrap sur
+    /// CE device (les deux flags `true`) et a supprimé tous ses dormants
+    /// intentionnellement, on NE regénère PAS (contrat Story 3.15 préservé).
+    func testIdempotenceLocal_BothFlagsTrue_NoRebootstrapEvenIfStoreEmpty() async {
+        let env = makeEnv(
+            includeProfile: true,
+            profileBootstrapped: true,
+            profileBootstrappedLocal: true,
+            existingDormants: 0,
+            existingStarted: 0
+        )
+        let persisted = await env.service.bootstrapIfNeeded()
+        XCTAssertEqual(persisted, 0,
+                       "User a delete ses dormants ET les deux flags sont true → NO regen")
         XCTAssertTrue(env.programRepo.savedRecords.isEmpty)
     }
 
@@ -104,6 +146,7 @@ final class DormantBootstrapServiceTests: XCTestCase {
     private func makeEnv(
         includeProfile: Bool,
         profileBootstrapped: Bool = false,
+        profileBootstrappedLocal: Bool? = nil,
         existingDormants: Int = 0,
         existingStarted: Int = 0,
         templates: [ProgramTemplate]? = nil
@@ -113,6 +156,10 @@ final class DormantBootstrapServiceTests: XCTestCase {
             let p = CoachingProfile(id: userId)
             p.activeSports = ["running"]
             p.bootstrappedDormants = profileBootstrapped
+            // Story 3.21 : si non-spécifié, le flag local mirroir le flag global
+            // (comportement legacy pré-hotfix). Tests cross-device passent les
+            // deux flags explicitement.
+            p.bootstrappedDormantsLocal = profileBootstrappedLocal ?? profileBootstrapped
             coachingRepo.stubbedProfile = p
         } else {
             coachingRepo.stubbedProfile = nil
