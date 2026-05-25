@@ -234,26 +234,37 @@ struct PushHorizontalIllustration: View {
             elbowOutset = 8 * s
         }
 
-        // Bras épaule → coude → haltère (le coude sort vers la droite quand on plie)
+        // Cou entre tête et épaule (refonte review agent — était absent)
+        var neckSeg = Path()
+        neckSeg.move(to: CGPoint(x: 8 * s, y: bodyY))
+        neckSeg.addLine(to: CGPoint(x: shoulderX, y: bodyY))
+        ctx.stroke(neckSeg, with: .color(silhouette), style: stroke)
+
+        // Bras refondu (review agent expert) : la main NE REVIENT PAS à la même x
+        // que l'épaule (sinon le bras = triangle replié). La main suit le coude
+        // avec léger décalage vers l'extérieur quand le coude se plie.
         let elbowX: CGFloat = chestX + elbowOutset
-        let elbowY: CGFloat = (shoulderY + dumbbellY) / 2 - 2 * s
+        let elbowY: CGFloat = (shoulderY + dumbbellY) / 2
+        let handX: CGFloat = chestX + elbowOutset * 0.3  // léger décalage vers l'extérieur
+        let handY: CGFloat = dumbbellY
         var arm = Path()
-        arm.move(to: CGPoint(x: chestX, y: shoulderY))   // épaule (au-dessus de la poitrine sur le banc)
+        arm.move(to: CGPoint(x: chestX, y: shoulderY))
         arm.addLine(to: CGPoint(x: elbowX, y: elbowY))
-        arm.addLine(to: CGPoint(x: chestX, y: dumbbellY))  // main qui tient l'haltère
+        arm.addLine(to: CGPoint(x: handX, y: handY))
         ctx.stroke(arm, with: .color(silhouette), style: stroke)
 
-        // Haltère (barre courte horizontale + 2 disques aux extrémités, couleur load)
+        // Haltère centrée sur la main (refonte review agent) — au lieu de chestX
+        let barCx: CGFloat = handX
         let barWidth: CGFloat = 6 * s
         var bar = Path()
-        bar.move(to: CGPoint(x: chestX - barWidth / 2, y: dumbbellY))
-        bar.addLine(to: CGPoint(x: chestX + barWidth / 2, y: dumbbellY))
+        bar.move(to: CGPoint(x: barCx - barWidth / 2, y: dumbbellY))
+        bar.addLine(to: CGPoint(x: barCx + barWidth / 2, y: dumbbellY))
         ctx.stroke(bar, with: .color(load),
                    style: StrokeStyle(lineWidth: 1.5 * s, lineCap: .round))
         let diskSize: CGFloat = 3 * s
         // Disque gauche
         ctx.stroke(
-            Path(ellipseIn: CGRect(x: chestX - barWidth / 2 - diskSize / 2,
+            Path(ellipseIn: CGRect(x: barCx - barWidth / 2 - diskSize / 2,
                                     y: dumbbellY - diskSize / 2,
                                     width: diskSize, height: diskSize)),
             with: .color(load),
@@ -261,7 +272,7 @@ struct PushHorizontalIllustration: View {
         )
         // Disque droit
         ctx.stroke(
-            Path(ellipseIn: CGRect(x: chestX + barWidth / 2 - diskSize / 2,
+            Path(ellipseIn: CGRect(x: barCx + barWidth / 2 - diskSize / 2,
                                     y: dumbbellY - diskSize / 2,
                                     width: diskSize, height: diskSize)),
             with: .color(load),

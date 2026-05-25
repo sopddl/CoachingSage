@@ -592,88 +592,106 @@ struct YogaIllustration: View {
 
     // MARK: - Story 3.23 Tier 1 Jalon 1 — Dirgha + Cat-cow
 
-    /// Dirgha pranayama — respiration 3-parties allongée sur le dos.
-    /// Silhouette allongée (canon savasana). 3 demi-cercles d'expansion alignés
-    /// sur le tronc dans l'ordre d'inspiration : 1 (ventre, côté pieds) →
-    /// 2 (thorax, milieu) → 3 (clavicules, côté tête). Tailles croissantes
-    /// suggèrent l'amplitude de chaque phase.
-    /// Réf : Iyengar "Light on Pranayama" (3-part breath / dirgha pranayama).
+    /// Dirgha pranayama — REFONDU P0 (review agent 2026-05-25) :
+    /// silhouette debout VUE DE FACE avec 3 zones d'expansion respiratoire
+    /// empilées verticalement (clavicules en haut, thorax au milieu, ventre en bas).
+    /// Tailles croissantes du haut vers le bas symbolisent l'amplitude d'expansion
+    /// (le ventre est la plus grande zone diaphragmatique).
+    /// **Différenciation Ujjayi** : Dirgha = debout face avec 3 zones torse,
+    /// Ujjayi = assise jambes croisées avec cercle souffle à la gorge.
+    /// Réf : Iyengar "Light on Pranayama" — 3-part breath, conscience verticale
+    /// des zones abdomen/thorax/clavicule.
     private func drawDirgha(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
-        // Silhouette allongée vue de dessus, tête à gauche (canon savasana adapté)
-        let headX: CGFloat = 12 * s
-        let headY: CGFloat = 32 * s
-        let headSize: CGFloat = 5 * s
-        let shoulderX: CGFloat = 18 * s
-        let trunkEndX: CGFloat = 52 * s   // fin du tronc côté hanches
-        let footX: CGFloat = 68 * s
-        let trunkY: CGFloat = 32 * s      // axe horizontal du corps
+        let cx: CGFloat = 40 * s
+        let headSize: CGFloat = 6 * s
 
-        // Tête
+        // Tête (centrée)
         ctx.stroke(
-            Path(ellipseIn: CGRect(x: headX - headSize / 2, y: headY - headSize / 2,
+            Path(ellipseIn: CGRect(x: cx - headSize / 2, y: 6 * s,
                                     width: headSize, height: headSize)),
             with: .color(silhouette), style: stroke
         )
+        // Cou
+        var neck = Path()
+        neck.move(to: CGPoint(x: cx, y: 12 * s))
+        neck.addLine(to: CGPoint(x: cx, y: 14 * s))
+        ctx.stroke(neck, with: .color(silhouette), style: stroke)
 
-        // Corps tronc + jambes (épaule → pied)
-        var bodyLine = Path()
-        bodyLine.move(to: CGPoint(x: shoulderX, y: trunkY))
-        bodyLine.addLine(to: CGPoint(x: footX, y: trunkY))
-        ctx.stroke(bodyLine, with: .color(silhouette), style: stroke)
+        // Épaules (largeur du torse en haut)
+        var shoulders = Path()
+        shoulders.move(to: CGPoint(x: 32 * s, y: 14 * s))
+        shoulders.addLine(to: CGPoint(x: 48 * s, y: 14 * s))
+        ctx.stroke(shoulders, with: .color(silhouette), style: stroke)
 
-        // Bras le long du corps (visibles, parallèles au tronc)
+        // Tronc — trapèze fermé (épaules larges, hanches plus étroites)
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: 32 * s, y: 14 * s))
+        trunk.addLine(to: CGPoint(x: 35 * s, y: 38 * s))   // hanche gauche
+        trunk.addLine(to: CGPoint(x: 45 * s, y: 38 * s))   // hanche droite
+        trunk.addLine(to: CGPoint(x: 48 * s, y: 14 * s))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+
+        // 2 bras le long du corps
         var armL = Path()
-        armL.move(to: CGPoint(x: shoulderX + 1 * s, y: trunkY - 2 * s))
-        armL.addLine(to: CGPoint(x: 38 * s, y: trunkY - 2 * s))
+        armL.move(to: CGPoint(x: 32 * s, y: 14 * s))
+        armL.addLine(to: CGPoint(x: 28 * s, y: 32 * s))
         ctx.stroke(armL, with: .color(silhouette), style: stroke)
         var armR = Path()
-        armR.move(to: CGPoint(x: shoulderX + 1 * s, y: trunkY + 2 * s))
-        armR.addLine(to: CGPoint(x: 38 * s, y: trunkY + 2 * s))
+        armR.move(to: CGPoint(x: 48 * s, y: 14 * s))
+        armR.addLine(to: CGPoint(x: 52 * s, y: 32 * s))
         ctx.stroke(armR, with: .color(silhouette), style: stroke)
 
-        // Petits pieds en V au bout (signature pieds tombants)
+        // 2 jambes (légère séparation au sol)
+        var legL = Path()
+        legL.move(to: CGPoint(x: 35 * s, y: 38 * s))
+        legL.addLine(to: CGPoint(x: 33 * s, y: 46 * s))
+        ctx.stroke(legL, with: .color(silhouette), style: stroke)
+        var legR = Path()
+        legR.move(to: CGPoint(x: 45 * s, y: 38 * s))
+        legR.addLine(to: CGPoint(x: 47 * s, y: 46 * s))
+        ctx.stroke(legR, with: .color(silhouette), style: stroke)
+
+        // Pieds
         var feet = Path()
-        feet.move(to: CGPoint(x: footX, y: trunkY - 3 * s))
-        feet.addLine(to: CGPoint(x: footX + 4 * s, y: trunkY))
-        feet.addLine(to: CGPoint(x: footX, y: trunkY + 3 * s))
+        feet.move(to: CGPoint(x: 30 * s, y: 46 * s))
+        feet.addLine(to: CGPoint(x: 36 * s, y: 46 * s))
+        feet.move(to: CGPoint(x: 44 * s, y: 46 * s))
+        feet.addLine(to: CGPoint(x: 50 * s, y: 46 * s))
         ctx.stroke(feet, with: .color(silhouette), style: stroke)
 
-        // 3 demi-cercles d'expansion respiratoire sur le tronc.
-        // Ordre temporel de l'inspiration : 1 (ventre, côté droit/pieds) →
-        // 2 (thorax, milieu) → 3 (clavicules, côté gauche/tête).
-        // Position : SOUS la ligne du corps (le ventre/torse se gonflent vers le bas
-        // visuellement, comme si on était vu du dessus avec gonflement vers le haut
-        // de l'image — ici en demi-cercle qui s'ouvre vers le haut, attaché au corps).
-        let arcStyle = StrokeStyle(lineWidth: 1.5 * s, lineCap: .round, lineJoin: .round)
+        // === 3 zones d'expansion respiratoire EMPILÉES VERTICALEMENT ===
+        // Ellipses horizontales de tailles CROISSANTES du haut vers le bas
+        // (symbolise : clavicules = petite expansion, ventre = grosse expansion).
+        let zoneStroke = StrokeStyle(lineWidth: 1.3 * s, lineCap: .round)
 
-        // Phase 1 — ventre (le plus proche des hanches/pieds, taille moyenne)
-        var arc1 = Path()
-        arc1.addArc(center: CGPoint(x: 46 * s, y: trunkY), radius: 4 * s,
-                    startAngle: .degrees(180), endAngle: .degrees(360), clockwise: false)
-        ctx.stroke(arc1, with: .color(annotation), style: arcStyle)
+        // Zone 1 — Clavicules (en haut, petite ellipse)
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: cx - 4 * s, y: 18 * s - 1 * s,
+                                    width: 8 * s, height: 2 * s)),
+            with: .color(annotation), style: zoneStroke
+        )
+        // Zone 2 — Thorax (milieu, moyenne ellipse)
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: cx - 6 * s, y: 25 * s - 1 * s,
+                                    width: 12 * s, height: 2 * s)),
+            with: .color(annotation), style: zoneStroke
+        )
+        // Zone 3 — Ventre (en bas, grande ellipse)
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: cx - 8 * s, y: 33 * s - 1 * s,
+                                    width: 16 * s, height: 2 * s)),
+            with: .color(annotation), style: zoneStroke
+        )
 
-        // Phase 2 — thorax (milieu du tronc, taille moyenne)
-        var arc2 = Path()
-        arc2.addArc(center: CGPoint(x: 34 * s, y: trunkY), radius: 4 * s,
-                    startAngle: .degrees(180), endAngle: .degrees(360), clockwise: false)
-        ctx.stroke(arc2, with: .color(annotation), style: arcStyle)
-
-        // Phase 3 — clavicules (le plus proche des épaules/tête, taille moyenne)
-        var arc3 = Path()
-        arc3.addArc(center: CGPoint(x: 22 * s, y: trunkY), radius: 4 * s,
-                    startAngle: .degrees(180), endAngle: .degrees(360), clockwise: false)
-        ctx.stroke(arc3, with: .color(annotation), style: arcStyle)
-
-        // Petites flèches indiquant l'ordre d'inspiration (1 → 2 → 3, droite vers gauche)
-        let arrowStyle = StrokeStyle(lineWidth: 1.0 * s, lineCap: .round, lineJoin: .round)
-        var orderArrow = Path()
-        // Flèche horizontale au-dessus des arcs, pointant vers la tête (= vers la phase 3)
-        orderArrow.move(to: CGPoint(x: 48 * s, y: 22 * s))
-        orderArrow.addLine(to: CGPoint(x: 20 * s, y: 22 * s))
-        orderArrow.move(to: CGPoint(x: 22 * s, y: 20 * s))
-        orderArrow.addLine(to: CGPoint(x: 20 * s, y: 22 * s))
-        orderArrow.addLine(to: CGPoint(x: 22 * s, y: 24 * s))
-        ctx.stroke(orderArrow, with: .color(annotation), style: arrowStyle)
+        // Flèche d'inspiration ↓ à droite (l'air descend dans les poumons)
+        let arrowStyle = StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round)
+        var inhaleArrow = Path()
+        inhaleArrow.move(to: CGPoint(x: 60 * s, y: 16 * s))
+        inhaleArrow.addLine(to: CGPoint(x: 60 * s, y: 34 * s))
+        inhaleArrow.move(to: CGPoint(x: 58 * s, y: 32 * s))
+        inhaleArrow.addLine(to: CGPoint(x: 60 * s, y: 34 * s))
+        inhaleArrow.addLine(to: CGPoint(x: 62 * s, y: 32 * s))
+        ctx.stroke(inhaleArrow, with: .color(annotation), style: arrowStyle)
     }
 
     /// Cat-cow (Marjaryasana-Bitilasana) — 2 mini-silhouettes 4-pattes profil
@@ -724,16 +742,27 @@ struct YogaIllustration: View {
 
         // Bras / avant-bras
         if forearms {
-            // Avant-bras au sol : coude sous l'épaule, main devant
+            // **REFONDU P0** — différenciation Cat-cow standard vs avant-bras :
+            // avant-bras long et bien visible au sol + cercle accentuant le coude.
+            // Avant-bras au sol : coude sous l'épaule, main devant.
             let elbowX: CGFloat = shoulderX
             var armUpper = Path()
             armUpper.move(to: CGPoint(x: shoulderX, y: shoulderY))
             armUpper.addLine(to: CGPoint(x: elbowX, y: 46 * s))
             ctx.stroke(armUpper, with: .color(silhouette), style: stroke)
+            // Avant-bras au sol (trait épaissi pour signature)
             var forearmPath = Path()
             forearmPath.move(to: CGPoint(x: elbowX, y: 46 * s))
             forearmPath.addLine(to: CGPoint(x: handX, y: 46 * s))
-            ctx.stroke(forearmPath, with: .color(silhouette), style: stroke)
+            ctx.stroke(forearmPath, with: .color(silhouette),
+                       style: StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s * 1.3, lineCap: .round))
+            // Cercle accentuant le coude (signature variante avant-bras)
+            let elbowSize: CGFloat = 2.5 * s
+            ctx.stroke(
+                Path(ellipseIn: CGRect(x: elbowX - elbowSize / 2, y: 46 * s - elbowSize,
+                                        width: elbowSize, height: elbowSize)),
+                with: .color(silhouette), style: stroke
+            )
         } else {
             // Mains au sol (bras quasi-verticaux)
             var arm = Path()
@@ -789,17 +818,26 @@ struct YogaIllustration: View {
         let shoulderY: CGFloat = 30 * s
         let hipY: CGFloat = 30 * s
 
-        // Bras / avant-bras (idem Cat)
+        // Bras / avant-bras (idem Cat — même signature avant-bras avec cercle coude)
         if forearms {
             let elbowX: CGFloat = shoulderX
             var armUpper = Path()
             armUpper.move(to: CGPoint(x: shoulderX, y: shoulderY))
             armUpper.addLine(to: CGPoint(x: elbowX, y: 46 * s))
             ctx.stroke(armUpper, with: .color(silhouette), style: stroke)
+            // Avant-bras au sol (épaissi)
             var forearmPath = Path()
             forearmPath.move(to: CGPoint(x: elbowX, y: 46 * s))
             forearmPath.addLine(to: CGPoint(x: handX, y: 46 * s))
-            ctx.stroke(forearmPath, with: .color(silhouette), style: stroke)
+            ctx.stroke(forearmPath, with: .color(silhouette),
+                       style: StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s * 1.3, lineCap: .round))
+            // Cercle coude
+            let elbowSize: CGFloat = 2.5 * s
+            ctx.stroke(
+                Path(ellipseIn: CGRect(x: elbowX - elbowSize / 2, y: 46 * s - elbowSize,
+                                        width: elbowSize, height: elbowSize)),
+                with: .color(silhouette), style: stroke
+            )
         } else {
             var arm = Path()
             arm.move(to: CGPoint(x: handX, y: 46 * s))
@@ -847,55 +885,71 @@ struct YogaIllustration: View {
 
     // MARK: - Story 3.23 Tier 1 Jalon 3 — 4 poses haute fréquence
 
-    /// Sarvangasana (Chandelle / Shoulderstand) — corps inversé en V :
-    /// tête et nuque au sol côté gauche, dos vertical, jambes vers le haut.
-    /// Réf : Yoga Journal Salamba Sarvangasana.
+    /// Sarvangasana (Chandelle / Shoulderstand) — refondu (review agent expert).
+    /// **Signature inversion** : 2 flèches orange ↑ pieds + ↓ tête (sinon
+    /// la pose ressemble à un "?", surtout pour novice qui ne connaît pas).
+    /// Bras de support en V propre (épaule → coude au sol → main qui remonte
+    /// sur le bas du dos), pas un Z parasite.
+    /// Réf : Wikipedia Sarvangasana — "legs straightened to a vertical position,
+    /// back supported by hands".
     private func drawSarvangasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
-        // Tête et épaules au sol (à gauche, allongée). Le sol pointillé existant
-        // est suffisant : la tête est posée dessus.
-        let headX: CGFloat = 18 * s
-        let headY: CGFloat = 44 * s  // un peu au-dessus du sol y=46
         let headSize: CGFloat = 5 * s
+        let headX: CGFloat = 14 * s
+        let headY: CGFloat = 43 * s  // tête sur le sol
 
-        // Tête
+        // Tête (posée sur le sol pointillé)
         ctx.stroke(
             Path(ellipseIn: CGRect(x: headX - headSize / 2, y: headY - headSize / 2,
                                     width: headSize, height: headSize)),
             with: .color(silhouette), style: stroke
         )
 
-        // Épaules au sol (côté droit de la tête)
-        let shoulderX: CGFloat = headX + 8 * s  // 26
-        let shoulderY: CGFloat = 44 * s
+        // Cou + épaule (épaules sur le sol, juste à droite de la tête)
+        let shoulderX: CGFloat = 22 * s
+        let shoulderY: CGFloat = 43 * s
+        var neck = Path()
+        neck.move(to: CGPoint(x: headX + headSize / 2, y: headY))
+        neck.addLine(to: CGPoint(x: shoulderX, y: shoulderY))
+        ctx.stroke(neck, with: .color(silhouette), style: stroke)
 
-        // Dos vertical : épaule → hanche (vers le haut)
-        let hipX: CGFloat = shoulderX + 2 * s  // 28
-        let hipY: CGFloat = 22 * s
+        // Dos PARFAITEMENT vertical (signature chandelle)
+        let hipX: CGFloat = shoulderX
+        let hipY: CGFloat = 24 * s
         var trunk = Path()
         trunk.move(to: CGPoint(x: shoulderX, y: shoulderY))
         trunk.addLine(to: CGPoint(x: hipX, y: hipY))
         ctx.stroke(trunk, with: .color(silhouette), style: stroke)
 
-        // Jambes verticales : hanche → pieds (vers le haut)
+        // Jambes verticales (hanche → pieds vers le haut)
         let feetX: CGFloat = hipX
-        let feetY: CGFloat = 4 * s
+        let feetY: CGFloat = 6 * s
         var legs = Path()
         legs.move(to: CGPoint(x: hipX, y: hipY))
         legs.addLine(to: CGPoint(x: feetX, y: feetY))
         ctx.stroke(legs, with: .color(silhouette), style: stroke)
 
-        // Petits orteils horizontaux pour signature
+        // Orteils horizontaux (signature pieds en haut)
         var toes = Path()
-        toes.move(to: CGPoint(x: feetX - 2 * s, y: feetY))
-        toes.addLine(to: CGPoint(x: feetX + 2 * s, y: feetY))
+        toes.move(to: CGPoint(x: feetX - 3 * s, y: feetY))
+        toes.addLine(to: CGPoint(x: feetX + 3 * s, y: feetY))
         ctx.stroke(toes, with: .color(silhouette), style: stroke)
 
-        // Bras qui soutiennent le bas du dos (épaule → coude au sol → main au tronc)
+        // Bras de support : V propre (épaule → coude au sol → main remontant sur le dos)
         var supportArm = Path()
         supportArm.move(to: CGPoint(x: shoulderX, y: shoulderY))
-        supportArm.addLine(to: CGPoint(x: shoulderX + 4 * s, y: 44 * s))  // coude au sol
-        supportArm.addLine(to: CGPoint(x: shoulderX + 6 * s, y: 32 * s))  // main qui touche le dos
+        supportArm.addLine(to: CGPoint(x: shoulderX + 5 * s, y: 44 * s))   // coude sur le sol
+        supportArm.addLine(to: CGPoint(x: shoulderX + 1.5 * s, y: 34 * s)) // main remonte sur le bas du dos
         ctx.stroke(supportArm, with: .color(silhouette), style: stroke)
+
+        // **Annotation INVERSION** : flèche orange ↑ aux pieds (signal "tête en bas")
+        let arrowStyle = StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round)
+        var feetArrow = Path()
+        feetArrow.move(to: CGPoint(x: feetX + 6 * s, y: feetY + 6 * s))
+        feetArrow.addLine(to: CGPoint(x: feetX + 6 * s, y: feetY))
+        feetArrow.move(to: CGPoint(x: feetX + 4 * s, y: feetY + 2 * s))
+        feetArrow.addLine(to: CGPoint(x: feetX + 6 * s, y: feetY))
+        feetArrow.addLine(to: CGPoint(x: feetX + 8 * s, y: feetY + 2 * s))
+        ctx.stroke(feetArrow, with: .color(annotation), style: arrowStyle)
     }
 
     /// Setu Bandha (Pont fessier yoga) — allongée sur le dos, genoux pliés,
@@ -912,9 +966,9 @@ struct YogaIllustration: View {
             with: .color(silhouette), style: stroke
         )
 
-        // Épaules au sol (droite de la tête)
+        // Épaules au sol (droite de la tête) — sur le sol pointillé (y=44)
         let shoulderX: CGFloat = 20 * s
-        let shoulderY: CGFloat = 42 * s
+        let shoulderY: CGFloat = 44 * s
 
         // Pieds au sol côté droit
         let footX: CGFloat = 60 * s
@@ -924,9 +978,10 @@ struct YogaIllustration: View {
         let kneeX: CGFloat = footX - 2 * s
         let kneeY: CGFloat = 30 * s
 
-        // Bassin (hanche) levé en pont, position haute
+        // Bassin (hanche) levé en pont — refonte review agent : plus haut pour
+        // arc franc visible (était 26, mou) → 20.
         let hipX: CGFloat = 42 * s
-        let hipY: CGFloat = 26 * s  // haut = pont fait
+        let hipY: CGFloat = 20 * s
 
         // Tronc (épaule → hanche en montant)
         var trunk = Path()
@@ -986,16 +1041,19 @@ struct YogaIllustration: View {
         trunk.addLine(to: CGPoint(x: centerX, y: hipY))
         ctx.stroke(trunk, with: .color(silhouette), style: stroke)
 
-        // Bras croisés sur les genoux (vue face : 2 bras horizontaux qui posent
-        // sur les cuisses puis remontent vers les paumes)
+        // Bras pliés posés sur les genoux (refonte review agent — signature
+        // méditation Sukhasana, pas une croix). Épaule → coude descendant +
+        // avant-bras horizontal posé sur le genou.
         var armL = Path()
-        armL.move(to: CGPoint(x: centerX - 1 * s, y: 22 * s))  // épaule gauche
-        armL.addLine(to: CGPoint(x: centerX - 12 * s, y: 36 * s))  // main posée
+        armL.move(to: CGPoint(x: centerX - 1 * s, y: 22 * s))    // épaule gauche
+        armL.addLine(to: CGPoint(x: centerX - 8 * s, y: 32 * s)) // coude (au-dessus du genou gauche)
+        armL.addLine(to: CGPoint(x: centerX - 4 * s, y: 36 * s)) // main au repos sur le genou
         ctx.stroke(armL, with: .color(silhouette), style: stroke)
 
         var armR = Path()
         armR.move(to: CGPoint(x: centerX + 1 * s, y: 22 * s))
-        armR.addLine(to: CGPoint(x: centerX + 12 * s, y: 36 * s))
+        armR.addLine(to: CGPoint(x: centerX + 8 * s, y: 32 * s))
+        armR.addLine(to: CGPoint(x: centerX + 4 * s, y: 36 * s))
         ctx.stroke(armR, with: .color(silhouette), style: stroke)
 
         // Jambes croisées (Sukhasana) — 2 V de chaque côté
@@ -1066,88 +1124,150 @@ struct YogaIllustration: View {
         ctx.stroke(arrow2, with: .color(annotation), style: arrowStyle)
     }
 
+    /// drawMiniTadasana — silhouette debout COMPLÈTE refondue (review agent expert) :
+    /// tête + cou + tronc + 2 jambes distinctes + 2 bras + 2 pieds horizontaux.
+    /// Réf : Wikipedia Tadasana (Mountain Pose) — pieds joints/parallèles,
+    /// bras le long du corps, posture neutre.
     private func drawMiniTadasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle, originX: CGFloat) {
         let cx: CGFloat = (originX + 12) * s
-        // Tête
         let headSize: CGFloat = 4 * s
+
+        // Tête + cou
         ctx.stroke(
-            Path(ellipseIn: CGRect(x: cx - headSize / 2, y: 10 * s, width: headSize, height: headSize)),
+            Path(ellipseIn: CGRect(x: cx - headSize / 2, y: 8 * s, width: headSize, height: headSize)),
             with: .color(silhouette), style: stroke
         )
-        // Corps debout (cou → pieds)
-        var body = Path()
-        body.move(to: CGPoint(x: cx, y: 14 * s))
-        body.addLine(to: CGPoint(x: cx, y: 44 * s))
-        ctx.stroke(body, with: .color(silhouette), style: stroke)
-        // Bras le long du corps
+        var neck = Path()
+        neck.move(to: CGPoint(x: cx, y: 12 * s))
+        neck.addLine(to: CGPoint(x: cx, y: 14 * s))
+        ctx.stroke(neck, with: .color(silhouette), style: stroke)
+
+        // Tronc
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: cx, y: 14 * s))
+        trunk.addLine(to: CGPoint(x: cx, y: 28 * s))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+
+        // 2 jambes distinctes (V léger pour signature)
+        var legL = Path()
+        legL.move(to: CGPoint(x: cx, y: 28 * s))
+        legL.addLine(to: CGPoint(x: cx - 1.5 * s, y: 44 * s))
+        ctx.stroke(legL, with: .color(silhouette), style: stroke)
+        var legR = Path()
+        legR.move(to: CGPoint(x: cx, y: 28 * s))
+        legR.addLine(to: CGPoint(x: cx + 1.5 * s, y: 44 * s))
+        ctx.stroke(legR, with: .color(silhouette), style: stroke)
+
+        // 2 pieds horizontaux (signature pieds au sol — "pieds parallèles" Tadasana)
+        var feet = Path()
+        feet.move(to: CGPoint(x: cx - 3 * s, y: 44 * s))
+        feet.addLine(to: CGPoint(x: cx - 0.5 * s, y: 44 * s))
+        feet.move(to: CGPoint(x: cx + 0.5 * s, y: 44 * s))
+        feet.addLine(to: CGPoint(x: cx + 3 * s, y: 44 * s))
+        ctx.stroke(feet, with: .color(silhouette), style: stroke)
+
+        // 2 bras le long du corps (signature posture neutre)
         var armL = Path()
-        armL.move(to: CGPoint(x: cx - 1 * s, y: 18 * s))
-        armL.addLine(to: CGPoint(x: cx - 4 * s, y: 32 * s))
+        armL.move(to: CGPoint(x: cx - 1 * s, y: 15 * s))
+        armL.addLine(to: CGPoint(x: cx - 3 * s, y: 28 * s))
         ctx.stroke(armL, with: .color(silhouette), style: stroke)
         var armR = Path()
-        armR.move(to: CGPoint(x: cx + 1 * s, y: 18 * s))
-        armR.addLine(to: CGPoint(x: cx + 4 * s, y: 32 * s))
+        armR.move(to: CGPoint(x: cx + 1 * s, y: 15 * s))
+        armR.addLine(to: CGPoint(x: cx + 3 * s, y: 28 * s))
         ctx.stroke(armR, with: .color(silhouette), style: stroke)
     }
 
+    /// drawMiniUttanasana — pliée en deux refondue (review agent expert) :
+    /// jambes verticales + tronc HORIZONTAL plongeant vers les pieds + tête près
+    /// du sol + bras pendants. Anciennement le tronc et les jambes étaient
+    /// superposés sur le même axe vertical (illisible).
+    /// Réf : Wikipedia Uttanasana — flexion avant debout, mains vers les pieds.
     private func drawMiniUttanasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle, originX: CGFloat) {
         let cx: CGFloat = (originX + 12) * s
-        // Pieds au sol au centre
         let footY: CGFloat = 44 * s
-        // Tête en bas (proche des pieds), corps plié vers le sol
+        let hipY: CGFloat = 22 * s   // hanche en haut = pliure de la pose
         let headSize: CGFloat = 4 * s
-        ctx.stroke(
-            Path(ellipseIn: CGRect(x: cx - headSize / 2, y: 36 * s, width: headSize, height: headSize)),
-            with: .color(silhouette), style: stroke
-        )
-        // Jambes droites (pied → hanche en haut)
+
+        // Jambes verticales (pieds au sol → hanche en haut)
         var legs = Path()
         legs.move(to: CGPoint(x: cx, y: footY))
-        legs.addLine(to: CGPoint(x: cx, y: 18 * s))
+        legs.addLine(to: CGPoint(x: cx, y: hipY))
         ctx.stroke(legs, with: .color(silhouette), style: stroke)
-        // Tronc plié (hanche → tête en bas)
-        var trunk = Path()
-        trunk.move(to: CGPoint(x: cx, y: 18 * s))
-        trunk.addLine(to: CGPoint(x: cx, y: 36 * s))
-        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
-        // Bras pendants vers le sol
-        var arm = Path()
-        arm.move(to: CGPoint(x: cx - 1 * s, y: 22 * s))
-        arm.addLine(to: CGPoint(x: cx - 3 * s, y: 42 * s))
-        ctx.stroke(arm, with: .color(silhouette), style: stroke)
-    }
 
-    private func drawMiniChaturanga(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle, originX: CGFloat) {
-        let cy: CGFloat = 32 * s
-        // Corps horizontal (plank bas)
-        // Tête côté droit
-        let headSize: CGFloat = 4 * s
+        // Pieds horizontaux
+        var feet = Path()
+        feet.move(to: CGPoint(x: cx - 3 * s, y: footY))
+        feet.addLine(to: CGPoint(x: cx + 3 * s, y: footY))
+        ctx.stroke(feet, with: .color(silhouette), style: stroke)
+
+        // Tronc PLIÉ vers l'avant (hanche → épaule à l'horizontale vers la gauche)
+        let shoulderX = cx - 6 * s
+        let shoulderY: CGFloat = hipY + 4 * s  // tronc plonge vers le sol
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: cx, y: hipY))
+        trunk.addLine(to: CGPoint(x: shoulderX, y: shoulderY))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+
+        // Tête PRÈS DES PIEDS (au-dessus du sol, devant les tibias)
         ctx.stroke(
-            Path(ellipseIn: CGRect(x: (originX + 22) * s - headSize / 2, y: cy - headSize / 2,
+            Path(ellipseIn: CGRect(x: shoulderX - headSize - 1 * s, y: shoulderY + 1 * s,
                                     width: headSize, height: headSize)),
             with: .color(silhouette), style: stroke
         )
-        // Tronc horizontal
-        var trunk = Path()
-        trunk.move(to: CGPoint(x: (originX + 20) * s, y: cy))
-        trunk.addLine(to: CGPoint(x: (originX + 8) * s, y: cy))
-        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
-        // Jambes (tronc → talon côté gauche)
-        var legs = Path()
-        legs.move(to: CGPoint(x: (originX + 8) * s, y: cy))
-        legs.addLine(to: CGPoint(x: (originX + 2) * s, y: 36 * s))
-        ctx.stroke(legs, with: .color(silhouette), style: stroke)
-        // Bras au sol sous les épaules (coude plié, signature chaturanga)
+
+        // Bras pendants vers le sol depuis l'épaule
         var arm = Path()
-        arm.move(to: CGPoint(x: (originX + 20) * s, y: cy + 1 * s))
-        arm.addLine(to: CGPoint(x: (originX + 18) * s, y: 40 * s))
-        arm.addLine(to: CGPoint(x: (originX + 20) * s, y: 44 * s))
+        arm.move(to: CGPoint(x: shoulderX, y: shoulderY + 1 * s))
+        arm.addLine(to: CGPoint(x: shoulderX, y: footY - 2 * s))
         ctx.stroke(arm, with: .color(silhouette), style: stroke)
-        // Pieds (petits orteils au sol)
-        var feet = Path()
-        feet.move(to: CGPoint(x: (originX + 2) * s, y: 36 * s))
-        feet.addLine(to: CGPoint(x: (originX + 1) * s, y: 44 * s))
-        ctx.stroke(feet, with: .color(silhouette), style: stroke)
+    }
+
+    /// drawMiniChaturanga — planche basse refondue (review agent expert) :
+    /// corps HORIZONTAL proche du sol (y=36), coudes pliés ~90° sous les épaules,
+    /// pieds au sol côté droit. Anciennement les jambes plongeaient vers le sol
+    /// (ressemblait à un chien tête en bas).
+    /// Réf : Wikipedia Chaturanga Dandasana — planche basse, coudes près du corps.
+    private func drawMiniChaturanga(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle, originX: CGFloat) {
+        let bodyY: CGFloat = 36 * s   // corps proche du sol
+        let footY: CGFloat = 38 * s
+        let groundY: CGFloat = 44 * s
+        let headSize: CGFloat = 4 * s
+
+        // Tête côté gauche (regard vers le sol)
+        let headCx = (originX + 4) * s
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: headCx - headSize / 2, y: bodyY - headSize / 2,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+
+        // Tronc HORIZONTAL (épaule côté gauche → hanche côté droit)
+        let shoulderX = (originX + 6) * s
+        let hipX = (originX + 16) * s
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: shoulderX, y: bodyY))
+        trunk.addLine(to: CGPoint(x: hipX, y: bodyY))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+
+        // Jambes (hanche → pied légèrement plus bas = pieds au sol)
+        var legs = Path()
+        legs.move(to: CGPoint(x: hipX, y: bodyY))
+        legs.addLine(to: CGPoint(x: (originX + 22) * s, y: footY))
+        ctx.stroke(legs, with: .color(silhouette), style: stroke)
+
+        // Petits orteils (signature pieds au sol)
+        var toes = Path()
+        toes.move(to: CGPoint(x: (originX + 22) * s, y: footY))
+        toes.addLine(to: CGPoint(x: (originX + 23) * s, y: groundY))
+        ctx.stroke(toes, with: .color(silhouette), style: stroke)
+
+        // Bras pliés à 90° sous les épaules (signature chaturanga)
+        // épaule → coude (au sol) → main (au sol)
+        var arm = Path()
+        arm.move(to: CGPoint(x: shoulderX, y: bodyY + 1 * s))
+        arm.addLine(to: CGPoint(x: shoulderX + 2 * s, y: groundY - 1 * s))
+        arm.addLine(to: CGPoint(x: shoulderX, y: groundY))
+        ctx.stroke(arm, with: .color(silhouette), style: stroke)
     }
 }
 
