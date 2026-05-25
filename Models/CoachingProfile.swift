@@ -31,7 +31,17 @@ final class CoachingProfile {
     // Story 3.15 : flag idempotent du bootstrap dormants (selectTopN ×3 au 1er
     // launch post-onboarding). Mis à `true` par `DormantBootstrapService.bootstrapIfNeeded()`
     // avant toute persistance — pas de retry, pas de regénération auto.
+    // **Sync Supabase** via `CoachingProfileDTO` (idempotence globale).
     var bootstrappedDormants: Bool = false
+
+    // Story 3.21 hotfix Bug F — flag local jumeau de `bootstrappedDormants`,
+    // mais SwiftData-only : JAMAIS dans `CoachingProfileDTO` / `CoachingProfileUpsertDTO`.
+    // Mis à `true` après persistance OK des dormants sur CE device.
+    // Au cold launch d'un nouveau device : sync pull `bootstrappedDormants=true`
+    // (cloud) mais `bootstrappedDormantsLocal=false` (fresh local) → bootstrap
+    // re-déclenche en local pour repeupler les 3 dormants (puisque
+    // `AdaptedProgramRecord` n'est pas sync). Cf Story 3.21 hypothèse C.
+    var bootstrappedDormantsLocal: Bool = false
 
     var createdAt: Date = Date()
     var updatedAt: Date = Date()
@@ -52,6 +62,7 @@ final class CoachingProfile {
         self.disclaimerAcceptedAt = nil
         self.onboardingCompletedAt = nil
         self.bootstrappedDormants = false
+        self.bootstrappedDormantsLocal = false
         self.createdAt = Date()
         self.updatedAt = Date()
         self.isSoftDeleted = false

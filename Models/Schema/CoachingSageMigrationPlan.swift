@@ -18,11 +18,13 @@
 // RoutineRecord. Wipe simu obligatoire au premier run post-merge.
 // Story 3.12 (V9) — ajout AdaptedProgramRecord.customTitle. Wipe simu
 // obligatoire au premier run post-merge.
+// Story 3.21 hotfix (V10) — ajout CoachingProfile.bootstrappedDormantsLocal
+// (SwiftData-only, fix Bug F cross-device). Wipe simu obligatoire.
 import SwiftData
 
 enum CoachingSageMigrationPlan: SchemaMigrationPlan {
     static var schemas: [any VersionedSchema.Type] {
-        [SchemaV9.self]
+        [SchemaV10.self]
     }
 
     static var stages: [MigrationStage] {

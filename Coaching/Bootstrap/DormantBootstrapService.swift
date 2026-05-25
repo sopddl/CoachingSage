@@ -2,15 +2,19 @@
 // Story 3.15 — Bootstrap 3 dormants au 1er launch post-onboarding via `selectTopN`.
 //
 // **Conception** :
-//   - Idempotent : flag `coachingProfile.bootstrappedDormants` set à `true`
-//     AVANT toute persistance de dormant → pas de retry au prochain launch,
-//     même en cas d'échec partiel.
+//   - Idempotent : DEUX flags set à `true` AVANT toute persistance de dormant →
+//     pas de retry au prochain launch, même en cas d'échec partiel.
+//       * `bootstrappedDormants` : sync Supabase, idempotence globale user.
+//       * `bootstrappedDormantsLocal` : SwiftData-only, idempotence sur CE device
+//         uniquement (Story 3.21 hotfix Bug F). Skip ssi LES DEUX sont `true`.
+//         Cross-device : flag global=true mais flag local=false → bootstrap
+//         re-trigger pour repeupler les dormants en local (records non sync).
 //   - Cap-aware : respecte `dormantCap = 10`. Si déjà ≥10 dormants, no-op.
 //   - Silent on cap : catch `ProgramCapReached.dormant` silencieusement (cas
 //     pathologique où le cap est atteint pendant la boucle).
-//   - Single-trigger : appelé UNIQUEMENT à la fin de `OnboardingViewModel.finalize()`.
-//     Pour les users existants pre-3.15 (Sophie), le flip se fait manuellement
-//     via dashboard Supabase si nécessaire (cf AC13).
+//   - Trigger : `OnboardingViewModel.finalize()` ET `SessionDashboardViewModel.refresh()`
+//     (best-effort, idempotent par les deux flags). Le second trigger est ce qui
+//     permet au scénario cross-device de se rattraper au cold launch.
 //
 // **Algorithme** :
 //   1. fetch CoachingProfile. Si nil ou `bootstrappedDormants == true` → no-op.
@@ -77,8 +81,11 @@ final class DormantBootstrapService {
             Self.logger.error("bootstrap fetch profile failed: \(error.localizedDescription)")
             return 0
         }
-        guard !profile.bootstrappedDormants else {
-            Self.logger.debug("bootstrap skipped: flag already true")
+        // Story 3.21 hotfix Bug F : skip ssi LES DEUX flags `true`. Le flag local
+        // (SwiftData-only) distingue "ce device a déjà bootstrap" vs "le user a
+        // déjà bootstrap sur UN device" (flag global sync Supabase).
+        guard !(profile.bootstrappedDormants && profile.bootstrappedDormantsLocal) else {
+            Self.logger.debug("bootstrap skipped: both flags already true")
             return 0
         }
 
@@ -95,12 +102,14 @@ final class DormantBootstrapService {
             return 0
         }
 
-        // Étape 3 — flip flag AVANT toute persistance (idempotence)
+        // Étape 3 — flip LES DEUX flags AVANT toute persistance (idempotence
+        // globale + locale, cf Story 3.21 hotfix Bug F).
         profile.bootstrappedDormants = true
+        profile.bootstrappedDormantsLocal = true
         do {
             try await coachingProfileRepository.save(profile)
         } catch {
-            // Si le save throw, on n'a pas pu poser le flag → bootstrap n'est
+            // Si le save throw, on n'a pas pu poser les flags → bootstrap n'est
             // pas garanti idempotent. On préfère ne RIEN persister plutôt que
             // de potentiellement re-générer des dormants au prochain launch.
             Self.logger.error("bootstrap save flag failed: \(error.localizedDescription) — abort")
