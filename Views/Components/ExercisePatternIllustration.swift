@@ -66,7 +66,8 @@ struct ExercisePatternIllustration: View {
         case .pullVertical:
             tripletStrip { PullVerticalIllustration(sportCode: sportCode, frame: $0) }
         case .pushHorizontal:
-            tripletStrip { PushHorizontalIllustration(sportCode: sportCode, frame: $0) }
+            // Story 3.23 — propager exerciseName pour variante DB bench press
+            tripletStrip { PushHorizontalIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .pushVertical:
             tripletStrip { PushVerticalIllustration(sportCode: sportCode, frame: $0) }
         case .pullHorizontal:

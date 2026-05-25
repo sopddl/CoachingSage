@@ -1,9 +1,11 @@
 // Views/Components/Illustrations/YogaIllustration.swift
 // Story 3.19 Jalon 2c — 10 poses yoga V1 (Sophie 2026-05-23).
+// Story 3.23 Tier 1 Jalon 1 — ajout Dirgha pranayama + Cat-cow (+ variante
+// avant-bras) suite test simu Sophie 2026-05-24 (3 KO confirmés).
 // Pattern ombrelle `.yoga` → dispatch interne keyword `exerciseName` vers la
 // sub-pose. Toutes statiques 1 frame + annotations alignement orange.
 //
-// Poses V1 :
+// Poses V1 (Story 3.19) :
 //   - Chien tête en bas (Adho Mukha Svanasana)
 //   - Guerrier I, II (Virabhadrasana I, II)
 //   - Arbre (Vrksasana)
@@ -13,6 +15,10 @@
 //   - Triangle (Trikonasana)
 //   - Bateau (Navasana)
 //   - Savasana (cadavre)
+// Poses ajoutées Story 3.23 Tier 1 Jalon 1 :
+//   - Dirgha pranayama (respiration 3-parties allongée + 3 cercles)
+//   - Cat-cow (Marjaryasana-Bitilasana) — 4 pattes profil + flèches ↕
+//   - Cat-cow variante avant-bras
 //
 // Silhouette violet yoga (`Color.coachingSport(forCode: "yoga")` = `#9B6BB3`).
 import SwiftUI
@@ -36,17 +42,20 @@ struct YogaIllustration: View {
                        style: StrokeStyle(lineWidth: 1 * s, dash: [2 * s, 2 * s]))
 
             switch poseKind {
-            case .downwardDog: drawDownwardDog(ctx, s: s, stroke: stroke)
-            case .warrior1:    drawWarrior1(ctx, s: s, stroke: stroke)
-            case .warrior2:    drawWarrior2(ctx, s: s, stroke: stroke)
-            case .tree:        drawTree(ctx, s: s, stroke: stroke)
-            case .cobra:       drawCobra(ctx, s: s, stroke: stroke)
-            case .child:       drawChild(ctx, s: s, stroke: stroke)
-            case .forwardFold: drawForwardFold(ctx, s: s, stroke: stroke)
-            case .triangle:    drawTriangle(ctx, s: s, stroke: stroke)
-            case .boat:        drawBoat(ctx, s: s, stroke: stroke)
-            case .savasana:    drawSavasana(ctx, s: s, stroke: stroke)
-            case .unknown:     drawWarrior1(ctx, s: s, stroke: stroke) // fallback safe
+            case .downwardDog:     drawDownwardDog(ctx, s: s, stroke: stroke)
+            case .warrior1:        drawWarrior1(ctx, s: s, stroke: stroke)
+            case .warrior2:        drawWarrior2(ctx, s: s, stroke: stroke)
+            case .tree:            drawTree(ctx, s: s, stroke: stroke)
+            case .cobra:           drawCobra(ctx, s: s, stroke: stroke)
+            case .child:           drawChild(ctx, s: s, stroke: stroke)
+            case .forwardFold:     drawForwardFold(ctx, s: s, stroke: stroke)
+            case .triangle:        drawTriangle(ctx, s: s, stroke: stroke)
+            case .boat:            drawBoat(ctx, s: s, stroke: stroke)
+            case .savasana:        drawSavasana(ctx, s: s, stroke: stroke)
+            case .dirgha:          drawDirgha(ctx, s: s, stroke: stroke)
+            case .catCow:          drawCatCow(ctx, s: s, stroke: stroke, forearms: false)
+            case .catCowForearms:  drawCatCow(ctx, s: s, stroke: stroke, forearms: true)
+            case .unknown:         drawWarrior1(ctx, s: s, stroke: stroke) // fallback safe
             }
         }
         .frame(width: IllustrationStyle.staticFrameSize.width,
@@ -58,11 +67,31 @@ struct YogaIllustration: View {
     private enum YogaPose {
         case downwardDog, warrior1, warrior2, tree, cobra
         case child, forwardFold, triangle, boat, savasana
+        // Story 3.23 Tier 1 Jalon 1
+        case dirgha, catCow, catCowForearms
         case unknown
     }
 
     private var poseKind: YogaPose {
         guard let lower = exerciseName?.lowercased() else { return .unknown }
+        // Cat-cow variante avant-bras AVANT cat-cow (ordering matters : "avant-bras"
+        // doit matcher avant le simple "cat"/"cow").
+        if (lower.contains("avant-bras") || lower.contains("avant bras") || lower.contains("forearm"))
+            && (lower.contains("cat") || lower.contains("cow") || lower.contains("chat") || lower.contains("vache")
+                || lower.contains("marjaryasana") || lower.contains("bitilasana")) {
+            return .catCowForearms
+        }
+        if lower.contains("cat-cow") || lower.contains("cat cow") || lower.contains("chat-vache") || lower.contains("chat vache")
+            || lower.contains("marjaryasana") || lower.contains("bitilasana") {
+            return .catCow
+        }
+        // Dirgha pranayama (respiration 3-parties). NB: "pranayama" matche aussi
+        // d'autres respirations (Ujjayi, Nadi Shodhana…) à venir — pour l'instant
+        // on prend par défaut Dirgha (allongée 3-parties) qui est la plus visuelle.
+        if lower.contains("dirgha") || lower.contains("pranayama") || lower.contains("respiration 3")
+            || lower.contains("trois temps") || lower.contains("three part") {
+            return .dirgha
+        }
         if lower.contains("chien") || lower.contains("downward") || lower.contains("adho") { return .downwardDog }
         if lower.contains("guerrier 2") || lower.contains("guerrier ii") || lower.contains("warrior 2") || lower.contains("warrior ii") || lower.contains("virabhadrasana ii") { return .warrior2 }
         if lower.contains("guerrier") || lower.contains("warrior") || lower.contains("virabhadrasana") { return .warrior1 }
@@ -527,16 +556,164 @@ struct YogaIllustration: View {
         ctx.stroke(z, with: .color(annotation),
                    style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
     }
+
+    // MARK: - Story 3.23 Tier 1 Jalon 1 — Dirgha + Cat-cow
+
+    /// Dirgha pranayama — respiration 3-parties allongée sur le dos. 3 arcs
+    /// concentriques au-dessus du torse représentent les 3 niveaux : ventre →
+    /// thorax → clavicules. Réf : Iyengar, "Light on Pranayama". Silhouette
+    /// allongée style savasana, sans Z relaxation (ce n'est pas du repos).
+    private func drawDirgha(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        let headX: CGFloat = 14 * s
+        let headY: CGFloat = 42 * s
+        let headSize: CGFloat = 6 * s
+        let footX: CGFloat = 66 * s
+        let footY: CGFloat = 42 * s
+
+        // Tête à gauche (cercle)
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: headX - headSize / 2, y: headY - headSize / 2,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+
+        // Corps allongé (épaule → pied)
+        var bodyLine = Path()
+        bodyLine.move(to: CGPoint(x: headX + headSize / 2 + 1 * s, y: headY))
+        bodyLine.addLine(to: CGPoint(x: footX, y: footY))
+        ctx.stroke(bodyLine, with: .color(silhouette), style: stroke)
+
+        // Bras le long du corps
+        var armL = Path()
+        armL.move(to: CGPoint(x: headX + 6 * s, y: headY - 1 * s))
+        armL.addLine(to: CGPoint(x: headX + 22 * s, y: headY - 2 * s))
+        ctx.stroke(armL, with: .color(silhouette), style: stroke)
+
+        var armR = Path()
+        armR.move(to: CGPoint(x: headX + 6 * s, y: headY + 1 * s))
+        armR.addLine(to: CGPoint(x: headX + 22 * s, y: headY + 2 * s))
+        ctx.stroke(armR, with: .color(silhouette), style: stroke)
+
+        // 3 arcs concentriques au-dessus du torse (les 3 parties du souffle)
+        // Niveau 1 (ventre) — petit arc, position basse au-dessus de l'abdomen
+        let arcStyle = StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round)
+        var arc1 = Path()
+        arc1.addArc(center: CGPoint(x: 28 * s, y: 38 * s), radius: 4 * s,
+                    startAngle: .degrees(180), endAngle: .degrees(360), clockwise: false)
+        ctx.stroke(arc1, with: .color(annotation), style: arcStyle)
+
+        // Niveau 2 (thorax) — arc moyen, position milieu
+        var arc2 = Path()
+        arc2.addArc(center: CGPoint(x: 38 * s, y: 34 * s), radius: 6 * s,
+                    startAngle: .degrees(180), endAngle: .degrees(360), clockwise: false)
+        ctx.stroke(arc2, with: .color(annotation), style: arcStyle)
+
+        // Niveau 3 (clavicules) — grand arc, position haute
+        var arc3 = Path()
+        arc3.addArc(center: CGPoint(x: 50 * s, y: 30 * s), radius: 8 * s,
+                    startAngle: .degrees(180), endAngle: .degrees(360), clockwise: false)
+        ctx.stroke(arc3, with: .color(annotation), style: arcStyle)
+    }
+
+    /// Cat-cow (Marjaryasana-Bitilasana) — 4 pattes profil. Flèche verticale ↕
+    /// au centre du dos suggère l'alternance dos creux / dos rond.
+    /// `forearms == true` : variante avant-bras au sol (au lieu des mains).
+    /// Réf : Yoga Journal Cat-Cow Pose.
+    private func drawCatCow(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle, forearms: Bool) {
+        // Coordonnées clés (vue profil tête à gauche)
+        let handX: CGFloat = 18 * s
+        let handY: CGFloat = 46 * s
+        let kneeX: CGFloat = 58 * s
+        let kneeY: CGFloat = 46 * s
+        let shoulderX: CGFloat = 22 * s
+        let shoulderY: CGFloat = forearms ? 36 * s : 28 * s  // plus bas si avant-bras
+        let hipX: CGFloat = 58 * s
+        let hipY: CGFloat = 28 * s
+        let headCenterX: CGFloat = 14 * s
+        let headCenterY: CGFloat = forearms ? 34 * s : 26 * s
+
+        // Bras (mains ou avant-bras au sol)
+        if forearms {
+            // Avant-bras au sol horizontal : du coude (22, 36) à la main (12, 46)
+            // simplifié : un segment incliné mains→coude pour suggérer l'appui
+            var forearm = Path()
+            forearm.move(to: CGPoint(x: 12 * s, y: 46 * s))
+            forearm.addLine(to: CGPoint(x: 22 * s, y: 46 * s))
+            ctx.stroke(forearm, with: .color(silhouette), style: stroke)
+
+            // Bras (épaule → coude au sol)
+            var upperArm = Path()
+            upperArm.move(to: CGPoint(x: shoulderX, y: shoulderY))
+            upperArm.addLine(to: CGPoint(x: 22 * s, y: 46 * s))
+            ctx.stroke(upperArm, with: .color(silhouette), style: stroke)
+        } else {
+            // Bras tendus (main au sol → épaule)
+            var arm = Path()
+            arm.move(to: CGPoint(x: handX, y: handY))
+            arm.addLine(to: CGPoint(x: shoulderX, y: shoulderY))
+            ctx.stroke(arm, with: .color(silhouette), style: stroke)
+        }
+
+        // Cuisses (genou au sol → hanche)
+        var thigh = Path()
+        thigh.move(to: CGPoint(x: kneeX, y: kneeY))
+        thigh.addLine(to: CGPoint(x: hipX, y: hipY))
+        ctx.stroke(thigh, with: .color(silhouette), style: stroke)
+
+        // Tibia (genou → pied légèrement écarté en arrière)
+        var shin = Path()
+        shin.move(to: CGPoint(x: kneeX, y: kneeY))
+        shin.addLine(to: CGPoint(x: kneeX + 8 * s, y: 46 * s))
+        ctx.stroke(shin, with: .color(silhouette), style: stroke)
+
+        // Dos (épaule → hanche) — ligne droite, position "neutre" entre creux/rond
+        var back = Path()
+        back.move(to: CGPoint(x: shoulderX, y: shoulderY))
+        back.addLine(to: CGPoint(x: hipX, y: hipY))
+        ctx.stroke(back, with: .color(silhouette), style: stroke)
+
+        // Tête (cercle) avec cou
+        let headSize: CGFloat = 6 * s
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: headCenterX - headSize / 2, y: headCenterY - headSize / 2,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+        var neck = Path()
+        neck.move(to: CGPoint(x: headCenterX + headSize / 2, y: headCenterY))
+        neck.addLine(to: CGPoint(x: shoulderX, y: shoulderY))
+        ctx.stroke(neck, with: .color(silhouette), style: stroke)
+
+        // Annotation : flèche verticale ↕ au centre du dos (alternance dos creux / dos rond)
+        let midX: CGFloat = (shoulderX + hipX) / 2
+        let midY: CGFloat = (shoulderY + hipY) / 2
+        var arrow = Path()
+        // Trait vertical
+        arrow.move(to: CGPoint(x: midX, y: midY - 6 * s))
+        arrow.addLine(to: CGPoint(x: midX, y: midY + 6 * s))
+        // Tête haute (chevron ouvert vers le haut)
+        arrow.move(to: CGPoint(x: midX - 2 * s, y: midY - 4 * s))
+        arrow.addLine(to: CGPoint(x: midX, y: midY - 6 * s))
+        arrow.addLine(to: CGPoint(x: midX + 2 * s, y: midY - 4 * s))
+        // Tête basse (chevron ouvert vers le bas)
+        arrow.move(to: CGPoint(x: midX - 2 * s, y: midY + 4 * s))
+        arrow.addLine(to: CGPoint(x: midX, y: midY + 6 * s))
+        arrow.addLine(to: CGPoint(x: midX + 2 * s, y: midY + 4 * s))
+        ctx.stroke(arrow, with: .color(annotation),
+                   style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
+    }
 }
 
 #if DEBUG
-#Preview("Yoga — 10 poses") {
+#Preview("Yoga — 13 poses") {
     ScrollView {
         VStack(spacing: 12) {
             ForEach([
                 "Chien tête en bas", "Guerrier I", "Guerrier II",
                 "Arbre", "Cobra", "Enfant",
-                "Pince debout", "Triangle", "Bateau", "Savasana"
+                "Pince debout", "Triangle", "Bateau", "Savasana",
+                // Story 3.23 Tier 1 Jalon 1
+                "Dirgha pranayama", "Cat-cow", "Cat-cow sur les avant-bras"
             ], id: \.self) { name in
                 VStack(alignment: .leading) {
                     Text(verbatim: name).font(.caption)
