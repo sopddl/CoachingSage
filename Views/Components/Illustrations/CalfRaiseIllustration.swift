@@ -1,17 +1,22 @@
 // Views/Components/Illustrations/CalfRaiseIllustration.swift
-// Story 3.23 Tier 1 Jalon 2 — Calf raise 3 frames vue de PROFIL.
-// 228 occurrences × 23 templates dans la bibliothèque V2.
+// Story 3.23 Tier 1 Lot 0 — Calf raise refondu suite KO Sophie 2026-05-25.
+// 228 occurrences × 23 templates.
 //
-// Grille didactique (cf `feedback_illustration_didactic_grid`) :
-//   - Corps debout fixe (silhouette ne bouge pas en hauteur globale).
-//   - SEULS les talons décollent du sol entre frames (référentiel = pieds).
-//   - Sol pointillé sous les orteils en tout temps.
+// **Principe didactique** (review agent expert) :
+//   - Le tibia RESTE FIXE en y. Seul le PIED pivote autour de la pointe (orteils).
+//   - Sinon : la silhouette globale "monte" et l'œil interprète "personne qui saute"
+//     au lieu de "talon qui décolle".
+//   - Annotation : arc orange TANGENTIEL au talon (sens de rotation) + pied fantôme
+//     en pointillé montrant la position basse (référentiel "le talon a quitté ça").
+//   - Silhouette COMPLÈTE (tête + cou + tronc + 2 jambes + bras + pieds) pour
+//     que l'œil identifie d'abord la personne debout avant le mouvement subtil.
 //
-// Frame 0 : pieds plats au sol (talons en bas).
-// Frame 1 : demi-pointe (talons légèrement levés).
-// Frame 2 : pointe haute (talons en haut, fléchissement complet mollets).
+// Réf : Wikipedia "Calf raises" — plantarflexion, pivot = balls of feet,
+// heel raised as far as possible, knees stationary.
 //
-// Réf : Wikipedia "Calf raise".
+// Frame 0 : pied à plat (talon + orteils au sol).
+// Frame 1 : demi-pointe (~22°).
+// Frame 2 : pointe haute (~45°) + arc + pied fantôme en pointillé.
 import SwiftUI
 
 struct CalfRaiseIllustration: View {
@@ -24,83 +29,107 @@ struct CalfRaiseIllustration: View {
             let stroke = StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s, lineCap: .round, lineJoin: .round)
             let silhouette = IllustrationStyle.silhouette(sportCode: sportCode)
 
-            // Sol pointillé fixe en bas (ancrage référentiel)
+            // Sol pointillé fixe en bas
             var ground = Path()
             ground.move(to: CGPoint(x: 2 * s, y: 46 * s))
             ground.addLine(to: CGPoint(x: 46 * s, y: 46 * s))
             ctx.stroke(ground, with: .color(IllustrationStyle.groundLine),
                        style: StrokeStyle(lineWidth: 1 * s, dash: [2 * s, 2 * s]))
 
-            // Orteils FIXES au sol (pivot fixe — référentiel observateur)
-            let toeX: CGFloat = 26 * s
+            // === Pivot fixe = pointe du pied (orteils) ===
+            let toeX: CGFloat = 24 * s
             let toeY: CGFloat = 46 * s
 
-            // Talon : se décolle selon frame
-            let heelY: CGFloat
+            // Talon : pivote en arc autour de la pointe
+            let heelLength: CGFloat = 6 * s
+            let heelAngle: CGFloat  // 0 = pied à plat, π/4 = pointe haute
             switch frame {
-            case 0: heelY = 46 * s   // au sol
-            case 1: heelY = 42 * s   // demi-pointe
-            default: heelY = 38 * s  // pointe haute
+            case 0: heelAngle = 0
+            case 1: heelAngle = .pi / 8       // ~22°
+            default: heelAngle = .pi / 4      // ~45°
             }
-            let heelX: CGFloat = toeX - 6 * s
+            let heelX = toeX - heelLength * cos(heelAngle)
+            let heelY = toeY - heelLength * sin(heelAngle)
 
-            // Pied (talon → orteil) — segment qui s'incline progressivement
+            // Pied (talon → pointe) — trait épaissi pour signature franche
             var foot = Path()
             foot.move(to: CGPoint(x: heelX, y: heelY))
             foot.addLine(to: CGPoint(x: toeX, y: toeY))
-            ctx.stroke(foot, with: .color(silhouette), style: stroke)
+            ctx.stroke(foot, with: .color(silhouette),
+                       style: StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s * 1.3, lineCap: .round))
 
-            // Tibia : du talon vers le genou (FIXE en y, monte un peu si pointe)
-            // Ankle = au-dessus du talon, monte avec heelY
-            let ankleX: CGFloat = heelX
-            let ankleY: CGFloat = heelY - 1 * s
-            let kneeX: CGFloat = ankleX + 2 * s
+            // === Cheville FIXE — ne dépend PAS de frame ===
+            let ankleX: CGFloat = 22 * s
+            let ankleY: CGFloat = 43 * s
+
+            // Tibia (cheville fixe → genou fixe)
+            let kneeX: CGFloat = 22 * s
             let kneeY: CGFloat = 26 * s
             var shin = Path()
             shin.move(to: CGPoint(x: ankleX, y: ankleY))
             shin.addLine(to: CGPoint(x: kneeX, y: kneeY))
             ctx.stroke(shin, with: .color(silhouette), style: stroke)
 
-            // Cuisses (genou → hanche) — fixe
-            let hipX: CGFloat = kneeX + 1 * s
+            // Cuisse fixe (genou → hanche)
+            let hipX: CGFloat = 22 * s
             let hipY: CGFloat = 16 * s
             var thigh = Path()
             thigh.move(to: CGPoint(x: kneeX, y: kneeY))
             thigh.addLine(to: CGPoint(x: hipX, y: hipY))
             ctx.stroke(thigh, with: .color(silhouette), style: stroke)
 
-            // Tronc (hanche → épaule) — fixe
-            let shoulderX: CGFloat = hipX
+            // Tronc fixe (hanche → épaule)
+            let shoulderX: CGFloat = 22 * s
             let shoulderY: CGFloat = 8 * s
             var trunk = Path()
             trunk.move(to: CGPoint(x: hipX, y: hipY))
             trunk.addLine(to: CGPoint(x: shoulderX, y: shoulderY))
             ctx.stroke(trunk, with: .color(silhouette), style: stroke)
 
-            // Tête (au-dessus des épaules) — fixe
+            // Cou (signature personnage = différencie corps et tête)
+            var neck = Path()
+            neck.move(to: CGPoint(x: shoulderX, y: shoulderY))
+            neck.addLine(to: CGPoint(x: shoulderX, y: shoulderY - 2 * s))
+            ctx.stroke(neck, with: .color(silhouette), style: stroke)
+
+            // Tête
             let headSize: CGFloat = 5 * s
             ctx.stroke(
-                Path(ellipseIn: CGRect(x: shoulderX - headSize / 2, y: shoulderY - headSize - 1 * s,
+                Path(ellipseIn: CGRect(x: shoulderX - headSize / 2,
+                                        y: shoulderY - 2 * s - headSize,
                                         width: headSize, height: headSize)),
                 with: .color(silhouette), style: stroke
             )
 
-            // Bras le long du corps (épaule → main) — fixe
+            // Bras le long du corps (donne du corps à la silhouette pour lisibilité)
             var arm = Path()
             arm.move(to: CGPoint(x: shoulderX + 1 * s, y: shoulderY + 1 * s))
-            arm.addLine(to: CGPoint(x: shoulderX + 3 * s, y: 22 * s))
+            arm.addLine(to: CGPoint(x: shoulderX + 2 * s, y: 16 * s))
             ctx.stroke(arm, with: .color(silhouette), style: stroke)
 
-            // Annotation : flèche orange ↑ depuis le talon en frame 2 (contraction haute)
+            // === Annotation frame 2 : pied fantôme + arc tangentiel ===
             if frame == 2 {
-                let arrowStyle = StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round)
-                var arrow = Path()
-                arrow.move(to: CGPoint(x: heelX - 4 * s, y: 46 * s))
-                arrow.addLine(to: CGPoint(x: heelX - 4 * s, y: heelY))
-                arrow.move(to: CGPoint(x: heelX - 6 * s, y: heelY + 2 * s))
-                arrow.addLine(to: CGPoint(x: heelX - 4 * s, y: heelY))
-                arrow.addLine(to: CGPoint(x: heelX - 2 * s, y: heelY + 2 * s))
-                ctx.stroke(arrow, with: .color(IllustrationStyle.movementArrow), style: arrowStyle)
+                // Pied "fantôme" position basse en pointillé léger (référentiel)
+                var ghost = Path()
+                ghost.move(to: CGPoint(x: toeX - heelLength, y: toeY))
+                ghost.addLine(to: CGPoint(x: toeX, y: toeY))
+                ctx.stroke(ghost, with: .color(IllustrationStyle.groundLine),
+                           style: StrokeStyle(lineWidth: 1 * s, dash: [1.5 * s, 1.5 * s]))
+
+                // Arc orange tangentiel autour de la pointe (rotation du talon)
+                var arc = Path()
+                arc.addArc(center: CGPoint(x: toeX, y: toeY), radius: heelLength * 0.85,
+                           startAngle: .degrees(180), endAngle: .degrees(180 + 45), clockwise: true)
+                ctx.stroke(arc, with: .color(IllustrationStyle.movementArrow),
+                           style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round))
+
+                // Pointe de flèche au bout de l'arc (sens de rotation visible)
+                var arrowHead = Path()
+                arrowHead.move(to: CGPoint(x: heelX - 1.5 * s, y: heelY + 0.5 * s))
+                arrowHead.addLine(to: CGPoint(x: heelX, y: heelY))
+                arrowHead.addLine(to: CGPoint(x: heelX - 0.5 * s, y: heelY + 1.5 * s))
+                ctx.stroke(arrowHead, with: .color(IllustrationStyle.movementArrow),
+                           style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round))
             }
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)

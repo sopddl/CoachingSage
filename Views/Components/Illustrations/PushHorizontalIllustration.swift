@@ -132,111 +132,152 @@ struct PushHorizontalIllustration: View {
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)
     }
 
-    /// Story 3.23 Tier 1 Jalon 1 — variante DB bench press.
-    /// Banc horizontal marron (`equipment`), corps allongé sur le banc, 2 haltères
-    /// tenus bras tendus verticaux. Frame 0 = haltères en haut, frame 2 = près
-    /// de la poitrine. Le banc et le corps restent fixes, seuls les bras+haltères
-    /// bougent (référentiel observateur).
+    /// Story 3.23 Tier 1 — variante DB bench press, refonte vue profil rigoureuse.
+    /// **Structure squelettique (réf : Wikipedia Bench press → Dumbbell bench press)** :
+    ///   - Banc horizontal marron (équipement) y=30, 2 pieds verticaux au sol.
+    ///   - Corps allongé sur le banc : tête à gauche, tronc horizontal sur le banc,
+    ///     fesses sur banc, cuisses qui sortent au-delà du banc, genoux pliés ~90°,
+    ///     pieds plats au sol (canon DB bench).
+    ///   - **UN SEUL bras visible** (vue profil = le bras arrière est caché par le tronc) :
+    ///     épaule → coude → haltère. Le coude DESCEND latéralement quand l'haltère
+    ///     descend (coude sort vers l'arrière vu de profil).
+    ///   - 1 haltère visible (= halt`re du bras avant).
+    ///   - Frame 0 : bras tendu vertical au-dessus de la poitrine.
+    ///   - Frame 1 : à mi-hauteur (coude plié 45°, sortie latérale moyenne).
+    ///   - Frame 2 : haltère près de la poitrine (coude plié 90°, sortie max).
     private func drawDumbbellBench(ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
         let silhouette = IllustrationStyle.silhouette(sportCode: sportCode)
         let equipment = IllustrationStyle.equipment
         let load = IllustrationStyle.load
 
-        // Banc horizontal : segment épais (équipement marron)
+        // === Banc horizontal (équipement marron) ===
         let benchY: CGFloat = 30 * s
-        let benchXStart: CGFloat = 10 * s
-        let benchXEnd: CGFloat = 38 * s
         var bench = Path()
-        bench.move(to: CGPoint(x: benchXStart, y: benchY))
-        bench.addLine(to: CGPoint(x: benchXEnd, y: benchY))
+        bench.move(to: CGPoint(x: 8 * s, y: benchY))
+        bench.addLine(to: CGPoint(x: 36 * s, y: benchY))
         ctx.stroke(bench, with: .color(equipment),
                    style: StrokeStyle(lineWidth: 3 * s, lineCap: .round))
 
-        // Pieds du banc (2 traits verticaux)
+        // Pieds du banc (2 verticaux au sol)
         var leg1 = Path()
         leg1.move(to: CGPoint(x: 12 * s, y: benchY + 1 * s))
         leg1.addLine(to: CGPoint(x: 12 * s, y: 46 * s))
         ctx.stroke(leg1, with: .color(equipment),
                    style: StrokeStyle(lineWidth: 1.5 * s, lineCap: .round))
         var leg2 = Path()
-        leg2.move(to: CGPoint(x: 36 * s, y: benchY + 1 * s))
-        leg2.addLine(to: CGPoint(x: 36 * s, y: 46 * s))
+        leg2.move(to: CGPoint(x: 32 * s, y: benchY + 1 * s))
+        leg2.addLine(to: CGPoint(x: 32 * s, y: 46 * s))
         ctx.stroke(leg2, with: .color(equipment),
                    style: StrokeStyle(lineWidth: 1.5 * s, lineCap: .round))
 
-        // Corps allongé sur le banc (tête à gauche → pieds qui sortent à droite)
-        let headX: CGFloat = 8 * s
-        let headY: CGFloat = 28 * s
-        let headSize: CGFloat = 5 * s
-        let shoulderX: CGFloat = 13 * s
-        let shoulderY: CGFloat = 28 * s
-        let hipX: CGFloat = 30 * s
-        let hipY: CGFloat = 28 * s
+        // === Corps allongé sur le banc, tête à gauche ===
+        // Y du corps = juste au-dessus du banc (y=28, le banc est à y=30)
+        let bodyY: CGFloat = 28 * s
+        let headSize: CGFloat = 4 * s
+        let headCx: CGFloat = 6 * s
 
-        // Tête (cercle)
+        // Tête (cercle, dépasse du banc côté gauche)
         ctx.stroke(
-            Path(ellipseIn: CGRect(x: headX - headSize / 2, y: headY - headSize / 2,
+            Path(ellipseIn: CGRect(x: headCx - headSize / 2, y: bodyY - headSize / 2,
                                     width: headSize, height: headSize)),
             with: .color(silhouette), style: stroke
         )
 
-        // Tronc (épaule → hanche, posé sur banc)
+        // Épaule (point de référence du bras)
+        let shoulderX: CGFloat = 12 * s
+        let shoulderY: CGFloat = bodyY
+
+        // Tronc (épaule → hanche, allongé sur banc)
+        let hipX: CGFloat = 30 * s
         var trunk = Path()
         trunk.move(to: CGPoint(x: shoulderX, y: shoulderY))
-        trunk.addLine(to: CGPoint(x: hipX, y: hipY))
+        trunk.addLine(to: CGPoint(x: hipX, y: bodyY))
         ctx.stroke(trunk, with: .color(silhouette), style: stroke)
 
-        // Cuisses qui sortent du banc (hanche → genou plié à l'extérieur du banc)
+        // Cuisses sortent du banc (hanche → genou plié 90° à l'extérieur du banc)
+        let kneeX: CGFloat = 38 * s
+        let kneeY: CGFloat = 34 * s
         var thigh = Path()
-        thigh.move(to: CGPoint(x: hipX, y: hipY))
-        thigh.addLine(to: CGPoint(x: 40 * s, y: 34 * s))
+        thigh.move(to: CGPoint(x: hipX, y: bodyY))
+        thigh.addLine(to: CGPoint(x: kneeX, y: kneeY))
         ctx.stroke(thigh, with: .color(silhouette), style: stroke)
 
-        // Tibias (genou → pieds au sol)
+        // Tibias verticaux jusqu'aux pieds au sol
         var shin = Path()
-        shin.move(to: CGPoint(x: 40 * s, y: 34 * s))
-        shin.addLine(to: CGPoint(x: 40 * s, y: 46 * s))
+        shin.move(to: CGPoint(x: kneeX, y: kneeY))
+        shin.addLine(to: CGPoint(x: kneeX, y: 46 * s))
         ctx.stroke(shin, with: .color(silhouette), style: stroke)
 
-        // Bras + haltères selon frame
-        // Frame 0 : haltères haut (bras tendus verticaux au-dessus de la poitrine)
-        // Frame 1 : à mi-hauteur (coudes pliés ~45°)
-        // Frame 2 : haltères près de la poitrine (coudes très pliés, bras horizontaux)
+        // Petit pied horizontal pour signature
+        var foot = Path()
+        foot.move(to: CGPoint(x: kneeX, y: 46 * s))
+        foot.addLine(to: CGPoint(x: kneeX + 3 * s, y: 46 * s))
+        ctx.stroke(foot, with: .color(silhouette), style: stroke)
+
+        // === UN SEUL bras visible (= bras avant en profil) + haltère ===
+        // Position de l'haltère selon frame (au-dessus de la poitrine, x ~18)
+        // Frame 0 : haltère haut (bras tendu vertical)
+        // Frame 1 : haltère mi (coude plié 45°, sort latéralement)
+        // Frame 2 : haltère près poitrine (coude 90°, sort beaucoup)
+        let chestX: CGFloat = 18 * s
         let dumbbellY: CGFloat
-        let elbowOutset: CGFloat  // déviation latérale du coude
+        let elbowOutset: CGFloat  // déviation latérale du coude vers la droite (vers les pieds)
         switch frame {
-        case 0: dumbbellY = 10 * s; elbowOutset = 1 * s
-        case 1: dumbbellY = 18 * s; elbowOutset = 3 * s
-        default: dumbbellY = 24 * s; elbowOutset = 5 * s
+        case 0:
+            dumbbellY = 8 * s
+            elbowOutset = 0
+        case 1:
+            dumbbellY = 18 * s
+            elbowOutset = 4 * s
+        default:
+            dumbbellY = 24 * s  // haltère juste au-dessus de la poitrine
+            elbowOutset = 8 * s
         }
 
-        // Bras gauche (= bras visible avant en profil) : épaule → coude → haltère
-        let chestX: CGFloat = 17 * s  // position bras gauche au-dessus poitrine
-        let elbowYL = (shoulderY + dumbbellY) / 2
-        var armL = Path()
-        armL.move(to: CGPoint(x: chestX, y: shoulderY))
-        armL.addLine(to: CGPoint(x: chestX - elbowOutset, y: elbowYL))
-        armL.addLine(to: CGPoint(x: chestX, y: dumbbellY + 1 * s))
-        ctx.stroke(armL, with: .color(silhouette), style: stroke)
+        // Cou entre tête et épaule (refonte review agent — était absent)
+        var neckSeg = Path()
+        neckSeg.move(to: CGPoint(x: 8 * s, y: bodyY))
+        neckSeg.addLine(to: CGPoint(x: shoulderX, y: bodyY))
+        ctx.stroke(neckSeg, with: .color(silhouette), style: stroke)
 
-        // Bras droit (légèrement décalé)
-        let chestX2: CGFloat = 22 * s
-        var armR = Path()
-        armR.move(to: CGPoint(x: chestX2, y: shoulderY))
-        armR.addLine(to: CGPoint(x: chestX2 + elbowOutset, y: elbowYL))
-        armR.addLine(to: CGPoint(x: chestX2, y: dumbbellY + 1 * s))
-        ctx.stroke(armR, with: .color(silhouette), style: stroke)
+        // Bras refondu (review agent expert) : la main NE REVIENT PAS à la même x
+        // que l'épaule (sinon le bras = triangle replié). La main suit le coude
+        // avec léger décalage vers l'extérieur quand le coude se plie.
+        let elbowX: CGFloat = chestX + elbowOutset
+        let elbowY: CGFloat = (shoulderY + dumbbellY) / 2
+        let handX: CGFloat = chestX + elbowOutset * 0.3  // léger décalage vers l'extérieur
+        let handY: CGFloat = dumbbellY
+        var arm = Path()
+        arm.move(to: CGPoint(x: chestX, y: shoulderY))
+        arm.addLine(to: CGPoint(x: elbowX, y: elbowY))
+        arm.addLine(to: CGPoint(x: handX, y: handY))
+        ctx.stroke(arm, with: .color(silhouette), style: stroke)
 
-        // 2 haltères (cercles or `load`) — disques visibles aux 2 extrémités
-        let dbSize: CGFloat = 3 * s
-        for dbX in [chestX, chestX2] {
-            ctx.stroke(
-                Path(ellipseIn: CGRect(x: dbX - dbSize / 2, y: dumbbellY - dbSize / 2,
-                                        width: dbSize, height: dbSize)),
-                with: .color(load),
-                style: StrokeStyle(lineWidth: 1.5 * s, lineCap: .round)
-            )
-        }
+        // Haltère centrée sur la main (refonte review agent) — au lieu de chestX
+        let barCx: CGFloat = handX
+        let barWidth: CGFloat = 6 * s
+        var bar = Path()
+        bar.move(to: CGPoint(x: barCx - barWidth / 2, y: dumbbellY))
+        bar.addLine(to: CGPoint(x: barCx + barWidth / 2, y: dumbbellY))
+        ctx.stroke(bar, with: .color(load),
+                   style: StrokeStyle(lineWidth: 1.5 * s, lineCap: .round))
+        let diskSize: CGFloat = 3 * s
+        // Disque gauche
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: barCx - barWidth / 2 - diskSize / 2,
+                                    y: dumbbellY - diskSize / 2,
+                                    width: diskSize, height: diskSize)),
+            with: .color(load),
+            style: StrokeStyle(lineWidth: 1.5 * s, lineCap: .round)
+        )
+        // Disque droit
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: barCx + barWidth / 2 - diskSize / 2,
+                                    y: dumbbellY - diskSize / 2,
+                                    width: diskSize, height: diskSize)),
+            with: .color(load),
+            style: StrokeStyle(lineWidth: 1.5 * s, lineCap: .round)
+        )
     }
 }
 

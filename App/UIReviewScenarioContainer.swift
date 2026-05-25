@@ -188,6 +188,10 @@ struct UIReviewScenarioContainer: View {
             // **Story 3.19 Jalon 2b** — showcase TOUTES les illustrations
             // (15 patterns) en grille pour screenshot HTML overview Sophie.
             IllustrationsShowcaseScenarioView()
+        case "ui_review_illustrations_story_323":
+            // **Story 3.23 Lot 0** — ne montre QUE les 9 nouveaux dessins
+            // (refonte rigoureuse 2026-05-25). Permet screenshot sans scroll.
+            IllustrationsStory323ScenarioView()
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -895,6 +899,54 @@ private struct SessionDetailRunningScenarioView: View {
     }
 }
 
+// MARK: - Story 3.23 Lot 0 — IllustrationsStory323ScenarioView
+
+/// Showcase compact des 9 dessins refondus Story 3.23. **DB bench, Calf raise
+/// et Hip Thrust placés en TÊTE** car les 3 strengths sont les plus prioritaires
+/// à valider (Sophie ne comprend pas Calf raise + DB bench cité explicitement).
+/// Les 7 yogas suivent.
+private struct IllustrationsStory323ScenarioView: View {
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 10) {
+                Text(verbatim: "Story 3.23 — 9 dessins refondus 2026-05-25")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+
+                // 3 strengths d'abord (priorité Sophie)
+                story323Item(title: "Calf raise (3 frames) — REFONDU pivot pied", pattern: .calfRaise, exerciseName: nil)
+                story323Item(title: "DB bench press (variante, 3 frames) — REFONDU bras", pattern: .pushHorizontal, exerciseName: "DB bench press")
+                story323Item(title: "Hip Thrust (3 frames)", pattern: .hipThrust, exerciseName: nil)
+
+                // 7 yogas ensuite
+                story323Item(title: "Cat-cow (Marjaryasana-Bitilasana)", pattern: .yoga, exerciseName: "Cat-cow")
+                story323Item(title: "Cat-cow sur les avant-bras", pattern: .yoga, exerciseName: "Cat-cow sur les avant-bras")
+                story323Item(title: "Dirgha pranayama (3 parties)", pattern: .yoga, exerciseName: "Dirgha pranayama")
+                story323Item(title: "Sarvangasana (Chandelle) — REFONDU flèche", pattern: .yoga, exerciseName: "Sarvangasana")
+                story323Item(title: "Setu Bandha (Pont yoga)", pattern: .yoga, exerciseName: "Setu Bandha")
+                story323Item(title: "Ujjayi (souffle océan)", pattern: .yoga, exerciseName: "Ujjayi")
+                story323Item(title: "Surya Namaskar A — REFONDU 3 mini-poses", pattern: .yoga, exerciseName: "Surya Namaskar A")
+            }
+            .padding(16)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+
+    @ViewBuilder
+    private func story323Item(title: String, pattern: ExercisePattern, exerciseName: String?) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(verbatim: title)
+                .font(.caption2.bold())
+                .foregroundStyle(.secondary)
+            ExercisePatternIllustration(pattern: pattern, sportCode: pattern == .yoga ? "yoga" : "strengthTraining", exerciseName: exerciseName)
+                .padding(6)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(uiColor: .tertiarySystemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 6))
+        }
+    }
+}
+
 // MARK: - Story 3.19 Jalon 2b — IllustrationsShowcaseScenarioView
 
 /// Showcase 10 strength + 10 poses yoga (Sophie 2026-05-23). Décision produit :
@@ -937,6 +989,21 @@ private struct IllustrationsShowcaseScenarioView: View {
                     showcaseStatic(title: "Bateau (Navasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Bateau")
                     showcaseStatic(title: "Savasana (cadavre / relaxation)", pattern: .yoga, sportCode: "yoga", exerciseName: "Savasana")
                 }
+                Group {
+                    Text(verbatim: "STORY 3.23 — NOUVEAUX DESSINS (à refondre)").font(.headline).padding(.top, 8).foregroundStyle(.red)
+                    showcaseStatic(title: "Dirgha pranayama (3 parties)", pattern: .yoga, sportCode: "yoga", exerciseName: "Dirgha pranayama")
+                    showcaseStatic(title: "Cat-cow (Marjaryasana-Bitilasana)", pattern: .yoga, sportCode: "yoga", exerciseName: "Cat-cow")
+                    showcaseStatic(title: "Cat-cow sur les avant-bras", pattern: .yoga, sportCode: "yoga", exerciseName: "Cat-cow sur les avant-bras")
+                    showcaseStatic(title: "Sarvangasana (Chandelle)", pattern: .yoga, sportCode: "yoga", exerciseName: "Sarvangasana")
+                    showcaseStatic(title: "Setu Bandha (Pont yoga)", pattern: .yoga, sportCode: "yoga", exerciseName: "Setu Bandha")
+                }
+                Group {
+                    showcaseStatic(title: "Ujjayi (souffle océan)", pattern: .yoga, sportCode: "yoga", exerciseName: "Ujjayi")
+                    showcaseStatic(title: "Surya Namaskar A", pattern: .yoga, sportCode: "yoga", exerciseName: "Surya Namaskar A")
+                    showcaseSection(title: "Hip Thrust (3 frames)", pattern: .hipThrust, sportCode: "strengthTraining")
+                    showcaseSection(title: "Calf raise (3 frames)", pattern: .calfRaise, sportCode: "strengthTraining")
+                    showcaseDBBench()
+                }
             }
             .padding(16)
         }
@@ -950,6 +1017,22 @@ private struct IllustrationsShowcaseScenarioView: View {
                 .font(.caption.bold())
                 .foregroundStyle(.secondary)
             ExercisePatternIllustration(pattern: pattern, sportCode: sportCode)
+                .padding(8)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(uiColor: .tertiarySystemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
+    }
+
+    /// Story 3.23 — DB bench variante (transmet exerciseName au dispatcher pour
+    /// déclencher la branche `isDumbbellBench` dans PushHorizontalIllustration).
+    @ViewBuilder
+    private func showcaseDBBench() -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(verbatim: "DB bench press (variante PushHorizontal, 3 frames)")
+                .font(.caption.bold())
+                .foregroundStyle(.secondary)
+            ExercisePatternIllustration(pattern: .pushHorizontal, sportCode: "strengthTraining", exerciseName: "DB bench press")
                 .padding(8)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color(uiColor: .tertiarySystemBackground))
