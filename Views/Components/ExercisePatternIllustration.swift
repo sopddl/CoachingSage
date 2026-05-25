@@ -40,6 +40,10 @@ struct ExercisePatternIllustration: View {
             MobilityIllustration(sportCode: sportCode)
         case .yoga:
             YogaIllustration(sportCode: sportCode, exerciseName: exerciseName)
+        case .forearmPlank:
+            ForearmPlankIllustration(sportCode: sportCode)
+        case .birdDog:
+            BirdDogIllustration(sportCode: sportCode)
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels connus (running, cycling, swim continu).
@@ -82,6 +86,15 @@ struct ExercisePatternIllustration: View {
         case .calfRaise:
             // Story 3.23 Tier 1 Jalon 2 — 228 occ × 23 tpl
             tripletStrip { CalfRaiseIllustration(sportCode: sportCode, frame: $0) }
+        case .ytwActivation:
+            // Story 3.23 Lot 3 — Y-T-W rotator cuff activation
+            tripletStrip { YTWActivationIllustration(sportCode: sportCode, frame: $0) }
+        case .pallofPress:
+            // Story 3.23 Lot 3 — Pallof press câble anti-rotation
+            tripletStrip { PallofPressIllustration(sportCode: sportCode, frame: $0) }
+        case .nordicCurl:
+            // Story 3.23 Lot 3 — Nordic curl excentrique ischio
+            tripletStrip { NordicCurlIllustration(sportCode: sportCode, frame: $0) }
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels (foulée running, crawl, fractionné, drill rattrapé).

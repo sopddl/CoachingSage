@@ -194,8 +194,32 @@ public enum ExercisePatternResolver {
         if matchesAny(lower, ["lunge", "fente"]) {
             return .lunge
         }
+        // Story 3.23 Lot 3 — Bird-dog AVANT plank (mot "dog" peut être ambigu mais
+        // "bird-dog" est unique). Pattern dédié pour gainage 4 pattes diagonal.
+        if matchesAny(lower, ["bird-dog", "bird dog", "birddog", "chien d'arrêt", "chien d'arret"]) {
+            return .birdDog
+        }
+        // Story 3.23 Lot 3 — Forearm plank avant plank générique (low plank avant-bras).
+        if matchesAny(lower, ["forearm plank", "plank avant-bras", "plank avant bras",
+                              "planche avant-bras", "planche avant bras", "low plank"]) {
+            return .forearmPlank
+        }
         if matchesAny(lower, ["plank", "gainage", "crunch", "abs", "hollow"]) {
             return .core
+        }
+        // Story 3.23 Lot 3 — Y-T-W shoulder activation (rotator cuff prone)
+        if matchesAny(lower, ["y-t-w", "ytw", "y t w", "yt w", "shoulder activation",
+                              "activation épaule", "activation epaule", "rotator cuff"]) {
+            return .ytwActivation
+        }
+        // Story 3.23 Lot 3 — Pallof press câble (anti-rotation)
+        if matchesAny(lower, ["pallof", "pallof press", "anti-rotation", "anti rotation"]) {
+            return .pallofPress
+        }
+        // Story 3.23 Lot 3 — Nordic curl (excentrique ischio)
+        if matchesAny(lower, ["nordic", "nordic curl", "nordic hamstring",
+                              "ischio nordique", "ischio nordic"]) {
+            return .nordicCurl
         }
         if matchesAny(lower, ["jump", "burpee", "bondiss", "saut", "box jump"]) {
             return .plyo
