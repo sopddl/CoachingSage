@@ -66,7 +66,8 @@ struct ExercisePatternIllustration: View {
         case .pullVertical:
             tripletStrip { PullVerticalIllustration(sportCode: sportCode, frame: $0) }
         case .pushHorizontal:
-            tripletStrip { PushHorizontalIllustration(sportCode: sportCode, frame: $0) }
+            // Story 3.23 — propager exerciseName pour variante DB bench press
+            tripletStrip { PushHorizontalIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .pushVertical:
             tripletStrip { PushVerticalIllustration(sportCode: sportCode, frame: $0) }
         case .pullHorizontal:
@@ -75,6 +76,12 @@ struct ExercisePatternIllustration: View {
             tripletStrip { LungeIllustration(sportCode: sportCode, frame: $0) }
         case .plyo:
             tripletStrip { PlyoIllustration(sportCode: sportCode, frame: $0) }
+        case .hipThrust:
+            // Story 3.23 Tier 1 Jalon 2 — 246 occ × 33 tpl
+            tripletStrip { HipThrustIllustration(sportCode: sportCode, frame: $0) }
+        case .calfRaise:
+            // Story 3.23 Tier 1 Jalon 2 — 228 occ × 23 tpl
+            tripletStrip { CalfRaiseIllustration(sportCode: sportCode, frame: $0) }
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels (foulée running, crawl, fractionné, drill rattrapé).
