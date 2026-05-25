@@ -166,12 +166,15 @@ public enum ExercisePatternResolver {
         let lower = name.lowercased()
 
         // Strength keywords (ordre = du plus spécifique au plus générique)
-        // Story 3.23 — fix bug "Hip Thrust parfois .generic" : mapper hip thrust /
-        // glute bridge / pont fessier sur `.hinge` (mouvement charnière de hanche).
-        // En attendant un pattern dédié `.hipThrust` (V2), `.hinge` est le plus
-        // proche biomécaniquement.
+        // Story 3.23 Tier 1 Jalon 2 — pattern dédié `.hipThrust` (créé Jalon 2).
+        // Mapping initial Jalon 1 vers `.hinge` annulé.
         if matchesAny(lower, ["hip thrust", "glute bridge", "pont fessier", "pont glute"]) {
-            return .hinge
+            return .hipThrust
+        }
+        // Story 3.23 Tier 1 Jalon 2 — `.calfRaise` (228 occ × 23 templates).
+        // Détection mollets / calf / pointe / extension cheville.
+        if matchesAny(lower, ["calf raise", "calf-raise", "calves", "mollets", "extension cheville", "pointe pied", "demi-pointe"]) {
+            return .calfRaise
         }
         if matchesAny(lower, ["deadlift", "rdl", "soulevé de terre", "souleve de terre"]) {
             return .hinge

@@ -42,6 +42,11 @@ public enum SessionTipCatalog {
             return "coaching.tip.plyo"
         case .mobility:
             return "coaching.tip.mobility"
+        // Story 3.23 Tier 1 Jalon 2
+        case .hipThrust:
+            return "coaching.tip.hipThrust"
+        case .calfRaise:
+            return "coaching.tip.calfRaise"
         case .runEndurance:
             return "coaching.tip.run.endurance"
         case .runInterval:

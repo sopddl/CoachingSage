@@ -9,7 +9,7 @@
 import Foundation
 
 public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
-    // Strength (10 cases dont 2 statiques)
+    // Strength (12 cases dont 2 statiques)
     case squat
     case hinge
     case pushHorizontal
@@ -20,6 +20,9 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
     case core
     case plyo
     case mobility
+    // Story 3.23 Tier 1 Jalon 2 — patterns dédiés haute fréquence
+    case hipThrust   // 246 occ × 33 templates
+    case calfRaise   // 228 occ × 23 templates
 
     // Running (3 cases dont 1 statique)
     case runEndurance

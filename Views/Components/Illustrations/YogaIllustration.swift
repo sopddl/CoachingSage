@@ -19,6 +19,11 @@
 //   - Dirgha pranayama (respiration 3-parties allongée + 3 cercles)
 //   - Cat-cow (Marjaryasana-Bitilasana) — 4 pattes profil + flèches ↕
 //   - Cat-cow variante avant-bras
+// Poses ajoutées Story 3.23 Tier 1 Jalon 3 (haute fréquence inventaire agent) :
+//   - Sarvangasana / Chandelle (88 occ × 4 tpl)
+//   - Setu Bandha / Pont fessier (69 occ × 4 tpl)
+//   - Ujjayi / Pranayama souffle océan assise (75 occ × 4 tpl)
+//   - Surya Namaskar A / Salutation soleil A (97 occ × 3 tpl) — 3 mini-silhouettes
 //
 // Silhouette violet yoga (`Color.coachingSport(forCode: "yoga")` = `#9B6BB3`).
 import SwiftUI
@@ -55,6 +60,10 @@ struct YogaIllustration: View {
             case .dirgha:          drawDirgha(ctx, s: s, stroke: stroke)
             case .catCow:          drawCatCow(ctx, s: s, stroke: stroke, forearms: false)
             case .catCowForearms:  drawCatCow(ctx, s: s, stroke: stroke, forearms: true)
+            case .sarvangasana:    drawSarvangasana(ctx, s: s, stroke: stroke)
+            case .setuBandha:      drawSetuBandha(ctx, s: s, stroke: stroke)
+            case .ujjayi:          drawUjjayi(ctx, s: s, stroke: stroke)
+            case .suryaNamaskarA:  drawSuryaNamaskarA(ctx, s: s, stroke: stroke)
             case .unknown:         drawWarrior1(ctx, s: s, stroke: stroke) // fallback safe
             }
         }
@@ -69,6 +78,8 @@ struct YogaIllustration: View {
         case child, forwardFold, triangle, boat, savasana
         // Story 3.23 Tier 1 Jalon 1
         case dirgha, catCow, catCowForearms
+        // Story 3.23 Tier 1 Jalon 3
+        case sarvangasana, setuBandha, ujjayi, suryaNamaskarA
         case unknown
     }
 
@@ -85,12 +96,34 @@ struct YogaIllustration: View {
             || lower.contains("marjaryasana") || lower.contains("bitilasana") {
             return .catCow
         }
-        // Dirgha pranayama (respiration 3-parties). NB: "pranayama" matche aussi
-        // d'autres respirations (Ujjayi, Nadi Shodhana…) à venir — pour l'instant
-        // on prend par défaut Dirgha (allongée 3-parties) qui est la plus visuelle.
-        if lower.contains("dirgha") || lower.contains("pranayama") || lower.contains("respiration 3")
-            || lower.contains("trois temps") || lower.contains("three part") {
+        // Story 3.23 Tier 1 Jalon 3 — Ujjayi (souffle océan assise)
+        if lower.contains("ujjayi") || lower.contains("souffle océan") || lower.contains("souffle ocean")
+            || lower.contains("ocean breath") {
+            return .ujjayi
+        }
+        // Dirgha pranayama (respiration 3-parties). Ordre : Ujjayi avant Dirgha
+        // (sinon "pranayama" générique tomberait sur Dirgha pour Ujjayi).
+        if lower.contains("dirgha") || lower.contains("respiration 3") || lower.contains("respiration trois")
+            || lower.contains("trois temps") || lower.contains("three part")
+            || lower.contains("pranayama") {
             return .dirgha
+        }
+        // Story 3.23 Tier 1 Jalon 3 — Sarvangasana (chandelle/shoulderstand)
+        if lower.contains("sarvangasana") || lower.contains("chandelle") || lower.contains("shoulderstand")
+            || lower.contains("shoulder stand") {
+            return .sarvangasana
+        }
+        // Setu Bandha (pont fessier) — distinguer du "pont fessier" strength
+        // (hip thrust). Le sport yoga + le nom Setu/bridge yoga différencie.
+        if lower.contains("setu bandha") || lower.contains("setu-bandha")
+            || (lower.contains("pont") && (lower.contains("yoga") || lower.contains("setu")))
+            || lower.contains("bridge pose") {
+            return .setuBandha
+        }
+        // Surya Namaskar A (salutation soleil)
+        if lower.contains("surya namaskar") || lower.contains("salutation soleil")
+            || lower.contains("salutation au soleil") || lower.contains("sun salutation") {
+            return .suryaNamaskarA
         }
         if lower.contains("chien") || lower.contains("downward") || lower.contains("adho") { return .downwardDog }
         if lower.contains("guerrier 2") || lower.contains("guerrier ii") || lower.contains("warrior 2") || lower.contains("warrior ii") || lower.contains("virabhadrasana ii") { return .warrior2 }
@@ -702,10 +735,315 @@ struct YogaIllustration: View {
         ctx.stroke(arrow, with: .color(annotation),
                    style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
     }
+
+    // MARK: - Story 3.23 Tier 1 Jalon 3 — 4 poses haute fréquence
+
+    /// Sarvangasana (Chandelle / Shoulderstand) — corps inversé en V :
+    /// tête et nuque au sol côté gauche, dos vertical, jambes vers le haut.
+    /// Réf : Yoga Journal Salamba Sarvangasana.
+    private func drawSarvangasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        // Tête et épaules au sol (à gauche, allongée). Le sol pointillé existant
+        // est suffisant : la tête est posée dessus.
+        let headX: CGFloat = 18 * s
+        let headY: CGFloat = 44 * s  // un peu au-dessus du sol y=46
+        let headSize: CGFloat = 5 * s
+
+        // Tête
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: headX - headSize / 2, y: headY - headSize / 2,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+
+        // Épaules au sol (côté droit de la tête)
+        let shoulderX: CGFloat = headX + 8 * s  // 26
+        let shoulderY: CGFloat = 44 * s
+
+        // Dos vertical : épaule → hanche (vers le haut)
+        let hipX: CGFloat = shoulderX + 2 * s  // 28
+        let hipY: CGFloat = 22 * s
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: shoulderX, y: shoulderY))
+        trunk.addLine(to: CGPoint(x: hipX, y: hipY))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+
+        // Jambes verticales : hanche → pieds (vers le haut)
+        let feetX: CGFloat = hipX
+        let feetY: CGFloat = 4 * s
+        var legs = Path()
+        legs.move(to: CGPoint(x: hipX, y: hipY))
+        legs.addLine(to: CGPoint(x: feetX, y: feetY))
+        ctx.stroke(legs, with: .color(silhouette), style: stroke)
+
+        // Petits orteils horizontaux pour signature
+        var toes = Path()
+        toes.move(to: CGPoint(x: feetX - 2 * s, y: feetY))
+        toes.addLine(to: CGPoint(x: feetX + 2 * s, y: feetY))
+        ctx.stroke(toes, with: .color(silhouette), style: stroke)
+
+        // Bras qui soutiennent le bas du dos (épaule → coude au sol → main au tronc)
+        var supportArm = Path()
+        supportArm.move(to: CGPoint(x: shoulderX, y: shoulderY))
+        supportArm.addLine(to: CGPoint(x: shoulderX + 4 * s, y: 44 * s))  // coude au sol
+        supportArm.addLine(to: CGPoint(x: shoulderX + 6 * s, y: 32 * s))  // main qui touche le dos
+        ctx.stroke(supportArm, with: .color(silhouette), style: stroke)
+    }
+
+    /// Setu Bandha (Pont fessier yoga) — allongée sur le dos, genoux pliés,
+    /// pieds au sol, bassin levé. Distinct du Hip Thrust strength (pas de banc).
+    /// Réf : Yoga Journal Bridge Pose.
+    private func drawSetuBandha(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        // Tête au sol côté gauche
+        let headX: CGFloat = 12 * s
+        let headY: CGFloat = 42 * s
+        let headSize: CGFloat = 5 * s
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: headX - headSize / 2, y: headY - headSize / 2,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+
+        // Épaules au sol (droite de la tête)
+        let shoulderX: CGFloat = 20 * s
+        let shoulderY: CGFloat = 42 * s
+
+        // Pieds au sol côté droit
+        let footX: CGFloat = 60 * s
+        let footY: CGFloat = 46 * s
+
+        // Genoux levés au-dessus des pieds
+        let kneeX: CGFloat = footX - 2 * s
+        let kneeY: CGFloat = 30 * s
+
+        // Bassin (hanche) levé en pont, position haute
+        let hipX: CGFloat = 42 * s
+        let hipY: CGFloat = 26 * s  // haut = pont fait
+
+        // Tronc (épaule → hanche en montant)
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: shoulderX, y: shoulderY))
+        trunk.addLine(to: CGPoint(x: hipX, y: hipY))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+
+        // Cuisses (hanche → genou) — quasi horizontales
+        var thigh = Path()
+        thigh.move(to: CGPoint(x: hipX, y: hipY))
+        thigh.addLine(to: CGPoint(x: kneeX, y: kneeY))
+        ctx.stroke(thigh, with: .color(silhouette), style: stroke)
+
+        // Tibias (genou → pied)
+        var shin = Path()
+        shin.move(to: CGPoint(x: kneeX, y: kneeY))
+        shin.addLine(to: CGPoint(x: footX, y: footY))
+        ctx.stroke(shin, with: .color(silhouette), style: stroke)
+
+        // Bras le long du corps au sol (épaule → main au sol)
+        var arm = Path()
+        arm.move(to: CGPoint(x: shoulderX + 2 * s, y: shoulderY + 1 * s))
+        arm.addLine(to: CGPoint(x: shoulderX + 14 * s, y: 46 * s))
+        ctx.stroke(arm, with: .color(silhouette), style: stroke)
+
+        // Annotation : flèche ↑ au-dessus du bassin (contraction)
+        let arrowStyle = StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round)
+        var arrow = Path()
+        arrow.move(to: CGPoint(x: hipX, y: hipY + 2 * s))
+        arrow.addLine(to: CGPoint(x: hipX, y: hipY - 6 * s))
+        arrow.move(to: CGPoint(x: hipX - 2 * s, y: hipY - 4 * s))
+        arrow.addLine(to: CGPoint(x: hipX, y: hipY - 6 * s))
+        arrow.addLine(to: CGPoint(x: hipX + 2 * s, y: hipY - 4 * s))
+        ctx.stroke(arrow, with: .color(annotation), style: arrowStyle)
+    }
+
+    /// Ujjayi (souffle océan) — assise jambes croisées, annotation cercle
+    /// souffle autour du cou/gorge (zone de contraction du souffle océan).
+    /// Réf : Yoga Journal Ujjayi.
+    private func drawUjjayi(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        // Vue face (silhouette assise vue de devant)
+        let centerX: CGFloat = 40 * s
+        let hipY: CGFloat = 38 * s
+
+        // Tête (face)
+        let headSize: CGFloat = 6 * s
+        let headY: CGFloat = 14 * s
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: centerX - headSize / 2, y: headY - headSize / 2,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+
+        // Tronc (épaule → hanche)
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: centerX, y: headY + headSize / 2))
+        trunk.addLine(to: CGPoint(x: centerX, y: hipY))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+
+        // Bras croisés sur les genoux (vue face : 2 bras horizontaux qui posent
+        // sur les cuisses puis remontent vers les paumes)
+        var armL = Path()
+        armL.move(to: CGPoint(x: centerX - 1 * s, y: 22 * s))  // épaule gauche
+        armL.addLine(to: CGPoint(x: centerX - 12 * s, y: 36 * s))  // main posée
+        ctx.stroke(armL, with: .color(silhouette), style: stroke)
+
+        var armR = Path()
+        armR.move(to: CGPoint(x: centerX + 1 * s, y: 22 * s))
+        armR.addLine(to: CGPoint(x: centerX + 12 * s, y: 36 * s))
+        ctx.stroke(armR, with: .color(silhouette), style: stroke)
+
+        // Jambes croisées (Sukhasana) — 2 V de chaque côté
+        var legL = Path()
+        legL.move(to: CGPoint(x: centerX, y: hipY))
+        legL.addLine(to: CGPoint(x: centerX - 14 * s, y: 44 * s))
+        ctx.stroke(legL, with: .color(silhouette), style: stroke)
+        var legR = Path()
+        legR.move(to: CGPoint(x: centerX, y: hipY))
+        legR.addLine(to: CGPoint(x: centerX + 14 * s, y: 44 * s))
+        ctx.stroke(legR, with: .color(silhouette), style: stroke)
+
+        // Pieds croisés au centre (petite ligne horizontale)
+        var feet = Path()
+        feet.move(to: CGPoint(x: centerX - 8 * s, y: 44 * s))
+        feet.addLine(to: CGPoint(x: centerX + 8 * s, y: 44 * s))
+        ctx.stroke(feet, with: .color(silhouette), style: stroke)
+
+        // Annotation : cercle souffle autour de la gorge (signature Ujjayi)
+        let breathCircleY: CGFloat = 20 * s
+        let breathRadius: CGFloat = 5 * s
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: centerX - breathRadius, y: breathCircleY - breathRadius,
+                                    width: breathRadius * 2, height: breathRadius * 2)),
+            with: .color(annotation),
+            style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, dash: [2 * s, 1.5 * s])
+        )
+        // Flèche d'entrée souffle (côté gauche du cercle)
+        let arrowStyle = StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round)
+        var inhale = Path()
+        inhale.move(to: CGPoint(x: centerX - 12 * s, y: breathCircleY))
+        inhale.addLine(to: CGPoint(x: centerX - 6 * s, y: breathCircleY))
+        inhale.move(to: CGPoint(x: centerX - 8 * s, y: breathCircleY - 1.5 * s))
+        inhale.addLine(to: CGPoint(x: centerX - 6 * s, y: breathCircleY))
+        inhale.addLine(to: CGPoint(x: centerX - 8 * s, y: breathCircleY + 1.5 * s))
+        ctx.stroke(inhale, with: .color(annotation), style: arrowStyle)
+    }
+
+    /// Surya Namaskar A — 3 mini-silhouettes côte à côte représentant
+    /// l'essence du flow : Tadasana → Uttanasana → Chaturanga.
+    /// Forme condensée car séquence 12 postures non visualisable en 1 frame.
+    /// Réf : Yoga Journal Sun Salutation A.
+    private func drawSuryaNamaskarA(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        // 3 zones côte à côte : x=[2-26] | [28-52] | [54-78]
+        // 1. Tadasana (debout)
+        drawMiniTadasana(ctx, s: s, stroke: stroke, originX: 4)
+        // 2. Uttanasana (plié avant)
+        drawMiniUttanasana(ctx, s: s, stroke: stroke, originX: 28)
+        // 3. Chaturanga (plank bas)
+        drawMiniChaturanga(ctx, s: s, stroke: stroke, originX: 52)
+
+        // 2 flèches entre les mini-poses (référentiel : la séquence se déroule)
+        let arrowStyle = StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round)
+        var arrow1 = Path()
+        arrow1.move(to: CGPoint(x: 25 * s, y: 24 * s))
+        arrow1.addLine(to: CGPoint(x: 28 * s, y: 24 * s))
+        arrow1.move(to: CGPoint(x: 26.5 * s, y: 22.5 * s))
+        arrow1.addLine(to: CGPoint(x: 28 * s, y: 24 * s))
+        arrow1.addLine(to: CGPoint(x: 26.5 * s, y: 25.5 * s))
+        ctx.stroke(arrow1, with: .color(annotation), style: arrowStyle)
+
+        var arrow2 = Path()
+        arrow2.move(to: CGPoint(x: 50 * s, y: 24 * s))
+        arrow2.addLine(to: CGPoint(x: 53 * s, y: 24 * s))
+        arrow2.move(to: CGPoint(x: 51.5 * s, y: 22.5 * s))
+        arrow2.addLine(to: CGPoint(x: 53 * s, y: 24 * s))
+        arrow2.addLine(to: CGPoint(x: 51.5 * s, y: 25.5 * s))
+        ctx.stroke(arrow2, with: .color(annotation), style: arrowStyle)
+    }
+
+    private func drawMiniTadasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle, originX: CGFloat) {
+        let cx: CGFloat = (originX + 12) * s
+        // Tête
+        let headSize: CGFloat = 4 * s
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: cx - headSize / 2, y: 10 * s, width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+        // Corps debout (cou → pieds)
+        var body = Path()
+        body.move(to: CGPoint(x: cx, y: 14 * s))
+        body.addLine(to: CGPoint(x: cx, y: 44 * s))
+        ctx.stroke(body, with: .color(silhouette), style: stroke)
+        // Bras le long du corps
+        var armL = Path()
+        armL.move(to: CGPoint(x: cx - 1 * s, y: 18 * s))
+        armL.addLine(to: CGPoint(x: cx - 4 * s, y: 32 * s))
+        ctx.stroke(armL, with: .color(silhouette), style: stroke)
+        var armR = Path()
+        armR.move(to: CGPoint(x: cx + 1 * s, y: 18 * s))
+        armR.addLine(to: CGPoint(x: cx + 4 * s, y: 32 * s))
+        ctx.stroke(armR, with: .color(silhouette), style: stroke)
+    }
+
+    private func drawMiniUttanasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle, originX: CGFloat) {
+        let cx: CGFloat = (originX + 12) * s
+        // Pieds au sol au centre
+        let footY: CGFloat = 44 * s
+        // Tête en bas (proche des pieds), corps plié vers le sol
+        let headSize: CGFloat = 4 * s
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: cx - headSize / 2, y: 36 * s, width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+        // Jambes droites (pied → hanche en haut)
+        var legs = Path()
+        legs.move(to: CGPoint(x: cx, y: footY))
+        legs.addLine(to: CGPoint(x: cx, y: 18 * s))
+        ctx.stroke(legs, with: .color(silhouette), style: stroke)
+        // Tronc plié (hanche → tête en bas)
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: cx, y: 18 * s))
+        trunk.addLine(to: CGPoint(x: cx, y: 36 * s))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+        // Bras pendants vers le sol
+        var arm = Path()
+        arm.move(to: CGPoint(x: cx - 1 * s, y: 22 * s))
+        arm.addLine(to: CGPoint(x: cx - 3 * s, y: 42 * s))
+        ctx.stroke(arm, with: .color(silhouette), style: stroke)
+    }
+
+    private func drawMiniChaturanga(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle, originX: CGFloat) {
+        let cy: CGFloat = 32 * s
+        // Corps horizontal (plank bas)
+        // Tête côté droit
+        let headSize: CGFloat = 4 * s
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: (originX + 22) * s - headSize / 2, y: cy - headSize / 2,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+        // Tronc horizontal
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: (originX + 20) * s, y: cy))
+        trunk.addLine(to: CGPoint(x: (originX + 8) * s, y: cy))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+        // Jambes (tronc → talon côté gauche)
+        var legs = Path()
+        legs.move(to: CGPoint(x: (originX + 8) * s, y: cy))
+        legs.addLine(to: CGPoint(x: (originX + 2) * s, y: 36 * s))
+        ctx.stroke(legs, with: .color(silhouette), style: stroke)
+        // Bras au sol sous les épaules (coude plié, signature chaturanga)
+        var arm = Path()
+        arm.move(to: CGPoint(x: (originX + 20) * s, y: cy + 1 * s))
+        arm.addLine(to: CGPoint(x: (originX + 18) * s, y: 40 * s))
+        arm.addLine(to: CGPoint(x: (originX + 20) * s, y: 44 * s))
+        ctx.stroke(arm, with: .color(silhouette), style: stroke)
+        // Pieds (petits orteils au sol)
+        var feet = Path()
+        feet.move(to: CGPoint(x: (originX + 2) * s, y: 36 * s))
+        feet.addLine(to: CGPoint(x: (originX + 1) * s, y: 44 * s))
+        ctx.stroke(feet, with: .color(silhouette), style: stroke)
+    }
 }
 
 #if DEBUG
-#Preview("Yoga — 13 poses") {
+#Preview("Yoga — 17 poses") {
     ScrollView {
         VStack(spacing: 12) {
             ForEach([
@@ -713,7 +1051,10 @@ struct YogaIllustration: View {
                 "Arbre", "Cobra", "Enfant",
                 "Pince debout", "Triangle", "Bateau", "Savasana",
                 // Story 3.23 Tier 1 Jalon 1
-                "Dirgha pranayama", "Cat-cow", "Cat-cow sur les avant-bras"
+                "Dirgha pranayama", "Cat-cow", "Cat-cow sur les avant-bras",
+                // Story 3.23 Tier 1 Jalon 3
+                "Sarvangasana (Chandelle)", "Setu Bandha (Pont yoga)",
+                "Ujjayi (souffle océan)", "Surya Namaskar A"
             ], id: \.self) { name in
                 VStack(alignment: .leading) {
                     Text(verbatim: name).font(.caption)
