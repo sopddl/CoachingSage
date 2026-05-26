@@ -250,6 +250,17 @@ public enum ExercisePatternResolver {
         if matchesAny(lower, ["biceps curl", "curl biceps", "curl haltères", "curl halteres", "biceps haltère", "biceps haltere"]) {
             return .bicepsCurl
         }
+        // Story 3.23 Lot 7 — Triceps pushdown câble
+        if matchesAny(lower, ["triceps pushdown", "triceps push-down", "pushdown triceps",
+                              "extension triceps", "triceps câble", "triceps cable"]) {
+            return .tricepsPushdown
+        }
+        // Story 3.23 Lot 7 — Lateral raises haltères
+        if matchesAny(lower, ["lateral raise", "lateral raises", "side raise", "side raises",
+                              "élévation latérale", "elevation laterale",
+                              "écarté épaule", "ecarte epaule"]) {
+            return .lateralRaises
+        }
         // Squat en dernier (mot court qui pourrait matcher accidentellement)
         if matchesAny(lower, ["squat", "goblet"]) {
             return .squat

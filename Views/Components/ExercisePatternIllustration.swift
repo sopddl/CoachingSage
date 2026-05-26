@@ -112,6 +112,12 @@ struct ExercisePatternIllustration: View {
         case .bicepsCurl:
             // Story 3.23 Lot 5 — Biceps curl haltères
             tripletStrip { BicepsCurlIllustration(sportCode: sportCode, frame: $0) }
+        case .tricepsPushdown:
+            // Story 3.23 Lot 7 — Triceps pushdown câble
+            tripletStrip { TricepsPushdownIllustration(sportCode: sportCode, frame: $0) }
+        case .lateralRaises:
+            // Story 3.23 Lot 7 — Lateral raises haltères deltoïdes
+            tripletStrip { LateralRaisesIllustration(sportCode: sportCode, frame: $0) }
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels (foulée running, crawl, fractionné, drill rattrapé).

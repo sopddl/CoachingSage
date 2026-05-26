@@ -71,6 +71,11 @@ public enum SessionTipCatalog {
             return "coaching.tip.foamRolling"
         case .bicepsCurl:
             return "coaching.tip.bicepsCurl"
+        // Story 3.23 Lot 7 — patterns reste
+        case .tricepsPushdown:
+            return "coaching.tip.tricepsPushdown"
+        case .lateralRaises:
+            return "coaching.tip.lateralRaises"
         case .runEndurance:
             return "coaching.tip.run.endurance"
         case .runInterval:

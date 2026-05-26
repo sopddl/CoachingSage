@@ -211,6 +211,9 @@ struct UIReviewScenarioContainer: View {
         case "ui_review_illustrations_story_323_lot6":
             // **Story 3.23 Lot 6** — 10 nouvelles poses yoga reste catalogue.
             IllustrationsStory323Lot6ScenarioView()
+        case "ui_review_illustrations_story_323_lot7":
+            // **Story 3.23 Lot 7** — Triceps pushdown + Lateral raises (finition).
+            IllustrationsStory323Lot7ScenarioView()
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -1242,6 +1245,48 @@ private struct IllustrationsStory323Lot6ScenarioView: View {
             .padding(8)
         }
         .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+// MARK: - Story 3.23 Lot 7 — IllustrationsStory323Lot7ScenarioView
+
+/// Showcase Lot 7 — 2 patterns strength finition catalogue.
+private struct IllustrationsStory323Lot7ScenarioView: View {
+    var body: some View {
+        let cols = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(verbatim: "Story 3.23 Lot 7 — 2 strength finition")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                LazyVGrid(columns: cols, spacing: 6) {
+                    lot7Item(title: "Triceps pushdown", pattern: .tricepsPushdown)
+                    lot7Item(title: "Lateral raises", pattern: .lateralRaises)
+                }
+            }
+            .padding(8)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+
+    @ViewBuilder
+    private func lot7Item(title: String, pattern: ExercisePattern) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(verbatim: title)
+                .font(.system(size: 9, weight: .bold))
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+            ExercisePatternIllustration(
+                pattern: pattern,
+                sportCode: "strengthTraining",
+                exerciseName: nil,
+                size: 64
+            )
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(4)
+            .background(Color(uiColor: .tertiarySystemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 4))
+        }
     }
 }
 

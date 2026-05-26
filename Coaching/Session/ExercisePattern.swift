@@ -39,6 +39,10 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
     case foamRolling   // statique — appui sur cylindre orange
     case bicepsCurl    // 3 frames — flexion coude haltères
 
+    // Story 3.23 Lot 7 — patterns reste (finition catalogue)
+    case tricepsPushdown // 3 frames — câble HAUT extension coude
+    case lateralRaises   // 3 frames — haltères élévation latérale deltoïdes
+
     // Running (3 cases dont 1 statique)
     case runEndurance
     case runInterval
