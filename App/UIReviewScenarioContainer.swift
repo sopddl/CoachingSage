@@ -192,6 +192,28 @@ struct UIReviewScenarioContainer: View {
             // **Story 3.23 Lot 0** — ne montre QUE les 9 nouveaux dessins
             // (refonte rigoureuse 2026-05-25). Permet screenshot sans scroll.
             IllustrationsStory323ScenarioView()
+        case "ui_review_illustrations_story_323_lot1":
+            // **Story 3.23 Lot 1** — 5 SUSPECT V1 à valider (Arbre, Enfant,
+            // Bateau, Lunge, Mobility quad). Screenshot focalisé pour décider
+            // OK / retouche sans scroll.
+            IllustrationsStory323Lot1ScenarioView()
+        case "ui_review_illustrations_story_323_lots123":
+            // **Story 3.23 Lots 1+2+3** — 15 dessins (5 SUSPECT V1 refondus + 5
+            // nouveaux yoga haute fréquence + 5 nouveaux strength haute fréquence).
+            // Batch validation Sophie 2026-05-25.
+            IllustrationsStory323Lots123ScenarioView()
+        case "ui_review_illustrations_story_323_lot4":
+            // **Story 3.23 Lot 4** — 10 nouvelles poses yoga moyenne fréquence.
+            IllustrationsStory323Lot4ScenarioView()
+        case "ui_review_illustrations_story_323_lot5":
+            // **Story 3.23 Lot 5** — 6 nouveaux patterns strength moyenne fréquence.
+            IllustrationsStory323Lot5ScenarioView()
+        case "ui_review_illustrations_story_323_lot6":
+            // **Story 3.23 Lot 6** — 10 nouvelles poses yoga reste catalogue.
+            IllustrationsStory323Lot6ScenarioView()
+        case "ui_review_illustrations_story_323_lot7":
+            // **Story 3.23 Lot 7** — Triceps pushdown + Lateral raises (finition).
+            IllustrationsStory323Lot7ScenarioView()
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -943,6 +965,327 @@ private struct IllustrationsStory323ScenarioView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color(uiColor: .tertiarySystemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 6))
+        }
+    }
+}
+
+// MARK: - Story 3.23 Lot 1 — IllustrationsStory323Lot1ScenarioView
+
+/// Showcase compact des 5 illustrations SUSPECT V1 à valider visuellement
+/// (Arbre, Enfant, Bateau, Lunge frame 0, Mobility étirement quad).
+private struct IllustrationsStory323Lot1ScenarioView: View {
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 10) {
+                Text(verbatim: "Story 3.23 Lot 1 — 5 SUSPECT V1 à valider")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+
+                lot1Item(title: "Arbre (Vrksasana) — yoga", pattern: .yoga, exerciseName: "Arbre")
+                lot1Item(title: "Enfant (Balasana) — yoga", pattern: .yoga, exerciseName: "Enfant")
+                lot1Item(title: "Bateau (Navasana) — yoga", pattern: .yoga, exerciseName: "Bateau")
+                lot1Item(title: "Lunge (3 frames, frame 0 ambigu ?) — strength", pattern: .lunge, exerciseName: nil)
+                lot1Item(title: "Mobility étirement quadriceps — strength", pattern: .mobility, exerciseName: nil)
+            }
+            .padding(16)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+
+    @ViewBuilder
+    private func lot1Item(title: String, pattern: ExercisePattern, exerciseName: String?) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(verbatim: title)
+                .font(.caption2.bold())
+                .foregroundStyle(.secondary)
+            ExercisePatternIllustration(pattern: pattern, sportCode: pattern == .yoga ? "yoga" : "strengthTraining", exerciseName: exerciseName)
+                .padding(6)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(uiColor: .tertiarySystemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 6))
+        }
+    }
+}
+
+// MARK: - Story 3.23 Lots 1+2+3 — IllustrationsStory323Lots123ScenarioView
+
+/// Showcase batch validation des 15 dessins Story 3.23 Lots 1+2+3 :
+/// - Lot 1 (5 SUSPECT V1 refondus) : Arbre, Enfant, Bateau, Lunge, Mobility quad
+/// - Lot 2 (5 yoga haute fréquence) : Padangusthasana, Surya B, Baddha Konasana,
+///   Paschimottanasana, Supta Baddha Konasana
+/// - Lot 3 (5 strength haute fréquence) : Forearm plank, Y-T-W, Pallof press,
+///   Nordic curl, Bird-dog
+private struct IllustrationsStory323Lots123ScenarioView: View {
+    private struct Entry: Identifiable {
+        let id = UUID()
+        let title: String
+        let pattern: ExercisePattern
+        let exerciseName: String?
+    }
+
+    private let entries: [Entry] = [
+        // Lot 1
+        Entry(title: "Arbre", pattern: .yoga, exerciseName: "Arbre"),
+        Entry(title: "Enfant", pattern: .yoga, exerciseName: "Enfant"),
+        Entry(title: "Bateau", pattern: .yoga, exerciseName: "Bateau"),
+        Entry(title: "Lunge", pattern: .lunge, exerciseName: nil),
+        Entry(title: "Mobility quad", pattern: .mobility, exerciseName: nil),
+        // Lot 2
+        Entry(title: "Padangusthasana", pattern: .yoga, exerciseName: "Padangusthasana"),
+        Entry(title: "Surya B", pattern: .yoga, exerciseName: "Surya Namaskar B"),
+        Entry(title: "Baddha Konasana", pattern: .yoga, exerciseName: "Baddha Konasana"),
+        Entry(title: "Paschimottanasana", pattern: .yoga, exerciseName: "Paschimottanasana"),
+        Entry(title: "Supta Baddha", pattern: .yoga, exerciseName: "Supta Baddha Konasana"),
+        // Lot 3
+        Entry(title: "Forearm plank", pattern: .forearmPlank, exerciseName: nil),
+        Entry(title: "Y-T-W", pattern: .ytwActivation, exerciseName: nil),
+        Entry(title: "Pallof press", pattern: .pallofPress, exerciseName: nil),
+        Entry(title: "Nordic curl", pattern: .nordicCurl, exerciseName: nil),
+        Entry(title: "Bird-dog", pattern: .birdDog, exerciseName: nil)
+    ]
+
+    var body: some View {
+        let cols = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(verbatim: "Story 3.23 Lots 1+2+3 — 15 dessins")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                LazyVGrid(columns: cols, spacing: 6) {
+                    ForEach(entries) { entry in
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(verbatim: entry.title)
+                                .font(.system(size: 9, weight: .bold))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                            ExercisePatternIllustration(
+                                pattern: entry.pattern,
+                                sportCode: entry.pattern == .yoga ? "yoga" : "strengthTraining",
+                                exerciseName: entry.exerciseName,
+                                size: 64
+                            )
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(4)
+                            .background(Color(uiColor: .tertiarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                        }
+                    }
+                }
+            }
+            .padding(8)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+// MARK: - Story 3.23 Lot 4 — IllustrationsStory323Lot4ScenarioView
+
+/// Showcase batch validation des 10 nouvelles poses yoga moyenne fréquence
+/// (Story 3.23 Lot 4 — 2026-05-25).
+private struct IllustrationsStory323Lot4ScenarioView: View {
+    private struct Entry: Identifiable {
+        let id = UUID()
+        let title: String
+        let exerciseName: String
+    }
+
+    private let entries: [Entry] = [
+        Entry(title: "Janu Sirsasana", exerciseName: "Janu Sirsasana"),
+        Entry(title: "Tadasana", exerciseName: "Tadasana"),
+        Entry(title: "Dandasana", exerciseName: "Dandasana"),
+        Entry(title: "Marichyasana A", exerciseName: "Marichyasana A"),
+        Entry(title: "Matsyasana", exerciseName: "Matsyasana"),
+        Entry(title: "Parsvakonasana", exerciseName: "Utthita Parsvakonasana"),
+        Entry(title: "Viparita Karani", exerciseName: "Viparita Karani"),
+        Entry(title: "Parsvottanasana", exerciseName: "Parsvottanasana"),
+        Entry(title: "Halasana", exerciseName: "Halasana"),
+        Entry(title: "Kurmasana", exerciseName: "Kurmasana")
+    ]
+
+    var body: some View {
+        let cols = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(verbatim: "Story 3.23 Lot 4 — 10 yoga moyenne fréquence")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                LazyVGrid(columns: cols, spacing: 6) {
+                    ForEach(entries) { entry in
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(verbatim: entry.title)
+                                .font(.system(size: 9, weight: .bold))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                            ExercisePatternIllustration(
+                                pattern: .yoga,
+                                sportCode: "yoga",
+                                exerciseName: entry.exerciseName,
+                                size: 64
+                            )
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(4)
+                            .background(Color(uiColor: .tertiarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                        }
+                    }
+                }
+            }
+            .padding(8)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+// MARK: - Story 3.23 Lot 5 — IllustrationsStory323Lot5ScenarioView
+
+/// Showcase batch validation des 6 nouveaux patterns strength moyenne fréquence
+/// (Story 3.23 Lot 5 — 2026-05-26).
+private struct IllustrationsStory323Lot5ScenarioView: View {
+    private struct Entry: Identifiable {
+        let id = UUID()
+        let title: String
+        let pattern: ExercisePattern
+    }
+
+    private let entries: [Entry] = [
+        Entry(title: "Dead-bug", pattern: .deadBug),
+        Entry(title: "Clamshell", pattern: .clamshell),
+        Entry(title: "KB Swing", pattern: .kbSwing),
+        Entry(title: "Face pull", pattern: .facePull),
+        Entry(title: "Foam rolling", pattern: .foamRolling),
+        Entry(title: "Biceps curl", pattern: .bicepsCurl)
+    ]
+
+    var body: some View {
+        let cols = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(verbatim: "Story 3.23 Lot 5 — 6 strength moyenne fréquence")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                LazyVGrid(columns: cols, spacing: 6) {
+                    ForEach(entries) { entry in
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(verbatim: entry.title)
+                                .font(.system(size: 9, weight: .bold))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                            ExercisePatternIllustration(
+                                pattern: entry.pattern,
+                                sportCode: "strengthTraining",
+                                exerciseName: nil,
+                                size: 64
+                            )
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(4)
+                            .background(Color(uiColor: .tertiarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                        }
+                    }
+                }
+            }
+            .padding(8)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+// MARK: - Story 3.23 Lot 6 — IllustrationsStory323Lot6ScenarioView
+
+/// Showcase batch validation des 10 nouvelles poses yoga reste catalogue
+/// (Story 3.23 Lot 6 — 2026-05-26).
+private struct IllustrationsStory323Lot6ScenarioView: View {
+    private struct Entry: Identifiable {
+        let id = UUID()
+        let title: String
+        let exerciseName: String
+    }
+
+    private let entries: [Entry] = [
+        Entry(title: "Anjaneyasana", exerciseName: "Anjaneyasana"),
+        Entry(title: "Urdhva Dhanurasana", exerciseName: "Urdhva Dhanurasana"),
+        Entry(title: "Dolphin pose", exerciseName: "Dolphin pose"),
+        Entry(title: "Garudasana", exerciseName: "Garudasana"),
+        Entry(title: "Utkatasana", exerciseName: "Utkatasana"),
+        Entry(title: "Warrior 3", exerciseName: "Virabhadrasana III"),
+        Entry(title: "Nadi Shodhana", exerciseName: "Nadi Shodhana"),
+        Entry(title: "Ardha Chandrasana", exerciseName: "Ardha Chandrasana"),
+        Entry(title: "Sukhasana", exerciseName: "Sukhasana"),
+        Entry(title: "Sirsasana", exerciseName: "Sirsasana")
+    ]
+
+    var body: some View {
+        let cols = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(verbatim: "Story 3.23 Lot 6 — 10 yoga reste catalogue")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                LazyVGrid(columns: cols, spacing: 6) {
+                    ForEach(entries) { entry in
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(verbatim: entry.title)
+                                .font(.system(size: 9, weight: .bold))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                            ExercisePatternIllustration(
+                                pattern: .yoga,
+                                sportCode: "yoga",
+                                exerciseName: entry.exerciseName,
+                                size: 64
+                            )
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(4)
+                            .background(Color(uiColor: .tertiarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                        }
+                    }
+                }
+            }
+            .padding(8)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+// MARK: - Story 3.23 Lot 7 — IllustrationsStory323Lot7ScenarioView
+
+/// Showcase Lot 7 — 2 patterns strength finition catalogue.
+private struct IllustrationsStory323Lot7ScenarioView: View {
+    var body: some View {
+        let cols = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(verbatim: "Story 3.23 Lot 7 — 2 strength finition")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                LazyVGrid(columns: cols, spacing: 6) {
+                    lot7Item(title: "Triceps pushdown", pattern: .tricepsPushdown)
+                    lot7Item(title: "Lateral raises", pattern: .lateralRaises)
+                }
+            }
+            .padding(8)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+
+    @ViewBuilder
+    private func lot7Item(title: String, pattern: ExercisePattern) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(verbatim: title)
+                .font(.system(size: 9, weight: .bold))
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+            ExercisePatternIllustration(
+                pattern: pattern,
+                sportCode: "strengthTraining",
+                exerciseName: nil,
+                size: 64
+            )
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(4)
+            .background(Color(uiColor: .tertiarySystemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 4))
         }
     }
 }

@@ -40,6 +40,12 @@ struct ExercisePatternIllustration: View {
             MobilityIllustration(sportCode: sportCode)
         case .yoga:
             YogaIllustration(sportCode: sportCode, exerciseName: exerciseName)
+        case .forearmPlank:
+            ForearmPlankIllustration(sportCode: sportCode)
+        case .birdDog:
+            BirdDogIllustration(sportCode: sportCode)
+        case .foamRolling:
+            FoamRollingIllustration(sportCode: sportCode)
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels connus (running, cycling, swim continu).
@@ -82,6 +88,36 @@ struct ExercisePatternIllustration: View {
         case .calfRaise:
             // Story 3.23 Tier 1 Jalon 2 — 228 occ × 23 tpl
             tripletStrip { CalfRaiseIllustration(sportCode: sportCode, frame: $0) }
+        case .ytwActivation:
+            // Story 3.23 Lot 3 — Y-T-W rotator cuff activation
+            tripletStrip { YTWActivationIllustration(sportCode: sportCode, frame: $0) }
+        case .pallofPress:
+            // Story 3.23 Lot 3 — Pallof press câble anti-rotation
+            tripletStrip { PallofPressIllustration(sportCode: sportCode, frame: $0) }
+        case .nordicCurl:
+            // Story 3.23 Lot 3 — Nordic curl excentrique ischio
+            tripletStrip { NordicCurlIllustration(sportCode: sportCode, frame: $0) }
+        case .deadBug:
+            // Story 3.23 Lot 5 — Dead-bug gainage controlatéral
+            tripletStrip { DeadBugIllustration(sportCode: sportCode, frame: $0) }
+        case .clamshell:
+            // Story 3.23 Lot 5 — Clamshell glute med
+            tripletStrip { ClamshellIllustration(sportCode: sportCode, frame: $0) }
+        case .kbSwing:
+            // Story 3.23 Lot 5 — KB Swing Russian
+            tripletStrip { KBSwingIllustration(sportCode: sportCode, frame: $0) }
+        case .facePull:
+            // Story 3.23 Lot 5 — Face pull câble rear-delt
+            tripletStrip { FacePullIllustration(sportCode: sportCode, frame: $0) }
+        case .bicepsCurl:
+            // Story 3.23 Lot 5 — Biceps curl haltères
+            tripletStrip { BicepsCurlIllustration(sportCode: sportCode, frame: $0) }
+        case .tricepsPushdown:
+            // Story 3.23 Lot 7 — Triceps pushdown câble
+            tripletStrip { TricepsPushdownIllustration(sportCode: sportCode, frame: $0) }
+        case .lateralRaises:
+            // Story 3.23 Lot 7 — Lateral raises haltères deltoïdes
+            tripletStrip { LateralRaisesIllustration(sportCode: sportCode, frame: $0) }
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels (foulée running, crawl, fractionné, drill rattrapé).

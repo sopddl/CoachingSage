@@ -24,6 +24,25 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
     case hipThrust   // 246 occ × 33 templates
     case calfRaise   // 228 occ × 23 templates
 
+    // Story 3.23 Lot 3 — patterns haute fréquence ajoutés
+    case forearmPlank  // statique — distinct du high-plank de .core
+    case ytwActivation // 3 frames — rotator cuff Y/T/W
+    case pallofPress   // 3 frames — anti-rotation câble
+    case nordicCurl    // 3 frames — excentrique ischio
+    case birdDog       // statique — gainage 4 pattes diagonal
+
+    // Story 3.23 Lot 5 — patterns moyenne fréquence ajoutés
+    case deadBug       // 3 frames — gainage allongé contralatéral
+    case clamshell     // 3 frames — glute med ouverture genou
+    case kbSwing       // 3 frames — hip hinge kettlebell
+    case facePull      // 3 frames — câble HAUT rear-delt
+    case foamRolling   // statique — appui sur cylindre orange
+    case bicepsCurl    // 3 frames — flexion coude haltères
+
+    // Story 3.23 Lot 7 — patterns reste (finition catalogue)
+    case tricepsPushdown // 3 frames — câble HAUT extension coude
+    case lateralRaises   // 3 frames — haltères élévation latérale deltoïdes
+
     // Running (3 cases dont 1 statique)
     case runEndurance
     case runInterval
@@ -50,7 +69,8 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
     /// 0 pour `.generic` (rendu via SF Symbol fallback).
     public var frameCount: Int {
         switch self {
-        case .core, .mobility, .runDrills, .cycleEndurance, .cycleInterval, .yoga:
+        case .core, .mobility, .runDrills, .cycleEndurance, .cycleInterval, .yoga,
+             .forearmPlank, .birdDog, .foamRolling:
             return 1
         case .generic:
             return 0

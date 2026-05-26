@@ -194,16 +194,72 @@ public enum ExercisePatternResolver {
         if matchesAny(lower, ["lunge", "fente"]) {
             return .lunge
         }
+        // Story 3.23 Lot 3 — Bird-dog AVANT plank (mot "dog" peut être ambigu mais
+        // "bird-dog" est unique). Pattern dédié pour gainage 4 pattes diagonal.
+        if matchesAny(lower, ["bird-dog", "bird dog", "birddog", "chien d'arrêt", "chien d'arret"]) {
+            return .birdDog
+        }
+        // Story 3.23 Lot 3 — Forearm plank avant plank générique (low plank avant-bras).
+        if matchesAny(lower, ["forearm plank", "plank avant-bras", "plank avant bras",
+                              "planche avant-bras", "planche avant bras", "low plank"]) {
+            return .forearmPlank
+        }
         if matchesAny(lower, ["plank", "gainage", "crunch", "abs", "hollow"]) {
             return .core
         }
+        // Story 3.23 Lot 3 — Y-T-W shoulder activation (rotator cuff prone)
+        if matchesAny(lower, ["y-t-w", "ytw", "y t w", "yt w", "shoulder activation",
+                              "activation épaule", "activation epaule", "rotator cuff"]) {
+            return .ytwActivation
+        }
+        // Story 3.23 Lot 3 — Pallof press câble (anti-rotation)
+        if matchesAny(lower, ["pallof", "pallof press", "anti-rotation", "anti rotation"]) {
+            return .pallofPress
+        }
+        // Story 3.23 Lot 3 — Nordic curl (excentrique ischio)
+        if matchesAny(lower, ["nordic", "nordic curl", "nordic hamstring",
+                              "ischio nordique", "ischio nordic"]) {
+            return .nordicCurl
+        }
         if matchesAny(lower, ["jump", "burpee", "bondiss", "saut", "box jump"]) {
             return .plyo
+        }
+        // Story 3.23 Lot 5 — Foam rolling AVANT mobility générique
+        // (pattern dédié avec rendu rouleau orange).
+        if matchesAny(lower, ["foam roll", "foam rolling", "rouleau mousse", "rouleau massage"]) {
+            return .foamRolling
         }
         // Story 3.23 — fix bug "Foam rolling tombe .generic" : ajout des keywords
         // "foam" / "rolling" / "rouleau" pour mapper sur `.mobility`.
         if matchesAny(lower, ["étirement", "etirement", "stretch", "mobility", "mobilité", "mobilite", "foam", "rolling", "rouleau"]) {
             return .mobility
+        }
+        // Story 3.23 Lot 5 — patterns moyenne fréquence
+        if matchesAny(lower, ["dead bug", "dead-bug", "deadbug"]) {
+            return .deadBug
+        }
+        if matchesAny(lower, ["clamshell", "coquillage", "clam shell"]) {
+            return .clamshell
+        }
+        if matchesAny(lower, ["kb swing", "kettlebell swing", "swing kettlebell", "russian swing"]) {
+            return .kbSwing
+        }
+        if matchesAny(lower, ["face pull", "face-pull", "facepull"]) {
+            return .facePull
+        }
+        if matchesAny(lower, ["biceps curl", "curl biceps", "curl haltères", "curl halteres", "biceps haltère", "biceps haltere"]) {
+            return .bicepsCurl
+        }
+        // Story 3.23 Lot 7 — Triceps pushdown câble
+        if matchesAny(lower, ["triceps pushdown", "triceps push-down", "pushdown triceps",
+                              "extension triceps", "triceps câble", "triceps cable"]) {
+            return .tricepsPushdown
+        }
+        // Story 3.23 Lot 7 — Lateral raises haltères
+        if matchesAny(lower, ["lateral raise", "lateral raises", "side raise", "side raises",
+                              "élévation latérale", "elevation laterale",
+                              "écarté épaule", "ecarte epaule"]) {
+            return .lateralRaises
         }
         // Squat en dernier (mot court qui pourrait matcher accidentellement)
         if matchesAny(lower, ["squat", "goblet"]) {

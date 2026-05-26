@@ -47,6 +47,35 @@ public enum SessionTipCatalog {
             return "coaching.tip.hipThrust"
         case .calfRaise:
             return "coaching.tip.calfRaise"
+        // Story 3.23 Lot 3 — patterns haute fréquence
+        case .forearmPlank:
+            return "coaching.tip.forearmPlank"
+        case .ytwActivation:
+            return "coaching.tip.ytwActivation"
+        case .pallofPress:
+            return "coaching.tip.pallofPress"
+        case .nordicCurl:
+            return "coaching.tip.nordicCurl"
+        case .birdDog:
+            return "coaching.tip.birdDog"
+        // Story 3.23 Lot 5 — patterns moyenne fréquence
+        case .deadBug:
+            return "coaching.tip.deadBug"
+        case .clamshell:
+            return "coaching.tip.clamshell"
+        case .kbSwing:
+            return "coaching.tip.kbSwing"
+        case .facePull:
+            return "coaching.tip.facePull"
+        case .foamRolling:
+            return "coaching.tip.foamRolling"
+        case .bicepsCurl:
+            return "coaching.tip.bicepsCurl"
+        // Story 3.23 Lot 7 — patterns reste
+        case .tricepsPushdown:
+            return "coaching.tip.tricepsPushdown"
+        case .lateralRaises:
+            return "coaching.tip.lateralRaises"
         case .runEndurance:
             return "coaching.tip.run.endurance"
         case .runInterval:
