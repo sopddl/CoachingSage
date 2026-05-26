@@ -104,9 +104,12 @@ struct ExerciseTimelineCard: View {
                     )
             }
             metricsChipsRow(exercise)
-            if let pattern = resolvedPattern,
-               let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: exercise.name) {
-                SessionTipBubble(tip: tipKey)
+            // Story 3.24b — SessionTipBubble remplacé par disclosure
+            // "Comment l'exécuter ?" expandable. Tip pattern reste utilisé
+            // en fallback gracieux quand pas de seed/cache/IA dispo.
+            if let pattern = resolvedPattern {
+                let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: exercise.name)
+                ExerciseHowToDisclosure(exercise: exercise, fallbackTip: tipKey)
                     .padding(.top, 2)
                     .opacity(tipVisible ? 1 : 0)
             }

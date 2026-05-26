@@ -86,18 +86,18 @@ final class ExerciseTimelineCardSnapshotTests: XCTestCase {
     // une vraie régression layout/illustration/chips.
     func testCardStableState_running() {
         let view = runningIntervalCard(isFirst: false)
-        assertSnapshot(of: view, as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .fixed(width: 350, height: 320)))
+        assertSnapshot(of: view, as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .fixed(width: 350, height: 380)))
     }
 
     func testCardFirstExercise_postPulseDone_running() {
-        // Même rendu que non-first quand flag pulse=done : tip visible, pas d'anim.
+        // Même rendu que non-first quand flag pulse=done : disclosure visible, pas d'anim.
         let view = runningIntervalCard(isFirst: true)
-        assertSnapshot(of: view, as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .fixed(width: 350, height: 320)))
+        assertSnapshot(of: view, as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .fixed(width: 350, height: 380)))
     }
 
     func testCardSubstituted_strength() {
         let view = substitutedStrengthCard()
-        assertSnapshot(of: view, as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .fixed(width: 350, height: 360)))
+        assertSnapshot(of: view, as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .fixed(width: 350, height: 420)))
     }
 
     // Note : pas de snapshot EN — `.environment(\.locale, .en)` ne swizzle pas
