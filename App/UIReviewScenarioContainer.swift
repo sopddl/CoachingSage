@@ -208,6 +208,9 @@ struct UIReviewScenarioContainer: View {
         case "ui_review_illustrations_story_323_lot5":
             // **Story 3.23 Lot 5** — 6 nouveaux patterns strength moyenne fréquence.
             IllustrationsStory323Lot5ScenarioView()
+        case "ui_review_illustrations_story_323_lot6":
+            // **Story 3.23 Lot 6** — 10 nouvelles poses yoga reste catalogue.
+            IllustrationsStory323Lot6ScenarioView()
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -1168,6 +1171,64 @@ private struct IllustrationsStory323Lot5ScenarioView: View {
                                 pattern: entry.pattern,
                                 sportCode: "strengthTraining",
                                 exerciseName: nil,
+                                size: 64
+                            )
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(4)
+                            .background(Color(uiColor: .tertiarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                        }
+                    }
+                }
+            }
+            .padding(8)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+// MARK: - Story 3.23 Lot 6 — IllustrationsStory323Lot6ScenarioView
+
+/// Showcase batch validation des 10 nouvelles poses yoga reste catalogue
+/// (Story 3.23 Lot 6 — 2026-05-26).
+private struct IllustrationsStory323Lot6ScenarioView: View {
+    private struct Entry: Identifiable {
+        let id = UUID()
+        let title: String
+        let exerciseName: String
+    }
+
+    private let entries: [Entry] = [
+        Entry(title: "Anjaneyasana", exerciseName: "Anjaneyasana"),
+        Entry(title: "Urdhva Dhanurasana", exerciseName: "Urdhva Dhanurasana"),
+        Entry(title: "Dolphin pose", exerciseName: "Dolphin pose"),
+        Entry(title: "Garudasana", exerciseName: "Garudasana"),
+        Entry(title: "Utkatasana", exerciseName: "Utkatasana"),
+        Entry(title: "Warrior 3", exerciseName: "Virabhadrasana III"),
+        Entry(title: "Nadi Shodhana", exerciseName: "Nadi Shodhana"),
+        Entry(title: "Ardha Chandrasana", exerciseName: "Ardha Chandrasana"),
+        Entry(title: "Sukhasana", exerciseName: "Sukhasana"),
+        Entry(title: "Sirsasana", exerciseName: "Sirsasana")
+    ]
+
+    var body: some View {
+        let cols = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(verbatim: "Story 3.23 Lot 6 — 10 yoga reste catalogue")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                LazyVGrid(columns: cols, spacing: 6) {
+                    ForEach(entries) { entry in
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(verbatim: entry.title)
+                                .font(.system(size: 9, weight: .bold))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                            ExercisePatternIllustration(
+                                pattern: .yoga,
+                                sportCode: "yoga",
+                                exerciseName: entry.exerciseName,
                                 size: 64
                             )
                             .frame(maxWidth: .infinity, alignment: .leading)
