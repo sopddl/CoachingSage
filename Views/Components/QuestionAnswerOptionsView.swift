@@ -1,9 +1,11 @@
 // Views/Components/QuestionAnswerOptionsView.swift
 // Story 3.1 — zone d'options en bas de l'écran questionnaire.
-// Single choice : capsules cliquables → callback immédiat.
-// Multi choice : checkboxes + bouton « Confirmer » (au moins 1 sélection requise).
-// Free text : TextField + bouton « Continuer » + bouton « Continuer sans note ».
+// Story 3.25 (Sophie 2026-05-26) — auto-advance singleChoice + haptic léger tous taps.
+// Single choice : capsules cliquables → callback immédiat (haptic .light).
+// Multi choice : checkboxes + bouton « Confirmer » (haptic .light sur tap + confirm).
+// Free text : TextField + bouton « Continuer » + bouton « Continuer sans note » (haptic).
 import SwiftUI
+import UIKit
 
 struct QuestionAnswerOptionsView: View {
     let question: QuestionnaireQuestion
@@ -17,13 +19,11 @@ struct QuestionAnswerOptionsView: View {
     var sportCode: String? = nil
 
     @State private var multiSelection: Set<String> = []
-    /// **Story 3.16 (Sophie 2026-05-21)** — sélection single avant confirmation
-    /// explicite. Avant Story 3.16, le tap singleChoice avançait immédiatement
-    /// → inconsistant avec multi/freeText qui ont un bouton Confirmer. Désormais
-    /// le tap sélectionne, et l'user doit appuyer "Continuer" pour avancer.
-    @State private var singleSelection: String? = nil
     /// Date picker state pour Q4Date story sœur — minimum demain pour éviter date passée.
     @State private var pickedDate: Date = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+    /// Story 3.25 — generator haptic hoisté + `.prepare()` au mount pour éviter
+    /// la latence 100-200ms du 1er tap (Apple guidance UIImpactFeedbackGenerator).
+    @State private var hapticGenerator = UIImpactFeedbackGenerator(style: .light)
     /// Story 3.13 Phase E (AC25) — toast léger quand un goal exclusif est tapé (auto-désélection).
     @State private var showExclusiveToast: Bool = false
 
@@ -50,11 +50,21 @@ struct QuestionAnswerOptionsView: View {
         .padding(16)
         .frame(maxWidth: .infinity)
         .background(Color.coachingBackground)
+        .onAppear { hapticGenerator.prepare() }
         .onChange(of: question.id) { _, _ in
             multiSelection.removeAll()  // reset à chaque nouvelle question
-            singleSelection = nil       // Story 3.16
             showExclusiveToast = false
+            hapticGenerator.prepare()   // pre-warm pour la prochaine Q
         }
+    }
+
+    /// Story 3.25 (Sophie 2026-05-26) — haptic léger sur tous les taps user
+    /// (capsule single, checkbox multi, boutons Confirmer/Continuer). Confirme
+    /// physiquement le tap, indispensable avec l'auto-advance singleChoice
+    /// pour repérer un tap accidentel sans regarder l'écran. Generator hoisté
+    /// + prepare() pour éliminer latence 1er tap.
+    private func playTapHaptic() {
+        hapticGenerator.impactOccurred()
     }
 
     // MARK: - Single
@@ -72,11 +82,12 @@ struct QuestionAnswerOptionsView: View {
         return "questionnaire.universal.q2.hint.cycle"
     }
 
-    /// **Story 3.16 (Sophie 2026-05-21)** — singleChoice avec confirmation.
-    /// Tap option = sélection (state local), bouton "Continuer" pour confirmer.
-    /// Cohérent avec multi/freeText/datePicker. L'user peut changer d'avis
-    /// avant de valider et utiliser "Retour" pour revenir à la question
-    /// précédente (cf `goBack()` dans le ViewModel).
+    /// **Story 3.25 (Sophie 2026-05-26)** — auto-advance singleChoice.
+    /// Tap capsule = `onAnswer(.single(code))` immédiat (haptic léger). Pas de
+    /// bouton "Continuer" à confirmer (revert Story 3.16). Pour corriger un
+    /// tap accidentel, l'user utilise le bouton "Retour" (Story 3.16) dans la
+    /// toolbar de `SportQuestionnaireView`. Cohérence multisport prime sur
+    /// l'uniformité visuelle single/multi (validée agent persona user).
     private var singleOptions: some View {
         VStack(spacing: 8) {
             if let hint = cycleHintKey {
@@ -87,14 +98,14 @@ struct QuestionAnswerOptionsView: View {
                     .padding(.bottom, 4)
             }
             ForEach(question.options) { option in
-                let isSelected = singleSelection == option.code
                 Button {
                     guard !isLocked else { return }
-                    singleSelection = option.code
+                    playTapHaptic()
+                    onAnswer(.single(option.code))
                 } label: {
                     HStack {
-                        Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                            .foregroundStyle(isSelected ? Color.coachingPrimary : Color.coachingTextSecondary)
+                        Image(systemName: "circle")
+                            .foregroundStyle(Color.coachingTextSecondary)
                         Text(LocalizedStringKey(option.labelKey))
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -107,22 +118,6 @@ struct QuestionAnswerOptionsView: View {
                 .buttonStyle(.plain)
                 .disabled(isLocked)
             }
-
-            // **Story 3.16** — bouton Continuer cohérent avec multi/freeText.
-            Button {
-                guard !isLocked, let code = singleSelection else { return }
-                onAnswer(.single(code))
-            } label: {
-                Text("questionnaire.options.continue")
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 14)
-            }
-            .buttonStyle(.plain)
-            .background(singleSelection == nil ? Color.coachingDisabled : Color.coachingPrimary)
-            .foregroundStyle(Color.coachingOnPrimary)
-            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-            .disabled(singleSelection == nil || isLocked)
-            .padding(.top, 4)
         }
     }
 
@@ -179,6 +174,7 @@ struct QuestionAnswerOptionsView: View {
                 let isDisabledByMatrix = goalOptionDisabled(option.code)
                 Button {
                     guard !isLocked, !isDisabledByMatrix else { return }
+                    playTapHaptic()
                     handleMultiTap(optionCode: option.code, isSelected: isSelected)
                 } label: {
                     HStack {
@@ -200,6 +196,7 @@ struct QuestionAnswerOptionsView: View {
 
             Button {
                 guard !isLocked else { return }
+                playTapHaptic()
                 onAnswer(.multi(Array(multiSelection)))
             } label: {
                 Text("questionnaire.options.confirm")
@@ -267,6 +264,7 @@ struct QuestionAnswerOptionsView: View {
 
             Button {
                 guard !isLocked else { return }
+                playTapHaptic()
                 let iso = ISO8601DateFormatter().string(from: pickedDate)
                 onAnswer(.text(iso))
             } label: {
@@ -294,6 +292,7 @@ struct QuestionAnswerOptionsView: View {
             HStack(spacing: 8) {
                 Button {
                     guard !isLocked else { return }
+                    playTapHaptic()
                     onAnswer(.text(nil))
                 } label: {
                     Text("questionnaire.running.q6.action.continueWithoutNote")
@@ -308,6 +307,7 @@ struct QuestionAnswerOptionsView: View {
 
                 Button {
                     guard !isLocked else { return }
+                    playTapHaptic()
                     let trimmed = freeTextDraft.trimmingCharacters(in: .whitespacesAndNewlines)
                     onAnswer(.text(trimmed.isEmpty ? nil : trimmed))
                 } label: {
