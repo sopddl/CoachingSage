@@ -58,6 +58,19 @@ public enum SessionTipCatalog {
             return "coaching.tip.nordicCurl"
         case .birdDog:
             return "coaching.tip.birdDog"
+        // Story 3.23 Lot 5 — patterns moyenne fréquence
+        case .deadBug:
+            return "coaching.tip.deadBug"
+        case .clamshell:
+            return "coaching.tip.clamshell"
+        case .kbSwing:
+            return "coaching.tip.kbSwing"
+        case .facePull:
+            return "coaching.tip.facePull"
+        case .foamRolling:
+            return "coaching.tip.foamRolling"
+        case .bicepsCurl:
+            return "coaching.tip.bicepsCurl"
         case .runEndurance:
             return "coaching.tip.run.endurance"
         case .runInterval:

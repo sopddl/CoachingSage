@@ -44,6 +44,8 @@ struct ExercisePatternIllustration: View {
             ForearmPlankIllustration(sportCode: sportCode)
         case .birdDog:
             BirdDogIllustration(sportCode: sportCode)
+        case .foamRolling:
+            FoamRollingIllustration(sportCode: sportCode)
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels connus (running, cycling, swim continu).
@@ -95,6 +97,21 @@ struct ExercisePatternIllustration: View {
         case .nordicCurl:
             // Story 3.23 Lot 3 — Nordic curl excentrique ischio
             tripletStrip { NordicCurlIllustration(sportCode: sportCode, frame: $0) }
+        case .deadBug:
+            // Story 3.23 Lot 5 — Dead-bug gainage controlatéral
+            tripletStrip { DeadBugIllustration(sportCode: sportCode, frame: $0) }
+        case .clamshell:
+            // Story 3.23 Lot 5 — Clamshell glute med
+            tripletStrip { ClamshellIllustration(sportCode: sportCode, frame: $0) }
+        case .kbSwing:
+            // Story 3.23 Lot 5 — KB Swing Russian
+            tripletStrip { KBSwingIllustration(sportCode: sportCode, frame: $0) }
+        case .facePull:
+            // Story 3.23 Lot 5 — Face pull câble rear-delt
+            tripletStrip { FacePullIllustration(sportCode: sportCode, frame: $0) }
+        case .bicepsCurl:
+            // Story 3.23 Lot 5 — Biceps curl haltères
+            tripletStrip { BicepsCurlIllustration(sportCode: sportCode, frame: $0) }
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels (foulée running, crawl, fractionné, drill rattrapé).

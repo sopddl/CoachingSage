@@ -224,10 +224,31 @@ public enum ExercisePatternResolver {
         if matchesAny(lower, ["jump", "burpee", "bondiss", "saut", "box jump"]) {
             return .plyo
         }
+        // Story 3.23 Lot 5 — Foam rolling AVANT mobility générique
+        // (pattern dédié avec rendu rouleau orange).
+        if matchesAny(lower, ["foam roll", "foam rolling", "rouleau mousse", "rouleau massage"]) {
+            return .foamRolling
+        }
         // Story 3.23 — fix bug "Foam rolling tombe .generic" : ajout des keywords
         // "foam" / "rolling" / "rouleau" pour mapper sur `.mobility`.
         if matchesAny(lower, ["étirement", "etirement", "stretch", "mobility", "mobilité", "mobilite", "foam", "rolling", "rouleau"]) {
             return .mobility
+        }
+        // Story 3.23 Lot 5 — patterns moyenne fréquence
+        if matchesAny(lower, ["dead bug", "dead-bug", "deadbug"]) {
+            return .deadBug
+        }
+        if matchesAny(lower, ["clamshell", "coquillage", "clam shell"]) {
+            return .clamshell
+        }
+        if matchesAny(lower, ["kb swing", "kettlebell swing", "swing kettlebell", "russian swing"]) {
+            return .kbSwing
+        }
+        if matchesAny(lower, ["face pull", "face-pull", "facepull"]) {
+            return .facePull
+        }
+        if matchesAny(lower, ["biceps curl", "curl biceps", "curl haltères", "curl halteres", "biceps haltère", "biceps haltere"]) {
+            return .bicepsCurl
         }
         // Squat en dernier (mot court qui pourrait matcher accidentellement)
         if matchesAny(lower, ["squat", "goblet"]) {

@@ -205,6 +205,9 @@ struct UIReviewScenarioContainer: View {
         case "ui_review_illustrations_story_323_lot4":
             // **Story 3.23 Lot 4** — 10 nouvelles poses yoga moyenne fréquence.
             IllustrationsStory323Lot4ScenarioView()
+        case "ui_review_illustrations_story_323_lot5":
+            // **Story 3.23 Lot 5** — 6 nouveaux patterns strength moyenne fréquence.
+            IllustrationsStory323Lot5ScenarioView()
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -1111,6 +1114,60 @@ private struct IllustrationsStory323Lot4ScenarioView: View {
                                 pattern: .yoga,
                                 sportCode: "yoga",
                                 exerciseName: entry.exerciseName,
+                                size: 64
+                            )
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(4)
+                            .background(Color(uiColor: .tertiarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                        }
+                    }
+                }
+            }
+            .padding(8)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+// MARK: - Story 3.23 Lot 5 — IllustrationsStory323Lot5ScenarioView
+
+/// Showcase batch validation des 6 nouveaux patterns strength moyenne fréquence
+/// (Story 3.23 Lot 5 — 2026-05-26).
+private struct IllustrationsStory323Lot5ScenarioView: View {
+    private struct Entry: Identifiable {
+        let id = UUID()
+        let title: String
+        let pattern: ExercisePattern
+    }
+
+    private let entries: [Entry] = [
+        Entry(title: "Dead-bug", pattern: .deadBug),
+        Entry(title: "Clamshell", pattern: .clamshell),
+        Entry(title: "KB Swing", pattern: .kbSwing),
+        Entry(title: "Face pull", pattern: .facePull),
+        Entry(title: "Foam rolling", pattern: .foamRolling),
+        Entry(title: "Biceps curl", pattern: .bicepsCurl)
+    ]
+
+    var body: some View {
+        let cols = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(verbatim: "Story 3.23 Lot 5 — 6 strength moyenne fréquence")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                LazyVGrid(columns: cols, spacing: 6) {
+                    ForEach(entries) { entry in
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(verbatim: entry.title)
+                                .font(.system(size: 9, weight: .bold))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                            ExercisePatternIllustration(
+                                pattern: entry.pattern,
+                                sportCode: "strengthTraining",
+                                exerciseName: nil,
                                 size: 64
                             )
                             .frame(maxWidth: .infinity, alignment: .leading)

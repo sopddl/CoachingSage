@@ -31,6 +31,14 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
     case nordicCurl    // 3 frames — excentrique ischio
     case birdDog       // statique — gainage 4 pattes diagonal
 
+    // Story 3.23 Lot 5 — patterns moyenne fréquence ajoutés
+    case deadBug       // 3 frames — gainage allongé contralatéral
+    case clamshell     // 3 frames — glute med ouverture genou
+    case kbSwing       // 3 frames — hip hinge kettlebell
+    case facePull      // 3 frames — câble HAUT rear-delt
+    case foamRolling   // statique — appui sur cylindre orange
+    case bicepsCurl    // 3 frames — flexion coude haltères
+
     // Running (3 cases dont 1 statique)
     case runEndurance
     case runInterval
@@ -58,7 +66,7 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
     public var frameCount: Int {
         switch self {
         case .core, .mobility, .runDrills, .cycleEndurance, .cycleInterval, .yoga,
-             .forearmPlank, .birdDog:
+             .forearmPlank, .birdDog, .foamRolling:
             return 1
         case .generic:
             return 0
