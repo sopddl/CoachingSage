@@ -202,6 +202,9 @@ struct UIReviewScenarioContainer: View {
             // nouveaux yoga haute fréquence + 5 nouveaux strength haute fréquence).
             // Batch validation Sophie 2026-05-25.
             IllustrationsStory323Lots123ScenarioView()
+        case "ui_review_illustrations_story_323_lot4":
+            // **Story 3.23 Lot 4** — 10 nouvelles poses yoga moyenne fréquence.
+            IllustrationsStory323Lot4ScenarioView()
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -1049,6 +1052,64 @@ private struct IllustrationsStory323Lots123ScenarioView: View {
                             ExercisePatternIllustration(
                                 pattern: entry.pattern,
                                 sportCode: entry.pattern == .yoga ? "yoga" : "strengthTraining",
+                                exerciseName: entry.exerciseName,
+                                size: 64
+                            )
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(4)
+                            .background(Color(uiColor: .tertiarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                        }
+                    }
+                }
+            }
+            .padding(8)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+// MARK: - Story 3.23 Lot 4 — IllustrationsStory323Lot4ScenarioView
+
+/// Showcase batch validation des 10 nouvelles poses yoga moyenne fréquence
+/// (Story 3.23 Lot 4 — 2026-05-25).
+private struct IllustrationsStory323Lot4ScenarioView: View {
+    private struct Entry: Identifiable {
+        let id = UUID()
+        let title: String
+        let exerciseName: String
+    }
+
+    private let entries: [Entry] = [
+        Entry(title: "Janu Sirsasana", exerciseName: "Janu Sirsasana"),
+        Entry(title: "Tadasana", exerciseName: "Tadasana"),
+        Entry(title: "Dandasana", exerciseName: "Dandasana"),
+        Entry(title: "Marichyasana A", exerciseName: "Marichyasana A"),
+        Entry(title: "Matsyasana", exerciseName: "Matsyasana"),
+        Entry(title: "Parsvakonasana", exerciseName: "Utthita Parsvakonasana"),
+        Entry(title: "Viparita Karani", exerciseName: "Viparita Karani"),
+        Entry(title: "Parsvottanasana", exerciseName: "Parsvottanasana"),
+        Entry(title: "Halasana", exerciseName: "Halasana"),
+        Entry(title: "Kurmasana", exerciseName: "Kurmasana")
+    ]
+
+    var body: some View {
+        let cols = [GridItem(.flexible(), spacing: 4), GridItem(.flexible(), spacing: 4)]
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(verbatim: "Story 3.23 Lot 4 — 10 yoga moyenne fréquence")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                LazyVGrid(columns: cols, spacing: 6) {
+                    ForEach(entries) { entry in
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(verbatim: entry.title)
+                                .font(.system(size: 9, weight: .bold))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                            ExercisePatternIllustration(
+                                pattern: .yoga,
+                                sportCode: "yoga",
                                 exerciseName: entry.exerciseName,
                                 size: 64
                             )
