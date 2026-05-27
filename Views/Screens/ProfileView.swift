@@ -284,6 +284,14 @@ struct ProfileView: View {
                 Text("profile.disclaimer.title")
             }
             .accessibilityIdentifier("profile.about.disclaimer.link")
+
+            // Story 3.26 Phase B — page glossaire dédiée searchable + filtre sport.
+            NavigationLink {
+                GlossaryIndexView()
+            } label: {
+                Text("profile.glossary.title")
+            }
+            .accessibilityIdentifier("profile.about.glossary.link")
         }
     }
 
