@@ -295,4 +295,171 @@ final class GlossaryMatcherTests: XCTestCase {
             )
         }
     }
+
+    // MARK: - Story 3.26 Phase A — 27 termes sport-spécifiques
+
+    func testAll27Phase3_26EntriesExistInGlossary() {
+        let expectedIds = [
+            // Yoga (8)
+            "yoga.asana", "yoga.vinyasa", "yoga.pranayama", "yoga.mudra",
+            "yoga.savasana", "yoga.drishti", "yoga.bandha", "yoga.suryanamaskar",
+            // Tennis (5)
+            "tennis.slice", "tennis.topspin", "tennis.kickserve",
+            "tennis.footwork", "tennis.splitstep",
+            // Football (4)
+            "football.sprintrepete", "football.unetouche",
+            "football.transition", "football.rsa",
+            // Hiking (4)
+            "hiking.denivele", "hiking.elevation",
+            "hiking.switchback", "hiking.terrainpace",
+            // Triathlon (3)
+            "triathlon.t1", "triathlon.t2", "triathlon.brick",
+            // HIIT (3)
+            "hiit.workrest", "hiit.epoc", "hiit.microinterval",
+        ]
+        for id in expectedIds {
+            XCTAssertNotNil(
+                Glossary.entries.first(where: { $0.id == id }),
+                "Entry manquante pour id '\(id)' (Story 3.26 Phase A)"
+            )
+        }
+    }
+
+    // MARK: - Yoga
+
+    func testYogaAsanaMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Tenir l'asana 5 respirations").first?.entry.id, "yoga.asana")
+        XCTAssertEqual(Glossary.matches(in: "3 asanas debout").first?.entry.id, "yoga.asana")
+    }
+
+    func testYogaVinyasaMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Flow vinyasa 30 min").first?.entry.id, "yoga.vinyasa")
+    }
+
+    func testYogaSavasanaAndShavasanaMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Finir en savasana 5 min").first?.entry.id, "yoga.savasana")
+        XCTAssertEqual(Glossary.matches(in: "Shavasana 8 min").first?.entry.id, "yoga.savasana")
+    }
+
+    func testYogaSunSalutationMultiwordMatch() {
+        // Multi-mot longest-first : "salutation au soleil" doit matcher en un, pas en plusieurs.
+        let matches = Glossary.matches(in: "5 salutations au soleil")
+        XCTAssertEqual(matches.count, 0, "'salutations' (pluriel) ne doit pas matcher 'salutation au soleil'")
+
+        let matches2 = Glossary.matches(in: "5 salutation au soleil")
+        XCTAssertEqual(matches2.first?.entry.id, "yoga.suryanamaskar")
+    }
+
+    func testYogaSunSalutationEnglishMatches() {
+        XCTAssertEqual(Glossary.matches(in: "5 sun salutation").first?.entry.id, "yoga.suryanamaskar")
+        XCTAssertEqual(Glossary.matches(in: "surya namaskar A").first?.entry.id, "yoga.suryanamaskar")
+    }
+
+    func testYogaPranayamaMatches() {
+        XCTAssertEqual(Glossary.matches(in: "3 min de pranayama").first?.entry.id, "yoga.pranayama")
+    }
+
+    func testYogaMudraAndBandhaAndDrishtiMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Mudra d'ancrage").first?.entry.id, "yoga.mudra")
+        XCTAssertEqual(Glossary.matches(in: "Engager mula bandha").first?.entry.id, "yoga.bandha")
+        XCTAssertEqual(Glossary.matches(in: "Drishti vers le ciel").first?.entry.id, "yoga.drishti")
+    }
+
+    // MARK: - Tennis
+
+    func testTennisSliceTopspinKickserveMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Travail du slice revers").first?.entry.id, "tennis.slice")
+        XCTAssertEqual(Glossary.matches(in: "Coup topspin lourd").first?.entry.id, "tennis.topspin")
+        XCTAssertEqual(Glossary.matches(in: "Kick serve 1ère balle").first?.entry.id, "tennis.kickserve")
+    }
+
+    func testTennisFootworkVariantsMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Footwork ladder 5 min").first?.entry.id, "tennis.footwork")
+        XCTAssertEqual(Glossary.matches(in: "Jeu de jambes en losange").first?.entry.id, "tennis.footwork")
+    }
+
+    func testTennisSplitstepMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Split-step avant chaque frappe").first?.entry.id, "tennis.splitstep")
+        XCTAssertEqual(Glossary.matches(in: "Split step rythmé").first?.entry.id, "tennis.splitstep")
+    }
+
+    // MARK: - Football
+
+    func testFootballRepeatedSprintsAndRSAMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Sprints répétés 6×30m").first?.entry.id, "football.sprintrepete")
+        XCTAssertEqual(Glossary.matches(in: "Capacité RSA").first?.entry.id, "football.rsa")
+    }
+
+    func testFootballOneTouchMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Jeu à une touche").first?.entry.id, "football.unetouche")
+        XCTAssertEqual(Glossary.matches(in: "One-touch passes").first?.entry.id, "football.unetouche")
+    }
+
+    func testFootballTransitionMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Transition défense → attaque").first?.entry.id, "football.transition")
+    }
+
+    // MARK: - Hiking
+
+    func testHikingDeniveleVariantsMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Dénivelé positif 800m").first?.entry.id, "hiking.denivele")
+        XCTAssertEqual(Glossary.matches(in: "Dénivelé total 1200m").first?.entry.id, "hiking.denivele")
+        XCTAssertEqual(Glossary.matches(in: "Total ascent 1000m").first?.entry.id, "hiking.denivele")
+    }
+
+    func testHikingElevationMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Elevation gain 500m").first?.entry.id, "hiking.elevation")
+        XCTAssertEqual(Glossary.matches(in: "Élévation 600m sur 5km").first?.entry.id, "hiking.elevation")
+    }
+
+    func testHikingSwitchbackAndLacetMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Suivre les switchbacks").first?.entry.id, "hiking.switchback")
+        XCTAssertEqual(Glossary.matches(in: "Monter en lacets serrés").first?.entry.id, "hiking.switchback")
+    }
+
+    func testHikingTerrainPaceMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Allure terrain souple").first?.entry.id, "hiking.terrainpace")
+        XCTAssertEqual(Glossary.matches(in: "Terrain pace adaptée").first?.entry.id, "hiking.terrainpace")
+    }
+
+    // MARK: - Triathlon
+
+    func testTriathlonT1T2BrickMatch() {
+        XCTAssertEqual(Glossary.matches(in: "T1 rapide < 1 min").first?.entry.id, "triathlon.t1")
+        XCTAssertEqual(Glossary.matches(in: "T2 fluide").first?.entry.id, "triathlon.t2")
+        XCTAssertEqual(Glossary.matches(in: "Brick vélo+run").first?.entry.id, "triathlon.brick")
+        XCTAssertEqual(Glossary.matches(in: "Brick session 90 min").first?.entry.id, "triathlon.brick")
+    }
+
+    func testTriathlonT1DoesNotMatchInsideWord() {
+        // T1 ne doit pas matcher dans "t100" ou "t1d2".
+        XCTAssertTrue(Glossary.matches(in: "t100m").filter { $0.entry.id == "triathlon.t1" }.isEmpty)
+        XCTAssertTrue(Glossary.matches(in: "T1D2").filter { $0.entry.id == "triathlon.t1" }.isEmpty)
+    }
+
+    // MARK: - HIIT
+
+    func testHIITWorkRestRatioMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Work-rest 30/30").first?.entry.id, "hiit.workrest")
+        XCTAssertEqual(Glossary.matches(in: "work rest court").first?.entry.id, "hiit.workrest")
+    }
+
+    func testHIITEPOCMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Effet EPOC marqué").first?.entry.id, "hiit.epoc")
+    }
+
+    func testHIITMicroIntervalMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Micro-intervalles 10s").first?.entry.id, "hiit.microinterval")
+        XCTAssertEqual(Glossary.matches(in: "Micro-interval 20s/40s").first?.entry.id, "hiit.microinterval")
+    }
+
+    // MARK: - Non-overlap multi-sport
+
+    func testMultiTermsAcrossSportsInSameText() {
+        let text = "Vinyasa flow puis savasana 5 min."
+        let matches = Glossary.matches(in: text)
+        let ids = Set(matches.map { $0.entry.id })
+        XCTAssertTrue(ids.contains("yoga.vinyasa"))
+        XCTAssertTrue(ids.contains("yoga.savasana"))
+    }
 }
