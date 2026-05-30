@@ -459,9 +459,26 @@ final class SessionDashboardViewModel {
                 nextSessionIsLate: isLate
             )
         }
+        // **Story 3.27 Phase A (party 2026-05-30 D1)** — tri du carrousel par
+        // priorité d'action (« next session la plus proche »), pas par
+        // `lastUpdatedAt`. Décision Sophie-user : à l'ouverture, le user veut
+        // voir d'abord le programme qui réclame son attention maintenant.
+        //  1. Late en premier (séance en retard = priorité absolue)
+        //  2. Sinon par `nextSession.weekNumber` asc (semaine plus proche)
+        //  3. Fallback `lastUpdatedAt` desc (cohérence avec comportement legacy)
         let started = summaries
             .filter { $0.weekStartDate != nil }
-            .sorted { $0.lastUpdatedAt > $1.lastUpdatedAt }
+            .sorted { lhs, rhs in
+                if lhs.nextSessionIsLate != rhs.nextSessionIsLate {
+                    return lhs.nextSessionIsLate
+                }
+                if let lwn = lhs.nextSession?.weekNumber,
+                   let rwn = rhs.nextSession?.weekNumber,
+                   lwn != rwn {
+                    return lwn < rwn
+                }
+                return lhs.lastUpdatedAt > rhs.lastUpdatedAt
+            }
         let dormant = summaries
             .filter { $0.weekStartDate == nil }
             .sorted { $0.lastUpdatedAt > $1.lastUpdatedAt }

@@ -318,6 +318,9 @@ struct SessionView: View {
                 },
                 onTapReplanify: { summary in
                     replanifyTarget = summary
+                },
+                onTapStartNewProgram: {
+                    sheetSelection = .sportPicker
                 }
             )
         }
