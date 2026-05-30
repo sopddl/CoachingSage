@@ -81,10 +81,13 @@ struct ActiveDashboardView: View {
                 .background(Color.coachingBackground)
             }
 
-            // Zone 2 : "Séances" = focal (fixe) + scroll interne pour la
-            // liste des séances suivantes.
+            // Zone 2 : bandeau contextuel "[SPORT] · SEMAINE N" + focal + liste.
+            // **Story 3.27 Phase A (party 2026-05-30 D2)** — le titre statique
+            // « Séances » est remplacé par un bandeau dynamique du programme
+            // sélectionné dans le carrousel. Rend visible la liaison
+            // programme↔séances quand l'user swipe le carrousel (vœu Sophie-user).
             if let selectedSummary {
-                section(titleKey: "dashboard.section.next_session.title") {
+                sectionWithTitle(contextualSessionTitle(for: selectedSummary)) {
                     VStack(spacing: 10) {
                         NextSessionCard(
                             summary: selectedSummary,
@@ -201,7 +204,7 @@ struct ActiveDashboardView: View {
                             }
                         }
                     )
-                    .frame(width: 180)
+                    .frame(width: 200)
                     .id(summary.id)
                 }
             }
@@ -209,7 +212,12 @@ struct ActiveDashboardView: View {
             .padding(.horizontal, 2)
             .padding(.vertical, 4)
         }
-        .frame(height: 122) // 110pt contenu (icon + titre + statut + progress + padding) + 8 padding vert + 4 marge border (v6)
+        // **Story 3.27 Phase A (D1)** — carrousel agrandi de 180→200pt (width
+        // card) pour réduire les truncations sur les titres composites
+        // (« Triathlon — Distanc... »). Sophie : « un tout petit peu plus
+        // grand ». Hauteur fixe inchangée (le contenu reste calé sur le même
+        // gabarit, c'est la respiration horizontale qui gagne).
+        .frame(height: 130) // 118pt contenu + 8 padding vert + 4 marge border (Story 3.27)
         .scrollTargetBehavior(.viewAligned)
         .scrollPosition(
             id: Binding(
@@ -235,6 +243,53 @@ struct ActiveDashboardView: View {
             content()
         }
     }
+
+    /// **Story 3.27 Phase A** — variante avec titre String dynamique, pour le
+    /// bandeau contextuel zone 2 (« [SPORT] · SEMAINE N »).
+    @ViewBuilder
+    private func sectionWithTitle(_ title: String, @ViewBuilder content: () -> some View) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(verbatim: title)
+                .font(.coachingCaption.weight(.semibold))
+                .foregroundStyle(Color.coachingTextSecondary)
+                .textCase(.uppercase)
+                .tracking(0.8)
+                .accessibilityIdentifier("dashboard.section.contextual.title")
+            content()
+        }
+    }
+
+    /// **Story 3.27 Phase A (party 2026-05-30 D2)** — titre contextuel
+    /// « [SPORT] · SEMAINE N » du programme sélectionné. Sport localisé via
+    /// `String.localized` + format static i18n « dashboard.section.contextual.format ».
+    private func contextualSessionTitle(for summary: ProgramSummary) -> String {
+        let sportName = sportLocalizedName(summary.sport)
+        return String(
+            format: String.localized("dashboard.section.contextual.format", locale: locale),
+            sportName,
+            summary.currentWeekNumber
+        )
+    }
+
+    /// Nom localisé du sport pour interpolation dans titre dynamique. Switch
+    /// statique pour rester i18n-safe (pattern hotfix 2026-05-12 sur
+    /// `LocalizedStringKey("foo.\(bar)")` qui casse les xcstrings).
+    private func sportLocalizedName(_ sport: Sport) -> String {
+        switch sport {
+        case .running:          return String.localized("onboarding.sport.running", locale: locale)
+        case .cycling:          return String.localized("onboarding.sport.cycling", locale: locale)
+        case .swimming:         return String.localized("onboarding.sport.swimming", locale: locale)
+        case .triathlon:        return String.localized("onboarding.sport.triathlon", locale: locale)
+        case .strengthTraining: return String.localized("onboarding.sport.strengthTraining", locale: locale)
+        case .yoga:             return String.localized("onboarding.sport.yoga", locale: locale)
+        case .hiit:             return String.localized("onboarding.sport.hiit", locale: locale)
+        case .hiking:           return String.localized("onboarding.sport.hiking", locale: locale)
+        case .tennis:           return String.localized("onboarding.sport.tennis", locale: locale)
+        case .football:         return String.localized("onboarding.sport.football", locale: locale)
+        }
+    }
+
+    @Environment(\.locale) private var locale
 }
 
 // MARK: - Program card (Story 3.10 — carrousel horizontal)
@@ -503,16 +558,22 @@ private struct NextSessionCard: View {
     }
 
     private func sessionState(session: PersistedSession) -> some View {
+        // **Story 3.27 Phase A (party 2026-05-30 décisions D3+D4)** — card focal
+        // STABLE : taille constante peu importe l'état (Today / Late / Demain).
+        // Le pain point n°1 du dashboard pré-3.27 était l'expansion verticale
+        // de cette card en mode Late (badge + texte explicatif "Cette séance
+        // était prévue semaine du..." + bouton Replanifier = +4 lignes vs
+        // état normal). Sophie : « card prochaine séance comme avant mais
+        // qui ne soit pas 4 fois plus grande si je suis en retard ».
+        //
+        // Conservé : badge `lateBadge` en tête (signal état, taille fixe).
+        // Retiré : sous-titre explicatif Late + bouton Replanifier (cf D4 :
+        // Replanifier accessible désormais uniquement dans AdaptedProgramView,
+        // ne plus alourdir le hub central).
         VStack(alignment: .leading, spacing: 10) {
-            // **Story 3.11 AC7** — badge "En retard" en TÊTE de la card quand
-            // la prochaine séance est late.
             if summary.nextSessionIsLate {
                 lateBadge
             }
-            // **Story 3.15 v3 (Sophie 2026-05-21)** — titre + bouton Démarrer
-            // en icône compact sur la même ligne (avant : bouton large sous le
-            // metaLine prenait trop de place). Bouton circulaire à droite avec
-            // play.fill + accessibilityLabel pour le tooltip VoiceOver / long-press.
             HStack(alignment: .center, spacing: 10) {
                 Text(verbatim: session.name)
                     .font(.system(size: 17, weight: .semibold, design: .serif))
@@ -521,31 +582,12 @@ private struct NextSessionCard: View {
                 Spacer(minLength: 0)
                 startButton
             }
-            // **Story 3.15 v3 (Sophie 2026-05-21)** — ajout numéro séance
-            // "S2 · J3" à côté du pill intensité pour répondre au "sous Sortie
-            // à venir on ne sait pas du tout ce que c'est". Indication
-            // hiérarchique du programme (semaine N, jour M).
             HStack(spacing: 8) {
                 sessionCoordinatePill(session: session)
                 sessionTypePill(session: session)
                 Text(verbatim: durationLine(session: session))
                     .font(.system(size: 12, weight: .regular))
                     .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
-            }
-            // **Story 3.11 AC7** — sous-titre "Cette séance était prévue
-            // semaine du {date}" — date = lundi de la semaine de la séance.
-            if summary.nextSessionIsLate, let weekStartLabel = lateSessionWeekStartLabel(session: session) {
-                Text(verbatim: String(
-                    format: String.localized("dashboard.session.late.subtitle.format", locale: locale),
-                    weekStartLabel
-                ))
-                .font(.system(size: 12, weight: .regular))
-                .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
-            }
-            // **Story 3.11 AC9** — bouton Replanifier secondaire (visible
-            // uniquement si late + callback fourni).
-            if summary.nextSessionIsLate, let onTapReplanify {
-                replanifyButton(action: onTapReplanify)
             }
         }
     }
@@ -606,45 +648,6 @@ private struct NextSessionCard: View {
         .background(Color.coachingWarning.opacity(0.18))
         .clipShape(Capsule())
         .accessibilityIdentifier("dashboard.active.next.lateBadge")
-    }
-
-    /// **Story 3.11 AC9** — bouton secondaire "Replanifier" (style ghost on dark).
-    private func replanifyButton(action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            HStack(spacing: 6) {
-                Image(systemName: "calendar.badge.clock")
-                    .font(.footnote.weight(.semibold))
-                Text("replanify.button")
-                    .font(.coachingBody.weight(.semibold))
-            }
-            .foregroundStyle(Color.coachingOnPrimary)
-            .padding(.horizontal, 14)
-            .padding(.vertical, 10)
-            .overlay(
-                Capsule()
-                    .strokeBorder(Color.coachingOnPrimary.opacity(0.7), lineWidth: 1)
-            )
-        }
-        .buttonStyle(.plain)
-        .accessibilityIdentifier("dashboard.active.next.replanify")
-    }
-
-    /// **Story 3.11 AC7** — date début de la semaine de la séance en retard,
-    /// formatée selon la locale courante (FR "EEEE d MMMM" / EN "EEEE, MMMM d").
-    /// Retourne `nil` si `weekStartDate` du programme est absent (cas dégénéré).
-    private func lateSessionWeekStartLabel(session: PersistedSession) -> String? {
-        guard let programStart = summary.weekStartDate else { return nil }
-        let weekIndex = max(0, session.weekNumber - 1)
-        let sessionWeekStart = Calendar.current.date(
-            byAdding: .day,
-            value: weekIndex * 7,
-            to: programStart
-        ) ?? programStart
-        let formatter = DateFormatter()
-        formatter.locale = locale
-        let langCode = locale.language.languageCode?.identifier ?? "en"
-        formatter.dateFormat = langCode == "fr" ? "EEEE d MMMM" : "EEEE, MMMM d"
-        return formatter.string(from: sessionWeekStart)
     }
 
     private var programCompletedState: some View {
