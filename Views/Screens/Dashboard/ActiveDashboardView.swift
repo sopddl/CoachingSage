@@ -53,7 +53,18 @@ struct ActiveDashboardView: View {
     let onDeleteProgram: (ProgramSummary) -> Void
     /// **Story 3.11** — tap "Replanifier" (visible uniquement quand la prochaine
     /// séance affichée est `late` ET le programme est en mode deadline).
+    /// **Story 3.27 D4** : conservé pour rétrocompat caller (`SessionView`)
+    /// mais ignoré dans `NextSessionCard` (Replanifier accessible uniquement
+    /// dans `AdaptedProgramView` désormais). À supprimer en cleanup ultérieur.
     var onTapReplanify: ((ProgramSummary) -> Void)? = nil
+
+    /// **Story 3.27 Phase B** — handler pour ouvrir le bouton « + Démarrer un
+    /// nouveau programme » quand 0 programme préparé. Push vers le questionnaire
+    /// universel via le caller (`SessionView`).
+    var onTapStartNewProgram: (() -> Void)? = nil
+
+    /// **Story 3.27 Phase B** — état local de la sheet "Programmes préparés".
+    @State private var showPreparedSheet: Bool = false
 
     private var selectedSummary: ProgramSummary? {
         if let selectedId, let s = startedPrograms.first(where: { $0.id == selectedId }) { return s }
@@ -89,6 +100,12 @@ struct ActiveDashboardView: View {
             if let selectedSummary {
                 sectionWithTitle(contextualSessionTitle(for: selectedSummary)) {
                     VStack(spacing: 10) {
+                        // **Story 3.27 Phase B (D7)** — widget "Stats semaine"
+                        // au-dessus de la card focal. Agrégation cumulative sur
+                        // l'ensemble des programmes actifs (cas Maxime motivation).
+                        // V1 minimal : « X / Y séances cette semaine ». Évolution
+                        // V2 possible avec streak + temps cumulé.
+                        weeklyStatsWidget
                         NextSessionCard(
                             summary: selectedSummary,
                             onTapStart: { onTapStartSession(selectedSummary) },
@@ -129,27 +146,114 @@ struct ActiveDashboardView: View {
                 .background(Color.coachingBackground)
             }
 
-            // Zone 3 : "Programmes préparés" — ScrollView interne distinct du
-            // scroll Séances pour que Sophie puisse parcourir ses dormants
-            // sans pousser la zone Séances hors écran. `padding(.bottom, 16)`
-            // pour garantir que le dernier dormant reste atteignable au scroll
-            // (sinon il restait collé à la tab bar et non visible).
-            if !dormantPrograms.isEmpty {
-                section(titleKey: "dashboard.section.dormants.title") {
-                    ScrollView(.vertical, showsIndicators: false) {
-                        DormantProgramsList(
-                            dormants: dormantPrograms,
-                            onTapProgram: onTapProgram,
-                            onDeleteProgram: onDeleteProgram,
-                            hideHeader: true
-                        )
-                        .padding(.bottom, 16)
-                    }
-                    .frame(maxHeight: .infinity, alignment: .top)
-                }
-                .frame(maxHeight: .infinity, alignment: .top)
-                .background(Color.coachingBackground)
+            // Zone 3 : trigger bottom sheet « Programmes préparés ».
+            // **Story 3.27 Phase B (party 2026-05-30 D6)** — la zone 3 ScrollView
+            // pleine largeur est remplacée par un trigger compact qui ouvre une
+            // sheet `.presentationDetents` contenant `DormantProgramsList`.
+            // Avantage : libère ~30% de hauteur dashboard, hierarchie plus claire
+            // (action principale = séance, découverte = secondaire).
+            //
+            // Affordance dynamique :
+            //   - N>0 préparés : « ↑ Programmes préparés (N) »
+            //   - N=0          : « + Démarrer un nouveau programme »
+            Spacer(minLength: 0)
+            preparedSheetTrigger
+                .padding(.bottom, 8)
+        }
+        .sheet(isPresented: $showPreparedSheet) {
+            preparedSheetContent
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+        }
+    }
+
+    /// **Story 3.27 Phase B (D7)** — widget compact « X / Y séances cette
+    /// semaine » agrégé sur tous les programmes actifs. Affiché au-dessus de la
+    /// card focal (cas Maxime motivation). V1 minimal sans streak ni temps :
+    /// les données minutes ne sont pas exposées sur `ProgramSummary`. Évolution
+    /// V2 possible si Sophie veut plus riche.
+    @ViewBuilder
+    private var weeklyStatsWidget: some View {
+        let completed = startedPrograms.reduce(0) { $0 + $1.weekCompletedSessions }
+        let total = startedPrograms.reduce(0) { $0 + $1.weekTotalSessions }
+        if total > 0 {
+            HStack(spacing: 8) {
+                Image(systemName: "calendar.badge.checkmark")
+                    .font(.caption)
+                    .foregroundStyle(Color.coachingPrimary)
+                Text(verbatim: String(
+                    format: String.localized("dashboard.stats.thisweek.format", locale: locale),
+                    completed, total
+                ))
+                    .font(.coachingCaption.weight(.medium))
+                    .foregroundStyle(Color.coachingTextPrimary)
+                Spacer(minLength: 0)
             }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .background(Color.coachingCard)
+            .clipShape(Capsule())
+            .accessibilityIdentifier("dashboard.stats.thisweek")
+        }
+    }
+
+    /// **Story 3.27 Phase B** — trigger compact (capsule) en bas du dashboard.
+    @ViewBuilder
+    private var preparedSheetTrigger: some View {
+        Button {
+            if dormantPrograms.isEmpty {
+                onTapStartNewProgram?()
+            } else {
+                showPreparedSheet = true
+            }
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: dormantPrograms.isEmpty
+                      ? "plus.circle.fill"
+                      : "chevron.up.circle.fill")
+                    .font(.body)
+                if dormantPrograms.isEmpty {
+                    Text("dashboard.prepared.trigger.startNew")
+                } else {
+                    Text(verbatim: String(
+                        format: String.localized("dashboard.prepared.trigger.openSheet.format", locale: locale),
+                        dormantPrograms.count
+                    ))
+                }
+            }
+            .font(.coachingBody.weight(.medium))
+            .foregroundStyle(Color.coachingPrimary)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+            .background(Color.coachingCard)
+            .clipShape(Capsule())
+            .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("dashboard.prepared.trigger")
+    }
+
+    /// **Story 3.27 Phase B** — contenu de la sheet : liste verticale des
+    /// `DormantProgramsList` existante (reuse intégral, hideHeader car la sheet
+    /// a son drag indicator + titre).
+    @ViewBuilder
+    private var preparedSheetContent: some View {
+        NavigationStack {
+            ScrollView {
+                DormantProgramsList(
+                    dormants: dormantPrograms,
+                    onTapProgram: { summary in
+                        showPreparedSheet = false
+                        onTapProgram(summary)
+                    },
+                    onDeleteProgram: onDeleteProgram,
+                    hideHeader: true
+                )
+                .padding(16)
+            }
+            .navigationTitle("dashboard.section.dormants.title")
+            .navigationBarTitleDisplayMode(.inline)
+            .background(Color.coachingBackground)
         }
     }
 
