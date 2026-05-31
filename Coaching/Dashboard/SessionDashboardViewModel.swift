@@ -442,6 +442,11 @@ final class SessionDashboardViewModel {
                 if let title = record.customTitle, !title.isEmpty { return title }
                 return resolvedName
             }()
+            // **Story 3.28 Phase A** — secondary CSV → array. Vide si nil.
+            let secondaryGoals: [String] = record.secondaryGoalsCSV?
+                .split(separator: ",")
+                .map { String($0).trimmingCharacters(in: .whitespaces) }
+                .filter { !$0.isEmpty } ?? []
             return ProgramSummary(
                 id: record.id,
                 templateName: displayTitle,
@@ -456,7 +461,10 @@ final class SessionDashboardViewModel {
                 totalSessionsCompleted: completed,
                 totalSessions: total,
                 lastUpdatedAt: record.lastUpdatedAt,
-                nextSessionIsLate: isLate
+                nextSessionIsLate: isLate,
+                goalCode: record.goalCode,
+                secondaryGoals: secondaryGoals,
+                isUserRenamed: record.isUserRenamed
             )
         }
         // **Story 3.27 Phase A (party 2026-05-30 D1)** — tri du carrousel par
@@ -505,6 +513,10 @@ final class SessionDashboardViewModel {
 struct ProgramSummary: Equatable, Identifiable {
     /// = `AdaptedProgramRecord.id`
     let id: UUID
+    /// Titre figé posé à la création du record (= `customTitle` ou fallback
+    /// `template.name`). Utilisé en fallback rétrocompat pour les records
+    /// pré-3.28 sans `goalCode`. **Préférer `displayTitle(locale:)`** qui
+    /// recalcule selon la locale courante via Story 3.28 Phase A.
     let templateName: String
     let sport: Sport
     /// `nil` = programme dormant (jamais démarré).
@@ -530,6 +542,38 @@ struct ProgramSummary: Equatable, Identifiable {
     /// deadline. Faux pour routineCyclic, dormant, ondemand pur, ou si la séance
     /// affichée est de la semaine courante / future.
     let nextSessionIsLate: Bool
+    /// **Story 3.28 Phase A** — code objectif primaire (ex "5k") posé à la
+    /// création du programme. Permet le recalcul du titre selon locale via
+    /// `displayTitle(locale:)`. `nil` = record pré-3.28 ou programme sport-seul.
+    let goalCode: String?
+    /// **Story 3.28 Phase A** — objectifs secondaires (Story 3.13 multi-goals).
+    /// Vide si pas de secondary.
+    let secondaryGoals: [String]
+    /// **Story 3.28 Phase A** — true si l'utilisateur a explicitement renommé
+    /// son programme. Quand true, `templateName` gagne sur le recalcul (sinon
+    /// le recalcul écraserait le renommage à chaque changement de langue).
+    let isUserRenamed: Bool
+
+    /// **Story 3.28 Phase A** — titre du programme à afficher dans l'UI,
+    /// recalculé dynamiquement selon `locale`. Priorité :
+    ///   1. User rename (`isUserRenamed == true`) → `templateName` figé.
+    ///   2. Recalcul `AutoTitleBuilder` si `goalCode` disponible (records post-3.28).
+    ///   3. Fallback `templateName` (records pré-3.28 sans `goalCode`).
+    /// Cf [[v2_chantier_i18n_contenu_programmes]] pour le rationale produit.
+    func displayTitle(locale: Locale) -> String {
+        if isUserRenamed, !templateName.isEmpty {
+            return templateName
+        }
+        if let goalCode {
+            return AutoTitleBuilder.build(
+                sportCode: sport.appSportCode,
+                goal: goalCode,
+                secondary: secondaryGoals,
+                locale: locale
+            )
+        }
+        return templateName
+    }
 
     /// **Story 3.10 AC21** — `true` quand `weekStartDate == nil`.
     var isDormant: Bool { weekStartDate == nil }

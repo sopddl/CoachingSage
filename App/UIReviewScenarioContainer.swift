@@ -469,7 +469,10 @@ private struct DashboardActiveScenarioView: View {
             totalSessionsCompleted: totalCompleted,
             totalSessions: totalSessions,
             lastUpdatedAt: lastUpdated,
-            nextSessionIsLate: nextSessionIsLate
+            nextSessionIsLate: nextSessionIsLate,
+            goalCode: nil,
+            secondaryGoals: [],
+            isUserRenamed: false
         )
     }
 
