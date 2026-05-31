@@ -15,6 +15,14 @@ struct MainTabView: View {
     @Environment(\.appDependencies) private var deps
     @State private var isLeonChatPresented = false
     @State private var selectedTab: AppTab = .session
+    /// **Hotfix Story 3.27 2026-05-31** — signal broadcast vers `SessionView`
+    /// quand l'user tape sur l'onglet « Séances » alors qu'il est déjà sur
+    /// cette tab (= il est probablement push sur `AdaptedProgramView`). La
+    /// custom tab bar n'a pas le comportement natif iOS « tap on current tab
+    /// = pop to root ». Le signal incrémente un compteur, `SessionView`
+    /// observe et reset `adaptedRoute = nil`. Bug Sophie 2026-05-31 :
+    /// « je ne peux plus retourner à l'accueil via le menu, juste la flèche ».
+    @State private var sessionPopSignal: Int = 0
 
     enum AppTab: Int, Hashable {
         case session = 0
@@ -50,6 +58,7 @@ struct MainTabView: View {
         switch selectedTab {
         case .session:
             SessionView()
+                .environment(\.sessionPopSignal, sessionPopSignal)
         case .progress:
             ProgressionView()
         case .profile:
@@ -104,7 +113,14 @@ struct MainTabView: View {
         tab: AppTab
     ) -> some View {
         Button {
-            selectedTab = tab
+            // **Hotfix Story 3.27 2026-05-31** — pattern « tap on current tab
+            // = pop to root » manquant sur la custom tab bar. Broadcast un
+            // signal vers `SessionView` qui reset son `adaptedRoute = nil`.
+            if selectedTab == tab && tab == .session {
+                sessionPopSignal &+= 1
+            } else {
+                selectedTab = tab
+            }
         } label: {
             VStack(spacing: 4) {
                 Image(systemName: icon)
@@ -168,4 +184,22 @@ struct MainTabView: View {
 
 #Preview {
     MainTabView()
+}
+
+// MARK: - Pop session nav signal (Hotfix Story 3.27 2026-05-31)
+
+private struct SessionPopSignalKey: EnvironmentKey {
+    static let defaultValue: Int = 0
+}
+
+extension EnvironmentValues {
+    /// Compteur incrémenté quand l'user tape sur l'onglet « Séances » alors
+    /// qu'il est déjà sur cette tab. `SessionView` observe et pop sa nav stack
+    /// (reset `adaptedRoute = nil`). Pattern « tap on current tab = pop to
+    /// root » que la `TabView` native iOS implémente, mais que notre custom
+    /// tab bar (Story 3.8 UI fix 2026-05-09) ne fait pas par défaut.
+    var sessionPopSignal: Int {
+        get { self[SessionPopSignalKey.self] }
+        set { self[SessionPopSignalKey.self] = newValue }
+    }
 }
