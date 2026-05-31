@@ -349,13 +349,24 @@ struct AdaptedProgramView: View {
 
     /// Sauve le `customTitle` côté record SwiftData + refresh la vue. Trim +
     /// guard non-vide : un titre vide retombe sur l'autoTitle (fallback).
+    ///
+    /// **Story 3.28 Phase A** — set `isUserRenamed = true` quand l'user écrit
+    /// un titre non-vide. Empêche le recalcul AutoTitleBuilder de l'écraser au
+    /// changement de langue. Titre vide = retour au défaut (recalc dynamique
+    /// gagne, `isUserRenamed = false`).
     @MainActor
     private func saveRename() async {
         guard let buffer = renameBuffer else { return }
         let trimmed = buffer.trimmingCharacters(in: .whitespacesAndNewlines)
         renameBuffer = nil
         guard let record, let deps else { return }
-        record.customTitle = trimmed.isEmpty ? nil : trimmed
+        if trimmed.isEmpty {
+            record.customTitle = nil
+            record.isUserRenamed = false
+        } else {
+            record.customTitle = trimmed
+            record.isUserRenamed = true
+        }
         record.lastUpdatedAt = Date()
         try? await deps.adaptedProgramRepository.update(record)
     }

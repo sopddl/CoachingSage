@@ -442,7 +442,9 @@ private struct ProgramCard: View {
                 .frame(width: 42, height: 42)
 
                 VStack(alignment: .center, spacing: 2) {
-                    Text(verbatim: summary.templateName)
+                    // **Story 3.28 Phase A** — titre re-localisé selon locale
+                    // courante (recalc via AutoTitleBuilder sauf si user rename).
+                    Text(verbatim: summary.displayTitle(locale: locale))
                         .font(.coachingBody.weight(.semibold))
                         .foregroundStyle(Color.coachingTextPrimary)
                         .lineLimit(1)

@@ -56,6 +56,8 @@ private struct DormantProgramRow: View {
     let summary: ProgramSummary
     let onTap: () -> Void
     let onDelete: () -> Void
+    /// **Story 3.28 Phase A** — locale courante pour `displayTitle(locale:)`.
+    @Environment(\.locale) private var locale
 
     private var sportCode: String { summary.sport.appSportCode }
 
@@ -84,7 +86,7 @@ private struct DormantProgramRow: View {
                             .accessibilityIdentifier("dashboard.dormant.badge.prepared")
                         Spacer(minLength: 0)
                     }
-                    Text(verbatim: summary.templateName)
+                    Text(verbatim: summary.displayTitle(locale: locale))
                         .font(.coachingBody.weight(.semibold))
                         .foregroundStyle(Color.coachingTextPrimary)
                         .lineLimit(2)

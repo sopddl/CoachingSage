@@ -48,7 +48,31 @@ final class AdaptedProgramRecord {
     /// Modifiable par l'utilisateur via le rename sheet (tap sur le titre nav).
     /// Nullable pour rétro-compat (records pré-Story 3.12) — fallback côté UI
     /// vers le sport seul si nil.
+    ///
+    /// **Story 3.28 Phase A (i18n re-localisable)** — depuis V11, ce champ
+    /// devient SECONDAIRE : on l'utilise UNIQUEMENT si `isUserRenamed == true`
+    /// (= l'utilisateur a explicitement nommé son programme). Sinon, le titre
+    /// est recalculé dynamiquement via `AutoTitleBuilder` + `goalCode` +
+    /// `secondaryGoalsCSV` + locale courante. Fallback rétrocompat : records
+    /// pré-3.28 sans `goalCode` utilisent `customTitle` figé.
     var customTitle: String?
+
+    /// **Story 3.28 Phase A** — code de l'objectif primaire (ex "5k",
+    /// "cyclosportive"). Stocké pour permettre le recalcul du titre au render
+    /// selon `LanguageManager.currentLocale`. Nil = records pré-3.28 ou
+    /// programmes sans objectif (sport-seul).
+    var goalCode: String?
+
+    /// **Story 3.28 Phase A** — objectifs secondaires (Story 3.13 multi-goals)
+    /// sérialisés en CSV pour stockage SwiftData (pas d'array natif). Nil ou
+    /// vide = pas de secondary. Re-décomposé via `split(",")` au render.
+    var secondaryGoalsCSV: String?
+
+    /// **Story 3.28 Phase A** — true si l'utilisateur a édité manuellement
+    /// `customTitle` via le rename sheet. Quand true, `customTitle` gagne
+    /// sur le recalcul `AutoTitleBuilder` (sinon le recalcul écraserait le
+    /// renommage user à chaque changement de langue).
+    var isUserRenamed: Bool = false
 
     /// Stocké en `String` car SwiftData ne supporte pas les enums comme attribute type.
     /// Utiliser `mode` (computed) plutôt que `modeRaw` côté business code.
@@ -134,6 +158,9 @@ final class AdaptedProgramRecord {
         cycleNumber: Int = 1,
         shiftGeneration: Int = 0,
         customTitle: String? = nil,
+        goalCode: String? = nil,
+        secondaryGoalsCSV: String? = nil,
+        isUserRenamed: Bool = false,
         createdAt: Date = Date(),
         lastUpdatedAt: Date = Date()
     ) {
@@ -158,6 +185,9 @@ final class AdaptedProgramRecord {
         self.cycleNumber = cycleNumber
         self.shiftGeneration = shiftGeneration
         self.customTitle = customTitle
+        self.goalCode = goalCode
+        self.secondaryGoalsCSV = secondaryGoalsCSV
+        self.isUserRenamed = isUserRenamed
         self.createdAt = createdAt
         self.lastUpdatedAt = lastUpdatedAt
     }
@@ -196,12 +226,21 @@ extension AdaptedProgramRecord {
                 )
             }
         }
+        // **Story 3.28 Phase A** — `customTitle` est posé en bonus rétrocompat
+        // (anciens consumers qui le lisaient directement). Mais le titre
+        // d'affichage sera recalculé dynamiquement par le ViewModel selon la
+        // locale courante, via `goalCode` + `secondaryGoalsCSV` (stockés ci-
+        // dessous). `isUserRenamed` reste false : tant que l'user ne renomme
+        // pas, le recalcul gagne sur `customTitle`.
         let autoTitle = AutoTitleBuilder.build(
             sportCode: adapted.sport.appSportCode,
             goal: goal,
             secondary: secondary,
             locale: locale
         )
+        let secondaryCSV: String? = secondary.isEmpty
+            ? nil
+            : secondary.joined(separator: ",")
         self.init(
             userId: userId,
             sportCode: adapted.sport.appSportCode,
@@ -219,7 +258,10 @@ extension AdaptedProgramRecord {
             durationMode: adapted.durationMode,
             targetDate: adapted.targetDate,
             cycleNumber: cycleNumber,
-            customTitle: autoTitle
+            customTitle: autoTitle,
+            goalCode: goal,
+            secondaryGoalsCSV: secondaryCSV,
+            isUserRenamed: false
         )
     }
 

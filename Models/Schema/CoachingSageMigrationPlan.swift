@@ -20,11 +20,13 @@
 // obligatoire au premier run post-merge.
 // Story 3.21 hotfix (V10) — ajout CoachingProfile.bootstrappedDormantsLocal
 // (SwiftData-only, fix Bug F cross-device). Wipe simu obligatoire.
+// Story 3.28 (V11) — ajout AdaptedProgramRecord.goalCode + secondaryGoalsCSV
+// + isUserRenamed (i18n titres re-localisables). Wipe simu obligatoire.
 import SwiftData
 
 enum CoachingSageMigrationPlan: SchemaMigrationPlan {
     static var schemas: [any VersionedSchema.Type] {
-        [SchemaV10.self]
+        [SchemaV11.self]
     }
 
     static var stages: [MigrationStage] {
