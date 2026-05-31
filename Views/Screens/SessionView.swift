@@ -16,6 +16,11 @@ import TemplateModel
 struct SessionView: View {
     @Environment(\.appDependencies) private var deps
     @Environment(\.languageManager) private var languageManager
+    /// **Hotfix Story 3.27 2026-05-31** — broadcast `MainTabView` quand l'user
+    /// tape sur l'onglet Séances alors qu'il est déjà sur cette tab. Reset
+    /// `adaptedRoute = nil` pour pop le push `AdaptedProgramView`. Custom tab
+    /// bar n'implémente pas le « tap on current tab = pop to root » natif.
+    @Environment(\.sessionPopSignal) private var sessionPopSignal: Int
 
     @State private var dashboardViewModel: SessionDashboardViewModel?
     @State private var coachingProfile: CoachingProfile?
@@ -130,6 +135,11 @@ struct SessionView: View {
                         await reloadProfile(silent: true)
                         await refreshDashboard()
                     }
+                }
+                // **Hotfix Story 3.27 2026-05-31** — pop AdaptedProgramView quand
+                // l'user tape sur l'onglet « Séances » alors qu'il est déjà push.
+                .onChange(of: sessionPopSignal) {
+                    adaptedRoute = nil
                 }
         }
         .sheet(item: $sheetSelection) { selection in

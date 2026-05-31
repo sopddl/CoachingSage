@@ -146,19 +146,25 @@ struct ActiveDashboardView: View {
                 .background(Color.coachingBackground)
             }
 
-            // Zone 3 : trigger bottom sheet « Programmes préparés ».
-            // **Story 3.27 Phase B (party 2026-05-30 D6)** — la zone 3 ScrollView
-            // pleine largeur est remplacée par un trigger compact qui ouvre une
-            // sheet `.presentationDetents` contenant `DormantProgramsList`.
-            // Avantage : libère ~30% de hauteur dashboard, hierarchie plus claire
-            // (action principale = séance, découverte = secondaire).
-            //
-            // Affordance dynamique :
-            //   - N>0 préparés : « ↑ Programmes préparés (N) »
-            //   - N=0          : « + Démarrer un nouveau programme »
-            Spacer(minLength: 0)
+        }
+        // Zone 3 : trigger bottom sheet « Programmes préparés » en
+        // `safeAreaInset(.bottom)` pour être STICKY au-dessus du tab bar,
+        // toujours visible. **Hotfix Story 3.27 2026-05-31** : initialement
+        // posé en bas du VStack avec Spacer, mais Zone 2 `.frame(maxHeight:
+        // .infinity)` écrasait le Spacer → trigger invisible en mode actif
+        // (Sophie : « je ne vois pas l'onglet en bas »).
+        //
+        // Affordance dynamique :
+        //   - N>0 préparés : « ↑ Programmes préparés (N) »
+        //   - N=0          : « + Démarrer un nouveau programme »
+        .safeAreaInset(edge: .bottom, spacing: 0) {
             preparedSheetTrigger
-                .padding(.bottom, 8)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
+                .background(
+                    Color.coachingBackground
+                        .ignoresSafeArea(edges: .bottom)
+                )
         }
         .sheet(isPresented: $showPreparedSheet) {
             preparedSheetContent
