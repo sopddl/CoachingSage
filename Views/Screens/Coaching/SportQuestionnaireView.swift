@@ -146,17 +146,37 @@ struct SportQuestionnaireView: View {
 
     @ViewBuilder
     private var mainContent: some View {
-        VStack(spacing: 0) {
-            chatScroll
-            errorSection
-            // Sépare visuellement la zone chat (historique + question) de la zone options.
-            // Sans ce divider, la dernière bulle de question se confond avec les bulles précédentes
-            // et l'user perd le contexte de la question courante (Sophie 2026-05-03).
-            if viewModel.currentQuestion != nil {
-                Divider()
+        // Story 3.30 polish #3 (Sophie 2026-06-01) — tant que le flux n'a pas produit de bulle
+        // (état pré-démarrage / pendant l'alerte de recovery « Reprendre ta saisie ? »), on
+        // affiche un placeholder qui REMPLIT l'écran. Sinon le VStack vide se rétracte (ScrollView
+        // sans contenu) et laisse apparaître une bande verticale moche sous le dimming de l'alerte.
+        if viewModel.messages.isEmpty && viewModel.currentQuestion == nil {
+            emptyFlowPlaceholder
+        } else {
+            VStack(spacing: 0) {
+                chatScroll
+                errorSection
+                // Sépare visuellement la zone chat (historique + question) de la zone options.
+                // Sans ce divider, la dernière bulle de question se confond avec les bulles précédentes
+                // et l'user perd le contexte de la question courante (Sophie 2026-05-03).
+                if viewModel.currentQuestion != nil {
+                    Divider()
+                }
+                optionsSection
             }
-            optionsSection
         }
+    }
+
+    /// Story 3.30 polish #3 — état propre (avatar sport + spinner) pour la fenêtre où aucune bulle
+    /// n'est encore affichée. Remplit tout l'écran sur fond `coachingBackground` → pas de bande moche.
+    private var emptyFlowPlaceholder: some View {
+        VStack(spacing: 12) {
+            SportAvatarView(sportCode: viewModel.questionnaire.sportCode, size: 56)
+            ProgressView()
+                .tint(Color.coachingPrimary)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.coachingBackground.ignoresSafeArea())
     }
 
     @ViewBuilder
