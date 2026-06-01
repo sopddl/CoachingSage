@@ -336,6 +336,7 @@ struct SessionView: View {
                 teaserSession: vm.currentTeaserSession,
                 upcomingSessions: vm.upcomingSessionsAfterFocal,
                 regenBadges: vm.regenBadgesByRecord,
+                leonTip: vm.selectedLeonTip,
                 onSelectProgram: { id in
                     vm.selectProgram(id: id)
                 },
