@@ -61,10 +61,11 @@ struct ActiveDashboardView: View {
     /// **Story 3.27 Phase B** — handler pour ouvrir le bouton « + Démarrer un
     /// nouveau programme » quand 0 programme préparé. Push vers le questionnaire
     /// universel via le caller (`SessionView`).
+    /// **Hotfix2 2026-05-31** : trigger + sheet déplacés à SessionView via
+    /// `safeAreaInset(.bottom)`. Le rendu dans le VStack ActiveDashboardView
+    /// était toujours pushed hors écran par la liste séances scrollable.
+    /// Ce param reste pour cohérence d'API mais n'est plus utilisé localement.
     var onTapStartNewProgram: (() -> Void)? = nil
-
-    /// **Story 3.27 Phase B** — état local de la sheet "Programmes préparés".
-    @State private var showPreparedSheet: Bool = false
 
     private var selectedSummary: ProgramSummary? {
         if let selectedId, let s = startedPrograms.first(where: { $0.id == selectedId }) { return s }
@@ -146,30 +147,12 @@ struct ActiveDashboardView: View {
                 .background(Color.coachingBackground)
             }
 
-        }
-        // Zone 3 : trigger bottom sheet « Programmes préparés » en
-        // `safeAreaInset(.bottom)` pour être STICKY au-dessus du tab bar,
-        // toujours visible. **Hotfix Story 3.27 2026-05-31** : initialement
-        // posé en bas du VStack avec Spacer, mais Zone 2 `.frame(maxHeight:
-        // .infinity)` écrasait le Spacer → trigger invisible en mode actif
-        // (Sophie : « je ne vois pas l'onglet en bas »).
-        //
-        // Affordance dynamique :
-        //   - N>0 préparés : « ↑ Programmes préparés (N) »
-        //   - N=0          : « + Démarrer un nouveau programme »
-        .safeAreaInset(edge: .bottom, spacing: 0) {
-            preparedSheetTrigger
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(
-                    Color.coachingBackground
-                        .ignoresSafeArea(edges: .bottom)
-                )
-        }
-        .sheet(isPresented: $showPreparedSheet) {
-            preparedSheetContent
-                .presentationDetents([.medium, .large])
-                .presentationDragIndicator(.visible)
+            // **Hotfix2 Story 3.27 2026-05-31** — trigger « Programmes préparés »
+            // placé directement comme DERNIER child du VStack (le carrousel
+            // précédant + Zone 2 .frame(maxHeight: .infinity) le poussent en
+            // bas). safeAreaInset et overlay du VStack ne marchaient pas dans
+            // le contexte SessionView. Le trigger fait sa hauteur naturelle
+            // ~40pt, le VStack s'ajuste, Zone 2 prend l'espace restant.
         }
     }
 
@@ -200,66 +183,6 @@ struct ActiveDashboardView: View {
             .background(Color.coachingCard)
             .clipShape(Capsule())
             .accessibilityIdentifier("dashboard.stats.thisweek")
-        }
-    }
-
-    /// **Story 3.27 Phase B** — trigger compact (capsule) en bas du dashboard.
-    @ViewBuilder
-    private var preparedSheetTrigger: some View {
-        Button {
-            if dormantPrograms.isEmpty {
-                onTapStartNewProgram?()
-            } else {
-                showPreparedSheet = true
-            }
-        } label: {
-            HStack(spacing: 8) {
-                Image(systemName: dormantPrograms.isEmpty
-                      ? "plus.circle.fill"
-                      : "chevron.up.circle.fill")
-                    .font(.body)
-                if dormantPrograms.isEmpty {
-                    Text("dashboard.prepared.trigger.startNew")
-                } else {
-                    Text(verbatim: String(
-                        format: String.localized("dashboard.prepared.trigger.openSheet.format", locale: locale),
-                        dormantPrograms.count
-                    ))
-                }
-            }
-            .font(.coachingBody.weight(.medium))
-            .foregroundStyle(Color.coachingPrimary)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(Color.coachingCard)
-            .clipShape(Capsule())
-            .frame(maxWidth: .infinity)
-        }
-        .buttonStyle(.plain)
-        .accessibilityIdentifier("dashboard.prepared.trigger")
-    }
-
-    /// **Story 3.27 Phase B** — contenu de la sheet : liste verticale des
-    /// `DormantProgramsList` existante (reuse intégral, hideHeader car la sheet
-    /// a son drag indicator + titre).
-    @ViewBuilder
-    private var preparedSheetContent: some View {
-        NavigationStack {
-            ScrollView {
-                DormantProgramsList(
-                    dormants: dormantPrograms,
-                    onTapProgram: { summary in
-                        showPreparedSheet = false
-                        onTapProgram(summary)
-                    },
-                    onDeleteProgram: onDeleteProgram,
-                    hideHeader: true
-                )
-                .padding(16)
-            }
-            .navigationTitle("dashboard.section.dormants.title")
-            .navigationBarTitleDisplayMode(.inline)
-            .background(Color.coachingBackground)
         }
     }
 

@@ -42,6 +42,11 @@ struct SessionView: View {
     /// **Story 3.11** — Programme courant pour la sheet Replanifier. Non-nil
     /// = sheet présentée. Le caller câble `onSelect` côté `replanifyService`.
     @State private var replanifyTarget: ProgramSummary?
+    /// **Hotfix2 Story 3.27 2026-05-31** — sheet « Programmes préparés ». Déplacée
+    /// d'ActiveDashboardView vers ici car le trigger en interne était toujours
+    /// pushed hors écran par la liste séances scrollable Zone 2. Trigger
+    /// désormais en `.safeAreaInset(.bottom)` du content SessionView.
+    @State private var showPreparedSheet: Bool = false
 
     /// **Story 3.10** — Contexte de l'alerte cap pour résoudre titre/message
     /// i18n côté View. `Identifiable` pour `.alert(item:)` SwiftUI.
@@ -141,9 +146,26 @@ struct SessionView: View {
                 .onChange(of: sessionPopSignal) {
                     adaptedRoute = nil
                 }
+                // **Hotfix2 Story 3.27 2026-05-31** — trigger « Programmes préparés »
+                // (déplacé depuis ActiveDashboardView qui le pushait hors écran).
+                // Visible UNIQUEMENT en mode `.active` (sinon `EmptyView` =
+                // pas d'inset visible).
+        }
+        // **Hotfix2 Story 3.27 2026-05-31** — trigger « Programmes préparés »
+        // sticky en bas du dashboard, AU NIVEAU DU NavigationStack (pas du
+        // content interne où le safeAreaInset ne s'appliquait pas correctement
+        // dans le setup MainTabView).
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            preparedSheetTrigger
         }
         .sheet(item: $sheetSelection) { selection in
             sheet(for: selection)
+        }
+        // **Hotfix2 Story 3.27 2026-05-31** — sheet « Programmes préparés ».
+        .sheet(isPresented: $showPreparedSheet) {
+            preparedSheetContent
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
         }
         // **Story 3.11** — sheet Replanifier (medium/large detents).
         .sheet(item: $replanifyTarget) { summary in
@@ -594,6 +616,97 @@ struct SessionView: View {
     }
 
     // MARK: - Sheet routing
+
+    // MARK: - Hotfix2 Story 3.27 — Bottom sheet « Programmes préparés »
+    //
+    // Le trigger est en `safeAreaInset(.bottom)` du content NavigationStack
+    // pour rester sticky au-dessus du tab bar custom (MainTabView), peu
+    // importe la hauteur de Zone 2 (liste séances scrollable) qui poussait
+    // le trigger hors écran quand placé dans le VStack de ActiveDashboardView.
+
+    /// Trigger sticky en bas du content. Visible UNIQUEMENT en mode `.active`
+    /// (le dashboardViewModel est en mode `.active` quand il y a ≥1 programme
+    /// démarré). Sinon, EmptyView = pas d'inset → pas de réservation d'espace.
+    @ViewBuilder
+    private var preparedSheetTrigger: some View {
+        if case .active = dashboardViewModel?.mode {
+            let dormantsCount = currentDormantsCount
+            Button(action: handlePreparedTriggerTap) {
+                preparedSheetTriggerLabel(dormantsCount: dormantsCount)
+            }
+            .buttonStyle(.plain)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+            .background(Color.coachingBackground.ignoresSafeArea(edges: .bottom))
+            .accessibilityIdentifier("dashboard.prepared.trigger")
+        } else {
+            EmptyView()
+        }
+    }
+
+    private var currentDormantsCount: Int {
+        guard case let .active(_, dormants, _) = dashboardViewModel?.mode else { return 0 }
+        return dormants.count
+    }
+
+    private func handlePreparedTriggerTap() {
+        if currentDormantsCount == 0 {
+            sheetSelection = .sportPicker
+        } else {
+            showPreparedSheet = true
+        }
+    }
+
+    @ViewBuilder
+    private func preparedSheetTriggerLabel(dormantsCount: Int) -> some View {
+        let label: String = dormantsCount == 0
+            ? String.localized("dashboard.prepared.trigger.startNew",
+                               locale: languageManager.currentLocale)
+            : String(
+                format: String.localized("dashboard.prepared.trigger.openSheet.format",
+                                          locale: languageManager.currentLocale),
+                dormantsCount
+            )
+        let icon: String = dormantsCount == 0 ? "plus.circle.fill" : "chevron.up.circle.fill"
+        HStack(spacing: 8) {
+            Image(systemName: icon).font(.body)
+            Text(verbatim: label)
+        }
+        .font(.coachingBody.weight(.semibold))
+        .foregroundStyle(Color.coachingOnPrimary)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .frame(maxWidth: .infinity)
+        .background(Color.coachingPrimary)
+        .clipShape(Capsule())
+    }
+
+    @ViewBuilder
+    private var preparedSheetContent: some View {
+        let dormants: [ProgramSummary] = {
+            guard case let .active(_, d, _) = dashboardViewModel?.mode else { return [] }
+            return d
+        }()
+        NavigationStack {
+            ScrollView {
+                DormantProgramsList(
+                    dormants: dormants,
+                    onTapProgram: { summary in
+                        showPreparedSheet = false
+                        pushAdaptedProgramSummary(summary)
+                    },
+                    onDeleteProgram: { summary in
+                        Task { await deleteProgramSummary(summary) }
+                    },
+                    hideHeader: true
+                )
+                .padding(16)
+            }
+            .navigationTitle("dashboard.section.dormants.title")
+            .navigationBarTitleDisplayMode(.inline)
+            .background(Color.coachingBackground)
+        }
+    }
 
     @ViewBuilder
     private func sheet(for selection: SheetSelection) -> some View {
