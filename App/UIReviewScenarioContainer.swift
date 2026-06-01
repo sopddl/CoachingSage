@@ -72,6 +72,15 @@ struct UIReviewScenarioContainer: View {
             // visible : démarrés en tête. ProgramCard + NextSessionCard sous le
             // carrousel pour le programme sélectionné (= running, premier).
             DashboardActiveScenarioView(scenario: .mixed)
+        case "ui_review_dashboard_active_one_program":
+            // **Story 3.27 Phase C** — carrousel à 1 seule card (1 démarré, 0
+            // dormant). Vérifie qu'une card seule ne s'étire pas anormalement.
+            DashboardActiveScenarioView(scenario: .oneStarted)
+        case "ui_review_dashboard_active_three_programs":
+            // **Story 3.27 Phase C** — carrousel plein (3 démarrés, 0 dormant).
+            // Vérifie le scroll horizontal + sélection 1re card + truncation
+            // titres composites (« Triathlon — ... »).
+            DashboardActiveScenarioView(scenario: .threeStarted)
         case "ui_review_dashboard_empty":
             // **Story 3.15 v7 (Sophie 2026-05-21)** — mode `.empty` simplifié :
             // icone hero + titre + sous-titre + CTA "Crée mon premier programme".
@@ -233,6 +242,12 @@ private struct DashboardActiveScenarioView: View {
         case programCompleted
         case lateWithReplanify
         case routineCyclicNoReplanify
+        /// **Story 3.27 Phase C** — 1 seul programme démarré, 0 dormant : carrousel
+        /// à 1 card (vérifie qu'une card seule reste centrée / pas étirée).
+        case oneStarted
+        /// **Story 3.27 Phase C** — 3 programmes démarrés, 0 dormant : carrousel
+        /// plein (scroll horizontal, sélection sur le 1er).
+        case threeStarted
     }
 
     let scenario: Scenario
@@ -414,6 +429,47 @@ private struct DashboardActiveScenarioView: View {
                     lastUpdated: Date().addingTimeInterval(-7200),
                     durationMode: .deadlineFixed,
                     nextSessionIsLate: false
+                )
+            ]
+        case .oneStarted:
+            // **Story 3.27 Phase C** — 1 programme démarré seul. Carrousel à 1 card.
+            return [
+                makeProgram(
+                    id: idRunning, sport: .running, templateName: "Couch to 5k — Semaine 2",
+                    weekStartDate: Date().addingTimeInterval(-7 * 86_400),
+                    currentWeek: 2, weekCompleted: 1, weekTotal: 3,
+                    totalCompleted: 4, totalSessions: 12,
+                    nextSession: makeSession(name: "Footing 30 min", week: 2, day: 3, dur: 30),
+                    lastUpdated: Date().addingTimeInterval(-3600)
+                )
+            ]
+        case .threeStarted:
+            // **Story 3.27 Phase C** — 3 programmes démarrés, 0 dormant. Carrousel
+            // plein (3 cards, scroll horizontal). Sélection par défaut = running.
+            return [
+                makeProgram(
+                    id: idRunning, sport: .running, templateName: "Couch to 5k — Semaine 2",
+                    weekStartDate: Date().addingTimeInterval(-7 * 86_400),
+                    currentWeek: 2, weekCompleted: 1, weekTotal: 3,
+                    totalCompleted: 4, totalSessions: 12,
+                    nextSession: makeSession(name: "Footing 30 min", week: 2, day: 3, dur: 30),
+                    lastUpdated: Date().addingTimeInterval(-1800)
+                ),
+                makeProgram(
+                    id: idCycling, sport: .cycling, templateName: "Cycling Endurance",
+                    weekStartDate: Date().addingTimeInterval(-14 * 86_400),
+                    currentWeek: 3, weekCompleted: 2, weekTotal: 4,
+                    totalCompleted: 8, totalSessions: 16,
+                    nextSession: makeSession(name: "Sortie longue 90 min", week: 3, day: 5, dur: 90),
+                    lastUpdated: Date().addingTimeInterval(-3600)
+                ),
+                makeProgram(
+                    id: idTriathlon, sport: .triathlon, templateName: "Triathlon Sprint",
+                    weekStartDate: Date().addingTimeInterval(-7 * 86_400),
+                    currentWeek: 1, weekCompleted: 0, weekTotal: 3,
+                    totalCompleted: 0, totalSessions: 12,
+                    nextSession: makeSession(name: "Run Daniels-E — endurance", week: 1, day: 1, dur: 40),
+                    lastUpdated: Date().addingTimeInterval(-7200)
                 )
             ]
         case .routineCyclicNoReplanify:
