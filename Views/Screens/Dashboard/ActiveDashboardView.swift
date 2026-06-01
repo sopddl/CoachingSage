@@ -99,14 +99,14 @@ struct ActiveDashboardView: View {
             // sélectionné dans le carrousel. Rend visible la liaison
             // programme↔séances quand l'user swipe le carrousel (vœu Sophie-user).
             if let selectedSummary {
-                sectionWithTitle(contextualSessionTitle(for: selectedSummary)) {
+                VStack(alignment: .leading, spacing: 12) {
+                    // **Story 3.27 Phase C+ (Sophie 2026-06-01, Direction A party
+                    // Léna)** — bandeau contextuel « SPORT · SEM. N » fusionné
+                    // avec le ratio semaine + barre de progression segmentée.
+                    // Remplace l'ancien bandeau séparé + widget chips « X/Y »
+                    // (3 lignes de labels redondantes → 2 lignes denses).
+                    weeklyStatsHeader(for: selectedSummary)
                     VStack(spacing: 10) {
-                        // **Story 3.27 Phase B (D7)** — widget "Stats semaine"
-                        // au-dessus de la card focal. Agrégation cumulative sur
-                        // l'ensemble des programmes actifs (cas Maxime motivation).
-                        // V1 minimal : « X / Y séances cette semaine ». Évolution
-                        // V2 possible avec streak + temps cumulé.
-                        weeklyStatsWidget
                         NextSessionCard(
                             summary: selectedSummary,
                             onTapStart: { onTapStartSession(selectedSummary) },
@@ -156,34 +156,67 @@ struct ActiveDashboardView: View {
         }
     }
 
-    /// **Story 3.27 Phase B (D7)** — widget compact « X / Y séances cette
-    /// semaine » agrégé sur tous les programmes actifs. Affiché au-dessus de la
-    /// card focal (cas Maxime motivation). V1 minimal sans streak ni temps :
-    /// les données minutes ne sont pas exposées sur `ProgramSummary`. Évolution
-    /// V2 possible si Sophie veut plus riche.
+    /// **Story 3.27 Phase C+ (Sophie 2026-06-01)** — bandeau contextuel +
+    /// mini-stats de la semaine, **scopés au seul programme sélectionné** (pas
+    /// d'agrégation multi-programmes — décision Sophie : « on reste uniquement
+    /// sur le programme en cours »). Cohérent avec le titre « SPORT · SEM. N ».
+    ///
+    /// Bandeau « SPORT · SEM. N » (gauche) + ratio `done/total` de la semaine
+    /// (droite, scopé au seul programme sélectionné — décision Sophie : pas
+    /// d'agrégation multi-programmes), avec dessous une barre de progression fine
+    /// done(vert)/total(gris). Compact (1 ligne titre + barre) et lisible.
+    /// Le badge « en retard » vit ICI (après le ratio, ligne titre) et **plus**
+    /// sur la card focale — décision Sophie 2026-06-01 : libère de la hauteur sur
+    /// la card (jugée trop grosse) et regroupe l'info semaine sur une seule ligne.
     @ViewBuilder
-    private var weeklyStatsWidget: some View {
-        let completed = startedPrograms.reduce(0) { $0 + $1.weekCompletedSessions }
-        let total = startedPrograms.reduce(0) { $0 + $1.weekTotalSessions }
-        if total > 0 {
+    private func weeklyStatsHeader(for summary: ProgramSummary) -> some View {
+        let done = summary.weekCompletedSessions
+        let total = summary.weekTotalSessions
+        VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 8) {
-                Image(systemName: "calendar.badge.checkmark")
-                    .font(.caption)
-                    .foregroundStyle(Color.coachingPrimary)
-                Text(verbatim: String(
-                    format: String.localized("dashboard.stats.thisweek.format", locale: locale),
-                    completed, total
-                ))
-                    .font(.coachingCaption.weight(.medium))
-                    .foregroundStyle(Color.coachingTextPrimary)
-                Spacer(minLength: 0)
+                Text(verbatim: contextualSessionTitle(for: summary))
+                    .font(.coachingCaption.weight(.semibold))
+                    .foregroundStyle(Color.coachingTextSecondary)
+                    .textCase(.uppercase)
+                    .tracking(0.8)
+                    .accessibilityIdentifier("dashboard.section.contextual.title")
+                Spacer(minLength: 8)
+                if total > 0 {
+                    Text(verbatim: "\(done)/\(total)")
+                        .font(.coachingCaption.weight(.bold))
+                        .monospacedDigit()
+                        .foregroundStyle(Color.coachingTextPrimary)
+                }
+                if summary.nextSessionIsLate {
+                    HStack(spacing: 3) {
+                        Image(systemName: "clock.badge.exclamationmark").font(.caption2)
+                        Text("dashboard.session.late.badge")
+                            .font(.coachingCaption.weight(.semibold))
+                    }
+                    .foregroundStyle(Color.coachingWarning)
+                    .accessibilityIdentifier("dashboard.stats.late")
+                }
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 6)
-            .background(Color.coachingCard)
-            .clipShape(Capsule())
-            .accessibilityIdentifier("dashboard.stats.thisweek")
+            if total > 0 {
+                weeklySegmentBar(done: done, total: total)
+            }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("dashboard.stats.thisweek")
+    }
+
+    /// Barre de progression fine (6pt) de la semaine du programme sélectionné :
+    /// segment vert `done` sur fond gris `total`. Même pattern que `ProgramCard`.
+    private func weeklySegmentBar(done: Int, total: Int) -> some View {
+        let fraction = min(max(Double(done) / Double(max(total, 1)), 0), 1)
+        return GeometryReader { geo in
+            ZStack(alignment: .leading) {
+                Capsule().fill(Color.coachingTextSecondary.opacity(0.18))
+                Capsule().fill(Color.coachingSuccess)
+                    .frame(width: max(0, geo.size.width * fraction))
+            }
+        }
+        .frame(height: 6)
     }
 
     /// **Story 3.15 v5 (Sophie 2026-05-21)** — header séparateur de semaine
@@ -277,20 +310,6 @@ struct ActiveDashboardView: View {
         }
     }
 
-    /// **Story 3.27 Phase A** — variante avec titre String dynamique, pour le
-    /// bandeau contextuel zone 2 (« [SPORT] · SEMAINE N »).
-    @ViewBuilder
-    private func sectionWithTitle(_ title: String, @ViewBuilder content: () -> some View) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(verbatim: title)
-                .font(.coachingCaption.weight(.semibold))
-                .foregroundStyle(Color.coachingTextSecondary)
-                .textCase(.uppercase)
-                .tracking(0.8)
-                .accessibilityIdentifier("dashboard.section.contextual.title")
-            content()
-        }
-    }
 
     /// **Story 3.27 Phase A (party 2026-05-30 D2)** — titre contextuel
     /// « [SPORT] · SEMAINE N » du programme sélectionné. Sport localisé via
@@ -611,14 +630,13 @@ private struct NextSessionCard: View {
         // état normal). Sophie : « card prochaine séance comme avant mais
         // qui ne soit pas 4 fois plus grande si je suis en retard ».
         //
-        // Conservé : badge `lateBadge` en tête (signal état, taille fixe).
         // Retiré : sous-titre explicatif Late + bouton Replanifier (cf D4 :
         // Replanifier accessible désormais uniquement dans AdaptedProgramView,
         // ne plus alourdir le hub central).
+        // **2026-06-01 (Sophie)** : badge Late retiré de la card aussi (jugée
+        // trop grosse) → l'indicateur « en retard » est remonté dans le
+        // `weeklyStatsHeader`, sur la ligne « SPORT · SEM. N ». Gain de hauteur.
         VStack(alignment: .leading, spacing: 10) {
-            if summary.nextSessionIsLate {
-                lateBadge
-            }
             HStack(alignment: .center, spacing: 10) {
                 Text(verbatim: session.name)
                     .font(.system(size: 17, weight: .semibold, design: .serif))
@@ -679,21 +697,6 @@ private struct NextSessionCard: View {
             .accessibilityIdentifier("dashboard.active.next.sessionType")
     }
 
-    /// **Story 3.11 AC7** — pill "En retard" avec icône `clock.badge.exclamationmark`.
-    private var lateBadge: some View {
-        HStack(spacing: 6) {
-            Image(systemName: "clock.badge.exclamationmark")
-                .font(.system(size: 11, weight: .semibold))
-            Text("dashboard.session.late.badge")
-                .font(.system(size: 11, weight: .semibold))
-        }
-        .foregroundStyle(Color.coachingWarning)
-        .padding(.horizontal, 8)
-        .padding(.vertical, 4)
-        .background(Color.coachingWarning.opacity(0.18))
-        .clipShape(Capsule())
-        .accessibilityIdentifier("dashboard.active.next.lateBadge")
-    }
 
     private var programCompletedState: some View {
         VStack(alignment: .leading, spacing: 10) {

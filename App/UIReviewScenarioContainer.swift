@@ -299,6 +299,22 @@ private struct DashboardActiveScenarioView: View {
                 makeSession(name: "Swim — drills technique", week: 2, day: 5, dur: 45),
                 makeSession(name: "Run Daniels-E — fractionné", week: 3, day: 1, dur: 50)
             ]
+        case .oneStarted, .threeStarted:
+            // **Story 3.27 Phase C** — séances running suivantes (programme
+            // « Couch to 5k » sélectionné) pour démontrer la liste sous la focale.
+            return [
+                makeSession(name: "Sortie longue 45 min", week: 2, day: 5, dur: 45),
+                makeSession(name: "Footing récup 25 min", week: 3, day: 1, dur: 25),
+                makeSession(name: "Fractionné 6×400m", week: 3, day: 3, dur: 40),
+                makeSession(name: "Sortie longue 50 min", week: 3, day: 5, dur: 50)
+            ]
+        case .lateWithReplanify:
+            // **Story 3.27 Phase C** — séances running après la focale en retard.
+            return [
+                makeSession(name: "Footing endurance 35 min", week: 1, day: 5, dur: 35),
+                makeSession(name: "Sortie longue 50 min", week: 2, day: 2, dur: 50),
+                makeSession(name: "Fractionné 8×400m", week: 2, day: 4, dur: 45)
+            ]
         default:
             return []
         }
