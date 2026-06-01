@@ -331,7 +331,10 @@ struct ActiveDashboardView: View {
 // supprimées en Story 3.10 — la card dominante a été remplacée par le
 // `ProgramCard` + `NextSessionCard` du carrousel.
 
-private struct ProgramCard: View {
+// **Story 3.27 Phase C** — `internal` (et non `private`) pour permettre les
+// snapshot tests FR de la card carrousel (`ProgramCardSnapshotTests`). C'est la
+// card la plus refondue par 3.27 + le point de vigilance truncation titre.
+struct ProgramCard: View {
     let summary: ProgramSummary
     /// Phase B.5 — badge regen S+1 si la regen a été appliquée cette semaine
     /// pour ce record. `nil` sinon. Style varie selon `requiresRebuild`.
@@ -371,6 +374,13 @@ private struct ProgramCard: View {
                         .font(.coachingBody.weight(.semibold))
                         .foregroundStyle(Color.coachingTextPrimary)
                         .lineLimit(1)
+                        // **Story 3.27 Phase C** — les titres composites
+                        // (« Couch to 5k — Semaine 2 », « Triathlon — Distance… »)
+                        // tronquaient sec à width 200pt. minimumScaleFactor laisse
+                        // le titre rétrécir jusqu'à 80% avant de tronquer → plus de
+                        // texte lisible sans casser la hauteur de card (130pt) tunée
+                        // en Phase A/B (un lineLimit(2) déborderait).
+                        .minimumScaleFactor(0.8)
                         .multilineTextAlignment(.center)
                     statusTextView
                         .font(.coachingCaption)

@@ -265,7 +265,127 @@ final class SessionDashboardViewModelTests: XCTestCase {
         XCTAssertEqual(vm.mode, .empty)
     }
 
+    // MARK: - Story 3.27 Phase A (party 2026-05-30 D1) — tri carrousel par priorité d'action
+    //
+    // Le tri des `started` n'est plus `lastUpdatedAt desc` mais :
+    //   1. late en premier (séance en retard = priorité absolue)
+    //   2. sinon `nextSession.weekNumber` asc (semaine la plus proche)
+    //   3. fallback `lastUpdatedAt desc`
+    // Couverture absente avant Phase C : les tests legacy n'exerçaient que des
+    // cas tous égaux (tombe directement sur lastUpdatedAt).
+
+    /// Niveau 1 — un programme « late » remonte en tête du carrousel, même si un
+    /// autre programme non-late a un `lastUpdatedAt` plus récent.
+    func testCarouselSort_LateProgramFirst_EvenIfLessRecent() async {
+        // Late : weekStart il y a 14j (currentWeek 3), seule pending en semaine 1,
+        // deadline mode → nextSession week 1 < currentWeek 3 → late.
+        let progLate = makeMultiWeekRecord(
+            sportCode: "running", weekStartDate: twoWeeksAgo,
+            durationMode: .deadlineFixed,
+            weeks: [(week: 1, completed: false)],
+            lastUpdatedAt: Date(timeIntervalSince1970: 8_000) // plus ancien
+        )
+        // Non-late mais touché plus récemment.
+        let progNormal = makeMultiWeekRecord(
+            sportCode: "cycling", weekStartDate: now,
+            durationMode: .deadlineFixed,
+            weeks: [(week: 1, completed: false)],
+            lastUpdatedAt: Date(timeIntervalSince1970: 9_000) // plus récent
+        )
+
+        let vm = makeVM(programs: [progNormal, progLate])
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(vm.startedSummaries.map(\.sport.appSportCode), ["running", "cycling"],
+                       "Le programme late doit passer devant malgré un lastUpdatedAt plus ancien")
+        XCTAssertTrue(vm.startedSummaries[0].nextSessionIsLate)
+        XCTAssertFalse(vm.startedSummaries[1].nextSessionIsLate)
+    }
+
+    /// Niveau 2 — entre deux programmes non-late, celui dont la prochaine séance
+    /// est dans une semaine plus proche passe devant (weekNumber asc), même si
+    /// l'autre a un `lastUpdatedAt` plus récent.
+    func testCarouselSort_NonLate_ByNextSessionWeekAscending() async {
+        // nextSession en semaine 1.
+        let progEarly = makeMultiWeekRecord(
+            sportCode: "running", weekStartDate: now,
+            durationMode: .deadlineFixed,
+            weeks: [(week: 1, completed: false), (week: 2, completed: false)],
+            lastUpdatedAt: Date(timeIntervalSince1970: 8_000)
+        )
+        // Semaine 1 complétée → nextSession en semaine 2, mais lastUpdatedAt plus récent.
+        let progLater = makeMultiWeekRecord(
+            sportCode: "cycling", weekStartDate: now,
+            durationMode: .deadlineFixed,
+            weeks: [(week: 1, completed: true), (week: 2, completed: false)],
+            lastUpdatedAt: Date(timeIntervalSince1970: 9_000)
+        )
+
+        let vm = makeVM(programs: [progLater, progEarly])
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(vm.startedSummaries.map(\.sport.appSportCode), ["running", "cycling"],
+                       "nextSession.weekNumber asc l'emporte sur lastUpdatedAt entre non-late")
+        XCTAssertFalse(vm.startedSummaries[0].nextSessionIsLate)
+        XCTAssertFalse(vm.startedSummaries[1].nextSessionIsLate)
+    }
+
+    /// `nextSessionIsLate` reste `false` en `routineCyclic`, même quand la
+    /// prochaine séance pointe une semaine antérieure à la semaine courante
+    /// (pas de blocage doux pour une routine cyclique).
+    func testIsLate_FalseForRoutineCyclic_EvenWhenNextWeekBehind() async {
+        let routine = makeMultiWeekRecord(
+            sportCode: "yoga", weekStartDate: twoWeeksAgo,
+            durationMode: .routineCyclic,
+            weeks: [(week: 1, completed: false)],
+            lastUpdatedAt: now
+        )
+
+        let vm = makeVM(programs: [routine])
+        await vm.refresh(userId: userId)
+
+        XCTAssertEqual(vm.startedSummaries.count, 1)
+        XCTAssertFalse(vm.startedSummaries[0].nextSessionIsLate,
+                       "routineCyclic n'est jamais marqué late, même semaine en retard")
+    }
+
     // MARK: - Helpers
+
+    private var twoWeeksAgo: Date { now.addingTimeInterval(-14 * 86_400) }
+
+    /// **Story 3.27 Phase C** — record multi-semaines avec contrôle fin de la
+    /// session pending (1 session par entrée `weeks`, `day` croissant). Permet de
+    /// piloter `nextSession.weekNumber` (via les `completed`) et `currentWeekNumber`
+    /// (via `weekStartDate`) pour tester le tri carrousel + le flag late.
+    private func makeMultiWeekRecord(
+        sportCode: String,
+        weekStartDate: Date?,
+        durationMode: ProgramDurationMode,
+        weeks: [(week: Int, completed: Bool)],
+        lastUpdatedAt: Date = Date()
+    ) -> AdaptedProgramRecord {
+        var sessions: [PersistedSession] = []
+        var completed: [UUID: SessionCompletionRecord] = [:]
+        for (idx, entry) in weeks.enumerated() {
+            let id = UUID()
+            sessions.append(PersistedSession(
+                id: id, weekNumber: entry.week, weekTheme: "W\(entry.week)", weekGoal: "G",
+                day: idx + 1, name: "S\(idx + 1)", durationMinutes: 30, type: .endurance,
+                warmup: nil, exercises: [], cooldown: nil
+            ))
+            if entry.completed {
+                completed[id] = SessionCompletionRecord(completedAt: now)
+            }
+        }
+        return AdaptedProgramRecord(
+            userId: userId, sportCode: sportCode, level: "beginner",
+            templateId: "test-\(sportCode)",
+            adaptedAt: Date(timeIntervalSince1970: 1_699_000_000),
+            weekStartDate: weekStartDate, mode: .planned, sessions: sessions,
+            completionState: ProgramCompletionState(sessionRecords: completed),
+            durationMode: durationMode, lastUpdatedAt: lastUpdatedAt
+        )
+    }
 
     private func makeVM(
         programs: [AdaptedProgramRecord] = []
