@@ -336,6 +336,7 @@ struct SessionView: View {
                 teaserSession: vm.currentTeaserSession,
                 upcomingSessions: vm.upcomingSessionsAfterFocal,
                 regenBadges: vm.regenBadgesByRecord,
+                routineRenewalStates: vm.routineRenewalStatesByRecord,
                 leonTip: vm.selectedLeonTip,
                 onSelectProgram: { id in
                     vm.selectProgram(id: id)
@@ -354,6 +355,9 @@ struct SessionView: View {
                 },
                 onTapStartNewProgram: {
                     sheetSelection = .sportPicker
+                },
+                onRenewRoutine: { summary in
+                    Task { await handleRenewRoutine(summary) }
                 }
             )
         }
@@ -408,6 +412,17 @@ struct SessionView: View {
         } catch {
             presentationError = error.localizedDescription
         }
+    }
+
+    /// **Story 3.31** — tap « Génère la suite » sur la bannière de
+    /// renouvellement d'une routine. Délègue au VM (qui appelle
+    /// `RoutineCycleService.renew` puis refresh). No-op si pas de VM/session.
+    @MainActor
+    private func handleRenewRoutine(_ summary: ProgramSummary) async {
+        guard let vm = dashboardViewModel,
+              let userId = SupabaseService.shared.client.auth.currentSession?.user.id
+        else { return }
+        await vm.renewRoutine(recordId: summary.id, userId: userId)
     }
 
     /// **Story 3.10** — push AdaptedProgramView pour le programme représenté
@@ -488,6 +503,7 @@ struct SessionView: View {
             coachingProfileRepository: deps.coachingProfileRepository,
             weeklyRegenApplicationService: deps.weeklyRegenApplicationService,
             weeklyRegenRepository: deps.weeklyRegenRepository,
+            routineCycleService: deps.routineCycleService,
             // **Story 3.15 v7 (Sophie 2026-05-21)** — bootstrap dormants
             // câblé au load dashboard (en plus de finalize()). Le service
             // est idempotent.

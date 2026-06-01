@@ -45,6 +45,11 @@ struct ActiveDashboardView: View {
     /// Phase B.5 — map `record.id → RegenBadge` peuplée pour les programmes
     /// dont la regen S+1 a été appliquée cette semaine.
     var regenBadges: [UUID: RegenBadge] = [:]
+    /// **Story 3.31** — map `record.id → RoutineRenewalState` pour les routines
+    /// dont le cycle approche de la fin (`.due`) ou est terminé
+    /// (`.cycleCompleted`). Pilote la bannière « Léon prépare la suite » sous le
+    /// bandeau de la séance focale + la pastille carrousel.
+    var routineRenewalStates: [UUID: RoutineRenewalState] = [:]
     /// **Story 3.29** — conseil contextuel de Léon pour le programme affiché
     /// (calculé côté VM via `LeonDashboardTipBuilder`). `nil` → pas de carte.
     var leonTip: LeonTip? = nil
@@ -69,6 +74,11 @@ struct ActiveDashboardView: View {
     /// était toujours pushed hors écran par la liste séances scrollable.
     /// Ce param reste pour cohérence d'API mais n'est plus utilisé localement.
     var onTapStartNewProgram: (() -> Void)? = nil
+
+    /// **Story 3.31** — tap « Génère la suite » sur la bannière de renouvellement
+    /// d'une routine. nil = bannière sans CTA actif (cas previews/tests). Le
+    /// caller (`SessionView`) appelle `vm.renewRoutine` puis refresh.
+    var onRenewRoutine: ((ProgramSummary) -> Void)? = nil
 
     private var selectedSummary: ProgramSummary? {
         if let selectedId, let s = startedPrograms.first(where: { $0.id == selectedId }) { return s }
@@ -110,6 +120,17 @@ struct ActiveDashboardView: View {
                     // (3 lignes de labels redondantes → 2 lignes denses).
                     weeklyStatsHeader(for: selectedSummary)
                     VStack(spacing: 10) {
+                        // **Story 3.31** — bannière de renouvellement de routine.
+                        // `.due` (J−14) = hint non-bloquant au-dessus de la séance
+                        // focale ; `.cycleCompleted` = CTA proéminent qui évite le
+                        // dashboard vide quand la routine est à court de séances.
+                        if let renewalState = routineRenewalStates[selectedSummary.id],
+                           renewalState.isActionable {
+                            RoutineRenewalBanner(
+                                state: renewalState,
+                                onRenew: { onRenewRoutine?(selectedSummary) }
+                            )
+                        }
                         NextSessionCard(
                             summary: selectedSummary,
                             onTapStart: { onTapStartSession(selectedSummary) },
@@ -264,6 +285,7 @@ struct ActiveDashboardView: View {
                     ProgramCard(
                         summary: summary,
                         badge: regenBadges[summary.id],
+                        renewalDue: routineRenewalStates[summary.id]?.isActionable == true,
                         isSelected: summary.id == effectiveSelectedId,
                         onTap: {
                             if summary.id == effectiveSelectedId {
@@ -367,6 +389,10 @@ struct ProgramCard: View {
     /// Phase B.5 — badge regen S+1 si la regen a été appliquée cette semaine
     /// pour ce record. `nil` sinon. Style varie selon `requiresRebuild`.
     var badge: RegenBadge?
+    /// **Story 3.31** — `true` quand la routine de cette card a un cycle à
+    /// renouveler (J−14 ou terminé) → pastille « Suite dispo ». Découvrabilité
+    /// quand la routine n'est pas la card sélectionnée.
+    var renewalDue: Bool = false
     /// **Story 3.10** — card sélectionnée dans le carrousel : border accentuée.
     let isSelected: Bool
     let onTap: () -> Void
@@ -438,6 +464,21 @@ struct ProgramCard: View {
 
                 if let badge {
                     RegenBadgePill(badge: badge)
+                }
+
+                // **Story 3.31** — pastille discrète « Suite dispo » pour une
+                // routine dont le cycle est à renouveler (découvrabilité quand la
+                // card n'est pas sélectionnée). Le CTA réel vit dans la bannière
+                // focale sous le bandeau.
+                if renewalDue {
+                    HStack(spacing: 3) {
+                        Image(systemName: "sparkles").font(.caption2)
+                        Text("dashboard.routine.renewal.pill")
+                            .font(.coachingCaption.weight(.semibold))
+                    }
+                    .foregroundStyle(Color.coachingSport(forCode: sportCode))
+                    .lineLimit(1)
+                    .accessibilityIdentifier("dashboard.routine.renewal.pill")
                 }
 
                 // **Story 3.11 AC8** — indicateur discret quand la prochaine
@@ -807,6 +848,71 @@ private struct RegenBadgePill: View {
     }
 }
 
+// MARK: - Routine renewal banner (Story 3.31)
+
+/// **Story 3.31** — bannière de renouvellement de cycle d'une routine.
+///   - `.due` (J−14) : hint non-bloquant, ton doux (fond `coachingPrimary` léger),
+///     « Léon prépare la suite de ta routine selon tes progrès ».
+///   - `.cycleCompleted` : terminal proéminent (fond doré `coachingRecord`),
+///     « Cycle terminé — prêt pour la suite ? ». Évite le dashboard vide.
+/// Dans les deux cas, un CTA « Génère la suite » appelle `onRenew`.
+private struct RoutineRenewalBanner: View {
+    let state: RoutineRenewalState
+    let onRenew: () -> Void
+
+    private var isCompleted: Bool { state.isCompleted }
+
+    private var tint: Color {
+        isCompleted ? Color.coachingRecord : Color.coachingPrimary
+    }
+
+    private var titleKey: LocalizedStringKey {
+        isCompleted
+            ? "dashboard.routine.renewal.completed.title"
+            : "dashboard.routine.renewal.due.title"
+    }
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 12) {
+            Image(systemName: "sparkles")
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundStyle(tint)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(titleKey)
+                    .font(.coachingBody.weight(.semibold))
+                    .foregroundStyle(Color.coachingTextPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+                Text("dashboard.routine.renewal.subtitle")
+                    .font(.coachingCaption)
+                    .foregroundStyle(Color.coachingTextSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            Spacer(minLength: 8)
+            Button(action: onRenew) {
+                Text("dashboard.routine.renewal.cta")
+                    .font(.coachingCaption.weight(.bold))
+                    .foregroundStyle(Color.coachingOnPrimary)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(tint)
+                    .clipShape(Capsule())
+            }
+            .buttonStyle(.plain)
+            .accessibilityIdentifier("dashboard.routine.renewal.cta")
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(tint.opacity(0.10))
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .strokeBorder(tint.opacity(0.25), lineWidth: 1)
+        )
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("dashboard.routine.renewal.banner")
+    }
+}
+
 // MARK: - Léon tip card (Story 3.29)
 
 /// **Story 3.29 (party 2026-06-01)** — carte conseil contextuel de Léon qui
@@ -1021,6 +1127,20 @@ private struct DeleteConfirmationSheet: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.coachingBackground)
     }
+}
+
+// MARK: - Previews (Story 3.31)
+
+#Preview("Routine renewal — due") {
+    RoutineRenewalBanner(state: .due(cycleNumber: 1), onRenew: {})
+        .padding()
+        .background(Color.coachingBackground)
+}
+
+#Preview("Routine renewal — completed") {
+    RoutineRenewalBanner(state: .cycleCompleted(cycleNumber: 2), onRenew: {})
+        .padding()
+        .background(Color.coachingBackground)
 }
 
 // MARK: - Color hex helper
