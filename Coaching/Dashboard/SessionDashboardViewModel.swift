@@ -125,6 +125,9 @@ final class SessionDashboardViewModel {
     /// absent, `regenBadgesByRecord` reste vide.
     private let weeklyRegenRepository: (any WeeklyRegenRepository)?
     private let resolver: NextSessionResolver
+    /// **Story 3.29** — service stats hebdo (série / volume / séances faites).
+    /// 100 % local, sync ; sert à ancrer le conseil Léon sur une donnée réelle.
+    private let weeklyStatsService = WeeklyStatsService()
     private let templateLibraryProvider: () async throws -> ProgramTemplateLibrary
     private let suggestionLevelProvider: (CoachingProfile?) -> String
     private let nowProvider: () -> Date
@@ -260,6 +263,21 @@ final class SessionDashboardViewModel {
     var currentSelectedSummary: ProgramSummary? {
         guard case let .active(started, _, selectedId) = mode else { return nil }
         return started.first { $0.id == selectedId }
+    }
+
+    /// **Story 3.29** — conseil contextuel de Léon pour le programme affiché
+    /// (sélectionné, ou 1er started en fallback, exactement comme la card
+    /// focale `ActiveDashboardView.selectedSummary`). `nil` hors mode `.active`.
+    /// La série/volume sont calculés sur **tous** les programmes démarrés
+    /// (régularité globale de l'utilisateur), pas seulement le sélectionné.
+    var selectedLeonTip: LeonTip? {
+        guard case let .active(started, _, selectedId) = mode else { return nil }
+        guard let summary = started.first(where: { $0.id == selectedId }) ?? started.first else {
+            return nil
+        }
+        let startedRecords = started.compactMap { recordsByID[$0.id] }
+        let stats = weeklyStatsService.computeCurrentWeek(programs: startedRecords, now: nowProvider())
+        return LeonDashboardTipBuilder.build(summary: summary, stats: stats)
     }
 
     /// **Story 3.15** — bascule la sélection sur une card du carrousel. No-op si :

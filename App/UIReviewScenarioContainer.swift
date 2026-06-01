@@ -268,6 +268,7 @@ private struct DashboardActiveScenarioView: View {
                 teaserSession: teaserSessionFixture,
                 upcomingSessions: upcomingSessionsFixture,
                 regenBadges: [:],
+                leonTip: leonTipFixture,
                 onSelectProgram: { _ in },
                 onTapStartSession: { _ in },
                 onTapProgram: { _ in },
@@ -331,6 +332,20 @@ private struct DashboardActiveScenarioView: View {
             return makeSession(name: "Footing récup 30 min", week: 1, day: 5, dur: 30)
         default:
             return nil
+        }
+    }
+
+    /// **Story 3.29** — conseil Léon fixture pour démontrer la carte qui remplit
+    /// la bande sous la liste séances (le VM n'est pas monté dans le scénario,
+    /// on injecte un tip directement).
+    private var leonTipFixture: LeonTip? {
+        switch scenario {
+        case .mixed:                    return .streak(days: 4, nextType: .endurance)
+        case .oneStarted, .threeStarted: return .sessionsLeft(count: 3, nextType: .interval)
+        case .lateWithReplanify:        return .late(nextType: .endurance)
+        case .weekCompleted:            return .weekCompleted
+        case .programCompleted:         return .programCompleted
+        default:                        return .generic
         }
     }
 

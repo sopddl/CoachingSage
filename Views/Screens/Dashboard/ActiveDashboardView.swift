@@ -45,6 +45,9 @@ struct ActiveDashboardView: View {
     /// Phase B.5 — map `record.id → RegenBadge` peuplée pour les programmes
     /// dont la regen S+1 a été appliquée cette semaine.
     var regenBadges: [UUID: RegenBadge] = [:]
+    /// **Story 3.29** — conseil contextuel de Léon pour le programme affiché
+    /// (calculé côté VM via `LeonDashboardTipBuilder`). `nil` → pas de carte.
+    var leonTip: LeonTip? = nil
     let onSelectProgram: (UUID) -> Void
     let onTapStartSession: (ProgramSummary) -> Void
     let onTapProgram: (ProgramSummary) -> Void
@@ -115,31 +118,45 @@ struct ActiveDashboardView: View {
                                 { handler(selectedSummary) }
                             }
                         )
-                        // ScrollView interne pour la liste des séances
-                        // suivantes du programme courant. Hauteur flex : prend
-                        // l'espace restant après la focal + sections fixes.
-                        ScrollView(.vertical, showsIndicators: false) {
-                            VStack(spacing: 6) {
-                                ForEach(Array(upcomingSessions.enumerated()), id: \.element.id) { index, session in
-                                    let prevWeek: Int = index == 0
-                                        ? (selectedSummary.nextSession?.weekNumber ?? session.weekNumber)
-                                        : upcomingSessions[index - 1].weekNumber
-                                    if session.weekNumber != prevWeek {
-                                        weekSeparatorHeader(weekNumber: session.weekNumber)
+                        // **Story 3.29 (Sophie 2026-06-01)** — liste séances +
+                        // carte Léon dans un scroll borné au viewport
+                        // (GeometryReader). Le `Spacer(minLength:)` + `minHeight:
+                        // geo.size.height` poussent la carte Léon EN BAS du
+                        // viewport quand la liste est courte (remplit le vide
+                        // « moche »), et la laissent en fin de liste quand la
+                        // liste est longue (scroll naturel). Footer coach ancré
+                        // sur du réel via `LeonDashboardTipBuilder`.
+                        GeometryReader { geo in
+                            ScrollView(.vertical, showsIndicators: false) {
+                                VStack(spacing: 0) {
+                                    VStack(spacing: 6) {
+                                        ForEach(Array(upcomingSessions.enumerated()), id: \.element.id) { index, session in
+                                            let prevWeek: Int = index == 0
+                                                ? (selectedSummary.nextSession?.weekNumber ?? session.weekNumber)
+                                                : upcomingSessions[index - 1].weekNumber
+                                            if session.weekNumber != prevWeek {
+                                                weekSeparatorHeader(weekNumber: session.weekNumber)
+                                            }
+                                            UpcomingSessionRow(
+                                                session: session,
+                                                sportCode: selectedSummary.sport.appSportCode
+                                            )
+                                        }
+                                        if upcomingSessions.isEmpty, selectedSummary.nextSession != nil {
+                                            NextSessionTeaser(
+                                                teaserSession: nil,
+                                                hasFocal: true
+                                            )
+                                        }
                                     }
-                                    UpcomingSessionRow(
-                                        session: session,
-                                        sportCode: selectedSummary.sport.appSportCode
-                                    )
+                                    if let leonTip {
+                                        Spacer(minLength: 16)
+                                        LeonTipCard(message: leonTip.message(locale: locale))
+                                    }
                                 }
-                                if upcomingSessions.isEmpty, selectedSummary.nextSession != nil {
-                                    NextSessionTeaser(
-                                        teaserSession: nil,
-                                        hasFocal: true
-                                    )
-                                }
+                                .frame(minHeight: geo.size.height, alignment: .top)
+                                .padding(.bottom, 8)
                             }
-                            .padding(.bottom, 8)
                         }
                     }
                 }
@@ -197,26 +214,12 @@ struct ActiveDashboardView: View {
                     .accessibilityIdentifier("dashboard.stats.late")
                 }
             }
-            if total > 0 {
-                weeklySegmentBar(done: done, total: total)
-            }
+            // **Story 3.29 (Sophie 2026-06-01)** — barre de progression hebdo
+            // retirée : le ratio `done/total` suffit, la barre faisait doublon
+            // (et à 0/total = simple trait gris vide). Décision Sophie au retest.
         }
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("dashboard.stats.thisweek")
-    }
-
-    /// Barre de progression fine (6pt) de la semaine du programme sélectionné :
-    /// segment vert `done` sur fond gris `total`. Même pattern que `ProgramCard`.
-    private func weeklySegmentBar(done: Int, total: Int) -> some View {
-        let fraction = min(max(Double(done) / Double(max(total, 1)), 0), 1)
-        return GeometryReader { geo in
-            ZStack(alignment: .leading) {
-                Capsule().fill(Color.coachingTextSecondary.opacity(0.18))
-                Capsule().fill(Color.coachingSuccess)
-                    .frame(width: max(0, geo.size.width * fraction))
-            }
-        }
-        .frame(height: 6)
     }
 
     /// **Story 3.15 v5 (Sophie 2026-05-21)** — header séparateur de semaine
@@ -283,7 +286,13 @@ struct ActiveDashboardView: View {
         // (« Triathlon — Distanc... »). Sophie : « un tout petit peu plus
         // grand ». Hauteur fixe inchangée (le contenu reste calé sur le même
         // gabarit, c'est la respiration horizontale qui gagne).
-        .frame(height: 130) // 118pt contenu + 8 padding vert + 4 marge border (Story 3.27)
+        // **Story 3.29 (Sophie 2026-06-01)** — plus de hauteur fixe : un nombre
+        // figé coupait la bordure quand un badge regen / « en retard » rallonge
+        // la card (130pt), ou ajoutait trop de marge autour (168pt). `fixedSize`
+        // vertical fait que le carrousel hugge EXACTEMENT la hauteur de la card
+        // la plus haute → bordure toujours complète, zéro marge superflue, et le
+        // scroll reste horizontal.
+        .fixedSize(horizontal: false, vertical: true)
         .scrollTargetBehavior(.viewAligned)
         .scrollPosition(
             id: Binding(
@@ -795,6 +804,58 @@ private struct RegenBadgePill: View {
         .clipShape(Capsule())
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("dashboard.active.program.regenBadge")
+    }
+}
+
+// MARK: - Léon tip card (Story 3.29)
+
+/// **Story 3.29 (party 2026-06-01)** — carte conseil contextuel de Léon qui
+/// remplit la bande sous la liste séances. Identité Léon réutilisée du
+/// `LeonFloatingButton` : pastille bleu coach `coachingPrimary` + anneau doré
+/// `coachingRecord`. Le `message` est déjà localisé et ancré sur du réel
+/// (série / séances restantes / retard…) via `LeonDashboardTipBuilder` — jamais
+/// de message creux.
+private struct LeonTipCard: View {
+    let message: String
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            leonAvatar
+            VStack(alignment: .leading, spacing: 4) {
+                Text(verbatim: "Léon")
+                    .font(.coachingCaption.weight(.bold))
+                    .textCase(.uppercase)
+                    .tracking(0.8)
+                    .foregroundStyle(Color.coachingPrimary)
+                Text(verbatim: message)
+                    .font(.coachingBody)
+                    .foregroundStyle(Color.coachingTextPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            Spacer(minLength: 0)
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.coachingPrimary.opacity(0.07))
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .strokeBorder(Color.coachingPrimary.opacity(0.15), lineWidth: 1)
+        )
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("dashboard.leon.tip")
+    }
+
+    /// Mini-pastille Léon : cercle bleu coach + anneau doré + ampoule (conseil).
+    private var leonAvatar: some View {
+        ZStack {
+            Circle().fill(Color.coachingPrimary)
+            Circle().strokeBorder(Color.coachingRecord, lineWidth: 2)
+            Image(systemName: "lightbulb.fill")
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundStyle(Color.coachingOnPrimary)
+        }
+        .frame(width: 38, height: 38)
     }
 }
 
