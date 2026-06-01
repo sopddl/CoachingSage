@@ -215,4 +215,133 @@ struct SportQuestionnaireViewModelTests {
         #expect(repo.stored["running"]?.frequencyPerWeek == 4)
         #expect(repo.stored["running"]?.durationMode == .routineCyclic)
     }
+
+    // MARK: - Story 3.30 — Remonter le fil (édition directe)
+
+    /// Helper : déroule un flow running complet eligible (Q1..Q4) → submit (saveCallCount == 1).
+    private func runFullRunningFlow(_ vm: SportQuestionnaireViewModel, q4: String) async {
+        vm.start(requiresMedicalClearance: false)
+        await vm.answer(.single("regular"))   // Q1
+        await vm.answer(.single("10k"))       // Q2 (eligible)
+        await vm.answer(.single("3"))         // Q3 → pose Q4
+        await vm.answer(.single(q4))          // Q4 → submit
+    }
+
+    @Test("Éditer Q1 (niveau) conserve les réponses aval Q2/Q3/Q4 puis re-soumet")
+    func editUpstream_keepsValidDownstream() async {
+        let (vm, _, repo) = makeViewModel()
+        await runFullRunningFlow(vm, q4: UniversalQuestionnaire.q4Routine3MonthsCode)
+        #expect(repo.saveCallCount == 1)
+
+        // Remonter le fil sur Q1 et changer le niveau.
+        vm.beginEditing(questionId: "q1_level")
+        #expect(vm.currentQuestion?.id == "q1_level")
+        await vm.answer(.single("beginner"))
+
+        // Re-soumis avec les réponses aval intactes.
+        #expect(repo.saveCallCount == 2)
+        #expect(repo.stored["running"]?.level == "beginner")
+        #expect(repo.stored["running"]?.goals.primary == "10k")
+        #expect(repo.stored["running"]?.frequencyPerWeek == 3)
+        #expect(repo.stored["running"]?.durationMode == .routineCyclic)
+    }
+
+    @Test("Éditer Q3 → dont_know sort Q4 du parcours (durationMode routineCyclic, date ignorée)")
+    func editFrequencyToDontKnow_dropsDurationDownstream() async {
+        let (vm, _, repo) = makeViewModel()
+        await runFullRunningFlow(vm, q4: UniversalQuestionnaire.q4LetMeEstimateCode)
+        #expect(repo.stored["running"]?.durationMode == .deadlineEstimated)
+
+        vm.beginEditing(questionId: "q3_frequency")
+        #expect(vm.currentQuestion?.id == "q3_frequency")
+        await vm.answer(.single(UniversalQuestionnaire.q3DontKnowCode))
+
+        // Q4 (dormant) ignoré : Q3=dont_know prime → routineCyclic.
+        #expect(repo.saveCallCount == 2)
+        #expect(repo.stored["running"]?.durationMode == .routineCyclic)
+        #expect(repo.stored["running"]?.targetDate == nil)
+    }
+
+    @Test("Éditer Q2 goal eligible→non-eligible retire Q4 du parcours")
+    func editGoalToNonEligible_removesQ4() async {
+        let (vm, _, repo) = makeViewModel()
+        await runFullRunningFlow(vm, q4: UniversalQuestionnaire.q4Routine3MonthsCode)
+
+        vm.beginEditing(questionId: "q2_goal")
+        await vm.answer(.single("wellness"))   // non-eligible → fin après Q3
+
+        #expect(repo.saveCallCount == 2)
+        #expect(repo.stored["running"]?.goals.primary == "wellness")
+        #expect(repo.stored["running"]?.durationMode == .routineCyclic)
+    }
+
+    @Test("Éditer Q2 goal non-eligible→eligible ré-pose Q4 sans soumettre prématurément")
+    func editGoalToEligible_reopensQ4() async {
+        let (vm, _, repo) = makeViewModel()
+        vm.start(requiresMedicalClearance: false)
+        await vm.answer(.single("regular"))    // Q1
+        await vm.answer(.single("wellness"))   // Q2 non-eligible
+        await vm.answer(.single("3"))          // Q3 → fin (pas de Q4) → submit
+        #expect(repo.saveCallCount == 1)
+
+        vm.beginEditing(questionId: "q2_goal")
+        await vm.answer(.single("10k"))        // eligible → Q4 ré-ouvert
+
+        // Q4 jamais répondu → on s'arrête dessus, PAS de re-submit.
+        #expect(vm.currentQuestion?.id == "q4_duration")
+        #expect(repo.saveCallCount == 1)
+
+        // Compléter Q4 → submit normal.
+        await vm.answer(.single(UniversalQuestionnaire.q4Routine3MonthsCode))
+        #expect(repo.saveCallCount == 2)
+        #expect(repo.stored["running"]?.goals.primary == "10k")
+    }
+
+    @Test("beginEditing no-op si id inconnu ou réponse absente")
+    func beginEditing_noOpGuards() async {
+        let (vm, _, _) = makeViewModel()
+        vm.start(requiresMedicalClearance: false)
+        await vm.answer(.single("regular"))    // currentQuestion = q2_goal
+
+        // id inconnu
+        vm.beginEditing(questionId: "q99_unknown")
+        #expect(vm.currentQuestion?.id == "q2_goal")
+        #expect(vm.isEditingInPlace == false)
+
+        // question valide mais pas encore répondue (q3)
+        vm.beginEditing(questionId: "q3_frequency")
+        #expect(vm.currentQuestion?.id == "q2_goal")
+        #expect(vm.isEditingInPlace == false)
+    }
+
+    @Test("Éditer une réponse pré-remplie autoprofil conserve l'autre pré-fill")
+    func editAutoprofilePrefill_preservesOtherPrefill() async {
+        let (vm, _, _) = makeViewModel()
+        vm.startWithAutoProfile(level: .regular, frequency: .three, requiresMedicalClearance: false)
+        #expect(vm.currentQuestion?.id == "q2_goal")
+
+        // Éditer Q1 (pré-rempli) — questionHistory vide après autoprofil, doit quand même marcher.
+        vm.beginEditing(questionId: "q1_level")
+        #expect(vm.currentQuestion?.id == "q1_level")
+        await vm.answer(.single("beginner"))
+
+        // On retombe sur Q2 (jamais répondu), Q1 modifié, Q3 pré-fill préservé.
+        #expect(vm.currentQuestion?.id == "q2_goal")
+        #expect(vm.accumulatedAnswers["q1_level"] == .single("beginner"))
+        #expect(vm.accumulatedAnswers["q3_frequency"] == .single("3"))
+    }
+
+    @Test("conversationHistory cohérente après édition d'une question médiane")
+    func edit_rebuildsConsistentConversationHistory() async {
+        let (vm, _, _) = makeViewModel()
+        await runFullRunningFlow(vm, q4: UniversalQuestionnaire.q4Routine3MonthsCode)
+
+        // Éditer Q3 : le fil rejoué doit contenir Q1+Q2 (2 entrées), s'arrêter sur Q3.
+        vm.beginEditing(questionId: "q3_frequency")
+        #expect(vm.currentQuestion?.id == "q3_frequency")
+        #expect(vm.conversationHistory.count == 2)
+        #expect(vm.questionHistory.map(\.id) == ["q1_level", "q2_goal"])
+        // Réponses aval (Q3 ancienne + Q4) restent dormantes, réutilisables.
+        #expect(vm.accumulatedAnswers["q4_duration"] != nil)
+    }
 }

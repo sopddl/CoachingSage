@@ -55,6 +55,17 @@ final class SportQuestionnaireViewModel {
     /// Idempotence : empêche le double-tap option de sauter une question (review P1-8).
     private(set) var isAdvancing: Bool = false
 
+    /// **Story 3.30** — true entre `beginEditing()` et le tap de re-réponse. Aiguille
+    /// `answer()` vers le commit d'édition (rejoue le fil en aval) au lieu du forward incrémental.
+    private(set) var isEditingInPlace: Bool = false
+
+    /// **Story 3.30** — true si le flow a démarré en autoprofil HK (reconstruit la bulle résumé
+    /// au `rebuildFromAnswers`). Set par `startPreFilledFlow` / dérivé au resume.
+    private var isAutoProfileFlow: Bool = false
+
+    /// **Story 3.30** — ids des questions pré-remplies autoprofil (flag `autoFilled` au rebuild).
+    private var autoFilledIds: Set<QuestionId> = []
+
     /// **Story 3.16 (Sophie 2026-05-21)** — stack des questions déjà répondues
     /// (FIFO, dernière pushée = question pop par `goBack()`). Maintenu en
     /// parallèle de `conversationHistory` pour pouvoir restaurer le
@@ -139,6 +150,10 @@ final class SportQuestionnaireViewModel {
         accumulatedAnswers = draft.answers
         conversationHistory = draft.history
         freeTextDraft = draft.freeText ?? ""
+        // **Story 3.30** — restaurer le contexte autoprofil pour que l'édition post-resume reste cohérente.
+        autoFilledIds = Set(draft.history.filter { $0.autoFilled == true }.map { $0.questionId })
+        isAutoProfileFlow = !autoFilledIds.isEmpty
+        isEditingInPlace = false
 
         // Re-construire les bulles affichées à partir de l'historique pour donner du contexte visuel.
         messages = []
@@ -148,7 +163,8 @@ final class SportQuestionnaireViewModel {
                 messages.append(.leonText(id: UUID(), key: key))
             }
             if let answer = entry.answer {
-                messages.append(.userText(id: UUID(), text: userBubbleText(for: AnswerValue(dto: answer))))
+                let q = questionnaire.findQuestion(byId: entry.questionId)
+                messages.append(.userText(id: UUID(), questionId: entry.questionId, text: userBubbleText(for: AnswerValue(dto: answer), in: q)))
             }
         }
 
@@ -179,8 +195,22 @@ final class SportQuestionnaireViewModel {
         isAdvancing = true
         defer { isAdvancing = false }
 
+        // **Story 3.30** — commit d'une édition "remonter le fil" : pose la nouvelle réponse puis
+        // rejoue le fil en aval (réutilise les réponses dormantes encore valides). Chemin séparé
+        // du forward incrémental pour ne pas toucher l'autoprofil ni l'animation typing.
+        if isEditingInPlace {
+            isEditingInPlace = false
+            accumulatedAnswers[asked.id] = value
+            rebuildFromAnswers(editing: nil)
+            savePendingDraft(currentQuestionId: currentQuestion?.id)
+            if currentQuestion == nil {
+                await submit()
+            }
+            return
+        }
+
         // Bulle user
-        messages.append(.userText(id: UUID(), text: userBubbleText(for: value)))
+        messages.append(.userText(id: UUID(), questionId: asked.id, text: userBubbleText(for: value, in: asked)))
 
         // Stocker la réponse + push dans le stack history pour goBack() (Story 3.16)
         accumulatedAnswers[asked.id] = value
@@ -269,6 +299,66 @@ final class SportQuestionnaireViewModel {
         !questionHistory.isEmpty && !isAdvancing
     }
 
+    // MARK: - Story 3.30 — Remonter le fil (édition directe)
+
+    /// Tap sur une réponse passée dans le chat → rouvre cette question pour la modifier.
+    /// S'appuie sur `accumulatedAnswers` + le parcours (PAS `questionHistory`, vide après
+    /// autoprofil) → permet d'éditer aussi les réponses pré-remplies HK.
+    /// No-op si avancement en cours, question inconnue, ou réponse absente.
+    func beginEditing(questionId: QuestionId) {
+        guard !isAdvancing else { return }
+        guard accumulatedAnswers[questionId] != nil else { return }
+        guard questionnaire.findQuestion(byId: questionId) != nil else { return }
+        isEditingInPlace = true
+        rebuildFromAnswers(editing: questionId)
+        savePendingDraft(currentQuestionId: currentQuestion?.id)
+    }
+
+    /// Reconstruit le fil (messages + questionHistory + conversationHistory + currentQuestion) en
+    /// marchant le parcours déterministe depuis `accumulatedAnswers` (source de vérité).
+    /// - `editing` : si fourni, le walk s'arrête à cette question pour la ré-poser.
+    /// - Aucune purge : les réponses hors-parcours restent dormantes dans `accumulatedAnswers`
+    ///   (décision Sophie « garder ce qui reste valide » + réutilisation si la question revient).
+    ///   `buildProfile` reste défensif (durationMode résolu via Q3 prioritaire) → dormantes inoffensives.
+    private func rebuildFromAnswers(editing editingId: QuestionId?) {
+        messages = []
+        appendIntroBubbles()
+        if isAutoProfileFlow {
+            messages.append(.leonText(id: UUID(), key: "questionnaire.autoprofile.summary"))
+        }
+
+        var newHistory: [QuestionnaireQuestion] = []
+        var newConvo: [ConversationEntry] = []
+        var current: QuestionnaireQuestion? = questionnaire.firstQuestion
+        let now = Date()
+        while let q = current {
+            if q.id == editingId { break }                       // stop pour ré-poser
+            guard let value = accumulatedAnswers[q.id] else { break }  // 1re non répondue → on la pose
+            messages.append(.leonText(id: UUID(), key: q.textKey))
+            messages.append(.userText(id: UUID(), questionId: q.id, text: userBubbleText(for: value, in: q)))
+            newHistory.append(q)
+            newConvo.append(
+                ConversationEntry(
+                    questionId: q.id,
+                    questionTextKey: q.textKey,
+                    answer: value.asDTO,
+                    askedAt: now,
+                    autoFilled: autoFilledIds.contains(q.id) ? true : nil
+                )
+            )
+            current = questionnaire.nextQuestion(after: q.id, answer: value, accumulated: accumulatedAnswers)
+        }
+        questionHistory = newHistory
+        conversationHistory = newConvo
+
+        if let q = current {
+            messages.append(.leonText(id: UUID(), key: q.textKey))
+            currentQuestion = q
+        } else {
+            currentQuestion = nil   // parcours complet → le commit déclenchera submit()
+        }
+    }
+
     // MARK: - Submit
 
     private func submit() async {
@@ -323,6 +413,9 @@ final class SportQuestionnaireViewModel {
         conversationHistory = []
         freeTextDraft = ""
         messages = []
+        isAutoProfileFlow = false
+        autoFilledIds = []
+        isEditingInPlace = false
         purgePendingDraft()
 
         appendIntroBubbles()
@@ -340,6 +433,9 @@ final class SportQuestionnaireViewModel {
         conversationHistory = []
         freeTextDraft = ""
         messages = []
+        isEditingInPlace = false
+        isAutoProfileFlow = true
+        autoFilledIds = [UniversalQuestionnaire.q1LevelId, UniversalQuestionnaire.q3FrequencyId]
         purgePendingDraft()
 
         appendIntroBubbles()
@@ -376,8 +472,8 @@ final class SportQuestionnaireViewModel {
         // Bulles user de confirmation — labelKey de l'option correspondante (résolue View).
         let q1Label = q1Question?.options.first(where: { $0.code == level.rawValue })?.labelKey ?? level.rawValue
         let q3Label = q3Question?.options.first(where: { $0.code == frequency.rawValue })?.labelKey ?? frequency.rawValue
-        messages.append(.userText(id: UUID(), text: q1Label))
-        messages.append(.userText(id: UUID(), text: q3Label))
+        messages.append(.userText(id: UUID(), questionId: q1Id, text: q1Label))
+        messages.append(.userText(id: UUID(), questionId: q3Id, text: q3Label))
 
         // Première question non-répondue = Q2 (goal).
         let next = firstUnansweredQuestion()
@@ -420,20 +516,20 @@ final class SportQuestionnaireViewModel {
 
     /// Texte de la bulle user à afficher (label localisé pour les options, texte brut pour freeText).
     /// La résolution `Text(LocalizedStringKey(...))` côté View transforme la clé en label si présent.
-    private func userBubbleText(for value: AnswerValue) -> String {
+    /// **Story 3.30** — `question` explicite (au lieu de `currentQuestion`) pour résoudre les labels
+    /// au rebuild / resume où la question répondue n'est pas la question courante.
+    private func userBubbleText(for value: AnswerValue, in question: QuestionnaireQuestion?) -> String {
         switch value {
         case .single(let code):
-            // Chercher l'option correspondante dans la question répondue (la dernière non-skipped)
-            if let q = currentQuestion, let opt = q.options.first(where: { $0.code == code }) {
+            // Chercher l'option correspondante dans la question répondue
+            if let q = question, let opt = q.options.first(where: { $0.code == code }) {
                 return opt.labelKey
             }
             return code
         case .multi(let codes):
-            // Concaténer les labelKey des options sélectionnées (séparées par virgule).
+            // Concaténer les labelKey des options sélectionnées (séparées par "|").
             // La View résoudra chaque clé individuellement via une concaténation post-localisation.
-            // V1 : passe les labelKey jointes par "|" et la View split + résout. Pour simplicité ici,
-            // passer le code raw qui sera résolu côté View via une vue dédiée pour multi (Task 6).
-            if let q = currentQuestion {
+            if let q = question {
                 let labels = codes.compactMap { code in q.options.first(where: { $0.code == code })?.labelKey }
                 return labels.joined(separator: "|")  // séparateur conventionnel à parser côté View
             }
@@ -519,13 +615,13 @@ extension AnswerValue: Codable {
 // MARK: - ChatMessage (review P1-7 : enum typé)
 
 enum ChatMessage: Identifiable, Equatable {
-    case leonText(id: UUID, key: String)            // clé xcstrings (résolue View)
-    case userText(id: UUID, text: String)           // labelKey OU labelKey1|labelKey2|... pour multi (résolu View)
+    case leonText(id: UUID, key: String)                        // clé xcstrings (résolue View)
+    case userText(id: UUID, questionId: QuestionId, text: String) // questionId = question répondue (Story 3.30 tap-to-edit) ; text = labelKey OU labelKey1|... pour multi
     case typingIndicator(id: UUID)
 
     var id: UUID {
         switch self {
-        case .leonText(let id, _), .userText(let id, _), .typingIndicator(let id): return id
+        case .leonText(let id, _), .userText(let id, _, _), .typingIndicator(let id): return id
         }
     }
 }

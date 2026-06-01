@@ -224,8 +224,14 @@ struct SportQuestionnaireView: View {
         switch message {
         case .leonText(_, let key):
             ChatBubbleView(sender: .leon, textRaw: key, avatarStyle: .sport(code: sportCode))
-        case .userText(_, let text):
-            ChatBubbleView(sender: .user, textRaw: text)
+        case .userText(_, let questionId, let text):
+            // Story 3.30 — "remonter le fil" : tap sur une réponse passée → rouvre la question.
+            // Désactivé pendant un avancement (typing) pour éviter une édition concurrente.
+            ChatBubbleView(
+                sender: .user,
+                textRaw: text,
+                onEdit: viewModel.isAdvancing ? nil : { viewModel.beginEditing(questionId: questionId) }
+            )
         case .typingIndicator:
             HStack(alignment: .top, spacing: 8) {
                 SportAvatarView(sportCode: sportCode, size: 32)

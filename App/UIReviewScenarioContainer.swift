@@ -160,6 +160,12 @@ struct UIReviewScenarioContainer: View {
             // **Story 3.14 (AC16)** — questionnaire triathlon : avatar sport
             // (figure.mixed.cardio sur cercle or) sur bulles Léon + typing.
             SportAvatarScenarioView(sportCode: "triathlon")
+        case "ui_review_questionnaire_thread_edit":
+            // **Story 3.30** — fil de chat questionnaire avec 3 réponses déjà
+            // données (Q1/Q2/Q3) → bulles user éditables (crayon + tap "remonter
+            // le fil"). Permet de screenshot la découvrabilité de l'affordance
+            // d'édition sans dépendre des taps live (silent-drop simu).
+            QuestionnaireThreadEditScenarioView()
         case "ui_review_replanify_sheet_pickdate":
             // **Story 3.11** — ReplanifySheet step `.pickDate` : DatePicker
             // graphical + bouton Valider + bouton Retour. Step initial forcé
@@ -716,6 +722,31 @@ private struct SportAvatarScenarioView: View {
                     TypingIndicatorView()
                     Spacer(minLength: 40)
                 }
+            }
+            .padding(16)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+// MARK: - Story 3.30 — QuestionnaireThreadEditScenarioView
+
+/// Story 3.30 — fil de chat questionnaire running avec 3 réponses déjà données.
+/// Les bulles user portent `onEdit` (crayon + tap "remonter le fil") → permet de
+/// juger visuellement la découvrabilité de l'affordance d'édition + la locale
+/// FR/EN, sans dépendre des taps live (silent-drop simu).
+private struct QuestionnaireThreadEditScenarioView: View {
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 12) {
+                ChatBubbleView(sender: .leon, textRaw: "questionnaire.universal.intro", avatarStyle: .sport(code: "running"))
+                ChatBubbleView(sender: .leon, textRaw: "questionnaire.universal.q1.text", avatarStyle: .sport(code: "running"))
+                ChatBubbleView(sender: .user, textRaw: "questionnaire.universal.q1.option.regular", onEdit: {})
+                ChatBubbleView(sender: .leon, textRaw: "questionnaire.running.q2.text", avatarStyle: .sport(code: "running"))
+                ChatBubbleView(sender: .user, textRaw: "questionnaire.running.q2.option.10k|questionnaire.running.q2.option.half_marathon", onEdit: {})
+                ChatBubbleView(sender: .leon, textRaw: "questionnaire.universal.q3.text", avatarStyle: .sport(code: "running"))
+                ChatBubbleView(sender: .user, textRaw: "questionnaire.universal.q3.option.3", onEdit: {})
+                ChatBubbleView(sender: .leon, textRaw: "questionnaire.universal.q4.text", avatarStyle: .sport(code: "running"))
             }
             .padding(16)
         }

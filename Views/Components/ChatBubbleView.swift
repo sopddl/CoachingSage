@@ -19,11 +19,15 @@ struct ChatBubbleView: View {
     /// Pour Léon : clé xcstrings unique. Pour user : clé unique OU "key1|key2|..." pour multi-choix.
     let textRaw: String
     let avatarStyle: AvatarStyle
+    /// Story 3.30 — "remonter le fil" : si fourni (bulle user d'une réponse passée), la bulle
+    /// devient tappable (crayon + tap) pour rouvrir la question et modifier la réponse.
+    let onEdit: (() -> Void)?
 
-    init(sender: Sender, textRaw: String, avatarStyle: AvatarStyle = .leon) {
+    init(sender: Sender, textRaw: String, avatarStyle: AvatarStyle = .leon, onEdit: (() -> Void)? = nil) {
         self.sender = sender
         self.textRaw = textRaw
         self.avatarStyle = avatarStyle
+        self.onEdit = onEdit
     }
 
     var body: some View {
@@ -34,8 +38,27 @@ struct ChatBubbleView: View {
                 Spacer(minLength: 40)
             } else {
                 Spacer(minLength: 40)
-                bubble
+                if let onEdit {
+                    Button(action: onEdit) { editableBubble }
+                        .buttonStyle(.plain)
+                        .accessibilityHint(Text("chat.a11y.editHint"))
+                } else {
+                    bubble
+                }
             }
+        }
+    }
+
+    /// Bulle user avec affordance d'édition : crayon dans une pastille primary
+    /// (assez visible pour signaler "tappable" sans alourdir, Story 3.30 P1 ui-reviewer).
+    private var editableBubble: some View {
+        HStack(alignment: .center, spacing: 6) {
+            Image(systemName: "pencil")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(Color.coachingOnPrimary)
+                .padding(5)
+                .background(Color.coachingPrimary.opacity(0.55), in: Circle())
+            bubble
         }
     }
 
