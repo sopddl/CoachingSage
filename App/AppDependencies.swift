@@ -20,6 +20,9 @@ struct AppDependencies {
     /// Story 3.4 Phase B.4 — orchestrateur regen S+1. Composé sur live() à partir
     /// de adaptedProgramRepository + weeklyRegenRepository + RegenInputsBuilder.
     let weeklyRegenApplicationService: any WeeklyRegenApplicationService
+    /// Story 3.31 — renouvellement de cycle des routines (`routineCyclic`).
+    /// Câblé sur live() à partir de l'`adaptedProgramRepository`.
+    let routineCycleService: any RoutineCycleService
     /// Story 3.11 — re-planification d'un programme (reportSession + shiftWeek).
     /// Câblé sur live() à partir de l'`adaptedProgramRepository` uniquement.
     let replanifyService: any ReplanifyService
@@ -44,6 +47,9 @@ struct AppDependencies {
                 regenRepository: weeklyRegenRepository,
                 coachingProfileRepository: coachingProfileRepository
             )
+        )
+        let routineCycleService = DefaultRoutineCycleService(
+            adaptedProgramRepository: adaptedProgramRepository
         )
         let replanifyService = DefaultReplanifyService(
             adaptedProgramRepository: adaptedProgramRepository
@@ -70,6 +76,7 @@ struct AppDependencies {
             healthKitService: healthKitService,
             sageCoachingAIService: DefaultSageCoachingAIService(),
             weeklyRegenApplicationService: weeklyRegenApplicationService,
+            routineCycleService: routineCycleService,
             replanifyService: replanifyService,
             dormantBootstrapService: dormantBootstrapService
         )

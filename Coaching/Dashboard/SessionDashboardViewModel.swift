@@ -107,6 +107,13 @@ final class SessionDashboardViewModel {
     /// `weeklyRegenRepository` ou si aucune regen n'a été appliquée cette semaine.
     private(set) var regenBadgesByRecord: [UUID: RegenBadge] = [:]
 
+    /// **Story 3.31** — état de renouvellement de cycle des routines
+    /// (`routineCyclic`), indexé par `record.id`. Calculé à chaque `refresh`
+    /// via `RoutineCycleService.renewalState`. Vide pour les modes deadline ou
+    /// en l'absence de service injecté. Pilote la bannière « Léon prépare la
+    /// suite » + la pastille carrousel.
+    private(set) var routineRenewalStatesByRecord: [UUID: RoutineRenewalState] = [:]
+
     /// Library bundlée chargée à la première `refresh` qui en a besoin
     /// (mode vide pour `selectTopN`, mode actif pour résoudre les `name` de templates).
     /// Cachée pour éviter un reload à chaque `onAppear`.
@@ -124,6 +131,10 @@ final class SessionDashboardViewModel {
     /// regen de la semaine courante (`fetchJournalForCurrentWeek`). Quand
     /// absent, `regenBadgesByRecord` reste vide.
     private let weeklyRegenRepository: (any WeeklyRegenRepository)?
+    /// **Story 3.31** — optionnel. Calcule l'état de renouvellement des routines
+    /// + applique `renew()`. Quand absent, `routineRenewalStatesByRecord` reste
+    /// vide (aucune bannière de renouvellement).
+    private let routineCycleService: (any RoutineCycleService)?
     private let resolver: NextSessionResolver
     /// **Story 3.29** — service stats hebdo (série / volume / séances faites).
     /// 100 % local, sync ; sert à ancrer le conseil Léon sur une donnée réelle.
@@ -149,6 +160,7 @@ final class SessionDashboardViewModel {
         coachingProfileRepository: any CoachingProfileRepository,
         weeklyRegenApplicationService: (any WeeklyRegenApplicationService)? = nil,
         weeklyRegenRepository: (any WeeklyRegenRepository)? = nil,
+        routineCycleService: (any RoutineCycleService)? = nil,
         dormantBootstrapService: DormantBootstrapService? = nil,
         resolver: NextSessionResolver = NextSessionResolver(),
         templateLibraryProvider: @escaping () async throws -> ProgramTemplateLibrary = ProgramTemplateLibrary.bundled,
@@ -159,6 +171,7 @@ final class SessionDashboardViewModel {
         self.coachingProfileRepository = coachingProfileRepository
         self.weeklyRegenApplicationService = weeklyRegenApplicationService
         self.weeklyRegenRepository = weeklyRegenRepository
+        self.routineCycleService = routineCycleService
         self.dormantBootstrapService = dormantBootstrapService
         self.resolver = resolver
         self.templateLibraryProvider = templateLibraryProvider
@@ -198,6 +211,8 @@ final class SessionDashboardViewModel {
             recordsByID = Dictionary(uniqueKeysWithValues: programs.map { ($0.id, $0) })
 
             let now = nowProvider()
+            // **Story 3.31** — états de renouvellement de cycle des routines.
+            routineRenewalStatesByRecord = computeRoutineRenewalStates(programs: programs, now: now)
             if programs.isEmpty {
                 mode = .empty
                 startedSummaries = []
@@ -235,8 +250,43 @@ final class SessionDashboardViewModel {
             dormantSummaries = []
             emptyModeSuggestions = []
             recordsByID = [:]
+            routineRenewalStatesByRecord = [:]
         }
         loading = false
+    }
+
+    /// **Story 3.31** — calcule l'état de renouvellement de chaque routine
+    /// active via `RoutineCycleService`. Map vide si pas de service injecté. On
+    /// n'indexe QUE les états actionnables (due / cycleCompleted) pour ne pas
+    /// stocker des `.notDue` / `.notApplicable` inutiles côté UI.
+    private func computeRoutineRenewalStates(
+        programs: [AdaptedProgramRecord],
+        now: Date
+    ) -> [UUID: RoutineRenewalState] {
+        guard let service = routineCycleService else { return [:] }
+        var map: [UUID: RoutineRenewalState] = [:]
+        for record in programs {
+            let state = service.renewalState(for: record, now: now)
+            if state.isActionable {
+                map[record.id] = state
+            }
+        }
+        return map
+    }
+
+    /// **Story 3.31** — génère le cycle suivant d'une routine puis recharge le
+    /// dashboard. Best-effort : un throw est exposé via `error` (pas de crash).
+    /// La complétion + la semaine du record sont remises à zéro par le service,
+    /// donc `refresh` reflète le neuf (bannière disparaît, séances semaine 1).
+    func renewRoutine(recordId: UUID, userId: UUID) async {
+        guard let service = routineCycleService else { return }
+        do {
+            _ = try await service.renew(recordId: recordId, now: nowProvider())
+        } catch {
+            self.error = error.localizedDescription
+            Self.logger.debug("routineCycle.renew failed: \(error.localizedDescription)")
+        }
+        await refresh(userId: userId)
     }
 
     /// **Story 3.22-F-bis** — variante d'`EmptyDashboardView` à afficher en

@@ -149,7 +149,14 @@ final class DefaultAdaptedProgramRepository: AdaptedProgramRepository {
         // sessions du programme sont cochées, on flip `isActive = false`
         // silencieusement (libère le slot du cap). Seul l'ajout (record != nil)
         // peut compléter — un retrait ne déclenche pas l'auto-archive.
+        //
+        // **Story 3.31** — une routine (`routineCyclic`) ne s'auto-archive
+        // JAMAIS : à complétion elle bascule en « cycle terminé » et reste
+        // visible avec un CTA de renouvellement (`RoutineCycleService`). Sans ça
+        // l'utilisateur qui voulait s'entretenir « sans fin » se retrouverait
+        // devant un dashboard vide. Les modes deadline gardent l'auto-archive.
         if record != nil,
+           programRecord.durationMode != .routineCyclic,
            programRecord.completionState.completedCount == programRecord.sessions.count,
            !programRecord.sessions.isEmpty {
             programRecord.isActive = false

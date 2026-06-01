@@ -132,7 +132,72 @@ final class DefaultAdaptedProgramRepositoryCapsTests: XCTestCase {
         XCTAssertNotNil(record.archivedAt)
     }
 
+    // MARK: - Story 3.31 — auto-archive exclut les routines
+
+    func testRoutineCyclic_notAutoArchivedOnCompletion() async throws {
+        // Routine 1 session, démarrée. On complète son unique session.
+        let record = makeStarted(userId: UUID()) // fixture = routineCyclic
+        try await repo.save(record)
+        let session = record.sessions[0]
+
+        try await repo.recordSessionCompletion(
+            recordId: record.id,
+            weekNumber: session.weekNumber,
+            day: session.day,
+            record: SessionCompletionRecord(completedAt: Date(), perceivedEffort: 5)
+        )
+
+        XCTAssertTrue(record.isActive, "une routine ne s'auto-archive jamais à complétion")
+        XCTAssertNil(record.archivedAt)
+    }
+
+    func testDeadlineMode_autoArchivedOnCompletion() async throws {
+        // Programme deadline 1 session, démarré. Complétion → auto-archive (régression).
+        let record = makeDeadlineStarted(userId: UUID())
+        try await repo.save(record)
+        let session = record.sessions[0]
+
+        try await repo.recordSessionCompletion(
+            recordId: record.id,
+            weekNumber: session.weekNumber,
+            day: session.day,
+            record: SessionCompletionRecord(completedAt: Date(), perceivedEffort: 5)
+        )
+
+        XCTAssertFalse(record.isActive, "un programme deadline s'auto-archive à complétion (non-régression Story 3.10)")
+        XCTAssertNotNil(record.archivedAt)
+    }
+
     // MARK: - Helpers
+
+    private func makeDeadlineStarted(userId: UUID) -> AdaptedProgramRecord {
+        let adapted = AdaptedProgram(
+            templateId: "running-beginner-5k",
+            sport: .running,
+            level: .beginner,
+            appliedAt: Date(timeIntervalSince1970: 1_700_000_000),
+            weeks: [
+                AdaptedWeek(
+                    weekNumber: 1, theme: "T", goal: "G",
+                    sessions: [
+                        AdaptedSession(
+                            day: 1, name: "Footing", durationMinutes: 30,
+                            type: .endurance, warmup: nil,
+                            exercises: [], cooldown: nil
+                        )
+                    ]
+                )
+            ],
+            appliedRules: [],
+            requiresAIAssist: false,
+            aiAssistReason: nil,
+            durationMode: .deadlineFixed,
+            targetDate: Date(timeIntervalSince1970: 1_710_000_000)
+        )
+        let record = AdaptedProgramRecord(from: adapted, userId: userId)
+        record.markStarted()
+        return record
+    }
 
     private func makeDormant(userId: UUID) -> AdaptedProgramRecord {
         let adapted = makeAdaptedFixture()
