@@ -166,6 +166,12 @@ struct UIReviewScenarioContainer: View {
             // le fil"). Permet de screenshot la découvrabilité de l'affordance
             // d'édition sans dépendre des taps live (silent-drop simu).
             QuestionnaireThreadEditScenarioView()
+        case "ui_review_questionnaire_empty":
+            // **Story 3.30 polish #3** — état pré-démarrage du questionnaire en
+            // .sheet + .alert recovery. Placeholder plein (avatar + spinner) →
+            // fond uniforme propre derrière l'alerte (fix de la "barre au milieu"
+            // photo 5 Sophie : avant, le VStack vide se rétractait → bande moche).
+            QuestionnaireEmptyStateScenarioView()
         case "ui_review_replanify_sheet_pickdate":
             // **Story 3.11** — ReplanifySheet step `.pickDate` : DatePicker
             // graphical + bouton Valider + bouton Retour. Step initial forcé
@@ -751,6 +757,34 @@ private struct QuestionnaireThreadEditScenarioView: View {
             .padding(16)
         }
         .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+// MARK: - Story 3.30 polish #3 — QuestionnaireEmptyStateScenarioView
+
+/// Reproduit FIDÈLEMENT le contexte réel : questionnaire présenté en `.sheet`
+/// avec l'`.alert` de recovery par-dessus, dans son état pré-démarrage. Rend le
+/// placeholder plein (avatar + spinner) = le fix #3 → fond uniforme derrière
+/// l'alerte (vérifie l'absence de la "barre au milieu").
+private struct QuestionnaireEmptyStateScenarioView: View {
+    var body: some View {
+        Color.coachingBackground.ignoresSafeArea()
+            .sheet(isPresented: .constant(true)) {
+                NavigationStack {
+                    VStack(spacing: 12) {
+                        SportAvatarView(sportCode: "running", size: 56)
+                        ProgressView().tint(Color.coachingPrimary)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.coachingBackground.ignoresSafeArea())
+                    .navigationTitle(Text("questionnaire.title"))
+                    .navigationBarTitleDisplayMode(.inline)
+                    .alert(Text("questionnaire.recovery.prompt"), isPresented: .constant(true)) {
+                        Button("questionnaire.recovery.resume") {}
+                        Button("questionnaire.recovery.restart", role: .destructive) {}
+                    }
+                }
+            }
     }
 }
 
