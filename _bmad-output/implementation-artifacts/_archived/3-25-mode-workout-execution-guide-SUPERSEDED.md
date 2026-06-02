@@ -1,4 +1,7 @@
-# Story 3.25 — Mode workout exécution guidé (pas-à-pas plein écran)
+> # ⛔️ SUPERSEDED — NE PAS DÉVELOPPER
+> **Archivée 2026-06-03.** Cette story (mode guidé strength-only, jamais buildée, en attente de décisions) est **remplacée par la Story 3.33** (`3-33-seance-focus-manuel.md`), issue de la party 2026-06-02 (`party-seance-presentation-2026-06-02.md`). 3.33 généralise ce mode en HUB+FOCUS multi-sport et réutilise les décisions D1-D4 ci-dessous + le pattern TailorSage. Conservée pour référence historique uniquement.
+
+# Story 3.25 — Mode workout exécution guidé (pas-à-pas plein écran) [SUPERSEDED]
 
 > **🆕 STORY CRÉÉE 2026-05-24 SUITE REVUE AGENT** : Sortie du Sujet D de Story 3.22 (sur-scope + sous-estimation effort + non-respect règle `quality_over_speed_templates`). Story dédiée pour livraison sérieuse sur 8-12j.
 
