@@ -94,6 +94,9 @@ struct ProfileView: View {
                 privacySection(vm: vm)
                 aboutSection(coaching: profiles.coaching)
                 accountSection
+                #if DEBUG
+                debugSection
+                #endif
             }
         }
         .scrollContentBackground(.hidden)
@@ -321,6 +324,20 @@ struct ProfileView: View {
             .accessibilityIdentifier("delete_account_link")
         }
     }
+
+    #if DEBUG
+    @ViewBuilder
+    private var debugSection: some View {
+        Section("DEBUG") {
+            NavigationLink {
+                SwimHealthKitInspectorView()
+            } label: {
+                Text(verbatim: "🐞 Inspecter HK natation (DEBUG)")
+            }
+            .accessibilityIdentifier("profile.debug.swimHKInspector.link")
+        }
+    }
+    #endif
 }
 
 #Preview {
