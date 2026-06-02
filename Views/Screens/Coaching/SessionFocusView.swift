@@ -9,6 +9,8 @@
 //   - Toutes étapes faites → récap `SessionCompleteSheet` (AC8) puis fermeture.
 // Shell de base réutilisé par les modes Minuté (3.34) / Audio (3.35).
 import SwiftUI
+import Combine
+import UIKit
 import TemplateModel
 
 struct SessionFocusView: View {
@@ -26,6 +28,15 @@ struct SessionFocusView: View {
     @State private var showCompleteSheet = false
     @State private var completionVM: SessionCompletionViewModel?
 
+    // Story 3.34 — mode Minuté (HIIT/yoga).
+    @State private var timerEngine: SessionTimerEngine
+    @State private var audioCues = SessionAudioCues()
+    private let resolvedSportCode: String
+    private let executionMode: SessionExecutionMode
+
+    /// Tick 1 s qui pilote le moteur de timer (mode Minuté).
+    private let secondTick = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     init(session: AdaptedSession, week: AdaptedWeek, program: AdaptedProgram, recordId: UUID? = nil) {
         self.session = session
         self.week = week
@@ -34,11 +45,47 @@ struct SessionFocusView: View {
         let vm = SessionFocusViewModel(session: session, recordId: recordId, week: week.weekNumber, day: session.day)
         _viewModel = State(initialValue: vm)
         _selectedIndex = State(initialValue: vm.resumeIndex)
+
+        let effective = SessionSportInference.sportCode(
+            forSessionName: session.name, programSportCode: program.sport.appSportCode
+        )
+        self.resolvedSportCode = effective
+        self.executionMode = SessionExecutionMode.available(sportCode: effective, sessionType: session.type)
+        let phases = SessionTimerPhaseBuilder.phases(for: session, sportCode: effective)
+        _timerEngine = State(initialValue: SessionTimerEngine(phases: phases))
     }
 
     private var steps: [SessionStep] { viewModel.steps }
 
+    /// Mode Minuté seulement si on a su décomposer la séance en phases ; sinon on
+    /// retombe gracieusement sur le mode Manuel (jamais de cul-de-sac).
+    private var usesTimedMode: Bool {
+        executionMode == .timed && !timerEngine.phases.isEmpty
+    }
+
     var body: some View {
+        Group {
+            if usesTimedMode {
+                timedBody
+            } else {
+                manualBody
+            }
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+        .onChange(of: viewModel.completedCount) { old, new in
+            handleCompletionChange(old: old, new: new)
+        }
+        .overlay { if showCompletion { completionOverlay } }
+        .sheet(isPresented: $showCompleteSheet, onDismiss: { dismiss() }) {
+            if let vm = completionVM {
+                SessionCompleteSheet(vm: vm, plannedDurationMinutes: session.durationMinutes)
+            }
+        }
+    }
+
+    // MARK: - Mode Manuel (3.33)
+
+    private var manualBody: some View {
         VStack(spacing: 0) {
             topBar
             if steps.isEmpty {
@@ -61,16 +108,6 @@ struct SessionFocusView: View {
                 .animation(.easeInOut(duration: 0.25), value: selectedIndex)
 
                 bottomNav
-            }
-        }
-        .background(Color.coachingBackground.ignoresSafeArea())
-        .onChange(of: viewModel.completedCount) { old, new in
-            handleCompletionChange(old: old, new: new)
-        }
-        .overlay { if showCompletion { completionOverlay } }
-        .sheet(isPresented: $showCompleteSheet, onDismiss: { dismiss() }) {
-            if let vm = completionVM {
-                SessionCompleteSheet(vm: vm, plannedDurationMinutes: session.durationMinutes)
             }
         }
     }
@@ -324,6 +361,192 @@ struct SessionFocusView: View {
         let clamped = min(max(pos, 0), steps.count - 1)
         guard steps.indices.contains(clamped) else { return }
         selectedIndex = steps[clamped].index
+    }
+
+    // MARK: - Mode Minuté (3.34)
+
+    private var timedBody: some View {
+        VStack(spacing: 0) {
+            timedTopBar
+            Spacer()
+            timedCenter
+            Spacer()
+            timedControls
+        }
+        .onAppear {
+            UIApplication.shared.isIdleTimerDisabled = true // écran maintenu allumé (AC7)
+            audioCues.activate(duckOthers: false)
+            timerEngine.start()
+        }
+        .onDisappear {
+            UIApplication.shared.isIdleTimerDisabled = false
+            audioCues.deactivate()
+        }
+        .onReceive(secondTick) { _ in timerEngine.tick() }
+        .onChange(of: timerEngine.currentIndex) { _, _ in handlePhaseChange() }
+        .onChange(of: timerEngine.remaining) { _, new in
+            // Bips du countdown 3·2·1 pendant la pré-annonce (anti-Decathlon).
+            if timerEngine.currentPhase?.kind == .prepare && new >= 1 && !timerEngine.isPaused {
+                audioCues.play(.prepareTick)
+            }
+        }
+        .onChange(of: timerEngine.isFinished) { _, finished in
+            if finished { handleTimedFinish() }
+        }
+    }
+
+    private func handlePhaseChange() {
+        guard let phase = timerEngine.currentPhase else { return }
+        switch phase.kind {
+        case .work, .hold: audioCues.play(.workStart)
+        case .rest:        audioCues.play(.restStart)
+        case .prepare:     break // les bips sont gérés via le tick du countdown
+        }
+    }
+
+    private func handleTimedFinish() {
+        audioCues.play(.finish)
+        // Toutes les phases déroulées → marque toutes les étapes faites, ce qui
+        // déclenche `handleCompletionChange` (récap / célébration).
+        steps.forEach { viewModel.markDone($0) }
+    }
+
+    private var timedTopBar: some View {
+        HStack {
+            Button { dismiss() } label: {
+                Image(systemName: "xmark").font(.title3).foregroundStyle(.secondary)
+            }
+            .accessibilityIdentifier("coaching.session.focus.close")
+            Spacer()
+            progressionLabel
+                .font(.caption.bold())
+                .foregroundStyle(.secondary)
+            Spacer()
+            Image(systemName: "xmark").font(.title3).opacity(0)
+        }
+        .padding(.horizontal)
+        .padding(.top, 12)
+    }
+
+    @ViewBuilder
+    private var timedCenter: some View {
+        if let phase = timerEngine.currentPhase {
+            VStack(spacing: 12) {
+                Text(phaseKindLabel(phase))
+                    .font(.title2.bold())
+                    .foregroundStyle(phaseTint(phase))
+                    .textCase(.uppercase)
+                Text(verbatim: timeString(timerEngine.remaining))
+                    .font(.system(size: 92, weight: .bold, design: .rounded))
+                    .monospacedDigit()
+                    .foregroundStyle(.primary)
+                    .accessibilityIdentifier("coaching.session.focus.timed.countdown")
+                if phase.kind == .prepare {
+                    Text("coaching.session.focus.timed.next \(phase.title)")
+                        .font(.title3.bold())
+                        .multilineTextAlignment(.center)
+                } else {
+                    Text(verbatim: phase.title)
+                        .font(.title3.bold())
+                        .multilineTextAlignment(.center)
+                    // « Ensuite : … » seulement si le prochain effort diffère (sur
+                    // un Tabata mono-exo, inutile de répéter le même nom — P2 review).
+                    if let next = upcomingEffortTitle, next != phase.title {
+                        Text("coaching.session.focus.timed.then \(next)")
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                }
+            }
+            .padding(.horizontal, 24)
+        }
+    }
+
+    private var timedControls: some View {
+        HStack(spacing: 16) {
+            Button { timerEngine.togglePause() } label: {
+                Label(
+                    timerEngine.isPaused ? "coaching.session.focus.timed.resume" : "coaching.session.focus.timed.pause",
+                    systemImage: timerEngine.isPaused ? "play.fill" : "pause.fill"
+                )
+                .font(.headline)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 15)
+                .foregroundStyle(.white)
+                .background(Color.coachingPrimary)
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+            }
+            Button { timerEngine.skip() } label: {
+                Label("coaching.session.focus.skip", systemImage: "forward.fill")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 15)
+                    .foregroundStyle(.primary)
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+            }
+        }
+        .buttonStyle(.plain)
+        .padding()
+    }
+
+    // MARK: - Timed helpers
+
+    private func phaseKindLabel(_ phase: SessionTimerPhase) -> LocalizedStringKey {
+        switch phase.kind {
+        case .prepare: return "coaching.session.focus.timed.ready"
+        case .work:    return "coaching.session.focus.timed.work"
+        case .rest:    return "coaching.session.focus.timed.rest"
+        case .hold:    return "coaching.session.focus.timed.hold"
+        }
+    }
+
+    private func phaseTint(_ phase: SessionTimerPhase) -> Color {
+        switch phase.kind {
+        case .prepare: return .orange
+        case .work:    return .coachingPrimary
+        case .rest:    return .blue
+        case .hold:    return .coachingSuccess
+        }
+    }
+
+    private func timeString(_ s: Int) -> String {
+        s >= 60 ? String(format: "%d:%02d", s / 60, s % 60) : "\(s)"
+    }
+
+    @ViewBuilder
+    private var progressionLabel: some View {
+        if let p = timerEngine.currentPhase {
+            if let round = p.round, let tot = p.totalRounds, tot > 1 {
+                if let k = p.exerciseInRound, let K = p.totalInRound, K > 1 {
+                    Text("coaching.session.focus.timed.roundExo \(round) \(tot) \(k) \(K)")
+                } else {
+                    Text("coaching.session.focus.timed.round \(round) \(tot)")
+                }
+            } else {
+                let pos = posturePosition()
+                Text("coaching.session.focus.timed.posture \(pos.current) \(pos.total)")
+            }
+        }
+    }
+
+    private func posturePosition() -> (current: Int, total: Int) {
+        let holdOffsets = timerEngine.phases.enumerated()
+            .filter { $0.element.kind == .hold }
+            .map(\.offset)
+        let total = holdOffsets.count
+        let done = holdOffsets.filter { $0 <= timerEngine.currentIndex }.count
+        return (max(done, 1), max(total, 1))
+    }
+
+    private var upcomingEffortTitle: String? {
+        guard timerEngine.currentIndex + 1 < timerEngine.phases.count else { return nil }
+        for i in (timerEngine.currentIndex + 1)..<timerEngine.phases.count {
+            let k = timerEngine.phases[i].kind
+            if k == .work || k == .hold { return timerEngine.phases[i].title }
+        }
+        return nil
     }
 
     // MARK: - Sport color
