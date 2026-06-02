@@ -7,6 +7,9 @@
     " " : {
 
     },
+    "—" : {
+
+    },
     ", " : {
 
     },
@@ -557,6 +560,22 @@
         }
       }
     },
+    "chat.a11y.editHint" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to edit this answer"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touche deux fois pour modifier cette réponse"
+          }
+        }
+      }
+    },
     "chat.a11y.leonAvatar" : {
       "localizations" : {
         "en" : {
@@ -601,22 +620,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Léon est en train d'écrire"
-          }
-        }
-      }
-    },
-    "chat.a11y.editHint" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Double tap to edit this answer"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Touche deux fois pour modifier cette réponse"
           }
         }
       }
@@ -3741,6 +3744,142 @@
         }
       }
     },
+    "dashboard.leon.tip.generic" : {
+      "comment" : "Story 3.29 — conseil Léon, filet générique",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Léon's got your back — pick a session and let's go!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Léon est avec toi — choisis ta séance, c'est parti !"
+          }
+        }
+      }
+    },
+    "dashboard.leon.tip.halfway" : {
+      "comment" : "Story 3.29 — conseil Léon, mi-parcours du programme",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halfway there 💪 keep the momentum."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déjà la moitié du chemin 💪 garde le cap."
+          }
+        }
+      }
+    },
+    "dashboard.leon.tip.late.format" : {
+      "comment" : "Story 3.29 — conseil Léon, séance en retard. param: type séance",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A session's been waiting since last week. No pressure, ease back in — next up: %1$@."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une séance t'attend depuis la semaine dernière. Pas de pression, reprends tranquille — prochaine : %1$@."
+          }
+        }
+      }
+    },
+    "dashboard.leon.tip.programCompleted" : {
+      "comment" : "Story 3.29 — conseil Léon, programme terminé",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Program complete 🎉 ready to start a new one?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bravo, programme terminé 🎉 Prêt·e à en lancer un nouveau ?"
+          }
+        }
+      }
+    },
+    "dashboard.leon.tip.sessionsLeft.many.format" : {
+      "comment" : "Story 3.29 — conseil Léon, séances restantes (pluriel). params: nombre, type séance",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld sessions left this week. Next up: %2$@ — go while you're fresh!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il te reste %1$lld séances cette semaine. Prochaine : %2$@ — vas-y tant que tu es frais·che !"
+          }
+        }
+      }
+    },
+    "dashboard.leon.tip.sessionsLeft.one.format" : {
+      "comment" : "Story 3.29 — conseil Léon, 1 séance restante. param: type séance",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 session left this week. Next up: %1$@ — now's the time!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il te reste 1 séance cette semaine. Prochaine : %1$@ — c'est le moment !"
+          }
+        }
+      }
+    },
+    "dashboard.leon.tip.streak.format" : {
+      "comment" : "Story 3.29 — conseil Léon, série de jours. params: nombre de jours, type séance",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld days in a row 🔥 great consistency! Next session: %2$@."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld jours d'affilée 🔥 belle régularité ! Prochaine séance : %2$@."
+          }
+        }
+      }
+    },
+    "dashboard.leon.tip.weekCompleted" : {
+      "comment" : "Story 3.29 — conseil Léon, semaine bouclée",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Week done 👏 nicely played. Rest up, or squeeze in a bonus?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semaine bouclée 👏 bien joué. Repos mérité, ou un petit rab ?"
+          }
+        }
+      }
+    },
     "dashboard.next_session.teaser.last_of_week" : {
       "localizations" : {
         "en" : {
@@ -3769,6 +3908,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Puis :"
+          }
+        }
+      }
+    },
+    "dashboard.prepared.trigger.openSheet.format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prepared programs (%lld)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Programmes préparés (%lld)"
+          }
+        }
+      }
+    },
+    "dashboard.prepared.trigger.startNew" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start a new program"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Démarrer un nouveau programme"
           }
         }
       }
@@ -3977,142 +4150,6 @@
         }
       }
     },
-    "dashboard.leon.tip.generic" : {
-      "comment" : "Story 3.29 — conseil Léon, filet générique",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Léon's got your back — pick a session and let's go!"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Léon est avec toi — choisis ta séance, c'est parti !"
-          }
-        }
-      }
-    },
-    "dashboard.leon.tip.halfway" : {
-      "comment" : "Story 3.29 — conseil Léon, mi-parcours du programme",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Halfway there 💪 keep the momentum."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Déjà la moitié du chemin 💪 garde le cap."
-          }
-        }
-      }
-    },
-    "dashboard.leon.tip.late.format" : {
-      "comment" : "Story 3.29 — conseil Léon, séance en retard. param: type séance",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A session's been waiting since last week. No pressure, ease back in — next up: %1$@."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Une séance t'attend depuis la semaine dernière. Pas de pression, reprends tranquille — prochaine : %1$@."
-          }
-        }
-      }
-    },
-    "dashboard.leon.tip.programCompleted" : {
-      "comment" : "Story 3.29 — conseil Léon, programme terminé",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Program complete 🎉 ready to start a new one?"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bravo, programme terminé 🎉 Prêt·e à en lancer un nouveau ?"
-          }
-        }
-      }
-    },
-    "dashboard.leon.tip.sessionsLeft.many.format" : {
-      "comment" : "Story 3.29 — conseil Léon, séances restantes (pluriel). params: nombre, type séance",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld sessions left this week. Next up: %2$@ — go while you're fresh!"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Il te reste %1$lld séances cette semaine. Prochaine : %2$@ — vas-y tant que tu es frais·che !"
-          }
-        }
-      }
-    },
-    "dashboard.leon.tip.sessionsLeft.one.format" : {
-      "comment" : "Story 3.29 — conseil Léon, 1 séance restante. param: type séance",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1 session left this week. Next up: %1$@ — now's the time!"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Il te reste 1 séance cette semaine. Prochaine : %1$@ — c'est le moment !"
-          }
-        }
-      }
-    },
-    "dashboard.leon.tip.streak.format" : {
-      "comment" : "Story 3.29 — conseil Léon, série de jours. params: nombre de jours, type séance",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld days in a row 🔥 great consistency! Next session: %2$@."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld jours d'affilée 🔥 belle régularité ! Prochaine séance : %2$@."
-          }
-        }
-      }
-    },
-    "dashboard.leon.tip.weekCompleted" : {
-      "comment" : "Story 3.29 — conseil Léon, semaine bouclée",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Week done 👏 nicely played. Rest up, or squeeze in a bonus?"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Semaine bouclée 👏 bien joué. Repos mérité, ou un petit rab ?"
-          }
-        }
-      }
-    },
     "dashboard.program.weekStatus.format" : {
       "comment" : "Story 3.10 — statut semaine en cours, params: weekNumber, completed, total",
       "localizations" : {
@@ -4174,6 +4211,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sur la lancée"
+          }
+        }
+      }
+    },
+    "dashboard.regen.reason.overExecuting" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Easing volume"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On lève le pied"
+          }
+        }
+      }
+    },
+    "dashboard.regen.reason.pauseExtended" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gentle restart"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reprise douce"
+          }
+        }
+      }
+    },
+    "dashboard.regen.reason.pauseLight" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Short pause"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause courte"
+          }
+        }
+      }
+    },
+    "dashboard.regen.reason.pauseModerate" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause detected"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause détectée"
           }
         }
       }
@@ -4258,66 +4359,19 @@
         }
       }
     },
-    "dashboard.regen.reason.overExecuting" : {
+    "dashboard.section.contextual.format" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Easing volume"
+            "value" : "%@ · Week %lld"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On lève le pied"
-          }
-        }
-      }
-    },
-    "dashboard.regen.reason.pauseExtended" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gentle restart"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reprise douce"
-          }
-        }
-      }
-    },
-    "dashboard.regen.reason.pauseLight" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Short pause"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pause courte"
-          }
-        }
-      }
-    },
-    "dashboard.regen.reason.pauseModerate" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pause detected"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pause détectée"
+            "value" : "%@ · Semaine %lld"
           }
         }
       }
@@ -4356,6 +4410,7 @@
       }
     },
     "dashboard.section.next_session.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4390,6 +4445,7 @@
     },
     "dashboard.session.late.subtitle.format" : {
       "comment" : "Story 3.11 — sous-titre NextSessionCard pour séance en retard, param: weekStartDate formatée",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4433,6 +4489,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Quel sport ?"
+          }
+        }
+      }
+    },
+    "dashboard.stats.thisweek.format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld / %lld sessions this week"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld / %lld séances cette semaine"
           }
         }
       }
@@ -5064,6 +5137,40 @@
         }
       }
     },
+    "glossary.entry.detail.sports" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Used in"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sports concernés"
+          }
+        }
+      }
+    },
+    "glossary.entry.detail.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Definition"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Définition"
+          }
+        }
+      }
+    },
     "glossary.fartlek.definition" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5570,6 +5677,91 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hypertrophie — Volume musculaire"
+          }
+        }
+      }
+    },
+    "glossary.index.empty.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adjust your search or try a different filter."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifie ta recherche ou essaie un autre filtre."
+          }
+        }
+      }
+    },
+    "glossary.index.empty.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No term found"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun terme trouvé"
+          }
+        }
+      }
+    },
+    "glossary.index.filter.all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All sports"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tous les sports"
+          }
+        }
+      }
+    },
+    "glossary.index.search.placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search a term"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher un terme"
+          }
+        }
+      }
+    },
+    "glossary.index.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glossary"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glossaire"
           }
         }
       }
@@ -8649,6 +8841,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Profil indisponible"
+          }
+        }
+      }
+    },
+    "profile.glossary.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glossary"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glossaire"
           }
         }
       }
@@ -11817,6 +12026,7 @@
     },
     "replanify.button" : {
       "comment" : "Story 3.11 — bouton secondaire Replanifier",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -12407,90 +12617,6 @@
             "value" : "Aujourd'hui"
           }
         }
-      }
-    },
-    "profile.glossary.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Glossary" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Glossaire" } }
-      }
-    },
-    "glossary.index.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Glossary" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Glossaire" } }
-      }
-    },
-    "glossary.index.search.placeholder" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Search a term" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Rechercher un terme" } }
-      }
-    },
-    "glossary.index.filter.all" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "All sports" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tous les sports" } }
-      }
-    },
-    "glossary.index.empty.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No term found" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucun terme trouvé" } }
-      }
-    },
-    "glossary.index.empty.description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Adjust your search or try a different filter." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Modifie ta recherche ou essaie un autre filtre." } }
-      }
-    },
-    "glossary.entry.detail.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Definition" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Définition" } }
-      }
-    },
-    "glossary.entry.detail.sports" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Used in" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Sports concernés" } }
-      }
-    },
-    "dashboard.section.contextual.format" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%@ · Week %lld" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ · Semaine %lld" } }
-      }
-    },
-    "dashboard.prepared.trigger.openSheet.format" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Prepared programs (%lld)" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Programmes préparés (%lld)" } }
-      }
-    },
-    "dashboard.prepared.trigger.startNew" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start a new program" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Démarrer un nouveau programme" } }
-      }
-    },
-    "dashboard.stats.thisweek.format" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld / %lld sessions this week" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld / %lld séances cette semaine" } }
       }
     }
   },

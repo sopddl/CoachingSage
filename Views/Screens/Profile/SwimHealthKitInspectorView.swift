@@ -27,6 +27,7 @@ struct SwimHealthKitInspectorView: View {
 
     @State private var state: LoadState = .idle
     @State private var details: [HealthKitSwimWorkoutDetail] = []
+    @State private var exportURL: URL?
     private let weeksBack: Int = 12
     private let fetchLimit: Int = 12
 
@@ -56,6 +57,14 @@ struct SwimHealthKitInspectorView: View {
                 .disabled(state == .loading)
                 .accessibilityLabel("Rafraîchir")
             }
+            ToolbarItem(placement: .topBarLeading) {
+                if let exportURL {
+                    ShareLink(item: exportURL) {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    .accessibilityLabel("Exporter JSON")
+                }
+            }
         }
         .task {
             await refresh()
@@ -77,6 +86,7 @@ struct SwimHealthKitInspectorView: View {
             weeksBack: weeksBack
         )
         details = fetched
+        exportURL = Self.writeExport(fetched)
         if fetched.isEmpty {
             // On ne peut pas distinguer refus vs vide côté READ HK (Apple ne révèle
             // pas les refus). Heuristique : si l'auth n'a jamais été demandée
@@ -399,6 +409,82 @@ struct SwimHealthKitInspectorView: View {
             return "Bassin — aucun lap détecté par la Watch (vérifie que tu as démarré l'activité Natation en bassin sur la Watch)."
         case .unknown, .none:
             return "Pas de découpage lap disponible."
+        }
+    }
+
+    // MARK: - Export JSON
+
+    /// Sérialise l'intégralité des détails (séances + laps + dump brut) en JSON
+    /// pretty-printed dans un fichier temporaire, partageable via ShareLink
+    /// (AirDrop vers Mac). Retourne `nil` si rien à exporter ou échec d'écriture.
+    private static func writeExport(_ details: [HealthKitSwimWorkoutDetail]) -> URL? {
+        guard !details.isEmpty else { return nil }
+        let iso = ISO8601DateFormatter()
+
+        func lapDict(_ lap: HealthKitSwimLap) -> [String: Any] {
+            [
+                "index": lap.index,
+                "startDate": iso.string(from: lap.startDate),
+                "durationSeconds": lap.durationSeconds,
+                "distanceMeters": lap.distanceMeters as Any,
+                "strokeStyle": lap.strokeStyle.map { String(describing: $0) } as Any,
+                "paceSecondsPer100m": lap.paceSecondsPer100m as Any,
+                "averageHeartRateBpm": lap.averageHeartRateBpm as Any,
+                "minHeartRateBpm": lap.minHeartRateBpm as Any,
+                "maxHeartRateBpm": lap.maxHeartRateBpm as Any,
+                "strokeCount": lap.strokeCount as Any,
+                "swolfScore": lap.swolfScore as Any,
+                "restAfterSeconds": lap.restAfterSeconds as Any
+            ]
+        }
+
+        func workoutDict(_ d: HealthKitSwimWorkoutDetail) -> [String: Any] {
+            [
+                "id": d.id.uuidString,
+                "startDate": iso.string(from: d.startDate),
+                "endDate": iso.string(from: d.endDate),
+                "durationSeconds": d.durationSeconds,
+                "totalDistanceMeters": d.totalDistanceMeters as Any,
+                "totalStrokes": d.totalStrokes as Any,
+                "averageHeartRateBpm": d.averageHeartRateBpm as Any,
+                "minHeartRateBpm": d.minHeartRateBpm as Any,
+                "maxHeartRateBpm": d.maxHeartRateBpm as Any,
+                "activeEnergyKcal": d.activeEnergyKcal as Any,
+                "totalEnergyKcal": d.totalEnergyKcal as Any,
+                "averageMETs": d.averageMETs as Any,
+                "poolLengthMeters": d.poolLengthMeters as Any,
+                "swimLocationType": d.swimLocationType.map { String(describing: $0) } as Any,
+                "sourceProductType": d.sourceProductType as Any,
+                "appleWatchDetected": d.appleWatchDetected,
+                "deviceDescription": d.deviceDescription as Any,
+                "sourceDescription": d.sourceDescription as Any,
+                "isIndoorWorkout": d.isIndoorWorkout as Any,
+                "timeZoneIdentifier": d.timeZoneIdentifier as Any,
+                "eventCounts": d.eventCounts,
+                "rawMetadata": Dictionary(d.rawMetadata.map { ($0.key, $0.value) }) { a, _ in a },
+                "rawStatistics": Dictionary(d.rawStatistics.map { ($0.key, $0.value) }) { a, _ in a },
+                "laps": d.laps.map(lapDict)
+            ]
+        }
+
+        let root: [String: Any] = [
+            "exportedAt": iso.string(from: Date()),
+            "weeksBack": 12,
+            "workoutCount": details.count,
+            "workouts": details.map(workoutDict)
+        ]
+
+        guard JSONSerialization.isValidJSONObject(root),
+              let data = try? JSONSerialization.data(withJSONObject: root, options: [.prettyPrinted, .sortedKeys])
+        else { return nil }
+
+        let url = FileManager.default.temporaryDirectory
+            .appendingPathComponent("swim_hk_export.json")
+        do {
+            try data.write(to: url, options: .atomic)
+            return url
+        } catch {
+            return nil
         }
     }
 }
