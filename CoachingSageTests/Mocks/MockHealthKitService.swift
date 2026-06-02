@@ -96,4 +96,18 @@ final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable 
     func fetchRecentSwimWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitSwimWorkoutDetail] {
         stubbedSwimWorkoutDetails
     }
+
+    var stubbedSwimFetchDiagnostics = SwimFetchDiagnostics(
+        healthDataAvailable: true,
+        hasRequestedSwimAuthorization: false,
+        workoutAuthStatus: "notDetermined",
+        allWorkoutsCount: 0,
+        swimWorkoutsCount: 0,
+        activityTypeCounts: [:],
+        swimQueryError: nil
+    )
+
+    func diagnoseSwimFetch(weeksBack: Int) async -> SwimFetchDiagnostics {
+        stubbedSwimFetchDiagnostics
+    }
 }

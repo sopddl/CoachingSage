@@ -28,6 +28,7 @@ struct SwimHealthKitInspectorView: View {
     @State private var state: LoadState = .idle
     @State private var details: [HealthKitSwimWorkoutDetail] = []
     @State private var exportURL: URL?
+    @State private var diagnostics: SwimFetchDiagnostics?
     private let weeksBack: Int = 12
     private let fetchLimit: Int = 12
 
@@ -88,6 +89,8 @@ struct SwimHealthKitInspectorView: View {
         details = fetched
         exportURL = Self.writeExport(fetched)
         if fetched.isEmpty {
+            // Diagnostic : distinguer vrai « 0 séance » d'un souci auth/sync/erreur.
+            diagnostics = await service.diagnoseSwimFetch(weeksBack: weeksBack)
             // On ne peut pas distinguer refus vs vide côté READ HK (Apple ne révèle
             // pas les refus). Heuristique : si l'auth n'a jamais été demandée
             // (cas écran ouvert avant tout hook), traiter comme refus. Sinon vide.
@@ -97,6 +100,7 @@ struct SwimHealthKitInspectorView: View {
                 state = .empty(reason: .noWorkouts)
             }
         } else {
+            diagnostics = nil
             state = .loaded
         }
     }
@@ -121,19 +125,88 @@ struct SwimHealthKitInspectorView: View {
     }
 
     private var emptyView: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Aucune séance natation Apple Watch détectée sur les \(weeksBack) dernières semaines.")
-                .font(.coachingBody)
-            Text("Vérifie :")
-                .font(.coachingBody.bold())
-            Text("1. Tu portes la Watch en piscine.")
-            Text("2. Tu démarres le workout `Natation en bassin` sur la Watch.")
-            Text("3. La Watch est bien synchronisée avec l'iPhone (ouvre l'app Santé sur l'iPhone et tire pour rafraîchir).")
+        ScrollView {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Aucune séance natation Apple Watch détectée sur les \(weeksBack) dernières semaines.")
+                    .font(.coachingBody)
+
+                if let diag = diagnostics {
+                    diagnosticsPanel(diag)
+                }
+
+                Text("Vérifie :")
+                    .font(.coachingBody.bold())
+                Text("1. Tu portes la Watch en piscine.")
+                Text("2. Tu démarres le workout `Natation en bassin` sur la Watch.")
+                Text("3. La Watch est bien synchronisée avec l'iPhone (ouvre l'app Santé sur l'iPhone et tire pour rafraîchir).")
+            }
+            .font(.coachingCaption)
+            .foregroundStyle(Color.coachingTextSecondary)
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .topLeading)
         }
-        .font(.coachingCaption)
-        .foregroundStyle(Color.coachingTextSecondary)
-        .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+    }
+
+    @ViewBuilder
+    private func diagnosticsPanel(_ diag: SwimFetchDiagnostics) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text("🔬 Diagnostic")
+                .font(.coachingBody.bold())
+                .foregroundStyle(Color.coachingTextPrimary)
+            diagLine("HK disponible", diag.healthDataAvailable ? "oui" : "NON")
+            diagLine("Auth natation demandée", diag.hasRequestedSwimAuthorization ? "oui" : "non")
+            diagLine("Auth workout (statut)", diag.workoutAuthStatus)
+            diagLine("Workouts TOUS sports", "\(diag.allWorkoutsCount)")
+            diagLine("Workouts natation", "\(diag.swimWorkoutsCount)")
+            if let err = diag.swimQueryError {
+                diagLine("Erreur requête", err)
+            }
+            if !diag.activityTypeCounts.isEmpty {
+                diagLine("Types trouvés", formatActivityTypes(diag.activityTypeCounts))
+            }
+            // Lecture humaine du verdict.
+            Text(diagVerdict(diag))
+                .font(.coachingCaption.italic())
+                .foregroundStyle(Color.coachingPrimary)
+                .padding(.top, 2)
+        }
+        .padding(10)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.coachingCard)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+
+    @ViewBuilder
+    private func diagLine(_ label: String, _ value: String) -> some View {
+        HStack(alignment: .top, spacing: 6) {
+            Text(label)
+                .frame(width: 150, alignment: .leading)
+            Text(value)
+                .font(.coachingCaption.monospaced())
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+
+    private func diagVerdict(_ diag: SwimFetchDiagnostics) -> String {
+        if !diag.healthDataAvailable { return "→ HealthKit indisponible sur cet appareil." }
+        if let err = diag.swimQueryError { return "→ La requête a échoué (\(err)) — probablement auth/sync, pas un vrai 0." }
+        if diag.allWorkoutsCount == 0 {
+            return diag.workoutAuthStatus == "notDetermined"
+                ? "→ Aucun workout tous sports + auth jamais demandée : autorise l'accès Santé (workouts)."
+                : "→ Aucun workout tous sports détecté : accès lecture workout non accordé OU pas encore synchronisé depuis la Watch."
+        }
+        if diag.swimWorkoutsCount == 0 {
+            return "→ Des workouts existent mais aucun classé « natation » : vérifie le type d'activité sur la Watch (Natation en bassin / eau libre)."
+        }
+        return "→ Des séances natation existent — si la liste reste vide, c'est un bug de construction (à investiguer)."
+    }
+
+    private func formatActivityTypes(_ counts: [UInt: Int]) -> String {
+        counts
+            .sorted { $0.value > $1.value }
+            .prefix(8)
+            .map { "type \($0.key): \($0.value)" }
+            .joined(separator: ", ")
     }
 
     private var loadedList: some View {

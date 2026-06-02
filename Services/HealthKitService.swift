@@ -22,6 +22,26 @@ struct HealthKitVO2MaxSample: Equatable, Sendable {
     let sourceName: String?
 }
 
+/// Story 3.16 (DEBUG) — résultat du diagnostic de fetch natation. Sert à
+/// distinguer, dans l'écran d'inspection, un « vrai 0 séance » d'un souci
+/// d'autorisation / sync / erreur HK silencieuse.
+struct SwimFetchDiagnostics: Equatable, Sendable {
+    let healthDataAvailable: Bool
+    let hasRequestedSwimAuthorization: Bool
+    /// Statut d'autorisation (PARTAGE) pour `workoutType()` — indicatif :
+    /// `.notDetermined` = jamais demandé, `.sharingDenied`/`.sharingAuthorized`
+    /// concernent l'écriture (HK ne révèle pas le statut de lecture).
+    let workoutAuthStatus: String
+    /// Nombre de workouts TOUS sports dans la fenêtre (requête témoin sans predicate natation).
+    let allWorkoutsCount: Int
+    /// Nombre de workouts natation (même predicate que le fetch réel).
+    let swimWorkoutsCount: Int
+    /// Activity types distincts trouvés (rawValue → count) sur la requête témoin.
+    let activityTypeCounts: [UInt: Int]
+    /// Description de l'erreur de la requête natation, si la requête a échoué.
+    let swimQueryError: String?
+}
+
 struct HealthKitWorkoutSummary: Equatable, Sendable {
     let totalCount: Int
     let weeklyAverage: Double
@@ -148,6 +168,10 @@ protocol HealthKitServiceProtocol: Sendable {
     /// HR par lap) quand disponible. Tableau vide si refus/absence/aucun workout swim.
     /// Jamais throw.
     func fetchRecentSwimWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitSwimWorkoutDetail]
+
+    /// Story 3.16 (DEBUG) — diagnostic du fetch natation : distingue « 0 séance vraie »
+    /// d'un problème d'autorisation/sync/erreur silencieuse. Jamais throw.
+    func diagnoseSwimFetch(weeksBack: Int) async -> SwimFetchDiagnostics
 }
 
 extension HealthKitServiceProtocol {
@@ -651,6 +675,74 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
             details.append(await buildSwimWorkoutDetail(workout))
         }
         return details
+    }
+
+    func diagnoseSwimFetch(weeksBack: Int) async -> SwimFetchDiagnostics {
+        let available = HKHealthStore.isHealthDataAvailable()
+        let authStatus = healthStore.authorizationStatus(for: HKObjectType.workoutType())
+        let authString: String
+        switch authStatus {
+        case .notDetermined: authString = "notDetermined"
+        case .sharingDenied: authString = "sharingDenied (lecture non révélée)"
+        case .sharingAuthorized: authString = "sharingAuthorized"
+        @unknown default: authString = "status(\(authStatus.rawValue))"
+        }
+
+        guard available else {
+            return SwimFetchDiagnostics(
+                healthDataAvailable: false,
+                hasRequestedSwimAuthorization: hasRequestedSwimAuthorization,
+                workoutAuthStatus: authString,
+                allWorkoutsCount: 0,
+                swimWorkoutsCount: 0,
+                activityTypeCounts: [:],
+                swimQueryError: nil
+            )
+        }
+
+        let now = Date()
+        let startDate = Calendar(identifier: .gregorian)
+            .date(byAdding: .weekOfYear, value: -weeksBack, to: now) ?? now
+        let datePredicate = HKQuery.predicateForSamples(withStart: startDate, end: now, options: [])
+
+        // Requête témoin : TOUS les workouts (aucun predicate sport).
+        let (allWorkouts, _) = await runWorkoutQuery(predicate: datePredicate, limit: 200)
+        var typeCounts: [UInt: Int] = [:]
+        for w in allWorkouts {
+            typeCounts[w.workoutActivityType.rawValue, default: 0] += 1
+        }
+
+        // Requête natation (identique au fetch réel).
+        let swimPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            datePredicate,
+            HKQuery.predicateForWorkouts(with: .swimming)
+        ])
+        let (swimWorkouts, swimError) = await runWorkoutQuery(predicate: swimPredicate, limit: 200)
+
+        return SwimFetchDiagnostics(
+            healthDataAvailable: true,
+            hasRequestedSwimAuthorization: hasRequestedSwimAuthorization,
+            workoutAuthStatus: authString,
+            allWorkoutsCount: allWorkouts.count,
+            swimWorkoutsCount: swimWorkouts.count,
+            activityTypeCounts: typeCounts,
+            swimQueryError: swimError?.localizedDescription
+        )
+    }
+
+    /// Exécute une requête workout et remonte (résultats, erreur éventuelle).
+    private func runWorkoutQuery(predicate: NSPredicate, limit: Int) async -> ([HKWorkout], Error?) {
+        await withCheckedContinuation { (continuation: CheckedContinuation<([HKWorkout], Error?), Never>) in
+            let query = HKSampleQuery(
+                sampleType: HKObjectType.workoutType(),
+                predicate: predicate,
+                limit: limit,
+                sortDescriptors: nil
+            ) { _, results, error in
+                continuation.resume(returning: ((results as? [HKWorkout]) ?? [], error))
+            }
+            healthStore.execute(query)
+        }
     }
 
     private func buildSwimWorkoutDetail(_ workout: HKWorkout) async -> HealthKitSwimWorkoutDetail {
