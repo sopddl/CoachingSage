@@ -86,7 +86,31 @@ struct SwimSummary: Equatable, Sendable {
     )
 }
 
+/// Tendance d'évolution sur la fenêtre : moitié récente vs moitié ancienne des
+/// séances. Delta = récent − ancien. Pour pace ET SWOLF, un delta NÉGATIF = mieux
+/// (plus rapide / plus efficace). `nil` si pas assez de séances pour comparer.
+struct SwimTrend: Equatable, Sendable {
+    let paceDeltaSecondsPer100m: Double?
+    let swolfDelta: Double?
+    /// Nombre total de séances utilisées dans la comparaison.
+    let comparedSessions: Int
+}
+
 extension SwimStrokeStyle {
+    /// Clé i18n du nom de style (FR/EN dans Localizable.xcstrings). `nil` pour
+    /// `.unknown` (rien à afficher).
+    var localizationKey: String? {
+        switch self {
+        case .freestyle: return "swim.stroke.freestyle"
+        case .backstroke: return "swim.stroke.backstroke"
+        case .breaststroke: return "swim.stroke.breaststroke"
+        case .butterfly: return "swim.stroke.butterfly"
+        case .mixed: return "swim.stroke.mixed"
+        case .kickboard: return "swim.stroke.kickboard"
+        case .unknown: return nil
+        }
+    }
+
     /// `true` pour un style de nage à pace comparable (exclut kick/unknown).
     var isSwumStroke: Bool {
         switch self {

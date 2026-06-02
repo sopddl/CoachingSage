@@ -414,26 +414,38 @@ struct ProgressionView: View {
             if summary.sessionCount > 0 {
                 VStack(alignment: .leading, spacing: 12) {
                     blockTitle("progress.swim.title")
-                    VStack(spacing: 14) {
-                        swimHeaderStats(summary)
-                        if !summary.sessions.isEmpty {
-                            Rectangle()
-                                .fill(Color.coachingTextSecondary.opacity(0.1))
-                                .frame(height: 1)
-                            VStack(spacing: 12) {
-                                ForEach(summary.sessions.prefix(4)) { session in
-                                    swimSessionRow(session)
+                    NavigationLink {
+                        SportProfileView()
+                    } label: {
+                        VStack(spacing: 14) {
+                            swimHeaderStats(summary)
+                            if !summary.sessions.isEmpty {
+                                Rectangle()
+                                    .fill(Color.coachingTextSecondary.opacity(0.1))
+                                    .frame(height: 1)
+                                VStack(spacing: 12) {
+                                    ForEach(summary.sessions.prefix(4)) { session in
+                                        swimSessionRow(session)
+                                    }
                                 }
                             }
+                            HStack {
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .font(.caption2.bold())
+                                    .foregroundStyle(Color.coachingTextSecondary)
+                            }
                         }
+                        .padding(.vertical, 14)
+                        .padding(.horizontal, 14)
+                        .background(
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(Color(.systemBackground))
+                                .shadow(color: Color.coachingEarth.opacity(0.06), radius: 6, x: 0, y: 2)
+                        )
                     }
-                    .padding(.vertical, 14)
-                    .padding(.horizontal, 14)
-                    .background(
-                        RoundedRectangle(cornerRadius: 14)
-                            .fill(Color(.systemBackground))
-                            .shadow(color: Color.coachingEarth.opacity(0.06), radius: 6, x: 0, y: 2)
-                    )
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("progress.swim.open_profile")
                 }
             }
             // 0 séance → bloc masqué (cohérent avec volume/PR).

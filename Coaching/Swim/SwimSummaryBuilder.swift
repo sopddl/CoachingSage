@@ -143,6 +143,37 @@ enum SwimSummaryBuilder {
         )
     }
 
+    // MARK: - Tendance (récent vs ancien)
+
+    /// Compare la moitié récente vs la moitié ancienne des séances (qui doivent
+    /// être triées antéchrono : plus récente en premier). Delta = récent − ancien
+    /// (négatif = amélioration, pour pace comme pour SWOLF). `nil` si < minSessions.
+    static func computeTrend(sessions: [SwimSessionSummary], minSessions: Int = 4) -> SwimTrend? {
+        guard sessions.count >= minSessions else { return nil }
+        let half = sessions.count / 2
+        let recent = Array(sessions.prefix(half))
+        let older = Array(sessions.suffix(sessions.count - half))
+
+        func mean(_ values: [Double]) -> Double? {
+            values.isEmpty ? nil : values.reduce(0, +) / Double(values.count)
+        }
+        let paceDelta: Double? = {
+            guard let r = mean(recent.compactMap { $0.avgPaceSecondsPer100m }),
+                  let o = mean(older.compactMap { $0.avgPaceSecondsPer100m }) else { return nil }
+            return r - o
+        }()
+        let swolfDelta: Double? = {
+            guard let r = mean(recent.compactMap { $0.avgSwolf }.map(Double.init)),
+                  let o = mean(older.compactMap { $0.avgSwolf }.map(Double.init)) else { return nil }
+            return r - o
+        }()
+        return SwimTrend(
+            paceDeltaSecondsPer100m: paceDelta,
+            swolfDelta: swolfDelta,
+            comparedSessions: sessions.count
+        )
+    }
+
     // MARK: - Helpers pace / stroke
 
     /// Pace agrégée pondérée par la distance des longueurs NAGÉES (hors kick/unknown).

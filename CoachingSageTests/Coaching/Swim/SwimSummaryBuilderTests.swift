@@ -222,4 +222,28 @@ final class SwimSummaryBuilderTests: XCTestCase {
     func testBuild_empty_returnsEmpty() {
         XCTAssertEqual(SwimSummaryBuilder.build(from: [], windowWeeks: 12), .empty)
     }
+
+    // MARK: - Tendance
+
+    func testComputeTrend_nilWhenTooFewSessions() {
+        let s = SwimSummaryBuilder.build(from: [
+            workout(daysAgo: 1, laps: (1...2).map { lap($0) }),
+            workout(daysAgo: 8, laps: (1...2).map { lap($0) })
+        ], windowWeeks: 12)
+        XCTAssertNil(SwimSummaryBuilder.computeTrend(sessions: s.sessions, minSessions: 4))
+    }
+
+    func testComputeTrend_improvingPace_negativeDelta() {
+        // 4 séances antéchrono : 2 récentes rapides (110), 2 anciennes lentes (140).
+        let recent1 = workout(daysAgo: 1, laps: (1...4).map { lap($0, pace: 110, swolf: 40) })
+        let recent2 = workout(daysAgo: 4, laps: (1...4).map { lap($0, pace: 110, swolf: 40) })
+        let old1 = workout(daysAgo: 20, laps: (1...4).map { lap($0, pace: 140, swolf: 55) })
+        let old2 = workout(daysAgo: 25, laps: (1...4).map { lap($0, pace: 140, swolf: 55) })
+        let summary = SwimSummaryBuilder.build(from: [recent1, recent2, old1, old2], windowWeeks: 12)
+        let trend = SwimSummaryBuilder.computeTrend(sessions: summary.sessions, minSessions: 4)
+        // récent − ancien = 110 − 140 = −30 (plus rapide → amélioration).
+        XCTAssertEqual(try XCTUnwrap(trend?.paceDeltaSecondsPer100m), -30, accuracy: 0.01)
+        XCTAssertEqual(try XCTUnwrap(trend?.swolfDelta), -15, accuracy: 0.01)
+        XCTAssertEqual(trend?.comparedSessions, 4)
+    }
 }
