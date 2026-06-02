@@ -120,6 +120,14 @@ struct UIReviewScenarioContainer: View {
             // afficher le badge "En retard" ni le bouton "Replanifier", même si
             // l'utilisateur n'a pas fait sa séance. Filet visuel anti-régression.
             DashboardActiveScenarioView(scenario: .routineCyclicNoReplanify)
+        case "ui_review_routine_renewal_due":
+            // **Story 3.31** — bannière renouvellement routine J−14 (semaine 11/12)
+            // non-bloquante + pastille carrousel « Suite dispo ».
+            DashboardActiveScenarioView(scenario: .routineRenewalDue)
+        case "ui_review_routine_renewal_completed":
+            // **Story 3.31** — bannière renouvellement routine cycle terminé
+            // (proéminente dorée) — évite le dashboard vide.
+            DashboardActiveScenarioView(scenario: .routineRenewalCompleted)
         case "ui_review_replanify_sheet_choice":
             // **Story 3.11** — ReplanifySheet step `.choice` : titre + sous-titre
             // + 2 actions (Reporter / Décaler ma semaine) + Annuler. Rendue sur
@@ -254,6 +262,13 @@ private struct DashboardActiveScenarioView: View {
         case programCompleted
         case lateWithReplanify
         case routineCyclicNoReplanify
+        /// **Story 3.31** — routine en semaine 11/12 (J−14) : bannière de
+        /// renouvellement « Léon prépare la suite » non-bloquante + pastille
+        /// carrousel « Suite dispo ».
+        case routineRenewalDue
+        /// **Story 3.31** — routine cycle terminé : bannière proéminente dorée
+        /// « Cycle terminé — prêt pour la suite ? ».
+        case routineRenewalCompleted
         /// **Story 3.27 Phase C** — 1 seul programme démarré, 0 dormant : carrousel
         /// à 1 card (vérifie qu'une card seule reste centrée / pas étirée).
         case oneStarted
@@ -280,12 +295,14 @@ private struct DashboardActiveScenarioView: View {
                 teaserSession: teaserSessionFixture,
                 upcomingSessions: upcomingSessionsFixture,
                 regenBadges: [:],
+                routineRenewalStates: renewalStatesFixture,
                 leonTip: leonTipFixture,
                 onSelectProgram: { _ in },
                 onTapStartSession: { _ in },
                 onTapProgram: { _ in },
                 onDeleteProgram: { _ in },
-                onTapReplanify: { _ in }
+                onTapReplanify: { _ in },
+                onRenewRoutine: { _ in }
             )
             .padding(16)
         }
@@ -531,6 +548,42 @@ private struct DashboardActiveScenarioView: View {
                     nextSessionIsLate: false
                 )
             ]
+        case .routineRenewalDue:
+            // **Story 3.31** — routine en semaine 11/12 (J−14), encore des séances.
+            return [
+                makeProgram(
+                    id: idRunning, sport: .running, templateName: "Routine running 3 mois",
+                    weekStartDate: Date().addingTimeInterval(-70 * 86_400),
+                    currentWeek: 11, weekCompleted: 1, weekTotal: 3,
+                    totalCompleted: 30, totalSessions: 36,
+                    nextSession: makeSession(name: "Footing 40 min", week: 11, day: 2, dur: 40),
+                    lastUpdated: Date().addingTimeInterval(-3600),
+                    durationMode: .routineCyclic
+                )
+            ]
+        case .routineRenewalCompleted:
+            // **Story 3.31** — routine cycle terminé : plus de séance dispo.
+            return [
+                makeProgram(
+                    id: idRunning, sport: .running, templateName: "Routine running 3 mois",
+                    weekStartDate: Date().addingTimeInterval(-84 * 86_400),
+                    currentWeek: 12, weekCompleted: 3, weekTotal: 3,
+                    totalCompleted: 36, totalSessions: 36,
+                    nextSession: nil,
+                    lastUpdated: Date().addingTimeInterval(-3600),
+                    durationMode: .routineCyclic
+                )
+            ]
+        }
+    }
+
+    /// **Story 3.31** — états de renouvellement de routine injectés pour les
+    /// scénarios bannière (le VM n'est pas monté ici).
+    private var renewalStatesFixture: [UUID: RoutineRenewalState] {
+        switch scenario {
+        case .routineRenewalDue:       return [idRunning: .due(cycleNumber: 1)]
+        case .routineRenewalCompleted: return [idRunning: .cycleCompleted(cycleNumber: 2)]
+        default:                       return [:]
         }
     }
 

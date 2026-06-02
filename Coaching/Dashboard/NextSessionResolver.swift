@@ -4,7 +4,14 @@
 //
 // **Logique per-program** (`nextSession(for:now:)`) :
 //   1. Story 3.11 AC4 : programme dormant (`weekStartDate == nil`) → retourne `nil`.
-//   2. Filtrer les sessions non complétées (absentes de `completionState`).
+//   2. Filtrer les sessions non complétées (absentes de `completionState`) ET
+//      exclure les jours de repos (`type == .rest`). **Story 3.31 follow-up** :
+//      un « Repos complet » n'est pas une séance « à faire » — il ne doit jamais
+//      être la séance focale (bouton Démarrer) ni apparaître dans la liste
+//      "Séances" du dashboard. Les jours de repos restent visibles dans le plan
+//      complet (`AdaptedProgramView` qui rend `program.weeks` directement, hors
+//      resolver). Sans ce filtre, un repos restait « pending » à vie (jamais
+//      complétable) et squattait la prochaine séance.
 //   3. En `mode = .planned` ET `durationMode ∈ {.deadlineFixed,.deadlineEstimated}` :
 //      **blocage doux Story 3.11 AC1**. La semaine N+1 ne s'ouvre QUE quand toutes
 //      les séances de la semaine N (et antérieures) sont complétées. La prochaine
@@ -45,7 +52,7 @@ struct NextSessionResolver {
     /// séance (card « Et après ») sans dupliquer la logique de filtrage / tri.
     func upcomingSessions(for record: AdaptedProgramRecord, now: Date) -> [Result] {
         let completedIds = Set(record.completionState.sessionRecords.keys)
-        let pending = record.sessions.filter { !completedIds.contains($0.id) }
+        let pending = record.sessions.filter { !completedIds.contains($0.id) && $0.type != .rest }
         guard !pending.isEmpty else { return [] }
 
         let ordered = pending.sorted {
@@ -62,7 +69,7 @@ struct NextSessionResolver {
         guard let weekStart = record.weekStartDate else { return nil }
 
         let completedIds = Set(record.completionState.sessionRecords.keys)
-        let pending = record.sessions.filter { !completedIds.contains($0.id) }
+        let pending = record.sessions.filter { !completedIds.contains($0.id) && $0.type != .rest }
         guard !pending.isEmpty else { return nil }
 
         switch record.mode {
@@ -183,7 +190,7 @@ struct NextSessionResolver {
         _ = weekStart // reservé pour use future (date calcul cross-week label)
         let completedIds = Set(record.completionState.sessionRecords.keys)
         let linearPending = record.sessions
-            .filter { !completedIds.contains($0.id) && $0.id != focalResult.session.id }
+            .filter { !completedIds.contains($0.id) && $0.id != focalResult.session.id && $0.type != .rest }
             .sorted {
                 if $0.weekNumber != $1.weekNumber { return $0.weekNumber < $1.weekNumber }
                 return $0.day < $1.day
@@ -205,7 +212,7 @@ struct NextSessionResolver {
     ) -> [PersistedSession] {
         guard let weekStart = record.weekStartDate else { return [] }
         let completedIds = Set(record.completionState.sessionRecords.keys)
-        let pending = record.sessions.filter { !completedIds.contains($0.id) }
+        let pending = record.sessions.filter { !completedIds.contains($0.id) && $0.type != .rest }
         guard !pending.isEmpty else { return [] }
 
         switch record.mode {

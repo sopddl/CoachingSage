@@ -482,10 +482,19 @@ final class SessionDashboardViewModel {
             let resolvedName = cachedLibrary?.templates
                 .first { $0.id == record.templateId }?.name ?? record.templateId
             let sport = Sport(sportCode: record.sportCode) ?? .running
-            let total = record.sessions.count
+            // **Story 3.31 follow-up** — comptage active-only (hors `.rest`).
+            // Les jours de repos ne sont ni « à faire » ni complétables : les
+            // compter au dénominateur faisait que la barre de progression et
+            // le ratio « X/Y » d'un programme avec jours de repos n'atteignaient
+            // jamais 100 % (et `isProgramCompleted` / « Programme terminé » ne
+            // s'affichaient jamais). Les numérateurs (`completedCount`,
+            // `sessionRecords`) sont déjà active-only (le repos n'y entre jamais).
+            let total = record.sessions.filter { $0.type != .rest }.count
             let completed = record.completionState.completedCount
             let currentWeek = currentWeekNumber(for: record, now: now)
-            let weekTotalSessions = record.sessions.filter { $0.weekNumber == currentWeek }.count
+            let weekTotalSessions = record.sessions
+                .filter { $0.weekNumber == currentWeek && $0.type != .rest }
+                .count
             let weekCompletedSessions = record.sessions
                 .filter { $0.weekNumber == currentWeek }
                 .filter { record.completionState.sessionRecords[$0.id] != nil }
