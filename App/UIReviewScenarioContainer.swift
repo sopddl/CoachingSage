@@ -236,6 +236,22 @@ struct UIReviewScenarioContainer: View {
                 week: SessionFocusSingleFixture.week,
                 program: SessionFocusSingleFixture.program
             )
+        case "ui_review_session_focus_hiit":
+            // **Story 3.34 (FOCUS Minuté)** — HIIT : gros compte à rebours, pré-annonce
+            // « Prochain : … » (anti-Decathlon), progression « Tour T/R », Pause/Passer.
+            SessionFocusView(
+                session: SessionFocusHIITFixture.session,
+                week: SessionFocusHIITFixture.week,
+                program: SessionFocusHIITFixture.program
+            )
+        case "ui_review_session_focus_yoga":
+            // **Story 3.34 (FOCUS Minuté)** — yoga : tenue par posture (avance auto),
+            // progression « Posture p/P ».
+            SessionFocusView(
+                session: SessionFocusYogaFixture.session,
+                week: SessionFocusYogaFixture.week,
+                program: SessionFocusYogaFixture.program
+            )
         case "ui_review_illustrations_showcase":
             // **Story 3.19 Jalon 2b** — showcase TOUTES les illustrations
             // (15 patterns) en grille pour screenshot HTML overview Sophie.
@@ -1228,6 +1244,43 @@ enum SessionFocusSingleFixture {
             AdaptedExercise(name: "Footing facile", originalName: "Footing facile",
                             duration: "30 min", notes: "Allure de conversation, respiration nasale.",
                             targetZone: "Daniels-E")
+        ],
+        cooldown: nil
+    )
+}
+
+// MARK: - Story 3.34 (FOCUS Minuté) — fixtures
+
+enum SessionFocusHIITFixture {
+    static let week = AdaptedWeek(weekNumber: 2, theme: "HIIT métabolique", goal: "VO2", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-hiit-fixture", sport: .hiit, level: .recreational,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 1, name: "Tabata corps entier", durationMinutes: 20, type: .interval,
+        warmup: nil,
+        exercises: [
+            AdaptedExercise(name: "Burpees", originalName: "Burpees", sets: 4, duration: "40/20",
+                            notes: "Explosif, gainage serré.")
+        ],
+        cooldown: nil
+    )
+}
+
+enum SessionFocusYogaFixture {
+    static let week = AdaptedWeek(weekNumber: 1, theme: "Mobilité", goal: "Souffle", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-yoga-fixture", sport: .yoga, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 1, name: "Flow doux", durationMinutes: 30, type: .mobility,
+        warmup: nil,
+        exercises: [
+            AdaptedExercise(name: "Guerrier I", originalName: "Guerrier I", duration: "45 s"),
+            AdaptedExercise(name: "Chien tête en bas", originalName: "Chien tête en bas", duration: "1 min"),
+            AdaptedExercise(name: "Arbre", originalName: "Arbre", duration: "30 s")
         ],
         cooldown: nil
     )

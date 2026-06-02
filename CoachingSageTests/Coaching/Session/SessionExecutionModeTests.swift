@@ -41,14 +41,20 @@ final class SessionExecutionModeTests: XCTestCase {
         XCTAssertEqual(SessionExecutionMode.target(sportCode: "tennis", sessionType: .strength), .manual)
     }
 
-    // MARK: - available (fallback gracieux jusqu'à livraison 3.34-3.36)
+    // MARK: - available (fallback gracieux jusqu'à livraison 3.35-3.36)
 
-    func test_available_everythingFallsBackToManual_untilModesShip() {
-        // En 3.33, seul Manuel est embarqué → tous les sports retombent sur Manuel.
-        for code in ["strengthTraining", "hiit", "yoga", "running", "cycling", "hiking", "swimming", "tennis"] {
+    func test_available_timedShipped_hiitAndYogaUseTimed() {
+        // Depuis 3.34, Minuté est embarqué → HIIT/yoga avancent au chrono.
+        XCTAssertEqual(SessionExecutionMode.available(sportCode: "hiit", sessionType: .interval), .timed)
+        XCTAssertEqual(SessionExecutionMode.available(sportCode: "yoga", sessionType: .mobility), .timed)
+    }
+
+    func test_available_audioAndWatchNotShipped_fallBackToManual() {
+        // Audio (3.35) et Montre (3.36) pas encore embarqués → fallback Manuel.
+        for code in ["running", "cycling", "hiking", "swimming"] {
             XCTAssertEqual(
-                SessionExecutionMode.available(sportCode: code, sessionType: .mixed), .manual,
-                "fallback Manuel attendu pour \(code)"
+                SessionExecutionMode.available(sportCode: code, sessionType: .endurance), .manual,
+                "fallback Manuel attendu pour \(code) (audio/watch non livrés)"
             )
         }
     }
@@ -57,7 +63,7 @@ final class SessionExecutionModeTests: XCTestCase {
         XCTAssertEqual(SessionExecutionMode.available(sportCode: "strengthTraining", sessionType: .strength), .manual)
     }
 
-    func test_shippedModes_containsOnlyManualForNow() {
-        XCTAssertEqual(SessionExecutionMode.shippedModes, [.manual])
+    func test_shippedModes_containsManualAndTimed() {
+        XCTAssertEqual(SessionExecutionMode.shippedModes, [.manual, .timed])
     }
 }
