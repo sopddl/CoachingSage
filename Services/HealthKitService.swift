@@ -955,11 +955,14 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
     }
 
     /// Somme `swimmingStrokeCount` sur une fenêtre temporelle (utilisé par lap).
+    /// `.strictStartDate` : un échantillon n'est compté que si son `startDate` tombe
+    /// dans la fenêtre — sinon un sample à cheval sur deux longueurs serait compté
+    /// dans les deux (double comptage observé : Σ laps 942 > total séance 776).
     private func readSwimStrokeCount(start: Date, end: Date) async -> Int? {
         guard let type = HKQuantityType.quantityType(forIdentifier: .swimmingStrokeCount) else {
             return nil
         }
-        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: [])
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: [.strictStartDate])
         return await withCheckedContinuation { (continuation: CheckedContinuation<Int?, Never>) in
             let query = HKStatisticsQuery(
                 quantityType: type,
@@ -1005,9 +1008,15 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
     private static func stringifyMetadataValue(_ value: Any) -> String {
         switch value {
         case let q as HKQuantity: return q.description
-        case let b as Bool: return b ? "true" : "false"
         case let d as Date: return ISO8601DateFormatter().string(from: d)
-        case let n as NSNumber: return n.stringValue
+        case let n as NSNumber:
+            // NSNumber(1) bridge vers Bool → "true" à tort. On ne traite comme
+            // booléen QUE les vrais CFBoolean (ex: HKIndoorWorkout), pas les Int.
+            if CFGetTypeID(n) == CFBooleanGetTypeID() {
+                return n.boolValue ? "true" : "false"
+            }
+            return n.stringValue
+        case let b as Bool: return b ? "true" : "false"
         case let s as String: return s
         default: return String(describing: value)
         }
@@ -1021,14 +1030,21 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
     }
 
     private static func dumpStatistics(_ stats: [HKQuantityType: HKStatistics]) -> [HealthKitRawEntry] {
-        stats
+        let bpm = HKUnit.count().unitDivided(by: .minute())
+        return stats
             .map { type, stat -> HealthKitRawEntry in
+                // HR : afficher en bpm plutôt que l'unité canonique count/s.
+                let isHR = type.identifier == HKQuantityTypeIdentifier.heartRate.rawValue
+                func fmt(_ q: HKQuantity?) -> String? {
+                    guard let q else { return nil }
+                    return isHR ? String(format: "%.0f bpm", q.doubleValue(for: bpm)) : q.description
+                }
                 // On affiche la somme si dispo (cumulatif), sinon moy/min/max (discret).
                 let parts: [String] = [
-                    stat.sumQuantity().map { "Σ \($0)" },
-                    stat.averageQuantity().map { "x̄ \($0)" },
-                    stat.minimumQuantity().map { "min \($0)" },
-                    stat.maximumQuantity().map { "max \($0)" }
+                    fmt(stat.sumQuantity()).map { "Σ \($0)" },
+                    fmt(stat.averageQuantity()).map { "x̄ \($0)" },
+                    fmt(stat.minimumQuantity()).map { "min \($0)" },
+                    fmt(stat.maximumQuantity()).map { "max \($0)" }
                 ].compactMap { $0 }
                 let value = parts.isEmpty ? "—" : parts.joined(separator: " · ")
                 return HealthKitRawEntry(key: type.identifier, value: value)
