@@ -182,6 +182,55 @@ final class ProgressViewModelTests: XCTestCase {
         return defaults
     }
 
+    // MARK: - Bloc 5 natation (Story 3.16 Phase 2.D)
+
+    func testSwimBlock_loadedFromHKDetails() async {
+        let hk = MockHealthKitService()
+        let start = Date(timeIntervalSince1970: 1_714_000_000)
+        let laps = (1...4).map { i in
+            HealthKitSwimLap(
+                index: i, startDate: start, durationSeconds: 30, distanceMeters: 25,
+                strokeStyle: .freestyle, paceSecondsPer100m: 120, averageHeartRateBpm: nil,
+                strokeCount: 18, minHeartRateBpm: nil, maxHeartRateBpm: nil,
+                swolfScore: 48, restAfterSeconds: 1
+            )
+        }
+        hk.stubbedSwimWorkoutDetails = [
+            HealthKitSwimWorkoutDetail(
+                id: UUID(), startDate: start, endDate: start.addingTimeInterval(2400),
+                durationSeconds: 2400, totalDistanceMeters: 1000, totalStrokes: 700,
+                averageHeartRateBpm: 128, maxHeartRateBpm: 142, minHeartRateBpm: 110,
+                activeEnergyKcal: 300, totalEnergyKcal: 350, averageMETs: 8.5,
+                poolLengthMeters: 25, swimLocationType: .pool, sourceProductType: "Watch6,16",
+                appleWatchDetected: true, deviceDescription: "Apple Watch", sourceDescription: "Watch",
+                isIndoorWorkout: false, timeZoneIdentifier: "Europe/Paris",
+                eventCounts: ["lap": 4], laps: laps, rawMetadata: [], rawStatistics: []
+            )
+        ]
+        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now }, userDefaults: seenDefaults())
+
+        await vm.reload(programs: [])
+
+        guard case .loaded(let summary) = vm.swim else {
+            return XCTFail("Swim block doit être loaded")
+        }
+        XCTAssertEqual(summary.sessionCount, 1)
+        XCTAssertEqual(summary.totalDistanceMeters, 1000)
+        XCTAssertEqual(try XCTUnwrap(summary.avgPaceSecondsPer100m), 120, accuracy: 0.01)
+    }
+
+    func testSwimBlock_emptyWhenNoSwimWorkouts() async {
+        let hk = MockHealthKitService() // stubbedSwimWorkoutDetails = [] par défaut
+        let vm = ProgressViewModel(healthKit: hk, nowProvider: { self.now }, userDefaults: seenDefaults())
+
+        await vm.reload(programs: [])
+
+        guard case .loaded(let summary) = vm.swim else {
+            return XCTFail("Swim block doit être loaded même vide")
+        }
+        XCTAssertEqual(summary.sessionCount, 0)
+    }
+
     // MARK: - Helpers
 
     private func makeProgramWithOneSession() -> AdaptedProgramRecord {

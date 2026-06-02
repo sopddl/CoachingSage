@@ -131,6 +131,7 @@ struct ProgressionView: View {
                 }
                 hkFitnessBlock(state: viewModel.hkFitness)
                 volumeBySportBlock(state: viewModel.volumeRows)
+                swimBlock(state: viewModel.swim)
                 if viewModel.hasActivePrograms {
                     personalRecordsBlock(state: viewModel.personalRecords)
                 }
@@ -400,6 +401,113 @@ struct ProgressionView: View {
             .frame(height: 6)
         }
         .padding(.bottom, 22)
+    }
+
+    // MARK: - Bloc 5 — Natation (Story 3.16 Phase 2.D)
+
+    @ViewBuilder
+    private func swimBlock(state: ProgressViewModel.BlockState<SwimSummary>) -> some View {
+        switch state {
+        case .idle, .loading:
+            EmptyView() // pas de squelette : bloc optionnel (n'apparaît qu'avec des séances)
+        case .loaded(let summary):
+            if summary.sessionCount > 0 {
+                VStack(alignment: .leading, spacing: 12) {
+                    blockTitle("progress.swim.title")
+                    VStack(spacing: 14) {
+                        swimHeaderStats(summary)
+                        if !summary.sessions.isEmpty {
+                            Rectangle()
+                                .fill(Color.coachingTextSecondary.opacity(0.1))
+                                .frame(height: 1)
+                            VStack(spacing: 12) {
+                                ForEach(summary.sessions.prefix(4)) { session in
+                                    swimSessionRow(session)
+                                }
+                            }
+                        }
+                    }
+                    .padding(.vertical, 14)
+                    .padding(.horizontal, 14)
+                    .background(
+                        RoundedRectangle(cornerRadius: 14)
+                            .fill(Color(.systemBackground))
+                            .shadow(color: Color.coachingEarth.opacity(0.06), radius: 6, x: 0, y: 2)
+                    )
+                }
+            }
+            // 0 séance → bloc masqué (cohérent avec volume/PR).
+        }
+    }
+
+    private func swimHeaderStats(_ summary: SwimSummary) -> some View {
+        HStack(spacing: 0) {
+            statColumn(
+                value: "\(summary.sessionCount)",
+                labelKey: "progress.stats.sessions"
+            )
+            divider
+            statColumn(
+                value: formatSwimDistance(summary.totalDistanceMeters),
+                labelKey: "progress.swim.distance"
+            )
+            divider
+            statColumn(
+                value: summary.avgPaceSecondsPer100m.map(formatSwimPace) ?? "—",
+                labelKey: "progress.swim.pace"
+            )
+        }
+    }
+
+    private func swimSessionRow(_ session: SwimSessionSummary) -> some View {
+        HStack(spacing: 12) {
+            Image(systemName: "figure.pool.swim")
+                .font(.system(size: 16))
+                .foregroundStyle(Color.coachingSport(forCode: SportCode.swimming.rawValue))
+                .frame(width: 26)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(swimRelativeDate(session.date))
+                    .font(.subheadline)
+                    .foregroundStyle(Color.coachingTextPrimary)
+                Text(formatSwimDistance(session.totalDistanceMeters))
+                    .font(.caption2)
+                    .foregroundStyle(Color.coachingTextSecondary)
+            }
+            Spacer()
+            VStack(alignment: .trailing, spacing: 2) {
+                if let pace = session.avgPaceSecondsPer100m {
+                    Text(formatSwimPace(pace) + "/100m")
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                        .foregroundStyle(Color.coachingTextPrimary)
+                }
+                if let swolf = session.avgSwolf {
+                    Text(verbatim: "SWOLF \(swolf)")
+                        .font(.caption2)
+                        .foregroundStyle(Color.coachingTextSecondary)
+                }
+            }
+        }
+    }
+
+    // MARK: - Formatters natation
+
+    private func formatSwimPace(_ secondsPer100m: Double) -> String {
+        let total = Int(secondsPer100m.rounded())
+        return String(format: "%d:%02d", total / 60, total % 60)
+    }
+
+    private func formatSwimDistance(_ meters: Double?) -> String {
+        guard let meters, meters > 0 else { return "—" }
+        if meters >= 1000 {
+            return String(format: "%.1f km", meters / 1000)
+        }
+        return String(format: "%.0f m", meters)
+    }
+
+    private func swimRelativeDate(_ date: Date) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .abbreviated
+        return formatter.localizedString(for: date, relativeTo: Date())
     }
 
     // MARK: - Bloc 4 — Performances récentes

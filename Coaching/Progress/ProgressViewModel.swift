@@ -125,6 +125,11 @@ final class ProgressViewModel {
     /// BlockState par cohérence d'UI.
     private(set) var personalRecords: BlockState<[PRRecord]> = .idle
 
+    /// Bloc 5 (Story 3.16 Phase 2.D) — détail natation (pace, SWOLF, styles,
+    /// volume) dérivé des séances HK natation via `SwimSummaryBuilder`. async HK.
+    /// La View ne l'affiche que si `sessionCount > 0` (pas de bloc vide).
+    private(set) var swim: BlockState<SwimSummary> = .idle
+
     // MARK: Dependencies
 
     private let healthKit: HealthKitServiceProtocol
@@ -200,13 +205,16 @@ final class ProgressViewModel {
         // voir tout de suite son volume — effet wow Story 3.z préservé.
         hkFitness = .loading
         volumeRows = .loading
+        swim = .loading
 
         async let hkTask = loadHKFitness(period: period, now: now)
         async let volTask = loadVolumeRows(period: period, programs: activePrograms)
+        async let swimTask = loadSwim(period: period)
 
-        let (hk, vols) = await (hkTask, volTask)
+        let (hk, vols, swimSummary) = await (hkTask, volTask, swimTask)
         hkFitness = .loaded(hk)
         volumeRows = .loaded(vols)
+        swim = .loaded(swimSummary)
 
         // Empty state = aucun signal côté app (pas de programme actif) ET aucun
         // signal côté HK (pas de workout sur la période). HK fitness seul (RHR
@@ -287,5 +295,14 @@ final class ProgressViewModel {
                 )
             }
             .sorted(by: { $0.totalMinutes > $1.totalMinutes })
+    }
+
+    // MARK: Private — bloc 5 natation (Story 3.16 Phase 2.D)
+
+    private func loadSwim(period: ProgressPeriod) async -> SwimSummary {
+        let days = period.slidingDays
+        let weeks = max(1, Int((Double(days) / 7.0).rounded(.up)))
+        let details = await healthKit.fetchRecentSwimWorkoutDetails(limit: 30, weeksBack: weeks)
+        return SwimSummaryBuilder.build(from: details, windowWeeks: weeks)
     }
 }
