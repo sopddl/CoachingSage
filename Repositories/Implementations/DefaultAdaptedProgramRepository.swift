@@ -155,10 +155,18 @@ final class DefaultAdaptedProgramRepository: AdaptedProgramRepository {
         // visible avec un CTA de renouvellement (`RoutineCycleService`). Sans ça
         // l'utilisateur qui voulait s'entretenir « sans fin » se retrouverait
         // devant un dashboard vide. Les modes deadline gardent l'auto-archive.
+        //
+        // **Story 3.31 follow-up** — dénominateur = sessions ACTIVES (hors
+        // `.rest`). Les jours de repos ne sont jamais complétables, donc un
+        // programme deadline avec des jours de repos n'atteignait jamais
+        // `completedCount == sessions.count` et ne s'auto-archivait JAMAIS
+        // (il squattait un slot `startedCap` à vie). `completedCount` est déjà
+        // active-only (le repos n'entre jamais dans `completionState`).
+        let activeSessionCount = programRecord.sessions.filter { $0.type != .rest }.count
         if record != nil,
            programRecord.durationMode != .routineCyclic,
-           programRecord.completionState.completedCount == programRecord.sessions.count,
-           !programRecord.sessions.isEmpty {
+           activeSessionCount > 0,
+           programRecord.completionState.completedCount >= activeSessionCount {
             programRecord.isActive = false
             programRecord.archivedAt = Date()
         }

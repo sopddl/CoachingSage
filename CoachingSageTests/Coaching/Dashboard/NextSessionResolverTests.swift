@@ -317,6 +317,58 @@ final class NextSessionResolverTests: XCTestCase {
 
     // MARK: - Helpers
 
+    // MARK: - Story 3.31 follow-up — exclusion des jours de repos
+
+    func testNextSessionSkipsRestDays() {
+        // Repos en day 1, séance active en day 2 → la prochaine est l'active.
+        let rest = makeRest(weekNumber: 1, day: 1)
+        let active = makeSession(weekNumber: 1, day: 2)
+        let record = makeRecord(mode: .ondemand, sessions: [rest, active])
+
+        let result = resolver.nextSession(for: record, now: now)
+        XCTAssertEqual(result?.session.id, active.id, "un Repos complet n'est jamais la prochaine séance")
+    }
+
+    func testUpcomingSessionsExcludeRest() {
+        let active1 = makeSession(weekNumber: 1, day: 1)
+        let rest = makeRest(weekNumber: 1, day: 2)
+        let active2 = makeSession(weekNumber: 1, day: 3)
+        let record = makeRecord(mode: .ondemand, sessions: [active1, rest, active2])
+
+        let upcoming = resolver.upcomingSessions(for: record, now: now).map(\.session.id)
+        XCTAssertEqual(upcoming, [active1.id, active2.id], "la liste séances ne contient aucun repos")
+    }
+
+    func testAllActiveDoneButRestPending_returnsNil() {
+        // Toutes les séances actives faites, il ne reste que des repos pending
+        // (jamais complétables) → le programme est « terminé » côté resolver.
+        let active = makeSession(weekNumber: 1, day: 1)
+        let rest = makeRest(weekNumber: 1, day: 2)
+        let record = makeRecord(
+            mode: .planned, sessions: [active, rest],
+            completed: [active.id], durationMode: .deadlineFixed
+        )
+
+        XCTAssertNil(resolver.nextSession(for: record, now: now),
+                     "un programme dont toutes les actives sont faites n'a plus de prochaine séance")
+    }
+
+    private func makeRest(weekNumber: Int, day: Int) -> PersistedSession {
+        PersistedSession(
+            id: UUID(),
+            weekNumber: weekNumber,
+            weekTheme: "W\(weekNumber)",
+            weekGoal: "G\(weekNumber)",
+            day: day,
+            name: "Repos complet",
+            durationMinutes: 0,
+            type: .rest,
+            warmup: nil,
+            exercises: [],
+            cooldown: nil
+        )
+    }
+
     private func makeSession(
         weekNumber: Int,
         day: Int

@@ -168,6 +168,44 @@ final class DefaultAdaptedProgramRepositoryCapsTests: XCTestCase {
         XCTAssertNotNil(record.archivedAt)
     }
 
+    func testDeadlineWithRestDays_autoArchivesWhenActiveSessionsDone() async throws {
+        // Programme deadline = 1 séance active + 1 jour de repos. Le repos n'est
+        // jamais complétable → avant le fix, completedCount (1) != sessions.count
+        // (2) → jamais archivé. Après fix : dénominateur = sessions actives (1).
+        let adapted = AdaptedProgram(
+            templateId: "running-beginner-5k",
+            sport: .running, level: .beginner,
+            appliedAt: Date(timeIntervalSince1970: 1_700_000_000),
+            weeks: [
+                AdaptedWeek(
+                    weekNumber: 1, theme: "T", goal: "G",
+                    sessions: [
+                        AdaptedSession(day: 1, name: "Footing", durationMinutes: 30,
+                                       type: .endurance, warmup: nil, exercises: [], cooldown: nil),
+                        AdaptedSession(day: 2, name: "Repos complet", durationMinutes: 0,
+                                       type: .rest, warmup: nil, exercises: [], cooldown: nil)
+                    ]
+                )
+            ],
+            appliedRules: [], requiresAIAssist: false, aiAssistReason: nil,
+            durationMode: .deadlineFixed,
+            targetDate: Date(timeIntervalSince1970: 1_710_000_000)
+        )
+        let record = AdaptedProgramRecord(from: adapted, userId: UUID())
+        record.markStarted()
+        try await repo.save(record)
+
+        // On complète la seule séance active (le repos reste pending).
+        let active = record.sessions.first { $0.type == .endurance }!
+        try await repo.recordSessionCompletion(
+            recordId: record.id, weekNumber: active.weekNumber, day: active.day,
+            record: SessionCompletionRecord(completedAt: Date(), perceivedEffort: 5)
+        )
+
+        XCTAssertFalse(record.isActive, "deadline avec jours de repos s'auto-archive quand les actives sont faites")
+        XCTAssertNotNil(record.archivedAt)
+    }
+
     // MARK: - Helpers
 
     private func makeDeadlineStarted(userId: UUID) -> AdaptedProgramRecord {
