@@ -85,6 +85,21 @@ enum SessionStatsCalculator {
         return min(5, max(1, (clamped + 1) / 2))
     }
 
+    /// Story 3.32 (AC5) — libellés figés de l'**Intensité** du HUB, échelle 1-5
+    /// commune à TOUS les sports, affichée identiquement (pas de "RPE N" brut).
+    /// FR : Très facile · Facile · Modéré · Soutenu · Intense.
+    /// Distinct de `effortLabel` (Doux/Modéré/Soutenu/Difficile/Maximal) conservé
+    /// pour les usages existants (EffortGauge a11y, cards). Clampé.
+    static func intensityLabel(level: Int) -> LocalizedStringKey {
+        switch min(5, max(1, level)) {
+        case 1: return "coaching.session.intensity.1"
+        case 2: return "coaching.session.intensity.2"
+        case 3: return "coaching.session.intensity.3"
+        case 4: return "coaching.session.intensity.4"
+        default: return "coaching.session.intensity.5"
+        }
+    }
+
     /// Clé i18n du label sémantique du niveau d'effort (1-5). Clampé.
     static func effortLabel(level: Int) -> LocalizedStringKey {
         switch min(5, max(1, level)) {

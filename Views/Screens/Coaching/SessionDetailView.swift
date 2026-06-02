@@ -27,25 +27,41 @@ struct SessionDetailView: View {
     @State private var showDiscoveryTooltip: Bool = false
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 18) {
-                SessionHeroHeader(session: session, week: week, program: program)
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 18) {
+                    SessionHeroHeader(session: session, week: week, program: program)
 
-                SessionWhyPanel(session: session, week: week, program: program)
+                    SessionWhyPanel(session: session, week: week, program: program)
 
-                if isModifiedByRegen {
-                    regenAdjustedBanner
+                    // Story 3.32 (AC7) — aperçu scannable : tap d'une ligne ancre
+                    // vers le bloc correspondant dans la timeline détaillée.
+                    SessionOverviewList(session: session) { anchorIndex in
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            proxy.scrollTo(SessionStepAnchor.id(anchorIndex), anchor: .top)
+                        }
+                    }
+
+                    if isModifiedByRegen {
+                        regenAdjustedBanner
+                    }
+
+                    SessionTimelineView(session: session, sportColor: sessionSportColor, sportCode: effectiveSessionSportCode)
+
+                    if let vm = completionVM {
+                        completionSection(vm: vm)
+                    }
+
+                    // Story 3.32 (AC9) — emplacement du bouton « ▶ Démarrer la
+                    // séance » prévu ici (sous l'aperçu / sticky bas). PAS affiché
+                    // en 3.32 (aucun bouton mort, aucun libellé « Bientôt »). Il
+                    // sera rendu, actif et câblé vers le FOCUS .fullScreenCover,
+                    // avec la livraison de la Story 3.33.
+
+                    medicalReminderFooter
                 }
-
-                SessionTimelineView(session: session, sportColor: sessionSportColor, sportCode: effectiveSessionSportCode)
-
-                if let vm = completionVM {
-                    completionSection(vm: vm)
-                }
-
-                medicalReminderFooter
+                .padding()
             }
-            .padding()
         }
         .navigationTitle(Text(verbatim: session.name))
         .navigationBarTitleDisplayMode(.inline)

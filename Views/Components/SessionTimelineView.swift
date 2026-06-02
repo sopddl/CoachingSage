@@ -45,6 +45,9 @@ struct SessionTimelineView: View {
                     isLast: idx == items.count - 1,
                     isFirstExercise: isFirstExercise(in: items, at: idx)
                 )
+                // Story 3.32 (AC7) — cible d'ancrage pour l'aperçu scannable.
+                // L'ordre warmup→exos→cooldown est identique à `SessionOverviewList`.
+                .id(SessionStepAnchor.id(idx))
             }
         }
         .accessibilityIdentifier("coaching.session.timeline")

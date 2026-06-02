@@ -32,13 +32,22 @@ struct SessionWhyPanel: View {
                 .padding(.top, 8)
                 .padding(.bottom, 4)
             } label: {
-                HStack(spacing: 8) {
+                // Story 3.32 (AC6) — phrase d'intention sur 1 ligne, visible en
+                // permanence : c'est la chose qui rassure. Tap = déplie le détail.
+                HStack(alignment: .top, spacing: 8) {
                     Image(systemName: "lightbulb.fill")
                         .foregroundStyle(.yellow)
                         .font(.callout)
-                    Text("coaching.session.why.title")
-                        .font(.callout.bold())
-                        .foregroundStyle(.primary)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("coaching.session.why.title")
+                            .font(.callout.bold())
+                            .foregroundStyle(.primary)
+                        Text(verbatim: localizedExplanation(key: key))
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                    }
                 }
                 .accessibilityElement(children: .combine)
                 .accessibilityHint(Text("coaching.session.why.expand.hint"))
