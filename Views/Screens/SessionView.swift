@@ -575,16 +575,30 @@ struct SessionView: View {
             adaptedProgramRepository: deps.adaptedProgramRepository,
             coachingProfileRepository: deps.coachingProfileRepository
         )
+        // Story 3.16 Phase 2.B — autoprofil natation : estime le niveau depuis
+        // l'historique HK natation (distance/séance + allure). nil pour les autres
+        // sports (comportement inchangé) ou si pas assez de signal.
+        let autoprofileLevel = await estimateSwimLevelIfNeeded(sportCode: sportCode, deps: deps)
         let preview = try await factory.previewGenerate(
             sportCode: sportCode,
             userId: userId,
-            autoprofileLevel: nil
+            autoprofileLevel: autoprofileLevel
         )
         adaptedRoute = AdaptedProgramRoute(
             program: preview.program,
             recordId: nil,
             previewSportProfile: preview.sportProfile
         )
+    }
+
+    /// Story 3.16 Phase 2.B — pour la natation uniquement, dérive un niveau
+    /// autoprofil depuis l'historique HK (12 sem). Retourne `nil` (→ défaut
+    /// factory) pour les autres sports ou si l'historique est insuffisant.
+    private func estimateSwimLevelIfNeeded(sportCode: String, deps: AppDependencies) async -> String? {
+        guard sportCode == SportCode.swimming.rawValue else { return nil }
+        let details = await deps.healthKitService.fetchRecentSwimWorkoutDetails(limit: 50, weeksBack: 12)
+        let summary = SwimSummaryBuilder.build(from: details, windowWeeks: 12)
+        return SwimLevelEstimator.estimate(from: summary)
     }
 
     /// Story sœur 3.z (2026-05-17) — closure passée à `AdaptedProgramScreen` pour
