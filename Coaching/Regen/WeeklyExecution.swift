@@ -187,20 +187,28 @@ public struct ExecutionScore: Equatable, Sendable {
     }
 
     /// Calcule un ExecutionScore pour un (session, workout) match.
-    /// - Parameter hrMax : HRmax estimé du user. Si nil → intensity skipped.
+    /// - Parameters:
+    ///   - hrMax : HRmax estimé du user. Si nil → intensity skipped.
+    ///   - intensityFromHR : si `false`, on n'utilise JAMAIS le HR pour l'intensité
+    ///     → score volume-seul. Story 3.16 Phase 2.C : le HR natation est
+    ///     inexploitable sous l'eau (capteur poignet hors d'eau intermittent),
+    ///     donc la natation se régule sur la COMPLÉTION DU VOLUME uniquement.
     public static func compute(
         session: PersistedSession,
         workout: HealthSummary.WorkoutSnapshot,
-        hrMax: Int?
+        hrMax: Int?,
+        intensityFromHR: Bool = true
     ) -> ExecutionScore {
         // 1. Volume : durée réelle vs planifiée, clampé 0...150%
         let plannedMin = max(1, session.durationMinutes) // évite div/0
         let actualMin = max(0, workout.durationMinutes)
         let volumePct = min(150.0, Double(actualMin) / Double(plannedMin) * 100.0)
 
-        // 2. Intensity : proximity HR avg vs session target zone (si dispo)
+        // 2. Intensity : proximity HR avg vs session target zone (si dispo ET
+        //    si l'intensité HR est pertinente pour ce sport — cf natation).
         var intensityPct: Double?
-        if let hrMax,
+        if intensityFromHR,
+           let hrMax,
            let targetZone = HRZoneMapper.sessionTargetZone(session),
            let hrAvg = workout.averageHeartRateBpm {
             intensityPct = targetZone.proximity(to: hrAvg, hrMax: hrMax) * 100.0
@@ -259,6 +267,10 @@ public enum WorkoutMatcher {
         guard !sportCode.isEmpty else {
             return sessions.map { WorkoutMatch(session: $0, workout: nil, executionScore: nil) }
         }
+        // Story 3.16 Phase 2.C — natation = régulation volume-seul (HR sous l'eau
+        // inexploitable). On n'applique pas l'intensité HR même si le workout en
+        // expose une (le HR séance natation existe mais ne reflète pas la cible).
+        let intensityFromHR = !Self.isVolumeOnlySport(sportCode)
         // 1. Pré-calculer la date attendue de chaque session (weekStart + (day-1)j).
         let plannedDates: [Date] = sessions.map { session in
             defaultDate(for: session, weekStartDate: weekStartDate)
@@ -307,12 +319,24 @@ public enum WorkoutMatcher {
         return sessions.enumerated().map { idx, session in
             if let wIdx = matchedWorkoutIdx[idx] {
                 let workout = workouts[wIdx]
-                let score = ExecutionScore.compute(session: session, workout: workout, hrMax: hrMax)
+                let score = ExecutionScore.compute(
+                    session: session,
+                    workout: workout,
+                    hrMax: hrMax,
+                    intensityFromHR: intensityFromHR
+                )
                 return WorkoutMatch(session: session, workout: workout, executionScore: score)
             } else {
                 return WorkoutMatch(session: session, workout: nil, executionScore: nil)
             }
         }
+    }
+
+    /// Sports régulés sur la complétion du volume uniquement (HR non pertinent).
+    /// Story 3.16 Phase 2.C : natation (HR sous l'eau inexploitable). Extensible
+    /// (ex: yoga/mobilité pourraient rejoindre si on juge le HR non pertinent).
+    static func isVolumeOnlySport(_ sportCode: String) -> Bool {
+        sportCode.lowercased() == "swimming"
     }
 
     /// Date attendue d'une séance = weekStart + (day-1) jours. Utilisée pour le
