@@ -80,8 +80,9 @@ struct SwimHealthKitInspectorView: View {
             state = .refused
             return
         }
-        // AC1 — best-effort, ne bloque pas si l'user refuse.
-        try? await service.requestSwimAuthorizationIfNeeded()
+        // Ungated : garantit l'autorisation complète (workouts + natation + HR +
+        // énergie) même après une demande partielle ou en Dev Login (workoutType).
+        try? await service.requestSwimInspectionAuthorization()
         let fetched = await service.fetchRecentSwimWorkoutDetails(
             limit: fetchLimit,
             weeksBack: weeksBack
@@ -119,9 +120,30 @@ struct SwimHealthKitInspectorView: View {
                 .font(.coachingCaption)
                 .foregroundStyle(Color.coachingTextSecondary)
                 .multilineTextAlignment(.center)
+            authorizeButton
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    /// Re-déclenche la demande d'autorisation complète (ungated) puis recharge.
+    /// Filet si la feuille système a été fermée/ratée, ou si seul `workoutType`
+    /// reste `notDetermined` (cas Dev Login).
+    private var authorizeButton: some View {
+        Button {
+            Task {
+                if let service = deps?.healthKitService {
+                    try? await service.requestSwimInspectionAuthorization()
+                }
+                await refresh()
+            }
+        } label: {
+            Label("Autoriser l'accès Santé / Réessayer", systemImage: "heart.text.square")
+                .font(.coachingBody)
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(Color.coachingPrimary)
+        .padding(.top, 4)
     }
 
     private var emptyView: some View {
@@ -132,6 +154,7 @@ struct SwimHealthKitInspectorView: View {
 
                 if let diag = diagnostics {
                     diagnosticsPanel(diag)
+                    authorizeButton
                 }
 
                 Text("Vérifie :")

@@ -52,6 +52,16 @@ final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable 
         hasRequestedProgressAuthorization = true
     }
 
+    var requestSwimInspectionAuthorizationCallCount: Int = 0
+
+    func requestSwimInspectionAuthorization() async throws {
+        requestSwimInspectionAuthorizationCallCount += 1
+        if let error = requestSwimAuthorizationShouldThrow {
+            throw error
+        }
+        hasRequestedSwimAuthorization = true
+    }
+
     func requestSwimAuthorizationIfNeeded() async throws {
         if hasRequestedSwimAuthorization { return }
         requestSwimAuthorizationCallCount += 1

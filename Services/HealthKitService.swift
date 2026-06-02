@@ -129,6 +129,13 @@ protocol HealthKitServiceProtocol: Sendable {
     /// reste silencieux côté READ — la sémantique se mesure via tableau vide dans `fetchRecentSwimWorkoutDetails`.
     func requestSwimAuthorizationIfNeeded() async throws
 
+    /// Story 3.16 (DEBUG) — demande **ungated** de l'autorisation complète natation
+    /// (workouts + distance + strokes + HR + énergie). Contrairement à
+    /// `requestSwimAuthorizationIfNeeded()`, ignore le garde `hasRequestedSwimAuthorization`
+    /// pour pouvoir accorder `workoutType` même après une demande partielle (cas Dev Login).
+    /// Utilisé par l'écran d'inspection. Throw uniquement si HealthKit indisponible.
+    func requestSwimInspectionAuthorization() async throws
+
     /// Lit les 4 caractéristiques profil. Ne throw jamais : un champ nil = donnée non disponible / refusée silencieusement.
     func fetchProfileData() async -> HealthKitProfileData
 
@@ -303,16 +310,40 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
         userDefaults.set(Date(), forKey: Self.swimAuthorizationRequestedAtKey)
     }
 
-    /// Story 3.16 — types HK ajoutés pour la lecture lap-by-lap natation.
-    /// `HKObjectType.workoutType()` reste autorisé via `requestProfileAuthorization`,
-    /// on n'ajoute ici que les quantités spécifiques natation.
+    func requestSwimInspectionAuthorization() async throws {
+        guard !Self.isUITesting else { return }
+        guard HKHealthStore.isHealthDataAvailable() else {
+            throw HealthKitError.notAvailable
+        }
+        // Ungated (≠ requestSwimAuthorizationIfNeeded) : l'écran d'inspection DEBUG
+        // doit garantir l'autorisation complète (workouts + natation + HR + énergie)
+        // même si une demande natation partielle a déjà eu lieu. HealthKit ne
+        // re-présente la feuille que pour les types `notDetermined` — sans danger.
+        try await healthStore.requestAuthorization(toShare: [], read: Self.swimReadTypes())
+        userDefaults.set(Date(), forKey: Self.swimAuthorizationRequestedAtKey)
+    }
+
+    /// Story 3.16 — types HK que la lecture natation + l'inspection consomment.
+    /// Inclut **`HKObjectType.workoutType()`** : on ne peut PAS supposer qu'il a été
+    /// accordé via `requestProfileAuthorization` (court-circuité en Dev Login) — sinon
+    /// la requête workout échoue avec "Authorization not determined". On ajoute aussi
+    /// HR + énergie (active/basale) lus par la capture exhaustive lap-by-lap.
     private static func swimReadTypes() -> Set<HKObjectType> {
-        var types: Set<HKObjectType> = []
+        var types: Set<HKObjectType> = [HKObjectType.workoutType()]
         if let distance = HKQuantityType.quantityType(forIdentifier: .distanceSwimming) {
             types.insert(distance)
         }
         if let strokes = HKQuantityType.quantityType(forIdentifier: .swimmingStrokeCount) {
             types.insert(strokes)
+        }
+        if let hr = HKQuantityType.quantityType(forIdentifier: .heartRate) {
+            types.insert(hr)
+        }
+        if let active = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) {
+            types.insert(active)
+        }
+        if let basal = HKQuantityType.quantityType(forIdentifier: .basalEnergyBurned) {
+            types.insert(basal)
         }
         return types
     }
