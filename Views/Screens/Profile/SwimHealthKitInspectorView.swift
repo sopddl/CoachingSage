@@ -168,20 +168,36 @@ struct SwimHealthKitInspectorView: View {
 
             HStack(spacing: 12) {
                 statBlock("HR moy", detail.averageHeartRateBpm.map { "\($0) bpm" } ?? "—")
+                statBlock("HR min", detail.minHeartRateBpm.map { "\($0) bpm" } ?? "—")
                 statBlock("HR max", detail.maxHeartRateBpm.map { "\($0) bpm" } ?? "—")
-                statBlock("Bassin", formatPoolLength(detail.poolLengthMeters))
             }
 
-            HStack {
-                Text(formatLocation(detail.swimLocationType))
-                    .font(.coachingCaption)
-                    .foregroundStyle(Color.coachingTextSecondary)
-                Spacer()
-                if let product = detail.sourceProductType {
-                    Text(product)
-                        .font(.coachingCaption)
-                        .foregroundStyle(Color.coachingTextSecondary)
-                }
+            HStack(spacing: 12) {
+                statBlock("Énergie act.", detail.activeEnergyKcal.map { String(format: "%.0f kcal", $0) } ?? "—")
+                statBlock("Énergie tot.", detail.totalEnergyKcal.map { String(format: "%.0f kcal", $0) } ?? "—")
+                statBlock("METs", detail.averageMETs.map { String(format: "%.1f", $0) } ?? "—")
+            }
+
+            HStack(spacing: 12) {
+                statBlock("Bassin", formatPoolLength(detail.poolLengthMeters))
+                statBlock("Lieu", formatLocation(detail.swimLocationType))
+                statBlock("Indoor", detail.isIndoorWorkout.map { $0 ? "Oui" : "Non" } ?? "—")
+            }
+
+            if let device = detail.deviceDescription {
+                metaLine("Device", device)
+            }
+            if let source = detail.sourceDescription {
+                metaLine("Source", source)
+            }
+            if let product = detail.sourceProductType {
+                metaLine("Product", product)
+            }
+            if let tz = detail.timeZoneIdentifier {
+                metaLine("Fuseau", tz)
+            }
+            if !detail.eventCounts.isEmpty {
+                metaLine("Events", formatEventCounts(detail.eventCounts))
             }
         }
 
@@ -193,12 +209,71 @@ struct SwimHealthKitInspectorView: View {
                 .padding(.vertical, 4)
         } else {
             DisclosureGroup("\(detail.laps.count) lap(s)") {
+                lapHeaderRow
                 ForEach(detail.laps, id: \.index) { lap in
                     lapRow(lap)
                 }
             }
             .font(.coachingBody)
         }
+
+        // Dump brut — ne rien cacher de ce que la Watch a écrit.
+        if !detail.rawMetadata.isEmpty {
+            DisclosureGroup("🔬 Metadata brut (\(detail.rawMetadata.count))") {
+                ForEach(detail.rawMetadata) { entry in
+                    rawRow(entry)
+                }
+            }
+            .font(.coachingBody)
+        }
+        if !detail.rawStatistics.isEmpty {
+            DisclosureGroup("🔬 Statistics brut (\(detail.rawStatistics.count))") {
+                ForEach(detail.rawStatistics) { entry in
+                    rawRow(entry)
+                }
+            }
+            .font(.coachingBody)
+        }
+    }
+
+    @ViewBuilder
+    private func metaLine(_ label: String, _ value: String) -> some View {
+        HStack(alignment: .top, spacing: 6) {
+            Text(label)
+                .font(.coachingCaption)
+                .foregroundStyle(Color.coachingTextSecondary)
+                .frame(width: 70, alignment: .leading)
+            Text(value)
+                .font(.coachingCaption)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+
+    @ViewBuilder
+    private func rawRow(_ entry: HealthKitRawEntry) -> some View {
+        VStack(alignment: .leading, spacing: 1) {
+            Text(entry.key)
+                .font(.coachingCaption.monospaced())
+                .foregroundStyle(Color.coachingTextSecondary)
+            Text(entry.value)
+                .font(.coachingCaption.monospaced())
+                .textSelection(.enabled)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 1)
+    }
+
+    private var lapHeaderRow: some View {
+        HStack(spacing: 8) {
+            Text("#").font(.coachingCaption.bold()).frame(width: 32, alignment: .leading)
+            Text("Nage").font(.coachingCaption.bold()).frame(width: 64, alignment: .leading)
+            Text("Pace").font(.coachingCaption.bold()).frame(width: 62, alignment: .trailing)
+            Text("Str").font(.coachingCaption.bold()).frame(width: 32, alignment: .trailing)
+            Text("SWOLF").font(.coachingCaption.bold()).frame(width: 44, alignment: .trailing)
+            Text("HR").font(.coachingCaption.bold()).frame(width: 34, alignment: .trailing)
+            Text("Repos").font(.coachingCaption.bold()).frame(width: 44, alignment: .trailing)
+        }
+        .foregroundStyle(Color.coachingTextSecondary)
     }
 
     @ViewBuilder
@@ -216,23 +291,30 @@ struct SwimHealthKitInspectorView: View {
     @ViewBuilder
     private func lapRow(_ lap: HealthKitSwimLap) -> some View {
         HStack(spacing: 8) {
-            Text("#\(lap.index)")
+            Text("\(lap.index)")
                 .font(.coachingCaption.monospacedDigit())
                 .foregroundStyle(Color.coachingTextSecondary)
                 .frame(width: 32, alignment: .leading)
             Text(strokeLabel(lap.strokeStyle))
                 .font(.coachingCaption)
-                .frame(width: 80, alignment: .leading)
-            Text(lap.distanceMeters.map { String(format: "%.0f m", $0) } ?? "—")
+                .frame(width: 64, alignment: .leading)
+            Text(lap.paceSecondsPer100m.map { formatPaceShort($0) } ?? "—")
                 .font(.coachingCaption.monospacedDigit())
-                .frame(width: 50, alignment: .trailing)
-            Text(lap.paceSecondsPer100m.map { formatPace($0) } ?? "—")
+                .frame(width: 62, alignment: .trailing)
+            Text(lap.strokeCount.map { String($0) } ?? "—")
                 .font(.coachingCaption.monospacedDigit())
-                .frame(width: 70, alignment: .trailing)
+                .frame(width: 32, alignment: .trailing)
+            Text(lap.swolfScore.map { String($0) } ?? "—")
+                .font(.coachingCaption.monospacedDigit())
+                .frame(width: 44, alignment: .trailing)
             Text(lap.averageHeartRateBpm.map { "\($0)" } ?? "—")
                 .font(.coachingCaption.monospacedDigit())
                 .foregroundStyle(Color.coachingTextSecondary)
-                .frame(width: 40, alignment: .trailing)
+                .frame(width: 34, alignment: .trailing)
+            Text(lap.restAfterSeconds.map { String(format: "%.0fs", $0) } ?? "—")
+                .font(.coachingCaption.monospacedDigit())
+                .foregroundStyle(Color.coachingTextSecondary)
+                .frame(width: 44, alignment: .trailing)
         }
         .padding(.vertical, 2)
     }
@@ -273,6 +355,18 @@ struct SwimHealthKitInspectorView: View {
         let m = total / 60
         let s = total % 60
         return String(format: "%d:%02d/100m", m, s)
+    }
+
+    private func formatEventCounts(_ counts: [String: Int]) -> String {
+        counts
+            .sorted { $0.key < $1.key }
+            .map { "\($0.key): \($0.value)" }
+            .joined(separator: ", ")
+    }
+
+    private func formatPaceShort(_ secondsPer100m: Double) -> String {
+        let total = Int(secondsPer100m.rounded())
+        return String(format: "%d:%02d", total / 60, total % 60)
     }
 
     private func formatLocation(_ location: SwimLocationType?) -> String {

@@ -597,7 +597,7 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
         var details: [HealthKitWorkoutDetail] = []
         details.reserveCapacity(workouts.count)
         for workout in workouts {
-            let (avgHR, maxHR) = await readHeartRateStats(for: workout)
+            let (avgHR, _, maxHR) = await readHeartRateStatsWindow(start: workout.startDate, end: workout.endDate)
             let durationMinutes = Int((workout.duration / 60.0).rounded())
             let daysAgo = Calendar(identifier: .gregorian).dateComponents([.day], from: workout.endDate, to: now).day ?? 0
             let productType = workout.sourceRevision.productType ?? ""
@@ -668,7 +668,35 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
             totalStrokes = Int(sum.doubleValue(for: HKUnit.count()))
         }
 
-        let (avgHR, maxHR) = await readHeartRateStats(for: workout)
+        // Énergie active + totale (kcal). `.activeEnergyBurned` = effort ;
+        // + `.basalEnergyBurned` si présent = total.
+        var activeEnergyKcal: Double?
+        var basalEnergyKcal: Double?
+        if let activeType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned),
+           let sum = workout.allStatistics[activeType]?.sumQuantity() {
+            activeEnergyKcal = sum.doubleValue(for: .kilocalorie())
+        }
+        if let basalType = HKQuantityType.quantityType(forIdentifier: .basalEnergyBurned),
+           let sum = workout.allStatistics[basalType]?.sumQuantity() {
+            basalEnergyKcal = sum.doubleValue(for: .kilocalorie())
+        }
+        let totalEnergyKcal: Double? = {
+            switch (activeEnergyKcal, basalEnergyKcal) {
+            case let (a?, b?): return a + b
+            case let (a?, nil): return a
+            case let (nil, b?): return b
+            default: return nil
+            }
+        }()
+
+        // METs moyens (`HKMetadataKeyAverageMETs`) — HKQuantity en kcal/(kg·hr).
+        var averageMETs: Double?
+        let metUnit = HKUnit(from: "kcal/kg*hr")
+        if let q = workout.metadata?[HKMetadataKeyAverageMETs] as? HKQuantity, q.is(compatibleWith: metUnit) {
+            averageMETs = q.doubleValue(for: metUnit)
+        }
+
+        let (avgHR, minHR, maxHR) = await readHeartRateStatsWindow(start: workout.startDate, end: workout.endDate)
 
         let poolLengthMeters = (workout.metadata?[HKMetadataKeyLapLength] as? HKQuantity)?
             .doubleValue(for: .meter())
@@ -681,6 +709,9 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
         let productType = workout.sourceRevision.productType
         let appleWatchDetected = (productType ?? "").lowercased().hasPrefix("watch")
 
+        let isIndoor = workout.metadata?[HKMetadataKeyIndoorWorkout] as? Bool
+        let timeZoneIdentifier = workout.metadata?[HKMetadataKeyTimeZone] as? String
+
         let laps = await extractSwimLaps(workout: workout, poolLengthMeters: poolLengthMeters)
 
         return HealthKitSwimWorkoutDetail(
@@ -692,11 +723,22 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
             totalStrokes: totalStrokes,
             averageHeartRateBpm: avgHR.map { Int($0.rounded()) },
             maxHeartRateBpm: maxHR.map { Int($0.rounded()) },
+            minHeartRateBpm: minHR.map { Int($0.rounded()) },
+            activeEnergyKcal: activeEnergyKcal,
+            totalEnergyKcal: totalEnergyKcal,
+            averageMETs: averageMETs,
             poolLengthMeters: poolLengthMeters,
             swimLocationType: swimLocationType,
             sourceProductType: productType,
             appleWatchDetected: appleWatchDetected,
-            laps: laps
+            deviceDescription: Self.describeDevice(workout.device),
+            sourceDescription: Self.describeSource(workout.sourceRevision),
+            isIndoorWorkout: isIndoor,
+            timeZoneIdentifier: timeZoneIdentifier,
+            eventCounts: Self.summarizeEvents(workout.workoutEvents),
+            laps: laps,
+            rawMetadata: Self.dumpMetadata(workout.metadata),
+            rawStatistics: Self.dumpStatistics(workout.allStatistics)
         )
     }
 
@@ -728,15 +770,20 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
 
         guard !lapEvents.isEmpty else { return [] }
 
-        let boundedEvents = lapEvents.prefix(200)
+        let boundedEvents = Array(lapEvents.prefix(200))
 
         var laps: [HealthKitSwimLap] = []
         laps.reserveCapacity(boundedEvents.count)
         for (offset, event) in boundedEvents.enumerated() {
+            // Repos au mur = écart entre la fin de ce lap et le début du suivant.
+            let nextStart = offset + 1 < boundedEvents.count
+                ? boundedEvents[offset + 1].dateInterval.start
+                : nil
             let lap = await buildSwimLap(
                 event: event,
                 index: offset + 1,
-                poolLengthMeters: poolLengthMeters
+                poolLengthMeters: poolLengthMeters,
+                nextLapStart: nextStart
             )
             laps.append(lap)
         }
@@ -746,7 +793,8 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
     private func buildSwimLap(
         event: HKWorkoutEvent,
         index: Int,
-        poolLengthMeters: Double?
+        poolLengthMeters: Double?,
+        nextLapStart: Date?
     ) async -> HealthKitSwimLap {
         let interval = event.dateInterval
         let duration = interval.duration
@@ -761,7 +809,11 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
             strokeStyle = SwimStrokeStyle(rawValueSafe: raw)
         }
 
-        let avgHR = await readHeartRateAverage(start: interval.start, end: interval.end)
+        let (avgHR, minHR, maxHR) = await readHeartRateStatsWindow(start: interval.start, end: interval.end)
+        let strokeCount = await readSwimStrokeCount(start: interval.start, end: interval.end)
+        let swolf = HealthKitSwimLap.computeSwolf(durationSeconds: duration, strokeCount: strokeCount)
+
+        let rest: TimeInterval? = nextLapStart.map { max(0, $0.timeIntervalSince(interval.end)) }
 
         return HealthKitSwimLap(
             index: index,
@@ -770,48 +822,139 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
             distanceMeters: distance,
             strokeStyle: strokeStyle,
             paceSecondsPer100m: pace,
-            averageHeartRateBpm: avgHR.map { Int($0.rounded()) }
+            averageHeartRateBpm: avgHR.map { Int($0.rounded()) },
+            strokeCount: strokeCount,
+            minHeartRateBpm: minHR.map { Int($0.rounded()) },
+            maxHeartRateBpm: maxHR.map { Int($0.rounded()) },
+            swolfScore: swolf,
+            restAfterSeconds: rest
         )
     }
 
-    private func readHeartRateAverage(start: Date, end: Date) async -> Double? {
-        guard let hrType = HKQuantityType.quantityType(forIdentifier: .heartRate) else {
+    /// Somme `swimmingStrokeCount` sur une fenêtre temporelle (utilisé par lap).
+    private func readSwimStrokeCount(start: Date, end: Date) async -> Int? {
+        guard let type = HKQuantityType.quantityType(forIdentifier: .swimmingStrokeCount) else {
             return nil
         }
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: [])
-
-        return await withCheckedContinuation { (continuation: CheckedContinuation<Double?, Never>) in
+        return await withCheckedContinuation { (continuation: CheckedContinuation<Int?, Never>) in
             let query = HKStatisticsQuery(
-                quantityType: hrType,
+                quantityType: type,
                 quantitySamplePredicate: predicate,
-                options: [.discreteAverage]
+                options: [.cumulativeSum]
             ) { _, statistics, _ in
-                let unit = HKUnit.count().unitDivided(by: .minute())
-                continuation.resume(returning: statistics?.averageQuantity()?.doubleValue(for: unit))
+                guard let sum = statistics?.sumQuantity() else {
+                    continuation.resume(returning: nil)
+                    return
+                }
+                continuation.resume(returning: Int(sum.doubleValue(for: .count()).rounded()))
             }
             healthStore.execute(query)
         }
     }
 
-    private func readHeartRateStats(for workout: HKWorkout) async -> (average: Double?, max: Double?) {
+    /// HR moyenne / min / max sur une fenêtre temporelle.
+    private func readHeartRateStatsWindow(start: Date, end: Date) async -> (average: Double?, min: Double?, max: Double?) {
         guard let hrType = HKQuantityType.quantityType(forIdentifier: .heartRate) else {
-            return (nil, nil)
+            return (nil, nil, nil)
         }
-        let predicate = HKQuery.predicateForSamples(withStart: workout.startDate, end: workout.endDate, options: [])
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: [])
 
-        return await withCheckedContinuation { (continuation: CheckedContinuation<(Double?, Double?), Never>) in
+        return await withCheckedContinuation { (continuation: CheckedContinuation<(Double?, Double?, Double?), Never>) in
             let query = HKStatisticsQuery(
                 quantityType: hrType,
                 quantitySamplePredicate: predicate,
-                options: [.discreteAverage, .discreteMax]
+                options: [.discreteAverage, .discreteMin, .discreteMax]
             ) { _, statistics, _ in
                 let unit = HKUnit.count().unitDivided(by: .minute())
                 let avg = statistics?.averageQuantity()?.doubleValue(for: unit)
+                let minVal = statistics?.minimumQuantity()?.doubleValue(for: unit)
                 let maxVal = statistics?.maximumQuantity()?.doubleValue(for: unit)
-                continuation.resume(returning: (avg, maxVal))
+                continuation.resume(returning: (avg, minVal, maxVal))
             }
             healthStore.execute(query)
         }
+    }
+
+    // MARK: - Private — dump brut natation (inspection DEBUG)
+
+    /// Stringifie une valeur de metadata HK (HKQuantity / Bool / Date / NSNumber / String).
+    private static func stringifyMetadataValue(_ value: Any) -> String {
+        switch value {
+        case let q as HKQuantity: return q.description
+        case let b as Bool: return b ? "true" : "false"
+        case let d as Date: return ISO8601DateFormatter().string(from: d)
+        case let n as NSNumber: return n.stringValue
+        case let s as String: return s
+        default: return String(describing: value)
+        }
+    }
+
+    private static func dumpMetadata(_ metadata: [String: Any]?) -> [HealthKitRawEntry] {
+        guard let metadata else { return [] }
+        return metadata
+            .map { HealthKitRawEntry(key: $0.key, value: stringifyMetadataValue($0.value)) }
+            .sorted { $0.key < $1.key }
+    }
+
+    private static func dumpStatistics(_ stats: [HKQuantityType: HKStatistics]) -> [HealthKitRawEntry] {
+        stats
+            .map { type, stat -> HealthKitRawEntry in
+                // On affiche la somme si dispo (cumulatif), sinon moy/min/max (discret).
+                let parts: [String] = [
+                    stat.sumQuantity().map { "Σ \($0)" },
+                    stat.averageQuantity().map { "x̄ \($0)" },
+                    stat.minimumQuantity().map { "min \($0)" },
+                    stat.maximumQuantity().map { "max \($0)" }
+                ].compactMap { $0 }
+                let value = parts.isEmpty ? "—" : parts.joined(separator: " · ")
+                return HealthKitRawEntry(key: type.identifier, value: value)
+            }
+            .sorted { $0.key < $1.key }
+    }
+
+    private static func summarizeEvents(_ events: [HKWorkoutEvent]?) -> [String: Int] {
+        guard let events else { return [:] }
+        var counts: [String: Int] = [:]
+        for event in events {
+            counts[eventTypeName(event.type), default: 0] += 1
+        }
+        return counts
+    }
+
+    private static func eventTypeName(_ type: HKWorkoutEventType) -> String {
+        switch type {
+        case .pause: return "pause"
+        case .resume: return "resume"
+        case .lap: return "lap"
+        case .marker: return "marker"
+        case .motionPaused: return "motionPaused"
+        case .motionResumed: return "motionResumed"
+        case .segment: return "segment"
+        case .pauseOrResumeRequest: return "pauseOrResumeRequest"
+        @unknown default: return "type(\(type.rawValue))"
+        }
+    }
+
+    private static func describeDevice(_ device: HKDevice?) -> String? {
+        guard let device else { return nil }
+        let parts = [
+            device.name,
+            device.model,
+            device.hardwareVersion.map { "hw \($0)" },
+            device.softwareVersion.map { "sw \($0)" }
+        ].compactMap { $0 }
+        return parts.isEmpty ? nil : parts.joined(separator: " · ")
+    }
+
+    private static func describeSource(_ revision: HKSourceRevision) -> String? {
+        var parts = [revision.source.name]
+        if let v = revision.version { parts.append("v\(v)") }
+        let os = revision.operatingSystemVersion
+        if os.majorVersion > 0 {
+            parts.append("OS \(os.majorVersion).\(os.minorVersion).\(os.patchVersion)")
+        }
+        return parts.joined(separator: " · ")
     }
 
     // MARK: - Private — caractéristiques

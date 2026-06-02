@@ -34,6 +34,27 @@ final class HealthKitSwimWorkoutDetailTests: XCTestCase {
         XCTAssertNil(pace)
     }
 
+    // MARK: - SWOLF
+
+    func testSwolf_30sLap20strokes_yields50() throws {
+        // SWOLF = durée arrondie (30) + strokes (20).
+        let swolf = try XCTUnwrap(HealthKitSwimLap.computeSwolf(durationSeconds: 30, strokeCount: 20))
+        XCTAssertEqual(swolf, 50)
+    }
+
+    func testSwolf_roundsDuration() throws {
+        let swolf = try XCTUnwrap(HealthKitSwimLap.computeSwolf(durationSeconds: 29.6, strokeCount: 18))
+        XCTAssertEqual(swolf, 48) // 30 + 18
+    }
+
+    func testSwolf_strokesNil_yieldsNil() {
+        XCTAssertNil(HealthKitSwimLap.computeSwolf(durationSeconds: 30, strokeCount: nil))
+    }
+
+    func testSwolf_strokesZero_yieldsNil() {
+        XCTAssertNil(HealthKitSwimLap.computeSwolf(durationSeconds: 30, strokeCount: 0))
+    }
+
     // MARK: - SwimStrokeStyle decoding
 
     func testStrokeStyleDecoding_knownRawValues() {

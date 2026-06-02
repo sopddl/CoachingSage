@@ -2,6 +2,12 @@
 // Story 3.16 (Phase 1, read-only) — DTOs pour l'inspection lap-by-lap des
 // workouts natation lus depuis HealthKit. Pas de wiring algo en Phase 1 :
 // ces structs alimentent uniquement `SwimHealthKitInspectorView` (écran DEBUG).
+//
+// 2026-06-02 — extension « tout capter » (demande Sophie) : on remonte
+// l'intégralité de ce que HealthKit expose pour une séance natation (énergie,
+// METs, SWOLF, strokes par lap, repos au mur, device/source, + dump brut de
+// metadata / allStatistics / events) pour que le test iPhone soit décisionnel
+// avant d'arbitrer la Phase 2.
 import Foundation
 
 /// Style de nage par lap. Miroir EXACT des rawValues `HKSwimmingStrokeStyle`
@@ -33,10 +39,18 @@ enum SwimLocationType: Int, Equatable, Sendable {
     }
 }
 
+/// Une paire clé→valeur déjà stringifiée pour l'affichage brut. `Identifiable`
+/// pour itérer proprement dans le `ForEach` de l'inspector.
+struct HealthKitRawEntry: Equatable, Sendable, Identifiable {
+    let key: String
+    let value: String
+    var id: String { key }
+}
+
 /// Détail d'un lap natation. Distance par lap dérivée du `poolLengthMeters`
 /// du workout parent (un lap = une longueur en pool tracking Apple). `nil`
-/// si pool length absente (open water, app tierce). HR moyenne récupérée via
-/// une `HKStatisticsQuery` ciblée sur la fenêtre temporelle du lap.
+/// si pool length absente (open water, app tierce). HR récupérée via
+/// `HKStatisticsQuery` ciblée sur la fenêtre temporelle du lap.
 struct HealthKitSwimLap: Equatable, Sendable {
     /// 1-based, ordre temporel.
     let index: Int
@@ -46,6 +60,17 @@ struct HealthKitSwimLap: Equatable, Sendable {
     let strokeStyle: SwimStrokeStyle?
     let paceSecondsPer100m: Double?
     let averageHeartRateBpm: Int?
+    /// Strokes comptés sur la fenêtre temporelle du lap (somme `swimmingStrokeCount`).
+    let strokeCount: Int?
+    /// HR min/max sur la fenêtre du lap (complète `averageHeartRateBpm`).
+    let minHeartRateBpm: Int?
+    let maxHeartRateBpm: Int?
+    /// SWOLF = durée du lap (s, arrondie) + nombre de strokes. `nil` si l'un
+    /// des deux manque. Métrique d'efficacité de nage standard.
+    let swolfScore: Int?
+    /// Secondes de repos entre la fin de ce lap et le début du suivant (repos
+    /// au mur). `nil` pour le dernier lap ou si pas d'écart mesurable.
+    let restAfterSeconds: TimeInterval?
 
     /// Calcule la pace s/100m à partir de durée + distance. Retourne `nil` si
     /// distance absente ou == 0 (garde-fou division). Exposée pour les tests.
@@ -55,6 +80,13 @@ struct HealthKitSwimLap: Equatable, Sendable {
     ) -> Double? {
         guard let distance = distanceMeters, distance > 0 else { return nil }
         return durationSeconds / distance * 100.0
+    }
+
+    /// SWOLF = durée arrondie (s) + strokes. `nil` si l'un des deux manque ou
+    /// si strokes <= 0. Exposée pour les tests.
+    static func computeSwolf(durationSeconds: TimeInterval, strokeCount: Int?) -> Int? {
+        guard let strokes = strokeCount, strokes > 0 else { return nil }
+        return Int(durationSeconds.rounded()) + strokes
     }
 }
 
@@ -70,9 +102,32 @@ struct HealthKitSwimWorkoutDetail: Equatable, Sendable, Identifiable {
     let totalStrokes: Int?
     let averageHeartRateBpm: Int?
     let maxHeartRateBpm: Int?
+    /// HR min sur toute la séance (complète moy/max).
+    let minHeartRateBpm: Int?
+    /// Énergie active brûlée (kcal) — proxy d'effort.
+    let activeEnergyKcal: Double?
+    /// Énergie totale (active + repos) brûlée (kcal).
+    let totalEnergyKcal: Double?
+    /// METs moyens (`HKMetadataKeyAverageMETs`) — intensité normalisée.
+    let averageMETs: Double?
     let poolLengthMeters: Double?
     let swimLocationType: SwimLocationType?
     let sourceProductType: String?
     let appleWatchDetected: Bool
+    /// Description du device source (HKDevice : nom + modèle + soft version).
+    let deviceDescription: String?
+    /// Description de la source applicative (nom app + version + OS).
+    let sourceDescription: String?
+    /// `HKMetadataKeyIndoorWorkout` si présent.
+    let isIndoorWorkout: Bool?
+    /// Fuseau horaire (`HKMetadataKeyTimeZone`).
+    let timeZoneIdentifier: String?
+    /// Comptage des events par type (pause, segment, marker, lap…) pour la
+    /// structure de séance. Ex: ["lap": 32, "pause": 8].
+    let eventCounts: [String: Int]
     let laps: [HealthKitSwimLap]
+    /// Dump intégral de `workout.metadata` (clé HK → valeur stringifiée).
+    let rawMetadata: [HealthKitRawEntry]
+    /// Dump de `workout.allStatistics` (type quantité → somme/moy + unité).
+    let rawStatistics: [HealthKitRawEntry]
 }
