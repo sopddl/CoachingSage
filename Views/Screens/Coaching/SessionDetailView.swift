@@ -25,6 +25,10 @@ struct SessionDetailView: View {
     @State private var showCompleteSheet: Bool = false
     /// Story 3.17 Phase 1 — tooltip 1ère ouverture découvrabilité glossaire.
     @State private var showDiscoveryTooltip: Bool = false
+    /// Story 3.33 (FOCUS) — présentation du mode exécution plein écran + état de
+    /// reprise (indices d'étapes déjà faites, relu depuis `SessionProgressStore`).
+    @State private var showFocus: Bool = false
+    @State private var focusProgress: Set<Int> = []
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -52,11 +56,9 @@ struct SessionDetailView: View {
                         completionSection(vm: vm)
                     }
 
-                    // Story 3.32 (AC9) — emplacement du bouton « ▶ Démarrer la
-                    // séance » prévu ici (sous l'aperçu / sticky bas). PAS affiché
-                    // en 3.32 (aucun bouton mort, aucun libellé « Bientôt »). Il
-                    // sera rendu, actif et câblé vers le FOCUS .fullScreenCover,
-                    // avec la livraison de la Story 3.33.
+                    // Story 3.33 — bouton « ▶ Démarrer / Reprendre » : ouvre le
+                    // mode FOCUS plein écran (exécution guidée pas-à-pas).
+                    startFocusButton
 
                     medicalReminderFooter
                 }
@@ -69,12 +71,69 @@ struct SessionDetailView: View {
         .task {
             await bootstrapCompletionVMIfNeeded()
             await presentDiscoveryTooltipIfNeeded()
+            reloadFocusProgress()
         }
         .sheet(isPresented: $showCompleteSheet) {
             if let vm = completionVM {
                 SessionCompleteSheet(vm: vm, plannedDurationMinutes: session.durationMinutes)
             }
         }
+        .fullScreenCover(isPresented: $showFocus, onDismiss: {
+            reloadFocusProgress()
+            Task { await completionVM?.load() }
+        }) {
+            SessionFocusView(session: session, week: week, program: program, recordId: recordId)
+        }
+    }
+
+    // MARK: - FOCUS (Story 3.33)
+
+    /// Étapes FOCUS de la séance (warmup→exos→cooldown). Vide pour une séance de
+    /// repos → le bouton Démarrer est alors masqué.
+    private var focusSteps: [SessionStep] { SessionStep.steps(for: session) }
+
+    /// True si une reprise est possible : on a un programme ancré (recordId), des
+    /// étapes faites mais pas toutes.
+    private var canResume: Bool {
+        recordId != nil && !focusProgress.isEmpty && focusProgress.count < focusSteps.count
+    }
+
+    /// Numéro humain (1-based) de l'étape de reprise = 1ʳᵉ non faite.
+    private var resumeStepNumber: Int {
+        (focusSteps.firstIndex(where: { !focusProgress.contains($0.index) }) ?? 0) + 1
+    }
+
+    @ViewBuilder
+    private var startFocusButton: some View {
+        if !focusSteps.isEmpty {
+            Button {
+                showFocus = true
+            } label: {
+                HStack(spacing: 10) {
+                    Image(systemName: "play.fill").font(.callout)
+                    if canResume {
+                        Text("coaching.session.focus.resume \(resumeStepNumber)")
+                            .font(.callout.bold())
+                    } else {
+                        Text("coaching.session.focus.start")
+                            .font(.callout.bold())
+                    }
+                    Spacer()
+                }
+                .padding(.vertical, 15)
+                .padding(.horizontal, 16)
+                .foregroundStyle(.white)
+                .background(Color.coachingPrimary)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            .accessibilityIdentifier("coaching.session.focus.start")
+        }
+    }
+
+    private func reloadFocusProgress() {
+        guard let recordId else { focusProgress = []; return }
+        focusProgress = SessionProgressStore.documentsDefault()
+            .completedSteps(recordId: recordId, week: week.weekNumber, day: session.day)
     }
 
     private func bootstrapCompletionVMIfNeeded() async {

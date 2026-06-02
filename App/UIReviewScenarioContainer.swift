@@ -218,6 +218,24 @@ struct UIReviewScenarioContainer: View {
             // cellules AGNOSTIQUE sans case vide (pas de "Zone —") + Format
             // "N postures" + aperçu scannable. Cas AC11 "aucune cellule vide yoga".
             SessionDetailHubYogaScenarioView()
+        case "ui_review_session_focus_strength":
+            // **Story 3.33 (FOCUS)** — mode exécution plein écran strength : barre
+            // top (fermer + "1/4" + points), warmup en 1ʳᵉ étape, card exo riche
+            // (illustration + métriques + notes + "Comment l'exécuter ?"), bouton
+            // "✓ Fait", nav bas Précédent/Passer/Suivant.
+            SessionFocusView(
+                session: SessionFocusStrengthFixture.session,
+                week: SessionFocusStrengthFixture.week,
+                program: SessionFocusStrengthFixture.program
+            )
+        case "ui_review_session_focus_single":
+            // **Story 3.33 (AC11)** — cas séance à 1 seul exo : points/compteur/nav
+            // se comportent bien (nav désactivée aux extrémités, pas de crash).
+            SessionFocusView(
+                session: SessionFocusSingleFixture.session,
+                week: SessionFocusSingleFixture.week,
+                program: SessionFocusSingleFixture.program
+            )
         case "ui_review_illustrations_showcase":
             // **Story 3.19 Jalon 2b** — showcase TOUTES les illustrations
             // (15 patterns) en grille pour screenshot HTML overview Sophie.
@@ -1169,6 +1187,50 @@ private struct SessionDetailHubYogaScenarioView: View {
             cooldown: "5 min Savasana"
         )
     }
+}
+
+// MARK: - Story 3.33 (FOCUS) — fixtures mode exécution
+
+enum SessionFocusStrengthFixture {
+    static let week = AdaptedWeek(weekNumber: 2, theme: "Force générale", goal: "Patterns fondamentaux", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-strength-fixture", sport: .strengthTraining, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 1, name: "Full body fondamentaux", durationMinutes: 50, type: .strength,
+        warmup: "5 min vélo facile + mobilité épaules + activation glutes (band)",
+        exercises: [
+            AdaptedExercise(name: "Goblet squat (pattern squat)", originalName: "Goblet squat",
+                            sets: 4, reps: "8", restSeconds: 90,
+                            notes: "Descente contrôlée 3 secondes, poussée par les talons. Genoux dans l'axe des pieds."),
+            AdaptedExercise(name: "Romanian Deadlift haltères (pattern hinge)", originalName: "Romanian Deadlift",
+                            sets: 3, reps: "10", restSeconds: 90,
+                            notes: "Le mouvement vient de la hanche, pas du dos. Bassin recule."),
+            AdaptedExercise(name: "Plank latéral", originalName: "Plank latéral",
+                            sets: 3, duration: "30s", restSeconds: 60,
+                            notes: "Ligne droite épaules-bassin-talons. Pas de bassin qui tombe.")
+        ],
+        cooldown: "5 min étirements doux du bas du corps"
+    )
+}
+
+enum SessionFocusSingleFixture {
+    static let week = AdaptedWeek(weekNumber: 1, theme: "Découverte", goal: "—", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-single-fixture", sport: .running, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 3, name: "Footing récup", durationMinutes: 30, type: .endurance,
+        warmup: nil,
+        exercises: [
+            AdaptedExercise(name: "Footing facile", originalName: "Footing facile",
+                            duration: "30 min", notes: "Allure de conversation, respiration nasale.",
+                            targetZone: "Daniels-E")
+        ],
+        cooldown: nil
+    )
 }
 
 // MARK: - Story 3.23 Lot 0 — IllustrationsStory323ScenarioView
