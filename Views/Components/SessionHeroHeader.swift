@@ -1,7 +1,9 @@
 // Views/Components/SessionHeroHeader.swift
-// Story 3.18 Phase 2 — bandeau hero d'une séance : background tinté couleur
-// sport, icône SF Symbol grande, sous-titre W/J, nom séance, thème inline
-// glossaire, grille 4 stats (durée · zone dominante · RPE estimé · nb blocs).
+// Story 3.32 (HUB) — bandeau hero slimmé d'une séance : icône sport + S/J + nom,
+// grille 3 stats AGNOSTIQUES (Durée · Intensité 1-5 · Format caméléon), zéro
+// case vide / jamais "—" quel que soit le sport. La "Zone" n'est plus un slot
+// fixe (elle reste dans l'exo via la timeline). Fix bug troncature "50…/55…".
+// Remplace la grille 4 stats (Story 3.18) Durée·Zone·RPE·Blocs.
 import SwiftUI
 import TemplateModel
 
@@ -10,8 +12,6 @@ struct SessionHeroHeader: View {
     let week: AdaptedWeek
     let program: AdaptedProgram
 
-    /// Couleur signature du sport effectif (peut différer du sport du programme
-    /// pour triathlon : on regarde le nom de la séance via `SessionSportInference`).
     private var sportColor: Color {
         Color.coachingSport(forCode: effectiveSportCode)
     }
@@ -34,21 +34,21 @@ struct SessionHeroHeader: View {
         )
     }
 
-    private var dominantZone: String? {
-        SessionStatsCalculator.dominantZone(for: session)
-    }
-
     private var estimatedRPE: Int {
         SessionStatsCalculator.estimatedRPE(for: session)
     }
 
+    private var sessionFormat: SessionFormatDescriptor.Format {
+        SessionFormatDescriptor.format(for: session, sportCode: effectiveSportCode)
+    }
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(alignment: .center, spacing: 14) {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(alignment: .center, spacing: 12) {
                 Image(systemName: sportSymbol)
-                    .font(.system(size: 30, weight: .semibold))
+                    .font(.system(size: 26, weight: .semibold))
                     .foregroundStyle(sportColor)
-                    .frame(width: 44, height: 44)
+                    .frame(width: 40, height: 40)
                     .background(
                         Circle().fill(sportColor.opacity(0.18))
                     )
@@ -58,21 +58,17 @@ struct SessionHeroHeader: View {
                         .foregroundStyle(.secondary)
                         .textCase(.uppercase)
                     Text(verbatim: session.name)
-                        .font(.title2.bold())
+                        .font(.title3.bold())
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.leading)
                 }
                 Spacer(minLength: 0)
             }
 
-            if !week.theme.isEmpty {
-                GlossaryRichText(text: week.theme, font: .footnote, foreground: .secondary)
-            }
-
             statsGrid
                 .accessibilityIdentifier("coaching.session.hero.statsGrid")
         }
-        .padding(16)
+        .padding(14)
         .background(
             RoundedRectangle(cornerRadius: 14)
                 .fill(sportColor.opacity(0.10))
@@ -84,7 +80,7 @@ struct SessionHeroHeader: View {
         .accessibilityElement(children: .contain)
     }
 
-    // MARK: - Stats grid
+    // MARK: - Stats grid (3 cellules agnostiques)
 
     @ViewBuilder
     private var statsGrid: some View {
@@ -95,28 +91,16 @@ struct SessionHeroHeader: View {
                 labelKey: "coaching.session.stats.duration",
                 tint: .coachingPrimary
             )
-            statCell(
-                systemImage: "chart.bar.fill",
-                value: dominantZone.map(SessionStatsCalculator.displayZone) ?? "—",
-                labelKey: "coaching.session.stats.zone",
-                tint: sportColor
-            )
-            effortCell(rpe: estimatedRPE)
-            statCell(
-                systemImage: "square.stack.3d.up.fill",
-                value: "\(session.exercises.count)",
-                labelKey: "coaching.session.stats.blocks",
-                tint: .coachingTextSecondary
-            )
+            intensityCell(rpe: estimatedRPE)
+            formatCell(format: sessionFormat)
         }
     }
 
-    /// Cellule stat dédiée à l'intensité (Story 3.19 Jalon 3) : remplace le
-    /// "7/10" texte par `EffortGauge` 5 niveaux + label sémantique sous la jauge.
-    /// La donnée numérique RPE est conservée dans l'a11y label combiné.
-    private func effortCell(rpe: Int) -> some View {
+    /// Cellule "Intensité" : jauge 5 niveaux + libellé figé 1-5 commun à tous les
+    /// sports (AC5). Pas de "RPE N" brut côté user.
+    private func intensityCell(rpe: Int) -> some View {
         let level = SessionStatsCalculator.effortLevel(rpe: rpe)
-        let labelKey = SessionStatsCalculator.effortLabel(level: level)
+        let labelKey = SessionStatsCalculator.intensityLabel(level: level)
         return VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 6) {
                 Image(systemName: "flame.fill")
@@ -136,8 +120,55 @@ struct SessionHeroHeader: View {
         .background(Color(uiColor: .secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("coaching.session.stats.effort.a11y \(level) \(rpe)"))
+        .accessibilityLabel(Text("coaching.session.stats.intensity"))
         .accessibilityValue(Text(labelKey))
+    }
+
+    /// Cellule "Format" caméléon (AC4) : libellé piloté par `SessionFormatDescriptor`.
+    /// Rendu i18n par interpolation de placeholders (jamais de clé construite).
+    private func formatCell(format: SessionFormatDescriptor.Format) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: 4) {
+                Image(systemName: "rectangle.stack.fill")
+                    .font(.caption2.bold())
+                    .foregroundStyle(sportColor)
+                formatValueText(format)
+                    .font(.callout.bold())
+                    .foregroundStyle(.primary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+            }
+            Text("coaching.session.stats.format")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 6)
+        .padding(.horizontal, 8)
+        .background(Color(uiColor: .secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+
+    @ViewBuilder
+    private func formatValueText(_ format: SessionFormatDescriptor.Format) -> some View {
+        switch format {
+        case .blocks(let n):
+            Text("coaching.session.format.blocks \(n)")
+        case .rounds(let count, let work, let rest):
+            Text("coaching.session.format.rounds \(count) \(work) \(rest)")
+        case .intervals(let n):
+            Text("coaching.session.format.intervals \(n)")
+        case .postures(let n):
+            Text("coaching.session.format.postures \(n)")
+        case .series(let n):
+            Text("coaching.session.format.series \(n)")
+        case .keySession(let s):
+            Text(verbatim: s)
+        case .exercises(let n):
+            Text("coaching.session.format.exercises \(n)")
+        }
     }
 
     private func statCell(systemImage: String, value: String, labelKey: LocalizedStringKey, tint: Color) -> some View {
@@ -149,7 +180,7 @@ struct SessionHeroHeader: View {
                 Text(verbatim: value)
                     .font(.callout.bold())
                     .foregroundStyle(.primary)
-                    .lineLimit(1)
+                    .lineLimit(2)
                     .minimumScaleFactor(0.7)
             }
             Text(labelKey)

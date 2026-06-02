@@ -213,6 +213,11 @@ struct UIReviewScenarioContainer: View {
             // **Story 3.19 Jalon 2a** — SessionDetailView running pour valider
             // les illus running endurance + interval.
             SessionDetailRunningScenarioView()
+        case "ui_review_session_detail_hub_yoga":
+            // **Story 3.32 (HUB)** — SessionDetailView yoga : valide la grille 3
+            // cellules AGNOSTIQUE sans case vide (pas de "Zone —") + Format
+            // "N postures" + aperçu scannable. Cas AC11 "aucune cellule vide yoga".
+            SessionDetailHubYogaScenarioView()
         case "ui_review_illustrations_showcase":
             // **Story 3.19 Jalon 2b** — showcase TOUTES les illustrations
             // (15 patterns) en grille pour screenshot HTML overview Sophie.
@@ -1125,6 +1130,43 @@ private struct SessionDetailRunningScenarioView: View {
                 ),
             ],
             cooldown: "10 min footing très lent + étirements"
+        )
+    }
+}
+
+// MARK: - Story 3.32 (HUB) — SessionDetailHubYogaScenarioView
+
+/// SessionDetailView yoga pour valider le HUB 3.32 : grille 3 cellules sans case
+/// vide (le yoga n'a pas de zone d'intensité → l'ancienne grille affichait
+/// "Zone —"), Format "N postures", aperçu scannable + phrase d'intention.
+private struct SessionDetailHubYogaScenarioView: View {
+    var body: some View {
+        SessionDetailView(session: yogaSession, week: yogaWeek, program: yogaProgram)
+    }
+
+    private var yogaWeek: AdaptedWeek {
+        AdaptedWeek(weekNumber: 1, theme: "Mobilité & respiration", goal: "Ancrage du souffle", sessions: [])
+    }
+
+    private var yogaProgram: AdaptedProgram {
+        AdaptedProgram(
+            templateId: "yoga-hub-fixture",
+            sport: .yoga, level: .beginner, appliedAt: Date(),
+            weeks: [yogaWeek], appliedRules: [], requiresAIAssist: false
+        )
+    }
+
+    private var yogaSession: AdaptedSession {
+        AdaptedSession(
+            day: 1, name: "Flow doux du matin", durationMinutes: 45, type: .mobility,
+            warmup: "5 min respiration Dirgha assise",
+            exercises: [
+                AdaptedExercise(name: "Chien tête en bas", originalName: "Chien tête en bas", duration: "1 min"),
+                AdaptedExercise(name: "Guerrier I", originalName: "Guerrier I", duration: "45 s"),
+                AdaptedExercise(name: "Arbre", originalName: "Arbre", duration: "30 s"),
+                AdaptedExercise(name: "Posture de l'enfant", originalName: "Posture de l'enfant", duration: "2 min")
+            ],
+            cooldown: "5 min Savasana"
         )
     }
 }
