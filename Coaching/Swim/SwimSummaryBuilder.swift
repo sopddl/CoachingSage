@@ -11,6 +11,13 @@ enum SwimSummaryBuilder {
     /// continues ont 0-5 s d'écart, les vraies coupures de série 15-35 s.
     static let restBreakThresholdSeconds: TimeInterval = 10
 
+    /// Fenêtre d'historique pour les écrans "portrait" (records / tendances /
+    /// autoprofil) : 1 an. On regarde loin pour des records stables, et les
+    /// moyennes se calent sur les semaines ACTIVES (cf `activeWeeks`) pour ne
+    /// pas se faire diluer par les périodes d'arrêt (Sophie 2026-06-02).
+    /// Les écrans à période choisie (onglet Progrès) gardent leur propre fenêtre.
+    static let profileLookbackWeeks = 52
+
     // MARK: - Agrégat fenêtre
 
     static func build(from details: [HealthKitSwimWorkoutDetail], windowWeeks: Int) -> SwimSummary {
@@ -42,12 +49,18 @@ enum SwimSummaryBuilder {
             }
         }
 
+        // Dénominateur des moyennes = semaines ACTIVES (≥1 séance), pas la
+        // fenêtre brute : une pause de plusieurs mois ne doit pas effondrer la
+        // moyenne hebdo (Sophie 2026-06-02). `max(1, …)` garde-fou anti /0.
+        let active = activeWeeks(for: sessions)
+
         return SwimSummary(
             sessionCount: sessions.count,
             windowWeeks: windowWeeks,
+            activeWeeks: active,
             totalDistanceMeters: totalDistance,
-            weeklyAverageDistanceMeters: totalDistance / Double(windowWeeks),
-            weeklyAverageSessions: Double(sessions.count) / Double(windowWeeks),
+            weeklyAverageDistanceMeters: totalDistance / Double(active),
+            weeklyAverageSessions: Double(sessions.count) / Double(active),
             avgPaceSecondsPer100m: avgPace,
             bestPaceSecondsPer100m: bestPace,
             strokeDistribution: distribution,
@@ -141,6 +154,28 @@ enum SwimSummaryBuilder {
             avgSwolf: avgSwolf,
             restAfterSeconds: restAfter
         )
+    }
+
+    // MARK: - Semaines actives (dénominateur des moyennes)
+
+    /// Nombre de semaines calendaires DISTINCTES contenant au moins une séance.
+    /// Sert de dénominateur aux moyennes hebdo : sur une fenêtre d'1 an, un user
+    /// qui a nagé 20 semaines puis stoppé 6 mois doit voir sa moyenne calculée
+    /// sur 20 semaines, pas sur 52 (sinon le volume s'effondre artificiellement).
+    /// Calendrier ISO 8601 (semaine lundi→dimanche) pour un découpage stable.
+    /// Retourne 0 si aucune séance, sinon >= 1.
+    static func activeWeeks(
+        for sessions: [SwimSessionSummary],
+        calendar: Calendar = Calendar(identifier: .iso8601)
+    ) -> Int {
+        guard !sessions.isEmpty else { return 0 }
+        var buckets: Set<Int> = []
+        for s in sessions {
+            let comps = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: s.date)
+            guard let year = comps.yearForWeekOfYear, let week = comps.weekOfYear else { continue }
+            buckets.insert(year * 100 + week)
+        }
+        return max(1, buckets.count)
     }
 
     // MARK: - Tendance (récent vs ancien)

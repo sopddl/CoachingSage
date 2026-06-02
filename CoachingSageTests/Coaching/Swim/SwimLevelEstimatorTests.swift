@@ -13,6 +13,7 @@ final class SwimLevelEstimatorTests: XCTestCase {
         SwimSummary(
             sessionCount: sessions,
             windowWeeks: 12,
+            activeWeeks: max(1, sessions),
             totalDistanceMeters: totalMeters,
             weeklyAverageDistanceMeters: totalMeters / 12,
             weeklyAverageSessions: Double(sessions) / 12,

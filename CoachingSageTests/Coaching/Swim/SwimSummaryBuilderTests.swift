@@ -210,7 +210,10 @@ final class SwimSummaryBuilderTests: XCTestCase {
 
         XCTAssertEqual(summary.sessionCount, 2)
         XCTAssertEqual(summary.totalDistanceMeters, 2500)
-        XCTAssertEqual(summary.weeklyAverageDistanceMeters, 2500.0 / 12.0, accuracy: 0.01)
+        // Moyenne divisée par les semaines ACTIVES (les 2 séances tombent dans
+        // 2 semaines ISO distinctes), pas par la fenêtre de 12 semaines.
+        XCTAssertEqual(summary.activeWeeks, 2)
+        XCTAssertEqual(summary.weeklyAverageDistanceMeters, 2500.0 / 2.0, accuracy: 0.01)
         // Ordre antéchrono : w1 (2j) avant w2 (9j).
         XCTAssertEqual(summary.sessions.first?.date, w1.startDate)
         // Pace pondérée distance : (120×1000 + 130×1500)/2500 = 126
@@ -221,6 +224,31 @@ final class SwimSummaryBuilderTests: XCTestCase {
 
     func testBuild_empty_returnsEmpty() {
         XCTAssertEqual(SwimSummaryBuilder.build(from: [], windowWeeks: 12), .empty)
+    }
+
+    // MARK: - Semaines actives (pauses non comptées)
+
+    func testActiveWeeks_ignoresGapBetweenSessions() {
+        // 2 séances la même semaine + 1 séance 30 semaines plus tard, sur une
+        // fenêtre d'1 an : 2 semaines actives, PAS 52 ni le span calendaire.
+        let a = workout(daysAgo: 0, dist: 1000, laps: (1...2).map { lap($0) })
+        let b = workout(daysAgo: 1, dist: 1000, laps: (1...2).map { lap($0) })
+        let old = workout(daysAgo: 210, dist: 1000, laps: (1...2).map { lap($0) }) // ~30 sem
+        let summary = SwimSummaryBuilder.build(from: [a, b, old], windowWeeks: 52)
+
+        XCTAssertEqual(summary.activeWeeks, 2)
+        // Moyenne hebdo divisée par 2 semaines actives, pas par 52.
+        XCTAssertEqual(summary.weeklyAverageSessions, 3.0 / 2.0, accuracy: 0.01)
+        XCTAssertEqual(summary.weeklyAverageDistanceMeters, 3000.0 / 2.0, accuracy: 0.01)
+    }
+
+    func testActiveWeeks_singleSession_isOne() {
+        let summary = SwimSummaryBuilder.build(
+            from: [workout(daysAgo: 3, dist: 1200, laps: (1...4).map { lap($0) })],
+            windowWeeks: 52
+        )
+        XCTAssertEqual(summary.activeWeeks, 1)
+        XCTAssertEqual(summary.weeklyAverageDistanceMeters, 1200, accuracy: 0.01)
     }
 
     // MARK: - Tendance

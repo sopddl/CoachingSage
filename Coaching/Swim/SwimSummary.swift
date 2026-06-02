@@ -56,7 +56,13 @@ struct SwimSessionSummary: Equatable, Sendable, Identifiable {
 /// Agrégat multi-séances sur une fenêtre glissante (`windowWeeks`).
 struct SwimSummary: Equatable, Sendable {
     let sessionCount: Int
+    /// Fenêtre de lookback (semaines) interrogée côté HK. Descriptif : sert à
+    /// dater l'historique, PAS à diviser les moyennes (cf `activeWeeks`).
     let windowWeeks: Int
+    /// Semaines calendaires DISTINCTES contenant ≥1 séance sur la fenêtre.
+    /// Dénominateur des moyennes hebdo → les périodes d'arrêt ne diluent pas le
+    /// volume (Story 3.16, fenêtre étendue à 1 an, Sophie 2026-06-02).
+    let activeWeeks: Int
     let totalDistanceMeters: Double
     let weeklyAverageDistanceMeters: Double
     let weeklyAverageSessions: Double
@@ -75,6 +81,7 @@ struct SwimSummary: Equatable, Sendable {
     static let empty = SwimSummary(
         sessionCount: 0,
         windowWeeks: 0,
+        activeWeeks: 0,
         totalDistanceMeters: 0,
         weeklyAverageDistanceMeters: 0,
         weeklyAverageSessions: 0,

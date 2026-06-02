@@ -671,6 +671,14 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
     }
 
     func fetchRecentSwimWorkoutDetails(limit: Int, weeksBack: Int) async -> [HealthKitSwimWorkoutDetail] {
+        #if DEBUG
+        // Seed simulateur : `SWIM_SEED=1` court-circuite HK (qui n'a aucune
+        // donnée natation sur simu). Placé AVANT la garde UI testing pour
+        // cohabiter avec `IS_UI_TESTING=1` (bypass auth/onboarding).
+        if let seeded = SwimSeedFixtures.fixturesIfEnabled(limit: limit, weeksBack: weeksBack) {
+            return seeded
+        }
+        #endif
         guard !Self.isUITesting else { return [] }
         guard HKHealthStore.isHealthDataAvailable() else { return [] }
 

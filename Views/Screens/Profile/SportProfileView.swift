@@ -1,7 +1,7 @@
 // Views/Screens/Profile/SportProfileView.swift
 // Story 3.16 Phase 2.D2 — écran profil natation poussé depuis le bloc Natation
 // de l'onglet Progrès. V1 : records + tendances + répartition styles sur la
-// fenêtre HK 12 semaines (dérivé à la volée, pas de persistance).
+// fenêtre HK 1 an (dérivé à la volée, pas de persistance).
 //
 // Garde-fou produit : la "meilleure allure" est INDICATIVE (caveat affiché),
 // jamais présentée comme une vitesse de référence / CSS.
@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SportProfileView: View {
     @Environment(\.appDependencies) private var deps
+    @Environment(\.locale) private var locale
     @State private var viewModel: SwimProfileViewModel?
 
     var body: some View {
@@ -75,6 +76,9 @@ struct SportProfileView: View {
     private func recordsCard(_ summary: SwimSummary) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             sectionTitle("swim.profile.records")
+            Text("swim.profile.records_window")
+                .font(.caption2)
+                .foregroundStyle(Color.coachingTextSecondary)
             HStack(spacing: 0) {
                 statColumn(
                     value: summary.bestPaceSecondsPer100m.map(formatPace) ?? "—",
@@ -255,6 +259,10 @@ struct SportProfileView: View {
     private func relativeDate(_ date: Date) -> String {
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .abbreviated
+        // Suit la langue in-app (LanguageManager → \.locale), pas la locale
+        // système du device — sinon « -2 j / -1 sem. » en FR alors que l'app
+        // est en EN (cf memo_locale_strict_string_localized_pattern).
+        formatter.locale = locale
         return formatter.localizedString(for: date, relativeTo: Date())
     }
 }

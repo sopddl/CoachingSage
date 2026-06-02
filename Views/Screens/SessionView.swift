@@ -592,12 +592,15 @@ struct SessionView: View {
     }
 
     /// Story 3.16 Phase 2.B — pour la natation uniquement, dérive un niveau
-    /// autoprofil depuis l'historique HK (12 sem). Retourne `nil` (→ défaut
+    /// autoprofil depuis l'historique HK (1 an). Retourne `nil` (→ défaut
     /// factory) pour les autres sports ou si l'historique est insuffisant.
+    /// Fenêtre étendue à 1 an (Sophie 2026-06-02) : best pace + distance/séance
+    /// sur un an = estimation plus stable (métriques par séance, robustes aux pauses).
     private func estimateSwimLevelIfNeeded(sportCode: String, deps: AppDependencies) async -> String? {
         guard sportCode == SportCode.swimming.rawValue else { return nil }
-        let details = await deps.healthKitService.fetchRecentSwimWorkoutDetails(limit: 50, weeksBack: 12)
-        let summary = SwimSummaryBuilder.build(from: details, windowWeeks: 12)
+        let weeks = SwimSummaryBuilder.profileLookbackWeeks
+        let details = await deps.healthKitService.fetchRecentSwimWorkoutDetails(limit: 300, weeksBack: weeks)
+        let summary = SwimSummaryBuilder.build(from: details, windowWeeks: weeks)
         return SwimLevelEstimator.estimate(from: summary)
     }
 
