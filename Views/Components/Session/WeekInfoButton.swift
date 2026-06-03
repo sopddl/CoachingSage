@@ -22,16 +22,21 @@ struct WeekInfoButton: View {
         .accessibilityLabel(Text("coaching.adapter.week.info"))
         .accessibilityIdentifier("coaching.adapter.week.info")
         .popover(isPresented: $isShown) {
-            VStack(alignment: .leading, spacing: 12) {
-                Text("coaching.adapter.week.info")
-                    .font(.caption.bold())
-                    .foregroundStyle(.secondary)
-                    .textCase(.uppercase)
-                if !theme.isEmpty { BulletedNotes(text: theme, font: .callout) }
-                if !goal.isEmpty { BulletedNotes(text: goal, font: .callout) }
+            // Contenu SCROLLABLE + hauteur bornée : le texte d'objectif peut être
+            // long et débordait du popover (texte coupé — bug Sophie 2026-06-03).
+            ScrollView {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("coaching.adapter.week.info")
+                        .font(.caption.bold())
+                        .foregroundStyle(.secondary)
+                        .textCase(.uppercase)
+                    if !theme.isEmpty { BulletedNotes(text: theme, font: .callout) }
+                    if !goal.isEmpty { BulletedNotes(text: goal, font: .callout) }
+                }
+                .padding(16)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .padding(16)
-            .frame(minWidth: 240, maxWidth: 320, alignment: .leading)
+            .frame(width: 300, height: 360)
             .presentationCompactAdaptation(.popover)
         }
     }

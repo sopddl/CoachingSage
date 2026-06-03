@@ -1020,9 +1020,9 @@
 		FD16032A07CE30E27DE86BCA /* JSONDecoder+Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Supabase.swift"; sourceTree = "<group>"; };
 		FE2EBCDA71129879332CF57F /* MockCoachingSportProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoachingSportProfileRepository.swift; sourceTree = "<group>"; };
 		FE4D8313E07E639BE62B7644 /* ProgramDurationResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDurationResolverTests.swift; sourceTree = "<group>"; };
-		"TEMP_3DC852C9-5911-4B42-AD23-A6090061FE65" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_E1FC3943-B31D-4E16-9779-34725F1BE080" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_F25756C3-46A5-44C2-99EF-512E5E38C29C" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_B42C27C1-8D78-475D-84EA-738CEFFE8E88" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_BE52A98F-1637-4FD9-BA21-C7B166335342" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_D56AE9CC-3E12-4D00-9866-E2046BB42CF5" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2003,12 +2003,12 @@
 			path = ExerciseTimelineCardSnapshotTests;
 			sourceTree = "<group>";
 		};
-		"TEMP_E0D016B3-D51A-4293-B49B-8A7768796058" /* CoachingSage */ = {
+		"TEMP_7220B560-7240-4C1B-A194-8E0ED8C0AF65" /* CoachingSage */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_F25756C3-46A5-44C2-99EF-512E5E38C29C" /* Config-Debug.xcconfig */,
-				"TEMP_3DC852C9-5911-4B42-AD23-A6090061FE65" /* Config-Release.xcconfig */,
-				"TEMP_E1FC3943-B31D-4E16-9779-34725F1BE080" /* Config-Staging.xcconfig */,
+				"TEMP_D56AE9CC-3E12-4D00-9866-E2046BB42CF5" /* Config-Debug.xcconfig */,
+				"TEMP_BE52A98F-1637-4FD9-BA21-C7B166335342" /* Config-Release.xcconfig */,
+				"TEMP_B42C27C1-8D78-475D-84EA-738CEFFE8E88" /* Config-Staging.xcconfig */,
 			);
 			path = CoachingSage;
 			sourceTree = "<group>";
@@ -2845,7 +2845,7 @@
 		};
 		61B5E17E96E19C8E098AA3DC /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_E1FC3943-B31D-4E16-9779-34725F1BE080" /* Config-Staging.xcconfig */;
+			baseConfigurationReference = "TEMP_B42C27C1-8D78-475D-84EA-738CEFFE8E88" /* Config-Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2906,7 +2906,7 @@
 		};
 		6444A73E993A0AE7B8936309 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_3DC852C9-5911-4B42-AD23-A6090061FE65" /* Config-Release.xcconfig */;
+			baseConfigurationReference = "TEMP_BE52A98F-1637-4FD9-BA21-C7B166335342" /* Config-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3057,7 +3057,7 @@
 		};
 		E103FFBD6D87D5F977B573D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_F25756C3-46A5-44C2-99EF-512E5E38C29C" /* Config-Debug.xcconfig */;
+			baseConfigurationReference = "TEMP_D56AE9CC-3E12-4D00-9866-E2046BB42CF5" /* Config-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
