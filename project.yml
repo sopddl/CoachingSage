@@ -92,6 +92,10 @@ targets:
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
         UIApplicationSupportsIndirectInputEvents: true
+        # Story 3.35 — la voix + les bips du mode Audio continuent quand l'app est
+        # en arrière-plan / écran verrouillé (course téléphone en poche).
+        UIBackgroundModes:
+          - audio
     entitlements:
       path: CoachingSage.entitlements
       properties:
