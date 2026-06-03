@@ -51,6 +51,27 @@ final class SportMusicSuggestionsTests: XCTestCase {
         XCTAssertNil(MusicLinkBuilder.url(app: .none, searchTerm: "anything"))
     }
 
+    // MARK: - Bug #10 — scheme natif (Deezer ouvrait Safari au lieu de l'app)
+
+    func test_deezerNativeURL_usesCustomScheme() {
+        let url = MusicLinkBuilder.nativeURL(app: .deezer, searchTerm: "gym workout hype")
+        XCTAssertEqual(url?.absoluteString, "deezer://www.deezer.com/search/gym%20workout%20hype")
+    }
+
+    func test_nativeURL_nilForAppsWhereUniversalLinkSuffices() {
+        // Apple Music / Spotify / YouTube Music ouvrent déjà leur app via le lien web.
+        XCTAssertNil(MusicLinkBuilder.nativeURL(app: .appleMusic, searchTerm: "x"))
+        XCTAssertNil(MusicLinkBuilder.nativeURL(app: .spotify, searchTerm: "x"))
+        XCTAssertNil(MusicLinkBuilder.nativeURL(app: .youtubeMusic, searchTerm: "x"))
+        XCTAssertNil(MusicLinkBuilder.nativeURL(app: .none, searchTerm: "x"))
+    }
+
+    func test_deezer_webURL_remainsFallback() {
+        // Le lien web reste disponible comme repli si l'app Deezer n'est pas installée.
+        XCTAssertEqual(MusicLinkBuilder.url(app: .deezer, searchTerm: "gym workout hype")?.absoluteString,
+                       "https://www.deezer.com/search/gym%20workout%20hype")
+    }
+
     func test_links_neverNilForProviderApps() {
         let providers: [MusicStreamingApp] = [.appleMusic, .spotify, .deezer, .youtubeMusic]
         for code in ["running", "yoga", "hiit", "kitesurf"] {
