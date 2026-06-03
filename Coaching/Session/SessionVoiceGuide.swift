@@ -86,6 +86,9 @@ final class AVSpeechSpeaker: NSObject, SpeechSpeaking, AVSpeechSynthesizerDelega
         if let voiceIdentifier, let voice = AVSpeechSynthesisVoice(identifier: voiceIdentifier) {
             utterance.voice = voice
         }
+        // Léger ralentissement : la voix compacte (surtout FR homme) « mâche » ses
+        // mots au débit par défaut (retour device Sophie 2026-06-03).
+        utterance.rate = AVSpeechUtteranceDefaultSpeechRate * 0.92
         synthesizer.speak(utterance)
     }
 

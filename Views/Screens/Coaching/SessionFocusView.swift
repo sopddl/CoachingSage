@@ -33,6 +33,8 @@ struct SessionFocusView: View {
     @State private var audioCues = SessionAudioCues()
     // Story 3.35 — mode Audio (voix par-dessus le déroulé chronométré).
     @State private var voiceGuide: SessionVoiceGuide?
+    // Story 3.35d — toggle son (le sélecteur H/F vit désormais dans le profil).
+    @AppStorage(SessionVoicePrefs.enabledKey) private var voiceEnabled = true
     private let resolvedSportCode: String
     private let executionMode: SessionExecutionMode
 
@@ -430,16 +432,15 @@ struct SessionFocusView: View {
     }
 
     /// Pré-annonce vocale anti-Decathlon : « Prochain : <bloc> » avant l'effort,
-    /// « C'est parti » au démarrage du bloc. No-op hors mode Audio / voix OFF.
+    /// puis le nom du segment à chaque transition (« Course 1 », « Marche 1 »…).
+    /// No-op hors mode Audio / voix OFF.
     private func announceCurrentPhase() {
         guard isAudioMode, let phase = timerEngine.currentPhase, let guide = voiceGuide else { return }
         switch phase.kind {
         case .prepare:
-            guide.announce(String(localized: "coaching.session.voice.next \(phase.title)"))
-        case .work, .hold:
-            guide.announce(String(localized: "coaching.session.voice.go"))
-        case .rest:
-            break // bip seul
+            guide.announce(String(localized: "coaching.session.voice.next \(displayString(phase.label))"))
+        case .work, .hold, .rest:
+            guide.announce(displayString(phase.label))
         }
     }
 
@@ -451,26 +452,33 @@ struct SessionFocusView: View {
     }
 
     private var timedTopBar: some View {
-        VStack(spacing: 10) {
-            HStack {
-                Button { dismiss() } label: {
-                    Image(systemName: "xmark").font(.title3).foregroundStyle(.secondary)
-                }
-                .accessibilityIdentifier("coaching.session.focus.close")
-                Spacer()
-                progressionLabel
-                    .font(.caption.bold())
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Image(systemName: "xmark").font(.title3).opacity(0)
+        HStack {
+            Button { dismiss() } label: {
+                Image(systemName: "xmark").font(.title3).foregroundStyle(.secondary)
             }
+            .accessibilityIdentifier("coaching.session.focus.close")
+            Spacer()
+            progressionLabel
+                .font(.caption.bold())
+                .foregroundStyle(.secondary)
+            Spacer()
+            // Story 3.35d — en mode Audio : toggle son ON/OFF en haut à droite
+            // (le choix de voix Homme/Femme est dans le profil). Sinon miroir invisible.
             if isAudioMode {
-                // Réglages voix accessibles pendant la séance (toggle + H/F).
-                VoiceSettingsControls { enabled, gender in
-                    voiceGuide?.enabled = enabled
-                    voiceGuide?.gender = gender
-                    if !enabled { voiceGuide?.stop() }
+                Button {
+                    voiceEnabled.toggle()
+                    voiceGuide?.enabled = voiceEnabled
+                    if !voiceEnabled { voiceGuide?.stop() }
+                } label: {
+                    Image(systemName: voiceEnabled ? "speaker.wave.2.fill" : "speaker.slash.fill")
+                        .font(.title3)
+                        .foregroundStyle(voiceEnabled ? Color.coachingPrimary : .secondary)
                 }
+                .accessibilityLabel(Text("coaching.session.voice.toggle"))
+                .accessibilityValue(Text(voiceEnabled ? "coaching.session.voice.on" : "coaching.session.voice.off"))
+                .accessibilityIdentifier("coaching.session.focus.voiceToggle")
+            } else {
+                Image(systemName: "xmark").font(.title3).opacity(0)
             }
         }
         .padding(.horizontal)
@@ -480,27 +488,23 @@ struct SessionFocusView: View {
     @ViewBuilder
     private var timedCenter: some View {
         if let phase = timerEngine.currentPhase {
-            VStack(spacing: 12) {
-                Text(phaseKindLabel(phase))
-                    .font(.title2.bold())
-                    .foregroundStyle(phaseTint(phase))
-                    .textCase(.uppercase)
-                Text(verbatim: timeString(timerEngine.remaining))
-                    .font(.system(size: 92, weight: .bold, design: .rounded))
-                    .monospacedDigit()
-                    .foregroundStyle(.primary)
-                    .accessibilityIdentifier("coaching.session.focus.timed.countdown")
+            VStack(spacing: 14) {
                 if phase.kind == .prepare {
-                    Text("coaching.session.focus.timed.next \(phase.title)")
+                    Text("coaching.session.focus.timed.ready")
                         .font(.title3.bold())
+                        .foregroundStyle(.orange)
+                        .textCase(.uppercase)
+                    Text(verbatim: displayString(phase.label))
+                        .font(.title2.bold())
                         .multilineTextAlignment(.center)
+                    bigTime
                 } else {
-                    Text(verbatim: phase.title)
-                        .font(.title3.bold())
+                    Text(verbatim: displayString(phase.label))
+                        .font(.largeTitle.bold())
+                        .foregroundStyle(phaseTint(phase))
                         .multilineTextAlignment(.center)
-                    // « Ensuite : … » seulement si le prochain effort diffère (sur
-                    // un Tabata mono-exo, inutile de répéter le même nom — P2 review).
-                    if let next = upcomingEffortTitle, next != phase.title {
+                    bigTime
+                    if let next = upcomingLabel, next != displayString(phase.label) {
                         Text("coaching.session.focus.timed.then \(next)")
                             .font(.callout)
                             .foregroundStyle(.secondary)
@@ -510,6 +514,14 @@ struct SessionFocusView: View {
             }
             .padding(.horizontal, 24)
         }
+    }
+
+    private var bigTime: some View {
+        Text(verbatim: timeString(timerEngine.remaining))
+            .font(.system(size: 88, weight: .bold, design: .rounded))
+            .monospacedDigit()
+            .foregroundStyle(.primary)
+            .accessibilityIdentifier("coaching.session.focus.timed.countdown")
     }
 
     private var timedControls: some View {
@@ -542,12 +554,15 @@ struct SessionFocusView: View {
 
     // MARK: - Timed helpers
 
-    private func phaseKindLabel(_ phase: SessionTimerPhase) -> LocalizedStringKey {
-        switch phase.kind {
-        case .prepare: return "coaching.session.focus.timed.ready"
-        case .work:    return "coaching.session.focus.timed.work"
-        case .rest:    return "coaching.session.focus.timed.rest"
-        case .hold:    return "coaching.session.focus.timed.hold"
+    /// Texte affiché/parlé d'un libellé de phase (localisé). Nom d'exo/posture en
+    /// verbatim ; segments générés (Course/Marche/Effort/Récup) localisés.
+    private func displayString(_ label: PhaseLabel) -> String {
+        switch label {
+        case .raw(let s):    return s
+        case .effort:        return String(localized: "coaching.session.focus.timed.work")
+        case .recovery:      return String(localized: "coaching.session.focus.timed.rest")
+        case .run(let n):    return String(localized: "coaching.session.focus.timed.run \(n)")
+        case .walk(let n):   return String(localized: "coaching.session.focus.timed.walk \(n)")
         }
     }
 
@@ -560,8 +575,19 @@ struct SessionFocusView: View {
         }
     }
 
+    /// Toujours mm:ss → lève l'ambiguïté « EFFORT 21 » (21 = secondes, pas un score).
     private func timeString(_ s: Int) -> String {
-        s >= 60 ? String(format: "%d:%02d", s / 60, s % 60) : "\(s)"
+        String(format: "%d:%02d", s / 60, s % 60)
+    }
+
+    /// Libellé (localisé) du prochain segment actif (work/hold/rest), pour « Ensuite : … ».
+    private var upcomingLabel: String? {
+        guard timerEngine.currentIndex + 1 < timerEngine.phases.count else { return nil }
+        for i in (timerEngine.currentIndex + 1)..<timerEngine.phases.count {
+            let p = timerEngine.phases[i]
+            if p.kind != .prepare { return displayString(p.label) }
+        }
+        return nil
     }
 
     @ViewBuilder
@@ -596,15 +622,6 @@ struct SessionFocusView: View {
         let total = offsets.count
         let done = offsets.filter { $0 <= timerEngine.currentIndex }.count
         return (max(done, 1), max(total, 1))
-    }
-
-    private var upcomingEffortTitle: String? {
-        guard timerEngine.currentIndex + 1 < timerEngine.phases.count else { return nil }
-        for i in (timerEngine.currentIndex + 1)..<timerEngine.phases.count {
-            let k = timerEngine.phases[i].kind
-            if k == .work || k == .hold { return timerEngine.phases[i].title }
-        }
-        return nil
     }
 
     // MARK: - Sport color

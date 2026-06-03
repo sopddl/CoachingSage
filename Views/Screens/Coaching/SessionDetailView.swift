@@ -36,6 +36,10 @@ struct SessionDetailView: View {
                 VStack(alignment: .leading, spacing: 18) {
                     SessionHeroHeader(session: session, week: week, program: program)
 
+                    // Story 3.35d — bouton Démarrer aussi EN HAUT (visible sans
+                    // scroller), en plus de celui du bas.
+                    startFocusButton
+
                     SessionWhyPanel(session: session, week: week, program: program)
 
                     // Story 3.32 (AC7) — aperçu scannable : tap d'une ligne ancre
@@ -52,15 +56,16 @@ struct SessionDetailView: View {
 
                     SessionTimelineView(session: session, sportColor: sessionSportColor, sportCode: effectiveSessionSportCode)
 
-                    if let vm = completionVM {
-                        completionSection(vm: vm)
-                    }
-
                     // Story 3.33 — bouton « ▶ Démarrer / Reprendre » : ouvre le
                     // mode FOCUS plein écran (exécution guidée pas-à-pas).
                     startFocusButton
 
-                    // Story 3.35b — suggestions musique (liens Apple Music/Spotify).
+                    // Story 3.35d — « Marquer comme terminée » SOUS Démarrer.
+                    if let vm = completionVM {
+                        completionSection(vm: vm)
+                    }
+
+                    // Story 3.35b — suggestions musique (liens vers l'app choisie).
                     // L'app ne joue rien (T3) : on aide à lancer SA musique.
                     if !focusSteps.isEmpty {
                         SessionMusicSuggestions(sportCode: effectiveSessionSportCode)
