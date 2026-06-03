@@ -21,6 +21,7 @@ struct SessionFocusView: View {
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.appDependencies) private var deps
+    @Environment(\.languageManager) private var languageManager
 
     @State private var viewModel: SessionFocusViewModel
     @State private var selectedIndex: Int
@@ -70,7 +71,9 @@ struct SessionFocusView: View {
     /// Mode Audio (3.35) : voix par-dessus le déroulé chronométré.
     private var isAudioMode: Bool { executionMode == .audio }
 
-    private var currentLanguage: String { Locale.current.language.languageCode?.identifier ?? "fr" }
+    /// Langue de la voix = langue de CONTENU de l'app (tu lis FR → tu entends FR),
+    /// indépendante de la locale device. (Décision 3.35e.)
+    private var currentLanguage: String { languageManager.currentLanguage.rawValue }
 
     var body: some View {
         Group {
@@ -211,7 +214,7 @@ struct SessionFocusView: View {
     private var counterLabel: String {
         guard !steps.isEmpty,
               let pos = steps.firstIndex(where: { $0.index == selectedIndex }) else { return "" }
-        return "\(pos + 1) / \(steps.count)"
+        return "\(pos + 1) · \(steps.count)"
     }
 
     // MARK: - Contenu d'étape
@@ -287,14 +290,14 @@ struct SessionFocusView: View {
         if hasAny {
             HStack(spacing: 6) {
                 if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
-                    chip { Text(verbatim: "\(sets) × \(reps)") }
+                    chip { Text(verbatim: "\(sets) × \(reps.sanitizedForDisplay)") }
                 } else if let reps = ex.reps, !reps.isEmpty {
-                    chip { Text(verbatim: reps) }
+                    chip { Text(verbatim: reps.sanitizedForDisplay) }
                 } else if let sets = ex.sets {
                     chip { Text(verbatim: "\(sets) ×") }
                 }
                 if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
-                    chip { Text(verbatim: duration) }
+                    chip { Text(verbatim: duration.sanitizedForDisplay) }
                 }
                 if let rest = ex.restSeconds, rest > 0 {
                     chip { Text("coaching.adapter.exercise.rest \(rest)") }
@@ -397,12 +400,7 @@ struct SessionFocusView: View {
         }
         .onReceive(secondTick) { _ in timerEngine.tick() }
         .onChange(of: timerEngine.currentIndex) { _, _ in handlePhaseChange() }
-        .onChange(of: timerEngine.remaining) { _, new in
-            // Bips du countdown 3·2·1 pendant la pré-annonce (anti-Decathlon).
-            if timerEngine.currentPhase?.kind == .prepare && new >= 1 && !timerEngine.isPaused {
-                audioCues.play(.prepareTick)
-            }
-        }
+        .onChange(of: timerEngine.remaining) { _, new in handleTick(remaining: new) }
         .onChange(of: timerEngine.isFinished) { _, finished in
             if finished { handleTimedFinish() }
         }
@@ -410,12 +408,29 @@ struct SessionFocusView: View {
 
     private func handlePhaseChange() {
         guard let phase = timerEngine.currentPhase else { return }
+        // Bip de transition au démarrage d'un segment (le nom est pré-annoncé en
+        // fin du segment précédent → pas de double annonce ici).
         switch phase.kind {
         case .work, .hold: audioCues.play(.workStart)
         case .rest:        audioCues.play(.restStart)
-        case .prepare:     break // les bips sont gérés via le tick du countdown
+        case .prepare:     break
         }
-        announceCurrentPhase()
+    }
+
+    /// Bips + voix pendant le décompte d'une phase. Avant chaque transition :
+    /// « Prochain : <segment> » (~5 s avant la fin), puis compte à rebours vocal
+    /// « 3, 2, 1 » sur les 3 dernières secondes (anti-Decathlon).
+    private func handleTick(remaining new: Int) {
+        guard isAudioMode, !timerEngine.isPaused, let phase = timerEngine.currentPhase else { return }
+        // Pré-annonce vocale du prochain segment, en fin de phase active.
+        if phase.kind != .prepare, new == 5, phase.duration >= 7, let next = upcomingLabel {
+            voiceGuide?.announce(String(localized: "coaching.session.voice.next \(next)"))
+        }
+        // 3·2·1 : bip + chiffre parlé (prepare ET fin de segment).
+        if (1...3).contains(new) {
+            audioCues.play(.prepareTick)
+            voiceGuide?.announce("\(new)")
+        }
     }
 
     // MARK: - Voix (3.35)
@@ -431,17 +446,13 @@ struct SessionFocusView: View {
         )
     }
 
-    /// Pré-annonce vocale anti-Decathlon : « Prochain : <bloc> » avant l'effort,
-    /// puis le nom du segment à chaque transition (« Course 1 », « Marche 1 »…).
-    /// No-op hors mode Audio / voix OFF.
+    /// Pré-annonce vocale du tout 1ᵉʳ segment (anti-Decathlon) : « Prochain : … »
+    /// pendant la pré-annonce d'ouverture. Les transitions suivantes sont annoncées
+    /// par `handleTick` en fin de segment. No-op hors mode Audio / voix OFF.
     private func announceCurrentPhase() {
-        guard isAudioMode, let phase = timerEngine.currentPhase, let guide = voiceGuide else { return }
-        switch phase.kind {
-        case .prepare:
-            guide.announce(String(localized: "coaching.session.voice.next \(displayString(phase.label))"))
-        case .work, .hold, .rest:
-            guide.announce(displayString(phase.label))
-        }
+        guard isAudioMode, timerEngine.currentPhase?.kind == .prepare,
+              let phase = timerEngine.currentPhase, let guide = voiceGuide else { return }
+        guide.announce(String(localized: "coaching.session.voice.next \(displayString(phase.label))"))
     }
 
     private func handleTimedFinish() {
@@ -488,7 +499,7 @@ struct SessionFocusView: View {
     @ViewBuilder
     private var timedCenter: some View {
         if let phase = timerEngine.currentPhase {
-            VStack(spacing: 14) {
+            VStack(spacing: 16) {
                 if phase.kind == .prepare {
                     Text("coaching.session.focus.timed.ready")
                         .font(.title3.bold())
@@ -504,6 +515,8 @@ struct SessionFocusView: View {
                         .foregroundStyle(phaseTint(phase))
                         .multilineTextAlignment(.center)
                     bigTime
+                    // Scrubber : temps écoulé · barre · durée totale (pas de « / »).
+                    timeScrubber(phase: phase)
                     if let next = upcomingLabel, next != displayString(phase.label) {
                         Text("coaching.session.focus.timed.then \(next)")
                             .font(.callout)
@@ -522,6 +535,25 @@ struct SessionFocusView: View {
             .monospacedDigit()
             .foregroundStyle(.primary)
             .accessibilityIdentifier("coaching.session.focus.timed.countdown")
+    }
+
+    /// Barre de progression du segment : « écoulé · [====   ] · total » — montre où
+    /// on en est sans aucun « / » (retour Sophie 2026-06-03).
+    private func timeScrubber(phase: SessionTimerPhase) -> some View {
+        let elapsed = max(0, phase.duration - timerEngine.remaining)
+        let progress = phase.duration > 0 ? Double(elapsed) / Double(phase.duration) : 0
+        return HStack(spacing: 10) {
+            Text(verbatim: timeString(elapsed))
+                .font(.caption.monospacedDigit())
+                .foregroundStyle(.secondary)
+            ProgressView(value: min(max(progress, 0), 1))
+                .tint(phaseTint(phase))
+            Text(verbatim: timeString(phase.duration))
+                .font(.caption.monospacedDigit())
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: 280)
+        .accessibilityIdentifier("coaching.session.focus.timed.scrubber")
     }
 
     private var timedControls: some View {
@@ -558,11 +590,11 @@ struct SessionFocusView: View {
     /// verbatim ; segments générés (Course/Marche/Effort/Récup) localisés.
     private func displayString(_ label: PhaseLabel) -> String {
         switch label {
-        case .raw(let s):    return s
-        case .effort:        return String(localized: "coaching.session.focus.timed.work")
-        case .recovery:      return String(localized: "coaching.session.focus.timed.rest")
-        case .run(let n):    return String(localized: "coaching.session.focus.timed.run \(n)")
-        case .walk(let n):   return String(localized: "coaching.session.focus.timed.walk \(n)")
+        case .raw(let s):                return s.sanitizedForDisplay
+        case .effort:                    return String(localized: "coaching.session.focus.timed.work")
+        case .recovery:                  return String(localized: "coaching.session.focus.timed.rest")
+        case .run(let i, let t):         return String(localized: "coaching.session.focus.timed.run \(i) \(t)")
+        case .walk(let i, let t):        return String(localized: "coaching.session.focus.timed.walk \(i) \(t)")
         }
     }
 
@@ -593,25 +625,29 @@ struct SessionFocusView: View {
     @ViewBuilder
     private var progressionLabel: some View {
         if let p = timerEngine.currentPhase {
-            if p.kind == .hold {
-                // Yoga : « Posture p/P ».
+            if isRunWalk(p.label) {
+                // Run/walk : le grand titre « Course 1 sur 8 » porte déjà la progression.
+                EmptyView()
+            } else if p.kind == .hold {
                 let pos = position(of: .hold)
                 Text("coaching.session.focus.timed.posture \(pos.current) \(pos.total)")
             } else if let round = p.round, let tot = p.totalRounds, tot > 1 {
-                // HIIT en tours.
                 if let k = p.exerciseInRound, let K = p.totalInRound, K > 1 {
                     Text("coaching.session.focus.timed.roundExo \(round) \(tot) \(k) \(K)")
                 } else {
                     Text("coaching.session.focus.timed.round \(round) \(tot)")
                 }
             } else {
-                // Cardio / blocs simples : « Bloc i/N » (masqué si un seul bloc, P1 review).
                 let pos = position(of: .work)
                 if pos.total > 1 {
-                    Text("coaching.session.focus.timed.block \(pos.current) \(pos.total)")
+                    Text("coaching.session.focus.timed.step \(pos.current) \(pos.total)")
                 }
             }
         }
+    }
+
+    private func isRunWalk(_ label: PhaseLabel) -> Bool {
+        switch label { case .run, .walk: return true; default: return false }
     }
 
     /// Position (courant/total) parmi les phases d'un `kind` donné.

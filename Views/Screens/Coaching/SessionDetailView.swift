@@ -76,7 +76,7 @@ struct SessionDetailView: View {
                 .padding()
             }
         }
-        .navigationTitle(Text(verbatim: session.name))
+        .navigationTitle(Text(verbatim: session.name.sanitizedForDisplay))
         .navigationBarTitleDisplayMode(.inline)
         .glossaryDiscoveryTooltip(isPresented: $showDiscoveryTooltip)
         .task {

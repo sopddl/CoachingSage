@@ -10,13 +10,14 @@
 import Foundation
 import TemplateModel
 
-/// Libellé typé d'une phase (rendu localisé par la vue).
+/// Libellé typé d'une phase (rendu localisé par la vue). Le mot « bloc »
+/// n'apparaît JAMAIS côté écran (retour Sophie 2026-06-03).
 enum PhaseLabel: Equatable {
-    case raw(String)   // nom d'exo / posture (contenu)
-    case effort        // « Effort » générique
-    case recovery      // « Récup »
-    case run(Int)      // « Course N »
-    case walk(Int)     // « Marche N »
+    case raw(String)                    // nom d'exo / posture (contenu)
+    case effort                         // « Effort » générique
+    case recovery                       // « Récup »
+    case run(index: Int, total: Int)    // « Course N sur K »
+    case walk(index: Int, total: Int)   // « Marche N sur K »
 }
 
 struct SessionTimerPhase: Equatable, Identifiable {
@@ -94,15 +95,15 @@ enum SessionTimerPhaseBuilder {
     }
 
     private static func intervalBlockPhases(step: SessionStep, sets: Int, segments: [SessionDurationParser.Segment]) -> [SessionTimerPhase] {
-        // Construit la séquence de segments (× tours) avec numérotation par type.
-        var runN = 0, walkN = 0
+        // Construit la séquence de segments (× tours). Numérotation = le tour (1 course
+        // + 1 marche par tour) → « Course 1 sur 8 », « Marche 1 sur 8 ».
         var built: [(kind: SessionTimerPhase.Kind, duration: Int, label: PhaseLabel, round: Int, k: Int)] = []
         for r in 1...sets {
             for (si, seg) in segments.enumerated() {
                 let dur = max(seg.seconds, 1)
                 switch classify(seg.label) {
-                case .run:     runN += 1;  built.append((.work, dur, .run(runN), r, si + 1))
-                case .walk:    walkN += 1; built.append((.rest, dur, .walk(walkN), r, si + 1))
+                case .run:     built.append((.work, dur, .run(index: r, total: sets), r, si + 1))
+                case .walk:    built.append((.rest, dur, .walk(index: r, total: sets), r, si + 1))
                 case .generic: built.append((.work, dur, .effort, r, si + 1))
                 }
             }

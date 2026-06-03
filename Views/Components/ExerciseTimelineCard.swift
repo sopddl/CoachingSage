@@ -177,14 +177,14 @@ struct ExerciseTimelineCard: View {
         if hasAnyMetric {
             HStack(spacing: 6) {
                 if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
-                    metricChip { Text(verbatim: "\(sets) × \(reps)") }
+                    metricChip { Text(verbatim: "\(sets) × \(reps.sanitizedForDisplay)") }
                 } else if let reps = ex.reps, !reps.isEmpty {
-                    metricChip { Text(verbatim: reps) }
+                    metricChip { Text(verbatim: reps.sanitizedForDisplay) }
                 } else if let sets = ex.sets {
                     metricChip { Text(verbatim: "\(sets) ×") }
                 }
                 if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
-                    metricChip { Text(verbatim: duration) }
+                    metricChip { Text(verbatim: duration.sanitizedForDisplay) }
                 }
                 if let rest = ex.restSeconds, rest > 0 {
                     metricChip { Text("coaching.adapter.exercise.rest \(rest)") }

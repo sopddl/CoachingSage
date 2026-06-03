@@ -29,6 +29,9 @@ struct SessionView: View {
     @State private var libraryLoadFailed: Bool = false
     @State private var sheetSelection: SheetSelection?
     @State private var adaptedRoute: AdaptedProgramRoute?
+    /// Story 3.35e — « Démarrer ma prochaine séance » mène directement à la FICHE
+    /// SÉANCE (et plus au programme).
+    @State private var sessionRoute: SessionDetailRoute?
     @State private var presentationError: String?
     @State private var nowTick: Date = Date()
     /// V2 #6 — loader overlay pendant la génération auto déclenchée par tap
@@ -128,6 +131,15 @@ struct SessionView: View {
                             modifiedSessionCoordinates: route.modifiedSessionCoordinates
                         )
                     }
+                }
+                .navigationDestination(item: $sessionRoute) { route in
+                    SessionDetailView(
+                        session: route.session,
+                        week: route.week,
+                        program: route.program,
+                        isModifiedByRegen: route.isModifiedByRegen,
+                        recordId: route.recordId
+                    )
                 }
                 .task {
                     await bootstrapVMIfNeeded()
@@ -488,11 +500,35 @@ struct SessionView: View {
             await refreshDashboard()
         }
         // Re-fetch après markStarted (record peut être stale).
-        if let refreshed = vm.recordsByID[summary.id] {
-            pushAdaptedProgram(record: refreshed)
+        let effective = vm.recordsByID[summary.id] ?? record
+        // Story 3.35e — on va DIRECTEMENT sur la fiche séance (et plus sur le
+        // programme). Si on ne sait pas résoudre la prochaine séance, repli sur
+        // le programme (jamais de cul-de-sac).
+        if let route = sessionRoute(for: effective, summary: summary) {
+            sessionRoute = route
         } else {
-            pushAdaptedProgram(record: record)
+            pushAdaptedProgram(record: effective)
         }
+    }
+
+    /// Résout la fiche de la prochaine séance d'un record : mappe la
+    /// `summary.nextSession` (PersistedSession : weekNumber/day) vers la
+    /// `AdaptedSession`/`AdaptedWeek` du programme adapté.
+    @MainActor
+    private func sessionRoute(for record: AdaptedProgramRecord, summary: ProgramSummary) -> SessionDetailRoute? {
+        guard let applied = record.toAppliedAdaptedProgram(),
+              let next = summary.nextSession,
+              let week = applied.program.weeks.first(where: { $0.weekNumber == next.weekNumber }),
+              let session = week.sessions.first(where: { $0.day == next.day })
+        else { return nil }
+        let modified = dashboardViewModel?.modifiedSessionCoordinates(forRecordId: record.id) ?? []
+        return SessionDetailRoute(
+            session: session,
+            week: week,
+            program: applied.program,
+            recordId: record.id,
+            isModifiedByRegen: modified.contains(SessionCoordinate(weekNumber: week.weekNumber, day: session.day))
+        )
     }
 
     // MARK: - Bootstrap VM
@@ -923,6 +959,20 @@ private struct AdaptedProgramRoute: Hashable {
 
     func hash(into hasher: inout Hasher) { hasher.combine(id) }
     static func == (lhs: AdaptedProgramRoute, rhs: AdaptedProgramRoute) -> Bool { lhs.id == rhs.id }
+}
+
+// MARK: - SessionDetailRoute (Story 3.35e — fiche séance depuis le dashboard)
+
+private struct SessionDetailRoute: Hashable {
+    let id = UUID()
+    let session: AdaptedSession
+    let week: AdaptedWeek
+    let program: AdaptedProgram
+    let recordId: UUID?
+    let isModifiedByRegen: Bool
+
+    func hash(into hasher: inout Hasher) { hasher.combine(id) }
+    static func == (lhs: SessionDetailRoute, rhs: SessionDetailRoute) -> Bool { lhs.id == rhs.id }
 }
 
 #Preview {

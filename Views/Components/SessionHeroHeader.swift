@@ -57,7 +57,7 @@ struct SessionHeroHeader: View {
                         .font(.caption.bold())
                         .foregroundStyle(.secondary)
                         .textCase(.uppercase)
-                    Text(verbatim: session.name)
+                    Text(verbatim: session.name.sanitizedForDisplay)
                         .font(.title3.bold())
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.leading)
