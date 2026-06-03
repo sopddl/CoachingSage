@@ -394,8 +394,9 @@ struct SessionFocusView: View {
         .onAppear {
             UIApplication.shared.isIdleTimerDisabled = true // écran maintenu allumé (AC7)
             setupVoiceIfNeeded()
-            // Audio : on duck l'audio tiers (voix par-dessus la musique du user).
-            audioCues.activate(duckOthers: isAudioMode)
+            // Session audio active + moteur de bips prêt. En mode Audio, le ducking
+            // de la musique est géré à la demande par la voix (`duck()`/`unduck()`).
+            audioCues.activate()
             timerEngine.start()
             announceCurrentPhase() // pré-annonce vocale du 1ᵉʳ bloc (anti-Decathlon)
         }
