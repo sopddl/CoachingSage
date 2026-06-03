@@ -312,6 +312,7 @@
 		75CDDAA067A793ED4D64BFFA /* SchemaV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81F23317F3A7834B2AC77BD /* SchemaV3.swift */; };
 		768A0D5F36F88CF01DA281BF /* Level+Regression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D2D480744B08EFEAB585A9 /* Level+Regression.swift */; };
 		76D476ABF39BDF03B9E0A560 /* SessionTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E940184F4781BE91DBB40203 /* SessionTimelineView.swift */; };
+		76E116427434913B6698D51A /* BulletedNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5515977570C1403B32E97253 /* BulletedNotes.swift */; };
 		774A8273F032672C54DC7DBA /* AdaptedProgramScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44443E971CA6BB8F85793069 /* AdaptedProgramScreen.swift */; };
 		77723AF3840B15674D0DF654 /* DefaultCoachingProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B63602A900998FD8DF4029 /* DefaultCoachingProfileRepository.swift */; };
 		77D7E3332BBBE987C22F5F89 /* AutoProgramFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B16FF83756F95C66F4CA1D /* AutoProgramFactory.swift */; };
@@ -401,6 +402,7 @@
 		94C0B020C0963A96CFBE43EC /* EditEquipmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8D06727EAC37AFC5DF3AEE /* EditEquipmentView.swift */; };
 		94E758B10B57F37AF1D83618 /* SessionCompleteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32656484D2E764E7BF5876D1 /* SessionCompleteSheet.swift */; };
 		955C8C71D466E4B29E07BB4E /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 425DD5A4004D8904AF335FC0 /* Realtime */; };
+		956AD7AFAEB6988B20870E8D /* BulletedNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5515977570C1403B32E97253 /* BulletedNotes.swift */; };
 		96041685908C62800A211C0D /* SportQuestionnaireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C9BF1B6582AF431E9F64D8 /* SportQuestionnaireView.swift */; };
 		96A7A0EACFFD0BC7F2B8AAB2 /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66088B1D7A2BE3E61A939502 /* ProgressViewModel.swift */; };
 		970E0602829A915604A468EA /* ExerciseExplanation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036F9FF8E5046423FC8C940 /* ExerciseExplanation.swift */; };
@@ -761,6 +763,7 @@
 		52DF96692AD6EE1B50103B26 /* AccountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModelTests.swift; sourceTree = "<group>"; };
 		533F8456DBB6936941FFEF23 /* MockAdaptedProgramRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAdaptedProgramRepository.swift; sourceTree = "<group>"; };
 		54B3C0E72DD03CFCA32481EA /* coachingsage-icon-dark.svg */ = {isa = PBXFileReference; path = "coachingsage-icon-dark.svg"; sourceTree = "<group>"; };
+		5515977570C1403B32E97253 /* BulletedNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletedNotes.swift; sourceTree = "<group>"; };
 		567401E3501A58FD3263A9D6 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		570D1B2505151C5A7D412346 /* DormantBootstrapServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DormantBootstrapServiceTests.swift; sourceTree = "<group>"; };
 		58526BB1761790F330080772 /* AutoProfileInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoProfileInference.swift; sourceTree = "<group>"; };
@@ -1014,9 +1017,9 @@
 		FD16032A07CE30E27DE86BCA /* JSONDecoder+Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Supabase.swift"; sourceTree = "<group>"; };
 		FE2EBCDA71129879332CF57F /* MockCoachingSportProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoachingSportProfileRepository.swift; sourceTree = "<group>"; };
 		FE4D8313E07E639BE62B7644 /* ProgramDurationResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDurationResolverTests.swift; sourceTree = "<group>"; };
-		"TEMP_821B0123-2641-49BF-BFAE-CAA724F5C447" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_C452B7B2-5B6A-4680-829B-D9D90DF4ABB9" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_E785A7AE-F478-48CD-AE45-2DE910605BBA" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_1767141F-6407-4E11-AAC2-B0B96EC086F5" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_3A583E44-8D0E-4C7E-BFCB-CD41887F8919" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_B82FB6DD-8B13-4264-A5EA-35C986E5C2DB" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1835,6 +1838,7 @@
 		D6E4ED7FFE575F786075101A /* Session */ = {
 			isa = PBXGroup;
 			children = (
+				5515977570C1403B32E97253 /* BulletedNotes.swift */,
 				BE32B62C777B1670AE606031 /* SessionMusicSuggestions.swift */,
 				82E3ABEE6A2E31926C53985D /* SessionStepCheckmark.swift */,
 				CA731EFDEC22BD1CFCF073A9 /* SessionStepDots.swift */,
@@ -1995,12 +1999,12 @@
 			path = ExerciseTimelineCardSnapshotTests;
 			sourceTree = "<group>";
 		};
-		"TEMP_B9854D03-412E-4AD7-A1E7-BDE94F4F8D49" /* CoachingSage */ = {
+		"TEMP_CF87DC19-978A-46A9-BDF3-F460F5E42EBB" /* CoachingSage */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_821B0123-2641-49BF-BFAE-CAA724F5C447" /* Config-Debug.xcconfig */,
-				"TEMP_C452B7B2-5B6A-4680-829B-D9D90DF4ABB9" /* Config-Release.xcconfig */,
-				"TEMP_E785A7AE-F478-48CD-AE45-2DE910605BBA" /* Config-Staging.xcconfig */,
+				"TEMP_1767141F-6407-4E11-AAC2-B0B96EC086F5" /* Config-Debug.xcconfig */,
+				"TEMP_B82FB6DD-8B13-4264-A5EA-35C986E5C2DB" /* Config-Release.xcconfig */,
+				"TEMP_3A583E44-8D0E-4C7E-BFCB-CD41887F8919" /* Config-Staging.xcconfig */,
 			);
 			path = CoachingSage;
 			sourceTree = "<group>";
@@ -2207,6 +2211,7 @@
 				85EDB770D05E15F408376A2C /* AutoTitleBuilder.swift in Sources */,
 				7B14CB627E712868AD05969C /* BicepsCurlIllustration.swift in Sources */,
 				6C97594332682326931F7E33 /* BirdDogIllustration.swift in Sources */,
+				76E116427434913B6698D51A /* BulletedNotes.swift in Sources */,
 				08CFD540346B1C02F4EBA017 /* CalfRaiseIllustration.swift in Sources */,
 				D47539F760B0F1D44DD0BF60 /* ChatBubbleView.swift in Sources */,
 				9952ED67FB7DE8AC68656F0F /* ClamshellIllustration.swift in Sources */,
@@ -2475,6 +2480,7 @@
 				B29907B6ED00C94A6737E8D4 /* AutoTitleBuilderTests.swift in Sources */,
 				4B127DBA200834A58FE49460 /* BicepsCurlIllustration.swift in Sources */,
 				2B7DA3BED97FBC21C3F7D22F /* BirdDogIllustration.swift in Sources */,
+				956AD7AFAEB6988B20870E8D /* BulletedNotes.swift in Sources */,
 				A6D8BBF6251416B7A575F885 /* CalfRaiseIllustration.swift in Sources */,
 				A28619BA5931197286CA688D /* ChatBubbleView.swift in Sources */,
 				B2F3D96B273FD1F31D6FF78A /* ChatBubbleViewTests.swift in Sources */,
@@ -2833,7 +2839,7 @@
 		};
 		61B5E17E96E19C8E098AA3DC /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_E785A7AE-F478-48CD-AE45-2DE910605BBA" /* Config-Staging.xcconfig */;
+			baseConfigurationReference = "TEMP_3A583E44-8D0E-4C7E-BFCB-CD41887F8919" /* Config-Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2894,7 +2900,7 @@
 		};
 		6444A73E993A0AE7B8936309 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_C452B7B2-5B6A-4680-829B-D9D90DF4ABB9" /* Config-Release.xcconfig */;
+			baseConfigurationReference = "TEMP_B82FB6DD-8B13-4264-A5EA-35C986E5C2DB" /* Config-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3045,7 +3051,7 @@
 		};
 		E103FFBD6D87D5F977B573D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_821B0123-2641-49BF-BFAE-CAA724F5C447" /* Config-Debug.xcconfig */;
+			baseConfigurationReference = "TEMP_1767141F-6407-4E11-AAC2-B0B96EC086F5" /* Config-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

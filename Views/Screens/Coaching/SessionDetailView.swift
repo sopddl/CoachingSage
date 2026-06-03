@@ -118,6 +118,15 @@ struct SessionDetailView: View {
     private var startFocusButton: some View {
         if !focusSteps.isEmpty {
             Button {
+                // Story 3.35h — un « Démarrer » (pas une reprise) repart à zéro :
+                // on efface la progression d'étapes pour permettre de REFAIRE une
+                // séance déjà faite (comme Decathlon Coach) sans qu'elle s'ouvre
+                // directement sur « terminée ».
+                if !canResume, let recordId {
+                    SessionProgressStore.documentsDefault()
+                        .clear(recordId: recordId, week: week.weekNumber, day: session.day)
+                    focusProgress = []
+                }
                 showFocus = true
             } label: {
                 HStack(spacing: 10) {
@@ -216,9 +225,7 @@ struct SessionDetailView: View {
                     .foregroundStyle(.secondary)
             }
             if let notes = record.notes, !notes.isEmpty {
-                Text(verbatim: notes)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                BulletedNotes(text: notes, font: .caption)
                     .padding(.top, 2)
             }
             HStack(spacing: 12) {

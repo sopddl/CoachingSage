@@ -10,11 +10,19 @@ final class SessionPhaseTextTests: XCTestCase {
 
     func test_bulletLines_splitsOnPlus_andSanitizesSlash() {
         let lines = SessionPhaseText.bulletLines(from: warmup)
-        XCTAssertEqual(lines.count, 4)
+        // Découpe sur « + » ET fins de phrase → la consigne « Ne jamais sauter… »
+        // devient sa propre puce.
         XCTAssertEqual(lines[0], "5 min de marche progressive")
         XCTAssertEqual(lines[1], "10 cercles de chevilles · côté") // « / » → « · »
+        XCTAssertTrue(lines.contains("Ne jamais sauter cette étape"))
         // La mention « Total : … » est retirée du corps.
         XCTAssertFalse(lines.joined().contains("Total"))
+    }
+
+    func test_bulletLines_splitsProseSentences() {
+        let notes = "Allure très lente. Si le souffle coupe, ralentis. Total bloc : 20 min."
+        let lines = SessionPhaseText.bulletLines(from: notes)
+        XCTAssertEqual(lines, ["Allure très lente", "Si le souffle coupe, ralentis"])
     }
 
     func test_totalLabel_extractsTotalMinutes() {
@@ -27,6 +35,6 @@ final class SessionPhaseTextTests: XCTestCase {
 
     func test_bulletLines_singleLineWhenNoPlus() {
         let lines = SessionPhaseText.bulletLines(from: "3 min marche lente.")
-        XCTAssertEqual(lines, ["3 min marche lente."])
+        XCTAssertEqual(lines, ["3 min marche lente"]) // point final retiré
     }
 }

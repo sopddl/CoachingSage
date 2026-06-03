@@ -156,6 +156,13 @@ struct SessionFocusView: View {
             completionVM = vm
             Task {
                 await vm.load()
+                // Story 3.35h — enregistre la complétion DÈS la fin du FOCUS (et non
+                // seulement si l'user valide la feuille) → le dashboard ne reproposera
+                // plus cette séance comme « prochaine ». La feuille reste pour les
+                // détails optionnels (durée/RPE/notes).
+                if vm.completion == nil {
+                    await vm.save(actualDurationMinutes: nil, rpe: nil, notes: nil)
+                }
                 showCompleteSheet = true
             }
         } else {
@@ -275,8 +282,7 @@ struct SessionFocusView: View {
         metricsRow(ex)
 
         if let notes = ex.notes, !notes.isEmpty {
-            GlossaryRichText(text: notes, font: .callout, foreground: .primary)
-                .fixedSize(horizontal: false, vertical: true)
+            BulletedNotes(text: notes, font: .callout)
         }
 
         let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.name)
