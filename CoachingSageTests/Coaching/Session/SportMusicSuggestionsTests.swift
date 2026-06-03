@@ -1,6 +1,6 @@
 // CoachingSageTests/Coaching/Session/SportMusicSuggestionsTests.swift
-// Story 3.35b — suggestions musique : chaque sport renvoie 2-5 ambiances non
-// vides + construction des liens Apple Music / Spotify (encodage).
+// Story 3.35b/c — suggestions musique : 2-5 ambiances/sport + liens vers l'app
+// CHOISIE (Apple Music / Spotify / Deezer / YouTube Music ; nil si « Aucune »).
 import XCTest
 @testable import CoachingSage
 
@@ -25,24 +25,61 @@ final class SportMusicSuggestionsTests: XCTestCase {
         XCTAssertFalse(a.isEmpty)
     }
 
+    // MARK: - Liens par application choisie
+
     func test_appleMusicLink_isSearchURL() {
-        let url = MusicLinkBuilder.url(platform: .appleMusic, searchTerm: "running workout energy")
+        let url = MusicLinkBuilder.url(app: .appleMusic, searchTerm: "running workout energy")
         XCTAssertEqual(url?.absoluteString, "https://music.apple.com/search?term=running%20workout%20energy")
     }
 
     func test_spotifyLink_isSearchURL() {
-        let url = MusicLinkBuilder.url(platform: .spotify, searchTerm: "yoga flow calm")
+        let url = MusicLinkBuilder.url(app: .spotify, searchTerm: "yoga flow calm")
         XCTAssertEqual(url?.absoluteString, "https://open.spotify.com/search/yoga%20flow%20calm")
     }
 
-    func test_links_neverNilForAllAmbiances() {
+    func test_deezerLink_isSearchURL() {
+        let url = MusicLinkBuilder.url(app: .deezer, searchTerm: "gym workout hype")
+        XCTAssertEqual(url?.absoluteString, "https://www.deezer.com/search/gym%20workout%20hype")
+    }
+
+    func test_youtubeMusicLink_isSearchURL() {
+        let url = MusicLinkBuilder.url(app: .youtubeMusic, searchTerm: "hiit workout high energy")
+        XCTAssertEqual(url?.absoluteString, "https://music.youtube.com/search?q=hiit%20workout%20high%20energy")
+    }
+
+    func test_noneApp_returnsNilLink() {
+        XCTAssertNil(MusicLinkBuilder.url(app: .none, searchTerm: "anything"))
+    }
+
+    func test_links_neverNilForProviderApps() {
+        let providers: [MusicStreamingApp] = [.appleMusic, .spotify, .deezer, .youtubeMusic]
         for code in ["running", "yoga", "hiit", "kitesurf"] {
             for amb in SportMusicSuggestions.ambiances(forSportCode: code) {
-                for platform in MusicPlatform.allCases {
-                    XCTAssertNotNil(MusicLinkBuilder.url(platform: platform, searchTerm: amb.searchTerm),
-                                    "lien nil pour \(code)/\(amb.kind)/\(platform)")
+                for app in providers {
+                    XCTAssertNotNil(MusicLinkBuilder.url(app: app, searchTerm: amb.searchTerm),
+                                    "lien nil pour \(code)/\(amb.kind)/\(app.rawValue)")
                 }
             }
         }
+    }
+
+    // MARK: - MusicStreamingApp
+
+    func test_musicApp_brandNames() {
+        XCTAssertEqual(MusicStreamingApp.appleMusic.brandName, "Apple Music")
+        XCTAssertEqual(MusicStreamingApp.spotify.brandName, "Spotify")
+        XCTAssertEqual(MusicStreamingApp.deezer.brandName, "Deezer")
+        XCTAssertEqual(MusicStreamingApp.youtubeMusic.brandName, "YouTube Music")
+        XCTAssertNil(MusicStreamingApp.none.brandName)
+    }
+
+    func test_musicApp_isProvider() {
+        XCTAssertTrue(MusicStreamingApp.deezer.isProvider)
+        XCTAssertFalse(MusicStreamingApp.none.isProvider)
+    }
+
+    func test_musicApp_allCasesIncludeDeezer() {
+        XCTAssertTrue(MusicStreamingApp.allCases.contains(.deezer))
+        XCTAssertEqual(MusicStreamingApp.defaultApp, .appleMusic)
     }
 }
