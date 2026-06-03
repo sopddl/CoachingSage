@@ -70,7 +70,16 @@ public enum ExerciseExplanationSeed {
         }
     }
 
-    static let entries: [SeedEntry] = [
+    /// Catalogue effectif = noyau strength manuel (11 exos, Story 3.24b) +
+    /// contenu pédagogique généré par sport (Phase 1 pédagogie 2026-06-03,
+    /// cf `ExerciseExplanationSeed+Generated.swift`). Le noyau est en TÊTE :
+    /// en cas de matcher chevauchant, l'entrée la plus anciennement validée
+    /// gagne (first-hit par ordre de tableau dans `explanation(for:)`).
+    static var entries: [SeedEntry] {
+        coreSeeds + generatedSeeds
+    }
+
+    static let coreSeeds: [SeedEntry] = [
         // 1. Développé couché — bench press
         SeedEntry(
             matchers: ["bench press", "developpe couche", "developpe-couche", "bench barre"],
