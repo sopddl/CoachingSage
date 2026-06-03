@@ -363,6 +363,9 @@ struct SessionView: View {
                 onTapUpcomingSession: { summary, persisted in
                     openUpcomingSession(summary: summary, persisted: persisted)
                 },
+                sessionNumber: { summary, persisted in
+                    dashboardSessionNumber(summary: summary, session: persisted)
+                },
                 onDeleteProgram: { summary in
                     Task { await deleteProgramSummary(summary) }
                 },
@@ -512,6 +515,15 @@ struct SessionView: View {
         } else {
             pushAdaptedProgram(record: effective)
         }
+    }
+
+    /// Story 3.35l — numéro de séance incrémental (toutes séances, ordre semaine/jour)
+    /// pour l'affichage dashboard. Cohérent avec `AdaptedProgramView.globalSessionNumber`.
+    @MainActor
+    private func dashboardSessionNumber(summary: ProgramSummary, session: PersistedSession) -> Int {
+        guard let record = dashboardViewModel?.recordsByID[summary.id] else { return 0 }
+        let ordered = record.sessions.sorted { ($0.weekNumber, $0.day) < ($1.weekNumber, $1.day) }
+        return (ordered.firstIndex { $0.id == session.id }.map { $0 + 1 }) ?? 0
     }
 
     /// Story 3.35j — ouvre la fiche d'une séance QUELCONQUE tapée dans la liste du
