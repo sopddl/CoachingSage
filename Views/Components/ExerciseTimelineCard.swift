@@ -81,9 +81,14 @@ struct ExerciseTimelineCard: View {
                         .foregroundStyle(.orange)
                         .font(.caption)
                 }
-                Text(verbatim: exercise.displayName)
-                    .font(.callout.bold())
-                    .foregroundStyle(.primary)
+                // Pédagogie Phase 1 — le titre passe par le glossaire (jargon
+                // tappable : FTP, Z2, vinyasa…) + sanitize "/" → " · ".
+                GlossaryRichText(
+                    text: exercise.displayName.sanitizedForDisplay,
+                    font: .callout.bold(),
+                    foreground: .primary
+                )
+                .fixedSize(horizontal: false, vertical: true)
             }
             if let pattern = resolvedPattern, let code = sportCode, pattern != .generic {
                 ExercisePatternIllustration(pattern: pattern, sportCode: code, exerciseName: exercise.name)

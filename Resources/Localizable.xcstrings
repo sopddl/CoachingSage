@@ -1317,6 +1317,38 @@
         }
       }
     },
+    "coaching.adapter.session.number %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Session %lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Séance %lld"
+          }
+        }
+      }
+    },
+    "coaching.adapter.session.numberedLine %lld %lld %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Session %1$lld · Week %2$lld · %3$lld min"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Séance %1$lld · Sem %2$lld · %3$lld min"
+          }
+        }
+      }
+    },
     "coaching.adapter.session.regen.banner.body" : {
       "localizations" : {
         "en" : {
@@ -1365,25 +1397,8 @@
         }
       }
     },
-    "coaching.adapter.session.number %lld" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Session %lld" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Séance %lld" } }
-      }
-    },
-    "coaching.adapter.session.numberedLine %lld %lld %lld" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Session %1$lld · Week %2$lld · %3$lld min" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Séance %1$lld · Sem %2$lld · %3$lld min" } }
-      }
-    },
-    "coaching.adapter.week.info" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Week details" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Détails de la semaine" } }
-      }
-    },
     "coaching.adapter.session.shortLine %lld %lld %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1460,6 +1475,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En cours"
+          }
+        }
+      }
+    },
+    "coaching.adapter.week.info" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Week details"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Détails de la semaine"
           }
         }
       }
@@ -2035,6 +2066,22 @@
         }
       }
     },
+    "coaching.session.focus.advance" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avancer"
+          }
+        }
+      }
+    },
     "coaching.session.focus.celebration" : {
       "localizations" : {
         "en" : {
@@ -2145,12 +2192,6 @@
             "value" : "Reprendre · étape %lld"
           }
         }
-      }
-    },
-    "coaching.session.focus.advance" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Next" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Avancer" } }
       }
     },
     "coaching.session.focus.skip" : {
@@ -2883,7 +2924,6 @@
       }
     },
     "coaching.session.voice.go" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3737,16 +3777,20 @@
       }
     },
     "dashboard.active.next.allSessions" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "See all sessions" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Voir toutes les séances" } }
-      }
-    },
-    "dashboard.active.week.separator" : {
-      "comment" : "Story 3.35l — séparateur pleine largeur « Semaine N » (de la place, mot entier)",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Week %lld" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Semaine %lld" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See all sessions"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir toutes les séances"
+          }
+        }
       }
     },
     "dashboard.active.next.coordinate.format" : {
@@ -4165,6 +4209,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mes routines"
+          }
+        }
+      }
+    },
+    "dashboard.active.week.separator" : {
+      "comment" : "Story 3.35l — séparateur pleine largeur « Semaine N » (de la place, mot entier)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Week %lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semaine %lld"
           }
         }
       }
