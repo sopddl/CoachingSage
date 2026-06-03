@@ -702,18 +702,8 @@ private struct NextSessionCard: View {
                     .font(.system(size: 12, weight: .regular))
                     .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
             }
-            // Story 3.35h — accès explicite à TOUTES les séances (ouvrir/lancer
-            // une autre que la proposée, ex. la séance 3 avant la 2).
-            Button(action: onTapDetail) {
-                HStack(spacing: 4) {
-                    Text("dashboard.active.next.allSessions")
-                    Image(systemName: "chevron.right").font(.system(size: 10, weight: .bold))
-                }
-                .font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(Color.coachingOnPrimary.opacity(0.95))
-            }
-            .buttonStyle(.plain)
-            .accessibilityIdentifier("dashboard.active.next.allSessions")
+            // Story 3.35i — lien « Voir toutes les séances » retiré (redondant :
+            // le tap sur la carte ouvre déjà le programme avec toutes les séances).
         }
     }
 
