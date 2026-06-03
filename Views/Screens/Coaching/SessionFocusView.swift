@@ -408,29 +408,42 @@ struct SessionFocusView: View {
 
     private func handlePhaseChange() {
         guard let phase = timerEngine.currentPhase else { return }
-        // Bip de transition au démarrage d'un segment (le nom est pré-annoncé en
-        // fin du segment précédent → pas de double annonce ici).
         switch phase.kind {
-        case .work, .hold: audioCues.play(.workStart)
-        case .rest:        audioCues.play(.restStart)
-        case .prepare:     break
+        case .work, .hold:
+            audioCues.play(.workStart)
+            // « C'est parti ! » au lancement d'un effort sortant de la pré-annonce.
+            if precededByPrepare { voiceGuide?.announce(String(localized: "coaching.session.voice.go")) }
+        case .rest:
+            audioCues.play(.restStart)
+        case .warmup, .cooldown:
+            voiceGuide?.announce(displayString(phase.label))
+        case .prepare:
+            break
         }
+    }
+
+    /// True si la phase précédant la phase courante était la pré-annonce.
+    private var precededByPrepare: Bool {
+        let i = timerEngine.currentIndex - 1
+        guard timerEngine.phases.indices.contains(i) else { return false }
+        return timerEngine.phases[i].kind == .prepare
     }
 
     /// Bips + voix pendant le décompte d'une phase. Avant chaque transition :
     /// « Prochain : <segment> » (~5 s avant la fin), puis compte à rebours vocal
     /// « 3, 2, 1 » sur les 3 dernières secondes (anti-Decathlon).
     private func handleTick(remaining new: Int) {
-        guard isAudioMode, !timerEngine.isPaused, let phase = timerEngine.currentPhase else { return }
+        guard !timerEngine.isPaused, let phase = timerEngine.currentPhase, !phase.isManual else { return }
+        // Bips du compte à rebours 3·2·1 — toujours (yoga + audio).
+        if (1...3).contains(new) { audioCues.play(.prepareTick) }
+        // Voix : uniquement en mode Audio (course/vélo/rando).
+        guard isAudioMode else { return }
         // Pré-annonce vocale du prochain segment, en fin de phase active.
         if phase.kind != .prepare, new == 5, phase.duration >= 7, let next = upcomingLabel {
             voiceGuide?.announce(String(localized: "coaching.session.voice.next \(next)"))
         }
-        // 3·2·1 : bip + chiffre parlé (prepare ET fin de segment).
-        if (1...3).contains(new) {
-            audioCues.play(.prepareTick)
-            voiceGuide?.announce("\(new)")
-        }
+        // Chiffre parlé 3·2·1.
+        if (1...3).contains(new) { voiceGuide?.announce("\(new)") }
     }
 
     // MARK: - Voix (3.35)
@@ -450,9 +463,15 @@ struct SessionFocusView: View {
     /// pendant la pré-annonce d'ouverture. Les transitions suivantes sont annoncées
     /// par `handleTick` en fin de segment. No-op hors mode Audio / voix OFF.
     private func announceCurrentPhase() {
-        guard isAudioMode, timerEngine.currentPhase?.kind == .prepare,
-              let phase = timerEngine.currentPhase, let guide = voiceGuide else { return }
-        guide.announce(String(localized: "coaching.session.voice.next \(displayString(phase.label))"))
+        guard isAudioMode, let phase = timerEngine.currentPhase, let guide = voiceGuide else { return }
+        switch phase.kind {
+        case .prepare:
+            guide.announce(String(localized: "coaching.session.voice.next \(displayString(phase.label))"))
+        case .warmup, .cooldown:
+            guide.announce(displayString(phase.label)) // « Échauffement » / « Retour au calme »
+        default:
+            break
+        }
     }
 
     private func handleTimedFinish() {
@@ -499,34 +518,115 @@ struct SessionFocusView: View {
     @ViewBuilder
     private var timedCenter: some View {
         if let phase = timerEngine.currentPhase {
-            VStack(spacing: 16) {
-                if phase.kind == .prepare {
-                    Text("coaching.session.focus.timed.ready")
-                        .font(.title3.bold())
-                        .foregroundStyle(.orange)
-                        .textCase(.uppercase)
-                    Text(verbatim: displayString(phase.label))
-                        .font(.title2.bold())
-                        .multilineTextAlignment(.center)
-                    bigTime
-                } else {
-                    Text(verbatim: displayString(phase.label))
-                        .font(.largeTitle.bold())
-                        .foregroundStyle(phaseTint(phase))
-                        .multilineTextAlignment(.center)
-                    bigTime
-                    // Scrubber : temps écoulé · barre · durée totale (pas de « / »).
-                    timeScrubber(phase: phase)
-                    if let next = upcomingLabel, next != displayString(phase.label) {
-                        Text("coaching.session.focus.timed.then \(next)")
-                            .font(.callout)
-                            .foregroundStyle(.secondary)
+            ScrollView {
+                VStack(spacing: 16) {
+                    if phase.isManual {
+                        manualPhaseContent(phase)
+                    } else if phase.kind == .prepare {
+                        Text("coaching.session.focus.timed.ready")
+                            .font(.title3.bold())
+                            .foregroundStyle(.orange)
+                            .textCase(.uppercase)
+                        Text(verbatim: displayString(phase.label))
+                            .font(.title2.bold())
                             .multilineTextAlignment(.center)
+                        bigTime
+                    } else {
+                        Text(verbatim: displayString(phase.label))
+                            .font(.largeTitle.bold())
+                            .foregroundStyle(phaseTint(phase))
+                            .multilineTextAlignment(.center)
+                        bigTime
+                        timeScrubber(phase: phase)
+                        if let next = upcomingLabel, next != displayString(phase.label) {
+                            Text("coaching.session.focus.timed.then \(next)")
+                                .font(.callout)
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.center)
+                        }
+                        // Story 3.35f — en minuté NON-audio (yoga/HIIT), on utilise
+                        // le grand écran : illustration de l'exo + « Comment l'exécuter ».
+                        if !isAudioMode { exerciseVisual(for: phase) }
                     }
                 }
+                .padding(.horizontal, 24)
+                .padding(.vertical, 8)
             }
-            .padding(.horizontal, 24)
         }
+    }
+
+    /// Échauffement / récup : libellé + durée totale + texte en puces + (le bouton
+    /// « Avancer » est dans `timedControls`). Pas de compte à rebours (à son rythme).
+    @ViewBuilder
+    private func manualPhaseContent(_ phase: SessionTimerPhase) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .firstTextBaseline) {
+                Text(verbatim: displayString(phase.label))
+                    .font(.largeTitle.bold())
+                    .foregroundStyle(phaseTint(phase))
+                Spacer()
+                if let total = manualPhaseTotal(phase) {
+                    Text(verbatim: total)
+                        .font(.headline)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            ForEach(Array(manualPhaseLines(phase).enumerated()), id: \.offset) { _, line in
+                Label {
+                    Text(verbatim: line)
+                        .font(.body)
+                        .fixedSize(horizontal: false, vertical: true)
+                } icon: {
+                    Image(systemName: "circle.fill").font(.system(size: 5)).foregroundStyle(.secondary)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    /// Illustration + tip de l'exo courant (mode minuté non-audio).
+    @ViewBuilder
+    private func exerciseVisual(for phase: SessionTimerPhase) -> some View {
+        if let ex = exercise(at: phase.stepIndex) {
+            let pattern = ExercisePatternResolver.resolve(ex, sportCode: resolvedSportCode)
+            if pattern != .generic {
+                ExercisePatternIllustration(pattern: pattern, sportCode: resolvedSportCode, exerciseName: ex.name, size: 180)
+                    .frame(maxWidth: .infinity)
+                    .padding(12)
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.name)
+            ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey)
+        }
+    }
+
+    private func exercise(at stepIndex: Int) -> AdaptedExercise? {
+        for step in steps where step.index == stepIndex {
+            if case .exercise(let ex) = step.kind { return ex }
+        }
+        return nil
+    }
+
+    /// Texte d'une phase manuelle (warmup/cooldown) découpé en lignes sur les « + »,
+    /// « / » assainis, et sans la mention « Total : … » (affichée à part).
+    private func manualPhaseLines(_ phase: SessionTimerPhase) -> [String] {
+        let text = manualPhaseText(phase)
+        return SessionPhaseText.bulletLines(from: text)
+    }
+
+    private func manualPhaseTotal(_ phase: SessionTimerPhase) -> String? {
+        SessionPhaseText.totalLabel(from: manualPhaseText(phase))
+    }
+
+    private func manualPhaseText(_ phase: SessionTimerPhase) -> String {
+        for step in steps where step.index == phase.stepIndex {
+            switch step.kind {
+            case .warmup(let t), .cooldown(let t): return t
+            default: return ""
+            }
+        }
+        return ""
     }
 
     private var bigTime: some View {
@@ -556,32 +656,48 @@ struct SessionFocusView: View {
         .accessibilityIdentifier("coaching.session.focus.timed.scrubber")
     }
 
+    @ViewBuilder
     private var timedControls: some View {
-        HStack(spacing: 16) {
-            Button { timerEngine.togglePause() } label: {
-                Label(
-                    timerEngine.isPaused ? "coaching.session.focus.timed.resume" : "coaching.session.focus.timed.pause",
-                    systemImage: timerEngine.isPaused ? "play.fill" : "pause.fill"
-                )
-                .font(.headline)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 15)
-                .foregroundStyle(.white)
-                .background(Color.coachingPrimary)
-                .clipShape(RoundedRectangle(cornerRadius: 14))
-            }
+        if timerEngine.currentPhase?.isManual == true {
+            // Échauffement / récup : un seul bouton « Avancer » (à son rythme).
             Button { timerEngine.skip() } label: {
-                Label("coaching.session.focus.skip", systemImage: "forward.fill")
+                Label("coaching.session.focus.advance", systemImage: "arrow.right.circle.fill")
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 15)
-                    .foregroundStyle(.primary)
-                    .background(Color(uiColor: .secondarySystemBackground))
+                    .foregroundStyle(.white)
+                    .background(Color.coachingPrimary)
                     .clipShape(RoundedRectangle(cornerRadius: 14))
             }
+            .buttonStyle(.plain)
+            .padding()
+        } else {
+            HStack(spacing: 16) {
+                Button { timerEngine.togglePause() } label: {
+                    Label(
+                        timerEngine.isPaused ? "coaching.session.focus.timed.resume" : "coaching.session.focus.timed.pause",
+                        systemImage: timerEngine.isPaused ? "play.fill" : "pause.fill"
+                    )
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 15)
+                    .foregroundStyle(.white)
+                    .background(Color.coachingPrimary)
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
+                Button { timerEngine.skip() } label: {
+                    Label("coaching.session.focus.advance", systemImage: "forward.fill")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 15)
+                        .foregroundStyle(.primary)
+                        .background(Color(uiColor: .secondarySystemBackground))
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
+            }
+            .buttonStyle(.plain)
+            .padding()
         }
-        .buttonStyle(.plain)
-        .padding()
     }
 
     // MARK: - Timed helpers
@@ -595,12 +711,16 @@ struct SessionFocusView: View {
         case .recovery:                  return String(localized: "coaching.session.focus.timed.rest")
         case .run(let i, let t):         return String(localized: "coaching.session.focus.timed.run \(i) \(t)")
         case .walk(let i, let t):        return String(localized: "coaching.session.focus.timed.walk \(i) \(t)")
+        case .warmup:                    return String(localized: "coaching.adapter.session.warmup")
+        case .cooldown:                  return String(localized: "coaching.adapter.session.cooldown")
         }
     }
 
     private func phaseTint(_ phase: SessionTimerPhase) -> Color {
         switch phase.kind {
-        case .prepare: return .orange
+        case .prepare:  return .orange
+        case .warmup:   return .orange
+        case .cooldown: return .blue
         case .work:    return .coachingPrimary
         case .rest:    return .blue
         case .hold:    return .coachingSuccess
@@ -625,7 +745,10 @@ struct SessionFocusView: View {
     @ViewBuilder
     private var progressionLabel: some View {
         if let p = timerEngine.currentPhase {
-            if isRunWalk(p.label) {
+            if p.isManual {
+                // Échauffement / récup : pas de compteur de progression.
+                EmptyView()
+            } else if isRunWalk(p.label) {
                 // Run/walk : le grand titre « Course 1 sur 8 » porte déjà la progression.
                 EmptyView()
             } else if p.kind == .hold {

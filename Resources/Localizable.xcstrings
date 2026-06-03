@@ -2129,6 +2129,12 @@
         }
       }
     },
+    "coaching.session.focus.advance" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Next" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Avancer" } }
+      }
+    },
     "coaching.session.focus.skip" : {
       "localizations" : {
         "en" : {
@@ -2162,6 +2168,7 @@
       }
     },
     "coaching.session.focus.timed.block %lld %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2325,14 +2332,34 @@
     },
     "coaching.session.focus.timed.run %lld %lld" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Run %1$lld of %2$lld" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Course %1$lld sur %2$lld" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run %1$lld of %2$lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Course %1$lld sur %2$lld"
+          }
+        }
       }
     },
     "coaching.session.focus.timed.step %lld %lld" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Step %1$lld of %2$lld" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Étape %1$lld sur %2$lld" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Step %1$lld of %2$lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Étape %1$lld sur %2$lld"
+          }
+        }
       }
     },
     "coaching.session.focus.timed.then %@" : {
@@ -2353,8 +2380,18 @@
     },
     "coaching.session.focus.timed.walk %lld %lld" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Walk %1$lld of %2$lld" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Marche %1$lld sur %2$lld" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Walk %1$lld of %2$lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marche %1$lld sur %2$lld"
+          }
+        }
       }
     },
     "coaching.session.focus.timed.work" : {

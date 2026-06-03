@@ -119,7 +119,10 @@ struct SessionOverviewList: View {
         var result: [Row] = []
         var index = 0
         if let w = session.warmup, !w.isEmpty {
-            result.append(Row(anchorIndex: index, kind: .warmup, title: "", metric: leadingDuration(in: w)))
+            // Métrique = durée TOTALE réelle (« Total : 8 min ») et plus « 5 min »
+            // trompeur (retour Sophie : la synthèse était incohérente).
+            result.append(Row(anchorIndex: index, kind: .warmup, title: "",
+                              metric: SessionPhaseText.totalLabel(from: w) ?? leadingDuration(in: w)))
             index += 1
         }
         var exNumber = 0
@@ -134,13 +137,23 @@ struct SessionOverviewList: View {
             index += 1
         }
         if let c = session.cooldown, !c.isEmpty {
-            result.append(Row(anchorIndex: index, kind: .cooldown, title: "", metric: leadingDuration(in: c)))
+            result.append(Row(anchorIndex: index, kind: .cooldown, title: "",
+                              metric: SessionPhaseText.totalLabel(from: c) ?? leadingDuration(in: c)))
         }
         return result
     }
 
-    /// Métrique-clé courte d'un exo : "sets×reps", sinon durée, sinon reps.
+    /// Métrique-clé courte d'un exo. Pour un bloc run/walk (sets≥2 + durée « + »),
+    /// on montre la durée TOTALE réelle (« 20 min ») plutôt que la durée tronquée
+    /// d'un segment — la synthèse doit être juste (retour Sophie 2026-06-03).
     static func compactMetric(for ex: AdaptedExercise) -> String? {
+        if let s = ex.sets, s >= 2 {
+            let segs = SessionDurationParser.segments(ex.duration)
+            if segs.count >= 2 {
+                let totalSec = s * segs.reduce(0) { $0 + $1.seconds }
+                return totalSec >= 60 ? "\(totalSec / 60) min" : "\(totalSec) s"
+            }
+        }
         if let s = ex.sets, let r = ex.reps?.trimmingCharacters(in: .whitespaces), !r.isEmpty {
             return "\(s)×\(r)".sanitizedForDisplay
         }

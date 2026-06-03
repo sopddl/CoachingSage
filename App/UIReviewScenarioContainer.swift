@@ -1306,15 +1306,16 @@ enum SessionFocusRunWalkFixture {
         templateId: "running-debutant-5k-8sem", sport: .running, level: .beginner,
         appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
     )
+    // Reproduit la VRAIE séance (nom condensé du template bundlé + échauffement + récup).
     static let session = AdaptedSession(
         day: 1, name: "Run/walk découverte", durationMinutes: 35, type: .mixed,
-        warmup: nil,
+        warmup: "5 min de marche progressive + 10 cercles de chevilles/côté + 10 balancements de jambe avant-arrière/côté + 10 demi-squats lents. Total : 8 min. Ne jamais sauter cette étape.",
         exercises: [
-            AdaptedExercise(name: "Bloc run/walk", originalName: "Bloc run/walk",
+            AdaptedExercise(name: "Bloc run/walk 1 min / 1 min 30", originalName: "Bloc run/walk",
                             sets: 8, duration: "1 min course lente + 1 min 30 marche rapide", restSeconds: 0,
                             notes: "Allure de course TRÈS lente, test de la parole.")
         ],
-        cooldown: nil
+        cooldown: "3 min marche lente. Étirements statiques : mollets 30 sec/jambe, quadriceps 30 sec/jambe. Hydratation."
     )
 }
 
