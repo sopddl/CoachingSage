@@ -100,12 +100,11 @@ struct UpcomingSessionRow: View {
     /// Pour Triathlon, on déduit le sport spécifique de la session via
     /// `sportCodeForSession(:in:)`.
     let sportCode: String
+    /// Story 3.35l — numéro de séance incrémental (affiché au-dessus du nom).
+    var number: Int? = nil
 
     var body: some View {
         let effectiveSport = SessionSportInference.sportCode(for: session, programSportCode: sportCode)
-        // **Story 3.15 v5 (Sophie 2026-05-21)** — row compact (padding réduit,
-        // font caption). Pill semaine retirée : la semaine est désormais
-        // portée par le séparateur `weekSeparatorHeader` au-dessus du groupe.
         HStack(spacing: 10) {
             ZStack {
                 RoundedRectangle(cornerRadius: 7, style: .continuous)
@@ -116,10 +115,17 @@ struct UpcomingSessionRow: View {
             }
             .frame(width: 28, height: 28)
 
-            Text(verbatim: session.name)
-                .font(.subheadline)
-                .foregroundStyle(Color.coachingTextPrimary)
-                .lineLimit(1)
+            VStack(alignment: .leading, spacing: 1) {
+                if let number {
+                    Text("coaching.adapter.session.number \(number)")
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(Color.coachingTextSecondary)
+                }
+                Text(verbatim: session.name.sanitizedForDisplay)
+                    .font(.subheadline)
+                    .foregroundStyle(Color.coachingTextPrimary)
+                    .lineLimit(1)
+            }
 
             Spacer(minLength: 6)
 

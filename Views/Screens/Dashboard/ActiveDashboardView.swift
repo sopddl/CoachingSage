@@ -59,6 +59,12 @@ struct ActiveDashboardView: View {
     /// Story 3.35j — tap sur une séance de la liste du dashboard (autre que la
     /// proposée) → ouvre sa fiche. Avant : les lignes étaient inertes (bug Sophie).
     var onTapUpcomingSession: ((ProgramSummary, PersistedSession) -> Void)? = nil
+    /// Story 3.35l — numéro de séance incrémental d'une PersistedSession (fourni
+    /// par le caller qui a le programme complet). nil → pas de numéro affiché.
+    var sessionNumber: ((ProgramSummary, PersistedSession) -> Int)? = nil
+
+    /// Largeur du viewport du carrousel (pour des cards responsives 1/2/3+).
+    @State private var carouselWidth: CGFloat = 0
     /// Story 3.3b cleanup 2026-05-10 — swipe-to-delete sur la liste des programmes.
     /// L'action concrète = `adaptedRepo.archive(record)` côté caller (SessionView).
     let onDeleteProgram: (ProgramSummary) -> Void
@@ -138,6 +144,7 @@ struct ActiveDashboardView: View {
                             summary: selectedSummary,
                             onTapStart: { onTapStartSession(selectedSummary) },
                             onTapDetail: { onTapProgram(selectedSummary) },
+                            focalSessionNumber: selectedSummary.nextSession.flatMap { sessionNumber?(selectedSummary, $0) },
                             onTapReplanify: onTapReplanify.map { handler in
                                 { handler(selectedSummary) }
                             }
@@ -166,7 +173,8 @@ struct ActiveDashboardView: View {
                                             } label: {
                                                 UpcomingSessionRow(
                                                     session: session,
-                                                    sportCode: selectedSummary.sport.appSportCode
+                                                    sportCode: selectedSummary.sport.appSportCode,
+                                                    number: sessionNumber?(selectedSummary, session)
                                                 )
                                             }
                                             .buttonStyle(.plain)
@@ -256,8 +264,10 @@ struct ActiveDashboardView: View {
     /// change. Évite la répétition du pill semaine sur chaque row.
     @ViewBuilder
     private func weekSeparatorHeader(weekNumber: Int) -> some View {
+        // Story 3.35l — séparateur pleine largeur : « Semaine N » en entier (de la
+        // place), pas le pill compact « Sem N ».
         Text(verbatim: String(
-            format: NSLocalizedString("dashboard.active.next.coordinate.format", comment: ""),
+            format: NSLocalizedString("dashboard.active.week.separator", comment: ""),
             weekNumber
         ))
         .font(.coachingCaption.weight(.semibold))
@@ -279,9 +289,22 @@ struct ActiveDashboardView: View {
     /// L'user tap une fois pour focaliser le programme (séance focale + teaser
     /// mis à jour), puis tap à nouveau pour ouvrir `AdaptedProgramView`.
     @ViewBuilder
+    /// Largeur d'une card du carrousel selon le nombre de programmes (Sophie) :
+    /// 1 → pleine largeur ; 2 → moitié ; 3+ → ~45 % (2 visibles + un bout du 3ᵉ).
+    private var carouselCardWidth: CGFloat {
+        let spacing: CGFloat = 12
+        let avail = max(carouselWidth - 4, 0) // - padding horizontal (2+2)
+        guard avail > 0 else { return 200 }   // fallback avant 1er layout
+        switch startedPrograms.count {
+        case 0, 1: return avail
+        case 2:    return (avail - spacing) / 2
+        default:   return (avail - spacing) * 0.45
+        }
+    }
+
     private var programCarousel: some View {
         let effectiveSelectedId = selectedId ?? startedPrograms.first?.id
-        ScrollView(.horizontal, showsIndicators: false) {
+        return ScrollView(.horizontal, showsIndicators: false) {
             // **Story 3.15 v3 (Sophie 2026-05-21)** — SwipeToDeleteRow retiré du
             // carrousel : le swipe ne déclenchait pas le snap iOS 17 proprement
             // et la border de la card sélectionnée était masquée. Suppression
@@ -303,7 +326,9 @@ struct ActiveDashboardView: View {
                             }
                         }
                     )
-                    .frame(width: 200)
+                    // Story 3.35l — largeur responsive : 1 prog = pleine largeur ;
+                    // 2 = moitié chacun ; 3+ = ~45 % (on voit 2 + un bout du 3ᵉ).
+                    .frame(width: carouselCardWidth)
                     .id(summary.id)
                 }
             }
@@ -311,6 +336,11 @@ struct ActiveDashboardView: View {
             .padding(.horizontal, 2)
             .padding(.vertical, 4)
         }
+        .background(GeometryReader { g in
+            Color.clear
+                .onAppear { carouselWidth = g.size.width }
+                .onChange(of: g.size.width) { _, w in carouselWidth = w }
+        })
         // **Story 3.27 Phase A (D1)** — carrousel agrandi de 180→200pt (width
         // card) pour réduire les truncations sur les titres composites
         // (« Triathlon — Distanc... »). Sophie : « un tout petit peu plus
@@ -585,6 +615,8 @@ private struct NextSessionCard: View {
     let summary: ProgramSummary
     let onTapStart: () -> Void
     let onTapDetail: () -> Void
+    /// Story 3.35l — numéro de séance incrémental de la séance focale.
+    var focalSessionNumber: Int? = nil
     /// **Story 3.11** — handler du bouton "Replanifier". nil = bouton caché
     /// (cas non-late ou routine cyclique). Ouvert par le parent qui détient
     /// l'état de la sheet.
@@ -696,10 +728,17 @@ private struct NextSessionCard: View {
         // `weeklyStatsHeader`, sur la ligne « SPORT · SEM. N ». Gain de hauteur.
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .center, spacing: 10) {
-                Text(verbatim: session.name)
-                    .font(.system(size: 17, weight: .semibold, design: .serif))
-                    .foregroundStyle(Color.coachingOnPrimary)
-                    .lineLimit(2)
+                VStack(alignment: .leading, spacing: 2) {
+                    if let focalSessionNumber {
+                        Text("coaching.adapter.session.number \(focalSessionNumber)")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
+                    }
+                    Text(verbatim: session.name.sanitizedForDisplay)
+                        .font(.system(size: 17, weight: .semibold, design: .serif))
+                        .foregroundStyle(Color.coachingOnPrimary)
+                        .lineLimit(2)
+                }
                 Spacer(minLength: 0)
                 startButton
             }
