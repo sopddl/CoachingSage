@@ -93,12 +93,14 @@ public struct EquipmentSubstitutionRule: AdaptationRule {
                 outcome: .substituted,
                 detail: "« \(ex.originalName) » → « \(alternativeName) » (équipement absent: \(missingLabel))"
             ))
+            // Bug #8 — si l'alternative embarque sa propre durée dans son nom,
+            // elle fait foi (sinon la pastille/minuteur gardent celle du parent).
             return AdaptedExercise(
                 name: alternativeName,
                 originalName: ex.originalName,
                 sets: ex.sets,
                 reps: ex.reps,
-                duration: ex.duration,
+                duration: AlternativeName.embeddedDuration(in: alternativeName) ?? ex.duration,
                 restSeconds: ex.restSeconds,
                 notes: ex.notes,
                 targetZone: ex.targetZone,
