@@ -127,6 +127,7 @@ extension Glossary {
         ("savasana", "yoga.savasana"),
         ("pranayama", "yoga.pranayama"),
         ("prânâyâma", "yoga.pranayama"),
+        ("ujjayi", "yoga.pranayama"),
         ("vinyasa", "yoga.vinyasa"),
         ("drishti", "yoga.drishti"),
         ("bandhas", "yoga.bandha"),

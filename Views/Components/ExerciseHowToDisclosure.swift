@@ -107,9 +107,9 @@ struct ExerciseHowToDisclosure: View {
                             .font(.footnote.bold())
                             .foregroundStyle(Color.coachingPrimary)
                             .frame(width: 20, alignment: .leading)
-                        Text(verbatim: step)
-                            .font(.footnote)
-                            .foregroundStyle(.primary)
+                        // Pédagogie : le jargon des steps (FTP, Daniels-T, CSS,
+                        // EN1, Ujjayi…) devient tappable via glossaire.
+                        GlossaryRichText(text: step, font: .footnote, foreground: .primary)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                 }
@@ -134,9 +134,7 @@ struct ExerciseHowToDisclosure: View {
                         .font(.caption2.bold())
                         .foregroundStyle(.secondary)
                         .textCase(.uppercase)
-                    Text(verbatim: mistake)
-                        .font(.footnote)
-                        .foregroundStyle(.primary)
+                    GlossaryRichText(text: mistake, font: .footnote, foreground: .primary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.top, 2)
