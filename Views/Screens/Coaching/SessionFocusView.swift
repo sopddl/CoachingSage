@@ -399,6 +399,7 @@ struct SessionFocusView: View {
             audioCues.activate()
             timerEngine.start()
             announceCurrentPhase() // pré-annonce vocale du 1ᵉʳ bloc (anti-Decathlon)
+            emitInitialCountdownIfNeeded() // bug #7 — le « 3 » d'ouverture (cf emitCountdownTick)
         }
         .onDisappear {
             UIApplication.shared.isIdleTimerDisabled = false
@@ -426,8 +427,27 @@ struct SessionFocusView: View {
         case .warmup, .cooldown:
             voiceGuide?.announce(displayString(phase.label))
         case .prepare:
-            break
+            // Bug #7 — la pré-annonce dure exactement 3 s : `onChange(remaining)` ne
+            // voit jamais la valeur initiale (3 == durée), donc on n'entendait que
+            // « 2, 1 ». On émet ici le « 3 » d'ouverture.
+            emitCountdownTick(forSecond: phase.duration)
         }
+    }
+
+    /// À l'apparition, si la 1ʳᵉ phase est déjà la pré-annonce (séance sans
+    /// échauffement), émet son « 3 » d'ouverture — `handlePhaseChange` ne se
+    /// déclenche pas pour la phase de départ (pas de changement d'index).
+    private func emitInitialCountdownIfNeeded() {
+        guard let phase = timerEngine.currentPhase, phase.kind == .prepare else { return }
+        emitCountdownTick(forSecond: phase.duration)
+    }
+
+    /// Bip (toujours) + chiffre parlé (mode Audio) du décompte 3·2·1 pour la
+    /// seconde donnée. No-op hors fenêtre 1…3.
+    private func emitCountdownTick(forSecond second: Int) {
+        guard (1...3).contains(second) else { return }
+        audioCues.play(.prepareTick)
+        if isAudioMode { voiceGuide?.announce("\(second)") }
     }
 
     /// True si la phase précédant la phase courante était la pré-annonce.
@@ -442,16 +462,12 @@ struct SessionFocusView: View {
     /// « 3, 2, 1 » sur les 3 dernières secondes (anti-Decathlon).
     private func handleTick(remaining new: Int) {
         guard !timerEngine.isPaused, let phase = timerEngine.currentPhase, !phase.isManual else { return }
-        // Bips du compte à rebours 3·2·1 — toujours (yoga + audio).
-        if (1...3).contains(new) { audioCues.play(.prepareTick) }
-        // Voix : uniquement en mode Audio (course/vélo/rando).
-        guard isAudioMode else { return }
-        // Pré-annonce vocale du prochain segment, en fin de phase active.
-        if phase.kind != .prepare, new == 5, phase.duration >= 7, let next = upcomingLabel {
+        // Pré-annonce vocale du prochain segment, en fin de phase active (mode Audio).
+        if isAudioMode, phase.kind != .prepare, new == 5, phase.duration >= 7, let next = upcomingLabel {
             voiceGuide?.announce(String(localized: "coaching.session.voice.next \(next)"))
         }
-        // Chiffre parlé 3·2·1.
-        if (1...3).contains(new) { voiceGuide?.announce("\(new)") }
+        // Décompte 3·2·1 : bip (toujours) + chiffre parlé (Audio).
+        emitCountdownTick(forSecond: new)
     }
 
     // MARK: - Voix (3.35)
@@ -576,6 +592,19 @@ struct SessionFocusView: View {
                 .padding(.horizontal, 24)
                 .padding(.vertical, 8)
             }
+        } else if timerEngine.isFinished {
+            // Bug #7 — en fin de séance minutée, `currentPhase` devient nil → l'écran
+            // restait blanc le temps que la feuille de récap monte. On affiche une
+            // célébration visible dès la dernière phase passée.
+            VStack(spacing: 16) {
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.system(size: 72))
+                    .foregroundStyle(Color.coachingSuccess)
+                Text("coaching.session.focus.celebration")
+                    .font(.title2.bold())
+                    .multilineTextAlignment(.center)
+            }
+            .accessibilityIdentifier("coaching.session.focus.timed.finished")
         }
     }
 
@@ -682,7 +711,10 @@ struct SessionFocusView: View {
 
     @ViewBuilder
     private var timedControls: some View {
-        if timerEngine.currentPhase?.isManual == true {
+        if timerEngine.isFinished || timerEngine.currentPhase == nil {
+            // Fin de séance : plus de contrôles (la célébration + la récap prennent le relais).
+            EmptyView()
+        } else if timerEngine.currentPhase?.isManual == true {
             // Échauffement / récup : un seul bouton « Avancer » (à son rythme).
             Button { timerEngine.skip() } label: {
                 Label("coaching.session.focus.advance", systemImage: "arrow.right.circle.fill")
