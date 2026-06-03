@@ -251,11 +251,18 @@ final class ExerciseExplanationServiceTests: XCTestCase {
         }
     }
 
-    func test_seed_allEntriesHaveEquipment() {
+    /// Parité équipement FR↔EN. NB : depuis le contenu pédagogique généré
+    /// (Phase 1 pédagogie 2026-06-03), un équipement VIDE est légitime (poids
+    /// du corps, blocs d'endurance, respiration) — l'UI n'affiche la rangée de
+    /// chips que `if !equipment.isEmpty`. On ne vérifie donc plus la présence,
+    /// mais la cohérence : si une langue déclare du matériel, l'autre aussi.
+    func test_seed_equipmentParityAcrossLanguages() {
         for entry in ExerciseExplanationSeed.entries {
             let nameHint = entry.matchers.first ?? "?"
-            XCTAssertFalse(entry.fr.equipment.isEmpty, "[\(nameHint)/fr] equipment vide")
-            XCTAssertFalse(entry.en.equipment.isEmpty, "[\(nameHint)/en] equipment vide")
+            XCTAssertEqual(
+                entry.fr.equipment.isEmpty, entry.en.equipment.isEmpty,
+                "[\(nameHint)] parité équipement FR/EN rompue (fr=\(entry.fr.equipment) en=\(entry.en.equipment))"
+            )
         }
     }
 

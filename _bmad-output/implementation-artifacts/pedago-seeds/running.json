@@ -1,0 +1,775 @@
+{
+  "sport": "running",
+  "entries": [
+    {
+      "id": "easy_run",
+      "type": "block",
+      "matchers": ["run facile", "course endurance", "course continue", "footing", "endurance fondamentale", "portion endurance", "easy run", "jogging d'activation", "footing d'activation", "footing léger", "footing très court", "course continue légère", "daniels-e", "long run cutback", "endurance daniels-e"],
+      "fr": {
+        "steps": [
+          "Cale-toi sur une allure conversationnelle : tu peux dire une phrase complète sans t'essouffler. C'est le repère le plus fiable, plus que la montre.",
+          "Vise une zone aérobie basse (autour de Daniels-E, environ 65 à 78 pour cent de la FC max), respiration ample et régulière par le nez si possible.",
+          "Garde une cadence fluide autour de 165 à 175 pas par minute, foulée courte, pieds qui se posent sous le bassin plutôt que devant.",
+          "Reste relâché : épaules basses, bras qui balancent près du corps, regard à l'horizon. L'objectif est de finir avec la sensation d'avoir pu continuer.",
+          "Si l'allure te demande de retenir ton souffle, ralentis. Ces sorties construisent la base aérobie : la lenteur est volontaire."
+        ],
+        "equipment": ["chaussures de running"],
+        "commonMistake": "Courir trop vite ses sorties faciles, ce qui transforme l'easy run en effort moyen et fatigue sans bénéfice aérobie supplémentaire."
+      },
+      "en": {
+        "steps": [
+          "Settle into a conversational pace: you can speak a full sentence without gasping. That cue is more reliable than your watch.",
+          "Aim for a low aerobic zone (around Daniels-E, roughly 65 to 78 percent of max HR), with full, steady breathing through the nose when possible.",
+          "Keep a smooth cadence around 165 to 175 steps per minute, short stride, feet landing under your hips rather than ahead.",
+          "Stay relaxed: low shoulders, arms swinging close to the body, eyes on the horizon. The goal is to finish feeling you could have kept going.",
+          "If the pace makes you hold your breath, ease off. These runs build the aerobic base, so going slow is intentional."
+        ],
+        "equipment": ["running shoes"],
+        "commonMistake": "Running easy days too fast, turning the easy run into a medium effort that adds fatigue without extra aerobic benefit."
+      }
+    },
+    {
+      "id": "long_run",
+      "type": "block",
+      "matchers": ["sortie longue", "long run", "long run aérobie", "bloc easy long run", "portion endurance daniels-e", "sortie longue daniels-e", "long run cutback"],
+      "fr": {
+        "steps": [
+          "Démarre franchement détendu, à allure facile : la sortie longue se gère sur la durée, pas sur les premiers kilomètres.",
+          "Maintiens une respiration conversationnelle du début à la fin. Si tu sens l'allure dériver vers le dur, reviens en zone basse.",
+          "Anticipe le ravitaillement : un apport glucidique toutes les 40 à 50 minutes et de l'eau toutes les 15 à 20 minutes, comme en conditions de course.",
+          "Teste à l'entraînement ce que tu prévois le jour J (boisson, gels, tenue) pour habituer ton système digestif et éviter les surprises.",
+          "Garde une cadence stable et une foulée économique : l'enjeu est l'endurance et l'économie de course, pas la vitesse."
+        ],
+        "equipment": ["chaussures de running", "gourde ou ceinture d'hydratation", "ravitaillement glucidique"],
+        "commonMistake": "Partir trop vite et tester de nouveaux produits le jour de la course plutôt que pendant les sorties longues d'entraînement."
+      },
+      "en": {
+        "steps": [
+          "Start clearly relaxed at an easy pace: the long run is managed over time, not over the first few kilometers.",
+          "Keep conversational breathing from start to finish. If the pace drifts toward hard, return to the low zone.",
+          "Plan your fueling: a carbohydrate intake every 40 to 50 minutes and water every 15 to 20 minutes, just like race conditions.",
+          "Rehearse in training what you plan for race day (drink, gels, kit) to train your gut and avoid surprises.",
+          "Hold a steady cadence and economical stride: the focus here is endurance and running economy, not speed."
+        ],
+        "equipment": ["running shoes", "water bottle or hydration belt", "carbohydrate fuel"],
+        "commonMistake": "Going out too fast and trying new products on race day instead of during training long runs."
+      }
+    },
+    {
+      "id": "tempo_threshold",
+      "type": "block",
+      "matchers": ["tempo continu", "tempo daniels-t", "bloc tempo", "blocs seuil", "segment tempo", "daniels-t", "tempo"],
+      "fr": {
+        "steps": [
+          "Vise l'allure seuil (Daniels-T), une sensation soutenue mais maîtrisée : difficile mais tenable sur une heure de course environ.",
+          "Repère de la parole : tu peux placer quelques mots courts, pas une conversation. La respiration devient rythmée mais contrôlée.",
+          "Sur les 5 premières minutes, cale ton allure sans te précipiter. L'objectif est une vitesse STABLE, pas une accélération finale.",
+          "En continu, garde le même effort du début à la fin ; en blocs (cruise intervals), enchaîne avec une récup courte en trot facile.",
+          "Tiens-toi à l'allure prévue : un écart inférieur à 5 secondes au kilomètre entre le premier et le dernier bloc est le signe d'un seuil bien géré."
+        ],
+        "equipment": ["chaussures de running"],
+        "commonMistake": "Démarrer trop vite et finir en sprint, ce qui fait dériver l'allure et rate l'objectif de stimulation du seuil lactique."
+      },
+      "en": {
+        "steps": [
+          "Aim for threshold pace (Daniels-T), a comfortably hard feel: sustained but holdable for about an hour of racing.",
+          "Talk test: you can place a few short words, not a conversation. Breathing becomes rhythmic but controlled.",
+          "Over the first 5 minutes, settle your pace without rushing. The goal is a STEADY speed, not a final surge.",
+          "Continuous tempo: hold the same effort start to finish; in cruise intervals, link reps with a short easy-jog recovery.",
+          "Stick to the planned pace: less than 5 seconds per kilometer drift between the first and last block signals a well-managed threshold."
+        ],
+        "equipment": ["running shoes"],
+        "commonMistake": "Starting too fast and finishing in a sprint, which makes the pace drift and misses the lactate-threshold stimulus."
+      }
+    },
+    {
+      "id": "vo2_intervals",
+      "type": "block",
+      "matchers": ["intervalles", "daniels-i", "interval 400", "interval 600", "interval 800", "interval 1000", "interval 1200", "1000m", "1200m", "800m", "600m", "400m", "vo2"],
+      "fr": {
+        "steps": [
+          "Cours les répétitions à allure I (Daniels-I), proche de ton allure 3K à 5K : exigeant mais régulier, jamais en sprint maximal.",
+          "Chaque répétition doit ressembler à la précédente : vise une allure homogène plutôt que d'exploser la première et subir les dernières.",
+          "Respecte la récupération en trot lent (pas d'arrêt complet) : elle permet de répéter la qualité d'effort sur tout le bloc.",
+          "Concentre-toi sur une mécanique propre : cadence haute, pieds sous le bassin, buste droit, bras actifs.",
+          "Si l'allure dérive nettement sur les dernières répétitions, mieux vaut arrêter une rép plus tôt que sacrifier la qualité."
+        ],
+        "equipment": ["chaussures de running", "piste ou parcours plat mesuré"],
+        "commonMistake": "Partir trop fort dès la première répétition, ce qui dégrade les suivantes et réduit le temps réellement passé à intensité VO2max."
+      },
+      "en": {
+        "steps": [
+          "Run the reps at I pace (Daniels-I), close to your 3K to 5K pace: demanding but even, never an all-out sprint.",
+          "Each rep should look like the one before: aim for a consistent pace rather than blowing up the first and crawling the last.",
+          "Respect the slow-jog recovery (no full stop): it lets you repeat the quality effort across the whole set.",
+          "Focus on clean mechanics: high cadence, feet under the hips, tall torso, active arms.",
+          "If pace clearly drifts on the last reps, it is better to stop one rep early than to sacrifice quality."
+        ],
+        "equipment": ["running shoes", "track or measured flat route"],
+        "commonMistake": "Going out too hard on the first rep, which degrades the rest and cuts the time actually spent at VO2max intensity."
+      }
+    },
+    {
+      "id": "fartlek",
+      "type": "block",
+      "matchers": ["fartlek"],
+      "fr": {
+        "steps": [
+          "Alterne des blocs 'on' à allure 5K (RPE 8, soutenu) et des blocs 'off' en footing facile, selon la structure prévue.",
+          "Sur les blocs 'on', cherche un effort régulier et maîtrisé plutôt qu'un démarrage explosif : l'idée est de pouvoir répéter chaque bloc.",
+          "Profite des blocs 'off' pour relâcher complètement la respiration et baisser la cadence : c'est une vraie récupération active.",
+          "Le fartlek se pilote au ressenti : si les derniers blocs 'on' se dégradent nettement, raccourcis-les plutôt que de t'épuiser.",
+          "Garde une foulée fluide même sur les portions rapides : cadence haute, appuis dynamiques sous le bassin."
+        ],
+        "equipment": ["chaussures de running"],
+        "commonMistake": "Transformer les blocs 'on' en sprints maximaux, ce qui rend les répétitions impossibles à tenir et casse la régularité de la séance."
+      },
+      "en": {
+        "steps": [
+          "Alternate 'on' blocks at 5K pace (RPE 8, sustained) and 'off' blocks at easy jog, following the planned structure.",
+          "On the 'on' blocks, look for a steady, controlled effort rather than an explosive start: you should be able to repeat each block.",
+          "Use the 'off' blocks to fully release your breathing and drop your cadence: this is genuine active recovery.",
+          "Fartlek is driven by feel: if the last 'on' blocks clearly degrade, shorten them rather than exhausting yourself.",
+          "Keep a smooth stride even on the fast portions: high cadence, dynamic footstrike under the hips."
+        ],
+        "equipment": ["running shoes"],
+        "commonMistake": "Turning the 'on' blocks into all-out sprints, which makes the reps impossible to hold and breaks the session's consistency."
+      }
+    },
+    {
+      "id": "marathon_pace",
+      "type": "block",
+      "matchers": ["marathon pace", "daniels-m", "bloc marathon pace"],
+      "fr": {
+        "steps": [
+          "Cale-toi sur ton allure marathon cible (Daniels-M) : la sensation est soutenue mais maîtrisée, pas conversationnelle mais soutenable longtemps.",
+          "Cherche une allure exacte et STABLE plutôt que des variations : c'est l'entraînement le plus spécifique de ton plan.",
+          "Profite du bloc pour répéter ta stratégie de course : ravitaillement à allure réelle, gestion de la cadence et de la respiration.",
+          "Si tu sens l'allure devenir dure trop tôt, reviens légèrement en zone basse : il s'agit d'ancrer la mémoire de l'allure, pas de t'épuiser.",
+          "Reste mécaniquement économique : foulée régulière, buste droit, bras détendus, regard loin devant."
+        ],
+        "equipment": ["chaussures de running", "ravitaillement glucidique"],
+        "commonMistake": "Courir le bloc plus vite que l'allure marathon réelle, ce qui fausse le ressenti que tu cherches à automatiser pour le jour J."
+      },
+      "en": {
+        "steps": [
+          "Settle into your target marathon pace (Daniels-M): the feel is comfortably hard, not conversational but holdable for a long time.",
+          "Look for an exact, STEADY pace rather than swings: this is the most race-specific session in your plan.",
+          "Use the block to rehearse your race strategy: fueling at real pace, managing cadence and breathing.",
+          "If the pace starts to feel hard too early, ease slightly into the low zone: the aim is to lock in pace memory, not to exhaust yourself.",
+          "Stay mechanically economical: steady stride, tall torso, relaxed arms, eyes far ahead."
+        ],
+        "equipment": ["running shoes", "carbohydrate fuel"],
+        "commonMistake": "Running the block faster than true marathon pace, which distorts the feel you are trying to automate for race day."
+      }
+    },
+    {
+      "id": "half_marathon_pace",
+      "type": "block",
+      "matchers": ["@hmp", "allure semi", "portion allure semi", "segments allure semi", "strides allure semi"],
+      "fr": {
+        "steps": [
+          "Vise ton allure semi cible (@HMP) : un effort soutenu mais maîtrisé, fluide, que tu peux tenir longtemps.",
+          "Ces segments simulent les conditions de course : cherche la sensation de mécanique bien huilée plutôt que la performance brute.",
+          "Sur les portions courtes (strides ou segments), entre dans l'allure progressivement et relâche pendant les récupérations en trot facile.",
+          "Garde une cadence haute et une foulée légère : c'est un rappel neuromusculaire de l'allure cible.",
+          "Si l'allure te paraît dure dès le début, vérifie ton départ : sur le semi, partir conservateur les premiers kilomètres protège la fin de course."
+        ],
+        "equipment": ["chaussures de running"],
+        "commonMistake": "Aborder ces segments comme un test de vitesse au lieu d'une répétition fluide de l'allure de course cible."
+      },
+      "en": {
+        "steps": [
+          "Aim for your target half-marathon pace (@HMP): a sustained but controlled, smooth effort you can hold for a long time.",
+          "These segments simulate race conditions: seek the well-oiled mechanics feel rather than raw performance.",
+          "On short portions (strides or segments), ease into the pace progressively and relax during the easy-jog recoveries.",
+          "Keep a high cadence and a light stride: this is a neuromuscular reminder of the target pace.",
+          "If the pace feels hard from the start, check your opening: in the half, starting conservatively in the early kilometers protects the finish."
+        ],
+        "equipment": ["running shoes"],
+        "commonMistake": "Treating these segments as a speed test instead of a smooth rehearsal of the target race pace."
+      }
+    },
+    {
+      "id": "strides",
+      "type": "block",
+      "matchers": ["strides", "stride", "daniels-r", "strides 6", "stride final", "strides courts"],
+      "fr": {
+        "steps": [
+          "Après ta sortie facile, lance de courtes accélérations progressives : monte la vitesse sur 20 à 100 mètres, sans jamais sprinter à fond.",
+          "Décompose chaque stride : démarrage doux, montée en vitesse au milieu, puis relâchement fluide en fin de segment.",
+          "Vise une mécanique propre : cadence haute, pieds qui se posent sous le bassin, buste droit, bras relâchés.",
+          "Récupère complètement entre chaque (marche ou trot lent) : l'objectif est la qualité du geste, pas l'essoufflement.",
+          "Plafonne l'effort vers 90 pour cent de ta vitesse : les strides réveillent les fibres rapides sans créer de fatigue."
+        ],
+        "equipment": ["chaussures de running", "terrain plat"],
+        "commonMistake": "Transformer les strides en sprints maximaux, ce qui crée de la tension inutile au lieu d'un simple rappel neuromusculaire."
+      },
+      "en": {
+        "steps": [
+          "After your easy run, launch short progressive accelerations: build speed over 20 to 100 meters, never sprinting all out.",
+          "Break each stride into phases: gentle start, speed build in the middle, then a smooth release at the end of the segment.",
+          "Aim for clean mechanics: high cadence, feet landing under the hips, tall torso, relaxed arms.",
+          "Recover fully between reps (walk or slow jog): the goal is movement quality, not breathlessness.",
+          "Cap the effort around 90 percent of your speed: strides wake up the fast fibers without creating fatigue."
+        ],
+        "equipment": ["running shoes", "flat ground"],
+        "commonMistake": "Turning strides into all-out sprints, which creates needless tension instead of a simple neuromuscular reminder."
+      }
+    },
+    {
+      "id": "run_walk",
+      "type": "block",
+      "matchers": ["run/walk", "run walk", "bloc run/walk", "bloc laddered", "blocs courts", "bloc long", "bloc course", "bloc course 4", "bloc course 5"],
+      "fr": {
+        "steps": [
+          "Alterne course très lente et marche rapide selon la structure prévue : la course doit rester en allure conversationnelle complète.",
+          "Pendant la portion course, vérifie le test de la parole : si le souffle coupe au bout de 30 secondes, ralentis encore.",
+          "Sur la marche, reste active et dynamique plutôt que traînante : tu entretiens la fréquence cardiaque et le rythme.",
+          "Reviens au jogging dès que tu te sens prêt sur les blocs plus longs ; couper pour marcher un instant est normal et ne casse pas la séance.",
+          "Progresse semaine après semaine en allongeant les blocs de course : la régularité prime sur la vitesse à ce stade."
+        ],
+        "equipment": ["chaussures de running"],
+        "commonMistake": "Courir la portion 'course' trop vite, ce qui rend la transition vers la marche brutale et empêche de tenir le volume prévu."
+      },
+      "en": {
+        "steps": [
+          "Alternate very slow running and brisk walking per the planned structure: the running portion stays at a full conversational pace.",
+          "During the run portion, check the talk test: if your breath cuts out after 30 seconds, slow down further.",
+          "On the walk, stay active and brisk rather than dawdling: you keep heart rate and rhythm up.",
+          "Return to jogging as soon as you feel ready on longer blocks; pausing to walk a moment is normal and does not break the session.",
+          "Progress week by week by lengthening the run blocks: consistency matters more than speed at this stage."
+        ],
+        "equipment": ["running shoes"],
+        "commonMistake": "Running the 'run' portion too fast, which makes the switch to walking abrupt and prevents holding the planned volume."
+      }
+    },
+    {
+      "id": "recovery_walk",
+      "type": "block",
+      "matchers": ["marche récupération", "walking-recovery", "marche récupération post-test", "marche recuperation"],
+      "fr": {
+        "steps": [
+          "Marche à un rythme tranquille et régulier pour laisser le cœur redescendre progressivement après l'effort.",
+          "Respire amplement et relâche les épaules, les bras et la nuque : c'est un retour au calme, pas un exercice.",
+          "Garde un pas fluide sans chercher à aller vite : l'objectif est de faire circuler le sang et de favoriser la récupération.",
+          "Profites-en pour t'hydrater et noter tes sensations de fin de séance."
+        ],
+        "equipment": [],
+        "commonMistake": "Écourter la marche de récupération et s'arrêter net, ce qui prive le corps d'un retour au calme progressif."
+      },
+      "en": {
+        "steps": [
+          "Walk at a calm, steady rhythm to let your heart rate come down gradually after the effort.",
+          "Breathe fully and relax your shoulders, arms, and neck: this is a cool-down, not an exercise.",
+          "Keep a smooth gait without trying to go fast: the goal is to circulate blood and support recovery.",
+          "Use the time to hydrate and note how the session felt."
+        ],
+        "equipment": [],
+        "commonMistake": "Cutting the recovery walk short and stopping abruptly, which denies the body a gradual cool-down."
+      }
+    },
+    {
+      "id": "cooldown_easy",
+      "type": "block",
+      "matchers": ["cooldown", "cooldown easy", "cooldown extended", "footing recovery", "easy run récup active", "récup active", "jogging d'activation", "activation"],
+      "fr": {
+        "steps": [
+          "Termine en trot très facile (RPE 4 à 5) pour consolider le volume aérobie et faciliter l'élimination du lactate accumulé.",
+          "Garde une respiration ample et une allure nettement plus lente que la partie principale de la séance.",
+          "Relâche progressivement la foulée et la cadence : tu cherches à circuler, pas à produire un effort.",
+          "Si les jambes sont lourdes après un bloc intense, finir en marche-jogging est tout à fait acceptable."
+        ],
+        "equipment": ["chaussures de running"],
+        "commonMistake": "Sauter le retour au calme ou le courir trop vite, alors qu'il aide la récupération entre les séances."
+      },
+      "en": {
+        "steps": [
+          "Finish at a very easy jog (RPE 4 to 5) to consolidate aerobic volume and help clear accumulated lactate.",
+          "Keep full breathing and a pace clearly slower than the main part of the session.",
+          "Gradually relax your stride and cadence: you are circulating, not producing effort.",
+          "If your legs feel heavy after an intense block, finishing with a walk-jog is perfectly fine."
+        ],
+        "equipment": ["running shoes"],
+        "commonMistake": "Skipping the cool-down or running it too fast, when it helps recovery between sessions."
+      }
+    },
+    {
+      "id": "race_event",
+      "type": "block",
+      "matchers": ["semi-marathon 21", "marathon 42", "10 km à allure cible", "test 5k", "5k chronométré", "10k à allure", "@5k-pace", "@10k-pace"],
+      "fr": {
+        "steps": [
+          "Pars conservateur sur les premiers kilomètres, légèrement plus lent que ton allure cible : tu protèges la fin de course.",
+          "Progresse ensuite vers ton allure cible et cherche une seconde moitié au moins aussi rapide que la première (negative split).",
+          "Sur un test chronométré, vise un effort régulier d'environ 8 sur 10, du début à la fin, plutôt qu'un sprint mal réparti.",
+          "Suis ton plan de ravitaillement répété à l'entraînement : apport glucidique et eau aux moments prévus, rien de nouveau le jour J.",
+          "Garde une mécanique économique et une respiration rythmée ; sur la fin, donne ce qu'il reste si l'énergie le permet."
+        ],
+        "equipment": ["chaussures de running testées", "ravitaillement glucidique", "tenue testée à l'entraînement"],
+        "commonMistake": "Partir trop vite sous l'effet de l'adrénaline, ce qui épuise les réserves de glycogène avant la fin de course."
+      },
+      "en": {
+        "steps": [
+          "Start conservatively in the first kilometers, slightly slower than your target pace: you protect the finish.",
+          "Then progress toward your target pace and aim for a second half at least as fast as the first (negative split).",
+          "On a timed test, aim for a steady effort around 8 out of 10, start to finish, rather than a poorly distributed sprint.",
+          "Follow the fueling plan you rehearsed in training: carbohydrate and water at the planned moments, nothing new on race day.",
+          "Keep economical mechanics and rhythmic breathing; near the end, give what is left if energy allows."
+        ],
+        "equipment": ["tested running shoes", "carbohydrate fuel", "kit tested in training"],
+        "commonMistake": "Starting too fast on adrenaline, which burns through glycogen stores before the finish."
+      }
+    },
+    {
+      "id": "mobility_routine",
+      "type": "block",
+      "matchers": ["routine mobilité", "mobilité hanches", "mobilité hanches et chevilles", "routine mobilité complète", "mobilité"],
+      "fr": {
+        "steps": [
+          "Enchaîne des mouvements amples et lents : cercles de hanches, cercles de chevilles, balancés de jambe, rotations thoraciques.",
+          "Tiens les fentes basses 20 à 30 secondes par côté, en respirant calmement, sans chercher l'amplitude maximale d'un coup.",
+          "Reste sans intensité : l'objectif est de préparer les articulations et de relâcher, pas de produire un effort.",
+          "Bouge à un rythme contrôlé et reste à l'écoute de tes sensations ; en cas d'inconfort, réduis l'amplitude."
+        ],
+        "equipment": ["tapis (optionnel)"],
+        "commonMistake": "Forcer l'amplitude à froid au lieu d'augmenter progressivement et en douceur."
+      },
+      "en": {
+        "steps": [
+          "Flow through wide, slow movements: hip circles, ankle circles, leg swings, thoracic rotations.",
+          "Hold low lunges 20 to 30 seconds per side, breathing calmly, without forcing maximum range all at once.",
+          "Stay free of intensity: the goal is to prepare the joints and relax, not to produce effort.",
+          "Move at a controlled pace and stay tuned to how it feels; if anything feels uneasy, reduce the range."
+        ],
+        "equipment": ["mat (optional)"],
+        "commonMistake": "Forcing range of motion while cold instead of building it up gradually and gently."
+      }
+    },
+    {
+      "id": "race_checklist",
+      "type": "block",
+      "matchers": ["checklist matérielle", "checklist", "pré-course"],
+      "fr": {
+        "steps": [
+          "Prépare tes chaussures de course déjà rodées (testées à l'entraînement, pas neuves le jour J).",
+          "Sors la tenue que tu as déjà portée à l'entraînement, sans nouveauté, pour éviter toute gêne en course.",
+          "Vérifie ton plan de ravitaillement : gels et boisson prévus, répartis aux kilomètres clés comme tu l'as répété.",
+          "Anticipe la logistique : réveil, échauffement, transport et arrivée au départ avec une marge confortable."
+        ],
+        "equipment": ["chaussures rodées", "tenue testée", "gels et boisson"],
+        "commonMistake": "Étrenner du matériel neuf le jour de la course au lieu de tout valider à l'entraînement."
+      },
+      "en": {
+        "steps": [
+          "Lay out your broken-in race shoes (tested in training, not brand new on race day).",
+          "Set aside the kit you have already worn in training, with nothing new, to avoid any discomfort during the race.",
+          "Check your fueling plan: planned gels and drink, placed at the key kilometers just as you rehearsed.",
+          "Plan the logistics: wake-up, warm-up, transport, and arriving at the start with a comfortable margin."
+        ],
+        "equipment": ["broken-in shoes", "tested kit", "gels and drink"],
+        "commonMistake": "Breaking in new gear on race day instead of validating everything in training."
+      }
+    },
+    {
+      "id": "plank_front",
+      "type": "movement",
+      "matchers": ["planche ventrale", "planche", "plank"],
+      "fr": {
+        "steps": [
+          "Place les coudes juste sous les épaules et les avant-bras au sol, pieds écartés largeur de bassin.",
+          "Aligne le corps en une ligne droite des talons à la tête : engage les fessiers et rentre légèrement le bassin pour éviter de creuser le bas du dos.",
+          "Garde la nuque dans le prolongement du dos, regard vers le sol, et respire de façon régulière pendant le maintien.",
+          "Tiens la durée prévue en restant gréé : dès que le bassin s'affaisse, fais une courte pause plutôt que de perdre l'alignement."
+        ],
+        "equipment": ["tapis (optionnel)"],
+        "commonMistake": "Laisser le bassin s'affaisser ou remonter les fesses, ce qui réduit l'engagement du centre du corps."
+      },
+      "en": {
+        "steps": [
+          "Place your elbows directly under your shoulders, forearms on the floor, feet hip-width apart.",
+          "Align the body in a straight line from heels to head: engage the glutes and slightly tuck the pelvis to avoid sagging the lower back.",
+          "Keep your neck in line with your spine, eyes toward the floor, and breathe steadily throughout the hold.",
+          "Hold for the planned time while staying braced: as soon as the hips drop, take a short break rather than losing alignment."
+        ],
+        "equipment": ["mat (optional)"],
+        "commonMistake": "Letting the hips sag or piking the hips up, which reduces core engagement."
+      }
+    },
+    {
+      "id": "side_plank",
+      "type": "movement",
+      "matchers": ["side plank", "planche latérale", "gainage latéral"],
+      "fr": {
+        "steps": [
+          "Allonge-toi sur le côté, coude sous l'épaule, avant-bras au sol et jambes empilées.",
+          "Décolle le bassin pour former une ligne droite de la tête aux pieds, en engageant les obliques et le moyen fessier.",
+          "Garde le bassin stable et face à l'avant, sans rotation : la hanche du dessus reste empilée sur celle du dessous.",
+          "Tiens la durée prévue de chaque côté en respirant calmement, puis repose-toi avant de changer de côté."
+        ],
+        "equipment": ["tapis (optionnel)"],
+        "commonMistake": "Laisser le bassin descendre vers le sol au lieu de maintenir la ligne corporelle gainée."
+      },
+      "en": {
+        "steps": [
+          "Lie on your side, elbow under your shoulder, forearm on the floor and legs stacked.",
+          "Lift the hips to form a straight line from head to feet, engaging the obliques and glute medius.",
+          "Keep the pelvis stable and facing forward, without rotation: the top hip stays stacked over the bottom one.",
+          "Hold the planned time on each side, breathing calmly, then rest before switching sides."
+        ],
+        "equipment": ["mat (optional)"],
+        "commonMistake": "Letting the hips drop toward the floor instead of keeping a braced body line."
+      }
+    },
+    {
+      "id": "bird_dog",
+      "type": "movement",
+      "matchers": ["bird-dog", "bird dog", "birddog"],
+      "fr": {
+        "steps": [
+          "Place-toi à quatre pattes, mains sous les épaules et genoux sous les hanches, dos neutre.",
+          "Tends en même temps le bras et la jambe opposés jusqu'à l'horizontale, en gardant le bassin stable face au sol.",
+          "Cherche l'anti-rotation : le bassin ne bascule pas, le tronc reste gainé et la nuque dans l'axe du dos.",
+          "Tiens 2 secondes en haut, reviens lentement, puis alterne les côtés sur le nombre de répétitions prévu."
+        ],
+        "equipment": ["tapis (optionnel)"],
+        "commonMistake": "Laisser le bassin pivoter ou cambrer le bas du dos au lieu de garder le tronc stable et gainé."
+      },
+      "en": {
+        "steps": [
+          "Set up on all fours, hands under the shoulders and knees under the hips, neutral back.",
+          "Extend the opposite arm and leg together to horizontal, keeping the pelvis stable and facing the floor.",
+          "Seek anti-rotation: the pelvis does not tilt, the trunk stays braced, and the neck stays in line with the spine.",
+          "Hold 2 seconds at the top, return slowly, then alternate sides for the planned number of reps."
+        ],
+        "equipment": ["mat (optional)"],
+        "commonMistake": "Letting the pelvis rotate or arching the lower back instead of keeping the trunk stable and braced."
+      }
+    },
+    {
+      "id": "glute_bridge",
+      "type": "movement",
+      "matchers": ["pont fessier", "pont fessier unilatéral", "glute bridge", "activation fessiers"],
+      "fr": {
+        "steps": [
+          "Allonge-toi sur le dos, genoux pliés, pieds à plat largeur de bassin et bras le long du corps.",
+          "Pousse dans les talons pour décoller le bassin jusqu'à une ligne droite des genoux aux épaules.",
+          "Contracte les fessiers 2 secondes en haut sans cambrer le bas du dos, puis redescends lentement.",
+          "Pour la version unilatérale, tends une jambe et garde le bassin parfaitement horizontal, sans le laisser pencher du côté libre."
+        ],
+        "equipment": ["tapis (optionnel)"],
+        "commonMistake": "Cambrer le bas du dos pour monter plus haut au lieu d'engager d'abord les fessiers."
+      },
+      "en": {
+        "steps": [
+          "Lie on your back, knees bent, feet flat hip-width apart and arms by your sides.",
+          "Drive through your heels to lift the pelvis up to a straight line from knees to shoulders.",
+          "Squeeze the glutes for 2 seconds at the top without arching the lower back, then lower slowly.",
+          "For the single-leg version, extend one leg and keep the pelvis perfectly level, not dropping on the free side."
+        ],
+        "equipment": ["mat (optional)"],
+        "commonMistake": "Arching the lower back to lift higher instead of engaging the glutes first."
+      }
+    },
+    {
+      "id": "hip_thrust",
+      "type": "movement",
+      "matchers": ["hip thrust", "hip thrust chargé"],
+      "fr": {
+        "steps": [
+          "Cale le haut du dos contre un banc ou un canapé bas, pieds à plat au sol, charge posée sur le pli des hanches.",
+          "Pousse dans les talons pour monter le bassin jusqu'à une ligne droite des genoux aux épaules.",
+          "Contracte fort les fessiers 2 secondes en haut, en gardant les tibias verticaux et le menton légèrement rentré.",
+          "Redescends lentement et maîtrise toute l'amplitude : la puissance des hanches se travaille sur le contrôle, pas sur l'élan."
+        ],
+        "equipment": ["banc ou support bas", "charge (haltère, sac chargé ou élastique)"],
+        "commonMistake": "Pousser avec le bas du dos plutôt qu'avec les fessiers et hyperextendre la colonne en haut du mouvement."
+      },
+      "en": {
+        "steps": [
+          "Rest your upper back against a bench or a low couch, feet flat on the floor, load set across your hip crease.",
+          "Drive through your heels to lift the pelvis up to a straight line from knees to shoulders.",
+          "Squeeze the glutes hard for 2 seconds at the top, keeping the shins vertical and the chin slightly tucked.",
+          "Lower slowly and control the full range: hip power is built through control, not momentum."
+        ],
+        "equipment": ["bench or low support", "load (dumbbell, loaded bag or band)"],
+        "commonMistake": "Pushing with the lower back rather than the glutes and hyperextending the spine at the top."
+      }
+    },
+    {
+      "id": "calf_raises",
+      "type": "movement",
+      "matchers": ["calf raises", "calf raise", "single-leg calf raises excentriques", "calf raises excentriques", "calf raises bipodal", "calf raises surélevés", "calf raises excentriques sur marche", "mollet"],
+      "fr": {
+        "steps": [
+          "Place-toi sur le bord d'une marche, l'avant des pieds en appui et les talons libres dans le vide pour une amplitude complète.",
+          "Monte sur la pointe des pieds en montant les talons aussi haut que possible, puis contracte le mollet en haut.",
+          "Redescends lentement, en 3 à 4 secondes pour la version excentrique, jusqu'à ressentir un étirement contrôlé du mollet.",
+          "Pour la version sur une jambe, monte sur deux pieds et descends sur un seul ; garde la cheville bien dans l'axe."
+        ],
+        "equipment": ["marche ou step"],
+        "commonMistake": "Précipiter la descente alors que c'est le travail lent et contrôlé qui apporte le bénéfice principal sur le mollet et le tendon."
+      },
+      "en": {
+        "steps": [
+          "Stand on the edge of a step with the balls of your feet supported and your heels free in the air for full range.",
+          "Rise onto the balls of your feet, lifting the heels as high as possible, then squeeze the calf at the top.",
+          "Lower slowly, over 3 to 4 seconds for the eccentric version, until you feel a controlled calf stretch.",
+          "For the single-leg version, rise on two feet and lower on one; keep the ankle tracking in line."
+        ],
+        "equipment": ["step"],
+        "commonMistake": "Rushing the lowering phase, when the slow, controlled descent delivers the main benefit for the calf and tendon."
+      }
+    },
+    {
+      "id": "nordic_curl",
+      "type": "movement",
+      "matchers": ["nordic curl", "nordic hamstring"],
+      "fr": {
+        "steps": [
+          "Place-toi à genoux sur un tapis, chevilles bien calées (sous un meuble bas ou tenues par un partenaire).",
+          "Garde les hanches en extension et le corps gainé sur une ligne des genoux à la tête, sans casser à la hanche.",
+          "Descends lentement vers l'avant en résistant au maximum avec les ischio-jambiers, en 3 à 4 secondes.",
+          "Aide-toi des mains pour amortir la fin et remonter : c'est la phase de descente freinée qui apporte le bénéfice."
+        ],
+        "equipment": ["tapis", "point de calage des chevilles"],
+        "commonMistake": "Casser à la hanche pour faciliter la descente au lieu de garder le corps gainé et de freiner avec les ischio-jambiers."
+      },
+      "en": {
+        "steps": [
+          "Kneel on a mat with your ankles firmly anchored (under a low piece of furniture or held by a partner).",
+          "Keep the hips extended and the body braced in a line from knees to head, without bending at the hip.",
+          "Lower slowly forward, resisting as much as possible with the hamstrings, over 3 to 4 seconds.",
+          "Use your hands to cushion the end and push back up: the controlled lowering phase delivers the benefit."
+        ],
+        "equipment": ["mat", "ankle anchor point"],
+        "commonMistake": "Bending at the hip to make the descent easier instead of keeping the body braced and resisting with the hamstrings."
+      }
+    },
+    {
+      "id": "single_leg_squat",
+      "type": "movement",
+      "matchers": ["single-leg squat", "single leg squat", "single-leg squat assisté", "squat unijambiste"],
+      "fr": {
+        "steps": [
+          "Tiens-toi debout sur une jambe, l'autre tendue devant toi, bras devant pour l'équilibre.",
+          "Descends de façon contrôlée en poussant les hanches en arrière, comme vers une chaise stable derrière toi.",
+          "Garde le genou d'appui aligné avec la pointe du pied, sans le laisser partir vers l'intérieur.",
+          "Remonte en poussant dans le talon ; pour la version assistée, effleure une chaise ou un support pour doser la profondeur."
+        ],
+        "equipment": ["chaise ou support (pour la version assistée)"],
+        "commonMistake": "Laisser le genou d'appui rentrer vers l'intérieur au lieu de le garder aligné sur le pied."
+      },
+      "en": {
+        "steps": [
+          "Stand on one leg, the other extended in front of you, arms forward for balance.",
+          "Lower in a controlled way by pushing the hips back, as if toward a stable chair behind you.",
+          "Keep the standing knee aligned with the toes, without letting it collapse inward.",
+          "Stand back up by driving through the heel; for the assisted version, lightly touch a chair or support to gauge depth."
+        ],
+        "equipment": ["chair or support (for the assisted version)"],
+        "commonMistake": "Letting the standing knee cave inward instead of keeping it tracking over the foot."
+      }
+    },
+    {
+      "id": "bulgarian_split_squat",
+      "type": "movement",
+      "matchers": ["bulgarian split squat", "split squat"],
+      "fr": {
+        "steps": [
+          "Place le pied arrière surélevé sur un banc ou une chaise stable, le pied avant suffisamment loin devant.",
+          "Descends en pliant le genou avant, le buste légèrement penché, jusqu'à ce que la cuisse avant soit proche de l'horizontale.",
+          "Garde le genou avant aligné avec le pied et le poids réparti sur tout l'appui avant.",
+          "Remonte en poussant dans le talon avant ; ajoute des haltères seulement quand la technique est propre."
+        ],
+        "equipment": ["banc ou chaise", "haltères (optionnel)"],
+        "commonMistake": "Mettre trop de poids sur la jambe arrière au lieu de charger l'appui avant qui travaille réellement."
+      },
+      "en": {
+        "steps": [
+          "Place the rear foot elevated on a bench or stable chair, the front foot set far enough ahead.",
+          "Lower by bending the front knee, torso leaning slightly forward, until the front thigh is near horizontal.",
+          "Keep the front knee aligned with the foot and the weight spread over the whole front foot.",
+          "Stand up by driving through the front heel; add dumbbells only once the technique is clean."
+        ],
+        "equipment": ["bench or chair", "dumbbells (optional)"],
+        "commonMistake": "Putting too much weight on the rear leg instead of loading the front foot that actually does the work."
+      }
+    },
+    {
+      "id": "squat",
+      "type": "movement",
+      "matchers": ["squat poids du corps", "squats poids du corps", "squat"],
+      "fr": {
+        "steps": [
+          "Tiens-toi debout, pieds écartés largeur d'épaules, pointes légèrement ouvertes.",
+          "Descends en poussant les hanches en arrière et en pliant les genoux, buste droit et talons ancrés au sol.",
+          "Vise des cuisses proches de l'horizontale, en gardant les genoux alignés avec les pieds.",
+          "Remonte en poussant dans les talons et en serrant les fessiers en haut, sans cambrer le bas du dos."
+        ],
+        "equipment": [],
+        "commonMistake": "Laisser les talons décoller ou les genoux rentrer vers l'intérieur au lieu de garder l'appui stable."
+      },
+      "en": {
+        "steps": [
+          "Stand with feet shoulder-width apart, toes slightly turned out.",
+          "Lower by pushing the hips back and bending the knees, torso tall and heels anchored to the floor.",
+          "Aim for thighs near horizontal, keeping the knees aligned with the feet.",
+          "Stand back up by driving through the heels and squeezing the glutes at the top, without arching the lower back."
+        ],
+        "equipment": [],
+        "commonMistake": "Letting the heels lift or the knees cave inward instead of keeping a stable base."
+      }
+    },
+    {
+      "id": "wall_sit",
+      "type": "movement",
+      "matchers": ["wall sit", "wall sit partiel", "chaise"],
+      "fr": {
+        "steps": [
+          "Adosse-toi à un mur, fais glisser le dos vers le bas jusqu'à former un angle d'environ 60 à 70 degrés au genou.",
+          "Garde les pieds écartés largeur de bassin, les genoux au-dessus des chevilles et le dos plat contre le mur.",
+          "Engage les quadriceps et respire calmement pendant tout le maintien.",
+          "Tiens la durée prévue ; remonte légèrement si l'effort devient trop intense plutôt que de perdre la position."
+        ],
+        "equipment": ["mur"],
+        "commonMistake": "Laisser les genoux dépasser largement la pointe des pieds au lieu de garder les tibias proches de la verticale."
+      },
+      "en": {
+        "steps": [
+          "Lean against a wall and slide your back down until you reach about a 60 to 70 degree angle at the knees.",
+          "Keep the feet hip-width apart, knees over the ankles, and the back flat against the wall.",
+          "Engage the quadriceps and breathe calmly throughout the hold.",
+          "Hold the planned time; rise slightly if the effort gets too intense rather than losing the position."
+        ],
+        "equipment": ["wall"],
+        "commonMistake": "Letting the knees travel far past the toes instead of keeping the shins close to vertical."
+      }
+    },
+    {
+      "id": "lunges",
+      "type": "movement",
+      "matchers": ["fentes dynamiques", "fentes statiques", "fente", "lunge"],
+      "fr": {
+        "steps": [
+          "Pars debout, fais un grand pas vers l'avant et descends en pliant les deux genoux vers 90 degrés.",
+          "Garde le buste droit, le genou avant aligné avec le pied et sans le laisser dépasser largement la pointe.",
+          "Pour la version statique, remonte sur place ; pour la version dynamique, reviens au centre puis alterne les jambes.",
+          "Pousse dans le talon avant pour remonter et garde le bassin stable tout au long du mouvement."
+        ],
+        "equipment": [],
+        "commonMistake": "Laisser le genou avant dépasser largement la pointe du pied ou pencher le buste vers l'avant."
+      },
+      "en": {
+        "steps": [
+          "Start standing, take a big step forward, and lower by bending both knees toward 90 degrees.",
+          "Keep the torso tall, the front knee aligned with the foot and not traveling far past the toes.",
+          "For the static version, push back up in place; for the dynamic version, return to center then alternate legs.",
+          "Drive through the front heel to rise and keep the pelvis stable throughout the movement."
+        ],
+        "equipment": [],
+        "commonMistake": "Letting the front knee travel far past the toes or leaning the torso too far forward."
+      }
+    },
+    {
+      "id": "clamshell",
+      "type": "movement",
+      "matchers": ["clamshell", "clamshells", "clamshell mini-band", "clamshells avec résistance", "clamshell avec mini-band"],
+      "fr": {
+        "steps": [
+          "Allonge-toi sur le côté, genoux pliés à environ 90 degrés et hanches empilées, talons joints.",
+          "Ouvre le genou du dessus comme un coquillage, sans bouger le bassin ni le faire basculer en arrière.",
+          "Cherche la sensation sur l'extérieur de la hanche (les abducteurs), pas dans le bas du dos.",
+          "Reviens lentement et répète le nombre de répétitions prévu ; ajoute un mini-band autour des genoux pour plus de résistance."
+        ],
+        "equipment": ["tapis (optionnel)", "mini-band (optionnel)"],
+        "commonMistake": "Faire basculer le bassin vers l'arrière pour ouvrir plus grand, ce qui transfère le travail hors des abducteurs de hanche."
+      },
+      "en": {
+        "steps": [
+          "Lie on your side, knees bent to about 90 degrees with hips stacked and heels together.",
+          "Open the top knee like a clamshell, without moving the pelvis or letting it roll backward.",
+          "Seek the feeling on the outside of the hip (the abductors), not in the lower back.",
+          "Return slowly and repeat the planned reps; add a mini-band around the knees for more resistance."
+        ],
+        "equipment": ["mat (optional)", "mini-band (optional)"],
+        "commonMistake": "Rolling the pelvis backward to open wider, which shifts the work away from the hip abductors."
+      }
+    },
+    {
+      "id": "deadlift",
+      "type": "movement",
+      "matchers": ["deadlift", "deadlift léger", "soulevé de terre"],
+      "fr": {
+        "steps": [
+          "Place-toi debout, pieds largeur de hanches, la charge proche des tibias et les scapulas légèrement serrées.",
+          "Pousse les hanches en arrière en gardant le dos plat pour descendre la charge le long des jambes.",
+          "Descends jusqu'à sentir l'étirement de la chaîne postérieure (ischio-jambiers), sans arrondir le bas du dos.",
+          "Remonte en poussant dans les talons et en avançant les hanches ; la technique prime sur la charge, surtout au début."
+        ],
+        "equipment": ["haltères ou barre légère"],
+        "commonMistake": "Arrondir le bas du dos en descendant au lieu de garder le dos plat et de charnière sur les hanches."
+      },
+      "en": {
+        "steps": [
+          "Stand with feet hip-width apart, the load close to your shins and your shoulder blades slightly set.",
+          "Push the hips back while keeping a flat back to lower the load along your legs.",
+          "Lower until you feel the posterior chain stretch (hamstrings), without rounding the lower back.",
+          "Stand up by driving through the heels and bringing the hips forward; technique comes before load, especially at first."
+        ],
+        "equipment": ["dumbbells or light bar"],
+        "commonMistake": "Rounding the lower back on the way down instead of keeping a flat back and hinging at the hips."
+      }
+    },
+    {
+      "id": "step_ups",
+      "type": "movement",
+      "matchers": ["step-ups", "step ups", "step up"],
+      "fr": {
+        "steps": [
+          "Place un pied à plat sur une marche ou une chaise stable, le genou aligné avec le pied.",
+          "Monte en poussant fort dans la jambe d'appui sur la marche, sans t'aider d'un élan de la jambe arrière.",
+          "Redresse-toi complètement en haut, puis redescends de façon contrôlée plutôt qu'en te laissant tomber.",
+          "Alterne ou enchaîne selon le plan, en gardant le buste droit et le bassin stable."
+        ],
+        "equipment": ["marche ou chaise stable"],
+        "commonMistake": "S'aider d'un élan de la jambe au sol pour monter au lieu de faire travailler la jambe posée sur la marche."
+      },
+      "en": {
+        "steps": [
+          "Place one foot flat on a step or stable chair, knee aligned with the foot.",
+          "Step up by driving hard through the supporting leg on the step, without pushing off with the trailing leg.",
+          "Stand fully tall at the top, then lower in a controlled way rather than dropping down.",
+          "Alternate or repeat per the plan, keeping the torso tall and the pelvis stable."
+        ],
+        "equipment": ["step or stable chair"],
+        "commonMistake": "Using a push-off from the ground leg to step up instead of working the leg placed on the step."
+      }
+    },
+    {
+      "id": "box_jumps",
+      "type": "movement",
+      "matchers": ["box jumps", "box jump", "pliométrie", "saut"],
+      "fr": {
+        "steps": [
+          "Choisis une boîte ou une marche stable et basse (30 à 40 cm), bien fixée pour ne pas glisser.",
+          "Fléchis légèrement les genoux et les hanches, balance les bras, puis saute en atterrissant en douceur sur la boîte.",
+          "Réceptionne genoux fléchis et dos droit, comme un amorti silencieux, pour absorber l'impact.",
+          "Redescends en marchant plutôt qu'en sautant vers le bas : c'est de la pliométrie modérée pour l'économie de course, pas une recherche de hauteur."
+        ],
+        "equipment": ["boîte ou marche stable basse"],
+        "commonMistake": "Sauter sur une boîte trop haute ou redescendre en sautant, ce qui augmente inutilement l'impact à la réception."
+      },
+      "en": {
+        "steps": [
+          "Choose a stable, low box or step (30 to 40 cm), firmly placed so it cannot slip.",
+          "Slightly bend the knees and hips, swing the arms, then jump up landing softly on the box.",
+          "Land with bent knees and a straight back, like a silent cushion, to absorb the impact.",
+          "Step down rather than jumping down: this is moderate plyometrics for running economy, not a quest for height."
+        ],
+        "equipment": ["stable low box or step"],
+        "commonMistake": "Jumping onto a box that is too high or jumping back down, which needlessly increases landing impact."
+      }
+    }
+  ]
+}
