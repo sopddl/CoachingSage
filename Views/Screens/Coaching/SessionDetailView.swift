@@ -60,6 +60,12 @@ struct SessionDetailView: View {
                     // mode FOCUS plein écran (exécution guidée pas-à-pas).
                     startFocusButton
 
+                    // Story 3.35b — suggestions musique (liens Apple Music/Spotify).
+                    // L'app ne joue rien (T3) : on aide à lancer SA musique.
+                    if !focusSteps.isEmpty {
+                        SessionMusicSuggestions(sportCode: effectiveSessionSportCode)
+                    }
+
                     medicalReminderFooter
                 }
                 .padding()
