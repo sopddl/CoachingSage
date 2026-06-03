@@ -61,25 +61,3 @@ enum SportMusicSuggestions {
         }
     }
 }
-
-// MARK: - Liens plateformes
-
-enum MusicPlatform: String, CaseIterable {
-    case appleMusic
-    case spotify
-}
-
-enum MusicLinkBuilder {
-    /// URL de recherche ouvrant l'app native de la plateforme sur le terme donné.
-    static func url(platform: MusicPlatform, searchTerm: String) -> URL? {
-        let encoded = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? searchTerm
-        switch platform {
-        case .appleMusic:
-            return URL(string: "https://music.apple.com/search?term=\(encoded)")
-        case .spotify:
-            // Le chemin /search/<term> ouvre l'app Spotify si installée, sinon le web.
-            let pathEncoded = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? searchTerm
-            return URL(string: "https://open.spotify.com/search/\(pathEncoded)")
-        }
-    }
-}

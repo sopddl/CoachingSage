@@ -261,6 +261,11 @@ struct UIReviewScenarioContainer: View {
                 week: SessionFocusAudioFixture.week,
                 program: SessionFocusAudioFixture.program
             )
+        case "ui_review_music_app_picker":
+            // **Story 3.35c** — sélecteur d'appli musique (onboarding/profil) + la
+            // section musique de la séance qui n'ouvre QUE l'app choisie. Préréglée
+            // sur Deezer pour valider l'ajout Deezer + le rendu mono-app.
+            MusicAppPickerScenarioView()
         case "ui_review_illustrations_showcase":
             // **Story 3.19 Jalon 2b** — showcase TOUTES les illustrations
             // (15 patterns) en grille pour screenshot HTML overview Sophie.
@@ -1256,6 +1261,32 @@ enum SessionFocusSingleFixture {
         ],
         cooldown: nil
     )
+}
+
+// MARK: - Story 3.35c — sélecteur appli musique + section séance
+
+private struct MusicAppPickerScenarioView: View {
+    init() {
+        // Préréglage Deezer pour valider le nouvel ajout + le rendu mono-app.
+        UserDefaults.standard.set(MusicStreamingApp.deezer.rawValue, forKey: MusicStreamingApp.storageKey)
+    }
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(verbatim: "Sélecteur (onboarding + profil)")
+                        .font(.caption).foregroundStyle(.secondary)
+                    MusicStreamingSelectorView()
+                }
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(verbatim: "Section séance (ouvre l'app choisie)")
+                        .font(.caption).foregroundStyle(.secondary)
+                    SessionMusicSuggestions(sportCode: "running")
+                }
+            }
+            .padding()
+        }
+    }
 }
 
 // MARK: - Story 3.35 (FOCUS Audio) — fixture

@@ -35,6 +35,20 @@ struct FirstNameLanguageView: View {
                         .accessibilityIdentifier("onboarding.firstName.field")
                 }
 
+                // Story 3.35c — appli musique préférée (ouverte depuis les
+                // suggestions musique de la séance). Modifiable plus tard dans le profil.
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("coaching.music.app.label")
+                        .font(.coachingCaption)
+                        .foregroundStyle(Color.coachingTextSecondary)
+                    HStack {
+                        MusicStreamingSelectorView()
+                        Spacer()
+                    }
+                    .padding(.horizontal, 4)
+                    .background(Color.coachingCard, in: RoundedRectangle(cornerRadius: CoachingRadius.md))
+                }
+
                 Spacer(minLength: 32)
             }
             .padding(.horizontal, 24)

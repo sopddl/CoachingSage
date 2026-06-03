@@ -141,6 +141,14 @@ struct ProfileView: View {
                 Spacer()
                 LanguageSelectorView(languageManager: languageManager)
             }
+
+            // Story 3.35c — appli musique préférée (suggestions musique séance).
+            HStack {
+                Text("coaching.music.app.label")
+                    .foregroundStyle(Color.coachingTextPrimary)
+                Spacer()
+                MusicStreamingSelectorView()
+            }
         }
     }
 
