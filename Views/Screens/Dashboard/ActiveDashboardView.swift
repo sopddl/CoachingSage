@@ -295,11 +295,13 @@ struct ActiveDashboardView: View {
         let spacing: CGFloat = 12
         let avail = max(carouselWidth - 4, 0) // - padding horizontal (2+2)
         guard avail > 0 else { return 200 }   // fallback avant 1er layout
+        let width: CGFloat
         switch startedPrograms.count {
-        case 0, 1: return avail
-        case 2:    return (avail - spacing) / 2
-        default:   return (avail - spacing) * 0.45
+        case 0, 1: width = avail
+        case 2:    width = (avail - spacing) / 2
+        default:   width = (avail - spacing) * 0.45
         }
+        return width.rounded(.down) // pixels entiers → bordure nette (pas de flou sub-pixel)
     }
 
     private var programCarousel: some View {
@@ -542,7 +544,10 @@ struct ProgramCard: View {
             .padding(.top, 10)
             .padding(.bottom, 8)
             .frame(maxWidth: .infinity)
-            .background(Color.coachingCard)
+            // Story 3.35l — fond clippé À la forme, PUIS bordure par-dessus (avant :
+            // .clipShape APRÈS l'overlay rognait le trait de bordure → contour mal
+            // affiché, retour Sophie).
+            .background(Color.coachingCard, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
             .overlay(
                 RoundedRectangle(cornerRadius: 14, style: .continuous)
                     .strokeBorder(
@@ -550,7 +555,6 @@ struct ProgramCard: View {
                         lineWidth: 2
                     )
             )
-            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("dashboard.active.program.\(sportCode)")

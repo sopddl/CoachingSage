@@ -492,11 +492,17 @@ final class SessionDashboardViewModel {
             let total = record.sessions.filter { $0.type != .rest }.count
             let completed = record.completionState.completedCount
             let currentWeek = currentWeekNumber(for: record, now: now)
+            // Story 3.35m — la semaine AFFICHÉE (bandeau + ratio) = celle de la
+            // prochaine séance (là où l'user en est dans le programme), pas la
+            // semaine calendaire. Évite « SEMAINE 2 » au-dessus de séances de
+            // semaine 1 quand on est en retard (retour Sophie). La semaine
+            // calendaire reste utilisée pour le badge « En retard » plus bas.
+            let contextWeek = nextResult?.session.weekNumber ?? currentWeek
             let weekTotalSessions = record.sessions
-                .filter { $0.weekNumber == currentWeek && $0.type != .rest }
+                .filter { $0.weekNumber == contextWeek && $0.type != .rest }
                 .count
             let weekCompletedSessions = record.sessions
-                .filter { $0.weekNumber == currentWeek }
+                .filter { $0.weekNumber == contextWeek }
                 .filter { record.completionState.sessionRecords[$0.id] != nil }
                 .count
             // **Story 3.11 AC6** — late = blocage doux actif ET prochaine
@@ -532,7 +538,7 @@ final class SessionDashboardViewModel {
                 durationMode: record.durationMode,
                 mode: record.mode,
                 nextSession: nextResult?.session,
-                currentWeekNumber: currentWeek,
+                currentWeekNumber: contextWeek,
                 weekCompletedSessions: weekCompletedSessions,
                 weekTotalSessions: weekTotalSessions,
                 totalSessionsCompleted: completed,
