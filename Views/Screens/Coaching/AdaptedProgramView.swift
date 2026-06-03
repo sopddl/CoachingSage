@@ -98,6 +98,7 @@ struct AdaptedProgramView: View {
     @State private var expandedWeeks: Set<Int> = []
 
     var body: some View {
+        ScrollViewReader { proxy in
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 if program.requiresAIAssist {
@@ -200,7 +201,18 @@ struct AdaptedProgramView: View {
                 }
             }
         }
-        .task(id: recordId) { await loadRecord() }
+        .task(id: recordId) { await loadRecord(); scrollToNextUndone(proxy) }
+        }
+    }
+
+    /// Story 3.35k — positionne le scroll sur la 1ʳᵉ séance non faite à l'ouverture
+    /// (toutes les semaines étant dépliées). Délai pour laisser la liste se layouter.
+    private func scrollToNextUndone(_ proxy: ScrollViewProxy) {
+        Task { @MainActor in
+            try? await Task.sleep(nanoseconds: 350_000_000)
+            guard let anchor = firstUndoneSessionAnchor else { return }
+            withAnimation(.easeInOut(duration: 0.3)) { proxy.scrollTo(anchor, anchor: .top) }
+        }
     }
 
 
@@ -374,16 +386,12 @@ struct AdaptedProgramView: View {
     // MARK: - Story 3.12 — Fetch record + accordéon helpers
 
     private func loadRecord() async {
-        guard let recordId, let deps else {
-            // Preview mode (pas de record) → S1 dépliée par défaut.
-            if let firstWeek = program.weeks.first {
-                expandedWeeks = [firstWeek.weekNumber]
-            }
-            return
-        }
+        // Story 3.35k — toutes les semaines OUVERTES par défaut (Sophie). Le scroll
+        // se positionnera sur la prochaine séance non faite.
+        expandedWeeks = Set(program.weeks.map(\.weekNumber))
+        guard let recordId, let deps else { return }
         let fetched = try? await deps.adaptedProgramRepository.fetchById(recordId: recordId)
         record = fetched
-        expandedWeeks = [currentWeekNumber]
     }
 
     /// Semaine courante du programme (1-indexed). Calculée depuis `weekStartDate`
@@ -447,19 +455,6 @@ struct AdaptedProgramView: View {
             // Erreur générique silencieuse (cas dégénéré, ex. record disparu) ;
             // le retour dashboard via back nav reste accessible.
         }
-    }
-
-    private func expansionBinding(for weekNumber: Int) -> Binding<Bool> {
-        Binding(
-            get: { expandedWeeks.contains(weekNumber) },
-            set: { expanded in
-                if expanded {
-                    expandedWeeks.insert(weekNumber)
-                } else {
-                    expandedWeeks.remove(weekNumber)
-                }
-            }
-        )
     }
 
     // MARK: - AI assist banner
@@ -642,52 +637,74 @@ struct AdaptedProgramView: View {
 
     private func weekAccordion(_ week: AdaptedWeek) -> some View {
         let state = state(of: week)
-        return DisclosureGroup(isExpanded: expansionBinding(for: week.weekNumber)) {
-            // Story 3.35j — le thème + l'objectif de la semaine sont dans le « i »
-            // (WeekInfoButton) du header ; plus de pavé gris ici.
-            VStack(spacing: 6) {
-                ForEach(week.sessions, id: \.day) { session in
-                    sessionRow(session, week: week)
+        let isExpanded = expandedWeeks.contains(week.weekNumber)
+        return VStack(alignment: .leading, spacing: 8) {
+            // Header custom : le titre + le chevron togglent ; le « i » est un bouton
+            // SÉPARÉ (avant, dans un DisclosureGroup, taper « i » repliait la semaine
+            // et faisait « disparaître » les séances — bug Sophie 2026-06-03).
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                Button {
+                    withAnimation(.easeInOut(duration: 0.2)) { toggleWeek(week.weekNumber) }
+                } label: {
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
+                        weekTitleAndState(week: week, state: state)
+                        Spacer(minLength: 8)
+                    }
+                    .contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
+                if !week.theme.isEmpty || !week.goal.isEmpty {
+                    WeekInfoButton(theme: week.theme, goal: week.goal)
+                }
+                Button {
+                    withAnimation(.easeInOut(duration: 0.2)) { toggleWeek(week.weekNumber) }
+                } label: {
+                    Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
+                        .font(.caption.bold())
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
             }
-            .padding(.top, 6)
-        } label: {
-            weekAccordionLabel(week: week, state: state)
+            if isExpanded {
+                VStack(spacing: 6) {
+                    ForEach(week.sessions, id: \.day) { session in
+                        sessionRow(session, week: week)
+                    }
+                }
+                .padding(.top, 2)
+            }
         }
         .padding(.vertical, 4)
         .accessibilityIdentifier("coaching.adapter.week.\(week.weekNumber)")
     }
 
+    private func toggleWeek(_ weekNumber: Int) {
+        if expandedWeeks.contains(weekNumber) { expandedWeeks.remove(weekNumber) }
+        else { expandedWeeks.insert(weekNumber) }
+    }
+
     @ViewBuilder
-    private func weekAccordionLabel(week: AdaptedWeek, state: WeekState) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Text("coaching.adapter.week.label \(week.weekNumber)")
-                .font(.headline)
-                .foregroundStyle(Color.coachingTextPrimary)
-            switch state {
-            case .past:
-                Text("coaching.adapter.week.completed \(completedCount(inWeekNumber: week.weekNumber)) \(week.sessions.count)")
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(Color.coachingRecord)
-                    .monospacedDigit()
-            case .current:
-                Text("coaching.adapter.week.current")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(Color.coachingPrimary)
-                    .textCase(.uppercase)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 2)
-                    .background(Color.coachingPrimary.opacity(0.12))
-                    .clipShape(Capsule())
-            case .future:
-                EmptyView()
-            }
-            Spacer(minLength: 8)
-            // Story 3.35j — le thème/objectif de la semaine (texte gris) passe dans
-            // un « i » qui ouvre un encart en puces (plus de petit texte tronqué).
-            if !week.theme.isEmpty || !week.goal.isEmpty {
-                WeekInfoButton(theme: week.theme, goal: week.goal)
-            }
+    private func weekTitleAndState(week: AdaptedWeek, state: WeekState) -> some View {
+        Text("coaching.adapter.week.label \(week.weekNumber)")
+            .font(.headline)
+            .foregroundStyle(Color.coachingTextPrimary)
+        switch state {
+        case .past:
+            Text("coaching.adapter.week.completed \(completedCount(inWeekNumber: week.weekNumber)) \(week.sessions.count)")
+                .font(.subheadline.weight(.medium))
+                .foregroundStyle(Color.coachingRecord)
+                .monospacedDigit()
+        case .current:
+            Text("coaching.adapter.week.current")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(Color.coachingPrimary)
+                .textCase(.uppercase)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(Color.coachingPrimary.opacity(0.12))
+                .clipShape(Capsule())
+        case .future:
+            EmptyView()
         }
     }
 
@@ -709,13 +726,14 @@ struct AdaptedProgramView: View {
                     .frame(width: 24)
                     .foregroundStyle(Color.coachingSport(forCode: sessionEffectiveSportCode(for: session)))
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(verbatim: session.name.sanitizedForDisplay)
-                        .font(.subheadline.bold())
-                        .foregroundStyle(.primary)
-                    // Story 3.35j — numéro de séance incrémental (prioritaire) + semaine.
+                    // Story 3.35k — petite ligne grise (Séance N · Sem · min) AU-DESSUS
+                    // du libellé (inversion demandée par Sophie).
                     Text("coaching.adapter.session.numberedLine \(globalSessionNumber(week: week.weekNumber, day: session.day)) \(week.weekNumber) \(session.durationMinutes)")
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                    Text(verbatim: session.name.sanitizedForDisplay)
+                        .font(.subheadline.bold())
+                        .foregroundStyle(.primary)
                 }
                 Spacer()
                 if isModifiedByRegen {
@@ -740,6 +758,26 @@ struct AdaptedProgramView: View {
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .buttonStyle(.plain)
+        .id(Self.sessionAnchor(week: week.weekNumber, day: session.day))
+    }
+
+    /// Ancre de scroll d'une séance (Story 3.35k — scroll auto vers la 1ʳᵉ non faite).
+    static func sessionAnchor(week: Int, day: Int) -> String { "session-w\(week)-d\(day)" }
+
+    /// (week, day) de la 1ʳᵉ séance non faite (hors repos). nil si tout fait / pas de record.
+    private var firstUndoneSessionAnchor: String? {
+        guard let record else {
+            // Pas de record (preview) : 1ʳᵉ séance du programme.
+            guard let w = program.weeks.first, let s = w.sessions.first else { return nil }
+            return Self.sessionAnchor(week: w.weekNumber, day: s.day)
+        }
+        let done = record.completionState.sessionRecords
+        let undone = record.sessions
+            .filter { $0.type != .rest && done[$0.id] == nil }
+            .sorted { ($0.weekNumber, $0.day) < ($1.weekNumber, $1.day) }
+            .first
+        guard let undone else { return nil }
+        return Self.sessionAnchor(week: undone.weekNumber, day: undone.day)
     }
 
     private func hasAdaptations(week: Int, day: Int) -> Bool {
