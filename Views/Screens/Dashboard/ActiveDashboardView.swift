@@ -56,6 +56,9 @@ struct ActiveDashboardView: View {
     let onSelectProgram: (UUID) -> Void
     let onTapStartSession: (ProgramSummary) -> Void
     let onTapProgram: (ProgramSummary) -> Void
+    /// Story 3.35j — tap sur une séance de la liste du dashboard (autre que la
+    /// proposée) → ouvre sa fiche. Avant : les lignes étaient inertes (bug Sophie).
+    var onTapUpcomingSession: ((ProgramSummary, PersistedSession) -> Void)? = nil
     /// Story 3.3b cleanup 2026-05-10 — swipe-to-delete sur la liste des programmes.
     /// L'action concrète = `adaptedRepo.archive(record)` côté caller (SessionView).
     let onDeleteProgram: (ProgramSummary) -> Void
@@ -158,10 +161,15 @@ struct ActiveDashboardView: View {
                                             if session.weekNumber != prevWeek {
                                                 weekSeparatorHeader(weekNumber: session.weekNumber)
                                             }
-                                            UpcomingSessionRow(
-                                                session: session,
-                                                sportCode: selectedSummary.sport.appSportCode
-                                            )
+                                            Button {
+                                                onTapUpcomingSession?(selectedSummary, session)
+                                            } label: {
+                                                UpcomingSessionRow(
+                                                    session: session,
+                                                    sportCode: selectedSummary.sport.appSportCode
+                                                )
+                                            }
+                                            .buttonStyle(.plain)
                                         }
                                         if upcomingSessions.isEmpty, selectedSummary.nextSession != nil {
                                             NextSessionTeaser(

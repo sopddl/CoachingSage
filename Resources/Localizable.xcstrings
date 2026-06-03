@@ -1365,6 +1365,18 @@
         }
       }
     },
+    "coaching.adapter.session.numberedLine %lld %lld %lld" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Session %1$lld · Week %2$lld · %3$lld min" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Séance %1$lld · Sem %2$lld · %3$lld min" } }
+      }
+    },
+    "coaching.adapter.week.info" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Week details" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Détails de la semaine" } }
+      }
+    },
     "coaching.adapter.session.shortLine %lld %lld %lld" : {
       "localizations" : {
         "en" : {
@@ -3725,18 +3737,18 @@
       }
     },
     "dashboard.active.next.coordinate.format" : {
-      "comment" : "Story 3.15 v4 — pill S2 (semaine seule, on ne gère plus le jour Sophie 2026-05-21)",
+      "comment" : "Story 3.35j — « Sem N » (jamais « S N » qui se confond avec Séance N, retour Sophie)",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "W%1$lld"
+            "value" : "Week %1$lld"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "S%1$lld"
+            "value" : "Sem %1$lld"
           }
         }
       }

@@ -643,16 +643,11 @@ struct AdaptedProgramView: View {
     private func weekAccordion(_ week: AdaptedWeek) -> some View {
         let state = state(of: week)
         return DisclosureGroup(isExpanded: expansionBinding(for: week.weekNumber)) {
-            VStack(alignment: .leading, spacing: 8) {
-                if !week.goal.isEmpty {
-                    Text(verbatim: week.goal)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                VStack(spacing: 6) {
-                    ForEach(week.sessions, id: \.day) { session in
-                        sessionRow(session, week: week)
-                    }
+            // Story 3.35j — le thème + l'objectif de la semaine sont dans le « i »
+            // (WeekInfoButton) du header ; plus de pavé gris ici.
+            VStack(spacing: 6) {
+                ForEach(week.sessions, id: \.day) { session in
+                    sessionRow(session, week: week)
                 }
             }
             .padding(.top, 6)
@@ -688,10 +683,11 @@ struct AdaptedProgramView: View {
                 EmptyView()
             }
             Spacer(minLength: 8)
-            Text(verbatim: week.theme)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .lineLimit(1)
+            // Story 3.35j — le thème/objectif de la semaine (texte gris) passe dans
+            // un « i » qui ouvre un encart en puces (plus de petit texte tronqué).
+            if !week.theme.isEmpty || !week.goal.isEmpty {
+                WeekInfoButton(theme: week.theme, goal: week.goal)
+            }
         }
     }
 
@@ -713,10 +709,11 @@ struct AdaptedProgramView: View {
                     .frame(width: 24)
                     .foregroundStyle(Color.coachingSport(forCode: sessionEffectiveSportCode(for: session)))
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(verbatim: session.name)
+                    Text(verbatim: session.name.sanitizedForDisplay)
                         .font(.subheadline.bold())
                         .foregroundStyle(.primary)
-                    Text("coaching.adapter.session.shortLine \(week.weekNumber) \(session.day) \(session.durationMinutes)")
+                    // Story 3.35j — numéro de séance incrémental (prioritaire) + semaine.
+                    Text("coaching.adapter.session.numberedLine \(globalSessionNumber(week: week.weekNumber, day: session.day)) \(week.weekNumber) \(session.durationMinutes)")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -747,6 +744,19 @@ struct AdaptedProgramView: View {
 
     private func hasAdaptations(week: Int, day: Int) -> Bool {
         program.appliedRules.contains { $0.weekNumber == week && $0.day == day }
+    }
+
+    /// Story 3.35j — numéro de séance INCRÉMENTAL sur tout le programme (Sophie :
+    /// « presque plus important que le numéro de la semaine »). Ordre semaine puis jour.
+    private func globalSessionNumber(week: Int, day: Int) -> Int {
+        var n = 0
+        for w in program.weeks.sorted(by: { $0.weekNumber < $1.weekNumber }) {
+            for s in w.sessions.sorted(by: { $0.day < $1.day }) {
+                n += 1
+                if w.weekNumber == week && s.day == day { return n }
+            }
+        }
+        return n
     }
 
     /// Story 3.15 v7.2 (Sophie 2026-05-21) — symbole par session, sport-aware.

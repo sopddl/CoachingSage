@@ -360,6 +360,9 @@ struct SessionView: View {
                 onTapProgram: { summary in
                     pushAdaptedProgramSummary(summary)
                 },
+                onTapUpcomingSession: { summary, persisted in
+                    openUpcomingSession(summary: summary, persisted: persisted)
+                },
                 onDeleteProgram: { summary in
                     Task { await deleteProgramSummary(summary) }
                 },
@@ -509,6 +512,22 @@ struct SessionView: View {
         } else {
             pushAdaptedProgram(record: effective)
         }
+    }
+
+    /// Story 3.35j — ouvre la fiche d'une séance QUELCONQUE tapée dans la liste du
+    /// dashboard (mappe weekNumber/day → AdaptedSession/Week).
+    @MainActor
+    private func openUpcomingSession(summary: ProgramSummary, persisted: PersistedSession) {
+        guard let record = dashboardViewModel?.recordsByID[summary.id],
+              let applied = record.toAppliedAdaptedProgram(),
+              let week = applied.program.weeks.first(where: { $0.weekNumber == persisted.weekNumber }),
+              let session = week.sessions.first(where: { $0.day == persisted.day })
+        else { return }
+        let modified = dashboardViewModel?.modifiedSessionCoordinates(forRecordId: record.id) ?? []
+        sessionRoute = SessionDetailRoute(
+            session: session, week: week, program: applied.program, recordId: record.id,
+            isModifiedByRegen: modified.contains(SessionCoordinate(weekNumber: week.weekNumber, day: session.day))
+        )
     }
 
     /// Résout la fiche de la prochaine séance d'un record : mappe la
