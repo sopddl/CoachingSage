@@ -397,6 +397,7 @@ struct SessionFocusView: View {
             UIApplication.shared.isIdleTimerDisabled = false
             voiceGuide?.stop()
             audioCues.deactivate()
+            persistTimedProgress() // sauvegarde partielle (fermeture ✕ en cours)
         }
         .onReceive(secondTick) { _ in timerEngine.tick() }
         .onChange(of: timerEngine.currentIndex) { _, _ in handlePhaseChange() }
@@ -471,6 +472,22 @@ struct SessionFocusView: View {
             guide.announce(displayString(phase.label)) // « Échauffement » / « Retour au calme »
         default:
             break
+        }
+    }
+
+    /// Sauvegarde la progression partielle d'une séance minutée à la fermeture :
+    /// une étape (échauffement / exo / récup) est marquée faite si TOUTES ses
+    /// phases sont passées. Évite de tout perdre si on ferme à 7 tours sur 8
+    /// (la reprise depuis le HUB repart à la 1ʳᵉ étape non faite). No-op hors minuté.
+    private func persistTimedProgress() {
+        guard usesTimedMode, !timerEngine.phases.isEmpty else { return }
+        for step in steps {
+            let positions = timerEngine.phases.enumerated()
+                .filter { $0.element.stepIndex == step.index }
+                .map(\.offset)
+            guard !positions.isEmpty else { continue }
+            let allPassed = timerEngine.isFinished || positions.allSatisfy { $0 < timerEngine.currentIndex }
+            if allPassed { viewModel.markDone(step) }
         }
     }
 
