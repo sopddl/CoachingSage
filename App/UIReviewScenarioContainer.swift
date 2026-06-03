@@ -252,6 +252,15 @@ struct UIReviewScenarioContainer: View {
                 week: SessionFocusYogaFixture.week,
                 program: SessionFocusYogaFixture.program
             )
+        case "ui_review_session_focus_audio":
+            // **Story 3.35 (FOCUS Audio)** — running : écran glançable (gros compte à
+            // rebours + bloc courant) + réglages voix (toggle ON/OFF + sélecteur H/F)
+            // dans la barre haute. La voix/ducking sont validés sur device (hand-off).
+            SessionFocusView(
+                session: SessionFocusAudioFixture.session,
+                week: SessionFocusAudioFixture.week,
+                program: SessionFocusAudioFixture.program
+            )
         case "ui_review_illustrations_showcase":
             // **Story 3.19 Jalon 2b** — showcase TOUTES les illustrations
             // (15 patterns) en grille pour screenshot HTML overview Sophie.
@@ -1244,6 +1253,29 @@ enum SessionFocusSingleFixture {
             AdaptedExercise(name: "Footing facile", originalName: "Footing facile",
                             duration: "30 min", notes: "Allure de conversation, respiration nasale.",
                             targetZone: "Daniels-E")
+        ],
+        cooldown: nil
+    )
+}
+
+// MARK: - Story 3.35 (FOCUS Audio) — fixture
+
+enum SessionFocusAudioFixture {
+    static let week = AdaptedWeek(weekNumber: 3, theme: "Endurance + tempo", goal: "Allure soutenue", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-audio-fixture", sport: .running, level: .regular,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 2, name: "Sortie tempo", durationMinutes: 35, type: .endurance,
+        warmup: nil,
+        exercises: [
+            AdaptedExercise(name: "Échauffement footing", originalName: "Échauffement footing",
+                            duration: "10 min", notes: "Allure très facile, Z2.", targetZone: "Z2"),
+            AdaptedExercise(name: "Bloc tempo", originalName: "Bloc tempo",
+                            duration: "15 min", notes: "Allure seuil, soutenue mais maîtrisée.", targetZone: "Daniels-T"),
+            AdaptedExercise(name: "Retour au calme", originalName: "Retour au calme",
+                            duration: "10 min", notes: "Footing très lent.", targetZone: "Z1")
         ],
         cooldown: nil
     )

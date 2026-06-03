@@ -31,6 +31,8 @@ struct SessionFocusView: View {
     // Story 3.34 — mode Minuté (HIIT/yoga).
     @State private var timerEngine: SessionTimerEngine
     @State private var audioCues = SessionAudioCues()
+    // Story 3.35 — mode Audio (voix par-dessus le déroulé chronométré).
+    @State private var voiceGuide: SessionVoiceGuide?
     private let resolvedSportCode: String
     private let executionMode: SessionExecutionMode
 
@@ -57,11 +59,16 @@ struct SessionFocusView: View {
 
     private var steps: [SessionStep] { viewModel.steps }
 
-    /// Mode Minuté seulement si on a su décomposer la séance en phases ; sinon on
-    /// retombe gracieusement sur le mode Manuel (jamais de cul-de-sac).
+    /// UI compte à rebours (Minuté 3.34 ET Audio 3.35 partagent l'écran glançable) ;
+    /// sinon repli gracieux sur le mode Manuel (jamais de cul-de-sac).
     private var usesTimedMode: Bool {
-        executionMode == .timed && !timerEngine.phases.isEmpty
+        (executionMode == .timed || executionMode == .audio) && !timerEngine.phases.isEmpty
     }
+
+    /// Mode Audio (3.35) : voix par-dessus le déroulé chronométré.
+    private var isAudioMode: Bool { executionMode == .audio }
+
+    private var currentLanguage: String { Locale.current.language.languageCode?.identifier ?? "fr" }
 
     var body: some View {
         Group {
@@ -375,11 +382,15 @@ struct SessionFocusView: View {
         }
         .onAppear {
             UIApplication.shared.isIdleTimerDisabled = true // écran maintenu allumé (AC7)
-            audioCues.activate(duckOthers: false)
+            setupVoiceIfNeeded()
+            // Audio : on duck l'audio tiers (voix par-dessus la musique du user).
+            audioCues.activate(duckOthers: isAudioMode)
             timerEngine.start()
+            announceCurrentPhase() // pré-annonce vocale du 1ᵉʳ bloc (anti-Decathlon)
         }
         .onDisappear {
             UIApplication.shared.isIdleTimerDisabled = false
+            voiceGuide?.stop()
             audioCues.deactivate()
         }
         .onReceive(secondTick) { _ in timerEngine.tick() }
@@ -402,6 +413,34 @@ struct SessionFocusView: View {
         case .rest:        audioCues.play(.restStart)
         case .prepare:     break // les bips sont gérés via le tick du countdown
         }
+        announceCurrentPhase()
+    }
+
+    // MARK: - Voix (3.35)
+
+    private func setupVoiceIfNeeded() {
+        guard isAudioMode, voiceGuide == nil else { return }
+        voiceGuide = SessionVoiceGuide(
+            enabled: SessionVoicePrefs.enabled,
+            gender: SessionVoicePrefs.gender,
+            language: currentLanguage,
+            speaker: AVSpeechSpeaker(audioCues: audioCues),
+            voiceProvider: AVSpeechSpeaker.voiceIdentifier(for:language:)
+        )
+    }
+
+    /// Pré-annonce vocale anti-Decathlon : « Prochain : <bloc> » avant l'effort,
+    /// « C'est parti » au démarrage du bloc. No-op hors mode Audio / voix OFF.
+    private func announceCurrentPhase() {
+        guard isAudioMode, let phase = timerEngine.currentPhase, let guide = voiceGuide else { return }
+        switch phase.kind {
+        case .prepare:
+            guide.announce(String(localized: "coaching.session.voice.next \(phase.title)"))
+        case .work, .hold:
+            guide.announce(String(localized: "coaching.session.voice.go"))
+        case .rest:
+            break // bip seul
+        }
     }
 
     private func handleTimedFinish() {
@@ -412,17 +451,27 @@ struct SessionFocusView: View {
     }
 
     private var timedTopBar: some View {
-        HStack {
-            Button { dismiss() } label: {
-                Image(systemName: "xmark").font(.title3).foregroundStyle(.secondary)
+        VStack(spacing: 10) {
+            HStack {
+                Button { dismiss() } label: {
+                    Image(systemName: "xmark").font(.title3).foregroundStyle(.secondary)
+                }
+                .accessibilityIdentifier("coaching.session.focus.close")
+                Spacer()
+                progressionLabel
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Image(systemName: "xmark").font(.title3).opacity(0)
             }
-            .accessibilityIdentifier("coaching.session.focus.close")
-            Spacer()
-            progressionLabel
-                .font(.caption.bold())
-                .foregroundStyle(.secondary)
-            Spacer()
-            Image(systemName: "xmark").font(.title3).opacity(0)
+            if isAudioMode {
+                // Réglages voix accessibles pendant la séance (toggle + H/F).
+                VoiceSettingsControls { enabled, gender in
+                    voiceGuide?.enabled = enabled
+                    voiceGuide?.gender = gender
+                    if !enabled { voiceGuide?.stop() }
+                }
+            }
         }
         .padding(.horizontal)
         .padding(.top, 12)
@@ -518,25 +567,34 @@ struct SessionFocusView: View {
     @ViewBuilder
     private var progressionLabel: some View {
         if let p = timerEngine.currentPhase {
-            if let round = p.round, let tot = p.totalRounds, tot > 1 {
+            if p.kind == .hold {
+                // Yoga : « Posture p/P ».
+                let pos = position(of: .hold)
+                Text("coaching.session.focus.timed.posture \(pos.current) \(pos.total)")
+            } else if let round = p.round, let tot = p.totalRounds, tot > 1 {
+                // HIIT en tours.
                 if let k = p.exerciseInRound, let K = p.totalInRound, K > 1 {
                     Text("coaching.session.focus.timed.roundExo \(round) \(tot) \(k) \(K)")
                 } else {
                     Text("coaching.session.focus.timed.round \(round) \(tot)")
                 }
             } else {
-                let pos = posturePosition()
-                Text("coaching.session.focus.timed.posture \(pos.current) \(pos.total)")
+                // Cardio / blocs simples : « Bloc i/N » (masqué si un seul bloc, P1 review).
+                let pos = position(of: .work)
+                if pos.total > 1 {
+                    Text("coaching.session.focus.timed.block \(pos.current) \(pos.total)")
+                }
             }
         }
     }
 
-    private func posturePosition() -> (current: Int, total: Int) {
-        let holdOffsets = timerEngine.phases.enumerated()
-            .filter { $0.element.kind == .hold }
+    /// Position (courant/total) parmi les phases d'un `kind` donné.
+    private func position(of kind: SessionTimerPhase.Kind) -> (current: Int, total: Int) {
+        let offsets = timerEngine.phases.enumerated()
+            .filter { $0.element.kind == kind }
             .map(\.offset)
-        let total = holdOffsets.count
-        let done = holdOffsets.filter { $0 <= timerEngine.currentIndex }.count
+        let total = offsets.count
+        let done = offsets.filter { $0 <= timerEngine.currentIndex }.count
         return (max(done, 1), max(total, 1))
     }
 

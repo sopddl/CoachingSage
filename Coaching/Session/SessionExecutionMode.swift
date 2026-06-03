@@ -23,9 +23,8 @@ enum SessionExecutionMode: String, Equatable, CaseIterable {
     case audio
     case watch
 
-    /// Modes effectivement embarqués à ce jour. 3.35 ajoutera `.audio`, 3.36
-    /// `.watch`.
-    static let shippedModes: Set<SessionExecutionMode> = [.manual, .timed]
+    /// Modes effectivement embarqués à ce jour. 3.36 ajoutera `.watch` (montre).
+    static let shippedModes: Set<SessionExecutionMode> = [.manual, .timed, .audio]
 
     /// Mode **cible** idéal pour un sport/type (indépendant de ce qui est livré).
     /// `sportCode` doit être le code EFFECTIF (triathlon déjà résolu en discipline).

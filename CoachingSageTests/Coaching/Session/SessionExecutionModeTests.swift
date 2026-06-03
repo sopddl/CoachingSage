@@ -49,21 +49,26 @@ final class SessionExecutionModeTests: XCTestCase {
         XCTAssertEqual(SessionExecutionMode.available(sportCode: "yoga", sessionType: .mobility), .timed)
     }
 
-    func test_available_audioAndWatchNotShipped_fallBackToManual() {
-        // Audio (3.35) et Montre (3.36) pas encore embarqués → fallback Manuel.
-        for code in ["running", "cycling", "hiking", "swimming"] {
+    func test_available_audioShipped_cardioUsesAudio() {
+        // Depuis 3.35, Audio est embarqué → run/vélo/rando avancent en audio-mené.
+        for code in ["running", "cycling", "hiking"] {
             XCTAssertEqual(
-                SessionExecutionMode.available(sportCode: code, sessionType: .endurance), .manual,
-                "fallback Manuel attendu pour \(code) (audio/watch non livrés)"
+                SessionExecutionMode.available(sportCode: code, sessionType: .endurance), .audio,
+                "mode Audio attendu pour \(code)"
             )
         }
+    }
+
+    func test_available_watchNotShipped_swimFallsBackToManual() {
+        // Montre (3.36) pas encore embarquée → natation retombe sur Manuel.
+        XCTAssertEqual(SessionExecutionMode.available(sportCode: "swimming", sessionType: .technique), .manual)
     }
 
     func test_available_manualTargetStaysManual() {
         XCTAssertEqual(SessionExecutionMode.available(sportCode: "strengthTraining", sessionType: .strength), .manual)
     }
 
-    func test_shippedModes_containsManualAndTimed() {
-        XCTAssertEqual(SessionExecutionMode.shippedModes, [.manual, .timed])
+    func test_shippedModes_containsManualTimedAudio() {
+        XCTAssertEqual(SessionExecutionMode.shippedModes, [.manual, .timed, .audio])
     }
 }
