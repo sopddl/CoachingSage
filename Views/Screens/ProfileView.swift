@@ -149,6 +149,15 @@ struct ProfileView: View {
                 Spacer()
                 MusicStreamingSelectorView()
             }
+
+            // Story 3.35d — voix du guidage audio (Homme/Femme). Le ON/OFF se règle
+            // pendant la séance (mode Audio, haut droite).
+            HStack {
+                Text("coaching.session.voice.gender")
+                    .foregroundStyle(Color.coachingTextPrimary)
+                Spacer()
+                VoiceGenderSelectorView()
+            }
         }
     }
 

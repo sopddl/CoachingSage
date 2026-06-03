@@ -252,10 +252,19 @@ struct UIReviewScenarioContainer: View {
                 week: SessionFocusYogaFixture.week,
                 program: SessionFocusYogaFixture.program
             )
+        case "ui_review_session_focus_runwalk":
+            // **Story 3.35d** — run/walk décomposé : segments « Course 1 » / « Marche 1 »
+            // alternés, gros temps mm:ss, toggle son haut-droite. Reproduit le cas
+            // device de Sophie (Bloc run/walk sets=8).
+            SessionFocusView(
+                session: SessionFocusRunWalkFixture.session,
+                week: SessionFocusRunWalkFixture.week,
+                program: SessionFocusRunWalkFixture.program
+            )
         case "ui_review_session_focus_audio":
             // **Story 3.35 (FOCUS Audio)** — running : écran glançable (gros compte à
-            // rebours + bloc courant) + réglages voix (toggle ON/OFF + sélecteur H/F)
-            // dans la barre haute. La voix/ducking sont validés sur device (hand-off).
+            // rebours + bloc courant) + toggle son haut-droite (voix H/F = profil).
+            // La voix/ducking sont validés sur device (hand-off).
             SessionFocusView(
                 session: SessionFocusAudioFixture.session,
                 week: SessionFocusAudioFixture.week,
@@ -1287,6 +1296,26 @@ private struct MusicAppPickerScenarioView: View {
             .padding()
         }
     }
+}
+
+// MARK: - Story 3.35d — fixture run/walk (cas device Sophie)
+
+enum SessionFocusRunWalkFixture {
+    static let week = AdaptedWeek(weekNumber: 1, theme: "Découverte run/walk", goal: "Couch to 5K", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "running-debutant-5k-8sem", sport: .running, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 1, name: "Run/walk découverte", durationMinutes: 35, type: .mixed,
+        warmup: nil,
+        exercises: [
+            AdaptedExercise(name: "Bloc run/walk", originalName: "Bloc run/walk",
+                            sets: 8, duration: "1 min course lente + 1 min 30 marche rapide", restSeconds: 0,
+                            notes: "Allure de course TRÈS lente, test de la parole.")
+        ],
+        cooldown: nil
+    )
 }
 
 // MARK: - Story 3.35 (FOCUS Audio) — fixture

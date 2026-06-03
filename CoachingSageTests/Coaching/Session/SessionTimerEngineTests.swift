@@ -133,6 +133,49 @@ final class SessionTimerEngineTests: XCTestCase {
         XCTAssertEqual(phases.filter { $0.kind == .work }.count, 2)
     }
 
+    // MARK: - Builder run/walk (décomposition, fix device 3.35d)
+
+    func test_builder_runWalk_decomposesIntoSegments() {
+        // 1 exo run/walk, sets=8, "1 min course lente + 1 min 30 marche rapide".
+        let s = session(type: .mixed, exercises: [
+            AdaptedExercise(name: "Bloc run/walk", originalName: "Bloc run/walk",
+                            sets: 8, duration: "1 min course lente + 1 min 30 marche rapide", restSeconds: 0)
+        ])
+        let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "running")
+        // 1 prepare + 8 tours × 2 segments = 17 phases.
+        XCTAssertEqual(phases.count, 1 + 8 * 2)
+        XCTAssertEqual(phases.first?.kind, .prepare)
+        // Premier segment = Course (60 s, .work), deuxième = Marche (90 s, .rest).
+        XCTAssertEqual(phases[1].kind, .work)
+        XCTAssertEqual(phases[1].duration, 60)
+        XCTAssertEqual(phases[1].label, .run(1))
+        XCTAssertEqual(phases[2].kind, .rest)
+        XCTAssertEqual(phases[2].duration, 90) // "1 min 30" = 90 s (et pas 1 s)
+        XCTAssertEqual(phases[2].label, .walk(1))
+        // Numérotation croissante sur les tours.
+        XCTAssertEqual(phases[3].label, .run(2))
+        XCTAssertEqual(phases[4].label, .walk(2))
+        XCTAssertEqual(phases.last?.label, .walk(8))
+    }
+
+    func test_builder_runWalk_engineAdvancesThroughSegments() {
+        // Régression du P0 device : l'avance ne menait nulle part (1 seul bloc).
+        let s = session(type: .mixed, exercises: [
+            AdaptedExercise(name: "Bloc run/walk", originalName: "Bloc run/walk",
+                            sets: 2, duration: "1 min course + 1 min 30 marche", restSeconds: 0)
+        ])
+        let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "running")
+        let e = SessionTimerEngine(phases: phases)
+        e.start()
+        XCTAssertEqual(e.currentPhase?.kind, .prepare)
+        e.skip() // → Course 1
+        XCTAssertEqual(e.currentPhase?.label, .run(1))
+        e.skip() // → Marche 1
+        XCTAssertEqual(e.currentPhase?.label, .walk(1))
+        e.skip() // → Course 2
+        XCTAssertEqual(e.currentPhase?.label, .run(2))
+    }
+
     // MARK: - Builder yoga (tenue)
 
     func test_builder_yoga_holdPerPosture() {
@@ -163,7 +206,7 @@ final class SessionTimerEngineTests: XCTestCase {
     }
 
     private func phase(_ kind: SessionTimerPhase.Kind, _ duration: Int) -> SessionTimerPhase {
-        SessionTimerPhase(id: 0, kind: kind, duration: duration, stepIndex: 0, title: "T",
+        SessionTimerPhase(id: 0, kind: kind, duration: duration, stepIndex: 0, label: .effort,
                           round: 1, totalRounds: 1, exerciseInRound: 1, totalInRound: 1)
     }
 
