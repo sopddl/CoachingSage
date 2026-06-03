@@ -93,8 +93,7 @@ struct ExerciseTimelineCard: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
             if let notes = exercise.notes, !notes.isEmpty {
-                GlossaryRichText(text: notes, font: .footnote, foreground: .primary)
-                    .fixedSize(horizontal: false, vertical: true)
+                BulletedNotes(text: notes, font: .footnote)
                     .scaleEffect(pulseScale)
                     .opacity(pulseOpacity)
                     .accessibilityIdentifier(

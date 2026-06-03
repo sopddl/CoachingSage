@@ -7,16 +7,17 @@ import Foundation
 
 enum SessionPhaseText {
 
-    /// Lignes (puces) d'un texte de phase. Découpe sur les « + », retire la mention
-    /// « Total : … », assainit les « / ». Si pas de « + », renvoie une seule ligne.
+    /// Lignes (puces) d'un texte de phase / de notes d'exo. Découpe sur les « + »
+    /// ET les fins de phrase (« . »), retire la mention « Total : … », assainit les
+    /// « / ». Rend un texte dense lisible (retour Sophie : « c'est illisible »).
     static func bulletLines(from text: String) -> [String] {
         let withoutTotal = stripTotal(text)
-        let parts = withoutTotal.contains("+")
-            ? withoutTotal.split(separator: "+").map(String.init)
-            : [withoutTotal]
-        return parts
+        let parts = withoutTotal.split(whereSeparator: { $0 == "+" || $0 == "." }).map(String.init)
+        let lines = parts
             .map { $0.sanitizedForDisplay.trimmingCharacters(in: .whitespacesAndNewlines) }
             .filter { !$0.isEmpty }
+        // Si le découpage ne donne rien d'exploitable, renvoie le texte assaini entier.
+        return lines.isEmpty ? [withoutTotal.sanitizedForDisplay] : lines
     }
 
     /// Durée totale lisible (« 8 min ») si le texte contient « Total : N min », nil sinon.
