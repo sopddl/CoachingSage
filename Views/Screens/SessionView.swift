@@ -695,7 +695,9 @@ struct SessionView: View {
     /// démarré). Sinon, EmptyView = pas d'inset → pas de réservation d'espace.
     @ViewBuilder
     private var preparedSheetTrigger: some View {
-        if case .active = dashboardViewModel?.mode {
+        // Story 3.35f — masqué quand on a poussé une fiche séance / un programme
+        // (la barre « Programmes préparés » ne doit vivre que sur le dashboard).
+        if case .active = dashboardViewModel?.mode, adaptedRoute == nil, sessionRoute == nil {
             let dormantsCount = currentDormantsCount
             Button(action: handlePreparedTriggerTap) {
                 preparedSheetTriggerLabel(dormantsCount: dormantsCount)

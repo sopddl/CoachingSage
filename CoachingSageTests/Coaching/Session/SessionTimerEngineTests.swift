@@ -101,8 +101,8 @@ final class SessionTimerEngineTests: XCTestCase {
             AdaptedExercise(name: "Burpees", originalName: "Burpees", sets: 3, duration: "40/20")
         ])
         let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "hiit")
-        // (prepare, work, rest) ×3 sans rest final = 3*2 + 2 = 8 phases.
-        XCTAssertEqual(phases.count, 8)
+        // 1 pré-annonce en tête + (work, rest) ×3 sans rest final = 1 + 5 = 6.
+        XCTAssertEqual(phases.count, 6)
         XCTAssertEqual(phases.first?.kind, .prepare) // anti-Decathlon : 1ʳᵉ phase = prepare
         let works = phases.filter { $0.kind == .work }
         XCTAssertEqual(works.count, 3)
@@ -112,16 +112,60 @@ final class SessionTimerEngineTests: XCTestCase {
         XCTAssertEqual(phases.last?.kind, .work) // pas de rest après le dernier tour
     }
 
-    func test_builder_preannounceBeforeEachEffort() {
+    func test_builder_singleLeadingPrepare() {
+        // Story 3.35f — UNE seule pré-annonce en tête (les transitions suivantes
+        // sont annoncées à la voix, pas par une phase prepare).
         let s = session(type: .interval, exercises: [
             AdaptedExercise(name: "A", originalName: "A", sets: 2, duration: "30/15")
         ])
         let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "hiit")
-        // Chaque work est précédé d'une prepare.
-        for (i, p) in phases.enumerated() where p.kind == .work {
-            XCTAssertGreaterThan(i, 0)
-            XCTAssertEqual(phases[i - 1].kind, .prepare, "work à l'index \(i) non précédé d'une prepare")
+        XCTAssertEqual(phases.filter { $0.kind == .prepare }.count, 1)
+        XCTAssertEqual(phases.first?.kind, .prepare)
+    }
+
+    // MARK: - Run/walk AVEC échauffement + récup (cause racine device 3.35f)
+
+    func test_builder_runWalk_withWarmupCooldown_stillDecomposes() {
+        // La vraie séance : échauffement + bloc run/walk (sets 8) + récup.
+        // Régression du bug `steps.count == 1` qui empêchait la décomposition.
+        let s = AdaptedSession(
+            day: 1, name: "Run/walk découverte", durationMinutes: 35, type: .mixed,
+            warmup: "5 min marche + 10 cercles. Total : 8 min.",
+            exercises: [AdaptedExercise(name: "Bloc run/walk 1 min / 1 min 30", originalName: "x",
+                                        sets: 8, duration: "1 min course lente + 1 min 30 marche rapide", restSeconds: 0)],
+            cooldown: "3 min marche lente."
+        )
+        let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "running")
+        // warmup(manuel) + prepare + (course+marche)×8 + cooldown(manuel) = 1+1+16+1 = 19.
+        XCTAssertEqual(phases.count, 19)
+        XCTAssertEqual(phases.first?.kind, .warmup)
+        XCTAssertTrue(phases.first?.isManual ?? false) // échauffement à son rythme
+        XCTAssertEqual(phases.last?.kind, .cooldown)
+        XCTAssertTrue(phases.last?.isManual ?? false)
+        // Décomposition bien présente malgré warmup/cooldown.
+        XCTAssertTrue(phases.contains { $0.label == .run(index: 1, total: 8) })
+        XCTAssertTrue(phases.contains { $0.label == .walk(index: 8, total: 8) })
+        // Le segment course dure 60 s (et pas 1 s ni la durée du bloc entier).
+        // (on exclut la pré-annonce qui porte aussi le label du 1ᵉʳ segment)
+        let firstRun = phases.first { phase in
+            guard phase.kind == .work else { return false }
+            if case .run = phase.label { return true }
+            return false
         }
+        XCTAssertEqual(firstRun?.duration, 60)
+    }
+
+    func test_engine_manualPhaseWaitsForSkip() {
+        // L'échauffement manuel ne décompte pas tout seul.
+        let warmup = SessionTimerPhase(id: 0, kind: .warmup, duration: 0, stepIndex: 0, label: .warmup, isManual: true)
+        let work = SessionTimerPhase(id: 1, kind: .work, duration: 60, stepIndex: 1, label: .effort)
+        let e = SessionTimerEngine(phases: [warmup, work])
+        e.start()
+        tick(e, 5) // ne doit pas avancer (phase manuelle)
+        XCTAssertEqual(e.currentPhase?.kind, .warmup)
+        e.skip()   // « Avancer »
+        XCTAssertEqual(e.currentPhase?.kind, .work)
+        XCTAssertEqual(e.remaining, 60)
     }
 
     func test_builder_hiitMultiExo_oneRound() {
@@ -184,8 +228,8 @@ final class SessionTimerEngineTests: XCTestCase {
             AdaptedExercise(name: "Arbre", originalName: "Arbre", duration: "1 min")
         ])
         let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "yoga")
-        // prepare + hold par posture = 4 phases.
-        XCTAssertEqual(phases.count, 4)
+        // 1 pré-annonce en tête + 1 tenue par posture = 3 phases.
+        XCTAssertEqual(phases.count, 3)
         let holds = phases.filter { $0.kind == .hold }
         XCTAssertEqual(holds.map(\.duration), [45, 60]) // "45 s" et "1 min"
         XCTAssertEqual(phases.first?.kind, .prepare)

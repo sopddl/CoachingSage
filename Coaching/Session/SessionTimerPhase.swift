@@ -1,23 +1,27 @@
 // Coaching/Session/SessionTimerPhase.swift
-// Story 3.34 + 3.35d — décomposition d'une séance chronométrée en PHASES.
+// Story 3.34 + 3.35d/f — décomposition d'une séance chronométrée en PHASES.
 //
-// Anti-Decathlon : une phase `.prepare` (pré-annonce + 3·2·1) ouvre le déroulé.
-//
-// Story 3.35d (fix device) : un bloc run/walk (1 exo `sets=N`, durée
-// « 1 min course + 1 min 30 marche ») est DÉCOMPOSÉ en segments Course/Marche
-// alternés × N tours (avant : tout était écrasé en un seul bloc → l'avance ne
-// menait nulle part). Chaque phase porte un `label` typé (rendu i18n côté vue).
+// Story 3.35f (fix device Sophie 2026-06-03) — CAUSE RACINE : la décomposition
+// run/walk ne se déclenchait que si la séance n'avait NI échauffement NI récup
+// (`steps.count == 1`). Or une vraie séance = échauffement + exo + récup → l'exo
+// n'était jamais décomposé. Désormais :
+//   - échauffement & récup = phases MANUELLES (« Avancer » à son rythme, pas de
+//     chrono imposé sur des mouvements libres) ;
+//   - l'exo run/walk est décomposé en segments Course/Marche × tours ;
+//   - une pré-annonce (3·2·1) précède le 1ᵉʳ effort chronométré.
+// Le mot « bloc » n'apparaît JAMAIS côté écran.
 import Foundation
 import TemplateModel
 
-/// Libellé typé d'une phase (rendu localisé par la vue). Le mot « bloc »
-/// n'apparaît JAMAIS côté écran (retour Sophie 2026-06-03).
+/// Libellé typé d'une phase (rendu localisé par la vue).
 enum PhaseLabel: Equatable {
     case raw(String)                    // nom d'exo / posture (contenu)
     case effort                         // « Effort » générique
     case recovery                       // « Récup »
     case run(index: Int, total: Int)    // « Course N sur K »
     case walk(index: Int, total: Int)   // « Marche N sur K »
+    case warmup                         // « Échauffement »
+    case cooldown                       // « Retour au calme »
 }
 
 struct SessionTimerPhase: Equatable, Identifiable {
@@ -26,20 +30,38 @@ struct SessionTimerPhase: Equatable, Identifiable {
         case work
         case rest
         case hold
+        case warmup     // échauffement (manuel)
+        case cooldown   // récup (manuel)
     }
 
     let id: Int
     let kind: Kind
     let duration: Int
     let stepIndex: Int
-    /// Libellé typé affiché en grand. Pour `.prepare`, c'est le libellé de l'étape
-    /// à venir (« Prochain : … »).
     let label: PhaseLabel
+    /// Phase à avance MANUELLE (pas de compte à rebours) : l'utilisateur tape
+    /// « Avancer » quand prêt. True pour échauffement/récup.
+    let isManual: Bool
 
     let round: Int?
     let totalRounds: Int?
     let exerciseInRound: Int?
     let totalInRound: Int?
+
+    init(id: Int, kind: Kind, duration: Int, stepIndex: Int, label: PhaseLabel,
+         isManual: Bool = false,
+         round: Int? = nil, totalRounds: Int? = nil, exerciseInRound: Int? = nil, totalInRound: Int? = nil) {
+        self.id = id
+        self.kind = kind
+        self.duration = duration
+        self.stepIndex = stepIndex
+        self.label = label
+        self.isManual = isManual
+        self.round = round
+        self.totalRounds = totalRounds
+        self.exerciseInRound = exerciseInRound
+        self.totalInRound = totalInRound
+    }
 }
 
 enum SessionTimerPhaseBuilder {
@@ -49,41 +71,135 @@ enum SessionTimerPhaseBuilder {
     static let defaultHoldSeconds = 45
     static let prepareSeconds = 3
 
+    /// Construit les phases FOCUS minuté/audio. Ordre : échauffement (manuel) →
+    /// pré-annonce → efforts chronométrés → récup (manuelle).
     static func phases(for session: AdaptedSession, sportCode: String) -> [SessionTimerPhase] {
         let steps = SessionStep.steps(for: session)
+        guard !steps.isEmpty else { return [] }
         let isYoga = sportCode == "yoga" || session.type == .mobility
-        if isYoga { return yogaPhases(steps: steps) }
 
-        // Bloc run/walk décomposable : 1 exo, sets>=2, durée multi-segments (« + »).
-        if steps.count == 1, case .exercise(let ex) = steps[0].kind,
-           let sets = ex.sets, sets >= 2 {
-            let segs = SessionDurationParser.segments(ex.duration)
-            if segs.count >= 2 {
-                return intervalBlockPhases(step: steps[0], sets: sets, segments: segs)
+        var warmupStep: SessionStep?
+        var cooldownStep: SessionStep?
+        var exoSteps: [SessionStep] = []
+        for step in steps {
+            switch step.kind {
+            case .warmup:   warmupStep = step
+            case .cooldown: cooldownStep = step
+            case .exercise: exoSteps.append(step)
             }
         }
-        return hiitPhases(session: session, steps: steps)
-    }
 
-    // MARK: - Yoga (tenue par posture)
-
-    private static func yogaPhases(steps: [SessionStep]) -> [SessionTimerPhase] {
-        var phases: [SessionTimerPhase] = []
         var id = 0
-        for step in steps {
-            guard case .exercise(let ex) = step.kind else { continue }
-            let hold = SessionDurationParser.seconds(ex.duration) ?? defaultHoldSeconds
-            phases.append(SessionTimerPhase(id: id, kind: .prepare, duration: prepareSeconds,
-                                            stepIndex: step.index, label: .raw(ex.displayName),
-                                            round: nil, totalRounds: nil, exerciseInRound: nil, totalInRound: nil)); id += 1
-            phases.append(SessionTimerPhase(id: id, kind: .hold, duration: hold,
-                                            stepIndex: step.index, label: .raw(ex.displayName),
-                                            round: nil, totalRounds: nil, exerciseInRound: nil, totalInRound: nil)); id += 1
+        func next() -> Int { defer { id += 1 }; return id }
+
+        var phases: [SessionTimerPhase] = []
+
+        if let w = warmupStep {
+            phases.append(SessionTimerPhase(id: next(), kind: .warmup, duration: 0, stepIndex: w.index,
+                                            label: .warmup, isManual: true))
+        }
+
+        let effortPhases = exerciseEffortPhases(exoSteps: exoSteps, isYoga: isYoga, startId: &id)
+        if let first = effortPhases.first {
+            // Pré-annonce du 1ᵉʳ effort chronométré (anti-Decathlon).
+            phases.append(SessionTimerPhase(id: next(), kind: .prepare, duration: prepareSeconds,
+                                            stepIndex: first.stepIndex, label: first.label,
+                                            round: first.round, totalRounds: first.totalRounds,
+                                            exerciseInRound: first.exerciseInRound, totalInRound: first.totalInRound))
+        }
+        phases.append(contentsOf: effortPhases)
+
+        if let c = cooldownStep {
+            phases.append(SessionTimerPhase(id: next(), kind: .cooldown, duration: 0, stepIndex: c.index,
+                                            label: .cooldown, isManual: true))
         }
         return phases
     }
 
-    // MARK: - Run/walk (segments alternés × tours)
+    // MARK: - Efforts chronométrés (yoga tenue / run-walk segments / HIIT)
+
+    private static func exerciseEffortPhases(exoSteps: [SessionStep], isYoga: Bool, startId: inout Int) -> [SessionTimerPhase] {
+        func next() -> Int { defer { startId += 1 }; return startId }
+
+        // Yoga : une tenue par posture.
+        if isYoga {
+            var out: [SessionTimerPhase] = []
+            for step in exoSteps {
+                guard case .exercise(let ex) = step.kind else { continue }
+                let hold = SessionDurationParser.seconds(ex.duration) ?? defaultHoldSeconds
+                out.append(SessionTimerPhase(id: next(), kind: .hold, duration: hold, stepIndex: step.index,
+                                             label: .raw(ex.displayName)))
+            }
+            return out
+        }
+
+        // Run/walk : 1 exo, sets>=2, durée multi-segments (« + ») → segments alternés.
+        if exoSteps.count == 1, case .exercise(let ex) = exoSteps[0].kind,
+           let sets = ex.sets, sets >= 2 {
+            let segs = SessionDurationParser.segments(ex.duration)
+            if segs.count >= 2 {
+                return runWalkSegments(step: exoSteps[0], sets: sets, segments: segs, next: next)
+            }
+            // Circuit HIIT work/rest (« 40/20 ») répété.
+            if let wr = workRest(from: ex) {
+                return circuitPhases(step: exoSteps[0], work: wr.work, rest: wr.rest, rounds: sets, next: next)
+            }
+        }
+
+        // Sinon : chaque exo = un effort chronométré (work) + récup éventuelle.
+        var out: [SessionTimerPhase] = []
+        let total = exoSteps.count
+        for (i, step) in exoSteps.enumerated() {
+            guard case .exercise(let ex) = step.kind else { continue }
+            let wr = workRest(from: ex)
+            let work = wr?.work ?? SessionDurationParser.seconds(ex.duration) ?? defaultWorkSeconds
+            let rest = wr?.rest ?? ex.restSeconds ?? 0
+            out.append(SessionTimerPhase(id: next(), kind: .work, duration: work, stepIndex: step.index,
+                                         label: .raw(ex.displayName), round: 1, totalRounds: 1,
+                                         exerciseInRound: i + 1, totalInRound: total))
+            if i < total - 1, rest > 0 {
+                out.append(SessionTimerPhase(id: next(), kind: .rest, duration: rest, stepIndex: step.index,
+                                             label: .recovery, round: 1, totalRounds: 1,
+                                             exerciseInRound: i + 1, totalInRound: total))
+            }
+        }
+        return out
+    }
+
+    private static func runWalkSegments(step: SessionStep, sets: Int, segments: [SessionDurationParser.Segment],
+                                        next: () -> Int) -> [SessionTimerPhase] {
+        var out: [SessionTimerPhase] = []
+        for r in 1...sets {
+            for seg in segments {
+                let dur = max(seg.seconds, 1)
+                switch classify(seg.label) {
+                case .run:     out.append(SessionTimerPhase(id: next(), kind: .work, duration: dur, stepIndex: step.index,
+                                                            label: .run(index: r, total: sets), round: r, totalRounds: sets))
+                case .walk:    out.append(SessionTimerPhase(id: next(), kind: .rest, duration: dur, stepIndex: step.index,
+                                                            label: .walk(index: r, total: sets), round: r, totalRounds: sets))
+                case .generic: out.append(SessionTimerPhase(id: next(), kind: .work, duration: dur, stepIndex: step.index,
+                                                            label: .effort, round: r, totalRounds: sets))
+                }
+            }
+        }
+        return out
+    }
+
+    private static func circuitPhases(step: SessionStep, work: Int, rest: Int, rounds: Int, next: () -> Int) -> [SessionTimerPhase] {
+        guard case .exercise(let ex) = step.kind else { return [] }
+        var out: [SessionTimerPhase] = []
+        for r in 1...rounds {
+            out.append(SessionTimerPhase(id: next(), kind: .work, duration: work, stepIndex: step.index,
+                                         label: .raw(ex.displayName), round: r, totalRounds: rounds))
+            if r < rounds, rest > 0 {
+                out.append(SessionTimerPhase(id: next(), kind: .rest, duration: rest, stepIndex: step.index,
+                                             label: .recovery, round: r, totalRounds: rounds))
+            }
+        }
+        return out
+    }
+
+    // MARK: - Classification & parsing
 
     private enum SegClass { case run, walk, generic }
 
@@ -92,95 +208,6 @@ enum SessionTimerPhaseBuilder {
         if l.contains("course") || l.contains("run") || l.contains("cours") { return .run }
         if l.contains("marche") || l.contains("walk") { return .walk }
         return .generic
-    }
-
-    private static func intervalBlockPhases(step: SessionStep, sets: Int, segments: [SessionDurationParser.Segment]) -> [SessionTimerPhase] {
-        // Construit la séquence de segments (× tours). Numérotation = le tour (1 course
-        // + 1 marche par tour) → « Course 1 sur 8 », « Marche 1 sur 8 ».
-        var built: [(kind: SessionTimerPhase.Kind, duration: Int, label: PhaseLabel, round: Int, k: Int)] = []
-        for r in 1...sets {
-            for (si, seg) in segments.enumerated() {
-                let dur = max(seg.seconds, 1)
-                switch classify(seg.label) {
-                case .run:     built.append((.work, dur, .run(index: r, total: sets), r, si + 1))
-                case .walk:    built.append((.rest, dur, .walk(index: r, total: sets), r, si + 1))
-                case .generic: built.append((.work, dur, .effort, r, si + 1))
-                }
-            }
-        }
-        guard !built.isEmpty else { return [] }
-
-        var phases: [SessionTimerPhase] = []
-        var id = 0
-        // Une seule pré-annonce en tête (anti-Decathlon) ; ensuite la voix annonce
-        // chaque transition de segment → pas de 3·2·1 entre chaque (timing honnête).
-        phases.append(SessionTimerPhase(id: id, kind: .prepare, duration: prepareSeconds,
-                                        stepIndex: step.index, label: built[0].label,
-                                        round: 1, totalRounds: sets, exerciseInRound: 1, totalInRound: segments.count)); id += 1
-        for b in built {
-            phases.append(SessionTimerPhase(id: id, kind: b.kind, duration: b.duration,
-                                            stepIndex: step.index, label: b.label,
-                                            round: b.round, totalRounds: sets,
-                                            exerciseInRound: b.k, totalInRound: segments.count)); id += 1
-        }
-        return phases
-    }
-
-    // MARK: - HIIT (tours work/rest) — inchangé fonctionnellement (3.34)
-
-    private static func hiitPhases(session: AdaptedSession, steps: [SessionStep]) -> [SessionTimerPhase] {
-        let exoSteps = steps.filter { if case .exercise = $0.kind { return true } else { return false } }
-        guard !exoSteps.isEmpty else { return [] }
-
-        if exoSteps.count == 1, case .exercise(let ex) = exoSteps[0].kind,
-           let wr = workRest(from: ex), let rounds = ex.sets, rounds >= 2 {
-            return circuitPhases(step: exoSteps[0], ex: ex, work: wr.work, rest: wr.rest, rounds: rounds)
-        }
-
-        var phases: [SessionTimerPhase] = []
-        var id = 0
-        let total = exoSteps.count
-        for (i, step) in exoSteps.enumerated() {
-            guard case .exercise(let ex) = step.kind else { continue }
-            let wr = workRest(from: ex)
-            let work = wr?.work ?? SessionDurationParser.seconds(ex.duration) ?? defaultWorkSeconds
-            let rest = wr?.rest ?? ex.restSeconds ?? defaultRestSeconds
-            phases.append(prepare(id: &id, step: step, label: .raw(ex.displayName), round: 1, totalRounds: 1, k: i + 1, K: total))
-            phases.append(SessionTimerPhase(id: id, kind: .work, duration: work, stepIndex: step.index,
-                                            label: .raw(ex.displayName), round: 1, totalRounds: 1,
-                                            exerciseInRound: i + 1, totalInRound: total)); id += 1
-            if i < total - 1, rest > 0 {
-                phases.append(SessionTimerPhase(id: id, kind: .rest, duration: rest, stepIndex: step.index,
-                                                label: .recovery, round: 1, totalRounds: 1,
-                                                exerciseInRound: i + 1, totalInRound: total)); id += 1
-            }
-        }
-        return phases
-    }
-
-    private static func circuitPhases(step: SessionStep, ex: AdaptedExercise, work: Int, rest: Int, rounds: Int) -> [SessionTimerPhase] {
-        var phases: [SessionTimerPhase] = []
-        var id = 0
-        for r in 1...rounds {
-            phases.append(prepare(id: &id, step: step, label: .raw(ex.displayName), round: r, totalRounds: rounds, k: 1, K: 1))
-            phases.append(SessionTimerPhase(id: id, kind: .work, duration: work, stepIndex: step.index,
-                                            label: .raw(ex.displayName), round: r, totalRounds: rounds,
-                                            exerciseInRound: 1, totalInRound: 1)); id += 1
-            if r < rounds, rest > 0 {
-                phases.append(SessionTimerPhase(id: id, kind: .rest, duration: rest, stepIndex: step.index,
-                                                label: .recovery, round: r, totalRounds: rounds,
-                                                exerciseInRound: 1, totalInRound: 1)); id += 1
-            }
-        }
-        return phases
-    }
-
-    private static func prepare(id: inout Int, step: SessionStep, label: PhaseLabel, round: Int?, totalRounds: Int?, k: Int?, K: Int?) -> SessionTimerPhase {
-        let p = SessionTimerPhase(id: id, kind: .prepare, duration: prepareSeconds, stepIndex: step.index,
-                                  label: label, round: round, totalRounds: totalRounds,
-                                  exerciseInRound: k, totalInRound: K)
-        id += 1
-        return p
     }
 
     /// (work, rest) depuis `duration` "40/20" / "1 min / 30 sec". nil si pas de « / ».

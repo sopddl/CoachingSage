@@ -71,9 +71,11 @@ final class SessionTimerEngine {
         advance()
     }
 
-    /// Avance d'une seconde. No-op si pas démarré, en pause, ou terminé.
+    /// Avance d'une seconde. No-op si pas démarré, en pause, terminé, ou sur une
+    /// phase MANUELLE (échauffement/récup : on attend le tap « Avancer »).
     func tick() {
         guard isRunning, !isPaused, !isFinished else { return }
+        if currentPhase?.isManual == true { return }
         if remaining > 1 {
             remaining -= 1
         } else {

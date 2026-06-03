@@ -159,13 +159,30 @@ struct SessionTimelineView: View {
         }
     }
 
+    // Story 3.35f — libellé + durée totale en haut à droite, texte découpé en
+    // puces (sur les « + »), « / » assainis. Plus de mur de texte.
     private func phaseCard(labelKey: LocalizedStringKey, text: String, tint: Color) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(labelKey)
-                .font(.caption.bold())
-                .foregroundStyle(tint)
-                .textCase(.uppercase)
-            GlossaryRichText(text: text, font: .callout, foreground: .primary)
+        let lines = SessionPhaseText.bulletLines(from: text)
+        let total = SessionPhaseText.totalLabel(from: text)
+        return VStack(alignment: .leading, spacing: 6) {
+            HStack(alignment: .firstTextBaseline) {
+                Text(labelKey)
+                    .font(.caption.bold())
+                    .foregroundStyle(tint)
+                    .textCase(.uppercase)
+                Spacer()
+                if let total {
+                    Text(verbatim: total)
+                        .font(.caption.bold())
+                        .foregroundStyle(.secondary)
+                }
+            }
+            ForEach(Array(lines.enumerated()), id: \.offset) { _, line in
+                HStack(alignment: .top, spacing: 6) {
+                    Image(systemName: "circle.fill").font(.system(size: 4)).foregroundStyle(.secondary).padding(.top, 7)
+                    GlossaryRichText(text: line, font: .callout, foreground: .primary)
+                }
+            }
         }
         .padding(12)
         .frame(maxWidth: .infinity, alignment: .leading)
