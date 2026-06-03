@@ -728,8 +728,12 @@ struct SessionView: View {
     private var preparedSheetTrigger: some View {
         // Story 3.35f — masqué quand on a poussé une fiche séance / un programme
         // (la barre « Programmes préparés » ne doit vivre que sur le dashboard).
-        if case .active = dashboardViewModel?.mode, adaptedRoute == nil, sessionRoute == nil {
-            let dormantsCount = currentDormantsCount
+        // Bug #9 (2026-06-04) — quand il n'y a AUCUN programme préparé, ce bouton
+        // affichait « Démarrer un nouveau programme », strictement redondant avec
+        // le « + » de la barre de nav (même action `.sportPicker`). On ne garde la
+        // barre du bas que pour révéler les programmes PRÉPARÉS (dormantsCount > 0).
+        let dormantsCount = currentDormantsCount
+        if case .active = dashboardViewModel?.mode, adaptedRoute == nil, sessionRoute == nil, dormantsCount > 0 {
             Button(action: handlePreparedTriggerTap) {
                 preparedSheetTriggerLabel(dormantsCount: dormantsCount)
             }
