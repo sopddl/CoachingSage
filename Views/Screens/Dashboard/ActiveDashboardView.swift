@@ -220,7 +220,7 @@ struct ActiveDashboardView: View {
                     .accessibilityIdentifier("dashboard.section.contextual.title")
                 Spacer(minLength: 8)
                 if total > 0 {
-                    Text(verbatim: "\(done)/\(total)")
+                    Text(verbatim: "\(done) · \(total)")
                         .font(.coachingCaption.weight(.bold))
                         .monospacedDigit()
                         .foregroundStyle(Color.coachingTextPrimary)

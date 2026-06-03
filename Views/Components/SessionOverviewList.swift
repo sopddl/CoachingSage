@@ -142,13 +142,13 @@ struct SessionOverviewList: View {
     /// Métrique-clé courte d'un exo : "sets×reps", sinon durée, sinon reps.
     static func compactMetric(for ex: AdaptedExercise) -> String? {
         if let s = ex.sets, let r = ex.reps?.trimmingCharacters(in: .whitespaces), !r.isEmpty {
-            return "\(s)×\(r)"
+            return "\(s)×\(r)".sanitizedForDisplay
         }
         if let d = ex.duration?.trimmingCharacters(in: .whitespaces), !d.isEmpty {
-            return d
+            return d.sanitizedForDisplay
         }
         if let r = ex.reps?.trimmingCharacters(in: .whitespaces), !r.isEmpty {
-            return r
+            return r.sanitizedForDisplay
         }
         return nil
     }

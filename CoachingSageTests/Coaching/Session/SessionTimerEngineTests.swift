@@ -148,14 +148,14 @@ final class SessionTimerEngineTests: XCTestCase {
         // Premier segment = Course (60 s, .work), deuxième = Marche (90 s, .rest).
         XCTAssertEqual(phases[1].kind, .work)
         XCTAssertEqual(phases[1].duration, 60)
-        XCTAssertEqual(phases[1].label, .run(1))
+        XCTAssertEqual(phases[1].label, .run(index: 1, total: 8))
         XCTAssertEqual(phases[2].kind, .rest)
         XCTAssertEqual(phases[2].duration, 90) // "1 min 30" = 90 s (et pas 1 s)
-        XCTAssertEqual(phases[2].label, .walk(1))
+        XCTAssertEqual(phases[2].label, .walk(index: 1, total: 8))
         // Numérotation croissante sur les tours.
-        XCTAssertEqual(phases[3].label, .run(2))
-        XCTAssertEqual(phases[4].label, .walk(2))
-        XCTAssertEqual(phases.last?.label, .walk(8))
+        XCTAssertEqual(phases[3].label, .run(index: 2, total: 8))
+        XCTAssertEqual(phases[4].label, .walk(index: 2, total: 8))
+        XCTAssertEqual(phases.last?.label, .walk(index: 8, total: 8))
     }
 
     func test_builder_runWalk_engineAdvancesThroughSegments() {
@@ -169,11 +169,11 @@ final class SessionTimerEngineTests: XCTestCase {
         e.start()
         XCTAssertEqual(e.currentPhase?.kind, .prepare)
         e.skip() // → Course 1
-        XCTAssertEqual(e.currentPhase?.label, .run(1))
+        XCTAssertEqual(e.currentPhase?.label, .run(index: 1, total: 2))
         e.skip() // → Marche 1
-        XCTAssertEqual(e.currentPhase?.label, .walk(1))
+        XCTAssertEqual(e.currentPhase?.label, .walk(index: 1, total: 2))
         e.skip() // → Course 2
-        XCTAssertEqual(e.currentPhase?.label, .run(2))
+        XCTAssertEqual(e.currentPhase?.label, .run(index: 2, total: 2))
     }
 
     // MARK: - Builder yoga (tenue)

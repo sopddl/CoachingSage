@@ -2178,6 +2178,7 @@
       }
     },
     "coaching.session.focus.timed.hold" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2193,19 +2194,8 @@
         }
       }
     },
-    "coaching.session.focus.timed.run %lld" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Run %lld" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Course %lld" } }
-      }
-    },
-    "coaching.session.focus.timed.walk %lld" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Walk %lld" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Marche %lld" } }
-      }
-    },
     "coaching.session.focus.timed.next %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2242,13 +2232,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Posture %1$lld/%2$lld"
+            "value" : "Posture %1$lld of %2$lld"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Posture %1$lld/%2$lld"
+            "value" : "Posture %1$lld sur %2$lld"
           }
         }
       }
@@ -2306,13 +2296,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Round %1$lld/%2$lld"
+            "value" : "Round %1$lld of %2$lld"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tour %1$lld/%2$lld"
+            "value" : "Tour %1$lld sur %2$lld"
           }
         }
       }
@@ -2322,15 +2312,27 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Round %1$lld/%2$lld · ex %3$lld/%4$lld"
+            "value" : "Round %1$lld of %2$lld · ex %3$lld of %4$lld"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tour %1$lld/%2$lld · exo %3$lld/%4$lld"
+            "value" : "Tour %1$lld sur %2$lld · exo %3$lld sur %4$lld"
           }
         }
+      }
+    },
+    "coaching.session.focus.timed.run %lld %lld" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Run %1$lld of %2$lld" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Course %1$lld sur %2$lld" } }
+      }
+    },
+    "coaching.session.focus.timed.step %lld %lld" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Step %1$lld of %2$lld" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Étape %1$lld sur %2$lld" } }
       }
     },
     "coaching.session.focus.timed.then %@" : {
@@ -2347,6 +2349,12 @@
             "value" : "Ensuite : %@"
           }
         }
+      }
+    },
+    "coaching.session.focus.timed.walk %lld %lld" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Walk %1$lld of %2$lld" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Marche %1$lld sur %2$lld" } }
       }
     },
     "coaching.session.focus.timed.work" : {
@@ -2434,13 +2442,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld rounds · %2$lld/%3$lld"
+            "value" : "%1$lld rounds · %2$lld s · %3$lld s"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld tours · %2$lld/%3$lld"
+            "value" : "%1$lld tours · %2$lld s · %3$lld s"
           }
         }
       }
@@ -2820,6 +2828,7 @@
       }
     },
     "coaching.session.voice.go" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4971,13 +4980,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Week %1$lld — %2$lld/%3$lld sessions"
+            "value" : "Week %1$lld — %2$lld of %3$lld sessions"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Semaine %1$lld — %2$lld/%3$lld séances"
+            "value" : "Semaine %1$lld — %2$lld sur %3$lld séances"
           }
         }
       }
