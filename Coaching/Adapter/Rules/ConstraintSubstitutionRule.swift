@@ -95,12 +95,13 @@ public struct ConstraintSubstitutionRule: AdaptationRule {
                 outcome: .substituted,
                 detail: "« \(ex.originalName) » → « \(alternativeName) » (\(blockerLabel))"
             ))
+            // Bug #8 — la durée embarquée dans le nom de l'alternative fait foi.
             return AdaptedExercise(
                 name: alternativeName,
                 originalName: ex.originalName,
                 sets: ex.sets,
                 reps: ex.reps,
-                duration: ex.duration,
+                duration: AlternativeName.embeddedDuration(in: alternativeName) ?? ex.duration,
                 restSeconds: ex.restSeconds,
                 notes: ex.notes,
                 targetZone: ex.targetZone,
