@@ -33,6 +33,26 @@ final class SessionPhaseTextTests: XCTestCase {
         XCTAssertNil(SessionPhaseText.totalLabel(from: "3 min marche lente. Étirements."))
     }
 
+    // MARK: - Bug #6 — durée totale en secondes (minuteur global échauffement/récup)
+
+    func test_totalSeconds_prefersExplicitTotal() {
+        // « Total : 8 min » l'emporte sur la somme des segments.
+        XCTAssertEqual(SessionPhaseText.totalSeconds(from: warmup), 480)
+    }
+
+    func test_totalSeconds_sumsSegmentsWhenNoExplicitTotal() {
+        // « 5 min … + 2 min … » → 300 + 120 = 420.
+        XCTAssertEqual(SessionPhaseText.totalSeconds(from: "5 min mobilité + 2 min gainage"), 420)
+    }
+
+    func test_totalSeconds_singleDuration() {
+        XCTAssertEqual(SessionPhaseText.totalSeconds(from: "3 min marche lente."), 180)
+    }
+
+    func test_totalSeconds_nilWhenUnparseable() {
+        XCTAssertNil(SessionPhaseText.totalSeconds(from: "Mobilité articulaire douce, sans forcer."))
+    }
+
     func test_bulletLines_singleLineWhenNoPlus() {
         let lines = SessionPhaseText.bulletLines(from: "3 min marche lente.")
         XCTAssertEqual(lines, ["3 min marche lente"]) // point final retiré

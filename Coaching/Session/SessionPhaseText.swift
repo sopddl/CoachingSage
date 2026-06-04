@@ -20,6 +20,18 @@ enum SessionPhaseText {
         return lines.isEmpty ? [withoutTotal.sanitizedForDisplay] : lines
     }
 
+    /// Durée totale en SECONDES d'un texte d'échauffement / récup (bug #6 — minuteur
+    /// global). Priorité à « Total : N min » explicite, sinon somme des durées des
+    /// segments (« 10 min mobilité + 2 min gainage » → 720). nil si rien de parsable.
+    static func totalSeconds(from text: String) -> Int? {
+        if let label = totalLabel(from: text) {
+            let digits = label.prefix { $0.isNumber }
+            if let n = Int(digits) { return n * 60 }
+        }
+        let sum = SessionDurationParser.segments(text).reduce(0) { $0 + $1.seconds }
+        return sum > 0 ? sum : nil
+    }
+
     /// Durée totale lisible (« 8 min ») si le texte contient « Total : N min », nil sinon.
     static func totalLabel(from text: String) -> String? {
         // Cherche "total" puis le 1er nombre + "min" qui suit.

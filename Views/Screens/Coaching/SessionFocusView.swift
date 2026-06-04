@@ -560,8 +560,8 @@ struct SessionFocusView: View {
         if let phase = timerEngine.currentPhase {
             ScrollView {
                 VStack(spacing: 16) {
-                    if phase.isManual {
-                        manualPhaseContent(phase)
+                    if phase.kind == .warmup || phase.kind == .cooldown {
+                        guidedPhaseContent(phase)
                     } else if phase.kind == .prepare {
                         Text("coaching.session.focus.timed.ready")
                             .font(.title3.bold())
@@ -608,33 +608,46 @@ struct SessionFocusView: View {
         }
     }
 
-    /// Échauffement / récup : libellé + durée totale + texte en puces + (le bouton
-    /// « Avancer » est dans `timedControls`). Pas de compte à rebours (à son rythme).
+    /// Bug #6 — échauffement / récup CHRONOMÉTRÉS (auto-avance + pause, décision
+    /// Sophie 2026-06-04). Compte à rebours global + sous-étapes en puces, la puce
+    /// courante (estimée par tranche de temps égale) en gras. Le timer auto-avance
+    /// à 0:00 ; pause/passer dans `timedControls`.
     @ViewBuilder
-    private func manualPhaseContent(_ phase: SessionTimerPhase) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(alignment: .firstTextBaseline) {
-                Text(verbatim: displayString(phase.label))
-                    .font(.largeTitle.bold())
-                    .foregroundStyle(phaseTint(phase))
-                Spacer()
-                if let total = manualPhaseTotal(phase) {
-                    Text(verbatim: total)
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
+    private func guidedPhaseContent(_ phase: SessionTimerPhase) -> some View {
+        let lines = manualPhaseLines(phase)
+        let current = currentGuidedLineIndex(phase, lineCount: lines.count)
+        VStack(spacing: 16) {
+            Text(verbatim: displayString(phase.label))
+                .font(.largeTitle.bold())
+                .foregroundStyle(phaseTint(phase))
+                .multilineTextAlignment(.center)
+            bigTime
+            timeScrubber(phase: phase)
+            VStack(alignment: .leading, spacing: 10) {
+                ForEach(Array(lines.enumerated()), id: \.offset) { idx, line in
+                    Label {
+                        Text(verbatim: line)
+                            .font(idx == current ? .body.bold() : .body)
+                            .foregroundStyle(idx == current ? .primary : .secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    } icon: {
+                        Image(systemName: idx == current ? "circle.fill" : "circle")
+                            .font(.system(size: 7))
+                            .foregroundStyle(idx == current ? phaseTint(phase) : .secondary)
+                    }
                 }
             }
-            ForEach(Array(manualPhaseLines(phase).enumerated()), id: \.offset) { _, line in
-                Label {
-                    Text(verbatim: line)
-                        .font(.body)
-                        .fixedSize(horizontal: false, vertical: true)
-                } icon: {
-                    Image(systemName: "circle.fill").font(.system(size: 5)).foregroundStyle(.secondary)
-                }
-            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    /// Index de la sous-étape courante d'un échauffement/récup, par tranche de temps
+    /// égale (faute de durée par sous-étape). 0 si une seule ligne.
+    private func currentGuidedLineIndex(_ phase: SessionTimerPhase, lineCount: Int) -> Int {
+        guard lineCount > 1, phase.duration > 0 else { return 0 }
+        let elapsed = max(0, phase.duration - timerEngine.remaining)
+        let slice = Double(phase.duration) / Double(lineCount)
+        return min(lineCount - 1, Int(Double(elapsed) / slice))
     }
 
     /// Illustration + tip de l'exo courant (mode minuté non-audio).
@@ -666,10 +679,6 @@ struct SessionFocusView: View {
     private func manualPhaseLines(_ phase: SessionTimerPhase) -> [String] {
         let text = manualPhaseText(phase)
         return SessionPhaseText.bulletLines(from: text)
-    }
-
-    private func manualPhaseTotal(_ phase: SessionTimerPhase) -> String? {
-        SessionPhaseText.totalLabel(from: manualPhaseText(phase))
     }
 
     private func manualPhaseText(_ phase: SessionTimerPhase) -> String {
@@ -714,20 +723,9 @@ struct SessionFocusView: View {
         if timerEngine.isFinished || timerEngine.currentPhase == nil {
             // Fin de séance : plus de contrôles (la célébration + la récap prennent le relais).
             EmptyView()
-        } else if timerEngine.currentPhase?.isManual == true {
-            // Échauffement / récup : un seul bouton « Avancer » (à son rythme).
-            Button { timerEngine.skip() } label: {
-                Label("coaching.session.focus.advance", systemImage: "arrow.right.circle.fill")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 15)
-                    .foregroundStyle(.white)
-                    .background(Color.coachingPrimary)
-                    .clipShape(RoundedRectangle(cornerRadius: 14))
-            }
-            .buttonStyle(.plain)
-            .padding()
         } else {
+            // Toutes les phases chronométrées (y compris échauffement/récup depuis le
+            // bug #6) : pause/reprise + passer.
             HStack(spacing: 16) {
                 Button { timerEngine.togglePause() } label: {
                     Label(
@@ -801,8 +799,9 @@ struct SessionFocusView: View {
     @ViewBuilder
     private var progressionLabel: some View {
         if let p = timerEngine.currentPhase {
-            if p.isManual {
-                // Échauffement / récup : pas de compteur de progression.
+            if p.kind == .warmup || p.kind == .cooldown {
+                // Échauffement / récup : pas de compteur de progression (le grand
+                // titre + le décompte global suffisent).
                 EmptyView()
             } else if isRunWalk(p.label) {
                 // Run/walk : le grand titre « Course 1 sur 8 » porte déjà la progression.

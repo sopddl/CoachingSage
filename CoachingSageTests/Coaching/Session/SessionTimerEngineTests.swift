@@ -136,12 +136,15 @@ final class SessionTimerEngineTests: XCTestCase {
             cooldown: "3 min marche lente."
         )
         let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "running")
-        // warmup(manuel) + prepare + (course+marche)×8 + cooldown(manuel) = 1+1+16+1 = 19.
+        // warmup(chrono) + prepare + (course+marche)×8 + cooldown(chrono) = 1+1+16+1 = 19.
         XCTAssertEqual(phases.count, 19)
         XCTAssertEqual(phases.first?.kind, .warmup)
-        XCTAssertTrue(phases.first?.isManual ?? false) // échauffement à son rythme
+        // Bug #6 — échauffement/récup chronométrés (auto-avance + pause), plus manuels.
+        XCTAssertFalse(phases.first?.isManual ?? true)
+        XCTAssertEqual(phases.first?.duration, 480) // « Total : 8 min »
         XCTAssertEqual(phases.last?.kind, .cooldown)
-        XCTAssertTrue(phases.last?.isManual ?? false)
+        XCTAssertFalse(phases.last?.isManual ?? true)
+        XCTAssertEqual(phases.last?.duration, 180)  // « 3 min marche lente »
         // Décomposition bien présente malgré warmup/cooldown.
         XCTAssertTrue(phases.contains { $0.label == .run(index: 1, total: 8) })
         XCTAssertTrue(phases.contains { $0.label == .walk(index: 8, total: 8) })

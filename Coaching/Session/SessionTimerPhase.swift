@@ -70,6 +70,16 @@ enum SessionTimerPhaseBuilder {
     static let defaultRestSeconds = 20
     static let defaultHoldSeconds = 45
     static let prepareSeconds = 3
+    // Bug #6 — échauffement/récup chronométrés (auto-avance + pause, décision Sophie
+    // 2026-06-04). Durée = total parsé dans le texte, sinon ces défauts.
+    static let defaultWarmupSeconds = 300   // 5 min
+    static let defaultCooldownSeconds = 180 // 3 min
+
+    /// Durée chronométrée d'une phase échauffement/récup : total parsé dans le texte
+    /// (« 10 min … » → 600), sinon défaut selon le type.
+    static func phaseDuration(forText text: String, fallback: Int) -> Int {
+        SessionPhaseText.totalSeconds(from: text) ?? fallback
+    }
 
     /// Construit les phases FOCUS minuté/audio. Ordre : échauffement (manuel) →
     /// pré-annonce → efforts chronométrés → récup (manuelle).
@@ -94,9 +104,11 @@ enum SessionTimerPhaseBuilder {
 
         var phases: [SessionTimerPhase] = []
 
-        if let w = warmupStep {
-            phases.append(SessionTimerPhase(id: next(), kind: .warmup, duration: 0, stepIndex: w.index,
-                                            label: .warmup, isManual: true))
+        if let w = warmupStep, case .warmup(let text) = w.kind {
+            // Bug #6 — échauffement chronométré (auto-avance + pause).
+            let dur = phaseDuration(forText: text, fallback: defaultWarmupSeconds)
+            phases.append(SessionTimerPhase(id: next(), kind: .warmup, duration: dur, stepIndex: w.index,
+                                            label: .warmup, isManual: false))
         }
 
         let effortPhases = exerciseEffortPhases(exoSteps: exoSteps, isYoga: isYoga, startId: &id)
@@ -109,9 +121,11 @@ enum SessionTimerPhaseBuilder {
         }
         phases.append(contentsOf: effortPhases)
 
-        if let c = cooldownStep {
-            phases.append(SessionTimerPhase(id: next(), kind: .cooldown, duration: 0, stepIndex: c.index,
-                                            label: .cooldown, isManual: true))
+        if let c = cooldownStep, case .cooldown(let text) = c.kind {
+            // Bug #6 — récup chronométrée (auto-avance + pause).
+            let dur = phaseDuration(forText: text, fallback: defaultCooldownSeconds)
+            phases.append(SessionTimerPhase(id: next(), kind: .cooldown, duration: dur, stepIndex: c.index,
+                                            label: .cooldown, isManual: false))
         }
         return phases
     }
