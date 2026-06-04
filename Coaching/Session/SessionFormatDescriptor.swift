@@ -52,7 +52,14 @@ enum SessionFormatDescriptor {
         case "strengthTraining":
             return .blocks(max(n, 1))
         case "running", "cycling", "hiking":
-            return cardioFormat(session)
+            // Une séance S&C / mobilité dans un sport cardio (ex. renforcement
+            // préventif hiking) ne doit PAS être lue comme une séance-clé cardio
+            // (sinon un échauffement "Y-T-W 8 par lettre" devient le Format).
+            switch session.type {
+            case .strength: return .blocks(max(n, 1))
+            case .mobility: return .postures(max(n, 1))
+            default:        return cardioFormat(session)
+            }
         default:
             break // tennis/football/triathlon-non-résolu/inconnu → on tente le type
         }
@@ -132,8 +139,18 @@ enum SessionFormatDescriptor {
         guard let sets = ex.sets, sets >= 2 else { return nil }
         let metric = (ex.reps?.trimmingCharacters(in: .whitespaces)).flatMap { $0.isEmpty ? nil : $0 }
             ?? (ex.duration?.trimmingCharacters(in: .whitespaces)).flatMap { $0.isEmpty ? nil : $0 }
-        guard let metric, !metric.contains("/") else { return nil } // "/" = work/rest, pas une séance-clé
+        // Une vraie séance-clé cardio = distance/temps répété ("800 m", "4 min").
+        // On rejette toute métrique porteuse de mots (reps "8 par lettre",
+        // "8 par côté") ou de work/rest ("40/20") qui produirait un libellé absurde.
+        guard let metric, isKeySessionMetric(metric) else { return nil }
         return "\(sets)×\(metric)"
+    }
+
+    /// Une métrique de séance-clé est un nombre + unité courte de distance/temps,
+    /// rien d'autre. "800 m"/"400m"/"1 km"/"30s"/"4 min" ✓ ; "8 par lettre"/"40/20" ✗.
+    private static func isKeySessionMetric(_ s: String) -> Bool {
+        s.range(of: #"^\d+([.,]\d+)?\s?(m|km|min|s|sec)?$"#,
+                options: [.regularExpression, .caseInsensitive]) != nil
     }
 
     // MARK: - Parsing util

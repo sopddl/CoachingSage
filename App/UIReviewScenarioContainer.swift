@@ -17,6 +17,7 @@
 //   3. Screenshot avec `xcrun simctl io booted screenshot /tmp/X.png`
 import SwiftUI
 import TemplateModel
+import TemplateLoader
 
 #if DEBUG
 struct UIReviewScenarioContainer: View {
@@ -305,6 +306,15 @@ struct UIReviewScenarioContainer: View {
         case "ui_review_illustrations_story_323_lot7":
             // **Story 3.23 Lot 7** — Triceps pushdown + Lateral raises (finition).
             IllustrationsStory323Lot7ScenarioView()
+        case let s where s.hasPrefix("ui_review_session_hub_real_"):
+            // Tour didactique multi-sports — charge le VRAI template bundlé du
+            // sport (pipeline réel TemplateLoader → ProgramAdapter) et rend la
+            // 1re séance dans SessionDetailView. Le sport est encodé en suffixe :
+            //   ui_review_session_hub_real_<Sport.rawValue>
+            //   ex: ..._running, ..._cycling, ..._strength_training, ..._yoga
+            RealTemplateHubScenarioView(
+                sportRawValue: String(s.dropFirst("ui_review_session_hub_real_".count))
+            )
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -1225,6 +1235,75 @@ private struct SessionDetailHubYogaScenarioView: View {
             ],
             cooldown: "5 min Savasana"
         )
+    }
+}
+
+// MARK: - Tour didactique multi-sports — vrai template bundlé
+
+/// Charge le VRAI template bundlé du sport demandé via le pipeline réel
+/// (`TemplateLoader.loadAll` → `ProgramAdapter.adapt`) et rend la 1re séance
+/// réelle dans `SessionDetailView`. Permet de tester le contenu didactique
+/// authentique (titres, exercices, échauffement/récup, jargon) des 10 sports
+/// sans dépendre de la navigation (taps de bord non fiables au bridge).
+private struct RealTemplateHubScenarioView: View {
+    let sportRawValue: String
+
+    @State private var program: AdaptedProgram?
+    @State private var session: AdaptedSession?
+    @State private var week: AdaptedWeek?
+    @State private var status: String = "Chargement…"
+
+    var body: some View {
+        Group {
+            if let program, let session, let week {
+                SessionDetailView(session: session, week: week, program: program)
+            } else {
+                VStack(spacing: 12) {
+                    ProgressView()
+                    Text(verbatim: status)
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                }
+            }
+        }
+        .task { await load() }
+    }
+
+    private func load() async {
+        guard let sport = Sport(rawValue: sportRawValue) else {
+            status = "Sport inconnu : \(sportRawValue)\nValides : \(Sport.allCases.map(\.rawValue).joined(separator: ", "))"
+            return
+        }
+        do {
+            let all = try await TemplateLoader.loadAll()
+            let forSport = all.filter { $0.sport == sport }
+            guard let template = forSport.first(where: { $0.level == .beginner }) ?? forSport.first else {
+                status = "Aucun template bundlé pour \(sport.rawValue)"
+                return
+            }
+            let adapted = ProgramAdapter().adapt(
+                template: template,
+                sportProfile: AdapterSportProfile(
+                    constraints: [],
+                    equipment: [],
+                    frequencyPerWeek: 3,
+                    sportCode: sport.rawValue,
+                    durationMode: .routineCyclic
+                ),
+                coachingProfile: AdapterCoachingProfile(requiresMedicalClearance: false)
+            )
+            guard let w = adapted.weeks.first, let s = w.sessions.first else {
+                status = "Template \(template.id) : aucune séance générée"
+                return
+            }
+            self.program = adapted
+            self.week = w
+            self.session = s
+        } catch {
+            status = "Erreur chargement/adaptation \(sport.rawValue) : \(error)"
+        }
     }
 }
 

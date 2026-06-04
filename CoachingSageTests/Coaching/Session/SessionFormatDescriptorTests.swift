@@ -65,6 +65,23 @@ final class SessionFormatDescriptorTests: XCTestCase {
         XCTAssertEqual(SessionFormatDescriptor.format(for: s, sportCode: "hiking"), .blocks(3))
     }
 
+    func test_hiking_strengthSession_returnsBlocks_notKeySession() {
+        // Bug audit 2026-06-04 : la séance "Renforcement préventif" (strength)
+        // d'un programme hiking ne doit PAS afficher "2×8 par lettre" (échauffement
+        // Y-T-W faussement lu en séance-clé) mais un nombre de blocs propre.
+        let ytw = ex(sets: 2, reps: "8 par lettre")
+        let s = session(type: .strength, exercises: [ytw, ex(), ex(), ex(), ex(), ex()])
+        XCTAssertEqual(SessionFormatDescriptor.format(for: s, sportCode: "hiking"), .blocks(6))
+    }
+
+    func test_cardio_keySessionRejectsWordyMetric() {
+        // Une métrique porteuse de mots ("8 par lettre") ne doit jamais composer
+        // une séance-clé, même sur une séance endurance → repli blocs propre.
+        let wordy = ex(sets: 2, reps: "8 par lettre")
+        let s = session(type: .endurance, exercises: [wordy, ex()])
+        XCTAssertEqual(SessionFormatDescriptor.format(for: s, sportCode: "running"), .blocks(2))
+    }
+
     func test_swim_returnsSeries() {
         let s = session(type: .technique, exercises: [ex(), ex()])
         XCTAssertEqual(SessionFormatDescriptor.format(for: s, sportCode: "swimming"), .series(2))
