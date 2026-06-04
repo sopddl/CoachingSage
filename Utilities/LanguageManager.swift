@@ -1,9 +1,12 @@
 // Utilities/LanguageManager.swift
-// [COPIE IDENTIQUE] — synchroniser avec GardenSage et TailorSage.
-// Story 2.2 — gestion de la langue de l'app (FR / EN extensible).
+// ⚠️ DIVERGE de GardenSage / TailorSage depuis 2026-06-04 (chantier i18n ES) :
+// utilise le type LOCAL `AppLanguage` (fr/en/es) au lieu de
+// `SageCore.SupportedLanguage` (fr/en) pour porter l'espagnol sans toucher au
+// package partagé. Cf `reference_sagecore_no_touch_es_local`. NE PLUS traiter
+// ce fichier comme [COPIE IDENTIQUE].
+// Story 2.2 — gestion de la langue de l'app.
 import os
 import SwiftUI
-import SageCore
 
 private let kPreferredLanguage = "preferredLanguage"
 
@@ -11,7 +14,7 @@ private let kPreferredLanguage = "preferredLanguage"
 
 @Observable
 final class LanguageManager {
-    private(set) var currentLanguage: SupportedLanguage
+    private(set) var currentLanguage: AppLanguage
     private let userDefaults: UserDefaults
     /// UserDefaults partagé via App Group (futur widget).
     private let sharedDefaults: UserDefaults?
@@ -24,18 +27,18 @@ final class LanguageManager {
         self.userDefaults = userDefaults
         self.sharedDefaults = UserDefaults(suiteName: AppConstants.appGroupIdentifier)
         if let saved = userDefaults.string(forKey: kPreferredLanguage),
-           let lang = SupportedLanguage(rawValue: saved) {
+           let lang = AppLanguage(rawValue: saved) {
             currentLanguage = lang
         } else {
             // Langue primaire de l'appareil iOS, fallback .french
             let deviceLangCode = Locale.current.language.languageCode?.identifier ?? "fr"
-            currentLanguage = SupportedLanguage(rawValue: deviceLangCode) ?? .french
+            currentLanguage = AppLanguage(rawValue: deviceLangCode) ?? .french
         }
         // Synchroniser la langue dans le UserDefaults partagé au démarrage
         sharedDefaults?.set(currentLanguage.rawValue, forKey: kPreferredLanguage)
     }
 
-    func switchLanguage(to language: SupportedLanguage) {
+    func switchLanguage(to language: AppLanguage) {
         guard language != currentLanguage else { return }
         currentLanguage = language
         userDefaults.set(language.rawValue, forKey: kPreferredLanguage)

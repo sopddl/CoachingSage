@@ -1,16 +1,17 @@
 // Views/Components/LanguageSelectorView.swift
-// [COPIE IDENTIQUE] — synchroniser avec GardenSage et TailorSage.
-// Story 2.2 — sélecteur de langue extensible (Menu déroulant).
-// Pour ajouter une langue : SupportedLanguage += case dans SageCore SPM.
+// ⚠️ DIVERGE de GardenSage / TailorSage depuis 2026-06-04 (chantier i18n ES) :
+// itère sur le type LOCAL `AppLanguage.selectable` au lieu de
+// `SageCore.SupportedLanguage.allCases`. Cf `reference_sagecore_no_touch_es_local`.
+// Story 2.2 — sélecteur de langue (Menu déroulant).
+// Pour exposer une langue : l'ajouter à `AppLanguage.selectable`.
 import SwiftUI
-import SageCore
 
 struct LanguageSelectorView: View {
     let languageManager: LanguageManager
 
     var body: some View {
         Menu {
-            ForEach(SupportedLanguage.allCases) { lang in
+            ForEach(AppLanguage.selectable) { lang in
                 Button {
                     languageManager.switchLanguage(to: lang)
                 } label: {

@@ -49,7 +49,7 @@ struct CoachingSageApp: App {
         // **Story 3.11 UI review** — `UI_TEST_LANG=fr|en` permet à l'agent ui-reviewer
         // de forcer la langue au launch (sans devoir passer par le selecteur in-app
         // ni les leviers OS qui sont mal interceptés en mode `UI_TEST_SCENARIO`).
-        if let testLang = env["UI_TEST_LANG"], let lang = SupportedLanguage(rawValue: testLang) {
+        if let testLang = env["UI_TEST_LANG"], let lang = AppLanguage(rawValue: testLang) {
             self.languageManager.switchLanguage(to: lang)
         }
 
