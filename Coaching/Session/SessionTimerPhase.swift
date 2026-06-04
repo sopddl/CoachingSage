@@ -70,6 +70,16 @@ enum SessionTimerPhaseBuilder {
     static let defaultRestSeconds = 20
     static let defaultHoldSeconds = 45
     static let prepareSeconds = 3
+    // Bug #6 — échauffement/récup chronométrés (auto-avance + pause, décision Sophie
+    // 2026-06-04). Durée = total parsé dans le texte, sinon ces défauts.
+    static let defaultWarmupSeconds = 300   // 5 min
+    static let defaultCooldownSeconds = 180 // 3 min
+
+    /// Durée chronométrée d'une phase échauffement/récup : total parsé dans le texte
+    /// (« 10 min … » → 600), sinon défaut selon le type.
+    static func phaseDuration(forText text: String, fallback: Int) -> Int {
+        SessionPhaseText.totalSeconds(from: text) ?? fallback
+    }
 
     /// Construit les phases FOCUS minuté/audio. Ordre : échauffement (manuel) →
     /// pré-annonce → efforts chronométrés → récup (manuelle).
@@ -77,6 +87,9 @@ enum SessionTimerPhaseBuilder {
         let steps = SessionStep.steps(for: session)
         guard !steps.isEmpty else { return [] }
         let isYoga = sportCode == "yoga" || session.type == .mobility
+        // Bug #9 — muscu : chaque exo est décomposé en séries (work estimé + repos),
+        // qui s'enchaînent automatiquement avec pause possible.
+        let isStrength = sportCode == "strengthTraining" || session.type == .strength
 
         var warmupStep: SessionStep?
         var cooldownStep: SessionStep?
@@ -94,12 +107,14 @@ enum SessionTimerPhaseBuilder {
 
         var phases: [SessionTimerPhase] = []
 
-        if let w = warmupStep {
-            phases.append(SessionTimerPhase(id: next(), kind: .warmup, duration: 0, stepIndex: w.index,
-                                            label: .warmup, isManual: true))
+        if let w = warmupStep, case .warmup(let text) = w.kind {
+            // Bug #6 — échauffement chronométré (auto-avance + pause).
+            let dur = phaseDuration(forText: text, fallback: defaultWarmupSeconds)
+            phases.append(SessionTimerPhase(id: next(), kind: .warmup, duration: dur, stepIndex: w.index,
+                                            label: .warmup, isManual: false))
         }
 
-        let effortPhases = exerciseEffortPhases(exoSteps: exoSteps, isYoga: isYoga, startId: &id)
+        let effortPhases = exerciseEffortPhases(exoSteps: exoSteps, isYoga: isYoga, isStrength: isStrength, startId: &id)
         if let first = effortPhases.first {
             // Pré-annonce du 1ᵉʳ effort chronométré (anti-Decathlon).
             phases.append(SessionTimerPhase(id: next(), kind: .prepare, duration: prepareSeconds,
@@ -109,17 +124,24 @@ enum SessionTimerPhaseBuilder {
         }
         phases.append(contentsOf: effortPhases)
 
-        if let c = cooldownStep {
-            phases.append(SessionTimerPhase(id: next(), kind: .cooldown, duration: 0, stepIndex: c.index,
-                                            label: .cooldown, isManual: true))
+        if let c = cooldownStep, case .cooldown(let text) = c.kind {
+            // Bug #6 — récup chronométrée (auto-avance + pause).
+            let dur = phaseDuration(forText: text, fallback: defaultCooldownSeconds)
+            phases.append(SessionTimerPhase(id: next(), kind: .cooldown, duration: dur, stepIndex: c.index,
+                                            label: .cooldown, isManual: false))
         }
         return phases
     }
 
     // MARK: - Efforts chronométrés (yoga tenue / run-walk segments / HIIT)
 
-    private static func exerciseEffortPhases(exoSteps: [SessionStep], isYoga: Bool, startId: inout Int) -> [SessionTimerPhase] {
+    private static func exerciseEffortPhases(exoSteps: [SessionStep], isYoga: Bool, isStrength: Bool, startId: inout Int) -> [SessionTimerPhase] {
         func next() -> Int { defer { startId += 1 }; return startId }
+
+        // Muscu : chaque exo → S séries (work estimé) entrecoupées de repos.
+        if isStrength {
+            return strengthPhases(exoSteps: exoSteps, next: next)
+        }
 
         // Yoga : une tenue par posture.
         if isYoga {
@@ -164,6 +186,48 @@ enum SessionTimerPhaseBuilder {
             }
         }
         return out
+    }
+
+    /// Bug #9 — muscu auto-chaînée : chaque exo devient S séries [work estimé + repos],
+    /// pas de repos après la toute dernière série de la séance. La durée de série est
+    /// ESTIMÉE (rep-based) ; l'utilisateur peut mettre en pause si une série déborde.
+    private static func strengthPhases(exoSteps: [SessionStep], next: () -> Int) -> [SessionTimerPhase] {
+        var out: [SessionTimerPhase] = []
+        let total = exoSteps.count
+        for (i, step) in exoSteps.enumerated() {
+            guard case .exercise(let ex) = step.kind else { continue }
+            let sets = max(ex.sets ?? 1, 1)
+            let work = estimatedSetSeconds(ex)
+            let rest = ex.restSeconds ?? 0
+            for set in 1...sets {
+                out.append(SessionTimerPhase(id: next(), kind: .work, duration: work, stepIndex: step.index,
+                                             label: .raw(ex.displayName),
+                                             round: set, totalRounds: sets,
+                                             exerciseInRound: i + 1, totalInRound: total))
+                let isLastSetOfLastExo = (i == total - 1) && (set == sets)
+                if rest > 0, !isLastSetOfLastExo {
+                    out.append(SessionTimerPhase(id: next(), kind: .rest, duration: rest, stepIndex: step.index,
+                                                 label: .recovery,
+                                                 round: set, totalRounds: sets,
+                                                 exerciseInRound: i + 1, totalInRound: total))
+                }
+            }
+        }
+        return out
+    }
+
+    /// Durée estimée d'une série de muscu : la durée explicite (« 30s » gainage) si
+    /// présente, sinon ~4 s/rep borné [25 s, 75 s], sinon le défaut.
+    static func estimatedSetSeconds(_ ex: AdaptedExercise) -> Int {
+        if let d = ex.duration, let s = SessionDurationParser.seconds(d), s > 0 { return s }
+        if let reps = ex.reps, let r = leadingInt(reps), r > 0 { return min(max(r * 4, 25), 75) }
+        return defaultWorkSeconds
+    }
+
+    /// Premier entier d'une chaîne (« 8 », « 8-10 », « 10/côté » → 8, 8, 10). nil si aucun.
+    private static func leadingInt(_ s: String) -> Int? {
+        let digits = s.drop(while: { !$0.isNumber }).prefix(while: { $0.isNumber })
+        return Int(digits)
     }
 
     private static func runWalkSegments(step: SessionStep, sets: Int, segments: [SessionDurationParser.Segment],

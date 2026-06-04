@@ -394,10 +394,12 @@ struct SessionFocusView: View {
         .onAppear {
             UIApplication.shared.isIdleTimerDisabled = true // écran maintenu allumé (AC7)
             setupVoiceIfNeeded()
-            // Audio : on duck l'audio tiers (voix par-dessus la musique du user).
-            audioCues.activate(duckOthers: isAudioMode)
+            // Session audio active + moteur de bips prêt. En mode Audio, le ducking
+            // de la musique est géré à la demande par la voix (`duck()`/`unduck()`).
+            audioCues.activate()
             timerEngine.start()
             announceCurrentPhase() // pré-annonce vocale du 1ᵉʳ bloc (anti-Decathlon)
+            emitInitialCountdownIfNeeded() // bug #7 — le « 3 » d'ouverture (cf emitCountdownTick)
         }
         .onDisappear {
             UIApplication.shared.isIdleTimerDisabled = false
@@ -425,8 +427,27 @@ struct SessionFocusView: View {
         case .warmup, .cooldown:
             voiceGuide?.announce(displayString(phase.label))
         case .prepare:
-            break
+            // Bug #7 — la pré-annonce dure exactement 3 s : `onChange(remaining)` ne
+            // voit jamais la valeur initiale (3 == durée), donc on n'entendait que
+            // « 2, 1 ». On émet ici le « 3 » d'ouverture.
+            emitCountdownTick(forSecond: phase.duration)
         }
+    }
+
+    /// À l'apparition, si la 1ʳᵉ phase est déjà la pré-annonce (séance sans
+    /// échauffement), émet son « 3 » d'ouverture — `handlePhaseChange` ne se
+    /// déclenche pas pour la phase de départ (pas de changement d'index).
+    private func emitInitialCountdownIfNeeded() {
+        guard let phase = timerEngine.currentPhase, phase.kind == .prepare else { return }
+        emitCountdownTick(forSecond: phase.duration)
+    }
+
+    /// Bip (toujours) + chiffre parlé (mode Audio) du décompte 3·2·1 pour la
+    /// seconde donnée. No-op hors fenêtre 1…3.
+    private func emitCountdownTick(forSecond second: Int) {
+        guard (1...3).contains(second) else { return }
+        audioCues.play(.prepareTick)
+        if isAudioMode { voiceGuide?.announce("\(second)") }
     }
 
     /// True si la phase précédant la phase courante était la pré-annonce.
@@ -441,16 +462,12 @@ struct SessionFocusView: View {
     /// « 3, 2, 1 » sur les 3 dernières secondes (anti-Decathlon).
     private func handleTick(remaining new: Int) {
         guard !timerEngine.isPaused, let phase = timerEngine.currentPhase, !phase.isManual else { return }
-        // Bips du compte à rebours 3·2·1 — toujours (yoga + audio).
-        if (1...3).contains(new) { audioCues.play(.prepareTick) }
-        // Voix : uniquement en mode Audio (course/vélo/rando).
-        guard isAudioMode else { return }
-        // Pré-annonce vocale du prochain segment, en fin de phase active.
-        if phase.kind != .prepare, new == 5, phase.duration >= 7, let next = upcomingLabel {
+        // Pré-annonce vocale du prochain segment, en fin de phase active (mode Audio).
+        if isAudioMode, phase.kind != .prepare, new == 5, phase.duration >= 7, let next = upcomingLabel {
             voiceGuide?.announce(String(localized: "coaching.session.voice.next \(next)"))
         }
-        // Chiffre parlé 3·2·1.
-        if (1...3).contains(new) { voiceGuide?.announce("\(new)") }
+        // Décompte 3·2·1 : bip (toujours) + chiffre parlé (Audio).
+        emitCountdownTick(forSecond: new)
     }
 
     // MARK: - Voix (3.35)
@@ -543,8 +560,8 @@ struct SessionFocusView: View {
         if let phase = timerEngine.currentPhase {
             ScrollView {
                 VStack(spacing: 16) {
-                    if phase.isManual {
-                        manualPhaseContent(phase)
+                    if phase.kind == .warmup || phase.kind == .cooldown {
+                        guidedPhaseContent(phase)
                     } else if phase.kind == .prepare {
                         Text("coaching.session.focus.timed.ready")
                             .font(.title3.bold())
@@ -559,6 +576,13 @@ struct SessionFocusView: View {
                             .font(.largeTitle.bold())
                             .foregroundStyle(phaseTint(phase))
                             .multilineTextAlignment(.center)
+                        // Bug #9/#12 — muscu : l'OBJECTIF de la série (« × 8 », « 12 reps »)
+                        // est la consigne claire de ce qu'il faut faire pendant le temps estimé.
+                        if phase.kind == .work, let target = strengthRepTarget(for: phase) {
+                            Text(verbatim: target)
+                                .font(.title3.bold())
+                                .foregroundStyle(Color.coachingPrimary)
+                        }
                         bigTime
                         timeScrubber(phase: phase)
                         if let next = upcomingLabel, next != displayString(phase.label) {
@@ -567,7 +591,7 @@ struct SessionFocusView: View {
                                 .foregroundStyle(.secondary)
                                 .multilineTextAlignment(.center)
                         }
-                        // Story 3.35f — en minuté NON-audio (yoga/HIIT), on utilise
+                        // Story 3.35f — en minuté NON-audio (yoga/HIIT/muscu), on utilise
                         // le grand écran : illustration de l'exo + « Comment l'exécuter ».
                         if !isAudioMode { exerciseVisual(for: phase) }
                     }
@@ -575,36 +599,62 @@ struct SessionFocusView: View {
                 .padding(.horizontal, 24)
                 .padding(.vertical, 8)
             }
+        } else if timerEngine.isFinished {
+            // Bug #7 — en fin de séance minutée, `currentPhase` devient nil → l'écran
+            // restait blanc le temps que la feuille de récap monte. On affiche une
+            // célébration visible dès la dernière phase passée.
+            VStack(spacing: 16) {
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.system(size: 72))
+                    .foregroundStyle(Color.coachingSuccess)
+                Text("coaching.session.focus.celebration")
+                    .font(.title2.bold())
+                    .multilineTextAlignment(.center)
+            }
+            .accessibilityIdentifier("coaching.session.focus.timed.finished")
         }
     }
 
-    /// Échauffement / récup : libellé + durée totale + texte en puces + (le bouton
-    /// « Avancer » est dans `timedControls`). Pas de compte à rebours (à son rythme).
+    /// Bug #6 — échauffement / récup CHRONOMÉTRÉS (auto-avance + pause, décision
+    /// Sophie 2026-06-04). Compte à rebours global + sous-étapes en puces, la puce
+    /// courante (estimée par tranche de temps égale) en gras. Le timer auto-avance
+    /// à 0:00 ; pause/passer dans `timedControls`.
     @ViewBuilder
-    private func manualPhaseContent(_ phase: SessionTimerPhase) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(alignment: .firstTextBaseline) {
-                Text(verbatim: displayString(phase.label))
-                    .font(.largeTitle.bold())
-                    .foregroundStyle(phaseTint(phase))
-                Spacer()
-                if let total = manualPhaseTotal(phase) {
-                    Text(verbatim: total)
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
+    private func guidedPhaseContent(_ phase: SessionTimerPhase) -> some View {
+        let lines = manualPhaseLines(phase)
+        let current = currentGuidedLineIndex(phase, lineCount: lines.count)
+        VStack(spacing: 16) {
+            Text(verbatim: displayString(phase.label))
+                .font(.largeTitle.bold())
+                .foregroundStyle(phaseTint(phase))
+                .multilineTextAlignment(.center)
+            bigTime
+            timeScrubber(phase: phase)
+            VStack(alignment: .leading, spacing: 10) {
+                ForEach(Array(lines.enumerated()), id: \.offset) { idx, line in
+                    Label {
+                        Text(verbatim: line)
+                            .font(idx == current ? .body.bold() : .body)
+                            .foregroundStyle(idx == current ? .primary : .secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    } icon: {
+                        Image(systemName: idx == current ? "circle.fill" : "circle")
+                            .font(.system(size: 7))
+                            .foregroundStyle(idx == current ? phaseTint(phase) : .secondary)
+                    }
                 }
             }
-            ForEach(Array(manualPhaseLines(phase).enumerated()), id: \.offset) { _, line in
-                Label {
-                    Text(verbatim: line)
-                        .font(.body)
-                        .fixedSize(horizontal: false, vertical: true)
-                } icon: {
-                    Image(systemName: "circle.fill").font(.system(size: 5)).foregroundStyle(.secondary)
-                }
-            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    /// Index de la sous-étape courante d'un échauffement/récup, par tranche de temps
+    /// égale (faute de durée par sous-étape). 0 si une seule ligne.
+    private func currentGuidedLineIndex(_ phase: SessionTimerPhase, lineCount: Int) -> Int {
+        guard lineCount > 1, phase.duration > 0 else { return 0 }
+        let elapsed = max(0, phase.duration - timerEngine.remaining)
+        let slice = Double(phase.duration) / Double(lineCount)
+        return min(lineCount - 1, Int(Double(elapsed) / slice))
     }
 
     /// Illustration + tip de l'exo courant (mode minuté non-audio).
@@ -624,6 +674,19 @@ struct SessionFocusView: View {
         }
     }
 
+    /// Séance de muscu (séries chronométrées auto-chaînées, bug #9).
+    private var isStrengthSession: Bool {
+        resolvedSportCode == "strengthTraining" || session.type == .strength
+    }
+
+    /// Objectif de reps d'une série muscu (« × 8 »). nil hors muscu ou si l'exo est
+    /// tenu (pas de reps → la durée fait foi).
+    private func strengthRepTarget(for phase: SessionTimerPhase) -> String? {
+        guard isStrengthSession, let ex = exercise(at: phase.stepIndex),
+              let reps = ex.reps, !reps.isEmpty else { return nil }
+        return "× \(reps.sanitizedForDisplay)"
+    }
+
     private func exercise(at stepIndex: Int) -> AdaptedExercise? {
         for step in steps where step.index == stepIndex {
             if case .exercise(let ex) = step.kind { return ex }
@@ -636,10 +699,6 @@ struct SessionFocusView: View {
     private func manualPhaseLines(_ phase: SessionTimerPhase) -> [String] {
         let text = manualPhaseText(phase)
         return SessionPhaseText.bulletLines(from: text)
-    }
-
-    private func manualPhaseTotal(_ phase: SessionTimerPhase) -> String? {
-        SessionPhaseText.totalLabel(from: manualPhaseText(phase))
     }
 
     private func manualPhaseText(_ phase: SessionTimerPhase) -> String {
@@ -681,20 +740,12 @@ struct SessionFocusView: View {
 
     @ViewBuilder
     private var timedControls: some View {
-        if timerEngine.currentPhase?.isManual == true {
-            // Échauffement / récup : un seul bouton « Avancer » (à son rythme).
-            Button { timerEngine.skip() } label: {
-                Label("coaching.session.focus.advance", systemImage: "arrow.right.circle.fill")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 15)
-                    .foregroundStyle(.white)
-                    .background(Color.coachingPrimary)
-                    .clipShape(RoundedRectangle(cornerRadius: 14))
-            }
-            .buttonStyle(.plain)
-            .padding()
+        if timerEngine.isFinished || timerEngine.currentPhase == nil {
+            // Fin de séance : plus de contrôles (la célébration + la récap prennent le relais).
+            EmptyView()
         } else {
+            // Toutes les phases chronométrées (y compris échauffement/récup depuis le
+            // bug #6) : pause/reprise + passer.
             HStack(spacing: 16) {
                 Button { timerEngine.togglePause() } label: {
                     Label(
@@ -768,8 +819,9 @@ struct SessionFocusView: View {
     @ViewBuilder
     private var progressionLabel: some View {
         if let p = timerEngine.currentPhase {
-            if p.isManual {
-                // Échauffement / récup : pas de compteur de progression.
+            if p.kind == .warmup || p.kind == .cooldown {
+                // Échauffement / récup : pas de compteur de progression (le grand
+                // titre + le décompte global suffisent).
                 EmptyView()
             } else if isRunWalk(p.label) {
                 // Run/walk : le grand titre « Course 1 sur 8 » porte déjà la progression.
@@ -778,10 +830,15 @@ struct SessionFocusView: View {
                 let pos = position(of: .hold)
                 Text("coaching.session.focus.timed.posture \(pos.current) \(pos.total)")
             } else if let round = p.round, let tot = p.totalRounds, tot > 1 {
+                // Muscu : « Série X/Y » (et non « Tour ») — bug #9/#12 clarté.
                 if let k = p.exerciseInRound, let K = p.totalInRound, K > 1 {
-                    Text("coaching.session.focus.timed.roundExo \(round) \(tot) \(k) \(K)")
+                    Text(isStrengthSession
+                         ? "coaching.session.focus.timed.setExo \(round) \(tot) \(k) \(K)"
+                         : "coaching.session.focus.timed.roundExo \(round) \(tot) \(k) \(K)")
                 } else {
-                    Text("coaching.session.focus.timed.round \(round) \(tot)")
+                    Text(isStrengthSession
+                         ? "coaching.session.focus.timed.set \(round) \(tot)"
+                         : "coaching.session.focus.timed.round \(round) \(tot)")
                 }
             } else {
                 let pos = position(of: .work)

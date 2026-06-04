@@ -39,7 +39,8 @@ enum MusicStreamingApp: String, CaseIterable, Identifiable, Codable, Sendable {
 
 enum MusicLinkBuilder {
     /// URL de recherche ouvrant l'app native choisie sur le terme donné. Nil pour
-    /// `.none` (aucune suggestion).
+    /// `.none` (aucune suggestion). C'est le lien web/universal-link : sur iOS,
+    /// Apple Music / Spotify / YouTube Music l'interceptent et ouvrent leur app.
     static func url(app: MusicStreamingApp, searchTerm: String) -> URL? {
         guard app.isProvider else { return nil }
         let query = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? searchTerm
@@ -50,6 +51,21 @@ enum MusicLinkBuilder {
         case .deezer:       return URL(string: "https://www.deezer.com/search/\(path)")
         case .youtubeMusic: return URL(string: "https://music.youtube.com/search?q=\(query)")
         case .none:         return nil
+        }
+    }
+
+    /// Scheme natif de l'app (`deezer://…`) à TENTER avant le lien web. Bug #10 :
+    /// le universal-link `https://www.deezer.com/…` n'est pas intercepté par l'app
+    /// Deezer → ça ouvrait Safari. Le scheme custom ouvre directement l'app. Si
+    /// l'app n'est pas installée, `openURL` échoue → le caller retombe sur `url(…)`.
+    ///
+    /// Nil quand le universal-link suffit déjà (Apple Music / Spotify / YouTube
+    /// Music ouvrent leur app de façon fiable) ou pour `.none`.
+    static func nativeURL(app: MusicStreamingApp, searchTerm: String) -> URL? {
+        let path = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? searchTerm
+        switch app {
+        case .deezer: return URL(string: "deezer://www.deezer.com/search/\(path)")
+        default:      return nil
         }
     }
 }

@@ -42,9 +42,7 @@ struct SessionMusicSuggestions: View {
 
     private func ambianceRow(_ ambiance: MusicAmbiance, brand: String) -> some View {
         Button {
-            if let url = MusicLinkBuilder.url(app: app, searchTerm: ambiance.searchTerm) {
-                openURL(url)
-            }
+            openAmbiance(ambiance.searchTerm)
         } label: {
             HStack(spacing: 10) {
                 Text(ambianceLabel(ambiance.kind))
@@ -65,6 +63,19 @@ struct SessionMusicSuggestions: View {
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("coaching.session.music.row.\(ambiance.kind.rawValue)")
+    }
+
+    /// Bug #10 — tente d'abord le scheme natif (Deezer), retombe sur le lien web
+    /// si l'app n'est pas installée (`accepted == false`).
+    private func openAmbiance(_ searchTerm: String) {
+        let webURL = MusicLinkBuilder.url(app: app, searchTerm: searchTerm)
+        if let native = MusicLinkBuilder.nativeURL(app: app, searchTerm: searchTerm) {
+            openURL(native) { accepted in
+                if !accepted, let webURL { openURL(webURL) }
+            }
+        } else if let webURL {
+            openURL(webURL)
+        }
     }
 
     private func ambianceLabel(_ kind: MusicAmbianceKind) -> LocalizedStringKey {

@@ -136,12 +136,15 @@ final class SessionTimerEngineTests: XCTestCase {
             cooldown: "3 min marche lente."
         )
         let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "running")
-        // warmup(manuel) + prepare + (course+marche)×8 + cooldown(manuel) = 1+1+16+1 = 19.
+        // warmup(chrono) + prepare + (course+marche)×8 + cooldown(chrono) = 1+1+16+1 = 19.
         XCTAssertEqual(phases.count, 19)
         XCTAssertEqual(phases.first?.kind, .warmup)
-        XCTAssertTrue(phases.first?.isManual ?? false) // échauffement à son rythme
+        // Bug #6 — échauffement/récup chronométrés (auto-avance + pause), plus manuels.
+        XCTAssertFalse(phases.first?.isManual ?? true)
+        XCTAssertEqual(phases.first?.duration, 480) // « Total : 8 min »
         XCTAssertEqual(phases.last?.kind, .cooldown)
-        XCTAssertTrue(phases.last?.isManual ?? false)
+        XCTAssertFalse(phases.last?.isManual ?? true)
+        XCTAssertEqual(phases.last?.duration, 180)  // « 3 min marche lente »
         // Décomposition bien présente malgré warmup/cooldown.
         XCTAssertTrue(phases.contains { $0.label == .run(index: 1, total: 8) })
         XCTAssertTrue(phases.contains { $0.label == .walk(index: 8, total: 8) })
@@ -244,6 +247,45 @@ final class SessionTimerEngineTests: XCTestCase {
     }
 
     // MARK: - Helpers
+
+    // MARK: - Bug #9 — muscu décomposée en séries (work estimé + repos), auto-chaînée
+
+    func test_builder_strength_decomposesPerSet() {
+        let s = session(type: .strength, exercises: [
+            AdaptedExercise(name: "Squat", originalName: "Squat", sets: 3, reps: "8", restSeconds: 90),
+            AdaptedExercise(name: "Pompes", originalName: "Pompes", sets: 2, reps: "12", restSeconds: 60)
+        ])
+        let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "strengthTraining")
+        // 3 séries squat + 2 séries pompes = 5 phases work.
+        XCTAssertEqual(phases.filter { $0.kind == .work }.count, 5)
+        // Repos après chaque série SAUF la toute dernière → 4 phases rest.
+        XCTAssertEqual(phases.filter { $0.kind == .rest }.count, 4)
+        // La dernière phase n'est pas un repos (pas de repos final).
+        XCTAssertEqual(phases.last?.kind, .work)
+        // 1ʳᵉ série squat : work estimé (8 reps × 4 = 32 s), round 1/3, exo 1/2.
+        let firstWork = phases.first { $0.kind == .work }
+        XCTAssertEqual(firstWork?.duration, 32)
+        XCTAssertEqual(firstWork?.round, 1)
+        XCTAssertEqual(firstWork?.totalRounds, 3)
+        XCTAssertEqual(firstWork?.exerciseInRound, 1)
+        XCTAssertEqual(firstWork?.totalInRound, 2)
+    }
+
+    func test_estimatedSetSeconds_repsAndDurationAndClamp() {
+        // Reps : ~4 s/rep, borné [25, 75].
+        XCTAssertEqual(SessionTimerPhaseBuilder.estimatedSetSeconds(
+            AdaptedExercise(name: "x", originalName: "x", sets: 4, reps: "10")), 40)
+        XCTAssertEqual(SessionTimerPhaseBuilder.estimatedSetSeconds(
+            AdaptedExercise(name: "x", originalName: "x", sets: 4, reps: "5")), 25)   // borne basse
+        XCTAssertEqual(SessionTimerPhaseBuilder.estimatedSetSeconds(
+            AdaptedExercise(name: "x", originalName: "x", sets: 4, reps: "30")), 75)  // borne haute
+        // Durée explicite (gainage « 30s ») fait foi.
+        XCTAssertEqual(SessionTimerPhaseBuilder.estimatedSetSeconds(
+            AdaptedExercise(name: "Gainage", originalName: "Gainage", sets: 3, duration: "30s")), 30)
+        // Ni reps ni durée → défaut.
+        XCTAssertEqual(SessionTimerPhaseBuilder.estimatedSetSeconds(
+            AdaptedExercise(name: "x", originalName: "x", sets: 3)), SessionTimerPhaseBuilder.defaultWorkSeconds)
+    }
 
     private func tick(_ e: SessionTimerEngine, _ n: Int) {
         for _ in 0..<n { e.tick() }

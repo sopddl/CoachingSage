@@ -80,8 +80,9 @@ final class AVSpeechSpeaker: NSObject, SpeechSpeaking, AVSpeechSynthesizerDelega
     }
 
     func speak(_ text: String, voiceIdentifier: String?) {
-        // Duck l'audio tiers avant de parler.
-        audioCues.activate(duckOthers: true)
+        // Duck l'audio tiers avant de parler (sans couper la session : les bips du
+        // décompte restent audibles et la musique ne remonte pas entre deux phrases).
+        audioCues.duck()
         let utterance = AVSpeechUtterance(string: text)
         if let voiceIdentifier, let voice = AVSpeechSynthesisVoice(identifier: voiceIdentifier) {
             utterance.voice = voice
@@ -97,8 +98,9 @@ final class AVSpeechSpeaker: NSObject, SpeechSpeaking, AVSpeechSynthesizerDelega
     }
 
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        // Restaure le son tiers une fois la phrase finie.
-        Task { @MainActor in audioCues.deactivate() }
+        // Restaure le son tiers une fois la phrase finie (sans couper la session :
+        // la vue garde la main sur le cycle de vie via `deactivate()` à la fermeture).
+        Task { @MainActor in audioCues.unduck() }
     }
 
     /// Choisit l'identifiant de voix pour (genre, langue). Préfère une voix
