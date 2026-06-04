@@ -8,27 +8,27 @@ final class AdaptedExerciseDisplayNameTests: XCTestCase {
 
     func testDisplayNameStripsSinglePatternSuffix() {
         let exo = AdaptedExercise(name: "Goblet squat (pattern squat)", originalName: "Goblet squat")
-        XCTAssertEqual(exo.displayName, "Goblet squat")
+        XCTAssertEqual(exo.displayName(Locale(identifier: "fr")), "Goblet squat")
     }
 
     func testDisplayNameStripsMultiWordPatternSuffix() {
         let exo = AdaptedExercise(name: "Pompe diamant (pattern push horizontal)", originalName: "Pompe diamant")
-        XCTAssertEqual(exo.displayName, "Pompe diamant")
+        XCTAssertEqual(exo.displayName(Locale(identifier: "fr")), "Pompe diamant")
     }
 
     func testDisplayNameStripsColonVariantPatternSuffix() {
         let exo = AdaptedExercise(name: "RDL haltères (pattern: hinge)", originalName: "RDL haltères")
-        XCTAssertEqual(exo.displayName, "RDL haltères")
+        XCTAssertEqual(exo.displayName(Locale(identifier: "fr")), "RDL haltères")
     }
 
     func testDisplayNamePreservesNameWithoutSuffix() {
         let exo = AdaptedExercise(name: "Footing endurance", originalName: "Footing endurance")
-        XCTAssertEqual(exo.displayName, "Footing endurance")
+        XCTAssertEqual(exo.displayName(Locale(identifier: "fr")), "Footing endurance")
     }
 
     func testDisplayNameTrimsResidualWhitespace() {
         let exo = AdaptedExercise(name: "Squat   (pattern squat)   ", originalName: "Squat")
-        XCTAssertEqual(exo.displayName, "Squat")
+        XCTAssertEqual(exo.displayName(Locale(identifier: "fr")), "Squat")
     }
 
     func testNameStaysIntactForResolverConsumption() {

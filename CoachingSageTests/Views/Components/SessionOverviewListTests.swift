@@ -17,7 +17,7 @@ final class SessionOverviewListTests: XCTestCase {
             exercises: [ex(name: "Squat"), ex(name: "Pompes")],
             cooldown: "5 min étirements"
         )
-        let rows = SessionOverviewList.rows(for: s)
+        let rows = SessionOverviewList.rows(for: s, locale: Locale(identifier: "fr"))
         XCTAssertEqual(rows.count, 4)
         XCTAssertEqual(rows[0].kind, .warmup)
         XCTAssertEqual(rows[0].anchorIndex, 0)
@@ -34,7 +34,7 @@ final class SessionOverviewListTests: XCTestCase {
             day: 1, name: "S", durationMinutes: 30, type: .endurance,
             warmup: nil, exercises: [ex(name: "A"), ex(name: "B"), ex(name: "C")], cooldown: nil
         )
-        let rows = SessionOverviewList.rows(for: s)
+        let rows = SessionOverviewList.rows(for: s, locale: Locale(identifier: "fr"))
         XCTAssertEqual(rows.map(\.anchorIndex), [0, 1, 2])
         XCTAssertEqual(rows.map(\.kind), [.exercise(number: 1), .exercise(number: 2), .exercise(number: 3)])
     }
@@ -44,7 +44,7 @@ final class SessionOverviewListTests: XCTestCase {
             day: 1, name: "S", durationMinutes: 30, type: .endurance,
             warmup: "", exercises: [ex(name: "A")], cooldown: ""
         )
-        let rows = SessionOverviewList.rows(for: s)
+        let rows = SessionOverviewList.rows(for: s, locale: Locale(identifier: "fr"))
         XCTAssertEqual(rows.count, 1)
         XCTAssertEqual(rows[0].kind, .exercise(number: 1))
         XCTAssertEqual(rows[0].anchorIndex, 0)
@@ -58,7 +58,7 @@ final class SessionOverviewListTests: XCTestCase {
             day: 1, name: "S", durationMinutes: 50, type: .strength,
             warmup: "warm", exercises: [ex(name: "A"), ex(name: "B")], cooldown: "cool"
         )
-        let rows = SessionOverviewList.rows(for: s)
+        let rows = SessionOverviewList.rows(for: s, locale: Locale(identifier: "fr"))
         // warmup + 2 exos + cooldown = 4 items → anchors 0..3 contigus.
         XCTAssertEqual(rows.map(\.anchorIndex), Array(0..<4))
     }
@@ -118,6 +118,6 @@ final class SessionOverviewListTests: XCTestCase {
     // MARK: - Helpers
 
     private func ex(name: String = "Exo", sets: Int? = nil, reps: String? = nil, duration: String? = nil) -> AdaptedExercise {
-        AdaptedExercise(name: name, originalName: name, sets: sets, reps: reps, duration: duration)
+        AdaptedExercise(name: LocalizedText(fr: name), originalName: name, sets: sets, reps: reps, duration: duration)
     }
 }

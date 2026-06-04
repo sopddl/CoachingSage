@@ -72,11 +72,11 @@ public struct AdaptedProgram: Codable, Equatable, Sendable {
 
 public struct AdaptedWeek: Codable, Equatable, Sendable {
     public let weekNumber: Int
-    public let theme: String
-    public let goal: String
+    public let theme: LocalizedText
+    public let goal: LocalizedText
     public let sessions: [AdaptedSession]
 
-    public init(weekNumber: Int, theme: String, goal: String, sessions: [AdaptedSession]) {
+    public init(weekNumber: Int, theme: LocalizedText, goal: LocalizedText, sessions: [AdaptedSession]) {
         self.weekNumber = weekNumber
         self.theme = theme
         self.goal = goal
@@ -86,21 +86,21 @@ public struct AdaptedWeek: Codable, Equatable, Sendable {
 
 public struct AdaptedSession: Codable, Equatable, Sendable {
     public let day: Int
-    public let name: String
+    public let name: LocalizedText
     public let durationMinutes: Int
     public let type: SessionType
-    public let warmup: String?
+    public let warmup: LocalizedText?
     public let exercises: [AdaptedExercise]
-    public let cooldown: String?
+    public let cooldown: LocalizedText?
 
     public init(
         day: Int,
-        name: String,
+        name: LocalizedText,
         durationMinutes: Int,
         type: SessionType,
-        warmup: String?,
+        warmup: LocalizedText?,
         exercises: [AdaptedExercise],
-        cooldown: String?
+        cooldown: LocalizedText?
     ) {
         self.day = day
         self.name = name
@@ -114,18 +114,18 @@ public struct AdaptedSession: Codable, Equatable, Sendable {
 
 public struct AdaptedExercise: Codable, Equatable, Sendable {
     /// Nom de l'exercice tel qu'il est affiché à l'utilisateur — peut être l'original
-    /// ou un substitut si une règle a remplacé l'exercice.
-    public let name: String
+    /// ou un substitut si une règle a remplacé l'exercice. Localisable (fr/en/es).
+    public let name: LocalizedText
 
-    /// Nom du `TemplateExercise` d'origine. Permet l'audit et la re-application
-    /// d'un patch IA Story 3.3b par-dessus.
+    /// Nom canonique (FR) du `TemplateExercise` d'origine. Reste une `String` : c'est
+    /// la **clé de matching** (findExercise, pattern resolver, illustrations, patch IA).
     public let originalName: String
 
     public let sets: Int?
     public let reps: String?
     public let duration: String?
     public let restSeconds: Int?
-    public let notes: String?
+    public let notes: LocalizedText?
     public let targetZone: String?
     public let volumeAxis: VolumeAxis?
 
@@ -136,13 +136,13 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
     public let substitutionReason: String?
 
     public init(
-        name: String,
+        name: LocalizedText,
         originalName: String,
         sets: Int? = nil,
         reps: String? = nil,
         duration: String? = nil,
         restSeconds: Int? = nil,
-        notes: String? = nil,
+        notes: LocalizedText? = nil,
         targetZone: String? = nil,
         volumeAxis: VolumeAxis? = nil,
         wasSubstituted: Bool = false,
@@ -161,12 +161,21 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
         self.substitutionReason = substitutionReason
     }
 
-    /// Nom à afficher à l'user : retire le suffixe technique `(pattern xxx)` issu
-    /// des templates JSON (utilisé par `ExercisePatternResolver` étape 1 regex,
-    /// jamais destiné à l'affichage). 14 templates strength embarquent ce suffixe.
-    /// Story 3.35e : retire aussi les « / » (jamais de slash à l'écran) → « · ».
-    public var displayName: String {
-        let cleaned = name.replacingOccurrences(
+    /// Nom à afficher à l'user, résolu pour `locale` : retire le suffixe technique
+    /// `(pattern xxx)` issu des templates JSON (utilisé par `ExercisePatternResolver`
+    /// étape 1 regex, jamais destiné à l'affichage). 14 templates strength embarquent
+    /// ce suffixe. Story 3.35e : retire aussi les « / » (jamais de slash à l'écran) → « · ».
+    /// NB : le suffixe `(pattern …)` n'existe que dans le corpus FR — la regex est
+    /// no-op sur EN/ES, donc `displayName(locale)` reste correct dans toutes les langues.
+    public func displayName(_ locale: Locale) -> String {
+        Self.cleanForDisplay(name.resolved(locale))
+    }
+
+    /// Nettoyage d'affichage d'un nom déjà résolu : retire le suffixe `(pattern xxx)`
+    /// (FR-only) et remplace « / » par « · ». Réutilisé par le label du minuteur FOCUS
+    /// (`PhaseLabel.raw`) qui résout la locale au render.
+    public static func cleanForDisplay(_ resolved: String) -> String {
+        let cleaned = resolved.replacingOccurrences(
             of: #"\s*\(pattern[\s:]+[^)]+\)\s*"#,
             with: " ",
             options: .regularExpression
@@ -179,11 +188,11 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
 
     /// Lift d'un `TemplateExercise` vers `AdaptedExercise` sans modification.
     /// Point d'entrée de la cascade : avant que les règles agissent, tout exercice
-    /// est en version "passthrough".
+    /// est en version "passthrough". `originalName` = clé canonique FR.
     public static func passthrough(_ template: TemplateExercise) -> AdaptedExercise {
         AdaptedExercise(
             name: template.name,
-            originalName: template.name,
+            originalName: template.name.canonical,
             sets: template.sets,
             reps: template.reps,
             duration: template.duration,

@@ -24,7 +24,7 @@ public enum ExerciseExplanationSeed {
         for exercise: AdaptedExercise,
         language: String
     ) -> ExerciseExplanation? {
-        let candidates = [exercise.originalName, exercise.name]
+        let candidates = [exercise.originalName, exercise.name.canonical]
             .map { normalize($0) }
 
         // On essaie matcher chaque candidat — le premier hit gagne.

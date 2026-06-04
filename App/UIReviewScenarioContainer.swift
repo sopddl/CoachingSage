@@ -703,8 +703,8 @@ private struct DashboardActiveScenarioView: View {
     private func makeSession(name: String, week: Int, day: Int, dur: Int) -> PersistedSession {
         PersistedSession(
             id: UUID(),
-            weekNumber: week, weekTheme: "Sem \(week)", weekGoal: "Endurance",
-            day: day, name: name, durationMinutes: dur, type: .endurance,
+            weekNumber: week, weekTheme: LocalizedText(fr: "Sem \(week)"), weekGoal: "Endurance",
+            day: day, name: LocalizedText(fr: name), durationMinutes: dur, type: .endurance,
             warmup: "10 min échauffement", exercises: [], cooldown: "5 min retour au calme"
         )
     }

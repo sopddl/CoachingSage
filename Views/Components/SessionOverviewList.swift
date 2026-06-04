@@ -15,12 +15,13 @@ enum SessionStepAnchor {
 }
 
 struct SessionOverviewList: View {
+    @Environment(\.locale) private var locale
     let session: AdaptedSession
     /// Appelé au tap d'une ligne avec l'index d'ancrage (= offset dans l'ordre
     /// de référence). Le parent fait `proxy.scrollTo(SessionStepAnchor.id(index))`.
     var onSelect: (Int) -> Void
 
-    private var rows: [SessionOverviewList.Row] { Self.rows(for: session) }
+    private var rows: [SessionOverviewList.Row] { Self.rows(for: session, locale: locale) }
 
     var body: some View {
         if !rows.isEmpty {
@@ -115,10 +116,12 @@ struct SessionOverviewList: View {
 
     /// Construit l'aperçu dans l'ordre de référence warmup → exos → cooldown.
     /// Pure & déterministe → testable (AC11).
-    static func rows(for session: AdaptedSession) -> [Row] {
+    static func rows(for session: AdaptedSession, locale: Locale) -> [Row] {
         var result: [Row] = []
         var index = 0
-        if let w = session.warmup, !w.isEmpty {
+        // Warmup/cooldown : titre vide, seule la métrique de DURÉE compte → parsée
+        // sur le texte canonique FR (chiffres language-agnostic).
+        if let w = session.warmup?.canonical, !w.isEmpty {
             // Métrique = durée TOTALE réelle (« Total : 8 min ») et plus « 5 min »
             // trompeur (retour Sophie : la synthèse était incohérente).
             result.append(Row(anchorIndex: index, kind: .warmup, title: "",
@@ -131,12 +134,12 @@ struct SessionOverviewList: View {
             result.append(Row(
                 anchorIndex: index,
                 kind: .exercise(number: exNumber),
-                title: ex.displayName,
+                title: ex.displayName(locale),
                 metric: compactMetric(for: ex)
             ))
             index += 1
         }
-        if let c = session.cooldown, !c.isEmpty {
+        if let c = session.cooldown?.canonical, !c.isEmpty {
             result.append(Row(anchorIndex: index, kind: .cooldown, title: "",
                               metric: SessionPhaseText.totalLabel(from: c) ?? leadingDuration(in: c)))
         }

@@ -93,15 +93,16 @@ public struct ConstraintSubstitutionRule: AdaptationRule {
                 day: day,
                 originalExerciseName: ex.originalName,
                 outcome: .substituted,
-                detail: "« \(ex.originalName) » → « \(alternativeName) » (\(blockerLabel))"
+                detail: "« \(ex.originalName) » → « \(alternativeName.canonical) » (\(blockerLabel))"
             ))
-            // Bug #8 — la durée embarquée dans le nom de l'alternative fait foi.
+            // Bug #8 — la durée embarquée dans le nom de l'alternative fait foi
+            // (extraite du nom canonique FR, chiffres language-agnostic).
             return AdaptedExercise(
                 name: alternativeName,
                 originalName: ex.originalName,
                 sets: ex.sets,
                 reps: ex.reps,
-                duration: AlternativeName.embeddedDuration(in: alternativeName) ?? ex.duration,
+                duration: AlternativeName.embeddedDuration(in: alternativeName.canonical) ?? ex.duration,
                 restSeconds: ex.restSeconds,
                 notes: ex.notes,
                 targetZone: ex.targetZone,

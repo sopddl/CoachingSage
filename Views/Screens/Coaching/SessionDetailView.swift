@@ -7,6 +7,7 @@ import SwiftUI
 import TemplateModel
 
 struct SessionDetailView: View {
+    @Environment(\.locale) private var locale
     let session: AdaptedSession
     let week: AdaptedWeek
     let program: AdaptedProgram
@@ -76,7 +77,7 @@ struct SessionDetailView: View {
                 .padding()
             }
         }
-        .navigationTitle(Text(verbatim: session.name.sanitizedForDisplay))
+        .navigationTitle(Text(verbatim: session.name.resolved(locale).sanitizedForDisplay))
         .navigationBarTitleDisplayMode(.inline)
         .glossaryDiscoveryTooltip(isPresented: $showDiscoveryTooltip)
         .task {
@@ -293,7 +294,7 @@ struct SessionDetailView: View {
     /// la palette silhouette des illustrations exo.
     private var effectiveSessionSportCode: String {
         SessionSportInference.sportCode(
-            forSessionName: session.name,
+            forSessionName: session.name.canonical,
             programSportCode: program.sport.appSportCode
         )
     }

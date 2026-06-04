@@ -8,31 +8,34 @@ import TemplateModel
 public struct PersistedSession: Codable, Equatable, Identifiable, Sendable {
     public let id: UUID
     public let weekNumber: Int
-    public let weekTheme: String
-    public let weekGoal: String
+    /// Contenu localisable (fr/en/es). Décodage tolérant : les records persistés
+    /// AVANT B1 portent des String nues → décodées en `{ fr: … }` (fallback FR).
+    /// Au prochain `set` du blob sessions, ré-encodé en objet (migration paresseuse).
+    public let weekTheme: LocalizedText
+    public let weekGoal: LocalizedText
     /// Index d'ordre dans la semaine (1..N). N'a plus de sémantique de jour calendaire
     /// depuis la refonte vue semaine — l'utilisateur fait les séances dans l'ordre qu'il
     /// veut au cours de la semaine. Conservé pour le tri déterministe.
     public let day: Int
-    public let name: String
+    public let name: LocalizedText
     public let durationMinutes: Int
     public let type: SessionType
-    public let warmup: String?
+    public let warmup: LocalizedText?
     public let exercises: [AdaptedExercise]
-    public let cooldown: String?
+    public let cooldown: LocalizedText?
 
     public init(
         id: UUID = UUID(),
         weekNumber: Int,
-        weekTheme: String,
-        weekGoal: String,
+        weekTheme: LocalizedText,
+        weekGoal: LocalizedText,
         day: Int,
-        name: String,
+        name: LocalizedText,
         durationMinutes: Int,
         type: SessionType,
-        warmup: String?,
+        warmup: LocalizedText?,
         exercises: [AdaptedExercise],
-        cooldown: String?
+        cooldown: LocalizedText?
     ) {
         self.id = id
         self.weekNumber = weekNumber

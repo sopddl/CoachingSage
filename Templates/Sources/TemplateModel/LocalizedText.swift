@@ -64,6 +64,24 @@ public struct LocalizedText: Codable, Equatable, Sendable, Hashable {
     public var canonical: String { fr }
 }
 
+/// Ergonomie previews/tests/catalogue synthétique : un literal String devient un
+/// `LocalizedText` FR-only. NB : ne s'applique qu'aux **literals**, pas aux
+/// variables `String` (qui doivent wrapper explicitement `LocalizedText(fr:)` —
+/// force à réfléchir à la traduction). Aucun impact prod : le contenu réel vient
+/// du décodage JSON, jamais de literals.
+extension LocalizedText: ExpressibleByStringLiteral, ExpressibleByStringInterpolation {
+    public init(stringLiteral value: String) {
+        self.init(fr: value)
+    }
+
+    /// Couvre aussi les literals interpolés (`"Bloc \(i)"`) en previews/tests.
+    /// Comme pour le stringLiteral : ne s'applique qu'aux literals, pas aux
+    /// variables `String` (qui wrappent explicitement `LocalizedText(fr:)`).
+    public init(stringInterpolation: DefaultStringInterpolation) {
+        self.init(fr: String(stringInterpolation: stringInterpolation))
+    }
+}
+
 public extension Optional where Wrapped == LocalizedText {
     /// Résolution localisée d'un champ optionnel (warmup/cooldown/notes).
     func resolved(_ locale: Locale) -> String? {

@@ -19,6 +19,7 @@ import SwiftUI
 import TemplateModel
 
 struct ExerciseTimelineCard: View {
+    @Environment(\.locale) private var locale
     let exercise: AdaptedExercise
     let sportCode: String?
     /// True si cette card est la **première card exo de la timeline** (pas la
@@ -42,7 +43,10 @@ struct ExerciseTimelineCard: View {
         // flash de 1 frame avec tip puis disparition. Le `.task` corrige si
         // VoiceOver/Reduce Motion sont activés (toggle à true immédiatement).
         let mayPulse = isFirstExercise && GlossaryFirstVisitPulse.shouldPulse()
-        let hasGlossary = Self.notesHaveGlossaryMatch(exercise.notes)
+        // Pré-check pulse en `init` (pas d'accès @Environment) → glossaire sur le
+        // texte canonique FR ; les termes glossaire (FTP/Z2/vinyasa) sont des codes
+        // quasi-invariants entre langues, suffisant pour cette nicety.
+        let hasGlossary = Self.notesHaveGlossaryMatch(exercise.notes?.canonical)
         _tipVisible = State(initialValue: !(mayPulse && hasGlossary))
     }
 
@@ -56,7 +60,7 @@ struct ExerciseTimelineCard: View {
     }
 
     private var notesHasGlossaryMatch: Bool {
-        Self.notesHaveGlossaryMatch(exercise.notes)
+        Self.notesHaveGlossaryMatch(exercise.notes?.resolved(locale))
     }
 
     /// True si la 1ère card peut pulser maintenant (toutes les pré-conditions OK).
@@ -84,20 +88,20 @@ struct ExerciseTimelineCard: View {
                 // Pédagogie Phase 1 — le titre passe par le glossaire (jargon
                 // tappable : FTP, Z2, vinyasa…) + sanitize "/" → " · ".
                 GlossaryRichText(
-                    text: exercise.displayName.sanitizedForDisplay,
+                    text: exercise.displayName(locale).sanitizedForDisplay,
                     font: .callout.bold(),
                     foreground: .primary
                 )
                 .fixedSize(horizontal: false, vertical: true)
             }
             if let pattern = resolvedPattern, let code = sportCode, pattern != .generic {
-                ExercisePatternIllustration(pattern: pattern, sportCode: code, exerciseName: exercise.name)
+                ExercisePatternIllustration(pattern: pattern, sportCode: code, exerciseName: exercise.name.canonical)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(8)
                     .background(Color(uiColor: .tertiarySystemBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
-            if let notes = exercise.notes, !notes.isEmpty {
+            if let notes = exercise.notes?.resolved(locale), !notes.isEmpty {
                 BulletedNotes(text: notes, font: .footnote)
                     .scaleEffect(pulseScale)
                     .opacity(pulseOpacity)
@@ -112,7 +116,7 @@ struct ExerciseTimelineCard: View {
             // "Comment l'exécuter ?" expandable. Tip pattern reste utilisé
             // en fallback gracieux quand pas de seed/cache/IA dispo.
             if let pattern = resolvedPattern {
-                let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: exercise.name)
+                let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: exercise.name.canonical)
                 ExerciseHowToDisclosure(exercise: exercise, fallbackTip: tipKey)
                     .padding(.top, 2)
                     .opacity(tipVisible ? 1 : 0)

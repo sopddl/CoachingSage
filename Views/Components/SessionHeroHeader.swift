@@ -8,6 +8,7 @@ import SwiftUI
 import TemplateModel
 
 struct SessionHeroHeader: View {
+    @Environment(\.locale) private var locale
     let session: AdaptedSession
     let week: AdaptedWeek
     let program: AdaptedProgram
@@ -29,7 +30,7 @@ struct SessionHeroHeader: View {
 
     private var effectiveSportCode: String {
         SessionSportInference.sportCode(
-            forSessionName: session.name,
+            forSessionName: session.name.canonical,
             programSportCode: program.sport.appSportCode
         )
     }
@@ -57,7 +58,7 @@ struct SessionHeroHeader: View {
                         .font(.caption.bold())
                         .foregroundStyle(.secondary)
                         .textCase(.uppercase)
-                    Text(verbatim: session.name.sanitizedForDisplay)
+                    Text(verbatim: session.name.resolved(locale).sanitizedForDisplay)
                         .font(.title3.bold())
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.leading)
@@ -215,7 +216,7 @@ struct SessionHeroHeader: View {
             warmup: "10 min footing + 4 strides",
             exercises: (1...8).map { i in
                 AdaptedExercise(
-                    name: "Bloc \(i)",
+                    name: LocalizedText(fr: "Bloc \(i)"),
                     originalName: "Bloc \(i)",
                     duration: "30s/30s",
                     notes: "30s à Daniels-I, 30s récup trot.",

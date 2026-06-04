@@ -23,13 +23,13 @@ final class ProgramAdapterTests: XCTestCase {
         XCTAssertFalse(adapted.requiresAIAssist)
 
         // Plyo session : exercice substitué par alternative (Marche nordique).
-        let plyoSession = adapted.weeks[0].sessions.first(where: { $0.name == "Plyo intervals" })!
+        let plyoSession = adapted.weeks[0].sessions.first(where: { $0.name.fr == "Plyo intervals" })!
         XCTAssertEqual(plyoSession.exercises.first?.name, "Marche nordique 20 min")
         XCTAssertTrue(plyoSession.exercises.first?.wasSubstituted == true)
         XCTAssertEqual(plyoSession.exercises.first?.substitutionReason, "constraint:knee-injury")
 
         // Sortie longue (pas de constraint match) inchangée.
-        let longSession = adapted.weeks[0].sessions.first(where: { $0.name == "Sortie longue" })!
+        let longSession = adapted.weeks[0].sessions.first(where: { $0.name.fr == "Sortie longue" })!
         XCTAssertEqual(longSession.exercises.first?.name, "Long run 60 min")
         XCTAssertFalse(longSession.exercises.first?.wasSubstituted == true)
     }
@@ -48,10 +48,10 @@ final class ProgramAdapterTests: XCTestCase {
 
         // Volume : Mobility supprimé (3 sessions au lieu de 4).
         XCTAssertEqual(adapted.weeks[0].sessions.count, 3)
-        XCTAssertFalse(adapted.weeks[0].sessions.contains { $0.name == "Mobility" })
+        XCTAssertFalse(adapted.weeks[0].sessions.contains { $0.name.fr == "Mobility" })
 
         // Medical clearance : Intervals → endurance, Daniels-I → Daniels-E.
-        let intervalsSession = adapted.weeks[0].sessions.first(where: { $0.name == "Intervals" })!
+        let intervalsSession = adapted.weeks[0].sessions.first(where: { $0.name.fr == "Intervals" })!
         XCTAssertEqual(intervalsSession.type, .endurance)
         XCTAssertEqual(intervalsSession.exercises.first?.targetZone, "Daniels-E")
 

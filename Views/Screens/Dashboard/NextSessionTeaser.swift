@@ -16,6 +16,8 @@
 import SwiftUI
 
 struct NextSessionTeaser: View {
+    /// Locale in-app (injectée au root depuis `LanguageManager.currentLocale`).
+    @Environment(\.locale) private var locale
     /// Session N+1 résolue par `NextSessionResolver.nextTwoSessions(for:now:).teaser?.session`.
     /// `nil` = pas de N+1 disponible.
     let teaserSession: PersistedSession?
@@ -51,7 +53,7 @@ struct NextSessionTeaser: View {
                     .foregroundStyle(Color.coachingPrimary)
                 Spacer(minLength: 0)
             }
-            Text(verbatim: session.name)
+            Text(verbatim: session.name.resolved(locale))
                 .font(.coachingBody)
                 .foregroundStyle(Color.coachingTextPrimary)
                 .lineLimit(2)
@@ -95,6 +97,7 @@ struct NextSessionTeaser: View {
 /// « enleve le PUIS »). Badge sport déduit (heuristique pour Triathlon
 /// multi-sport sur le nom de session, sinon sport du programme parent).
 struct UpcomingSessionRow: View {
+    @Environment(\.locale) private var locale
     let session: PersistedSession
     /// Sport du programme parent (running / cycling / triathlon / etc).
     /// Pour Triathlon, on déduit le sport spécifique de la session via
@@ -121,7 +124,7 @@ struct UpcomingSessionRow: View {
                         .font(.caption2.weight(.semibold))
                         .foregroundStyle(Color.coachingTextSecondary)
                 }
-                Text(verbatim: session.name.sanitizedForDisplay)
+                Text(verbatim: session.name.resolved(locale).sanitizedForDisplay)
                     .font(.subheadline)
                     .foregroundStyle(Color.coachingTextPrimary)
                     .lineLimit(1)
@@ -157,7 +160,7 @@ struct UpcomingSessionRow: View {
 ///     le data model (story future, demande migration SwiftData).
 enum SessionSportInference {
     static func sportCode(for session: PersistedSession, programSportCode: String) -> String {
-        sportCode(forSessionName: session.name, programSportCode: programSportCode)
+        sportCode(forSessionName: session.name.canonical, programSportCode: programSportCode)
     }
 
     /// Variante name+parent — utilisée par `AdaptedProgramView` / `SessionDetailView`

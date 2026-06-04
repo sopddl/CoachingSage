@@ -46,9 +46,9 @@ public struct MedicalClearanceRule: AdaptationRule {
                             ruleType: ruleType,
                             weekNumber: week.weekNumber,
                             day: session.day,
-                            originalExerciseName: session.name,
+                            originalExerciseName: session.name.canonical,
                             outcome: .downgraded,
-                            detail: "Session « \(session.name) » : type interval → endurance (PARQ medical clearance)"
+                            detail: "Session « \(session.name.canonical) » : type interval → endurance (PARQ medical clearance)"
                         ))
                     }
                     return AdaptedSession(
