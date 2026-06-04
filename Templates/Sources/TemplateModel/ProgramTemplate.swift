@@ -5,15 +5,15 @@ public struct ProgramTemplate: Codable, Equatable, Sendable {
     public let schemaVersion: Int
     public let sport: Sport
     public let level: Level
-    public let name: String
+    public let name: LocalizedText
     public let durationWeeks: Int
     public let sessionsPerWeek: Int
-    public let defaultObjective: String
-    public let assumedProfile: String
-    public let summary: String
+    public let defaultObjective: LocalizedText
+    public let assumedProfile: LocalizedText
+    public let summary: LocalizedText
     public let weeks: [TemplateWeek]
-    public let safetyNotes: String
-    public let progressionLogic: String
+    public let safetyNotes: LocalizedText
+    public let progressionLogic: LocalizedText
     public let validatedAt: Date?
     public let validatedBy: String?
 
@@ -22,15 +22,15 @@ public struct ProgramTemplate: Codable, Equatable, Sendable {
         schemaVersion: Int,
         sport: Sport,
         level: Level,
-        name: String,
+        name: LocalizedText,
         durationWeeks: Int,
         sessionsPerWeek: Int,
-        defaultObjective: String,
-        assumedProfile: String,
-        summary: String,
+        defaultObjective: LocalizedText,
+        assumedProfile: LocalizedText,
+        summary: LocalizedText,
         weeks: [TemplateWeek],
-        safetyNotes: String,
-        progressionLogic: String,
+        safetyNotes: LocalizedText,
+        progressionLogic: LocalizedText,
         validatedAt: Date? = nil,
         validatedBy: String? = nil
     ) {
@@ -54,11 +54,11 @@ public struct ProgramTemplate: Codable, Equatable, Sendable {
 
 public struct TemplateWeek: Codable, Equatable, Sendable {
     public let weekNumber: Int
-    public let theme: String
-    public let goal: String
+    public let theme: LocalizedText
+    public let goal: LocalizedText
     public let sessions: [TemplateSession]
 
-    public init(weekNumber: Int, theme: String, goal: String, sessions: [TemplateSession]) {
+    public init(weekNumber: Int, theme: LocalizedText, goal: LocalizedText, sessions: [TemplateSession]) {
         self.weekNumber = weekNumber
         self.theme = theme
         self.goal = goal
@@ -68,21 +68,21 @@ public struct TemplateWeek: Codable, Equatable, Sendable {
 
 public struct TemplateSession: Codable, Equatable, Sendable {
     public let day: Int
-    public let name: String
+    public let name: LocalizedText
     public let durationMinutes: Int
     public let type: SessionType
-    public let warmup: String?
+    public let warmup: LocalizedText?
     public let exercises: [TemplateExercise]
-    public let cooldown: String?
+    public let cooldown: LocalizedText?
 
     public init(
         day: Int,
-        name: String,
+        name: LocalizedText,
         durationMinutes: Int,
         type: SessionType,
-        warmup: String?,
+        warmup: LocalizedText?,
         exercises: [TemplateExercise],
-        cooldown: String?
+        cooldown: LocalizedText?
     ) {
         self.day = day
         self.name = name
@@ -95,31 +95,34 @@ public struct TemplateSession: Codable, Equatable, Sendable {
 }
 
 public struct TemplateExercise: Codable, Equatable, Sendable {
-    public let name: String
+    /// Contenu localisable. NB : `name` reste la **clé de matching** via
+    /// `name.canonical` (= fr) pour findExercise / pattern resolver / illustrations.
+    public let name: LocalizedText
     public let sets: Int?
     public let reps: String?
     public let duration: String?
     public let restSeconds: Int?
-    public let notes: String?
+    public let notes: LocalizedText?
 
     /// Hooks v2 — drive l'algo deterministic Story 3.3a (ProgramAdapter).
+    /// `targetZone` reste un CODE brut (rendu verbatim, glossaire) → pas localisé.
     public let targetZone: String?
     public let requiredEquipment: [String]
     public let incompatibleConstraints: [String]
-    public let alternatives: [String]
+    public let alternatives: [LocalizedText]
     public let volumeAxis: VolumeAxis?
 
     public init(
-        name: String,
+        name: LocalizedText,
         sets: Int? = nil,
         reps: String? = nil,
         duration: String? = nil,
         restSeconds: Int? = nil,
-        notes: String? = nil,
+        notes: LocalizedText? = nil,
         targetZone: String? = nil,
         requiredEquipment: [String] = [],
         incompatibleConstraints: [String] = [],
-        alternatives: [String] = [],
+        alternatives: [LocalizedText] = [],
         volumeAxis: VolumeAxis? = nil
     ) {
         self.name = name
@@ -142,16 +145,16 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try c.decode(String.self, forKey: .name)
+        self.name = try c.decode(LocalizedText.self, forKey: .name)
         self.sets = try c.decodeIfPresent(Int.self, forKey: .sets)
         self.reps = try c.decodeIfPresent(String.self, forKey: .reps)
         self.duration = try c.decodeIfPresent(String.self, forKey: .duration)
         self.restSeconds = try c.decodeIfPresent(Int.self, forKey: .restSeconds)
-        self.notes = try c.decodeIfPresent(String.self, forKey: .notes)
+        self.notes = try c.decodeIfPresent(LocalizedText.self, forKey: .notes)
         self.targetZone = try c.decodeIfPresent(String.self, forKey: .targetZone)
         self.requiredEquipment = try c.decodeIfPresent([String].self, forKey: .requiredEquipment) ?? []
         self.incompatibleConstraints = try c.decodeIfPresent([String].self, forKey: .incompatibleConstraints) ?? []
-        self.alternatives = try c.decodeIfPresent([String].self, forKey: .alternatives) ?? []
+        self.alternatives = try c.decodeIfPresent([LocalizedText].self, forKey: .alternatives) ?? []
         self.volumeAxis = try c.decodeIfPresent(VolumeAxis.self, forKey: .volumeAxis)
     }
 }
