@@ -87,6 +87,9 @@ enum SessionTimerPhaseBuilder {
         let steps = SessionStep.steps(for: session)
         guard !steps.isEmpty else { return [] }
         let isYoga = sportCode == "yoga" || session.type == .mobility
+        // Bug #9 — muscu : chaque exo est décomposé en séries (work estimé + repos),
+        // qui s'enchaînent automatiquement avec pause possible.
+        let isStrength = sportCode == "strengthTraining" || session.type == .strength
 
         var warmupStep: SessionStep?
         var cooldownStep: SessionStep?
@@ -111,7 +114,7 @@ enum SessionTimerPhaseBuilder {
                                             label: .warmup, isManual: false))
         }
 
-        let effortPhases = exerciseEffortPhases(exoSteps: exoSteps, isYoga: isYoga, startId: &id)
+        let effortPhases = exerciseEffortPhases(exoSteps: exoSteps, isYoga: isYoga, isStrength: isStrength, startId: &id)
         if let first = effortPhases.first {
             // Pré-annonce du 1ᵉʳ effort chronométré (anti-Decathlon).
             phases.append(SessionTimerPhase(id: next(), kind: .prepare, duration: prepareSeconds,
@@ -132,8 +135,13 @@ enum SessionTimerPhaseBuilder {
 
     // MARK: - Efforts chronométrés (yoga tenue / run-walk segments / HIIT)
 
-    private static func exerciseEffortPhases(exoSteps: [SessionStep], isYoga: Bool, startId: inout Int) -> [SessionTimerPhase] {
+    private static func exerciseEffortPhases(exoSteps: [SessionStep], isYoga: Bool, isStrength: Bool, startId: inout Int) -> [SessionTimerPhase] {
         func next() -> Int { defer { startId += 1 }; return startId }
+
+        // Muscu : chaque exo → S séries (work estimé) entrecoupées de repos.
+        if isStrength {
+            return strengthPhases(exoSteps: exoSteps, next: next)
+        }
 
         // Yoga : une tenue par posture.
         if isYoga {
@@ -178,6 +186,48 @@ enum SessionTimerPhaseBuilder {
             }
         }
         return out
+    }
+
+    /// Bug #9 — muscu auto-chaînée : chaque exo devient S séries [work estimé + repos],
+    /// pas de repos après la toute dernière série de la séance. La durée de série est
+    /// ESTIMÉE (rep-based) ; l'utilisateur peut mettre en pause si une série déborde.
+    private static func strengthPhases(exoSteps: [SessionStep], next: () -> Int) -> [SessionTimerPhase] {
+        var out: [SessionTimerPhase] = []
+        let total = exoSteps.count
+        for (i, step) in exoSteps.enumerated() {
+            guard case .exercise(let ex) = step.kind else { continue }
+            let sets = max(ex.sets ?? 1, 1)
+            let work = estimatedSetSeconds(ex)
+            let rest = ex.restSeconds ?? 0
+            for set in 1...sets {
+                out.append(SessionTimerPhase(id: next(), kind: .work, duration: work, stepIndex: step.index,
+                                             label: .raw(ex.displayName),
+                                             round: set, totalRounds: sets,
+                                             exerciseInRound: i + 1, totalInRound: total))
+                let isLastSetOfLastExo = (i == total - 1) && (set == sets)
+                if rest > 0, !isLastSetOfLastExo {
+                    out.append(SessionTimerPhase(id: next(), kind: .rest, duration: rest, stepIndex: step.index,
+                                                 label: .recovery,
+                                                 round: set, totalRounds: sets,
+                                                 exerciseInRound: i + 1, totalInRound: total))
+                }
+            }
+        }
+        return out
+    }
+
+    /// Durée estimée d'une série de muscu : la durée explicite (« 30s » gainage) si
+    /// présente, sinon ~4 s/rep borné [25 s, 75 s], sinon le défaut.
+    static func estimatedSetSeconds(_ ex: AdaptedExercise) -> Int {
+        if let d = ex.duration, let s = SessionDurationParser.seconds(d), s > 0 { return s }
+        if let reps = ex.reps, let r = leadingInt(reps), r > 0 { return min(max(r * 4, 25), 75) }
+        return defaultWorkSeconds
+    }
+
+    /// Premier entier d'une chaîne (« 8 », « 8-10 », « 10/côté » → 8, 8, 10). nil si aucun.
+    private static func leadingInt(_ s: String) -> Int? {
+        let digits = s.drop(while: { !$0.isNumber }).prefix(while: { $0.isNumber })
+        return Int(digits)
     }
 
     private static func runWalkSegments(step: SessionStep, sets: Int, segments: [SessionDurationParser.Segment],

@@ -30,7 +30,9 @@ enum SessionExecutionMode: String, Equatable, CaseIterable {
     /// `sportCode` doit être le code EFFECTIF (triathlon déjà résolu en discipline).
     static func target(sportCode: String, sessionType: SessionType) -> SessionExecutionMode {
         switch sportCode {
-        case "strengthTraining":              return .manual
+        // Bug #9 (2026-06-04, Sophie) : la muscu s'enchaîne sans taper (séries + repos
+        // chronométrés auto, pause toujours possible) → mode Minuté.
+        case "strengthTraining":              return .timed
         case "hiit", "yoga":                  return .timed
         case "running", "cycling", "hiking":  return .audio
         case "swimming":                      return .watch

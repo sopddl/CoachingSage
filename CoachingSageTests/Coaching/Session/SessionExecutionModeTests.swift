@@ -9,8 +9,9 @@ final class SessionExecutionModeTests: XCTestCase {
 
     // MARK: - target (mode cible idéal)
 
-    func test_target_strength_isManual() {
-        XCTAssertEqual(SessionExecutionMode.target(sportCode: "strengthTraining", sessionType: .strength), .manual)
+    func test_target_strength_isTimed() {
+        // Bug #9 — muscu s'enchaîne au chrono (séries + repos auto, pause possible).
+        XCTAssertEqual(SessionExecutionMode.target(sportCode: "strengthTraining", sessionType: .strength), .timed)
     }
 
     func test_target_hiitAndYoga_areTimed() {
@@ -64,8 +65,14 @@ final class SessionExecutionModeTests: XCTestCase {
         XCTAssertEqual(SessionExecutionMode.available(sportCode: "swimming", sessionType: .technique), .manual)
     }
 
-    func test_available_manualTargetStaysManual() {
-        XCTAssertEqual(SessionExecutionMode.available(sportCode: "strengthTraining", sessionType: .strength), .manual)
+    func test_available_strengthUsesTimed() {
+        // Bug #9 — Minuté est embarqué → la muscu s'exécute au chrono auto-chaîné.
+        XCTAssertEqual(SessionExecutionMode.available(sportCode: "strengthTraining", sessionType: .strength), .timed)
+    }
+
+    func test_available_genericStrengthTypeStaysManual() {
+        // Un autre sport en séance de type force (tennis) reste en Manuel (fallback).
+        XCTAssertEqual(SessionExecutionMode.available(sportCode: "tennis", sessionType: .strength), .manual)
     }
 
     func test_shippedModes_containsManualTimedAudio() {

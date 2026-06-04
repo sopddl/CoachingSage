@@ -576,6 +576,13 @@ struct SessionFocusView: View {
                             .font(.largeTitle.bold())
                             .foregroundStyle(phaseTint(phase))
                             .multilineTextAlignment(.center)
+                        // Bug #9/#12 — muscu : l'OBJECTIF de la série (« × 8 », « 12 reps »)
+                        // est la consigne claire de ce qu'il faut faire pendant le temps estimé.
+                        if phase.kind == .work, let target = strengthRepTarget(for: phase) {
+                            Text(verbatim: target)
+                                .font(.title3.bold())
+                                .foregroundStyle(Color.coachingPrimary)
+                        }
                         bigTime
                         timeScrubber(phase: phase)
                         if let next = upcomingLabel, next != displayString(phase.label) {
@@ -584,7 +591,7 @@ struct SessionFocusView: View {
                                 .foregroundStyle(.secondary)
                                 .multilineTextAlignment(.center)
                         }
-                        // Story 3.35f — en minuté NON-audio (yoga/HIIT), on utilise
+                        // Story 3.35f — en minuté NON-audio (yoga/HIIT/muscu), on utilise
                         // le grand écran : illustration de l'exo + « Comment l'exécuter ».
                         if !isAudioMode { exerciseVisual(for: phase) }
                     }
@@ -665,6 +672,19 @@ struct SessionFocusView: View {
             let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.name)
             ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey)
         }
+    }
+
+    /// Séance de muscu (séries chronométrées auto-chaînées, bug #9).
+    private var isStrengthSession: Bool {
+        resolvedSportCode == "strengthTraining" || session.type == .strength
+    }
+
+    /// Objectif de reps d'une série muscu (« × 8 »). nil hors muscu ou si l'exo est
+    /// tenu (pas de reps → la durée fait foi).
+    private func strengthRepTarget(for phase: SessionTimerPhase) -> String? {
+        guard isStrengthSession, let ex = exercise(at: phase.stepIndex),
+              let reps = ex.reps, !reps.isEmpty else { return nil }
+        return "× \(reps.sanitizedForDisplay)"
     }
 
     private func exercise(at stepIndex: Int) -> AdaptedExercise? {
@@ -810,10 +830,15 @@ struct SessionFocusView: View {
                 let pos = position(of: .hold)
                 Text("coaching.session.focus.timed.posture \(pos.current) \(pos.total)")
             } else if let round = p.round, let tot = p.totalRounds, tot > 1 {
+                // Muscu : « Série X/Y » (et non « Tour ») — bug #9/#12 clarté.
                 if let k = p.exerciseInRound, let K = p.totalInRound, K > 1 {
-                    Text("coaching.session.focus.timed.roundExo \(round) \(tot) \(k) \(K)")
+                    Text(isStrengthSession
+                         ? "coaching.session.focus.timed.setExo \(round) \(tot) \(k) \(K)"
+                         : "coaching.session.focus.timed.roundExo \(round) \(tot) \(k) \(K)")
                 } else {
-                    Text("coaching.session.focus.timed.round \(round) \(tot)")
+                    Text(isStrengthSession
+                         ? "coaching.session.focus.timed.set \(round) \(tot)"
+                         : "coaching.session.focus.timed.round \(round) \(tot)")
                 }
             } else {
                 let pos = position(of: .work)
