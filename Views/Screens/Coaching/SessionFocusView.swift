@@ -576,12 +576,19 @@ struct SessionFocusView: View {
                             .font(.largeTitle.bold())
                             .foregroundStyle(phaseTint(phase))
                             .multilineTextAlignment(.center)
-                        // Bug #9/#12 — muscu : l'OBJECTIF de la série (« × 8 », « 12 reps »)
-                        // est la consigne claire de ce qu'il faut faire pendant le temps estimé.
-                        if phase.kind == .work, let target = strengthRepTarget(for: phase) {
-                            Text(verbatim: target)
-                                .font(.title3.bold())
-                                .foregroundStyle(Color.coachingPrimary)
+                        // Bug #9/#12 — muscu : l'OBJECTIF de la série (« Objectif : 8 ») est la
+                        // consigne claire. Sally P0 : le timer est ESTIMÉ → on dit explicitement
+                        // « prends le temps · pause si besoin » (sinon l'user croit à un chrono strict).
+                        if phase.kind == .work, let reps = strengthReps(for: phase) {
+                            VStack(spacing: 4) {
+                                Text("coaching.session.focus.timed.strength.target \(reps)")
+                                    .font(.title3.bold())
+                                    .foregroundStyle(Color.coachingPrimary)
+                                Text("coaching.session.focus.timed.strength.hint")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                    .multilineTextAlignment(.center)
+                            }
                         }
                         bigTime
                         timeScrubber(phase: phase)
@@ -593,7 +600,11 @@ struct SessionFocusView: View {
                         }
                         // Story 3.35f — en minuté NON-audio (yoga/HIIT/muscu), on utilise
                         // le grand écran : illustration de l'exo + « Comment l'exécuter ».
-                        if !isAudioMode { exerciseVisual(for: phase) }
+                        // Sally P0 : seulement pendant l'EFFORT (work/hold) — pas en récup,
+                        // où l'illustration laissait croire qu'il faut continuer à bouger.
+                        if !isAudioMode, phase.kind == .work || phase.kind == .hold {
+                            exerciseVisual(for: phase)
+                        }
                     }
                 }
                 .padding(.horizontal, 24)
@@ -679,12 +690,13 @@ struct SessionFocusView: View {
         resolvedSportCode == "strengthTraining" || session.type == .strength
     }
 
-    /// Objectif de reps d'une série muscu (« × 8 »). nil hors muscu ou si l'exo est
-    /// tenu (pas de reps → la durée fait foi).
-    private func strengthRepTarget(for phase: SessionTimerPhase) -> String? {
+    /// Reps cible d'une série muscu (« 8 », « 12/côté »). nil hors muscu ou si l'exo
+    /// est tenu (pas de reps → la durée RÉELLE fait foi, pas d'estimation → pas de
+    /// hint « prends le temps »).
+    private func strengthReps(for phase: SessionTimerPhase) -> String? {
         guard isStrengthSession, let ex = exercise(at: phase.stepIndex),
               let reps = ex.reps, !reps.isEmpty else { return nil }
-        return "× \(reps.sanitizedForDisplay)"
+        return reps.sanitizedForDisplay
     }
 
     private func exercise(at stepIndex: Int) -> AdaptedExercise? {
