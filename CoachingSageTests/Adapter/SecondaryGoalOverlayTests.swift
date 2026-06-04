@@ -27,7 +27,7 @@ struct SecondaryGoalOverlayTests {
                 sessions: sessionsPerWeek.map {
                     AdaptedSession(
                         day: $0.day,
-                        name: $0.name,
+                        name: LocalizedText(fr: $0.name),
                         durationMinutes: $0.durationMinutes,
                         type: $0.type,
                         warmup: nil,
@@ -143,8 +143,8 @@ struct SecondaryGoalOverlayTests {
             strategy: .dedicatedSession
         )
         // Interval (day 1) et Long run (day 5) inchangés
-        #expect(result.weeks[0].sessions[0].name == "Intervalles")
-        #expect(result.weeks[0].sessions[2].name == "Sortie longue")
+        #expect(result.weeks[0].sessions[0].name.fr == "Intervalles")
+        #expect(result.weeks[0].sessions[2].name.fr == "Sortie longue")
     }
 
     @Test
@@ -210,7 +210,7 @@ struct SecondaryGoalOverlayTests {
         // Session 1 : drill prepended
         let s1 = result.weeks[0].sessions[0]
         #expect(s1.exercises.count == 2)  // drill + originale
-        #expect(s1.exercises[0].name.contains("Éducatifs"))
+        #expect(s1.exercises[0].name.fr.contains("Éducatifs"))
         // Durée drill = clamp(15% × 60) = 9 min → mais min 5, max 15 → 9 OK
         #expect(s1.exercises[0].duration == "9 min")
 
@@ -372,7 +372,7 @@ struct SecondaryGoalOverlayTests {
         )
         #expect(result.appliedOverlays.count == 1)
         let drill = result.weeks[0].sessions[0].exercises[0]
-        #expect(drill.name.contains("esoteric-goal"))
+        #expect(drill.name.fr.contains("esoteric-goal"))
     }
 
     // MARK: - overlayStrategy(for:) wiring

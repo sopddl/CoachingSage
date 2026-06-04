@@ -152,6 +152,6 @@ final class SessionFocusViewModelTests: XCTestCase {
     }
 
     private func ex(_ name: String) -> AdaptedExercise {
-        AdaptedExercise(name: name, originalName: name, sets: 3, reps: "10")
+        AdaptedExercise(name: LocalizedText(fr: name), originalName: name, sets: 3, reps: "10")
     }
 }

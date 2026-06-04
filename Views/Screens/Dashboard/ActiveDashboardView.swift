@@ -738,7 +738,7 @@ private struct NextSessionCard: View {
                             .font(.caption.weight(.semibold))
                             .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
                     }
-                    Text(verbatim: session.name.sanitizedForDisplay)
+                    Text(verbatim: session.name.resolved(locale).sanitizedForDisplay)
                         .font(.system(size: 17, weight: .semibold, design: .serif))
                         .foregroundStyle(Color.coachingOnPrimary)
                         .lineLimit(2)

@@ -11,9 +11,11 @@ import Foundation
 import TemplateModel
 
 enum SessionStepKind: Equatable {
-    case warmup(String)
+    /// Texte localisable porté brut ; résolu via locale au render (warmup/cooldown).
+    /// Pour le parsing de durée (SessionTimerPhase) on lit `.canonical`.
+    case warmup(LocalizedText)
     case exercise(AdaptedExercise)
-    case cooldown(String)
+    case cooldown(LocalizedText)
 }
 
 struct SessionStep: Identifiable, Equatable {
@@ -32,7 +34,7 @@ struct SessionStep: Identifiable, Equatable {
     static func steps(for session: AdaptedSession) -> [SessionStep] {
         var result: [SessionStep] = []
         var index = 0
-        if let w = session.warmup, !w.isEmpty {
+        if let w = session.warmup, !w.canonical.isEmpty {
             result.append(SessionStep(index: index, kind: .warmup(w), exerciseNumber: nil))
             index += 1
         }
@@ -42,7 +44,7 @@ struct SessionStep: Identifiable, Equatable {
             result.append(SessionStep(index: index, kind: .exercise(ex), exerciseNumber: exNumber))
             index += 1
         }
-        if let c = session.cooldown, !c.isEmpty {
+        if let c = session.cooldown, !c.canonical.isEmpty {
             result.append(SessionStep(index: index, kind: .cooldown(c), exerciseNumber: nil))
         }
         return result

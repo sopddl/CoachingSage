@@ -16,6 +16,9 @@ struct AdaptedProgramView: View {
     @Environment(\.appDependencies) private var deps
     @Environment(\.languageManager) private var languageManager
 
+    /// Locale in-app courante — résolution du contenu localisable des séances.
+    private var locale: Locale { languageManager.currentLocale }
+
     let program: AdaptedProgram
 
     /// Callback déclenché par le bouton "Demander à Léon". Câblé en Story 3.3b
@@ -653,8 +656,8 @@ struct AdaptedProgramView: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                if !week.theme.isEmpty || !week.goal.isEmpty {
-                    WeekInfoButton(theme: week.theme, goal: week.goal)
+                if !week.theme.canonical.isEmpty || !week.goal.canonical.isEmpty {
+                    WeekInfoButton(theme: week.theme.resolved(locale), goal: week.goal.resolved(locale))
                 }
                 Button {
                     withAnimation(.easeInOut(duration: 0.2)) { toggleWeek(week.weekNumber) }
@@ -731,7 +734,7 @@ struct AdaptedProgramView: View {
                     Text("coaching.adapter.session.numberedLine \(globalSessionNumber(week: week.weekNumber, day: session.day)) \(week.weekNumber) \(session.durationMinutes)")
                         .font(.caption)
                         .foregroundStyle(.secondary)
-                    Text(verbatim: session.name.sanitizedForDisplay)
+                    Text(verbatim: session.name.resolved(locale).sanitizedForDisplay)
                         .font(.subheadline.bold())
                         .foregroundStyle(.primary)
                 }
@@ -808,7 +811,7 @@ struct AdaptedProgramView: View {
     private func sessionSymbol(for session: AdaptedSession) -> String {
         let parentCode = program.sport.appSportCode
         let effective = SessionSportInference.sportCode(
-            forSessionName: session.name,
+            forSessionName: session.name.canonical,
             programSportCode: parentCode
         )
         if effective != parentCode {
@@ -828,7 +831,7 @@ struct AdaptedProgramView: View {
     private func sessionEffectiveSportCode(for session: AdaptedSession) -> String {
         let parentCode = program.sport.appSportCode
         return SessionSportInference.sportCode(
-            forSessionName: session.name,
+            forSessionName: session.name.canonical,
             programSportCode: parentCode
         )
     }
@@ -987,7 +990,7 @@ enum AdaptedProgramPreviewFixtures {
 
     static func sampleWeek(_ wn: Int, theme: String) -> AdaptedWeek {
         AdaptedWeek(
-            weekNumber: wn, theme: theme,
+            weekNumber: wn, theme: LocalizedText(fr: theme),
             goal: "Construire l'endurance de base et installer une cadence régulière.",
             sessions: [
                 sampleEnduranceSession(day: 1, name: "Footing facile"),
@@ -999,12 +1002,12 @@ enum AdaptedProgramPreviewFixtures {
 
     static func sampleEnduranceSession(day: Int, name: String) -> AdaptedSession {
         AdaptedSession(
-            day: day, name: name, durationMinutes: 40,
+            day: day, name: LocalizedText(fr: name), durationMinutes: 40,
             type: .endurance,
             warmup: "5 min marche + 5 min footing très lent + 4 lignes droites",
             exercises: [
                 AdaptedExercise(
-                    name: "\(name) bloc principal",
+                    name: LocalizedText(fr: "\(name) bloc principal"),
                     originalName: "\(name) bloc principal",
                     duration: "30 min",
                     notes: "Reste en respiration nasale, allure conversation possible.",

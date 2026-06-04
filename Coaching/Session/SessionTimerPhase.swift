@@ -15,7 +15,7 @@ import TemplateModel
 
 /// Libellé typé d'une phase (rendu localisé par la vue).
 enum PhaseLabel: Equatable {
-    case raw(String)                    // nom d'exo / posture (contenu)
+    case raw(LocalizedText)             // nom d'exo / posture (contenu, résolu au render)
     case effort                         // « Effort » générique
     case recovery                       // « Récup »
     case run(index: Int, total: Int)    // « Course N sur K »
@@ -110,7 +110,8 @@ enum SessionTimerPhaseBuilder {
 
         if let w = warmupStep, case .warmup(let text) = w.kind {
             // Bug #6 — échauffement chronométré (auto-avance + pause).
-            let dur = phaseDuration(forText: text, fallback: defaultWarmupSeconds)
+            // Durée parsée depuis le texte canonique FR (chiffres language-agnostic).
+            let dur = phaseDuration(forText: text.canonical, fallback: defaultWarmupSeconds)
             phases.append(SessionTimerPhase(id: next(), kind: .warmup, duration: dur, stepIndex: w.index,
                                             label: .warmup, isManual: false))
         }
@@ -127,7 +128,7 @@ enum SessionTimerPhaseBuilder {
 
         if let c = cooldownStep, case .cooldown(let text) = c.kind {
             // Bug #6 — récup chronométrée (auto-avance + pause).
-            let dur = phaseDuration(forText: text, fallback: defaultCooldownSeconds)
+            let dur = phaseDuration(forText: text.canonical, fallback: defaultCooldownSeconds)
             phases.append(SessionTimerPhase(id: next(), kind: .cooldown, duration: dur, stepIndex: c.index,
                                             label: .cooldown, isManual: false))
         }
@@ -151,7 +152,7 @@ enum SessionTimerPhaseBuilder {
                 guard case .exercise(let ex) = step.kind else { continue }
                 let hold = SessionDurationParser.seconds(ex.duration) ?? defaultHoldSeconds
                 out.append(SessionTimerPhase(id: next(), kind: .hold, duration: hold, stepIndex: step.index,
-                                             label: .raw(ex.displayName)))
+                                             label: .raw(ex.name)))
             }
             return out
         }
@@ -178,7 +179,7 @@ enum SessionTimerPhaseBuilder {
             let work = wr?.work ?? SessionDurationParser.seconds(ex.duration) ?? defaultWorkSeconds
             let rest = wr?.rest ?? ex.restSeconds ?? 0
             out.append(SessionTimerPhase(id: next(), kind: .work, duration: work, stepIndex: step.index,
-                                         label: .raw(ex.displayName), round: 1, totalRounds: 1,
+                                         label: .raw(ex.name), round: 1, totalRounds: 1,
                                          exerciseInRound: i + 1, totalInRound: total))
             if i < total - 1, rest > 0 {
                 out.append(SessionTimerPhase(id: next(), kind: .rest, duration: rest, stepIndex: step.index,
@@ -202,7 +203,7 @@ enum SessionTimerPhaseBuilder {
             let rest = ex.restSeconds ?? 0
             for set in 1...sets {
                 out.append(SessionTimerPhase(id: next(), kind: .work, duration: work, stepIndex: step.index,
-                                             label: .raw(ex.displayName),
+                                             label: .raw(ex.name),
                                              round: set, totalRounds: sets,
                                              exerciseInRound: i + 1, totalInRound: total))
                 let isLastSetOfLastExo = (i == total - 1) && (set == sets)
@@ -255,7 +256,7 @@ enum SessionTimerPhaseBuilder {
         var out: [SessionTimerPhase] = []
         for r in 1...rounds {
             out.append(SessionTimerPhase(id: next(), kind: .work, duration: work, stepIndex: step.index,
-                                         label: .raw(ex.displayName), round: r, totalRounds: rounds))
+                                         label: .raw(ex.name), round: r, totalRounds: rounds))
             if r < rounds, rest > 0 {
                 out.append(SessionTimerPhase(id: next(), kind: .rest, duration: rest, stepIndex: step.index,
                                              label: .recovery, round: r, totalRounds: rounds))

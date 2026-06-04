@@ -28,7 +28,7 @@ public extension ProgramTemplate {
     func findExercise(weekNumber: Int, day: Int, name: String) -> TemplateExercise? {
         guard let week = weeks.first(where: { $0.weekNumber == weekNumber }) else { return nil }
         guard let session = week.sessions.first(where: { $0.day == day }) else { return nil }
-        return session.exercises.first(where: { $0.name == name })
+        return session.exercises.first(where: { $0.name.canonical == name })
     }
 }
 

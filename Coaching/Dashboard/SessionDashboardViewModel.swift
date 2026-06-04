@@ -479,8 +479,12 @@ final class SessionDashboardViewModel {
     ) -> (started: [ProgramSummary], dormant: [ProgramSummary]) {
         let summaries = programs.map { record -> ProgramSummary in
             let nextResult = resolver.nextSession(for: record, now: now)
+            // Fallback `templateName` (records pré-3.28 sans goalCode) : nom canonique
+            // FR. Le titre des records modernes est localisé via `displayTitle(locale:)`
+            // (AutoTitleBuilder, Story 3.28) — la localisation du titre programme est
+            // hors scope B1 (= contenu des séances).
             let resolvedName = cachedLibrary?.templates
-                .first { $0.id == record.templateId }?.name ?? record.templateId
+                .first { $0.id == record.templateId }?.name.canonical ?? record.templateId
             let sport = Sport(sportCode: record.sportCode) ?? .running
             // **Story 3.31 follow-up** — comptage active-only (hors `.rest`).
             // Les jours de repos ne sont ni « à faire » ni complétables : les

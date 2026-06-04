@@ -167,7 +167,7 @@ final class ProgramAdapterServiceTests: XCTestCase {
         )
 
         // Plyo session : exercice substitué par l'alternative connue du fixture.
-        let plyoSession = adapted.weeks[0].sessions.first(where: { $0.name == "Plyo intervals" })!
+        let plyoSession = adapted.weeks[0].sessions.first(where: { $0.name.fr == "Plyo intervals" })!
         XCTAssertEqual(plyoSession.exercises.first?.name, "Marche nordique 20 min")
         XCTAssertTrue(plyoSession.exercises.first?.wasSubstituted == true)
     }

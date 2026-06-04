@@ -8,6 +8,7 @@ import SwiftUI
 import TemplateModel
 
 struct SessionTimelineView: View {
+    @Environment(\.locale) private var locale
     let session: AdaptedSession
     let sportColor: Color
     /// Code sport (camelCase) utilisé pour résoudre les illustrations exo
@@ -24,13 +25,13 @@ struct SessionTimelineView: View {
     /// Items dérivés (ordre stable : warmup si présent, exos, cooldown si présent).
     private var items: [TimelineItem] {
         var result: [TimelineItem] = []
-        if let w = session.warmup, !w.isEmpty {
+        if let w = session.warmup?.resolved(locale), !w.isEmpty {
             result.append(.warmup(w))
         }
         for ex in session.exercises {
             result.append(.exercise(ex))
         }
-        if let c = session.cooldown, !c.isEmpty {
+        if let c = session.cooldown?.resolved(locale), !c.isEmpty {
             result.append(.cooldown(c))
         }
         return result

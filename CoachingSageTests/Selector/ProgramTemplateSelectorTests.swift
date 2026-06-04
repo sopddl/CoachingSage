@@ -256,7 +256,7 @@ final class ProgramTemplateSelectorTests: XCTestCase {
             schemaVersion: 1,
             sport: sport,
             level: level,
-            name: id,
+            name: LocalizedText(fr: id),
             durationWeeks: 8,
             sessionsPerWeek: 3,
             defaultObjective: "test",

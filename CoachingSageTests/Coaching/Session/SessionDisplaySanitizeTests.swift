@@ -18,8 +18,8 @@ final class SessionDisplaySanitizeTests: XCTestCase {
     func test_adaptedExercise_displayName_stripsSlashAndPattern() {
         let ex = AdaptedExercise(name: "Bloc run/walk (pattern run.interval)", originalName: "x")
         // Le suffixe (pattern …) ET le « / » sont retirés.
-        XCTAssertFalse(ex.displayName.contains("/"))
-        XCTAssertFalse(ex.displayName.contains("pattern"))
-        XCTAssertEqual(ex.displayName, "Bloc run · walk")
+        XCTAssertFalse(ex.displayName(Locale(identifier: "fr")).contains("/"))
+        XCTAssertFalse(ex.displayName(Locale(identifier: "fr")).contains("pattern"))
+        XCTAssertEqual(ex.displayName(Locale(identifier: "fr")), "Bloc run · walk")
     }
 }

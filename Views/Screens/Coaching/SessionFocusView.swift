@@ -52,7 +52,7 @@ struct SessionFocusView: View {
         _selectedIndex = State(initialValue: vm.resumeIndex)
 
         let effective = SessionSportInference.sportCode(
-            forSessionName: session.name, programSportCode: program.sport.appSportCode
+            forSessionName: session.name.canonical, programSportCode: program.sport.appSportCode
         )
         self.resolvedSportCode = effective
         self.executionMode = SessionExecutionMode.available(sportCode: effective, sessionType: session.type)
@@ -74,6 +74,9 @@ struct SessionFocusView: View {
     /// Langue de la voix = langue de CONTENU de l'app (tu lis FR → tu entends FR),
     /// indépendante de la locale device. (Décision 3.35e.)
     private var currentLanguage: String { languageManager.currentLanguage.rawValue }
+
+    /// Locale in-app courante — résolution du contenu localisable (noms/warmup/notes).
+    private var locale: Locale { languageManager.currentLocale }
 
     var body: some View {
         Group {
@@ -232,10 +235,10 @@ struct SessionFocusView: View {
             switch step.kind {
             case .warmup(let text):
                 phaseHeader(labelKey: "coaching.adapter.session.warmup", tint: .orange, symbol: "flame.fill")
-                GlossaryRichText(text: text, font: .body, foreground: .primary)
+                GlossaryRichText(text: text.resolved(locale), font: .body, foreground: .primary)
             case .cooldown(let text):
                 phaseHeader(labelKey: "coaching.adapter.session.cooldown", tint: .blue, symbol: "snowflake")
-                GlossaryRichText(text: text, font: .body, foreground: .primary)
+                GlossaryRichText(text: text.resolved(locale), font: .body, foreground: .primary)
             case .exercise(let ex):
                 exerciseContent(ex, number: step.exerciseNumber ?? 0)
             }
@@ -265,14 +268,14 @@ struct SessionFocusView: View {
                 .foregroundStyle(Color.coachingPrimary)
                 .frame(width: 26, height: 26)
                 .background(Circle().fill(Color.coachingPrimary.opacity(0.15)))
-            Text(verbatim: ex.displayName)
+            Text(verbatim: ex.displayName(locale))
                 .font(.title3.bold())
                 .foregroundStyle(.primary)
                 .fixedSize(horizontal: false, vertical: true)
         }
 
         if pattern != .generic {
-            ExercisePatternIllustration(pattern: pattern, sportCode: effectiveSportCode, exerciseName: ex.name, size: 200)
+            ExercisePatternIllustration(pattern: pattern, sportCode: effectiveSportCode, exerciseName: ex.name.canonical, size: 200)
                 .frame(maxWidth: .infinity)
                 .padding(12)
                 .background(Color(uiColor: .secondarySystemBackground))
@@ -281,11 +284,11 @@ struct SessionFocusView: View {
 
         metricsRow(ex)
 
-        if let notes = ex.notes, !notes.isEmpty {
+        if let notes = ex.notes?.resolved(locale), !notes.isEmpty {
             BulletedNotes(text: notes, font: .callout)
         }
 
-        let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.name)
+        let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.name.canonical)
         ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey)
     }
 
@@ -674,13 +677,13 @@ struct SessionFocusView: View {
         if let ex = exercise(at: phase.stepIndex) {
             let pattern = ExercisePatternResolver.resolve(ex, sportCode: resolvedSportCode)
             if pattern != .generic {
-                ExercisePatternIllustration(pattern: pattern, sportCode: resolvedSportCode, exerciseName: ex.name, size: 180)
+                ExercisePatternIllustration(pattern: pattern, sportCode: resolvedSportCode, exerciseName: ex.name.canonical, size: 180)
                     .frame(maxWidth: .infinity)
                     .padding(12)
                     .background(Color(uiColor: .secondarySystemBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
-            let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.name)
+            let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.name.canonical)
             ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey)
         }
     }
@@ -716,7 +719,7 @@ struct SessionFocusView: View {
     private func manualPhaseText(_ phase: SessionTimerPhase) -> String {
         for step in steps where step.index == phase.stepIndex {
             switch step.kind {
-            case .warmup(let t), .cooldown(let t): return t
+            case .warmup(let t), .cooldown(let t): return t.resolved(locale)
             default: return ""
             }
         }
@@ -792,7 +795,7 @@ struct SessionFocusView: View {
     /// verbatim ; segments générés (Course/Marche/Effort/Récup) localisés.
     private func displayString(_ label: PhaseLabel) -> String {
         switch label {
-        case .raw(let s):                return s.sanitizedForDisplay
+        case .raw(let lt):               return AdaptedExercise.cleanForDisplay(lt.resolved(locale))
         case .effort:                    return String(localized: "coaching.session.focus.timed.work")
         case .recovery:                  return String(localized: "coaching.session.focus.timed.rest")
         case .run(let i, let t):         return String(localized: "coaching.session.focus.timed.run \(i) \(t)")
@@ -878,7 +881,7 @@ struct SessionFocusView: View {
     // MARK: - Sport color
 
     private var effectiveSportCode: String {
-        SessionSportInference.sportCode(forSessionName: session.name, programSportCode: program.sport.appSportCode)
+        SessionSportInference.sportCode(forSessionName: session.name.canonical, programSportCode: program.sport.appSportCode)
     }
 }
 

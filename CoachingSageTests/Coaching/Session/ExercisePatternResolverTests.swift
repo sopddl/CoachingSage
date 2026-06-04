@@ -10,7 +10,7 @@ final class ExercisePatternResolverTests: XCTestCase {
     // MARK: - Helpers
 
     private func ex(_ name: String) -> AdaptedExercise {
-        AdaptedExercise(name: name, originalName: name)
+        AdaptedExercise(name: LocalizedText(fr: name), originalName: name)
     }
 
     private func resolve(_ name: String, sport: String = "strengthTraining") -> ExercisePattern {

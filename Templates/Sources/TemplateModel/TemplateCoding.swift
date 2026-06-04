@@ -66,7 +66,7 @@ public enum TemplateValidator {
             )
         }
         guard !t.id.isEmpty else { throw TemplateValidationError.emptyField("id") }
-        guard !t.name.isEmpty else { throw TemplateValidationError.emptyField("name") }
+        guard !t.name.canonical.isEmpty else { throw TemplateValidationError.emptyField("name") }
         guard t.durationWeeks >= 1 && t.durationWeeks <= 52 else {
             throw TemplateValidationError.invalidRange("duration_weeks doit être 1..52, got \(t.durationWeeks)")
         }

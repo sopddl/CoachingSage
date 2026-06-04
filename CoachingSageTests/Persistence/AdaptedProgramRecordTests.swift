@@ -72,6 +72,38 @@ final class AdaptedProgramRecordTests: XCTestCase {
         XCTAssertEqual(record.sessions.first?.durationMinutes, 35)
     }
 
+    /// **B1 non-régression** : un `sessionsJsonData` persisté AVANT la migration
+    /// LocalizedText (champs texte = String nues) doit décoder en `{ fr: … }` via
+    /// le decoder tolérant, et résoudre en fallback FR pour une langue absente.
+    func testLegacySessionsJsonDecodesBareStringsAsFR() throws {
+        let id = UUID().uuidString
+        let legacyJSON = """
+        [{"id":"\(id)","weekNumber":1,"weekTheme":"Découverte","weekGoal":"Reprendre",\
+        "day":1,"name":"Footing 30 min","durationMinutes":30,"type":"endurance",\
+        "warmup":"5 min marche","cooldown":"5 min étirements",\
+        "exercises":[{"name":"Footing 30 min","originalName":"Footing 30 min","wasSubstituted":false}]}]
+        """
+        let sessions = try JSONDecoder().decode([PersistedSession].self, from: Data(legacyJSON.utf8))
+        XCTAssertEqual(sessions.count, 1)
+        let s = sessions[0]
+        // String nue → valeur canonique FR.
+        XCTAssertEqual(s.name.fr, "Footing 30 min")
+        XCTAssertEqual(s.weekTheme.fr, "Découverte")
+        XCTAssertEqual(s.weekGoal.fr, "Reprendre")
+        XCTAssertEqual(s.warmup?.fr, "5 min marche")
+        XCTAssertEqual(s.cooldown?.fr, "5 min étirements")
+        XCTAssertEqual(s.exercises.first?.name.fr, "Footing 30 min")
+        XCTAssertEqual(s.exercises.first?.originalName, "Footing 30 min")
+        // Fallback FR pour une langue non traduite (pré-B2).
+        let en = Locale(identifier: "en")
+        XCTAssertEqual(s.name.resolved(en), "Footing 30 min")
+        XCTAssertEqual(s.warmup?.resolved(en), "5 min marche")
+        // Ré-encodage → format objet (migration paresseuse au prochain set).
+        let reEncoded = try JSONEncoder().encode(sessions)
+        let json = String(decoding: reEncoded, as: UTF8.self)
+        XCTAssertTrue(json.contains("\"fr\""), "doit ré-encoder en objet {fr:…}")
+    }
+
     func testCompletionStateJsonRoundTrip() throws {
         let sessionId = UUID()
         let record = AdaptedProgramRecord(
