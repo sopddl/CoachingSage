@@ -40,7 +40,8 @@ struct SessionTimerPhase: Equatable, Identifiable {
     let stepIndex: Int
     let label: PhaseLabel
     /// Phase à avance MANUELLE (pas de compte à rebours) : l'utilisateur tape
-    /// « Avancer » quand prêt. True pour échauffement/récup.
+    /// « Avancer » quand prêt. Depuis le bug #6, échauffement/récup sont
+    /// chronométrés (isManual = false) ; ce champ reste pour le fallback/engine.
     let isManual: Bool
 
     let round: Int?
