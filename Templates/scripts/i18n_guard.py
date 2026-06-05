@@ -54,8 +54,16 @@ def check(path):
             errs.append(f"doctrine `{k}` doit rester une string FR (trouvé {type(d[k]).__name__})")
 
     for kind, o in displayed(d):
+        # Une chaîne vide = champ optionnel légitimement vide (ex warmup/cooldown des
+        # séances repos/match), PAS un champ non traduit → on ignore.
+        if isinstance(o, str) and o.strip() == "":
+            continue
         if not isinstance(o, dict):
             errs.append(f"{kind}: doit être un objet {{fr,en,es}}, trouvé string nue: {o!r}")
+            continue
+        # Objet tout-vide (ex warmup/cooldown des séances repos/match rendu {fr:"",en:"",es:""})
+        # = champ optionnel légitimement vide → on ignore.
+        if not any((o.get(l) or "").strip() for l in ("fr", "en", "es")):
             continue
         for lang in ("fr", "en", "es"):
             if not o.get(lang):
