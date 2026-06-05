@@ -39,7 +39,10 @@ struct ExercisePatternIllustration: View {
         case .mobility:
             MobilityIllustration(sportCode: sportCode)
         case .yoga:
-            YogaIllustration(sportCode: sportCode, exerciseName: exerciseName)
+            // POC yoga (D4) : le dessin honore `size` (avant : figé 80×48 → riquiqui).
+            // Plafonné à 176 pt de haut → largeur ≈ 293 pt, tient dans la boîte sur
+            // tous les iPhone (≥ 320 pt). Timeline (size 48 par défaut) → inchangée.
+            YogaIllustration(sportCode: sportCode, exerciseName: exerciseName, size: min(size, 176))
         case .forearmPlank:
             ForearmPlankIllustration(sportCode: sportCode)
         case .birdDog:

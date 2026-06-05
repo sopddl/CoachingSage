@@ -306,6 +306,12 @@ struct UIReviewScenarioContainer: View {
         case "ui_review_illustrations_story_323_lot7":
             // **Story 3.23 Lot 7** — Triceps pushdown + Lateral raises (finition).
             IllustrationsStory323Lot7ScenarioView()
+        case "ui_review_yoga_poc":
+            // **POC yoga 2026-06-05 (party D1+D4)** — showcase statique : 3 postures
+            // NON cataloguées (doivent prendre la bonne ORIENTATION fallback, plus
+            // Warrior I debout systématique) + une posture connue à la taille FOCUS
+            // (grossie + centrée). Pour review Sally/Inès sans souci de timing timer.
+            YogaPOCScenarioView()
         case let s where s.hasPrefix("ui_review_session_hub_real_"):
             // Tour didactique multi-sports — charge le VRAI template bundlé du
             // sport (pipeline réel TemplateLoader → ProgramAdapter) et rend la
@@ -1456,6 +1462,49 @@ enum SessionFocusYogaFixture {
         ],
         cooldown: nil
     )
+}
+
+// MARK: - POC yoga 2026-06-05 — fallback orientation (D1) + taille FOCUS (D4)
+
+/// Showcase statique du POC yoga : valide que les postures NON cataloguées prennent
+/// la bonne orientation (couché/assis/debout) au lieu de Warrior I debout, et que le
+/// dessin grossit à la taille FOCUS. Voix (D3) = non visible (audio, device Sophie).
+private struct YogaPOCScenarioView: View {
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 14) {
+                Text(verbatim: "POC yoga — D1 fallback orientation (postures NON cataloguées)")
+                    .font(.caption.bold()).foregroundStyle(.secondary)
+                ForEach([
+                    ("Jathara Parivartanasana", "torsion COUCHÉE → silhouette couchée"),
+                    ("Gomukhasana", "tête de vache ASSISE → silhouette assise"),
+                    ("Natarajasana", "danseur DEBOUT → silhouette debout")
+                ], id: \.0) { name, expect in
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(verbatim: "\(name)").font(.caption2.bold())
+                        Text(verbatim: expect).font(.caption2).foregroundStyle(.secondary)
+                        ExercisePatternIllustration(pattern: .yoga, sportCode: "yoga", exerciseName: name, size: 110)
+                            .frame(maxWidth: .infinity)
+                            .padding(8)
+                            .background(Color(uiColor: .secondarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                }
+
+                Divider().padding(.vertical, 4)
+
+                Text(verbatim: "POC yoga — D4 taille FOCUS (avant : figé 80×48 « riquiqui »)")
+                    .font(.caption.bold()).foregroundStyle(.secondary)
+                ExercisePatternIllustration(pattern: .yoga, sportCode: "yoga", exerciseName: "Savasana", size: 200)
+                    .frame(maxWidth: .infinity)
+                    .padding(12)
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            .padding(16)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+    }
 }
 
 // MARK: - Story 3.23 Lot 0 — IllustrationsStory323ScenarioView

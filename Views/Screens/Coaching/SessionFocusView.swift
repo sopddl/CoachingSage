@@ -71,6 +71,11 @@ struct SessionFocusView: View {
     /// Mode Audio (3.35) : voix par-dessus le déroulé chronométré.
     private var isAudioMode: Bool { executionMode == .audio }
 
+    /// POC yoga (D3) : la voix lit un script de PLACEMENT à l'entrée de chaque
+    /// posture (pas de pré-annonce cardio, pas de décompte vocal). Le yoga reste en
+    /// mode Minuté ; on greffe juste la voix par-dessus.
+    private var isYoga: Bool { resolvedSportCode == "yoga" }
+
     /// Langue de la voix = langue de CONTENU de l'app (tu lis FR → tu entends FR),
     /// indépendante de la locale device. (Décision 3.35e.)
     private var currentLanguage: String { languageManager.currentLanguage.rawValue }
@@ -423,8 +428,15 @@ struct SessionFocusView: View {
         switch phase.kind {
         case .work, .hold:
             audioCues.play(.workStart)
-            // « C'est parti ! » au lancement d'un effort sortant de la pré-annonce.
-            if precededByPrepare { voiceGuide?.announce(String.localized("coaching.session.voice.go", locale: locale)) }
+            // POC yoga (D3) : à l'ENTRÉE de la posture, lire le script de placement
+            // corporel (« allonge-toi, bras le long du corps… »), puis silence pendant
+            // la tenue. Pas de pré-annonce cardio, pas de « C'est parti ! ».
+            if isYoga {
+                announceYogaPlacement(forStepIndex: phase.stepIndex)
+            } else if precededByPrepare {
+                // « C'est parti ! » au lancement d'un effort sortant de la pré-annonce.
+                voiceGuide?.announce(String.localized("coaching.session.voice.go", locale: locale))
+            }
         case .rest:
             audioCues.play(.restStart)
         case .warmup, .cooldown:
@@ -476,7 +488,9 @@ struct SessionFocusView: View {
     // MARK: - Voix (3.35)
 
     private func setupVoiceIfNeeded() {
-        guard isAudioMode, voiceGuide == nil else { return }
+        // POC yoga (D3) : la voix sert aussi le yoga (mode Minuté) pour lire le
+        // script de placement à l'entrée des postures, pas seulement le mode Audio.
+        guard isAudioMode || isYoga, voiceGuide == nil else { return }
         voiceGuide = SessionVoiceGuide(
             enabled: SessionVoicePrefs.enabled,
             gender: SessionVoicePrefs.gender,
@@ -499,6 +513,19 @@ struct SessionFocusView: View {
         default:
             break
         }
+    }
+
+    /// POC yoga (D3) : annonce le script de placement de la posture dont la phase
+    /// vient de démarrer. Remonte de la phase (`stepIndex`) à l'exo pour récupérer
+    /// son `originalName` (= nom SANSKRIT / match_key) et chercher le script. No-op
+    /// si voix OFF, posture non couverte (POC) ou langue ≠ FR.
+    private func announceYogaPlacement(forStepIndex stepIndex: Int) {
+        guard let guide = voiceGuide,
+              let step = steps.first(where: { $0.index == stepIndex }),
+              case .exercise(let ex) = step.kind,
+              let script = YogaVoiceScripts.script(forName: ex.originalName, language: currentLanguage)
+        else { return }
+        guide.announce(script)
     }
 
     /// Sauvegarde la progression partielle d'une séance minutée à la fermeture :
@@ -537,7 +564,8 @@ struct SessionFocusView: View {
             Spacer()
             // Story 3.35d — en mode Audio : toggle son ON/OFF en haut à droite
             // (le choix de voix Homme/Femme est dans le profil). Sinon miroir invisible.
-            if isAudioMode {
+            // POC yoga (D3) : le toggle s'affiche aussi en yoga (voix de placement débrayable).
+            if isAudioMode || isYoga {
                 Button {
                     voiceEnabled.toggle()
                     voiceGuide?.enabled = voiceEnabled
