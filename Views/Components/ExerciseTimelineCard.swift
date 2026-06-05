@@ -95,7 +95,7 @@ struct ExerciseTimelineCard: View {
                 .fixedSize(horizontal: false, vertical: true)
             }
             if let pattern = resolvedPattern, let code = sportCode, pattern != .generic {
-                ExercisePatternIllustration(pattern: pattern, sportCode: code, exerciseName: exercise.name.canonical)
+                ExercisePatternIllustration(pattern: pattern, sportCode: code, exerciseName: exercise.originalName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(8)
                     .background(Color(uiColor: .tertiarySystemBackground))
@@ -116,7 +116,7 @@ struct ExerciseTimelineCard: View {
             // "Comment l'exécuter ?" expandable. Tip pattern reste utilisé
             // en fallback gracieux quand pas de seed/cache/IA dispo.
             if let pattern = resolvedPattern {
-                let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: exercise.name.canonical)
+                let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: exercise.originalName)
                 ExerciseHowToDisclosure(exercise: exercise, fallbackTip: tipKey)
                     .padding(.top, 2)
                     .opacity(tipVisible ? 1 : 0)

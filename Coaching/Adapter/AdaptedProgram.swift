@@ -117,8 +117,10 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
     /// ou un substitut si une règle a remplacé l'exercice. Localisable (fr/en/es).
     public let name: LocalizedText
 
-    /// Nom canonique (FR) du `TemplateExercise` d'origine. Reste une `String` : c'est
-    /// la **clé de matching** (findExercise, pattern resolver, illustrations, patch IA).
+    /// Clé de matching STABLE du `TemplateExercise` d'origine (= `template.stableMatchKey`,
+    /// défaut nom FR technique). Reste une `String` découplée du `name` affichable : c'est
+    /// elle qui pilote findExercise / pattern resolver / illustrations / fiches / patch IA,
+    /// même quand `name.fr` est vulgarisé/traduit (i18n B2).
     public let originalName: String
 
     public let sets: Int?
@@ -188,11 +190,11 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
 
     /// Lift d'un `TemplateExercise` vers `AdaptedExercise` sans modification.
     /// Point d'entrée de la cascade : avant que les règles agissent, tout exercice
-    /// est en version "passthrough". `originalName` = clé canonique FR.
+    /// est en version "passthrough". `originalName` = clé de matching stable (`stableMatchKey`).
     public static func passthrough(_ template: TemplateExercise) -> AdaptedExercise {
         AdaptedExercise(
             name: template.name,
-            originalName: template.name.canonical,
+            originalName: template.stableMatchKey,
             sets: template.sets,
             reps: template.reps,
             duration: template.duration,

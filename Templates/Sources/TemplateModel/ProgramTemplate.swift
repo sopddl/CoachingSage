@@ -95,9 +95,21 @@ public struct TemplateSession: Codable, Equatable, Sendable {
 }
 
 public struct TemplateExercise: Codable, Equatable, Sendable {
-    /// Contenu localisable. NB : `name` reste la **clé de matching** via
-    /// `name.canonical` (= fr) pour findExercise / pattern resolver / illustrations.
+    /// Contenu localisable AFFICHABLE (fr/en/es). Depuis l'i18n B2, `name.fr` peut être
+    /// vulgarisé/traduit → n'est PLUS la clé de matching (cf `stableMatchKey`).
     public let name: LocalizedText
+
+    /// Clé de matching STABLE explicite (JSON `match_key`), découplée du `name` affichable.
+    /// Permet de vulgariser/traduire `name` sans casser findExercise / pattern resolver /
+    /// illustrations / fiches « comment l'exécuter » / patch IA, tous keyés sur le nom FR
+    /// technique. Optionnel : omis du JSON si `nil` (templates pré-i18n → fallback
+    /// `name.canonical` via `stableMatchKey`).
+    public let matchKey: String?
+
+    /// Clé de matching effective : `matchKey` explicite si présent, sinon `name.canonical`
+    /// (rétro-compatible pré-i18n). À utiliser pour TOUT matching interne.
+    public var stableMatchKey: String { matchKey ?? name.canonical }
+
     public let sets: Int?
     public let reps: String?
     public let duration: String?
@@ -114,6 +126,7 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
 
     public init(
         name: LocalizedText,
+        matchKey: String? = nil,
         sets: Int? = nil,
         reps: String? = nil,
         duration: String? = nil,
@@ -126,6 +139,7 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
         volumeAxis: VolumeAxis? = nil
     ) {
         self.name = name
+        self.matchKey = matchKey
         self.sets = sets
         self.reps = reps
         self.duration = duration
@@ -139,13 +153,14 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case name, sets, reps, duration, restSeconds, notes
+        case name, matchKey, sets, reps, duration, restSeconds, notes
         case targetZone, requiredEquipment, incompatibleConstraints, alternatives, volumeAxis
     }
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try c.decode(LocalizedText.self, forKey: .name)
+        self.matchKey = try c.decodeIfPresent(String.self, forKey: .matchKey)
         self.sets = try c.decodeIfPresent(Int.self, forKey: .sets)
         self.reps = try c.decodeIfPresent(String.self, forKey: .reps)
         self.duration = try c.decodeIfPresent(String.self, forKey: .duration)
