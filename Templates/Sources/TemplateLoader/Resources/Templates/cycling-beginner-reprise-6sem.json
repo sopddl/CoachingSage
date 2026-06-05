@@ -1,29 +1,49 @@
 {
-  "assumed_profile" : "Adulte ayant pratiqué le vélo dans le passé mais arrêté depuis plusieurs mois ou années. Vélo en état de marche (route ou VTC). Pas de pathologie lombaire ni cardiaque déclarée. Pas de compteur de puissance supposé, mais FC monitor optionnel. Équipement disponible : vélo, casque (obligatoire), cuissard rembourré.",
-  "default_objective" : "Tenir 1h30 de vélo continu sur plat ou vallonné léger à allure confortable (Z2 endurance, ~60-70% FCmax), sans épuisement en fin de sortie.",
+  "assumed_profile" : {
+    "fr" : "Adulte ayant pratiqué le vélo dans le passé mais arrêté depuis plusieurs mois ou années. Vélo en état de marche (route ou VTC). Pas de pathologie lombaire ni cardiaque déclarée. Pas de compteur de puissance supposé, mais FC monitor optionnel. Équipement disponible : vélo, casque (obligatoire), cuissard rembourré."
+  },
+  "default_objective" : {
+    "fr" : "Tenir 1h30 de vélo continu sur plat ou vallonné léger à allure confortable (Z2 endurance, ~60-70% FCmax), sans épuisement en fin de sortie."
+  },
   "duration_weeks" : 6,
   "id" : "cycling-beginner-reprise-6sem",
   "level" : "beginner",
-  "name" : "Vélo reprise — Retrouver le plaisir en 6 semaines",
-  "progression_logic" : "Progression construite sur 5 principes alignés British Cycling Beginner / TrainerRoad Low Volume / FasCat Sweet Spot Basic (adapté reprise) :\n(1) RÈGLE DES 10-20% sur le volume hebdo de pédalage pur : 1h25 → 1h50 (+30% acceptable car charge absolue très basse en W1) → 2h10 (+18%) → 1h40 cutback W4 → 2h15 (retour palier proche W3 post-cutback) → 2h20 pic. Aucun delta ne dépasse les seuils critiques de surcharge sur cette plage de volume bas.\n(2) CUTBACK W4 OBLIGATOIRE : volume ~-23% vs W3, dans la fenêtre beginner -25 à -30% acceptée par doctrine FasCat / TrainerRoad pour les plans low-volume reprise (charge absolue faible). La cutback consolide les adaptations cardiovasculaires et tendineuses (quadriceps, ischio-jambiers, fascia plantaire) avant le palier qualité W5.\n(3) INTENSITÉ PROGRESSIVE ET CONTRÔLÉE : W1-W4 quasi 100% FTP-Z1 / FTP-Z2 (équivalents % FCmax 50-83%, RPE 1-3). Premiers blocs FTP-Z3 tempo courts introduits en W5 uniquement, après que les sorties 1h (W2) et 1h15 (W3) sont tenues confortablement — doctrine beginner Coggan / British Cycling : pas d'intensité dure tant que le volume continu de base n'est pas acquis. Aucun FTP-Z4/Z5/Z6/Z7 dans ce plan.\n(4) CADENCE AVANT FORCE : objectif neurologique du débutant = pédaler à 85-95 rpm en FTP-Z2 sans grinder (ne jamais tomber sous 65 rpm sur gros braquet — risque genou). Drills cadence introduits dès W2 (alternance 95-100 rpm / 85 rpm) pour myéliniser le pattern moteur de pédalage et préserver les genoux.\n(5) RENFORCEMENT PRÉVENTIF EN FIN DE SORTIE LONGUE (1×/sem dès W1) : gainage lombaire (planche ventrale 20 → 35 sec sur 5 sem), fessiers (pont fessier bipodal puis unilatéral à partir de W3), mollets (calf raises bipodal puis surélevés W2), bird-dog (W3+, anti-rotation core profond), side plank (W4+, obliques + moyen fessier). Le cycliste = hanches courtes + fessiers sous-utilisés — ce bloc 6-8 min en fin de sortie longue est le filet de sécurité préventif anti-lombalgie cycliste.",
-  "safety_notes" : "DRAPEAUX ROUGES À SURVEILLER (arrêter et consulter un professionnel de santé si persistant > 1 semaine) :\n• Lombalgie cycliste (douleur lombaire pendant ou après la sortie) : 40-60% des cyclistes touchés. Cause n°1 = position de selle ou de cintre (reach trop long, selle trop haute ou nez trop bas, hanches désalignées). Vérifier la hauteur de selle (genou en flexion 25-30° en bas du pédalage). Si douleur > 2 sorties consécutives → bike fit professionnel.\n• Douleur antérieure du genou (genou cycliste) : selle trop basse ou trop avancée, cale mal positionnée, cadence trop basse sur gros braquet. Vérifier réglages, passer à un braquet plus facile, viser cadence 85-95 rpm.\n• Douleur postérieure du genou : selle trop haute. Diminuer 5-10 mm la hauteur de selle.\n• Hot foot ou engourdissement avant-pied : chaussures trop serrées, cales trop avancées. Aérer aux arrêts, vérifier réglage cale.\n• Cervicalgie ou trapèzes contracturés : reach trop long ou cintre trop bas. Réduire le stack ou allonger la potence, relâcher les épaules, coudes légèrement fléchis.\n• Saddle sores : crème chamois si sortie > 60 min, cuissard de qualité, hygiène stricte post-sortie.\n• Vertiges, nausée, sueur froide pendant l'effort : hypoglycémie probable (s'arrêter, manger un sucre rapide) ou effort trop intense (revenir en FTP-Z1 immédiatement). Si douleur thoracique ou arythmie perçue : stopper et appeler les secours.\n• Antécédents cardiaques connus, plus de 50 ans avec sédentarité prolongée, ou grossesse / postpartum récent : consulte un médecin avant de commencer ce programme.\n\nSÉCURITÉ ROUTE :\n• Casque OBLIGATOIRE à chaque sortie, sans exception (même 30 min en lotissement). En cas de chute même légère, inspecter le casque — un choc visible = casque à remplacer.\n• Éclairages avant et arrière obligatoires en faible visibilité (aube, crépuscule, brouillard, tunnel). Gilet réfléchissant en hiver.\n• Ne jamais rouler avec écouteurs aux deux oreilles — un seul maximum, et en environnement urbain pas d'écouteurs du tout.\n• Vérification pré-sortie systématique : pression des pneus (2-3 bars VTC, 6-8 bars route), freins fonctionnels, dérailleur qui passe bien, attaches rapides des roues serrées.\n• 48h minimum entre les deux séances vélo de la semaine pour permettre la récupération musculaire et tendineuse.\n\nBIKE FIT (essentiel pour confort sur 1h+ de pédalage) :\n• Hauteur de selle : genou en flexion 25-30° en bas du pédalage (pas tendu, pas plié à 90°).\n• Recul de selle : rotule alignée à la verticale du pédalier quand la pédale est à 3 heures.\n• Reach : coudes légèrement fléchis, épaules relâchées, dos en légère courbe naturelle (pas plat, pas voûté).\n• Si douleur > 2 sorties consécutives malgré ces réglages → bike fit professionnel (60-150€), retour sur investissement immédiat sur le confort et la prévention.\n\nINTENSITÉ ET ZONES :\n• FTP-Z1 récupération : < 55% FTP, équivalent < 68% FCmax, RPE 1-2. Pédalage libre, effort quasi nul. Pour échauffement, cooldown, sorties d'activation.\n• FTP-Z2 endurance : 56-75% FTP, équivalent 69-83% FCmax, RPE 2-3. Allure conversationnelle complète (test de la parole : tu peux dire des phrases entières). Zone principale de ce plan — 90% du temps de pédalage.\n• FTP-Z3 tempo : 76-90% FTP, équivalent 84-94% FCmax, RPE 3-4. Phrases courtes possibles. Introduit seulement en W5 sur blocs courts (8 min max par bloc) pour préparer le système cardio à tenir 1h30.\n• Cadence cible : 85-95 rpm sur plat (préserve les genoux et optimise l'efficacité), 75-85 rpm en côte modérée 3-7%, 70-80 rpm en côte raide > 8%. NE JAMAIS descendre sous 65 rpm sur gros braquet de façon prolongée (risque genou + lombaires).\n\nNUTRITION ET HYDRATATION :\n• Sortie < 60 min : 1 bidon d'eau (500 ml) suffit généralement.\n• Sortie 60-90 min : 1 bidon eau (500-750 ml) + collation glucidique vers 45 min (barre céréales, banane, dattes, ~30 g glucides). Boire toutes les 15-20 min sans attendre la soif.\n• Sortie > 90 min (séance phare W6) : 1-2 bidons (750-1000 ml total selon T°), 30-60 g glucides/h, manger toutes les 30-40 min après les 30 premières minutes. La gestion alimentaire sur le vélo s'apprend — entraîne-toi à manger en roulant dès W3.\n• Avant : 1-2 h avant le départ, repas glucidique léger (60-80 g glucides).\n• Après : fenêtre 30 min, ratio glucides:protéines 3:1 ou 4:1.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine allégée type W4 cutback, refaire la semaine précédente avec volume -20%) :\n• Jambes lourdes dès le début de la sortie, même après échauffement complet.\n• FC de repos +8-10 bpm inhabituelle au réveil.\n• Courbatures persistantes > 72h aux quadriceps ou mollets.\n• Motivation chutée brutalement, irritabilité accrue.\n• Qualité du sommeil dégradée > 2 nuits consécutives.\n\nSI SÉANCE MANQUÉE :\n• 1 séance manquée : décaler de 1-2 jours dans la semaine et reprendre normalement.\n• 1 semaine complète manquée : reprendre la semaine précédente.\n• 2 semaines manquées : reprendre 2 semaines en arrière dans le plan. La précipitation après une coupure est la première cause de récidive de tendinite ou lombalgie cycliste.",
+  "name" : {
+    "fr" : "Vélo reprise — Retrouver le plaisir en 6 semaines"
+  },
+  "progression_logic" : {
+    "fr" : "Progression construite sur 5 principes alignés British Cycling Beginner / TrainerRoad Low Volume / FasCat Sweet Spot Basic (adapté reprise) :\n(1) RÈGLE DES 10-20% sur le volume hebdo de pédalage pur : 1h25 → 1h50 (+30% acceptable car charge absolue très basse en W1) → 2h10 (+18%) → 1h40 cutback W4 → 2h15 (retour palier proche W3 post-cutback) → 2h20 pic. Aucun delta ne dépasse les seuils critiques de surcharge sur cette plage de volume bas.\n(2) CUTBACK W4 OBLIGATOIRE : volume ~-23% vs W3, dans la fenêtre beginner -25 à -30% acceptée par doctrine FasCat / TrainerRoad pour les plans low-volume reprise (charge absolue faible). La cutback consolide les adaptations cardiovasculaires et tendineuses (quadriceps, ischio-jambiers, fascia plantaire) avant le palier qualité W5.\n(3) INTENSITÉ PROGRESSIVE ET CONTRÔLÉE : W1-W4 quasi 100% FTP-Z1 / FTP-Z2 (équivalents % FCmax 50-83%, RPE 1-3). Premiers blocs FTP-Z3 tempo courts introduits en W5 uniquement, après que les sorties 1h (W2) et 1h15 (W3) sont tenues confortablement — doctrine beginner Coggan / British Cycling : pas d'intensité dure tant que le volume continu de base n'est pas acquis. Aucun FTP-Z4/Z5/Z6/Z7 dans ce plan.\n(4) CADENCE AVANT FORCE : objectif neurologique du débutant = pédaler à 85-95 rpm en FTP-Z2 sans grinder (ne jamais tomber sous 65 rpm sur gros braquet — risque genou). Drills cadence introduits dès W2 (alternance 95-100 rpm / 85 rpm) pour myéliniser le pattern moteur de pédalage et préserver les genoux.\n(5) RENFORCEMENT PRÉVENTIF EN FIN DE SORTIE LONGUE (1×/sem dès W1) : gainage lombaire (planche ventrale 20 → 35 sec sur 5 sem), fessiers (pont fessier bipodal puis unilatéral à partir de W3), mollets (calf raises bipodal puis surélevés W2), bird-dog (W3+, anti-rotation core profond), side plank (W4+, obliques + moyen fessier). Le cycliste = hanches courtes + fessiers sous-utilisés — ce bloc 6-8 min en fin de sortie longue est le filet de sécurité préventif anti-lombalgie cycliste."
+  },
+  "safety_notes" : {
+    "fr" : "DRAPEAUX ROUGES À SURVEILLER (arrêter et consulter un professionnel de santé si persistant > 1 semaine) :\n• Lombalgie cycliste (douleur lombaire pendant ou après la sortie) : 40-60% des cyclistes touchés. Cause n°1 = position de selle ou de cintre (reach trop long, selle trop haute ou nez trop bas, hanches désalignées). Vérifier la hauteur de selle (genou en flexion 25-30° en bas du pédalage). Si douleur > 2 sorties consécutives → bike fit professionnel.\n• Douleur antérieure du genou (genou cycliste) : selle trop basse ou trop avancée, cale mal positionnée, cadence trop basse sur gros braquet. Vérifier réglages, passer à un braquet plus facile, viser cadence 85-95 rpm.\n• Douleur postérieure du genou : selle trop haute. Diminuer 5-10 mm la hauteur de selle.\n• Hot foot ou engourdissement avant-pied : chaussures trop serrées, cales trop avancées. Aérer aux arrêts, vérifier réglage cale.\n• Cervicalgie ou trapèzes contracturés : reach trop long ou cintre trop bas. Réduire le stack ou allonger la potence, relâcher les épaules, coudes légèrement fléchis.\n• Saddle sores : crème chamois si sortie > 60 min, cuissard de qualité, hygiène stricte post-sortie.\n• Vertiges, nausée, sueur froide pendant l'effort : hypoglycémie probable (s'arrêter, manger un sucre rapide) ou effort trop intense (revenir en FTP-Z1 immédiatement). Si douleur thoracique ou arythmie perçue : stopper et appeler les secours.\n• Antécédents cardiaques connus, plus de 50 ans avec sédentarité prolongée, ou grossesse / postpartum récent : consulte un médecin avant de commencer ce programme.\n\nSÉCURITÉ ROUTE :\n• Casque OBLIGATOIRE à chaque sortie, sans exception (même 30 min en lotissement). En cas de chute même légère, inspecter le casque — un choc visible = casque à remplacer.\n• Éclairages avant et arrière obligatoires en faible visibilité (aube, crépuscule, brouillard, tunnel). Gilet réfléchissant en hiver.\n• Ne jamais rouler avec écouteurs aux deux oreilles — un seul maximum, et en environnement urbain pas d'écouteurs du tout.\n• Vérification pré-sortie systématique : pression des pneus (2-3 bars VTC, 6-8 bars route), freins fonctionnels, dérailleur qui passe bien, attaches rapides des roues serrées.\n• 48h minimum entre les deux séances vélo de la semaine pour permettre la récupération musculaire et tendineuse.\n\nBIKE FIT (essentiel pour confort sur 1h+ de pédalage) :\n• Hauteur de selle : genou en flexion 25-30° en bas du pédalage (pas tendu, pas plié à 90°).\n• Recul de selle : rotule alignée à la verticale du pédalier quand la pédale est à 3 heures.\n• Reach : coudes légèrement fléchis, épaules relâchées, dos en légère courbe naturelle (pas plat, pas voûté).\n• Si douleur > 2 sorties consécutives malgré ces réglages → bike fit professionnel (60-150€), retour sur investissement immédiat sur le confort et la prévention.\n\nINTENSITÉ ET ZONES :\n• FTP-Z1 récupération : < 55% FTP, équivalent < 68% FCmax, RPE 1-2. Pédalage libre, effort quasi nul. Pour échauffement, cooldown, sorties d'activation.\n• FTP-Z2 endurance : 56-75% FTP, équivalent 69-83% FCmax, RPE 2-3. Allure conversationnelle complète (test de la parole : tu peux dire des phrases entières). Zone principale de ce plan — 90% du temps de pédalage.\n• FTP-Z3 tempo : 76-90% FTP, équivalent 84-94% FCmax, RPE 3-4. Phrases courtes possibles. Introduit seulement en W5 sur blocs courts (8 min max par bloc) pour préparer le système cardio à tenir 1h30.\n• Cadence cible : 85-95 rpm sur plat (préserve les genoux et optimise l'efficacité), 75-85 rpm en côte modérée 3-7%, 70-80 rpm en côte raide > 8%. NE JAMAIS descendre sous 65 rpm sur gros braquet de façon prolongée (risque genou + lombaires).\n\nNUTRITION ET HYDRATATION :\n• Sortie < 60 min : 1 bidon d'eau (500 ml) suffit généralement.\n• Sortie 60-90 min : 1 bidon eau (500-750 ml) + collation glucidique vers 45 min (barre céréales, banane, dattes, ~30 g glucides). Boire toutes les 15-20 min sans attendre la soif.\n• Sortie > 90 min (séance phare W6) : 1-2 bidons (750-1000 ml total selon T°), 30-60 g glucides/h, manger toutes les 30-40 min après les 30 premières minutes. La gestion alimentaire sur le vélo s'apprend — entraîne-toi à manger en roulant dès W3.\n• Avant : 1-2 h avant le départ, repas glucidique léger (60-80 g glucides).\n• Après : fenêtre 30 min, ratio glucides:protéines 3:1 ou 4:1.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine allégée type W4 cutback, refaire la semaine précédente avec volume -20%) :\n• Jambes lourdes dès le début de la sortie, même après échauffement complet.\n• FC de repos +8-10 bpm inhabituelle au réveil.\n• Courbatures persistantes > 72h aux quadriceps ou mollets.\n• Motivation chutée brutalement, irritabilité accrue.\n• Qualité du sommeil dégradée > 2 nuits consécutives.\n\nSI SÉANCE MANQUÉE :\n• 1 séance manquée : décaler de 1-2 jours dans la semaine et reprendre normalement.\n• 1 semaine complète manquée : reprendre la semaine précédente.\n• 2 semaines manquées : reprendre 2 semaines en arrière dans le plan. La précipitation après une coupure est la première cause de récidive de tendinite ou lombalgie cycliste."
+  },
   "schema_version" : 2,
   "sessions_per_week" : 2,
   "sport" : "cycling",
-  "summary" : "Programme de reprise vélo sur 6 semaines, 2 sessions hebdo, progressant d'une sortie continue 40 min (FTP-Z1-Z2) à une séance phare 1h30 continu en confort (FTP-Z2, ~65-75% FCmax). Convention volume : heures de pédalage pur (hors warmup et cooldown courts < 10 min). Volumes hebdo de pédalage pur : W1 1h25 → W2 1h50 → W3 2h10 → W4 cutback 1h40 (réduction ~23% vs W3, fenêtre beginner -25 à -30% acceptée) → W5 2h15 (intro blocs FTP-Z3 tempo courts) → W6 pic 2h20 avec séance phare 1h30 J5. Renforcement préventif intégré dès W1 en fin de sortie longue (gainage, fessiers, mollets) — cycliste = hanches courtes, fessiers déconditionnés, lombalgies fréquentes (40-60% des cyclistes). Plan conclu par checklist d'autonomie 4 critères mesurables.",
+  "summary" : {
+    "fr" : "Programme de reprise vélo sur 6 semaines, 2 sessions hebdo, progressant d'une sortie continue 40 min (FTP-Z1-Z2) à une séance phare 1h30 continu en confort (FTP-Z2, ~65-75% FCmax). Convention volume : heures de pédalage pur (hors warmup et cooldown courts < 10 min). Volumes hebdo de pédalage pur : W1 1h25 → W2 1h50 → W3 2h10 → W4 cutback 1h40 (réduction ~23% vs W3, fenêtre beginner -25 à -30% acceptée) → W5 2h15 (intro blocs FTP-Z3 tempo courts) → W6 pic 2h20 avec séance phare 1h30 J5. Renforcement préventif intégré dès W1 en fin de sortie longue (gainage, fessiers, mollets) — cycliste = hanches courtes, fessiers déconditionnés, lombalgies fréquentes (40-60% des cyclistes). Plan conclu par checklist d'autonomie 4 critères mesurables."
+  },
   "weeks" : [
     {
-      "goal" : "Retrouver les sensations vélo, vérifier les réglages (selle, cintre, cale), et rouler 40-45 min à allure très légère (FTP-Z1 puis FTP-Z2). Volume hebdo de pédalage pur : 1h25 (40 min Z1 + 45 min Z2).",
+      "goal" : {
+        "fr" : "Retrouver les sensations vélo, vérifier les réglages (selle, cintre, cale), et rouler 40-45 min à allure très légère (FTP-Z1 puis FTP-Z2). Volume hebdo de pédalage pur : 1h25 (40 min Z1 + 45 min Z2)."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min de pédalage libre très lent puis arrêt. Descendre du vélo et faire : étirement quadriceps debout (30 sec/jambe), étirement mollets main contre mur (30 sec/jambe), étirement fléchisseurs de hanche en fente basse (30 sec/côté), mobilisation cervicale lente (5 rotations/sens). Hydratation 500 ml.",
+          "cooldown" : {
+            "fr" : "5 min de pédalage libre très lent puis arrêt. Descendre du vélo et faire : étirement quadriceps debout (30 sec/jambe), étirement mollets main contre mur (30 sec/jambe), étirement fléchisseurs de hanche en fente basse (30 sec/côté), mobilisation cervicale lente (5 rotations/sens). Hydratation 500 ml."
+          },
           "day" : 2,
           "duration_minutes" : 55,
           "exercises" : [
             {
               "alternatives" : [
-                "Sortie indoor-trainer FTP-Z1 35 min",
-                "Marche rapide 50 min"
+                {
+                  "fr" : "Sortie indoor-trainer FTP-Z1 35 min"
+                },
+                {
+                  "fr" : "Marche rapide 50 min"
+                }
               ],
               "duration" : "40 min",
               "incompatible_constraints" : [
@@ -32,8 +52,12 @@
                 "cardiac-clearance-required",
                 "no-bike"
               ],
-              "name" : "Sortie continue FTP-Z1",
-              "notes" : "Zone FTP-Z1 : < 55% FTP, équivalent < 68% FCmax, RPE 1-2. Test de la parole : tu peux chanter, pas seulement parler. Cadence cible 80-90 rpm. Terrain plat exclusivement cette semaine. Si douleur lombaire ou cervicale après 20 min, raccourcir et recaler la position avant la prochaine sortie.",
+              "name" : {
+                "fr" : "Sortie continue FTP-Z1"
+              },
+              "notes" : {
+                "fr" : "Zone FTP-Z1 : < 55% FTP, équivalent < 68% FCmax, RPE 1-2. Test de la parole : tu peux chanter, pas seulement parler. Cadence cible 80-90 rpm. Terrain plat exclusivement cette semaine. Si douleur lombaire ou cervicale après 20 min, raccourcir et recaler la position avant la prochaine sortie."
+              },
               "required_equipment" : [
                 "road-bike",
                 "helmet",
@@ -45,19 +69,29 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Sortie découverte — 40 min FTP-Z1",
+          "name" : {
+            "fr" : "Sortie découverte — 40 min FTP-Z1"
+          },
           "type" : "endurance",
-          "warmup" : "10 min de pédalage très lent sur terrain plat, braquet facile, cadence 80-85 rpm, effort quasi nul. Vérifier la position : selle à bonne hauteur (genou légèrement fléchi en bas de pédale), mains relâchées sur le cintre, coudes légèrement fléchis. Ajuster si inconfort lombo-cervical immédiat."
+          "warmup" : {
+            "fr" : "10 min de pédalage très lent sur terrain plat, braquet facile, cadence 80-85 rpm, effort quasi nul. Vérifier la position : selle à bonne hauteur (genou légèrement fléchi en bas de pédale), mains relâchées sur le cintre, coudes légèrement fléchis. Ajuster si inconfort lombo-cervical immédiat."
+          }
         },
         {
-          "cooldown" : "5 min pédalage Z1 + descendre du vélo et étirements complets : quadriceps, mollets, fléchisseurs de hanche, ischio-jambiers (30 sec chaque). Boire 500 ml dans les 30 min suivantes.",
+          "cooldown" : {
+            "fr" : "5 min pédalage Z1 + descendre du vélo et étirements complets : quadriceps, mollets, fléchisseurs de hanche, ischio-jambiers (30 sec chaque). Boire 500 ml dans les 30 min suivantes."
+          },
           "day" : 5,
           "duration_minutes" : 70,
           "exercises" : [
             {
               "alternatives" : [
-                "Sortie indoor-trainer FTP-Z2 40 min",
-                "Vélo elliptique 50 min Z2"
+                {
+                  "fr" : "Sortie indoor-trainer FTP-Z2 40 min"
+                },
+                {
+                  "fr" : "Vélo elliptique 50 min Z2"
+                }
               ],
               "duration" : "45 min",
               "incompatible_constraints" : [
@@ -66,8 +100,12 @@
                 "cardiac-clearance-required",
                 "no-bike"
               ],
-              "name" : "Sortie continue FTP-Z2",
-              "notes" : "Zone FTP-Z2 : 56-75% FTP, équivalent 69-83% FCmax, RPE 2-3. Test de la parole : tu peux parler en phrases complètes mais plus chanter. Cadence 85-90 rpm sur plat. Si terrain avec légère côte, passer au braquet inférieur AVANT la côte pour maintenir la cadence. Ne jamais forcer sur un gros braquet en côte (risque genou).",
+              "name" : {
+                "fr" : "Sortie continue FTP-Z2"
+              },
+              "notes" : {
+                "fr" : "Zone FTP-Z2 : 56-75% FTP, équivalent 69-83% FCmax, RPE 2-3. Test de la parole : tu peux parler en phrases complètes mais plus chanter. Cadence 85-90 rpm sur plat. Si terrain avec légère côte, passer au braquet inférieur AVANT la côte pour maintenir la cadence. Ne jamais forcer sur un gros braquet en côte (risque genou)."
+              },
               "required_equipment" : [
                 "road-bike",
                 "helmet",
@@ -80,16 +118,24 @@
             },
             {
               "alternatives" : [
-                "Planche genoux au sol 30 sec",
-                "Dead bug 10 reps/côté"
+                {
+                  "fr" : "Planche genoux au sol 30 sec"
+                },
+                {
+                  "fr" : "Dead bug"
+                }
               ],
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
               ],
-              "name" : "Planche ventrale",
-              "notes" : "Après la sortie vélo, descendre du vélo et faire ce renforcement au sol. Coudes sous les épaules, corps aligné, fessiers engagés. Renforce le gainage lombaire, essentiel pour tenir la position vélo sans tension dorsale. RPE 6-7.",
+              "name" : {
+                "fr" : "Planche ventrale"
+              },
+              "notes" : {
+                "fr" : "Après la sortie vélo, descendre du vélo et faire ce renforcement au sol. Coudes sous les épaules, corps aligné, fessiers engagés. Renforce le gainage lombaire, essentiel pour tenir la position vélo sans tension dorsale. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -100,14 +146,22 @@
             },
             {
               "alternatives" : [
-                "Pont fessier pieds sur chaise 12 reps",
-                "Bridge isométrique 25 sec"
+                {
+                  "fr" : "Pont fessier pieds sur chaise"
+                },
+                {
+                  "fr" : "Bridge isométrique 25 sec"
+                }
               ],
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier bipodal",
-              "notes" : "Allongé sur le dos, pieds à plat, pousser les hanches vers le haut. Tenir 2 sec en haut. Active les fessiers qui compensent le travail excessif des quadriceps sur le vélo. RPE 6-7.",
+              "name" : {
+                "fr" : "Pont fessier bipodal"
+              },
+              "notes" : {
+                "fr" : "Allongé sur le dos, pieds à plat, pousser les hanches vers le haut. Tenir 2 sec en haut. Active les fessiers qui compensent le travail excessif des quadriceps sur le vélo. RPE 6-7."
+              },
               "reps" : "12",
               "required_equipment" : [
                 "mat"
@@ -119,14 +173,22 @@
             },
             {
               "alternatives" : [
-                "Calf raises assis sur chaise 15 reps",
-                "Wall calf raise (appui mains au mur) 15 reps"
+                {
+                  "fr" : "Calf raises assis sur chaise"
+                },
+                {
+                  "fr" : "Wall calf raise (appui mains au mur)"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises bipodal",
-              "notes" : "Debout, montée sur les pointes de pieds. Prévention crampes et fatigue des mollets en fin de sortie longue. RPE 6-7.",
+              "name" : {
+                "fr" : "Calf raises bipodal"
+              },
+              "notes" : {
+                "fr" : "Debout, montée sur les pointes de pieds. Prévention crampes et fatigue des mollets en fin de sortie longue. RPE 6-7."
+              },
               "reps" : "15",
               "required_equipment" : [
 
@@ -137,26 +199,40 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "Sortie endurance — 45 min FTP-Z2 + renforcement",
+          "name" : {
+            "fr" : "Sortie endurance — 45 min FTP-Z2 + renforcement"
+          },
           "type" : "mixed",
-          "warmup" : "8 min de pédalage souple en FTP-Z1, cadence progressive de 75 à 90 rpm."
+          "warmup" : {
+            "fr" : "8 min de pédalage souple en FTP-Z1, cadence progressive de 75 à 90 rpm."
+          }
         }
       ],
-      "theme" : "Remise en selle — redécouverte",
+      "theme" : {
+        "fr" : "Remise en selle — redécouverte"
+      },
       "week_number" : 1
     },
     {
-      "goal" : "Atteindre 1h de vélo continu pour la première fois et introduire la notion de cadence consciente (drills 95-100 rpm). Volume hebdo de pédalage pur : 1h50 (50 min technique cadence + 60 min long Z2).",
+      "goal" : {
+        "fr" : "Atteindre 1h de vélo continu pour la première fois et introduire la notion de cadence consciente (drills 95-100 rpm). Volume hebdo de pédalage pur : 1h50 (50 min technique cadence + 60 min long Z2)."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min FTP-Z1 + étirements quadriceps et mollets (30 sec/jambe).",
+          "cooldown" : {
+            "fr" : "5 min FTP-Z1 + étirements quadriceps et mollets (30 sec/jambe)."
+          },
           "day" : 2,
           "duration_minutes" : 65,
           "exercises" : [
             {
               "alternatives" : [
-                "Sortie indoor-trainer cadence drills 45 min",
-                "Sortie route FTP-Z2 cadence libre 50 min"
+                {
+                  "fr" : "Sortie indoor-trainer cadence drills 45 min"
+                },
+                {
+                  "fr" : "Sortie route FTP-Z2 cadence libre 50 min"
+                }
               ],
               "duration" : "3 min à 95-100 rpm + 3 min à 85 rpm",
               "incompatible_constraints" : [
@@ -165,8 +241,12 @@
                 "cardiac-clearance-required",
                 "no-bike"
               ],
-              "name" : "Bloc cadence élevée alternée",
-              "notes" : "Alterner 3 min de cadence haute (95-100 rpm, braquet facile, effort cardio léger en FTP-Z2) et 3 min de cadence normale (85 rpm). La cadence haute améliore la fluidité du pédalage et réduit le stress sur les genoux (myélinisation du pattern moteur). Si tu n'as pas de compteur de cadence, compter les coups de pédale droite pendant 15 sec × 4. Total bloc : 24 min. Compléter jusqu'à 50 min total en FTP-Z2 libre. Équivalent 69-83% FCmax, RPE 2-3.",
+              "name" : {
+                "fr" : "Bloc cadence élevée alternée"
+              },
+              "notes" : {
+                "fr" : "Alterner 3 min de cadence haute (95-100 rpm, braquet facile, effort cardio léger en FTP-Z2) et 3 min de cadence normale (85 rpm). La cadence haute améliore la fluidité du pédalage et réduit le stress sur les genoux (myélinisation du pattern moteur). Si tu n'as pas de compteur de cadence, compter les coups de pédale droite pendant 15 sec × 4. Total bloc : 24 min. Compléter jusqu'à 50 min total en FTP-Z2 libre. Équivalent 69-83% FCmax, RPE 2-3."
+              },
               "required_equipment" : [
                 "road-bike",
                 "helmet",
@@ -178,19 +258,29 @@
               "volume_axis" : "sets"
             }
           ],
-          "name" : "Sortie technique cadence — 50 min",
+          "name" : {
+            "fr" : "Sortie technique cadence — 50 min"
+          },
           "type" : "technique",
-          "warmup" : "8 min pédalage FTP-Z1 souple, cadence libre."
+          "warmup" : {
+            "fr" : "8 min pédalage FTP-Z1 souple, cadence libre."
+          }
         },
         {
-          "cooldown" : "5 min FTP-Z1 + étirements complets 8 min. Hydratation 500 ml et collation glucidique dans les 30 min (banane, barre de céréales).",
+          "cooldown" : {
+            "fr" : "5 min FTP-Z1 + étirements complets 8 min. Hydratation 500 ml et collation glucidique dans les 30 min (banane, barre de céréales)."
+          },
           "day" : 5,
           "duration_minutes" : 85,
           "exercises" : [
             {
               "alternatives" : [
-                "Sortie indoor-trainer FTP-Z2 50 min",
-                "Vélo elliptique 60 min Z2"
+                {
+                  "fr" : "Sortie indoor-trainer FTP-Z2 50 min"
+                },
+                {
+                  "fr" : "Vélo elliptique 60 min Z2"
+                }
               ],
               "duration" : "60 min",
               "incompatible_constraints" : [
@@ -199,8 +289,12 @@
                 "cardiac-clearance-required",
                 "no-bike"
               ],
-              "name" : "Sortie continue FTP-Z2",
-              "notes" : "Premier cap à 1h. Rouler à allure conversationnelle stable. Boire 1 gorgée toutes les 15-20 min sans attendre la soif. Sur les côtes éventuelles : garder la cadence en réduisant le braquet, ne pas forcer. FC cible : 60-70% FCmax (FTP-Z2), RPE 2-3. Si moniteur FC : ralentir si FC > 75% FCmax (sortie de Z2 vers Z3 non visée cette semaine).",
+              "name" : {
+                "fr" : "Sortie continue FTP-Z2"
+              },
+              "notes" : {
+                "fr" : "Premier cap à 1h. Rouler à allure conversationnelle stable. Boire 1 gorgée toutes les 15-20 min sans attendre la soif. Sur les côtes éventuelles : garder la cadence en réduisant le braquet, ne pas forcer. FC cible : 60-70% FCmax (FTP-Z2), RPE 2-3. Si moniteur FC : ralentir si FC > 75% FCmax (sortie de Z2 vers Z3 non visée cette semaine)."
+              },
               "required_equipment" : [
                 "road-bike",
                 "helmet",
@@ -213,16 +307,24 @@
             },
             {
               "alternatives" : [
-                "Planche genoux au sol 35 sec",
-                "Dead bug 12 reps/côté"
+                {
+                  "fr" : "Planche genoux au sol 35 sec"
+                },
+                {
+                  "fr" : "Dead bug"
+                }
               ],
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
               ],
-              "name" : "Planche ventrale",
-              "notes" : "Progression vs W1 (20 → 25 sec). RPE 6-7.",
+              "name" : {
+                "fr" : "Planche ventrale"
+              },
+              "notes" : {
+                "fr" : "Progression vs W1 (20 → 25 sec). RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -233,13 +335,19 @@
             },
             {
               "alternatives" : [
-                "Pont fessier pieds sur chaise 15 reps",
-                "Bridge isométrique 30 sec"
+                {
+                  "fr" : "Pont fessier pieds sur chaise"
+                },
+                {
+                  "fr" : "Bridge isométrique 30 sec"
+                }
               ],
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier bipodal",
+              "name" : {
+                "fr" : "Pont fessier bipodal"
+              },
               "reps" : "15",
               "required_equipment" : [
                 "mat"
@@ -251,14 +359,22 @@
             },
             {
               "alternatives" : [
-                "Calf raises bipodal sol 20 reps",
-                "Calf raises assis sur chaise 15 reps"
+                {
+                  "fr" : "Calf raises bipodal sol"
+                },
+                {
+                  "fr" : "Calf raises assis sur chaise"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises surélevés",
-              "notes" : "Sur le bord d'une marche, descendre le talon sous la marche. Amplitude complète. Progression vs calf raises simples — charge accrue sur les mollets. RPE 7-8.",
+              "name" : {
+                "fr" : "Calf raises surélevés"
+              },
+              "notes" : {
+                "fr" : "Sur le bord d'une marche, descendre le talon sous la marche. Amplitude complète. Progression vs calf raises simples — charge accrue sur les mollets. RPE 7-8."
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
 
@@ -269,26 +385,40 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "Sortie longue — 1h continu FTP-Z2 + renforcement",
+          "name" : {
+            "fr" : "Sortie longue — 1h continu FTP-Z2 + renforcement"
+          },
           "type" : "mixed",
-          "warmup" : "10 min FTP-Z1 progressif, cadence montante 75 → 90 rpm."
+          "warmup" : {
+            "fr" : "10 min FTP-Z1 progressif, cadence montante 75 → 90 rpm."
+          }
         }
       ],
-      "theme" : "Construction — premier cap à 1h",
+      "theme" : {
+        "fr" : "Construction — premier cap à 1h"
+      },
       "week_number" : 2
     },
     {
-      "goal" : "Introduire le dénivelé léger (petites côtes < 5%) en maintenant la cadence haute. Sortie longue à 1h15. Volume hebdo de pédalage pur : 2h10 (55 min vallonné + 75 min long).",
+      "goal" : {
+        "fr" : "Introduire le dénivelé léger (petites côtes < 5%) en maintenant la cadence haute. Sortie longue à 1h15. Volume hebdo de pédalage pur : 2h10 (55 min vallonné + 75 min long)."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min plat très lent + étirements fléchisseurs de hanche et ischio-jambiers (souvent tendus après côtes).",
+          "cooldown" : {
+            "fr" : "5 min plat très lent + étirements fléchisseurs de hanche et ischio-jambiers (souvent tendus après côtes)."
+          },
           "day" : 2,
           "duration_minutes" : 70,
           "exercises" : [
             {
               "alternatives" : [
-                "Sortie plate FTP-Z2 55 min",
-                "Sortie indoor-trainer FTP-Z2 50 min avec résistance variable"
+                {
+                  "fr" : "Sortie plate FTP-Z2 55 min"
+                },
+                {
+                  "fr" : "Sortie indoor-trainer FTP-Z2 50 min avec résistance variable"
+                }
               ],
               "duration" : "55 min",
               "incompatible_constraints" : [
@@ -297,8 +427,12 @@
                 "cardiac-clearance-required",
                 "no-bike"
               ],
-              "name" : "Sortie vallonnée FTP-Z2",
-              "notes" : "Choisir un parcours avec 1 ou 2 petites côtes (< 5% de pente). En montée : passer au braquet inférieur AVANT la côte pour maintenir 75-85 rpm. FC peut monter temporairement vers FTP-Z3 (84-94% FCmax) en côte — c'est normal et attendu, pas l'objectif. Redescendre en FTP-Z2 (69-83% FCmax) dans la descente ou sur le plat suivant. RPE moyen 2-3, RPE pic 3-4 en côte. Profiter des descentes pour souffler, rester dans les freins si vitesse > 30 km/h.",
+              "name" : {
+                "fr" : "Sortie vallonnée FTP-Z2"
+              },
+              "notes" : {
+                "fr" : "Choisir un parcours avec 1 ou 2 petites côtes (< 5% de pente). En montée : passer au braquet inférieur AVANT la côte pour maintenir 75-85 rpm. FC peut monter temporairement vers FTP-Z3 (84-94% FCmax) en côte — c'est normal et attendu, pas l'objectif. Redescendre en FTP-Z2 (69-83% FCmax) dans la descente ou sur le plat suivant. RPE moyen 2-3, RPE pic 3-4 en côte. Profiter des descentes pour souffler, rester dans les freins si vitesse > 30 km/h."
+              },
               "required_equipment" : [
                 "road-bike",
                 "helmet",
@@ -310,19 +444,29 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Sortie vallonnée légère — 55 min",
+          "name" : {
+            "fr" : "Sortie vallonnée légère — 55 min"
+          },
           "type" : "endurance",
-          "warmup" : "10 min FTP-Z1 sur plat."
+          "warmup" : {
+            "fr" : "10 min FTP-Z1 sur plat."
+          }
         },
         {
-          "cooldown" : "5 min FTP-Z1 + étirements complets 10 min. Hydratation 500 ml post-sortie.",
+          "cooldown" : {
+            "fr" : "5 min FTP-Z1 + étirements complets 10 min. Hydratation 500 ml post-sortie."
+          },
           "day" : 5,
           "duration_minutes" : 100,
           "exercises" : [
             {
               "alternatives" : [
-                "Sortie indoor-trainer FTP-Z2 60 min",
-                "Vélo elliptique 75 min Z2"
+                {
+                  "fr" : "Sortie indoor-trainer FTP-Z2 60 min"
+                },
+                {
+                  "fr" : "Vélo elliptique 75 min Z2"
+                }
               ],
               "duration" : "75 min",
               "incompatible_constraints" : [
@@ -331,8 +475,12 @@
                 "cardiac-clearance-required",
                 "no-bike"
               ],
-              "name" : "Sortie continue FTP-Z2",
-              "notes" : "Sortie la plus longue du plan jusqu'ici. Gérer le rythme : ne pas partir trop vite (erreur classique de reprise). Si fatigue nette à 45 min, c'est que le départ était trop rapide — noter cette information pour les prochaines sorties. Nutrition : 1 bidon d'eau minimum + 1 barre ou banane à 45 min (premier vrai apprentissage de l'alimentation en roulant). Équivalent 69-83% FCmax, RPE 2-3.",
+              "name" : {
+                "fr" : "Sortie continue FTP-Z2"
+              },
+              "notes" : {
+                "fr" : "Sortie la plus longue du plan jusqu'ici. Gérer le rythme : ne pas partir trop vite (erreur classique de reprise). Si fatigue nette à 45 min, c'est que le départ était trop rapide — noter cette information pour les prochaines sorties. Nutrition : 1 bidon d'eau minimum + 1 barre ou banane à 45 min (premier vrai apprentissage de l'alimentation en roulant). Équivalent 69-83% FCmax, RPE 2-3."
+              },
               "required_equipment" : [
                 "road-bike",
                 "helmet",
@@ -345,16 +493,24 @@
             },
             {
               "alternatives" : [
-                "Planche genoux au sol 40 sec",
-                "Dead bug 12 reps/côté"
+                {
+                  "fr" : "Planche genoux au sol 40 sec"
+                },
+                {
+                  "fr" : "Dead bug"
+                }
               ],
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
               ],
-              "name" : "Planche ventrale",
-              "notes" : "Progression linéaire (20 → 25 → 30 sec en 3 semaines). RPE 6-7.",
+              "name" : {
+                "fr" : "Planche ventrale"
+              },
+              "notes" : {
+                "fr" : "Progression linéaire (20 → 25 → 30 sec en 3 semaines). RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -365,14 +521,22 @@
             },
             {
               "alternatives" : [
-                "Pont fessier bipodal 18 reps",
-                "Pont fessier pieds sur chaise 12 reps/côté"
+                {
+                  "fr" : "Pont fessier bipodal"
+                },
+                {
+                  "fr" : "Pont fessier pieds sur chaise"
+                }
               ],
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier unilatéral",
-              "notes" : "Progression vs pont fessier bipodal. Équilibre G/D, renforce la chaîne postérieure de chaque côté indépendamment. RPE 7-8.",
+              "name" : {
+                "fr" : "Pont fessier unilatéral"
+              },
+              "notes" : {
+                "fr" : "Progression vs pont fessier bipodal. Équilibre G/D, renforce la chaîne postérieure de chaque côté indépendamment. RPE 7-8."
+              },
               "reps" : "10 par côté",
               "required_equipment" : [
                 "mat"
@@ -384,13 +548,19 @@
             },
             {
               "alternatives" : [
-                "Calf raises bipodal sol 25 reps",
-                "Calf raises assis sur chaise 18 reps"
+                {
+                  "fr" : "Calf raises bipodal sol"
+                },
+                {
+                  "fr" : "Calf raises assis sur chaise"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises surélevés",
+              "name" : {
+                "fr" : "Calf raises surélevés"
+              },
               "reps" : "15 par côté",
               "required_equipment" : [
 
@@ -402,15 +572,23 @@
             },
             {
               "alternatives" : [
-                "Dead bug 10 reps/côté",
-                "Bird-dog avant-bras au sol 8 reps/côté"
+                {
+                  "fr" : "Dead bug"
+                },
+                {
+                  "fr" : "Bird-dog avant-bras au sol"
+                }
               ],
               "incompatible_constraints" : [
                 "wrist-injury",
                 "lower-back-pain"
               ],
-              "name" : "Bird-dog",
-              "notes" : "À 4 pattes : tendre bras gauche + jambe droite simultanément, tenir 2 sec. Renforce le core profond anti-rotation, indispensable pour tenir une position vélo 1h+ sans tension lombaire. RPE 6-7.",
+              "name" : {
+                "fr" : "Bird-dog"
+              },
+              "notes" : {
+                "fr" : "À 4 pattes : tendre bras gauche + jambe droite simultanément, tenir 2 sec. Renforce le core profond anti-rotation, indispensable pour tenir une position vélo 1h+ sans tension lombaire. RPE 6-7."
+              },
               "reps" : "8 par côté",
               "required_equipment" : [
                 "mat"
@@ -421,26 +599,40 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "Sortie longue — 1h15 FTP-Z2 + renforcement",
+          "name" : {
+            "fr" : "Sortie longue — 1h15 FTP-Z2 + renforcement"
+          },
           "type" : "mixed",
-          "warmup" : "10 min FTP-Z1."
+          "warmup" : {
+            "fr" : "10 min FTP-Z1."
+          }
         }
       ],
-      "theme" : "Intensification douce — introduction du vallonné",
+      "theme" : {
+        "fr" : "Intensification douce — introduction du vallonné"
+      },
       "week_number" : 3
     },
     {
-      "goal" : "Semaine allégée (volume ~-23% vs W3, dans la fenêtre beginner -25 à -30% accepté) pour consolider les adaptations cardiovasculaires et tendineuses. Ne pas la sauter : la surcompensation se produit pendant le repos, pas pendant l'effort. Volume hebdo de pédalage pur : 1h40 (45 min Z1 récup + 55 min Z2).",
+      "goal" : {
+        "fr" : "Semaine allégée (volume ~-23% vs W3, dans la fenêtre beginner -25 à -30% accepté) pour consolider les adaptations cardiovasculaires et tendineuses. Ne pas la sauter : la surcompensation se produit pendant le repos, pas pendant l'effort. Volume hebdo de pédalage pur : 1h40 (45 min Z1 récup + 55 min Z2)."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min mobilisation douce : cercles de hanches, rotations des chevilles, mobilisation des épaules. Étirements doux 5 min.",
+          "cooldown" : {
+            "fr" : "5 min mobilisation douce : cercles de hanches, rotations des chevilles, mobilisation des épaules. Étirements doux 5 min."
+          },
           "day" : 2,
           "duration_minutes" : 55,
           "exercises" : [
             {
               "alternatives" : [
-                "Sortie indoor-trainer FTP-Z1 40 min",
-                "Marche rapide 50 min"
+                {
+                  "fr" : "Sortie indoor-trainer FTP-Z1 40 min"
+                },
+                {
+                  "fr" : "Marche rapide 50 min"
+                }
               ],
               "duration" : "45 min",
               "incompatible_constraints" : [
@@ -449,8 +641,12 @@
                 "cardiac-clearance-required",
                 "no-bike"
               ],
-              "name" : "Sortie FTP-Z1 récupération",
-              "notes" : "Zone FTP-Z1 uniquement (< 55% FTP, < 68% FCmax, RPE 1-2). Terrain plat de préférence. Cadence libre 80-90 rpm. Si tu te sens bien et en forme, c'est le signe que la récupération fonctionne — résiste à l'envie de pousser fort. L'objectif est d'arriver frais à W5 pour le palier qualité (intro tempo Z3 court).",
+              "name" : {
+                "fr" : "Sortie FTP-Z1 récupération"
+              },
+              "notes" : {
+                "fr" : "Zone FTP-Z1 uniquement (< 55% FTP, < 68% FCmax, RPE 1-2). Terrain plat de préférence. Cadence libre 80-90 rpm. Si tu te sens bien et en forme, c'est le signe que la récupération fonctionne — résiste à l'envie de pousser fort. L'objectif est d'arriver frais à W5 pour le palier qualité (intro tempo Z3 court)."
+              },
               "required_equipment" : [
                 "road-bike",
                 "helmet",
@@ -462,19 +658,29 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Sortie récupération active — 45 min FTP-Z1",
+          "name" : {
+            "fr" : "Sortie récupération active — 45 min FTP-Z1"
+          },
           "type" : "endurance",
-          "warmup" : "5 min pédalage ultra-léger."
+          "warmup" : {
+            "fr" : "5 min pédalage ultra-léger."
+          }
         },
         {
-          "cooldown" : "5 min FTP-Z1 + étirements complets 8 min. Hydratation.",
+          "cooldown" : {
+            "fr" : "5 min FTP-Z1 + étirements complets 8 min. Hydratation."
+          },
           "day" : 5,
           "duration_minutes" : 80,
           "exercises" : [
             {
               "alternatives" : [
-                "Sortie indoor-trainer FTP-Z2 50 min",
-                "Vélo elliptique 55 min Z2"
+                {
+                  "fr" : "Sortie indoor-trainer FTP-Z2 50 min"
+                },
+                {
+                  "fr" : "Vélo elliptique 55 min Z2"
+                }
               ],
               "duration" : "55 min",
               "incompatible_constraints" : [
@@ -483,8 +689,12 @@
                 "cardiac-clearance-required",
                 "no-bike"
               ],
-              "name" : "Sortie continue FTP-Z2",
-              "notes" : "Allure confortable FTP-Z2 (69-83% FCmax, RPE 2-3). Incorporer 1-2 petites côtes si le parcours le permet, sans forcer. Rappel : cutback ne signifie pas statique — une sortie légère maintient la forme sans accumuler de fatigue.",
+              "name" : {
+                "fr" : "Sortie continue FTP-Z2"
+              },
+              "notes" : {
+                "fr" : "Allure confortable FTP-Z2 (69-83% FCmax, RPE 2-3). Incorporer 1-2 petites côtes si le parcours le permet, sans forcer. Rappel : cutback ne signifie pas statique — une sortie légère maintient la forme sans accumuler de fatigue."
+              },
               "required_equipment" : [
                 "road-bike",
                 "helmet",
@@ -497,16 +707,24 @@
             },
             {
               "alternatives" : [
-                "Planche genoux au sol 40 sec",
-                "Dead bug 12 reps/côté"
+                {
+                  "fr" : "Planche genoux au sol 40 sec"
+                },
+                {
+                  "fr" : "Dead bug"
+                }
               ],
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
               ],
-              "name" : "Planche ventrale",
-              "notes" : "Volume maintenu au niveau W3 (pas de cutback sur le renforcement court — la cutback porte sur le volume cycliste). RPE 6-7.",
+              "name" : {
+                "fr" : "Planche ventrale"
+              },
+              "notes" : {
+                "fr" : "Volume maintenu au niveau W3 (pas de cutback sur le renforcement court — la cutback porte sur le volume cycliste). RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -517,13 +735,19 @@
             },
             {
               "alternatives" : [
-                "Pont fessier bipodal 18 reps",
-                "Pont fessier pieds sur chaise 12 reps/côté"
+                {
+                  "fr" : "Pont fessier bipodal"
+                },
+                {
+                  "fr" : "Pont fessier pieds sur chaise"
+                }
               ],
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier unilatéral",
+              "name" : {
+                "fr" : "Pont fessier unilatéral"
+              },
               "reps" : "10 par côté",
               "required_equipment" : [
                 "mat"
@@ -535,8 +759,12 @@
             },
             {
               "alternatives" : [
-                "Side plank genoux pliés 30 sec/côté",
-                "Bird-dog 10 reps/côté"
+                {
+                  "fr" : "Side plank genoux pliés 30 sec/côté"
+                },
+                {
+                  "fr" : "Bird-dog"
+                }
               ],
               "duration" : "20 sec par côté",
               "incompatible_constraints" : [
@@ -544,8 +772,12 @@
                 "shoulder-injury",
                 "wrist-injury"
               ],
-              "name" : "Side plank",
-              "notes" : "Nouveauté introduite pendant la cutback : planche latérale. Cible les obliques et le moyen fessier — muscles clés pour la stabilité du bassin sur la selle. Genou au sol si trop dur. RPE 7-8.",
+              "name" : {
+                "fr" : "Side plank"
+              },
+              "notes" : {
+                "fr" : "Nouveauté introduite pendant la cutback : planche latérale. Cible les obliques et le moyen fessier — muscles clés pour la stabilité du bassin sur la selle. Genou au sol si trop dur. RPE 7-8."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -556,14 +788,20 @@
             },
             {
               "alternatives" : [
-                "Dead bug 10 reps/côté",
-                "Bird-dog avant-bras au sol 8 reps/côté"
+                {
+                  "fr" : "Dead bug"
+                },
+                {
+                  "fr" : "Bird-dog avant-bras au sol"
+                }
               ],
               "incompatible_constraints" : [
                 "wrist-injury",
                 "lower-back-pain"
               ],
-              "name" : "Bird-dog",
+              "name" : {
+                "fr" : "Bird-dog"
+              },
               "reps" : "8 par côté",
               "required_equipment" : [
                 "mat"
@@ -574,26 +812,40 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "Sortie cutback — 55 min FTP-Z2 + renforcement",
+          "name" : {
+            "fr" : "Sortie cutback — 55 min FTP-Z2 + renforcement"
+          },
           "type" : "mixed",
-          "warmup" : "8 min FTP-Z1."
+          "warmup" : {
+            "fr" : "8 min FTP-Z1."
+          }
         }
       ],
-      "theme" : "Cutback — consolidation",
+      "theme" : {
+        "fr" : "Cutback — consolidation"
+      },
       "week_number" : 4
     },
     {
-      "goal" : "Relancer le volume après cutback et introduire les premiers blocs FTP-Z3 tempo courts (3 × 8 min) pour préparer le système cardio à tenir 1h30 sans dérive de FC en W6. Sortie longue à 1h20 vallonnée. Volume hebdo de pédalage pur : 2h15 (55 min tempo + 80 min long).",
+      "goal" : {
+        "fr" : "Relancer le volume après cutback et introduire les premiers blocs FTP-Z3 tempo courts (3 × 8 min) pour préparer le système cardio à tenir 1h30 sans dérive de FC en W6. Sortie longue à 1h20 vallonnée. Volume hebdo de pédalage pur : 2h15 (55 min tempo + 80 min long)."
+      },
       "sessions" : [
         {
-          "cooldown" : "8 min FTP-Z1 récupération + étirements quadriceps et mollets 5 min.",
+          "cooldown" : {
+            "fr" : "8 min FTP-Z1 récupération + étirements quadriceps et mollets 5 min."
+          },
           "day" : 2,
           "duration_minutes" : 75,
           "exercises" : [
             {
               "alternatives" : [
-                "Sortie indoor-trainer ERG mode 3 × 8 min FTP-Z3 récup 5 min",
-                "Sortie continue FTP-Z2 55 min sans blocs (si fatigue cumulée)"
+                {
+                  "fr" : "Sortie indoor-trainer ERG mode 3 × 8 min FTP-Z3 récup 5 min"
+                },
+                {
+                  "fr" : "Sortie continue FTP-Z2 55 min sans blocs (si fatigue cumulée)"
+                }
               ],
               "duration" : "8 min FTP-Z3 + 5 min FTP-Z2 récupération",
               "incompatible_constraints" : [
@@ -602,8 +854,12 @@
                 "cardiac-clearance-required",
                 "no-bike"
               ],
-              "name" : "Blocs FTP-Z3 tempo",
-              "notes" : "Effort soutenu mais contrôlé : tu peux parler par phrases courtes uniquement (FTP-Z3 = 76-90% FTP, équivalent 84-94% FCmax, RPE 3-4). Cadence 85-90 rpm. Ces blocs préparent les muscles et le cardio à l'effort soutenu de la séance phare W6 (1h30 continu sans dérive). Ne pas dépasser FTP-Z3 : à la moindre sensation de brûlure musculaire profonde ou souffle coupé, reculer en FTP-Z2 immédiatement. Total blocs actifs : 39 min (24 min Z3 + 15 min Z2 récup). Compléter jusqu'à 55 min total avec 16 min FTP-Z2 libre (avant ou après les blocs).",
+              "name" : {
+                "fr" : "Blocs FTP-Z3 tempo"
+              },
+              "notes" : {
+                "fr" : "Effort soutenu mais contrôlé : tu peux parler par phrases courtes uniquement (FTP-Z3 = 76-90% FTP, équivalent 84-94% FCmax, RPE 3-4). Cadence 85-90 rpm. Ces blocs préparent les muscles et le cardio à l'effort soutenu de la séance phare W6 (1h30 continu sans dérive). Ne pas dépasser FTP-Z3 : à la moindre sensation de brûlure musculaire profonde ou souffle coupé, reculer en FTP-Z2 immédiatement. Total blocs actifs : 39 min (24 min Z3 + 15 min Z2 récup). Compléter jusqu'à 55 min total avec 16 min FTP-Z2 libre (avant ou après les blocs)."
+              },
               "required_equipment" : [
                 "road-bike",
                 "helmet",
@@ -615,19 +871,29 @@
               "volume_axis" : "sets"
             }
           ],
-          "name" : "Sortie tempo courte — 55 min avec blocs FTP-Z3",
+          "name" : {
+            "fr" : "Sortie tempo courte — 55 min avec blocs FTP-Z3"
+          },
           "type" : "interval",
-          "warmup" : "12 min FTP-Z1 puis FTP-Z2 progressif, cadence montant 75 → 90 rpm."
+          "warmup" : {
+            "fr" : "12 min FTP-Z1 puis FTP-Z2 progressif, cadence montant 75 → 90 rpm."
+          }
         },
         {
-          "cooldown" : "5 min FTP-Z1 + étirements complets 10 min (quadriceps, ischio-jambiers, fléchisseurs hanche, mollets, lombaires). Hydratation 600 ml + collation glucido-protéinée dans les 30 min.",
+          "cooldown" : {
+            "fr" : "5 min FTP-Z1 + étirements complets 10 min (quadriceps, ischio-jambiers, fléchisseurs hanche, mollets, lombaires). Hydratation 600 ml + collation glucido-protéinée dans les 30 min."
+          },
           "day" : 5,
           "duration_minutes" : 105,
           "exercises" : [
             {
               "alternatives" : [
-                "Sortie plate FTP-Z2 80 min",
-                "Sortie indoor-trainer FTP-Z2 65 min avec résistance variable"
+                {
+                  "fr" : "Sortie plate FTP-Z2 80 min"
+                },
+                {
+                  "fr" : "Sortie indoor-trainer FTP-Z2 65 min avec résistance variable"
+                }
               ],
               "duration" : "80 min",
               "incompatible_constraints" : [
@@ -636,8 +902,12 @@
                 "cardiac-clearance-required",
                 "no-bike"
               ],
-              "name" : "Sortie continue FTP-Z2 vallonnée",
-              "notes" : "Sortie la plus longue avant la séance phare. Inclure du vallonné léger (cumul dénivelé positif 100-200 m max pour un VTC ou route classique). En côte : maintenir 75-85 rpm en braquet facile, FC peut passer temporairement à FTP-Z3 (84-94% FCmax) — normal, pas l'objectif. RPE moyen 2-3. Nutrition : 1 bidon minimum (500-750 ml), grignoter une barre ou quelques dattes vers 45 min puis 70 min pour éviter la baisse d'énergie. La gestion de l'alimentation sur le vélo s'apprend — entraîne-toi à manger en roulant.",
+              "name" : {
+                "fr" : "Sortie continue FTP-Z2 vallonnée"
+              },
+              "notes" : {
+                "fr" : "Sortie la plus longue avant la séance phare. Inclure du vallonné léger (cumul dénivelé positif 100-200 m max pour un VTC ou route classique). En côte : maintenir 75-85 rpm en braquet facile, FC peut passer temporairement à FTP-Z3 (84-94% FCmax) — normal, pas l'objectif. RPE moyen 2-3. Nutrition : 1 bidon minimum (500-750 ml), grignoter une barre ou quelques dattes vers 45 min puis 70 min pour éviter la baisse d'énergie. La gestion de l'alimentation sur le vélo s'apprend — entraîne-toi à manger en roulant."
+              },
               "required_equipment" : [
                 "road-bike",
                 "helmet",
@@ -650,16 +920,24 @@
             },
             {
               "alternatives" : [
-                "Planche genoux au sol 45 sec",
-                "Dead bug 14 reps/côté"
+                {
+                  "fr" : "Planche genoux au sol 45 sec"
+                },
+                {
+                  "fr" : "Dead bug"
+                }
               ],
               "duration" : "35 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
               ],
-              "name" : "Planche ventrale",
-              "notes" : "Progression régulière (20 → 25 → 30 → 30 → 35 sec sur 5 semaines). RPE 7-8.",
+              "name" : {
+                "fr" : "Planche ventrale"
+              },
+              "notes" : {
+                "fr" : "Progression régulière (20 → 25 → 30 → 30 → 35 sec sur 5 semaines). RPE 7-8."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -670,13 +948,19 @@
             },
             {
               "alternatives" : [
-                "Pont fessier bipodal 20 reps",
-                "Pont fessier pieds sur chaise 14 reps/côté"
+                {
+                  "fr" : "Pont fessier bipodal"
+                },
+                {
+                  "fr" : "Pont fessier pieds sur chaise"
+                }
               ],
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier unilatéral",
+              "name" : {
+                "fr" : "Pont fessier unilatéral"
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
                 "mat"
@@ -688,8 +972,12 @@
             },
             {
               "alternatives" : [
-                "Side plank genoux pliés 35 sec/côté",
-                "Bird-dog 12 reps/côté"
+                {
+                  "fr" : "Side plank genoux pliés 35 sec/côté"
+                },
+                {
+                  "fr" : "Bird-dog"
+                }
               ],
               "duration" : "25 sec par côté",
               "incompatible_constraints" : [
@@ -697,8 +985,12 @@
                 "shoulder-injury",
                 "wrist-injury"
               ],
-              "name" : "Side plank",
-              "notes" : "Progression vs W4 (2 séries 20 sec → 3 séries 25 sec).",
+              "name" : {
+                "fr" : "Side plank"
+              },
+              "notes" : {
+                "fr" : "Progression vs W4 (2 séries 20 sec → 3 séries 25 sec)."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -709,13 +1001,19 @@
             },
             {
               "alternatives" : [
-                "Calf raises bipodal sol 25 reps",
-                "Calf raises assis sur chaise 20 reps"
+                {
+                  "fr" : "Calf raises bipodal sol"
+                },
+                {
+                  "fr" : "Calf raises assis sur chaise"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises surélevés",
+              "name" : {
+                "fr" : "Calf raises surélevés"
+              },
               "reps" : "15 par côté",
               "required_equipment" : [
 
@@ -727,14 +1025,20 @@
             },
             {
               "alternatives" : [
-                "Dead bug 12 reps/côté",
-                "Bird-dog avant-bras au sol 10 reps/côté"
+                {
+                  "fr" : "Dead bug"
+                },
+                {
+                  "fr" : "Bird-dog avant-bras au sol"
+                }
               ],
               "incompatible_constraints" : [
                 "wrist-injury",
                 "lower-back-pain"
               ],
-              "name" : "Bird-dog",
+              "name" : {
+                "fr" : "Bird-dog"
+              },
               "reps" : "10 par côté",
               "required_equipment" : [
                 "mat"
@@ -745,26 +1049,40 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "Sortie longue — 1h20 FTP-Z2 vallonnée + renforcement",
+          "name" : {
+            "fr" : "Sortie longue — 1h20 FTP-Z2 vallonnée + renforcement"
+          },
           "type" : "mixed",
-          "warmup" : "10 min FTP-Z1."
+          "warmup" : {
+            "fr" : "10 min FTP-Z1."
+          }
         }
       ],
-      "theme" : "Préparation finale — intro tempo court",
+      "theme" : {
+        "fr" : "Préparation finale — intro tempo court"
+      },
       "week_number" : 5
     },
     {
-      "goal" : "Tapering léger sur la première séance, puis séance phare 1h30 continu sur plat ou vallonné léger en FTP-Z2. Autoévaluation finale avec checklist d'autonomie 4 critères. Volume hebdo de pédalage pur : 2h20 (50 min activation + 90 min phare).",
+      "goal" : {
+        "fr" : "Tapering léger sur la première séance, puis séance phare 1h30 continu sur plat ou vallonné léger en FTP-Z2. Autoévaluation finale avec checklist d'autonomie 4 critères. Volume hebdo de pédalage pur : 2h20 (50 min activation + 90 min phare)."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min FTP-Z1 + étirements 5 min. Repos les deux jours suivants.",
+          "cooldown" : {
+            "fr" : "5 min FTP-Z1 + étirements 5 min. Repos les deux jours suivants."
+          },
           "day" : 2,
           "duration_minutes" : 65,
           "exercises" : [
             {
               "alternatives" : [
-                "Sortie indoor-trainer FTP-Z2 45 min",
-                "Marche rapide 60 min"
+                {
+                  "fr" : "Sortie indoor-trainer FTP-Z2 45 min"
+                },
+                {
+                  "fr" : "Marche rapide 60 min"
+                }
               ],
               "duration" : "50 min",
               "incompatible_constraints" : [
@@ -773,8 +1091,12 @@
                 "cardiac-clearance-required",
                 "no-bike"
               ],
-              "name" : "Sortie activation FTP-Z1-Z2",
-              "notes" : "Séance de remise en jambes, PAS un test. Rester en FTP-Z1 puis FTP-Z2 souple, cadence 85-90 rpm, terrain plat. RPE 2-3 maximum. Objectif : arriver frais et motivé à la séance phare de J5. Vérifier l'état du vélo (pneus gonflés à pression cible, freins fonctionnels, dérailleur qui passe bien) et préparer les bidons et collations pour J5.",
+              "name" : {
+                "fr" : "Sortie activation FTP-Z1-Z2"
+              },
+              "notes" : {
+                "fr" : "Séance de remise en jambes, PAS un test. Rester en FTP-Z1 puis FTP-Z2 souple, cadence 85-90 rpm, terrain plat. RPE 2-3 maximum. Objectif : arriver frais et motivé à la séance phare de J5. Vérifier l'état du vélo (pneus gonflés à pression cible, freins fonctionnels, dérailleur qui passe bien) et préparer les bidons et collations pour J5."
+              },
               "required_equipment" : [
                 "road-bike",
                 "helmet",
@@ -786,19 +1108,29 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Activation pré-phare — 50 min léger",
+          "name" : {
+            "fr" : "Activation pré-phare — 50 min léger"
+          },
           "type" : "endurance",
-          "warmup" : "8 min FTP-Z1."
+          "warmup" : {
+            "fr" : "8 min FTP-Z1."
+          }
         },
         {
-          "cooldown" : "8 min de pédalage très lent en FTP-Z1 pour éviter la chute tensionnelle à l'arrêt. Descendre du vélo progressivement. Étirements complets 12 min : quadriceps (30 sec/jambe), ischio-jambiers assis (30 sec/jambe), fléchisseurs de hanche en fente basse (40 sec/côté), mollets contre mur (30 sec/jambe), lombaires genou à la poitrine (30 sec/côté), cervicales douces (5 rotations/sens). Hydratation 600-700 ml + repas glucido-protéiné dans l'heure suivante. Félicite-toi : 1h30 de vélo continu retrouvé en 6 semaines.",
+          "cooldown" : {
+            "fr" : "8 min de pédalage très lent en FTP-Z1 pour éviter la chute tensionnelle à l'arrêt. Descendre du vélo progressivement. Étirements complets 12 min : quadriceps (30 sec/jambe), ischio-jambiers assis (30 sec/jambe), fléchisseurs de hanche en fente basse (40 sec/côté), mollets contre mur (30 sec/jambe), lombaires genou à la poitrine (30 sec/côté), cervicales douces (5 rotations/sens). Hydratation 600-700 ml + repas glucido-protéiné dans l'heure suivante. Félicite-toi : 1h30 de vélo continu retrouvé en 6 semaines."
+          },
           "day" : 5,
           "duration_minutes" : 115,
           "exercises" : [
             {
               "alternatives" : [
-                "Sortie indoor-trainer FTP-Z2 75 min (équivalence indoor -15 à -20%)",
-                "Sortie route plate FTP-Z2 90 min (sans vallonné si trafic anxiogène)"
+                {
+                  "fr" : "Sortie indoor-trainer FTP-Z2 75 min (équivalence indoor -15 à -20%)"
+                },
+                {
+                  "fr" : "Sortie route plate FTP-Z2 90 min (sans vallonné si trafic anxiogène)"
+                }
               ],
               "duration" : "90 min",
               "incompatible_constraints" : [
@@ -807,8 +1139,12 @@
                 "cardiac-clearance-required",
                 "no-bike"
               ],
-              "name" : "Sortie continue FTP-Z2 plat ou vallonné léger",
-              "notes" : "Objectif : 1h30 continu, à TON allure, en FTP-Z2 (56-75% FTP, équivalent 65-75% FCmax cible, RPE 2-3). Test de la parole maintenu en phrases complètes pendant ≥ 80% de la durée.\n\nGESTION DU RYTHME : les 20 premières minutes peuvent sembler faciles — c'est normal, ne pas accélérer. La fatigue arrive progressivement entre 60 et 90 min — réduire légèrement le braquet plutôt que de forcer.\n\nNUTRITION : boire toutes les 15-20 min sans attendre la soif (500-750 ml total). Manger quelque chose vers 30 min, 60 min et 80 min (barre, gel, banane — viser 30-60 g glucides/h).\n\nCADENCE : 85-95 rpm sur plat, 75-85 rpm en côte modérée. En côte : passer au petit braquet AVANT d'en avoir besoin. Ne jamais grinder sous 65 rpm.\n\nCHECKLIST D'AUTONOMIE FINALE (à valider après la séance) :\n1. Je tiens 1h30 de vélo en FTP-Z2 (respiration confortable, phrases complètes possibles ≥ 80% du temps) sans pause forcée.\n2. Je maintiens une cadence de 85-95 rpm sur plat sur la majorité du parcours, et 75-85 rpm en côte sans grinder.\n3. Je sens mes jambes fatiguées en fin de sortie mais sans douleur lombaire ni douleur antérieure / postérieure du genou.\n4. Je récupère ma FC en dessous de 100 bpm en moins de 3 min après l'arrêt (proxy : je me sens calme et capable de tenir une conversation normale sous 3 min).\n\nSi tu coches 3+ critères, tu es autonome pour enchaîner sur un programme cycling recreational (sportive courte 60-100 km, vol 6-8 h/sem). Si 2 critères ou moins, refais W5 et W6 (cycle de 2 sem) avant de progresser vers des distances plus longues.",
+              "name" : {
+                "fr" : "Sortie continue FTP-Z2 plat ou vallonné léger"
+              },
+              "notes" : {
+                "fr" : "Objectif : 1h30 continu, à TON allure, en FTP-Z2 (56-75% FTP, équivalent 65-75% FCmax cible, RPE 2-3). Test de la parole maintenu en phrases complètes pendant ≥ 80% de la durée.\n\nGESTION DU RYTHME : les 20 premières minutes peuvent sembler faciles — c'est normal, ne pas accélérer. La fatigue arrive progressivement entre 60 et 90 min — réduire légèrement le braquet plutôt que de forcer.\n\nNUTRITION : boire toutes les 15-20 min sans attendre la soif (500-750 ml total). Manger quelque chose vers 30 min, 60 min et 80 min (barre, gel, banane — viser 30-60 g glucides/h).\n\nCADENCE : 85-95 rpm sur plat, 75-85 rpm en côte modérée. En côte : passer au petit braquet AVANT d'en avoir besoin. Ne jamais grinder sous 65 rpm.\n\nCHECKLIST D'AUTONOMIE FINALE (à valider après la séance) :\n1. Je tiens 1h30 de vélo en FTP-Z2 (respiration confortable, phrases complètes possibles ≥ 80% du temps) sans pause forcée.\n2. Je maintiens une cadence de 85-95 rpm sur plat sur la majorité du parcours, et 75-85 rpm en côte sans grinder.\n3. Je sens mes jambes fatiguées en fin de sortie mais sans douleur lombaire ni douleur antérieure / postérieure du genou.\n4. Je récupère ma FC en dessous de 100 bpm en moins de 3 min après l'arrêt (proxy : je me sens calme et capable de tenir une conversation normale sous 3 min).\n\nSi tu coches 3+ critères, tu es autonome pour enchaîner sur un programme cycling recreational (sportive courte 60-100 km, vol 6-8 h/sem). Si 2 critères ou moins, refais W5 et W6 (cycle de 2 sem) avant de progresser vers des distances plus longues."
+              },
               "required_equipment" : [
                 "road-bike",
                 "helmet",
@@ -820,12 +1156,18 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Séance phare — 1h30 continu FTP-Z2",
+          "name" : {
+            "fr" : "Séance phare — 1h30 continu FTP-Z2"
+          },
           "type" : "endurance",
-          "warmup" : "10 min FTP-Z1 progressif, cadence montante 75 → 90 rpm. Vérifier position, serrer les sangles de chaussures, ajuster le casque."
+          "warmup" : {
+            "fr" : "10 min FTP-Z1 progressif, cadence montante 75 → 90 rpm. Vérifier position, serrer les sangles de chaussures, ajuster le casque."
+          }
         }
       ],
-      "theme" : "Séance phare — 1h30 continu",
+      "theme" : {
+        "fr" : "Séance phare — 1h30 continu"
+      },
       "week_number" : 6
     }
   ]

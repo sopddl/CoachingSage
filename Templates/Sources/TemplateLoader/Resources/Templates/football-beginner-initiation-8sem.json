@@ -1,37 +1,61 @@
 {
-  "assumed_profile" : "Adulte sans expérience football récente, équipement de base (crampons FG ou TF selon terrain, chaussures indoor/futsal en alternative, ballon taille 5, tenue sport). Accès à un terrain (gazon naturel ou synthétique) ou à défaut un parc / mur. Capable de courir 15 min sans difficulté.",
-  "default_objective" : "Apprendre les bases foot : passe, contrôle, conduite balle, foot à 5 amical, 8 semaines",
+  "assumed_profile" : {
+    "fr" : "Adulte sans expérience football récente, équipement de base (crampons FG ou TF selon terrain, chaussures indoor/futsal en alternative, ballon taille 5, tenue sport). Accès à un terrain (gazon naturel ou synthétique) ou à défaut un parc / mur. Capable de courir 15 min sans difficulté."
+  },
+  "default_objective" : {
+    "fr" : "Apprendre les bases foot : passe, contrôle, conduite balle, foot à 5 amical, 8 semaines"
+  },
   "duration_weeks" : 8,
   "id" : "football-beginner-initiation-8sem",
   "level" : "beginner",
-  "name" : "Football beginner — Initiation 8 semaines",
-  "progression_logic" : "Progression construite sur 5 principes alignés sur FFF Grassroots, FA Discover, UEFA Grassroots C entry et FIFA 11+ Injury Prevention Programme :\n(1) PROGRESSION TECHNIQUE PAR COUCHES : les gestes sont introduits dans un ordre strict respectant la charge cognitive du débutant. W1-W2 : passe intérieur du pied courte (5-8 m), contrôle amorti pied bloqueur, conduite ballon entre cônes très espacés, feeling balle. W3 : frappe placée pied fort sur cible 1×1 m + premières combinaisons passe-contrôle face à un partenaire ou un mur. W4 cutback : consolidation, premier foot à 5 amical sans enjeu et sans chrono. W5-W6 : conduite slalom enrichie (5 cônes 10 m), passe latérale, jeu réduit 4v4 espace large calme. W7-W8 : séance phare avec 25 min drills techniques (passe + contrôle + conduite) + 15-20 min jeu réduit 4v4 + 10 min mobilité-prévention + cool-down. Chaque couche est consolidée AVANT la suivante.\n(2) FIFA 11+ DÈS W1 (parties 1 et 2 raccourcies, 10 min en échauffement) : course en ligne droite + activation progressive + bench (planche) + side bench + single leg stance + squats + vertical jumps légers. Pas de partie 3 (cutting + sprint) avant W4 — le débutant n'a pas encore la coordination ni la force unilatérale pour gérer les changements de direction à pleine vitesse en sécurité. Réduction blessures 30-70% (méta-analyse Soligard et al. 2008, FIFA 11+ peer-reviewed). Le FIFA 11+ est obligatoire 2× / sem dès W1.\n(3) ALLURE FOOTBALL BEGINNER STRICTE : 100% des drills terrain en `technique` ou `Z2`, retour calme en `cool-down`. Aucun RPE > 6 sur ce plan. Pas de RSA, pas de sprint matchplay, pas de match compétitif chronométré. Foot à 5 amical sans enjeu OK à partir de W4. Test de la parole pour pacing (proxy ~65-75% FCmax quand pas de cardiofréquencemètre).\n(4) CUTBACK W4 : volume terrain réduit à ~35 min terrain (vs 55-60 min en W3 et W5 — réduction ~30-35% volume total, profondeur acceptée pour ce niveau low-volume débutant) pour adaptation tendineuse cheville-genou et intégration des gestes appris. Les structures tendineuses s'adaptent plus lentement que les muscles (6-8 sem). La cutback week leur donne du temps. Pas de nouveauté technique cette semaine, premier foot à 5 amical 20 min sans enjeu.\n(5) DRILLS SOLO + BINÔME + MUR DOMINANTS : pas de coéquipiers requis, autonomie totale sur la majorité des drills techniques. Drill mur 30 passes consécutives intérieur du pied = critère de validation autonome de la régularité (W7-W8). Le mur (ou un panneau dur) est un partenaire patient et infatigable. Si pas d'accès terrain, le drill solo en parc public + drill mur + S&C off-terrain (FIFA 11+ + force unilatérale + corde à sauter) couvre la séance. Référence : FFF Grassroots, FA Discover, UEFA Grassroots C, FIFA 11+ F-MARC.\n\nStructure hebdo : 1 séance terrain technique + 1 séance mobilité-renforcement off-terrain, 2-3 jours d'écart entre les deux. Pattern recommandé : J1 terrain / J4 S&C, J2-J3-J5-J6-J7 repos ou marche libre.",
-  "safety_notes" : "DRAPEAUX ROUGES — arrêter et consulter un professionnel de santé si les symptômes persistent > 5-7 jours :\n• Entorse de cheville : risque n°1 du débutant football (changements de direction, contact, surface variable). Crampons inadaptés (running shoe sur gazon) = risque majeur. Signes : douleur péri-malléolaire, gonflement, instabilité au transfert d'appui. Conduite : protocole RICE (Repos, Glace, Compression, Élévation), pas de reprise sur cheville encore instable, single leg stance et calf raises préventifs dès W1. En cas d'entorse récente < 3 mois → consulte un kiné avant de démarrer ce programme.\n• Douleur ischio-jambiers (face postérieure de cuisse) : signal d'un sprint à froid ou d'un échauffement insuffisant. Le FIFA 11+ partie 1 (course progressive) est obligatoire avant tout effort. Si tu as eu une blessure ischio-jambiers récente (< 8 sem), démarre le programme à allure réduite et consulte un kiné — pas de sprint sur les 4 premières semaines.\n• Douleur adducteurs ou pubis (face interne de cuisse, aine) : la pubalgie est une blessure à évolution lente. Si gêne adducteurs > 2 semaines de symptômes persistants, consulte un kiné avant de reprendre les drills frappe et changement de direction.\n• Douleur genou (tendinite rotulienne, syndrome rotulo-fémoral, ménisque) : sur volume conduite répété et plyo trop précoce. Force quadriceps (squats FIFA 11+) et fessier moyen (single leg stance), proprio. Si reprise post-LCA < 12 mois post-op → consulte un médecin et un kiné, pas de pivot-cutting tant que non validé. Pas de partie 3 du FIFA 11+ (cutting) avant W4 sur ce plan.\n• Commotion cérébrale (choc tête-tête, tête-ballon mal géré) : pas de jeu de tête sur ce plan. Si antécédent commotion < 6 mois → consultation médicale avant reprise.\n• Si tu as des antécédents cardiaques connus, plus de 50 ans débutant complet sans test d'effort récent, ou si tu es en grossesse / postpartum récent : consulte un médecin avant de commencer ce programme.\n\nPRÉVENTION FIFA 11+ — programme obligatoire dès W1, 2× / sem (10-15 min en échauffement) :\n• Réduction blessures 30-70% (méta-analyses, peer-reviewed F-MARC).\n• Parties 1 et 2 dès W1 sur ce plan : running progressif + planche + planche latérale + Hamstring (Nordic léger 1 set × 3-5 reps optionnel) + single leg stance + squats + vertical jumps légers.\n• Partie 3 (cutting + sprint) introduite progressivement à partir de W4 seulement, sans pleine vitesse.\n• Avant un foot à 5 amical : parties 1 et 3 raccourcies (running progressif), pas de force au sol pour ne pas pré-fatiguer.\n\nPRÉVENTION CHEVILLE-GENOU — 3 piliers dès W1 :\n• Single leg stance yeux ouverts puis fermés (équilibre cheville-genou-hanche).\n• Calf raises bipodal (stabilité mollet-tendon Achille).\n• Squats bodyweight contrôlés (force quadriceps + fessier).\n• Au moment d'introduire la frappe puissance (pas avant W6 sur ce plan), max 30-40 frappes par séance, avec progression frappe placée → demi-puissance → puissance contrôlée. Brûler les étapes expose le genou et l'aine.\n\nMATÉRIEL OBLIGATOIRE :\n• Crampons adaptés au terrain (FG firm ground sur gazon naturel sec / SG soft ground sur gazon souple humide / TF turf sur synthétique court / IC indoor sur parquet ou résine indoor) — JAMAIS de running shoe sur gazon (semelle non adaptée aux changements de direction = risque entorse cheville).\n• En substitution gymnase ou foot à 5 indoor : chaussures indoor / futsal (semelle non-marking).\n• Ballon football taille 5 adulte (norme FIFA Quality / Quality Pro recommandé pour la durée de vie).\n• Tenue sport respirante. Protège-tibias même pour foot à 5 amical recommandé dès W4.\n• Cônes ou plots de marquage (5-8 minimum) pour drills conduite et délimitation.\n• Mat ou sol propre pour le S&C off-terrain.\n\nINTENSITÉ :\n• Drills terrain : `technique`, `Z1` ou `Z2` uniquement. Test de la parole : tu dois pouvoir dire une phrase complète pendant les drills. Si le souffle coupe en cours d'exercice = trop rapide, ralentis.\n• S&C off-terrain : RPE 5-7 maximum, jamais à fond. Respiration libre maintenue.\n• Aucun sprint matchplay, aucun drill `RPE 8-9`, aucun match compétitif chronométré sur ce plan. Foot à 5 amical OK sans enjeu et sans chrono.\n\nNUTRITION-HYDRATATION :\n• 500 ml d'eau dans l'heure précédant la séance, 500 ml dans l'heure suivante (plus en conditions chaudes > 25°C : viser 750 ml/h avec un peu de sel ou boisson légèrement sodée).\n• Pas besoin de glucides additionnels pour les séances de ce plan (durée < 90 min).\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine allégée type W4 cutback, refaire la semaine précédente avec volume -20%) :\n• FC de repos +10 bpm inhabituelle au réveil.\n• Sommeil dégradé > 3 nuits d'affilée.\n• Douleur cheville, ischio ou adducteurs > 2 séances consécutives.\n• Motivation effondrée ou irritabilité accrue 3+ semaines.\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre la même séance 1-2 jours plus tard.\n• 1-2 semaines de pause : reprendre la semaine précédente (W-1).\n• > 2 semaines de pause : reprendre 2 semaines en arrière (W-2) pour resécuriser les gestes fondamentaux. La précipitation après une coupure est la première cause d'entorse cheville chez le débutant.",
+  "name" : {
+    "fr" : "Football beginner — Initiation 8 semaines"
+  },
+  "progression_logic" : {
+    "fr" : "Progression construite sur 5 principes alignés sur FFF Grassroots, FA Discover, UEFA Grassroots C entry et FIFA 11+ Injury Prevention Programme :\n(1) PROGRESSION TECHNIQUE PAR COUCHES : les gestes sont introduits dans un ordre strict respectant la charge cognitive du débutant. W1-W2 : passe intérieur du pied courte (5-8 m), contrôle amorti pied bloqueur, conduite ballon entre cônes très espacés, feeling balle. W3 : frappe placée pied fort sur cible 1×1 m + premières combinaisons passe-contrôle face à un partenaire ou un mur. W4 cutback : consolidation, premier foot à 5 amical sans enjeu et sans chrono. W5-W6 : conduite slalom enrichie (5 cônes 10 m), passe latérale, jeu réduit 4v4 espace large calme. W7-W8 : séance phare avec 25 min drills techniques (passe + contrôle + conduite) + 15-20 min jeu réduit 4v4 + 10 min mobilité-prévention + cool-down. Chaque couche est consolidée AVANT la suivante.\n(2) FIFA 11+ DÈS W1 (parties 1 et 2 raccourcies, 10 min en échauffement) : course en ligne droite + activation progressive + bench (planche) + side bench + single leg stance + squats + vertical jumps légers. Pas de partie 3 (cutting + sprint) avant W4 — le débutant n'a pas encore la coordination ni la force unilatérale pour gérer les changements de direction à pleine vitesse en sécurité. Réduction blessures 30-70% (méta-analyse Soligard et al. 2008, FIFA 11+ peer-reviewed). Le FIFA 11+ est obligatoire 2× / sem dès W1.\n(3) ALLURE FOOTBALL BEGINNER STRICTE : 100% des drills terrain en `technique` ou `Z2`, retour calme en `cool-down`. Aucun RPE > 6 sur ce plan. Pas de RSA, pas de sprint matchplay, pas de match compétitif chronométré. Foot à 5 amical sans enjeu OK à partir de W4. Test de la parole pour pacing (proxy ~65-75% FCmax quand pas de cardiofréquencemètre).\n(4) CUTBACK W4 : volume terrain réduit à ~35 min terrain (vs 55-60 min en W3 et W5 — réduction ~30-35% volume total, profondeur acceptée pour ce niveau low-volume débutant) pour adaptation tendineuse cheville-genou et intégration des gestes appris. Les structures tendineuses s'adaptent plus lentement que les muscles (6-8 sem). La cutback week leur donne du temps. Pas de nouveauté technique cette semaine, premier foot à 5 amical 20 min sans enjeu.\n(5) DRILLS SOLO + BINÔME + MUR DOMINANTS : pas de coéquipiers requis, autonomie totale sur la majorité des drills techniques. Drill mur 30 passes consécutives intérieur du pied = critère de validation autonome de la régularité (W7-W8). Le mur (ou un panneau dur) est un partenaire patient et infatigable. Si pas d'accès terrain, le drill solo en parc public + drill mur + S&C off-terrain (FIFA 11+ + force unilatérale + corde à sauter) couvre la séance. Référence : FFF Grassroots, FA Discover, UEFA Grassroots C, FIFA 11+ F-MARC.\n\nStructure hebdo : 1 séance terrain technique + 1 séance mobilité-renforcement off-terrain, 2-3 jours d'écart entre les deux. Pattern recommandé : J1 terrain / J4 S&C, J2-J3-J5-J6-J7 repos ou marche libre."
+  },
+  "safety_notes" : {
+    "fr" : "DRAPEAUX ROUGES — arrêter et consulter un professionnel de santé si les symptômes persistent > 5-7 jours :\n• Entorse de cheville : risque n°1 du débutant football (changements de direction, contact, surface variable). Crampons inadaptés (running shoe sur gazon) = risque majeur. Signes : douleur péri-malléolaire, gonflement, instabilité au transfert d'appui. Conduite : protocole RICE (Repos, Glace, Compression, Élévation), pas de reprise sur cheville encore instable, single leg stance et calf raises préventifs dès W1. En cas d'entorse récente < 3 mois → consulte un kiné avant de démarrer ce programme.\n• Douleur ischio-jambiers (face postérieure de cuisse) : signal d'un sprint à froid ou d'un échauffement insuffisant. Le FIFA 11+ partie 1 (course progressive) est obligatoire avant tout effort. Si tu as eu une blessure ischio-jambiers récente (< 8 sem), démarre le programme à allure réduite et consulte un kiné — pas de sprint sur les 4 premières semaines.\n• Douleur adducteurs ou pubis (face interne de cuisse, aine) : la pubalgie est une blessure à évolution lente. Si gêne adducteurs > 2 semaines de symptômes persistants, consulte un kiné avant de reprendre les drills frappe et changement de direction.\n• Douleur genou (tendinite rotulienne, syndrome rotulo-fémoral, ménisque) : sur volume conduite répété et plyo trop précoce. Force quadriceps (squats FIFA 11+) et fessier moyen (single leg stance), proprio. Si reprise post-LCA < 12 mois post-op → consulte un médecin et un kiné, pas de pivot-cutting tant que non validé. Pas de partie 3 du FIFA 11+ (cutting) avant W4 sur ce plan.\n• Commotion cérébrale (choc tête-tête, tête-ballon mal géré) : pas de jeu de tête sur ce plan. Si antécédent commotion < 6 mois → consultation médicale avant reprise.\n• Si tu as des antécédents cardiaques connus, plus de 50 ans débutant complet sans test d'effort récent, ou si tu es en grossesse / postpartum récent : consulte un médecin avant de commencer ce programme.\n\nPRÉVENTION FIFA 11+ — programme obligatoire dès W1, 2× / sem (10-15 min en échauffement) :\n• Réduction blessures 30-70% (méta-analyses, peer-reviewed F-MARC).\n• Parties 1 et 2 dès W1 sur ce plan : running progressif + planche + planche latérale + Hamstring (Nordic léger 1 set × 3-5 reps optionnel) + single leg stance + squats + vertical jumps légers.\n• Partie 3 (cutting + sprint) introduite progressivement à partir de W4 seulement, sans pleine vitesse.\n• Avant un foot à 5 amical : parties 1 et 3 raccourcies (running progressif), pas de force au sol pour ne pas pré-fatiguer.\n\nPRÉVENTION CHEVILLE-GENOU — 3 piliers dès W1 :\n• Single leg stance yeux ouverts puis fermés (équilibre cheville-genou-hanche).\n• Calf raises bipodal (stabilité mollet-tendon Achille).\n• Squats bodyweight contrôlés (force quadriceps + fessier).\n• Au moment d'introduire la frappe puissance (pas avant W6 sur ce plan), max 30-40 frappes par séance, avec progression frappe placée → demi-puissance → puissance contrôlée. Brûler les étapes expose le genou et l'aine.\n\nMATÉRIEL OBLIGATOIRE :\n• Crampons adaptés au terrain (FG firm ground sur gazon naturel sec / SG soft ground sur gazon souple humide / TF turf sur synthétique court / IC indoor sur parquet ou résine indoor) — JAMAIS de running shoe sur gazon (semelle non adaptée aux changements de direction = risque entorse cheville).\n• En substitution gymnase ou foot à 5 indoor : chaussures indoor / futsal (semelle non-marking).\n• Ballon football taille 5 adulte (norme FIFA Quality / Quality Pro recommandé pour la durée de vie).\n• Tenue sport respirante. Protège-tibias même pour foot à 5 amical recommandé dès W4.\n• Cônes ou plots de marquage (5-8 minimum) pour drills conduite et délimitation.\n• Mat ou sol propre pour le S&C off-terrain.\n\nINTENSITÉ :\n• Drills terrain : `technique`, `Z1` ou `Z2` uniquement. Test de la parole : tu dois pouvoir dire une phrase complète pendant les drills. Si le souffle coupe en cours d'exercice = trop rapide, ralentis.\n• S&C off-terrain : RPE 5-7 maximum, jamais à fond. Respiration libre maintenue.\n• Aucun sprint matchplay, aucun drill `RPE 8-9`, aucun match compétitif chronométré sur ce plan. Foot à 5 amical OK sans enjeu et sans chrono.\n\nNUTRITION-HYDRATATION :\n• 500 ml d'eau dans l'heure précédant la séance, 500 ml dans l'heure suivante (plus en conditions chaudes > 25°C : viser 750 ml/h avec un peu de sel ou boisson légèrement sodée).\n• Pas besoin de glucides additionnels pour les séances de ce plan (durée < 90 min).\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine allégée type W4 cutback, refaire la semaine précédente avec volume -20%) :\n• FC de repos +10 bpm inhabituelle au réveil.\n• Sommeil dégradé > 3 nuits d'affilée.\n• Douleur cheville, ischio ou adducteurs > 2 séances consécutives.\n• Motivation effondrée ou irritabilité accrue 3+ semaines.\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre la même séance 1-2 jours plus tard.\n• 1-2 semaines de pause : reprendre la semaine précédente (W-1).\n• > 2 semaines de pause : reprendre 2 semaines en arrière (W-2) pour resécuriser les gestes fondamentaux. La précipitation après une coupure est la première cause d'entorse cheville chez le débutant."
+  },
   "schema_version" : 2,
   "sessions_per_week" : 2,
   "sport" : "football",
-  "summary" : "Programme d'initiation football sur 8 semaines aligné sur FFF Grassroots, FA Discover, UEFA Grassroots C entry et FIFA 11+ (F-MARC). Format 2 séances / sem : 1 séance terrain (technique passe + contrôle + conduite + frappe placée + jeu réduit calme à partir de W4) et 1 séance mobilité-renforcement (FIFA 11+ partie 1+2 + core + équilibre + mollets). Volume cible pic 1.5-2.5 h terrain + 0.3-0.5 h S&C par semaine. Progression pédagogique : W1-W2 prise en main passe intérieur du pied + contrôle amorti + conduite cônes simples, W3 frappe placée + premières combinaisons passe-contrôle en binôme ou contre mur, W4 cutback consolidation + premier foot à 5 amical sans enjeu, W5-W6 conduite slalom enrichie + jeu réduit 4v4 espace large calme, W7-W8 séance phare 60 min avec 25 min drills techniques + 15-20 min jeu réduit + checklist d'autonomie 4 critères. Aucun match compétitif chronométré — uniquement foot à 5 amical sans pression. Renforcement préventif core + équilibre + mollets dès W1 pour limiter le risque entorse cheville et inconfort genou.",
+  "summary" : {
+    "fr" : "Programme d'initiation football sur 8 semaines aligné sur FFF Grassroots, FA Discover, UEFA Grassroots C entry et FIFA 11+ (F-MARC). Format 2 séances / sem : 1 séance terrain (technique passe + contrôle + conduite + frappe placée + jeu réduit calme à partir de W4) et 1 séance mobilité-renforcement (FIFA 11+ partie 1+2 + core + équilibre + mollets). Volume cible pic 1.5-2.5 h terrain + 0.3-0.5 h S&C par semaine. Progression pédagogique : W1-W2 prise en main passe intérieur du pied + contrôle amorti + conduite cônes simples, W3 frappe placée + premières combinaisons passe-contrôle en binôme ou contre mur, W4 cutback consolidation + premier foot à 5 amical sans enjeu, W5-W6 conduite slalom enrichie + jeu réduit 4v4 espace large calme, W7-W8 séance phare 60 min avec 25 min drills techniques + 15-20 min jeu réduit + checklist d'autonomie 4 critères. Aucun match compétitif chronométré — uniquement foot à 5 amical sans pression. Renforcement préventif core + équilibre + mollets dès W1 pour limiter le risque entorse cheville et inconfort genou."
+  },
   "weeks" : [
     {
-      "goal" : "Apprendre la passe courte intérieur du pied + le contrôle amorti pied bloqueur, premier feeling balle. Activer le FIFA 11+ partie 1 + 2 dès la première séance S&C (running progressif + planche + single leg stance + calf raises). Volume cible : ~40 min terrain + 30 min S&C off-terrain.",
+      "goal" : {
+        "fr" : "Apprendre la passe courte intérieur du pied + le contrôle amorti pied bloqueur, premier feeling balle. Activer le FIFA 11+ partie 1 + 2 dès la première séance S&C (running progressif + planche + single leg stance + calf raises). Volume cible : ~40 min terrain + 30 min S&C off-terrain."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirement quadriceps debout (30 sec/côté) + étirement ischio-jambiers debout pied surélevé (30 sec/côté) + étirement adducteurs grenouille assis (30 sec) + étirement mollets contre mur (30 sec/côté). Ces étirements adducteurs et mollets sont non négociables — ils participent à la prévention pubalgie et tendinite Achille.",
+          "cooldown" : {
+            "fr" : "5 min marche + étirement quadriceps debout (30 sec/côté) + étirement ischio-jambiers debout pied surélevé (30 sec/côté) + étirement adducteurs grenouille assis (30 sec) + étirement mollets contre mur (30 sec/côté). Ces étirements adducteurs et mollets sont non négociables — ils participent à la prévention pubalgie et tendinite Achille."
+          },
           "day" : 1,
           "duration_minutes" : 40,
           "exercises" : [
             {
               "alternatives" : [
-                "Feeling balle assis sur banc 5 min",
-                "Roule-ballon sous la main au sol 5 min"
+                {
+                  "fr" : "Feeling balle assis sur banc 5 min"
+                },
+                {
+                  "fr" : "Roule-ballon sous la main au sol 5 min"
+                }
               ],
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
               ],
-              "name" : "Prise en main grip pied + feeling balle",
-              "notes" : "Statique : poser le pied bloqueur sur le ballon (pied non dominant), faire rouler le ballon sous la semelle avant-arrière 10 fois par pied, puis rouler latéralement intérieur-extérieur 10 fois par pied. Sentir le ballon sous le pied. Aucune frappe encore, focus moteur pur. Charge cognitive RPE 3-4.",
+              "name" : {
+                "fr" : "Prise en main grip pied + feeling balle"
+              },
+              "notes" : {
+                "fr" : "Statique : poser le pied bloqueur sur le ballon (pied non dominant), faire rouler le ballon sous la semelle avant-arrière 10 fois par pied, puis rouler latéralement intérieur-extérieur 10 fois par pied. Sentir le ballon sous le pied. Aucune frappe encore, focus moteur pur. Charge cognitive RPE 3-4."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball"
@@ -43,15 +67,23 @@
             },
             {
               "alternatives" : [
-                "Passe avec partenaire face à face 8-10 m 10 passes × 4",
-                "Passe contre rebondisseur portable 10 passes × 4"
+                {
+                  "fr" : "Passe avec partenaire face à face 8-10 m 10 passes × 4"
+                },
+                {
+                  "fr" : "Passe contre rebondisseur portable 10 passes × 4"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury",
                 "groin-injury"
               ],
-              "name" : "Passe intérieur du pied contre mur — pied fort",
-              "notes" : "Se placer face à un mur dur (mur de jeu, panneau bois épais) à 5-6 m. Passer en intérieur du pied fort en visant zone basse du mur. Posture : pied bloqueur à côté du ballon, cheville verrouillée, contact balle au milieu de l'intérieur du pied. Recevoir le retour ballon par contrôle amorti. RPE technique 3-5. Si pas de mur, drill avec partenaire face à face à 8-10 m.",
+              "name" : {
+                "fr" : "Passe intérieur du pied contre mur — pied fort"
+              },
+              "notes" : {
+                "fr" : "Se placer face à un mur dur (mur de jeu, panneau bois épais) à 5-6 m. Passer en intérieur du pied fort en visant zone basse du mur. Posture : pied bloqueur à côté du ballon, cheville verrouillée, contact balle au milieu de l'intérieur du pied. Recevoir le retour ballon par contrôle amorti. RPE technique 3-5. Si pas de mur, drill avec partenaire face à face à 8-10 m."
+              },
               "reps" : "10 passes",
               "required_equipment" : [
                 "cleats",
@@ -65,15 +97,23 @@
             },
             {
               "alternatives" : [
-                "Passe avec partenaire pied faible face à face 8 passes × 3",
-                "Passe latérale assis sur banc pied faible 8 × 3"
+                {
+                  "fr" : "Passe avec partenaire pied faible face à face 8 passes × 3"
+                },
+                {
+                  "fr" : "Passe latérale assis sur banc pied faible 8 × 3"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury",
                 "groin-injury"
               ],
-              "name" : "Passe intérieur du pied — pied faible",
-              "notes" : "Même drill que précédent mais avec le pied non dominant. Le débutant doit travailler les deux pieds dès W1. Précision avant tout, pas de puissance. Charge cognitive plus élevée — accepte les ratés. RPE technique 3-5.",
+              "name" : {
+                "fr" : "Passe intérieur du pied — pied faible"
+              },
+              "notes" : {
+                "fr" : "Même drill que précédent mais avec le pied non dominant. Le débutant doit travailler les deux pieds dès W1. Précision avant tout, pas de puissance. Charge cognitive plus élevée — accepte les ratés. RPE technique 3-5."
+              },
               "reps" : "8 passes",
               "required_equipment" : [
                 "cleats",
@@ -87,16 +127,24 @@
             },
             {
               "alternatives" : [
-                "Contrôle balle lancée à la main contre mur 3 min × 3",
-                "Contrôle face à face partenaire 3 min × 3"
+                {
+                  "fr" : "Contrôle balle lancée à la main contre mur 3 min × 3"
+                },
+                {
+                  "fr" : "Contrôle face à face partenaire 3 min × 3"
+                }
               ],
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
               ],
-              "name" : "Contrôle amorti pied bloqueur",
-              "notes" : "Avec un partenaire ou contre mur. Le partenaire passe doucement, tu contrôles avec le pied bloqueur (pied non dominant) en absorbant le ballon : pied légèrement levé qui recule au contact pour amortir. Objectif : ballon qui ne s'éloigne pas de plus de 50 cm après contrôle. Allure conversationnelle (Z2 ~65-75% FCmax). Si pas de partenaire, contrôle ballon lancé à la main contre mur.",
+              "name" : {
+                "fr" : "Contrôle amorti pied bloqueur"
+              },
+              "notes" : {
+                "fr" : "Avec un partenaire ou contre mur. Le partenaire passe doucement, tu contrôles avec le pied bloqueur (pied non dominant) en absorbant le ballon : pied légèrement levé qui recule au contact pour amortir. Objectif : ballon qui ne s'éloigne pas de plus de 50 cm après contrôle. Allure conversationnelle (Z2 ~65-75% FCmax). Si pas de partenaire, contrôle ballon lancé à la main contre mur."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -109,15 +157,23 @@
             },
             {
               "alternatives" : [
-                "Marche libre sans ballon 3 min",
-                "Étirements debout 3 min"
+                {
+                  "fr" : "Marche libre sans ballon 3 min"
+                },
+                {
+                  "fr" : "Étirements debout 3 min"
+                }
               ],
               "duration" : "3 min",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Cool-down marche + retour calme",
-              "notes" : "Marche autour du terrain ballon dans les pieds, pas de frappe. Respiration profonde. Récupération active.",
+              "name" : {
+                "fr" : "Cool-down marche + retour calme"
+              },
+              "notes" : {
+                "fr" : "Marche autour du terrain ballon dans les pieds, pas de frappe. Respiration profonde. Récupération active."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball"
@@ -128,26 +184,40 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Terrain — passe et contrôle intérieur du pied (mur ou binôme)",
+          "name" : {
+            "fr" : "Terrain — passe et contrôle intérieur du pied (mur ou binôme)"
+          },
           "type" : "technique",
-          "warmup" : "Échauffement FIFA 11+ partie 1 raccourcie 8 min : marche rapide 2 min + course en ligne droite très lente 4 × 30 m + course en ligne droite avec montées de genoux 2 × 30 m + course avec talons-fesses 2 × 30 m + 5 split-steps lents. Mobiliser cheville et hanches avant toute frappe."
+          "warmup" : {
+            "fr" : "Échauffement FIFA 11+ partie 1 raccourcie 8 min : marche rapide 2 min + course en ligne droite très lente 4 × 30 m + course en ligne droite avec montées de genoux 2 × 30 m + course avec talons-fesses 2 × 30 m + 5 split-steps lents. Mobiliser cheville et hanches avant toute frappe."
+          }
         },
         {
-          "cooldown" : "Étirement mollets contre mur (30 sec/côté), étirement fessier allongé pied sur genou (30 sec/côté), étirement adducteurs grenouille (30 sec), respiration profonde 1 min.",
+          "cooldown" : {
+            "fr" : "Étirement mollets contre mur (30 sec/côté), étirement fessier allongé pied sur genou (30 sec/côté), étirement adducteurs grenouille (30 sec), respiration profonde 1 min."
+          },
           "day" : 4,
           "duration_minutes" : 30,
           "exercises" : [
             {
               "alternatives" : [
-                "Planche genoux au sol 30 sec × 3",
-                "Dead bug 8 reps/côté × 3"
+                {
+                  "fr" : "Planche genoux au sol 30 sec × 3"
+                },
+                {
+                  "fr" : "Dead bug"
+                }
               ],
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Bench (planche statique)",
-              "notes" : "Coudes sous épaules, corps aligné, fessiers engagés. Exercice clé du FIFA 11+ partie 2. Anti-rotation lombaire — utile pour stabiliser le buste pendant les frappes. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Bench (planche statique)"
+              },
+              "notes" : {
+                "fr" : "Coudes sous épaules, corps aligné, fessiers engagés. Exercice clé du FIFA 11+ partie 2. Anti-rotation lombaire — utile pour stabiliser le buste pendant les frappes. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -158,16 +228,24 @@
             },
             {
               "alternatives" : [
-                "Planche latérale genoux au sol 30 sec/côté × 2",
-                "Side-lying clamshell 12 reps/côté"
+                {
+                  "fr" : "Planche latérale genoux au sol 30 sec/côté × 2"
+                },
+                {
+                  "fr" : "Side-lying clamshell"
+                }
               ],
               "duration" : "20 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Sideways Bench (planche latérale)",
-              "notes" : "Coude sous épaule, corps aligné de côté, hanches hautes. Renforce les obliques et le moyen fessier — stabilité latérale clé pour les changements de direction. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Sideways Bench (planche latérale)"
+              },
+              "notes" : {
+                "fr" : "Coude sous épaule, corps aligné de côté, hanches hautes. Renforce les obliques et le moyen fessier — stabilité latérale clé pour les changements de direction. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -178,15 +256,23 @@
             },
             {
               "alternatives" : [
-                "Single leg stance appui doigt sur mur 30 sec/jambe × 2",
-                "Talon-fesse alternés 20 reps × 2"
+                {
+                  "fr" : "Single leg stance appui doigt sur mur 30 sec/jambe × 2"
+                },
+                {
+                  "fr" : "Talon-fesse alternés"
+                }
               ],
               "duration" : "30 sec par jambe",
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "FIFA 11+ — Single Leg Stance",
-              "notes" : "Debout sur une jambe, l'autre légèrement décollée du sol, regard horizon. Yeux ouverts cette semaine, yeux fermés à partir de W3. Cible la proprio cheville-genou-hanche — pilier prévention entorse cheville. Indispensable. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Single Leg Stance"
+              },
+              "notes" : {
+                "fr" : "Debout sur une jambe, l'autre légèrement décollée du sol, regard horizon. Yeux ouverts cette semaine, yeux fermés à partir de W3. Cible la proprio cheville-genou-hanche — pilier prévention entorse cheville. Indispensable. RPE 6-7."
+              },
               "required_equipment" : [
 
               ],
@@ -197,15 +283,23 @@
             },
             {
               "alternatives" : [
-                "Squat à la chaise 12 reps × 2",
-                "Squat appui mur sit 30 sec × 2"
+                {
+                  "fr" : "Squat à la chaise"
+                },
+                {
+                  "fr" : "Squat appui mur sit 30 sec × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Squats bodyweight",
-              "notes" : "Pieds largeur épaules, descente contrôlée 2 sec, pause 1 sec, remontée. Genoux dans l'axe des orteils. Cible quadriceps + fessiers — prévention genou. RPE 6-7. Équivalent ~60-70% FCmax mais c'est l'effort musculaire local qui compte ici.",
+              "name" : {
+                "fr" : "FIFA 11+ — Squats bodyweight"
+              },
+              "notes" : {
+                "fr" : "Pieds largeur épaules, descente contrôlée 2 sec, pause 1 sec, remontée. Genoux dans l'axe des orteils. Cible quadriceps + fessiers — prévention genou. RPE 6-7. Équivalent ~60-70% FCmax mais c'est l'effort musculaire local qui compte ici."
+              },
               "reps" : "12",
               "required_equipment" : [
 
@@ -217,15 +311,23 @@
             },
             {
               "alternatives" : [
-                "Dead bug 10 reps/côté × 2",
-                "Bird-dog avant-bras au sol 8/côté × 2"
+                {
+                  "fr" : "Dead bug"
+                },
+                {
+                  "fr" : "Bird-dog avant-bras au sol 8/côté × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "wrist-pain",
                 "lower-back-pain"
               ],
-              "name" : "Bird-dog",
-              "notes" : "À 4 pattes, tendre bras opposé + jambe opposée, tenir 2 sec. Cible le core profond et l'anti-rotation lombaire. RPE 6-7.",
+              "name" : {
+                "fr" : "Bird-dog"
+              },
+              "notes" : {
+                "fr" : "À 4 pattes, tendre bras opposé + jambe opposée, tenir 2 sec. Cible le core profond et l'anti-rotation lombaire. RPE 6-7."
+              },
               "reps" : "8 par côté",
               "required_equipment" : [
                 "mat"
@@ -237,14 +339,22 @@
             },
             {
               "alternatives" : [
-                "Calf raises assis sur chaise 15 reps × 2",
-                "Wall calf raise (appui mains au mur) 15 reps × 2"
+                {
+                  "fr" : "Calf raises assis sur chaise"
+                },
+                {
+                  "fr" : "Wall calf raise (appui mains au mur)"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises bipodal",
-              "notes" : "Montées sur la pointe des pieds, les deux pieds ensemble, descente contrôlée 2 sec. Stabilité mollet-tendon Achille et propulsion split-step. RPE 6-7.",
+              "name" : {
+                "fr" : "Calf raises bipodal"
+              },
+              "notes" : {
+                "fr" : "Montées sur la pointe des pieds, les deux pieds ensemble, descente contrôlée 2 sec. Stabilité mollet-tendon Achille et propulsion split-step. RPE 6-7."
+              },
               "reps" : "15",
               "required_equipment" : [
 
@@ -255,33 +365,51 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "S&C off-terrain — FIFA 11+ partie 2 + équilibre + core",
+          "name" : {
+            "fr" : "S&C off-terrain — FIFA 11+ partie 2 + équilibre + core"
+          },
           "type" : "strength",
-          "warmup" : "5 min marche rapide + cercles épaule avant/arrière 10/côté + rotations bassin 10/sens + montées de genoux 20 pas + talons-fesses lents 20 pas. Total 7 min."
+          "warmup" : {
+            "fr" : "5 min marche rapide + cercles épaule avant/arrière 10/côté + rotations bassin 10/sens + montées de genoux 20 pas + talons-fesses lents 20 pas. Total 7 min."
+          }
         }
       ],
-      "theme" : "Fondations — passe et contrôle intérieur du pied",
+      "theme" : {
+        "fr" : "Fondations — passe et contrôle intérieur du pied"
+      },
       "week_number" : 1
     },
     {
-      "goal" : "Construire la conduite ballon entre 4 cônes très espacés (3 m) avec intérieur du pied, consolider la passe intérieur du pied. Renforcement avec ajout single leg stance yeux fermés (proprio avancée). Volume cible : ~45 min terrain + 32 min S&C.",
+      "goal" : {
+        "fr" : "Construire la conduite ballon entre 4 cônes très espacés (3 m) avec intérieur du pied, consolider la passe intérieur du pied. Renforcement avec ajout single leg stance yeux fermés (proprio avancée). Volume cible : ~45 min terrain + 32 min S&C."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements quadriceps, ischio-jambiers, adducteurs, mollets (30 sec chacun, par côté).",
+          "cooldown" : {
+            "fr" : "5 min marche + étirements quadriceps, ischio-jambiers, adducteurs, mollets (30 sec chacun, par côté)."
+          },
           "day" : 1,
           "duration_minutes" : 45,
           "exercises" : [
             {
               "alternatives" : [
-                "Passe en binôme 5 + jonglage main posée 1 min",
-                "Passe contre mur 5 + jonglage cuisse seule 1 min"
+                {
+                  "fr" : "Passe en binôme 5 + jonglage main posée 1 min"
+                },
+                {
+                  "fr" : "Passe contre mur 5 + jonglage cuisse seule 1 min"
+                }
               ],
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Rappel passe + jonglage simple",
-              "notes" : "5 passes intérieur du pied fort + 5 passes pied faible contre mur ou en binôme à 6-8 m, puis 1 min de jonglage cuisse-cuisse-pied (objectif progressif vers 5 contacts consécutifs en W6). Charge cognitive technique 3-4.",
+              "name" : {
+                "fr" : "Rappel passe + jonglage simple"
+              },
+              "notes" : {
+                "fr" : "5 passes intérieur du pied fort + 5 passes pied faible contre mur ou en binôme à 6-8 m, puis 1 min de jonglage cuisse-cuisse-pied (objectif progressif vers 5 contacts consécutifs en W6). Charge cognitive technique 3-4."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -294,15 +422,23 @@
             },
             {
               "alternatives" : [
-                "Conduite ligne droite 15 m sans cônes 4 × 2 AR",
-                "Conduite slalom autour de 4 piquets parc 4 × 2 AR"
+                {
+                  "fr" : "Conduite ligne droite 15 m sans cônes 4 × 2 AR"
+                },
+                {
+                  "fr" : "Conduite slalom autour de 4 piquets parc 4 × 2 AR"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
               ],
-              "name" : "Conduite ballon entre 4 cônes espacés (3 m)",
-              "notes" : "Disposer 4 cônes en ligne droite, 3 m d'écart. Conduire le ballon en intérieur du pied entre les cônes, contact ballon à chaque pas, ballon proche du pied (50 cm max). Aller-retour = 1 rep. Allure très lente, focus contrôle ballon. RPE technique 3-5. Si pas de cônes, repères naturels (piquets, marques au sol).",
+              "name" : {
+                "fr" : "Conduite ballon entre 4 cônes espacés (3 m)"
+              },
+              "notes" : {
+                "fr" : "Disposer 4 cônes en ligne droite, 3 m d'écart. Conduire le ballon en intérieur du pied entre les cônes, contact ballon à chaque pas, ballon proche du pied (50 cm max). Aller-retour = 1 rep. Allure très lente, focus contrôle ballon. RPE technique 3-5. Si pas de cônes, repères naturels (piquets, marques au sol)."
+              },
               "reps" : "2 allers-retours",
               "required_equipment" : [
                 "cleats",
@@ -317,16 +453,24 @@
             },
             {
               "alternatives" : [
-                "Drill mur passe-contrôle 2 min × 4",
-                "Drill rebondisseur portable 2 min × 4"
+                {
+                  "fr" : "Drill mur passe-contrôle 2 min × 4"
+                },
+                {
+                  "fr" : "Drill rebondisseur portable 2 min × 4"
+                }
               ],
               "duration" : "2 min",
               "incompatible_constraints" : [
                 "groin-injury",
                 "ankle-injury"
               ],
-              "name" : "Passe + contrôle alternés",
-              "notes" : "Avec un partenaire à 8 m face à face : passe intérieur du pied fort + contrôle amorti pied bloqueur du retour, puis on inverse les rôles. Objectif : enchaîner les passes-contrôles sans rater. Allure conversationnelle (Z2 ~65-75% FCmax). Si pas de partenaire, drill mur passe-contrôle.",
+              "name" : {
+                "fr" : "Passe + contrôle alternés"
+              },
+              "notes" : {
+                "fr" : "Avec un partenaire à 8 m face à face : passe intérieur du pied fort + contrôle amorti pied bloqueur du retour, puis on inverse les rôles. Objectif : enchaîner les passes-contrôles sans rater. Allure conversationnelle (Z2 ~65-75% FCmax). Si pas de partenaire, drill mur passe-contrôle."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -339,16 +483,24 @@
             },
             {
               "alternatives" : [
-                "Course Z2 sans ballon 8 min",
-                "Marche rapide ballon dans les pieds 10 min"
+                {
+                  "fr" : "Course Z2 sans ballon 8 min"
+                },
+                {
+                  "fr" : "Marche rapide ballon dans les pieds 10 min"
+                }
               ],
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Course intermittente Z2 ballon dans les pieds",
-              "notes" : "Courir 1 min ballon en conduite + 30 sec marche libre, alterner 5-6 cycles. Allure conversationnelle (Z2 ~65-75% FCmax), test de la parole : tu dois pouvoir dire une phrase complète. Travaille l'endurance aérobie de base + conduite en mouvement.",
+              "name" : {
+                "fr" : "Course intermittente Z2 ballon dans les pieds"
+              },
+              "notes" : {
+                "fr" : "Courir 1 min ballon en conduite + 30 sec marche libre, alterner 5-6 cycles. Allure conversationnelle (Z2 ~65-75% FCmax), test de la parole : tu dois pouvoir dire une phrase complète. Travaille l'endurance aérobie de base + conduite en mouvement."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -361,15 +513,23 @@
             },
             {
               "alternatives" : [
-                "Étirements debout 3 min",
-                "Marche libre 3 min"
+                {
+                  "fr" : "Étirements debout 3 min"
+                },
+                {
+                  "fr" : "Marche libre 3 min"
+                }
               ],
               "duration" : "3 min",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Cool-down marche + étirements debout",
-              "notes" : "Marche autour du terrain + étirements quadriceps debout en mouvement. Respiration profonde.",
+              "name" : {
+                "fr" : "Cool-down marche + étirements debout"
+              },
+              "notes" : {
+                "fr" : "Marche autour du terrain + étirements quadriceps debout en mouvement. Respiration profonde."
+              },
               "required_equipment" : [
                 "cleats"
               ],
@@ -379,26 +539,40 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Terrain — conduite ballon + passe consolidation",
+          "name" : {
+            "fr" : "Terrain — conduite ballon + passe consolidation"
+          },
           "type" : "technique",
-          "warmup" : "Échauffement FIFA 11+ partie 1 raccourcie 8 min : marche rapide 2 min + course très lente 4 × 30 m + course avec ouverture/fermeture hanches 2 × 30 m + course avec saut imaginaire 2 × 30 m + 5 split-steps."
+          "warmup" : {
+            "fr" : "Échauffement FIFA 11+ partie 1 raccourcie 8 min : marche rapide 2 min + course très lente 4 × 30 m + course avec ouverture/fermeture hanches 2 × 30 m + course avec saut imaginaire 2 × 30 m + 5 split-steps."
+          }
         },
         {
-          "cooldown" : "Étirement mollets, fessier, adducteurs, ischio-jambiers (30 sec/côté), respiration profonde 1 min.",
+          "cooldown" : {
+            "fr" : "Étirement mollets, fessier, adducteurs, ischio-jambiers (30 sec/côté), respiration profonde 1 min."
+          },
           "day" : 4,
           "duration_minutes" : 32,
           "exercises" : [
             {
               "alternatives" : [
-                "Planche genoux au sol 35 sec × 3",
-                "Dead bug 10 reps/côté × 3"
+                {
+                  "fr" : "Planche genoux au sol 35 sec × 3"
+                },
+                {
+                  "fr" : "Dead bug"
+                }
               ],
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Bench (planche statique)",
-              "notes" : "Progression W1 : tenir 5 sec de plus. Coudes sous épaules, corps aligné. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Bench (planche statique)"
+              },
+              "notes" : {
+                "fr" : "Progression W1 : tenir 5 sec de plus. Coudes sous épaules, corps aligné. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -409,16 +583,24 @@
             },
             {
               "alternatives" : [
-                "Planche latérale genoux au sol 35 sec/côté × 2",
-                "Side-lying clamshell 14 reps/côté × 2"
+                {
+                  "fr" : "Planche latérale genoux au sol 35 sec/côté × 2"
+                },
+                {
+                  "fr" : "Side-lying clamshell"
+                }
               ],
               "duration" : "25 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Sideways Bench (planche latérale)",
-              "notes" : "Progression W1. Coude sous épaule, corps aligné de côté. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Sideways Bench (planche latérale)"
+              },
+              "notes" : {
+                "fr" : "Progression W1. Coude sous épaule, corps aligné de côté. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -429,15 +611,23 @@
             },
             {
               "alternatives" : [
-                "Single leg stance yeux ouverts 30 sec/jambe × 2",
-                "Single leg stance appui doigt sur mur 30 sec/jambe × 2"
+                {
+                  "fr" : "Single leg stance yeux ouverts 30 sec/jambe × 2"
+                },
+                {
+                  "fr" : "Single leg stance appui doigt sur mur 30 sec/jambe × 2"
+                }
               ],
               "duration" : "30 sec par jambe (15 sec yeux ouverts + 15 sec yeux fermés)",
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "FIFA 11+ — Single Leg Stance yeux ouverts puis fermés",
-              "notes" : "Progression : on ferme les yeux la deuxième moitié pour solliciter davantage la proprio cheville-genou. Pilier prévention entorse. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Single Leg Stance yeux ouverts puis fermés"
+              },
+              "notes" : {
+                "fr" : "Progression : on ferme les yeux la deuxième moitié pour solliciter davantage la proprio cheville-genou. Pilier prévention entorse. RPE 6-7."
+              },
               "required_equipment" : [
 
               ],
@@ -448,15 +638,23 @@
             },
             {
               "alternatives" : [
-                "Squat à la chaise tempo 12 × 2",
-                "Wall sit 30 sec × 2"
+                {
+                  "fr" : "Squat à la chaise tempo 12 × 2"
+                },
+                {
+                  "fr" : "Wall sit 30 sec × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Squats bodyweight + tempo",
-              "notes" : "Tempo : descente 3 sec, pause 1 sec, remontée 1 sec. Travail excentrique quadriceps. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Squats bodyweight + tempo"
+              },
+              "notes" : {
+                "fr" : "Tempo : descente 3 sec, pause 1 sec, remontée 1 sec. Travail excentrique quadriceps. RPE 6-7."
+              },
               "reps" : "12",
               "required_equipment" : [
 
@@ -468,14 +666,22 @@
             },
             {
               "alternatives" : [
-                "Pont fessier pieds sur chaise 10 reps × 3",
-                "Bridge isométrique 25 sec × 3"
+                {
+                  "fr" : "Pont fessier pieds sur chaise"
+                },
+                {
+                  "fr" : "Bridge isométrique 25 sec × 3"
+                }
               ],
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier bipodal",
-              "notes" : "Allongé sur le dos, genoux fléchis, pieds à plat. Tenir 2 sec en haut. Cible fessiers, stabilisateurs clés des appuis football. RPE 6-7.",
+              "name" : {
+                "fr" : "Pont fessier bipodal"
+              },
+              "notes" : {
+                "fr" : "Allongé sur le dos, genoux fléchis, pieds à plat. Tenir 2 sec en haut. Cible fessiers, stabilisateurs clés des appuis football. RPE 6-7."
+              },
               "reps" : "10",
               "required_equipment" : [
                 "mat"
@@ -487,15 +693,23 @@
             },
             {
               "alternatives" : [
-                "Dead bug 12 reps/côté × 2",
-                "Bird-dog avant-bras 10/côté × 2"
+                {
+                  "fr" : "Dead bug"
+                },
+                {
+                  "fr" : "Bird-dog avant-bras 10/côté × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "wrist-pain",
                 "lower-back-pain"
               ],
-              "name" : "Bird-dog",
-              "notes" : "À 4 pattes, tendre bras opposé + jambe opposée, tenir 2 sec. Anti-rotation lombaire. RPE 6-7.",
+              "name" : {
+                "fr" : "Bird-dog"
+              },
+              "notes" : {
+                "fr" : "À 4 pattes, tendre bras opposé + jambe opposée, tenir 2 sec. Anti-rotation lombaire. RPE 6-7."
+              },
               "reps" : "10 par côté",
               "required_equipment" : [
                 "mat"
@@ -507,14 +721,22 @@
             },
             {
               "alternatives" : [
-                "Calf raises assis 18 reps × 2",
-                "Wall calf raise 18 reps × 2"
+                {
+                  "fr" : "Calf raises assis"
+                },
+                {
+                  "fr" : "Wall calf raise"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises bipodal",
-              "notes" : "Progression W1 : 3 reps en plus. Montées contrôlées, descente 2 sec. RPE 6-7.",
+              "name" : {
+                "fr" : "Calf raises bipodal"
+              },
+              "notes" : {
+                "fr" : "Progression W1 : 3 reps en plus. Montées contrôlées, descente 2 sec. RPE 6-7."
+              },
               "reps" : "18",
               "required_equipment" : [
 
@@ -525,33 +747,51 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "S&C off-terrain — FIFA 11+ partie 2 + équilibre avancé",
+          "name" : {
+            "fr" : "S&C off-terrain — FIFA 11+ partie 2 + équilibre avancé"
+          },
           "type" : "strength",
-          "warmup" : "5 min marche + rotations bassin 10/sens + montées de genoux 20 pas + talons-fesses 20 pas + 5 fentes alternées lentes. Total 7 min."
+          "warmup" : {
+            "fr" : "5 min marche + rotations bassin 10/sens + montées de genoux 20 pas + talons-fesses 20 pas + 5 fentes alternées lentes. Total 7 min."
+          }
         }
       ],
-      "theme" : "Adaptation — conduite ballon entre cônes",
+      "theme" : {
+        "fr" : "Adaptation — conduite ballon entre cônes"
+      },
       "week_number" : 2
     },
     {
-      "goal" : "Introduire la frappe placée pied fort sur cible 1×1 m à 8 m de distance + premières combinaisons passe-contrôle-passe en binôme (ou contre mur enchaînées). Renforcement avec ajout vertical jumps légers (FIFA 11+ partie 2 progression). Volume cible : ~55 min terrain + 35 min S&C.",
+      "goal" : {
+        "fr" : "Introduire la frappe placée pied fort sur cible 1×1 m à 8 m de distance + premières combinaisons passe-contrôle-passe en binôme (ou contre mur enchaînées). Renforcement avec ajout vertical jumps légers (FIFA 11+ partie 2 progression). Volume cible : ~55 min terrain + 35 min S&C."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements quadriceps, ischio-jambiers, adducteurs, mollets, fessiers (30 sec chacun, par côté).",
+          "cooldown" : {
+            "fr" : "5 min marche + étirements quadriceps, ischio-jambiers, adducteurs, mollets, fessiers (30 sec chacun, par côté)."
+          },
           "day" : 1,
           "duration_minutes" : 55,
           "exercises" : [
             {
               "alternatives" : [
-                "Passe contre mur + conduite ligne droite 5 min",
-                "Passe binôme + conduite slalom piquets 5 min"
+                {
+                  "fr" : "Passe contre mur + conduite ligne droite 5 min"
+                },
+                {
+                  "fr" : "Passe binôme + conduite slalom piquets 5 min"
+                }
               ],
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Rappel passe + conduite",
-              "notes" : "5 passes pied fort + 5 passes pied faible + 1 passage de conduite entre 4 cônes 3 m. Routine d'entrée matinale. Charge cognitive 3-4.",
+              "name" : {
+                "fr" : "Rappel passe + conduite"
+              },
+              "notes" : {
+                "fr" : "5 passes pied fort + 5 passes pied faible + 1 passage de conduite entre 4 cônes 3 m. Routine d'entrée matinale. Charge cognitive 3-4."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -564,16 +804,24 @@
             },
             {
               "alternatives" : [
-                "Frappe placée contre mur point précis 8 × 4",
-                "Frappe demi-puissance sans cible 8 × 4"
+                {
+                  "fr" : "Frappe placée contre mur point précis 8 × 4"
+                },
+                {
+                  "fr" : "Frappe demi-puissance sans cible 8 × 4"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
                 "ankle-injury"
               ],
-              "name" : "Frappe placée pied fort sur cible 1×1 m à 8 m",
-              "notes" : "Disposer une cible (cible filet portable, deux cônes pour matérialiser un cadre 1×1 m, ou angle inférieur d'une cage). Frappe placée pied fort, ballon posé. Pied bloqueur à côté du ballon, contact intérieur ou cou-de-pied bas, focus précision pas puissance. Compter les frappes dans la cible (objectif progressif vers 6/10 en W7). RPE technique 4-5. Si pas de cible, viser un point précis sur un mur.",
+              "name" : {
+                "fr" : "Frappe placée pied fort sur cible 1×1 m à 8 m"
+              },
+              "notes" : {
+                "fr" : "Disposer une cible (cible filet portable, deux cônes pour matérialiser un cadre 1×1 m, ou angle inférieur d'une cage). Frappe placée pied fort, ballon posé. Pied bloqueur à côté du ballon, contact intérieur ou cou-de-pied bas, focus précision pas puissance. Compter les frappes dans la cible (objectif progressif vers 6/10 en W7). RPE technique 4-5. Si pas de cible, viser un point précis sur un mur."
+              },
               "reps" : "8 frappes",
               "required_equipment" : [
                 "cleats",
@@ -588,16 +836,24 @@
             },
             {
               "alternatives" : [
-                "Drill mur passes enchaînées 3 min × 4",
-                "Drill rebondisseur portable 3 min × 4"
+                {
+                  "fr" : "Drill mur passes enchaînées 3 min × 4"
+                },
+                {
+                  "fr" : "Drill rebondisseur portable 3 min × 4"
+                }
               ],
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "groin-injury",
                 "ankle-injury"
               ],
-              "name" : "Combinaison passe-contrôle-passe en binôme (8-10 m)",
-              "notes" : "Face à face avec partenaire, 8-10 m. Tu reçois la passe, contrôle amorti pied bloqueur, repasses immédiatement intérieur du pied fort. Objectif : enchaîner sans rater. Si pas de partenaire, drill mur frappes enchaînées. Allure conversationnelle (Z2 ~65-75% FCmax).",
+              "name" : {
+                "fr" : "Combinaison passe-contrôle-passe en binôme (8-10 m)"
+              },
+              "notes" : {
+                "fr" : "Face à face avec partenaire, 8-10 m. Tu reçois la passe, contrôle amorti pied bloqueur, repasses immédiatement intérieur du pied fort. Objectif : enchaîner sans rater. Si pas de partenaire, drill mur frappes enchaînées. Allure conversationnelle (Z2 ~65-75% FCmax)."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -610,15 +866,23 @@
             },
             {
               "alternatives" : [
-                "Conduite slalom 4 cônes 8 m 4 × 2 AR",
-                "Conduite ligne droite 15 m intérieur du pied 4 × 2 AR"
+                {
+                  "fr" : "Conduite slalom 4 cônes 8 m 4 × 2 AR"
+                },
+                {
+                  "fr" : "Conduite ligne droite 15 m intérieur du pied 4 × 2 AR"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
               ],
-              "name" : "Conduite slalom 5 cônes (10 m total)",
-              "notes" : "Progression W2 : on passe à 5 cônes plus rapprochés (2 m d'écart, 10 m total). Conduite intérieur du pied + extérieur en alternance pour passer chaque cône. Allure lente, focus contrôle. RPE technique 4-5.",
+              "name" : {
+                "fr" : "Conduite slalom 5 cônes (10 m total)"
+              },
+              "notes" : {
+                "fr" : "Progression W2 : on passe à 5 cônes plus rapprochés (2 m d'écart, 10 m total). Conduite intérieur du pied + extérieur en alternance pour passer chaque cône. Allure lente, focus contrôle. RPE technique 4-5."
+              },
               "reps" : "2 allers-retours",
               "required_equipment" : [
                 "cleats",
@@ -633,16 +897,24 @@
             },
             {
               "alternatives" : [
-                "Course Z2 sans ballon 8 min",
-                "Marche rapide ballon 10 min"
+                {
+                  "fr" : "Course Z2 sans ballon 8 min"
+                },
+                {
+                  "fr" : "Marche rapide ballon 10 min"
+                }
               ],
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Course intermittente Z2 + conduite",
-              "notes" : "1 min course conduite ballon + 30 sec marche libre, 5-6 cycles. Allure conversationnelle (Z2 ~65-75% FCmax). Endurance aérobie + conduite en mouvement.",
+              "name" : {
+                "fr" : "Course intermittente Z2 + conduite"
+              },
+              "notes" : {
+                "fr" : "1 min course conduite ballon + 30 sec marche libre, 5-6 cycles. Allure conversationnelle (Z2 ~65-75% FCmax). Endurance aérobie + conduite en mouvement."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -655,15 +927,23 @@
             },
             {
               "alternatives" : [
-                "Marche libre 4 min",
-                "Étirements debout 4 min"
+                {
+                  "fr" : "Marche libre 4 min"
+                },
+                {
+                  "fr" : "Étirements debout 4 min"
+                }
               ],
               "duration" : "4 min",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Cool-down marche",
-              "notes" : "Marche autour du terrain ballon dans les pieds + respiration profonde. Récupération active.",
+              "name" : {
+                "fr" : "Cool-down marche"
+              },
+              "notes" : {
+                "fr" : "Marche autour du terrain ballon dans les pieds + respiration profonde. Récupération active."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball"
@@ -674,26 +954,40 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Terrain — frappe placée + combinaisons passe-contrôle",
+          "name" : {
+            "fr" : "Terrain — frappe placée + combinaisons passe-contrôle"
+          },
           "type" : "technique",
-          "warmup" : "Échauffement FIFA 11+ partie 1 complète 10 min : marche rapide 2 min + course en ligne droite + ouverture/fermeture hanches + zigzag épaule-épaule + saut imaginaire + course rapide aller / retour à reculons (6 reps × 30 m chaque variante)."
+          "warmup" : {
+            "fr" : "Échauffement FIFA 11+ partie 1 complète 10 min : marche rapide 2 min + course en ligne droite + ouverture/fermeture hanches + zigzag épaule-épaule + saut imaginaire + course rapide aller / retour à reculons (6 reps × 30 m chaque variante)."
+          }
         },
         {
-          "cooldown" : "Étirement mollets, fessier, adducteurs, ischio-jambiers, quadriceps (30 sec/côté), respiration 1 min.",
+          "cooldown" : {
+            "fr" : "Étirement mollets, fessier, adducteurs, ischio-jambiers, quadriceps (30 sec/côté), respiration 1 min."
+          },
           "day" : 4,
           "duration_minutes" : 35,
           "exercises" : [
             {
               "alternatives" : [
-                "Planche statique 35 sec × 3",
-                "Bench avec genoux au sol jambe levée 25 sec × 3"
+                {
+                  "fr" : "Planche statique 35 sec × 3"
+                },
+                {
+                  "fr" : "Bench avec genoux au sol jambe levée 25 sec × 3"
+                }
               ],
               "duration" : "20 sec par jambe levée",
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Bench dynamique 1 jambe levée",
-              "notes" : "Progression Bench statique : tenir la planche en levant alternativement chaque jambe. Stabilité accrue. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Bench dynamique 1 jambe levée"
+              },
+              "notes" : {
+                "fr" : "Progression Bench statique : tenir la planche en levant alternativement chaque jambe. Stabilité accrue. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -704,16 +998,24 @@
             },
             {
               "alternatives" : [
-                "Planche latérale statique 30 sec/côté × 2",
-                "Side plank avec genoux 30 sec/côté × 2"
+                {
+                  "fr" : "Planche latérale statique 30 sec/côté × 2"
+                },
+                {
+                  "fr" : "Side plank avec genoux 30 sec/côté × 2"
+                }
               ],
               "duration" : "25 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Sideways Bench dynamique",
-              "notes" : "Planche latérale + montée-descente du bassin légère 5 fois pendant la tenue. Renforce obliques. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Sideways Bench dynamique"
+              },
+              "notes" : {
+                "fr" : "Planche latérale + montée-descente du bassin légère 5 fois pendant la tenue. Renforce obliques. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -724,15 +1026,23 @@
             },
             {
               "alternatives" : [
-                "Single leg stance yeux ouverts 30 sec/jambe × 2",
-                "Single leg stance appui doigt mur 30 sec/jambe × 2"
+                {
+                  "fr" : "Single leg stance yeux ouverts 30 sec/jambe × 2"
+                },
+                {
+                  "fr" : "Single leg stance appui doigt mur 30 sec/jambe × 2"
+                }
               ],
               "duration" : "30 sec par jambe",
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "FIFA 11+ — Single Leg Stance yeux fermés + tap",
-              "notes" : "Yeux fermés + tap genou opposé sur le côté avec la main. Proprio cheville-genou avancée. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Single Leg Stance yeux fermés + tap"
+              },
+              "notes" : {
+                "fr" : "Yeux fermés + tap genou opposé sur le côté avec la main. Proprio cheville-genou avancée. RPE 6-7."
+              },
               "required_equipment" : [
 
               ],
@@ -743,15 +1053,23 @@
             },
             {
               "alternatives" : [
-                "Squat à la chaise tempo 10 × 3",
-                "Wall sit 35 sec × 3"
+                {
+                  "fr" : "Squat à la chaise tempo 10 × 3"
+                },
+                {
+                  "fr" : "Wall sit 35 sec × 3"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Squats + tempo",
-              "notes" : "Descente 3 sec, pause 1 sec, remontée 1 sec. Tempo excentrique. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Squats + tempo"
+              },
+              "notes" : {
+                "fr" : "Descente 3 sec, pause 1 sec, remontée 1 sec. Tempo excentrique. RPE 6-7."
+              },
               "reps" : "10",
               "required_equipment" : [
 
@@ -763,15 +1081,23 @@
             },
             {
               "alternatives" : [
-                "Squat avec petit décollement 8 × 2",
-                "Sauts à la corde 30 sec × 2"
+                {
+                  "fr" : "Squat avec petit décollement 8 × 2"
+                },
+                {
+                  "fr" : "Sauts à la corde 30 sec × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "FIFA 11+ — Vertical Jumps légers",
-              "notes" : "Sauts verticaux bipodaux, réception genoux fléchis dans l'axe. Hauteur sub-maximale (~70-80% du saut max). Plyo introduit progressivement. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Vertical Jumps légers"
+              },
+              "notes" : {
+                "fr" : "Sauts verticaux bipodaux, réception genoux fléchis dans l'axe. Hauteur sub-maximale (~70-80% du saut max). Plyo introduit progressivement. RPE 6-7."
+              },
               "reps" : "8",
               "required_equipment" : [
 
@@ -783,14 +1109,22 @@
             },
             {
               "alternatives" : [
-                "Pont fessier pieds sur chaise 12 × 3",
-                "Bridge isométrique 30 sec × 3"
+                {
+                  "fr" : "Pont fessier pieds sur chaise 12 × 3"
+                },
+                {
+                  "fr" : "Bridge isométrique 30 sec × 3"
+                }
               ],
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier bipodal",
-              "notes" : "Progression W2 : 2 reps en plus. Tenir 2 sec en haut. RPE 6-7.",
+              "name" : {
+                "fr" : "Pont fessier bipodal"
+              },
+              "notes" : {
+                "fr" : "Progression W2 : 2 reps en plus. Tenir 2 sec en haut. RPE 6-7."
+              },
               "reps" : "12",
               "required_equipment" : [
                 "mat"
@@ -802,14 +1136,22 @@
             },
             {
               "alternatives" : [
-                "Calf raises assis 20 × 2",
-                "Wall calf raise 20 × 2"
+                {
+                  "fr" : "Calf raises assis 20 × 2"
+                },
+                {
+                  "fr" : "Wall calf raise 20 × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises bipodal",
-              "notes" : "Montées contrôlées. Stabilité mollet-tendon Achille. RPE 6-7.",
+              "name" : {
+                "fr" : "Calf raises bipodal"
+              },
+              "notes" : {
+                "fr" : "Montées contrôlées. Stabilité mollet-tendon Achille. RPE 6-7."
+              },
               "reps" : "20",
               "required_equipment" : [
 
@@ -820,33 +1162,51 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "S&C off-terrain — FIFA 11+ partie 2 + plyo léger",
+          "name" : {
+            "fr" : "S&C off-terrain — FIFA 11+ partie 2 + plyo léger"
+          },
           "type" : "strength",
-          "warmup" : "5 min marche + cercles épaule + rotations bassin + montées de genoux + talons-fesses + 5 fentes alternées + 5 squats lents. Total 8 min."
+          "warmup" : {
+            "fr" : "5 min marche + cercles épaule + rotations bassin + montées de genoux + talons-fesses + 5 fentes alternées + 5 squats lents. Total 8 min."
+          }
         }
       ],
-      "theme" : "Construction — frappe placée + premières combinaisons",
+      "theme" : {
+        "fr" : "Construction — frappe placée + premières combinaisons"
+      },
       "week_number" : 3
     },
     {
-      "goal" : "Semaine de cutback (-30 à -35% volume terrain vs W3). Consolider les gestes appris (passe + contrôle + conduite + frappe placée), intégrer un premier foot à 5 amical 20 min sans enjeu et sans chrono. Renforcement maintenu volume modéré. Volume cible : ~35 min terrain + 25 min S&C off-terrain.",
+      "goal" : {
+        "fr" : "Semaine de cutback (-30 à -35% volume terrain vs W3). Consolider les gestes appris (passe + contrôle + conduite + frappe placée), intégrer un premier foot à 5 amical 20 min sans enjeu et sans chrono. Renforcement maintenu volume modéré. Volume cible : ~35 min terrain + 25 min S&C off-terrain."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements complets quadriceps, ischio, adducteurs, mollets, fessiers (30 sec chacun, par côté).",
+          "cooldown" : {
+            "fr" : "5 min marche + étirements complets quadriceps, ischio, adducteurs, mollets, fessiers (30 sec chacun, par côté)."
+          },
           "day" : 1,
           "duration_minutes" : 35,
           "exercises" : [
             {
               "alternatives" : [
-                "Révision sans cônes drill mur 10 min",
-                "Révision en binôme passes-contrôles enchaînés 10 min"
+                {
+                  "fr" : "Révision sans cônes drill mur 10 min"
+                },
+                {
+                  "fr" : "Révision en binôme passes-contrôles enchaînés 10 min"
+                }
               ],
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Révision technique 4 gestes (passe + contrôle + conduite + frappe placée)",
-              "notes" : "Routine de révision : 2 min passe contre mur ou binôme pied fort + pied faible, 2 min contrôle amorti, 3 min conduite slalom 5 cônes, 3 min frappe placée sur cible (2-3 frappes par série, pas plus). Pas de nouveauté technique cette semaine — consolidation. Charge cognitive 3-4.",
+              "name" : {
+                "fr" : "Révision technique 4 gestes (passe + contrôle + conduite + frappe placée)"
+              },
+              "notes" : {
+                "fr" : "Routine de révision : 2 min passe contre mur ou binôme pied fort + pied faible, 2 min contrôle amorti, 3 min conduite slalom 5 cônes, 3 min frappe placée sur cible (2-3 frappes par série, pas plus). Pas de nouveauté technique cette semaine — consolidation. Charge cognitive 3-4."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -860,8 +1220,12 @@
             },
             {
               "alternatives" : [
-                "Jeu réduit 2v2 ou 3v3 entre débutants 20 min calme",
-                "Drill mur 30 passes consécutives + conduite slalom 10 reps 20 min"
+                {
+                  "fr" : "Jeu réduit 2v2 ou 3v3 entre débutants 20 min calme"
+                },
+                {
+                  "fr" : "Drill mur 30 passes consécutives + conduite slalom 20 min"
+                }
               ],
               "duration" : "20 min",
               "incompatible_constraints" : [
@@ -870,8 +1234,12 @@
                 "groin-injury",
                 "concussion-history"
               ],
-              "name" : "Foot à 5 amical sans enjeu (sans chrono)",
-              "notes" : "Match amical 5v5 (ou 4v4 si effectif réduit) sur petit terrain (~30×20 m), buts marqués matérialisés par cônes. SANS chrono, SANS score officiel, SANS enjeu — l'objectif est de mettre les gestes en situation de jeu calme. Allure Z2 conversationnelle (~65-75% FCmax), pas de sprint maxi, pas de tacle rude. Si pas de coéquipiers, jeu réduit 2v2 ou 3v3 entre amis débutants. Si pas du tout d'effectif, drill mur 30 passes consécutives intérieur du pied + 10 conduites slalom.",
+              "name" : {
+                "fr" : "Foot à 5 amical sans enjeu (sans chrono)"
+              },
+              "notes" : {
+                "fr" : "Match amical 5v5 (ou 4v4 si effectif réduit) sur petit terrain (~30×20 m), buts marqués matérialisés par cônes. SANS chrono, SANS score officiel, SANS enjeu — l'objectif est de mettre les gestes en situation de jeu calme. Allure Z2 conversationnelle (~65-75% FCmax), pas de sprint maxi, pas de tacle rude. Si pas de coéquipiers, jeu réduit 2v2 ou 3v3 entre amis débutants. Si pas du tout d'effectif, drill mur 30 passes consécutives intérieur du pied + 10 conduites slalom."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -886,15 +1254,23 @@
             },
             {
               "alternatives" : [
-                "Marche libre 4 min",
-                "Étirements debout 4 min"
+                {
+                  "fr" : "Marche libre 4 min"
+                },
+                {
+                  "fr" : "Étirements debout 4 min"
+                }
               ],
               "duration" : "4 min",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Cool-down marche + retour calme",
-              "notes" : "Marche autour du terrain + respiration profonde. Récupération active après match.",
+              "name" : {
+                "fr" : "Cool-down marche + retour calme"
+              },
+              "notes" : {
+                "fr" : "Marche autour du terrain + respiration profonde. Récupération active après match."
+              },
               "required_equipment" : [
                 "cleats"
               ],
@@ -904,26 +1280,40 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Terrain — révision technique + premier foot à 5 amical",
+          "name" : {
+            "fr" : "Terrain — révision technique + premier foot à 5 amical"
+          },
           "type" : "mixed",
-          "warmup" : "Échauffement FIFA 11+ partie 1 raccourcie 8 min : marche + course progressive + ouverture/fermeture hanches + zigzag."
+          "warmup" : {
+            "fr" : "Échauffement FIFA 11+ partie 1 raccourcie 8 min : marche + course progressive + ouverture/fermeture hanches + zigzag."
+          }
         },
         {
-          "cooldown" : "Étirement mollets, fessier, adducteurs, ischio (30 sec/côté), respiration 1 min.",
+          "cooldown" : {
+            "fr" : "Étirement mollets, fessier, adducteurs, ischio (30 sec/côté), respiration 1 min."
+          },
           "day" : 4,
           "duration_minutes" : 25,
           "exercises" : [
             {
               "alternatives" : [
-                "Planche genoux 35 sec × 2",
-                "Dead bug 10/côté × 2"
+                {
+                  "fr" : "Planche genoux 35 sec × 2"
+                },
+                {
+                  "fr" : "Dead bug 10/côté × 2"
+                }
               ],
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Bench statique",
-              "notes" : "Cutback : on revient à la version statique, 2 sets seulement (vs 3 en W3). Adaptation tendineuse. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Bench statique"
+              },
+              "notes" : {
+                "fr" : "Cutback : on revient à la version statique, 2 sets seulement (vs 3 en W3). Adaptation tendineuse. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -934,16 +1324,24 @@
             },
             {
               "alternatives" : [
-                "Planche latérale genoux 30 sec/côté × 2",
-                "Side-lying clamshell 12/côté × 2"
+                {
+                  "fr" : "Planche latérale genoux 30 sec/côté × 2"
+                },
+                {
+                  "fr" : "Side-lying clamshell 12/côté × 2"
+                }
               ],
               "duration" : "25 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Sideways Bench statique",
-              "notes" : "Cutback : version statique. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Sideways Bench statique"
+              },
+              "notes" : {
+                "fr" : "Cutback : version statique. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -954,15 +1352,23 @@
             },
             {
               "alternatives" : [
-                "Yeux ouverts 30 sec/jambe × 2",
-                "Appui doigt mur 30 sec/jambe × 2"
+                {
+                  "fr" : "Yeux ouverts 30 sec/jambe × 2"
+                },
+                {
+                  "fr" : "Appui doigt mur 30 sec/jambe × 2"
+                }
               ],
               "duration" : "30 sec par jambe",
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "FIFA 11+ — Single Leg Stance yeux fermés",
-              "notes" : "Maintien proprio. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Single Leg Stance yeux fermés"
+              },
+              "notes" : {
+                "fr" : "Maintien proprio. RPE 6-7."
+              },
               "required_equipment" : [
 
               ],
@@ -973,15 +1379,23 @@
             },
             {
               "alternatives" : [
-                "Squat chaise 10 × 2",
-                "Wall sit 30 sec × 2"
+                {
+                  "fr" : "Squat chaise 10 × 2"
+                },
+                {
+                  "fr" : "Wall sit 30 sec × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Squats bodyweight",
-              "notes" : "Cutback : 2 sets (vs 3 en W3). Tempo standard 2-1-1. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Squats bodyweight"
+              },
+              "notes" : {
+                "fr" : "Cutback : 2 sets (vs 3 en W3). Tempo standard 2-1-1. RPE 6-7."
+              },
               "reps" : "10",
               "required_equipment" : [
 
@@ -993,14 +1407,22 @@
             },
             {
               "alternatives" : [
-                "Pont fessier pieds chaise 10 × 2",
-                "Bridge isométrique 25 sec × 2"
+                {
+                  "fr" : "Pont fessier pieds chaise 10 × 2"
+                },
+                {
+                  "fr" : "Bridge isométrique 25 sec × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier bipodal",
-              "notes" : "Cutback. RPE 6-7.",
+              "name" : {
+                "fr" : "Pont fessier bipodal"
+              },
+              "notes" : {
+                "fr" : "Cutback. RPE 6-7."
+              },
               "reps" : "10",
               "required_equipment" : [
                 "mat"
@@ -1012,14 +1434,22 @@
             },
             {
               "alternatives" : [
-                "Calf raises assis 15 × 2",
-                "Wall calf raise 15 × 2"
+                {
+                  "fr" : "Calf raises assis 15 × 2"
+                },
+                {
+                  "fr" : "Wall calf raise 15 × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises bipodal",
-              "notes" : "Cutback : retour à 15 reps (vs 20 en W3). RPE 6-7.",
+              "name" : {
+                "fr" : "Calf raises bipodal"
+              },
+              "notes" : {
+                "fr" : "Cutback : retour à 15 reps (vs 20 en W3). RPE 6-7."
+              },
               "reps" : "15",
               "required_equipment" : [
 
@@ -1030,33 +1460,51 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "S&C off-terrain — FIFA 11+ partie 2 cutback (volume -20%)",
+          "name" : {
+            "fr" : "S&C off-terrain — FIFA 11+ partie 2 cutback (volume -20%)"
+          },
           "type" : "strength",
-          "warmup" : "5 min marche + cercles épaule + rotations bassin + montées de genoux + talons-fesses. Total 6 min."
+          "warmup" : {
+            "fr" : "5 min marche + cercles épaule + rotations bassin + montées de genoux + talons-fesses. Total 6 min."
+          }
         }
       ],
-      "theme" : "Cutback consolidation + premier foot à 5 amical",
+      "theme" : {
+        "fr" : "Cutback consolidation + premier foot à 5 amical"
+      },
       "week_number" : 4
     },
     {
-      "goal" : "Reprise post-cutback. Conduite slalom 5 cônes plus serrés (1.5 m d'écart) + introduction passes latérales courtes (intérieur du pied vers le côté). Renforcement avec ajout single leg squat assisté et lateral bound bas. Volume cible : ~55 min terrain + 38 min S&C.",
+      "goal" : {
+        "fr" : "Reprise post-cutback. Conduite slalom 5 cônes plus serrés (1.5 m d'écart) + introduction passes latérales courtes (intérieur du pied vers le côté). Renforcement avec ajout single leg squat assisté et lateral bound bas. Volume cible : ~55 min terrain + 38 min S&C."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements complets (30 sec/côté chacun) : quadriceps, ischio, adducteurs, mollets, fessiers, hip flexors.",
+          "cooldown" : {
+            "fr" : "5 min marche + étirements complets (30 sec/côté chacun) : quadriceps, ischio, adducteurs, mollets, fessiers, hip flexors."
+          },
           "day" : 1,
           "duration_minutes" : 55,
           "exercises" : [
             {
               "alternatives" : [
-                "Passe contre mur + frappe placée 5 min",
-                "Passe binôme + frappe sur cible 5 min"
+                {
+                  "fr" : "Passe contre mur + frappe placée 5 min"
+                },
+                {
+                  "fr" : "Passe binôme + frappe sur cible 5 min"
+                }
               ],
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Rappel passe + frappe placée",
-              "notes" : "5 passes pied fort + 5 passes pied faible + 4 frappes placées sur cible. Routine d'entrée. Charge cognitive 3-4.",
+              "name" : {
+                "fr" : "Rappel passe + frappe placée"
+              },
+              "notes" : {
+                "fr" : "5 passes pied fort + 5 passes pied faible + 4 frappes placées sur cible. Routine d'entrée. Charge cognitive 3-4."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -1070,15 +1518,23 @@
             },
             {
               "alternatives" : [
-                "Slalom 5 cônes 2 m × 2 AR × 5",
-                "Conduite ligne droite + virages larges 5 × 2 AR"
+                {
+                  "fr" : "Slalom 5 cônes 2 m × 2 AR × 5"
+                },
+                {
+                  "fr" : "Conduite ligne droite + virages larges 5 × 2 AR"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
               ],
-              "name" : "Conduite slalom 5 cônes 1.5 m (8 m total) — intérieur + extérieur",
-              "notes" : "Progression W3 : cônes plus rapprochés (1.5 m vs 2 m), conduite alternée intérieur du pied + extérieur. Tester le contrôle ballon serré. Objectif progressif vers 10 sec aller-retour en W8. Allure modérée, focus contrôle. RPE technique 4-5.",
+              "name" : {
+                "fr" : "Conduite slalom 5 cônes 1.5 m (8 m total) — intérieur + extérieur"
+              },
+              "notes" : {
+                "fr" : "Progression W3 : cônes plus rapprochés (1.5 m vs 2 m), conduite alternée intérieur du pied + extérieur. Tester le contrôle ballon serré. Objectif progressif vers 10 sec aller-retour en W8. Allure modérée, focus contrôle. RPE technique 4-5."
+              },
               "reps" : "2 allers-retours",
               "required_equipment" : [
                 "cleats",
@@ -1093,16 +1549,24 @@
             },
             {
               "alternatives" : [
-                "Passes latérales statiques en binôme 3 min × 4",
-                "Drill mur passe + déplacement latéral 3 min × 4"
+                {
+                  "fr" : "Passes latérales statiques en binôme 3 min × 4"
+                },
+                {
+                  "fr" : "Drill mur passe + déplacement latéral 3 min × 4"
+                }
               ],
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "groin-injury",
                 "ankle-injury"
               ],
-              "name" : "Passes latérales en mouvement",
-              "notes" : "Avec partenaire ou contre mur en angle. Tu cours doucement le long d'une ligne de 10 m + à mi-parcours, tu passes en intérieur du pied vers le partenaire / mur sur le côté. Le partenaire / mur renvoie, tu contrôles, tu repars. Premier travail de passe en mouvement. Allure Z2 (~65-75% FCmax).",
+              "name" : {
+                "fr" : "Passes latérales en mouvement"
+              },
+              "notes" : {
+                "fr" : "Avec partenaire ou contre mur en angle. Tu cours doucement le long d'une ligne de 10 m + à mi-parcours, tu passes en intérieur du pied vers le partenaire / mur sur le côté. Le partenaire / mur renvoie, tu contrôles, tu repars. Premier travail de passe en mouvement. Allure Z2 (~65-75% FCmax)."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -1115,16 +1579,24 @@
             },
             {
               "alternatives" : [
-                "Frappe placée pied fort seul 6 × 4",
-                "Frappe placée contre mur point précis 6 × 4"
+                {
+                  "fr" : "Frappe placée pied fort seul 6 × 4"
+                },
+                {
+                  "fr" : "Frappe placée contre mur point précis 6 × 4"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
                 "ankle-injury"
               ],
-              "name" : "Frappe placée pied fort + pied faible cible 1×1 m",
-              "notes" : "Progression W3 : on introduit la frappe pied faible. 3 frappes par pied par série. Précision avant tout. RPE technique 4-5.",
+              "name" : {
+                "fr" : "Frappe placée pied fort + pied faible cible 1×1 m"
+              },
+              "notes" : {
+                "fr" : "Progression W3 : on introduit la frappe pied faible. 3 frappes par pied par série. Précision avant tout. RPE technique 4-5."
+              },
               "reps" : "6 frappes (3 par pied)",
               "required_equipment" : [
                 "cleats",
@@ -1139,16 +1611,24 @@
             },
             {
               "alternatives" : [
-                "Course Z2 sans ballon 10 min",
-                "Marche rapide ballon dans les pieds 12 min"
+                {
+                  "fr" : "Course Z2 sans ballon 10 min"
+                },
+                {
+                  "fr" : "Marche rapide ballon dans les pieds 12 min"
+                }
               ],
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Course intermittente Z2 + conduite",
-              "notes" : "Progression W3 : 2 min de plus. 1 min course conduite + 30 sec marche, 6-7 cycles. Z2 (~65-75% FCmax).",
+              "name" : {
+                "fr" : "Course intermittente Z2 + conduite"
+              },
+              "notes" : {
+                "fr" : "Progression W3 : 2 min de plus. 1 min course conduite + 30 sec marche, 6-7 cycles. Z2 (~65-75% FCmax)."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -1161,15 +1641,23 @@
             },
             {
               "alternatives" : [
-                "Marche libre 4 min",
-                "Étirements debout 4 min"
+                {
+                  "fr" : "Marche libre 4 min"
+                },
+                {
+                  "fr" : "Étirements debout 4 min"
+                }
               ],
               "duration" : "4 min",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Cool-down marche",
-              "notes" : "Marche + respiration profonde.",
+              "name" : {
+                "fr" : "Cool-down marche"
+              },
+              "notes" : {
+                "fr" : "Marche + respiration profonde."
+              },
               "required_equipment" : [
                 "cleats"
               ],
@@ -1179,26 +1667,40 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Terrain — conduite slalom enrichie + passes latérales",
+          "name" : {
+            "fr" : "Terrain — conduite slalom enrichie + passes latérales"
+          },
           "type" : "technique",
-          "warmup" : "Échauffement FIFA 11+ partie 1 complète 10 min : 5 variantes de course × 30 m chacune."
+          "warmup" : {
+            "fr" : "Échauffement FIFA 11+ partie 1 complète 10 min : 5 variantes de course × 30 m chacune."
+          }
         },
         {
-          "cooldown" : "Étirement mollets, fessier, adducteurs, ischio, quadriceps (30 sec/côté), respiration 1 min.",
+          "cooldown" : {
+            "fr" : "Étirement mollets, fessier, adducteurs, ischio, quadriceps (30 sec/côté), respiration 1 min."
+          },
           "day" : 4,
           "duration_minutes" : 38,
           "exercises" : [
             {
               "alternatives" : [
-                "Planche statique 40 sec × 3",
-                "Bench genoux jambe levée 30 sec × 3"
+                {
+                  "fr" : "Planche statique 40 sec × 3"
+                },
+                {
+                  "fr" : "Bench genoux jambe levée 30 sec × 3"
+                }
               ],
               "duration" : "25 sec par jambe levée",
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Bench dynamique 1 jambe levée",
-              "notes" : "Reprise post-cutback. Stabilité dynamique. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Bench dynamique 1 jambe levée"
+              },
+              "notes" : {
+                "fr" : "Reprise post-cutback. Stabilité dynamique. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -1209,16 +1711,24 @@
             },
             {
               "alternatives" : [
-                "Planche latérale statique 35 sec/côté × 2",
-                "Side plank genoux 35 sec/côté × 2"
+                {
+                  "fr" : "Planche latérale statique 35 sec/côté × 2"
+                },
+                {
+                  "fr" : "Side plank genoux 35 sec/côté × 2"
+                }
               ],
               "duration" : "30 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Sideways Bench dynamique",
-              "notes" : "Planche latérale + 5 montées-descentes du bassin pendant la tenue. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Sideways Bench dynamique"
+              },
+              "notes" : {
+                "fr" : "Planche latérale + 5 montées-descentes du bassin pendant la tenue. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -1229,15 +1739,23 @@
             },
             {
               "alternatives" : [
-                "Squat à la chaise 12 × 2",
-                "Step-up sur marche basse 8/jambe × 2"
+                {
+                  "fr" : "Squat à la chaise 12 × 2"
+                },
+                {
+                  "fr" : "Step-up sur marche basse 8/jambe × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Single leg squat assisté (à la chaise ou au mur)",
-              "notes" : "Introduction force unilatérale. Une main appui sur chaise ou mur, descendre sur une jambe en gardant le genou dans l'axe, l'autre jambe légèrement décollée devant. Descente 3 sec, remontée 1 sec. Cible quadriceps + fessier + proprio. RPE 6-7.",
+              "name" : {
+                "fr" : "Single leg squat assisté (à la chaise ou au mur)"
+              },
+              "notes" : {
+                "fr" : "Introduction force unilatérale. Une main appui sur chaise ou mur, descendre sur une jambe en gardant le genou dans l'axe, l'autre jambe légèrement décollée devant. Descente 3 sec, remontée 1 sec. Cible quadriceps + fessier + proprio. RPE 6-7."
+              },
               "reps" : "6 par jambe",
               "required_equipment" : [
 
@@ -1249,15 +1767,23 @@
             },
             {
               "alternatives" : [
-                "Squat latéral pas chassé 8/côté × 2",
-                "Side-lying clamshell 12/côté × 2"
+                {
+                  "fr" : "Squat latéral pas chassé 8/côté × 2"
+                },
+                {
+                  "fr" : "Side-lying clamshell 12/côté × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Lateral bound bas (saut latéral unilatéral)",
-              "notes" : "Introduction plyo modérée. Saut latéral d'une jambe à l'autre, hauteur sub-maximale, focus stabilité de réception (genou dans l'axe, cheville stable). Pas de course, pas de précipitation. Si débuter en plyo te semble compliqué, reste sur squat unilatéral cette semaine. RPE 6-7.",
+              "name" : {
+                "fr" : "Lateral bound bas (saut latéral unilatéral)"
+              },
+              "notes" : {
+                "fr" : "Introduction plyo modérée. Saut latéral d'une jambe à l'autre, hauteur sub-maximale, focus stabilité de réception (genou dans l'axe, cheville stable). Pas de course, pas de précipitation. Si débuter en plyo te semble compliqué, reste sur squat unilatéral cette semaine. RPE 6-7."
+              },
               "reps" : "5 par côté",
               "required_equipment" : [
 
@@ -1269,15 +1795,23 @@
             },
             {
               "alternatives" : [
-                "Single leg stance simple 30 sec/jambe × 2",
-                "Single leg appui mur 30 sec/jambe × 2"
+                {
+                  "fr" : "Single leg stance simple 30 sec/jambe × 2"
+                },
+                {
+                  "fr" : "Single leg appui mur 30 sec/jambe × 2"
+                }
               ],
               "duration" : "30 sec par jambe",
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "FIFA 11+ — Single Leg Stance + tap genou opposé",
-              "notes" : "Yeux ouverts + tap genou opposé sur le côté. Proprio + force fessier moyen. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Single Leg Stance + tap genou opposé"
+              },
+              "notes" : {
+                "fr" : "Yeux ouverts + tap genou opposé sur le côté. Proprio + force fessier moyen. RPE 6-7."
+              },
               "required_equipment" : [
 
               ],
@@ -1288,14 +1822,22 @@
             },
             {
               "alternatives" : [
-                "Pont pieds chaise 12 × 3",
-                "Bridge isométrique 30 sec × 3"
+                {
+                  "fr" : "Pont pieds chaise 12 × 3"
+                },
+                {
+                  "fr" : "Bridge isométrique 30 sec × 3"
+                }
               ],
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier bipodal",
-              "notes" : "Tenir 2 sec en haut. RPE 6-7.",
+              "name" : {
+                "fr" : "Pont fessier bipodal"
+              },
+              "notes" : {
+                "fr" : "Tenir 2 sec en haut. RPE 6-7."
+              },
               "reps" : "12",
               "required_equipment" : [
                 "mat"
@@ -1307,14 +1849,22 @@
             },
             {
               "alternatives" : [
-                "Calf raises assis 20 × 2",
-                "Wall calf raise 20 × 2"
+                {
+                  "fr" : "Calf raises assis 20 × 2"
+                },
+                {
+                  "fr" : "Wall calf raise 20 × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises bipodal",
-              "notes" : "RPE 6-7.",
+              "name" : {
+                "fr" : "Calf raises bipodal"
+              },
+              "notes" : {
+                "fr" : "RPE 6-7."
+              },
               "reps" : "20",
               "required_equipment" : [
 
@@ -1325,33 +1875,51 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "S&C off-terrain — FIFA 11+ + force unilatérale introduction",
+          "name" : {
+            "fr" : "S&C off-terrain — FIFA 11+ + force unilatérale introduction"
+          },
           "type" : "strength",
-          "warmup" : "5 min marche + cercles épaule + rotations bassin + montées de genoux + talons-fesses + 5 fentes alternées + 5 squats. Total 8 min."
+          "warmup" : {
+            "fr" : "5 min marche + cercles épaule + rotations bassin + montées de genoux + talons-fesses + 5 fentes alternées + 5 squats. Total 8 min."
+          }
         }
       ],
-      "theme" : "Reprise — conduite slalom enrichie + passes latérales",
+      "theme" : {
+        "fr" : "Reprise — conduite slalom enrichie + passes latérales"
+      },
       "week_number" : 5
     },
     {
-      "goal" : "Introduire le jeu réduit 4v4 espace large (~30×25 m) calme + travail jonglage progressif (objectif 5 contacts cuisse-cuisse-pied). Renforcement avec FIFA 11+ partie 3 introduction lente (running cutting très progressif, sans pleine vitesse). Volume cible : ~60 min terrain + 38 min S&C.",
+      "goal" : {
+        "fr" : "Introduire le jeu réduit 4v4 espace large (~30×25 m) calme + travail jonglage progressif (objectif 5 contacts cuisse-cuisse-pied). Renforcement avec FIFA 11+ partie 3 introduction lente (running cutting très progressif, sans pleine vitesse). Volume cible : ~60 min terrain + 38 min S&C."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements complets quadriceps, ischio, adducteurs, mollets, fessiers, hip flexors (30 sec/côté).",
+          "cooldown" : {
+            "fr" : "5 min marche + étirements complets quadriceps, ischio, adducteurs, mollets, fessiers, hip flexors (30 sec/côté)."
+          },
           "day" : 1,
           "duration_minutes" : 60,
           "exercises" : [
             {
               "alternatives" : [
-                "Révision sans cônes contre mur 8 min",
-                "Révision en binôme 8 min"
+                {
+                  "fr" : "Révision sans cônes contre mur 8 min"
+                },
+                {
+                  "fr" : "Révision en binôme 8 min"
+                }
               ],
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Rappel passe + conduite + frappe",
-              "notes" : "Routine de révision : 3 min passes pied fort + pied faible, 3 min conduite slalom 5 cônes 1.5 m, 2 min frappes placées sur cible. Charge cognitive 3-4.",
+              "name" : {
+                "fr" : "Rappel passe + conduite + frappe"
+              },
+              "notes" : {
+                "fr" : "Routine de révision : 3 min passes pied fort + pied faible, 3 min conduite slalom 5 cônes 1.5 m, 2 min frappes placées sur cible. Charge cognitive 3-4."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -1365,15 +1933,23 @@
             },
             {
               "alternatives" : [
-                "Jonglage cuisse seule 8 contacts × 4",
-                "Jonglage main-pied (lancer + 1 contact) 8 reps × 4"
+                {
+                  "fr" : "Jonglage cuisse seule 8 contacts × 4"
+                },
+                {
+                  "fr" : "Jonglage main-pied (lancer + 1 contact)"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Jonglage cuisse-cuisse-pied",
-              "notes" : "Lancer le ballon, 1 contact cuisse + 1 contact cuisse opposée + 1 contact intérieur du pied. Recommencer si le ballon tombe. Objectif : enchaîner 5 contacts cuisse-cuisse-pied par série. Charge cognitive 4-5. Patience, le débutant rate beaucoup au début.",
+              "name" : {
+                "fr" : "Jonglage cuisse-cuisse-pied"
+              },
+              "notes" : {
+                "fr" : "Lancer le ballon, 1 contact cuisse + 1 contact cuisse opposée + 1 contact intérieur du pied. Recommencer si le ballon tombe. Objectif : enchaîner 5 contacts cuisse-cuisse-pied par série. Charge cognitive 4-5. Patience, le débutant rate beaucoup au début."
+              },
               "reps" : "5 contacts cible",
               "required_equipment" : [
                 "cleats",
@@ -1386,16 +1962,24 @@
             },
             {
               "alternatives" : [
-                "Conduite + passe contre mur 2 min × 4",
-                "Conduite + passe binôme 2 min × 4"
+                {
+                  "fr" : "Conduite + passe contre mur 2 min × 4"
+                },
+                {
+                  "fr" : "Conduite + passe binôme 2 min × 4"
+                }
               ],
               "duration" : "2 min",
               "incompatible_constraints" : [
                 "ankle-injury",
                 "groin-injury"
               ],
-              "name" : "Conduite + passe (vague)",
-              "notes" : "Conduire le ballon sur 10 m, puis passer en intérieur du pied vers un cône à 8-10 m. Aller récupérer, repartir. Première chaîne conduite-passe en mouvement. Allure Z2 (~65-75% FCmax).",
+              "name" : {
+                "fr" : "Conduite + passe (vague)"
+              },
+              "notes" : {
+                "fr" : "Conduire le ballon sur 10 m, puis passer en intérieur du pied vers un cône à 8-10 m. Aller récupérer, repartir. Première chaîne conduite-passe en mouvement. Allure Z2 (~65-75% FCmax)."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -1409,8 +1993,12 @@
             },
             {
               "alternatives" : [
-                "Jeu réduit 3v3 sur 25×20 m 2 × 6 min",
-                "Drill mur 50 passes consécutives + conduite slalom 12 min"
+                {
+                  "fr" : "Jeu réduit 3v3 sur 25×20 m 2 × 6 min"
+                },
+                {
+                  "fr" : "Drill mur 50 passes consécutives + conduite slalom 12 min"
+                }
               ],
               "duration" : "6 min jeu + 3 min récup marche",
               "incompatible_constraints" : [
@@ -1419,8 +2007,12 @@
                 "groin-injury",
                 "concussion-history"
               ],
-              "name" : "Jeu réduit 4v4 espace large (~30×25 m) — 2 mi-temps de 6 min",
-              "notes" : "Petits buts (mini-goals ou cônes). Espace large pour favoriser les passes et le jeu calme, pas la course folle. SANS chrono officiel, SANS score sérieux, focus passe-contrôle-conduite en situation de jeu. Allure Z2 conversationnelle (~65-75% FCmax). Si effectif insuffisant, jeu réduit 3v3 ou 2v2 sur même espace. Si pas du tout d'effectif, drill mur 50 passes consécutives + conduite slalom.",
+              "name" : {
+                "fr" : "Jeu réduit 4v4 espace large (~30×25 m) — 2 mi-temps de 6 min"
+              },
+              "notes" : {
+                "fr" : "Petits buts (mini-goals ou cônes). Espace large pour favoriser les passes et le jeu calme, pas la course folle. SANS chrono officiel, SANS score sérieux, focus passe-contrôle-conduite en situation de jeu. Allure Z2 conversationnelle (~65-75% FCmax). Si effectif insuffisant, jeu réduit 3v3 ou 2v2 sur même espace. Si pas du tout d'effectif, drill mur 50 passes consécutives + conduite slalom."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -1436,15 +2028,23 @@
             },
             {
               "alternatives" : [
-                "Marche libre 5 min",
-                "Étirements debout 5 min"
+                {
+                  "fr" : "Marche libre 5 min"
+                },
+                {
+                  "fr" : "Étirements debout 5 min"
+                }
               ],
               "duration" : "5 min",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Cool-down marche",
-              "notes" : "Marche autour du terrain + respiration profonde + petits étirements debout. Récupération active.",
+              "name" : {
+                "fr" : "Cool-down marche"
+              },
+              "notes" : {
+                "fr" : "Marche autour du terrain + respiration profonde + petits étirements debout. Récupération active."
+              },
               "required_equipment" : [
                 "cleats"
               ],
@@ -1454,26 +2054,40 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Terrain — jeu réduit 4v4 espace large + jonglage",
+          "name" : {
+            "fr" : "Terrain — jeu réduit 4v4 espace large + jonglage"
+          },
           "type" : "mixed",
-          "warmup" : "Échauffement FIFA 11+ partie 1 complète 10 min + introduction très douce partie 3 : course rapide modérée 4 × 30 m + course shuttle 5-10 m × 4 reps (sans pleine vitesse)."
+          "warmup" : {
+            "fr" : "Échauffement FIFA 11+ partie 1 complète 10 min + introduction très douce partie 3 : course rapide modérée 4 × 30 m + course shuttle 5-10 m × 4 reps (sans pleine vitesse)."
+          }
         },
         {
-          "cooldown" : "Étirements complets mollets, fessier, adducteurs, ischio, quadriceps, hip flexors (30 sec/côté), respiration 1 min.",
+          "cooldown" : {
+            "fr" : "Étirements complets mollets, fessier, adducteurs, ischio, quadriceps, hip flexors (30 sec/côté), respiration 1 min."
+          },
           "day" : 4,
           "duration_minutes" : 38,
           "exercises" : [
             {
               "alternatives" : [
-                "Planche statique 45 sec × 3",
-                "Bench genoux jambe levée alternée 35 sec × 3"
+                {
+                  "fr" : "Planche statique 45 sec × 3"
+                },
+                {
+                  "fr" : "Bench genoux jambe levée alternée 35 sec × 3"
+                }
               ],
               "duration" : "30 sec par jambe levée alternée",
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Bench dynamique avancée",
-              "notes" : "Planche + alternance jambe levée toutes les 5 sec. Stabilité dynamique. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Bench dynamique avancée"
+              },
+              "notes" : {
+                "fr" : "Planche + alternance jambe levée toutes les 5 sec. Stabilité dynamique. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -1484,16 +2098,24 @@
             },
             {
               "alternatives" : [
-                "Planche latérale statique 35 sec/côté × 2",
-                "Side plank genoux 35 sec/côté × 2"
+                {
+                  "fr" : "Planche latérale statique 35 sec/côté × 2"
+                },
+                {
+                  "fr" : "Side plank genoux 35 sec/côté × 2"
+                }
               ],
               "duration" : "30 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Sideways Bench dynamique avancée",
-              "notes" : "Planche latérale + 6 montées-descentes du bassin. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Sideways Bench dynamique avancée"
+              },
+              "notes" : {
+                "fr" : "Planche latérale + 6 montées-descentes du bassin. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -1504,15 +2126,23 @@
             },
             {
               "alternatives" : [
-                "Squat chaise 12 × 3",
-                "Step-up marche basse 8/jambe × 3"
+                {
+                  "fr" : "Squat chaise 12 × 3"
+                },
+                {
+                  "fr" : "Step-up marche basse 8/jambe × 3"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Single leg squat assisté",
-              "notes" : "Progression W5 : 3 sets vs 2. Toujours assisté chaise/mur. RPE 6-7.",
+              "name" : {
+                "fr" : "Single leg squat assisté"
+              },
+              "notes" : {
+                "fr" : "Progression W5 : 3 sets vs 2. Toujours assisté chaise/mur. RPE 6-7."
+              },
               "reps" : "6 par jambe",
               "required_equipment" : [
 
@@ -1524,15 +2154,23 @@
             },
             {
               "alternatives" : [
-                "Squat avec petit décollement 8 × 2 + squat latéral 5/côté × 2",
-                "Sauts à la corde 30 sec × 2"
+                {
+                  "fr" : "Squat avec petit décollement 8 × 2 + squat latéral 5/côté × 2"
+                },
+                {
+                  "fr" : "Sauts à la corde 30 sec × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Vertical Jumps + Lateral bound bas",
-              "notes" : "Combo plyo léger. 8 sauts verticaux bipodaux + 5 bonds latéraux par côté. Hauteur sub-maximale. Focus stabilité de réception. RPE 6-7.",
+              "name" : {
+                "fr" : "Vertical Jumps + Lateral bound bas"
+              },
+              "notes" : {
+                "fr" : "Combo plyo léger. 8 sauts verticaux bipodaux + 5 bonds latéraux par côté. Hauteur sub-maximale. Focus stabilité de réception. RPE 6-7."
+              },
               "reps" : "8 vertical + 5 lateral par côté",
               "required_equipment" : [
 
@@ -1544,15 +2182,23 @@
             },
             {
               "alternatives" : [
-                "Single leg stance + tap genou 30 sec/jambe × 2",
-                "Single leg yeux fermés 30 sec/jambe × 2"
+                {
+                  "fr" : "Single leg stance + tap genou 30 sec/jambe × 2"
+                },
+                {
+                  "fr" : "Single leg yeux fermés 30 sec/jambe × 2"
+                }
               ],
               "duration" : "30 sec par jambe",
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "FIFA 11+ — Single Leg Stance + ballon partenaire",
-              "notes" : "Progression : sur une jambe + recevoir et renvoyer doucement un ballon lancé par partenaire (ou rebond contre mur). Proprio en charge cognitive. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Single Leg Stance + ballon partenaire"
+              },
+              "notes" : {
+                "fr" : "Progression : sur une jambe + recevoir et renvoyer doucement un ballon lancé par partenaire (ou rebond contre mur). Proprio en charge cognitive. RPE 6-7."
+              },
               "required_equipment" : [
                 "ball"
               ],
@@ -1563,15 +2209,23 @@
             },
             {
               "alternatives" : [
-                "Pont fessier bipodal 14 × 2",
-                "Pont pieds chaise 12 × 2"
+                {
+                  "fr" : "Pont fessier bipodal 14 × 2"
+                },
+                {
+                  "fr" : "Pont pieds chaise 12 × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
               ],
-              "name" : "Pont fessier unilatéral introduction",
-              "notes" : "Allongé sur le dos, un pied à plat, l'autre jambe tendue ou légèrement levée. Monter le bassin sur la jambe d'appui. Cible fessier moyen + ischio. Plus dur que le pont bipodal — c'est normal. RPE 6-7.",
+              "name" : {
+                "fr" : "Pont fessier unilatéral introduction"
+              },
+              "notes" : {
+                "fr" : "Allongé sur le dos, un pied à plat, l'autre jambe tendue ou légèrement levée. Monter le bassin sur la jambe d'appui. Cible fessier moyen + ischio. Plus dur que le pont bipodal — c'est normal. RPE 6-7."
+              },
               "reps" : "8 par jambe",
               "required_equipment" : [
                 "mat"
@@ -1583,14 +2237,22 @@
             },
             {
               "alternatives" : [
-                "Calf raises assis 22 × 2",
-                "Wall calf raise 22 × 2"
+                {
+                  "fr" : "Calf raises assis 22 × 2"
+                },
+                {
+                  "fr" : "Wall calf raise 22 × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises bipodal",
-              "notes" : "Légère progression. RPE 6-7.",
+              "name" : {
+                "fr" : "Calf raises bipodal"
+              },
+              "notes" : {
+                "fr" : "Légère progression. RPE 6-7."
+              },
               "reps" : "22",
               "required_equipment" : [
 
@@ -1601,34 +2263,52 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "S&C off-terrain — FIFA 11+ partie 2 progression + plyo léger",
+          "name" : {
+            "fr" : "S&C off-terrain — FIFA 11+ partie 2 progression + plyo léger"
+          },
           "type" : "strength",
-          "warmup" : "5 min marche + cercles épaule + rotations bassin + montées de genoux + talons-fesses + 5 fentes alternées + 5 squats lents + 5 sauts à la corde lents (si dispo). Total 9 min."
+          "warmup" : {
+            "fr" : "5 min marche + cercles épaule + rotations bassin + montées de genoux + talons-fesses + 5 fentes alternées + 5 squats lents + 5 sauts à la corde lents (si dispo). Total 9 min."
+          }
         }
       ],
-      "theme" : "Construction — jeu réduit 4v4 espace large + jonglage",
+      "theme" : {
+        "fr" : "Construction — jeu réduit 4v4 espace large + jonglage"
+      },
       "week_number" : 6
     },
     {
-      "goal" : "Séance phare technique 60 min : 25 min drills techniques (passe pied fort + pied faible + conduite slalom + frappe placée) + 15-20 min jeu réduit 4v4 espace large + 10 min mobilité-prévention + cool-down. Renforcement maintenu volume élevé. Volume cible : ~60 min terrain + 40 min S&C.",
+      "goal" : {
+        "fr" : "Séance phare technique 60 min : 25 min drills techniques (passe pied fort + pied faible + conduite slalom + frappe placée) + 15-20 min jeu réduit 4v4 espace large + 10 min mobilité-prévention + cool-down. Renforcement maintenu volume élevé. Volume cible : ~60 min terrain + 40 min S&C."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements complets (30 sec/côté chacun) : quadriceps, ischio, adducteurs, mollets, fessiers, hip flexors.",
+          "cooldown" : {
+            "fr" : "5 min marche + étirements complets (30 sec/côté chacun) : quadriceps, ischio, adducteurs, mollets, fessiers, hip flexors."
+          },
           "day" : 1,
           "duration_minutes" : 60,
           "exercises" : [
             {
               "alternatives" : [
-                "Passes contre mur 8 min",
-                "Passes en binôme rebondisseur 8 min"
+                {
+                  "fr" : "Passes contre mur 8 min"
+                },
+                {
+                  "fr" : "Passes en binôme rebondisseur 8 min"
+                }
               ],
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "ankle-injury",
                 "groin-injury"
               ],
-              "name" : "Drills techniques — passe pied fort + pied faible (binôme ou mur)",
-              "notes" : "Drill 1 (4 min) : passes intérieur du pied fort à 8-10 m, partenaire ou mur. Drill 2 (4 min) : passes pied faible. Compter les passes consécutives sans rater. Objectif progressif vers 30 passes consécutives en W8. Allure Z2 (~65-75% FCmax).",
+              "name" : {
+                "fr" : "Drills techniques — passe pied fort + pied faible (binôme ou mur)"
+              },
+              "notes" : {
+                "fr" : "Drill 1 (4 min) : passes intérieur du pied fort à 8-10 m, partenaire ou mur. Drill 2 (4 min) : passes pied faible. Compter les passes consécutives sans rater. Objectif progressif vers 30 passes consécutives en W8. Allure Z2 (~65-75% FCmax)."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -1641,15 +2321,23 @@
             },
             {
               "alternatives" : [
-                "Slalom 4 cônes 2 m chronométré 5 × 1",
-                "Conduite ligne droite + virages 5 × 1"
+                {
+                  "fr" : "Slalom 4 cônes 2 m chronométré 5 × 1"
+                },
+                {
+                  "fr" : "Conduite ligne droite + virages 5 × 1"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
               ],
-              "name" : "Drills techniques — conduite slalom 5 cônes 1.5 m chronométrée (sans pression)",
-              "notes" : "Conduite slalom alternance intérieur-extérieur du pied. Chronomètre les 5 m aller pour l'autoévaluation autonome. Objectif progressif vers 10 sec aller-retour en W8. Allure modérée, focus contrôle ballon serré. RPE technique 4-5.",
+              "name" : {
+                "fr" : "Drills techniques — conduite slalom 5 cônes 1.5 m chronométrée (sans pression)"
+              },
+              "notes" : {
+                "fr" : "Conduite slalom alternance intérieur-extérieur du pied. Chronomètre les 5 m aller pour l'autoévaluation autonome. Objectif progressif vers 10 sec aller-retour en W8. Allure modérée, focus contrôle ballon serré. RPE technique 4-5."
+              },
               "reps" : "1 passage chronométré + 1 retour libre",
               "required_equipment" : [
                 "cleats",
@@ -1664,16 +2352,24 @@
             },
             {
               "alternatives" : [
-                "Frappe pied fort seul 8 × 4",
-                "Frappe contre mur point précis 8 × 4"
+                {
+                  "fr" : "Frappe pied fort seul 8 × 4"
+                },
+                {
+                  "fr" : "Frappe contre mur point précis 8 × 4"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
                 "ankle-injury"
               ],
-              "name" : "Drills techniques — frappe placée pied fort + pied faible",
-              "notes" : "Cible 1×1 m à 8 m. Compter les frappes dans la cible (objectif 6/10 minimum en W8). Précision avant tout. RPE technique 4-5.",
+              "name" : {
+                "fr" : "Drills techniques — frappe placée pied fort + pied faible"
+              },
+              "notes" : {
+                "fr" : "Cible 1×1 m à 8 m. Compter les frappes dans la cible (objectif 6/10 minimum en W8). Précision avant tout. RPE technique 4-5."
+              },
               "reps" : "8 frappes (4 par pied)",
               "required_equipment" : [
                 "cleats",
@@ -1688,8 +2384,12 @@
             },
             {
               "alternatives" : [
-                "Jeu réduit 3v3 sur 25×20 m 2 × 8 min",
-                "Drill mur 50 passes + conduite slalom enchaînés 16 min"
+                {
+                  "fr" : "Jeu réduit 3v3 sur 25×20 m 2 × 8 min"
+                },
+                {
+                  "fr" : "Drill mur 50 passes + conduite slalom enchaînés 16 min"
+                }
               ],
               "duration" : "8 min jeu + 3 min récup marche",
               "incompatible_constraints" : [
@@ -1698,8 +2398,12 @@
                 "groin-injury",
                 "concussion-history"
               ],
-              "name" : "Jeu réduit 4v4 espace large (~30×25 m) — 2 mi-temps de 8 min",
-              "notes" : "Progression W6 : 2 min de plus par mi-temps. Mini-goals ou cônes. Focus passe-contrôle-conduite en jeu calme. Allure Z2 (~65-75% FCmax). Si pas d'effectif, drill mur 50 passes + conduite slalom enchaînés.",
+              "name" : {
+                "fr" : "Jeu réduit 4v4 espace large (~30×25 m) — 2 mi-temps de 8 min"
+              },
+              "notes" : {
+                "fr" : "Progression W6 : 2 min de plus par mi-temps. Mini-goals ou cônes. Focus passe-contrôle-conduite en jeu calme. Allure Z2 (~65-75% FCmax). Si pas d'effectif, drill mur 50 passes + conduite slalom enchaînés."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -1715,15 +2419,23 @@
             },
             {
               "alternatives" : [
-                "Marche libre 5 min",
-                "Étirements debout 5 min"
+                {
+                  "fr" : "Marche libre 5 min"
+                },
+                {
+                  "fr" : "Étirements debout 5 min"
+                }
               ],
               "duration" : "5 min",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Cool-down mobilité-prévention",
-              "notes" : "Marche autour du terrain + 5 mouvements clés : 10 cercles cheville par sens, 10 fentes alternées lentes, 10 squats à la chaise lents, 10 single leg stance 5 sec/jambe, étirements debout. Récupération active + mobilité.",
+              "name" : {
+                "fr" : "Cool-down mobilité-prévention"
+              },
+              "notes" : {
+                "fr" : "Marche autour du terrain + 5 mouvements clés : 10 cercles cheville par sens, 10 fentes alternées lentes, 10 squats à la chaise lents, 10 single leg stance 5 sec/jambe, étirements debout. Récupération active + mobilité."
+              },
               "required_equipment" : [
                 "cleats"
               ],
@@ -1733,26 +2445,40 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Terrain — séance phare technique 60 min",
+          "name" : {
+            "fr" : "Terrain — séance phare technique 60 min"
+          },
           "type" : "mixed",
-          "warmup" : "Échauffement FIFA 11+ partie 1 complète 10 min + partie 3 progressive : course rapide 4 × 30 m + shuttle 5-10 m × 4 + course avec changement direction 90° doux × 4 reps (toujours sans pleine vitesse, focus technique cutting)."
+          "warmup" : {
+            "fr" : "Échauffement FIFA 11+ partie 1 complète 10 min + partie 3 progressive : course rapide 4 × 30 m + shuttle 5-10 m × 4 + course avec changement direction 90° doux × 4 reps (toujours sans pleine vitesse, focus technique cutting)."
+          }
         },
         {
-          "cooldown" : "Étirements complets (30 sec/côté chacun) : mollets, fessier, adducteurs, ischio, quadriceps, hip flexors, respiration 1 min.",
+          "cooldown" : {
+            "fr" : "Étirements complets (30 sec/côté chacun) : mollets, fessier, adducteurs, ischio, quadriceps, hip flexors, respiration 1 min."
+          },
           "day" : 4,
           "duration_minutes" : 40,
           "exercises" : [
             {
               "alternatives" : [
-                "Planche statique 50 sec × 3",
-                "Bench genoux jambe levée 40 sec × 3"
+                {
+                  "fr" : "Planche statique 50 sec × 3"
+                },
+                {
+                  "fr" : "Bench genoux jambe levée 40 sec × 3"
+                }
               ],
               "duration" : "35 sec par jambe levée alternée",
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Bench dynamique avancée",
-              "notes" : "Pic FIFA 11+ partie 2 sur ce plan beginner. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Bench dynamique avancée"
+              },
+              "notes" : {
+                "fr" : "Pic FIFA 11+ partie 2 sur ce plan beginner. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -1763,16 +2489,24 @@
             },
             {
               "alternatives" : [
-                "Planche latérale statique 40 sec/côté × 2",
-                "Side plank genoux 40 sec/côté × 2"
+                {
+                  "fr" : "Planche latérale statique 40 sec/côté × 2"
+                },
+                {
+                  "fr" : "Side plank genoux 40 sec/côté × 2"
+                }
               ],
               "duration" : "35 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Sideways Bench dynamique avancée",
-              "notes" : "Planche latérale + montées-descentes bassin pendant la tenue. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Sideways Bench dynamique avancée"
+              },
+              "notes" : {
+                "fr" : "Planche latérale + montées-descentes bassin pendant la tenue. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -1783,15 +2517,23 @@
             },
             {
               "alternatives" : [
-                "Squat chaise 14 × 3",
-                "Step-up marche basse 10/jambe × 3"
+                {
+                  "fr" : "Squat chaise 14 × 3"
+                },
+                {
+                  "fr" : "Step-up marche basse 10/jambe × 3"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Single leg squat assisté",
-              "notes" : "Progression W6 : 8 reps vs 6. Toujours assisté. RPE 6-7.",
+              "name" : {
+                "fr" : "Single leg squat assisté"
+              },
+              "notes" : {
+                "fr" : "Progression W6 : 8 reps vs 6. Toujours assisté. RPE 6-7."
+              },
               "reps" : "8 par jambe",
               "required_equipment" : [
 
@@ -1803,15 +2545,23 @@
             },
             {
               "alternatives" : [
-                "Squat latéral pas chassé 8/côté × 2 + squat décollement 8 × 2",
-                "Sauts corde 40 sec × 2"
+                {
+                  "fr" : "Squat latéral pas chassé 8/côté × 2 + squat décollement 8 × 2"
+                },
+                {
+                  "fr" : "Sauts corde 40 sec × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Lateral bound bas + Vertical Jumps",
-              "notes" : "Combo plyo léger consolidé. Focus stabilité de réception. RPE 6-7.",
+              "name" : {
+                "fr" : "Lateral bound bas + Vertical Jumps"
+              },
+              "notes" : {
+                "fr" : "Combo plyo léger consolidé. Focus stabilité de réception. RPE 6-7."
+              },
               "reps" : "6 lateral par côté + 8 vertical",
               "required_equipment" : [
 
@@ -1823,15 +2573,23 @@
             },
             {
               "alternatives" : [
-                "Pont bipodal 14 × 3",
-                "Pont pieds chaise 12 × 3"
+                {
+                  "fr" : "Pont bipodal 14 × 3"
+                },
+                {
+                  "fr" : "Pont pieds chaise 12 × 3"
+                }
               ],
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
               ],
-              "name" : "Pont fessier unilatéral",
-              "notes" : "Cible fessier moyen + ischio. Tenir 2 sec en haut. RPE 6-7.",
+              "name" : {
+                "fr" : "Pont fessier unilatéral"
+              },
+              "notes" : {
+                "fr" : "Cible fessier moyen + ischio. Tenir 2 sec en haut. RPE 6-7."
+              },
               "reps" : "8 par jambe",
               "required_equipment" : [
                 "mat"
@@ -1843,15 +2601,23 @@
             },
             {
               "alternatives" : [
-                "Dead bug 12/côté × 2",
-                "Bird-dog avant-bras 10/côté × 2"
+                {
+                  "fr" : "Dead bug 12/côté × 2"
+                },
+                {
+                  "fr" : "Bird-dog avant-bras 10/côté × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "wrist-pain",
                 "lower-back-pain"
               ],
-              "name" : "Bird-dog",
-              "notes" : "Anti-rotation lombaire. RPE 6-7.",
+              "name" : {
+                "fr" : "Bird-dog"
+              },
+              "notes" : {
+                "fr" : "Anti-rotation lombaire. RPE 6-7."
+              },
               "reps" : "10 par côté",
               "required_equipment" : [
                 "mat"
@@ -1863,14 +2629,22 @@
             },
             {
               "alternatives" : [
-                "Calf raises assis 22 × 2",
-                "Wall calf raise 22 × 2"
+                {
+                  "fr" : "Calf raises assis 22 × 2"
+                },
+                {
+                  "fr" : "Wall calf raise 22 × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises bipodal + isométrique haut",
-              "notes" : "20 reps + 3 holds isométriques de 5 sec en haut. Force et endurance mollet. RPE 6-7.",
+              "name" : {
+                "fr" : "Calf raises bipodal + isométrique haut"
+              },
+              "notes" : {
+                "fr" : "20 reps + 3 holds isométriques de 5 sec en haut. Force et endurance mollet. RPE 6-7."
+              },
               "reps" : "20 + 5 sec hold haut x 3",
               "required_equipment" : [
 
@@ -1881,34 +2655,52 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "S&C off-terrain — FIFA 11+ + force unilatérale consolidation",
+          "name" : {
+            "fr" : "S&C off-terrain — FIFA 11+ + force unilatérale consolidation"
+          },
           "type" : "strength",
-          "warmup" : "5 min marche + cercles épaule + rotations bassin + montées de genoux + talons-fesses + 5 fentes + 5 squats + 5 sauts corde. Total 9 min."
+          "warmup" : {
+            "fr" : "5 min marche + cercles épaule + rotations bassin + montées de genoux + talons-fesses + 5 fentes + 5 squats + 5 sauts corde. Total 9 min."
+          }
         }
       ],
-      "theme" : "Pic — séance phare technique + jeu réduit",
+      "theme" : {
+        "fr" : "Pic — séance phare technique + jeu réduit"
+      },
       "week_number" : 7
     },
     {
-      "goal" : "Dernière semaine. Séance phare consolidée 60 min + foot à 5 amical 15 min sans enjeu + checklist d'autonomie 5 critères pour valider l'acquisition des bases. Renforcement allégé pour préparer la fin du programme. Volume cible : ~60 min terrain + 30 min S&C.\n\nCHECKLIST D'AUTONOMIE BEGINNER FOOTBALL (à valider en fin de séance phare) :\n1. Je tiens 30 passes consécutives intérieur du pied contre mur ou en binôme à 8 m sans rater plus de 3 fois.\n2. Je conduis le ballon en slalom sur 5 cônes (10 m) en moins de 12 sec sans perdre le contrôle, alternance intérieur-extérieur du pied.\n3. Je place 6 frappes sur 10 dans une cible 1×1 m à 8 m (4 pied fort + 2 pied faible minimum).\n4. Je tiens un foot à 5 amical 15 min sans inconfort cheville/genou/adducteurs et avec récupération FC en 3 min.\n5. Je réalise mon échauffement FIFA 11+ partie 1+2 raccourci 10 min de manière autonome avant chaque séance terrain.",
+      "goal" : {
+        "fr" : "Dernière semaine. Séance phare consolidée 60 min + foot à 5 amical 15 min sans enjeu + checklist d'autonomie 5 critères pour valider l'acquisition des bases. Renforcement allégé pour préparer la fin du programme. Volume cible : ~60 min terrain + 30 min S&C.\n\nCHECKLIST D'AUTONOMIE BEGINNER FOOTBALL (à valider en fin de séance phare) :\n1. Je tiens 30 passes consécutives intérieur du pied contre mur ou en binôme à 8 m sans rater plus de 3 fois.\n2. Je conduis le ballon en slalom sur 5 cônes (10 m) en moins de 12 sec sans perdre le contrôle, alternance intérieur-extérieur du pied.\n3. Je place 6 frappes sur 10 dans une cible 1×1 m à 8 m (4 pied fort + 2 pied faible minimum).\n4. Je tiens un foot à 5 amical 15 min sans inconfort cheville/genou/adducteurs et avec récupération FC en 3 min.\n5. Je réalise mon échauffement FIFA 11+ partie 1+2 raccourci 10 min de manière autonome avant chaque séance terrain."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements complets (30 sec/côté) : quadriceps, ischio, adducteurs, mollets, fessiers, hip flexors. Respiration profonde + bilan personnel sur les 4 critères de la checklist.",
+          "cooldown" : {
+            "fr" : "5 min marche + étirements complets (30 sec/côté) : quadriceps, ischio, adducteurs, mollets, fessiers, hip flexors. Respiration profonde + bilan personnel sur les 4 critères de la checklist."
+          },
           "day" : 1,
           "duration_minutes" : 60,
           "exercises" : [
             {
               "alternatives" : [
-                "Passes contre mur test 4 min × 2",
-                "Passes binôme rebondisseur test 4 min × 2"
+                {
+                  "fr" : "Passes contre mur test 4 min × 2"
+                },
+                {
+                  "fr" : "Passes binôme rebondisseur test 4 min × 2"
+                }
               ],
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "ankle-injury",
                 "groin-injury"
               ],
-              "name" : "Drills techniques — révision passe pied fort + pied faible (test autonome)",
-              "notes" : "TEST 1 CHECKLIST : compte les passes intérieur du pied consécutives sans rater (cible 30+ contre mur ou binôme à 8 m, mix pied fort + pied faible). Allure Z2 (~65-75% FCmax). Note ton score.",
+              "name" : {
+                "fr" : "Drills techniques — révision passe pied fort + pied faible (test autonome)"
+              },
+              "notes" : {
+                "fr" : "TEST 1 CHECKLIST : compte les passes intérieur du pied consécutives sans rater (cible 30+ contre mur ou binôme à 8 m, mix pied fort + pied faible). Allure Z2 (~65-75% FCmax). Note ton score."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -1921,15 +2713,23 @@
             },
             {
               "alternatives" : [
-                "Slalom 4 cônes 2 m chronométré 3 × 1",
-                "Conduite ligne droite chronométrée 3 × 1"
+                {
+                  "fr" : "Slalom 4 cônes 2 m chronométré 3 × 1"
+                },
+                {
+                  "fr" : "Conduite ligne droite chronométrée 3 × 1"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
               ],
-              "name" : "Drill technique — conduite slalom 5 cônes 10 m chronométré (test autonome)",
-              "notes" : "TEST 2 CHECKLIST : chronomètre l'aller (5 cônes, 10 m, alternance intérieur-extérieur du pied). Cible : moins de 12 sec sans perdre le contrôle. Note ton meilleur temps. RPE technique 4-5.",
+              "name" : {
+                "fr" : "Drill technique — conduite slalom 5 cônes 10 m chronométré (test autonome)"
+              },
+              "notes" : {
+                "fr" : "TEST 2 CHECKLIST : chronomètre l'aller (5 cônes, 10 m, alternance intérieur-extérieur du pied). Cible : moins de 12 sec sans perdre le contrôle. Note ton meilleur temps. RPE technique 4-5."
+              },
               "reps" : "1 passage chronométré aller + 1 retour libre",
               "required_equipment" : [
                 "cleats",
@@ -1944,16 +2744,24 @@
             },
             {
               "alternatives" : [
-                "Frappe pied fort seul 10 × 2",
-                "Frappe contre mur point précis 10 × 2"
+                {
+                  "fr" : "Frappe pied fort seul 10 × 2"
+                },
+                {
+                  "fr" : "Frappe contre mur point précis 10 × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
                 "ankle-injury"
               ],
-              "name" : "Drill technique — frappe placée test (test autonome)",
-              "notes" : "TEST 3 CHECKLIST : 10 frappes vers cible 1×1 m à 8 m (6 pied fort + 4 pied faible). Cible : 6/10 minimum dont au moins 2 pied faible. Note ton score. RPE technique 4-5.",
+              "name" : {
+                "fr" : "Drill technique — frappe placée test (test autonome)"
+              },
+              "notes" : {
+                "fr" : "TEST 3 CHECKLIST : 10 frappes vers cible 1×1 m à 8 m (6 pied fort + 4 pied faible). Cible : 6/10 minimum dont au moins 2 pied faible. Note ton score. RPE technique 4-5."
+              },
               "reps" : "10 frappes (6 pied fort + 4 pied faible)",
               "required_equipment" : [
                 "cleats",
@@ -1968,8 +2776,12 @@
             },
             {
               "alternatives" : [
-                "Jeu réduit 3v3 sur 25×20 m 15 min sans enjeu",
-                "Drill mur 50 passes + conduite slalom + jonglage 15 min"
+                {
+                  "fr" : "Jeu réduit 3v3 sur 25×20 m 15 min sans enjeu"
+                },
+                {
+                  "fr" : "Drill mur 50 passes + conduite slalom + jonglage 15 min"
+                }
               ],
               "duration" : "15 min",
               "incompatible_constraints" : [
@@ -1978,8 +2790,12 @@
                 "groin-injury",
                 "concussion-history"
               ],
-              "name" : "Foot à 5 amical sans enjeu — test autonomie en jeu (test final)",
-              "notes" : "TEST 4 CHECKLIST : match amical 5v5 (ou 4v4 si effectif réduit) sur 30×20 m, mini-goals. SANS chrono officiel, SANS score sérieux. Tenir les 15 min sans inconfort cheville/genou/adducteurs. À la fin : prendre la FC, vérifier qu'elle redescend < 100 bpm en moins de 3 min de marche cool-down. Allure Z2 (~65-75% FCmax) avec pointes occasionnelles, pas de sprint maxi. Si pas d'effectif, drill mur 50 passes consécutives + conduite slalom 8 reps + 5 jonglages 5 contacts.",
+              "name" : {
+                "fr" : "Foot à 5 amical sans enjeu — test autonomie en jeu (test final)"
+              },
+              "notes" : {
+                "fr" : "TEST 4 CHECKLIST : match amical 5v5 (ou 4v4 si effectif réduit) sur 30×20 m, mini-goals. SANS chrono officiel, SANS score sérieux. Tenir les 15 min sans inconfort cheville/genou/adducteurs. À la fin : prendre la FC, vérifier qu'elle redescend < 100 bpm en moins de 3 min de marche cool-down. Allure Z2 (~65-75% FCmax) avec pointes occasionnelles, pas de sprint maxi. Si pas d'effectif, drill mur 50 passes consécutives + conduite slalom 8 reps + 5 jonglages 5 contacts."
+              },
               "required_equipment" : [
                 "cleats",
                 "ball",
@@ -1995,15 +2811,23 @@
             },
             {
               "alternatives" : [
-                "Marche libre + bilan 8 min",
-                "Étirements debout + bilan 8 min"
+                {
+                  "fr" : "Marche libre + bilan 8 min"
+                },
+                {
+                  "fr" : "Étirements debout + bilan 8 min"
+                }
               ],
               "duration" : "8 min",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Cool-down mobilité + bilan checklist",
-              "notes" : "Marche autour du terrain + étirements debout + bilan personnel sur les 4 critères de la checklist d'autonomie. Récupération active + auto-évaluation. Si 3-4 critères validés : tu es prêt à passer au programme recreational. Si moins : reprendre W6-W7 une seconde fois sans honte.",
+              "name" : {
+                "fr" : "Cool-down mobilité + bilan checklist"
+              },
+              "notes" : {
+                "fr" : "Marche autour du terrain + étirements debout + bilan personnel sur les 4 critères de la checklist d'autonomie. Récupération active + auto-évaluation. Si 3-4 critères validés : tu es prêt à passer au programme recreational. Si moins : reprendre W6-W7 une seconde fois sans honte."
+              },
               "required_equipment" : [
                 "cleats"
               ],
@@ -2013,26 +2837,40 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Terrain — séance phare validation + foot à 5 amical",
+          "name" : {
+            "fr" : "Terrain — séance phare validation + foot à 5 amical"
+          },
           "type" : "mixed",
-          "warmup" : "Échauffement FIFA 11+ complet 12 min : partie 1 (5 variantes course × 30 m) + partie 3 progressive (course rapide + shuttle + cutting 90° doux). Mobiliser hanches, chevilles, mollets."
+          "warmup" : {
+            "fr" : "Échauffement FIFA 11+ complet 12 min : partie 1 (5 variantes course × 30 m) + partie 3 progressive (course rapide + shuttle + cutting 90° doux). Mobiliser hanches, chevilles, mollets."
+          }
         },
         {
-          "cooldown" : "Étirement mollets, fessier, adducteurs, ischio, quadriceps (30 sec/côté), respiration profonde 2 min, retour calme + bilan ressenti.",
+          "cooldown" : {
+            "fr" : "Étirement mollets, fessier, adducteurs, ischio, quadriceps (30 sec/côté), respiration profonde 2 min, retour calme + bilan ressenti."
+          },
           "day" : 4,
           "duration_minutes" : 30,
           "exercises" : [
             {
               "alternatives" : [
-                "Planche statique 40 sec × 2",
-                "Bench genoux jambe levée 35 sec × 2"
+                {
+                  "fr" : "Planche statique 40 sec × 2"
+                },
+                {
+                  "fr" : "Bench genoux jambe levée 35 sec × 2"
+                }
               ],
               "duration" : "30 sec par jambe levée",
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Bench dynamique",
-              "notes" : "Allégé pour la dernière semaine. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Bench dynamique"
+              },
+              "notes" : {
+                "fr" : "Allégé pour la dernière semaine. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -2043,16 +2881,24 @@
             },
             {
               "alternatives" : [
-                "Planche latérale statique 35 sec/côté × 2",
-                "Side plank genoux 35 sec/côté × 2"
+                {
+                  "fr" : "Planche latérale statique 35 sec/côté × 2"
+                },
+                {
+                  "fr" : "Side plank genoux 35 sec/côté × 2"
+                }
               ],
               "duration" : "30 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
               ],
-              "name" : "FIFA 11+ — Sideways Bench",
-              "notes" : "Allégé. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Sideways Bench"
+              },
+              "notes" : {
+                "fr" : "Allégé. RPE 6-7."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -2063,15 +2909,23 @@
             },
             {
               "alternatives" : [
-                "Single leg yeux fermés 30 sec/jambe × 2",
-                "Single leg appui mur 30 sec/jambe × 2"
+                {
+                  "fr" : "Single leg yeux fermés 30 sec/jambe × 2"
+                },
+                {
+                  "fr" : "Single leg appui mur 30 sec/jambe × 2"
+                }
               ],
               "duration" : "30 sec par jambe",
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "FIFA 11+ — Single Leg Stance + ballon",
-              "notes" : "Avec ballon partenaire ou rebond mur. Maintien proprio. RPE 6-7.",
+              "name" : {
+                "fr" : "FIFA 11+ — Single Leg Stance + ballon"
+              },
+              "notes" : {
+                "fr" : "Avec ballon partenaire ou rebond mur. Maintien proprio. RPE 6-7."
+              },
               "required_equipment" : [
                 "ball"
               ],
@@ -2082,15 +2936,23 @@
             },
             {
               "alternatives" : [
-                "Squat chaise 14 × 2",
-                "Step-up marche basse 10/jambe × 2"
+                {
+                  "fr" : "Squat chaise 14 × 2"
+                },
+                {
+                  "fr" : "Step-up marche basse 10/jambe × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Single leg squat assisté",
-              "notes" : "Maintien force unilatérale. RPE 6-7.",
+              "name" : {
+                "fr" : "Single leg squat assisté"
+              },
+              "notes" : {
+                "fr" : "Maintien force unilatérale. RPE 6-7."
+              },
               "reps" : "8 par jambe",
               "required_equipment" : [
 
@@ -2102,15 +2964,23 @@
             },
             {
               "alternatives" : [
-                "Pont bipodal 12 × 2",
-                "Pont pieds chaise 10 × 2"
+                {
+                  "fr" : "Pont bipodal 12 × 2"
+                },
+                {
+                  "fr" : "Pont pieds chaise 10 × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
               ],
-              "name" : "Pont fessier unilatéral",
-              "notes" : "Maintien fessier moyen + ischio. RPE 6-7.",
+              "name" : {
+                "fr" : "Pont fessier unilatéral"
+              },
+              "notes" : {
+                "fr" : "Maintien fessier moyen + ischio. RPE 6-7."
+              },
               "reps" : "8 par jambe",
               "required_equipment" : [
                 "mat"
@@ -2122,14 +2992,22 @@
             },
             {
               "alternatives" : [
-                "Calf raises assis 20 × 2",
-                "Wall calf raise 20 × 2"
+                {
+                  "fr" : "Calf raises assis 20 × 2"
+                },
+                {
+                  "fr" : "Wall calf raise 20 × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises bipodal",
-              "notes" : "Maintien stabilité mollet. RPE 6-7.",
+              "name" : {
+                "fr" : "Calf raises bipodal"
+              },
+              "notes" : {
+                "fr" : "Maintien stabilité mollet. RPE 6-7."
+              },
               "reps" : "20",
               "required_equipment" : [
 
@@ -2140,12 +3018,18 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "S&C off-terrain — FIFA 11+ allégé + bilan",
+          "name" : {
+            "fr" : "S&C off-terrain — FIFA 11+ allégé + bilan"
+          },
           "type" : "strength",
-          "warmup" : "5 min marche + cercles épaule + rotations bassin + montées de genoux + talons-fesses. Total 7 min."
+          "warmup" : {
+            "fr" : "5 min marche + cercles épaule + rotations bassin + montées de genoux + talons-fesses. Total 7 min."
+          }
         }
       ],
-      "theme" : "Validation — séance phare + checklist autonomie",
+      "theme" : {
+        "fr" : "Validation — séance phare + checklist autonomie"
+      },
       "week_number" : 8
     }
   ]
