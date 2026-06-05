@@ -5,6 +5,9 @@ import SwiftUI
 import AuthenticationServices
 
 struct AuthView: View {
+    // i18n (chantier ES) : bundle de la locale in-app (injectée au root, hérite
+    // jusqu'ici même pré-login). Sinon les libellés auth ignorent le switch.
+    @Environment(\.locale) private var locale
     @State private var viewModel: AuthViewModel
     @State private var email = ""
     @State private var password = ""
@@ -123,7 +126,7 @@ struct AuthView: View {
                             resetEmail = email
                             showResetPasswordAlert = true
                         } label: {
-                            Text(String(localized: "auth.forgotPassword"))
+                            Text(verbatim: String.localized("auth.forgotPassword", locale: locale))
                         }
                         .font(.coachingCaption)
                     }
@@ -171,23 +174,23 @@ struct AuthView: View {
         .background(Color.coachingBackground)
         // Focus initial sur email pour que la 1re saisie se fasse immédiatement.
         .onAppear { focusedField = .email }
-        .alert(String(localized: "auth.forgotPassword.title"), isPresented: $showResetPasswordAlert) {
-            TextField(String(localized: "auth.email.placeholder"), text: $resetEmail)
+        .alert(String.localized("auth.forgotPassword.title", locale: locale), isPresented: $showResetPasswordAlert) {
+            TextField(String.localized("auth.email.placeholder", locale: locale), text: $resetEmail)
                 .textContentType(.emailAddress)
                 .keyboardType(.emailAddress)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
-            Button(String(localized: "auth.forgotPassword.send")) {
+            Button(String.localized("auth.forgotPassword.send", locale: locale)) {
                 Task { await viewModel.resetPassword(email: resetEmail) }
             }
-            Button(String(localized: "auth.forgotPassword.cancel"), role: .cancel) { }
+            Button(String.localized("auth.forgotPassword.cancel", locale: locale), role: .cancel) { }
         } message: {
-            Text(String(localized: "auth.forgotPassword.message"))
+            Text(verbatim: String.localized("auth.forgotPassword.message", locale: locale))
         }
-        .alert(String(localized: "auth.forgotPassword.sent.title"), isPresented: $viewModel.resetPasswordSent) {
+        .alert(String.localized("auth.forgotPassword.sent.title", locale: locale), isPresented: $viewModel.resetPasswordSent) {
             Button("OK", role: .cancel) { }
         } message: {
-            Text(String(localized: "auth.forgotPassword.sent.message"))
+            Text(verbatim: String.localized("auth.forgotPassword.sent.message", locale: locale))
         }
         .alert(String(localized: "auth.forgotPassword.error.title"), isPresented: .init(
             get: { viewModel.resetPasswordError != nil },

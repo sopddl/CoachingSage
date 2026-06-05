@@ -68,7 +68,7 @@ struct NextSessionTeaser: View {
 
     private func coordinateLabel(session: PersistedSession) -> String {
         String(
-            format: NSLocalizedString("dashboard.active.next.coordinate.format", comment: ""),
+            format: String.localized("dashboard.active.next.coordinate.format", locale: locale),
             session.weekNumber,
             session.day
         )
@@ -133,7 +133,7 @@ struct UpcomingSessionRow: View {
             Spacer(minLength: 6)
 
             Text(verbatim: String(
-                format: NSLocalizedString("dashboard.active.next.duration.format", comment: ""),
+                format: String.localized("dashboard.active.next.duration.format", locale: locale),
                 session.durationMinutes
             ))
             .font(.caption)

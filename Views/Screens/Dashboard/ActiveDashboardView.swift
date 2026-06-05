@@ -266,8 +266,13 @@ struct ActiveDashboardView: View {
     private func weekSeparatorHeader(weekNumber: Int) -> some View {
         // Story 3.35l — séparateur pleine largeur : « Semaine N » en entier (de la
         // place), pas le pill compact « Sem N ».
+        // i18n (chantier ES 2026-06-05) : `String.localized(_:locale:)` et NON
+        // `NSLocalizedString` — ce dernier résout sur la locale **système** et
+        // ignore le `LanguageManager` in-app, d'où le « SEMAINE N » resté FR sous
+        // EN. Aligné sur `contextualSessionTitle` (même vue). Cf mémoire
+        // `memo_locale_strict_string_localized_pattern`.
         Text(verbatim: String(
-            format: NSLocalizedString("dashboard.active.week.separator", comment: ""),
+            format: String.localized("dashboard.active.week.separator", locale: locale),
             weekNumber
         ))
         .font(.coachingCaption.weight(.semibold))
