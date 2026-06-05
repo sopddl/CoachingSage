@@ -17,9 +17,10 @@ public enum ExercisePatternResolver {
 
     /// Point d'entrée unique. Pure, deterministic.
     public static func resolve(_ exercise: AdaptedExercise, sportCode: String) -> ExercisePattern {
-        // Résolution de pattern = matching sur le corpus FR canonique (regex tunées
-        // sur les noms FR + suffixe `(pattern xxx)` propre au FR).
-        let name = exercise.name.canonical
+        // Résolution de pattern = matching sur la clé stable (nom FR technique + suffixe
+        // `(pattern xxx)` propre au FR). `originalName` (= stableMatchKey) reste figé même
+        // quand `name.fr` est vulgarisé/traduit (i18n B2), pour ne pas casser les regex.
+        let name = exercise.originalName
 
         // Étape 1 : capture regex multi-mots
         if let captured = capturedPatternToken(in: name) {

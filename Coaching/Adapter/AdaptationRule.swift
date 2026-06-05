@@ -24,11 +24,12 @@ public protocol AdaptationRule: Sendable {
 }
 
 public extension ProgramTemplate {
-    /// Lookup d'un `TemplateExercise` par (week, day, name). Renvoie nil si non trouvé.
+    /// Lookup d'un `TemplateExercise` par (week, day, clé de matching stable).
+    /// `name` = `stableMatchKey` (cf `AdaptedExercise.originalName`), pas le nom affichable.
     func findExercise(weekNumber: Int, day: Int, name: String) -> TemplateExercise? {
         guard let week = weeks.first(where: { $0.weekNumber == weekNumber }) else { return nil }
         guard let session = week.sessions.first(where: { $0.day == day }) else { return nil }
-        return session.exercises.first(where: { $0.name.canonical == name })
+        return session.exercises.first(where: { $0.stableMatchKey == name })
     }
 }
 

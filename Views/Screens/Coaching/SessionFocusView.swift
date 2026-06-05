@@ -275,7 +275,7 @@ struct SessionFocusView: View {
         }
 
         if pattern != .generic {
-            ExercisePatternIllustration(pattern: pattern, sportCode: effectiveSportCode, exerciseName: ex.name.canonical, size: 200)
+            ExercisePatternIllustration(pattern: pattern, sportCode: effectiveSportCode, exerciseName: ex.originalName, size: 200)
                 .frame(maxWidth: .infinity)
                 .padding(12)
                 .background(Color(uiColor: .secondarySystemBackground))
@@ -288,7 +288,7 @@ struct SessionFocusView: View {
             BulletedNotes(text: notes, font: .callout)
         }
 
-        let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.name.canonical)
+        let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.originalName)
         ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey)
     }
 
@@ -677,13 +677,13 @@ struct SessionFocusView: View {
         if let ex = exercise(at: phase.stepIndex) {
             let pattern = ExercisePatternResolver.resolve(ex, sportCode: resolvedSportCode)
             if pattern != .generic {
-                ExercisePatternIllustration(pattern: pattern, sportCode: resolvedSportCode, exerciseName: ex.name.canonical, size: 180)
+                ExercisePatternIllustration(pattern: pattern, sportCode: resolvedSportCode, exerciseName: ex.originalName, size: 180)
                     .frame(maxWidth: .infinity)
                     .padding(12)
                     .background(Color(uiColor: .secondarySystemBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
-            let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.name.canonical)
+            let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.originalName)
             ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey)
         }
     }
