@@ -1,29 +1,49 @@
 {
-  "assumed_profile" : "Nageur capable de nager 200-400 m en continu, pratique 1×/sem depuis quelques mois. Respiration latérale acquise, technique crawl perfectible. Équipement disponible : planche de natation, pull-buoy, lunettes de natation. Accès à un bassin de 25 m.",
-  "default_objective" : "Nager 1000 m en crawl sans pause, à une allure régulière",
+  "assumed_profile" : {
+    "fr" : "Nageur capable de nager 200-400 m en continu, pratique 1×/sem depuis quelques mois. Respiration latérale acquise, technique crawl perfectible. Équipement disponible : planche de natation, pull-buoy, lunettes de natation. Accès à un bassin de 25 m."
+  },
+  "default_objective" : {
+    "fr" : "Nager 1000 m en crawl sans pause, à une allure régulière"
+  },
   "duration_weeks" : 8,
   "id" : "swimming-recreational-endurance-8sem",
   "level" : "recreational",
-  "name" : "Natation endurance — 1000 m continu en 8 semaines",
-  "progression_logic" : "Progression sur 5 principes alignés Maglischo Swimming Fastest, USA Swimming Energy Zones, Total Immersion (Terry Laughlin), Swim Smooth CSS (Paul Newsome) et 80/20 polarized adapté au volume recreational.\n\n(1) DISTRIBUTION D'INTENSITÉ EN1-EN2 dominante : ~70% EN1-EN2 (long swim, blocs continus, échauffement nage) + ~20% drills technique (hors zone cardio) + ~10% EN3 (introduit W5 seulement, max 1 séance/sem 4×100 m). Pas de SP1-SP3 — le volume hebdo recreational (2500-4500 m/sem) est insuffisant pour absorber un travail anaérobie ciblé sans fragiliser l'épaule. C'est le no moderate-intensity rut de Seiler adapté à la nage : on évite le piège du tempo permanent. CSS pace est approximée par ressenti EN2 ('comfortably hard', phrases courtes possibles à la fin de la longueur) tant qu'aucun test 400+200 n'est passé — un coureur recreational n'a pas besoin d'une CSS calibrée à la seconde, le ressenti EN1/EN2/EN3 suffit à cette charge.\n\n(2) PROGRESSION VOLUME ET LONG SWIM : volume nage pure hebdo : ~2500 → ~2900 → ~3300 → ~2700 (cutback W4 -18%) → ~3500 → ~3900 → ~4300 (pic W7) → ~3000 (taper W8 incluant la séance phare 1000 m). Long swim continu : 400 → 500 → 700 → 600 (cutback) → 800 → 1000 → 1300 (pic) → 1000 (séance phare). Le long swim pic 1300 m (W7) respecte la règle long swim pic ≥ 130% de la cible (1300 ≥ 1000 × 1.3) — tu sauras que ton corps tient 1300 m avant d'aller chercher 1000 m chronométré en W8. Hausse hebdo plafonnée à 10-15% (ACSM). Vol pic ~4300 m/sem cohérent avec la fenêtre recommandée recreational 2500-4500 m/sem.\n\n(3) DELOAD W4 (cutback marqué) : volume W4 ~2700 m vs ~3300 m en W3 = ~-18%. Long swim cutback (600 m vs 700 m), drills focal point augmentés (priorité catch + timing), suppression du bloc EN2 long. Cycle 3 build + 1 deload (doctrine swimming recreational Maglischo). Les adaptations tendineuses de la coiffe des rotateurs sont plus lentes que les adaptations cardiovasculaires — sauter cette semaine = risque swimmer's shoulder vers W6-W7.\n\n(4) HIÉRARCHIE PÉDAGOGIQUE DES DRILLS (Total Immersion) : équilibre (Side kick, Superman glide, Body roll) maintenu W1-W8 en activation ; catch (Fingertip drag, Catch-up) introduits W3 — JAMAIS avant que l'équilibre ne soit consolidé W1-W2 ; timing (6-3-6, pull-buoy isolation) à partir de W4 ; sculling avant à partir de W5. La bilatérale (1/3) est introduite W2 sur drills isolés puis intégrée au volume EN1 dès W3 (le profil recreational a déjà la respiration latérale unilatérale acquise — la bilatérale ne crée pas de surcharge cognitive ici, contrairement au beginner). Ratio drills sur volume hebdo : 25-40% (cadre recreational Total Immersion).\n\n(5) RENFORCEMENT PRÉVENTIF ÉPAULE OBLIGATOIRE dès W1 : 1 séance dryland intégrée en fin de séance J5 (Y-T-W shoulder activation, external rotation band, scapula retraction, planche, cat-cow). Le swimmer's shoulder touche 40-91% des nageurs (Maglischo) — chez le recreational en montée de volume, c'est LE risque n°1 entre W5 et W7. Pas de paddles sur ce plan (réservé aux niveaux regular+ : amplifient les forces sur la coiffe). Pas de bench press lourd (banni Maglischo). La fréquence dryland reste à 1×/sem (≠ 2× du regular) car le volume nage pure ne le justifie pas.\n\n(6) TAPER J-7 court : la dernière semaine commence après le long swim pic 1300 m de W7 J5. Du J6 W7 au J5 W8, on a 7 jours. Tapering court : J2 W8 = séance technique courte (700 m total, drills focal point + 200 m EN1), J5 W8 = échauffement court 200 m + 1000 m continu chronométré. Volume W8 réduit ~30% vs W7 (~3000 m vs ~4300 m), maintien de l'intensité par la séance phare elle-même. Conforme à Mujika & Padilla 2003 : taper court 7 jours, réduction volume 25-40%, maintien intensité. Pas de taper long (réservé aux compétitions FFN > 12 sem prépa).",
-  "safety_notes" : "DRAPEAUX ROUGES (arrêter la séance et consulter un professionnel de santé si symptômes persistent > 5-7 jours) :\n• Douleur antéro-latérale d'épaule lors de la traction ou du retour aérien du bras (swimmer's shoulder / conflit sous-acromial) : risque n°1 du nageur de crawl, 40-91% des nageurs touchés (Maglischo). Se manifeste typiquement à partir de W5-W6 quand le volume monte. Stop immédiat de la séance, glace 15 min, repos 3-5 jours. Cause fréquente : entrée de la main trop large (crossing), manque de rotation des hanches obligeant l'épaule à compenser, ou progression volume trop rapide. Les drills Y-T-W et external rotation du dryland visent précisément cette prévention. Avis kiné si persistant > 7 jours.\n• Douleur cervicale ou raideur nuque : souvent liée à un défaut de rotation tronc lors de l'inspiration (tu lèves la tête au lieu de tourner le corps). Travail bilatéral 1/3 + drill 6-3-6 pour réapprendre la rotation. Glace, étirements doux nuque, avis médical si raideur > 5 jours.\n• Douleur vive du poignet ou de l'avant-bras pendant la traction : suspecter une mauvaise prise d'eau (poignet cassé). Repos 2-3 jours, drill sculling avant à reprendre lentement. Pas de paddles sur ce plan — si tu en utilises malgré tout et que la douleur apparaît, arrête immédiatement.\n• Otite externe (oreille douloureuse, démangeaison, écoulement après séance) : sécher soigneusement les oreilles après chaque séance en inclinant la tête et tirant doucement le lobe vers le bas. Gouttes vinaigre blanc/alcool 50/50 en prévention si oreilles réactives (1-2 gouttes par oreille post-séance, sauf perforation tympanique connue). Bouchons silicone optionnels si oreilles très sensibles. Avis ORL si douleur ou écoulement persistent > 5 jours, ou si 3 épisodes en 12 mois (rappel medical clearance).\n• Crampe du mollet ou de la voûte plantaire en fin de séance longue : étirer immédiatement (flexion dorsale de cheville contre le rebord du bassin), se tenir au couloir. Prévention : hydratation pré-séance 500 ml + post-séance 500 ml, ne pas reprendre en nageant immédiatement après une crampe forte. Si crampes répétées, vérifier électrolytes et hydratation globale journalière.\n• Sensation de panique respiratoire pendant un bloc long (W6-W8) : se retourner sur le dos immédiatement pour récupérer en flottant, respirer calmement 30 sec, puis reprendre lentement en crawl. Toujours nager dans un couloir de bassin pour pouvoir s'y accrocher. Ne jamais nager en eau libre pour préparer ce plan sans gilet de sécurité ou partenaire surveillant.\n\nRÈGLES GÉNÉRALES :\n• Douche savonnée avant ET après piscine (hygiène collective + retrait du chlore résiduel sur peau et cuir chevelu).\n• Lunettes obligatoires et bien ajustées (les lunettes qui fuient altèrent la concentration, l'orientation et la technique). Tester les lunettes neuves sur une séance technique courte avant un long swim.\n• Hydratation : la sensation de soif est atténuée dans l'eau. Boire 500 ml dans l'heure précédant la séance, 500 ml dans l'heure suivante.\n• Bouchons d'oreille en silicone optionnels (pas de bouchons trop serrés qui irritent le conduit). Bonnet de bain recommandé pour limiter exposition chlore aux cheveux.\n• 48h minimum entre deux séances de crawl. Le système nerveux et les épaules récupèrent lentement. Le plan respecte ce principe : J2 + J5.\n• Ne jamais introduire deux nouveautés simultanément (nouveau drill + augmentation de volume OU nouveau matériel + nouvelle intensité).\n• Ne pas nager seul en eau libre. Pour ce plan, rester en bassin couvert ou découvert surveillé.\n\nTECHNIQUE / RESPIRATION :\n• Allure EN1 = conversationnelle complète (RPE 3-4/10). Tu peux dire des phrases longues à la fin de chaque longueur. C'est la zone du long swim et des échauffements.\n• Allure EN2 = comfortably hard (RPE 5-6/10). Tu peux dire des phrases courtes (4-5 mots) à la fin de la longueur, pas une conversation. Approxime CSS pace + 0-3 s/100 m.\n• Allure EN3 (introduite W5 seulement, max 1×/sem) = soutenue 4×100 m, RPE 7-8/10. Tu peux dire 2-3 mots à la fin du 100 m. Repos 30-45 sec entre répétitions.\n• Respiration bilatérale 1/3 sur le volume EN1 dès W2-W3. Si l'essoufflement monte sur 25 m, bascule sur 1/2 sur cette longueur sans frustration — la bilatérale s'installe sur plusieurs semaines.\n• Test de cycles de bras sur 25 m : intermédiaire ~17-20 cycles/25 m. Note ce chiffre en W2 puis W6 — moins de cycles à allure identique = technique qui progresse.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → réduire volume hebdo de 30% et ajouter 1 jour de repos, ou refaire la semaine précédente) :\n• Épaules raides ou pesantes à l'entrée dans l'eau dès le premier 100 m d'échauffement, 2 séances consécutives.\n• Nombre de cycles de bras sur 25 m augmentant significativement (+ 3 cycles) sans variation d'allure (signe de fatigue technique).\n• Douleur épaule persistante > 24h post-séance — STOP volume immédiat, focus drills équilibre uniquement la séance suivante.\n• FC de repos +8-10 bpm au-dessus de la normale au réveil, 2 matins consécutifs.\n• Sommeil dégradé > 3 nuits, sensation de lourdeur persistante en eau.\n• Motivation effondrée ou appréhension de l'eau inhabituelles.\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre la séance suivante prévue (ne pas rattraper la séance manquée).\n• 1-2 semaines de pause (maladie, voyage) : reprendre la semaine précédente complète.\n• > 2 semaines de pause hors taper : reprendre 2 semaines en arrière, en commençant par la séance technique (J2). NE PAS remplacer une séance piscine par une séance vélo ou course sans avis — le cross-training maintient le cardio mais ne remplace pas l'adaptation locomotrice spécifique de la nage (sensations eau, position, traction).\n\nMEDICAL CLEARANCE recommandé avant de commencer si : antécédents cardiaques connus, grossesse ou postpartum < 6 mois, pathologie chronique de l'épaule (déchirure coiffe partielle, capsulite), 3+ otites externes en 12 mois, asthme sévère, reprise post-chirurgie épaule/dos < 6 mois, > 50 ans sans test d'effort récent.",
+  "name" : {
+    "fr" : "Natation endurance — 1000 m continu en 8 semaines"
+  },
+  "progression_logic" : {
+    "fr" : "Progression sur 5 principes alignés Maglischo Swimming Fastest, USA Swimming Energy Zones, Total Immersion (Terry Laughlin), Swim Smooth CSS (Paul Newsome) et 80/20 polarized adapté au volume recreational.\n\n(1) DISTRIBUTION D'INTENSITÉ EN1-EN2 dominante : ~70% EN1-EN2 (long swim, blocs continus, échauffement nage) + ~20% drills technique (hors zone cardio) + ~10% EN3 (introduit W5 seulement, max 1 séance/sem 4×100 m). Pas de SP1-SP3 — le volume hebdo recreational (2500-4500 m/sem) est insuffisant pour absorber un travail anaérobie ciblé sans fragiliser l'épaule. C'est le no moderate-intensity rut de Seiler adapté à la nage : on évite le piège du tempo permanent. CSS pace est approximée par ressenti EN2 ('comfortably hard', phrases courtes possibles à la fin de la longueur) tant qu'aucun test 400+200 n'est passé — un coureur recreational n'a pas besoin d'une CSS calibrée à la seconde, le ressenti EN1/EN2/EN3 suffit à cette charge.\n\n(2) PROGRESSION VOLUME ET LONG SWIM : volume nage pure hebdo : ~2500 → ~2900 → ~3300 → ~2700 (cutback W4 -18%) → ~3500 → ~3900 → ~4300 (pic W7) → ~3000 (taper W8 incluant la séance phare 1000 m). Long swim continu : 400 → 500 → 700 → 600 (cutback) → 800 → 1000 → 1300 (pic) → 1000 (séance phare). Le long swim pic 1300 m (W7) respecte la règle long swim pic ≥ 130% de la cible (1300 ≥ 1000 × 1.3) — tu sauras que ton corps tient 1300 m avant d'aller chercher 1000 m chronométré en W8. Hausse hebdo plafonnée à 10-15% (ACSM). Vol pic ~4300 m/sem cohérent avec la fenêtre recommandée recreational 2500-4500 m/sem.\n\n(3) DELOAD W4 (cutback marqué) : volume W4 ~2700 m vs ~3300 m en W3 = ~-18%. Long swim cutback (600 m vs 700 m), drills focal point augmentés (priorité catch + timing), suppression du bloc EN2 long. Cycle 3 build + 1 deload (doctrine swimming recreational Maglischo). Les adaptations tendineuses de la coiffe des rotateurs sont plus lentes que les adaptations cardiovasculaires — sauter cette semaine = risque swimmer's shoulder vers W6-W7.\n\n(4) HIÉRARCHIE PÉDAGOGIQUE DES DRILLS (Total Immersion) : équilibre (Side kick, Superman glide, Body roll) maintenu W1-W8 en activation ; catch (Fingertip drag, Catch-up) introduits W3 — JAMAIS avant que l'équilibre ne soit consolidé W1-W2 ; timing (6-3-6, pull-buoy isolation) à partir de W4 ; sculling avant à partir de W5. La bilatérale (1/3) est introduite W2 sur drills isolés puis intégrée au volume EN1 dès W3 (le profil recreational a déjà la respiration latérale unilatérale acquise — la bilatérale ne crée pas de surcharge cognitive ici, contrairement au beginner). Ratio drills sur volume hebdo : 25-40% (cadre recreational Total Immersion).\n\n(5) RENFORCEMENT PRÉVENTIF ÉPAULE OBLIGATOIRE dès W1 : 1 séance dryland intégrée en fin de séance J5 (Y-T-W shoulder activation, external rotation band, scapula retraction, planche, cat-cow). Le swimmer's shoulder touche 40-91% des nageurs (Maglischo) — chez le recreational en montée de volume, c'est LE risque n°1 entre W5 et W7. Pas de paddles sur ce plan (réservé aux niveaux regular+ : amplifient les forces sur la coiffe). Pas de bench press lourd (banni Maglischo). La fréquence dryland reste à 1×/sem (≠ 2× du regular) car le volume nage pure ne le justifie pas.\n\n(6) TAPER J-7 court : la dernière semaine commence après le long swim pic 1300 m de W7 J5. Du J6 W7 au J5 W8, on a 7 jours. Tapering court : J2 W8 = séance technique courte (700 m total, drills focal point + 200 m EN1), J5 W8 = échauffement court 200 m + 1000 m continu chronométré. Volume W8 réduit ~30% vs W7 (~3000 m vs ~4300 m), maintien de l'intensité par la séance phare elle-même. Conforme à Mujika & Padilla 2003 : taper court 7 jours, réduction volume 25-40%, maintien intensité. Pas de taper long (réservé aux compétitions FFN > 12 sem prépa)."
+  },
+  "safety_notes" : {
+    "fr" : "DRAPEAUX ROUGES (arrêter la séance et consulter un professionnel de santé si symptômes persistent > 5-7 jours) :\n• Douleur antéro-latérale d'épaule lors de la traction ou du retour aérien du bras (swimmer's shoulder / conflit sous-acromial) : risque n°1 du nageur de crawl, 40-91% des nageurs touchés (Maglischo). Se manifeste typiquement à partir de W5-W6 quand le volume monte. Stop immédiat de la séance, glace 15 min, repos 3-5 jours. Cause fréquente : entrée de la main trop large (crossing), manque de rotation des hanches obligeant l'épaule à compenser, ou progression volume trop rapide. Les drills Y-T-W et external rotation du dryland visent précisément cette prévention. Avis kiné si persistant > 7 jours.\n• Douleur cervicale ou raideur nuque : souvent liée à un défaut de rotation tronc lors de l'inspiration (tu lèves la tête au lieu de tourner le corps). Travail bilatéral 1/3 + drill 6-3-6 pour réapprendre la rotation. Glace, étirements doux nuque, avis médical si raideur > 5 jours.\n• Douleur vive du poignet ou de l'avant-bras pendant la traction : suspecter une mauvaise prise d'eau (poignet cassé). Repos 2-3 jours, drill sculling avant à reprendre lentement. Pas de paddles sur ce plan — si tu en utilises malgré tout et que la douleur apparaît, arrête immédiatement.\n• Otite externe (oreille douloureuse, démangeaison, écoulement après séance) : sécher soigneusement les oreilles après chaque séance en inclinant la tête et tirant doucement le lobe vers le bas. Gouttes vinaigre blanc/alcool 50/50 en prévention si oreilles réactives (1-2 gouttes par oreille post-séance, sauf perforation tympanique connue). Bouchons silicone optionnels si oreilles très sensibles. Avis ORL si douleur ou écoulement persistent > 5 jours, ou si 3 épisodes en 12 mois (rappel medical clearance).\n• Crampe du mollet ou de la voûte plantaire en fin de séance longue : étirer immédiatement (flexion dorsale de cheville contre le rebord du bassin), se tenir au couloir. Prévention : hydratation pré-séance 500 ml + post-séance 500 ml, ne pas reprendre en nageant immédiatement après une crampe forte. Si crampes répétées, vérifier électrolytes et hydratation globale journalière.\n• Sensation de panique respiratoire pendant un bloc long (W6-W8) : se retourner sur le dos immédiatement pour récupérer en flottant, respirer calmement 30 sec, puis reprendre lentement en crawl. Toujours nager dans un couloir de bassin pour pouvoir s'y accrocher. Ne jamais nager en eau libre pour préparer ce plan sans gilet de sécurité ou partenaire surveillant.\n\nRÈGLES GÉNÉRALES :\n• Douche savonnée avant ET après piscine (hygiène collective + retrait du chlore résiduel sur peau et cuir chevelu).\n• Lunettes obligatoires et bien ajustées (les lunettes qui fuient altèrent la concentration, l'orientation et la technique). Tester les lunettes neuves sur une séance technique courte avant un long swim.\n• Hydratation : la sensation de soif est atténuée dans l'eau. Boire 500 ml dans l'heure précédant la séance, 500 ml dans l'heure suivante.\n• Bouchons d'oreille en silicone optionnels (pas de bouchons trop serrés qui irritent le conduit). Bonnet de bain recommandé pour limiter exposition chlore aux cheveux.\n• 48h minimum entre deux séances de crawl. Le système nerveux et les épaules récupèrent lentement. Le plan respecte ce principe : J2 + J5.\n• Ne jamais introduire deux nouveautés simultanément (nouveau drill + augmentation de volume OU nouveau matériel + nouvelle intensité).\n• Ne pas nager seul en eau libre. Pour ce plan, rester en bassin couvert ou découvert surveillé.\n\nTECHNIQUE / RESPIRATION :\n• Allure EN1 = conversationnelle complète (RPE 3-4/10). Tu peux dire des phrases longues à la fin de chaque longueur. C'est la zone du long swim et des échauffements.\n• Allure EN2 = comfortably hard (RPE 5-6/10). Tu peux dire des phrases courtes (4-5 mots) à la fin de la longueur, pas une conversation. Approxime CSS pace + 0-3 s/100 m.\n• Allure EN3 (introduite W5 seulement, max 1×/sem) = soutenue 4×100 m, RPE 7-8/10. Tu peux dire 2-3 mots à la fin du 100 m. Repos 30-45 sec entre répétitions.\n• Respiration bilatérale 1/3 sur le volume EN1 dès W2-W3. Si l'essoufflement monte sur 25 m, bascule sur 1/2 sur cette longueur sans frustration — la bilatérale s'installe sur plusieurs semaines.\n• Test de cycles de bras sur 25 m : intermédiaire ~17-20 cycles/25 m. Note ce chiffre en W2 puis W6 — moins de cycles à allure identique = technique qui progresse.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → réduire volume hebdo de 30% et ajouter 1 jour de repos, ou refaire la semaine précédente) :\n• Épaules raides ou pesantes à l'entrée dans l'eau dès le premier 100 m d'échauffement, 2 séances consécutives.\n• Nombre de cycles de bras sur 25 m augmentant significativement (+ 3 cycles) sans variation d'allure (signe de fatigue technique).\n• Douleur épaule persistante > 24h post-séance — STOP volume immédiat, focus drills équilibre uniquement la séance suivante.\n• FC de repos +8-10 bpm au-dessus de la normale au réveil, 2 matins consécutifs.\n• Sommeil dégradé > 3 nuits, sensation de lourdeur persistante en eau.\n• Motivation effondrée ou appréhension de l'eau inhabituelles.\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre la séance suivante prévue (ne pas rattraper la séance manquée).\n• 1-2 semaines de pause (maladie, voyage) : reprendre la semaine précédente complète.\n• > 2 semaines de pause hors taper : reprendre 2 semaines en arrière, en commençant par la séance technique (J2). NE PAS remplacer une séance piscine par une séance vélo ou course sans avis — le cross-training maintient le cardio mais ne remplace pas l'adaptation locomotrice spécifique de la nage (sensations eau, position, traction).\n\nMEDICAL CLEARANCE recommandé avant de commencer si : antécédents cardiaques connus, grossesse ou postpartum < 6 mois, pathologie chronique de l'épaule (déchirure coiffe partielle, capsulite), 3+ otites externes en 12 mois, asthme sévère, reprise post-chirurgie épaule/dos < 6 mois, > 50 ans sans test d'effort récent."
+  },
   "schema_version" : 2,
   "sessions_per_week" : 2,
   "sport" : "swimming",
-  "summary" : "Plan 8 semaines pour nageur recreational visant à passer de 200-400 m continus au 1000 m en crawl, structuré en 2 sessions/sem (technique + drills + endurance EN1-EN2 + long swim). Distribution 70% EN1-EN2 / 20% drills technique / 10% EN3 (ouverture W5+), pas de SP — esprit polarisé respecté pour le volume recreational. Volume de nage pure (hors warmup/cooldown courts) : ~2500 → ~2900 → ~3300 → ~2700 (cutback W4, -18%) → ~3500 → ~3900 → ~4300 (pic W7) → ~3000 (taper + séance phare W8). Long swim progressif : 400 → 500 → 700 → 600 (cutback) → 800 → 1000 → 1300 (pic, 130% de la cible) → 1000 (séance phare). Introduction Total Immersion catch (fingertip drag, catch-up) à partir de W3 ; bilatérale 1/3 standard sur volume EN1 dès W2-W3 ; intro EN3 légère W5 (4×100 m) ; renforcement préventif épaule maintenu (Y-T-W, external rotation, scapula, planche), 1 séance dryland intégrée à J5 dès W2. Cutback W4 (-18% volume, plus de drills focal point). Taper J-7 court avant la séance phare 1000 m continu en W8 J5. Checklist d'autonomie 4 critères en W8.",
+  "summary" : {
+    "fr" : "Plan 8 semaines pour nageur recreational visant à passer de 200-400 m continus au 1000 m en crawl, structuré en 2 sessions/sem (technique + drills + endurance EN1-EN2 + long swim). Distribution 70% EN1-EN2 / 20% drills technique / 10% EN3 (ouverture W5+), pas de SP — esprit polarisé respecté pour le volume recreational. Volume de nage pure (hors warmup/cooldown courts) : ~2500 → ~2900 → ~3300 → ~2700 (cutback W4, -18%) → ~3500 → ~3900 → ~4300 (pic W7) → ~3000 (taper + séance phare W8). Long swim progressif : 400 → 500 → 700 → 600 (cutback) → 800 → 1000 → 1300 (pic, 130% de la cible) → 1000 (séance phare). Introduction Total Immersion catch (fingertip drag, catch-up) à partir de W3 ; bilatérale 1/3 standard sur volume EN1 dès W2-W3 ; intro EN3 légère W5 (4×100 m) ; renforcement préventif épaule maintenu (Y-T-W, external rotation, scapula, planche), 1 séance dryland intégrée à J5 dès W2. Cutback W4 (-18% volume, plus de drills focal point). Taper J-7 court avant la séance phare 1000 m continu en W8 J5. Checklist d'autonomie 4 critères en W8."
+  },
   "weeks" : [
     {
-      "goal" : "Établir le niveau de départ via un test 400 m chronométré, ancrer les drills d'équilibre (Side kick, Superman glide) et de catch (Fingertip drag). Long swim 400 m. Volume hebdo de nage pure : ~2500 m.",
+      "goal" : {
+        "fr" : "Établir le niveau de départ via un test 400 m chronométré, ancrer les drills d'équilibre (Side kick, Superman glide) et de catch (Fingertip drag). Long swim 400 m. Volume hebdo de nage pure : ~2500 m."
+      },
       "sessions" : [
         {
-          "cooldown" : "100 m dos crawl très lent. Sortie de l'eau, sécher les oreilles (prévention otite externe). Étirements : épaules cross-body 30 sec/côté, triceps derrière la tête 20 sec/côté, rotation cervicale lente 5/côté.",
+          "cooldown" : {
+            "fr" : "100 m dos crawl très lent. Sortie de l'eau, sécher les oreilles (prévention otite externe). Étirements : épaules cross-body 30 sec/côté, triceps derrière la tête 20 sec/côté, rotation cervicale lente 5/côté."
+          },
           "day" : 2,
           "duration_minutes" : 55,
           "exercises" : [
             {
               "alternatives" : [
-                "Test 300 m chronométré",
-                "Test 6 min nage continue distance maximale"
+                {
+                  "fr" : "Test 300 m chronométré"
+                },
+                {
+                  "fr" : "Test 6 min nage continue distance maximale"
+                }
               ],
               "duration" : "400 m à allure régulière",
               "incompatible_constraints" : [
@@ -31,8 +51,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "Test 400 m crawl chronométré",
-              "notes" : "Nager 400 m à allure soutenable et confortable, sans s'arrêter. Note ton temps : c'est ton référentiel de départ pour tout le plan. Ex : 8:00 = allure 2:00/100 m → ton allure EN1 = 2:10-2:15/100 m, ton allure EN2 = 2:00/100 m. Ne PAS pousser au maximum, chercher une allure régulière du début à la fin.",
+              "name" : {
+                "fr" : "Test 400 m crawl chronométré"
+              },
+              "notes" : {
+                "fr" : "Nager 400 m à allure soutenable et confortable, sans s'arrêter. Note ton temps : c'est ton référentiel de départ pour tout le plan. Ex : 8:00 = allure 2:00/100 m → ton allure EN1 = 2:10-2:15/100 m, ton allure EN2 = 2:00/100 m. Ne PAS pousser au maximum, chercher une allure régulière du début à la fin."
+              },
               "required_equipment" : [
                 "pool",
                 "chronometer-or-watch"
@@ -44,16 +68,24 @@
             },
             {
               "alternatives" : [
-                "Side kick avec ceinture flottante",
-                "Body roll 6-3-6 lent"
+                {
+                  "fr" : "Side kick avec ceinture flottante"
+                },
+                {
+                  "fr" : "Body roll 6-3-6 lent"
+                }
               ],
               "duration" : "25 m côté favori",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cervical-pain"
               ],
-              "name" : "Side kick (équilibre)",
-              "notes" : "Sur le côté favori (bras bas tendu devant en flèche, bras haut le long du corps), battement de pieds continu. Chercher à garder les hanches hautes, oreille basse dans l'eau. Drill équilibre fondamental — priorité absolue avant tout travail catch (Total Immersion).",
+              "name" : {
+                "fr" : "Side kick (équilibre)"
+              },
+              "notes" : {
+                "fr" : "Sur le côté favori (bras bas tendu devant en flèche, bras haut le long du corps), battement de pieds continu. Chercher à garder les hanches hautes, oreille basse dans l'eau. Drill équilibre fondamental — priorité absolue avant tout travail catch (Total Immersion)."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -64,15 +96,23 @@
             },
             {
               "alternatives" : [
-                "Streamline push-off 6 m sans apnée prolongée",
-                "Glissé sur le dos bras le long du corps 8 m"
+                {
+                  "fr" : "Streamline push-off 6 m sans apnée prolongée"
+                },
+                {
+                  "fr" : "Glissé sur le dos bras le long du corps 8 m"
+                }
               ],
               "duration" : "10 m glissé apnée",
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Superman glide",
-              "notes" : "Pousser sur le mur, bras tendus devant en flèche, bras collés aux oreilles, face vers le bas. Glisser aussi loin que possible sans mouvement. Objectif équilibre : sentir le corps horizontalement haut dans l'eau. Tenir 5 m minimum, viser 8-10 m.",
+              "name" : {
+                "fr" : "Superman glide"
+              },
+              "notes" : {
+                "fr" : "Pousser sur le mur, bras tendus devant en flèche, bras collés aux oreilles, face vers le bas. Glisser aussi loin que possible sans mouvement. Objectif équilibre : sentir le corps horizontalement haut dans l'eau. Tenir 5 m minimum, viser 8-10 m."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -83,16 +123,24 @@
             },
             {
               "alternatives" : [
-                "Catch-up drill lent 25 m",
-                "Single arm bras dominant 25 m"
+                {
+                  "fr" : "Catch-up drill lent 25 m"
+                },
+                {
+                  "fr" : "Single arm bras dominant 25 m"
+                }
               ],
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Fingertip drag (catch — introduction)",
-              "notes" : "Phase de récupération du bras : faire glisser les doigts à la surface de l'eau de la hanche jusqu'à l'entrée. Objectif catch : corriger l'entrée haute de la main et améliorer l'avant-bras vertical tôt (early vertical forearm). Première exposition au catch — focus mécanique, pas allure.",
+              "name" : {
+                "fr" : "Fingertip drag (catch — introduction)"
+              },
+              "notes" : {
+                "fr" : "Phase de récupération du bras : faire glisser les doigts à la surface de l'eau de la hanche jusqu'à l'entrée. Objectif catch : corriger l'entrée haute de la main et améliorer l'avant-bras vertical tôt (early vertical forearm). Première exposition au catch — focus mécanique, pas allure."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -103,16 +151,24 @@
             },
             {
               "alternatives" : [
-                "Nage continue dos crawl 200 m EN1",
-                "2×100 m crawl EN1 récup 30 s"
+                {
+                  "fr" : "Nage continue dos crawl 200 m EN1"
+                },
+                {
+                  "fr" : "2×100 m crawl EN1 récup 30 s"
+                }
               ],
               "duration" : "200 m crawl EN1",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Nage continue de consolidation",
-              "notes" : "Crawl à allure conversationnelle complète (EN1, RPE 3-4/10). Appliquer les sensations des drills : corps haut, glissé entre les cycles. Pas de chrono.",
+              "name" : {
+                "fr" : "Nage continue de consolidation"
+              },
+              "notes" : {
+                "fr" : "Crawl à allure conversationnelle complète (EN1, RPE 3-4/10). Appliquer les sensations des drills : corps haut, glissé entre les cycles. Pas de chrono."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -122,27 +178,41 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Test 400 m + drills équilibre",
+          "name" : {
+            "fr" : "Test 400 m + drills équilibre"
+          },
           "type" : "technique",
-          "warmup" : "300 m nage facile (200 m crawl lent + 100 m dos crawl), respiration côté favori autorisée. Cercles de bras hors eau 10/côté avant l'entrée. Activation progressive des épaules."
+          "warmup" : {
+            "fr" : "300 m nage facile (200 m crawl lent + 100 m dos crawl), respiration côté favori autorisée. Cercles de bras hors eau 10/côté avant l'entrée. Activation progressive des épaules."
+          }
         },
         {
-          "cooldown" : "100 m nage très lente (dos ou brasse). Sécher les oreilles. Étirements épaules cross-body 40 sec/côté.",
+          "cooldown" : {
+            "fr" : "100 m nage très lente (dos ou brasse). Sécher les oreilles. Étirements épaules cross-body 40 sec/côté."
+          },
           "day" : 5,
           "duration_minutes" : 70,
           "exercises" : [
             {
               "alternatives" : [
-                "Side kick côté favori uniquement 4×25 m",
-                "Body roll 6-3-6 4×25 m"
+                {
+                  "fr" : "Side kick côté favori uniquement 4×25 m"
+                },
+                {
+                  "fr" : "Body roll 6-3-6 4×25 m"
+                }
               ],
               "duration" : "25 m (alterner côté favori et côté faible)",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cervical-pain"
               ],
-              "name" : "Side kick bilatéral",
-              "notes" : "Alterner côté favori (longueurs 1, 3) et côté faible (longueurs 2, 4). Le côté faible révèle les compensations habituelles — ne pas le sauter.",
+              "name" : {
+                "fr" : "Side kick bilatéral"
+              },
+              "notes" : {
+                "fr" : "Alterner côté favori (longueurs 1, 3) et côté faible (longueurs 2, 4). Le côté faible révèle les compensations habituelles — ne pas le sauter."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -153,16 +223,24 @@
             },
             {
               "alternatives" : [
-                "8×25 m drill seul récup 30 s",
-                "4×50 m catch-up drill récup 30 s"
+                {
+                  "fr" : "8×25 m drill seul récup 30 s"
+                },
+                {
+                  "fr" : "4×50 m catch-up drill récup 30 s"
+                }
               ],
               "duration" : "25 m drill + 25 m crawl EN1 (50 m total par série)",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Fingertip drag + nage 25 m alternés",
-              "notes" : "Drill puis nage : ancrer la sensation catch immédiatement dans la nage normale. Sur le 25 m crawl, focus coude haut (elbow-high) à l'initiation de la traction.",
+              "name" : {
+                "fr" : "Fingertip drag + nage 25 m alternés"
+              },
+              "notes" : {
+                "fr" : "Drill puis nage : ancrer la sensation catch immédiatement dans la nage normale. Sur le 25 m crawl, focus coude haut (elbow-high) à l'initiation de la traction."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -173,16 +251,24 @@
             },
             {
               "alternatives" : [
-                "2×200 m EN1 récup 30 s",
-                "Long swim 400 m avec pull-buoy"
+                {
+                  "fr" : "2×200 m EN1 récup 30 s"
+                },
+                {
+                  "fr" : "Long swim 400 m avec pull-buoy"
+                }
               ],
               "duration" : "400 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Long swim 400 m crawl EN1",
-              "notes" : "Long swim de la semaine. Allure EN1 conversationnelle complète, plus lente que ton allure de test 400 m W1. Si tu sens l'essoufflement monter avant 200 m, c'est que tu es parti trop vite. Respiration côté favori autorisée — la bilatérale 1/3 arrive en W2.",
+              "name" : {
+                "fr" : "Long swim 400 m crawl EN1"
+              },
+              "notes" : {
+                "fr" : "Long swim de la semaine. Allure EN1 conversationnelle complète, plus lente que ton allure de test 400 m W1. Si tu sens l'essoufflement monter avant 200 m, c'est que tu es parti trop vite. Respiration côté favori autorisée — la bilatérale 1/3 arrive en W2."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -193,14 +279,22 @@
             },
             {
               "alternatives" : [
-                "Wall slide 12 reps",
-                "Scapular wall push-up 10 reps"
+                {
+                  "fr" : "Wall slide"
+                },
+                {
+                  "fr" : "Scapular wall push-up"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Y-T-W shoulder activation",
-              "notes" : "Au sec, allongé sur le ventre sur tapis, bras formant successivement Y, T, W avec rétraction des omoplates. Active les muscles stabilisateurs de la coiffe des rotateurs — prévention swimmer's shoulder. NON NÉGOCIABLE pour un nageur recreational en montée de volume.",
+              "name" : {
+                "fr" : "Y-T-W shoulder activation"
+              },
+              "notes" : {
+                "fr" : "Au sec, allongé sur le ventre sur tapis, bras formant successivement Y, T, W avec rétraction des omoplates. Active les muscles stabilisateurs de la coiffe des rotateurs — prévention swimmer's shoulder. NON NÉGOCIABLE pour un nageur recreational en montée de volume."
+              },
               "reps" : "8 par lettre (Y, T, W)",
               "required_equipment" : [
                 "mat"
@@ -212,14 +306,22 @@
             },
             {
               "alternatives" : [
-                "External rotation côté allongé 12 reps/côté sans band",
-                "Scaption 10 reps avec poids légers"
+                {
+                  "fr" : "External rotation côté allongé sans band"
+                },
+                {
+                  "fr" : "Scaption avec poids légers"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "External rotation avec resistance band",
-              "notes" : "Coude collé au flanc, avant-bras à 90°, rotation externe lente avec band léger. Renforce l'infraspinatus / teres minor — antagonistes des grands pectoraux dominants chez le nageur.",
+              "name" : {
+                "fr" : "External rotation avec resistance band"
+              },
+              "notes" : {
+                "fr" : "Coude collé au flanc, avant-bras à 90°, rotation externe lente avec band léger. Renforce l'infraspinatus / teres minor — antagonistes des grands pectoraux dominants chez le nageur."
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
                 "resistance-band"
@@ -231,8 +333,12 @@
             },
             {
               "alternatives" : [
-                "Planche genoux 40 sec",
-                "Dead bug 12 reps/côté"
+                {
+                  "fr" : "Planche genoux 40 sec"
+                },
+                {
+                  "fr" : "Dead bug"
+                }
               ],
               "duration" : "30 sec",
               "incompatible_constraints" : [
@@ -240,8 +346,12 @@
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Planche ventrale",
-              "notes" : "Corps rigide, fessiers engagés. Core stable = position horizontale stable en nage.",
+              "name" : {
+                "fr" : "Planche ventrale"
+              },
+              "notes" : {
+                "fr" : "Corps rigide, fessiers engagés. Core stable = position horizontale stable en nage."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -252,14 +362,22 @@
             },
             {
               "alternatives" : [
-                "Thread the needle 8/côté",
-                "Child's pose 60 sec"
+                {
+                  "fr" : "Thread the needle 8/côté"
+                },
+                {
+                  "fr" : "Child's pose 60 sec"
+                }
               ],
               "incompatible_constraints" : [
 
               ],
-              "name" : "Cat-cow (mobilité dorsale)",
-              "notes" : "À 4 pattes, alternance flexion (cat) / extension (cow) lente du rachis dorsal et lombaire. Mobilité de la colonne — utile à la rotation de tronc en nage.",
+              "name" : {
+                "fr" : "Cat-cow (mobilité dorsale)"
+              },
+              "notes" : {
+                "fr" : "À 4 pattes, alternance flexion (cat) / extension (cow) lente du rachis dorsal et lombaire. Mobilité de la colonne — utile à la rotation de tronc en nage."
+              },
               "reps" : "10 cycles lents",
               "required_equipment" : [
                 "mat"
@@ -269,34 +387,52 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "Long swim 400 m + dryland préventif",
+          "name" : {
+            "fr" : "Long swim 400 m + dryland préventif"
+          },
           "type" : "mixed",
-          "warmup" : "300 m nage mixte progressive (200 m crawl lent + 100 m dos crawl). Activation cervicales et épaules."
+          "warmup" : {
+            "fr" : "300 m nage mixte progressive (200 m crawl lent + 100 m dos crawl). Activation cervicales et épaules."
+          }
         }
       ],
-      "theme" : "Bilan et fondations techniques — équilibre et catch",
+      "theme" : {
+        "fr" : "Bilan et fondations techniques — équilibre et catch"
+      },
       "week_number" : 1
     },
     {
-      "goal" : "Introduire la respiration bilatérale 1/3 sur drills isolés et nage courte. Drill timing 6-3-6 ajouté. Long swim 500 m. Volume hebdo de nage pure : ~2900 m.",
+      "goal" : {
+        "fr" : "Introduire la respiration bilatérale 1/3 sur drills isolés et nage courte. Drill timing 6-3-6 ajouté. Long swim 500 m. Volume hebdo de nage pure : ~2900 m."
+      },
       "sessions" : [
         {
-          "cooldown" : "100 m dos lent. Étirements nuque oreille vers épaule 30 sec/côté.",
+          "cooldown" : {
+            "fr" : "100 m dos lent. Étirements nuque oreille vers épaule 30 sec/côté."
+          },
           "day" : 2,
           "duration_minutes" : 55,
           "exercises" : [
             {
               "alternatives" : [
-                "Side kick alterné 6×25 m",
-                "Catch-up drill 6×25 m"
+                {
+                  "fr" : "Side kick alterné 6×25 m"
+                },
+                {
+                  "fr" : "Catch-up drill 6×25 m"
+                }
               ],
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cervical-pain"
               ],
-              "name" : "6-3-6 drill (timing + rotation)",
-              "notes" : "6 battements sur le côté gauche (bras gauche tendu devant, bras droit le long du corps), 3 cycles complets de crawl, 6 battements sur le côté droit. Objectif timing : coordonner la rotation des hanches avec l'entrée du bras. DIFFÉRENT du Fingertip drag (qui travaille le catch).",
+              "name" : {
+                "fr" : "6-3-6 drill (timing + rotation)"
+              },
+              "notes" : {
+                "fr" : "6 battements sur le côté gauche (bras gauche tendu devant, bras droit le long du corps), 3 cycles complets de crawl, 6 battements sur le côté droit. Objectif timing : coordonner la rotation des hanches avec l'entrée du bras. DIFFÉRENT du Fingertip drag (qui travaille le catch)."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -307,16 +443,24 @@
             },
             {
               "alternatives" : [
-                "6×25 m crawl 1/2 côté favori",
-                "Drill side kick with breath 6×25 m"
+                {
+                  "fr" : "6×25 m crawl 1/2 côté favori"
+                },
+                {
+                  "fr" : "Drill side kick with breath 6×25 m"
+                }
               ],
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cervical-pain"
               ],
-              "name" : "Crawl bilatérale 1/3 — introduction",
-              "notes" : "Inspirer tous les 3 cycles de bras (alternance gauche/droite). Si l'essoufflement est trop fort sur 25 m, passer à 1/2 (côté favori) et reprendre 1/3 sur les longueurs suivantes. La bilatérale est introduite W2 car ton profil recreational a déjà la latérale acquise — pas de surcharge cognitive. Focus expiration longue sous l'eau.",
+              "name" : {
+                "fr" : "Crawl bilatérale 1/3 — introduction"
+              },
+              "notes" : {
+                "fr" : "Inspirer tous les 3 cycles de bras (alternance gauche/droite). Si l'essoufflement est trop fort sur 25 m, passer à 1/2 (côté favori) et reprendre 1/3 sur les longueurs suivantes. La bilatérale est introduite W2 car ton profil recreational a déjà la latérale acquise — pas de surcharge cognitive. Focus expiration longue sous l'eau."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -327,16 +471,24 @@
             },
             {
               "alternatives" : [
-                "1×400 m EN1 continu",
-                "2×200 m EN1 avec pull-buoy"
+                {
+                  "fr" : "1×400 m EN1 continu"
+                },
+                {
+                  "fr" : "2×200 m EN1 avec pull-buoy"
+                }
               ],
               "duration" : "200 m crawl EN1 récup 60 s",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Bloc EN1 200 m × 2",
-              "notes" : "Sur le 1er 200 m : respiration côté favori. Sur le 2e 200 m : essayer la bilatérale 1/3 sur 50% des longueurs. Note la proportion. Pas de chrono — focus sensation et régularité.",
+              "name" : {
+                "fr" : "Bloc EN1 200 m × 2"
+              },
+              "notes" : {
+                "fr" : "Sur le 1er 200 m : respiration côté favori. Sur le 2e 200 m : essayer la bilatérale 1/3 sur 50% des longueurs. Note la proportion. Pas de chrono — focus sensation et régularité."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -347,15 +499,23 @@
             },
             {
               "alternatives" : [
-                "Compteur cycles 50 m 2 séries",
-                "Glissé maximal 25 m noter nombre de cycles"
+                {
+                  "fr" : "Compteur cycles 50 m 2 séries"
+                },
+                {
+                  "fr" : "Glissé maximal 25 m noter nombre de cycles"
+                }
               ],
               "duration" : "25 m crawl lent",
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Compteur de cycles 25 m",
-              "notes" : "Crawl à allure modérée, compter le nombre de cycles de bras (1 cycle = bras G + bras D) pour faire 25 m. Référence intermédiaire : 17-20 cycles/25 m. Note ce chiffre — référentiel à recomparer en W6.",
+              "name" : {
+                "fr" : "Compteur de cycles 25 m"
+              },
+              "notes" : {
+                "fr" : "Crawl à allure modérée, compter le nombre de cycles de bras (1 cycle = bras G + bras D) pour faire 25 m. Référence intermédiaire : 17-20 cycles/25 m. Note ce chiffre — référentiel à recomparer en W6."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -365,27 +525,41 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Bilatérale 1/3 + drill timing",
+          "name" : {
+            "fr" : "Bilatérale 1/3 + drill timing"
+          },
           "type" : "technique",
-          "warmup" : "300 m crawl lent EN1 + 4×25 m crawl avec expiration longue continue sous l'eau (bulles régulières)."
+          "warmup" : {
+            "fr" : "300 m crawl lent EN1 + 4×25 m crawl avec expiration longue continue sous l'eau (bulles régulières)."
+          }
         },
         {
-          "cooldown" : "100 m très lent + étirements épaules cross-body 40 sec/côté + nuque.",
+          "cooldown" : {
+            "fr" : "100 m très lent + étirements épaules cross-body 40 sec/côté + nuque."
+          },
           "day" : 5,
           "duration_minutes" : 75,
           "exercises" : [
             {
               "alternatives" : [
-                "Catch-up drill 4×25 m",
-                "Single arm bras dominant 4×25 m"
+                {
+                  "fr" : "Catch-up drill 4×25 m"
+                },
+                {
+                  "fr" : "Single arm bras dominant 4×25 m"
+                }
               ],
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Fingertip drag",
-              "notes" : "Rappel catch W1. Ancrer la sensation avant le long swim.",
+              "name" : {
+                "fr" : "Fingertip drag"
+              },
+              "notes" : {
+                "fr" : "Rappel catch W1. Ancrer la sensation avant le long swim."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -396,16 +570,24 @@
             },
             {
               "alternatives" : [
-                "Body roll 6-3-6 4×25 m",
-                "Side kick avec ceinture flottante"
+                {
+                  "fr" : "Body roll 6-3-6 4×25 m"
+                },
+                {
+                  "fr" : "Side kick avec ceinture flottante"
+                }
               ],
               "duration" : "25 m (alterner côtés)",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cervical-pain"
               ],
-              "name" : "Side kick bilatéral",
-              "notes" : "Maintien équilibre — drill fondamental, JAMAIS abandonné même quand le catch progresse.",
+              "name" : {
+                "fr" : "Side kick bilatéral"
+              },
+              "notes" : {
+                "fr" : "Maintien équilibre — drill fondamental, JAMAIS abandonné même quand le catch progresse."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -416,16 +598,24 @@
             },
             {
               "alternatives" : [
-                "3×200 m EN1 récup 30 s",
-                "500 m EN1 avec pull-buoy"
+                {
+                  "fr" : "3×200 m EN1 récup 30 s"
+                },
+                {
+                  "fr" : "500 m EN1 avec pull-buoy"
+                }
               ],
               "duration" : "500 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Long swim 500 m crawl EN1",
-              "notes" : "Premier objectif intermédiaire. Pars LENT — plus lent que tu penses. Si tu sens une accélération du souffle avant 300 m, tu es parti trop vite. Essayer la bilatérale 1/3 sur les 200 premiers mètres si tes sensations le permettent ; basculer en 1/2 si l'essoufflement monte. Si tu dois t'arrêter, prends 30 sec et reprends — ne pas abandonner la séance.",
+              "name" : {
+                "fr" : "Long swim 500 m crawl EN1"
+              },
+              "notes" : {
+                "fr" : "Premier objectif intermédiaire. Pars LENT — plus lent que tu penses. Si tu sens une accélération du souffle avant 300 m, tu es parti trop vite. Essayer la bilatérale 1/3 sur les 200 premiers mètres si tes sensations le permettent ; basculer en 1/2 si l'essoufflement monte. Si tu dois t'arrêter, prends 30 sec et reprends — ne pas abandonner la séance."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -436,15 +626,23 @@
             },
             {
               "alternatives" : [
-                "Brasse récup 100 m",
-                "Marche dans l'eau bord du bassin 2 min"
+                {
+                  "fr" : "Brasse récup 100 m"
+                },
+                {
+                  "fr" : "Marche dans l'eau bord du bassin 2 min"
+                }
               ],
               "duration" : "100 m dos crawl très lent",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Nage récupération",
-              "notes" : "Récupération active après l'effort long. Dos ou brasse lente.",
+              "name" : {
+                "fr" : "Nage récupération"
+              },
+              "notes" : {
+                "fr" : "Récupération active après l'effort long. Dos ou brasse lente."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -455,14 +653,22 @@
             },
             {
               "alternatives" : [
-                "Wall slide 14 reps",
-                "Prone scapular retraction 12 reps"
+                {
+                  "fr" : "Wall slide"
+                },
+                {
+                  "fr" : "Prone scapular retraction"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Y-T-W shoulder activation",
-              "notes" : "Progression +2 reps vs W1. Maintenir tempo lent et contrôle.",
+              "name" : {
+                "fr" : "Y-T-W shoulder activation"
+              },
+              "notes" : {
+                "fr" : "Progression +2 reps vs W1. Maintenir tempo lent et contrôle."
+              },
               "reps" : "10 par lettre",
               "required_equipment" : [
                 "mat"
@@ -474,13 +680,19 @@
             },
             {
               "alternatives" : [
-                "External rotation côté allongé 12/côté",
-                "Face pulls band 12 reps"
+                {
+                  "fr" : "External rotation côté allongé 12/côté"
+                },
+                {
+                  "fr" : "Face pulls band"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "External rotation band",
+              "name" : {
+                "fr" : "External rotation band"
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
                 "resistance-band"
@@ -492,8 +704,12 @@
             },
             {
               "alternatives" : [
-                "Planche genoux 50 sec",
-                "Side plank 25 sec/côté"
+                {
+                  "fr" : "Planche genoux 50 sec"
+                },
+                {
+                  "fr" : "Side plank 25 sec/côté"
+                }
               ],
               "duration" : "35 sec",
               "incompatible_constraints" : [
@@ -501,7 +717,9 @@
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Planche ventrale",
+              "name" : {
+                "fr" : "Planche ventrale"
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -511,33 +729,51 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Long swim 500 m + dryland",
+          "name" : {
+            "fr" : "Long swim 500 m + dryland"
+          },
           "type" : "mixed",
-          "warmup" : "400 m nage mixte progressive (200 m crawl lent + 100 m dos + 100 m crawl légèrement accru)."
+          "warmup" : {
+            "fr" : "400 m nage mixte progressive (200 m crawl lent + 100 m dos + 100 m crawl légèrement accru)."
+          }
         }
       ],
-      "theme" : "Construction — bilatérale 1/3 et long swim 500 m",
+      "theme" : {
+        "fr" : "Construction — bilatérale 1/3 et long swim 500 m"
+      },
       "week_number" : 2
     },
     {
-      "goal" : "Introduire le drill Catch-up (timing complet) et consolider la bilatérale 1/3 sur le volume EN1. Long swim 700 m. Volume hebdo de nage pure : ~3300 m.",
+      "goal" : {
+        "fr" : "Introduire le drill Catch-up (timing complet) et consolider la bilatérale 1/3 sur le volume EN1. Long swim 700 m. Volume hebdo de nage pure : ~3300 m."
+      },
       "sessions" : [
         {
-          "cooldown" : "100 m dos + étirements 5 min épaules + nuque.",
+          "cooldown" : {
+            "fr" : "100 m dos + étirements 5 min épaules + nuque."
+          },
           "day" : 2,
           "duration_minutes" : 60,
           "exercises" : [
             {
               "alternatives" : [
-                "Catch-up avec planche 6×25 m",
-                "6-3-6 drill 6×25 m"
+                {
+                  "fr" : "Catch-up avec planche 6×25 m"
+                },
+                {
+                  "fr" : "6-3-6 drill 6×25 m"
+                }
               ],
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Catch-up drill (timing complet)",
-              "notes" : "Attendre que la main avant touche l'autre bras avant d'initier la traction. Objectif timing : rallonger le temps de glissé et synchroniser l'entrée du bras avec la rotation des hanches. DIFFÉRENT du Fingertip drag (catch). Drill clé Total Immersion — perfectionne le rythme du cycle complet.",
+              "name" : {
+                "fr" : "Catch-up drill (timing complet)"
+              },
+              "notes" : {
+                "fr" : "Attendre que la main avant touche l'autre bras avant d'initier la traction. Objectif timing : rallonger le temps de glissé et synchroniser l'entrée du bras avec la rotation des hanches. DIFFÉRENT du Fingertip drag (catch). Drill clé Total Immersion — perfectionne le rythme du cycle complet."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -548,16 +784,24 @@
             },
             {
               "alternatives" : [
-                "Single arm bras dominant 4×25 m",
-                "Sculling avant 4×25 m"
+                {
+                  "fr" : "Single arm bras dominant 4×25 m"
+                },
+                {
+                  "fr" : "Sculling avant 4×25 m"
+                }
               ],
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Fingertip drag (rappel)",
-              "notes" : "Maintien du catch acquis. Focus coude haut.",
+              "name" : {
+                "fr" : "Fingertip drag (rappel)"
+              },
+              "notes" : {
+                "fr" : "Maintien du catch acquis. Focus coude haut."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -568,16 +812,24 @@
             },
             {
               "alternatives" : [
-                "4×200 m EN1 récup 30 s",
-                "1×800 m continu EN1"
+                {
+                  "fr" : "4×200 m EN1 récup 30 s"
+                },
+                {
+                  "fr" : "1×800 m continu EN1"
+                }
               ],
               "duration" : "100 m crawl + 20 s récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Bloc EN1-EN2 8×100 m",
-              "notes" : "Premier bloc structuré 100 m avec récup courte. Allure : EN1 sur les 4 premiers (RPE 3-4), légèrement plus rapide EN1+ sur les 4 derniers (RPE 4-5). Bilatérale 1/3 sur au moins 4 répétitions. Récup 20 s entre — courte volontairement, simule le ressenti du long swim continu.",
+              "name" : {
+                "fr" : "Bloc EN1-EN2 8×100 m"
+              },
+              "notes" : {
+                "fr" : "Premier bloc structuré 100 m avec récup courte. Allure : EN1 sur les 4 premiers (RPE 3-4), légèrement plus rapide EN1+ sur les 4 derniers (RPE 4-5). Bilatérale 1/3 sur au moins 4 répétitions. Récup 20 s entre — courte volontairement, simule le ressenti du long swim continu."
+              },
               "required_equipment" : [
                 "pool",
                 "chronometer-or-watch"
@@ -589,15 +841,23 @@
             },
             {
               "alternatives" : [
-                "100 m dos crawl récup",
-                "100 m crawl avec pull-buoy"
+                {
+                  "fr" : "100 m dos crawl récup"
+                },
+                {
+                  "fr" : "100 m crawl avec pull-buoy"
+                }
               ],
               "duration" : "100 m crawl lent compteur cycles",
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Nage technique consolidation",
-              "notes" : "Compter cycles de bras sur chaque 25 m. Comparer à W2. Si moins de cycles à allure identique = technique qui progresse.",
+              "name" : {
+                "fr" : "Nage technique consolidation"
+              },
+              "notes" : {
+                "fr" : "Compter cycles de bras sur chaque 25 m. Comparer à W2. Si moins de cycles à allure identique = technique qui progresse."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -607,26 +867,40 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Catch-up drill + bilatérale intégrée",
+          "name" : {
+            "fr" : "Catch-up drill + bilatérale intégrée"
+          },
           "type" : "technique",
-          "warmup" : "400 m nage mixte (200 m crawl + 100 m dos + 100 m crawl + drills 4×25 m side kick)."
+          "warmup" : {
+            "fr" : "400 m nage mixte (200 m crawl + 100 m dos + 100 m crawl + drills 4×25 m side kick)."
+          }
         },
         {
-          "cooldown" : "200 m nage très lente + étirements 8 min.",
+          "cooldown" : {
+            "fr" : "200 m nage très lente + étirements 8 min."
+          },
           "day" : 5,
           "duration_minutes" : 80,
           "exercises" : [
             {
               "alternatives" : [
-                "6-3-6 4×25 m",
-                "Catch-up avec planche 4×25 m"
+                {
+                  "fr" : "6-3-6 4×25 m"
+                },
+                {
+                  "fr" : "Catch-up avec planche 4×25 m"
+                }
               ],
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Catch-up drill",
-              "notes" : "Rappel timing avant le long swim. Ancrer la sensation 'glisse longue avant traction'.",
+              "name" : {
+                "fr" : "Catch-up drill"
+              },
+              "notes" : {
+                "fr" : "Rappel timing avant le long swim. Ancrer la sensation 'glisse longue avant traction'."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -637,16 +911,24 @@
             },
             {
               "alternatives" : [
-                "3×250 m EN1 récup 30 s (-50 m vs cible)",
-                "700 m EN1 avec pull-buoy"
+                {
+                  "fr" : "3×250 m EN1 récup 30 s (-50 m vs cible)"
+                },
+                {
+                  "fr" : "700 m EN1 avec pull-buoy"
+                }
               ],
               "duration" : "700 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Long swim 700 m crawl EN1",
-              "notes" : "Progression de 200 m vs W2. Allure régulière EN1 (RPE 3-4). Bilatérale 1/3 sur au moins 50% des longueurs si tes sensations le permettent — sinon 1/2 sans frustration. La tentation de partir vite est le piège classique : pars 5-10 s/100 m plus lent que ton allure de test 400 m.",
+              "name" : {
+                "fr" : "Long swim 700 m crawl EN1"
+              },
+              "notes" : {
+                "fr" : "Progression de 200 m vs W2. Allure régulière EN1 (RPE 3-4). Bilatérale 1/3 sur au moins 50% des longueurs si tes sensations le permettent — sinon 1/2 sans frustration. La tentation de partir vite est le piège classique : pars 5-10 s/100 m plus lent que ton allure de test 400 m."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -657,14 +939,20 @@
             },
             {
               "alternatives" : [
-                "Brasse récup 150 m",
-                "100 m dos + 50 m marche dans eau"
+                {
+                  "fr" : "Brasse récup 150 m"
+                },
+                {
+                  "fr" : "100 m dos + 50 m marche dans eau"
+                }
               ],
               "duration" : "150 m dos lent",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Nage récupération",
+              "name" : {
+                "fr" : "Nage récupération"
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -675,13 +963,19 @@
             },
             {
               "alternatives" : [
-                "Wall slide 14 reps",
-                "Prone scapular retraction 12 reps"
+                {
+                  "fr" : "Wall slide"
+                },
+                {
+                  "fr" : "Prone scapular retraction"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Y-T-W shoulder activation",
+              "name" : {
+                "fr" : "Y-T-W shoulder activation"
+              },
               "reps" : "10 par lettre",
               "required_equipment" : [
                 "mat"
@@ -693,14 +987,22 @@
             },
             {
               "alternatives" : [
-                "Face pulls band 12 reps",
-                "Reverse fly 12 reps avec poids légers"
+                {
+                  "fr" : "Face pulls band"
+                },
+                {
+                  "fr" : "Reverse fly avec poids légers"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Scapula retraction band",
-              "notes" : "Band fixé devant à hauteur de poitrine. Tirer en rétractant les omoplates (serrer un crayon entre elles), coudes près du corps. Renforce les rhomboïdes — antagonistes des grands pectoraux dominants chez le nageur.",
+              "name" : {
+                "fr" : "Scapula retraction band"
+              },
+              "notes" : {
+                "fr" : "Band fixé devant à hauteur de poitrine. Tirer en rétractant les omoplates (serrer un crayon entre elles), coudes près du corps. Renforce les rhomboïdes — antagonistes des grands pectoraux dominants chez le nageur."
+              },
               "reps" : "12",
               "required_equipment" : [
                 "resistance-band"
@@ -712,13 +1014,19 @@
             },
             {
               "alternatives" : [
-                "External rotation côté allongé 12/côté",
-                "Scaption 12 reps poids légers"
+                {
+                  "fr" : "External rotation côté allongé 12/côté"
+                },
+                {
+                  "fr" : "Scaption poids légers"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "External rotation band",
+              "name" : {
+                "fr" : "External rotation band"
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
                 "resistance-band"
@@ -730,8 +1038,12 @@
             },
             {
               "alternatives" : [
-                "Planche genoux 60 sec",
-                "Side plank 30 sec/côté"
+                {
+                  "fr" : "Planche genoux 60 sec"
+                },
+                {
+                  "fr" : "Side plank 30 sec/côté"
+                }
               ],
               "duration" : "40 sec",
               "incompatible_constraints" : [
@@ -739,7 +1051,9 @@
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Planche ventrale",
+              "name" : {
+                "fr" : "Planche ventrale"
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -749,34 +1063,52 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Long swim 700 m + dryland",
+          "name" : {
+            "fr" : "Long swim 700 m + dryland"
+          },
           "type" : "mixed",
-          "warmup" : "400 m nage mixte progressive + 4×25 m drills (Fingertip drag + Side kick)."
+          "warmup" : {
+            "fr" : "400 m nage mixte progressive + 4×25 m drills (Fingertip drag + Side kick)."
+          }
         }
       ],
-      "theme" : "Catch consolidé — Catch-up drill et long swim 700 m",
+      "theme" : {
+        "fr" : "Catch consolidé — Catch-up drill et long swim 700 m"
+      },
       "week_number" : 3
     },
     {
-      "goal" : "Cutback W4 (-18% volume vs W3) avec priorité technique absolue. Drill pull-buoy isolation introduit pour focus traction pure. Long swim cutback 600 m. Volume hebdo de nage pure : ~2700 m.",
+      "goal" : {
+        "fr" : "Cutback W4 (-18% volume vs W3) avec priorité technique absolue. Drill pull-buoy isolation introduit pour focus traction pure. Long swim cutback 600 m. Volume hebdo de nage pure : ~2700 m."
+      },
       "sessions" : [
         {
-          "cooldown" : "100 m dos lent + étirements épaules.",
+          "cooldown" : {
+            "fr" : "100 m dos lent + étirements épaules."
+          },
           "day" : 2,
           "duration_minutes" : 55,
           "exercises" : [
             {
               "alternatives" : [
-                "Crawl bras seuls jambes immobiles sans pull-buoy 6×50 m",
-                "Catch-up drill avec pull-buoy 6×50 m"
+                {
+                  "fr" : "Crawl bras seuls jambes immobiles sans pull-buoy 6×50 m"
+                },
+                {
+                  "fr" : "Catch-up drill avec pull-buoy 6×50 m"
+                }
               ],
               "duration" : "50 m crawl avec pull-buoy entre les jambes + 20 s récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Pull-buoy isolation (traction pure)",
-              "notes" : "Pull-buoy entre les cuisses. Isole complètement la traction des bras (jambes immobiles). Focus : coude haut, traction longue, prise d'eau précoce. DIFFÉRENT des drills équilibre — ici on travaille la propulsion bras pure. Cutback = volume réduit mais qualité technique haute.",
+              "name" : {
+                "fr" : "Pull-buoy isolation (traction pure)"
+              },
+              "notes" : {
+                "fr" : "Pull-buoy entre les cuisses. Isole complètement la traction des bras (jambes immobiles). Focus : coude haut, traction longue, prise d'eau précoce. DIFFÉRENT des drills équilibre — ici on travaille la propulsion bras pure. Cutback = volume réduit mais qualité technique haute."
+              },
               "required_equipment" : [
                 "pool",
                 "pull-buoy"
@@ -788,14 +1120,20 @@
             },
             {
               "alternatives" : [
-                "6-3-6 4×25 m",
-                "Fingertip drag 4×25 m"
+                {
+                  "fr" : "6-3-6 4×25 m"
+                },
+                {
+                  "fr" : "Fingertip drag 4×25 m"
+                }
               ],
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Catch-up drill",
+              "name" : {
+                "fr" : "Catch-up drill"
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -806,16 +1144,24 @@
             },
             {
               "alternatives" : [
-                "Body roll 6-3-6 4×25 m",
-                "Side kick côté favori uniquement 4×25 m"
+                {
+                  "fr" : "Body roll 6-3-6 4×25 m"
+                },
+                {
+                  "fr" : "Side kick côté favori uniquement 4×25 m"
+                }
               ],
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cervical-pain"
               ],
-              "name" : "Side kick bilatéral",
-              "notes" : "Cutback = revenir aux fondamentaux d'équilibre. Maintien strict.",
+              "name" : {
+                "fr" : "Side kick bilatéral"
+              },
+              "notes" : {
+                "fr" : "Cutback = revenir aux fondamentaux d'équilibre. Maintien strict."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -826,16 +1172,24 @@
             },
             {
               "alternatives" : [
-                "2×200 m EN1 récup 30 s",
-                "1×400 m EN1 continu"
+                {
+                  "fr" : "2×200 m EN1 récup 30 s"
+                },
+                {
+                  "fr" : "1×400 m EN1 continu"
+                }
               ],
               "duration" : "100 m crawl bilatérale 1/3 + 25 s récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Bloc EN1 4×100 m",
-              "notes" : "Volume EN1 réduit (-50% vs W3 J2) — c'est l'essence du cutback. Bilatérale 1/3 sur 100% des longueurs si possible.",
+              "name" : {
+                "fr" : "Bloc EN1 4×100 m"
+              },
+              "notes" : {
+                "fr" : "Volume EN1 réduit (-50% vs W3 J2) — c'est l'essence du cutback. Bilatérale 1/3 sur 100% des longueurs si possible."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -845,27 +1199,41 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Drills focal point — pull-buoy isolation",
+          "name" : {
+            "fr" : "Drills focal point — pull-buoy isolation"
+          },
           "type" : "technique",
-          "warmup" : "300 m crawl lent EN1 + 4×25 m Side kick."
+          "warmup" : {
+            "fr" : "300 m crawl lent EN1 + 4×25 m Side kick."
+          }
         },
         {
-          "cooldown" : "100 m dos + étirements 6 min.",
+          "cooldown" : {
+            "fr" : "100 m dos + étirements 6 min."
+          },
           "day" : 5,
           "duration_minutes" : 65,
           "exercises" : [
             {
               "alternatives" : [
-                "3×200 m EN1 récup 30 s",
-                "600 m EN1 avec pull-buoy"
+                {
+                  "fr" : "3×200 m EN1 récup 30 s"
+                },
+                {
+                  "fr" : "600 m EN1 avec pull-buoy"
+                }
               ],
               "duration" : "600 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Long swim 600 m crawl EN1 (cutback)",
-              "notes" : "Cutback : -100 m vs long swim W3 (700 m). Allure EN1 stricte, conversationnelle complète. Le cutback consolide les adaptations tendineuses de la coiffe — saute pas cette semaine, c'est elle qui rend possible la montée W5-W7. Bilatérale 1/3 dominante.",
+              "name" : {
+                "fr" : "Long swim 600 m crawl EN1 (cutback)"
+              },
+              "notes" : {
+                "fr" : "Cutback : -100 m vs long swim W3 (700 m). Allure EN1 stricte, conversationnelle complète. Le cutback consolide les adaptations tendineuses de la coiffe — saute pas cette semaine, c'est elle qui rend possible la montée W5-W7. Bilatérale 1/3 dominante."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -876,15 +1244,23 @@
             },
             {
               "alternatives" : [
-                "150 m dos lent",
-                "100 m crawl pull-buoy"
+                {
+                  "fr" : "150 m dos lent"
+                },
+                {
+                  "fr" : "100 m crawl pull-buoy"
+                }
               ],
               "duration" : "150 m crawl lent compteur cycles",
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Nage technique récupération",
-              "notes" : "Compter cycles 25 m, comparer à W2 et W3. Allure très lente.",
+              "name" : {
+                "fr" : "Nage technique récupération"
+              },
+              "notes" : {
+                "fr" : "Compter cycles 25 m, comparer à W2 et W3. Allure très lente."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -895,14 +1271,22 @@
             },
             {
               "alternatives" : [
-                "Wall slide 12 reps × 2",
-                "Prone scapular retraction 12 × 2"
+                {
+                  "fr" : "Wall slide"
+                },
+                {
+                  "fr" : "Prone scapular retraction 12 × 2"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Y-T-W shoulder activation (allégé)",
-              "notes" : "Cutback dryland aussi : 2 séries au lieu de 3. Maintien stimulus minimum.",
+              "name" : {
+                "fr" : "Y-T-W shoulder activation (allégé)"
+              },
+              "notes" : {
+                "fr" : "Cutback dryland aussi : 2 séries au lieu de 3. Maintien stimulus minimum."
+              },
               "reps" : "10 par lettre",
               "required_equipment" : [
                 "mat"
@@ -914,13 +1298,19 @@
             },
             {
               "alternatives" : [
-                "External rotation côté allongé 12/côté",
-                "Scaption 12 reps légers"
+                {
+                  "fr" : "External rotation côté allongé 12/côté"
+                },
+                {
+                  "fr" : "Scaption légers"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "External rotation band",
+              "name" : {
+                "fr" : "External rotation band"
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
                 "resistance-band"
@@ -932,8 +1322,12 @@
             },
             {
               "alternatives" : [
-                "Planche genoux 60 sec × 2",
-                "Dead bug 12/côté × 2"
+                {
+                  "fr" : "Planche genoux 60 sec × 2"
+                },
+                {
+                  "fr" : "Dead bug 12/côté × 2"
+                }
               ],
               "duration" : "40 sec",
               "incompatible_constraints" : [
@@ -941,7 +1335,9 @@
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Planche ventrale",
+              "name" : {
+                "fr" : "Planche ventrale"
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -951,34 +1347,52 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Long swim cutback 600 m + dryland allégé",
+          "name" : {
+            "fr" : "Long swim cutback 600 m + dryland allégé"
+          },
           "type" : "mixed",
-          "warmup" : "300 m nage mixte + 4×25 m Fingertip drag."
+          "warmup" : {
+            "fr" : "300 m nage mixte + 4×25 m Fingertip drag."
+          }
         }
       ],
-      "theme" : "Cutback — focal point drills, consolidation",
+      "theme" : {
+        "fr" : "Cutback — focal point drills, consolidation"
+      },
       "week_number" : 4
     },
     {
-      "goal" : "Sortie de cutback. Introduction EN3 légère (4×100 m récup 45 s) pour stimulus aérobie haute intensité limité. Long swim 800 m. Volume hebdo de nage pure : ~3500 m.",
+      "goal" : {
+        "fr" : "Sortie de cutback. Introduction EN3 légère (4×100 m récup 45 s) pour stimulus aérobie haute intensité limité. Long swim 800 m. Volume hebdo de nage pure : ~3500 m."
+      },
       "sessions" : [
         {
-          "cooldown" : "200 m dos lent + étirements épaules + cervicales.",
+          "cooldown" : {
+            "fr" : "200 m dos lent + étirements épaules + cervicales."
+          },
           "day" : 2,
           "duration_minutes" : 60,
           "exercises" : [
             {
               "alternatives" : [
-                "Sculling sans pull-buoy 4×25 m",
-                "Single arm bras dominant 4×25 m"
+                {
+                  "fr" : "Sculling sans pull-buoy 4×25 m"
+                },
+                {
+                  "fr" : "Single arm bras dominant 4×25 m"
+                }
               ],
               "duration" : "25 m bras tendus devant figures-8 lentes (pull-buoy entre les jambes)",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Sculling avant",
-              "notes" : "Pull-buoy entre les jambes pour isoler les mains/avant-bras. Mouvement de figure-8 lent et large, paume orientée vers l'arrière de l'eau. Développe la sensibilité de l'eau et le catch précoce. Premier drill sculling du plan.",
+              "name" : {
+                "fr" : "Sculling avant"
+              },
+              "notes" : {
+                "fr" : "Pull-buoy entre les jambes pour isoler les mains/avant-bras. Mouvement de figure-8 lent et large, paume orientée vers l'arrière de l'eau. Développe la sensibilité de l'eau et le catch précoce. Premier drill sculling du plan."
+              },
               "required_equipment" : [
                 "pool",
                 "pull-buoy"
@@ -990,14 +1404,20 @@
             },
             {
               "alternatives" : [
-                "6-3-6 4×25 m",
-                "Fingertip drag 4×25 m"
+                {
+                  "fr" : "6-3-6 4×25 m"
+                },
+                {
+                  "fr" : "Fingertip drag 4×25 m"
+                }
               ],
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Catch-up drill",
+              "name" : {
+                "fr" : "Catch-up drill"
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1008,16 +1428,24 @@
             },
             {
               "alternatives" : [
-                "3×100 m EN3 récup 60 s",
-                "8×50 m EN2 récup 20 s"
+                {
+                  "fr" : "3×100 m EN3 récup 60 s"
+                },
+                {
+                  "fr" : "8×50 m EN2 récup 20 s"
+                }
               ],
               "duration" : "100 m crawl EN3 + 45 s récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Bloc EN3 4×100 m (introduction)",
-              "notes" : "PREMIÈRE EXPOSITION EN3 du plan. Allure EN3 = RPE 7-8/10, soutenue, tu peux dire 2-3 mots à la fin du 100 m. Plus rapide que ton allure 400 m de test (~ -10 à -15 s/100 m). Récup 45 s — volontairement courte mais suffisante pour reprendre. Si la 4e répétition dégrade fortement (> +10 s vs la 1ère), s'arrêter à 3 et noter. JAMAIS de SP sur ce plan recreational.",
+              "name" : {
+                "fr" : "Bloc EN3 4×100 m (introduction)"
+              },
+              "notes" : {
+                "fr" : "PREMIÈRE EXPOSITION EN3 du plan. Allure EN3 = RPE 7-8/10, soutenue, tu peux dire 2-3 mots à la fin du 100 m. Plus rapide que ton allure 400 m de test (~ -10 à -15 s/100 m). Récup 45 s — volontairement courte mais suffisante pour reprendre. Si la 4e répétition dégrade fortement (> +10 s vs la 1ère), s'arrêter à 3 et noter. JAMAIS de SP sur ce plan recreational."
+              },
               "required_equipment" : [
                 "pool",
                 "chronometer-or-watch"
@@ -1029,15 +1457,23 @@
             },
             {
               "alternatives" : [
-                "200 m dos lent",
-                "200 m crawl pull-buoy"
+                {
+                  "fr" : "200 m dos lent"
+                },
+                {
+                  "fr" : "200 m crawl pull-buoy"
+                }
               ],
               "duration" : "200 m crawl lent",
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Nage récup EN1",
-              "notes" : "Récupération active après EN3. Bilatérale 1/3.",
+              "name" : {
+                "fr" : "Nage récup EN1"
+              },
+              "notes" : {
+                "fr" : "Récupération active après EN3. Bilatérale 1/3."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1047,26 +1483,38 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Sculling + EN3 4×100 m",
+          "name" : {
+            "fr" : "Sculling + EN3 4×100 m"
+          },
           "type" : "interval",
-          "warmup" : "400 m nage mixte (200 m crawl + 100 m dos + 4×25 m drills équilibre)."
+          "warmup" : {
+            "fr" : "400 m nage mixte (200 m crawl + 100 m dos + 4×25 m drills équilibre)."
+          }
         },
         {
-          "cooldown" : "200 m dos lent + étirements 8 min.",
+          "cooldown" : {
+            "fr" : "200 m dos lent + étirements 8 min."
+          },
           "day" : 5,
           "duration_minutes" : 85,
           "exercises" : [
             {
               "alternatives" : [
-                "Single arm bras dominant 4×25 m",
-                "Catch-up 4×25 m"
+                {
+                  "fr" : "Single arm bras dominant 4×25 m"
+                },
+                {
+                  "fr" : "Catch-up 4×25 m"
+                }
               ],
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Sculling avant (rappel)",
+              "name" : {
+                "fr" : "Sculling avant (rappel)"
+              },
               "required_equipment" : [
                 "pool",
                 "pull-buoy"
@@ -1078,16 +1526,24 @@
             },
             {
               "alternatives" : [
-                "4×200 m EN1 récup 30 s",
-                "800 m EN1 avec pull-buoy"
+                {
+                  "fr" : "4×200 m EN1 récup 30 s"
+                },
+                {
+                  "fr" : "800 m EN1 avec pull-buoy"
+                }
               ],
               "duration" : "800 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Long swim 800 m crawl EN1",
-              "notes" : "Progression +200 m vs W3 (W4 = cutback). Allure EN1 stricte. Bilatérale 1/3 dominante. Pars LENT : 5-10 s/100 m plus lent que ton allure 400 m de test. Mi-parcours du plan — chercher la régularité, pas la performance. Si essoufflement à 400 m, c'est trop vite.",
+              "name" : {
+                "fr" : "Long swim 800 m crawl EN1"
+              },
+              "notes" : {
+                "fr" : "Progression +200 m vs W3 (W4 = cutback). Allure EN1 stricte. Bilatérale 1/3 dominante. Pars LENT : 5-10 s/100 m plus lent que ton allure 400 m de test. Mi-parcours du plan — chercher la régularité, pas la performance. Si essoufflement à 400 m, c'est trop vite."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1098,14 +1554,20 @@
             },
             {
               "alternatives" : [
-                "Brasse récup 200 m",
-                "150 m dos + 50 m marche dans eau"
+                {
+                  "fr" : "Brasse récup 200 m"
+                },
+                {
+                  "fr" : "150 m dos + 50 m marche dans eau"
+                }
               ],
               "duration" : "200 m dos lent",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Nage récupération",
+              "name" : {
+                "fr" : "Nage récupération"
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1116,13 +1578,19 @@
             },
             {
               "alternatives" : [
-                "Wall slide 14 reps",
-                "Prone scapular retraction 14 reps"
+                {
+                  "fr" : "Wall slide"
+                },
+                {
+                  "fr" : "Prone scapular retraction"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Y-T-W shoulder activation",
+              "name" : {
+                "fr" : "Y-T-W shoulder activation"
+              },
               "reps" : "12 par lettre",
               "required_equipment" : [
                 "mat"
@@ -1134,13 +1602,19 @@
             },
             {
               "alternatives" : [
-                "External rotation côté allongé 14/côté",
-                "Face pulls band 12 reps"
+                {
+                  "fr" : "External rotation côté allongé 14/côté"
+                },
+                {
+                  "fr" : "Face pulls band"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "External rotation band",
+              "name" : {
+                "fr" : "External rotation band"
+              },
               "reps" : "14 par côté",
               "required_equipment" : [
                 "resistance-band"
@@ -1152,13 +1626,19 @@
             },
             {
               "alternatives" : [
-                "Face pulls band 12 reps",
-                "Reverse fly 12 reps poids légers"
+                {
+                  "fr" : "Face pulls band"
+                },
+                {
+                  "fr" : "Reverse fly poids légers"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Scapula retraction band",
+              "name" : {
+                "fr" : "Scapula retraction band"
+              },
               "reps" : "12",
               "required_equipment" : [
                 "resistance-band"
@@ -1170,8 +1650,12 @@
             },
             {
               "alternatives" : [
-                "Planche genoux 60 sec",
-                "Side plank 30 sec/côté"
+                {
+                  "fr" : "Planche genoux 60 sec"
+                },
+                {
+                  "fr" : "Side plank 30 sec/côté"
+                }
               ],
               "duration" : "45 sec",
               "incompatible_constraints" : [
@@ -1179,7 +1663,9 @@
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Planche ventrale",
+              "name" : {
+                "fr" : "Planche ventrale"
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -1189,34 +1675,52 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Long swim 800 m + dryland",
+          "name" : {
+            "fr" : "Long swim 800 m + dryland"
+          },
           "type" : "mixed",
-          "warmup" : "400 m nage mixte + 4×25 m Side kick + 4×25 m Catch-up drill."
+          "warmup" : {
+            "fr" : "400 m nage mixte + 4×25 m Side kick + 4×25 m Catch-up drill."
+          }
         }
       ],
-      "theme" : "Reprise — intro EN3 et long swim 800 m",
+      "theme" : {
+        "fr" : "Reprise — intro EN3 et long swim 800 m"
+      },
       "week_number" : 5
     },
     {
-      "goal" : "Premier 1000 m continu en crawl. EN3 maintenu (4×100 m). Volume hebdo de nage pure : ~3900 m.",
+      "goal" : {
+        "fr" : "Premier 1000 m continu en crawl. EN3 maintenu (4×100 m). Volume hebdo de nage pure : ~3900 m."
+      },
       "sessions" : [
         {
-          "cooldown" : "200 m dos lent + étirements.",
+          "cooldown" : {
+            "fr" : "200 m dos lent + étirements."
+          },
           "day" : 2,
           "duration_minutes" : 65,
           "exercises" : [
             {
               "alternatives" : [
-                "Sculling 4×25 m",
-                "Catch-up avec planche 4×50 m"
+                {
+                  "fr" : "Sculling 4×25 m"
+                },
+                {
+                  "fr" : "Catch-up avec planche 4×50 m"
+                }
               ],
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Pull-buoy isolation",
-              "notes" : "Focus traction bras pure. Coude haut, prise d'eau précoce.",
+              "name" : {
+                "fr" : "Pull-buoy isolation"
+              },
+              "notes" : {
+                "fr" : "Focus traction bras pure. Coude haut, prise d'eau précoce."
+              },
               "required_equipment" : [
                 "pool",
                 "pull-buoy"
@@ -1228,16 +1732,24 @@
             },
             {
               "alternatives" : [
-                "6×100 m EN2 récup 30 s",
-                "4×200 m EN2 récup 30 s"
+                {
+                  "fr" : "6×100 m EN2 récup 30 s"
+                },
+                {
+                  "fr" : "4×200 m EN2 récup 30 s"
+                }
               ],
               "duration" : "100 m crawl EN2 + 25 s récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Bloc EN2 8×100 m",
-              "notes" : "EN2 = comfortably hard, RPE 5-6/10. Allure ~+0-3 s/100 m vs ton 400 m de test. Récup 25 s — courte mais suffisante. Bilatérale 1/3 sur 50% minimum. Si la 7e ou 8e dégrade fortement (> +5 s vs la 1ère), s'arrêter à 7 et noter — signe de surcharge à surveiller.",
+              "name" : {
+                "fr" : "Bloc EN2 8×100 m"
+              },
+              "notes" : {
+                "fr" : "EN2 = comfortably hard, RPE 5-6/10. Allure ~+0-3 s/100 m vs ton 400 m de test. Récup 25 s — courte mais suffisante. Bilatérale 1/3 sur 50% minimum. Si la 7e ou 8e dégrade fortement (> +5 s vs la 1ère), s'arrêter à 7 et noter — signe de surcharge à surveiller."
+              },
               "required_equipment" : [
                 "pool",
                 "chronometer-or-watch"
@@ -1249,14 +1761,20 @@
             },
             {
               "alternatives" : [
-                "200 m dos lent",
-                "200 m crawl pull-buoy"
+                {
+                  "fr" : "200 m dos lent"
+                },
+                {
+                  "fr" : "200 m crawl pull-buoy"
+                }
               ],
               "duration" : "200 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Nage récup EN1",
+              "name" : {
+                "fr" : "Nage récup EN1"
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1266,27 +1784,41 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Drills consolidation + EN2 8×100 m",
+          "name" : {
+            "fr" : "Drills consolidation + EN2 8×100 m"
+          },
           "type" : "interval",
-          "warmup" : "400 m nage mixte + 4×25 m drills équilibre + 4×25 m Catch-up."
+          "warmup" : {
+            "fr" : "400 m nage mixte + 4×25 m drills équilibre + 4×25 m Catch-up."
+          }
         },
         {
-          "cooldown" : "200 m dos très lent + étirements 10 min.",
+          "cooldown" : {
+            "fr" : "200 m dos très lent + étirements 10 min."
+          },
           "day" : 5,
           "duration_minutes" : 95,
           "exercises" : [
             {
               "alternatives" : [
-                "5×200 m EN1 récup 30 s",
-                "1000 m EN1 avec pull-buoy"
+                {
+                  "fr" : "5×200 m EN1 récup 30 s"
+                },
+                {
+                  "fr" : "1000 m EN1 avec pull-buoy"
+                }
               ],
               "duration" : "1000 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Long swim 1000 m crawl EN1",
-              "notes" : "PREMIER 1000 M CONTINU du plan — étape psychologique majeure. Allure EN1 stricte (RPE 3-4), bilatérale 1/3 dominante. Pars TRÈS lent : 10-15 s/100 m plus lent que ton allure 400 m de test. La séance phare W8 sera plus courte mais à allure régulière contrôlée — ici l'objectif est la continuité, pas le chrono. Si tu sens panique respiratoire, retourne-toi sur le dos 30 s puis reprends. Hydratation au bord du bassin entre 500 m et 700 m si possible (pause de 5 s sans s'arrêter complètement).",
+              "name" : {
+                "fr" : "Long swim 1000 m crawl EN1"
+              },
+              "notes" : {
+                "fr" : "PREMIER 1000 M CONTINU du plan — étape psychologique majeure. Allure EN1 stricte (RPE 3-4), bilatérale 1/3 dominante. Pars TRÈS lent : 10-15 s/100 m plus lent que ton allure 400 m de test. La séance phare W8 sera plus courte mais à allure régulière contrôlée — ici l'objectif est la continuité, pas le chrono. Si tu sens panique respiratoire, retourne-toi sur le dos 30 s puis reprends. Hydratation au bord du bassin entre 500 m et 700 m si possible (pause de 5 s sans s'arrêter complètement)."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1297,14 +1829,20 @@
             },
             {
               "alternatives" : [
-                "Brasse récup 200 m",
-                "150 m dos + 50 m marche dans eau"
+                {
+                  "fr" : "Brasse récup 200 m"
+                },
+                {
+                  "fr" : "150 m dos + 50 m marche dans eau"
+                }
               ],
               "duration" : "200 m dos lent",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Nage récupération",
+              "name" : {
+                "fr" : "Nage récupération"
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1315,13 +1853,19 @@
             },
             {
               "alternatives" : [
-                "Wall slide 14 reps",
-                "Prone scapular retraction 14 reps"
+                {
+                  "fr" : "Wall slide"
+                },
+                {
+                  "fr" : "Prone scapular retraction"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Y-T-W shoulder activation",
+              "name" : {
+                "fr" : "Y-T-W shoulder activation"
+              },
               "reps" : "12 par lettre",
               "required_equipment" : [
                 "mat"
@@ -1333,13 +1877,19 @@
             },
             {
               "alternatives" : [
-                "External rotation côté allongé 14/côté",
-                "Face pulls band 14 reps"
+                {
+                  "fr" : "External rotation côté allongé 14/côté"
+                },
+                {
+                  "fr" : "Face pulls band"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "External rotation band",
+              "name" : {
+                "fr" : "External rotation band"
+              },
               "reps" : "14 par côté",
               "required_equipment" : [
                 "resistance-band"
@@ -1351,13 +1901,19 @@
             },
             {
               "alternatives" : [
-                "Face pulls 14 reps",
-                "Reverse fly 14 reps légers"
+                {
+                  "fr" : "Face pulls"
+                },
+                {
+                  "fr" : "Reverse fly légers"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Scapula retraction band",
+              "name" : {
+                "fr" : "Scapula retraction band"
+              },
               "reps" : "14",
               "required_equipment" : [
                 "resistance-band"
@@ -1369,8 +1925,12 @@
             },
             {
               "alternatives" : [
-                "Planche genoux 70 sec",
-                "Side plank 35 sec/côté"
+                {
+                  "fr" : "Planche genoux 70 sec"
+                },
+                {
+                  "fr" : "Side plank 35 sec/côté"
+                }
               ],
               "duration" : "50 sec",
               "incompatible_constraints" : [
@@ -1378,7 +1938,9 @@
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Planche ventrale",
+              "name" : {
+                "fr" : "Planche ventrale"
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -1388,33 +1950,49 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Long swim 1000 m + dryland",
+          "name" : {
+            "fr" : "Long swim 1000 m + dryland"
+          },
           "type" : "mixed",
-          "warmup" : "400 m nage mixte + 4×25 m Catch-up + 4×25 m Side kick."
+          "warmup" : {
+            "fr" : "400 m nage mixte + 4×25 m Catch-up + 4×25 m Side kick."
+          }
         }
       ],
-      "theme" : "Volume — long swim 1000 m franchi",
+      "theme" : {
+        "fr" : "Volume — long swim 1000 m franchi"
+      },
       "week_number" : 6
     },
     {
-      "goal" : "Volume pic du plan. Long swim 1300 m (130% de la cible 1000 m). Bloc EN2 progresse à 10×100 m récup 20 s. Volume hebdo de nage pure : ~4300 m (pic dans la fenêtre 2500-4500 m/sem recreational).",
+      "goal" : {
+        "fr" : "Volume pic du plan. Long swim 1300 m (130% de la cible 1000 m). Bloc EN2 progresse à 10×100 m récup 20 s. Volume hebdo de nage pure : ~4300 m (pic dans la fenêtre 2500-4500 m/sem recreational)."
+      },
       "sessions" : [
         {
-          "cooldown" : "200 m dos lent + étirements 8 min.",
+          "cooldown" : {
+            "fr" : "200 m dos lent + étirements 8 min."
+          },
           "day" : 2,
           "duration_minutes" : 70,
           "exercises" : [
             {
               "alternatives" : [
-                "Catch-up avec planche 4×50 m",
-                "Single arm 4×50 m"
+                {
+                  "fr" : "Catch-up avec planche 4×50 m"
+                },
+                {
+                  "fr" : "Single arm 4×50 m"
+                }
               ],
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Pull-buoy isolation",
+              "name" : {
+                "fr" : "Pull-buoy isolation"
+              },
               "required_equipment" : [
                 "pool",
                 "pull-buoy"
@@ -1426,16 +2004,24 @@
             },
             {
               "alternatives" : [
-                "8×100 m EN2 récup 25 s",
-                "5×200 m EN2 récup 30 s"
+                {
+                  "fr" : "8×100 m EN2 récup 25 s"
+                },
+                {
+                  "fr" : "5×200 m EN2 récup 30 s"
+                }
               ],
               "duration" : "100 m crawl EN2 + 20 s récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Bloc EN2 10×100 m (charge max)",
-              "notes" : "Charge EN2 maximale du plan. Allure EN2 stricte (~+0-3 s/100 m vs allure 400 m de test). Bilatérale 1/3 sur 60%+ des longueurs. C'est exactement le format d'un long swim continu en mode fragmenté — confiance pour les 1000 m de la séance phare. Si la 9e ou 10e dégrade > +5 s vs la 1ère, s'arrêter à 9 et noter.",
+              "name" : {
+                "fr" : "Bloc EN2 10×100 m (charge max)"
+              },
+              "notes" : {
+                "fr" : "Charge EN2 maximale du plan. Allure EN2 stricte (~+0-3 s/100 m vs allure 400 m de test). Bilatérale 1/3 sur 60%+ des longueurs. C'est exactement le format d'un long swim continu en mode fragmenté — confiance pour les 1000 m de la séance phare. Si la 9e ou 10e dégrade > +5 s vs la 1ère, s'arrêter à 9 et noter."
+              },
               "required_equipment" : [
                 "pool",
                 "chronometer-or-watch"
@@ -1447,14 +2033,20 @@
             },
             {
               "alternatives" : [
-                "200 m dos lent",
-                "200 m pull-buoy"
+                {
+                  "fr" : "200 m dos lent"
+                },
+                {
+                  "fr" : "200 m pull-buoy"
+                }
               ],
               "duration" : "200 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Nage récup EN1",
+              "name" : {
+                "fr" : "Nage récup EN1"
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1464,27 +2056,41 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Bloc EN2 10×100 m + drills",
+          "name" : {
+            "fr" : "Bloc EN2 10×100 m + drills"
+          },
           "type" : "interval",
-          "warmup" : "400 m nage mixte + 4×25 m Sculling + 4×25 m Catch-up."
+          "warmup" : {
+            "fr" : "400 m nage mixte + 4×25 m Sculling + 4×25 m Catch-up."
+          }
         },
         {
-          "cooldown" : "200 m dos très lent + étirements complets 12 min.",
+          "cooldown" : {
+            "fr" : "200 m dos très lent + étirements complets 12 min."
+          },
           "day" : 5,
           "duration_minutes" : 105,
           "exercises" : [
             {
               "alternatives" : [
-                "4×300 m EN1 récup 45 s + 1×100 m EN1",
-                "1300 m EN1 avec pull-buoy si fatigue jambes"
+                {
+                  "fr" : "4×300 m EN1 récup 45 s + 1×100 m EN1"
+                },
+                {
+                  "fr" : "1300 m EN1 avec pull-buoy si fatigue jambes"
+                }
               ],
               "duration" : "1300 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Long swim 1300 m crawl EN1",
-              "notes" : "LONG SWIM PIC du plan. +300 m vs W6 (1000 m). La règle 'long swim pic ≥ 130% de la cible' est respectée : 1300 = 1000 × 1.3. Ce long swim rend la séance phare W8 J5 (1000 m chronométré) psychologiquement et physiologiquement plus accessible — tu sauras que ton corps tient 1300 m avant d'aller chercher 1000 m régulier. Allure EN1 stricte. Hydratation au bord du bassin entre 500 m / 800 m / 1100 m (pause de 5-10 s sans abandonner la nage). Bilatérale 1/3 dominante. Si fatigue épaule en fin, ne pas pousser au-delà de 1300 m même si tu te sens bien — préserver pour W8.",
+              "name" : {
+                "fr" : "Long swim 1300 m crawl EN1"
+              },
+              "notes" : {
+                "fr" : "LONG SWIM PIC du plan. +300 m vs W6 (1000 m). La règle 'long swim pic ≥ 130% de la cible' est respectée : 1300 = 1000 × 1.3. Ce long swim rend la séance phare W8 J5 (1000 m chronométré) psychologiquement et physiologiquement plus accessible — tu sauras que ton corps tient 1300 m avant d'aller chercher 1000 m régulier. Allure EN1 stricte. Hydratation au bord du bassin entre 500 m / 800 m / 1100 m (pause de 5-10 s sans abandonner la nage). Bilatérale 1/3 dominante. Si fatigue épaule en fin, ne pas pousser au-delà de 1300 m même si tu te sens bien — préserver pour W8."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1495,14 +2101,20 @@
             },
             {
               "alternatives" : [
-                "Brasse récup 200 m",
-                "150 m dos + 50 m marche dans eau"
+                {
+                  "fr" : "Brasse récup 200 m"
+                },
+                {
+                  "fr" : "150 m dos + 50 m marche dans eau"
+                }
               ],
               "duration" : "200 m dos lent",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Nage récupération",
+              "name" : {
+                "fr" : "Nage récupération"
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1513,13 +2125,19 @@
             },
             {
               "alternatives" : [
-                "Wall slide 14 reps",
-                "Prone scapular retraction 14 reps"
+                {
+                  "fr" : "Wall slide"
+                },
+                {
+                  "fr" : "Prone scapular retraction"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Y-T-W shoulder activation",
+              "name" : {
+                "fr" : "Y-T-W shoulder activation"
+              },
               "reps" : "12 par lettre",
               "required_equipment" : [
                 "mat"
@@ -1531,13 +2149,19 @@
             },
             {
               "alternatives" : [
-                "External rotation côté allongé 14/côté",
-                "Face pulls band 14 reps"
+                {
+                  "fr" : "External rotation côté allongé 14/côté"
+                },
+                {
+                  "fr" : "Face pulls band"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "External rotation band",
+              "name" : {
+                "fr" : "External rotation band"
+              },
               "reps" : "14 par côté",
               "required_equipment" : [
                 "resistance-band"
@@ -1549,13 +2173,19 @@
             },
             {
               "alternatives" : [
-                "Face pulls 14 reps",
-                "Reverse fly 14 reps légers"
+                {
+                  "fr" : "Face pulls"
+                },
+                {
+                  "fr" : "Reverse fly légers"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Scapula retraction band",
+              "name" : {
+                "fr" : "Scapula retraction band"
+              },
               "reps" : "14",
               "required_equipment" : [
                 "resistance-band"
@@ -1567,8 +2197,12 @@
             },
             {
               "alternatives" : [
-                "Planche genoux 70 sec",
-                "Side plank 35 sec/côté"
+                {
+                  "fr" : "Planche genoux 70 sec"
+                },
+                {
+                  "fr" : "Side plank 35 sec/côté"
+                }
               ],
               "duration" : "50 sec",
               "incompatible_constraints" : [
@@ -1576,7 +2210,9 @@
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Planche ventrale",
+              "name" : {
+                "fr" : "Planche ventrale"
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -1586,34 +2222,52 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Long swim pic 1300 m + dryland",
+          "name" : {
+            "fr" : "Long swim pic 1300 m + dryland"
+          },
           "type" : "mixed",
-          "warmup" : "400 m nage mixte + 4×25 m Catch-up + 4×25 m Side kick."
+          "warmup" : {
+            "fr" : "400 m nage mixte + 4×25 m Catch-up + 4×25 m Side kick."
+          }
         }
       ],
-      "theme" : "Pic — long swim 1300 m (130% de la cible)",
+      "theme" : {
+        "fr" : "Pic — long swim 1300 m (130% de la cible)"
+      },
       "week_number" : 7
     },
     {
-      "goal" : "Taper J-7 court (-30% volume vs W7). J2 séance technique courte (drills focal point + 200 m EN1). J5 séance phare 1000 m continu chronométré. Volume hebdo de nage pure : ~3000 m incluant la séance phare. Checklist d'autonomie 4 critères mesurables à valider à l'arrivée.",
+      "goal" : {
+        "fr" : "Taper J-7 court (-30% volume vs W7). J2 séance technique courte (drills focal point + 200 m EN1). J5 séance phare 1000 m continu chronométré. Volume hebdo de nage pure : ~3000 m incluant la séance phare. Checklist d'autonomie 4 critères mesurables à valider à l'arrivée."
+      },
       "sessions" : [
         {
-          "cooldown" : "100 m dos lent + étirements épaules + cervicales 5 min. Visualisation mentale de la séance phare J5.",
+          "cooldown" : {
+            "fr" : "100 m dos lent + étirements épaules + cervicales 5 min. Visualisation mentale de la séance phare J5."
+          },
           "day" : 2,
           "duration_minutes" : 45,
           "exercises" : [
             {
               "alternatives" : [
-                "Body roll 6-3-6 4×25 m",
-                "Side kick avec ceinture flottante"
+                {
+                  "fr" : "Body roll 6-3-6 4×25 m"
+                },
+                {
+                  "fr" : "Side kick avec ceinture flottante"
+                }
               ],
               "duration" : "25 m (alterner côtés)",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cervical-pain"
               ],
-              "name" : "Side kick bilatéral",
-              "notes" : "Activation équilibre — drill fondamental pour ancrer la position horizontale stable avant le chrono.",
+              "name" : {
+                "fr" : "Side kick bilatéral"
+              },
+              "notes" : {
+                "fr" : "Activation équilibre — drill fondamental pour ancrer la position horizontale stable avant le chrono."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1624,15 +2278,23 @@
             },
             {
               "alternatives" : [
-                "6-3-6 4×25 m",
-                "Fingertip drag 4×25 m"
+                {
+                  "fr" : "6-3-6 4×25 m"
+                },
+                {
+                  "fr" : "Fingertip drag 4×25 m"
+                }
               ],
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "Catch-up drill",
-              "notes" : "Activation timing — rappel rythme cycle complet avant J5.",
+              "name" : {
+                "fr" : "Catch-up drill"
+              },
+              "notes" : {
+                "fr" : "Activation timing — rappel rythme cycle complet avant J5."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1643,16 +2305,24 @@
             },
             {
               "alternatives" : [
-                "Sculling 2×25 m",
-                "Single arm 2×50 m"
+                {
+                  "fr" : "Sculling 2×25 m"
+                },
+                {
+                  "fr" : "Single arm 2×50 m"
+                }
               ],
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Pull-buoy isolation",
-              "notes" : "Activation traction bras. Volume volontairement court — pas de fatigue résiduelle pour J5.",
+              "name" : {
+                "fr" : "Pull-buoy isolation"
+              },
+              "notes" : {
+                "fr" : "Activation traction bras. Volume volontairement court — pas de fatigue résiduelle pour J5."
+              },
               "required_equipment" : [
                 "pool",
                 "pull-buoy"
@@ -1664,16 +2334,24 @@
             },
             {
               "alternatives" : [
-                "2×100 m EN1 récup 20 s",
-                "200 m EN1 avec pull-buoy"
+                {
+                  "fr" : "2×100 m EN1 récup 20 s"
+                },
+                {
+                  "fr" : "200 m EN1 avec pull-buoy"
+                }
               ],
               "duration" : "200 m crawl EN1",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Bloc EN1 200 m bilatérale 1/3",
-              "notes" : "Bloc court d'activation à allure cible séance phare. Bilatérale 1/3 stricte. Sentir le rythme — pas de fatigue à créer.",
+              "name" : {
+                "fr" : "Bloc EN1 200 m bilatérale 1/3"
+              },
+              "notes" : {
+                "fr" : "Bloc court d'activation à allure cible séance phare. Bilatérale 1/3 stricte. Sentir le rythme — pas de fatigue à créer."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -1683,19 +2361,29 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Activation technique pré-séance phare",
+          "name" : {
+            "fr" : "Activation technique pré-séance phare"
+          },
           "type" : "technique",
-          "warmup" : "300 m nage mixte très lent EN1 + cercles bras hors eau 10/côté."
+          "warmup" : {
+            "fr" : "300 m nage mixte très lent EN1 + cercles bras hors eau 10/côté."
+          }
         },
         {
-          "cooldown" : "200 m dos très lent (récupération active) + étirements complets 12 min : épaules cross-body 45 s/côté, triceps derrière la tête 30 s/côté, cervicales oreille-épaule 30 s/côté, mollets contre rebord 30 s/côté. Sécher les oreilles + gouttes vinaigre/alcool 50/50 si oreilles sensibles. Alimentation de récupération dans les 30 min. Félicitations : tu nages 1000 m en continu.",
+          "cooldown" : {
+            "fr" : "200 m dos très lent (récupération active) + étirements complets 12 min : épaules cross-body 45 s/côté, triceps derrière la tête 30 s/côté, cervicales oreille-épaule 30 s/côté, mollets contre rebord 30 s/côté. Sécher les oreilles + gouttes vinaigre/alcool 50/50 si oreilles sensibles. Alimentation de récupération dans les 30 min. Félicitations : tu nages 1000 m en continu."
+          },
           "day" : 5,
           "duration_minutes" : 60,
           "exercises" : [
             {
               "alternatives" : [
-                "1000 m continu sans chrono (focus continuité seule)",
-                "5×200 m EN1 récup 20 s si fatigue résiduelle non récupérée"
+                {
+                  "fr" : "1000 m continu sans chrono (focus continuité seule)"
+                },
+                {
+                  "fr" : "5×200 m EN1 récup 20 s si fatigue résiduelle non récupérée"
+                }
               ],
               "duration" : "1000 m à allure régulière",
               "incompatible_constraints" : [
@@ -1703,8 +2391,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "1000 m continu crawl chronométré",
-              "notes" : "Allure cible 1000 m = ton allure 400 m de test W1 + 0-5 s/100 m (allure EN2 basse / EN1 haute, RPE 5-6/10). Ex : test 400 m à 8:00 (allure 2:00/100 m) → 1000 m cible 20:00-21:00 (allure 2:00-2:06/100 m).\n\nSTRATÉGIE DE COURSE : 0-300 m légèrement plus lents (RPE 4-5/10), pars contrôlé ; 300-700 m allure cible stable (RPE 5-6/10) ; 700-1000 m maintien strict ou très légère accélération sur les 50-100 derniers mètres si réserves disponibles. Les 500-700 m sont typiquement les plus difficiles — c'est là que la respiration peut paniquer. Si essoufflement monte : retourne-toi 10 s sur le dos en flottant, respire calmement, puis reprends.\n\nRESPIRATION : bilatérale 1/3 sur les 0-700 m si tes sensations le permettent. Si essoufflement, bascule sur 1/2 (côté favori) sur les 700-1000 m sans frustration — ce qui compte est de finir, pas la pureté du pattern. Note sur quelle distance tu as tenu la bilatérale.\n\nCHECKLIST D'AUTONOMIE (à valider mentalement à l'arrivée) :\n1. J'ai nagé 1000 m en continu sans pause longue (> 5 s d'arrêt au mur).\n2. J'ai tenu une allure régulière sur au moins 70% des 1000 m (variations < 8 s/100 m entre les 100 m du milieu).\n3. J'ai géré le creux 500-700 m sans panique respiratoire — je pouvais dire 2-3 mots à la fin de chaque longueur.\n4. Je sais distinguer une fatigue épaule normale (lourdeur globale, disparaît en 24-48h) d'une douleur naissante (point précis antéro-latéral, à signaler et freiner immédiatement le volume).\n\nSi tu coches 3+ critères, tu es autonome pour enchaîner sur un programme `regular` swimming technique + endurance 8 sem (5000-9000 m/sem, test CSS calibré). Si 2 critères ou moins, refais W6 et W7 (cycle 2 sem) avant de progresser.",
+              "name" : {
+                "fr" : "1000 m continu crawl chronométré"
+              },
+              "notes" : {
+                "fr" : "Allure cible 1000 m = ton allure 400 m de test W1 + 0-5 s/100 m (allure EN2 basse / EN1 haute, RPE 5-6/10). Ex : test 400 m à 8:00 (allure 2:00/100 m) → 1000 m cible 20:00-21:00 (allure 2:00-2:06/100 m).\n\nSTRATÉGIE DE COURSE : 0-300 m légèrement plus lents (RPE 4-5/10), pars contrôlé ; 300-700 m allure cible stable (RPE 5-6/10) ; 700-1000 m maintien strict ou très légère accélération sur les 50-100 derniers mètres si réserves disponibles. Les 500-700 m sont typiquement les plus difficiles — c'est là que la respiration peut paniquer. Si essoufflement monte : retourne-toi 10 s sur le dos en flottant, respire calmement, puis reprends.\n\nRESPIRATION : bilatérale 1/3 sur les 0-700 m si tes sensations le permettent. Si essoufflement, bascule sur 1/2 (côté favori) sur les 700-1000 m sans frustration — ce qui compte est de finir, pas la pureté du pattern. Note sur quelle distance tu as tenu la bilatérale.\n\nCHECKLIST D'AUTONOMIE (à valider mentalement à l'arrivée) :\n1. J'ai nagé 1000 m en continu sans pause longue (> 5 s d'arrêt au mur).\n2. J'ai tenu une allure régulière sur au moins 70% des 1000 m (variations < 8 s/100 m entre les 100 m du milieu).\n3. J'ai géré le creux 500-700 m sans panique respiratoire — je pouvais dire 2-3 mots à la fin de chaque longueur.\n4. Je sais distinguer une fatigue épaule normale (lourdeur globale, disparaît en 24-48h) d'une douleur naissante (point précis antéro-latéral, à signaler et freiner immédiatement le volume).\n\nSi tu coches 3+ critères, tu es autonome pour enchaîner sur un programme `regular` swimming technique + endurance 8 sem (5000-9000 m/sem, test CSS calibré). Si 2 critères ou moins, refais W6 et W7 (cycle 2 sem) avant de progresser."
+              },
               "required_equipment" : [
                 "pool",
                 "chronometer-or-watch"
@@ -1715,12 +2407,18 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Séance phare — 1000 m continu chronométré",
+          "name" : {
+            "fr" : "Séance phare — 1000 m continu chronométré"
+          },
           "type" : "endurance",
-          "warmup" : "300 m nage mixte progressive (200 m crawl très lent + 100 m dos) + 4×25 m drills légers (Catch-up + Side kick) + 50 m crawl à allure cible test (sentir le rythme). Total : ~500 m d'échauffement. Échauffement complet NON négociable pour une séance de cette importance."
+          "warmup" : {
+            "fr" : "300 m nage mixte progressive (200 m crawl très lent + 100 m dos) + 4×25 m drills légers (Catch-up + Side kick) + 50 m crawl à allure cible test (sentir le rythme). Total : ~500 m d'échauffement. Échauffement complet NON négociable pour une séance de cette importance."
+          }
         }
       ],
-      "theme" : "Taper et séance phare — 1000 m continu chronométré",
+      "theme" : {
+        "fr" : "Taper et séance phare — 1000 m continu chronométré"
+      },
       "week_number" : 8
     }
   ]

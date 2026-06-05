@@ -1,29 +1,49 @@
 {
-  "assumed_profile" : "Adulte à l'aise dans l'eau et sachant flotter, accès à une piscine 25 m, aucune pratique régulière de la natation sportive. Maillot + lunettes + bonnet disponibles. Aucun autre équipement supposé — planche et pull-buoy seront proposés si disponibles en prêt piscine avec alternative sans matériel.",
-  "default_objective" : "Nager 200 m en crawl sans s'arrêter, avec une respiration latérale maîtrisée",
+  "assumed_profile" : {
+    "fr" : "Adulte à l'aise dans l'eau et sachant flotter, accès à une piscine 25 m, aucune pratique régulière de la natation sportive. Maillot + lunettes + bonnet disponibles. Aucun autre équipement supposé — planche et pull-buoy seront proposés si disponibles en prêt piscine avec alternative sans matériel."
+  },
+  "default_objective" : {
+    "fr" : "Nager 200 m en crawl sans s'arrêter, avec une respiration latérale maîtrisée"
+  },
   "duration_weeks" : 6,
   "id" : "swimming-beginner-initiation-6sem",
   "level" : "beginner",
-  "name" : "Natation initiation — Nager 200 m en 6 semaines",
-  "progression_logic" : "Progression construite sur 6 principes, alignés Total Immersion (Terry Laughlin), Swim England Learn to Swim Framework Stages 5-7, et USA Swimming Energy Zones :\n\n(1) HIÉRARCHIE PÉDAGOGIQUE STRICTEMENT SÉQUENTIELLE (Total Immersion) : équilibre (W1) → streamlining (W2) → catch et propulsion basique (W3) → respiration latérale côté favori (W3) → timing et bilatérale douce par drill isolé (W4) → consolidation (W5) → distance objectif (W6). On ne travaille JAMAIS un drill catch ou propulsion avancée tant que le drill équilibre n'est pas acquis. C'est la chaîne pédagogique non négociable.\n\n(2) FRÉQUENCE > DURÉE (motor learning USA Swimming + Swim England) : 2×/sem est la fréquence imposée par la spec — l'idéal serait 3×/sem pour stabiliser le patron moteur. À 2×/sem, on espace les séances de 3 jours minimum (J1 et J4) pour la consolidation de la trace motrice sans dégradation entre deux passages.\n\n(3) RESPIRATION BILATÉRALE PAS AVANT W4 (cognitive overload débutant) : équilibre + propulsion + alternance respiration = 3 nouveautés simultanées, et l'apprenant rejette l'ensemble. W1-W3 : respiration côté favori UNIQUEMENT, 1 inspiration toutes les 2 strokes. W4 : intro douce bilatérale par drill isolé UNIQUEMENT (catch-up ralenti, side kick alterné des deux côtés). En nage continue W4, la bilatérale reste OPTIONNELLE par alternance de longueur (pas une obligation) — le drill isolé est l'objectif principal de la semaine. W5-W6 : intégration progressive de la bilatérale en nage continue selon ressenti.\n\n(4) DISTRIBUTION INTENSITÉ DÉBUTANT = 100% TECHNIQUE + REC (Maglischo, USA Swimming) : pas de zone aérobie ciblée tant que le patron moteur n'est pas stabilisé. La zone FC n'a pas de sens — l'effort cognitif domine. Repère : test de la parole à la fin de chaque longueur, je peux dire une phrase complète sans haleter.\n\n(5) RENFORCEMENT PRÉVENTIF ÉPAULE DÈS W3 (jamais W1-W2) : Y-T-W shoulder activation, external rotation band, scapula retraction, cat-cow. Le swimmer's shoulder touche 40-91% des nageurs au moins une fois — la prévention démarre tôt mais pas trop tôt (W1-W2 = focus moteur exclusif, pas de surcharge dryland). Pas de bench press, pas de paddles (épaule débutant fragile, espace sous-acromial réduit).\n\n(6) CUTBACK W5 OBLIGATOIRE (-26% volume vs W4 pic, plus de drills focal point) : Total Immersion preconise -20 à -30% sur la cutback débutant, autant pour décharger le cognitif que le physique. La W5 n'est pas une semaine perdue — c'est une semaine d'intégration où la trace motrice se consolide. Ne pas la sauter. Cutback positionné W5 (et non W4 comme suggéré par défaut) en cohérence avec un pattern taper-style approprié à un plan 6 sem : W4 = pic build, W5 = consolidation, W6 = séance phare. Cette stratégie permet d'arriver frais au test 200 m W6 (pic en J4). Voie alternative master prompt §3.1 : cutback W4 + plateau W5-W6 — non retenue ici car la séance phare W6 = stimulus maximum exigeant fraîcheur.\n\nVolume nagé hebdo (drills + continus, hors warmup/cooldown courts < 200 m chacun) : 500 m W1 → 750 m W2 → 1050 m W3 → 1150 m W4 pic → 850 m W5 cutback (-26%) → 1025 m W6 incluant la séance phare 200 m. Toutes les valeurs restent dans la fourchette 600-1500 m doctrinale beginner (sauf W1 légèrement sous, conformément à la recommandation master prompt ≤ 600 m W1).\n\nStructure hebdo : J1 et J4 (3 jours d'intervalle minimum), 3-4 jours de repos restants pour la consolidation motrice et la récupération épaule.",
-  "safety_notes" : "DRAPEAUX ROUGES à surveiller (arrêter la séance et consulter un professionnel de santé si les symptômes persistent > 1 semaine) :\n• Swimmer's shoulder (douleur antéro-latérale épaule) : risque n°1 chez le nageur, jusqu'à 40-91% des nageurs touchés au moins une fois. Stop nage 5-7 jours, glace 15 min × 2/jour, programme préventif épaule (Y-T-W, external rotation) à reprendre prioritairement avant tout retour au volume. Cause fréquente : volume monté trop vite, déséquilibre rotateurs internes/externes, technique entrée main droppée. Avis kinésithérapeute si > 7 jours.\n• Otite externe (swimmer's ear) : douleur conduit auditif, sensation oreille bouchée. STOP eau 7-10 jours. Sécher les oreilles à la sortie (incliner la tête, serviette propre), gouttes vinaigre/alcool 50/50 préventives 3-4 gouttes après baignade. Ne pas insérer de coton-tige.\n• Cervicalgie : tension nuque sur respiration unilatérale soutenue. Travailler la rotation tronc complète (pas seulement la tête) + relâchement nuque sur expir. Si persistant : passer bilatérale par drills isolés en mode lent.\n• Crampe mollet ou pied : commune en eau fraîche. Toucher le bord, étirer contre le rebord (orteils vers tibia). Hydratation 500 ml avant + 500 ml après. Si récurrente : avis médical (carence Mg, K).\n• Panique ou essoufflement incontrôlable : c'est le signal de sécurité. Approche immédiate du couloir ou du bord, main au mur, expirer LONGTEMPS par la bouche. Ne jamais lâcher l'appui tant que le souffle n'est pas calmé. Pas de honte — c'est le réflexe correct.\n• Vertiges après submersions répétées : eau dans l'oreille interne possible. Sortir de l'eau, incliner la tête de chaque côté pour évacuer.\n\nMÉDICAL CLEARANCE — Consulte un médecin avant de commencer ce programme si :\n• Tu as des antécédents cardiaques connus (clearance-required).\n• Tu es enceinte ou en postpartum récent (la natation Z2 est généralement bénéfique mais avis médical de principe).\n• Tu as une pathologie chronique de l'épaule connue (déchirure de coiffe partielle, capsulite, instabilité gléno-humérale).\n• Tu as eu 3+ épisodes d'otite externe sur les 12 derniers mois (avis ORL avant volume).\n• Tu as une insuffisance respiratoire ou un asthme sévère (avis pneumologue — la nage continue avec apnée intermittente est un stress respiratoire).\n• Tu reprends après chirurgie épaule, dos ou genou récente (< 6 mois).\n• Tu as plus de 50 ans débutant complet ou plus de 60 ans tous niveaux sans test d'effort récent.\n\nRÈGLES GÉNÉRALES :\n• Douche savonnée AVANT et APRÈS la piscine (hygiène + élimination chlore résiduel sur la peau).\n• Sécher les oreilles à la sortie : incliner la tête de chaque côté, serviette propre. En prévention otite récurrente, gouttes vinaigre/alcool 50/50 (3-4 gouttes) après chaque baignade.\n• Hydratation : 500 ml dans l'heure précédant la séance, 500 ml dans l'heure suivante. Même dans l'eau on transpire.\n• Lunettes : régler le joint AVANT d'entrer dans l'eau pour éviter l'eau dans les yeux qui perturbe le contrôle respiratoire.\n• Ne jamais nager seul en bassin non surveillé. Signaler sa présence au maître-nageur si difficultés.\n• Échauffement NON optionnel : les tendons de la coiffe des rotateurs sont sous haute sollicitation en crawl. 5 min de marche aquatique + cercles épaules + submersions courtes réduit drastiquement le risque de tendinite.\n• Pas de bouchons d'oreilles trop serrés (irritent le conduit auditif). Si vraiment besoin, modèles silicone souples.\n\nTECHNIQUE ET RESPIRATION :\n• Test de la parole à la fin de chaque longueur : tu dois pouvoir dire une phrase complète sans haleter. Si tu ne peux dire que 2-3 mots = trop rapide, ralentis les bras (pas les jambes).\n• Expiration CONTINUE sous l'eau entre chaque inspiration. Jamais bloquer le souffle. C'est la base de la nage durable, souvent oubliée par les autodidactes.\n• Respiration bilatérale = surcharge cognitive précoce, ne pas forcer avant W4. Côté favori d'abord pendant 3 semaines, c'est normal et c'est la pédagogie correcte.\n\nSIGNES DE SURCHARGE (2+ signes simultanés → revenir à la semaine précédente, volume -20%) :\n• Douleur épaule persistante > 24h après séance (STOP volume, focus drills équilibre uniquement, programme préventif Y-T-W intensifié).\n• Essoufflement sur des distances qui étaient faciles la semaine précédente.\n• Sensation de nager dans du sirop (lourdeur inhabituelle des bras).\n• Appréhension ou peur de retourner à la piscine.\n• FC repos +8-10 bpm chronique au réveil.\n\nSI SÉANCE MANQUÉE :\n• < 5 jours de pause : reprendre la même séance.\n• 1-2 semaines de pause : reprendre la semaine précédente.\n• > 2 semaines de pause : reprendre en W3 (les automatismes moteurs débutants commencent à s'estomper après 2 sem sans nager).\n• NE PAS remplacer une séance piscine par vélo ou course sans avis : le cross-training maintient le cardio mais ne remplace pas l'adaptation locomotrice spécifique nage (sensations eau, position, traction).",
+  "name" : {
+    "fr" : "Natation initiation — Nager 200 m en 6 semaines"
+  },
+  "progression_logic" : {
+    "fr" : "Progression construite sur 6 principes, alignés Total Immersion (Terry Laughlin), Swim England Learn to Swim Framework Stages 5-7, et USA Swimming Energy Zones :\n\n(1) HIÉRARCHIE PÉDAGOGIQUE STRICTEMENT SÉQUENTIELLE (Total Immersion) : équilibre (W1) → streamlining (W2) → catch et propulsion basique (W3) → respiration latérale côté favori (W3) → timing et bilatérale douce par drill isolé (W4) → consolidation (W5) → distance objectif (W6). On ne travaille JAMAIS un drill catch ou propulsion avancée tant que le drill équilibre n'est pas acquis. C'est la chaîne pédagogique non négociable.\n\n(2) FRÉQUENCE > DURÉE (motor learning USA Swimming + Swim England) : 2×/sem est la fréquence imposée par la spec — l'idéal serait 3×/sem pour stabiliser le patron moteur. À 2×/sem, on espace les séances de 3 jours minimum (J1 et J4) pour la consolidation de la trace motrice sans dégradation entre deux passages.\n\n(3) RESPIRATION BILATÉRALE PAS AVANT W4 (cognitive overload débutant) : équilibre + propulsion + alternance respiration = 3 nouveautés simultanées, et l'apprenant rejette l'ensemble. W1-W3 : respiration côté favori UNIQUEMENT, 1 inspiration toutes les 2 strokes. W4 : intro douce bilatérale par drill isolé UNIQUEMENT (catch-up ralenti, side kick alterné des deux côtés). En nage continue W4, la bilatérale reste OPTIONNELLE par alternance de longueur (pas une obligation) — le drill isolé est l'objectif principal de la semaine. W5-W6 : intégration progressive de la bilatérale en nage continue selon ressenti.\n\n(4) DISTRIBUTION INTENSITÉ DÉBUTANT = 100% TECHNIQUE + REC (Maglischo, USA Swimming) : pas de zone aérobie ciblée tant que le patron moteur n'est pas stabilisé. La zone FC n'a pas de sens — l'effort cognitif domine. Repère : test de la parole à la fin de chaque longueur, je peux dire une phrase complète sans haleter.\n\n(5) RENFORCEMENT PRÉVENTIF ÉPAULE DÈS W3 (jamais W1-W2) : Y-T-W shoulder activation, external rotation band, scapula retraction, cat-cow. Le swimmer's shoulder touche 40-91% des nageurs au moins une fois — la prévention démarre tôt mais pas trop tôt (W1-W2 = focus moteur exclusif, pas de surcharge dryland). Pas de bench press, pas de paddles (épaule débutant fragile, espace sous-acromial réduit).\n\n(6) CUTBACK W5 OBLIGATOIRE (-26% volume vs W4 pic, plus de drills focal point) : Total Immersion preconise -20 à -30% sur la cutback débutant, autant pour décharger le cognitif que le physique. La W5 n'est pas une semaine perdue — c'est une semaine d'intégration où la trace motrice se consolide. Ne pas la sauter. Cutback positionné W5 (et non W4 comme suggéré par défaut) en cohérence avec un pattern taper-style approprié à un plan 6 sem : W4 = pic build, W5 = consolidation, W6 = séance phare. Cette stratégie permet d'arriver frais au test 200 m W6 (pic en J4). Voie alternative master prompt §3.1 : cutback W4 + plateau W5-W6 — non retenue ici car la séance phare W6 = stimulus maximum exigeant fraîcheur.\n\nVolume nagé hebdo (drills + continus, hors warmup/cooldown courts < 200 m chacun) : 500 m W1 → 750 m W2 → 1050 m W3 → 1150 m W4 pic → 850 m W5 cutback (-26%) → 1025 m W6 incluant la séance phare 200 m. Toutes les valeurs restent dans la fourchette 600-1500 m doctrinale beginner (sauf W1 légèrement sous, conformément à la recommandation master prompt ≤ 600 m W1).\n\nStructure hebdo : J1 et J4 (3 jours d'intervalle minimum), 3-4 jours de repos restants pour la consolidation motrice et la récupération épaule."
+  },
+  "safety_notes" : {
+    "fr" : "DRAPEAUX ROUGES à surveiller (arrêter la séance et consulter un professionnel de santé si les symptômes persistent > 1 semaine) :\n• Swimmer's shoulder (douleur antéro-latérale épaule) : risque n°1 chez le nageur, jusqu'à 40-91% des nageurs touchés au moins une fois. Stop nage 5-7 jours, glace 15 min × 2/jour, programme préventif épaule (Y-T-W, external rotation) à reprendre prioritairement avant tout retour au volume. Cause fréquente : volume monté trop vite, déséquilibre rotateurs internes/externes, technique entrée main droppée. Avis kinésithérapeute si > 7 jours.\n• Otite externe (swimmer's ear) : douleur conduit auditif, sensation oreille bouchée. STOP eau 7-10 jours. Sécher les oreilles à la sortie (incliner la tête, serviette propre), gouttes vinaigre/alcool 50/50 préventives 3-4 gouttes après baignade. Ne pas insérer de coton-tige.\n• Cervicalgie : tension nuque sur respiration unilatérale soutenue. Travailler la rotation tronc complète (pas seulement la tête) + relâchement nuque sur expir. Si persistant : passer bilatérale par drills isolés en mode lent.\n• Crampe mollet ou pied : commune en eau fraîche. Toucher le bord, étirer contre le rebord (orteils vers tibia). Hydratation 500 ml avant + 500 ml après. Si récurrente : avis médical (carence Mg, K).\n• Panique ou essoufflement incontrôlable : c'est le signal de sécurité. Approche immédiate du couloir ou du bord, main au mur, expirer LONGTEMPS par la bouche. Ne jamais lâcher l'appui tant que le souffle n'est pas calmé. Pas de honte — c'est le réflexe correct.\n• Vertiges après submersions répétées : eau dans l'oreille interne possible. Sortir de l'eau, incliner la tête de chaque côté pour évacuer.\n\nMÉDICAL CLEARANCE — Consulte un médecin avant de commencer ce programme si :\n• Tu as des antécédents cardiaques connus (clearance-required).\n• Tu es enceinte ou en postpartum récent (la natation Z2 est généralement bénéfique mais avis médical de principe).\n• Tu as une pathologie chronique de l'épaule connue (déchirure de coiffe partielle, capsulite, instabilité gléno-humérale).\n• Tu as eu 3+ épisodes d'otite externe sur les 12 derniers mois (avis ORL avant volume).\n• Tu as une insuffisance respiratoire ou un asthme sévère (avis pneumologue — la nage continue avec apnée intermittente est un stress respiratoire).\n• Tu reprends après chirurgie épaule, dos ou genou récente (< 6 mois).\n• Tu as plus de 50 ans débutant complet ou plus de 60 ans tous niveaux sans test d'effort récent.\n\nRÈGLES GÉNÉRALES :\n• Douche savonnée AVANT et APRÈS la piscine (hygiène + élimination chlore résiduel sur la peau).\n• Sécher les oreilles à la sortie : incliner la tête de chaque côté, serviette propre. En prévention otite récurrente, gouttes vinaigre/alcool 50/50 (3-4 gouttes) après chaque baignade.\n• Hydratation : 500 ml dans l'heure précédant la séance, 500 ml dans l'heure suivante. Même dans l'eau on transpire.\n• Lunettes : régler le joint AVANT d'entrer dans l'eau pour éviter l'eau dans les yeux qui perturbe le contrôle respiratoire.\n• Ne jamais nager seul en bassin non surveillé. Signaler sa présence au maître-nageur si difficultés.\n• Échauffement NON optionnel : les tendons de la coiffe des rotateurs sont sous haute sollicitation en crawl. 5 min de marche aquatique + cercles épaules + submersions courtes réduit drastiquement le risque de tendinite.\n• Pas de bouchons d'oreilles trop serrés (irritent le conduit auditif). Si vraiment besoin, modèles silicone souples.\n\nTECHNIQUE ET RESPIRATION :\n• Test de la parole à la fin de chaque longueur : tu dois pouvoir dire une phrase complète sans haleter. Si tu ne peux dire que 2-3 mots = trop rapide, ralentis les bras (pas les jambes).\n• Expiration CONTINUE sous l'eau entre chaque inspiration. Jamais bloquer le souffle. C'est la base de la nage durable, souvent oubliée par les autodidactes.\n• Respiration bilatérale = surcharge cognitive précoce, ne pas forcer avant W4. Côté favori d'abord pendant 3 semaines, c'est normal et c'est la pédagogie correcte.\n\nSIGNES DE SURCHARGE (2+ signes simultanés → revenir à la semaine précédente, volume -20%) :\n• Douleur épaule persistante > 24h après séance (STOP volume, focus drills équilibre uniquement, programme préventif Y-T-W intensifié).\n• Essoufflement sur des distances qui étaient faciles la semaine précédente.\n• Sensation de nager dans du sirop (lourdeur inhabituelle des bras).\n• Appréhension ou peur de retourner à la piscine.\n• FC repos +8-10 bpm chronique au réveil.\n\nSI SÉANCE MANQUÉE :\n• < 5 jours de pause : reprendre la même séance.\n• 1-2 semaines de pause : reprendre la semaine précédente.\n• > 2 semaines de pause : reprendre en W3 (les automatismes moteurs débutants commencent à s'estomper après 2 sem sans nager).\n• NE PAS remplacer une séance piscine par vélo ou course sans avis : le cross-training maintient le cardio mais ne remplace pas l'adaptation locomotrice spécifique nage (sensations eau, position, traction)."
+  },
   "schema_version" : 2,
   "sessions_per_week" : 2,
   "sport" : "swimming",
-  "summary" : "Programme 6 semaines, 2 séances par semaine, pour passer de nageur occasionnel à 200 m crawl continu avec respiration latérale maîtrisée. Référentiels Total Immersion (Balance → Streamlining → Catch → Timing → Respiration), Swim England Learn to Swim Stage 5-7, USA Swimming. Volume hebdo de nage (drills + continus, hors warmup/cooldown) : 500 → 750 → 1050 → 1150 (pic W4) → 850 m cutback W5 (-26% vs W4) → 1025 m W6 incluant la séance phare 200 m. Respiration bilatérale repoussée à W4 par drill isolé UNIQUEMENT (la nage continue bilatérale s'intègre vraiment en W5-W6, pas avant). Renforcement préventif épaule (Y-T-W, external rotation, scapula) intégré dès W3, jamais avant pour laisser le temps moteur. Pas de paddles (épaule fragile), pas de zone aérobie ciblée — seulement technique + REC. Le plan se conclut par une checklist d'autonomie 5 critères mesurables après la séance phare W6.",
+  "summary" : {
+    "fr" : "Programme 6 semaines, 2 séances par semaine, pour passer de nageur occasionnel à 200 m crawl continu avec respiration latérale maîtrisée. Référentiels Total Immersion (Balance → Streamlining → Catch → Timing → Respiration), Swim England Learn to Swim Stage 5-7, USA Swimming. Volume hebdo de nage (drills + continus, hors warmup/cooldown) : 500 → 750 → 1050 → 1150 (pic W4) → 850 m cutback W5 (-26% vs W4) → 1025 m W6 incluant la séance phare 200 m. Respiration bilatérale repoussée à W4 par drill isolé UNIQUEMENT (la nage continue bilatérale s'intègre vraiment en W5-W6, pas avant). Renforcement préventif épaule (Y-T-W, external rotation, scapula) intégré dès W3, jamais avant pour laisser le temps moteur. Pas de paddles (épaule fragile), pas de zone aérobie ciblée — seulement technique + REC. Le plan se conclut par une checklist d'autonomie 5 critères mesurables après la séance phare W6."
+  },
   "weeks" : [
     {
-      "goal" : "Retrouver confiance, maîtriser la position horizontale et la glisse ventrale (Total Immersion Balance Stage 1). Volume nagé hebdo : 500 m. Respiration libre côté favori uniquement.",
+      "goal" : {
+        "fr" : "Retrouver confiance, maîtriser la position horizontale et la glisse ventrale (Total Immersion Balance Stage 1). Volume nagé hebdo : 500 m. Respiration libre côté favori uniquement."
+      },
       "sessions" : [
         {
-          "cooldown" : "100 m dos lent (bras le long du corps, jambes seules) récupération active. Étirements hors piscine : épaules bras croisé devant 30 sec/côté, nuque oreille vers épaule 20 sec/côté, mollets 30 sec/côté. Sécher les oreilles soigneusement.",
+          "cooldown" : {
+            "fr" : "100 m dos lent (bras le long du corps, jambes seules) récupération active. Étirements hors piscine : épaules bras croisé devant 30 sec/côté, nuque oreille vers épaule 20 sec/côté, mollets 30 sec/côté. Sécher les oreilles soigneusement."
+          },
           "day" : 1,
           "duration_minutes" : 45,
           "exercises" : [
             {
               "alternatives" : [
-                "Streamline appui mur 30 sec sans poussée (sensation position)",
-                "Superman glide bras tendus apnée 5 m"
+                {
+                  "fr" : "Streamline appui mur 30 sec sans poussée (sensation position)"
+                },
+                {
+                  "fr" : "Superman glide bras tendus apnée 5 m"
+                }
               ],
               "duration" : "1 poussée + glisse 5 m",
               "incompatible_constraints" : [
@@ -32,8 +52,12 @@
                 "cardiac-clearance-required",
                 "pregnancy"
               ],
-              "name" : "Streamline push-off — poussée mur + glisse 5 m",
-              "notes" : "Mains jointes au-dessus de la tête, bras collés aux oreilles, corps tendu comme une flèche. Pousser du mur en soufflant par le nez sous l'eau. Objectif : tenir la glisse 5 m minimum avant le 1er coup de bras. C'est la position de base du nageur — la maîtriser change tout (Total Immersion Streamlining).",
+              "name" : {
+                "fr" : "Streamline push-off — poussée mur + glisse 5 m"
+              },
+              "notes" : {
+                "fr" : "Mains jointes au-dessus de la tête, bras collés aux oreilles, corps tendu comme une flèche. Pousser du mur en soufflant par le nez sous l'eau. Objectif : tenir la glisse 5 m minimum avant le 1er coup de bras. C'est la position de base du nageur — la maîtriser change tout (Total Immersion Streamlining)."
+              },
               "required_equipment" : [
                 "pool",
                 "goggles",
@@ -46,8 +70,12 @@
             },
             {
               "alternatives" : [
-                "Flottaison dorsale bras le long du corps 15 sec",
-                "Étoile de mer ventrale bras et jambes écartés"
+                {
+                  "fr" : "Flottaison dorsale bras le long du corps 15 sec"
+                },
+                {
+                  "fr" : "Étoile de mer ventrale bras et jambes écartés"
+                }
               ],
               "duration" : "10 sec flottaison + 5 m glisse",
               "incompatible_constraints" : [
@@ -55,8 +83,12 @@
                 "no-pool-access",
                 "cardiac-clearance-required"
               ],
-              "name" : "Superman glide — flottaison ventrale apnée",
-              "notes" : "Allonge-toi sur le ventre, bras tendus devant, tête entre les bras. Sentir l'eau porter le corps, hanches hautes. Drill équilibre fondateur : comprendre que l'eau porte naturellement quand on relâche la nuque et qu'on garde la tête neutre.",
+              "name" : {
+                "fr" : "Superman glide — flottaison ventrale apnée"
+              },
+              "notes" : {
+                "fr" : "Allonge-toi sur le ventre, bras tendus devant, tête entre les bras. Sentir l'eau porter le corps, hanches hautes. Drill équilibre fondateur : comprendre que l'eau porte naturellement quand on relâche la nuque et qu'on garde la tête neutre."
+              },
               "required_equipment" : [
                 "pool",
                 "goggles",
@@ -69,8 +101,12 @@
             },
             {
               "alternatives" : [
-                "Battement allongé sur le dos bras le long du corps 30 sec",
-                "Battement vertical en grande profondeur 20 sec si confiant"
+                {
+                  "fr" : "Battement allongé sur le dos bras le long du corps 30 sec"
+                },
+                {
+                  "fr" : "Battement vertical en grande profondeur 20 sec si confiant"
+                }
               ],
               "duration" : "30 sec",
               "incompatible_constraints" : [
@@ -78,8 +114,12 @@
                 "knee-injury",
                 "no-pool-access"
               ],
-              "name" : "Battement de jambes au bord — drill jambes",
-              "notes" : "Assis au bord du bassin jambes dans l'eau, battre de jambes : amplitude faible, départ de la hanche, genoux légèrement fléchis, pieds souples (pas rigides). Sentir que la propulsion vient des hanches, pas des genoux. Préparation au battement crawl.",
+              "name" : {
+                "fr" : "Battement de jambes au bord — drill jambes"
+              },
+              "notes" : {
+                "fr" : "Assis au bord du bassin jambes dans l'eau, battre de jambes : amplitude faible, départ de la hanche, genoux légèrement fléchis, pieds souples (pas rigides). Sentir que la propulsion vient des hanches, pas des genoux. Préparation au battement crawl."
+              },
               "required_equipment" : [
                 "pool"
               ],
@@ -90,8 +130,12 @@
             },
             {
               "alternatives" : [
-                "25 m jambes seules sans planche bras tendus streamline",
-                "25 m side kick côté favori (bras inférieur tendu devant)"
+                {
+                  "fr" : "25 m jambes seules sans planche bras tendus streamline"
+                },
+                {
+                  "fr" : "25 m side kick côté favori (bras inférieur tendu devant)"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -99,8 +143,12 @@
                 "knee-injury",
                 "no-pool-access"
               ],
-              "name" : "25 m jambes seules avec planche (ou sans matériel)",
-              "notes" : "Avec kickboard : tenir la planche bras tendus devant, visage dans l'eau, souffler entre prises de souffle. SANS kickboard : bras tendus devant en streamline, même principe. Objectif : avancer 25 m à la force des jambes, sans panique. Te tenir au couloir si besoin — c'est une option de sécurité, pas un échec.",
+              "name" : {
+                "fr" : "25 m jambes seules avec planche (ou sans matériel)"
+              },
+              "notes" : {
+                "fr" : "Avec kickboard : tenir la planche bras tendus devant, visage dans l'eau, souffler entre prises de souffle. SANS kickboard : bras tendus devant en streamline, même principe. Objectif : avancer 25 m à la force des jambes, sans panique. Te tenir au couloir si besoin — c'est une option de sécurité, pas un échec."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -114,8 +162,12 @@
             },
             {
               "alternatives" : [
-                "25 m brasse lente avec respiration confortable",
-                "25 m alternance 6 battements + 3 strokes (drill 6-3-6 simplifié)"
+                {
+                  "fr" : "25 m brasse lente avec respiration confortable"
+                },
+                {
+                  "fr" : "25 m alternance 6 battements + 3 strokes (drill 6-3-6 simplifié)"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -123,8 +175,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "25 m crawl simplifié libre",
-              "notes" : "Crawl sans contrainte respiratoire : respire quand tu veux, du côté favori uniquement (pas de bilatérale W1). L'objectif est de TERMINER les 25 m sans s'arrêter, pas de nager parfaitement. Si tu dois t'arrêter : toucher le couloir (pas le fond), souffler, repartir. Allure très lente, test de la parole à la fin.",
+              "name" : {
+                "fr" : "25 m crawl simplifié libre"
+              },
+              "notes" : {
+                "fr" : "Crawl sans contrainte respiratoire : respire quand tu veux, du côté favori uniquement (pas de bilatérale W1). L'objectif est de TERMINER les 25 m sans s'arrêter, pas de nager parfaitement. Si tu dois t'arrêter : toucher le couloir (pas le fond), souffler, repartir. Allure très lente, test de la parole à la fin."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -137,27 +193,41 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Découverte équilibre et streamline",
+          "name" : {
+            "fr" : "Découverte équilibre et streamline"
+          },
           "type" : "technique",
-          "warmup" : "5 min marche aquatique petit bain (montées genoux, pas chassés latéraux). Mobilité épaules : 10 grands cercles avant + 10 arrière hors eau bord de bassin. 5 submersions complètes (tête sous l'eau 5 sec, souffler par le nez)."
+          "warmup" : {
+            "fr" : "5 min marche aquatique petit bain (montées genoux, pas chassés latéraux). Mobilité épaules : 10 grands cercles avant + 10 arrière hors eau bord de bassin. 5 submersions complètes (tête sous l'eau 5 sec, souffler par le nez)."
+          }
         },
         {
-          "cooldown" : "100 m dos lent récupération. Étirements épaules + nuque + mollets hors piscine 5 min. Sécher les oreilles.",
+          "cooldown" : {
+            "fr" : "100 m dos lent récupération. Étirements épaules + nuque + mollets hors piscine 5 min. Sécher les oreilles."
+          },
           "day" : 4,
           "duration_minutes" : 45,
           "exercises" : [
             {
               "alternatives" : [
-                "Streamline glisse 5 m si 8 m inconfortable",
-                "Superman glide apnée 8 m"
+                {
+                  "fr" : "Streamline glisse 5 m si 8 m inconfortable"
+                },
+                {
+                  "fr" : "Superman glide apnée 8 m"
+                }
               ],
               "duration" : "1 poussée + glisse 8 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "Streamline push-off — poussée + glisse 8 m",
-              "notes" : "Augmenter la distance de glisse vs J1. Tenir la streamline jusqu'à l'arrêt naturel. Souffler lentement sous l'eau pendant la glisse. Hanches hautes, tête neutre.",
+              "name" : {
+                "fr" : "Streamline push-off — poussée + glisse 8 m"
+              },
+              "notes" : {
+                "fr" : "Augmenter la distance de glisse vs J1. Tenir la streamline jusqu'à l'arrêt naturel. Souffler lentement sous l'eau pendant la glisse. Hanches hautes, tête neutre."
+              },
               "required_equipment" : [
                 "pool",
                 "goggles",
@@ -170,15 +240,23 @@
             },
             {
               "alternatives" : [
-                "Catch-up à allure très lente avec pause 1 sec main devant",
-                "6-3-6 simplifié 25 m"
+                {
+                  "fr" : "Catch-up à allure très lente avec pause 1 sec main devant"
+                },
+                {
+                  "fr" : "6-3-6 simplifié 25 m"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "Catch-up drill — drill timing des bras",
-              "notes" : "Un bras reste tendu devant pendant que l'autre effectue sa traction et revient toucher l'autre main avant de repartir. Rythme lent. Objectif : apprendre le timing bras/bras, éviter les deux bras tirés en même temps. Respiration libre côté favori (tourne la tête quand tu en as besoin).",
+              "name" : {
+                "fr" : "Catch-up drill — drill timing des bras"
+              },
+              "notes" : {
+                "fr" : "Un bras reste tendu devant pendant que l'autre effectue sa traction et revient toucher l'autre main avant de repartir. Rythme lent. Objectif : apprendre le timing bras/bras, éviter les deux bras tirés en même temps. Respiration libre côté favori (tourne la tête quand tu en as besoin)."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -192,15 +270,23 @@
             },
             {
               "alternatives" : [
-                "25 m pull bras seuls jambes croisées sans pull-buoy",
-                "25 m crawl bras seuls avec ceinture flottante"
+                {
+                  "fr" : "25 m pull bras seuls jambes croisées sans pull-buoy"
+                },
+                {
+                  "fr" : "25 m crawl bras seuls avec ceinture flottante"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "Pull-buoy bras seuls (ou jambes croisées sans matériel)",
-              "notes" : "AVEC pull-buoy entre les cuisses : isoler le travail des bras, ne pas battre des jambes. SANS pull-buoy : jambes légèrement croisées à la cheville pour réduire le battement et te concentrer sur les bras. Sentir la traction de chaque bras dans l'eau, le coude haut au retour aérien.",
+              "name" : {
+                "fr" : "Pull-buoy bras seuls (ou jambes croisées sans matériel)"
+              },
+              "notes" : {
+                "fr" : "AVEC pull-buoy entre les cuisses : isoler le travail des bras, ne pas battre des jambes. SANS pull-buoy : jambes légèrement croisées à la cheville pour réduire le battement et te concentrer sur les bras. Sentir la traction de chaque bras dans l'eau, le coude haut au retour aérien."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -214,16 +300,24 @@
             },
             {
               "alternatives" : [
-                "25 m crawl sans catch-up forcé, allure très lente",
-                "25 m brasse lente"
+                {
+                  "fr" : "25 m crawl sans catch-up forcé, allure très lente"
+                },
+                {
+                  "fr" : "25 m brasse lente"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access",
                 "cardiac-clearance-required"
               ],
-              "name" : "25 m crawl complet — application catch-up",
-              "notes" : "Appliquer le catch-up drill ralenti sur le crawl complet. Respiration libre côté favori. Compter tes longueurs. Test de la parole à la fin de chaque longueur.",
+              "name" : {
+                "fr" : "25 m crawl complet — application catch-up"
+              },
+              "notes" : {
+                "fr" : "Appliquer le catch-up drill ralenti sur le crawl complet. Respiration libre côté favori. Compter tes longueurs. Test de la parole à la fin de chaque longueur."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -236,34 +330,52 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Consolidation glisse + introduction bras",
+          "name" : {
+            "fr" : "Consolidation glisse + introduction bras"
+          },
           "type" : "technique",
-          "warmup" : "5 min marche aquatique + 10 cercles épaules avant + 10 arrière + 5 submersions avec expiration longue sous l'eau (5 sec d'expir progressive)."
+          "warmup" : {
+            "fr" : "5 min marche aquatique + 10 cercles épaules avant + 10 arrière + 5 submersions avec expiration longue sous l'eau (5 sec d'expir progressive)."
+          }
         }
       ],
-      "theme" : "Équilibre et glisse — se sentir à l'aise dans l'eau",
+      "theme" : {
+        "fr" : "Équilibre et glisse — se sentir à l'aise dans l'eau"
+      },
       "week_number" : 1
     },
     {
-      "goal" : "Améliorer la propulsion (early vertical forearm) et maîtriser l'expiration continue sous l'eau (Total Immersion Catch Stage). Volume nagé hebdo : 750 m. Respiration côté favori uniquement.",
+      "goal" : {
+        "fr" : "Améliorer la propulsion (early vertical forearm) et maîtriser l'expiration continue sous l'eau (Total Immersion Catch Stage). Volume nagé hebdo : 750 m. Respiration côté favori uniquement."
+      },
       "sessions" : [
         {
-          "cooldown" : "100 m dos lent. Étirements épaules + nuque + triceps (coude derrière la tête 30 sec/côté) hors piscine. Sécher les oreilles.",
+          "cooldown" : {
+            "fr" : "100 m dos lent. Étirements épaules + nuque + triceps (coude derrière la tête 30 sec/côté) hors piscine. Sécher les oreilles."
+          },
           "day" : 1,
           "duration_minutes" : 45,
           "exercises" : [
             {
               "alternatives" : [
-                "Streamline glisse 5 m",
-                "Superman glide apnée 8 m"
+                {
+                  "fr" : "Streamline glisse 5 m"
+                },
+                {
+                  "fr" : "Superman glide apnée 8 m"
+                }
               ],
               "duration" : "1 poussée + glisse 8 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "Streamline push-off — glisse 8 m",
-              "notes" : "Rappel de la position de base. Streamline parfaite avant chaque longueur du jour.",
+              "name" : {
+                "fr" : "Streamline push-off — glisse 8 m"
+              },
+              "notes" : {
+                "fr" : "Rappel de la position de base. Streamline parfaite avant chaque longueur du jour."
+              },
               "required_equipment" : [
                 "pool",
                 "goggles",
@@ -276,16 +388,24 @@
             },
             {
               "alternatives" : [
-                "Fist swim avec doigts mi-fermés (transition)",
-                "Sculling avant mains seules 25 m"
+                {
+                  "fr" : "Fist swim avec doigts mi-fermés (transition)"
+                },
+                {
+                  "fr" : "Sculling avant mains seules 25 m"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access",
                 "wrist-pain"
               ],
-              "name" : "Fist swim — nager poing fermé",
-              "notes" : "Nager le crawl poings fermés. La résistance réduite force le bras à chercher la prise d'eau avec l'avant-bras (early vertical forearm). Quand tu rouvres les mains au 25 m suivant, tu ressentiras la prise amplifiée. Drill propulsion classique Total Immersion. Respiration côté favori.",
+              "name" : {
+                "fr" : "Fist swim — nager poing fermé"
+              },
+              "notes" : {
+                "fr" : "Nager le crawl poings fermés. La résistance réduite force le bras à chercher la prise d'eau avec l'avant-bras (early vertical forearm). Quand tu rouvres les mains au 25 m suivant, tu ressentiras la prise amplifiée. Drill propulsion classique Total Immersion. Respiration côté favori."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -299,15 +419,23 @@
             },
             {
               "alternatives" : [
-                "Catch-up drill 25 m",
-                "Single arm bras non-dominant 25 m bras passif tendu"
+                {
+                  "fr" : "Catch-up drill 25 m"
+                },
+                {
+                  "fr" : "Single arm bras non-dominant 25 m bras passif tendu"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "Fingertip drag — drag du bout des doigts",
-              "notes" : "Au retour aérien du bras, laisse traîner le bout des doigts à la surface de l'eau (comme si tu grattais doucement la surface). Force le coude haut en récupération. Améliore la mécanique d'entrée de main (high elbow recovery).",
+              "name" : {
+                "fr" : "Fingertip drag — drag du bout des doigts"
+              },
+              "notes" : {
+                "fr" : "Au retour aérien du bras, laisse traîner le bout des doigts à la surface de l'eau (comme si tu grattais doucement la surface). Force le coude haut en récupération. Améliore la mécanique d'entrée de main (high elbow recovery)."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -321,16 +449,24 @@
             },
             {
               "alternatives" : [
-                "Expir lente bouche seulement 8 sec si nez inconfortable",
-                "Bobbing vertical 5 reps (s'enfoncer + remonter)"
+                {
+                  "fr" : "Expir lente bouche seulement 8 sec si nez inconfortable"
+                },
+                {
+                  "fr" : "Bobbing vertical (s'enfoncer + remonter)"
+                }
               ],
               "duration" : "10 sec expiration",
               "incompatible_constraints" : [
                 "no-pool-access",
                 "cardiac-clearance-required"
               ],
-              "name" : "Expiration sous l'eau — exercice statique au mur",
-              "notes" : "Tiens le couloir, visage dans l'eau, expire LONGTEMPS et progressivement par le nez ET la bouche pendant 10 sec. L'expiration sous l'eau doit être CONTINUE entre chaque inspiration, jamais bloquer le souffle. C'est la base de la respiration durable, souvent oubliée par les autodidactes.",
+              "name" : {
+                "fr" : "Expiration sous l'eau — exercice statique au mur"
+              },
+              "notes" : {
+                "fr" : "Tiens le couloir, visage dans l'eau, expire LONGTEMPS et progressivement par le nez ET la bouche pendant 10 sec. L'expiration sous l'eau doit être CONTINUE entre chaque inspiration, jamais bloquer le souffle. C'est la base de la respiration durable, souvent oubliée par les autodidactes."
+              },
               "required_equipment" : [
                 "pool",
                 "goggles"
@@ -342,8 +478,12 @@
             },
             {
               "alternatives" : [
-                "25 m crawl avec respiration toutes les 4 strokes (apnée plus longue)",
-                "25 m brasse lente avec expir active"
+                {
+                  "fr" : "25 m crawl avec respiration toutes les 4 strokes (apnée plus longue)"
+                },
+                {
+                  "fr" : "25 m brasse lente avec expir active"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -351,8 +491,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "25 m crawl avec expiration active — main set",
-              "notes" : "Applique l'expiration continue sous l'eau pendant la nage. Respire côté favori toutes les 2 strokes. Compte : 1 expiration longue sous l'eau, 1 inspiration rapide sur le côté. Allure conversationnelle, test de la parole à la fin.",
+              "name" : {
+                "fr" : "25 m crawl avec expiration active — main set"
+              },
+              "notes" : {
+                "fr" : "Applique l'expiration continue sous l'eau pendant la nage. Respire côté favori toutes les 2 strokes. Compte : 1 expiration longue sous l'eau, 1 inspiration rapide sur le côté. Allure conversationnelle, test de la parole à la fin."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -366,8 +510,12 @@
             },
             {
               "alternatives" : [
-                "2 × 25 m avec 30 sec récup au lieu de 50 m continu",
-                "25 m crawl + 25 m brasse continu"
+                {
+                  "fr" : "2 × 25 m avec 30 sec récup au lieu de 50 m continu"
+                },
+                {
+                  "fr" : "25 m crawl + 25 m brasse continu"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -375,8 +523,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "50 m crawl continu — premier essai distance",
-              "notes" : "Tente un 50 m sans s'arrêter si les 25 m sont confortables. Si besoin de pause : touche le couloir au 25 m, souffle, repars sans complètement t'arrêter. Allure VOLONTAIREMENT lente — la priorité est la continuité, pas la vitesse.",
+              "name" : {
+                "fr" : "50 m crawl continu — premier essai distance"
+              },
+              "notes" : {
+                "fr" : "Tente un 50 m sans s'arrêter si les 25 m sont confortables. Si besoin de pause : touche le couloir au 25 m, souffle, repars sans complètement t'arrêter. Allure VOLONTAIREMENT lente — la priorité est la continuité, pas la vitesse."
+              },
               "reps" : "50 m",
               "required_equipment" : [
                 "pool",
@@ -389,19 +541,29 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Drill propulsion — fist swim et fingertip drag",
+          "name" : {
+            "fr" : "Drill propulsion — fist swim et fingertip drag"
+          },
           "type" : "technique",
-          "warmup" : "5 min marche aquatique + mobilité épaules 10 cercles avant/arrière + 5 submersions avec expiration longue."
+          "warmup" : {
+            "fr" : "5 min marche aquatique + mobilité épaules 10 cercles avant/arrière + 5 submersions avec expiration longue."
+          }
         },
         {
-          "cooldown" : "100 m dos lent. Étirements 5 min (épaules, nuque, mollets). Sécher les oreilles.",
+          "cooldown" : {
+            "fr" : "100 m dos lent. Étirements 5 min (épaules, nuque, mollets). Sécher les oreilles."
+          },
           "day" : 4,
           "duration_minutes" : 45,
           "exercises" : [
             {
               "alternatives" : [
-                "Sculling avec planche sous le ventre 15 m",
-                "Sculling vertical 30 sec (mains seules en grande profondeur)"
+                {
+                  "fr" : "Sculling avec planche sous le ventre 15 m"
+                },
+                {
+                  "fr" : "Sculling vertical 30 sec (mains seules en grande profondeur)"
+                }
               ],
               "duration" : "15 m avancée",
               "incompatible_constraints" : [
@@ -409,8 +571,12 @@
                 "no-pool-access",
                 "wrist-pain"
               ],
-              "name" : "Sculling avant — mains devant",
-              "notes" : "Bras tendus devant, paumes vers le bas, mouvements en 8 rapides des mains (essuie-glace doux). Avance lentement par la seule prise d'eau des mains. Drill catch fondamental : développe la sensibilité à la pression de l'eau sur les paumes.",
+              "name" : {
+                "fr" : "Sculling avant — mains devant"
+              },
+              "notes" : {
+                "fr" : "Bras tendus devant, paumes vers le bas, mouvements en 8 rapides des mains (essuie-glace doux). Avance lentement par la seule prise d'eau des mains. Drill catch fondamental : développe la sensibilité à la pression de l'eau sur les paumes."
+              },
               "required_equipment" : [
                 "pool",
                 "goggles",
@@ -423,15 +589,23 @@
             },
             {
               "alternatives" : [
-                "Side kick simple côté favori 25 m",
-                "Catch-up drill 25 m"
+                {
+                  "fr" : "Side kick simple côté favori 25 m"
+                },
+                {
+                  "fr" : "Catch-up drill 25 m"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "6-3-6 drill — drill timing et rotation",
-              "notes" : "6 battements de jambes en position latérale (côté favori d'abord, bras inférieur tendu devant), 3 coups de bras crawl, 6 battements latéral même côté favori. Permet de sentir la rotation tronc et le timing. Lent, contrôlé, respiration libre côté favori. Drill timing classique Total Immersion.",
+              "name" : {
+                "fr" : "6-3-6 drill — drill timing et rotation"
+              },
+              "notes" : {
+                "fr" : "6 battements de jambes en position latérale (côté favori d'abord, bras inférieur tendu devant), 3 coups de bras crawl, 6 battements latéral même côté favori. Permet de sentir la rotation tronc et le timing. Lent, contrôlé, respiration libre côté favori. Drill timing classique Total Immersion."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -445,8 +619,12 @@
             },
             {
               "alternatives" : [
-                "2 × 25 m avec 20 sec récup au lieu de 50 m continu",
-                "50 m alternance crawl/brasse"
+                {
+                  "fr" : "2 × 25 m avec 20 sec récup au lieu de 50 m continu"
+                },
+                {
+                  "fr" : "50 m alternance crawl/brasse"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -454,8 +632,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "50 m crawl continu — consolidation",
-              "notes" : "Consolider le 50 m continu. Expiration active sous l'eau, catch-up ralenti si besoin pour rester contrôlé. Si les 4 répétitions sont confortables, tu es prêt pour 75 m en W3. Respiration côté favori toutes les 2 strokes.",
+              "name" : {
+                "fr" : "50 m crawl continu — consolidation"
+              },
+              "notes" : {
+                "fr" : "Consolider le 50 m continu. Expiration active sous l'eau, catch-up ralenti si besoin pour rester contrôlé. Si les 4 répétitions sont confortables, tu es prêt pour 75 m en W3. Respiration côté favori toutes les 2 strokes."
+              },
               "reps" : "50 m",
               "required_equipment" : [
                 "pool",
@@ -468,34 +650,52 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Drill sculling + allongement de la glisse",
+          "name" : {
+            "fr" : "Drill sculling + allongement de la glisse"
+          },
           "type" : "technique",
-          "warmup" : "5 min marche aquatique + mobilité épaules 10 cercles avant/arrière + 5 submersions expiration longue."
+          "warmup" : {
+            "fr" : "5 min marche aquatique + mobilité épaules 10 cercles avant/arrière + 5 submersions expiration longue."
+          }
         }
       ],
-      "theme" : "Streamlining + propulsion bras — premières sensations de prise d'eau",
+      "theme" : {
+        "fr" : "Streamlining + propulsion bras — premières sensations de prise d'eau"
+      },
       "week_number" : 2
     },
     {
-      "goal" : "Apprendre à tourner la tête latéralement pour respirer sans soulever la tête (Total Immersion Breath Stage côté favori). Volume nagé hebdo : 1050 m. Démarrage du renforcement préventif épaule (Y-T-W, external rotation, scapula) en sortie de séance — 1ère séance dryland du plan. La respiration bilatérale n'est PAS introduite cette semaine (overload cognitif).",
+      "goal" : {
+        "fr" : "Apprendre à tourner la tête latéralement pour respirer sans soulever la tête (Total Immersion Breath Stage côté favori). Volume nagé hebdo : 1050 m. Démarrage du renforcement préventif épaule (Y-T-W, external rotation, scapula) en sortie de séance — 1ère séance dryland du plan. La respiration bilatérale n'est PAS introduite cette semaine (overload cognitif)."
+      },
       "sessions" : [
         {
-          "cooldown" : "100 m dos très lent. Étirements épaules + nuque + triceps au bord 5 min. Sécher les oreilles.",
+          "cooldown" : {
+            "fr" : "100 m dos très lent. Étirements épaules + nuque + triceps au bord 5 min. Sécher les oreilles."
+          },
           "day" : 1,
           "duration_minutes" : 50,
           "exercises" : [
             {
               "alternatives" : [
-                "Respiration latérale planche kickboard sous le ventre",
-                "Bobbing vertical 8 reps avec rotation tête"
+                {
+                  "fr" : "Respiration latérale planche kickboard sous le ventre"
+                },
+                {
+                  "fr" : "Bobbing vertical avec rotation tête"
+                }
               ],
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "no-pool-access",
                 "cardiac-clearance-required"
               ],
-              "name" : "Respiration latérale statique au mur",
-              "notes" : "Tiens le couloir d'une main, corps horizontal, visage dans l'eau, expire. Tourne la tête SUR LE CÔTÉ favori (une oreille dans l'eau, l'autre à l'air) pour inspirer. Reviens visage dans l'eau, expire. Répète. IMPORTANT : ne lève pas la tête (la bouche doit être à ras de l'eau, pas au-dessus). Choisis ton côté favori, tiens-t'y pour cette semaine.",
+              "name" : {
+                "fr" : "Respiration latérale statique au mur"
+              },
+              "notes" : {
+                "fr" : "Tiens le couloir d'une main, corps horizontal, visage dans l'eau, expire. Tourne la tête SUR LE CÔTÉ favori (une oreille dans l'eau, l'autre à l'air) pour inspirer. Reviens visage dans l'eau, expire. Répète. IMPORTANT : ne lève pas la tête (la bouche doit être à ras de l'eau, pas au-dessus). Choisis ton côté favori, tiens-t'y pour cette semaine."
+              },
               "required_equipment" : [
                 "pool",
                 "goggles"
@@ -507,15 +707,23 @@
             },
             {
               "alternatives" : [
-                "Side kick avec kickboard tenu bras supérieur",
-                "Side kick sans rotation respiration (apnée 25 m)"
+                {
+                  "fr" : "Side kick avec kickboard tenu bras supérieur"
+                },
+                {
+                  "fr" : "Side kick sans rotation respiration (apnée 25 m)"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "Side kick with breath — drill respiration",
-              "notes" : "Nage en position latérale côté FAVORI uniquement cette semaine : un bras tendu devant, l'autre le long du corps, regard fond. Bats des jambes. La bouche est déjà au niveau de l'eau — inspire naturellement quand tu en as besoin. Tourne face dans l'eau pour expirer. Drill respiration fondamental.",
+              "name" : {
+                "fr" : "Side kick with breath — drill respiration"
+              },
+              "notes" : {
+                "fr" : "Nage en position latérale côté FAVORI uniquement cette semaine : un bras tendu devant, l'autre le long du corps, regard fond. Bats des jambes. La bouche est déjà au niveau de l'eau — inspire naturellement quand tu en as besoin. Tourne face dans l'eau pour expirer. Drill respiration fondamental."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -529,16 +737,24 @@
             },
             {
               "alternatives" : [
-                "25 m avec respir toutes les 2 strokes uniquement (pas de variation)",
-                "25 m crawl libre avec focus expir active"
+                {
+                  "fr" : "25 m avec respir toutes les 2 strokes uniquement (pas de variation)"
+                },
+                {
+                  "fr" : "25 m crawl libre avec focus expir active"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access",
                 "cardiac-clearance-required"
               ],
-              "name" : "Breath control drill — contrôle rythme respiratoire",
-              "notes" : "Nage 25 m en comptant les coups de bras avant chaque inspiration. Reste sur le rythme tous les 2 strokes côté favori cette semaine. NE FORCE PAS le cycle de 3 (bilatérale) cette semaine — c'est pour W4. Objectif W3 : automatiser la respiration unilatérale sans panique.",
+              "name" : {
+                "fr" : "Breath control drill — contrôle rythme respiratoire"
+              },
+              "notes" : {
+                "fr" : "Nage 25 m en comptant les coups de bras avant chaque inspiration. Reste sur le rythme tous les 2 strokes côté favori cette semaine. NE FORCE PAS le cycle de 3 (bilatérale) cette semaine — c'est pour W4. Objectif W3 : automatiser la respiration unilatérale sans panique."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -552,8 +768,12 @@
             },
             {
               "alternatives" : [
-                "3 × 50 m avec récup 30 sec au lieu de 75 m continu",
-                "75 m alternance crawl/brasse"
+                {
+                  "fr" : "3 × 50 m avec récup 30 sec au lieu de 75 m continu"
+                },
+                {
+                  "fr" : "75 m alternance crawl/brasse"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -561,8 +781,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "75 m crawl continu avec respiration latérale",
-              "notes" : "Trois longueurs d'affilée (75 m). Respiration côté favori toutes les 2 strokes. Si nécessaire, pause au mur des 25 m (main au couloir, 5 sec), mais vise à enchaîner. C'est un saut qualitatif important — premier vrai test d'endurance technique.",
+              "name" : {
+                "fr" : "75 m crawl continu avec respiration latérale"
+              },
+              "notes" : {
+                "fr" : "Trois longueurs d'affilée (75 m). Respiration côté favori toutes les 2 strokes. Si nécessaire, pause au mur des 25 m (main au couloir, 5 sec), mais vise à enchaîner. C'est un saut qualitatif important — premier vrai test d'endurance technique."
+              },
               "reps" : "75 m",
               "required_equipment" : [
                 "pool",
@@ -575,26 +799,40 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Respiration latérale au mur + side kick",
+          "name" : {
+            "fr" : "Respiration latérale au mur + side kick"
+          },
           "type" : "technique",
-          "warmup" : "5 min marche aquatique + mobilité épaules 10 cercles + 5 submersions longues (expiration complète sous l'eau). Rotation nuque gauche-droite 10 fois hors eau."
+          "warmup" : {
+            "fr" : "5 min marche aquatique + mobilité épaules 10 cercles + 5 submersions longues (expiration complète sous l'eau). Rotation nuque gauche-droite 10 fois hors eau."
+          }
         },
         {
-          "cooldown" : "100 m dos lent. Sortie de l'eau pour le bloc dryland (cf. exercices). Étirements 5 min finaux. Sécher les oreilles.",
+          "cooldown" : {
+            "fr" : "100 m dos lent. Sortie de l'eau pour le bloc dryland (cf. exercices). Étirements 5 min finaux. Sécher les oreilles."
+          },
           "day" : 4,
           "duration_minutes" : 55,
           "exercises" : [
             {
               "alternatives" : [
-                "Side kick avec kickboard tenu bras supérieur",
-                "Body roll 6-3-6 côté favori"
+                {
+                  "fr" : "Side kick avec kickboard tenu bras supérieur"
+                },
+                {
+                  "fr" : "Body roll 6-3-6 côté favori"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "Side kick with breath — côté favori",
-              "notes" : "Côté favori uniquement cette semaine (bilatérale W4). Familiarisation profonde avec le timing respiration en position latérale.",
+              "name" : {
+                "fr" : "Side kick with breath — côté favori"
+              },
+              "notes" : {
+                "fr" : "Côté favori uniquement cette semaine (bilatérale W4). Familiarisation profonde avec le timing respiration en position latérale."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -608,8 +846,12 @@
             },
             {
               "alternatives" : [
-                "3 × 50 m avec récup 30 sec",
-                "75 m alternance crawl/brasse lente"
+                {
+                  "fr" : "3 × 50 m avec récup 30 sec"
+                },
+                {
+                  "fr" : "75 m alternance crawl/brasse lente"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -617,8 +859,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "75 m crawl continu — consolidation",
-              "notes" : "Consolide les 75 m du J1. Respiration latérale côté favori, expiration active sous l'eau. Si les 3 × 75 m sont confortables et la respiration stable, tente le 100 m ci-dessous.",
+              "name" : {
+                "fr" : "75 m crawl continu — consolidation"
+              },
+              "notes" : {
+                "fr" : "Consolide les 75 m du J1. Respiration latérale côté favori, expiration active sous l'eau. Si les 3 × 75 m sont confortables et la respiration stable, tente le 100 m ci-dessous."
+              },
               "reps" : "75 m",
               "required_equipment" : [
                 "pool",
@@ -632,8 +878,12 @@
             },
             {
               "alternatives" : [
-                "4 × 25 m avec récup 20 sec au lieu de 100 m continu",
-                "75 m crawl + 25 m brasse"
+                {
+                  "fr" : "4 × 25 m avec récup 20 sec au lieu de 100 m continu"
+                },
+                {
+                  "fr" : "75 m crawl + 25 m brasse"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -641,8 +891,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "100 m crawl continu — premier essai distance",
-              "notes" : "Si et seulement si les 75 m sont confortables. Quatre longueurs d'affilée. Allure volontairement très lente — la priorité est la continuité. Si pause nécessaire : main au couloir 5-10 sec, repars sans complètement t'arrêter au fond.",
+              "name" : {
+                "fr" : "100 m crawl continu — premier essai distance"
+              },
+              "notes" : {
+                "fr" : "Si et seulement si les 75 m sont confortables. Quatre longueurs d'affilée. Allure volontairement très lente — la priorité est la continuité. Si pause nécessaire : main au couloir 5-10 sec, repars sans complètement t'arrêter au fond."
+              },
               "reps" : "100 m",
               "required_equipment" : [
                 "pool",
@@ -656,8 +910,12 @@
             },
             {
               "alternatives" : [
-                "4 × 25 m crawl avec récup 20 sec sur la 2e répétition",
-                "100 m alternance crawl/brasse sur la 2e répétition"
+                {
+                  "fr" : "4 × 25 m crawl avec récup 20 sec sur la 2e répétition"
+                },
+                {
+                  "fr" : "100 m alternance crawl/brasse sur la 2e répétition"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -665,8 +923,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "100 m crawl easy — volume technique consolidé",
-              "notes" : "Bloc volume additionnel post-100 m premier essai pour consolider le volume hebdo W3 cible (1050 m). 2 × 100 m crawl easy avec 60 sec de récup entre. Allure très lente, focus respiration latérale côté favori et expiration continue sous l'eau. Pas un test, juste du nagé propre pour ancrer la trace motrice. Si fatigue : remplace par 4 × 25 m récup 20 sec sur la 2e répétition.",
+              "name" : {
+                "fr" : "100 m crawl easy — volume technique consolidé"
+              },
+              "notes" : {
+                "fr" : "Bloc volume additionnel post-100 m premier essai pour consolider le volume hebdo W3 cible (1050 m). 2 × 100 m crawl easy avec 60 sec de récup entre. Allure très lente, focus respiration latérale côté favori et expiration continue sous l'eau. Pas un test, juste du nagé propre pour ancrer la trace motrice. Si fatigue : remplace par 4 × 25 m récup 20 sec sur la 2e répétition."
+              },
               "reps" : "100 m",
               "required_equipment" : [
                 "pool",
@@ -680,15 +942,23 @@
             },
             {
               "alternatives" : [
-                "Y-T-W debout contre mur (position dégradée si sol froid)",
-                "Scapula squeeze contre mur 12 reps × 3"
+                {
+                  "fr" : "Y-T-W debout contre mur (position dégradée si sol froid)"
+                },
+                {
+                  "fr" : "Scapula squeeze contre mur"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
               ],
-              "name" : "Y-T-W shoulder activation — dryland sortie de bassin",
-              "notes" : "Allongé ventre sur tapis (ou sol piscine sec), front sur les mains. Lever bras tendus en Y (bras dans l'axe avant, pouces vers le haut) → reposer. Puis T (bras en croix, pouces vers le haut). Puis W (coudes pliés à 90°, mains vers le haut, omoplates serrées). Cible la coiffe des rotateurs et le trapèze moyen/inférieur — prévention swimmer's shoulder. 1ère séance dryland du plan, démarrage doux.",
+              "name" : {
+                "fr" : "Y-T-W shoulder activation — dryland sortie de bassin"
+              },
+              "notes" : {
+                "fr" : "Allongé ventre sur tapis (ou sol piscine sec), front sur les mains. Lever bras tendus en Y (bras dans l'axe avant, pouces vers le haut) → reposer. Puis T (bras en croix, pouces vers le haut). Puis W (coudes pliés à 90°, mains vers le haut, omoplates serrées). Cible la coiffe des rotateurs et le trapèze moyen/inférieur — prévention swimmer's shoulder. 1ère séance dryland du plan, démarrage doux."
+              },
               "reps" : "10 reps par lettre",
               "required_equipment" : [
                 "mat"
@@ -700,14 +970,22 @@
             },
             {
               "alternatives" : [
-                "External rotation sans bande mouvement à vide 15 reps × 3",
-                "Pomme arrachée debout 12 reps × 3 (rotation tronc avec haltère léger)"
+                {
+                  "fr" : "External rotation sans bande mouvement à vide"
+                },
+                {
+                  "fr" : "Pomme arrachée debout (rotation tronc avec haltère léger)"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "External rotation band — manchette rotateurs",
-              "notes" : "Élastique attaché à hauteur coude (poignée porte ou rampe). Coude collé au tronc, fléchi à 90°. Tourne lentement la main vers l'extérieur (rotation externe), reviens lentement. Cible infraspinatus + teres minor. Prévention impingement épaule.",
+              "name" : {
+                "fr" : "External rotation band — manchette rotateurs"
+              },
+              "notes" : {
+                "fr" : "Élastique attaché à hauteur coude (poignée porte ou rampe). Coude collé au tronc, fléchi à 90°. Tourne lentement la main vers l'extérieur (rotation externe), reviens lentement. Cible infraspinatus + teres minor. Prévention impingement épaule."
+              },
               "reps" : "12 reps par côté",
               "required_equipment" : [
                 "resistance-band"
@@ -719,14 +997,22 @@
             },
             {
               "alternatives" : [
-                "Cat-cow avant-bras au sol si poignets sensibles",
-                "Thoracic extension allongé sur foam roller 8 extensions"
+                {
+                  "fr" : "Cat-cow avant-bras au sol si poignets sensibles"
+                },
+                {
+                  "fr" : "Thoracic extension allongé sur foam roller 8 extensions"
+                }
               ],
               "incompatible_constraints" : [
                 "wrist-pain"
               ],
-              "name" : "Cat-cow — mobilité thoracique",
-              "notes" : "À 4 pattes sur tapis. Inspire en creusant le dos (vache, regard vers le haut), expire en arrondissant le dos (chat, regard vers le nombril). Mouvement lent et fluide. La cyphose dorsale est facteur n°1 d'impingement épaule chez le nageur — mobilité thoracique = prévention directe.",
+              "name" : {
+                "fr" : "Cat-cow — mobilité thoracique"
+              },
+              "notes" : {
+                "fr" : "À 4 pattes sur tapis. Inspire en creusant le dos (vache, regard vers le haut), expire en arrondissant le dos (chat, regard vers le nombril). Mouvement lent et fluide. La cyphose dorsale est facteur n°1 d'impingement épaule chez le nageur — mobilité thoracique = prévention directe."
+              },
               "reps" : "10 reps",
               "required_equipment" : [
                 "mat"
@@ -736,33 +1022,51 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "Consolidation respiration + 100 m premier essai + dryland épaule",
+          "name" : {
+            "fr" : "Consolidation respiration + 100 m premier essai + dryland épaule"
+          },
           "type" : "mixed",
-          "warmup" : "5 min marche aquatique + mobilité épaules + 5 submersions avec expiration lente."
+          "warmup" : {
+            "fr" : "5 min marche aquatique + mobilité épaules + 5 submersions avec expiration lente."
+          }
         }
       ],
-      "theme" : "Respiration latérale + introduction renforcement préventif épaule",
+      "theme" : {
+        "fr" : "Respiration latérale + introduction renforcement préventif épaule"
+      },
       "week_number" : 3
     },
     {
-      "goal" : "Nager 100 m confortablement et expérimenter la respiration bilatérale par drill isolé UNIQUEMENT (catch-up ralenti + side kick alterné des deux côtés). En nage continue, la bilatérale reste OPTIONNELLE par alternance de longueur — le drill isolé est l'objectif principal. Volume nagé hebdo : 1150 m (pic du plan, dans la fourchette 600-1500 doctrinale). Première vraie distance 150 m continu en fin de séance J4.",
+      "goal" : {
+        "fr" : "Nager 100 m confortablement et expérimenter la respiration bilatérale par drill isolé UNIQUEMENT (catch-up ralenti + side kick alterné des deux côtés). En nage continue, la bilatérale reste OPTIONNELLE par alternance de longueur — le drill isolé est l'objectif principal. Volume nagé hebdo : 1150 m (pic du plan, dans la fourchette 600-1500 doctrinale). Première vraie distance 150 m continu en fin de séance J4."
+      },
       "sessions" : [
         {
-          "cooldown" : "100 m dos lent. Étirements épaules + nuque + mollets 5 min. Sécher les oreilles.",
+          "cooldown" : {
+            "fr" : "100 m dos lent. Étirements épaules + nuque + mollets 5 min. Sécher les oreilles."
+          },
           "day" : 1,
           "duration_minutes" : 50,
           "exercises" : [
             {
               "alternatives" : [
-                "Side kick côté favori uniquement si non-dominant trop inconfortable",
-                "Body roll 6-3-6 alterné"
+                {
+                  "fr" : "Side kick côté favori uniquement si non-dominant trop inconfortable"
+                },
+                {
+                  "fr" : "Body roll 6-3-6 alterné"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "Side kick bilatéral — drill respiration alternée",
-              "notes" : "2 × 25 m côté favori, 2 × 25 m côté non-dominant. Fluidité des deux côtés nécessaire AVANT de les alterner dans la nage continue. C'est la fondation de la respiration bilatérale, intro douce par drill isolé conformément à la pédagogie Total Immersion.",
+              "name" : {
+                "fr" : "Side kick bilatéral — drill respiration alternée"
+              },
+              "notes" : {
+                "fr" : "2 × 25 m côté favori, 2 × 25 m côté non-dominant. Fluidité des deux côtés nécessaire AVANT de les alterner dans la nage continue. C'est la fondation de la respiration bilatérale, intro douce par drill isolé conformément à la pédagogie Total Immersion."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -776,16 +1080,24 @@
             },
             {
               "alternatives" : [
-                "Catch-up avec respiration côté favori toutes les 2 strokes (régression)",
-                "6-3-6 alterné en intégrant respiration aux 2 côtés"
+                {
+                  "fr" : "Catch-up avec respiration côté favori toutes les 2 strokes (régression)"
+                },
+                {
+                  "fr" : "6-3-6 alterné en intégrant respiration aux 2 côtés"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access",
                 "cardiac-clearance-required"
               ],
-              "name" : "Catch-up drill avec respiration alternée toutes les 3 strokes",
-              "notes" : "Utilise le catch-up drill (bras qui attend devant) avec respiration toutes les 3 strokes, alternant gauche puis droite. Le catch-up ralentit suffisamment le rythme pour gérer la bilatérale en cognitif. SI INCONFORT MAJEUR (panique respiratoire), reviens immédiatement à respiration unilatérale — pas de forçage. La bilatérale s'installe par paliers, pas en force.",
+              "name" : {
+                "fr" : "Catch-up drill avec respiration alternée toutes les 3 strokes"
+              },
+              "notes" : {
+                "fr" : "Utilise le catch-up drill (bras qui attend devant) avec respiration toutes les 3 strokes, alternant gauche puis droite. Le catch-up ralentit suffisamment le rythme pour gérer la bilatérale en cognitif. SI INCONFORT MAJEUR (panique respiratoire), reviens immédiatement à respiration unilatérale — pas de forçage. La bilatérale s'installe par paliers, pas en force."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -799,8 +1111,12 @@
             },
             {
               "alternatives" : [
-                "3 × 75 m avec récup 30 sec au lieu de 100 m continu",
-                "100 m alternance crawl/brasse (50 m + 50 m)"
+                {
+                  "fr" : "3 × 75 m avec récup 30 sec au lieu de 100 m continu"
+                },
+                {
+                  "fr" : "100 m alternance crawl/brasse (50 m + 50 m)"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -808,8 +1124,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "100 m crawl continu — 3 répétitions",
-              "notes" : "Sur les 3 × 100 m : respiration unilatérale côté favori par défaut. Bilatérale OPTIONNELLE par alternance de longueur : si tu te sens à l'aise, fais une longueur unilatérale + une bilatérale ; sinon reste 100% unilatérale. Le drill isolé bilatéral W4 D1 ex#1-2 reste l'objectif principal — la nage continue bilatérale s'intègre vraiment en W5-W6. Expiration active continue sous l'eau sur les 3. Allure très lente, test de la parole maintenu.",
+              "name" : {
+                "fr" : "100 m crawl continu — 3 répétitions"
+              },
+              "notes" : {
+                "fr" : "Sur les 3 × 100 m : respiration unilatérale côté favori par défaut. Bilatérale OPTIONNELLE par alternance de longueur : si tu te sens à l'aise, fais une longueur unilatérale + une bilatérale ; sinon reste 100% unilatérale. Le drill isolé bilatéral W4 D1 ex#1-2 reste l'objectif principal — la nage continue bilatérale s'intègre vraiment en W5-W6. Expiration active continue sous l'eau sur les 3. Allure très lente, test de la parole maintenu."
+              },
               "reps" : "100 m",
               "required_equipment" : [
                 "pool",
@@ -822,27 +1142,41 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Bilatérale par drill isolé + 100 m confirmé",
+          "name" : {
+            "fr" : "Bilatérale par drill isolé + 100 m confirmé"
+          },
           "type" : "technique",
-          "warmup" : "5 min marche aquatique + mobilité épaules 10 cercles avant/arrière + 5 submersions. Rotation nuque gauche-droite 10 fois."
+          "warmup" : {
+            "fr" : "5 min marche aquatique + mobilité épaules 10 cercles avant/arrière + 5 submersions. Rotation nuque gauche-droite 10 fois."
+          }
         },
         {
-          "cooldown" : "100 m dos lent. Bloc dryland (cf. exercices). Étirements 5 min finaux. Sécher les oreilles.",
+          "cooldown" : {
+            "fr" : "100 m dos lent. Bloc dryland (cf. exercices). Étirements 5 min finaux. Sécher les oreilles."
+          },
           "day" : 4,
           "duration_minutes" : 55,
           "exercises" : [
             {
               "alternatives" : [
-                "Fingertip drag + crawl libre (contraste alternatif)",
-                "Sculling avant + crawl libre"
+                {
+                  "fr" : "Fingertip drag + crawl libre (contraste alternatif)"
+                },
+                {
+                  "fr" : "Sculling avant + crawl libre"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access",
                 "wrist-pain"
               ],
-              "name" : "Fist swim + crawl ouvert — contraste propulsion",
-              "notes" : "Alterne 25 m poings fermés / 25 m mains ouvertes. Sens la différence de propulsion. Drill propulsion : ancrer la sensation de bonne prise d'eau (early vertical forearm) qui sera utile pour le 200 m W6.",
+              "name" : {
+                "fr" : "Fist swim + crawl ouvert — contraste propulsion"
+              },
+              "notes" : {
+                "fr" : "Alterne 25 m poings fermés / 25 m mains ouvertes. Sens la différence de propulsion. Drill propulsion : ancrer la sensation de bonne prise d'eau (early vertical forearm) qui sera utile pour le 200 m W6."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -856,8 +1190,12 @@
             },
             {
               "alternatives" : [
-                "100 m avec respiration côté favori uniquement si bilatérale en panique",
-                "2 × 75 m récup 30 sec"
+                {
+                  "fr" : "100 m avec respiration côté favori uniquement si bilatérale en panique"
+                },
+                {
+                  "fr" : "2 × 75 m récup 30 sec"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -865,8 +1203,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "100 m crawl continu — respiration bilatérale tentée",
-              "notes" : "Objectif : les 2 × 100 m avec choix conscient — bilatérale par longueur si tu peux, unilatérale si tu fatigues. Le but W4 = drill isolé bilatéral, pas la performance bilatérale en continu. Si une longueur est inconfortable, repasse sur la respiration côté favori, reviens au bilatéral si tu te sens prêt. Ne jamais forcer en panique.",
+              "name" : {
+                "fr" : "100 m crawl continu — respiration bilatérale tentée"
+              },
+              "notes" : {
+                "fr" : "Objectif : les 2 × 100 m avec choix conscient — bilatérale par longueur si tu peux, unilatérale si tu fatigues. Le but W4 = drill isolé bilatéral, pas la performance bilatérale en continu. Si une longueur est inconfortable, repasse sur la respiration côté favori, reviens au bilatéral si tu te sens prêt. Ne jamais forcer en panique."
+              },
               "reps" : "100 m",
               "required_equipment" : [
                 "pool",
@@ -880,8 +1222,12 @@
             },
             {
               "alternatives" : [
-                "3 × 50 m avec récup 30 sec au lieu de 150 m continu",
-                "100 m crawl + 50 m brasse (transition vers distance)"
+                {
+                  "fr" : "3 × 50 m avec récup 30 sec au lieu de 150 m continu"
+                },
+                {
+                  "fr" : "100 m crawl + 50 m brasse (transition vers distance)"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -889,8 +1235,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "150 m crawl continu — premier essai distance",
-              "notes" : "Six longueurs d'affilée. Allure très lente et régulière. Pause au mur autorisée si nécessaire (5 sec max, main au couloir). L'objectif W6 sera 200 m — ce 150 m calibre le point de départ et te donne confiance. Stratégie : démarre encore plus lent que tu ne le penses, garde de l'énergie pour les 2 dernières longueurs.",
+              "name" : {
+                "fr" : "150 m crawl continu — premier essai distance"
+              },
+              "notes" : {
+                "fr" : "Six longueurs d'affilée. Allure très lente et régulière. Pause au mur autorisée si nécessaire (5 sec max, main au couloir). L'objectif W6 sera 200 m — ce 150 m calibre le point de départ et te donne confiance. Stratégie : démarre encore plus lent que tu ne le penses, garde de l'énergie pour les 2 dernières longueurs."
+              },
               "reps" : "150 m",
               "required_equipment" : [
                 "pool",
@@ -904,8 +1254,12 @@
             },
             {
               "alternatives" : [
-                "4 × 25 m crawl avec récup 20 sec sur la 2e répétition",
-                "100 m alternance crawl/brasse sur la 2e répétition"
+                {
+                  "fr" : "4 × 25 m crawl avec récup 20 sec sur la 2e répétition"
+                },
+                {
+                  "fr" : "100 m alternance crawl/brasse sur la 2e répétition"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -913,8 +1267,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "100 m crawl easy EN1 — volume pic W4 consolidé",
-              "notes" : "Bloc volume additionnel post-150 m pour atteindre le pic hebdo W4 (1150 m). 2 × 100 m allure très lente, focus expiration continue sous l'eau et glisse longue. Respiration côté favori (recovery, pas un test bilatéral). Si fatigue marquée : remplace par 4 × 25 m récup 20 sec ou skip la 2e répétition.",
+              "name" : {
+                "fr" : "100 m crawl easy EN1 — volume pic W4 consolidé"
+              },
+              "notes" : {
+                "fr" : "Bloc volume additionnel post-150 m pour atteindre le pic hebdo W4 (1150 m). 2 × 100 m allure très lente, focus expiration continue sous l'eau et glisse longue. Respiration côté favori (recovery, pas un test bilatéral). Si fatigue marquée : remplace par 4 × 25 m récup 20 sec ou skip la 2e répétition."
+              },
               "reps" : "100 m",
               "required_equipment" : [
                 "pool",
@@ -928,15 +1286,23 @@
             },
             {
               "alternatives" : [
-                "Y-T-W debout contre mur 12 reps × 3",
-                "Scapula squeeze contre mur 15 reps × 3"
+                {
+                  "fr" : "Y-T-W debout contre mur"
+                },
+                {
+                  "fr" : "Scapula squeeze contre mur"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
               ],
-              "name" : "Y-T-W shoulder activation — dryland sortie de bassin",
-              "notes" : "Progression vs W3 (10 → 12 reps). Allongé ventre, mêmes 3 positions Y / T / W, omoplates engagées, pouces vers le haut. Prévention swimmer's shoulder consolidée maintenant que le volume monte.",
+              "name" : {
+                "fr" : "Y-T-W shoulder activation — dryland sortie de bassin"
+              },
+              "notes" : {
+                "fr" : "Progression vs W3 (10 → 12 reps). Allongé ventre, mêmes 3 positions Y / T / W, omoplates engagées, pouces vers le haut. Prévention swimmer's shoulder consolidée maintenant que le volume monte."
+              },
               "reps" : "12 reps par lettre",
               "required_equipment" : [
                 "mat"
@@ -948,14 +1314,22 @@
             },
             {
               "alternatives" : [
-                "External rotation sans bande à vide 18 reps × 3",
-                "Pomme arrachée debout haltère léger 12 reps × 3"
+                {
+                  "fr" : "External rotation sans bande à vide"
+                },
+                {
+                  "fr" : "Pomme arrachée debout haltère léger"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "External rotation band — manchette rotateurs",
-              "notes" : "Progression vs W3 (12 → 15 reps). Coude collé au tronc, rotation externe lente avec élastique, tempo 2 sec aller / 2 sec retour.",
+              "name" : {
+                "fr" : "External rotation band — manchette rotateurs"
+              },
+              "notes" : {
+                "fr" : "Progression vs W3 (12 → 15 reps). Coude collé au tronc, rotation externe lente avec élastique, tempo 2 sec aller / 2 sec retour."
+              },
               "reps" : "15 reps par côté",
               "required_equipment" : [
                 "resistance-band"
@@ -967,15 +1341,23 @@
             },
             {
               "alternatives" : [
-                "Scapula squeeze à vide contre mur 15 reps × 3",
-                "Face pulls élastique 12 reps × 3"
+                {
+                  "fr" : "Scapula squeeze à vide contre mur"
+                },
+                {
+                  "fr" : "Face pulls élastique"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
               ],
-              "name" : "Scapula retraction — rétraction omoplates",
-              "notes" : "Nouveauté W4 : élastique horizontal (porte ou rampe) ou rame haute imaginée. Ramène les omoplates ensemble dans le dos sans hausser les épaules. Tempo 2 sec contraction / 2 sec retour. Cible le trapèze moyen/inférieur, antagoniste majeur des grands dorsaux et pectoraux dominants chez le nageur.",
+              "name" : {
+                "fr" : "Scapula retraction — rétraction omoplates"
+              },
+              "notes" : {
+                "fr" : "Nouveauté W4 : élastique horizontal (porte ou rampe) ou rame haute imaginée. Ramène les omoplates ensemble dans le dos sans hausser les épaules. Tempo 2 sec contraction / 2 sec retour. Cible le trapèze moyen/inférieur, antagoniste majeur des grands dorsaux et pectoraux dominants chez le nageur."
+              },
               "reps" : "12 reps",
               "required_equipment" : [
                 "resistance-band"
@@ -987,14 +1369,22 @@
             },
             {
               "alternatives" : [
-                "Cat-cow avant-bras au sol",
-                "Thoracic extension foam roller 8 extensions"
+                {
+                  "fr" : "Cat-cow avant-bras au sol"
+                },
+                {
+                  "fr" : "Thoracic extension foam roller 8 extensions"
+                }
               ],
               "incompatible_constraints" : [
                 "wrist-pain"
               ],
-              "name" : "Cat-cow — mobilité thoracique",
-              "notes" : "Maintien W3. Mobilité thoracique = prévention impingement épaule directe.",
+              "name" : {
+                "fr" : "Cat-cow — mobilité thoracique"
+              },
+              "notes" : {
+                "fr" : "Maintien W3. Mobilité thoracique = prévention impingement épaule directe."
+              },
               "reps" : "10 reps",
               "required_equipment" : [
                 "mat"
@@ -1004,34 +1394,52 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "Volume 150 m + qualité technique + dryland épaule",
+          "name" : {
+            "fr" : "Volume 150 m + qualité technique + dryland épaule"
+          },
           "type" : "mixed",
-          "warmup" : "5 min marche aquatique + mobilité épaules + 5 submersions."
+          "warmup" : {
+            "fr" : "5 min marche aquatique + mobilité épaules + 5 submersions."
+          }
         }
       ],
-      "theme" : "Introduction respiration bilatérale + pic volume",
+      "theme" : {
+        "fr" : "Introduction respiration bilatérale + pic volume"
+      },
       "week_number" : 4
     },
     {
-      "goal" : "Semaine cutback (volume nagé -26% vs W4 pic : 1150 → 850 m). Qualité maximale sur la respiration et la glisse, pas de nouveaux drills. Première intégration progressive de la respiration bilatérale en nage continue (selon ressenti, jamais forcée). Préparer mentalement l'approche du 200 m W6. Les semaines allégées sont CONSTITUTIVES de l'adaptation — ne pas les sauter.",
+      "goal" : {
+        "fr" : "Semaine cutback (volume nagé -26% vs W4 pic : 1150 → 850 m). Qualité maximale sur la respiration et la glisse, pas de nouveaux drills. Première intégration progressive de la respiration bilatérale en nage continue (selon ressenti, jamais forcée). Préparer mentalement l'approche du 200 m W6. Les semaines allégées sont CONSTITUTIVES de l'adaptation — ne pas les sauter."
+      },
       "sessions" : [
         {
-          "cooldown" : "100 m dos lent. Étirements 5 min. Sécher les oreilles.",
+          "cooldown" : {
+            "fr" : "100 m dos lent. Étirements 5 min. Sécher les oreilles."
+          },
           "day" : 1,
           "duration_minutes" : 45,
           "exercises" : [
             {
               "alternatives" : [
-                "Streamline glisse 8 m si 10 m inconfortable",
-                "Superman glide apnée 10 m"
+                {
+                  "fr" : "Streamline glisse 8 m si 10 m inconfortable"
+                },
+                {
+                  "fr" : "Superman glide apnée 10 m"
+                }
               ],
               "duration" : "1 poussée + glisse max",
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "Streamline push-off — poussée longue 10 m",
-              "notes" : "Reviens aux fondations. Pousse du mur et tiens la glisse le plus longtemps possible. Si tu arrives à 10-12 m, c'est une belle progression depuis W1 (5 m). Test de la qualité aérodynamique consolidée. Hanches hautes, tête neutre.",
+              "name" : {
+                "fr" : "Streamline push-off — poussée longue 10 m"
+              },
+              "notes" : {
+                "fr" : "Reviens aux fondations. Pousse du mur et tiens la glisse le plus longtemps possible. Si tu arrives à 10-12 m, c'est une belle progression depuis W1 (5 m). Test de la qualité aérodynamique consolidée. Hanches hautes, tête neutre."
+              },
               "required_equipment" : [
                 "pool",
                 "goggles",
@@ -1044,15 +1452,23 @@
             },
             {
               "alternatives" : [
-                "Side kick avec kickboard tenu bras supérieur",
-                "Body roll 6-3-6 alterné"
+                {
+                  "fr" : "Side kick avec kickboard tenu bras supérieur"
+                },
+                {
+                  "fr" : "Body roll 6-3-6 alterné"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "Side kick bilatéral — rappel respiration",
-              "notes" : "2 × 25 m côté favori, 2 × 25 m côté non-dominant. Cutback : volume réduit sur les longueurs continues, qualité élevée sur les drills focal point.",
+              "name" : {
+                "fr" : "Side kick bilatéral — rappel respiration"
+              },
+              "notes" : {
+                "fr" : "2 × 25 m côté favori, 2 × 25 m côté non-dominant. Cutback : volume réduit sur les longueurs continues, qualité élevée sur les drills focal point."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -1066,8 +1482,12 @@
             },
             {
               "alternatives" : [
-                "3 × 75 m avec récup 30 sec",
-                "100 m alternance crawl/brasse"
+                {
+                  "fr" : "3 × 75 m avec récup 30 sec"
+                },
+                {
+                  "fr" : "100 m alternance crawl/brasse"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1075,8 +1495,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "100 m crawl continu — allure confortable",
-              "notes" : "Trois fois 100 m à allure modérée (NE PAS pousser). Respiration bilatérale toutes les 3 strokes quand possible, sinon côté favori. Sens que la technique se consolide. Les semaines allégées ne sont pas des semaines perdues — l'adaptation neuromusculaire continue même sans pic de volume.",
+              "name" : {
+                "fr" : "100 m crawl continu — allure confortable"
+              },
+              "notes" : {
+                "fr" : "Trois fois 100 m à allure modérée (NE PAS pousser). Respiration bilatérale toutes les 3 strokes quand possible, sinon côté favori. Sens que la technique se consolide. Les semaines allégées ne sont pas des semaines perdues — l'adaptation neuromusculaire continue même sans pic de volume."
+              },
               "reps" : "100 m",
               "required_equipment" : [
                 "pool",
@@ -1089,26 +1513,40 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Cutback — rappel de tous les drills clés",
+          "name" : {
+            "fr" : "Cutback — rappel de tous les drills clés"
+          },
           "type" : "technique",
-          "warmup" : "5 min marche aquatique + mobilité épaules + 5 submersions expiration longue."
+          "warmup" : {
+            "fr" : "5 min marche aquatique + mobilité épaules + 5 submersions expiration longue."
+          }
         },
         {
-          "cooldown" : "100 m dos lent. Bloc dryland (cf. exercices). Étirements épaules + nuque + mollets 5 min. Sécher les oreilles.",
+          "cooldown" : {
+            "fr" : "100 m dos lent. Bloc dryland (cf. exercices). Étirements épaules + nuque + mollets 5 min. Sécher les oreilles."
+          },
           "day" : 4,
           "duration_minutes" : 50,
           "exercises" : [
             {
               "alternatives" : [
-                "Side kick simple côté favori 25 m",
-                "Catch-up drill 25 m"
+                {
+                  "fr" : "Side kick simple côté favori 25 m"
+                },
+                {
+                  "fr" : "Catch-up drill 25 m"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "6-3-6 drill — rappel rotation tronc",
-              "notes" : "Drill timing : sentir la rotation du tronc et le placement latéral. Qualité maximale sur ce drill cutback — tu nageras le 200 m W6 avec les sensations consolidées ici.",
+              "name" : {
+                "fr" : "6-3-6 drill — rappel rotation tronc"
+              },
+              "notes" : {
+                "fr" : "Drill timing : sentir la rotation du tronc et le placement latéral. Qualité maximale sur ce drill cutback — tu nageras le 200 m W6 avec les sensations consolidées ici."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -1122,8 +1560,12 @@
             },
             {
               "alternatives" : [
-                "2 × 75 m avec récup 30 sec",
-                "100 m alternance crawl/brasse"
+                {
+                  "fr" : "2 × 75 m avec récup 30 sec"
+                },
+                {
+                  "fr" : "100 m alternance crawl/brasse"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1131,8 +1573,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "100 m crawl continu — qualité technique",
-              "notes" : "Volume réduit mais qualité technique soignée. Respiration bilatérale sur au moins une des deux répétitions. Allure très lente, test de la parole en sortie.",
+              "name" : {
+                "fr" : "100 m crawl continu — qualité technique"
+              },
+              "notes" : {
+                "fr" : "Volume réduit mais qualité technique soignée. Respiration bilatérale sur au moins une des deux répétitions. Allure très lente, test de la parole en sortie."
+              },
               "reps" : "100 m",
               "required_equipment" : [
                 "pool",
@@ -1146,8 +1592,12 @@
             },
             {
               "alternatives" : [
-                "3 × 50 m avec récup 30 sec au lieu de 150 m continu",
-                "100 m crawl + 50 m brasse"
+                {
+                  "fr" : "3 × 50 m avec récup 30 sec au lieu de 150 m continu"
+                },
+                {
+                  "fr" : "100 m crawl + 50 m brasse"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1155,8 +1605,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "150 m crawl continu — confirmation",
-              "notes" : "Confirme les 150 m acquis en W4. Pas de forçage de vitesse. Pense à l'allure très lente et régulière — c'est la même stratégie qui permettra le 200 m W6. À la fin de la séance : visualise les 8 longueurs du 200 m W6, une par une, à ton allure cutback.",
+              "name" : {
+                "fr" : "150 m crawl continu — confirmation"
+              },
+              "notes" : {
+                "fr" : "Confirme les 150 m acquis en W4. Pas de forçage de vitesse. Pense à l'allure très lente et régulière — c'est la même stratégie qui permettra le 200 m W6. À la fin de la séance : visualise les 8 longueurs du 200 m W6, une par une, à ton allure cutback."
+              },
               "reps" : "150 m",
               "required_equipment" : [
                 "pool",
@@ -1170,15 +1624,23 @@
             },
             {
               "alternatives" : [
-                "Y-T-W debout contre mur 12 reps × 3",
-                "Scapula squeeze contre mur 15 reps × 3"
+                {
+                  "fr" : "Y-T-W debout contre mur"
+                },
+                {
+                  "fr" : "Scapula squeeze contre mur"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
               ],
-              "name" : "Y-T-W shoulder activation — dryland sortie de bassin",
-              "notes" : "Maintien W4 (volume cutback aussi sur le dryland). Prévention swimmer's shoulder.",
+              "name" : {
+                "fr" : "Y-T-W shoulder activation — dryland sortie de bassin"
+              },
+              "notes" : {
+                "fr" : "Maintien W4 (volume cutback aussi sur le dryland). Prévention swimmer's shoulder."
+              },
               "reps" : "12 reps par lettre",
               "required_equipment" : [
                 "mat"
@@ -1190,14 +1652,22 @@
             },
             {
               "alternatives" : [
-                "External rotation sans bande à vide 15 reps × 3",
-                "Pomme arrachée debout haltère léger 10 reps × 3"
+                {
+                  "fr" : "External rotation sans bande à vide"
+                },
+                {
+                  "fr" : "Pomme arrachée debout haltère léger"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
-              "name" : "External rotation band — manchette rotateurs",
-              "notes" : "Volume cutback dryland aussi (15 → 12 reps), maintien intensité.",
+              "name" : {
+                "fr" : "External rotation band — manchette rotateurs"
+              },
+              "notes" : {
+                "fr" : "Volume cutback dryland aussi (15 → 12 reps), maintien intensité."
+              },
               "reps" : "12 reps par côté",
               "required_equipment" : [
                 "resistance-band"
@@ -1209,14 +1679,22 @@
             },
             {
               "alternatives" : [
-                "Cat-cow avant-bras au sol",
-                "Thoracic extension foam roller 8 extensions"
+                {
+                  "fr" : "Cat-cow avant-bras au sol"
+                },
+                {
+                  "fr" : "Thoracic extension foam roller 8 extensions"
+                }
               ],
               "incompatible_constraints" : [
                 "wrist-pain"
               ],
-              "name" : "Cat-cow — mobilité thoracique",
-              "notes" : "Maintien standard. Mobilité thoracique = prévention impingement.",
+              "name" : {
+                "fr" : "Cat-cow — mobilité thoracique"
+              },
+              "notes" : {
+                "fr" : "Maintien standard. Mobilité thoracique = prévention impingement."
+              },
               "reps" : "10 reps",
               "required_equipment" : [
                 "mat"
@@ -1226,33 +1704,51 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "Cutback — 150 m confirmé + prépa mentale 200 m + dryland épaule",
+          "name" : {
+            "fr" : "Cutback — 150 m confirmé + prépa mentale 200 m + dryland épaule"
+          },
           "type" : "mixed",
-          "warmup" : "5 min marche aquatique + mobilité épaules + 5 submersions."
+          "warmup" : {
+            "fr" : "5 min marche aquatique + mobilité épaules + 5 submersions."
+          }
         }
       ],
-      "theme" : "Cutback — consolidation et connexion technique",
+      "theme" : {
+        "fr" : "Cutback — consolidation et connexion technique"
+      },
       "week_number" : 5
     },
     {
-      "goal" : "Réaliser 200 m crawl continu avec respiration latérale maîtrisée. Volume nagé hebdo : 1025 m. Séance J1 = activation 175 m + drills consolidation. Séance J4 = SÉANCE PHARE 200 m + checklist d'autoévaluation 5 critères mesurables.",
+      "goal" : {
+        "fr" : "Réaliser 200 m crawl continu avec respiration latérale maîtrisée. Volume nagé hebdo : 1025 m. Séance J1 = activation 175 m + drills consolidation. Séance J4 = SÉANCE PHARE 200 m + checklist d'autoévaluation 5 critères mesurables."
+      },
       "sessions" : [
         {
-          "cooldown" : "100 m dos lent récupération. Étirements complets 5 min. Sécher les oreilles. Visualise la séance phare J4 : 8 longueurs, allure très lente sur les 2 premières, stable sur le milieu, économie sur les 2 dernières.",
+          "cooldown" : {
+            "fr" : "100 m dos lent récupération. Étirements complets 5 min. Sécher les oreilles. Visualise la séance phare J4 : 8 longueurs, allure très lente sur les 2 premières, stable sur le milieu, économie sur les 2 dernières."
+          },
           "day" : 1,
           "duration_minutes" : 45,
           "exercises" : [
             {
               "alternatives" : [
-                "Fingertip drag + side kick côté favori",
-                "Catch-up drill + 6-3-6"
+                {
+                  "fr" : "Fingertip drag + side kick côté favori"
+                },
+                {
+                  "fr" : "Catch-up drill + 6-3-6"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "Rappel drills — fist swim + side kick bilatéral",
-              "notes" : "2 × 25 m fist swim (propulsion early vertical forearm), 2 × 25 m side kick bilatéral (respiration). Réactiver les sensations clés avant la séance phare. Pas d'effort, juste des rappels moteurs.",
+              "name" : {
+                "fr" : "Rappel drills — fist swim + side kick bilatéral"
+              },
+              "notes" : {
+                "fr" : "2 × 25 m fist swim (propulsion early vertical forearm), 2 × 25 m side kick bilatéral (respiration). Réactiver les sensations clés avant la séance phare. Pas d'effort, juste des rappels moteurs."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -1266,15 +1762,23 @@
             },
             {
               "alternatives" : [
-                "6-3-6 drill + sculling avant 25 m",
-                "Side kick côté favori + côté non-dominant 4 × 25 m"
+                {
+                  "fr" : "6-3-6 drill + sculling avant 25 m"
+                },
+                {
+                  "fr" : "Side kick côté favori + côté non-dominant 4 × 25 m"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "Drills consolidation — catch-up + fingertip drag",
-              "notes" : "2 × 25 m catch-up drill (timing bras/bras), 2 × 25 m fingertip drag (high elbow recovery). Bloc drills additionnel J1 W6 pour atteindre le volume hebdo cible 1000 m et ancrer 2 sensations techniques de plus avant la séance phare J4. Allure très lente, qualité technique > vitesse.",
+              "name" : {
+                "fr" : "Drills consolidation — catch-up + fingertip drag"
+              },
+              "notes" : {
+                "fr" : "2 × 25 m catch-up drill (timing bras/bras), 2 × 25 m fingertip drag (high elbow recovery). Bloc drills additionnel J1 W6 pour atteindre le volume hebdo cible 1000 m et ancrer 2 sensations techniques de plus avant la séance phare J4. Allure très lente, qualité technique > vitesse."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -1288,8 +1792,12 @@
             },
             {
               "alternatives" : [
-                "4 × 25 m crawl avec récup 20 sec",
-                "100 m alternance crawl/brasse"
+                {
+                  "fr" : "4 × 25 m crawl avec récup 20 sec"
+                },
+                {
+                  "fr" : "100 m alternance crawl/brasse"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1297,8 +1805,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "100 m crawl easy — volume technique consolidé W6",
-              "notes" : "100 m crawl easy supplémentaire en J1 pour consolider le volume hebdo W6 (1000 m) avant la séance phare J4. Allure très lente, focus respiration latérale et expiration continue sous l'eau. Pas un test, juste du nagé propre.",
+              "name" : {
+                "fr" : "100 m crawl easy — volume technique consolidé W6"
+              },
+              "notes" : {
+                "fr" : "100 m crawl easy supplémentaire en J1 pour consolider le volume hebdo W6 (1000 m) avant la séance phare J4. Allure très lente, focus respiration latérale et expiration continue sous l'eau. Pas un test, juste du nagé propre."
+              },
               "reps" : "100 m",
               "required_equipment" : [
                 "pool",
@@ -1312,8 +1824,12 @@
             },
             {
               "alternatives" : [
-                "2 × 75 m avec récup 30 sec",
-                "100 m alternance crawl/brasse"
+                {
+                  "fr" : "2 × 75 m avec récup 30 sec"
+                },
+                {
+                  "fr" : "100 m alternance crawl/brasse"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1321,8 +1837,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "100 m crawl continu — allure cible",
-              "notes" : "Nage à l'allure qui sera utilisée pour le 200 m J4. Pas de sprint, allure très régulière, expiration continue sous l'eau. Sens que 100 m est devenu confortable — c'est la première moitié du 200 m.",
+              "name" : {
+                "fr" : "100 m crawl continu — allure cible"
+              },
+              "notes" : {
+                "fr" : "Nage à l'allure qui sera utilisée pour le 200 m J4. Pas de sprint, allure très régulière, expiration continue sous l'eau. Sens que 100 m est devenu confortable — c'est la première moitié du 200 m."
+              },
               "reps" : "100 m",
               "required_equipment" : [
                 "pool",
@@ -1336,8 +1856,12 @@
             },
             {
               "alternatives" : [
-                "3 × 50 m avec récup 30 sec + 25 m récup",
-                "150 m crawl + 25 m brasse"
+                {
+                  "fr" : "3 × 50 m avec récup 30 sec + 25 m récup"
+                },
+                {
+                  "fr" : "150 m crawl + 25 m brasse"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1345,8 +1869,12 @@
                 "cardiac-clearance-required",
                 "recurrent-otitis"
               ],
-              "name" : "175 m crawl continu — calibration finale",
-              "notes" : "7 longueurs. Si nécessaire : pause 5 sec au mur, repars. Arriver à 175 m confirme que les 200 m sont accessibles dans 3 jours. NE PAS forcer jusqu'à 200 m aujourd'hui — garde de l'énergie pour la séance phare J4. Allure très lente toute la longueur.",
+              "name" : {
+                "fr" : "175 m crawl continu — calibration finale"
+              },
+              "notes" : {
+                "fr" : "7 longueurs. Si nécessaire : pause 5 sec au mur, repars. Arriver à 175 m confirme que les 200 m sont accessibles dans 3 jours. NE PAS forcer jusqu'à 200 m aujourd'hui — garde de l'énergie pour la séance phare J4. Allure très lente toute la longueur."
+              },
               "reps" : "175 m",
               "required_equipment" : [
                 "pool",
@@ -1359,19 +1887,29 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Activation pré-performance — 175 m",
+          "name" : {
+            "fr" : "Activation pré-performance — 175 m"
+          },
           "type" : "technique",
-          "warmup" : "5 min marche aquatique + mobilité épaules + 5 submersions. Streamline mural × 3 (glisse maximale). Séance d'activation : pas de test de performance, on garde de l'énergie pour J4."
+          "warmup" : {
+            "fr" : "5 min marche aquatique + mobilité épaules + 5 submersions. Streamline mural × 3 (glisse maximale). Séance d'activation : pas de test de performance, on garde de l'énergie pour J4."
+          }
         },
         {
-          "cooldown" : "5 min de récupération en flottaison dorsale ou marche aquatique. Hors piscine : étirements complets 8 min (épaules 30 sec/côté, nuque, triceps, mollets, pectoraux contre le mur). Sécher les oreilles soigneusement. Hydratation + collation post-effort.",
+          "cooldown" : {
+            "fr" : "5 min de récupération en flottaison dorsale ou marche aquatique. Hors piscine : étirements complets 8 min (épaules 30 sec/côté, nuque, triceps, mollets, pectoraux contre le mur). Sécher les oreilles soigneusement. Hydratation + collation post-effort."
+          },
           "day" : 4,
           "duration_minutes" : 50,
           "exercises" : [
             {
               "alternatives" : [
-                "4 × 50 m avec récup 20 sec si 200 m continu inconfortable",
-                "150 m crawl + 50 m brasse continu"
+                {
+                  "fr" : "4 × 50 m avec récup 20 sec si 200 m continu inconfortable"
+                },
+                {
+                  "fr" : "150 m crawl + 50 m brasse continu"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1380,8 +1918,12 @@
                 "recurrent-otitis",
                 "pregnancy"
               ],
-              "name" : "200 m crawl continu — OBJECTIF FINAL",
-              "notes" : "8 longueurs de 25 m.\n\nSTRATÉGIE :\n• L1-L2 : allure TRÈS lente (plus lente que tu ne le penses).\n• L3-L6 : allure stable et régulière, expiration continue sous l'eau.\n• L7-L8 : maintenir sans accélérer (économie absolue).\n\nRespiration latérale toutes les 2 ou 3 strokes selon ton rythme naturel. Choisis ce qui te va — la bilatérale est un bonus, pas une obligation. Si coup de barre L5-L6 : ralentis encore les bras (pas les jambes), ne t'arrête pas. Si pause au mur indispensable : 10 sec maximum, main au couloir uniquement, ne quitte pas l'eau.\n\nCHECKLIST D'AUTOÉVALUATION À LA SORTIE DE L'EAU (5 critères) :\n1. J'ai nagé les 8 longueurs sans m'asseoir au fond ou quitter le couloir.\n2. Ma tête était tournée latéralement (une oreille dans l'eau) à chaque inspiration — je ne soulevais pas la tête.\n3. J'expirais continuellement sous l'eau entre chaque inspiration (pas d'apnée bloquée).\n4. Je ressentais une traction avec les avant-bras (pas seulement les mains), héritage du fist swim.\n5. J'ai choisi mon rythme respiratoire (toutes les 2 ou 3 strokes) selon mes sensations, pas par contrainte.\n\n• Si 3+ critères validés : objectif atteint, technique solide pour progresser vers un programme `recreational` 8 semaines.\n• Si 5/5 : excellente maîtrise du crawl de base, tu peux viser un objectif 400-800 m continu en suite directe.\n• Si 2 ou moins : refais W5 et W6 (cycle de 2 sem) avant de progresser.",
+              "name" : {
+                "fr" : "200 m crawl continu — OBJECTIF FINAL"
+              },
+              "notes" : {
+                "fr" : "8 longueurs de 25 m.\n\nSTRATÉGIE :\n• L1-L2 : allure TRÈS lente (plus lente que tu ne le penses).\n• L3-L6 : allure stable et régulière, expiration continue sous l'eau.\n• L7-L8 : maintenir sans accélérer (économie absolue).\n\nRespiration latérale toutes les 2 ou 3 strokes selon ton rythme naturel. Choisis ce qui te va — la bilatérale est un bonus, pas une obligation. Si coup de barre L5-L6 : ralentis encore les bras (pas les jambes), ne t'arrête pas. Si pause au mur indispensable : 10 sec maximum, main au couloir uniquement, ne quitte pas l'eau.\n\nCHECKLIST D'AUTOÉVALUATION À LA SORTIE DE L'EAU (5 critères) :\n1. J'ai nagé les 8 longueurs sans m'asseoir au fond ou quitter le couloir.\n2. Ma tête était tournée latéralement (une oreille dans l'eau) à chaque inspiration — je ne soulevais pas la tête.\n3. J'expirais continuellement sous l'eau entre chaque inspiration (pas d'apnée bloquée).\n4. Je ressentais une traction avec les avant-bras (pas seulement les mains), héritage du fist swim.\n5. J'ai choisi mon rythme respiratoire (toutes les 2 ou 3 strokes) selon mes sensations, pas par contrainte.\n\n• Si 3+ critères validés : objectif atteint, technique solide pour progresser vers un programme `recreational` 8 semaines.\n• Si 5/5 : excellente maîtrise du crawl de base, tu peux viser un objectif 400-800 m continu en suite directe.\n• Si 2 ou moins : refais W5 et W6 (cycle de 2 sem) avant de progresser."
+              },
               "reps" : "200 m",
               "required_equipment" : [
                 "pool",
@@ -1395,14 +1937,22 @@
             },
             {
               "alternatives" : [
-                "25 m brasse très lente",
-                "Marche aquatique 2 min"
+                {
+                  "fr" : "25 m brasse très lente"
+                },
+                {
+                  "fr" : "Marche aquatique 2 min"
+                }
               ],
               "incompatible_constraints" : [
                 "no-pool-access"
               ],
-              "name" : "Récupération active — dos lent",
-              "notes" : "Après le 200 m. Bras le long du corps ou petit battement de dos, AUCUNE intensité. Célèbre l'effort.",
+              "name" : {
+                "fr" : "Récupération active — dos lent"
+              },
+              "notes" : {
+                "fr" : "Après le 200 m. Bras le long du corps ou petit battement de dos, AUCUNE intensité. Célèbre l'effort."
+              },
               "reps" : "25 m",
               "required_equipment" : [
                 "pool",
@@ -1416,15 +1966,23 @@
             },
             {
               "alternatives" : [
-                "Skip le 100 m libre si fatigue",
-                "50 m crawl + 50 m dos"
+                {
+                  "fr" : "Skip le 100 m libre si fatigue"
+                },
+                {
+                  "fr" : "50 m crawl + 50 m dos"
+                }
               ],
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "no-pool-access"
               ],
-              "name" : "100 m crawl libre — plaisir et autonomie",
-              "notes" : "Optionnel si énergie suffisante. Nage sans objectif technique, juste pour le plaisir de nager. Ce 100 m final mesure ton autonomie : tu nages parce que tu en as envie, pas parce qu'on te l'a demandé. C'est la sortie pédagogique du plan.",
+              "name" : {
+                "fr" : "100 m crawl libre — plaisir et autonomie"
+              },
+              "notes" : {
+                "fr" : "Optionnel si énergie suffisante. Nage sans objectif technique, juste pour le plaisir de nager. Ce 100 m final mesure ton autonomie : tu nages parce que tu en as envie, pas parce qu'on te l'a demandé. C'est la sortie pédagogique du plan."
+              },
               "reps" : "100 m",
               "required_equipment" : [
                 "pool",
@@ -1437,12 +1995,18 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Séance phare — 200 m crawl continu",
+          "name" : {
+            "fr" : "Séance phare — 200 m crawl continu"
+          },
           "type" : "endurance",
-          "warmup" : "5 min marche aquatique douce. Mobilité épaules (10 cercles avant + 10 arrière). 3 submersions longues avec expiration complète. 4 × 25 m crawl léger (2 crawl souple, 1 side kick côté favori, 1 side kick côté non-dominant). Total échauffement 12 min — plus long que d'habitude pour bien préparer la coiffe des rotateurs."
+          "warmup" : {
+            "fr" : "5 min marche aquatique douce. Mobilité épaules (10 cercles avant + 10 arrière). 3 submersions longues avec expiration complète. 4 × 25 m crawl léger (2 crawl souple, 1 side kick côté favori, 1 side kick côté non-dominant). Total échauffement 12 min — plus long que d'habitude pour bien préparer la coiffe des rotateurs."
+          }
         }
       ],
-      "theme" : "Séance phare — 200 m crawl continu",
+      "theme" : {
+        "fr" : "Séance phare — 200 m crawl continu"
+      },
       "week_number" : 6
     }
   ]
