@@ -16,6 +16,8 @@ import TemplateModel
 struct SessionView: View {
     @Environment(\.appDependencies) private var deps
     @Environment(\.languageManager) private var languageManager
+    // i18n (chantier ES) : bundle de la locale in-app pour les messages d'erreur.
+    @Environment(\.locale) private var locale
     /// **Hotfix Story 3.27 2026-05-31** — broadcast `MainTabView` quand l'user
     /// tape sur l'onglet Séances alors qu'il est déjà sur cette tab. Reset
     /// `adaptedRoute = nil` pour pop le push `AdaptedProgramView`. Custom tab
@@ -387,7 +389,7 @@ struct SessionView: View {
     /// V1), on flag l'erreur visible plutôt que de silencer la nav.
     private func pushAdaptedProgram(record: AdaptedProgramRecord) {
         guard let applied = record.toAppliedAdaptedProgram() else {
-            presentationError = String(localized: "session.adapter.profileMissing")
+            presentationError = String.localized("session.adapter.profileMissing", locale: locale)
             return
         }
         let modified = dashboardViewModel?.modifiedSessionCoordinates(forRecordId: record.id) ?? []
@@ -854,11 +856,11 @@ struct SessionView: View {
     private func presentAdaptedProgram(for sportProfile: CoachingSportProfile) async {
         await loadLibraryIfNeeded()
         guard let library else {
-            presentationError = String(localized: "session.adapter.libraryUnavailable")
+            presentationError = String.localized("session.adapter.libraryUnavailable", locale: locale)
             return
         }
         guard let coachingProfile else {
-            presentationError = String(localized: "session.adapter.profileMissing")
+            presentationError = String.localized("session.adapter.profileMissing", locale: locale)
             return
         }
         presentationError = nil
@@ -927,7 +929,7 @@ struct SessionView: View {
             library = try await ProgramTemplateLibrary.bundled()
         } catch {
             libraryLoadFailed = true
-            presentationError = String(localized: "session.adapter.libraryUnavailable")
+            presentationError = String.localized("session.adapter.libraryUnavailable", locale: locale)
         }
     }
 

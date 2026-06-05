@@ -545,13 +545,13 @@ struct AdaptedProgramView: View {
 
     private func leonErrorSubtitle(_ error: LeonError) -> String {
         switch error {
-        case .quotaExceeded: return String(localized: "coaching.adapter.leon.error.quota")
-        case .anthropicUnavailable: return String(localized: "coaching.adapter.leon.error.unavailable")
-        case .invalidPatch: return String(localized: "coaching.adapter.leon.error.invalidPatch")
-        case .unauthorized: return String(localized: "coaching.adapter.leon.error.unauthorized")
-        case .invalidRequest: return String(localized: "coaching.adapter.leon.error.invalidRequest")
-        case .network: return String(localized: "coaching.adapter.leon.error.network")
-        case .server: return String(localized: "coaching.adapter.leon.error.server")
+        case .quotaExceeded: return String.localized("coaching.adapter.leon.error.quota", locale: locale)
+        case .anthropicUnavailable: return String.localized("coaching.adapter.leon.error.unavailable", locale: locale)
+        case .invalidPatch: return String.localized("coaching.adapter.leon.error.invalidPatch", locale: locale)
+        case .unauthorized: return String.localized("coaching.adapter.leon.error.unauthorized", locale: locale)
+        case .invalidRequest: return String.localized("coaching.adapter.leon.error.invalidRequest", locale: locale)
+        case .network: return String.localized("coaching.adapter.leon.error.network", locale: locale)
+        case .server: return String.localized("coaching.adapter.leon.error.server", locale: locale)
         }
     }
 

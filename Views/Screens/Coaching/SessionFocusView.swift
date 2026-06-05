@@ -424,7 +424,7 @@ struct SessionFocusView: View {
         case .work, .hold:
             audioCues.play(.workStart)
             // « C'est parti ! » au lancement d'un effort sortant de la pré-annonce.
-            if precededByPrepare { voiceGuide?.announce(String(localized: "coaching.session.voice.go")) }
+            if precededByPrepare { voiceGuide?.announce(String.localized("coaching.session.voice.go", locale: locale)) }
         case .rest:
             audioCues.play(.restStart)
         case .warmup, .cooldown:
@@ -467,7 +467,7 @@ struct SessionFocusView: View {
         guard !timerEngine.isPaused, let phase = timerEngine.currentPhase, !phase.isManual else { return }
         // Pré-annonce vocale du prochain segment, en fin de phase active (mode Audio).
         if isAudioMode, phase.kind != .prepare, new == 5, phase.duration >= 7, let next = upcomingLabel {
-            voiceGuide?.announce(String(localized: "coaching.session.voice.next \(next)"))
+            voiceGuide?.announce(String.localized("coaching.session.voice.next \(next)", locale: locale))
         }
         // Décompte 3·2·1 : bip (toujours) + chiffre parlé (Audio).
         emitCountdownTick(forSecond: new)
@@ -493,7 +493,7 @@ struct SessionFocusView: View {
         guard isAudioMode, let phase = timerEngine.currentPhase, let guide = voiceGuide else { return }
         switch phase.kind {
         case .prepare:
-            guide.announce(String(localized: "coaching.session.voice.next \(displayString(phase.label))"))
+            guide.announce(String.localized("coaching.session.voice.next \(displayString(phase.label))", locale: locale))
         case .warmup, .cooldown:
             guide.announce(displayString(phase.label)) // « Échauffement » / « Retour au calme »
         default:
@@ -796,12 +796,12 @@ struct SessionFocusView: View {
     private func displayString(_ label: PhaseLabel) -> String {
         switch label {
         case .raw(let lt):               return AdaptedExercise.cleanForDisplay(lt.resolved(locale))
-        case .effort:                    return String(localized: "coaching.session.focus.timed.work")
-        case .recovery:                  return String(localized: "coaching.session.focus.timed.rest")
-        case .run(let i, let t):         return String(localized: "coaching.session.focus.timed.run \(i) \(t)")
-        case .walk(let i, let t):        return String(localized: "coaching.session.focus.timed.walk \(i) \(t)")
-        case .warmup:                    return String(localized: "coaching.adapter.session.warmup")
-        case .cooldown:                  return String(localized: "coaching.adapter.session.cooldown")
+        case .effort:                    return String.localized("coaching.session.focus.timed.work", locale: locale)
+        case .recovery:                  return String.localized("coaching.session.focus.timed.rest", locale: locale)
+        case .run(let i, let t):         return String.localized("coaching.session.focus.timed.run \(i) \(t)", locale: locale)
+        case .walk(let i, let t):        return String.localized("coaching.session.focus.timed.walk \(i) \(t)", locale: locale)
+        case .warmup:                    return String.localized("coaching.adapter.session.warmup", locale: locale)
+        case .cooldown:                  return String.localized("coaching.adapter.session.cooldown", locale: locale)
         }
     }
 

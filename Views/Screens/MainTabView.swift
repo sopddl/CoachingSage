@@ -13,6 +13,8 @@ import SwiftUI
 
 struct MainTabView: View {
     @Environment(\.appDependencies) private var deps
+    // i18n (chantier ES) : bundle de la locale in-app pour le bandeau sync.
+    @Environment(\.locale) private var locale
     @State private var isLeonChatPresented = false
     @State private var selectedTab: AppTab = .session
     /// **Hotfix Story 3.27 2026-05-31** — signal broadcast vers `SessionView`
@@ -152,7 +154,7 @@ struct MainTabView: View {
                 HStack(spacing: 6) {
                     ProgressView()
                         .controlSize(.mini)
-                    Text(String(localized: "sync.in_progress"))
+                    Text(verbatim: String.localized("sync.in_progress", locale: locale))
                         .font(.caption)
                 }
                 .padding(.horizontal, 12)
@@ -167,7 +169,7 @@ struct MainTabView: View {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundStyle(.orange)
                         .font(.caption)
-                    Text(String(localized: "sync.error"))
+                    Text(verbatim: String.localized("sync.error", locale: locale))
                         .font(.caption)
                 }
                 .padding(.horizontal, 12)

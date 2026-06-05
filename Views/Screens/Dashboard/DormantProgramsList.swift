@@ -132,12 +132,14 @@ private struct DormantProgramRow: View {
 /// `DormantProgramsList` (inchangée).
 struct DormantHeroHeader: View {
     let dormantCount: Int
+    // i18n (chantier ES) : résolution via le bundle de la locale in-app.
+    @Environment(\.locale) private var locale
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             // Bandeau intro — bleu marine clair, texte italique.
             Text(verbatim: String(
-                format: NSLocalizedString("dashboard.dormants.intro.format", comment: ""),
+                format: String.localized("dashboard.dormants.intro.format", locale: locale),
                 dormantCount
             ))
             .font(.subheadline.italic())
@@ -160,7 +162,7 @@ struct DormantHeroHeader: View {
                         .font(.system(size: 18, weight: .semibold, design: .serif))
                         .foregroundStyle(.white)
                     Text(verbatim: String(
-                        format: NSLocalizedString("dashboard.dormants.hero.subtitle.format", comment: ""),
+                        format: String.localized("dashboard.dormants.hero.subtitle.format", locale: locale),
                         dormantCount
                     ))
                     .font(.callout)
