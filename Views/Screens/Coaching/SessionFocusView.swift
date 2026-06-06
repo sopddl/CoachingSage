@@ -294,7 +294,7 @@ struct SessionFocusView: View {
         }
 
         let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.originalName)
-        ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey)
+        ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey, initiallyExpanded: isYoga)
     }
 
     @ViewBuilder
@@ -712,7 +712,7 @@ struct SessionFocusView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.originalName)
-            ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey)
+            ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey, initiallyExpanded: isYoga)
         }
     }
 
