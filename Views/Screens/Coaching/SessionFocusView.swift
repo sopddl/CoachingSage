@@ -641,6 +641,17 @@ struct SessionFocusView: View {
                 .padding(.horizontal, 24)
                 .padding(.vertical, 8)
             }
+            // Revue comité 2026-06-06 (Sally P1-b) : sur la tenue `.hold`, la
+            // description dépliée déborde souvent sous la ligne de flottaison →
+            // dégradé de fade en bas pour signaler « il y a une suite à scroller ».
+            .overlay(alignment: .bottom) {
+                if phase.kind == .hold {
+                    LinearGradient(colors: [Color.coachingBackground.opacity(0), Color.coachingBackground],
+                                   startPoint: .top, endPoint: .bottom)
+                        .frame(height: 28)
+                        .allowsHitTesting(false)
+                }
+            }
         } else if timerEngine.isFinished {
             // Bug #7 — en fin de séance minutée, `currentPhase` devient nil → l'écran
             // restait blanc le temps que la feuille de récap monte. On affiche une
@@ -712,7 +723,11 @@ struct SessionFocusView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.originalName)
-            ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey, initiallyExpanded: isYoga)
+            // Revue comité 2026-06-06 (reco Sally, décision Sophie) : « Comment
+            // l'exécuter » déplié sur les phases STATIQUES/LONGUES (tenue `.hold` =
+            // posture yoga, gainage), replié sur l'effort court chiffré (`.work` =
+            // HIIT, série muscu) — règle déterministe par phase, découplée du sport.
+            ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey, initiallyExpanded: phase.kind == .hold)
         }
     }
 
