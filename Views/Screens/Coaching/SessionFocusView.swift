@@ -686,9 +686,12 @@ struct SessionFocusView: View {
             VStack(alignment: .leading, spacing: 10) {
                 ForEach(Array(lines.enumerated()), id: \.offset) { idx, line in
                     Label {
-                        Text(verbatim: line)
-                            .font(idx == current ? .body.bold() : .body)
-                            .foregroundStyle(idx == current ? .primary : .secondary)
+                        // Revue comité 2026-06-06 (P0 challenger) : le jargon des
+                        // sous-étapes d'échauffement (glutes, band, mobilité…) devient
+                        // tappable via le glossaire au lieu d'être du texte opaque.
+                        GlossaryRichText(text: line,
+                                         font: idx == current ? .body.bold() : .body,
+                                         foreground: idx == current ? .primary : .secondary)
                             .fixedSize(horizontal: false, vertical: true)
                     } icon: {
                         Image(systemName: idx == current ? "circle.fill" : "circle")

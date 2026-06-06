@@ -145,6 +145,15 @@ public enum Glossary {
                       sportCodes: [Sport.strengthTraining]),
         GlossaryEntry(id: "reps",           titleKey: "glossary.reps.title",           definitionKey: "glossary.reps.definition",
                       sportCodes: [Sport.strengthTraining, Sport.hiit]),
+        // Revue comité 2026-06-06 — jargon échauffement non glossarié (P0 challenger).
+        GlossaryEntry(id: "glutes",         titleKey: "glossary.glutes.title",         definitionKey: "glossary.glutes.definition",
+                      sportCodes: [Sport.strengthTraining, Sport.running, Sport.hiit]),
+        GlossaryEntry(id: "band",           titleKey: "glossary.band.title",           definitionKey: "glossary.band.definition",
+                      sportCodes: [Sport.strengthTraining, Sport.running, Sport.hiit]),
+        GlossaryEntry(id: "mobility",       titleKey: "glossary.mobility.title",       definitionKey: "glossary.mobility.definition",
+                      sportCodes: [Sport.strengthTraining, Sport.running, Sport.cycling, Sport.yoga, Sport.hiit]),
+        GlossaryEntry(id: "recovery",       titleKey: "glossary.recovery.title",       definitionKey: "glossary.recovery.definition",
+                      sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.hiit, Sport.strengthTraining]),
         // Story 3.26 Phase A — 27 termes sport-spécifiques.
         // Yoga (8)
         GlossaryEntry(id: "yoga.asana",         titleKey: "glossary.yoga.asana.title",         definitionKey: "glossary.yoga.asana.definition",        sportCodes: [Sport.yoga]),
