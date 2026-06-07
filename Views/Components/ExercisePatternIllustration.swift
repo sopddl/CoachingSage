@@ -20,8 +20,11 @@ struct ExercisePatternIllustration: View {
                 staticIllustration
                     .frame(height: size)
             } else {
+                // POC muscu (Sophie 2026-06-06) : le strip s'auto-dimensionne à la
+                // hauteur réelle du dessin agrandi (≈ frameSize × facteur) au lieu de
+                // réclamer `size` → supprime le vide vertical de la boîte (reco Sally :
+                // boîte au ratio du dessin, pas à moitié vide).
                 dynamicStrip
-                    .frame(height: size)
             }
         }
         .dynamicTypeSize(.medium ... .accessibility2)
@@ -130,13 +133,19 @@ struct ExercisePatternIllustration: View {
     }
 
     /// Strip de 3 frames séparées par 2 flèches mouvement.
+    /// POC muscu (Sophie 2026-06-06 « trop petit ») : les frames hardcodent 48×48,
+    /// donc `size` était ignoré → dessins riquiqui. On agrandit chaque frame via
+    /// `scaleEffect` (Canvas vectoriel = net) en revendiquant l'espace correspondant.
+    /// Facteur dérivé de `size` : timeline (48) → 1 (inchangée) ; FOCUS (180/200) → ~1,6×.
     private func tripletStrip<Content: View>(@ViewBuilder _ frame: @escaping (Int) -> Content) -> some View {
-        HStack(spacing: IllustrationStyle.frameSpacing) {
-            frame(0)
+        let fs = IllustrationStyle.frameSize
+        let factor = max(1, size / 110)
+        return HStack(spacing: IllustrationStyle.frameSpacing) {
+            frame(0).scaleEffect(factor, anchor: .center).frame(width: fs * factor, height: fs * factor)
             arrow
-            frame(1)
+            frame(1).scaleEffect(factor, anchor: .center).frame(width: fs * factor, height: fs * factor)
             arrow
-            frame(2)
+            frame(2).scaleEffect(factor, anchor: .center).frame(width: fs * factor, height: fs * factor)
         }
     }
 

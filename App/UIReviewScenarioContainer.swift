@@ -229,6 +229,15 @@ struct UIReviewScenarioContainer: View {
                 week: SessionFocusStrengthFixture.week,
                 program: SessionFocusStrengthFixture.program
             )
+        case "ui_review_session_focus_strength_exo":
+            // POC muscu 2026-06-06 (Sophie « dessins trop petits ») — fixture SANS
+            // échauffement → atterrit direct sur la 1ʳᵉ série (Goblet squat) pour
+            // voir l'illustration en contexte FOCUS sans devoir skipper l'échauffement.
+            SessionFocusView(
+                session: SessionFocusStrengthExoFixture.session,
+                week: SessionFocusStrengthExoFixture.week,
+                program: SessionFocusStrengthExoFixture.program
+            )
         case "ui_review_session_focus_single":
             // **Story 3.33 (AC11)** — cas séance à 1 seul exo : points/compteur/nav
             // se comportent bien (nav désactivée aux extrémités, pas de crash).
@@ -1336,6 +1345,27 @@ enum SessionFocusStrengthFixture {
                             notes: "Ligne droite épaules-bassin-talons. Pas de bassin qui tombe.")
         ],
         cooldown: "5 min étirements doux du bas du corps"
+    )
+}
+
+enum SessionFocusStrengthExoFixture {
+    static let week = AdaptedWeek(weekNumber: 2, theme: "Force générale", goal: "Patterns", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-strength-exo-fixture", sport: .strengthTraining, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 1, name: "Full body fondamentaux", durationMinutes: 50, type: .strength,
+        warmup: nil,
+        exercises: [
+            AdaptedExercise(name: "Goblet squat (pattern squat)", originalName: "Goblet squat",
+                            sets: 4, reps: "8", restSeconds: 90,
+                            notes: "Descente contrôlée 3 secondes, poussée par les talons."),
+            AdaptedExercise(name: "Romanian Deadlift haltères (pattern hinge)", originalName: "Romanian Deadlift",
+                            sets: 3, reps: "10", restSeconds: 90,
+                            notes: "Le mouvement vient de la hanche, pas du dos.")
+        ],
+        cooldown: nil
     )
 }
 
