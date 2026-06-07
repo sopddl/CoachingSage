@@ -1,0 +1,54 @@
+# Tracker — Chantier Dosage Caméléon (10 sports)
+
+**Méthode** : `methodo-passe-sport-industrielle-2026-06-07.md` (pipeline « Passe Sport »).
+**Référentiel** : `referentiel-dosage-cameleon-DECISIONS.html`.
+**Légende étapes** : ⬜ à faire · 🟡 en cours · ✅ fait · ⏸️ bloqué.
+
+## Phase 0 — Assets (fait une fois)
+| Asset | Statut |
+|-------|--------|
+| Méthodo « Passe Sport » | ✅ 2026-06-07 |
+| Référentiel dosage | ✅ **v2 FIGÉ 2026-06-07** (`referentiel-dosage-cameleon-v2-FIGE.md`) après revue panel 5 agents + arbitrages Sophie |
+| Panel personas standard | ✅ défini (combo) |
+| Tracker | ✅ ce fichier |
+
+**Décisions figées** : D1 charge = sensation+note (pas de kg, pas de jargon) · D2 reps/max · D3 chrono+souffles · D4 côté structuré · D5 bandeau allure+voix · D6 normaliser `.warmup` · D7 densité par sport (mode=proxy). Scope V1 = champs modèle now (non-breaking) + affichage ; tracking charge=V2. Football inclus. 3 règles transverses P0 (hiérarchie 1+1+0 · cas vide masqué · saisie non-bloquante).
+
+## Phase 1 — Pilote
+| Sport | Capture | Spec | Revue | Décisions | Implem | ui-reviewer | Device | Merge |
+|-------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Muscu** (pilote) | ✅ | ✅ | ✅ | ✅ | ✅ | ⬜ | ⬜ | ⬜ |
+
+> Capture ✅ + Spec ✅ (`spec-dosage-muscu-PILOTE-2026-06-07.md`, 7 gaps). Revue+Décisions ✅ `party-dosage-muscu-pilote-2026-06-07.md`.
+> **Implem V1 ✅ 2026-06-07** (branche `chantier/dosage-cameleon-muscu`, non pushée) : reps-héros+chrono filet (AC2) · consigne charge « commence léger » (G1) · conversion « RPE 6-7 »→« effort 6-7 sur 10 » + retrait badge (G2) · côté affiché « Côté droit · Côté gauche » (G4) · modèle `load`+`side` non-breaking · variante=déjà via notes · 7 clés i18n FR/EN/ES. Build vert, 5/5 tests dosage + 0 régression (focus/timer/phase). Reps-héros + consigne **validés simu**.
+> **NEXT = device-test Sophie** puis ui-reviewer/merge.
+
+## Follow-ups dosage muscu (décidés en pilote, hors V1)
+- **F1 — Stepper « noter mon poids »** → **V2** (sans persistance = creux ; persistance = tracking V2 ; évite de charger l'écran d'effort 1+1+0).
+- **F2 — Côté tap-gaté** (split per-side dans le timer, « Côté droit → tap → Côté gauche ») → story dédiée timer (touche 3.34, risque régression). V1 = guidage affiché.
+- **F3 — Scrub prose RPE/RIR** des 4 notes doctrinales templates muscu (FR/EN/ES) → passage `template-quality-reviewer` (doctrine EU MDR, ne pas éditer à l'aveugle). V1 = badge converti au rendu.
+- **F4 — Bug data G6** : « Planche genoux au sol 30 sec » → chip « 15 sec » (incohérence nom/durée template) — hors dosage.
+
+## Phase 2 — Série
+| Sport | Capture | Spec | Revue | Décisions | Implem | ui-reviewer | Device | Merge |
+|-------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Running | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| Cycling | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| Swimming | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| Triathlon | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| Yoga | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| HIIT | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| Hiking | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| Tennis | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| Football (co) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+
+## Carte technique (Explore 2026-06-07)
+Modèle dosage = `Coaching/Adapter/AdaptedProgram.swift` :
+`sets:Int?` (l.126) · `reps:String?` (l.127) · `duration:String?` (l.128) ·
+`restSeconds:Int?` (l.129) · `notes:LocalizedText?` (l.130) · `targetZone:String?` (l.131) ·
+`volumeAxis:VolumeAxis?` (l.132, **orphelin, jamais rendu**).
+Rendu : `Coaching/Session/SessionFocusView.swift` (Manuel l.107-176 chips dosage l.301-328 ;
+Minuté/Audio l.393-836). Voix : `SessionVoiceGuide.swift`. Phases : `SessionTimerPhase.swift`.
+
+**ABSENTS du modèle** (à décider si on les ajoute) : charge/load, côté/latéralité structuré,
+respiration/souffles, RPE/effort, tempo/cadence.

@@ -317,11 +317,18 @@ struct SessionFocusView: View {
                     chip { Text("coaching.adapter.exercise.rest \(rest)") }
                 }
                 if let zone = ex.targetZone, !zone.isEmpty {
-                    GlossaryTermBadge(term: zone)
-                        .font(.caption2.bold())
-                        .padding(.horizontal, 8).padding(.vertical, 4)
-                        .background(Color.coachingPrimary.opacity(0.10))
-                        .clipShape(Capsule())
+                    // Chantier dosage D1/AC1 : le jargon RPE/RIR ne s'affiche plus —
+                    // « RPE 6-7 » devient « effort 6-7 sur 10 » (chip neutre, plus de
+                    // glossaire). Les vraies zones d'allure (Z2, Daniels) gardent le badge.
+                    if let effort = DosageFormatting.plainEffort(from: zone, locale: locale) {
+                        chip { Text(verbatim: effort) }
+                    } else {
+                        GlossaryTermBadge(term: zone)
+                            .font(.caption2.bold())
+                            .padding(.horizontal, 8).padding(.vertical, 4)
+                            .background(Color.coachingPrimary.opacity(0.10))
+                            .clipShape(Capsule())
+                    }
                 }
                 Spacer(minLength: 0)
             }
@@ -607,21 +614,46 @@ struct SessionFocusView: View {
                             .font(.largeTitle.bold())
                             .foregroundStyle(phaseTint(phase))
                             .multilineTextAlignment(.center)
-                        // Bug #9/#12 — muscu : l'OBJECTIF de la série (« Objectif : 8 ») est la
-                        // consigne claire. Sally P0 : le timer est ESTIMÉ → on dit explicitement
-                        // « prends le temps · pause si besoin » (sinon l'user croit à un chrono strict).
-                        if phase.kind == .work, let reps = strengthReps(for: phase) {
-                            VStack(spacing: 4) {
-                                Text("coaching.session.focus.timed.strength.target \(reps)")
-                                    .font(.title3.bold())
+                        // Chantier dosage AC2 (2026-06-07) : en MUSCU les REPS sont le héros
+                        // (la muscu est reps-driven), le chrono est rétrogradé en filet — il
+                        // n'est qu'une ESTIMATION. Hors muscu (HIIT/yoga), le chrono reste héros.
+                        let strengthRepTarget = phase.kind == .work ? strengthReps(for: phase) : nil
+                        if let reps = strengthRepTarget {
+                            VStack(spacing: 6) {
+                                Text(verbatim: DosageFormatting.repsHero(from: reps))
+                                    .font(.system(size: 80, weight: .bold, design: .rounded))
                                     .foregroundStyle(Color.coachingPrimary)
-                                Text("coaching.session.focus.timed.strength.hint")
+                                    .accessibilityIdentifier("coaching.session.focus.timed.strength.repsHero")
+                                Text("coaching.dosage.reps.unit")
+                                    .font(.headline)
+                                    .foregroundStyle(.secondary)
+                                // D4 côté : exo unilatéral (« 10 par côté ») → guidage explicite.
+                                // Affiché seulement (la voix côté = mode Audio, hors muscu Minuté).
+                                if DosageFormatting.isUnilateral(reps: reps) {
+                                    Label {
+                                        Text("coaching.dosage.side.right")
+                                            + Text(verbatim: " · ")
+                                            + Text("coaching.dosage.side.left")
+                                    } icon: {
+                                        Image(systemName: "arrow.left.arrow.right")
+                                    }
+                                    .font(.subheadline.weight(.medium))
+                                    .foregroundStyle(Color.coachingPrimary)
+                                    .padding(.top, 2)
+                                    .accessibilityIdentifier("coaching.session.focus.timed.strength.side")
+                                }
+                                // G1 charge : cas vide (aucun poids prescrit) → on remplit par du
+                                // SENS, jamais « 0 kg » : la consigne « commence léger… » (D1).
+                                Text("coaching.dosage.charge.hint")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                                     .multilineTextAlignment(.center)
+                                    .padding(.top, 2)
                             }
+                            chronoFilet
+                        } else {
+                            bigTime
                         }
-                        bigTime
                         timeScrubber(phase: phase)
                         if let next = upcomingLabel, next != displayString(phase.label) {
                             Text("coaching.session.focus.timed.then \(next)")
@@ -778,6 +810,18 @@ struct SessionFocusView: View {
             .monospacedDigit()
             .foregroundStyle(.primary)
             .accessibilityIdentifier("coaching.session.focus.timed.countdown")
+    }
+
+    /// Chrono « filet » discret pour la muscu : le temps n'est qu'une estimation, les reps
+    /// sont le héros (chantier dosage AC2). Garde l'`accessibilityIdentifier` countdown pour
+    /// rester repérable par les tests, mais en taille réduite secondaire.
+    private var chronoFilet: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "timer").font(.caption)
+            Text(verbatim: timeString(timerEngine.remaining)).font(.callout.monospacedDigit())
+        }
+        .foregroundStyle(.secondary)
+        .accessibilityIdentifier("coaching.session.focus.timed.countdown")
     }
 
     /// Barre de progression du segment : « écoulé · [====   ] · total » — montre où
