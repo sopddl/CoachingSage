@@ -1,130 +1,91 @@
 // Views/Components/Illustrations/PullVerticalIllustration.swift
-// Story 3.19 — pull-up / chin-up 3 frames : suspendu bras tendus → mi-traction → menton au-dessus.
-// Barre fixe horizontale en haut, silhouette suspendue.
+// Chantier refonte dessins muscu (2026-06-07) — pull vertical REFONDU (profil + variantes).
+// Variantes par équipement :
+//   - Traction (barre fixe) : le CORPS monte vers une barre fixe (menton au-dessus).
+//   - Tirage poulie haute (lat pulldown) : assis, la BARRE descend du haut vers la poitrine.
 import SwiftUI
 
 struct PullVerticalIllustration: View {
     let sportCode: String
     let frame: Int
+    var exerciseName: String? = nil
+
+    enum Variant { case pullup, pulldown }
+    var variant: Variant { Self.resolveVariant(from: exerciseName) }
+
+    static func resolveVariant(from name: String?) -> Variant {
+        guard let lower = name?.lowercased() else { return .pullup }
+        if lower.contains("poulie") || lower.contains("pulldown") || lower.contains("tirage vertical") {
+            return .pulldown
+        }
+        return .pullup
+    }
 
     var body: some View {
         Canvas { ctx, size in
             let s = size.width / IllustrationStyle.frameSize
-            let stroke = StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s, lineCap: .round, lineJoin: .round)
-            let strokeHeavy = StrokeStyle(lineWidth: IllustrationStyle.strokeWidthHeavy * s, lineCap: .round)
+            let body = IllustrationStyle.silhouette(sportCode: sportCode)
+            func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+            func L(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat { StrengthFigureKit.lerp(a, b, t) }
 
-            // RÉFÉRENTIEL OBSERVATEUR (Sophie 2026-05-23) : corps fixe (pieds
-            // au sol, taille humaine constante), la BARRE descend visuellement
-            // entre les frames pour matérialiser le geste de pull-up. C'est
-            // équivalent visuellement à "corps monte vers barre fixe" et plus
-            // lisible didactiquement.
-            //
-            // Frame 0 : barre TRÈS HAUT (loin au-dessus de la tête) — bras tendus
-            // Frame 1 : barre PLUS BAS — mi-traction
-            // Frame 2 : barre AU NIVEAU DU MENTON — bras pliés (finition)
-            let barY: CGFloat
-            switch frame {
-            case 0: barY = 2 * s   // bras tendus au max
-            case 1: barY = 10 * s  // mi-traction
-            default: barY = 18 * s // au menton
+            let pull: CGFloat = frame == 0 ? 0 : (frame == 1 ? 0.5 : 1)
+
+            switch variant {
+            case .pullup:
+                // Barre fixe horizontale en haut (sans disque)
+                StrengthFigureKit.limb(ctx, [p(12, 7), p(36, 7)], color: IllustrationStyle.equipment, s: s, heavy: true)
+                let hand = p(24, 7)
+                // Le corps monte : épaule de y=21 (suspendu) à y=13 (menton à la barre)
+                let shldr = p(24, L(21, 13, pull))
+                let elbow = p(L(24, 29, pull), L(13, 11, pull))
+                let hip   = p(23, shldr.y / s + 11)
+                let knee  = p(20, hip.y / s + 8)
+                let foot  = p(22, knee.y / s + 5)
+                StrengthFigureKit.limb(ctx, [hand, elbow, shldr], color: body, s: s) // bras
+                StrengthFigureKit.limb(ctx, [shldr, hip, knee, foot], color: body, s: s) // tronc + jambe repliée
+                StrengthFigureKit.headNeck(ctx, head: p(27, L(15, 9, pull)), shoulder: shldr, color: body, s: s, r: 2.8)
+
+            case .pulldown:
+                // Câble depuis le haut
+                let barY = L(12, 21, pull) // la barre descend vers la poitrine
+                StrengthFigureKit.limb(ctx, [p(24, 3), p(24, barY)], color: IllustrationStyle.groundLine, s: s) // câble
+                StrengthFigureKit.barbellSide(ctx, center: p(24, barY), halfLen: 8, s: s)
+                // Coussin / assise
+                StrengthFigureKit.box(ctx, rect: CGRect(x: 14 * s, y: 32 * s, width: 12 * s, height: 4 * s), s: s, filled: true)
+                let hip = p(20, 32), shldr = p(22, 23), headC = p(23, 18)
+                let knee = p(30, 34), foot = p(30, 42)
+                StrengthFigureKit.limb(ctx, [hip, shldr], color: body, s: s)
+                StrengthFigureKit.limb(ctx, [hip, knee, foot], color: body, s: s)
+                StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s)
+                // bras : épaule → barre
+                StrengthFigureKit.limb(ctx, [shldr, p(24, barY)], color: body, s: s)
             }
-
-            // Corps FIXE — mêmes positions sur les 3 frames
-            let centerX: CGFloat = 24 * s
-            let handLX: CGFloat = 16 * s
-            let handRX: CGFloat = 32 * s
-            let handY: CGFloat = barY
-            let headSize: CGFloat = 6 * s
-            let topOfHeadY: CGFloat = 16 * s
-            let shoulderY: CGFloat = topOfHeadY + headSize // 22s
-            let hipY: CGFloat = 32 * s
-            let kneeY: CGFloat = 40 * s
-            let ankleY: CGFloat = 46 * s // pieds au sol
-
-            // Barre fixe horizontale (longueur fixe, position verticale = barY variable)
-            var bar = Path()
-            bar.move(to: CGPoint(x: 6 * s, y: barY))
-            bar.addLine(to: CGPoint(x: 42 * s, y: barY))
-            ctx.stroke(bar, with: .color(IllustrationStyle.equipment), style: strokeHeavy)
-
-            // Sol pointillé fixe en bas — référentiel ancrage pieds
-            var ground = Path()
-            ground.move(to: CGPoint(x: 4 * s, y: 46 * s))
-            ground.addLine(to: CGPoint(x: 44 * s, y: 46 * s))
-            ctx.stroke(ground, with: .color(IllustrationStyle.groundLine),
-                       style: StrokeStyle(lineWidth: 1 * s, dash: [2 * s, 2 * s]))
-
-            // Tête
-            ctx.stroke(
-                Path(ellipseIn: CGRect(x: centerX - headSize / 2, y: topOfHeadY,
-                                        width: headSize, height: headSize)),
-                with: .color(IllustrationStyle.silhouette(sportCode: sportCode)),
-                style: stroke
-            )
-
-            // Tronc
-            var trunk = Path()
-            trunk.move(to: CGPoint(x: centerX, y: shoulderY))
-            trunk.addLine(to: CGPoint(x: centerX, y: hipY))
-            ctx.stroke(trunk, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
-
-            // Jambes droites pendantes (ankle aligné sur les 3 frames)
-            var legL = Path()
-            legL.move(to: CGPoint(x: centerX, y: hipY))
-            legL.addLine(to: CGPoint(x: centerX - 2 * s, y: kneeY))
-            legL.addLine(to: CGPoint(x: centerX - 3 * s, y: ankleY))
-            ctx.stroke(legL, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
-
-            var legR = Path()
-            legR.move(to: CGPoint(x: centerX, y: hipY))
-            legR.addLine(to: CGPoint(x: centerX + 2 * s, y: kneeY))
-            legR.addLine(to: CGPoint(x: centerX + 3 * s, y: ankleY))
-            ctx.stroke(legR, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
-
-            // Bras : épaule → coude → main sur la barre. La géométrie change
-            // selon la position relative épaule/barre :
-            //  - épaule BIEN SOUS barre (frame 0) : bras tendus verticaux, coude entre épaule et main.
-            //  - épaule SOUS barre (frame 1) : bras mi-pliés, coude sort sur les côtés.
-            //  - épaule À HAUTEUR barre (frame 2) : bras horizontaux, coude au-dessus pointant vers le ciel.
-            let armReach: CGFloat = shoulderY - handY // distance verticale épaule→barre (positive = épaule sous barre)
-            // Plus l'épaule s'approche de la barre, plus le coude sort sur les côtés
-            let elbowOutset: CGFloat = max(0, (18 * s - armReach)) * 0.6
-            // En frame 2 (armReach négatif), le coude pointe vers le HAUT (au-dessus du shoulder)
-            let elbowY: CGFloat
-            if armReach > 0 {
-                elbowY = handY + armReach * 0.5   // coude entre épaule (en bas) et main (en haut, barre)
-            } else {
-                elbowY = shoulderY - 3 * s         // coude pointe vers le haut au-dessus de l'épaule
-            }
-            let elbowLX: CGFloat = handLX - elbowOutset
-            let elbowRX: CGFloat = handRX + elbowOutset
-
-            var armL = Path()
-            armL.move(to: CGPoint(x: centerX - 1 * s, y: shoulderY))
-            armL.addLine(to: CGPoint(x: elbowLX, y: elbowY))
-            armL.addLine(to: CGPoint(x: handLX, y: handY))
-            ctx.stroke(armL, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
-
-            var armR = Path()
-            armR.move(to: CGPoint(x: centerX + 1 * s, y: shoulderY))
-            armR.addLine(to: CGPoint(x: elbowRX, y: elbowY))
-            armR.addLine(to: CGPoint(x: handRX, y: handY))
-            ctx.stroke(armR, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)
     }
 }
 
 #if DEBUG
-#Preview("PullVertical 3 frames") {
-    HStack(spacing: 4) {
-        PullVerticalIllustration(sportCode: "strengthTraining", frame: 0)
-        Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
-        PullVerticalIllustration(sportCode: "strengthTraining", frame: 1)
-        Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
-        PullVerticalIllustration(sportCode: "strengthTraining", frame: 2)
+private struct PullVRow: View {
+    let title: String; let name: String?
+    var body: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(title).font(.caption2).foregroundStyle(.secondary)
+            HStack(spacing: 4) {
+                PullVerticalIllustration(sportCode: "strengthTraining", frame: 0, exerciseName: name)
+                Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
+                PullVerticalIllustration(sportCode: "strengthTraining", frame: 1, exerciseName: name)
+                Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
+                PullVerticalIllustration(sportCode: "strengthTraining", frame: 2, exerciseName: name)
+            }
+        }
     }
-    .padding()
-    .background(Color.coachingBackground)
+}
+#Preview("Pull vertical — 2 variantes") {
+    VStack(alignment: .leading, spacing: 14) {
+        PullVRow(title: "Traction barre fixe", name: "Traction au poids du corps")
+        PullVRow(title: "Tirage poulie haute", name: "Tirage vertical poulie haute")
+    }
+    .padding().background(Color.coachingBackground)
 }
 #endif

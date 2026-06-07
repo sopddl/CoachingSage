@@ -72,28 +72,30 @@ struct ExercisePatternIllustration: View {
     private var dynamicStrip: some View {
         switch pattern {
         case .squat:
-            tripletStrip { SquatIllustration(sportCode: sportCode, frame: $0) }
+            // Chantier refonte muscu — propager exerciseName pour la variante équipement
+            // (goblet / barre nuque / bulgare / poids du corps).
+            tripletStrip { SquatIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .hinge:
-            tripletStrip { HingeIllustration(sportCode: sportCode, frame: $0) }
+            tripletStrip { HingeIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .pullVertical:
-            tripletStrip { PullVerticalIllustration(sportCode: sportCode, frame: $0) }
+            tripletStrip { PullVerticalIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .pushHorizontal:
             // Story 3.23 — propager exerciseName pour variante DB bench press
             tripletStrip { PushHorizontalIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .pushVertical:
-            tripletStrip { PushVerticalIllustration(sportCode: sportCode, frame: $0) }
+            tripletStrip { PushVerticalIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .pullHorizontal:
-            tripletStrip { PullHorizontalIllustration(sportCode: sportCode, frame: $0) }
+            tripletStrip { PullHorizontalIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .lunge:
             tripletStrip { LungeIllustration(sportCode: sportCode, frame: $0) }
         case .plyo:
             tripletStrip { PlyoIllustration(sportCode: sportCode, frame: $0) }
         case .hipThrust:
-            // Story 3.23 Tier 1 Jalon 2 — 246 occ × 33 tpl
-            tripletStrip { HipThrustIllustration(sportCode: sportCode, frame: $0) }
+            // Story 3.23 Tier 1 Jalon 2 — 246 occ × 33 tpl ; chantier muscu : variante banc/sol
+            tripletStrip { HipThrustIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .calfRaise:
-            // Story 3.23 Tier 1 Jalon 2 — 228 occ × 23 tpl
-            tripletStrip { CalfRaiseIllustration(sportCode: sportCode, frame: $0) }
+            // Story 3.23 Tier 1 Jalon 2 — 228 occ × 23 tpl ; chantier muscu : variante debout/assis
+            tripletStrip { CalfRaiseIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .ytwActivation:
             // Story 3.23 Lot 3 — Y-T-W rotator cuff activation
             tripletStrip { YTWActivationIllustration(sportCode: sportCode, frame: $0) }
