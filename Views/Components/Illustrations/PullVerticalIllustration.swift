@@ -10,12 +10,17 @@ struct PullVerticalIllustration: View {
     let frame: Int
     var exerciseName: String? = nil
 
-    enum Variant { case pullup, pulldown }
+    enum Variant: Equatable { case pullup, pulldown }
     var variant: Variant { Self.resolveVariant(from: exerciseName) }
 
     static func resolveVariant(from name: String?) -> Variant {
         guard let lower = name?.lowercased() else { return .pullup }
-        if lower.contains("poulie") || lower.contains("pulldown") || lower.contains("tirage vertical") {
+        // Revue ui-reviewer 2026-06-07 (P1, finding Sophie) : « Band pull-down assis »
+        // tombait sur .pullup (debout) car « pull-down » (tiret) et « assis » n'étaient
+        // pas matchés. Tout tirage vertical ASSIS (poulie, élastique) = variante .pulldown.
+        let seated = ["poulie", "pulldown", "pull-down", "pull down", "tirage vertical",
+                      "assis", "seated", "sentado"]
+        if seated.contains(where: lower.contains) {
             return .pulldown
         }
         return .pullup

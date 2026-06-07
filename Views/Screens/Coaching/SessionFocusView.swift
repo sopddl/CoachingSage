@@ -716,24 +716,60 @@ struct SessionFocusView: View {
             bigTime
             timeScrubber(phase: phase)
             VStack(alignment: .leading, spacing: 10) {
-                ForEach(Array(lines.enumerated()), id: \.offset) { idx, line in
+                if Self.isPlaceholderGuidance(lines) {
+                    // Revue ui-reviewer 2026-06-07 (P1, finding Sophie) : un warmup/récup
+                    // « placeholder » (« Échauffement standard 7 min. ») ne produisait qu'une
+                    // puce tautologique → écran ressenti vide. Fallback utile, jamais vide.
                     Label {
-                        // Revue comité 2026-06-06 (P0 challenger) : le jargon des
-                        // sous-étapes d'échauffement (glutes, band, mobilité…) devient
-                        // tappable via le glossaire au lieu d'être du texte opaque.
-                        GlossaryRichText(text: line,
-                                         font: idx == current ? .body.bold() : .body,
-                                         foreground: idx == current ? .primary : .secondary)
+                        Text(phase.kind == .cooldown
+                             ? "coaching.session.focus.guided.cooldown.fallback"
+                             : "coaching.session.focus.guided.warmup.fallback")
+                            .font(.body)
+                            .foregroundStyle(.secondary)
                             .fixedSize(horizontal: false, vertical: true)
                     } icon: {
-                        Image(systemName: idx == current ? "circle.fill" : "circle")
-                            .font(.system(size: 7))
-                            .foregroundStyle(idx == current ? phaseTint(phase) : .secondary)
+                        Image(systemName: "sparkles")
+                            .font(.system(size: 9))
+                            .foregroundStyle(phaseTint(phase))
+                    }
+                } else {
+                    ForEach(Array(lines.enumerated()), id: \.offset) { idx, line in
+                        Label {
+                            // Revue comité 2026-06-06 (P0 challenger) : le jargon des
+                            // sous-étapes d'échauffement (glutes, band, mobilité…) devient
+                            // tappable via le glossaire au lieu d'être du texte opaque.
+                            GlossaryRichText(text: line,
+                                             font: idx == current ? .body.bold() : .body,
+                                             foreground: idx == current ? .primary : .secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        } icon: {
+                            Image(systemName: idx == current ? "circle.fill" : "circle")
+                                .font(.system(size: 7))
+                                .foregroundStyle(idx == current ? phaseTint(phase) : .secondary)
+                        }
                     }
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
+    }
+
+    /// Un texte de phase guidée est un « placeholder » sans valeur (« Échauffement standard
+    /// 7 min. », « Étirements 5 min standards. ») s'il ne reste quasi aucune instruction une
+    /// fois retirés le mot de phase, « standard » et la durée. Dans ce cas on affiche un
+    /// fallback générique plutôt qu'une puce tautologique. Robuste tous sports.
+    static func isPlaceholderGuidance(_ lines: [String]) -> Bool {
+        guard lines.count <= 1 else { return false }
+        guard let only = lines.first else { return true }
+        var s = only.lowercased()
+        for w in ["échauffement", "echauffement", "étirements", "etirements", "récupération",
+                  "recuperation", "standard", "standards", "warm-up", "warmup", "warm up",
+                  "cool-down", "cooldown", "cool down", "stretching", "stretch"] {
+            s = s.replacingOccurrences(of: w, with: " ")
+        }
+        s = s.replacingOccurrences(of: #"[0-9]+\s*(min|sec|s)?\b"#, with: " ", options: .regularExpression)
+        let letters = s.filter { $0.isLetter }
+        return letters.count < 4
     }
 
     /// Index de la sous-étape courante d'un échauffement/récup, par tranche de temps
@@ -850,8 +886,21 @@ struct SessionFocusView: View {
             EmptyView()
         } else {
             // Toutes les phases chronométrées (y compris échauffement/récup depuis le
-            // bug #6) : pause/reprise + passer.
+            // bug #6) : précédent + pause/reprise + passer.
             HStack(spacing: 16) {
+                // Revue ui-reviewer 2026-06-07 (P1) : parité avec le mode Manuel — on peut
+                // revenir au set/exo précédent en minuté (compact pour ne pas serrer Pause).
+                Button { withAnimation { timerEngine.back() } } label: {
+                    Image(systemName: "chevron.left")
+                        .font(.headline)
+                        .frame(width: 52)
+                        .padding(.vertical, 15)
+                        .foregroundStyle(.primary)
+                        .background(Color(uiColor: .secondarySystemBackground))
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
+                .disabled(timerEngine.currentIndex == 0 && !timerEngine.isFinished)
+                .accessibilityLabel("coaching.session.focus.previous")
                 Button { timerEngine.togglePause() } label: {
                     Label(
                         timerEngine.isPaused ? "coaching.session.focus.timed.resume" : "coaching.session.focus.timed.pause",
