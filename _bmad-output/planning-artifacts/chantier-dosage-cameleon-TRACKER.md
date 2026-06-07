@@ -17,7 +17,7 @@
 ## Phase 1 — Pilote
 | Sport | Capture | Spec | Revue | Décisions | Implem | ui-reviewer | Device | Merge |
 |-------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Muscu** (pilote) | ✅ | ✅ | ✅ | ✅ | ✅ | ⬜ | ⬜ | ⬜ |
+| **Muscu** (pilote) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | ⬜ |
 
 > Capture ✅ + Spec ✅ (`spec-dosage-muscu-PILOTE-2026-06-07.md`, 7 gaps). Revue+Décisions ✅ `party-dosage-muscu-pilote-2026-06-07.md`.
 > **Implem V1 ✅ 2026-06-07** (branche `chantier/dosage-cameleon-muscu`, non pushée) : reps-héros+chrono filet (AC2) · consigne charge « commence léger » (G1) · conversion « RPE 6-7 »→« effort 6-7 sur 10 » + retrait badge (G2) · côté affiché « Côté droit · Côté gauche » (G4) · modèle `load`+`side` non-breaking · variante=déjà via notes · 7 clés i18n FR/EN/ES. Build vert, 5/5 tests dosage + 0 régression (focus/timer/phase). Reps-héros + consigne **validés simu**.
@@ -28,6 +28,15 @@
 - **F2 — Côté tap-gaté** (split per-side dans le timer, « Côté droit → tap → Côté gauche ») → story dédiée timer (touche 3.34, risque régression). V1 = guidage affiché.
 - **F3 — Scrub prose RPE/RIR** des 4 notes doctrinales templates muscu (FR/EN/ES) → passage `template-quality-reviewer` (doctrine EU MDR, ne pas éditer à l'aveugle). V1 = badge converti au rendu.
 - **F4 — Bug data G6** : « Planche genoux au sol 30 sec » → chip « 15 sec » (incohérence nom/durée template) — hors dosage.
+
+## ui-reviewer 2026-06-07 (flow muscu complet) → commit `a7392dc`
+3 findings device-test Sophie confirmés + corrigés (aucun issu du diff dosage) :
+- **#1 échauffement placeholder vide** → fallback guidé utile (jamais d'écran vide), robuste tous sports.
+- **#2 retour arrière absent en minuté** → `SessionTimerEngine.back()` + bouton « Précédent » (parité Manuel). **Validé simu.**
+- **#3 « Band pull-down assis » → dessin debout** → `resolveVariant` élargi aux variantes assises → `.pulldown`. Validé test.
+- **#6 (P2)** clé `timed.work` sans ES → « Esfuerzo ».
+Backlog non-bloquant : **#4** titre séance dupliqué sur le HUB (pré-existant) · **#5** « reps » anglicisme FR (décision wording).
+**NEXT device-test Sophie** : bouton Précédent en séance, dessin band pull assis sur « Inverted row … par côté », fallback warmup sur une séance à warmup placeholder, côté G/D.
 
 ## Phase 2 — Série
 | Sport | Capture | Spec | Revue | Décisions | Implem | ui-reviewer | Device | Merge |
