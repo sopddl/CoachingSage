@@ -36,7 +36,11 @@
 - **#3 « Band pull-down assis » → dessin debout** → `resolveVariant` élargi aux variantes assises → `.pulldown`. Validé test.
 - **#6 (P2)** clé `timed.work` sans ES → « Esfuerzo ».
 Backlog non-bloquant : **#4** titre séance dupliqué sur le HUB (pré-existant) · **#5** « reps » anglicisme FR (décision wording).
-**NEXT device-test Sophie** : bouton Précédent en séance, dessin band pull assis sur « Inverted row … par côté », fallback warmup sur une séance à warmup placeholder, côté G/D.
+
+## 2e device-test Sophie 2026-06-08 (nuit) → commit `4ddd1c8`
+- **BLOQUANT — impossible de sortir de l'écran « terminé »** : la célébration de fin (stopgap pendant que la feuille récap ASYNC monte) n'avait aucun bouton → si la feuille ne monte pas (recordId, save offline/échec/edge), user piégé (juste le ✕). **Fix : bouton « Terminer » explicite (dismiss garanti) + image `checkmark.seal`→`trophy.fill`** (médaille/coupe demandée). Non reproductible via fixture (auto-dismiss 1.6s sans recordId) → **device-test = fin de VRAIE séance**.
+- Validé au simu cette nuit (taps bridge, CoachingSage 1er plan) : reps-héros exo 1 (Goblet) **et** exo 2 (Romanian Deadlift), consigne charge, bouton Précédent, illustrations. Multi-app simu flaky (TailorSage resurgit) → pas de capture de l'écran fin lui-même.
+**NEXT device-test Sophie** : (1) **fin de vraie séance = sortie OK + trophée**, (2) bouton Précédent, (3) dessin band pull assis, (4) fallback warmup placeholder, (5) côté G/D. Branche `chantier/dosage-cameleon-muscu` prête (commits `9578258`→`4ddd1c8`), **PAS mergée** (gate device-test).
 
 ## Phase 2 — Série
 | Sport | Capture | Spec | Revue | Décisions | Implem | ui-reviewer | Device | Merge |
