@@ -42,6 +42,12 @@ Backlog non-bloquant : **#4** titre séance dupliqué sur le HUB (pré-existant)
 - Validé au simu cette nuit (taps bridge, CoachingSage 1er plan) : reps-héros exo 1 (Goblet) **et** exo 2 (Romanian Deadlift), consigne charge, bouton Précédent, illustrations. Multi-app simu flaky (TailorSage resurgit) → pas de capture de l'écran fin lui-même.
 **NEXT device-test Sophie** : (1) **fin de vraie séance = sortie OK + trophée**, (2) bouton Précédent, (3) dessin band pull assis, (4) fallback warmup placeholder, (5) côté G/D. Branche `chantier/dosage-cameleon-muscu` prête (commits `9578258`→`4ddd1c8`), **PAS mergée** (gate device-test).
 
+## Verdict suite de tests (nuit 2026-06-08)
+Suite unitaire complète : **1006 tests, 2 échecs — les DEUX hors de mon diff** :
+- `GlossaryMatcherTests` (perf 90ms>50ms) = **flaky sous charge** → repasse vert isolé (69/69). Non-régression.
+- `ExerciseTimelineCardSnapshotTests.testCardSubstituted_strength` = snapshot **98.36% < 99%** (precision couleur) = **dérive de rendu OS/simu iOS 26.5**, reproductible isolé, sur un composant que mon diff NE TOUCHE PAS (`SessionTimelineView`, zones Daniels pas RPE). **Dette : re-record la référence snapshot** (housekeeping, hors dosage). Base-check sur `main` non concluant (build module error sur pbxproj de main).
+Mes suites directes 100% vertes : `DosageFormattingTests` (5), `FocusReviewFixesTests` (4), `SessionTimerEngineTests` (+3 back), `SessionFocusViewModelTests`, `SessionPhaseTextTests`.
+
 ## Phase 2 — Série
 | Sport | Capture | Spec | Revue | Décisions | Implem | ui-reviewer | Device | Merge |
 |-------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
