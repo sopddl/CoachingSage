@@ -19,22 +19,26 @@ struct NordicCurlIllustration: View {
             StrengthFigureKit.ground(ctx, s: s)
             let d: CGFloat = frame == 0 ? 0 : (frame == 1 ? 0.5 : 1)
 
-            let knee = p(20, 40)
-            // Tibias vers l'arrière + chevilles bloquées (ancrage)
-            StrengthFigureKit.limb(ctx, [knee, p(13, 44)], color: body, s: s)
-            StrengthFigureKit.box(ctx, rect: CGRect(x: 10 * s, y: 41 * s, width: 6 * s, height: 3 * s), s: s) // ancrage chevilles
+            let knee = p(22, 42)
+            // Tibias à plat au sol vers l'arrière + chevilles bloquées (sangle d'ancrage)
+            StrengthFigureKit.limb(ctx, [knee, p(12, 44)], color: body, s: s)
+            var strap = Path()
+            strap.addArc(center: CGPoint(x: 13 * s, y: 44 * s), radius: 2.6 * s,
+                         startAngle: .degrees(180), endAngle: .degrees(360), clockwise: false)
+            ctx.stroke(strap, with: .color(IllustrationStyle.equipment),
+                       style: StrokeStyle(lineWidth: IllustrationStyle.strokeWidthHeavy * s, lineCap: .round))
 
-            // Corps droit depuis le genou, bascule vers l'avant
-            let a = L(10, 78, d) * .pi / 180 // angle depuis la verticale
+            // Corps RIGIDE depuis le genou, bascule vers l'avant (excentrique ischio)
+            let a = L(6, 66, d) * .pi / 180 // angle depuis la verticale
             let dir = CGPoint(x: sin(a), y: -cos(a))
-            let hip = CGPoint(x: knee.x + dir.x * 4 * s, y: knee.y + dir.y * 4 * s)
-            let shldr = CGPoint(x: knee.x + dir.x * 15 * s, y: knee.y + dir.y * 15 * s)
-            let headC = CGPoint(x: knee.x + dir.x * 19 * s, y: knee.y + dir.y * 19 * s)
+            let hip = CGPoint(x: knee.x + dir.x * 6 * s, y: knee.y + dir.y * 6 * s)
+            let shldr = CGPoint(x: knee.x + dir.x * 19 * s, y: knee.y + dir.y * 19 * s)
+            let headC = CGPoint(x: knee.x + dir.x * 23 * s, y: knee.y + dir.y * 23 * s)
             StrengthFigureKit.limb(ctx, [knee, hip, shldr], color: body, s: s)
             StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s)
 
-            // Bras : le long du corps debout → tendus vers le sol au plus bas
-            let hand = CGPoint(x: shldr.x + L(2, 6, d) * s, y: shldr.y + L(8, 6, d) * s)
+            // Bras : le long du corps debout → tendus vers le sol au plus bas (rattrapage)
+            let hand = CGPoint(x: shldr.x + L(2, 7, d) * s, y: shldr.y + L(9, 7, d) * s)
             StrengthFigureKit.limb(ctx, [shldr, hand], color: body, s: s)
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)

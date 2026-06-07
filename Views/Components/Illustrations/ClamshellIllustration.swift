@@ -19,21 +19,22 @@ struct ClamshellIllustration: View {
                 CGPoint(x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t)
             }
 
-            StrengthFigureKit.ground(ctx, s: s)
+            // Sol où le corps repose sur le côté (ligne pleine basse)
+            StrengthFigureKit.limb(ctx, [p(4, 43), p(44, 43)], color: IllustrationStyle.groundLine, s: s)
             let o: CGFloat = frame == 0 ? 0 : (frame == 1 ? 0.5 : 1) // ouverture du genou
 
-            // Tronc couché sur le côté (tête à gauche), appui sur l'avant-bras
-            let shldr = p(12, 33), hip = p(28, 36), headC = p(8, 31)
+            // Tronc couché sur le côté (tête à gauche), figure agrandie + remontée
+            let shldr = p(13, 25), hip = p(31, 33), headC = p(8, 21)
             StrengthFigureKit.limb(ctx, [shldr, hip], color: bodyColor, s: s)
-            StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: bodyColor, s: s, r: 2.6)
-            StrengthFigureKit.limb(ctx, [shldr, p(10, 42)], color: bodyColor, s: s) // avant-bras d'appui
+            StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: bodyColor, s: s, r: 3)
+            StrengthFigureKit.limb(ctx, [shldr, p(8, 34), p(8, 43)], color: bodyColor, s: s) // bras d'appui au sol
 
-            // Pieds joints (talons ensemble) — point d'ancrage commun
-            let foot = p(40, 42)
-            // Jambe du dessous (estompée, posée au sol)
-            StrengthFigureKit.limb(ctx, [hip, p(34, 42), foot], color: faint, s: s)
-            // Jambe du dessus : genou s'ouvre vers le haut, talon reste joint
-            let knee = mix(p(34, 40), p(33, 28), o)
+            // Pieds joints (talons ensemble) au sol = pivot ; genoux fléchis devant
+            let foot = p(43, 43)
+            // Jambe du DESSOUS (estompée, posée au sol) : genou en avant-bas
+            StrengthFigureKit.limb(ctx, [hip, p(41, 40), foot], color: faint, s: s)
+            // Jambe du DESSUS : le genou s'ouvre TRÈS franchement vers le HAUT (talon reste joint)
+            let knee = mix(p(41, 39), p(35, 17), o)
             StrengthFigureKit.limb(ctx, [hip, knee, foot], color: bodyColor, s: s)
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)

@@ -43,7 +43,8 @@ struct PushVerticalIllustration: View {
 
             switch variant {
             case .barbell:
-                StrengthFigureKit.barbellEndOn(ctx, center: hand, s: s)
+                // Barre horizontale au-dessus de la tête (long trait + disques) ≠ haltères
+                StrengthFigureKit.barbellSide(ctx, center: hand, halfLen: 7, s: s)
             case .dumbbell:
                 StrengthFigureKit.dumbbell(ctx, center: hand, s: s)
             }

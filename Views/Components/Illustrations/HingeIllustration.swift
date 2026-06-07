@@ -39,9 +39,9 @@ struct HingeIllustration: View {
 
             let ankle = p(22, 44)
             let knee  = p(L(22, kneeBottomX, h), L(32, 34, h))
-            let hip   = p(L(22, 15, h),         L(21, 27, h))
-            let shldr = p(L(22, 29, h),         L(10, 24, h))
-            let headC = p(L(22, 34, h),         L(6, 23, h))
+            let hip   = p(L(22, 16, h),         L(21, 28, h))
+            let shldr = p(L(22, 27, h),         L(10, 22, h))
+            let headC = p(L(22, 31, h),         L(6, 19, h))
 
             // Pied
             StrengthFigureKit.limb(ctx, [p(17, 44), p(27, 44)], color: body, s: s)
@@ -56,7 +56,8 @@ struct HingeIllustration: View {
 
             switch variant {
             case .deadlift, .barbellRDL:
-                StrengthFigureKit.barbellEndOn(ctx, center: hand, s: s)
+                // Barre vue de côté (long trait + 2 disques) = nettement ≠ haltères
+                StrengthFigureKit.barbellSide(ctx, center: hand, halfLen: 6, s: s)
             case .dumbbellRDL:
                 StrengthFigureKit.dumbbell(ctx, center: hand, s: s)
             }

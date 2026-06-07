@@ -24,13 +24,15 @@ struct PallofPressIllustration: View {
             StrengthFigureKit.limb(ctx, [ankle, knee, hip, shldr], color: body, s: s)
             StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s)
 
-            // Câble latéral (vient de la gauche, derrière), mains pressent droit devant
-            let hand = p(L(24, 38, pp), 20)
-            let elbow = p(L(21, 31, pp), L(18, 20, pp))
-            StrengthFigureKit.limb(ctx, [p(2, 24), hand], color: IllustrationStyle.groundLine, s: s) // câble
+            // Ancrage mural à gauche (point fixe du câble) — montre d'où vient la traction latérale
+            StrengthFigureKit.box(ctx, rect: CGRect(x: 2 * s, y: 22 * s, width: 3 * s, height: 8 * s), s: s, filled: true)
+            // Mains JOINTES qui pressent droit devant la poitrine ; le câble tire en biais vers l'ancrage
+            let hand = p(L(25, 39, pp), 22)
+            let elbow = p(L(22, 32, pp), L(19, 22, pp))
+            StrengthFigureKit.limb(ctx, [p(5, 26), hand], color: IllustrationStyle.groundLine, s: s) // câble en biais
             StrengthFigureKit.limb(ctx, [shldr, elbow, hand], color: body, s: s)
-            StrengthFigureKit.limb(ctx, [CGPoint(x: hand.x, y: hand.y - 2.5 * s), CGPoint(x: hand.x, y: hand.y + 2.5 * s)],
-                                   color: IllustrationStyle.equipment, s: s, heavy: true) // poignée
+            // Poignée tenue à deux mains (petit bloc)
+            StrengthFigureKit.dumbbell(ctx, center: hand, s: s)
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)
     }

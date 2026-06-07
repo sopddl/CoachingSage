@@ -66,10 +66,10 @@ struct SquatIllustration: View {
             // Debout : aligné vertical. Fond : hanche en arrière + bas, genou en avant,
             // tronc penché en avant au-dessus des genoux (assis-recule lisible).
             let ankle = p(20, 44)
-            let knee  = p(lerp(20.5, 26, d), lerp(33, 37, d))
-            let hip   = p(lerp(21, 18, d),   lerp(22, 35, d))
-            let shldr = p(lerp(21.5, 23, d), lerp(11, 24, d))
-            let headC = p(lerp(22, 24, d),   lerp(7, 20, d))
+            let knee  = p(lerp(20.5, 26, d), lerp(33, 36, d))
+            let hip   = p(lerp(21, 18, d),   lerp(22, 33, d))
+            let shldr = p(lerp(21.5, 22, d), lerp(11, 22.5, d))
+            let headC = p(lerp(22, 23, d),   lerp(7, 18, d))
             let headR: CGFloat = 3 * s
 
             // Pied (talon ancré + pointe vers l'avant)

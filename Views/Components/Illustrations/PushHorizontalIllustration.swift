@@ -59,7 +59,7 @@ struct PushHorizontalIllustration: View {
                 let elbow = p(L(30, 33, pd), L(22, 27, pd))
                 StrengthFigureKit.limb(ctx, [shldr, elbow, hand], color: body, s: s)
                 if variant == .benchBarbell {
-                    StrengthFigureKit.barbellEndOn(ctx, center: hand, s: s)
+                    StrengthFigureKit.barbellSide(ctx, center: hand, halfLen: 7, s: s)
                 } else {
                     StrengthFigureKit.dumbbell(ctx, center: hand, s: s)
                 }

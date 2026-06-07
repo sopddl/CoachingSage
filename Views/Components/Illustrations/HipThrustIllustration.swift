@@ -40,7 +40,7 @@ struct HipThrustIllustration: View {
                 let ankle = p(31, 44)
                 StrengthFigureKit.limb(ctx, [p(28, 44), p(35, 44)], color: body, s: s) // pied à plat
                 StrengthFigureKit.limb(ctx, [shldr, hip, knee, ankle], color: body, s: s)
-                StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s, r: 2.8)
+                StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s, r: 3.2)
 
             case .barbellThrust:
                 // Banc (appui haut du dos)
@@ -52,7 +52,7 @@ struct HipThrustIllustration: View {
                 let ankle = p(34, 44)
                 StrengthFigureKit.limb(ctx, [p(31, 44), p(38, 44)], color: body, s: s) // pied à plat
                 StrengthFigureKit.limb(ctx, [shldr, hip, knee, ankle], color: body, s: s)
-                StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s, r: 2.8)
+                StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s, r: 3.2)
                 // barre sur les hanches (disque vu en bout)
                 StrengthFigureKit.barbellEndOn(ctx, center: CGPoint(x: hip.x, y: hip.y - 3 * s), s: s)
             }

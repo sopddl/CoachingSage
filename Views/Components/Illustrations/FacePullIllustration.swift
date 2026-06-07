@@ -23,14 +23,18 @@ struct FacePullIllustration: View {
             StrengthFigureKit.limb(ctx, [ankle, knee, hip, shldr], color: body, s: s)
             StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s)
 
-            // Câble haut depuis l'avant ; mains tirées vers le visage, coude qui s'écarte/recule
-            let hand = p(L(40, 25, pl), L(12, 11, pl))
-            let elbow = p(L(34, 24, pl), L(13, 14, pl))
-            StrengthFigureKit.limb(ctx, [p(44, 8), hand], color: IllustrationStyle.groundLine, s: s) // câble
+            // Poulie haute devant (ancrage)
+            StrengthFigureKit.box(ctx, rect: CGRect(x: 43 * s, y: 4 * s, width: 3 * s, height: 6 * s), s: s, filled: true)
+            // La main arrive près du VISAGE ; le coude part en ARRIÈRE (s'écarte) = signature face pull
+            let hand = p(L(40, 24, pl), L(13, 12, pl))
+            let elbow = p(L(36, 13, pl), 14)
+            StrengthFigureKit.limb(ctx, [p(45, 7), hand], color: IllustrationStyle.groundLine, s: s) // câble
             StrengthFigureKit.limb(ctx, [shldr, elbow, hand], color: body, s: s)
-            // Poignée corde
-            StrengthFigureKit.limb(ctx, [CGPoint(x: hand.x, y: hand.y - 2.5 * s), CGPoint(x: hand.x, y: hand.y + 2.5 * s)],
-                                   color: IllustrationStyle.equipment, s: s, heavy: true)
+            // Corde double (2 brins) à la poignée
+            StrengthFigureKit.limb(ctx, [CGPoint(x: hand.x, y: hand.y - 2.5 * s), CGPoint(x: hand.x + 4 * s, y: hand.y - 1 * s)],
+                                   color: IllustrationStyle.equipment, s: s)
+            StrengthFigureKit.limb(ctx, [CGPoint(x: hand.x, y: hand.y + 2.5 * s), CGPoint(x: hand.x + 4 * s, y: hand.y + 1 * s)],
+                                   color: IllustrationStyle.equipment, s: s)
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)
     }

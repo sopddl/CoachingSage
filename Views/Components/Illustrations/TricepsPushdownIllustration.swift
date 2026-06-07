@@ -23,11 +23,12 @@ struct TricepsPushdownIllustration: View {
             StrengthFigureKit.limb(ctx, [ankle, knee, hip, shldr], color: body, s: s)
             StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s)
 
-            // Coude fixe près du corps, la main descend (extension)
-            let elbow = p(24, 24)
-            let hand = p(L(26, 27, e), L(20, 32, e))
+            // Coude COLLÉ au corps (fixe), l'avant-bras passe de plié (haut) à tendu (bas) : extension nette
+            // Main qui part à hauteur de poitrine (PAS près de la tête → évite l'effet « gratte la nuque »)
+            let elbow = p(23, 25)
+            let hand = p(L(25, 27, e), L(22, 33, e))
             // Câble du haut vers la main
-            StrengthFigureKit.limb(ctx, [p(28, 4), hand], color: IllustrationStyle.groundLine, s: s)
+            StrengthFigureKit.limb(ctx, [p(27, 4), hand], color: IllustrationStyle.groundLine, s: s)
             StrengthFigureKit.limb(ctx, [shldr, elbow, hand], color: body, s: s)
             // Poignée (petite barre horizontale)
             StrengthFigureKit.limb(ctx, [CGPoint(x: hand.x - 3 * s, y: hand.y), CGPoint(x: hand.x + 3 * s, y: hand.y)],
