@@ -186,8 +186,9 @@ struct SessionFocusView: View {
         ZStack {
             Color.black.opacity(0.35).ignoresSafeArea()
             VStack(spacing: 16) {
-                Image(systemName: "checkmark.seal.fill")
+                Image(systemName: "trophy.fill")
                     .font(.system(size: 64))
+                    .symbolRenderingMode(.hierarchical)
                     .foregroundStyle(Color.coachingSuccess)
                 Text("coaching.session.focus.celebration")
                     .font(.title2.bold())
@@ -688,14 +689,32 @@ struct SessionFocusView: View {
             // Bug #7 — en fin de séance minutée, `currentPhase` devient nil → l'écran
             // restait blanc le temps que la feuille de récap monte. On affiche une
             // célébration visible dès la dernière phase passée.
-            VStack(spacing: 16) {
-                Image(systemName: "checkmark.seal.fill")
+            // Bug device-test Sophie 2026-06-08 : la feuille récap est ASYNC (save) → si
+            // elle ne monte pas (offline/échec/edge), l'user restait coincé ici sans
+            // bouton (juste le petit ✕). Bouton « Terminer » explicite = sortie garantie.
+            VStack(spacing: 20) {
+                Image(systemName: "trophy.fill")
                     .font(.system(size: 72))
+                    .symbolRenderingMode(.hierarchical)
                     .foregroundStyle(Color.coachingSuccess)
                 Text("coaching.session.focus.celebration")
                     .font(.title2.bold())
                     .multilineTextAlignment(.center)
+                Button { dismiss() } label: {
+                    Text("coaching.session.focus.finish.cta")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 15)
+                        .foregroundStyle(.white)
+                        .background(Color.coachingPrimary)
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
+                .buttonStyle(.plain)
+                .padding(.horizontal, 40)
+                .padding(.top, 4)
+                .accessibilityIdentifier("coaching.session.focus.timed.finish.cta")
             }
+            .padding(.horizontal, 24)
             .accessibilityIdentifier("coaching.session.focus.timed.finished")
         }
     }
