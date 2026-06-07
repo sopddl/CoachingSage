@@ -1,99 +1,48 @@
 // Views/Components/Illustrations/NordicCurlIllustration.swift
-// Story 3.23 Lot 3 — Nordic curl 3 frames, viewbox 48×48.
-// Source : https://en.wikipedia.org/wiki/Nordic_hamstring_exercise
-// Signature : tronc+cuisses = segment rigide unique pivotant au genou (genoux fixes
-// au sol, pieds bloqués). Décalage pivot à x=16 pour rester dans le cadre frame 2.
+// Chantier refonte dessins muscu — lot 2 (2026-06-07) — nordic curl REFONDU (profil).
+// À genoux, chevilles bloquées, le corps reste DROIT (genou→tête) et descend vers l'avant
+// (excentrique ischio). Les mains rattrapent près du sol.
 import SwiftUI
 
 struct NordicCurlIllustration: View {
     let sportCode: String
     let frame: Int
+    var exerciseName: String? = nil
 
     var body: some View {
         Canvas { ctx, size in
             let s = size.width / IllustrationStyle.frameSize
-            let stroke = StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s, lineCap: .round, lineJoin: .round)
-            let silhouette = IllustrationStyle.silhouette(sportCode: sportCode)
+            let body = IllustrationStyle.silhouette(sportCode: sportCode)
+            func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+            func L(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat { StrengthFigureKit.lerp(a, b, t) }
 
-            // Sol pointillé
-            var ground = Path()
-            ground.move(to: CGPoint(x: 4 * s, y: 44 * s))
-            ground.addLine(to: CGPoint(x: 44 * s, y: 44 * s))
-            ctx.stroke(ground, with: .color(IllustrationStyle.groundLine),
-                       style: StrokeStyle(lineWidth: 1 * s, dash: [2 * s, 2 * s]))
+            StrengthFigureKit.ground(ctx, s: s)
+            let d: CGFloat = frame == 0 ? 0 : (frame == 1 ? 0.5 : 1)
 
-            // Pivot genou FIXE aux 3 frames (signature)
-            let kneeX: CGFloat = 16 * s
-            let kneeY: CGFloat = 42 * s
+            let knee = p(20, 40)
+            // Tibias vers l'arrière + chevilles bloquées (ancrage)
+            StrengthFigureKit.limb(ctx, [knee, p(13, 44)], color: body, s: s)
+            StrengthFigureKit.box(ctx, rect: CGRect(x: 10 * s, y: 41 * s, width: 6 * s, height: 3 * s), s: s) // ancrage chevilles
 
-            // Bloc de blocage pieds (rectangle équipement à droite des genoux)
-            var block = Path()
-            block.addRect(CGRect(x: 30 * s, y: 38 * s, width: 6 * s, height: 6 * s))
-            ctx.stroke(block, with: .color(IllustrationStyle.equipment),
-                       style: StrokeStyle(lineWidth: 1.5 * s, lineCap: .round))
+            // Corps droit depuis le genou, bascule vers l'avant
+            let a = L(10, 78, d) * .pi / 180 // angle depuis la verticale
+            let dir = CGPoint(x: sin(a), y: -cos(a))
+            let hip = CGPoint(x: knee.x + dir.x * 4 * s, y: knee.y + dir.y * 4 * s)
+            let shldr = CGPoint(x: knee.x + dir.x * 15 * s, y: knee.y + dir.y * 15 * s)
+            let headC = CGPoint(x: knee.x + dir.x * 19 * s, y: knee.y + dir.y * 19 * s)
+            StrengthFigureKit.limb(ctx, [knee, hip, shldr], color: body, s: s)
+            StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s)
 
-            // Pieds bloqués sous le bloc (segment talon → pointe)
-            var feet = Path()
-            feet.move(to: CGPoint(x: 22 * s, y: 42 * s))
-            feet.addLine(to: CGPoint(x: 30 * s, y: 42 * s))
-            ctx.stroke(feet, with: .color(silhouette), style: stroke)
-
-            // Inclinaison du segment rigide tronc+cuisse selon frame
-            let angleRad: CGFloat
-            switch frame {
-            case 0: angleRad = 0                          // vertical
-            case 1: angleRad = 45 * .pi / 180             // 45°
-            default: angleRad = 80 * .pi / 180            // 80° (presque horizontal, gardons cadre)
-            }
-
-            // Segment rigide longueur totale = cuisse 12 + tronc 14 = 26 unités
-            let cuisseLen: CGFloat = 12 * s
-            let troncLen: CGFloat = 14 * s
-            let headSize: CGFloat = 6 * s
-
-            // Bassin = jonction cuisse-tronc
-            let bassinX = kneeX + cuisseLen * sin(angleRad)
-            let bassinY = kneeY - cuisseLen * cos(angleRad)
-
-            // Épaule = bout du tronc
-            let shoulderX = bassinX + troncLen * sin(angleRad)
-            let shoulderY = bassinY - troncLen * cos(angleRad)
-
-            // Tête au bout
-            let headX = shoulderX + (headSize / 2 + 1 * s) * sin(angleRad)
-            let headY = shoulderY - (headSize / 2 + 1 * s) * cos(angleRad)
-
-            // Cuisse (genou → bassin)
-            var thigh = Path()
-            thigh.move(to: CGPoint(x: kneeX, y: kneeY))
-            thigh.addLine(to: CGPoint(x: bassinX, y: bassinY))
-            ctx.stroke(thigh, with: .color(silhouette), style: stroke)
-
-            // Tronc continuité rigide (bassin → épaule)
-            var trunk = Path()
-            trunk.move(to: CGPoint(x: bassinX, y: bassinY))
-            trunk.addLine(to: CGPoint(x: shoulderX, y: shoulderY))
-            ctx.stroke(trunk, with: .color(silhouette), style: stroke)
-
-            // Tête
-            ctx.stroke(
-                Path(ellipseIn: CGRect(x: headX - headSize / 2, y: headY - headSize / 2,
-                                        width: headSize, height: headSize)),
-                with: .color(silhouette), style: stroke
-            )
-
-            // Bras pendants par gravité (depuis épaule vers le bas)
-            var arm = Path()
-            arm.move(to: CGPoint(x: shoulderX, y: shoulderY))
-            arm.addLine(to: CGPoint(x: shoulderX + 1 * s, y: shoulderY + 8 * s))
-            ctx.stroke(arm, with: .color(silhouette), style: stroke)
+            // Bras : le long du corps debout → tendus vers le sol au plus bas
+            let hand = CGPoint(x: shldr.x + L(2, 6, d) * s, y: shldr.y + L(8, 6, d) * s)
+            StrengthFigureKit.limb(ctx, [shldr, hand], color: body, s: s)
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)
     }
 }
 
 #if DEBUG
-#Preview("Nordic curl — excentrique ischio") {
+#Preview("Nordic curl") {
     HStack(spacing: 4) {
         NordicCurlIllustration(sportCode: "strengthTraining", frame: 0)
         Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
@@ -101,7 +50,6 @@ struct NordicCurlIllustration: View {
         Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
         NordicCurlIllustration(sportCode: "strengthTraining", frame: 2)
     }
-    .padding()
-    .background(Color.coachingBackground)
+    .padding().background(Color.coachingBackground)
 }
 #endif

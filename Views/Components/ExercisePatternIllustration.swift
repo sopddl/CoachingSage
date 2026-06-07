@@ -87,9 +87,9 @@ struct ExercisePatternIllustration: View {
         case .pullHorizontal:
             tripletStrip { PullHorizontalIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .lunge:
-            tripletStrip { LungeIllustration(sportCode: sportCode, frame: $0) }
+            tripletStrip { LungeIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .plyo:
-            tripletStrip { PlyoIllustration(sportCode: sportCode, frame: $0) }
+            tripletStrip { PlyoIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .hipThrust:
             // Story 3.23 Tier 1 Jalon 2 — 246 occ × 33 tpl ; chantier muscu : variante banc/sol
             tripletStrip { HipThrustIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
@@ -118,8 +118,8 @@ struct ExercisePatternIllustration: View {
             // Story 3.23 Lot 5 — Face pull câble rear-delt
             tripletStrip { FacePullIllustration(sportCode: sportCode, frame: $0) }
         case .bicepsCurl:
-            // Story 3.23 Lot 5 — Biceps curl haltères
-            tripletStrip { BicepsCurlIllustration(sportCode: sportCode, frame: $0) }
+            // Story 3.23 Lot 5 → chantier lot 2 : variante haltères/barre
+            tripletStrip { BicepsCurlIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .tricepsPushdown:
             // Story 3.23 Lot 7 — Triceps pushdown câble
             tripletStrip { TricepsPushdownIllustration(sportCode: sportCode, frame: $0) }
