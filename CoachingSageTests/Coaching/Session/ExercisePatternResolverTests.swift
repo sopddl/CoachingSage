@@ -40,7 +40,10 @@ final class ExercisePatternResolverTests: XCTestCase {
     }
 
     func test_pattern_hinge_hyp() {
-        XCTAssertEqual(resolve("Hip thrust (pattern hinge hyp)"), .hinge)
+        // Token « hinge hyp » → hinge. NB : exemple changé en RDL — « Hip thrust » est
+        // désormais reclassé hipThrust (revue 2026-06-08, mistag template corrigé),
+        // couvert par FocusReviewFixesTests.test_resolver_hipThrust_mistaggedHinge.
+        XCTAssertEqual(resolve("Romanian deadlift barre (pattern hinge hyp)"), .hinge)
     }
 
     func test_pattern_moteur_asymetrique_maps_to_core() {

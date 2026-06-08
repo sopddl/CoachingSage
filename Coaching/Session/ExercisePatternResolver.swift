@@ -30,6 +30,12 @@ public enum ExercisePatternResolver {
         let lowerName = name.lowercased()
         if lowerName.contains("fente") || lowerName.contains("lunge") { return .lunge }
         if lowerName.contains("hip thrust") || lowerName.contains("pont fessier") { return .hipThrust }
+        // Y-raise = mouvement de la famille Y-T-W (épaules), taggé à tort « pull vertical »
+        // → ne doit PAS rendre le dessin de traction.
+        if lowerName.contains("y-raise") || lowerName.contains("y raise") { return .ytwActivation }
+        // Pullover (allongé, haltère par-dessus la tête) taggé « pull vertical » → rendait une
+        // TRACTION (faux). Pas de dessin dédié → générique neutre plutôt qu'une image trompeuse.
+        if lowerName.contains("pullover") { return .generic }
 
         // Étape 1 : capture regex multi-mots
         if let captured = capturedPatternToken(in: name) {
@@ -221,8 +227,7 @@ public enum ExercisePatternResolver {
                               "planche avant-bras", "planche avant bras", "low plank"]) {
             return .forearmPlank
         }
-        if matchesAny(lower, ["plank", "planche", "gainage", "crunch", "abs", "hollow",
-                              "hanging leg raise", "leg raise", "relevé de jambe", "releve de jambe"]) {
+        if matchesAny(lower, ["plank", "planche", "gainage", "crunch", "abs", "hollow"]) {
             return .core
         }
         // Story 3.23 Lot 3 — Y-T-W shoulder activation (rotator cuff prone)

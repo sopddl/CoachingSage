@@ -14,6 +14,13 @@ struct HipThrustIllustration: View {
 
     static func resolveVariant(from name: String?) -> Variant {
         guard let lower = name?.lowercased() else { return .gluteBridge }
+        // Revue 2026-06-08 : la version AU SOL / poids du corps (et le glute bridge) doivent
+        // rendre le pont au sol, PAS le hip thrust au banc — sinon « 3 fois le même » (Sophie).
+        // Priorité au sol avant la détection banc/barre.
+        if lower.contains("au sol") || lower.contains("poids du corps")
+            || lower.contains("glute bridge") || lower.contains("pont fessier") || lower.contains("pont glute") {
+            return .gluteBridge
+        }
         if lower.contains("hip thrust") || lower.contains("lesté") || lower.contains("leste")
             || lower.contains("banc") || lower.contains("barre") || lower.contains("haltère") || lower.contains("haltere") {
             return .barbellThrust

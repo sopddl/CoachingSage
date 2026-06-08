@@ -54,4 +54,22 @@ final class FocusReviewFixesTests: XCTestCase {
         XCTAssertEqual(pattern("Deadlift conventionnel (barre)"), .hinge)
         XCTAssertEqual(pattern("Romanian Deadlift haltères (pattern hinge)"), .hinge)
     }
+
+    // « 3 fois le même » (Sophie 2026-06-08) — mouvements différents ne doivent plus partager
+    // un dessin faux.
+    func test_resolver_yraise_notPullup() {
+        // Y-raise taggé « pull vertical » → ne doit PAS rendre une traction.
+        XCTAssertEqual(pattern("Y-raise allongé (pattern pull vertical)"), .ytwActivation)
+    }
+
+    func test_resolver_pullover_genericNotPullup() {
+        // Pullover (allongé) taggé « pull vertical » → générique plutôt qu'une traction trompeuse.
+        XCTAssertEqual(pattern("Dumbbell Pullover (pattern pull vertical)"), .generic)
+    }
+
+    func test_hipThrust_floorVsBench_differ() {
+        // Le pont AU SOL (poids du corps) ≠ hip thrust au banc → variantes distinctes.
+        XCTAssertEqual(HipThrustIllustration.resolveVariant(from: "Hip Thrust au sol poids du corps"), .gluteBridge)
+        XCTAssertEqual(HipThrustIllustration.resolveVariant(from: "Hip thrust barre"), .barbellThrust)
+    }
 }
