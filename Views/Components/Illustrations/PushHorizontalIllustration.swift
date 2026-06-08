@@ -15,7 +15,10 @@ struct PushHorizontalIllustration: View {
     static func resolveVariant(from name: String?) -> Variant {
         guard let lower = name?.lowercased() else { return .pushup }
         if lower.contains("dips") { return .dips }
-        if lower.contains("haltère") || lower.contains("haltere") || lower.contains("dumbbell") {
+        // Revue images muscu 2026-06-08 (bug Sophie) : l'abréviation « DB » (Incline DB
+        // bench press) n'était pas détectée → tombait sur la barre. On capte db/incline db.
+        if lower.contains("haltère") || lower.contains("haltere") || lower.contains("dumbbell")
+            || lower.contains("db bench") || lower.contains("db press") || lower.contains(" db ") {
             return .benchDumbbell
         }
         if lower.contains("couché") || lower.contains("couche") || lower.contains("bench") || lower.contains("développé couché") {

@@ -402,9 +402,7 @@ struct SessionFocusView: View {
     private var timedBody: some View {
         VStack(spacing: 0) {
             timedTopBar
-            Spacer()
             timedCenter
-            Spacer()
             timedControls
         }
         .onAppear {
@@ -597,6 +595,7 @@ struct SessionFocusView: View {
     @ViewBuilder
     private var timedCenter: some View {
         if let phase = timerEngine.currentPhase {
+            GeometryReader { geo in
             ScrollView {
                 VStack(spacing: 16) {
                     if phase.kind == .warmup || phase.kind == .cooldown {
@@ -673,6 +672,11 @@ struct SessionFocusView: View {
                 }
                 .padding(.horizontal, 24)
                 .padding(.vertical, 8)
+                // Bug device-test Sophie 2026-06-08 (DB bench) : le contenu (image +
+                // « Comment l'exécuter » déplié) était coincé entre 2 Spacer() qui volaient
+                // la hauteur → vide en haut, how-to coupé. minHeight = viewport → centre si
+                // court, scrolle proprement si long (Spacers retirés de timedBody).
+                .frame(maxWidth: .infinity, minHeight: geo.size.height)
             }
             // Revue comité 2026-06-06 (Sally P1-b) : sur la tenue `.hold`, la
             // description dépliée déborde souvent sous la ligne de flottaison →
@@ -684,6 +688,7 @@ struct SessionFocusView: View {
                         .frame(height: 28)
                         .allowsHitTesting(false)
                 }
+            }
             }
         } else if timerEngine.isFinished {
             // Bug #7 — en fin de séance minutée, `currentPhase` devient nil → l'écran

@@ -182,16 +182,21 @@ public enum ExercisePatternResolver {
         if matchesAny(lower, ["deadlift", "rdl", "soulevé de terre", "souleve de terre"]) {
             return .hinge
         }
-        if matchesAny(lower, ["pull-up", "pullup", "chin-up", "chinup", "tirage vertical", "tirage nuque", "traction"]) {
+        if matchesAny(lower, ["pull-up", "pullup", "chin-up", "chinup", "tirage vertical", "tirage nuque", "traction",
+                              "lat pulldown", "pulldown", "pull-down", "lat pull"]) {
             return .pullVertical
         }
         if matchesAny(lower, ["row", "rameur", "tirage horizontal", "tirage bûcheron", "tirage bucheron"]) {
             return .pullHorizontal
         }
-        if matchesAny(lower, ["overhead", "développé militaire", "developpe militaire", "développé épaule", "developpe epaule", "shoulder press"]) {
+        // Revue images muscu 2026-06-08 : « triceps » exclu ici sinon « Overhead DB
+        // triceps extension » tombe sur le dessin OHP (développé épaules) au lieu du
+        // triceps (cf keyword triceps plus bas).
+        if matchesAny(lower, ["overhead", "développé militaire", "developpe militaire", "développé épaule", "developpe epaule", "shoulder press"])
+            && !lower.contains("triceps") {
             return .pushVertical
         }
-        if matchesAny(lower, ["push-up", "pushup", "pompe", "bench", "développé couché", "developpe couche"]) {
+        if matchesAny(lower, ["push-up", "pushup", "pompe", "bench", "développé couché", "developpe couche", "dips", "dip lesté", "dip leste"]) {
             return .pushHorizontal
         }
         if matchesAny(lower, ["lunge", "fente"]) {
@@ -207,7 +212,8 @@ public enum ExercisePatternResolver {
                               "planche avant-bras", "planche avant bras", "low plank"]) {
             return .forearmPlank
         }
-        if matchesAny(lower, ["plank", "gainage", "crunch", "abs", "hollow"]) {
+        if matchesAny(lower, ["plank", "planche", "gainage", "crunch", "abs", "hollow",
+                              "hanging leg raise", "leg raise", "relevé de jambe", "releve de jambe"]) {
             return .core
         }
         // Story 3.23 Lot 3 — Y-T-W shoulder activation (rotator cuff prone)
@@ -216,7 +222,7 @@ public enum ExercisePatternResolver {
             return .ytwActivation
         }
         // Story 3.23 Lot 3 — Pallof press câble (anti-rotation)
-        if matchesAny(lower, ["pallof", "pallof press", "anti-rotation", "anti rotation"]) {
+        if matchesAny(lower, ["pallof", "pallof press", "anti-rotation", "anti rotation", "woodchopper", "wood chopper", "wood-chopper"]) {
             return .pallofPress
         }
         // Story 3.23 Lot 3 — Nordic curl (excentrique ischio)
@@ -250,12 +256,16 @@ public enum ExercisePatternResolver {
         if matchesAny(lower, ["face pull", "face-pull", "facepull"]) {
             return .facePull
         }
-        if matchesAny(lower, ["biceps curl", "curl biceps", "curl haltères", "curl halteres", "biceps haltère", "biceps haltere"]) {
+        if matchesAny(lower, ["biceps curl", "curl biceps", "curl haltères", "curl halteres", "biceps haltère", "biceps haltere",
+                              "db curl", "dumbbell curl", "hammer curl"]) {
             return .bicepsCurl
         }
-        // Story 3.23 Lot 7 — Triceps pushdown câble
+        // Story 3.23 Lot 7 — Triceps pushdown câble. Revue 2026-06-08 : capter aussi
+        // « overhead triceps » / « triceps extension » (sinon → OHP), faute de pattern
+        // d'extension dédié — le dessin triceps reste le plus proche.
         if matchesAny(lower, ["triceps pushdown", "triceps push-down", "pushdown triceps",
-                              "extension triceps", "triceps câble", "triceps cable"]) {
+                              "extension triceps", "triceps extension", "overhead triceps", "triceps overhead",
+                              "db triceps", "triceps câble", "triceps cable", "triceps"]) {
             return .tricepsPushdown
         }
         // Story 3.23 Lot 7 — Lateral raises haltères
