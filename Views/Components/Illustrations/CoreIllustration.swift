@@ -143,21 +143,23 @@ struct CoreIllustration: View {
                                           width: handSize, height: handSize)),
                    with: .color(body), style: stroke)
 
-        // BRAS LIBRE vertical franc vers le ciel (isolé de la tête)
-        let armTop = CGPoint(x: 20 * s, y: 7 * s)
+        // BRAS LIBRE vertical franc vers le ciel — AGRANDI (retour Sophie 2026-06-08 : « agrandir
+        // le bras en l'air »). C'est l'action clé du side plank → bras long et dominant, main nette.
+        let armTop = CGPoint(x: 22 * s, y: 3 * s)
         var freeArm = Path()
         freeArm.move(to: shoulder)
         freeArm.addLine(to: armTop)
         ctx.stroke(freeArm, with: .color(body), style: stroke)
-        var topHand = Path()
-        topHand.move(to: CGPoint(x: armTop.x - 2 * s, y: armTop.y))
-        topHand.addLine(to: CGPoint(x: armTop.x + 2 * s, y: armTop.y))
-        ctx.stroke(topHand, with: .color(body), style: stroke)
-        // Flèche « lève le bras » à droite du bras libre
+        // Main au bout (cercle net)
+        let topHandSize: CGFloat = 3.6 * s
+        ctx.stroke(Path(ellipseIn: CGRect(x: armTop.x - topHandSize / 2, y: armTop.y - topHandSize / 2,
+                                          width: topHandSize, height: topHandSize)),
+                   with: .color(body), style: stroke)
+        // Flèche « lève le bras » le long du bras (plus haute, suit le bras agrandi)
         var up = Path()
-        up.move(to: CGPoint(x: 29 * s, y: 17 * s)); up.addLine(to: CGPoint(x: 29 * s, y: 10 * s))
-        up.move(to: CGPoint(x: 29 * s, y: 10 * s)); up.addLine(to: CGPoint(x: 27 * s, y: 13 * s))
-        up.move(to: CGPoint(x: 29 * s, y: 10 * s)); up.addLine(to: CGPoint(x: 31 * s, y: 13 * s))
+        up.move(to: CGPoint(x: 31 * s, y: 15 * s)); up.addLine(to: CGPoint(x: 31 * s, y: 7 * s))
+        up.move(to: CGPoint(x: 31 * s, y: 7 * s)); up.addLine(to: CGPoint(x: 29 * s, y: 10 * s))
+        up.move(to: CGPoint(x: 31 * s, y: 7 * s)); up.addLine(to: CGPoint(x: 33 * s, y: 10 * s))
         ctx.stroke(up, with: .color(IllustrationStyle.movementArrow),
                    style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
     }
