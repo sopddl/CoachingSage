@@ -33,13 +33,12 @@ public enum ExercisePatternResolver {
         // Y-raise = mouvement de la famille Y-T-W (épaules), taggé à tort « pull vertical »
         // → ne doit PAS rendre le dessin de traction.
         if lowerName.contains("y-raise") || lowerName.contains("y raise") { return .ytwActivation }
-        // Pullover (allongé, haltère par-dessus la tête) taggé « pull vertical » → rendait une
-        // TRACTION (faux). Pas de dessin dédié → générique neutre plutôt qu'une image trompeuse.
-        if lowerName.contains("pullover") { return .generic }
-        // « 2 fois le même » (Sophie) : ces 2 mvts partageaient un dessin proche mais faux,
-        // pas de dessin dédié → générique honnête (à dessiner) plutôt qu'image trompeuse.
-        if lowerName.contains("overhead") && lowerName.contains("triceps") { return .generic } // ≠ pushdown
-        if lowerName.contains("woodchopper") || lowerName.contains("wood chopper") { return .generic } // ≠ pallof
+        // Revue dessins 2026-06-08 : 4 dessins dédiés CRÉÉS → on route vers eux (avant : générique).
+        if lowerName.contains("pullover") { return .pullover }
+        if lowerName.contains("overhead") && lowerName.contains("triceps") { return .tricepsOverhead }
+        if lowerName.contains("woodchopper") || lowerName.contains("wood chopper") { return .woodchopper }
+        if lowerName.contains("hanging leg raise") || lowerName.contains("leg raise")
+            || lowerName.contains("relevé de jambe") || lowerName.contains("releve de jambe") { return .hangingLegRaise }
 
         // Étape 1 : capture regex multi-mots
         if let captured = capturedPatternToken(in: name) {

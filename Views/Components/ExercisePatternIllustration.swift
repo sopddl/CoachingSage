@@ -126,6 +126,14 @@ struct ExercisePatternIllustration: View {
         case .lateralRaises:
             // Story 3.23 Lot 7 — Lateral raises haltères deltoïdes
             tripletStrip { LateralRaisesIllustration(sportCode: sportCode, frame: $0) }
+        case .hangingLegRaise:
+            tripletStrip { HangingLegRaiseIllustration(sportCode: sportCode, frame: $0) }
+        case .tricepsOverhead:
+            tripletStrip { TricepsOverheadIllustration(sportCode: sportCode, frame: $0) }
+        case .woodchopper:
+            tripletStrip { WoodchopperIllustration(sportCode: sportCode, frame: $0) }
+        case .pullover:
+            tripletStrip { PulloverIllustration(sportCode: sportCode, frame: $0) }
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels (foulée running, crawl, fractionné, drill rattrapé).

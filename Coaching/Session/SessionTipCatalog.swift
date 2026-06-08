@@ -92,6 +92,15 @@ public enum SessionTipCatalog {
             return "coaching.tip.cycle.interval"
         case .yoga:
             return "coaching.tip.yoga"
+        // Revue dessins muscu 2026-06-08 — réutilise des tips proches (pas de nouvelle i18n) :
+        case .hangingLegRaise:
+            return "coaching.tip.core"
+        case .tricepsOverhead:
+            return "coaching.tip.tricepsPushdown"
+        case .woodchopper:
+            return "coaching.tip.pallofPress"
+        case .pullover:
+            return "coaching.tip.pull.vertical"
         case .generic:
             return nil
         }
