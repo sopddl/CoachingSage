@@ -32,7 +32,7 @@ struct PulloverIllustration: View {
             // frame 0 : bras relevé en diagonale nette (pas horizontal → ne se confond plus
             // avec le banc, haltère détaché du corps lu en revue). frame 2 : ramené plus bas
             // vers la poitrine (pas « drapeau vertical »).
-            let hand: CGPoint = frame == 0 ? p(7, 22) : (frame == 1 ? p(22, 11) : p(33, 20))
+            let hand: CGPoint = frame == 0 ? p(12, 21) : (frame == 1 ? p(23, 12) : p(34, 22))
             StrengthFigureKit.limb(ctx, [shldr, hand], color: body, s: s)
             StrengthFigureKit.dumbbell(ctx, center: hand, s: s)
 
