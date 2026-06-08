@@ -62,9 +62,10 @@ final class FocusReviewFixesTests: XCTestCase {
         XCTAssertEqual(pattern("Y-raise allongé (pattern pull vertical)"), .ytwActivation)
     }
 
-    func test_resolver_pullover_genericNotPullup() {
-        // Pullover (allongé) taggé « pull vertical » → générique plutôt qu'une traction trompeuse.
-        XCTAssertEqual(pattern("Dumbbell Pullover (pattern pull vertical)"), .generic)
+    func test_resolver_pullover_dedicatedDrawing() {
+        // Pullover (allongé) taggé « pull vertical » → dessin dédié pullover (créé 2026-06-08),
+        // surtout PAS une traction trompeuse.
+        XCTAssertEqual(pattern("Dumbbell Pullover (pattern pull vertical)"), .pullover)
     }
 
     func test_hipThrust_floorVsBench_differ() {
@@ -73,13 +74,14 @@ final class FocusReviewFixesTests: XCTestCase {
         XCTAssertEqual(HipThrustIllustration.resolveVariant(from: "Hip thrust barre"), .barbellThrust)
     }
 
-    // « 2 fois le même » muscu : triceps overhead & woodchopper → générique (≠ leur pair).
-    func test_resolver_overheadTriceps_generic() {
-        XCTAssertEqual(pattern("Overhead DB triceps extension"), .generic)
+    // Dessins dédiés créés 2026-06-08 (étaient « génériques » avant) : triceps overhead &
+    // woodchopper ont leur propre illustration, distincte de leur pair (pushdown / pallof).
+    func test_resolver_overheadTriceps_dedicatedDrawing() {
+        XCTAssertEqual(pattern("Overhead DB triceps extension"), .tricepsOverhead)
         XCTAssertEqual(pattern("Triceps Pushdown câble"), .tricepsPushdown) // l'autre reste juste
     }
-    func test_resolver_woodchopper_generic() {
-        XCTAssertEqual(pattern("Cable woodchopper (core — EN FIN)"), .generic)
+    func test_resolver_woodchopper_dedicatedDrawing() {
+        XCTAssertEqual(pattern("Cable woodchopper (core — EN FIN)"), .woodchopper)
         XCTAssertEqual(pattern("Pallof Press câble (core — EN FIN)"), .pallofPress) // l'autre reste juste
     }
 
