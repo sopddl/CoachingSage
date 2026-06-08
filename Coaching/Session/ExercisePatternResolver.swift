@@ -22,6 +22,15 @@ public enum ExercisePatternResolver {
         // quand `name.fr` est vulgarisé/traduit (i18n B2), pour ne pas casser les regex.
         let name = exercise.originalName
 
+        // Étape 0 — overrides haute-confiance (revue images muscu 2026-06-08). Corrigent des
+        // MISTAGS template « (pattern xxx) » qui contredisent le geste réel, SANS toucher au
+        // match_key stable (fix aussi les programmes en cours) :
+        //   • une « fente » / « lunge » est toujours un lunge (taggée à tort « squat unilatéral »)
+        //   • un « hip thrust » est toujours un hip thrust (taggé à tort « hinge » sur les séances débutant)
+        let lowerName = name.lowercased()
+        if lowerName.contains("fente") || lowerName.contains("lunge") { return .lunge }
+        if lowerName.contains("hip thrust") || lowerName.contains("pont fessier") { return .hipThrust }
+
         // Étape 1 : capture regex multi-mots
         if let captured = capturedPatternToken(in: name) {
             // Étape 2 : filtre hebdo/structurel

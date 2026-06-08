@@ -2,6 +2,7 @@
 // Revue ui-reviewer 2026-06-07 (pilote dosage muscu) — fixs P1 :
 // #1 échauffement placeholder = écran vide ; #3 illustration band pull-down assis.
 import XCTest
+import TemplateModel
 @testable import CoachingSage
 
 @MainActor
@@ -29,5 +30,28 @@ final class FocusReviewFixesTests: XCTestCase {
     func test_pullVertical_pullup_stillStanding() {
         XCTAssertEqual(PullVerticalIllustration.resolveVariant(from: "Traction barre fixe"), .pullup)
         XCTAssertEqual(PullVerticalIllustration.resolveVariant(from: nil), .pullup)
+    }
+
+    // Mistags template (revue 2026-06-08) : override haute-confiance dans le resolver.
+    private func pattern(_ matchKey: String) -> ExercisePattern {
+        ExercisePatternResolver.resolve(AdaptedExercise(name: LocalizedText(fr: matchKey), originalName: matchKey),
+                                        sportCode: "strengthTraining")
+    }
+
+    func test_resolver_fente_mistaggedSquat_isLunge() {
+        // « Fentes haltères (pattern squat unilatéral) » → AVANT: squat. Override → lunge.
+        XCTAssertEqual(pattern("Fentes haltères (pattern squat unilatéral)"), .lunge)
+    }
+
+    func test_resolver_hipThrust_mistaggedHinge_isHipThrust() {
+        // « Hip Thrust au sol poids du corps (pattern hinge) » → AVANT: hinge. Override → hipThrust.
+        XCTAssertEqual(pattern("Hip Thrust au sol poids du corps (pattern hinge)"), .hipThrust)
+        XCTAssertEqual(pattern("Hip Thrust haltère lourd (pattern hinge)"), .hipThrust)
+    }
+
+    func test_resolver_realDeadlift_stillHinge() {
+        // Garde-fou : un VRAI hinge (RDL/deadlift) reste hinge (pas de faux positif).
+        XCTAssertEqual(pattern("Deadlift conventionnel (barre)"), .hinge)
+        XCTAssertEqual(pattern("Romanian Deadlift haltères (pattern hinge)"), .hinge)
     }
 }
