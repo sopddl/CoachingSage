@@ -38,6 +38,23 @@ final class FocusReviewFixesTests: XCTestCase {
                                         sportCode: "strengthTraining")
     }
 
+    // Revue dessins TOUS SPORTS 2026-06-08 — mauvais mappings attrapés au dump par sport.
+    func test_resolver_yogaFalseFriends_renderYoga() {
+        // « Sauterelle » contenait « saut » → plyo à tort ; Bakasana → pull horizontal à tort.
+        XCTAssertEqual(pattern("Salabhasana (Sauterelle)"), .yoga)
+        XCTAssertEqual(pattern("Salabhasana (Sauterelle) 3 variantes"), .yoga)
+        XCTAssertEqual(pattern("Bakasana (Crow) — préparation avec briques sous pieds"), .yoga)
+    }
+    func test_resolver_fifaBench_isPlankNotBenchPress() {
+        // FIFA 11+ « Bench » = gainage planche ; « Sideways Bench » = side plank.
+        XCTAssertEqual(pattern("FIFA 11+ — Bench statique"), .forearmPlank)
+        XCTAssertEqual(pattern("FIFA 11+ — Bench dynamique avancée"), .forearmPlank)
+        XCTAssertEqual(pattern("FIFA 11+ — Sideways Bench"), .core)
+        // Garde-fou non-régression : le VRAI développé couché reste pushHorizontal.
+        XCTAssertEqual(pattern("Bench press DB ou barbell"), .pushHorizontal)
+        XCTAssertEqual(pattern("Incline DB bench press 30°"), .pushHorizontal)
+    }
+
     func test_resolver_fente_mistaggedSquat_isLunge() {
         // « Fentes haltères (pattern squat unilatéral) » → AVANT: squat. Override → lunge.
         XCTAssertEqual(pattern("Fentes haltères (pattern squat unilatéral)"), .lunge)

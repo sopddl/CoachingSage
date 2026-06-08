@@ -40,6 +40,19 @@ public enum ExercisePatternResolver {
         if lowerName.contains("hanging leg raise") || lowerName.contains("leg raise")
             || lowerName.contains("relevé de jambe") || lowerName.contains("releve de jambe") { return .hangingLegRaise }
 
+        // Revue dessins TOUS SPORTS 2026-06-08 (dump mapping par sport) — faux-amis :
+        //   • « Sauterelle »/Salabhasana : le mot « saut » déclenchait plyo (box jump) à tort.
+        //   • Bakasana (Crow, équilibre sur les bras) tombait sur pull horizontal.
+        //   → ce sont des postures yoga, elles rendent la figure yoga.
+        if lowerName.contains("salabhasana") || lowerName.contains("sauterelle")
+            || lowerName.contains("bakasana") { return .yoga }
+        // FIFA 11+ « The Bench » = GAINAGE (planche), PAS un développé couché ; « Sideways
+        // Bench » = side plank. On exclut le vrai « bench press »/« développé » (→ pushHorizontal).
+        if lowerName.contains("bench") && !lowerName.contains("press") && !lowerName.contains("développé") {
+            if lowerName.contains("sideways") { return .core }       // side plank (variante .lateral via le nom)
+            if lowerName.contains("fifa") { return .forearmPlank }
+        }
+
         // Étape 1 : capture regex multi-mots
         if let captured = capturedPatternToken(in: name) {
             // Étape 2 : filtre hebdo/structurel
