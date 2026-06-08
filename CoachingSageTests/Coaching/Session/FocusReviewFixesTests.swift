@@ -72,4 +72,21 @@ final class FocusReviewFixesTests: XCTestCase {
         XCTAssertEqual(HipThrustIllustration.resolveVariant(from: "Hip Thrust au sol poids du corps"), .gluteBridge)
         XCTAssertEqual(HipThrustIllustration.resolveVariant(from: "Hip thrust barre"), .barbellThrust)
     }
+
+    // « 2 fois le même » muscu : triceps overhead & woodchopper → générique (≠ leur pair).
+    func test_resolver_overheadTriceps_generic() {
+        XCTAssertEqual(pattern("Overhead DB triceps extension"), .generic)
+        XCTAssertEqual(pattern("Triceps Pushdown câble"), .tricepsPushdown) // l'autre reste juste
+    }
+    func test_resolver_woodchopper_generic() {
+        XCTAssertEqual(pattern("Cable woodchopper (core — EN FIN)"), .generic)
+        XCTAssertEqual(pattern("Pallof Press câble (core — EN FIN)"), .pallofPress) // l'autre reste juste
+    }
+
+    // Fixes cross-sport (workflow 9 sports 2026-06-08) : pattern existait, keyword manquait.
+    func test_resolver_crossSport_keywordFixes() {
+        XCTAssertEqual(pattern("Wall sit partiel"), .squat)
+        XCTAssertEqual(pattern("External rotation à la bande"), .ytwActivation)
+        XCTAssertEqual(pattern("Lateral bound"), .plyo)
+    }
 }

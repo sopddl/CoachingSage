@@ -36,6 +36,10 @@ public enum ExercisePatternResolver {
         // Pullover (allongé, haltère par-dessus la tête) taggé « pull vertical » → rendait une
         // TRACTION (faux). Pas de dessin dédié → générique neutre plutôt qu'une image trompeuse.
         if lowerName.contains("pullover") { return .generic }
+        // « 2 fois le même » (Sophie) : ces 2 mvts partageaient un dessin proche mais faux,
+        // pas de dessin dédié → générique honnête (à dessiner) plutôt qu'image trompeuse.
+        if lowerName.contains("overhead") && lowerName.contains("triceps") { return .generic } // ≠ pushdown
+        if lowerName.contains("woodchopper") || lowerName.contains("wood chopper") { return .generic } // ≠ pallof
 
         // Étape 1 : capture regex multi-mots
         if let captured = capturedPatternToken(in: name) {
@@ -232,11 +236,12 @@ public enum ExercisePatternResolver {
         }
         // Story 3.23 Lot 3 — Y-T-W shoulder activation (rotator cuff prone)
         if matchesAny(lower, ["y-t-w", "ytw", "y t w", "yt w", "shoulder activation",
-                              "activation épaule", "activation epaule", "rotator cuff"]) {
+                              "activation épaule", "activation epaule", "rotator cuff",
+                              "external rotation", "rotation externe"]) {
             return .ytwActivation
         }
         // Story 3.23 Lot 3 — Pallof press câble (anti-rotation)
-        if matchesAny(lower, ["pallof", "pallof press", "anti-rotation", "anti rotation", "woodchopper", "wood chopper", "wood-chopper"]) {
+        if matchesAny(lower, ["pallof", "pallof press", "anti-rotation", "anti rotation"]) {
             return .pallofPress
         }
         // Story 3.23 Lot 3 — Nordic curl (excentrique ischio)
@@ -244,7 +249,7 @@ public enum ExercisePatternResolver {
                               "ischio nordique", "ischio nordic"]) {
             return .nordicCurl
         }
-        if matchesAny(lower, ["jump", "burpee", "bondiss", "saut", "box jump"]) {
+        if matchesAny(lower, ["jump", "burpee", "bondiss", "saut", "box jump", "lateral bound", "bound latéral"]) {
             return .plyo
         }
         // Story 3.23 Lot 5 — Foam rolling AVANT mobility générique
@@ -287,6 +292,10 @@ public enum ExercisePatternResolver {
                               "élévation latérale", "elevation laterale",
                               "écarté épaule", "ecarte epaule"]) {
             return .lateralRaises
+        }
+        // Wall sit = squat isométrique dos au mur (running/triathlon/hiking S&C).
+        if matchesAny(lower, ["wall sit", "wall-sit", "chaise isométrique", "chaise isometrique"]) {
+            return .squat
         }
         // Squat en dernier (mot court qui pourrait matcher accidentellement)
         if matchesAny(lower, ["squat", "goblet"]) {
