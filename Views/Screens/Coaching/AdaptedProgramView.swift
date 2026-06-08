@@ -715,6 +715,9 @@ struct AdaptedProgramView: View {
         let isModifiedByRegen = modifiedSessionCoordinates.contains(
             SessionCoordinate(weekNumber: week.weekNumber, day: session.day)
         )
+        // Bug device-test Sophie 2026-06-08 : mettre la prochaine séance à lancer EN GROS
+        // (comme l'accueil) au lieu d'une ligne plate indifférenciée.
+        let isNext = Self.sessionAnchor(week: week.weekNumber, day: session.day) == firstUndoneSessionAnchor
         return NavigationLink {
             SessionDetailView(
                 session: session,
@@ -724,44 +727,96 @@ struct AdaptedProgramView: View {
                 recordId: recordId
             )
         } label: {
-            HStack(spacing: 12) {
-                Image(systemName: sessionSymbol(for: session))
-                    .frame(width: 24)
-                    .foregroundStyle(Color.coachingSport(forCode: sessionEffectiveSportCode(for: session)))
-                VStack(alignment: .leading, spacing: 2) {
-                    // Story 3.35k — petite ligne grise (Séance N · Sem · min) AU-DESSUS
-                    // du libellé (inversion demandée par Sophie).
-                    Text("coaching.adapter.session.numberedLine \(globalSessionNumber(week: week.weekNumber, day: session.day)) \(week.weekNumber) \(session.durationMinutes)")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    Text(verbatim: session.name.resolved(locale).sanitizedForDisplay)
-                        .font(.subheadline.bold())
-                        .foregroundStyle(.primary)
-                }
-                Spacer()
-                if isModifiedByRegen {
-                    Image(systemName: "sparkles")
-                        .foregroundStyle(.orange)
-                        .font(.caption.weight(.semibold))
-                        .accessibilityLabel(Text("coaching.adapter.session.regenAdjusted"))
-                        .accessibilityIdentifier("coaching.adapter.session.regenMarker")
-                }
-                if hasAdaptations(week: week.weekNumber, day: session.day) {
-                    Image(systemName: "arrow.left.arrow.right.circle.fill")
-                        .foregroundStyle(.orange)
-                        .font(.caption)
-                }
-                Image(systemName: "chevron.right")
-                    .font(.caption.bold())
-                    .foregroundStyle(.secondary)
+            if isNext {
+                featuredSessionLabel(session, week: week, isModifiedByRegen: isModifiedByRegen)
+            } else {
+                compactSessionLabel(session, week: week, isModifiedByRegen: isModifiedByRegen)
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 10)
-            .background(Color(uiColor: .secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .buttonStyle(.plain)
         .id(Self.sessionAnchor(week: week.weekNumber, day: session.day))
+    }
+
+    /// Ligne compacte standard (séances non-prochaines).
+    private func compactSessionLabel(_ session: AdaptedSession, week: AdaptedWeek, isModifiedByRegen: Bool) -> some View {
+        HStack(spacing: 12) {
+            Image(systemName: sessionSymbol(for: session))
+                .frame(width: 24)
+                .foregroundStyle(Color.coachingSport(forCode: sessionEffectiveSportCode(for: session)))
+            VStack(alignment: .leading, spacing: 2) {
+                // Story 3.35k — petite ligne grise (Séance N · Sem · min) AU-DESSUS du libellé.
+                Text("coaching.adapter.session.numberedLine \(globalSessionNumber(week: week.weekNumber, day: session.day)) \(week.weekNumber) \(session.durationMinutes)")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text(verbatim: session.name.resolved(locale).sanitizedForDisplay)
+                    .font(.subheadline.bold())
+                    .foregroundStyle(.primary)
+            }
+            Spacer()
+            if isModifiedByRegen {
+                Image(systemName: "sparkles")
+                    .foregroundStyle(.orange)
+                    .font(.caption.weight(.semibold))
+                    .accessibilityLabel(Text("coaching.adapter.session.regenAdjusted"))
+                    .accessibilityIdentifier("coaching.adapter.session.regenMarker")
+            }
+            if hasAdaptations(week: week.weekNumber, day: session.day) {
+                Image(systemName: "arrow.left.arrow.right.circle.fill")
+                    .foregroundStyle(.orange)
+                    .font(.caption)
+            }
+            Image(systemName: "chevron.right")
+                .font(.caption.bold())
+                .foregroundStyle(.secondary)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
+        .background(Color(uiColor: .secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+
+    /// Carte « prochaine séance » mise en avant (bug device-test Sophie 2026-06-08) — gros
+    /// titre + gradient couleur du sport + CTA, à l'image de la carte focale de l'accueil.
+    private func featuredSessionLabel(_ session: AdaptedSession, week: AdaptedWeek, isModifiedByRegen: Bool) -> some View {
+        let sportColor = Color.coachingSport(forCode: sessionEffectiveSportCode(for: session))
+        return VStack(alignment: .leading, spacing: 8) {
+            Text("dashboard.active.next.title")
+                .font(.caption.bold())
+                .textCase(.uppercase)
+                .foregroundStyle(Color.coachingOnPrimary.opacity(0.9))
+            HStack(spacing: 12) {
+                Image(systemName: sessionSymbol(for: session))
+                    .font(.title2)
+                    .foregroundStyle(Color.coachingOnPrimary)
+                    .frame(width: 30)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("coaching.adapter.session.numberedLine \(globalSessionNumber(week: week.weekNumber, day: session.day)) \(week.weekNumber) \(session.durationMinutes)")
+                        .font(.caption)
+                        .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
+                    Text(verbatim: session.name.resolved(locale).sanitizedForDisplay)
+                        .font(.title3.bold())
+                        .foregroundStyle(Color.coachingOnPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                Spacer(minLength: 8)
+                Image(systemName: "play.circle.fill")
+                    .font(.title)
+                    .foregroundStyle(Color.coachingOnPrimary)
+            }
+            if isModifiedByRegen {
+                Label("coaching.adapter.session.regenAdjusted", systemImage: "sparkles")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(Color.coachingOnPrimary.opacity(0.9))
+            }
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            LinearGradient(colors: [sportColor, sportColor.opacity(0.82)],
+                           startPoint: .topLeading, endPoint: .bottomTrailing)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .accessibilityIdentifier("coaching.adapter.session.next")
     }
 
     /// Ancre de scroll d'une séance (Story 3.35k — scroll auto vers la 1ʳᵉ non faite).
