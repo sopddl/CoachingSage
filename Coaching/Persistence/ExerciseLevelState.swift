@@ -13,6 +13,13 @@ public enum ExerciseLevelBounds {
     public static func clamp(_ v: Int) -> Int { Swift.max(min, Swift.min(max, v)) }
 }
 
+/// Ressenti de l'utilisateur sur un exo (D-D) — signal d'apprentissage NON-kg.
+public enum ExerciseFeedback: String, Codable, Equatable, Sendable {
+    case easy      // « facile »
+    case right     // « juste »
+    case tooHard   // « trop dur »
+}
+
 public struct ExerciseLevel: Codable, Equatable, Sendable {
     /// Niveau interne 1...5 (jamais affiché).
     public var level: Int
