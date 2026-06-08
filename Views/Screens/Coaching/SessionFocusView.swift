@@ -289,6 +289,7 @@ struct SessionFocusView: View {
         }
 
         metricsRow(ex)
+        chargeGuidance(for: ex)
 
         if let notes = ex.notes?.resolved(locale), !notes.isEmpty {
             BulletedNotes(text: notes, font: .callout)
@@ -333,6 +334,27 @@ struct SessionFocusView: View {
                 }
                 Spacer(minLength: 0)
             }
+        }
+    }
+
+    /// Chantier charge muscu V2 — TRANCHE 1 (`party-charge-muscu-v2-2026-06-08.md`).
+    /// Consigne de charge NON-kg, affichée en Manuel ET Minuté (D-A/D-C/D-F) : élastique,
+    /// poids du corps, ou charge libre/machine → wording « reps en réserve » adapté.
+    /// JAMAIS de kg. `nil` (exo non-muscu / cas vide) → rien (jamais « 0 kg », règle P0).
+    @ViewBuilder
+    private func chargeGuidance(for ex: AdaptedExercise) -> some View {
+        if let resistance = ChargeGuidance.resistance(for: ex, isStrength: isStrengthSession) {
+            let key: LocalizedStringKey = {
+                switch resistance {
+                case .band: return "coaching.dosage.charge.band"
+                case .bodyweight: return "coaching.dosage.charge.bodyweight"
+                case .freeOrMachine: return "coaching.dosage.charge.hint"
+                }
+            }()
+            Label { Text(key) } icon: { Image(systemName: "scalemass") }
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 
@@ -642,13 +664,14 @@ struct SessionFocusView: View {
                                     .padding(.top, 2)
                                     .accessibilityIdentifier("coaching.session.focus.timed.strength.side")
                                 }
-                                // G1 charge : cas vide (aucun poids prescrit) → on remplit par du
-                                // SENS, jamais « 0 kg » : la consigne « commence léger… » (D1).
-                                Text("coaching.dosage.charge.hint")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, 2)
+                                // Chantier charge V2 (T1) — consigne charge NON-kg via le
+                                // helper partagé avec le mode Manuel (D-F) : élastique /
+                                // poids du corps / charge libre. Jamais « 0 kg » (P0).
+                                if let ex = exercise(at: phase.stepIndex) {
+                                    chargeGuidance(for: ex)
+                                        .multilineTextAlignment(.center)
+                                        .padding(.top, 2)
+                                }
                             }
                             chronoFilet
                         } else {
