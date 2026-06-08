@@ -1,7 +1,9 @@
 // Views/Components/Illustrations/WoodchopperIllustration.swift
-// Revue dessins muscu 2026-06-08 — cable woodchopper (rotation anti-rotation câble).
-// Debout, poignée câble tenue à 2 mains, mouvement diagonal du HAUT (côté) vers le BAS
-// opposé (le « coup de hache »). Câble relié à une poulie haute. 3 frames.
+// Revue dessins muscu 2026-06-08 (re-jet expert pictos) — cable woodchopper.
+// Vue 3/4. La poignée part EN HAUT (poulie haute, coin haut-droit) et descend en
+// diagonale vers la hanche opposée (« coup de hache »). Corrections revue : mains au
+// DÉPART en haut (pas au sol), tronc qui reste droit (jamais plié en avant comme un
+// soulevé de terre), mains d'arrivée à hauteur de hanche (pas au sol), 1 seule flèche.
 import SwiftUI
 
 struct WoodchopperIllustration: View {
@@ -13,34 +15,32 @@ struct WoodchopperIllustration: View {
             let s = size.width / IllustrationStyle.frameSize
             let body = IllustrationStyle.silhouette(sportCode: sportCode)
             func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
-            func L(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat { StrengthFigureKit.lerp(a, b, t) }
 
             StrengthFigureKit.ground(ctx, s: s)
-            let chop: CGFloat = frame == 0 ? 0 : (frame == 1 ? 0.5 : 1) // 0 haut-droite, 1 bas-gauche
 
-            // Corps debout (profil), léger fléchissement de hanche en fin de chop
-            let ankle = p(26, 44), knee = p(26, 33)
-            let hip = p(26, 23), shldr = p(26, 13), headC = p(26, 8)
-            StrengthFigureKit.limb(ctx, [p(22, 44), p(31, 44)], color: body, s: s)
-            StrengthFigureKit.limb(ctx, [ankle, knee, hip, shldr], color: body, s: s)
+            // Corps debout, stance large, léger squat — IDENTIQUE sur les 3 frames.
+            // Tronc droit (pivote, ne se plie PAS en avant).
+            let hip = p(26, 28), shldr = p(26, 15), headC = p(26, 9)
+            StrengthFigureKit.limb(ctx, [p(16, 44), p(18, 36), hip], color: body, s: s) // jambe G
+            StrengthFigureKit.limb(ctx, [p(36, 44), p(34, 36), hip], color: body, s: s) // jambe D
+            StrengthFigureKit.limb(ctx, [hip, shldr], color: body, s: s)
             StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s)
 
-            // Poignée tenue à 2 mains : diagonale haut-droite → bas-gauche
-            let handle = p(L(40, 12, chop), L(11, 34, chop))
+            // Poignée tenue à 2 mains : HAUT-droite → BAS-gauche (hauteur hanche).
+            let handle: CGPoint = frame == 0 ? p(42, 7) : (frame == 1 ? p(28, 22) : p(14, 33))
             StrengthFigureKit.limb(ctx, [shldr, handle], color: body, s: s)
-            // Câble depuis la poulie HAUTE (coin haut-droit) jusqu'à la poignée
+            // Câble depuis la poulie HAUTE (coin haut-droit), suit la poignée.
             var cable = Path()
-            cable.move(to: p(46, 4)); cable.addLine(to: handle)
+            cable.move(to: p(46, 3)); cable.addLine(to: handle)
             ctx.stroke(cable, with: .color(IllustrationStyle.equipment),
                        style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round))
-            // Poignée (petit trait perpendiculaire) à 2 mains
             StrengthFigureKit.dumbbell(ctx, center: handle, s: s)
 
-            // Flèche diagonale du chop (haut-droite → bas-gauche)
+            // Flèche unique : diagonale franche HAUT-droite → BAS-gauche.
             var arrow = Path()
-            arrow.move(to: p(34, 18)); arrow.addLine(to: p(18, 32))
-            arrow.move(to: p(18, 32)); arrow.addLine(to: p(23, 31))
-            arrow.move(to: p(18, 32)); arrow.addLine(to: p(20, 27))
+            arrow.move(to: p(40, 10)); arrow.addLine(to: p(18, 31))
+            arrow.move(to: p(18, 31)); arrow.addLine(to: p(24, 31))
+            arrow.move(to: p(18, 31)); arrow.addLine(to: p(20, 25))
             ctx.stroke(arrow, with: .color(IllustrationStyle.movementArrow),
                        style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
         }

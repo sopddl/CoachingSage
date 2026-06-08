@@ -1,7 +1,9 @@
 // Views/Components/Illustrations/PulloverIllustration.swift
-// Revue dessins muscu 2026-06-08 — dumbbell pullover. Allongé sur un banc, un haltère tenu
-// à 2 mains bras quasi tendus : arc de DERRIÈRE la tête (étirement) vers AU-DESSUS de la
-// poitrine. 3 frames.
+// Revue dessins muscu 2026-06-08 (re-jet expert pictos) — dumbbell pullover.
+// Profil, allongé sur un banc, tête à GAUCHE. Le bras + l'haltère sont dessinés sur
+// les 3 frames (correction revue : avant, ils n'apparaissaient qu'à la frame 3) :
+// arc autour de l'épaule de DERRIÈRE la tête (bas, étirement) → vertical → au-dessus
+// de la poitrine. 1 seule flèche en arc.
 import SwiftUI
 
 struct PulloverIllustration: View {
@@ -13,32 +15,35 @@ struct PulloverIllustration: View {
             let s = size.width / IllustrationStyle.frameSize
             let body = IllustrationStyle.silhouette(sportCode: sportCode)
             func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
-            func L(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat { StrengthFigureKit.lerp(a, b, t) }
 
             StrengthFigureKit.ground(ctx, s: s)
-            let arc: CGFloat = frame == 0 ? 0 : (frame == 1 ? 0.5 : 1) // 0 derrière tête, 1 au-dessus poitrine
 
-            // Banc horizontal
-            StrengthFigureKit.box(ctx, rect: CGRect(x: 22 * s, y: 30 * s, width: 34 * s, height: 6 * s), s: s, filled: true)
+            // Banc horizontal sous le tronc.
+            StrengthFigureKit.box(ctx, rect: CGRect(x: 6 * s, y: 34 * s, width: 34 * s, height: 5 * s), s: s, filled: true)
 
-            // Corps allongé SUR le banc : hanche → épaule (sur le banc), tête débord à droite
-            let hip = p(28, 29), shldr = p(50, 29)
-            StrengthFigureKit.limb(ctx, [hip, shldr], color: body, s: s)
-            StrengthFigureKit.headNeck(ctx, head: p(57, 27), shoulder: shldr, color: body, s: s)
-            // Jambes : genoux fléchis, pieds au sol
-            StrengthFigureKit.limb(ctx, [hip, p(24, 40), p(30, 44)], color: body, s: s)
+            // Corps allongé sur le banc — IDENTIQUE sur les 3 frames. Tête à gauche.
+            let shldr = p(24, 31), hip = p(38, 31)
+            StrengthFigureKit.limb(ctx, [shldr, hip], color: body, s: s)
+            StrengthFigureKit.headNeck(ctx, head: p(9, 31), shoulder: shldr, color: body, s: s)
+            // Jambes pliées, pieds au sol à droite.
+            StrengthFigureKit.limb(ctx, [hip, p(44, 38), p(40, 44)], color: body, s: s)
 
-            // Bras quasi tendus tenant l'haltère : arc derrière la tête → au-dessus de la poitrine
-            let hand = p(L(62, 44, arc), L(20, 9, arc))
+            // Bras actif (épaule = pivot), DESSINÉ sur les 3 frames : arc derrière tête → poitrine.
+            // frame 0 : bras relevé en diagonale nette (pas horizontal → ne se confond plus
+            // avec le banc, haltère détaché du corps lu en revue). frame 2 : ramené plus bas
+            // vers la poitrine (pas « drapeau vertical »).
+            let hand: CGPoint = frame == 0 ? p(7, 22) : (frame == 1 ? p(22, 11) : p(33, 20))
             StrengthFigureKit.limb(ctx, [shldr, hand], color: body, s: s)
             StrengthFigureKit.dumbbell(ctx, center: hand, s: s)
 
-            // Flèche d'arc (derrière tête → au-dessus poitrine)
-            var arrow = Path()
-            arrow.move(to: p(60, 16)); arrow.addLine(to: p(40, 10))
-            arrow.move(to: p(40, 10)); arrow.addLine(to: p(45, 9))
-            arrow.move(to: p(40, 10)); arrow.addLine(to: p(44, 14))
-            ctx.stroke(arrow, with: .color(IllustrationStyle.movementArrow),
+            // Petite flèche courbe au-dessus du corps (sens du balayage gauche→droite),
+            // courte et détachée du bras pour ne pas lire « fil emmêlé » (revue Maxime).
+            var arc = Path()
+            arc.move(to: p(14, 6))
+            arc.addQuadCurve(to: p(30, 8), control: p(22, 1))
+            arc.move(to: p(30, 8)); arc.addLine(to: p(25, 7))
+            arc.move(to: p(30, 8)); arc.addLine(to: p(28, 12))
+            ctx.stroke(arc, with: .color(IllustrationStyle.movementArrow),
                        style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)

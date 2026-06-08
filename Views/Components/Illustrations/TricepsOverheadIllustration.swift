@@ -1,7 +1,9 @@
 // Views/Components/Illustrations/TricepsOverheadIllustration.swift
-// Revue dessins muscu 2026-06-08 — extension triceps nuque (overhead DB triceps extension).
-// Debout (profil), un haltère tenu à deux mains DERRIÈRE la tête → extension des bras
-// vers le haut. 3 frames (coudes pliés derrière la nuque → bras tendus en haut).
+// Revue dessins muscu 2026-06-08 (v3) — extension triceps nuque, VUE DE FACE.
+// Le profil (1 trait vertical) lisait « lampe/poteau » en revue → passage en vue de
+// face : corps reconnaissable (2 jambes écartées, 2 bras symétriques), les deux mains
+// tiennent UN haltère derrière la tête (frame 0, bas) puis tendent les bras vers le
+// HAUT (frame 2). Amplitude verticale large.
 import SwiftUI
 
 struct TricepsOverheadIllustration: View {
@@ -13,33 +15,33 @@ struct TricepsOverheadIllustration: View {
             let s = size.width / IllustrationStyle.frameSize
             let body = IllustrationStyle.silhouette(sportCode: sportCode)
             func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
-            func L(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat { StrengthFigureKit.lerp(a, b, t) }
 
             StrengthFigureKit.ground(ctx, s: s)
-            let ext: CGFloat = frame == 0 ? 0 : (frame == 1 ? 0.5 : 1) // 0 plié nuque, 1 tendu haut
 
-            // Corps debout (profil)
-            let ankle = p(22, 44), knee = p(22, 33), hip = p(22, 23), shldr = p(22, 13), headC = p(22, 8)
-            StrengthFigureKit.limb(ctx, [p(18, 44), p(27, 44)], color: body, s: s)
-            StrengthFigureKit.limb(ctx, [ankle, knee, hip, shldr], color: body, s: s)
-            StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s)
+            // Corps DE FACE — IDENTIQUE sur les 3 frames.
+            let headC = p(26, 9), lShldr = p(20, 16), rShldr = p(32, 16), hip = p(26, 28)
+            StrengthFigureKit.headNeck(ctx, head: headC, shoulder: p(26, 15), color: body, s: s)
+            StrengthFigureKit.limb(ctx, [lShldr, rShldr], color: body, s: s)        // ligne d'épaules
+            StrengthFigureKit.limb(ctx, [p(26, 15), hip], color: body, s: s)        // tronc
+            StrengthFigureKit.limb(ctx, [hip, p(20, 44)], color: body, s: s)        // jambe G
+            StrengthFigureKit.limb(ctx, [hip, p(32, 44)], color: body, s: s)        // jambe D
 
-            // Bras : coude reste HAUT près de la tête (signature triceps), avant-bras pivote
-            // de derrière la nuque (plié) vers le haut (tendu). Haltère tenu à 2 mains au bout.
-            let elbow = p(25, 6)                       // coude au-dessus de la tête (fixe)
-            let hand = p(L(30, 26, ext), L(14, 1, ext)) // derrière-bas → haut
-            StrengthFigureKit.limb(ctx, [shldr, elbow, hand], color: body, s: s)
+            // Les 2 mains se rejoignent au centre sur l'haltère : bas derrière la tête (frame 0)
+            // → tout en haut bras tendus (frame 2). Coudes restent hauts près de la tête.
+            let hand: CGPoint = frame == 0 ? p(26, 16) : (frame == 1 ? p(26, 8) : p(26, 1))
+            // Coudes SERRÉS près de la tête (signature triceps), pas un « V de la victoire ».
+            let lElbow = p(22, 5), rElbow = p(30, 5)
+            StrengthFigureKit.limb(ctx, [lShldr, lElbow, hand], color: body, s: s)
+            StrengthFigureKit.limb(ctx, [rShldr, rElbow, hand], color: body, s: s)
             StrengthFigureKit.dumbbell(ctx, center: hand, s: s)
 
-            // Flèche d'extension vers le haut
-            if frame >= 1 {
-                var up = Path()
-                up.move(to: p(36, 18)); up.addLine(to: p(36, 8))
-                up.move(to: p(36, 8)); up.addLine(to: p(33, 11))
-                up.move(to: p(36, 8)); up.addLine(to: p(39, 11))
-                ctx.stroke(up, with: .color(IllustrationStyle.movementArrow),
-                           style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
-            }
+            // Flèche montante unique, à droite (n'empiète pas sur le corps).
+            var up = Path()
+            up.move(to: p(40, 17)); up.addLine(to: p(40, 4))
+            up.move(to: p(40, 4)); up.addLine(to: p(37, 7))
+            up.move(to: p(40, 4)); up.addLine(to: p(43, 7))
+            ctx.stroke(up, with: .color(IllustrationStyle.movementArrow),
+                       style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)
     }
