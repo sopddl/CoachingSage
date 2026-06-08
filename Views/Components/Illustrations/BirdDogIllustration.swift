@@ -53,7 +53,7 @@ struct BirdDogIllustration: View {
             // à plat il se confondait avec le tronc). Part de l'épaule, monte vers l'avant.
             var frontArm = Path()
             frontArm.move(to: CGPoint(x: 44 * s, y: 28 * s))
-            frontArm.addLine(to: CGPoint(x: 66 * s, y: 19 * s))
+            frontArm.addLine(to: CGPoint(x: 67 * s, y: 23 * s))
             ctx.stroke(frontArm, with: .color(silhouette), style: stroke)
 
             // Genou d'appui (bassin → genou → tibia au sol)
@@ -71,7 +71,7 @@ struct BirdDogIllustration: View {
             // à plat elle se confondait avec le tronc). Part du bassin, monte vers l'arrière.
             var backLeg = Path()
             backLeg.move(to: CGPoint(x: 28 * s, y: 28 * s))
-            backLeg.addLine(to: CGPoint(x: 8 * s, y: 19 * s))
+            backLeg.addLine(to: CGPoint(x: 7 * s, y: 23 * s))
             ctx.stroke(backLeg, with: .color(silhouette), style: stroke)
 
             // Flèches d'extension aux extrémités relevées (bras avant-haut, jambe arrière-haut)

@@ -47,44 +47,44 @@ struct CoreIllustration: View {
         ctx.stroke(ground, with: .color(IllustrationStyle.groundLine),
                    style: StrokeStyle(lineWidth: 1 * s, dash: [2 * s, 2 * s]))
 
-        // Revue Sophie 2026-06-08 : corps + jambes = UNE ligne droite (gainage), pas de
-        // « pliure » de jambe. Tête haut-droite sur l'avant-bras, corps qui descend
-        // tout droit jusqu'aux orteils au sol (pieds = bout de la ligne, pas un segment plié).
-        let shoulder = CGPoint(x: 54 * s, y: 26 * s)
-        let hip = CGPoint(x: 34 * s, y: 31 * s)
-        let toes = CGPoint(x: 14 * s, y: 40 * s)
+        // Revue Sophie/Sally/Maxime 2026-06-08 (round 2) : la planche doit être BASSE et
+        // HORIZONTALE (gainée), proche du sol → appuis COURTS (pas de « jambe pliée » ni de
+        // « rampe »). Corps épaule→bassin→talons à plat (même hauteur), juste au-dessus du sol.
+        let bodyY: CGFloat = 32 * s
+        let shoulder = CGPoint(x: 52 * s, y: bodyY)
+        let heel = CGPoint(x: 16 * s, y: bodyY)
 
-        // Tête (devant l'épaule, regard vers le sol)
+        // Tête (devant l'épaule, regard vers le sol-avant)
         let headSize: CGFloat = 6 * s
-        let headC = CGPoint(x: 61 * s, y: 25 * s)
+        let headC = CGPoint(x: 60 * s, y: bodyY - 1 * s)
         ctx.stroke(Path(ellipseIn: CGRect(x: headC.x - headSize / 2, y: headC.y - headSize / 2,
                                           width: headSize, height: headSize)),
                    with: .color(body), style: stroke)
 
-        // Corps + jambes : épaule → bassin → orteils (une seule droite, gainée)
+        // Corps + jambes : épaule → talons, HORIZONTAL (gainé)
         var line = Path()
-        line.move(to: CGPoint(x: headC.x - headSize / 2, y: headC.y + 1 * s))
+        line.move(to: CGPoint(x: headC.x - headSize / 2, y: bodyY))
         line.addLine(to: shoulder)
-        line.addLine(to: hip)
-        line.addLine(to: toes)
+        line.addLine(to: heel)
         ctx.stroke(line, with: .color(body), style: stroke)
-        // Orteils au sol (petit retour)
-        var toesTip = Path()
-        toesTip.move(to: toes)
-        toesTip.addLine(to: CGPoint(x: toes.x - 4 * s, y: 40 * s))
-        ctx.stroke(toesTip, with: .color(body), style: stroke)
 
-        // Avant-bras d'appui : épaule → coude au sol → main (vertical sous l'épaule)
+        // Avant-bras d'appui COURT sous l'épaule (coude au sol → main vers l'avant)
         var forearm = Path()
         forearm.move(to: shoulder)
         forearm.addLine(to: CGPoint(x: shoulder.x, y: 40 * s))
-        forearm.addLine(to: CGPoint(x: shoulder.x - 8 * s, y: 40 * s))
+        forearm.addLine(to: CGPoint(x: shoulder.x + 7 * s, y: 40 * s))
         ctx.stroke(forearm, with: .color(body), style: stroke)
 
-        // Ligne d'alignement pointillée le long du corps (épaule → orteils)
+        // Orteils en appui COURT (talon → pointe au sol)
+        var toes = Path()
+        toes.move(to: heel)
+        toes.addLine(to: CGPoint(x: heel.x - 3 * s, y: 40 * s))
+        ctx.stroke(toes, with: .color(body), style: stroke)
+
+        // Ligne d'alignement pointillée le long du corps (gainage droit)
         var alignment = Path()
-        alignment.move(to: CGPoint(x: shoulder.x + 2 * s, y: shoulder.y - 3 * s))
-        alignment.addLine(to: CGPoint(x: toes.x + 2 * s, y: toes.y - 3 * s))
+        alignment.move(to: CGPoint(x: shoulder.x + 2 * s, y: bodyY - 4 * s))
+        alignment.addLine(to: CGPoint(x: heel.x, y: bodyY - 4 * s))
         ctx.stroke(alignment, with: .color(IllustrationStyle.movementArrow),
                    style: StrokeStyle(lineWidth: 1.2 * s, dash: [3 * s, 2 * s]))
     }
@@ -153,31 +153,19 @@ struct CoreIllustration: View {
         forearm.addLine(to: CGPoint(x: handX, y: handY))
         ctx.stroke(forearm, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
 
-        // Bras LIBRE tendu vers le CIEL (signature side plank) — revue Sophie 2026-06-08 :
-        // « on voit pas assez le bras qui se lève » → bras long, bien vertical, main nette.
-        let armTop = CGPoint(x: shoulderX + 3 * s, y: 4 * s)
+        // Bras LIBRE tendu vers le CIEL (signature side plank). Revue 2026-06-08 (round 2) :
+        // Sally « flèche + rotation = bruit » → retirées. Bras simple, long, bien vertical,
+        // partant de l'épaule HAUTE (sous la tête) — sans cercle qui ressemble à une rotation.
+        let armTop = CGPoint(x: shoulderX + 2 * s, y: 5 * s)
         var freeArm = Path()
         freeArm.move(to: CGPoint(x: shoulderX, y: shoulderY))
         freeArm.addLine(to: armTop)
         ctx.stroke(freeArm, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
-        // Main au bout (cercle visible)
-        let handSize: CGFloat = 4 * s
-        ctx.stroke(
-            Path(ellipseIn: CGRect(x: armTop.x - handSize / 2, y: armTop.y - handSize / 2,
-                                    width: handSize, height: handSize)),
-            with: .color(IllustrationStyle.silhouette(sportCode: sportCode)),
-            style: stroke
-        )
-        // Petite flèche « lève le bras » le long du bras
-        var armArrow = Path()
-        armArrow.move(to: CGPoint(x: armTop.x - 4 * s, y: armTop.y + 9 * s))
-        armArrow.addLine(to: CGPoint(x: armTop.x - 4 * s, y: armTop.y + 4 * s))
-        armArrow.move(to: CGPoint(x: armTop.x - 4 * s, y: armTop.y + 4 * s))
-        armArrow.addLine(to: CGPoint(x: armTop.x - 6 * s, y: armTop.y + 6 * s))
-        armArrow.move(to: CGPoint(x: armTop.x - 4 * s, y: armTop.y + 4 * s))
-        armArrow.addLine(to: CGPoint(x: armTop.x - 2 * s, y: armTop.y + 6 * s))
-        ctx.stroke(armArrow, with: .color(IllustrationStyle.movementArrow),
-                   style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
+        // Main au bout : court trait perpendiculaire (≠ cercle qui lit « rotation »)
+        var hand = Path()
+        hand.move(to: CGPoint(x: armTop.x - 2 * s, y: armTop.y))
+        hand.addLine(to: CGPoint(x: armTop.x + 2 * s, y: armTop.y))
+        ctx.stroke(hand, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
 
         // Ligne d'alignement pointillée tête → pieds (en diagonale)
         var alignment = Path()
