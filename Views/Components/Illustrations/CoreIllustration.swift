@@ -15,6 +15,10 @@ struct CoreIllustration: View {
 
     let sportCode: String
     var variant: Variant = .frontal
+    /// Revue dessins 2026-06-08 (Sally/Maxime) : les dessins au sol étaient figés à
+    /// `staticFrameSize` (≈80×48) → riquiqui/illisibles à côté des triplets debout. On
+    /// honore désormais une `size` (comme le POC yoga D4) pour remplir le cadre.
+    var size: CGFloat = IllustrationStyle.staticFrameSize.height
 
     var body: some View {
         Canvas { ctx, size in
@@ -28,8 +32,8 @@ struct CoreIllustration: View {
             case .lateral: drawLateral(ctx: ctx, s: s, stroke: stroke)
             }
         }
-        .frame(width: IllustrationStyle.staticFrameSize.width,
-               height: IllustrationStyle.staticFrameSize.height)
+        .frame(width: size * (IllustrationStyle.staticFrameSize.width / IllustrationStyle.staticFrameSize.height),
+               height: size)
     }
 
     // MARK: - Frontal plank

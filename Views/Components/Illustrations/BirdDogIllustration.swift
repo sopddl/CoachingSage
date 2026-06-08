@@ -7,6 +7,7 @@ import SwiftUI
 
 struct BirdDogIllustration: View {
     let sportCode: String
+    var size: CGFloat = IllustrationStyle.staticFrameSize.height // revue 2026-06-08 : scale (cf yoga)
 
     var body: some View {
         Canvas { ctx, size in
@@ -95,8 +96,8 @@ struct BirdDogIllustration: View {
             ctx.stroke(arrowBack, with: .color(IllustrationStyle.movementArrow),
                        style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round))
         }
-        .frame(width: IllustrationStyle.staticFrameSize.width,
-               height: IllustrationStyle.staticFrameSize.height)
+        .frame(width: size * (IllustrationStyle.staticFrameSize.width / IllustrationStyle.staticFrameSize.height),
+               height: size)
     }
 }
 

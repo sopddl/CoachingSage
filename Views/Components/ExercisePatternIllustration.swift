@@ -38,7 +38,7 @@ struct ExercisePatternIllustration: View {
     private var staticIllustration: some View {
         switch pattern {
         case .core:
-            CoreIllustration(sportCode: sportCode, variant: coreVariant)
+            CoreIllustration(sportCode: sportCode, variant: coreVariant, size: min(size, 176))
         case .mobility:
             MobilityIllustration(sportCode: sportCode)
         case .yoga:
@@ -47,11 +47,11 @@ struct ExercisePatternIllustration: View {
             // tous les iPhone (≥ 320 pt). Timeline (size 48 par défaut) → inchangée.
             YogaIllustration(sportCode: sportCode, exerciseName: exerciseName, size: min(size, 176))
         case .forearmPlank:
-            ForearmPlankIllustration(sportCode: sportCode)
+            ForearmPlankIllustration(sportCode: sportCode, size: min(size, 176))
         case .birdDog:
-            BirdDogIllustration(sportCode: sportCode)
+            BirdDogIllustration(sportCode: sportCode, size: min(size, 176))
         case .foamRolling:
-            FoamRollingIllustration(sportCode: sportCode)
+            FoamRollingIllustration(sportCode: sportCode, size: min(size, 176))
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels connus (running, cycling, swim continu).
