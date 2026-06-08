@@ -49,10 +49,11 @@ struct BirdDogIllustration: View {
             supportHand.addLine(to: CGPoint(x: 47 * s, y: 44 * s))
             ctx.stroke(supportHand, with: .color(silhouette), style: stroke)
 
-            // Bras TENDU avant droit (signature — horizontal vers la droite)
+            // Bras TENDU avant (signature) — RELEVÉ vers l'avant-haut (revue Sophie 2026-06-08 :
+            // à plat il se confondait avec le tronc). Part de l'épaule, monte vers l'avant.
             var frontArm = Path()
-            frontArm.move(to: CGPoint(x: 43 * s, y: 28 * s))
-            frontArm.addLine(to: CGPoint(x: 66 * s, y: 28 * s))
+            frontArm.move(to: CGPoint(x: 44 * s, y: 28 * s))
+            frontArm.addLine(to: CGPoint(x: 66 * s, y: 19 * s))
             ctx.stroke(frontArm, with: .color(silhouette), style: stroke)
 
             // Genou d'appui (bassin → genou → tibia au sol)
@@ -66,35 +67,29 @@ struct BirdDogIllustration: View {
             supportFoot.addLine(to: CGPoint(x: 33 * s, y: 44 * s))
             ctx.stroke(supportFoot, with: .color(silhouette), style: stroke)
 
-            // Jambe TENDUE arrière gauche (signature — horizontal vers la gauche)
+            // Jambe TENDUE arrière (signature) — RELEVÉE vers l'arrière-haut (même logique :
+            // à plat elle se confondait avec le tronc). Part du bassin, monte vers l'arrière.
             var backLeg = Path()
-            backLeg.move(to: CGPoint(x: 27 * s, y: 28 * s))
-            backLeg.addLine(to: CGPoint(x: 8 * s, y: 28 * s))
+            backLeg.move(to: CGPoint(x: 28 * s, y: 28 * s))
+            backLeg.addLine(to: CGPoint(x: 8 * s, y: 19 * s))
             ctx.stroke(backLeg, with: .color(silhouette), style: stroke)
-            // Pied flexion plantaire arrière
-            var backFoot = Path()
-            backFoot.move(to: CGPoint(x: 8 * s, y: 28 * s))
-            backFoot.addLine(to: CGPoint(x: 6 * s, y: 26 * s))
-            ctx.stroke(backFoot, with: .color(silhouette), style: stroke)
 
-            // Annotations flèches orange aux extrémités (extension active)
+            // Flèches d'extension aux extrémités relevées (bras avant-haut, jambe arrière-haut)
             var arrowFront = Path()
-            arrowFront.move(to: CGPoint(x: 60 * s, y: 24 * s))
-            arrowFront.addLine(to: CGPoint(x: 66 * s, y: 24 * s))
-            arrowFront.move(to: CGPoint(x: 64 * s, y: 22 * s))
-            arrowFront.addLine(to: CGPoint(x: 66 * s, y: 24 * s))
-            arrowFront.addLine(to: CGPoint(x: 64 * s, y: 26 * s))
+            arrowFront.move(to: CGPoint(x: 68 * s, y: 17 * s))
+            arrowFront.addLine(to: CGPoint(x: 64 * s, y: 17 * s))
+            arrowFront.move(to: CGPoint(x: 68 * s, y: 17 * s))
+            arrowFront.addLine(to: CGPoint(x: 68 * s, y: 21 * s))
             ctx.stroke(arrowFront, with: .color(IllustrationStyle.movementArrow),
-                       style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round))
+                       style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
 
             var arrowBack = Path()
-            arrowBack.move(to: CGPoint(x: 14 * s, y: 24 * s))
-            arrowBack.addLine(to: CGPoint(x: 8 * s, y: 24 * s))
-            arrowBack.move(to: CGPoint(x: 10 * s, y: 22 * s))
-            arrowBack.addLine(to: CGPoint(x: 8 * s, y: 24 * s))
-            arrowBack.addLine(to: CGPoint(x: 10 * s, y: 26 * s))
+            arrowBack.move(to: CGPoint(x: 6 * s, y: 17 * s))
+            arrowBack.addLine(to: CGPoint(x: 10 * s, y: 17 * s))
+            arrowBack.move(to: CGPoint(x: 6 * s, y: 17 * s))
+            arrowBack.addLine(to: CGPoint(x: 6 * s, y: 21 * s))
             ctx.stroke(arrowBack, with: .color(IllustrationStyle.movementArrow),
-                       style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round))
+                       style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
         }
         .frame(width: size * (IllustrationStyle.staticFrameSize.width / IllustrationStyle.staticFrameSize.height),
                height: size)
