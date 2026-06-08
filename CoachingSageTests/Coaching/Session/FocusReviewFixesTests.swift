@@ -89,4 +89,21 @@ final class FocusReviewFixesTests: XCTestCase {
         XCTAssertEqual(pattern("External rotation à la bande"), .ytwActivation)
         XCTAssertEqual(pattern("Lateral bound"), .plyo)
     }
+
+    // Bug HIIT work:rest (2026-06-08) : « 30 sec work + 20 sec rest » doit donner (30, 20)
+    // → circuitPhases (repos distinct), pas 2 phases work.
+    func test_hiit_workRest_plusFormat() {
+        let ex = AdaptedExercise(name: LocalizedText(fr: "Tabata"), originalName: "tabata",
+                                 sets: 8, duration: "30 sec work + 20 sec rest")
+        let wr = SessionTimerPhaseBuilder.workRest(from: ex)
+        XCTAssertEqual(wr?.work, 30)
+        XCTAssertEqual(wr?.rest, 20)
+    }
+    func test_hiit_workRest_slashFormat_stillWorks() {
+        let ex = AdaptedExercise(name: LocalizedText(fr: "40/20"), originalName: "x",
+                                 sets: 8, duration: "40/20")
+        let wr = SessionTimerPhaseBuilder.workRest(from: ex)
+        XCTAssertEqual(wr?.work, 40)
+        XCTAssertEqual(wr?.rest, 20)
+    }
 }

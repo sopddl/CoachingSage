@@ -157,16 +157,20 @@ enum SessionTimerPhaseBuilder {
             return out
         }
 
-        // Run/walk : 1 exo, sets>=2, durée multi-segments (« + ») → segments alternés.
+        // 1 exo, sets>=2, durée multi-bornes → circuit HIIT (work/rest) ou run/walk.
         if exoSteps.count == 1, case .exercise(let ex) = exoSteps[0].kind,
            let sets = ex.sets, sets >= 2 {
+            // Circuit HIIT work/rest (« 40/20 » OU « 30 sec work + 20 sec rest ») répété.
+            // Bug HIIT 2026-06-08 : le format « + work/rest » tombait dans runWalkSegments →
+            // la phase REST était classée .generic → rendue comme du WORK (repos joué comme
+            // effort, pas de « repos »). workRest gère les 2 formats et passe AVANT
+            // runWalkSegments (réservé aux vrais segments course/marche).
+            if let wr = workRest(from: ex) {
+                return circuitPhases(step: exoSteps[0], work: wr.work, rest: wr.rest, rounds: sets, next: next)
+            }
             let segs = SessionDurationParser.segments(ex.duration)
             if segs.count >= 2 {
                 return runWalkSegments(step: exoSteps[0], sets: sets, segments: segs, next: next)
-            }
-            // Circuit HIIT work/rest (« 40/20 ») répété.
-            if let wr = workRest(from: ex) {
-                return circuitPhases(step: exoSteps[0], work: wr.work, rest: wr.rest, rounds: sets, next: next)
             }
         }
 
@@ -276,13 +280,26 @@ enum SessionTimerPhaseBuilder {
         return .generic
     }
 
-    /// (work, rest) depuis `duration` "40/20" / "1 min / 30 sec". nil si pas de « / ».
+    /// (work, rest) depuis `duration`. Gère « 40/20 » / « 1 min / 30 sec » (séparateur « / »)
+    /// ET « 30 sec work + 20 sec rest » (segments étiquetés work/rest, HIIT). nil sinon.
     static func workRest(from ex: AdaptedExercise) -> (work: Int, rest: Int)? {
         guard let d = ex.duration else { return nil }
+        // Format « / » : 2 bornes.
         let parts = d.split(separator: "/")
-        guard parts.count == 2,
-              let w = SessionDurationParser.seconds(String(parts[0])),
-              let r = SessionDurationParser.seconds(String(parts[1])) else { return nil }
-        return (w, r)
+        if parts.count == 2,
+           let w = SessionDurationParser.seconds(String(parts[0])),
+           let r = SessionDurationParser.seconds(String(parts[1])) {
+            return (w, r)
+        }
+        // Format « N work + N rest » (HIIT) : segments étiquetés effort/repos.
+        let segs = SessionDurationParser.segments(d)
+        if segs.count >= 2 {
+            func isWork(_ s: String?) -> Bool { let l = (s ?? "").lowercased(); return l.contains("work") || l.contains("effort") || l.contains("travail") }
+            func isRest(_ s: String?) -> Bool { let l = (s ?? "").lowercased(); return l.contains("rest") || l.contains("repos") || l.contains("récup") || l.contains("recup") }
+            if let w = segs.first(where: { isWork($0.label) }), let r = segs.first(where: { isRest($0.label) }) {
+                return (max(w.seconds, 1), max(r.seconds, 1))
+            }
+        }
+        return nil
     }
 }
