@@ -49,6 +49,13 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
     case woodchopper     // 3 frames — câble diagonal haut→bas (coup de hache)
     case pullover        // 3 frames — allongé banc, haltère arc derrière tête → poitrine
 
+    // Party illustrations 2026-06-08 — lot muscu machines (trous .generic confirmés au dump)
+    case cableFly        // 3 frames — écarté poulie/pec deck, bras ouvrent→ferment devant
+    case legExtension    // 3 frames — assis machine, jambes tendent (quadriceps)
+    case legCurl         // 3 frames — allongé machine, talons fléchissent (ischios)
+    case legPress        // 3 frames — assis incliné, jambes poussent le chariot
+    case reverseHyper    // 3 frames — buste sur banc, jambes montent à l'horizontale (lombaires)
+
     // Running (3 cases dont 1 statique)
     case runEndurance
     case runInterval

@@ -199,6 +199,24 @@ public enum ExercisePatternResolver {
     static func patternFromKeyword(in name: String) -> ExercisePattern? {
         let lower = name.lowercased()
 
+        // Party illustrations 2026-06-08 — lot muscu machines (placé EN TÊTE = noms d'exos
+        // très spécifiques « machine », pas de collision avec les keywords génériques en dessous).
+        if matchesAny(lower, ["cable fly", "chest fly", "cable chest fly", "pec deck", "écarté poulie", "ecarte poulie"]) {
+            return .cableFly
+        }
+        if matchesAny(lower, ["leg extension", "leg-extension"]) {
+            return .legExtension
+        }
+        if matchesAny(lower, ["leg curl", "leg-curl"]) {
+            return .legCurl
+        }
+        if matchesAny(lower, ["leg press", "leg-press", "presse à cuisses", "presse a cuisses"]) {
+            return .legPress
+        }
+        if matchesAny(lower, ["reverse hyper", "reverse hyperextension", "hyperextension inversée", "hyperextension inversee"]) {
+            return .reverseHyper
+        }
+
         // Strength keywords (ordre = du plus spécifique au plus générique)
         // Story 3.23 Tier 1 Jalon 2 — pattern dédié `.hipThrust` (créé Jalon 2).
         // Mapping initial Jalon 1 vers `.hinge` annulé.
@@ -271,7 +289,8 @@ public enum ExercisePatternResolver {
         }
         // Story 3.23 — fix bug "Foam rolling tombe .generic" : ajout des keywords
         // "foam" / "rolling" / "rouleau" pour mapper sur `.mobility`.
-        if matchesAny(lower, ["étirement", "etirement", "stretch", "mobility", "mobilité", "mobilite", "foam", "rolling", "rouleau"]) {
+        if matchesAny(lower, ["étirement", "etirement", "stretch", "mobility", "mobilité", "mobilite", "foam", "rolling", "rouleau",
+                              "controlled articular", "shoulder cars", "scapular cars"]) {
             return .mobility
         }
         // Story 3.23 Lot 5 — patterns moyenne fréquence

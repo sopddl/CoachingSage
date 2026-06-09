@@ -101,6 +101,17 @@ public enum SessionTipCatalog {
             return "coaching.tip.pallofPress"
         case .pullover:
             return "coaching.tip.pull.vertical"
+        // Party illustrations 2026-06-08 — lot muscu machines (réutilise tips proches, pas de nouvelle i18n) :
+        case .cableFly:
+            return "coaching.tip.push.horizontal"   // isolation pectoraux
+        case .legExtension:
+            return "coaching.tip.squat"              // quadriceps
+        case .legCurl:
+            return "coaching.tip.hinge"              // ischio-jambiers / chaîne postérieure
+        case .legPress:
+            return "coaching.tip.squat"              // quads + fessiers compound
+        case .reverseHyper:
+            return "coaching.tip.hipThrust"          // fessiers + lombaires postérieurs
         case .generic:
             return nil
         }
