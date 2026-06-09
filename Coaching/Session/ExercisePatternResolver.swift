@@ -46,6 +46,11 @@ public enum ExercisePatternResolver {
         //   → ce sont des postures yoga, elles rendent la figure yoga.
         if lowerName.contains("salabhasana") || lowerName.contains("sauterelle")
             || lowerName.contains("bakasana") { return .yoga }
+        // Party illustrations 2026-06-08 — asanas avancées dont le NOM contient un mot
+        // strength/mobility (plank, étirement…) qui les détournerait vers .core/.mobility
+        // avant le fallback sport yoga. Noms yoga-exclusifs → force .yoga (zéro risque autres sports).
+        if lowerName.contains("phalakasana") || lowerName.contains("uttana padasana")
+            || lowerName.contains("purvottanasana") || lowerName.contains("utthita hasta") { return .yoga }
         // FIFA 11+ « The Bench » = GAINAGE (planche), PAS un développé couché ; « Sideways
         // Bench » = side plank. On exclut le vrai « bench press »/« développé » (→ pushHorizontal).
         if lowerName.contains("bench") && !lowerName.contains("press") && !lowerName.contains("développé") {
