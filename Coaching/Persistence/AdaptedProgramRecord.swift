@@ -109,6 +109,17 @@ final class AdaptedProgramRecord {
         set { exerciseLevelsJsonData = (try? JSONEncoder().encode(newValue)) ?? Data() }
     }
 
+    /// **Chantier charge muscu V2 (increment 2, décision B)** — `ExerciseWeightState`
+    /// sérialisé : poids NOTÉ par l'user (kg réel) par exo (clé = stableMatchKey). Même
+    /// pattern lightweight que `exerciseLevels` (default `Data()` → `.empty`, migration
+    /// sans crash). PRÉSERVÉ au renouvellement de cycle (le rappel « dernière fois » doit
+    /// survivre). L'app ne prescrit jamais : ce champ ne contient que ce que l'user a saisi.
+    private var exerciseWeightsJsonData: Data = Data()
+    var exerciseWeights: ExerciseWeightState {
+        get { (try? JSONDecoder().decode(ExerciseWeightState.self, from: exerciseWeightsJsonData)) ?? .empty }
+        set { exerciseWeightsJsonData = (try? JSONEncoder().encode(newValue)) ?? Data() }
+    }
+
     var isActive: Bool                          // false = archivé (programme terminé/abandonné)
     var archivedAt: Date?                       // timestamp d'archivage, nil tant qu'`isActive`
 

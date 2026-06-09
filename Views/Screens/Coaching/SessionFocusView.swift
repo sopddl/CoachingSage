@@ -36,6 +36,11 @@ struct SessionFocusView: View {
     @State private var voiceGuide: SessionVoiceGuide?
     // Story 3.35d — toggle son (le sélecteur H/F vit désormais dans le profil).
     @AppStorage(SessionVoicePrefs.enabledKey) private var voiceEnabled = true
+    // Chantier charge muscu V2 (increment 2, décision B) — poids NOTÉ par l'user, par exo
+    // (clé = originalName). `notedWeights` = valeur éditable courante ; `lastWeights` =
+    // ancre « dernière fois » figée au chargement (rappel). L'app ne prescrit jamais.
+    @State private var notedWeights: [String: Double] = [:]
+    @State private var lastWeights: [String: Double] = [:]
     private let resolvedSportCode: String
     private let executionMode: SessionExecutionMode
 
@@ -92,6 +97,7 @@ struct SessionFocusView: View {
             }
         }
         .background(Color.coachingBackground.ignoresSafeArea())
+        .task { await loadNotedWeights() }
         .onChange(of: viewModel.completedCount) { old, new in
             handleCompletionChange(old: old, new: new)
         }
@@ -290,6 +296,7 @@ struct SessionFocusView: View {
 
         metricsRow(ex)
         chargeGuidance(for: ex)
+        weightNote(for: ex)
 
         if let notes = ex.notes?.resolved(locale), !notes.isEmpty {
             BulletedNotes(text: notes, font: .callout)
@@ -358,6 +365,96 @@ struct SessionFocusView: View {
             .font(.caption)
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
+    }
+
+    /// Pas du stepper poids. 0,5 kg (décision Sophie 2026-06-09) : granularité fine qui
+    /// couvre tout le matériel (barre/haltères/machines/légers) ; l'auto-repeat du stepper
+    /// natif évite la pénalité de taps pour atteindre une charge élevée.
+    private static let weightStep: Double = 0.5
+
+    /// Chantier charge muscu V2 — increment 2 (décision B). Champ « poids noté » optionnel,
+    /// UNIQUEMENT sur les exos chargés (`.freeOrMachine`). Stepper ± 0,5 kg sans clavier
+    /// (auto-repeat natif au maintien), pré-rempli sur la dernière valeur, vide si jamais noté.
+    /// L'app NE PRESCRIT JAMAIS : c'est l'user qui saisit (EU MDR). Rappel « dernière fois »
+    /// ancré sur la valeur au chargement. Jamais « 0 kg » (ramené à 0 → effacé → `—`).
+    @ViewBuilder
+    private func weightNote(for ex: AdaptedExercise) -> some View {
+        if ChargeGuidance.resistance(for: ex, isStrength: isStrengthSession) == .freeOrMachine {
+            let key = ex.originalName
+            let current = notedWeights[key]
+            VStack(alignment: .leading, spacing: 2) {
+                Stepper {
+                    HStack(spacing: 6) {
+                        Image(systemName: "scalemass")
+                        Text("coaching.dosage.charge.log")
+                        Spacer(minLength: 8)
+                        // Vide = rien affiché (« sinon vide ») : un « — » ici se confond avec
+                        // le « − » du stepper. Le poids n'apparaît qu'une fois saisi.
+                        if let current {
+                            Text(verbatim: formatKg(current))
+                                .font(.callout.weight(.semibold))
+                                .foregroundStyle(Color.coachingPrimary)
+                                .accessibilityIdentifier("coaching.session.focus.weightNote.value")
+                        }
+                    }
+                } onIncrement: {
+                    adjustWeight(for: key, to: (current ?? lastWeights[key] ?? 0) + Self.weightStep)
+                } onDecrement: {
+                    guard let c = current else { return } // rien sous « — »
+                    adjustWeight(for: key, to: c - Self.weightStep)
+                }
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .accessibilityIdentifier("coaching.session.focus.weightNote")
+                if let last = lastWeights[key] {
+                    Text("coaching.dosage.charge.lastTime \(formatKg(last))")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
+    }
+
+    /// Formate un poids pour l'affichage selon la locale in-app (« 12,5 kg » / « 12.5 kg »),
+    /// sans décimale superflue (« 40 kg » et non « 40,0 kg »).
+    private func formatKg(_ value: Double) -> String {
+        let nf = NumberFormatter()
+        nf.locale = locale
+        nf.numberStyle = .decimal
+        nf.minimumFractionDigits = 0
+        nf.maximumFractionDigits = 1
+        let num = nf.string(from: value as NSNumber) ?? "\(value)"
+        return "\(num) kg"
+    }
+
+    /// Applique un nouveau poids (clampé 0…300). `≤ 0` → efface (jamais « 0 kg »).
+    private func adjustWeight(for key: String, to value: Double) {
+        let clamped = min(value, 300)
+        if clamped <= 0 {
+            notedWeights[key] = nil
+            persistWeight(key: key, kg: nil)
+        } else {
+            notedWeights[key] = clamped
+            persistWeight(key: key, kg: clamped)
+        }
+    }
+
+    /// Charge les poids notés du programme (pré-remplissage stepper + ancre « dernière fois »).
+    /// No-op hors muscu ou en preview/fixture (recordId/deps nil) : le stepper reste éditable
+    /// en local pour le test visuel, juste sans persistance.
+    private func loadNotedWeights() async {
+        guard isStrengthSession, let recordId, let deps else { return }
+        let svc = ExerciseWeightService(repository: deps.adaptedProgramRepository)
+        if let state = try? await svc.currentWeights(recordId: recordId) {
+            lastWeights = state.weights
+            notedWeights = state.weights
+        }
+    }
+
+    private func persistWeight(key: String, kg: Double?) {
+        guard let recordId, let deps else { return }
+        let svc = ExerciseWeightService(repository: deps.adaptedProgramRepository)
+        Task { try? await svc.recordWeight(recordId: recordId, exerciseKey: key, kg: kg) }
     }
 
     private func chip<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
@@ -673,6 +770,8 @@ struct SessionFocusView: View {
                                     chargeGuidance(for: ex)
                                         .multilineTextAlignment(.center)
                                         .padding(.top, 2)
+                                    weightNote(for: ex)
+                                        .padding(.top, 2)
                                 }
                             }
                             chronoFilet
@@ -684,6 +783,8 @@ struct SessionFocusView: View {
                             if isStrengthSession, phase.kind == .work, let ex = exercise(at: phase.stepIndex) {
                                 chargeGuidance(for: ex)
                                     .multilineTextAlignment(.center)
+                                    .padding(.top, 2)
+                                weightNote(for: ex)
                                     .padding(.top, 2)
                             }
                         }
