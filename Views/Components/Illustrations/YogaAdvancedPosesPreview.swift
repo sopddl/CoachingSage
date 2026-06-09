@@ -7,11 +7,12 @@ import SwiftUI
 
 #Preview("Yoga — 17 asanas avancées") {
     let poses: [String] = [
-        // contrôle des poses du bas non reconfirmées
-        "Karnapidasana (Genoux aux oreilles)", "Garbha Pindasana (Embryon)",
-        "Ardha Baddha Padmottanasana (Demi-lotus debout)", "Utthita Hasta Padangusthasana",
-        "Kapotasana (Pigeon royal)", "Padahastasana (Mains sous pieds)",
-        "Dhanurasana (Arc)", "Uttana Padasana"
+        "Salabhasana (Sauterelle)", "Ustrasana (Chameau)", "Dhanurasana (Arc)",
+        "Phalakasana (Plank)", "Upavistha Konasana A+B", "Bakasana (Crow)",
+        "Purvottanasana", "Uttana Padasana", "Prasarita Padottanasana A-D",
+        "Padahastasana (Mains sous pieds)", "Ardha Matsyendrasana", "Kapotasana (Pigeon royal)",
+        "Bhujapidasana (Pression épaule)", "Garbha Pindasana (Embryon)", "Karnapidasana (Genoux aux oreilles)",
+        "Utthita Hasta Padangusthasana", "Ardha Baddha Padmottanasana (Demi-lotus debout)"
     ]
     return ScrollView {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 8) {
