@@ -1,6 +1,6 @@
 {
   "assumed_profile" : {
-    "fr" : "Athlète tenant 30 min de course ou 30 min de vélo, capable de nager 200 m en continu en piscine (côté favori). Possède : maillot, lunettes, bonnet, vélo de route correctement réglé, casque, chaussures de running. Accès piscine 25 m, route plate ou parcours sécurisé pour le vélo. Pas de pathologie cardiaque déclarée."
+    "fr" : "Athlète tenant 30 min de course ou 30 min de vélo, capable de nager 200 m en continu en piscine (côté favori). Possède : maillot, lunettes, bonnet, vélo de route correctement réglé, casque, chaussures de running. Accès piscine 25 m, route plate ou parcours sécurisé pour le vélo. Pas de problème cardiaque déclaré."
   },
   "default_objective" : {
     "fr" : "Terminer un triathlon sprint (750 m natation + 20 km vélo + 5 km course) avec transitions maîtrisées, en moins de 1h30 pour un niveau intermédiaire confortable"
@@ -15,7 +15,7 @@
     "fr" : "Progression construite sur 7 principes alignés Friel TTB 5e éd. (2024), USA Triathlon Brick Workouts Guide, Triathlete 12wk Sprint, BeginnerTriathlete 13wk Sprint, 80/20 Triathlon (Fitzgerald/Warden), Daniels VDOT (run), Coggan FTP (bike), Maglischo + Swim Smooth CSS (swim) :\n\n(1) PARALLÉLISME STRICT 3 DISCIPLINES (Friel) : chaque semaine contient au moins 1 séance swim + 1 bike + 1 run, jamais de bloc mono-discipline 2-4 sem. Distribution 6 sessions : 2 swim + 1 bike + 2 run + 1 S&C (W1-W3, no brick) → 2 swim + 1 bike + 1 run + 1 brick (mixed) + 1 S&C (W4-W12). 48h minimum entre 2 swim, 48h minimum entre run et brick (cumul ischio-jambier + tendon rotulien).\n\n(2) PROGRESSION VOLUME EN PARALLÈLE (h cumul effort sport-pur, hors warmup/cooldown courts) : W1 ≈3h15 (swim 50 min + bike 60 min + run 55 min + S&C 30 min) → W2 ≈3h40 → W3 ≈4h05 → W4 cutback ≈3h25 (intro brick light) → W5 ≈4h30 → W6 ≈4h45 → W7 ≈5h05 → W8 cutback ≈4h05 (-20%) → W9 PIC ≈6h00 (swim 1h35 + bike 2h30 incluant brick + run 1h05 incluant brick + S&C 30 min) → W10 ≈5h25 → W11 pre-race ≈3h45 (-30%) → W12 race week ≈3h00 hors course (-50% vs W10). Pic 6h cumul cohérent avec la fenêtre recreational sprint 5-7h/sem (Triathlete 12wk Sprint, BeginnerTriathlete Sprint Plus 13wk).\n\n(3) LONG WORKOUT PIC PAR DISCIPLINE (W9) : swim 1500 m continu (vs 750 m course = 200% over-distance, pour le confort jour J), bike 90 min ou 60 km (vs 20 km course = 300%, base aérobie + confort selle), run 45 min ou 8 km (vs 5 km course = 160%, le run est sur-stressé par le brick alors on cap le long run pur à 8 km). Ces longs sont compatibles fenêtre recreational §3.2 master prompt.\n\n(4) DISTRIBUTION INTENSITÉ ~85% LIT / ~15% HIT : pas de polarized strict 80/20 (volume insuffisant), mais l'esprit polarisé est respecté. Sweet spot bike (FTP-Z3 88-94%) introduit W3 (3×8 min) puis W5-W7 (3-4×10 min) puis W9-W10 (continu 20-30 min). Daniels-T (tempo seuil) introduit W3 (15 min) puis W5-W7 (20-25 min). Swim EN2 (CSS±0-3s) introduit W5 (6×100 m @CSS+5s récup 15s), pic W9 (8×100 m @CSS récup 10s). Aucun Daniels-I strict, aucun FTP-Z5 VO2max, aucun SP1 swim — public recreational, préservation tendineuse multi-discipline.\n\n(5) BRICK INTRODUIT W4 (USA Triathlon Brick Guide) : premier brick W4 = 35 min bike Z2 + 10 min run E (run TRÈS court pour focus sensation jambes en coton, pas perf). Progression : W4 35+10 → W5 45+15 → W6 50+15 → W7 55+18 → W8 cutback 45+12 → W9 PIC 60+20 → W10 55+18 → W11 40+12 (pré-race) → W12 race-week brick 20+5 (réveil neuro-musculaire J-3). Volume run en brick jamais > 30% du volume run hebdo. Sur la dernière 5 min bike avant T2, viser cadence 95-100 rpm (préparer transition fluide vers la course).\n\n(6) TRANSITIONS T1/T2 ENTRAÎNÉES (USA Triathlon) : à sec dès W3 en S&C (sortir maillot mouillé à plat, casque + chaussures bike, démarrer course en posant vélo), simulées pool-side dès W5 (sortie d'eau réelle puis T1 sur tapis bord bassin). Chronométrées dès W7 (objectif T1 < 2 min, T2 < 1 min 30). Simulation complète W9 J5 (séance phare brick 60+20 avec T1/T2 réelles), W11 J6 simulation 600 m + 18 km + 4 km, W12 J6 séance phare race-rehearsal puis course J7.\n\n(7) CUTBACKS W4 + W8 ET TAPER W11-W12 (Friel TTB 5e éd.) : cycle 3 build + 1 deload × 2 → peak W9-W10 → taper. Cutback W4 (-15-20% volume vs W3, intro brick light), cutback W8 (-20% vs W7, brick maintenu allégé). Taper J-14 (W11) : volume -30% vs W10, intensité courte maintenue (sweet spot 2×8 min, tempo 12 min, strides 4×80 m, sighting drill swim) pour préserver adaptations neuromusculaires. Taper J-7 (W12) : volume -50%, séances très courtes par discipline + brick court réveil J-3 + mobilité + visualisation J-1. JAMAIS de nouvelle nutrition / nouvelle combinaison / nouvelles chaussures les 14 derniers jours.\n\nZONES D'EFFORT — RAPPEL UNIVERSEL :\n• Run (Daniels VDOT) : Daniels-E = MP+1:00 à 1:30/km conversational (~65-75% FCmax, RPE 4-5). Daniels-T = 10K+15-30s/km, phrases courtes (~85-88% FCmax, RPE 7).\n• Bike (Coggan FTP) : FTP-Z2 56-75% endurance (~65-75% FCmax, RPE 3-4). FTP-Z3 76-90% tempo (~75-85% FCmax, RPE 5-6). Sweet-Spot 88-94% (~80-87% FCmax, RPE 6-7).\n• Swim (Maglischo CSS + Swim Smooth) : EN1 = CSS+8-12s/100m conversational (~70% FCmax). EN2 = CSS±0-3s/100m seuil aérobie (~80-85% FCmax). CSS pace = pace explicite threshold sustained.\n• S&C : RPE 6-7 préventif, RPE 7-8 force-endurance hors-saison."
   },
   "safety_notes" : {
-    "fr" : "DRAPEAUX ROUGES MULTI-DISCIPLINE (cumul charges) — STOP séance et consulte un professionnel de santé si symptômes persistent > 1 semaine :\n• Tendinopathie achille (talon) : risque accru en triathlon (bike SFR cadence basse + run rapide consécutif = double charge tendon). Calf raises excentriques 2×/sem dès W1 obligatoires (protocole Alfredson 1998). Glace 15 min post-séance si tension.\n• Tendinopathie ischio-jambier haute (sous-fessière) : run post-bike répété + position aéro vélo = raccourcissement chronique. Nordic curl assisté + single-leg deadlift préventifs dès W3. ATTENTION brick pic W9 (60+20) : si symptômes ischio post-W9 (douleur sous-fessière persistant > 48h ou irradiation cuisse postérieure) → reculer le brick suivant à 50+15 et retarder la progression d'1 sem.\n• ITBS (face externe genou, syndrome essuie-glace) : run post-bike prolongé, faiblesse abducteurs hanche. Clamshells dès W1 obligatoire.\n• Swimmer's shoulder (épaule sous-acromiale) : volume swim répétée + position vélo épaules en avant = double impingement. Y-T-W + external rotation band 1-2×/sem dès W2.\n• PFPS (douleur antérieure rotule) : selle vélo trop basse + run intensité. Bike fit basique dès W1, step-up + pont fessier en S&C.\n• Stress fracture tibiale (point précis très douloureux à la palpation, distinct des shin splints diffus) : arrêt total run, imagerie médicale.\n• Douleur articulaire genou > 2/10 ou 'claquement' épaule en swim : arrêt immédiat, glace, consultation kiné. Fatigue musculaire = OK, douleur articulaire = pas OK.\n• Antécédents cardiaques connus, > 50 ans débutant complet sans test effort cardio récent, grossesse / postpartum récent, asthme sévère, otites externes récurrentes (3+/12 mois) : consulte un médecin avant de commencer ce programme.\n\nOPEN WATER (eau libre) — plan principalement bassin, mais simulation eau libre possible W7-W10 si accès :\n• Hypothermie : eau < 16°C sans combinaison = risque vital sortie > 20 min. Combinaison quasi-obligatoire < 14°C, recommandée < 16°C, optionnelle 14-22°C, INTERDITE > 24°C (risque hyperthermie inverse).\n• Si tu utilises une combinaison le jour J : faire AU MOINS 2-3 sorties bassin avec combinaison W9-W10 pour t'habituer aux sensations (épaules plus raides, flottabilité accrue).\n• Coup de chaleur : swim eau > 28°C ou bike été > 30°C + déshydratation = céphalée, frissons paradoxaux, désorientation = STOP immédiat.\n• Panique respiratoire : prévisualiser plan d'eau, s'acclimater bassin avec combinaison W-2 à W-1, repère visuel obligatoire. En cas panique = roulé sur le dos, respiration calmée, lever bras pour assistance. JAMAIS seul en eau libre.\n\nSÉCURITÉ ROUTE BIKE :\n• Casque OBLIGATOIRE chaque sortie, sans exception. Ne JAMAIS rouler sans.\n• Éclairages avant/arrière en faible visibilité, gilet réfléchissant en hiver.\n• Vigilance trafic : pas d'écouteurs en environnement urbain, regard 360° aux intersections.\n• Bike fit : si douleur > 2 sorties consécutives → bike fit professionnel. Repère : genou flexion 25-30° en bas du pédalage, hanches stables sur la selle.\n\nTECHNIQUE / INTENSITÉ — RÈGLE DU RECREATIONAL :\n• Pacing par discipline : Daniels-E vs Daniels-T pour run (test parole : phrases complètes vs phrases courtes), FTP-Z2 vs Sweet-Spot pour bike (RPE 3-4 vs RPE 6-7), EN1 vs EN2 vs CSS pour swim (compter les coups bras / longueur, viser <22 par 25 m à allure EN2 d'ici W6).\n• Cadence vélo cible 85-95 rpm sur le plat, jamais < 65 rpm sur gros braquet (= tendinite genou). Sur 5 dernières min bike avant T2 : 95-100 rpm pour préparer T2.\n• Cadence run cible 170-180 pas/min, attaque médio-pied ou talon léger.\n• Brick : les 5-10 premières min de run post-bike sont inconfortables (jambes en coton — c'est physiologique, redistribution flux sanguin du bassin vers les jambes). Ne pas paniquer, ne pas ralentir au-delà du nécessaire. Cette sensation s'estompe avec la régularité brick.\n\nNUTRITION-HYDRATATION (sortie > 60 min, recreational) :\n• Bike 60-90 min : 1 bidon 500-750 ml + 30-45 g glucides/h (1 gel ou 1 barre). Gut training progressif si profil non habitué (démarrer 30 g/h, progresser sur 4-6 sem).\n• Hydratation post-séance : 500 ml + sodium dans l'heure suivante, plus en conditions chaudes.\n• Long ride W9 (90 min) : tester nutrition jour J (gel ou boisson glucidique). JAMAIS de nouvelle nutrition les 14 derniers jours / le jour J.\n• Repas pré-séance : 2h avant, glucides modérés, peu de fibres lourdes.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine cutback type W4 ou W8, refaire la semaine précédente avec volume -20%) :\n• FC repos +10 bpm chronique au réveil.\n• Sommeil dégradé > 3 nuits consécutives.\n• Courbatures persistantes > 72h après séance, toutes disciplines confondues.\n• Motivation effondrée 2+ semaines, irritabilité accrue.\n• Baisse de performance (sensation effort) sur 2 séances consécutives sans explication.\n• Immunité dégradée (rhumes répétés) — signal de surentraînement précoce.\n\nSI SÉANCE MANQUÉE :\n• < 5 jours : reprendre au jour suivant, compresser la semaine en réduisant 1 séance (priorité au brick + 1 swim).\n• 1-2 semaines : reprendre la semaine précédente.\n• > 2 semaines : reculer de 3 sem dans le plan. La course peut être reportée d'une saison si pause tombe dans les 4 dernières sem.\n• NE PAS remplacer une séance piscine par une séance vélo / course sans avis. Le cross-training maintient le cardio mais ne remplace pas l'adaptation locomotrice spécifique nage. La feel for the water se perd en 7-10 jours sans stimulus.\n\nÉQUIPEMENT MINIMAL :\n• Swim : maillot, lunettes, bonnet (assumés). Piscine 25m accessible.\n• Bike : casque (obligatoire), vélo de route bien réglé, 1-2 bidons 500 ml.\n• Run : chaussures running avec amorti correct (< 600 km).\n• Brick W4+ : transition-area-setup (sac, tapis, chaussures bike + run prêtes côte-à-côte), race-belt + elastic-laces dès W5."
+    "fr" : "À SURVEILLER — MULTI-DISCIPLINE (cumul charges) : si une gêne inhabituelle persiste, lève le pied et adapte.\n• Gêne au tendon d'Achille (talon) : risque accru en triathlon (bike SFR cadence basse + run rapide consécutif = double charge tendon). Calf raises excentriques 2×/sem dès W1 obligatoires. Glace 15 min post-séance si tension.\n• Gêne au tendon des ischio-jambiers (sous-fessière) : run post-bike répété + position aéro vélo = raccourcissement chronique. Nordic curl assisté + single-leg deadlift préventifs dès W3. ATTENTION brick pic W9 (60+20) : si gêne sous-fessière post-W9 (persistant > 48h ou irradiation cuisse postérieure) → reculer le brick suivant à 50+15 et retarder la progression d'1 sem.\n• Gêne sur la face externe du genou : run post-bike prolongé, faiblesse abducteurs hanche. Clamshells dès W1 obligatoire.\n• Gêne à l'épaule : volume swim répété + position vélo épaules en avant = sursollicitation. Y-T-W + external rotation band 1-2×/sem dès W2.\n• Gêne antérieure de la rotule : selle vélo trop basse + run intensité. Bike fit basique dès W1, step-up + pont fessier en S&C.\n• Gêne au tibia (point précis très sensible à la palpation, distinct d'une gêne diffuse) : arrêt total run.\n• Gêne articulaire au genou ou 'claquement' épaule en swim : arrêt immédiat, glace. Fatigue musculaire = OK, gêne articulaire = on lève le pied.\n\nOPEN WATER (eau libre) — plan principalement bassin, mais simulation eau libre possible W7-W10 si accès :\n• Hypothermie : eau < 16°C sans combinaison = risque vital sortie > 20 min. Combinaison quasi-obligatoire < 14°C, recommandée < 16°C, optionnelle 14-22°C, INTERDITE > 24°C (risque hyperthermie inverse).\n• Si tu utilises une combinaison le jour J : faire AU MOINS 2-3 sorties bassin avec combinaison W9-W10 pour t'habituer aux sensations (épaules plus raides, flottabilité accrue).\n• Coup de chaleur : swim eau > 28°C ou bike été > 30°C + déshydratation = céphalée, frissons paradoxaux, désorientation = STOP immédiat.\n• Panique respiratoire : prévisualiser plan d'eau, s'acclimater bassin avec combinaison W-2 à W-1, repère visuel obligatoire. En cas panique = roulé sur le dos, respiration calmée, lever bras pour assistance. JAMAIS seul en eau libre.\n\nSÉCURITÉ ROUTE BIKE :\n• Casque OBLIGATOIRE chaque sortie, sans exception. Ne JAMAIS rouler sans.\n• Éclairages avant/arrière en faible visibilité, gilet réfléchissant en hiver.\n• Vigilance trafic : pas d'écouteurs en environnement urbain, regard 360° aux intersections.\n• Bike fit : si douleur > 2 sorties consécutives → bike fit professionnel. Repère : genou flexion 25-30° en bas du pédalage, hanches stables sur la selle.\n\nTECHNIQUE / INTENSITÉ — RÈGLE DU RECREATIONAL :\n• Pacing par discipline : Daniels-E vs Daniels-T pour run (test parole : phrases complètes vs phrases courtes), FTP-Z2 vs Sweet-Spot pour bike (RPE 3-4 vs RPE 6-7), EN1 vs EN2 vs CSS pour swim (compter les coups bras / longueur, viser <22 par 25 m à allure EN2 d'ici W6).\n• Cadence vélo cible 85-95 rpm sur le plat, jamais < 65 rpm sur gros braquet (= gêne au genou). Sur 5 dernières min bike avant T2 : 95-100 rpm pour préparer T2.\n• Cadence run cible 170-180 pas/min, attaque médio-pied ou talon léger.\n• Brick : les 5-10 premières min de run post-bike sont inconfortables (jambes en coton — c'est physiologique, redistribution flux sanguin du bassin vers les jambes). Ne pas paniquer, ne pas ralentir au-delà du nécessaire. Cette sensation s'estompe avec la régularité brick.\n\nNUTRITION-HYDRATATION (sortie > 60 min, recreational) :\n• Bike 60-90 min : 1 bidon 500-750 ml + 30-45 g glucides/h (1 gel ou 1 barre). Gut training progressif si profil non habitué (démarrer 30 g/h, progresser sur 4-6 sem).\n• Hydratation post-séance : 500 ml + sodium dans l'heure suivante, plus en conditions chaudes.\n• Long ride W9 (90 min) : tester nutrition jour J (gel ou boisson glucidique). JAMAIS de nouvelle nutrition les 14 derniers jours / le jour J.\n• Repas pré-séance : 2h avant, glucides modérés, peu de fibres lourdes.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine cutback type W4 ou W8, refaire la semaine précédente avec volume -20%) :\n• FC repos +10 bpm chronique au réveil.\n• Sommeil dégradé > 3 nuits consécutives.\n• Courbatures persistantes > 72h après séance, toutes disciplines confondues.\n• Motivation effondrée 2+ semaines, irritabilité accrue.\n• Baisse de performance (sensation effort) sur 2 séances consécutives sans explication.\n• Immunité dégradée (rhumes répétés) — signal de surentraînement précoce.\n\nSI SÉANCE MANQUÉE :\n• < 5 jours : reprendre au jour suivant, compresser la semaine en réduisant 1 séance (priorité au brick + 1 swim).\n• 1-2 semaines : reprendre la semaine précédente.\n• > 2 semaines : reculer de 3 sem dans le plan. La course peut être reportée d'une saison si pause tombe dans les 4 dernières sem.\n• NE PAS remplacer une séance piscine par une séance vélo / course sans avis. Le cross-training maintient le cardio mais ne remplace pas l'adaptation locomotrice spécifique nage. La feel for the water se perd en 7-10 jours sans stimulus.\n\nÉQUIPEMENT MINIMAL :\n• Swim : maillot, lunettes, bonnet (assumés). Piscine 25m accessible.\n• Bike : casque (obligatoire), vélo de route bien réglé, 1-2 bidons 500 ml.\n• Run : chaussures running avec amorti correct (< 600 km).\n• Brick W4+ : transition-area-setup (sac, tapis, chaussures bike + run prêtes côte-à-côte), race-belt + elastic-laces dès W5."
   },
   "schema_version" : 2,
   "sessions_per_week" : 6,
@@ -329,9 +329,9 @@
                 "fr" : "Pont fessier"
               },
               "notes" : {
-                "en" : "Hold 2 sec at the top. Targets the glutes (key stabilizers for stride + pedaling). Prevents PFPS and hamstring tendinopathy.",
+                "en" : "Hold 2 sec at the top. Targets the glutes (key stabilizers for stride + pedaling). Prevents PFPS and strengthens the hamstring tendon.",
                 "es" : "Mantén 2 s arriba. Trabaja los glúteos (estabilizadores clave de la zancada + el pedaleo). Previene el SDPF y la tendinopatía de isquios.",
-                "fr" : "Tenir 2 s en haut. Cible les fessiers (stabilisateurs clés de la foulée + du pédalage). Préventif PFPS et tendinopathie des ischios."
+                "fr" : "Tenir 2 s en haut. Cible les fessiers (stabilisateurs clés de la foulée + du pédalage). Préventif PFPS et renforcement du tendon des ischios."
               },
               "reps" : "12",
               "required_equipment" : [
@@ -366,9 +366,9 @@
                 "fr" : "Squat sur une jambe assisté (boîte ou sangles)"
               },
               "notes" : {
-                "en" : "Lower to sit on a 40 cm box on one leg, then stand back up. PFPS + ITBS stabilizer. If too hard, keep 2 fingers on a support for balance.",
-                "es" : "Baja a sentarte en un cajón de 40 cm sobre una pierna y vuelve a subir. Estabilizador del SDPF + STIT. Si es muy difícil, apoya 2 dedos de la mano para mantener el equilibrio.",
-                "fr" : "Descendre s'asseoir sur une boîte de 40 cm sur 1 jambe, remonter. Stabilisateur PFPS + ITBS. Si trop dur, garde 2 doigts de la main sur un appui pour l'équilibre."
+                "en" : "Lower to sit on a 40 cm box on one leg, then stand back up. Knee and hip stabilizer. If too hard, keep 2 fingers on a support for balance.",
+                "es" : "Baja a sentarte en un cajón de 40 cm sobre una pierna y vuelve a subir. Estabilizador de la rodilla y la cadera. Si es muy difícil, apoya 2 dedos de la mano para mantener el equilibrio.",
+                "fr" : "Descendre s'asseoir sur une boîte de 40 cm sur 1 jambe, remonter. Stabilisateur du genou et de la hanche. Si trop dur, garde 2 doigts de la main sur un appui pour l'équilibre."
               },
               "reps" : "8 par jambe",
               "required_equipment" : [
@@ -402,9 +402,9 @@
                 "fr" : "Coquillage avec mini-bande (clamshell)"
               },
               "notes" : {
-                "en" : "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es" : "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici).",
-                "fr" : "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo)."
+                "en" : "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es" : "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici).",
+                "fr" : "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo)."
               },
               "reps" : "12 par côté",
               "required_equipment" : [
@@ -439,9 +439,9 @@
                 "fr" : "Mollets debout contrôlés (deux pieds)"
               },
               "notes" : {
-                "en" : "Rise 1 sec, lower slowly 3 sec (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike load + run combined). Alfredson 1998 protocol.",
-                "es" : "Subida 1 s, bajada lenta 3 s (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998.",
-                "fr" : "Montées 1 s, descente lente 3 s (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998."
+                "en" : "Rise 1 sec, lower slowly 3 sec (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike load + run combined).",
+                "es" : "Subida 1 s, bajada lenta 3 s (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas).",
+                "fr" : "Montées 1 s, descente lente 3 s (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course)."
               },
               "reps" : "15",
               "required_equipment" : [
@@ -1082,9 +1082,9 @@
                 "fr" : "Soulevé de terre sur une jambe (charge légère ou poids du corps)"
               },
               "notes" : {
-                "en" : "Standing on one leg, hinge the trunk forward + rear leg extended, flat back. Prevents high hamstring tendinopathy (repeated run off the bike). Bodyweight ok in W2, add a 5-8 kg dumbbell from W4+.",
+                "en" : "Standing on one leg, hinge the trunk forward + rear leg extended, flat back. Strengthens the high hamstring tendon (repeated run off the bike). Bodyweight ok in W2, add a 5-8 kg dumbbell from W4+.",
                 "es" : "De pie sobre una pierna, inclina el tronco hacia delante + pierna trasera extendida, espalda plana. Previene la tendinopatía alta de isquios (carrera tras bici repetida). Peso corporal ok en S2, añade una mancuerna de 5-8 kg desde S4+.",
-                "fr" : "Debout sur 1 jambe, basculer le tronc en avant + jambe arrière tendue, dos plat. Préventif tendinopathie haute des ischio-jambiers (course après vélo répétée). Poids du corps ok en S2, ajouter un haltère de 5-8 kg dès S4+."
+                "fr" : "Debout sur 1 jambe, basculer le tronc en avant + jambe arrière tendue, dos plat. Renforcement du tendon haut des ischio-jambiers (course après vélo répétée). Poids du corps ok en S2, ajouter un haltère de 5-8 kg dès S4+."
               },
               "reps" : "8 par jambe",
               "required_equipment" : [
@@ -1118,9 +1118,9 @@
                 "fr" : "Coquillage avec mini-bande (clamshell)"
               },
               "notes" : {
-                "en" : "Strengthens hip abductors. Prevents ITBS on the run off the bike.",
-                "es" : "Refuerza los abductores de cadera. Previene el STIT en la carrera tras la bici.",
-                "fr" : "Renforce les abducteurs de hanche. Préventif ITBS en course après vélo."
+                "en" : "Strengthens hip abductors. Knee and hip stability on the run off the bike.",
+                "es" : "Refuerza los abductores de cadera. Estabilidad de la rodilla y la cadera en la carrera tras la bici.",
+                "fr" : "Renforce les abducteurs de hanche. Stabilité du genou et de la hanche en course après vélo."
               },
               "reps" : "12 par côté",
               "required_equipment" : [
@@ -1155,9 +1155,9 @@
                 "fr" : "Mollets sur une marche (excentriques)"
               },
               "notes" : {
-                "en" : "Heel drops below step level (eccentric stretch). Alfredson protocol — triathlon tendon safety.",
-                "es" : "El talón baja por debajo del nivel del escalón (estiramiento excéntrico). Protocolo Alfredson — seguridad tendinosa en triatlón.",
-                "fr" : "Le talon descend sous le niveau de la marche (étirement excentrique). Protocole Alfredson — sécurité tendineuse en triathlon."
+                "en" : "Heel drops below step level (eccentric stretch). Triathlon tendon safety.",
+                "es" : "El talón baja por debajo del nivel del escalón (estiramiento excéntrico). Seguridad tendinosa en triatlón.",
+                "fr" : "Le talon descend sous le niveau de la marche (étirement excentrique). Sécurité tendineuse en triathlon."
               },
               "reps" : "12",
               "required_equipment" : [
@@ -1803,9 +1803,9 @@
                 "fr" : "Squat sur une jambe assisté"
               },
               "notes" : {
-                "en" : "On a 40 cm box. PFPS + ITBS stabilizer.",
-                "es" : "Sobre un cajón de 40 cm. Estabilizador del SDPF + STIT.",
-                "fr" : "Sur une boîte de 40 cm. Stabilisateur PFPS + ITBS."
+                "en" : "On a 40 cm box. Knee and hip stabilizer.",
+                "es" : "Sobre un cajón de 40 cm. Estabilizador de la rodilla y la cadera.",
+                "fr" : "Sur une boîte de 40 cm. Stabilisateur du genou et de la hanche."
               },
               "reps" : "8 par jambe",
               "required_equipment" : [
@@ -1876,9 +1876,9 @@
                 "fr" : "Coquillage (clamshell) + mollets excentriques"
               },
               "notes" : {
-                "en" : "Superset preventing ITBS + Achilles tendon.",
-                "es" : "Superserie de prevención del STIT + tendón de Aquiles.",
-                "fr" : "Superset prévention ITBS + tendon d'Achille."
+                "en" : "Superset for knee and hip stability + Achilles tendon.",
+                "es" : "Superserie de estabilidad de la rodilla y la cadera + tendón de Aquiles.",
+                "fr" : "Superset stabilité du genou et de la hanche + tendon d'Achille."
               },
               "reps" : "12 clamshell + 12 calf",
               "required_equipment" : [
@@ -3242,9 +3242,9 @@
                 "fr" : "Coquillage (clamshell) + mollets excentriques"
               },
               "notes" : {
-                "en" : "Prevents ITBS + Achilles tendon.",
-                "es" : "Previene STIT + tendón de Aquiles.",
-                "fr" : "Préventif ITBS + tendon d'Achille."
+                "en" : "Knee and hip stability + Achilles tendon.",
+                "es" : "Estabilidad de la rodilla y la cadera + tendón de Aquiles.",
+                "fr" : "Stabilité du genou et de la hanche + tendon d'Achille."
               },
               "reps" : "12 clam + 12 calf",
               "required_equipment" : [
