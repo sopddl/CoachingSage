@@ -3271,11 +3271,11 @@ struct YogaIllustration: View {
     /// Salabhasana (Sauterelle) — couché sur le ventre, tête/buste ET jambes décollés (banane).
     private func drawSalabhasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
         func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
-        yLimb(ctx, [p(40, 44), p(50, 44)], stroke)         // bassin/ventre au sol (zone de contact)
-        yCurve(ctx, p(40, 44), p(20, 33), p(28, 37), stroke) // buste + tête nettement décollés (gauche)
-        yHead(ctx, p(17, 31), s, stroke)
-        yLimb(ctx, [p(28, 38), p(40, 42)], stroke)         // bras le long du corps vers l'arrière
-        yCurve(ctx, p(50, 44), p(64, 33), p(58, 38), stroke) // jambes nettement décollées (droite)
+        yLimb(ctx, [p(38, 44), p(50, 44)], stroke)         // bassin/ventre au sol (zone de contact)
+        yCurve(ctx, p(38, 44), p(18, 29), p(26, 35), stroke) // buste + tête bien hauts (gauche)
+        yHead(ctx, p(15, 27), s, stroke)
+        yLimb(ctx, [p(26, 36), p(38, 42)], stroke)         // bras le long du corps vers l'arrière
+        yCurve(ctx, p(50, 44), p(66, 29), p(58, 35), stroke) // jambes bien hautes (droite)
     }
 
     /// Ustrasana (Chameau) — à genoux, cambrure arrière, mains aux talons.
@@ -3320,20 +3320,21 @@ struct YogaIllustration: View {
     /// Bakasana (Corbeau) — équilibre sur les bras, genoux posés sur les triceps, pieds décollés.
     private func drawBakasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
         func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
-        yLimb(ctx, [p(38, 46), p(40, 36)], stroke)       // bras (mains au sol → épaule), compact
-        yLimb(ctx, [p(44, 46), p(42, 36)], stroke)
-        yCurve(ctx, p(41, 36), p(50, 28), p(44, 30), stroke) // dos arrondi → bassin HAUT
-        yCurve(ctx, p(50, 28), p(57, 33), p(58, 28), stroke) // tibias/pieds relevés derrière
-        yLimb(ctx, [p(40, 38), p(46, 40)], stroke)       // genoux posés en avant sur les bras
-        yHead(ctx, p(34, 34), s, stroke)                 // tête en avant
+        yLimb(ctx, [p(37, 46), p(39, 33)], stroke)       // bras quasi VERTICAL (main sol → épaule)
+        yLimb(ctx, [p(45, 46), p(43, 33)], stroke)
+        yCurve(ctx, p(41, 33), p(49, 29), p(45, 28), stroke) // dos/bassin compact AU-DESSUS des bras
+        yCurve(ctx, p(49, 29), p(52, 24), p(53, 27), stroke) // tibias + pieds tuckés EN HAUT derrière
+        yLimb(ctx, [p(40, 35), p(44, 37)], stroke)       // genou posé sur le bras
+        yHead(ctx, p(33, 36), s, stroke)                 // tête en avant, basse
     }
 
     /// Purvottanasana (Planche inversée) — face au ciel, corps gainé en ligne montante.
     private func drawPurvottanasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
         func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
-        yLimb(ctx, [p(16, 44), p(28, 30)], stroke)        // bras : main au sol → épaule
-        yLimb(ctx, [p(28, 30), p(40, 27), p(62, 44)], stroke) // corps gainé face au ciel, hanche HAUTE → pieds
-        yHead(ctx, p(24, 28), s, stroke)                  // tête basculée en arrière
+        yLimb(ctx, [p(16, 44), p(26, 32)], stroke)        // bras : main au sol → épaule
+        yLimb(ctx, [p(26, 32), p(44, 32)], stroke)        // bord SUPÉRIEUR PLAT (tronc face au ciel)
+        yLimb(ctx, [p(44, 32), p(60, 44)], stroke)        // jambes descendent vers les pieds au sol
+        yHead(ctx, p(22, 30), s, stroke)                  // tête basculée en arrière
     }
 
     /// Uttana Padasana — couché sur le dos, jambes ET bras levés en diagonale.
@@ -3368,12 +3369,12 @@ struct YogaIllustration: View {
     /// Ardha Matsyendrasana — torsion vertébrale assise.
     private func drawArdhaMatsyendrasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
         func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
-        yLimb(ctx, [p(24, 46), p(40, 44)], stroke)        // jambe du bas repliée à plat au sol
-        yLimb(ctx, [p(44, 46), p(44, 38), p(40, 44)], stroke) // jambe du haut : pied planté, genou levé, croisé
-        yLimb(ctx, [p(40, 44), p(40, 26)], stroke)        // buste VERTICAL et haut (lisibilité torsion)
-        yHead(ctx, p(40, 22), s, stroke)
-        yLimb(ctx, [p(40, 30), p(46, 38)], stroke)        // bras avant qui crochète le genou levé
-        yLimb(ctx, [p(40, 32), p(33, 40)], stroke)        // bras arrière en appui (torsion)
+        yLimb(ctx, [p(22, 46), p(34, 45), p(40, 44)], stroke) // jambe du bas à plat au sol (gauche)
+        yLimb(ctx, [p(40, 44), p(43, 36), p(40, 46)], stroke) // genou levé + pied planté (droite)
+        yLimb(ctx, [p(40, 44), p(39, 28)], stroke)        // buste vertical
+        yHead(ctx, p(42, 25), s, stroke)                  // tête TOURNÉE (décalée droite) = torsion
+        yLimb(ctx, [p(39, 30), p(45, 39)], stroke)        // bras avant en appui contre le genou
+        yLimb(ctx, [p(39, 33), p(31, 38)], stroke)        // bras arrière qui enveloppe (côté opposé)
     }
 
     /// Kapotasana (Pigeon royal) — à genoux, cambrure arrière profonde, mains vers les pieds.
@@ -3389,12 +3390,11 @@ struct YogaIllustration: View {
     /// Bhujapidasana (Pression épaule) — équilibre bras, jambes en appui sur les bras, pieds devant.
     private func drawBhujapidasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
         func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
-        yLimb(ctx, [p(40, 46), p(42, 38)], stroke)       // bras (mains au sol → épaule)
-        yLimb(ctx, [p(46, 46), p(44, 38)], stroke)
-        yLimb(ctx, [p(43, 38), p(50, 37)], stroke)       // bassin compact en arrière
-        yHead(ctx, p(36, 37), s, stroke)                 // tête en avant
-        yCurve(ctx, p(48, 37), p(30, 41), p(38, 32), stroke) // jambes drapées EN AVANT par-dessus les bras
-        yLimb(ctx, [p(30, 41), p(35, 44)], stroke)       // pieds croisés devant
+        yLimb(ctx, [p(39, 46), p(41, 35)], stroke)       // bras quasi VERTICAL (main sol → épaule)
+        yLimb(ctx, [p(46, 46), p(44, 35)], stroke)
+        yCurve(ctx, p(42, 35), p(48, 31), p(47, 32), stroke) // bassin compact au-dessus
+        yHead(ctx, p(35, 33), s, stroke)                 // tête en avant
+        yLimb(ctx, [p(43, 37), p(34, 41), p(41, 43)], stroke) // jambes EN AVANT par-dessus les bras, pieds croisés devant
     }
 
     /// Garbha Pindasana (Embryon) — boule compacte en équilibre sur le sacrum.
