@@ -112,6 +112,13 @@ public struct AdaptedSession: Codable, Equatable, Sendable {
     }
 }
 
+/// Latéralité d'un exercice (chantier dosage D4). `String` raw pour un blob JSON stable.
+public enum ExerciseSide: String, Codable, Equatable, Sendable {
+    case left
+    case right
+    case bilateral
+}
+
 public struct AdaptedExercise: Codable, Equatable, Sendable {
     /// Nom de l'exercice tel qu'il est affiché à l'utilisateur — peut être l'original
     /// ou un substitut si une règle a remplacé l'exercice. Localisable (fr/en/es).
@@ -131,6 +138,16 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
     public let targetZone: String?
     public let volumeAxis: VolumeAxis?
 
+    /// Charge notée par l'user (« 12 kg », optionnel). Chantier dosage D1 : AUCUN poids
+    /// PRESCRIT — sert uniquement de mémoire. Tracking auto (« comme la dernière fois ») = V2.
+    public let load: String?
+
+    /// Latéralité structurée (chantier dosage D4). nil = non renseigné ; `.bilateral` par
+    /// défaut pour les exos à deux côtés ; `.left`/`.right` pour un côté donné. La détection
+    /// d'unilatéralité V1 reste dérivée du texte (reps « par côté ») tant que les templates
+    /// ne peuplent pas ce champ — il existe pour ne pas casser le modèle au moment où ils le feront.
+    public let side: ExerciseSide?
+
     /// Vrai si l'exercice a été remplacé par un substitut (constraint ou equipment).
     public let wasSubstituted: Bool
 
@@ -147,6 +164,8 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
         notes: LocalizedText? = nil,
         targetZone: String? = nil,
         volumeAxis: VolumeAxis? = nil,
+        load: String? = nil,
+        side: ExerciseSide? = nil,
         wasSubstituted: Bool = false,
         substitutionReason: String? = nil
     ) {
@@ -159,6 +178,8 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
         self.notes = notes
         self.targetZone = targetZone
         self.volumeAxis = volumeAxis
+        self.load = load
+        self.side = side
         self.wasSubstituted = wasSubstituted
         self.substitutionReason = substitutionReason
     }

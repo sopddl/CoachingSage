@@ -31,12 +31,20 @@ import SwiftUI
 struct YogaIllustration: View {
     let sportCode: String
     var exerciseName: String? = nil
+    /// Hauteur de rendu. POC yoga (D4) : avant, la frame était figée à 80×48 et le
+    /// `size:` passé par le parent était ignoré → dessin « riquiqui ». Désormais le
+    /// dessin grossit avec `size` (largeur = hauteur × ratio viewbox, ancrage conservé).
+    var size: CGFloat = IllustrationStyle.staticFrameSize.height
 
     var body: some View {
-        Canvas { ctx, size in
-            let sx = size.width / IllustrationStyle.staticFrameSize.width
-            let sy = size.height / IllustrationStyle.staticFrameSize.height
+        Canvas { ctx, canvasSize in
+            let sx = canvasSize.width / IllustrationStyle.staticFrameSize.width
+            let sy = canvasSize.height / IllustrationStyle.staticFrameSize.height
             let s = min(sx, sy)
+            // Centrage du dessin dans la frame (D4 « recentrer ») — sans effet quand
+            // la frame respecte déjà le ratio du viewbox, robuste sinon.
+            ctx.translateBy(x: (canvasSize.width - IllustrationStyle.staticFrameSize.width * s) / 2,
+                            y: (canvasSize.height - IllustrationStyle.staticFrameSize.height * s) / 2)
             let stroke = StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s, lineCap: .round, lineJoin: .round)
 
             // Sol pointillé fixe (référentiel ancrage)
@@ -92,11 +100,21 @@ struct YogaIllustration: View {
             case .ardhaChandrasana:  drawArdhaChandrasana(ctx, s: s, stroke: stroke)
             case .sukhasana:         drawSukhasana(ctx, s: s, stroke: stroke)
             case .sirsasana:         drawSirsasana(ctx, s: s, stroke: stroke)
-            case .unknown:         drawWarrior1(ctx, s: s, stroke: stroke) // fallback safe
+            // POC yoga (D1) — fallback ORIENTATION-AWARE : une posture non reconnue
+            // ne s'affiche plus systématiquement debout (Warrior I). On infère
+            // couché/assis/debout par mots-clés sanskrit et on dessine une
+            // silhouette générique de la BONNE orientation. Plus jamais d'absurde
+            // (couché → debout). Couverture 1-dessin-par-posture = V2.
+            case .unknown:
+                switch fallbackOrientation {
+                case .lying:    drawGenericLying(ctx, s: s, stroke: stroke)
+                case .seated:   drawGenericSeated(ctx, s: s, stroke: stroke)
+                case .standing: drawGenericStanding(ctx, s: s, stroke: stroke)
+                }
             }
         }
-        .frame(width: IllustrationStyle.staticFrameSize.width,
-               height: IllustrationStyle.staticFrameSize.height)
+        .frame(width: size * IllustrationStyle.staticFrameSize.width / IllustrationStyle.staticFrameSize.height,
+               height: size)
     }
 
     // MARK: - Pose detection
@@ -309,6 +327,139 @@ struct YogaIllustration: View {
         if lower.contains("bateau") || lower.contains("boat") || lower.contains("navasana") { return .boat }
         if lower.contains("savasana") || lower.contains("cadavre") || lower.contains("relaxation") { return .savasana }
         return .unknown
+    }
+
+    // MARK: - POC yoga (D1) — fallback orientation-aware
+
+    /// Orientation générale d'une posture, pour choisir une silhouette générique
+    /// quand la pose précise n'est pas reconnue (au lieu d'afficher Warrior I debout
+    /// sur une posture couchée). Mots-clés SANSKRIT + FR + EN. Défaut = debout.
+    private enum YogaOrientation { case lying, seated, standing }
+
+    private var fallbackOrientation: YogaOrientation {
+        guard let lower = exerciseName?.lowercased() else { return .standing }
+        // Couché (sur le dos / le ventre, inversions au sol, backbends couchés).
+        let lyingKeys = ["savasana", "supta", "jathara", "setu", "sarvangasana", "halasana",
+                         "viparita", "matsyasana", "dhanurasana", "salabhasana", "bhujangasana",
+                         "ananda balasana", "allongé", "allonge", "couché", "couche",
+                         "sur le dos", "sur le ventre", "lying", "reclining", "supine", "prone"]
+        // Assis / à genoux (postures au sol jambes pliées).
+        let seatedKeys = ["sukhasana", "padmasana", "vajrasana", "dandasana", "paschimottanasana",
+                          "konasana", "marichyasana", "navasana", "gomukhasana", "siddhasana",
+                          "upavistha", "virasana", "agnistambhasana", "assis", "assise", "seated",
+                          "tailleur", "lotus", "à genoux", "a genoux", "genoux", "kneeling"]
+        if lyingKeys.contains(where: lower.contains) { return .lying }
+        if seatedKeys.contains(where: lower.contains) { return .seated }
+        return .standing
+    }
+
+    /// Silhouette générique COUCHÉE (sur le dos), vue de profil — neutre. Dessine
+    /// une vraie personne allongée (tête, tronc, bras posé, jambe avec genou
+    /// légèrement relevé, pied) pour NE PAS ressembler à une flèche.
+    private func drawGenericLying(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        let groundY: CGFloat = 42 * s
+        let headX: CGFloat = 16 * s
+        let headSize: CGFloat = 6 * s
+        let hipX: CGFloat = 44 * s
+        let kneeX: CGFloat = 54 * s
+        let footX: CGFloat = 62 * s
+
+        // Tête (à gauche, posée au sol)
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: headX - headSize / 2, y: groundY - headSize / 2,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+        // Tronc (nuque → hanche, posé au sol)
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: headX + headSize / 2 + 1 * s, y: groundY))
+        trunk.addLine(to: CGPoint(x: hipX, y: groundY))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+        // Jambe avec genou LÉGÈREMENT relevé puis pied au sol (signale une personne,
+        // pas une simple barre/flèche).
+        var leg = Path()
+        leg.move(to: CGPoint(x: hipX, y: groundY))
+        leg.addLine(to: CGPoint(x: kneeX, y: groundY - 6 * s))
+        leg.addLine(to: CGPoint(x: footX, y: groundY))
+        ctx.stroke(leg, with: .color(silhouette), style: stroke)
+        // Bras posé le long du corps, NETTEMENT décalé sous le tronc (pas collé).
+        var arm = Path()
+        arm.move(to: CGPoint(x: headX + 6 * s, y: groundY + 3 * s))
+        arm.addLine(to: CGPoint(x: hipX - 4 * s, y: groundY + 3 * s))
+        ctx.stroke(arm, with: .color(silhouette), style: stroke)
+    }
+
+    /// Silhouette générique ASSISE (jambes croisées) — neutre.
+    private func drawGenericSeated(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        let cx: CGFloat = 40 * s
+        let headSize: CGFloat = 6 * s
+        let hipY: CGFloat = 38 * s
+
+        // Tête
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: cx - headSize / 2, y: 14 * s,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+        // Tronc droit vertical (épaules → hanche)
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: cx, y: 20 * s))
+        trunk.addLine(to: CGPoint(x: cx, y: hipY))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+        // Jambes croisées : triangle bas posé au sol (genoux écartés vers le sol)
+        var legs = Path()
+        legs.move(to: CGPoint(x: cx, y: hipY))
+        legs.addLine(to: CGPoint(x: cx - 14 * s, y: 46 * s))
+        legs.addLine(to: CGPoint(x: cx + 14 * s, y: 46 * s))
+        legs.addLine(to: CGPoint(x: cx, y: hipY))
+        ctx.stroke(legs, with: .color(silhouette), style: stroke)
+        // Bras posés sur les genoux
+        var armL = Path()
+        armL.move(to: CGPoint(x: cx, y: 24 * s))
+        armL.addLine(to: CGPoint(x: cx - 11 * s, y: 44 * s))
+        ctx.stroke(armL, with: .color(silhouette), style: stroke)
+        var armR = Path()
+        armR.move(to: CGPoint(x: cx, y: 24 * s))
+        armR.addLine(to: CGPoint(x: cx + 11 * s, y: 44 * s))
+        ctx.stroke(armR, with: .color(silhouette), style: stroke)
+    }
+
+    /// Silhouette générique DEBOUT (montagne) — neutre, bras le long du corps.
+    private func drawGenericStanding(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        let cx: CGFloat = 40 * s
+        let headSize: CGFloat = 6 * s
+        let shoulderY: CGFloat = 14 * s
+        let hipY: CGFloat = 30 * s
+
+        // Tête
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: cx - headSize / 2, y: 6 * s,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+        // Tronc
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: cx, y: shoulderY))
+        trunk.addLine(to: CGPoint(x: cx, y: hipY))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+        // Bras le long du corps
+        var armL = Path()
+        armL.move(to: CGPoint(x: cx, y: shoulderY + 1 * s))
+        armL.addLine(to: CGPoint(x: cx - 6 * s, y: 28 * s))
+        ctx.stroke(armL, with: .color(silhouette), style: stroke)
+        var armR = Path()
+        armR.move(to: CGPoint(x: cx, y: shoulderY + 1 * s))
+        armR.addLine(to: CGPoint(x: cx + 6 * s, y: 28 * s))
+        ctx.stroke(armR, with: .color(silhouette), style: stroke)
+        // Jambes (debout, légère séparation)
+        var legL = Path()
+        legL.move(to: CGPoint(x: cx, y: hipY))
+        legL.addLine(to: CGPoint(x: cx - 4 * s, y: 46 * s))
+        ctx.stroke(legL, with: .color(silhouette), style: stroke)
+        var legR = Path()
+        legR.move(to: CGPoint(x: cx, y: hipY))
+        legR.addLine(to: CGPoint(x: cx + 4 * s, y: 46 * s))
+        ctx.stroke(legR, with: .color(silhouette), style: stroke)
     }
 
     private var silhouette: Color { IllustrationStyle.silhouette(sportCode: sportCode) }
@@ -3067,6 +3218,41 @@ struct YogaIllustration: View {
                     Text(verbatim: name).font(.caption)
                     YogaIllustration(sportCode: "yoga", exerciseName: name)
                 }
+            }
+        }
+        .padding()
+        .background(Color.coachingBackground)
+    }
+}
+
+#Preview("Yoga POC — fallback orientation + taille") {
+    ScrollView {
+        VStack(spacing: 16) {
+            // D1 — postures NON cataloguées : doivent prendre la bonne orientation
+            // (et non plus Warrior I debout systématique).
+            Group {
+                Text(verbatim: "D1 — fallback orientation (non catalogué)").font(.caption.bold())
+                ForEach([
+                    ("Jathara Parivartanasana (couché)", "lying attendu"),
+                    ("Gomukhasana (assis)", "seated attendu"),
+                    ("Utthita Hasta Padangusthasana (debout)", "standing attendu")
+                ], id: \.0) { name, expect in
+                    VStack(alignment: .leading) {
+                        Text(verbatim: "\(name) — \(expect)").font(.caption2).foregroundStyle(.secondary)
+                        YogaIllustration(sportCode: "yoga", exerciseName: name, size: 110)
+                            .frame(maxWidth: .infinity)
+                            .background(Color(uiColor: .secondarySystemBackground))
+                    }
+                }
+            }
+            // D4 — une posture connue rendue à la taille FOCUS (176) : grossie + centrée.
+            Group {
+                Text(verbatim: "D4 — taille FOCUS (176 pt)").font(.caption.bold())
+                YogaIllustration(sportCode: "yoga", exerciseName: "Savasana", size: 176)
+                    .frame(maxWidth: .infinity)
+                    .padding(12)
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
             }
         }
         .padding()

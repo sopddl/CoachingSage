@@ -22,38 +22,83 @@
   "weeks": [
     {
       "week_number": 1,
-      "theme": "Découverte HIIT — calibration RPE et ratio doux 1:2",
-      "goal": "Comprendre la grille RPE adaptée HIIT (RPE 7-8 work, RPE 2-3 rest), réaliser 1 séance HIIT 4 min en 30/60 ratio 1:2 sur mouvements low-impact + 2 séances mobilité/renforcement préventif. HIIT cumulé hebdo : 4 min.",
+      "theme": {
+        "fr": "Découverte HIIT — calibration RPE et ratio doux 1:2",
+        "en": "HIIT discovery — RPE calibration and gentle 1:2 ratio",
+        "es": "Descubrimiento del HIIT — calibración del RPE y ratio suave 1:2"
+      },
+      "goal": {
+        "fr": "Comprendre la grille RPE adaptée HIIT (RPE 7-8 work, RPE 2-3 rest), réaliser 1 séance HIIT 4 min en 30/60 ratio 1:2 sur mouvements low-impact + 2 séances mobilité/renforcement préventif. HIIT cumulé hebdo : 4 min.",
+        "en": "Understand the HIIT-adapted RPE scale (RPE 7-8 on work, RPE 2-3 on rest), complete 1 four-minute HIIT session in 30/60 at a 1:2 ratio on low-impact movements + 2 mobility/preventive-strengthening sessions. Weekly HIIT total: 4 min.",
+        "es": "Entender la escala de RPE adaptada al HIIT (RPE 7-8 en el trabajo, RPE 2-3 en el descanso), realizar 1 sesión HIIT de 4 min en 30/60 con ratio 1:2 sobre movimientos de bajo impacto + 2 sesiones de movilidad/refuerzo preventivo. HIIT acumulado semanal: 4 min."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "HIIT découverte 30/60 — calibration RPE",
+          "name": {
+            "fr": "HIIT découverte 30/60 — calibration RPE",
+            "en": "HIIT discovery 30/60 — RPE calibration",
+            "es": "HIIT de descubrimiento 30/60 — calibración del RPE"
+          },
           "type": "interval",
           "duration_minutes": 30,
-          "warmup": "5 min marche rapide sur place + 8 min mobilité dynamique : 10 cercles d'épaules en avant/arrière + 10 rotations bassin par sens + 10 balancements de jambe avant-arrière par côté + 10 demi-squats lents (3 sec descente) + 10 jumping jacks lents version step (un pied après l'autre). Total : 13 min. Objectif : élever progressivement la FC à RPE 6-7 sans stresser les articulations.",
-          "cooldown": "3 min marche lente sur place + étirements statiques 5 min : mollets 30 sec/jambe, quadriceps 30 sec/jambe, ischio-jambiers 30 sec/jambe, fessier figure-4 au sol 30 sec/côté. Hydratation immédiate.",
+          "warmup": {
+            "fr": "5 min marche rapide sur place + 8 min mobilité dynamique : 10 cercles d'épaules en avant/arrière + 10 rotations bassin par sens + 10 balancements de jambe avant-arrière par côté + 10 demi-squats lents (3 sec descente) + 10 jumping jacks lents version step (un pied après l'autre). Total : 13 min. Objectif : élever progressivement la FC à RPE 6-7 sans stresser les articulations.",
+            "en": "5 min brisk marching in place + 8 min dynamic mobility: 10 shoulder circles forward/back + 10 pelvic rotations each way + 10 front-back leg swings per side + 10 slow half-squats (3 sec down) + 10 slow jumping jacks step version (one foot after the other). Total: 13 min. Goal: gradually raise heart rate to RPE 6-7 without stressing the joints.",
+            "es": "5 min de marcha rápida en el sitio + 8 min de movilidad dinámica: 10 círculos de hombros adelante/atrás + 10 rotaciones de cadera por lado + 10 balanceos de pierna adelante-atrás por lado + 10 medias sentadillas lentas (3 s de bajada) + 10 jumping jacks lentos versión paso (un pie tras otro). Total: 13 min. Objetivo: elevar progresivamente la frecuencia cardíaca a RPE 6-7 sin estresar las articulaciones."
+          },
+          "cooldown": {
+            "fr": "3 min marche lente sur place + étirements statiques 5 min : mollets 30 sec/jambe, quadriceps 30 sec/jambe, ischio-jambiers 30 sec/jambe, fessier figure-4 au sol 30 sec/côté. Hydratation immédiate.",
+            "en": "3 min slow marching in place + 5 min static stretches: calves 30 sec/leg, quads 30 sec/leg, hamstrings 30 sec/leg, figure-4 glute on the floor 30 sec/side. Hydrate right away.",
+            "es": "3 min de marcha lenta en el sitio + 5 min de estiramientos estáticos: gemelos 30 s/pierna, cuádriceps 30 s/pierna, isquiotibiales 30 s/pierna, glúteo en figura-4 en el suelo 30 s/lado. Hidrátate de inmediato."
+          },
           "exercises": [
             {
-              "name": "Calibration grille RPE HIIT",
+              "name": {
+                "fr": "Calibrer ton échelle d'effort HIIT (RPE)",
+                "en": "Calibrate your HIIT effort scale (RPE)",
+                "es": "Calibra tu escala de esfuerzo HIIT (RPE)"
+              },
               "sets": 1,
               "duration": "2 min",
               "rest_seconds": 0,
-              "notes": "Avant de commencer le travail intervalle, mémorise la grille adaptée HIIT : RPE 1 = repos complet allongé, RPE 5 = marche rapide où tu parles facilement, RPE 7 = essoufflé mais tu sors une phrase complète, RPE 8-9 = parler 2-3 mots maximum, RPE 10 = incapacité à parler (sprint maximal). Pendant les blocs work du programme, tu vises RPE 7-8 sur W1-W3, puis RPE 8 sur W5-W6. Pendant les rest intervals (60 sec), tu vises RPE 2-3 (marche sur place, respiration qui se normalise). Tu ne dois JAMAIS aller à RPE 10 dans ce plan débutant.",
+              "notes": {
+                "fr": "Avant de commencer le travail intervalle, mémorise la grille adaptée HIIT : RPE 1 = repos complet allongé, RPE 5 = marche rapide où tu parles facilement, RPE 7 = essoufflé mais tu sors une phrase complète, RPE 8-9 = parler 2-3 mots maximum, RPE 10 = incapacité à parler (sprint maximal). Pendant les blocs work du programme, tu vises RPE 7-8 sur W1-W3, puis RPE 8 sur W5-W6. Pendant les rest intervals (60 sec), tu vises RPE 2-3 (marche sur place, respiration qui se normalise). Tu ne dois JAMAIS aller à RPE 10 dans ce plan débutant.",
+                "en": "Before starting interval work, memorize the HIIT-adapted scale: RPE 1 = full rest lying down, RPE 5 = brisk walk where you talk easily, RPE 7 = out of breath but you can say a full sentence, RPE 8-9 = 2-3 words max, RPE 10 = unable to speak (all-out sprint). During the program's work blocks, aim for RPE 7-8 in weeks 1-3, then RPE 8 in weeks 5-6. During rest intervals (60 sec), aim for RPE 2-3 (marching in place, breathing returning to normal). You must NEVER reach RPE 10 in this beginner plan.",
+                "es": "Antes de empezar el trabajo de intervalos, memoriza la escala adaptada al HIIT: RPE 1 = reposo total tumbado, RPE 5 = marcha rápida en la que hablas con facilidad, RPE 7 = sin aliento pero dices una frase completa, RPE 8-9 = 2-3 palabras como máximo, RPE 10 = incapacidad de hablar (sprint máximo). Durante los bloques de trabajo del programa, apunta a RPE 7-8 en las semanas 1-3, y luego a RPE 8 en las semanas 5-6. Durante los descansos (60 s), apunta a RPE 2-3 (marcha en el sitio, respiración que se normaliza). NUNCA debes llegar a RPE 10 en este plan de iniciación."
+              },
               "target_zone": "technique",
               "required_equipment": [],
               "incompatible_constraints": [],
               "alternatives": [
-                "Lecture de la grille RPE en `safety_notes` 2 min sans mouvement",
-                "Visualisation des sensations cibles 2 min"
+                {
+                  "fr": "Lecture de la grille RPE en `safety_notes` 2 min sans mouvement",
+                  "en": "Read the RPE scale in `safety_notes` for 2 min without moving",
+                  "es": "Lectura de la escala RPE en `safety_notes` 2 min sin movimiento"
+                },
+                {
+                  "fr": "Visualisation des sensations cibles 2 min",
+                  "en": "Visualize the target sensations for 2 min",
+                  "es": "Visualización de las sensaciones objetivo 2 min"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Calibration grille RPE HIIT"
             },
             {
-              "name": "Bloc 30/60 — Squat-air partial ROM",
+              "name": {
+                "fr": "Bloc 30/60 — Squats à l'air, amplitude partielle",
+                "en": "30/60 block — Bodyweight squats, partial range",
+                "es": "Bloque 30/60 — Sentadillas sin carga, recorrido parcial"
+              },
               "sets": 4,
               "duration": "30 sec work + 60 sec rest",
               "rest_seconds": 0,
-              "notes": "Format first-class 30/60 (ratio 1:2). Work 30 sec à RPE 7-8 : descente cuisses partielles (60-70°, pas 90°), genoux dans l'axe des orteils (jamais en valgus en dedans), talons au sol, rythme rapide mais forme propre. Rest 60 sec à RPE 2-3 : marche sur place lente, respiration nasale. Total bloc : 4 × 90 sec = 6 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. Si genou douloureux > 2/10 en descente, réduire encore l'amplitude.",
+              "notes": {
+                "fr": "Format first-class 30/60 (ratio 1:2). Work 30 sec à RPE 7-8 : descente cuisses partielles (60-70°, pas 90°), genoux dans l'axe des orteils (jamais en valgus en dedans), talons au sol, rythme rapide mais forme propre. Rest 60 sec à RPE 2-3 : marche sur place lente, respiration nasale. Total bloc : 4 × 90 sec = 6 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. Si genou douloureux > 2/10 en descente, réduire encore l'amplitude.",
+                "en": "Core 30/60 format (1:2 ratio). Work 30 sec at RPE 7-8: partial thigh descent (60-70°, not 90°), knees in line with toes (never collapsing inward), heels on the floor, fast pace but clean form. Rest 60 sec at RPE 2-3: slow marching in place, nasal breathing. Block total: 4 × 90 sec = 6 min. Block HIIT total: 4 × 30 sec = 2 min. If knee pain > 2/10 on the way down, reduce the range further.",
+                "es": "Formato base 30/60 (ratio 1:2). Trabajo de 30 s a RPE 7-8: bajada parcial de muslos (60-70°, no 90°), rodillas alineadas con las punteras (nunca hacia dentro en valgo), talones en el suelo, ritmo rápido pero técnica limpia. Descanso de 60 s a RPE 2-3: marcha lenta en el sitio, respiración nasal. Total del bloque: 4 × 90 s = 6 min. HIIT acumulado del bloque: 4 × 30 s = 2 min. Si hay dolor de rodilla > 2/10 en la bajada, reduce aún más el recorrido."
+              },
               "target_zone": "30/60",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -62,32 +107,66 @@
                 "hip-injury"
               ],
               "alternatives": [
-                "Step-up bas alterné 30 sec sur marche 15-20 cm",
-                "Wall sit partiel 30 sec à 60-70°"
+                {
+                  "fr": "Step-up bas alterné 30 sec sur marche 15-20 cm",
+                  "en": "Alternating low step-up 30 sec on a 15-20 cm step",
+                  "es": "Subida a step bajo alternada 30 s en escalón de 15-20 cm"
+                },
+                {
+                  "fr": "Wall sit partiel 30 sec à 60-70°",
+                  "en": "Partial wall sit 30 sec at 60-70°",
+                  "es": "Sentadilla isométrica en pared parcial 30 s a 60-70°"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/60 — Squat-air partial ROM"
             },
             {
-              "name": "Repos actif inter-bloc",
+              "name": {
+                "fr": "Récupération active entre les blocs",
+                "en": "Active recovery between blocks",
+                "es": "Recuperación activa entre bloques"
+              },
               "sets": 1,
               "duration": "90 sec",
               "rest_seconds": 0,
-              "notes": "Marche lente sur place, respiration profonde nasale. RPE 1-2. Ce repos est CONSTITUTIF de l'entraînement, ne pas le supprimer. Si tu n'as pas retrouvé une respiration confortable au bout de 90 sec, ajoute 30 sec.",
+              "notes": {
+                "fr": "Marche lente sur place, respiration profonde nasale. RPE 1-2. Ce repos est CONSTITUTIF de l'entraînement, ne pas le supprimer. Si tu n'as pas retrouvé une respiration confortable au bout de 90 sec, ajoute 30 sec.",
+                "en": "Slow marching in place, deep nasal breathing. RPE 1-2. This rest is a CORE PART of the training, do not skip it. If your breathing isn't comfortable again after 90 sec, add 30 sec.",
+                "es": "Marcha lenta en el sitio, respiración nasal profunda. RPE 1-2. Este descanso FORMA PARTE del entrenamiento, no lo elimines. Si tu respiración no es cómoda de nuevo tras 90 s, añade 30 s."
+              },
               "target_zone": "walking-recovery",
               "required_equipment": [],
               "incompatible_constraints": [],
               "alternatives": [
-                "Repos passif debout 90 sec",
-                "Étirements doux gastrocnémiens 30 sec/côté"
+                {
+                  "fr": "Repos passif debout 90 sec",
+                  "en": "Passive standing rest 90 sec",
+                  "es": "Descanso pasivo de pie 90 s"
+                },
+                {
+                  "fr": "Étirements doux gastrocnémiens 30 sec/côté",
+                  "en": "Gentle calf (gastrocnemius) stretch 30 sec/side",
+                  "es": "Estiramiento suave de gemelos 30 s/lado"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Repos actif inter-bloc"
             },
             {
-              "name": "Bloc 30/60 — Step-jacks (jumping jacks version pied après pied)",
+              "name": {
+                "fr": "Bloc 30/60 — Jumping jacks sans saut (un pied après l'autre)",
+                "en": "30/60 block — Step jacks (no-jump jumping jacks, foot by foot)",
+                "es": "Bloque 30/60 — Jumping jacks sin salto (un pie tras otro)"
+              },
               "sets": 4,
               "duration": "30 sec work + 60 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/60 (ratio 1:2) RPE 7-8 work / RPE 2-3 rest. Step-jacks = jumping jacks SANS saut : tu pose un pied sur le côté pendant que tu lèves les bras, retour, l'autre pied de l'autre côté. Cardio dynamique sans impact, sécurisé pour les chevilles débutantes. Total bloc : 4 × 90 sec = 6 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. HIIT cumulé séance W1 J1 = 2 + 2 = 4 min (= HIIT cumulé hebdo W1 entier).",
+              "notes": {
+                "fr": "Format 30/60 (ratio 1:2) RPE 7-8 work / RPE 2-3 rest. Step-jacks = jumping jacks SANS saut : tu pose un pied sur le côté pendant que tu lèves les bras, retour, l'autre pied de l'autre côté. Cardio dynamique sans impact, sécurisé pour les chevilles débutantes. Total bloc : 4 × 90 sec = 6 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. HIIT cumulé séance W1 J1 = 2 + 2 = 4 min (= HIIT cumulé hebdo W1 entier).",
+                "en": "30/60 format (1:2 ratio) RPE 7-8 on work / RPE 2-3 on rest. Step jacks = jumping jacks WITHOUT the jump: you place one foot out to the side while raising your arms, return, then the other foot to the other side. Dynamic cardio without impact, safe for beginner ankles. Block total: 4 × 90 sec = 6 min. Block HIIT total: 4 × 30 sec = 2 min. Session HIIT total W1 D1 = 2 + 2 = 4 min (= the entire weekly HIIT total for W1).",
+                "es": "Formato 30/60 (ratio 1:2) RPE 7-8 en el trabajo / RPE 2-3 en el descanso. Jumping jacks sin salto: colocas un pie hacia el lado mientras subes los brazos, vuelves, y luego el otro pie hacia el otro lado. Cardio dinámico sin impacto, seguro para tobillos principiantes. Total del bloque: 4 × 90 s = 6 min. HIIT acumulado del bloque: 4 × 30 s = 2 min. HIIT acumulado de la sesión S1 D1 = 2 + 2 = 4 min (= todo el HIIT acumulado semanal de la S1)."
+              },
               "target_zone": "30/60",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -98,61 +177,124 @@
                 "hip-injury"
               ],
               "alternatives": [
-                "Marche sur place genoux haut 30 sec",
-                "Cercles bras + pas latéraux dynamiques 30 sec"
+                {
+                  "fr": "Marche sur place genoux haut 30 sec",
+                  "en": "High-knee marching in place 30 sec",
+                  "es": "Marcha en el sitio con rodillas altas 30 s"
+                },
+                {
+                  "fr": "Cercles bras + pas latéraux dynamiques 30 sec",
+                  "en": "Arm circles + dynamic side steps 30 sec",
+                  "es": "Círculos de brazos + pasos laterales dinámicos 30 s"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/60 — Step-jacks (jumping jacks version pied après pied)"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Renforcement préventif W1 — chevilles + core + fessiers",
+          "name": {
+            "fr": "Renforcement préventif W1 — chevilles + core + fessiers",
+            "en": "Preventive strengthening W1 — ankles + core + glutes",
+            "es": "Refuerzo preventivo S1 — tobillos + core + glúteos"
+          },
           "type": "strength",
           "duration_minutes": 30,
-          "warmup": "5 min marche rapide sur place + 5 min mobilité dynamique : 10 rotations bassin par sens + 10 talons-fesses lents + 10 montées de genoux lents + 10 cercles chevilles par sens. Total : 10 min.",
-          "cooldown": "Étirements 5 min : mollets 30 sec/côté, fessier figure-4 30 sec/côté, marche lente 2 min.",
+          "warmup": {
+            "fr": "5 min marche rapide sur place + 5 min mobilité dynamique : 10 rotations bassin par sens + 10 talons-fesses lents + 10 montées de genoux lents + 10 cercles chevilles par sens. Total : 10 min.",
+            "en": "5 min brisk marching in place + 5 min dynamic mobility: 10 pelvic rotations each way + 10 slow heel-to-buttock kicks + 10 slow knee raises + 10 ankle circles each way. Total: 10 min.",
+            "es": "5 min de marcha rápida en el sitio + 5 min de movilidad dinámica: 10 rotaciones de cadera por lado + 10 talones al glúteo lentos + 10 elevaciones de rodilla lentas + 10 círculos de tobillo por lado. Total: 10 min."
+          },
+          "cooldown": {
+            "fr": "Étirements 5 min : mollets 30 sec/côté, fessier figure-4 30 sec/côté, marche lente 2 min.",
+            "en": "5 min stretches: calves 30 sec/side, figure-4 glute 30 sec/side, slow walk 2 min.",
+            "es": "Estiramientos 5 min: gemelos 30 s/lado, glúteo en figura-4 30 s/lado, marcha lenta 2 min."
+          },
           "exercises": [
             {
-              "name": "Calf raises bipodal",
+              "name": {
+                "fr": "Mollets debout (deux pieds)",
+                "en": "Standing calf raises (both feet)",
+                "es": "Elevaciones de gemelos de pie (dos pies)"
+              },
               "sets": 3,
               "reps": "12",
               "rest_seconds": 30,
-              "notes": "Montées sur la pointe des pieds, les deux pieds ensemble. Prévention shin splints + tendinite Achille (les mollets forts absorbent jusqu'à 30% de la charge tibiale). Obligatoire chez le débutant HIIT dès W1, à maintenir tout le plan.",
+              "notes": {
+                "fr": "Montées sur la pointe des pieds, les deux pieds ensemble. Prévention shin splints + tendinite Achille (les mollets forts absorbent jusqu'à 30% de la charge tibiale). Obligatoire chez le débutant HIIT dès W1, à maintenir tout le plan.",
+                "en": "Rise onto your toes, both feet together. Prevents shin splints + Achilles tendinitis (strong calves absorb up to 30% of the tibial load). Mandatory for the HIIT beginner from W1, to keep up throughout the plan.",
+                "es": "Elevación sobre las punteras, los dos pies juntos. Previene periostitis tibial + tendinitis de Aquiles (unos gemelos fuertes absorben hasta el 30 % de la carga tibial). Obligatorio para el principiante de HIIT desde la S1, mantener durante todo el plan."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
               "incompatible_constraints": [
                 "ankle-injury"
               ],
               "alternatives": [
-                "Calf raises assis sur chaise",
-                "Wall calf raise (appui mains au mur)"
+                {
+                  "fr": "Calf raises assis sur chaise",
+                  "en": "Seated calf raises on a chair",
+                  "es": "Elevaciones de gemelos sentado en una silla"
+                },
+                {
+                  "fr": "Wall calf raise (appui mains au mur)",
+                  "en": "Wall calf raise (hands on the wall for support)",
+                  "es": "Elevación de gemelos en pared (manos apoyadas en la pared)"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Calf raises bipodal"
             },
             {
-              "name": "Tibialis raises",
+              "name": {
+                "fr": "Relevés de pointes (tibial antérieur)",
+                "en": "Tibialis raises (front shin)",
+                "es": "Elevaciones de puntera (tibial anterior)"
+              },
               "sets": 3,
               "reps": "12",
               "rest_seconds": 30,
-              "notes": "Debout dos contre un mur, talons au sol, monter la pointe des pieds vers le tibia (extension dorsale cheville). Renforce le tibialis antérieur — prévention shin splints (cheville antérieure compensant le travail explosif des step-jacks et marche genoux haut). Obligatoire HIIT débutant.",
+              "notes": {
+                "fr": "Debout dos contre un mur, talons au sol, monter la pointe des pieds vers le tibia (extension dorsale cheville). Renforce le tibialis antérieur — prévention shin splints (cheville antérieure compensant le travail explosif des step-jacks et marche genoux haut). Obligatoire HIIT débutant.",
+                "en": "Standing with your back against a wall, heels on the floor, lift the front of your feet toward your shin (ankle dorsiflexion). Strengthens the tibialis anterior — prevents shin splints (the front of the ankle compensating for the explosive work of step jacks and high-knee marching). Mandatory for the HIIT beginner.",
+                "es": "De pie con la espalda contra una pared, talones en el suelo, sube la puntera de los pies hacia la espinilla (flexión dorsal del tobillo). Fortalece el tibial anterior — previene la periostitis tibial (la parte anterior del tobillo compensa el trabajo explosivo de los jumping jacks sin salto y la marcha con rodillas altas). Obligatorio para el principiante de HIIT."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
               "incompatible_constraints": [
                 "ankle-injury"
               ],
               "alternatives": [
-                "Pointe-talon assis",
-                "Tibialis raises avec resistance-band légère"
+                {
+                  "fr": "Pointe-talon assis",
+                  "en": "Seated toe-heel raises",
+                  "es": "Puntera-talón sentado"
+                },
+                {
+                  "fr": "Tibialis raises avec resistance-band légère",
+                  "en": "Tibialis raises with a light resistance band",
+                  "es": "Elevaciones de puntera con banda elástica ligera"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Tibialis raises"
             },
             {
-              "name": "Glute bridge bipodal",
+              "name": {
+                "fr": "Pont fessier (deux pieds)",
+                "en": "Glute bridge (both feet)",
+                "es": "Puente de glúteos (dos pies)"
+              },
               "sets": 3,
               "reps": "10",
               "rest_seconds": 40,
-              "notes": "Allongé sur le dos, pieds au sol, monter le bassin en activant les fessiers (pas les lombaires). Tenir 2 sec en haut. Cible les fessiers (stabilisateurs clés du squat et de la foulée HIIT) et désactive le creusement lombaire pendant les mountain climbers à venir.",
+              "notes": {
+                "fr": "Allongé sur le dos, pieds au sol, monter le bassin en activant les fessiers (pas les lombaires). Tenir 2 sec en haut. Cible les fessiers (stabilisateurs clés du squat et de la foulée HIIT) et désactive le creusement lombaire pendant les mountain climbers à venir.",
+                "en": "Lying on your back, feet on the floor, raise your hips by engaging the glutes (not the lower back). Hold 2 sec at the top. Targets the glutes (key stabilizers of the squat and the HIIT stride) and stops the lower back from arching during the upcoming mountain climbers.",
+                "es": "Tumbado boca arriba, pies en el suelo, sube la cadera activando los glúteos (no la zona lumbar). Mantén 2 s arriba. Trabaja los glúteos (estabilizadores clave de la sentadilla y la zancada del HIIT) y evita el arqueo lumbar durante los escaladores que vienen."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [
                 "mat"
@@ -161,17 +303,34 @@
                 "lower-back-pain"
               ],
               "alternatives": [
-                "Glute bridge avec pieds sur chaise",
-                "Bridge isométrique 25 sec"
+                {
+                  "fr": "Glute bridge avec pieds sur chaise",
+                  "en": "Glute bridge with feet on a chair",
+                  "es": "Puente de glúteos con los pies en una silla"
+                },
+                {
+                  "fr": "Bridge isométrique 25 sec",
+                  "en": "Isometric bridge 25 sec",
+                  "es": "Puente isométrico 25 s"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Glute bridge bipodal"
             },
             {
-              "name": "Planche ventrale sur genoux",
+              "name": {
+                "fr": "Planche ventrale sur les genoux",
+                "en": "Front plank on knees",
+                "es": "Plancha frontal sobre rodillas"
+              },
               "sets": 3,
               "duration": "20 sec",
               "rest_seconds": 45,
-              "notes": "Coudes sous épaules, corps aligné, fessiers engagés, nombril rentré. Version genoux pour W1 = forme correcte sans fatigue prématurée. Progression vers planche complète W3.",
+              "notes": {
+                "fr": "Coudes sous épaules, corps aligné, fessiers engagés, nombril rentré. Version genoux pour W1 = forme correcte sans fatigue prématurée. Progression vers planche complète W3.",
+                "en": "Elbows under shoulders, body in a straight line, glutes engaged, navel drawn in. The knees version for W1 = correct form without tiring out too early. Progress to the full plank in W3.",
+                "es": "Codos bajo los hombros, cuerpo alineado, glúteos activados, ombligo hacia dentro. La versión sobre rodillas para la S1 = técnica correcta sin fatiga prematura. Progresión hacia la plancha completa en la S3."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [
                 "mat"
@@ -182,17 +341,34 @@
                 "wrist-pain"
               ],
               "alternatives": [
-                "Planche avant-bras genoux 20 sec",
-                "Dead bug"
+                {
+                  "fr": "Planche avant-bras genoux 20 sec",
+                  "en": "Forearm plank on knees 20 sec",
+                  "es": "Plancha en antebrazos sobre rodillas 20 s"
+                },
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Planche ventrale sur genoux"
             },
             {
-              "name": "Dead bug",
+              "name": {
+                "fr": "Dead bug (bug mort, anti-cambrure)",
+                "en": "Dead bug",
+                "es": "Dead bug (bicho muerto, anti-arqueo)"
+              },
               "sets": 3,
               "reps": "8 par côté",
               "rest_seconds": 30,
-              "notes": "Allongé sur le dos, bras tendus vers le plafond, jambes pliées 90° au-dessus du bassin. Tendre bras opposé + jambe opposée vers le sol sans creuser le bas du dos. Cible le core profond et l'anti-extension lombaire — protège le bas du dos pendant les mountain climbers à venir.",
+              "notes": {
+                "fr": "Allongé sur le dos, bras tendus vers le plafond, jambes pliées 90° au-dessus du bassin. Tendre bras opposé + jambe opposée vers le sol sans creuser le bas du dos. Cible le core profond et l'anti-extension lombaire — protège le bas du dos pendant les mountain climbers à venir.",
+                "en": "Lying on your back, arms reaching toward the ceiling, legs bent 90° above the hips. Extend the opposite arm + opposite leg toward the floor without arching the lower back. Targets the deep core and lumbar anti-extension — protects the lower back during the upcoming mountain climbers.",
+                "es": "Tumbado boca arriba, brazos hacia el techo, piernas flexionadas 90° sobre la cadera. Extiende el brazo y la pierna contrarios hacia el suelo sin arquear la zona lumbar. Trabaja el core profundo y la anti-extensión lumbar — protege la zona lumbar durante los escaladores que vienen."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [
                 "mat"
@@ -201,44 +377,90 @@
                 "lower-back-pain"
               ],
               "alternatives": [
-                "Bird-dog",
-                "Pelvic tilt"
+                {
+                  "fr": "Bird-dog",
+                  "en": "Bird-dog",
+                  "es": "Bird-dog"
+                },
+                {
+                  "fr": "Pelvic tilt",
+                  "en": "Pelvic tilt",
+                  "es": "Báscula pélvica"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Dead bug"
             }
           ]
         },
         {
           "day": 5,
-          "name": "Mobilité + activation neuromusculaire",
+          "name": {
+            "fr": "Mobilité + activation neuromusculaire",
+            "en": "Mobility + neuromuscular activation",
+            "es": "Movilidad + activación neuromuscular"
+          },
           "type": "mobility",
           "duration_minutes": 25,
-          "warmup": "3 min marche rapide sur place + 3 min mobilité douce (cercles épaules, hanches, chevilles).",
-          "cooldown": "5 min marche lente + respiration profonde nasale.",
+          "warmup": {
+            "fr": "3 min marche rapide sur place + 3 min mobilité douce (cercles épaules, hanches, chevilles).",
+            "en": "3 min brisk marching in place + 3 min gentle mobility (shoulder, hip, ankle circles).",
+            "es": "3 min de marcha rápida en el sitio + 3 min de movilidad suave (círculos de hombros, caderas, tobillos)."
+          },
+          "cooldown": {
+            "fr": "5 min marche lente + respiration profonde nasale.",
+            "en": "5 min slow walk + deep nasal breathing.",
+            "es": "5 min de marcha lenta + respiración nasal profunda."
+          },
           "exercises": [
             {
-              "name": "Routine mobilité hanche + cheville",
+              "name": {
+                "fr": "Routine de mobilité hanches et chevilles",
+                "en": "Hip and ankle mobility routine",
+                "es": "Rutina de movilidad de caderas y tobillos"
+              },
               "sets": 1,
               "duration": "10 min",
               "rest_seconds": 0,
-              "notes": "Cercles hanches 10 par sens, fente basse tenue 30 sec/côté, deep squat hold 30 sec, cercles chevilles 10 par sens, calf stretch debout 30 sec/côté, ankle CARs 8 par sens. Pas d'intensité, relâchement. Prépare les articulations à la progression W2.",
+              "notes": {
+                "fr": "Cercles hanches 10 par sens, fente basse tenue 30 sec/côté, deep squat hold 30 sec, cercles chevilles 10 par sens, calf stretch debout 30 sec/côté, ankle CARs 8 par sens. Pas d'intensité, relâchement. Prépare les articulations à la progression W2.",
+                "en": "Hip circles 10 each way, low lunge held 30 sec/side, deep squat hold 30 sec, ankle circles 10 each way, standing calf stretch 30 sec/side, ankle CARs 8 each way. No intensity, just release. Prepares the joints for the W2 progression.",
+                "es": "Círculos de cadera 10 por lado, zancada baja mantenida 30 s/lado, sentadilla profunda mantenida 30 s, círculos de tobillo 10 por lado, estiramiento de gemelos de pie 30 s/lado, CARs de tobillo 8 por lado. Sin intensidad, solo soltar. Prepara las articulaciones para la progresión de la S2."
+              },
               "target_zone": "technique",
               "required_equipment": [
                 "mat"
               ],
               "incompatible_constraints": [],
               "alternatives": [
-                "Yoga doux 15 min (chien tête en bas, cobra, child pose)",
-                "Étirements statiques globaux 10 min"
+                {
+                  "fr": "Yoga doux 15 min (chien tête en bas, cobra, child pose)",
+                  "en": "Gentle yoga 15 min (downward dog, cobra, child's pose)",
+                  "es": "Yoga suave 15 min (perro boca abajo, cobra, postura del niño)"
+                },
+                {
+                  "fr": "Étirements statiques globaux 10 min",
+                  "en": "Full-body static stretches 10 min",
+                  "es": "Estiramientos estáticos generales 10 min"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Routine mobilité hanche + cheville"
             },
             {
-              "name": "Activation neuromusculaire low-impact",
+              "name": {
+                "fr": "Activation neuromusculaire sans impact",
+                "en": "Low-impact neuromuscular activation",
+                "es": "Activación neuromuscular sin impacto"
+              },
               "sets": 1,
               "duration": "5 min",
               "rest_seconds": 0,
-              "notes": "8 squat-air lents (3 sec descente) + 6 push-up genoux contrôlés + 10 mountain climbers slow (sans impact, alternance lente) + 10 step-jacks. Permet au système neuromusculaire de mémoriser les patterns du HIIT sans la charge cardio.",
+              "notes": {
+                "fr": "8 squat-air lents (3 sec descente) + 6 push-up genoux contrôlés + 10 mountain climbers slow (sans impact, alternance lente) + 10 step-jacks. Permet au système neuromusculaire de mémoriser les patterns du HIIT sans la charge cardio.",
+                "en": "8 slow bodyweight squats (3 sec down) + 6 controlled knee push-ups + 10 slow mountain climbers (no impact, slow alternation) + 10 step jacks. Lets the neuromuscular system memorize the HIIT movement patterns without the cardio load.",
+                "es": "8 sentadillas sin carga lentas (3 s de bajada) + 6 flexiones sobre rodillas controladas + 10 escaladores lentos (sin impacto, alternancia lenta) + 10 jumping jacks sin salto. Permite que el sistema neuromuscular memorice los patrones del HIIT sin la carga cardiovascular."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [
                 "mat"
@@ -248,10 +470,19 @@
                 "wrist-pain"
               ],
               "alternatives": [
-                "Marche dynamique 10 min avec montées de genoux",
-                "Patterns isolés 1 par minute pendant 5 min"
+                {
+                  "fr": "Marche dynamique 10 min avec montées de genoux",
+                  "en": "Dynamic walk 10 min with knee raises",
+                  "es": "Marcha dinámica 10 min con elevaciones de rodilla"
+                },
+                {
+                  "fr": "Patterns isolés 1 par minute pendant 5 min",
+                  "en": "Isolated movement patterns, 1 per minute for 5 min",
+                  "es": "Patrones aislados, 1 por minuto durante 5 min"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Activation neuromusculaire low-impact"
             }
           ]
         }
@@ -259,23 +490,51 @@
     },
     {
       "week_number": 2,
-      "theme": "Adaptation — 2 séances HIIT 30/60 + renforcement progression",
-      "goal": "Passer à 2 séances HIIT par semaine en 30/60 ratio 1:2 RPE 7-8, volume HIIT cumulé hebdo +50% vs W1 (4 → 6 min). Renforcement avec progression durée planche + ajout side plank.",
+      "theme": {
+        "fr": "Adaptation — 2 séances HIIT 30/60 + renforcement progression",
+        "en": "Adaptation — 2 HIIT sessions at 30/60 + strengthening progression",
+        "es": "Adaptación — 2 sesiones HIIT 30/60 + progresión del refuerzo"
+      },
+      "goal": {
+        "fr": "Passer à 2 séances HIIT par semaine en 30/60 ratio 1:2 RPE 7-8, volume HIIT cumulé hebdo +50% vs W1 (4 → 6 min). Renforcement avec progression durée planche + ajout side plank.",
+        "en": "Move up to 2 HIIT sessions per week at 30/60, 1:2 ratio, RPE 7-8, with weekly HIIT total +50% vs W1 (4 → 6 min). Strengthening with longer plank holds + added side plank.",
+        "es": "Pasar a 2 sesiones HIIT por semana en 30/60 con ratio 1:2 y RPE 7-8, con el HIIT acumulado semanal +50 % respecto a la S1 (4 → 6 min). Refuerzo con mayor duración de plancha + incorporación de la plancha lateral."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "HIIT 30/60 — squat-air + step-jacks",
+          "name": {
+            "fr": "HIIT 30/60 — squat-air + step-jacks",
+            "en": "HIIT 30/60 — bodyweight squats + step jacks",
+            "es": "HIIT 30/60 — sentadillas sin carga + jumping jacks sin salto"
+          },
           "type": "interval",
           "duration_minutes": 28,
-          "warmup": "Échauffement standard 10 min : 5 min marche rapide + 10 cercles épaules + 10 rotations bassin + 10 talons-fesses + 10 demi-squats lents + 10 step-jacks lents.",
-          "cooldown": "3 min marche lente + 5 min étirements (mollets, quadriceps, fessiers).",
+          "warmup": {
+            "fr": "Échauffement standard 10 min : 5 min marche rapide + 10 cercles épaules + 10 rotations bassin + 10 talons-fesses + 10 demi-squats lents + 10 step-jacks lents.",
+            "en": "Standard 10 min warm-up: 5 min brisk walk + 10 shoulder circles + 10 pelvic rotations + 10 heel-to-buttock kicks + 10 slow half-squats + 10 slow step jacks.",
+            "es": "Calentamiento estándar de 10 min: 5 min de marcha rápida + 10 círculos de hombros + 10 rotaciones de cadera + 10 talones al glúteo + 10 medias sentadillas lentas + 10 jumping jacks sin salto lentos."
+          },
+          "cooldown": {
+            "fr": "3 min marche lente + 5 min étirements (mollets, quadriceps, fessiers).",
+            "en": "3 min slow walk + 5 min stretches (calves, quads, glutes).",
+            "es": "3 min de marcha lenta + 5 min de estiramientos (gemelos, cuádriceps, glúteos)."
+          },
           "exercises": [
             {
-              "name": "Bloc 30/60 — Squat-air partial ROM",
+              "name": {
+                "fr": "Bloc 30/60 — Squats à l'air, amplitude partielle",
+                "en": "30/60 block — Bodyweight squats, partial range",
+                "es": "Bloque 30/60 — Sentadillas sin carga, recorrido parcial"
+              },
               "sets": 3,
               "duration": "30 sec work + 60 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/60 (ratio 1:2) RPE 7-8 work / RPE 2-3 rest. Même mouvement qu'en W1 mais cherche un rythme légèrement plus soutenu sur les 30 sec (sans dégrader la forme). Total bloc : 3 × 90 sec = 4 min 30 sec. HIIT cumulé bloc : 3 × 30 sec = 1 min 30 sec.",
+              "notes": {
+                "fr": "Format 30/60 (ratio 1:2) RPE 7-8 work / RPE 2-3 rest. Même mouvement qu'en W1 mais cherche un rythme légèrement plus soutenu sur les 30 sec (sans dégrader la forme). Total bloc : 3 × 90 sec = 4 min 30 sec. HIIT cumulé bloc : 3 × 30 sec = 1 min 30 sec.",
+                "en": "30/60 format (1:2 ratio) RPE 7-8 on work / RPE 2-3 on rest. Same movement as in W1 but aim for a slightly stronger pace over the 30 sec (without degrading form). Block total: 3 × 90 sec = 4 min 30 sec. Block HIIT total: 3 × 30 sec = 1 min 30 sec.",
+                "es": "Formato 30/60 (ratio 1:2) RPE 7-8 en el trabajo / RPE 2-3 en el descanso. Mismo movimiento que en la S1 pero busca un ritmo algo más sostenido en los 30 s (sin perder técnica). Total del bloque: 3 × 90 s = 4 min 30 s. HIIT acumulado del bloque: 3 × 30 s = 1 min 30 s."
+              },
               "target_zone": "30/60",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -284,13 +543,26 @@
                 "hip-injury"
               ],
               "alternatives": [
-                "Step-up bas alterné 30 sec",
-                "Wall sit partiel 30 sec"
+                {
+                  "fr": "Step-up bas alterné 30 sec",
+                  "en": "Alternating low step-up 30 sec",
+                  "es": "Subida a step bajo alternada 30 s"
+                },
+                {
+                  "fr": "Wall sit partiel 30 sec",
+                  "en": "Partial wall sit 30 sec",
+                  "es": "Sentadilla isométrica en pared parcial 30 s"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/60 — Squat-air partial ROM"
             },
             {
-              "name": "Repos actif inter-bloc",
+              "name": {
+                "fr": "Récupération active entre les blocs",
+                "en": "Active recovery between blocks",
+                "es": "Recuperación activa entre bloques"
+              },
               "sets": 1,
               "duration": "90 sec",
               "rest_seconds": 0,
@@ -298,17 +570,34 @@
               "required_equipment": [],
               "incompatible_constraints": [],
               "alternatives": [
-                "Repos passif debout 90 sec",
-                "Étirements doux 30 sec/côté"
+                {
+                  "fr": "Repos passif debout 90 sec",
+                  "en": "Passive standing rest 90 sec",
+                  "es": "Descanso pasivo de pie 90 s"
+                },
+                {
+                  "fr": "Étirements doux 30 sec/côté",
+                  "en": "Gentle stretches 30 sec/side",
+                  "es": "Estiramientos suaves 30 s/lado"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Repos actif inter-bloc"
             },
             {
-              "name": "Bloc 30/60 — Step-jacks",
+              "name": {
+                "fr": "Bloc 30/60 — Jumping jacks sans saut",
+                "en": "30/60 block — Step jacks",
+                "es": "Bloque 30/60 — Jumping jacks sin salto"
+              },
               "sets": 3,
               "duration": "30 sec work + 60 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. Step-jacks toujours sans saut. Cherche à augmenter légèrement la cadence des bras et l'amplitude des pas latéraux pour monter à RPE 8 sur les 5 dernières secondes. Total bloc : 3 × 90 sec = 4 min 30 sec. HIIT cumulé bloc : 3 × 30 sec = 1 min 30 sec. HIIT cumulé séance W2 J1 = 1 min 30 + 1 min 30 = 3 min.",
+              "notes": {
+                "fr": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. Step-jacks toujours sans saut. Cherche à augmenter légèrement la cadence des bras et l'amplitude des pas latéraux pour monter à RPE 8 sur les 5 dernières secondes. Total bloc : 3 × 90 sec = 4 min 30 sec. HIIT cumulé bloc : 3 × 30 sec = 1 min 30 sec. HIIT cumulé séance W2 J1 = 1 min 30 + 1 min 30 = 3 min.",
+                "en": "30/60 format RPE 7-8 on work / RPE 2-3 on rest. Step jacks still without the jump. Try to slightly increase the arm cadence and the width of the side steps to reach RPE 8 over the last 5 seconds. Block total: 3 × 90 sec = 4 min 30 sec. Block HIIT total: 3 × 30 sec = 1 min 30 sec. Session HIIT total W2 D1 = 1 min 30 + 1 min 30 = 3 min.",
+                "es": "Formato 30/60 RPE 7-8 en el trabajo / RPE 2-3 en el descanso. Jumping jacks siempre sin salto. Intenta aumentar ligeramente la cadencia de brazos y la amplitud de los pasos laterales para llegar a RPE 8 en los últimos 5 segundos. Total del bloque: 3 × 90 s = 4 min 30 s. HIIT acumulado del bloque: 3 × 30 s = 1 min 30 s. HIIT acumulado de la sesión S2 D1 = 1 min 30 + 1 min 30 = 3 min."
+              },
               "target_zone": "30/60",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -318,40 +607,82 @@
                 "apartment-noise"
               ],
               "alternatives": [
-                "Marche sur place genoux haut 30 sec",
-                "Cercles bras + pas latéraux 30 sec"
+                {
+                  "fr": "Marche sur place genoux haut 30 sec",
+                  "en": "High-knee marching in place 30 sec",
+                  "es": "Marcha en el sitio con rodillas altas 30 s"
+                },
+                {
+                  "fr": "Cercles bras + pas latéraux 30 sec",
+                  "en": "Arm circles + side steps 30 sec",
+                  "es": "Círculos de brazos + pasos laterales 30 s"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/60 — Step-jacks"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Renforcement préventif W2 — progression core + activation",
+          "name": {
+            "fr": "Renforcement préventif W2 — progression core + activation",
+            "en": "Preventive strengthening W2 — core progression + activation",
+            "es": "Refuerzo preventivo S2 — progresión del core + activación"
+          },
           "type": "strength",
           "duration_minutes": 32,
-          "warmup": "10 min : marche rapide + mobilité dynamique (rotations bassin, talons-fesses, montées de genoux, cercles chevilles).",
-          "cooldown": "5 min étirements (mollets, fessiers, ischios, gainage).",
+          "warmup": {
+            "fr": "10 min : marche rapide + mobilité dynamique (rotations bassin, talons-fesses, montées de genoux, cercles chevilles).",
+            "en": "10 min: brisk walk + dynamic mobility (pelvic rotations, heel-to-buttock kicks, knee raises, ankle circles).",
+            "es": "10 min: marcha rápida + movilidad dinámica (rotaciones de cadera, talones al glúteo, elevaciones de rodilla, círculos de tobillo)."
+          },
+          "cooldown": {
+            "fr": "5 min étirements (mollets, fessiers, ischios, gainage).",
+            "en": "5 min stretches (calves, glutes, hamstrings, core).",
+            "es": "5 min de estiramientos (gemelos, glúteos, isquiotibiales, core)."
+          },
           "exercises": [
             {
-              "name": "Calf raises bipodal",
+              "name": {
+                "fr": "Mollets debout (deux pieds)",
+                "en": "Standing calf raises (both feet)",
+                "es": "Elevaciones de gemelos de pie (dos pies)"
+              },
               "sets": 3,
               "reps": "15",
               "rest_seconds": 30,
-              "notes": "Progression vs W1 (12 → 15 reps). Toujours au sol, deux pieds ensemble.",
+              "notes": {
+                "fr": "Progression vs W1 (12 → 15 reps). Toujours au sol, deux pieds ensemble.",
+                "en": "Progression vs W1 (12 → 15 reps). Still on the floor, both feet together.",
+                "es": "Progresión respecto a la S1 (12 → 15 reps). Siempre en el suelo, los dos pies juntos."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
               "incompatible_constraints": [
                 "ankle-injury"
               ],
               "alternatives": [
-                "Calf raises assis",
-                "Wall calf raise"
+                {
+                  "fr": "Calf raises assis",
+                  "en": "Seated calf raises",
+                  "es": "Elevaciones de gemelos sentado"
+                },
+                {
+                  "fr": "Wall calf raise",
+                  "en": "Wall calf raise",
+                  "es": "Elevación de gemelos en pared"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Calf raises bipodal"
             },
             {
-              "name": "Tibialis raises",
+              "name": {
+                "fr": "Relevés de pointes (tibial antérieur)",
+                "en": "Tibialis raises (front shin)",
+                "es": "Elevaciones de puntera (tibial anterior)"
+              },
               "sets": 3,
               "reps": "15",
               "rest_seconds": 30,
@@ -361,17 +692,34 @@
                 "ankle-injury"
               ],
               "alternatives": [
-                "Pointe-talon assis",
-                "Tibialis raises avec resistance-band"
+                {
+                  "fr": "Pointe-talon assis",
+                  "en": "Seated toe-heel raises",
+                  "es": "Puntera-talón sentado"
+                },
+                {
+                  "fr": "Tibialis raises avec resistance-band",
+                  "en": "Tibialis raises with a resistance band",
+                  "es": "Elevaciones de puntera con banda elástica"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Tibialis raises"
             },
             {
-              "name": "Glute bridge bipodal",
+              "name": {
+                "fr": "Pont fessier (deux pieds)",
+                "en": "Glute bridge (both feet)",
+                "es": "Puente de glúteos (dos pies)"
+              },
               "sets": 3,
               "reps": "12",
               "rest_seconds": 40,
-              "notes": "Progression durée tenue : 3 sec en haut au lieu de 2 sec en W1.",
+              "notes": {
+                "fr": "Progression durée tenue : 3 sec en haut au lieu de 2 sec en W1.",
+                "en": "Longer hold: 3 sec at the top instead of 2 sec in W1.",
+                "es": "Mayor tiempo de mantenimiento: 3 s arriba en lugar de 2 s en la S1."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [
                 "mat"
@@ -380,17 +728,34 @@
                 "lower-back-pain"
               ],
               "alternatives": [
-                "Glute bridge pieds sur chaise",
-                "Bridge isométrique 30 sec"
+                {
+                  "fr": "Glute bridge pieds sur chaise",
+                  "en": "Glute bridge with feet on a chair",
+                  "es": "Puente de glúteos con los pies en una silla"
+                },
+                {
+                  "fr": "Bridge isométrique 30 sec",
+                  "en": "Isometric bridge 30 sec",
+                  "es": "Puente isométrico 30 s"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Glute bridge bipodal"
             },
             {
-              "name": "Planche ventrale sur genoux",
+              "name": {
+                "fr": "Planche ventrale sur les genoux",
+                "en": "Front plank on knees",
+                "es": "Plancha frontal sobre rodillas"
+              },
               "sets": 3,
               "duration": "30 sec",
               "rest_seconds": 45,
-              "notes": "Progression vs W1 (20 → 30 sec). Forme toujours prioritaire — si tu ne tiens pas 30 sec en gainage propre, fais 2×20 sec.",
+              "notes": {
+                "fr": "Progression vs W1 (20 → 30 sec). Forme toujours prioritaire — si tu ne tiens pas 30 sec en gainage propre, fais 2×20 sec.",
+                "en": "Progression vs W1 (20 → 30 sec). Form always comes first — if you can't hold 30 sec with clean core engagement, do 2×20 sec.",
+                "es": "Progresión respecto a la S1 (20 → 30 s). La técnica siempre es lo primero — si no aguantas 30 s con el core bien activado, haz 2×20 s."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [
                 "mat"
@@ -401,13 +766,26 @@
                 "wrist-pain"
               ],
               "alternatives": [
-                "Planche avant-bras genoux 30 sec",
-                "Dead bug"
+                {
+                  "fr": "Planche avant-bras genoux 30 sec",
+                  "en": "Forearm plank on knees 30 sec",
+                  "es": "Plancha en antebrazos sobre rodillas 30 s"
+                },
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Planche ventrale sur genoux"
             },
             {
-              "name": "Dead bug",
+              "name": {
+                "fr": "Dead bug (bug mort, anti-cambrure)",
+                "en": "Dead bug",
+                "es": "Dead bug (bicho muerto, anti-arqueo)"
+              },
               "sets": 3,
               "reps": "10 par côté",
               "rest_seconds": 30,
@@ -419,17 +797,34 @@
                 "lower-back-pain"
               ],
               "alternatives": [
-                "Bird-dog",
-                "Pelvic tilt"
+                {
+                  "fr": "Bird-dog",
+                  "en": "Bird-dog",
+                  "es": "Bird-dog"
+                },
+                {
+                  "fr": "Pelvic tilt",
+                  "en": "Pelvic tilt",
+                  "es": "Báscula pélvica"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Dead bug"
             },
             {
-              "name": "Side plank sur genoux",
+              "name": {
+                "fr": "Planche latérale sur les genoux",
+                "en": "Side plank on knees",
+                "es": "Plancha lateral sobre rodillas"
+              },
               "sets": 2,
               "duration": "20 sec par côté",
               "rest_seconds": 30,
-              "notes": "Nouveauté W2 : side plank version genoux pliés (pieds croisés derrière). Cible les obliques et les moyens fessiers — stabilisateurs latéraux clés du HIIT (mountain climbers, step-jacks).",
+              "notes": {
+                "fr": "Nouveauté W2 : side plank version genoux pliés (pieds croisés derrière). Cible les obliques et les moyens fessiers — stabilisateurs latéraux clés du HIIT (mountain climbers, step-jacks).",
+                "en": "New in W2: side plank with bent knees (feet crossed behind). Targets the obliques and the gluteus medius — key lateral stabilizers for HIIT (mountain climbers, step jacks).",
+                "es": "Novedad en la S2: plancha lateral con rodillas flexionadas (pies cruzados detrás). Trabaja los oblicuos y el glúteo medio — estabilizadores laterales clave del HIIT (escaladores, jumping jacks sin salto)."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [
                 "mat"
@@ -440,27 +835,56 @@
                 "wrist-pain"
               ],
               "alternatives": [
-                "Side plank pieds posés 20 sec/côté",
-                "Clamshell"
+                {
+                  "fr": "Side plank pieds posés 20 sec/côté",
+                  "en": "Side plank with feet down 20 sec/side",
+                  "es": "Plancha lateral con pies apoyados 20 s/lado"
+                },
+                {
+                  "fr": "Clamshell",
+                  "en": "Clamshell",
+                  "es": "Almeja (clamshell)"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Side plank sur genoux"
             }
           ]
         },
         {
           "day": 5,
-          "name": "HIIT 30/60 — mountain climbers slow + squat-air",
+          "name": {
+            "fr": "HIIT 30/60 — mountain climbers slow + squat-air",
+            "en": "HIIT 30/60 — slow mountain climbers + bodyweight squats",
+            "es": "HIIT 30/60 — escaladores lentos + sentadillas sin carga"
+          },
           "type": "interval",
           "duration_minutes": 28,
-          "warmup": "Échauffement standard 10 min identique à J1.",
-          "cooldown": "3 min marche + 5 min étirements.",
+          "warmup": {
+            "fr": "Échauffement standard 10 min identique à J1.",
+            "en": "Standard 10 min warm-up, same as D1.",
+            "es": "Calentamiento estándar de 10 min, igual que el D1."
+          },
+          "cooldown": {
+            "fr": "3 min marche + 5 min étirements.",
+            "en": "3 min walk + 5 min stretches.",
+            "es": "3 min de marcha + 5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Bloc 30/60 — Mountain climbers slow",
+              "name": {
+                "fr": "Bloc 30/60 — Montées de genoux en planche, version lente",
+                "en": "30/60 block — Mountain climbers, slow",
+                "es": "Bloque 30/60 — Escaladores, versión lenta"
+              },
               "sets": 3,
               "duration": "30 sec work + 60 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. Mountain climbers SLOW : position planche, alterner les genoux vers la poitrine en RYTHME LENT (pas de précipitation). Pas de creux lombaire, fessiers engagés. Si poignet douloureux, faire en appui avant-bras. Total bloc : 3 × 90 sec = 4 min 30 sec. HIIT cumulé bloc : 3 × 30 sec = 1 min 30 sec.",
+              "notes": {
+                "fr": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. Mountain climbers SLOW : position planche, alterner les genoux vers la poitrine en RYTHME LENT (pas de précipitation). Pas de creux lombaire, fessiers engagés. Si poignet douloureux, faire en appui avant-bras. Total bloc : 3 × 90 sec = 4 min 30 sec. HIIT cumulé bloc : 3 × 30 sec = 1 min 30 sec.",
+                "en": "30/60 format RPE 7-8 on work / RPE 2-3 on rest. SLOW mountain climbers: plank position, alternate knees toward the chest at a SLOW PACE (no rushing). No lower-back sag, glutes engaged. If your wrists hurt, do it on your forearms. Block total: 3 × 90 sec = 4 min 30 sec. Block HIIT total: 3 × 30 sec = 1 min 30 sec.",
+                "es": "Formato 30/60 RPE 7-8 en el trabajo / RPE 2-3 en el descanso. Escaladores LENTOS: posición de plancha, alternar las rodillas hacia el pecho a RITMO LENTO (sin prisa). Sin hundir la zona lumbar, glúteos activados. Si te duelen las muñecas, hazlo apoyando los antebrazos. Total del bloque: 3 × 90 s = 4 min 30 s. HIIT acumulado del bloque: 3 × 30 s = 1 min 30 s."
+              },
               "target_zone": "30/60",
               "required_equipment": [
                 "mat"
@@ -472,13 +896,26 @@
                 "cardiac-clearance-required"
               ],
               "alternatives": [
-                "Mountain climbers avant-bras au sol 30 sec",
-                "Marche dynamique avec genoux haut 30 sec"
+                {
+                  "fr": "Mountain climbers avant-bras au sol 30 sec",
+                  "en": "Forearm mountain climbers 30 sec",
+                  "es": "Escaladores con antebrazos en el suelo 30 s"
+                },
+                {
+                  "fr": "Marche dynamique avec genoux haut 30 sec",
+                  "en": "Dynamic high-knee walk 30 sec",
+                  "es": "Marcha dinámica con rodillas altas 30 s"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/60 — Mountain climbers slow"
             },
             {
-              "name": "Repos actif inter-bloc",
+              "name": {
+                "fr": "Récupération active entre les blocs",
+                "en": "Active recovery between blocks",
+                "es": "Recuperación activa entre bloques"
+              },
               "sets": 1,
               "duration": "90 sec",
               "rest_seconds": 0,
@@ -486,17 +923,34 @@
               "required_equipment": [],
               "incompatible_constraints": [],
               "alternatives": [
-                "Repos passif debout 90 sec",
-                "Étirements doux gastrocnémiens 30 sec/côté"
+                {
+                  "fr": "Repos passif debout 90 sec",
+                  "en": "Passive standing rest 90 sec",
+                  "es": "Descanso pasivo de pie 90 s"
+                },
+                {
+                  "fr": "Étirements doux gastrocnémiens 30 sec/côté",
+                  "en": "Gentle calf (gastrocnemius) stretch 30 sec/side",
+                  "es": "Estiramiento suave de gemelos 30 s/lado"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Repos actif inter-bloc"
             },
             {
-              "name": "Bloc 30/60 — Squat-air partial ROM",
+              "name": {
+                "fr": "Bloc 30/60 — Squats à l'air, amplitude partielle",
+                "en": "30/60 block — Bodyweight squats, partial range",
+                "es": "Bloque 30/60 — Sentadillas sin carga, recorrido parcial"
+              },
               "sets": 3,
               "duration": "30 sec work + 60 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. Identique à J1 mais en 2e position de séance (fatigue cumulée). Si forme se dégrade, réduire l'amplitude de descente. Total bloc : 3 × 90 sec = 4 min 30 sec. HIIT cumulé bloc : 3 × 30 sec = 1 min 30 sec. HIIT cumulé séance W2 J5 = 3 min. HIIT cumulé hebdo W2 = 6 min (3 + 3, +50% vs W1 = 4 min).",
+              "notes": {
+                "fr": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. Identique à J1 mais en 2e position de séance (fatigue cumulée). Si forme se dégrade, réduire l'amplitude de descente. Total bloc : 3 × 90 sec = 4 min 30 sec. HIIT cumulé bloc : 3 × 30 sec = 1 min 30 sec. HIIT cumulé séance W2 J5 = 3 min. HIIT cumulé hebdo W2 = 6 min (3 + 3, +50% vs W1 = 4 min).",
+                "en": "30/60 format RPE 7-8 on work / RPE 2-3 on rest. Same as D1 but in 2nd place in the session (accumulated fatigue). If form degrades, reduce the depth of the descent. Block total: 3 × 90 sec = 4 min 30 sec. Block HIIT total: 3 × 30 sec = 1 min 30 sec. Session HIIT total W2 D5 = 3 min. Weekly HIIT total W2 = 6 min (3 + 3, +50% vs W1 = 4 min).",
+                "es": "Formato 30/60 RPE 7-8 en el trabajo / RPE 2-3 en el descanso. Igual que el D1 pero en 2.ª posición de la sesión (fatiga acumulada). Si la técnica se deteriora, reduce la profundidad de la bajada. Total del bloque: 3 × 90 s = 4 min 30 s. HIIT acumulado del bloque: 3 × 30 s = 1 min 30 s. HIIT acumulado de la sesión S2 D5 = 3 min. HIIT acumulado semanal S2 = 6 min (3 + 3, +50 % respecto a la S1 = 4 min)."
+              },
               "target_zone": "30/60",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -505,10 +959,19 @@
                 "hip-injury"
               ],
               "alternatives": [
-                "Step-up bas alterné 30 sec",
-                "Wall sit partiel 30 sec"
+                {
+                  "fr": "Step-up bas alterné 30 sec",
+                  "en": "Alternating low step-up 30 sec",
+                  "es": "Subida a step bajo alternada 30 s"
+                },
+                {
+                  "fr": "Wall sit partiel 30 sec",
+                  "en": "Partial wall sit 30 sec",
+                  "es": "Sentadilla isométrica en pared parcial 30 s"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/60 — Squat-air partial ROM"
             }
           ]
         }
@@ -516,23 +979,51 @@
     },
     {
       "week_number": 3,
-      "theme": "Build — palier haut avant cutback, 8 min HIIT cumulé",
-      "goal": "Atteindre 8 min HIIT cumulé hebdo (haut de la cible doctrine 4-8 min/sem `beginner`) en 30/60 ratio 1:2 RPE 7-8 — palier qualité avant cutback W4. 4 rounds par bloc au lieu de 3.",
+      "theme": {
+        "fr": "Build — palier haut avant cutback, 8 min HIIT cumulé",
+        "en": "Build — high plateau before the deload, 8 min HIIT total",
+        "es": "Carga — meseta alta antes de la semana aligerada, 8 min de HIIT acumulado"
+      },
+      "goal": {
+        "fr": "Atteindre 8 min HIIT cumulé hebdo (haut de la cible doctrine 4-8 min/sem `beginner`) en 30/60 ratio 1:2 RPE 7-8 — palier qualité avant cutback W4. 4 rounds par bloc au lieu de 3.",
+        "en": "Reach 8 min weekly HIIT total (the top of the 4-8 min/week beginner target) at 30/60, 1:2 ratio, RPE 7-8 — a quality plateau before the W4 deload. 4 rounds per block instead of 3.",
+        "es": "Alcanzar 8 min de HIIT acumulado semanal (el tope del objetivo de iniciación de 4-8 min/semana) en 30/60 con ratio 1:2 y RPE 7-8 — meseta de calidad antes de la semana aligerada de la S4. 4 rondas por bloque en lugar de 3."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "HIIT 30/60 — squat-air + step-jacks 4 rounds",
+          "name": {
+            "fr": "HIIT 30/60 — squat-air + step-jacks 4 rounds",
+            "en": "HIIT 30/60 — bodyweight squats + step jacks, 4 rounds",
+            "es": "HIIT 30/60 — sentadillas sin carga + jumping jacks sin salto, 4 rondas"
+          },
           "type": "interval",
           "duration_minutes": 32,
-          "warmup": "Échauffement standard 10 min.",
-          "cooldown": "3 min marche + 5 min étirements complets (mollets, quadriceps, ischios, fessiers, piriformis).",
+          "warmup": {
+            "fr": "Échauffement standard 10 min.",
+            "en": "Standard 10 min warm-up.",
+            "es": "Calentamiento estándar de 10 min."
+          },
+          "cooldown": {
+            "fr": "3 min marche + 5 min étirements complets (mollets, quadriceps, ischios, fessiers, piriformis).",
+            "en": "3 min walk + 5 min full stretches (calves, quads, hamstrings, glutes, piriformis).",
+            "es": "3 min de marcha + 5 min de estiramientos completos (gemelos, cuádriceps, isquiotibiales, glúteos, piriforme)."
+          },
           "exercises": [
             {
-              "name": "Bloc 30/60 — Squat-air partial ROM",
+              "name": {
+                "fr": "Bloc 30/60 — Squats à l'air, amplitude partielle",
+                "en": "30/60 block — Bodyweight squats, partial range",
+                "es": "Bloque 30/60 — Sentadillas sin carga, recorrido parcial"
+              },
               "sets": 4,
               "duration": "30 sec work + 60 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. 4 rounds vs 3 en W2 (+1 round). Total bloc : 4 × 90 sec = 6 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. Forme genou-pied alignée prioritaire.",
+              "notes": {
+                "fr": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. 4 rounds vs 3 en W2 (+1 round). Total bloc : 4 × 90 sec = 6 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. Forme genou-pied alignée prioritaire.",
+                "en": "30/60 format RPE 7-8 on work / RPE 2-3 on rest. 4 rounds vs 3 in W2 (+1 round). Block total: 4 × 90 sec = 6 min. Block HIIT total: 4 × 30 sec = 2 min. Knee-over-toe alignment is the priority.",
+                "es": "Formato 30/60 RPE 7-8 en el trabajo / RPE 2-3 en el descanso. 4 rondas frente a 3 en la S2 (+1 ronda). Total del bloque: 4 × 90 s = 6 min. HIIT acumulado del bloque: 4 × 30 s = 2 min. Prioriza la alineación rodilla-pie."
+              },
               "target_zone": "30/60",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -541,32 +1032,66 @@
                 "hip-injury"
               ],
               "alternatives": [
-                "Step-up bas alterné 30 sec",
-                "Wall sit partiel 30 sec"
+                {
+                  "fr": "Step-up bas alterné 30 sec",
+                  "en": "Alternating low step-up 30 sec",
+                  "es": "Subida a step bajo alternada 30 s"
+                },
+                {
+                  "fr": "Wall sit partiel 30 sec",
+                  "en": "Partial wall sit 30 sec",
+                  "es": "Sentadilla isométrica en pared parcial 30 s"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/60 — Squat-air partial ROM"
             },
             {
-              "name": "Repos actif inter-bloc",
+              "name": {
+                "fr": "Récupération active entre les blocs",
+                "en": "Active recovery between blocks",
+                "es": "Recuperación activa entre bloques"
+              },
               "sets": 1,
               "duration": "120 sec",
               "rest_seconds": 0,
-              "notes": "Récup inter-bloc allongée à 2 min vs 90 sec en W2 — la fatigue cumulée monte avec 4 rounds.",
+              "notes": {
+                "fr": "Récup inter-bloc allongée à 2 min vs 90 sec en W2 — la fatigue cumulée monte avec 4 rounds.",
+                "en": "Between-block recovery extended to 2 min vs 90 sec in W2 — accumulated fatigue rises with 4 rounds.",
+                "es": "Recuperación entre bloques ampliada a 2 min frente a 90 s en la S2 — la fatiga acumulada aumenta con 4 rondas."
+              },
               "target_zone": "walking-recovery",
               "required_equipment": [],
               "incompatible_constraints": [],
               "alternatives": [
-                "Repos passif debout 2 min",
-                "Étirements doux 30 sec/côté"
+                {
+                  "fr": "Repos passif debout 2 min",
+                  "en": "Passive standing rest 2 min",
+                  "es": "Descanso pasivo de pie 2 min"
+                },
+                {
+                  "fr": "Étirements doux 30 sec/côté",
+                  "en": "Gentle stretches 30 sec/side",
+                  "es": "Estiramientos suaves 30 s/lado"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Repos actif inter-bloc"
             },
             {
-              "name": "Bloc 30/60 — Step-jacks",
+              "name": {
+                "fr": "Bloc 30/60 — Jumping jacks sans saut",
+                "en": "30/60 block — Step jacks",
+                "es": "Bloque 30/60 — Jumping jacks sin salto"
+              },
               "sets": 4,
               "duration": "30 sec work + 60 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. 4 rounds. Total bloc : 4 × 90 sec = 6 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. HIIT cumulé séance W3 J1 = 4 min.",
+              "notes": {
+                "fr": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. 4 rounds. Total bloc : 4 × 90 sec = 6 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. HIIT cumulé séance W3 J1 = 4 min.",
+                "en": "30/60 format RPE 7-8 on work / RPE 2-3 on rest. 4 rounds. Block total: 4 × 90 sec = 6 min. Block HIIT total: 4 × 30 sec = 2 min. Session HIIT total W3 D1 = 4 min.",
+                "es": "Formato 30/60 RPE 7-8 en el trabajo / RPE 2-3 en el descanso. 4 rondas. Total del bloque: 4 × 90 s = 6 min. HIIT acumulado del bloque: 4 × 30 s = 2 min. HIIT acumulado de la sesión S3 D1 = 4 min."
+              },
               "target_zone": "30/60",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -576,40 +1101,82 @@
                 "apartment-noise"
               ],
               "alternatives": [
-                "Marche sur place genoux haut 30 sec",
-                "Cercles bras + pas latéraux 30 sec"
+                {
+                  "fr": "Marche sur place genoux haut 30 sec",
+                  "en": "High-knee marching in place 30 sec",
+                  "es": "Marcha en el sitio con rodillas altas 30 s"
+                },
+                {
+                  "fr": "Cercles bras + pas latéraux 30 sec",
+                  "en": "Arm circles + side steps 30 sec",
+                  "es": "Círculos de brazos + pasos laterales 30 s"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/60 — Step-jacks"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Renforcement préventif W3 — planche complète + bird-dog",
+          "name": {
+            "fr": "Renforcement préventif W3 — planche complète + bird-dog",
+            "en": "Preventive strengthening W3 — full plank + bird-dog",
+            "es": "Refuerzo preventivo S3 — plancha completa + bird-dog"
+          },
           "type": "strength",
           "duration_minutes": 35,
-          "warmup": "10 min : marche rapide + mobilité dynamique.",
-          "cooldown": "5 min étirements complets.",
+          "warmup": {
+            "fr": "10 min : marche rapide + mobilité dynamique.",
+            "en": "10 min: brisk walk + dynamic mobility.",
+            "es": "10 min: marcha rápida + movilidad dinámica."
+          },
+          "cooldown": {
+            "fr": "5 min étirements complets.",
+            "en": "5 min full stretches.",
+            "es": "5 min de estiramientos completos."
+          },
           "exercises": [
             {
-              "name": "Calf raises excentriques bipodal",
+              "name": {
+                "fr": "Mollets excentriques (deux pieds)",
+                "en": "Eccentric calf raises (both feet)",
+                "es": "Elevaciones de gemelos excéntricas (dos pies)"
+              },
               "sets": 3,
               "reps": "12",
               "rest_seconds": 30,
-              "notes": "Nouveauté W3 : monter sur 2 pieds normalement, descendre LENTEMENT (3 sec). Approche excentrique inspirée de la littérature tendineuse — protection tendon Achille avant l'introduction des mouvements à impact léger en W5.",
+              "notes": {
+                "fr": "Nouveauté W3 : monter sur 2 pieds normalement, descendre LENTEMENT (3 sec). Approche excentrique inspirée de la littérature tendineuse — protection tendon Achille avant l'introduction des mouvements à impact léger en W5.",
+                "en": "New in W3: rise on both feet normally, lower SLOWLY (3 sec). Eccentric approach drawn from the tendon literature — protects the Achilles tendon before light-impact movements are introduced in W5.",
+                "es": "Novedad en la S3: sube con los dos pies con normalidad, baja LENTAMENTE (3 s). Enfoque excéntrico inspirado en la literatura sobre tendones — protege el tendón de Aquiles antes de introducir los movimientos de impacto ligero en la S5."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
               "incompatible_constraints": [
                 "ankle-injury"
               ],
               "alternatives": [
-                "Calf raises bipodal classique",
-                "Wall calf raise"
+                {
+                  "fr": "Calf raises bipodal classique",
+                  "en": "Classic two-foot calf raises",
+                  "es": "Elevaciones de gemelos clásicas a dos pies"
+                },
+                {
+                  "fr": "Wall calf raise",
+                  "en": "Wall calf raise",
+                  "es": "Elevación de gemelos en pared"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Calf raises excentriques bipodal"
             },
             {
-              "name": "Tibialis raises",
+              "name": {
+                "fr": "Relevés de pointes (tibial antérieur)",
+                "en": "Tibialis raises (front shin)",
+                "es": "Elevaciones de puntera (tibial anterior)"
+              },
               "sets": 3,
               "reps": "15",
               "rest_seconds": 30,
@@ -619,17 +1186,34 @@
                 "ankle-injury"
               ],
               "alternatives": [
-                "Pointe-talon assis",
-                "Tibialis raises avec resistance-band"
+                {
+                  "fr": "Pointe-talon assis",
+                  "en": "Seated toe-heel raises",
+                  "es": "Puntera-talón sentado"
+                },
+                {
+                  "fr": "Tibialis raises avec resistance-band",
+                  "en": "Tibialis raises with a resistance band",
+                  "es": "Elevaciones de puntera con banda elástica"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Tibialis raises"
             },
             {
-              "name": "Glute bridge unilatéral",
+              "name": {
+                "fr": "Pont fessier sur une jambe",
+                "en": "Single-leg glute bridge",
+                "es": "Puente de glúteos a una pierna"
+              },
               "sets": 3,
               "reps": "8 par côté",
               "rest_seconds": 40,
-              "notes": "Progression vs glute bridge bipodal W1-W2 : un seul pied au sol, l'autre tendu. Renforce l'équilibre G/D et la force fessière individuelle.",
+              "notes": {
+                "fr": "Progression vs glute bridge bipodal W1-W2 : un seul pied au sol, l'autre tendu. Renforce l'équilibre G/D et la force fessière individuelle.",
+                "en": "Progression from the two-foot glute bridge of W1-W2: only one foot on the floor, the other extended. Builds left/right balance and individual glute strength.",
+                "es": "Progresión respecto al puente de glúteos a dos pies de las S1-S2: un solo pie en el suelo, el otro extendido. Mejora el equilibrio izquierda/derecha y la fuerza individual de cada glúteo."
+              },
               "target_zone": "RPE 7-8",
               "required_equipment": [
                 "mat"
@@ -638,17 +1222,34 @@
                 "lower-back-pain"
               ],
               "alternatives": [
-                "Glute bridge bipodal",
-                "Glute bridge pieds sur chaise"
+                {
+                  "fr": "Glute bridge bipodal",
+                  "en": "Two-foot glute bridge",
+                  "es": "Puente de glúteos a dos pies"
+                },
+                {
+                  "fr": "Glute bridge pieds sur chaise",
+                  "en": "Glute bridge with feet on a chair",
+                  "es": "Puente de glúteos con los pies en una silla"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Glute bridge unilatéral"
             },
             {
-              "name": "Planche ventrale complète",
+              "name": {
+                "fr": "Planche ventrale complète",
+                "en": "Full front plank",
+                "es": "Plancha frontal completa"
+              },
               "sets": 3,
               "duration": "30 sec",
               "rest_seconds": 45,
-              "notes": "Progression vs planche genoux W1-W2 : version pieds. Coudes sous épaules, corps aligné des chevilles aux épaules, fessiers + abdos engagés.",
+              "notes": {
+                "fr": "Progression vs planche genoux W1-W2 : version pieds. Coudes sous épaules, corps aligné des chevilles aux épaules, fessiers + abdos engagés.",
+                "en": "Progression from the knee plank of W1-W2: feet version. Elbows under shoulders, body in a straight line from ankles to shoulders, glutes + abs engaged.",
+                "es": "Progresión respecto a la plancha sobre rodillas de las S1-S2: versión con los pies. Codos bajo los hombros, cuerpo alineado de los tobillos a los hombros, glúteos + abdominales activados."
+              },
               "target_zone": "RPE 7-8",
               "required_equipment": [
                 "mat"
@@ -659,17 +1260,34 @@
                 "wrist-pain"
               ],
               "alternatives": [
-                "Planche genoux 45 sec",
-                "Dead bug"
+                {
+                  "fr": "Planche genoux 45 sec",
+                  "en": "Knee plank 45 sec",
+                  "es": "Plancha sobre rodillas 45 s"
+                },
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Planche ventrale complète"
             },
             {
-              "name": "Bird-dog",
+              "name": {
+                "fr": "Bird-dog (pointer de chien)",
+                "en": "Bird-dog",
+                "es": "Bird-dog (perro de muestra)"
+              },
               "sets": 3,
               "reps": "8 par côté",
               "rest_seconds": 30,
-              "notes": "Nouveauté W3 : à 4 pattes, tendre bras opposé + jambe opposée, tenir 2 sec. Cible le core profond et l'anti-rotation lombaire — protège le bas du dos pendant les blocs HIIT à venir.",
+              "notes": {
+                "fr": "Nouveauté W3 : à 4 pattes, tendre bras opposé + jambe opposée, tenir 2 sec. Cible le core profond et l'anti-rotation lombaire — protège le bas du dos pendant les blocs HIIT à venir.",
+                "en": "New in W3: on all fours, extend the opposite arm + opposite leg, hold 2 sec. Targets the deep core and lumbar anti-rotation — protects the lower back during the upcoming HIIT blocks.",
+                "es": "Novedad en la S3: a cuatro patas, extiende el brazo y la pierna contrarios, mantén 2 s. Trabaja el core profundo y la anti-rotación lumbar — protege la zona lumbar durante los bloques de HIIT que vienen."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [
                 "mat"
@@ -679,17 +1297,34 @@
                 "lower-back-pain"
               ],
               "alternatives": [
-                "Dead bug",
-                "Bird-dog avant-bras au sol"
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                },
+                {
+                  "fr": "Bird-dog avant-bras au sol",
+                  "en": "Bird-dog with forearm on the floor",
+                  "es": "Bird-dog con antebrazo en el suelo"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Bird-dog"
             },
             {
-              "name": "Side plank sur genoux",
+              "name": {
+                "fr": "Planche latérale sur les genoux",
+                "en": "Side plank on knees",
+                "es": "Plancha lateral sobre rodillas"
+              },
               "sets": 2,
               "duration": "30 sec par côté",
               "rest_seconds": 30,
-              "notes": "Progression durée vs W2 (20 → 30 sec/côté).",
+              "notes": {
+                "fr": "Progression durée vs W2 (20 → 30 sec/côté).",
+                "en": "Longer hold vs W2 (20 → 30 sec/side).",
+                "es": "Mayor duración respecto a la S2 (20 → 30 s/lado)."
+              },
               "target_zone": "RPE 7-8",
               "required_equipment": [
                 "mat"
@@ -700,27 +1335,56 @@
                 "wrist-pain"
               ],
               "alternatives": [
-                "Side plank pieds posés 30 sec/côté",
-                "Clamshell"
+                {
+                  "fr": "Side plank pieds posés 30 sec/côté",
+                  "en": "Side plank with feet down 30 sec/side",
+                  "es": "Plancha lateral con pies apoyados 30 s/lado"
+                },
+                {
+                  "fr": "Clamshell",
+                  "en": "Clamshell",
+                  "es": "Almeja (clamshell)"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Side plank sur genoux"
             }
           ]
         },
         {
           "day": 5,
-          "name": "HIIT 30/60 — mountain climbers slow + squat-air 4 rounds",
+          "name": {
+            "fr": "HIIT 30/60 — mountain climbers slow + squat-air 4 rounds",
+            "en": "HIIT 30/60 — slow mountain climbers + bodyweight squats, 4 rounds",
+            "es": "HIIT 30/60 — escaladores lentos + sentadillas sin carga, 4 rondas"
+          },
           "type": "interval",
           "duration_minutes": 32,
-          "warmup": "Échauffement standard 10 min.",
-          "cooldown": "3 min marche + 5 min étirements.",
+          "warmup": {
+            "fr": "Échauffement standard 10 min.",
+            "en": "Standard 10 min warm-up.",
+            "es": "Calentamiento estándar de 10 min."
+          },
+          "cooldown": {
+            "fr": "3 min marche + 5 min étirements.",
+            "en": "3 min walk + 5 min stretches.",
+            "es": "3 min de marcha + 5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Bloc 30/60 — Mountain climbers slow",
+              "name": {
+                "fr": "Bloc 30/60 — Montées de genoux en planche, version lente",
+                "en": "30/60 block — Mountain climbers, slow",
+                "es": "Bloque 30/60 — Escaladores, versión lenta"
+              },
               "sets": 4,
               "duration": "30 sec work + 60 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. 4 rounds. Total bloc : 4 × 90 sec = 6 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. Si forme se dégrade en gainage planche, réduire la cadence.",
+              "notes": {
+                "fr": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. 4 rounds. Total bloc : 4 × 90 sec = 6 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. Si forme se dégrade en gainage planche, réduire la cadence.",
+                "en": "30/60 format RPE 7-8 on work / RPE 2-3 on rest. 4 rounds. Block total: 4 × 90 sec = 6 min. Block HIIT total: 4 × 30 sec = 2 min. If your plank core engagement degrades, slow the cadence.",
+                "es": "Formato 30/60 RPE 7-8 en el trabajo / RPE 2-3 en el descanso. 4 rondas. Total del bloque: 4 × 90 s = 6 min. HIIT acumulado del bloque: 4 × 30 s = 2 min. Si pierdes la posición de plancha, reduce la cadencia."
+              },
               "target_zone": "30/60",
               "required_equipment": [
                 "mat"
@@ -732,13 +1396,26 @@
                 "cardiac-clearance-required"
               ],
               "alternatives": [
-                "Mountain climbers avant-bras 30 sec",
-                "Marche dynamique genoux haut 30 sec"
+                {
+                  "fr": "Mountain climbers avant-bras 30 sec",
+                  "en": "Forearm mountain climbers 30 sec",
+                  "es": "Escaladores con antebrazos 30 s"
+                },
+                {
+                  "fr": "Marche dynamique genoux haut 30 sec",
+                  "en": "Dynamic high-knee walk 30 sec",
+                  "es": "Marcha dinámica con rodillas altas 30 s"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/60 — Mountain climbers slow"
             },
             {
-              "name": "Repos actif inter-bloc",
+              "name": {
+                "fr": "Récupération active entre les blocs",
+                "en": "Active recovery between blocks",
+                "es": "Recuperación activa entre bloques"
+              },
               "sets": 1,
               "duration": "120 sec",
               "rest_seconds": 0,
@@ -746,17 +1423,34 @@
               "required_equipment": [],
               "incompatible_constraints": [],
               "alternatives": [
-                "Repos passif debout 2 min",
-                "Étirements doux gastrocnémiens 30 sec/côté"
+                {
+                  "fr": "Repos passif debout 2 min",
+                  "en": "Passive standing rest 2 min",
+                  "es": "Descanso pasivo de pie 2 min"
+                },
+                {
+                  "fr": "Étirements doux gastrocnémiens 30 sec/côté",
+                  "en": "Gentle calf (gastrocnemius) stretch 30 sec/side",
+                  "es": "Estiramiento suave de gemelos 30 s/lado"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Repos actif inter-bloc"
             },
             {
-              "name": "Bloc 30/60 — Squat-air partial ROM",
+              "name": {
+                "fr": "Bloc 30/60 — Squats à l'air, amplitude partielle",
+                "en": "30/60 block — Bodyweight squats, partial range",
+                "es": "Bloque 30/60 — Sentadillas sin carga, recorrido parcial"
+              },
               "sets": 4,
               "duration": "30 sec work + 60 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. 4 rounds en 2e position. Total bloc : 4 × 90 sec = 6 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. HIIT cumulé séance W3 J5 = 4 min. HIIT cumulé hebdo W3 = 8 min (4 + 4, palier haut cible doctrine `beginner` 4-8 min/sem). Cutback obligatoire en W4.",
+              "notes": {
+                "fr": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. 4 rounds en 2e position. Total bloc : 4 × 90 sec = 6 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. HIIT cumulé séance W3 J5 = 4 min. HIIT cumulé hebdo W3 = 8 min (4 + 4, palier haut cible doctrine `beginner` 4-8 min/sem). Cutback obligatoire en W4.",
+                "en": "30/60 format RPE 7-8 on work / RPE 2-3 on rest. 4 rounds in 2nd place. Block total: 4 × 90 sec = 6 min. Block HIIT total: 4 × 30 sec = 2 min. Session HIIT total W3 D5 = 4 min. Weekly HIIT total W3 = 8 min (4 + 4, the high plateau of the 4-8 min/week beginner target). Deload mandatory in W4.",
+                "es": "Formato 30/60 RPE 7-8 en el trabajo / RPE 2-3 en el descanso. 4 rondas en 2.ª posición. Total del bloque: 4 × 90 s = 6 min. HIIT acumulado del bloque: 4 × 30 s = 2 min. HIIT acumulado de la sesión S3 D5 = 4 min. HIIT acumulado semanal S3 = 8 min (4 + 4, la meseta alta del objetivo de iniciación de 4-8 min/semana). Semana aligerada obligatoria en la S4."
+              },
               "target_zone": "30/60",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -765,10 +1459,19 @@
                 "hip-injury"
               ],
               "alternatives": [
-                "Step-up bas alterné 30 sec",
-                "Wall sit partiel 30 sec"
+                {
+                  "fr": "Step-up bas alterné 30 sec",
+                  "en": "Alternating low step-up 30 sec",
+                  "es": "Subida a step bajo alternada 30 s"
+                },
+                {
+                  "fr": "Wall sit partiel 30 sec",
+                  "en": "Partial wall sit 30 sec",
+                  "es": "Sentadilla isométrica en pared parcial 30 s"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/60 — Squat-air partial ROM"
             }
           ]
         }
@@ -776,23 +1479,51 @@
     },
     {
       "week_number": 4,
-      "theme": "Cutback — consolidation, transition vers ratio 1:1",
-      "goal": "Cutback obligatoire après 3 semaines de build : HIIT cumulé hebdo réduit -38% (8 → 5 min). Pas de nouveauté impactante — on consolide les acquis avant la transition au ratio 1:1 (30/30) en W5. La cutback est constitutive de l'adaptation.",
+      "theme": {
+        "fr": "Cutback — consolidation, transition vers ratio 1:1",
+        "en": "Deload — consolidation, transition toward the 1:1 ratio",
+        "es": "Semana aligerada — consolidación, transición hacia el ratio 1:1"
+      },
+      "goal": {
+        "fr": "Cutback obligatoire après 3 semaines de build : HIIT cumulé hebdo réduit -38% (8 → 5 min). Pas de nouveauté impactante — on consolide les acquis avant la transition au ratio 1:1 (30/30) en W5. La cutback est constitutive de l'adaptation.",
+        "en": "Mandatory deload after 3 weeks of build: weekly HIIT total cut by -38% (8 → 5 min). No high-impact novelty — we consolidate gains before the transition to the 1:1 ratio (30/30) in W5. The deload is a core part of the adaptation.",
+        "es": "Semana aligerada obligatoria tras 3 semanas de carga: el HIIT acumulado semanal se reduce un -38 % (8 → 5 min). Sin novedades de impacto — consolidamos lo aprendido antes de la transición al ratio 1:1 (30/30) en la S5. La semana aligerada forma parte de la adaptación."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "Cutback HIIT — 30/60 allégé",
+          "name": {
+            "fr": "Cutback HIIT — 30/60 allégé",
+            "en": "HIIT deload — lighter 30/60",
+            "es": "HIIT aligerado — 30/60 reducido"
+          },
           "type": "interval",
           "duration_minutes": 26,
-          "warmup": "Échauffement standard 10 min.",
-          "cooldown": "5 min marche + 5 min étirements complets.",
+          "warmup": {
+            "fr": "Échauffement standard 10 min.",
+            "en": "Standard 10 min warm-up.",
+            "es": "Calentamiento estándar de 10 min."
+          },
+          "cooldown": {
+            "fr": "5 min marche + 5 min étirements complets.",
+            "en": "5 min walk + 5 min full stretches.",
+            "es": "5 min de marcha + 5 min de estiramientos completos."
+          },
           "exercises": [
             {
-              "name": "Bloc 30/60 — Squat-air partial ROM",
+              "name": {
+                "fr": "Bloc 30/60 — Squats à l'air, amplitude partielle",
+                "en": "30/60 block — Bodyweight squats, partial range",
+                "es": "Bloque 30/60 — Sentadillas sin carga, recorrido parcial"
+              },
               "sets": 4,
               "duration": "30 sec work + 60 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. Volume identique à W3 (4 rounds) mais SEULE séance HIIT en J1, et la séance J5 sera très courte (1 min HIIT). Profite de cette séance pour affiner la forme — pas de course après le chrono.",
+              "notes": {
+                "fr": "Format 30/60 RPE 7-8 work / RPE 2-3 rest. Volume identique à W3 (4 rounds) mais SEULE séance HIIT en J1, et la séance J5 sera très courte (1 min HIIT). Profite de cette séance pour affiner la forme — pas de course après le chrono.",
+                "en": "30/60 format RPE 7-8 on work / RPE 2-3 on rest. Same volume as W3 (4 rounds) but the ONLY HIIT session is on D1, and the D5 session will be very short (1 min HIIT). Use this session to refine your form — no racing the clock.",
+                "es": "Formato 30/60 RPE 7-8 en el trabajo / RPE 2-3 en el descanso. Mismo volumen que la S3 (4 rondas) pero es la ÚNICA sesión HIIT del D1, y la sesión del D5 será muy corta (1 min de HIIT). Aprovecha esta sesión para pulir la técnica — sin correr contra el cronómetro."
+              },
               "target_zone": "30/60",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -801,13 +1532,26 @@
                 "hip-injury"
               ],
               "alternatives": [
-                "Step-up bas alterné 30 sec",
-                "Wall sit partiel 30 sec"
+                {
+                  "fr": "Step-up bas alterné 30 sec",
+                  "en": "Alternating low step-up 30 sec",
+                  "es": "Subida a step bajo alternada 30 s"
+                },
+                {
+                  "fr": "Wall sit partiel 30 sec",
+                  "en": "Partial wall sit 30 sec",
+                  "es": "Sentadilla isométrica en pared parcial 30 s"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/60 — Squat-air partial ROM"
             },
             {
-              "name": "Repos actif inter-bloc",
+              "name": {
+                "fr": "Récupération active entre les blocs",
+                "en": "Active recovery between blocks",
+                "es": "Recuperación activa entre bloques"
+              },
               "sets": 1,
               "duration": "120 sec",
               "rest_seconds": 0,
@@ -815,17 +1559,34 @@
               "required_equipment": [],
               "incompatible_constraints": [],
               "alternatives": [
-                "Repos passif debout 2 min",
-                "Étirements doux 30 sec/côté"
+                {
+                  "fr": "Repos passif debout 2 min",
+                  "en": "Passive standing rest 2 min",
+                  "es": "Descanso pasivo de pie 2 min"
+                },
+                {
+                  "fr": "Étirements doux 30 sec/côté",
+                  "en": "Gentle stretches 30 sec/side",
+                  "es": "Estiramientos suaves 30 s/lado"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Repos actif inter-bloc"
             },
             {
-              "name": "Bloc 30/60 — Step-jacks (cutback) ",
+              "name": {
+                "fr": "Bloc 30/60 — Jumping jacks sans saut (semaine allégée)",
+                "en": "30/60 block — Step jacks (deload week)",
+                "es": "Bloque 30/60 — Jumping jacks sin salto (semana aligerada)"
+              },
               "sets": 4,
               "duration": "30 sec work + 60 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/60 RPE 7 work (cutback : on vise RPE 7 et pas 8) / RPE 2-3 rest. Total bloc : 4 × 90 sec = 6 min. HIIT cumulé séance W4 J1 = 4 min. La séance J5 ne sera qu'un réveil neuromusculaire 1 min HIIT.",
+              "notes": {
+                "fr": "Format 30/60 RPE 7 work (cutback : on vise RPE 7 et pas 8) / RPE 2-3 rest. Total bloc : 4 × 90 sec = 6 min. HIIT cumulé séance W4 J1 = 4 min. La séance J5 ne sera qu'un réveil neuromusculaire 1 min HIIT.",
+                "en": "30/60 format RPE 7 on work (deload: aim for RPE 7, not 8) / RPE 2-3 on rest. Block total: 4 × 90 sec = 6 min. Session HIIT total W4 D1 = 4 min. The D5 session will just be a 1 min HIIT neuromuscular wake-up.",
+                "es": "Formato 30/60 RPE 7 en el trabajo (semana aligerada: apunta a RPE 7, no a 8) / RPE 2-3 en el descanso. Total del bloque: 4 × 90 s = 6 min. HIIT acumulado de la sesión S4 D1 = 4 min. La sesión del D5 será solo un despertar neuromuscular de 1 min de HIIT."
+              },
               "target_zone": "30/60",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -835,44 +1596,90 @@
                 "apartment-noise"
               ],
               "alternatives": [
-                "Marche sur place genoux haut 30 sec",
-                "Cercles bras + pas latéraux 30 sec"
+                {
+                  "fr": "Marche sur place genoux haut 30 sec",
+                  "en": "High-knee marching in place 30 sec",
+                  "es": "Marcha en el sitio con rodillas altas 30 s"
+                },
+                {
+                  "fr": "Cercles bras + pas latéraux 30 sec",
+                  "en": "Arm circles + side steps 30 sec",
+                  "es": "Círculos de brazos + pasos laterales 30 s"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/60 — Step-jacks (cutback) "
             }
           ]
         },
         {
           "day": 3,
-          "name": "Mobilité + récupération active",
+          "name": {
+            "fr": "Mobilité + récupération active",
+            "en": "Mobility + active recovery",
+            "es": "Movilidad + recuperación activa"
+          },
           "type": "mobility",
           "duration_minutes": 30,
-          "warmup": "5 min marche douce + 5 min mobilité légère.",
-          "cooldown": "5 min respiration profonde + visualisation positive de la transition W5.",
+          "warmup": {
+            "fr": "5 min marche douce + 5 min mobilité légère.",
+            "en": "5 min gentle walk + 5 min light mobility.",
+            "es": "5 min de marcha suave + 5 min de movilidad ligera."
+          },
+          "cooldown": {
+            "fr": "5 min respiration profonde + visualisation positive de la transition W5.",
+            "en": "5 min deep breathing + positive visualization of the W5 transition.",
+            "es": "5 min de respiración profunda + visualización positiva de la transición de la S5."
+          },
           "exercises": [
             {
-              "name": "Routine mobilité globale",
+              "name": {
+                "fr": "Routine de mobilité complète",
+                "en": "Full-body mobility routine",
+                "es": "Rutina de movilidad completa"
+              },
               "sets": 1,
               "duration": "15 min",
               "rest_seconds": 0,
-              "notes": "Cercles hanches 10/sens, fente basse tenue 45 sec/côté, deep squat hold 45 sec, cercles chevilles 10/sens, calf stretch debout 45 sec/côté, ankle CARs 10/sens, étirement piriformis figure-4 au sol 45 sec/côté, étirement psoas chevalier servant 45 sec/côté. La cutback c'est aussi pour les articulations : profite-en pour relâcher.",
+              "notes": {
+                "fr": "Cercles hanches 10/sens, fente basse tenue 45 sec/côté, deep squat hold 45 sec, cercles chevilles 10/sens, calf stretch debout 45 sec/côté, ankle CARs 10/sens, étirement piriformis figure-4 au sol 45 sec/côté, étirement psoas chevalier servant 45 sec/côté. La cutback c'est aussi pour les articulations : profite-en pour relâcher.",
+                "en": "Hip circles 10 each way, low lunge held 45 sec/side, deep squat hold 45 sec, ankle circles 10 each way, standing calf stretch 45 sec/side, ankle CARs 10 each way, figure-4 piriformis stretch on the floor 45 sec/side, kneeling-lunge psoas stretch 45 sec/side. The deload is for the joints too: use it to release.",
+                "es": "Círculos de cadera 10 por lado, zancada baja mantenida 45 s/lado, sentadilla profunda mantenida 45 s, círculos de tobillo 10 por lado, estiramiento de gemelos de pie 45 s/lado, CARs de tobillo 10 por lado, estiramiento del piriforme en figura-4 en el suelo 45 s/lado, estiramiento del psoas en zancada de rodilla 45 s/lado. La semana aligerada también es para las articulaciones: aprovéchala para soltar."
+              },
               "target_zone": "technique",
               "required_equipment": [
                 "mat"
               ],
               "incompatible_constraints": [],
               "alternatives": [
-                "Yoga doux 20 min (chien tête en bas, cobra, child pose, pigeon)",
-                "Étirements statiques globaux 15 min"
+                {
+                  "fr": "Yoga doux 20 min (chien tête en bas, cobra, child pose, pigeon)",
+                  "en": "Gentle yoga 20 min (downward dog, cobra, child's pose, pigeon)",
+                  "es": "Yoga suave 20 min (perro boca abajo, cobra, postura del niño, paloma)"
+                },
+                {
+                  "fr": "Étirements statiques globaux 15 min",
+                  "en": "Full-body static stretches 15 min",
+                  "es": "Estiramientos estáticos generales 15 min"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Routine mobilité globale"
             },
             {
-              "name": "Renforcement préventif léger (maintien)",
+              "name": {
+                "fr": "Renforcement préventif léger (entretien)",
+                "en": "Light preventive strengthening (maintenance)",
+                "es": "Refuerzo preventivo ligero (mantenimiento)"
+              },
               "sets": 1,
               "duration": "10 min",
               "rest_seconds": 0,
-              "notes": "2 × 12 calf raises bipodal + 2 × 12 tibialis raises + 2 × 10 glute bridge bipodal + 2 × 25 sec planche complète + 2 × 8 dead bug par côté. Volume cutback (vs renforcement W3 plus chargé), maintien des acquis.",
+              "notes": {
+                "fr": "2 × 12 calf raises bipodal + 2 × 12 tibialis raises + 2 × 10 glute bridge bipodal + 2 × 25 sec planche complète + 2 × 8 dead bug par côté. Volume cutback (vs renforcement W3 plus chargé), maintien des acquis.",
+                "en": "2 × 12 two-foot calf raises + 2 × 12 tibialis raises + 2 × 10 two-foot glute bridges + 2 × 25 sec full plank + 2 × 8 dead bug per side. Deload volume (vs the heavier W3 strengthening), maintaining gains.",
+                "es": "2 × 12 elevaciones de gemelos a dos pies + 2 × 12 elevaciones de puntera + 2 × 10 puentes de glúteos a dos pies + 2 × 25 s de plancha completa + 2 × 8 dead bug por lado. Volumen de semana aligerada (frente al refuerzo más cargado de la S3), manteniendo lo logrado."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [
                 "mat"
@@ -883,27 +1690,56 @@
                 "wrist-pain"
               ],
               "alternatives": [
-                "Renforcement W3 réduit à 2 séries au lieu de 3",
-                "Marche rapide 15 min + planche 2×30 sec"
+                {
+                  "fr": "Renforcement W3 réduit à 2 séries au lieu de 3",
+                  "en": "W3 strengthening reduced to 2 sets instead of 3",
+                  "es": "Refuerzo de la S3 reducido a 2 series en lugar de 3"
+                },
+                {
+                  "fr": "Marche rapide 15 min + planche 2×30 sec",
+                  "en": "Brisk walk 15 min + plank 2×30 sec",
+                  "es": "Marcha rápida 15 min + plancha 2×30 s"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Renforcement préventif léger (maintien)"
             }
           ]
         },
         {
           "day": 5,
-          "name": "Réveil neuromusculaire — préparation transition 30/30",
+          "name": {
+            "fr": "Réveil neuromusculaire — préparation transition 30/30",
+            "en": "Neuromuscular wake-up — preparing the 30/30 transition",
+            "es": "Despertar neuromuscular — preparación de la transición al 30/30"
+          },
           "type": "interval",
           "duration_minutes": 22,
-          "warmup": "Échauffement standard 10 min + 5 step-jacks lents + 5 squat-air contrôlés (préparation au format 30/30 W5).",
-          "cooldown": "5 min marche + 5 min étirements.",
+          "warmup": {
+            "fr": "Échauffement standard 10 min + 5 step-jacks lents + 5 squat-air contrôlés (préparation au format 30/30 W5).",
+            "en": "Standard 10 min warm-up + 5 slow step jacks + 5 controlled bodyweight squats (preparing for the W5 30/30 format).",
+            "es": "Calentamiento estándar de 10 min + 5 jumping jacks sin salto lentos + 5 sentadillas sin carga controladas (preparación para el formato 30/30 de la S5)."
+          },
+          "cooldown": {
+            "fr": "5 min marche + 5 min étirements.",
+            "en": "5 min walk + 5 min stretches.",
+            "es": "5 min de marcha + 5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Bloc test 30/30 — Step-jacks (préparation W5)",
+              "name": {
+                "fr": "Bloc test 30/30 — Jumping jacks sans saut (préparation semaine 5)",
+                "en": "Test 30/30 block — Step jacks (week 5 prep)",
+                "es": "Bloque de prueba 30/30 — Jumping jacks sin salto (preparación semana 5)"
+              },
               "sets": 2,
               "duration": "30 sec work + 30 sec rest",
               "rest_seconds": 0,
-              "notes": "Premier test du format 30/30 ratio 1:1 RPE 7-8 work / RPE 2-3 rest. SEULEMENT 2 rounds — c'est un essai pour calibrer ton ressenti avant la transition complète W5. Le rest 30 sec est plus court que les 60 sec habituels : tu vas sentir que ta respiration récupère moins. Si tu n'arrives pas à reprendre une respiration suffisante en 30 sec, prends 60 sec (retour au 30/60). Total bloc : 2 × 60 sec = 2 min. HIIT cumulé bloc : 2 × 30 sec = 1 min.",
+              "notes": {
+                "fr": "Premier test du format 30/30 ratio 1:1 RPE 7-8 work / RPE 2-3 rest. SEULEMENT 2 rounds — c'est un essai pour calibrer ton ressenti avant la transition complète W5. Le rest 30 sec est plus court que les 60 sec habituels : tu vas sentir que ta respiration récupère moins. Si tu n'arrives pas à reprendre une respiration suffisante en 30 sec, prends 60 sec (retour au 30/60). Total bloc : 2 × 60 sec = 2 min. HIIT cumulé bloc : 2 × 30 sec = 1 min.",
+                "en": "First test of the 30/30 format, 1:1 ratio, RPE 7-8 on work / RPE 2-3 on rest. ONLY 2 rounds — it's a trial to calibrate how it feels before the full W5 transition. The 30 sec rest is shorter than the usual 60 sec: you'll feel your breathing recover less. If you can't get enough breath back in 30 sec, take 60 sec (back to 30/60). Block total: 2 × 60 sec = 2 min. Block HIIT total: 2 × 30 sec = 1 min.",
+                "es": "Primera prueba del formato 30/30, ratio 1:1, RPE 7-8 en el trabajo / RPE 2-3 en el descanso. SOLO 2 rondas — es un ensayo para calibrar tus sensaciones antes de la transición completa de la S5. El descanso de 30 s es más corto que los 60 s habituales: notarás que tu respiración se recupera menos. Si no logras recuperar suficiente aire en 30 s, toma 60 s (vuelta al 30/60). Total del bloque: 2 × 60 s = 2 min. HIIT acumulado del bloque: 2 × 30 s = 1 min."
+              },
               "target_zone": "30/30",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -913,10 +1749,19 @@
                 "apartment-noise"
               ],
               "alternatives": [
-                "Bloc 30/60 step-jacks 2 rounds (rester au ratio 1:2)",
-                "Marche sur place genoux haut 30 sec × 2 avec 60 sec rest"
+                {
+                  "fr": "Bloc 30/60 step-jacks 2 rounds (rester au ratio 1:2)",
+                  "en": "30/60 step-jacks block, 2 rounds (stay at the 1:2 ratio)",
+                  "es": "Bloque 30/60 de jumping jacks sin salto, 2 rondas (mantener el ratio 1:2)"
+                },
+                {
+                  "fr": "Marche sur place genoux haut 30 sec × 2 avec 60 sec rest",
+                  "en": "High-knee marching in place 30 sec × 2 with 60 sec rest",
+                  "es": "Marcha en el sitio con rodillas altas 30 s × 2 con 60 s de descanso"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc test 30/30 — Step-jacks (préparation W5)"
             }
           ]
         }
@@ -924,23 +1769,51 @@
     },
     {
       "week_number": 5,
-      "theme": "Transition 30/30 — ratio 1:1 RPE 8",
-      "goal": "Transition au format 30/30 ratio 1:1 RPE 8 sur les 2 séances HIIT, après la cutback W4 et le test J5. HIIT cumulé hebdo : 7 min (3 min séance courte J1 + 4 min séance J5). Volume HIIT en hausse +40% vs W4 cutback (5 → 7 min) mais en deçà du palier W3 (8 min) — progression contrôlée.",
+      "theme": {
+        "fr": "Transition 30/30 — ratio 1:1 RPE 8",
+        "en": "Transition to 30/30 — 1:1 ratio, RPE 8",
+        "es": "Transición al 30/30 — ratio 1:1, RPE 8"
+      },
+      "goal": {
+        "fr": "Transition au format 30/30 ratio 1:1 RPE 8 sur les 2 séances HIIT, après la cutback W4 et le test J5. HIIT cumulé hebdo : 7 min (3 min séance courte J1 + 4 min séance J5). Volume HIIT en hausse +40% vs W4 cutback (5 → 7 min) mais en deçà du palier W3 (8 min) — progression contrôlée.",
+        "en": "Transition to the 30/30 format, 1:1 ratio, RPE 8 on both HIIT sessions, after the W4 deload and the D5 test. Weekly HIIT total: 7 min (3 min short session D1 + 4 min session D5). HIIT volume up +40% vs the W4 deload (5 → 7 min) but below the W3 plateau (8 min) — controlled progression.",
+        "es": "Transición al formato 30/30, ratio 1:1, RPE 8 en las 2 sesiones HIIT, tras la semana aligerada de la S4 y la prueba del D5. HIIT acumulado semanal: 7 min (3 min de sesión corta D1 + 4 min de sesión D5). Volumen de HIIT en aumento +40 % respecto a la semana aligerada de la S4 (5 → 7 min) pero por debajo de la meseta de la S3 (8 min) — progresión controlada."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "HIIT 30/30 — squat-air + step-jacks 3 rounds",
+          "name": {
+            "fr": "HIIT 30/30 — squat-air + step-jacks 3 rounds",
+            "en": "HIIT 30/30 — bodyweight squats + step jacks, 3 rounds",
+            "es": "HIIT 30/30 — sentadillas sin carga + jumping jacks sin salto, 3 rondas"
+          },
           "type": "interval",
           "duration_minutes": 26,
-          "warmup": "Échauffement standard 10 min + 10 jumping jacks step (lents) en activation neuromusculaire.",
-          "cooldown": "3 min marche + 5 min étirements complets.",
+          "warmup": {
+            "fr": "Échauffement standard 10 min + 10 jumping jacks step (lents) en activation neuromusculaire.",
+            "en": "Standard 10 min warm-up + 10 slow step jacks for neuromuscular activation.",
+            "es": "Calentamiento estándar de 10 min + 10 jumping jacks sin salto lentos para activación neuromuscular."
+          },
+          "cooldown": {
+            "fr": "3 min marche + 5 min étirements complets.",
+            "en": "3 min walk + 5 min full stretches.",
+            "es": "3 min de marcha + 5 min de estiramientos completos."
+          },
           "exercises": [
             {
-              "name": "Bloc 30/30 — Squat-air partial ROM",
+              "name": {
+                "fr": "Bloc 30/30 — Squats à l'air, amplitude partielle",
+                "en": "30/30 block — Bodyweight squats, partial range",
+                "es": "Bloque 30/30 — Sentadillas sin carga, recorrido parcial"
+              },
               "sets": 3,
               "duration": "30 sec work + 30 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/30 ratio 1:1 RPE 8 work / RPE 2-3 rest. La récupération est moitié plus courte qu'en 30/60 : sois économe sur le rythme work pour pouvoir tenir 3 rounds. Si tu n'arrives plus à respirer correctement en rest, ralentis encore le work. Total bloc : 3 × 60 sec = 3 min. HIIT cumulé bloc : 3 × 30 sec = 1 min 30 sec.",
+              "notes": {
+                "fr": "Format 30/30 ratio 1:1 RPE 8 work / RPE 2-3 rest. La récupération est moitié plus courte qu'en 30/60 : sois économe sur le rythme work pour pouvoir tenir 3 rounds. Si tu n'arrives plus à respirer correctement en rest, ralentis encore le work. Total bloc : 3 × 60 sec = 3 min. HIIT cumulé bloc : 3 × 30 sec = 1 min 30 sec.",
+                "en": "30/30 format, 1:1 ratio, RPE 8 on work / RPE 2-3 on rest. Recovery is half as long as in 30/60: be economical with the work pace so you can hold 3 rounds. If you can no longer breathe properly during rest, slow the work down further. Block total: 3 × 60 sec = 3 min. Block HIIT total: 3 × 30 sec = 1 min 30 sec.",
+                "es": "Formato 30/30, ratio 1:1, RPE 8 en el trabajo / RPE 2-3 en el descanso. La recuperación es la mitad que en el 30/60: dosifica el ritmo de trabajo para poder aguantar 3 rondas. Si ya no logras respirar bien en el descanso, ralentiza aún más el trabajo. Total del bloque: 3 × 60 s = 3 min. HIIT acumulado del bloque: 3 × 30 s = 1 min 30 s."
+              },
               "target_zone": "30/30",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -949,13 +1822,26 @@
                 "hip-injury"
               ],
               "alternatives": [
-                "Bloc 30/60 squat-air 3 rounds (rester au 1:2 si fatigue cumulée)",
-                "Wall sit partiel 30 sec × 3 avec 30 sec rest"
+                {
+                  "fr": "Bloc 30/60 squat-air 3 rounds (rester au 1:2 si fatigue cumulée)",
+                  "en": "30/60 squat block, 3 rounds (stay at 1:2 if fatigue accumulates)",
+                  "es": "Bloque 30/60 de sentadillas, 3 rondas (mantener el 1:2 si hay fatiga acumulada)"
+                },
+                {
+                  "fr": "Wall sit partiel 30 sec × 3 avec 30 sec rest",
+                  "en": "Partial wall sit 30 sec × 3 with 30 sec rest",
+                  "es": "Sentadilla isométrica en pared parcial 30 s × 3 con 30 s de descanso"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/30 — Squat-air partial ROM"
             },
             {
-              "name": "Repos actif inter-bloc",
+              "name": {
+                "fr": "Récupération active entre les blocs",
+                "en": "Active recovery between blocks",
+                "es": "Recuperación activa entre bloques"
+              },
               "sets": 1,
               "duration": "120 sec",
               "rest_seconds": 0,
@@ -963,17 +1849,34 @@
               "required_equipment": [],
               "incompatible_constraints": [],
               "alternatives": [
-                "Repos passif debout 2 min",
-                "Étirements doux gastrocnémiens 30 sec/côté"
+                {
+                  "fr": "Repos passif debout 2 min",
+                  "en": "Passive standing rest 2 min",
+                  "es": "Descanso pasivo de pie 2 min"
+                },
+                {
+                  "fr": "Étirements doux gastrocnémiens 30 sec/côté",
+                  "en": "Gentle calf (gastrocnemius) stretch 30 sec/side",
+                  "es": "Estiramiento suave de gemelos 30 s/lado"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Repos actif inter-bloc"
             },
             {
-              "name": "Bloc 30/30 — Step-jacks",
+              "name": {
+                "fr": "Bloc 30/30 — Jumping jacks sans saut",
+                "en": "30/30 block — Step jacks",
+                "es": "Bloque 30/30 — Jumping jacks sin salto"
+              },
               "sets": 3,
               "duration": "30 sec work + 30 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/30 RPE 8 work / RPE 2-3 rest. 3 rounds. Total bloc : 3 × 60 sec = 3 min. HIIT cumulé bloc : 3 × 30 sec = 1 min 30 sec. HIIT cumulé séance W5 J1 = 3 min.",
+              "notes": {
+                "fr": "Format 30/30 RPE 8 work / RPE 2-3 rest. 3 rounds. Total bloc : 3 × 60 sec = 3 min. HIIT cumulé bloc : 3 × 30 sec = 1 min 30 sec. HIIT cumulé séance W5 J1 = 3 min.",
+                "en": "30/30 format RPE 8 on work / RPE 2-3 on rest. 3 rounds. Block total: 3 × 60 sec = 3 min. Block HIIT total: 3 × 30 sec = 1 min 30 sec. Session HIIT total W5 D1 = 3 min.",
+                "es": "Formato 30/30 RPE 8 en el trabajo / RPE 2-3 en el descanso. 3 rondas. Total del bloque: 3 × 60 s = 3 min. HIIT acumulado del bloque: 3 × 30 s = 1 min 30 s. HIIT acumulado de la sesión S5 D1 = 3 min."
+              },
               "target_zone": "30/30",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -983,40 +1886,82 @@
                 "apartment-noise"
               ],
               "alternatives": [
-                "Bloc 30/60 step-jacks 3 rounds",
-                "Marche sur place genoux haut 30 sec × 3"
+                {
+                  "fr": "Bloc 30/60 step-jacks 3 rounds",
+                  "en": "30/60 step-jacks block, 3 rounds",
+                  "es": "Bloque 30/60 de jumping jacks sin salto, 3 rondas"
+                },
+                {
+                  "fr": "Marche sur place genoux haut 30 sec × 3",
+                  "en": "High-knee marching in place 30 sec × 3",
+                  "es": "Marcha en el sitio con rodillas altas 30 s × 3"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/30 — Step-jacks"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Renforcement préventif W5 — maintien + activation HIIT",
+          "name": {
+            "fr": "Renforcement préventif W5 — maintien + activation HIIT",
+            "en": "Preventive strengthening W5 — maintenance + HIIT activation",
+            "es": "Refuerzo preventivo S5 — mantenimiento + activación HIIT"
+          },
           "type": "strength",
           "duration_minutes": 35,
-          "warmup": "10 min : marche rapide + mobilité dynamique.",
-          "cooldown": "5 min étirements complets.",
+          "warmup": {
+            "fr": "10 min : marche rapide + mobilité dynamique.",
+            "en": "10 min: brisk walk + dynamic mobility.",
+            "es": "10 min: marcha rápida + movilidad dinámica."
+          },
+          "cooldown": {
+            "fr": "5 min étirements complets.",
+            "en": "5 min full stretches.",
+            "es": "5 min de estiramientos completos."
+          },
           "exercises": [
             {
-              "name": "Calf raises excentriques bipodal",
+              "name": {
+                "fr": "Mollets excentriques (deux pieds)",
+                "en": "Eccentric calf raises (both feet)",
+                "es": "Elevaciones de gemelos excéntricas (dos pies)"
+              },
               "sets": 3,
               "reps": "15",
               "rest_seconds": 30,
-              "notes": "Maintien W3-W5. Descente 3 sec.",
+              "notes": {
+                "fr": "Maintien W3-W5. Descente 3 sec.",
+                "en": "Maintenance W3-W5. 3 sec descent.",
+                "es": "Mantenimiento S3-S5. Bajada de 3 s."
+              },
               "target_zone": "RPE 7-8",
               "required_equipment": [],
               "incompatible_constraints": [
                 "ankle-injury"
               ],
               "alternatives": [
-                "Calf raises bipodal classique",
-                "Wall calf raise"
+                {
+                  "fr": "Calf raises bipodal classique",
+                  "en": "Classic two-foot calf raises",
+                  "es": "Elevaciones de gemelos clásicas a dos pies"
+                },
+                {
+                  "fr": "Wall calf raise",
+                  "en": "Wall calf raise",
+                  "es": "Elevación de gemelos en pared"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Calf raises excentriques bipodal"
             },
             {
-              "name": "Tibialis raises",
+              "name": {
+                "fr": "Relevés de pointes (tibial antérieur)",
+                "en": "Tibialis raises (front shin)",
+                "es": "Elevaciones de puntera (tibial anterior)"
+              },
               "sets": 3,
               "reps": "15",
               "rest_seconds": 30,
@@ -1026,17 +1971,34 @@
                 "ankle-injury"
               ],
               "alternatives": [
-                "Pointe-talon assis",
-                "Tibialis raises avec resistance-band"
+                {
+                  "fr": "Pointe-talon assis",
+                  "en": "Seated toe-heel raises",
+                  "es": "Puntera-talón sentado"
+                },
+                {
+                  "fr": "Tibialis raises avec resistance-band",
+                  "en": "Tibialis raises with a resistance band",
+                  "es": "Elevaciones de puntera con banda elástica"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Tibialis raises"
             },
             {
-              "name": "Glute bridge unilatéral",
+              "name": {
+                "fr": "Pont fessier sur une jambe",
+                "en": "Single-leg glute bridge",
+                "es": "Puente de glúteos a una pierna"
+              },
               "sets": 3,
               "reps": "10 par côté",
               "rest_seconds": 40,
-              "notes": "Progression vs W3 (8 → 10 reps/côté).",
+              "notes": {
+                "fr": "Progression vs W3 (8 → 10 reps/côté).",
+                "en": "Progression vs W3 (8 → 10 reps/side).",
+                "es": "Progresión respecto a la S3 (8 → 10 reps/lado)."
+              },
               "target_zone": "RPE 7-8",
               "required_equipment": [
                 "mat"
@@ -1045,17 +2007,34 @@
                 "lower-back-pain"
               ],
               "alternatives": [
-                "Glute bridge bipodal",
-                "Glute bridge pieds sur chaise"
+                {
+                  "fr": "Glute bridge bipodal",
+                  "en": "Two-foot glute bridge",
+                  "es": "Puente de glúteos a dos pies"
+                },
+                {
+                  "fr": "Glute bridge pieds sur chaise",
+                  "en": "Glute bridge with feet on a chair",
+                  "es": "Puente de glúteos con los pies en una silla"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Glute bridge unilatéral"
             },
             {
-              "name": "Planche ventrale complète",
+              "name": {
+                "fr": "Planche ventrale complète",
+                "en": "Full front plank",
+                "es": "Plancha frontal completa"
+              },
               "sets": 3,
               "duration": "40 sec",
               "rest_seconds": 45,
-              "notes": "Progression vs W3 (30 → 40 sec). Forme prioritaire.",
+              "notes": {
+                "fr": "Progression vs W3 (30 → 40 sec). Forme prioritaire.",
+                "en": "Progression vs W3 (30 → 40 sec). Form is the priority.",
+                "es": "Progresión respecto a la S3 (30 → 40 s). La técnica es lo primero."
+              },
               "target_zone": "RPE 7-8",
               "required_equipment": [
                 "mat"
@@ -1066,13 +2045,26 @@
                 "wrist-pain"
               ],
               "alternatives": [
-                "Planche genoux 50 sec",
-                "Dead bug"
+                {
+                  "fr": "Planche genoux 50 sec",
+                  "en": "Knee plank 50 sec",
+                  "es": "Plancha sobre rodillas 50 s"
+                },
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Planche ventrale complète"
             },
             {
-              "name": "Bird-dog",
+              "name": {
+                "fr": "Bird-dog (pointer de chien)",
+                "en": "Bird-dog",
+                "es": "Bird-dog (perro de muestra)"
+              },
               "sets": 3,
               "reps": "10 par côté",
               "rest_seconds": 30,
@@ -1085,13 +2077,26 @@
                 "lower-back-pain"
               ],
               "alternatives": [
-                "Dead bug",
-                "Bird-dog avant-bras au sol"
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                },
+                {
+                  "fr": "Bird-dog avant-bras au sol",
+                  "en": "Bird-dog with forearm on the floor",
+                  "es": "Bird-dog con antebrazo en el suelo"
+                }
               ],
-              "volume_axis": "reps"
+              "volume_axis": "reps",
+              "match_key": "Bird-dog"
             },
             {
-              "name": "Side plank sur genoux",
+              "name": {
+                "fr": "Planche latérale sur les genoux",
+                "en": "Side plank on knees",
+                "es": "Plancha lateral sobre rodillas"
+              },
               "sets": 2,
               "duration": "30 sec par côté",
               "rest_seconds": 30,
@@ -1105,27 +2110,56 @@
                 "wrist-pain"
               ],
               "alternatives": [
-                "Side plank pieds posés 30 sec/côté",
-                "Clamshell"
+                {
+                  "fr": "Side plank pieds posés 30 sec/côté",
+                  "en": "Side plank with feet down 30 sec/side",
+                  "es": "Plancha lateral con pies apoyados 30 s/lado"
+                },
+                {
+                  "fr": "Clamshell",
+                  "en": "Clamshell",
+                  "es": "Almeja (clamshell)"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Side plank sur genoux"
             }
           ]
         },
         {
           "day": 5,
-          "name": "HIIT 30/30 — mountain climbers slow + squat-air 4 rounds",
+          "name": {
+            "fr": "HIIT 30/30 — mountain climbers slow + squat-air 4 rounds",
+            "en": "HIIT 30/30 — slow mountain climbers + bodyweight squats, 4 rounds",
+            "es": "HIIT 30/30 — escaladores lentos + sentadillas sin carga, 4 rondas"
+          },
           "type": "interval",
           "duration_minutes": 30,
-          "warmup": "Échauffement standard 10 min + 8 mountain climbers lents en activation.",
-          "cooldown": "3 min marche + 7 min étirements complets.",
+          "warmup": {
+            "fr": "Échauffement standard 10 min + 8 mountain climbers lents en activation.",
+            "en": "Standard 10 min warm-up + 8 slow mountain climbers for activation.",
+            "es": "Calentamiento estándar de 10 min + 8 escaladores lentos para activación."
+          },
+          "cooldown": {
+            "fr": "3 min marche + 7 min étirements complets.",
+            "en": "3 min walk + 7 min full stretches.",
+            "es": "3 min de marcha + 7 min de estiramientos completos."
+          },
           "exercises": [
             {
-              "name": "Bloc 30/30 — Mountain climbers slow",
+              "name": {
+                "fr": "Bloc 30/30 — Montées de genoux en planche, version lente",
+                "en": "30/30 block — Mountain climbers, slow",
+                "es": "Bloque 30/30 — Escaladores, versión lenta"
+              },
               "sets": 4,
               "duration": "30 sec work + 30 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/30 ratio 1:1 RPE 8 work / RPE 2-3 rest. 4 rounds. Total bloc : 4 × 60 sec = 4 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. Garde la cadence régulière sur les 4 rounds — si elle chute > 30% au round 4, c'est trop tôt pour 4 rounds, retour à 3.",
+              "notes": {
+                "fr": "Format 30/30 ratio 1:1 RPE 8 work / RPE 2-3 rest. 4 rounds. Total bloc : 4 × 60 sec = 4 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. Garde la cadence régulière sur les 4 rounds — si elle chute > 30% au round 4, c'est trop tôt pour 4 rounds, retour à 3.",
+                "en": "30/30 format, 1:1 ratio, RPE 8 on work / RPE 2-3 on rest. 4 rounds. Block total: 4 × 60 sec = 4 min. Block HIIT total: 4 × 30 sec = 2 min. Keep the cadence steady across the 4 rounds — if it drops > 30% by round 4, it's too early for 4 rounds, go back to 3.",
+                "es": "Formato 30/30, ratio 1:1, RPE 8 en el trabajo / RPE 2-3 en el descanso. 4 rondas. Total del bloque: 4 × 60 s = 4 min. HIIT acumulado del bloque: 4 × 30 s = 2 min. Mantén la cadencia constante en las 4 rondas — si cae > 30 % en la ronda 4, es pronto para 4 rondas, vuelve a 3."
+              },
               "target_zone": "30/30",
               "required_equipment": [
                 "mat"
@@ -1137,13 +2171,26 @@
                 "cardiac-clearance-required"
               ],
               "alternatives": [
-                "Mountain climbers avant-bras 30 sec × 4",
-                "Bloc 30/60 mountain climbers 4 rounds"
+                {
+                  "fr": "Mountain climbers avant-bras 30 sec × 4",
+                  "en": "Forearm mountain climbers 30 sec × 4",
+                  "es": "Escaladores con antebrazos 30 s × 4"
+                },
+                {
+                  "fr": "Bloc 30/60 mountain climbers 4 rounds",
+                  "en": "30/60 mountain climbers block, 4 rounds",
+                  "es": "Bloque 30/60 de escaladores, 4 rondas"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/30 — Mountain climbers slow"
             },
             {
-              "name": "Repos actif inter-bloc",
+              "name": {
+                "fr": "Récupération active entre les blocs",
+                "en": "Active recovery between blocks",
+                "es": "Recuperación activa entre bloques"
+              },
               "sets": 1,
               "duration": "120 sec",
               "rest_seconds": 0,
@@ -1151,17 +2198,34 @@
               "required_equipment": [],
               "incompatible_constraints": [],
               "alternatives": [
-                "Repos passif debout 2 min",
-                "Étirements doux 30 sec/côté"
+                {
+                  "fr": "Repos passif debout 2 min",
+                  "en": "Passive standing rest 2 min",
+                  "es": "Descanso pasivo de pie 2 min"
+                },
+                {
+                  "fr": "Étirements doux 30 sec/côté",
+                  "en": "Gentle stretches 30 sec/side",
+                  "es": "Estiramientos suaves 30 s/lado"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Repos actif inter-bloc"
             },
             {
-              "name": "Bloc 30/30 — Squat-air partial ROM",
+              "name": {
+                "fr": "Bloc 30/30 — Squats à l'air, amplitude partielle",
+                "en": "30/30 block — Bodyweight squats, partial range",
+                "es": "Bloque 30/30 — Sentadillas sin carga, recorrido parcial"
+              },
               "sets": 4,
               "duration": "30 sec work + 30 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/30 RPE 8 work / RPE 2-3 rest. 4 rounds en 2e position de séance (fatigue cumulée). Total bloc : 4 × 60 sec = 4 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. HIIT cumulé séance W5 J5 = 4 min. HIIT cumulé hebdo W5 = 7 min (3 + 4) — cible 8 min en W6 séance phare.",
+              "notes": {
+                "fr": "Format 30/30 RPE 8 work / RPE 2-3 rest. 4 rounds en 2e position de séance (fatigue cumulée). Total bloc : 4 × 60 sec = 4 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. HIIT cumulé séance W5 J5 = 4 min. HIIT cumulé hebdo W5 = 7 min (3 + 4) — cible 8 min en W6 séance phare.",
+                "en": "30/30 format RPE 8 on work / RPE 2-3 on rest. 4 rounds in 2nd place in the session (accumulated fatigue). Block total: 4 × 60 sec = 4 min. Block HIIT total: 4 × 30 sec = 2 min. Session HIIT total W5 D5 = 4 min. Weekly HIIT total W5 = 7 min (3 + 4) — target 8 min in the W6 flagship session.",
+                "es": "Formato 30/30 RPE 8 en el trabajo / RPE 2-3 en el descanso. 4 rondas en 2.ª posición de la sesión (fatiga acumulada). Total del bloque: 4 × 60 s = 4 min. HIIT acumulado del bloque: 4 × 30 s = 2 min. HIIT acumulado de la sesión S5 D5 = 4 min. HIIT acumulado semanal S5 = 7 min (3 + 4) — objetivo de 8 min en la sesión estrella de la S6."
+              },
               "target_zone": "30/30",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -1170,10 +2234,19 @@
                 "hip-injury"
               ],
               "alternatives": [
-                "Step-up bas alterné 30 sec × 4",
-                "Wall sit partiel 30 sec × 4"
+                {
+                  "fr": "Step-up bas alterné 30 sec × 4",
+                  "en": "Alternating low step-up 30 sec × 4",
+                  "es": "Subida a step bajo alternada 30 s × 4"
+                },
+                {
+                  "fr": "Wall sit partiel 30 sec × 4",
+                  "en": "Partial wall sit 30 sec × 4",
+                  "es": "Sentadilla isométrica en pared parcial 30 s × 4"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/30 — Squat-air partial ROM"
             }
           ]
         }
@@ -1181,23 +2254,51 @@
     },
     {
       "week_number": 6,
-      "theme": "Séance phare — 20 min de séance complète, 8 min HIIT cumulé",
-      "goal": "Pic du plan : séance phare W6 J5 = 2 blocs de 4 min HIIT en 30/30 ratio 1:1 RPE 8 (warmup + cooldown inclus = 20 min de séance complète tel qu'annoncé en `default_objective`). HIIT cumulé hebdo : 8 min (4 min séance courte J1 + 4 min séance phare J5). Checklist d'autonomie 5 critères.",
+      "theme": {
+        "fr": "Séance phare — 20 min de séance complète, 8 min HIIT cumulé",
+        "en": "Flagship session — a full 20 min session, 8 min HIIT total",
+        "es": "Sesión estrella — sesión completa de 20 min, 8 min de HIIT acumulado"
+      },
+      "goal": {
+        "fr": "Pic du plan : séance phare W6 J5 = 2 blocs de 4 min HIIT en 30/30 ratio 1:1 RPE 8 (warmup + cooldown inclus = 20 min de séance complète tel qu'annoncé en `default_objective`). HIIT cumulé hebdo : 8 min (4 min séance courte J1 + 4 min séance phare J5). Checklist d'autonomie 5 critères.",
+        "en": "Peak of the plan: flagship session W6 D5 = 2 blocks of 4 min HIIT at 30/30, 1:1 ratio, RPE 8 (warm-up + cool-down included = a full 20 min session, as announced in `default_objective`). Weekly HIIT total: 8 min (4 min short session D1 + 4 min flagship session D5). 5-point autonomy checklist.",
+        "es": "Pico del plan: sesión estrella S6 D5 = 2 bloques de 4 min de HIIT en 30/30, ratio 1:1, RPE 8 (calentamiento + vuelta a la calma incluidos = sesión completa de 20 min, tal como se anuncia en `default_objective`). HIIT acumulado semanal: 8 min (4 min de sesión corta D1 + 4 min de sesión estrella D5). Lista de autonomía de 5 criterios."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "HIIT 30/30 — séance courte de tapering",
+          "name": {
+            "fr": "HIIT 30/30 — séance courte de tapering",
+            "en": "HIIT 30/30 — short tapering session",
+            "es": "HIIT 30/30 — sesión corta de afinamiento"
+          },
           "type": "interval",
           "duration_minutes": 26,
-          "warmup": "Échauffement standard 10 min.",
-          "cooldown": "3 min marche + 5 min étirements complets.",
+          "warmup": {
+            "fr": "Échauffement standard 10 min.",
+            "en": "Standard 10 min warm-up.",
+            "es": "Calentamiento estándar de 10 min."
+          },
+          "cooldown": {
+            "fr": "3 min marche + 5 min étirements complets.",
+            "en": "3 min walk + 5 min full stretches.",
+            "es": "3 min de marcha + 5 min de estiramientos completos."
+          },
           "exercises": [
             {
-              "name": "Bloc 30/30 — Squat-air partial ROM",
+              "name": {
+                "fr": "Bloc 30/30 — Squats à l'air, amplitude partielle",
+                "en": "30/30 block — Bodyweight squats, partial range",
+                "es": "Bloque 30/30 — Sentadillas sin carga, recorrido parcial"
+              },
               "sets": 4,
               "duration": "30 sec work + 30 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/30 RPE 7-8 work (tapering : on vise RPE 7-8 et pas RPE 9 — tu gardes du jus pour la séance phare J5) / RPE 2-3 rest. Total bloc : 4 × 60 sec = 4 min. HIIT cumulé bloc : 4 × 30 sec = 2 min.",
+              "notes": {
+                "fr": "Format 30/30 RPE 7-8 work (tapering : on vise RPE 7-8 et pas RPE 9 — tu gardes du jus pour la séance phare J5) / RPE 2-3 rest. Total bloc : 4 × 60 sec = 4 min. HIIT cumulé bloc : 4 × 30 sec = 2 min.",
+                "en": "30/30 format RPE 7-8 on work (tapering: aim for RPE 7-8, not RPE 9 — keep something in the tank for the D5 flagship session) / RPE 2-3 on rest. Block total: 4 × 60 sec = 4 min. Block HIIT total: 4 × 30 sec = 2 min.",
+                "es": "Formato 30/30 RPE 7-8 en el trabajo (afinamiento: apunta a RPE 7-8, no a RPE 9 — reserva fuerzas para la sesión estrella del D5) / RPE 2-3 en el descanso. Total del bloque: 4 × 60 s = 4 min. HIIT acumulado del bloque: 4 × 30 s = 2 min."
+              },
               "target_zone": "30/30",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -1206,13 +2307,26 @@
                 "hip-injury"
               ],
               "alternatives": [
-                "Bloc 30/60 squat-air 4 rounds",
-                "Wall sit partiel 30 sec × 4"
+                {
+                  "fr": "Bloc 30/60 squat-air 4 rounds",
+                  "en": "30/60 squat block, 4 rounds",
+                  "es": "Bloque 30/60 de sentadillas, 4 rondas"
+                },
+                {
+                  "fr": "Wall sit partiel 30 sec × 4",
+                  "en": "Partial wall sit 30 sec × 4",
+                  "es": "Sentadilla isométrica en pared parcial 30 s × 4"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/30 — Squat-air partial ROM"
             },
             {
-              "name": "Repos actif inter-bloc",
+              "name": {
+                "fr": "Récupération active entre les blocs",
+                "en": "Active recovery between blocks",
+                "es": "Recuperación activa entre bloques"
+              },
               "sets": 1,
               "duration": "120 sec",
               "rest_seconds": 0,
@@ -1220,17 +2334,34 @@
               "required_equipment": [],
               "incompatible_constraints": [],
               "alternatives": [
-                "Repos passif debout 2 min",
-                "Étirements doux 30 sec/côté"
+                {
+                  "fr": "Repos passif debout 2 min",
+                  "en": "Passive standing rest 2 min",
+                  "es": "Descanso pasivo de pie 2 min"
+                },
+                {
+                  "fr": "Étirements doux 30 sec/côté",
+                  "en": "Gentle stretches 30 sec/side",
+                  "es": "Estiramientos suaves 30 s/lado"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Repos actif inter-bloc"
             },
             {
-              "name": "Bloc 30/30 — Step-jacks",
+              "name": {
+                "fr": "Bloc 30/30 — Jumping jacks sans saut",
+                "en": "30/30 block — Step jacks",
+                "es": "Bloque 30/30 — Jumping jacks sin salto"
+              },
               "sets": 4,
               "duration": "30 sec work + 30 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/30 RPE 7-8 work (tapering) / RPE 2-3 rest. Total bloc : 4 × 60 sec = 4 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. HIIT cumulé séance W6 J1 = 4 min. C'est ta dernière séance avant la séance phare J5 — repos actif J2-J4 (marche douce, étirements).",
+              "notes": {
+                "fr": "Format 30/30 RPE 7-8 work (tapering) / RPE 2-3 rest. Total bloc : 4 × 60 sec = 4 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. HIIT cumulé séance W6 J1 = 4 min. C'est ta dernière séance avant la séance phare J5 — repos actif J2-J4 (marche douce, étirements).",
+                "en": "30/30 format RPE 7-8 on work (tapering) / RPE 2-3 on rest. Block total: 4 × 60 sec = 4 min. Block HIIT total: 4 × 30 sec = 2 min. Session HIIT total W6 D1 = 4 min. This is your last session before the D5 flagship session — active rest D2-D4 (gentle walking, stretches).",
+                "es": "Formato 30/30 RPE 7-8 en el trabajo (afinamiento) / RPE 2-3 en el descanso. Total del bloque: 4 × 60 s = 4 min. HIIT acumulado del bloque: 4 × 30 s = 2 min. HIIT acumulado de la sesión S6 D1 = 4 min. Es tu última sesión antes de la sesión estrella del D5 — descanso activo D2-D4 (marcha suave, estiramientos)."
+              },
               "target_zone": "30/30",
               "required_equipment": [],
               "incompatible_constraints": [
@@ -1240,44 +2371,90 @@
                 "apartment-noise"
               ],
               "alternatives": [
-                "Bloc 30/60 step-jacks 4 rounds",
-                "Marche sur place genoux haut 30 sec × 4"
+                {
+                  "fr": "Bloc 30/60 step-jacks 4 rounds",
+                  "en": "30/60 step-jacks block, 4 rounds",
+                  "es": "Bloque 30/60 de jumping jacks sin salto, 4 rondas"
+                },
+                {
+                  "fr": "Marche sur place genoux haut 30 sec × 4",
+                  "en": "High-knee marching in place 30 sec × 4",
+                  "es": "Marcha en el sitio con rodillas altas 30 s × 4"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 30/30 — Step-jacks"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Mobilité pré-test",
+          "name": {
+            "fr": "Mobilité pré-test",
+            "en": "Pre-test mobility",
+            "es": "Movilidad previa a la prueba"
+          },
           "type": "mobility",
           "duration_minutes": 30,
-          "warmup": "5 min marche douce + 5 min mobilité légère.",
-          "cooldown": "5 min respiration profonde + visualisation positive de la séance phare J5.",
+          "warmup": {
+            "fr": "5 min marche douce + 5 min mobilité légère.",
+            "en": "5 min gentle walk + 5 min light mobility.",
+            "es": "5 min de marcha suave + 5 min de movilidad ligera."
+          },
+          "cooldown": {
+            "fr": "5 min respiration profonde + visualisation positive de la séance phare J5.",
+            "en": "5 min deep breathing + positive visualization of the D5 flagship session.",
+            "es": "5 min de respiración profunda + visualización positiva de la sesión estrella del D5."
+          },
           "exercises": [
             {
-              "name": "Routine mobilité hanches + chevilles",
+              "name": {
+                "fr": "Routine de mobilité hanches et chevilles",
+                "en": "Hip and ankle mobility routine",
+                "es": "Rutina de movilidad de caderas y tobillos"
+              },
               "sets": 1,
               "duration": "15 min",
               "rest_seconds": 0,
-              "notes": "Cercles hanches 10/sens, fente basse tenue 45 sec/côté, deep squat hold 45 sec, cercles chevilles 10/sens, calf stretch debout 45 sec/côté, ankle CARs 10/sens, étirement piriformis figure-4 au sol 45 sec/côté. Pas d'intensité, relâchement total. Prépare les articulations au pic J5.",
+              "notes": {
+                "fr": "Cercles hanches 10/sens, fente basse tenue 45 sec/côté, deep squat hold 45 sec, cercles chevilles 10/sens, calf stretch debout 45 sec/côté, ankle CARs 10/sens, étirement piriformis figure-4 au sol 45 sec/côté. Pas d'intensité, relâchement total. Prépare les articulations au pic J5.",
+                "en": "Hip circles 10 each way, low lunge held 45 sec/side, deep squat hold 45 sec, ankle circles 10 each way, standing calf stretch 45 sec/side, ankle CARs 10 each way, figure-4 piriformis stretch on the floor 45 sec/side. No intensity, full release. Prepares the joints for the D5 peak.",
+                "es": "Círculos de cadera 10 por lado, zancada baja mantenida 45 s/lado, sentadilla profunda mantenida 45 s, círculos de tobillo 10 por lado, estiramiento de gemelos de pie 45 s/lado, CARs de tobillo 10 por lado, estiramiento del piriforme en figura-4 en el suelo 45 s/lado. Sin intensidad, soltura total. Prepara las articulaciones para el pico del D5."
+              },
               "target_zone": "technique",
               "required_equipment": [
                 "mat"
               ],
               "incompatible_constraints": [],
               "alternatives": [
-                "Yoga doux 20 min (chien tête en bas, cobra, child pose, pigeon)",
-                "Étirements statiques globaux 15 min"
+                {
+                  "fr": "Yoga doux 20 min (chien tête en bas, cobra, child pose, pigeon)",
+                  "en": "Gentle yoga 20 min (downward dog, cobra, child's pose, pigeon)",
+                  "es": "Yoga suave 20 min (perro boca abajo, cobra, postura del niño, paloma)"
+                },
+                {
+                  "fr": "Étirements statiques globaux 15 min",
+                  "en": "Full-body static stretches 15 min",
+                  "es": "Estiramientos estáticos generales 15 min"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Routine mobilité hanches + chevilles"
             },
             {
-              "name": "Activation neuromusculaire légère",
+              "name": {
+                "fr": "Activation neuromusculaire légère",
+                "en": "Light neuromuscular activation",
+                "es": "Activación neuromuscular ligera"
+              },
               "sets": 1,
               "duration": "5 min",
               "rest_seconds": 0,
-              "notes": "8 squat-air lents + 8 step-jacks lents + 8 mountain climbers slow + 6 push-up genoux. Réveille les patterns de la séance phare sans fatiguer.",
+              "notes": {
+                "fr": "8 squat-air lents + 8 step-jacks lents + 8 mountain climbers slow + 6 push-up genoux. Réveille les patterns de la séance phare sans fatiguer.",
+                "en": "8 slow bodyweight squats + 8 slow step jacks + 8 slow mountain climbers + 6 knee push-ups. Wakes up the flagship-session patterns without tiring you out.",
+                "es": "8 sentadillas sin carga lentas + 8 jumping jacks sin salto lentos + 8 escaladores lentos + 6 flexiones sobre rodillas. Despierta los patrones de la sesión estrella sin fatigarte."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [
                 "mat"
@@ -1287,27 +2464,56 @@
                 "wrist-pain"
               ],
               "alternatives": [
-                "Marche dynamique 8 min",
-                "Patterns isolés 1/min pendant 5 min"
+                {
+                  "fr": "Marche dynamique 8 min",
+                  "en": "Dynamic walk 8 min",
+                  "es": "Marcha dinámica 8 min"
+                },
+                {
+                  "fr": "Patterns isolés 1/min pendant 5 min",
+                  "en": "Isolated movement patterns, 1/min for 5 min",
+                  "es": "Patrones aislados, 1/min durante 5 min"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Activation neuromusculaire légère"
             }
           ]
         },
         {
           "day": 5,
-          "name": "Séance phare — 20 min complète, 2 blocs 4 min HIIT 30/30",
+          "name": {
+            "fr": "Séance phare — 20 min complète, 2 blocs 4 min HIIT 30/30",
+            "en": "Flagship session — full 20 min, 2 blocks of 4 min HIIT at 30/30",
+            "es": "Sesión estrella — 20 min completos, 2 bloques de 4 min de HIIT en 30/30"
+          },
           "type": "interval",
           "duration_minutes": 20,
-          "warmup": "5 min marche rapide sur place + 3 min mobilité dynamique (10 cercles épaules + 10 rotations bassin + 10 talons-fesses + 10 montées de genoux + 10 demi-squats lents + 10 step-jacks lents). Total : 8 min — cherche à arriver à RPE 6-7 avant le premier bloc work.",
-          "cooldown": "3 min marche lente + étirements 5 min : mollets, quadriceps, ischio-jambiers, fessier figure-4, piriformis. Hydratation + collation post-effort.",
+          "warmup": {
+            "fr": "5 min marche rapide sur place + 3 min mobilité dynamique (10 cercles épaules + 10 rotations bassin + 10 talons-fesses + 10 montées de genoux + 10 demi-squats lents + 10 step-jacks lents). Total : 8 min — cherche à arriver à RPE 6-7 avant le premier bloc work.",
+            "en": "5 min brisk marching in place + 3 min dynamic mobility (10 shoulder circles + 10 pelvic rotations + 10 heel-to-buttock kicks + 10 knee raises + 10 slow half-squats + 10 slow step jacks). Total: 8 min — aim to reach RPE 6-7 before the first work block.",
+            "es": "5 min de marcha rápida en el sitio + 3 min de movilidad dinámica (10 círculos de hombros + 10 rotaciones de cadera + 10 talones al glúteo + 10 elevaciones de rodilla + 10 medias sentadillas lentas + 10 jumping jacks sin salto lentos). Total: 8 min — busca llegar a RPE 6-7 antes del primer bloque de trabajo."
+          },
+          "cooldown": {
+            "fr": "3 min marche lente + étirements 5 min : mollets, quadriceps, ischio-jambiers, fessier figure-4, piriformis. Hydratation + collation post-effort.",
+            "en": "3 min slow walk + 5 min stretches: calves, quads, hamstrings, figure-4 glute, piriformis. Hydrate + post-workout snack.",
+            "es": "3 min de marcha lenta + 5 min de estiramientos: gemelos, cuádriceps, isquiotibiales, glúteo en figura-4, piriforme. Hidratación + tentempié post-esfuerzo."
+          },
           "exercises": [
             {
-              "name": "Bloc 1 — 30/30 mixte 4 min HIIT",
+              "name": {
+                "fr": "Bloc 1 — 30/30 mouvements variés, 4 min HIIT",
+                "en": "Block 1 — Mixed 30/30, 4 min HIIT",
+                "es": "Bloque 1 — 30/30 variado, 4 min HIIT"
+              },
               "sets": 4,
               "duration": "30 sec work + 30 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/30 ratio 1:1 RPE 8 work / RPE 2-3 rest. 4 rounds en mouvements alternés à chaque round : R1 squat-air, R2 step-jacks, R3 mountain climbers slow, R4 squat-air. Total bloc : 4 × 60 sec = 4 min. HIIT cumulé bloc : 4 × 30 sec = 2 min.",
+              "notes": {
+                "fr": "Format 30/30 ratio 1:1 RPE 8 work / RPE 2-3 rest. 4 rounds en mouvements alternés à chaque round : R1 squat-air, R2 step-jacks, R3 mountain climbers slow, R4 squat-air. Total bloc : 4 × 60 sec = 4 min. HIIT cumulé bloc : 4 × 30 sec = 2 min.",
+                "en": "30/30 format, 1:1 ratio, RPE 8 on work / RPE 2-3 on rest. 4 rounds with a different movement each round: R1 bodyweight squats, R2 step jacks, R3 slow mountain climbers, R4 bodyweight squats. Block total: 4 × 60 sec = 4 min. Block HIIT total: 4 × 30 sec = 2 min.",
+                "es": "Formato 30/30, ratio 1:1, RPE 8 en el trabajo / RPE 2-3 en el descanso. 4 rondas con un movimiento distinto en cada ronda: R1 sentadillas sin carga, R2 jumping jacks sin salto, R3 escaladores lentos, R4 sentadillas sin carga. Total del bloque: 4 × 60 s = 4 min. HIIT acumulado del bloque: 4 × 30 s = 2 min."
+              },
               "target_zone": "30/30",
               "required_equipment": [
                 "mat"
@@ -1321,32 +2527,66 @@
                 "apartment-noise"
               ],
               "alternatives": [
-                "Bloc 1 en 30/60 4 rounds (ratio 1:2 si fatigue cumulée)",
-                "Bloc 1 en 30/30 mais que 2 mouvements low-impact (squat-air + step-jacks alternés)"
+                {
+                  "fr": "Bloc 1 en 30/60 4 rounds (ratio 1:2 si fatigue cumulée)",
+                  "en": "Block 1 in 30/60, 4 rounds (1:2 ratio if fatigue accumulates)",
+                  "es": "Bloque 1 en 30/60, 4 rondas (ratio 1:2 si hay fatiga acumulada)"
+                },
+                {
+                  "fr": "Bloc 1 en 30/30 mais que 2 mouvements low-impact (squat-air + step-jacks alternés)",
+                  "en": "Block 1 in 30/30 but only 2 low-impact movements (bodyweight squats + step jacks alternating)",
+                  "es": "Bloque 1 en 30/30 pero solo 2 movimientos de bajo impacto (sentadillas sin carga + jumping jacks sin salto alternados)"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 1 — 30/30 mixte 4 min HIIT"
             },
             {
-              "name": "Récup inter-blocs longue",
+              "name": {
+                "fr": "Récupération longue entre les blocs",
+                "en": "Long recovery between blocks",
+                "es": "Recuperación larga entre bloques"
+              },
               "sets": 1,
               "duration": "120 sec",
               "rest_seconds": 0,
-              "notes": "2 min de récup totale entre les 2 blocs HIIT — marche sur place lente, respiration profonde nasale. Si après 2 min tu n'as pas retrouvé une respiration permettant 1 phrase, ajoute 60 sec.",
+              "notes": {
+                "fr": "2 min de récup totale entre les 2 blocs HIIT — marche sur place lente, respiration profonde nasale. Si après 2 min tu n'as pas retrouvé une respiration permettant 1 phrase, ajoute 60 sec.",
+                "en": "2 min of full recovery between the 2 HIIT blocks — slow marching in place, deep nasal breathing. If after 2 min your breathing doesn't allow a sentence, add 60 sec.",
+                "es": "2 min de recuperación total entre los 2 bloques de HIIT — marcha lenta en el sitio, respiración nasal profunda. Si tras 2 min tu respiración no te permite decir una frase, añade 60 s."
+              },
               "target_zone": "walking-recovery",
               "required_equipment": [],
               "incompatible_constraints": [],
               "alternatives": [
-                "Repos passif debout 2 min",
-                "Étirements doux gastrocnémiens 30 sec/côté"
+                {
+                  "fr": "Repos passif debout 2 min",
+                  "en": "Passive standing rest 2 min",
+                  "es": "Descanso pasivo de pie 2 min"
+                },
+                {
+                  "fr": "Étirements doux gastrocnémiens 30 sec/côté",
+                  "en": "Gentle calf (gastrocnemius) stretch 30 sec/side",
+                  "es": "Estiramiento suave de gemelos 30 s/lado"
+                }
               ],
-              "volume_axis": "duration"
+              "volume_axis": "duration",
+              "match_key": "Récup inter-blocs longue"
             },
             {
-              "name": "Bloc 2 — 30/30 mixte 4 min HIIT",
+              "name": {
+                "fr": "Bloc 2 — 30/30 mouvements variés, 4 min HIIT",
+                "en": "Block 2 — Mixed 30/30, 4 min HIIT",
+                "es": "Bloque 2 — 30/30 variado, 4 min HIIT"
+              },
               "sets": 4,
               "duration": "30 sec work + 30 sec rest",
               "rest_seconds": 0,
-              "notes": "Format 30/30 ratio 1:1 RPE 8 work / RPE 2-3 rest. 4 rounds en mouvements alternés à chaque round : R1 step-jacks, R2 squat-air, R3 mountain climbers slow, R4 step-jacks. Total bloc : 4 × 60 sec = 4 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. HIIT cumulé séance phare = 4 min. HIIT cumulé hebdo W6 = 8 min (4 J1 + 4 J5) — cible doctrine `beginner` 4-8 min/sem atteinte.\n\n*** CHECKLIST D'AUTONOMIE — à valider après la séance phare ***\n1. Je tiens les 2 blocs de 4 min HIIT (30/30 RPE 8) avec 2 min de récup entre eux sans pause forcée à l'intérieur d'un bloc.\n2. Je récupère ma FC en dessous de 100 bpm en moins de 3 min après le 2e bloc (proxy : je suis capable de tenir une conversation normale sous 3 min).\n3. Je sens mes mollets et cuisses fatigués mais sans douleur tibiale ni douleur Achille.\n4. J'ai respecté 48h de récup entre les 2 séances HIIT de cette semaine (J1 et J5).\n5. Pas de courbatures bloquantes > 48h après J1 (je peux marcher normalement et entamer J3 sans gêne).\n\nSi tu coches 4+ critères, tu es autonome pour enchaîner sur un programme `recreational` HIIT 8 sem (introduction Tabata simple 4-6 rounds + EMOM 10-12 min). Si 3 critères ou moins, refais W5 et W6 (cycle de 2 sem) avant de progresser.",
+              "notes": {
+                "fr": "Format 30/30 ratio 1:1 RPE 8 work / RPE 2-3 rest. 4 rounds en mouvements alternés à chaque round : R1 step-jacks, R2 squat-air, R3 mountain climbers slow, R4 step-jacks. Total bloc : 4 × 60 sec = 4 min. HIIT cumulé bloc : 4 × 30 sec = 2 min. HIIT cumulé séance phare = 4 min. HIIT cumulé hebdo W6 = 8 min (4 J1 + 4 J5) — cible doctrine `beginner` 4-8 min/sem atteinte.\n\n*** CHECKLIST D'AUTONOMIE — à valider après la séance phare ***\n1. Je tiens les 2 blocs de 4 min HIIT (30/30 RPE 8) avec 2 min de récup entre eux sans pause forcée à l'intérieur d'un bloc.\n2. Je récupère ma FC en dessous de 100 bpm en moins de 3 min après le 2e bloc (proxy : je suis capable de tenir une conversation normale sous 3 min).\n3. Je sens mes mollets et cuisses fatigués mais sans douleur tibiale ni douleur Achille.\n4. J'ai respecté 48h de récup entre les 2 séances HIIT de cette semaine (J1 et J5).\n5. Pas de courbatures bloquantes > 48h après J1 (je peux marcher normalement et entamer J3 sans gêne).\n\nSi tu coches 4+ critères, tu es autonome pour enchaîner sur un programme `recreational` HIIT 8 sem (introduction Tabata simple 4-6 rounds + EMOM 10-12 min). Si 3 critères ou moins, refais W5 et W6 (cycle de 2 sem) avant de progresser.",
+                "en": "30/30 format, 1:1 ratio, RPE 8 on work / RPE 2-3 on rest. 4 rounds with a different movement each round: R1 step jacks, R2 bodyweight squats, R3 slow mountain climbers, R4 step jacks. Block total: 4 × 60 sec = 4 min. Block HIIT total: 4 × 30 sec = 2 min. Flagship-session HIIT total = 4 min. Weekly HIIT total W6 = 8 min (4 D1 + 4 D5) — the 4-8 min/week beginner target is reached.\n\n*** AUTONOMY CHECKLIST — to confirm after the flagship session ***\n1. I can hold the 2 blocks of 4 min HIIT (30/30 RPE 8) with 2 min of recovery between them, with no forced pause inside a block.\n2. My heart rate recovers below 100 bpm in under 3 min after the 2nd block (proxy: I can hold a normal conversation within 3 min).\n3. My calves and thighs feel tired but with no shin pain or Achilles pain.\n4. I respected 48h of recovery between the 2 HIIT sessions this week (D1 and D5).\n5. No blocking soreness > 48h after D1 (I can walk normally and start D3 without discomfort).\n\nIf you check 4+ criteria, you're ready to move on to a `recreational` 8-week HIIT plan (introducing simple Tabata 4-6 rounds + EMOM 10-12 min). If 3 criteria or fewer, repeat W5 and W6 (a 2-week cycle) before progressing.",
+                "es": "Formato 30/30, ratio 1:1, RPE 8 en el trabajo / RPE 2-3 en el descanso. 4 rondas con un movimiento distinto en cada ronda: R1 jumping jacks sin salto, R2 sentadillas sin carga, R3 escaladores lentos, R4 jumping jacks sin salto. Total del bloque: 4 × 60 s = 4 min. HIIT acumulado del bloque: 4 × 30 s = 2 min. HIIT acumulado de la sesión estrella = 4 min. HIIT acumulado semanal S6 = 8 min (4 D1 + 4 D5) — objetivo de iniciación de 4-8 min/semana alcanzado.\n\n*** LISTA DE AUTONOMÍA — a comprobar tras la sesión estrella ***\n1. Aguanto los 2 bloques de 4 min de HIIT (30/30 RPE 8) con 2 min de recuperación entre ellos, sin pausa forzada dentro de un bloque.\n2. Mi frecuencia cardíaca baja de 100 ppm en menos de 3 min tras el 2.º bloque (indicador: soy capaz de mantener una conversación normal en menos de 3 min).\n3. Noto los gemelos y los muslos cansados pero sin dolor en la espinilla ni en el Aquiles.\n4. He respetado 48 h de recuperación entre las 2 sesiones de HIIT de esta semana (D1 y D5).\n5. Sin agujetas incapacitantes > 48 h tras el D1 (puedo caminar con normalidad y empezar el D3 sin molestias).\n\nSi marcas 4 o más criterios, estás listo para pasar a un plan de HIIT `recreational` de 8 semanas (introducción de Tabata sencillo de 4-6 rondas + EMOM de 10-12 min). Si marcas 3 criterios o menos, repite las S5 y S6 (un ciclo de 2 semanas) antes de progresar."
+              },
               "target_zone": "30/30",
               "required_equipment": [
                 "mat"
@@ -1360,10 +2600,19 @@
                 "apartment-noise"
               ],
               "alternatives": [
-                "Bloc 2 en 30/60 4 rounds (ratio 1:2 si fatigue cumulée)",
-                "Bloc 2 en 30/30 mais que 2 mouvements low-impact (squat-air + step-jacks alternés)"
+                {
+                  "fr": "Bloc 2 en 30/60 4 rounds (ratio 1:2 si fatigue cumulée)",
+                  "en": "Block 2 in 30/60, 4 rounds (1:2 ratio if fatigue accumulates)",
+                  "es": "Bloque 2 en 30/60, 4 rondas (ratio 1:2 si hay fatiga acumulada)"
+                },
+                {
+                  "fr": "Bloc 2 en 30/30 mais que 2 mouvements low-impact (squat-air + step-jacks alternés)",
+                  "en": "Block 2 in 30/30 but only 2 low-impact movements (bodyweight squats + step jacks alternating)",
+                  "es": "Bloque 2 en 30/30 pero solo 2 movimientos de bajo impacto (sentadillas sin carga + jumping jacks sin salto alternados)"
+                }
               ],
-              "volume_axis": "sets"
+              "volume_axis": "sets",
+              "match_key": "Bloc 2 — 30/30 mixte 4 min HIIT"
             }
           ]
         }

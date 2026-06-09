@@ -36,6 +36,11 @@ struct SessionFocusView: View {
     @State private var voiceGuide: SessionVoiceGuide?
     // Story 3.35d — toggle son (le sélecteur H/F vit désormais dans le profil).
     @AppStorage(SessionVoicePrefs.enabledKey) private var voiceEnabled = true
+    // Chantier charge muscu V2 (increment 2, décision B) — poids NOTÉ par l'user, par exo
+    // (clé = originalName). `notedWeights` = valeur éditable courante ; `lastWeights` =
+    // ancre « dernière fois » figée au chargement (rappel). L'app ne prescrit jamais.
+    @State private var notedWeights: [String: Double] = [:]
+    @State private var lastWeights: [String: Double] = [:]
     private let resolvedSportCode: String
     private let executionMode: SessionExecutionMode
 
@@ -71,6 +76,11 @@ struct SessionFocusView: View {
     /// Mode Audio (3.35) : voix par-dessus le déroulé chronométré.
     private var isAudioMode: Bool { executionMode == .audio }
 
+    /// POC yoga (D3) : la voix lit un script de PLACEMENT à l'entrée de chaque
+    /// posture (pas de pré-annonce cardio, pas de décompte vocal). Le yoga reste en
+    /// mode Minuté ; on greffe juste la voix par-dessus.
+    private var isYoga: Bool { resolvedSportCode == "yoga" }
+
     /// Langue de la voix = langue de CONTENU de l'app (tu lis FR → tu entends FR),
     /// indépendante de la locale device. (Décision 3.35e.)
     private var currentLanguage: String { languageManager.currentLanguage.rawValue }
@@ -87,6 +97,7 @@ struct SessionFocusView: View {
             }
         }
         .background(Color.coachingBackground.ignoresSafeArea())
+        .task { await loadNotedWeights() }
         .onChange(of: viewModel.completedCount) { old, new in
             handleCompletionChange(old: old, new: new)
         }
@@ -181,8 +192,9 @@ struct SessionFocusView: View {
         ZStack {
             Color.black.opacity(0.35).ignoresSafeArea()
             VStack(spacing: 16) {
-                Image(systemName: "checkmark.seal.fill")
+                Image(systemName: "trophy.fill")
                     .font(.system(size: 64))
+                    .symbolRenderingMode(.hierarchical)
                     .foregroundStyle(Color.coachingSuccess)
                 Text("coaching.session.focus.celebration")
                     .font(.title2.bold())
@@ -283,13 +295,15 @@ struct SessionFocusView: View {
         }
 
         metricsRow(ex)
+        chargeGuidance(for: ex)
+        weightNote(for: ex)
 
         if let notes = ex.notes?.resolved(locale), !notes.isEmpty {
             BulletedNotes(text: notes, font: .callout)
         }
 
         let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.originalName)
-        ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey)
+        ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey, initiallyExpanded: isYoga)
     }
 
     @ViewBuilder
@@ -297,30 +311,150 @@ struct SessionFocusView: View {
         let hasAny = ex.sets != nil || (ex.reps?.isEmpty == false) || (ex.duration?.isEmpty == false)
             || (ex.restSeconds ?? 0) > 0 || (ex.targetZone?.isEmpty == false)
         if hasAny {
-            HStack(spacing: 6) {
-                if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
-                    chip { Text(verbatim: "\(sets) × \(reps.sanitizedForDisplay)") }
-                } else if let reps = ex.reps, !reps.isEmpty {
-                    chip { Text(verbatim: reps.sanitizedForDisplay) }
-                } else if let sets = ex.sets {
-                    chip { Text(verbatim: "\(sets) ×") }
-                }
-                if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
-                    chip { Text(verbatim: duration.sanitizedForDisplay) }
-                }
-                if let rest = ex.restSeconds, rest > 0 {
-                    chip { Text("coaching.adapter.exercise.rest \(rest)") }
+            // Revue qualité thème #1 : l'intensité passe sur SA PROPRE ligne (référentiel
+            // dosage, « bandeau 1 ligne ») — un libellé sensation (« endurance — tu peux
+            // parler ») ne tient pas dans la rangée de chips sets/reps/repos sans tronquer.
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 6) {
+                    if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
+                        chip { Text(verbatim: "\(sets) × \(reps.sanitizedForDisplay)") }
+                    } else if let reps = ex.reps, !reps.isEmpty {
+                        chip { Text(verbatim: reps.sanitizedForDisplay) }
+                    } else if let sets = ex.sets {
+                        chip { Text(verbatim: "\(sets) ×") }
+                    }
+                    if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
+                        chip { Text(verbatim: duration.sanitizedForDisplay) }
+                    }
+                    if let rest = ex.restSeconds, rest > 0 {
+                        chip { Text("coaching.adapter.exercise.rest \(rest)") }
+                    }
+                    Spacer(minLength: 0)
                 }
                 if let zone = ex.targetZone, !zone.isEmpty {
-                    GlossaryTermBadge(term: zone)
-                        .font(.caption2.bold())
-                        .padding(.horizontal, 8).padding(.vertical, 4)
-                        .background(Color.coachingPrimary.opacity(0.10))
-                        .clipShape(Capsule())
+                    IntensityLabel(zone: zone)
                 }
-                Spacer(minLength: 0)
             }
         }
+    }
+
+    /// Chantier charge muscu V2 — TRANCHE 1 (`party-charge-muscu-v2-2026-06-08.md`).
+    /// Consigne de charge NON-kg, affichée en Manuel ET Minuté (D-A/D-C/D-F) : élastique,
+    /// poids du corps, ou charge libre/machine → wording « reps en réserve » adapté.
+    /// JAMAIS de kg. `nil` (exo non-muscu / cas vide) → rien (jamais « 0 kg », règle P0).
+    @ViewBuilder
+    private func chargeGuidance(for ex: AdaptedExercise) -> some View {
+        // Exo en TENUE (planche, chaise au mur…) : repère de tension, pas « ajoute des reps »
+        // (device-test #16). Sinon : consigne charge selon la résistance (band/poids/charge libre).
+        if isStrengthSession, ChargeGuidance.isHold(ex) {
+            cueLabel("coaching.dosage.charge.hold", icon: "figure.core.training")
+        } else if let resistance = ChargeGuidance.resistance(for: ex, isStrength: isStrengthSession) {
+            let key: LocalizedStringKey = {
+                switch resistance {
+                case .band: return "coaching.dosage.charge.band"
+                case .bodyweight: return "coaching.dosage.charge.bodyweight"
+                case .freeOrMachine: return "coaching.dosage.charge.hint"
+                }
+            }()
+            cueLabel(key, icon: "scalemass")
+        }
+    }
+
+    private func cueLabel(_ key: LocalizedStringKey, icon: String) -> some View {
+        Label { Text(key) } icon: { Image(systemName: icon) }
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .fixedSize(horizontal: false, vertical: true)
+    }
+
+    /// Pas du stepper poids. 0,5 kg (décision Sophie 2026-06-09) : granularité fine qui
+    /// couvre tout le matériel (barre/haltères/machines/légers) ; l'auto-repeat du stepper
+    /// natif évite la pénalité de taps pour atteindre une charge élevée.
+    private static let weightStep: Double = 0.5
+
+    /// Chantier charge muscu V2 — increment 2 (décision B). Champ « poids noté » optionnel,
+    /// UNIQUEMENT sur les exos chargés (`.freeOrMachine`). Stepper ± 0,5 kg sans clavier
+    /// (auto-repeat natif au maintien), pré-rempli sur la dernière valeur, vide si jamais noté.
+    /// L'app NE PRESCRIT JAMAIS : c'est l'user qui saisit (EU MDR). Rappel « dernière fois »
+    /// ancré sur la valeur au chargement. Jamais « 0 kg » (ramené à 0 → effacé → `—`).
+    @ViewBuilder
+    private func weightNote(for ex: AdaptedExercise) -> some View {
+        if ChargeGuidance.resistance(for: ex, isStrength: isStrengthSession) == .freeOrMachine {
+            let key = ex.originalName
+            let current = notedWeights[key]
+            VStack(alignment: .leading, spacing: 2) {
+                Stepper {
+                    HStack(spacing: 6) {
+                        Image(systemName: "scalemass")
+                        Text("coaching.dosage.charge.log")
+                        Spacer(minLength: 8)
+                        // Vide = rien affiché (« sinon vide ») : un « — » ici se confond avec
+                        // le « − » du stepper. Le poids n'apparaît qu'une fois saisi.
+                        if let current {
+                            Text(verbatim: formatKg(current))
+                                .font(.callout.weight(.semibold))
+                                .foregroundStyle(Color.coachingPrimary)
+                                .accessibilityIdentifier("coaching.session.focus.weightNote.value")
+                        }
+                    }
+                } onIncrement: {
+                    adjustWeight(for: key, to: (current ?? lastWeights[key] ?? 0) + Self.weightStep)
+                } onDecrement: {
+                    guard let c = current else { return } // rien sous « — »
+                    adjustWeight(for: key, to: c - Self.weightStep)
+                }
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .accessibilityIdentifier("coaching.session.focus.weightNote")
+                if let last = lastWeights[key] {
+                    Text("coaching.dosage.charge.lastTime \(formatKg(last))")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
+    }
+
+    /// Formate un poids pour l'affichage selon la locale in-app (« 12,5 kg » / « 12.5 kg »),
+    /// sans décimale superflue (« 40 kg » et non « 40,0 kg »).
+    private func formatKg(_ value: Double) -> String {
+        let nf = NumberFormatter()
+        nf.locale = locale
+        nf.numberStyle = .decimal
+        nf.minimumFractionDigits = 0
+        nf.maximumFractionDigits = 1
+        let num = nf.string(from: value as NSNumber) ?? "\(value)"
+        return "\(num) kg"
+    }
+
+    /// Applique un nouveau poids (clampé 0…300). `≤ 0` → efface (jamais « 0 kg »).
+    private func adjustWeight(for key: String, to value: Double) {
+        let clamped = min(value, 300)
+        if clamped <= 0 {
+            notedWeights[key] = nil
+            persistWeight(key: key, kg: nil)
+        } else {
+            notedWeights[key] = clamped
+            persistWeight(key: key, kg: clamped)
+        }
+    }
+
+    /// Charge les poids notés du programme (pré-remplissage stepper + ancre « dernière fois »).
+    /// No-op hors muscu ou en preview/fixture (recordId/deps nil) : le stepper reste éditable
+    /// en local pour le test visuel, juste sans persistance.
+    private func loadNotedWeights() async {
+        guard isStrengthSession, let recordId, let deps else { return }
+        let svc = ExerciseWeightService(repository: deps.adaptedProgramRepository)
+        if let state = try? await svc.currentWeights(recordId: recordId) {
+            lastWeights = state.weights
+            notedWeights = state.weights
+        }
+    }
+
+    private func persistWeight(key: String, kg: Double?) {
+        guard let recordId, let deps else { return }
+        let svc = ExerciseWeightService(repository: deps.adaptedProgramRepository)
+        Task { try? await svc.recordWeight(recordId: recordId, exerciseKey: key, kg: kg) }
     }
 
     private func chip<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
@@ -389,9 +523,7 @@ struct SessionFocusView: View {
     private var timedBody: some View {
         VStack(spacing: 0) {
             timedTopBar
-            Spacer()
             timedCenter
-            Spacer()
             timedControls
         }
         .onAppear {
@@ -423,8 +555,15 @@ struct SessionFocusView: View {
         switch phase.kind {
         case .work, .hold:
             audioCues.play(.workStart)
-            // « C'est parti ! » au lancement d'un effort sortant de la pré-annonce.
-            if precededByPrepare { voiceGuide?.announce(String.localized("coaching.session.voice.go", locale: locale)) }
+            // POC yoga (D3) : à l'ENTRÉE de la posture, lire le script de placement
+            // corporel (« allonge-toi, bras le long du corps… »), puis silence pendant
+            // la tenue. Pas de pré-annonce cardio, pas de « C'est parti ! ».
+            if isYoga {
+                announceYogaPlacement(forStepIndex: phase.stepIndex)
+            } else if precededByPrepare {
+                // « C'est parti ! » au lancement d'un effort sortant de la pré-annonce.
+                voiceGuide?.announce(String.localized("coaching.session.voice.go", locale: locale))
+            }
         case .rest:
             audioCues.play(.restStart)
         case .warmup, .cooldown:
@@ -476,7 +615,9 @@ struct SessionFocusView: View {
     // MARK: - Voix (3.35)
 
     private func setupVoiceIfNeeded() {
-        guard isAudioMode, voiceGuide == nil else { return }
+        // POC yoga (D3) : la voix sert aussi le yoga (mode Minuté) pour lire le
+        // script de placement à l'entrée des postures, pas seulement le mode Audio.
+        guard isAudioMode || isYoga, voiceGuide == nil else { return }
         voiceGuide = SessionVoiceGuide(
             enabled: SessionVoicePrefs.enabled,
             gender: SessionVoicePrefs.gender,
@@ -499,6 +640,19 @@ struct SessionFocusView: View {
         default:
             break
         }
+    }
+
+    /// POC yoga (D3) : annonce le script de placement de la posture dont la phase
+    /// vient de démarrer. Remonte de la phase (`stepIndex`) à l'exo pour récupérer
+    /// son `originalName` (= nom SANSKRIT / match_key) et chercher le script. No-op
+    /// si voix OFF, posture non couverte (POC) ou langue ≠ FR.
+    private func announceYogaPlacement(forStepIndex stepIndex: Int) {
+        guard let guide = voiceGuide,
+              let step = steps.first(where: { $0.index == stepIndex }),
+              case .exercise(let ex) = step.kind,
+              let script = YogaVoiceScripts.script(forName: ex.originalName, language: currentLanguage)
+        else { return }
+        guide.announce(script)
     }
 
     /// Sauvegarde la progression partielle d'une séance minutée à la fermeture :
@@ -537,7 +691,8 @@ struct SessionFocusView: View {
             Spacer()
             // Story 3.35d — en mode Audio : toggle son ON/OFF en haut à droite
             // (le choix de voix Homme/Femme est dans le profil). Sinon miroir invisible.
-            if isAudioMode {
+            // POC yoga (D3) : le toggle s'affiche aussi en yoga (voix de placement débrayable).
+            if isAudioMode || isYoga {
                 Button {
                     voiceEnabled.toggle()
                     voiceGuide?.enabled = voiceEnabled
@@ -561,6 +716,7 @@ struct SessionFocusView: View {
     @ViewBuilder
     private var timedCenter: some View {
         if let phase = timerEngine.currentPhase {
+            GeometryReader { geo in
             ScrollView {
                 VStack(spacing: 16) {
                     if phase.kind == .warmup || phase.kind == .cooldown {
@@ -579,21 +735,59 @@ struct SessionFocusView: View {
                             .font(.largeTitle.bold())
                             .foregroundStyle(phaseTint(phase))
                             .multilineTextAlignment(.center)
-                        // Bug #9/#12 — muscu : l'OBJECTIF de la série (« Objectif : 8 ») est la
-                        // consigne claire. Sally P0 : le timer est ESTIMÉ → on dit explicitement
-                        // « prends le temps · pause si besoin » (sinon l'user croit à un chrono strict).
-                        if phase.kind == .work, let reps = strengthReps(for: phase) {
-                            VStack(spacing: 4) {
-                                Text("coaching.session.focus.timed.strength.target \(reps)")
-                                    .font(.title3.bold())
+                        // Chantier dosage AC2 (2026-06-07) : en MUSCU les REPS sont le héros
+                        // (la muscu est reps-driven), le chrono est rétrogradé en filet — il
+                        // n'est qu'une ESTIMATION. Hors muscu (HIIT/yoga), le chrono reste héros.
+                        let strengthRepTarget = phase.kind == .work ? strengthReps(for: phase) : nil
+                        if let reps = strengthRepTarget {
+                            VStack(spacing: 6) {
+                                Text(verbatim: DosageFormatting.repsHero(from: reps))
+                                    .font(.system(size: 80, weight: .bold, design: .rounded))
                                     .foregroundStyle(Color.coachingPrimary)
-                                Text("coaching.session.focus.timed.strength.hint")
-                                    .font(.caption)
+                                    .accessibilityIdentifier("coaching.session.focus.timed.strength.repsHero")
+                                Text("coaching.dosage.reps.unit")
+                                    .font(.headline)
                                     .foregroundStyle(.secondary)
+                                // D4 côté : exo unilatéral (« 10 par côté ») → guidage explicite.
+                                // Affiché seulement (la voix côté = mode Audio, hors muscu Minuté).
+                                if DosageFormatting.isUnilateral(reps: reps) {
+                                    Label {
+                                        Text("coaching.dosage.side.right")
+                                            + Text(verbatim: " · ")
+                                            + Text("coaching.dosage.side.left")
+                                    } icon: {
+                                        Image(systemName: "arrow.left.arrow.right")
+                                    }
+                                    .font(.subheadline.weight(.medium))
+                                    .foregroundStyle(Color.coachingPrimary)
+                                    .padding(.top, 2)
+                                    .accessibilityIdentifier("coaching.session.focus.timed.strength.side")
+                                }
+                                // Chantier charge V2 (T1) — consigne charge NON-kg via le
+                                // helper partagé avec le mode Manuel (D-F) : élastique /
+                                // poids du corps / charge libre. Jamais « 0 kg » (P0).
+                                if let ex = exercise(at: phase.stepIndex) {
+                                    chargeGuidance(for: ex)
+                                        .multilineTextAlignment(.center)
+                                        .padding(.top, 2)
+                                    weightNote(for: ex)
+                                        .padding(.top, 2)
+                                }
+                            }
+                            chronoFilet
+                        } else {
+                            bigTime
+                            // Exo muscu en TENUE (pas de reps : chaise au mur, planche) : la
+                            // consigne était couplée au héros reps → invisible (#16). On la rend
+                            // ici aussi, en repère de tension. Gardé à .work muscu (pas en récup).
+                            if isStrengthSession, phase.kind == .work, let ex = exercise(at: phase.stepIndex) {
+                                chargeGuidance(for: ex)
                                     .multilineTextAlignment(.center)
+                                    .padding(.top, 2)
+                                weightNote(for: ex)
+                                    .padding(.top, 2)
                             }
                         }
-                        bigTime
                         timeScrubber(phase: phase)
                         if let next = upcomingLabel, next != displayString(phase.label) {
                             Text("coaching.session.focus.timed.then \(next)")
@@ -612,19 +806,54 @@ struct SessionFocusView: View {
                 }
                 .padding(.horizontal, 24)
                 .padding(.vertical, 8)
+                // Bug device-test Sophie 2026-06-08 (DB bench) : le contenu (image +
+                // « Comment l'exécuter » déplié) était coincé entre 2 Spacer() qui volaient
+                // la hauteur → vide en haut, how-to coupé. minHeight = viewport → centre si
+                // court, scrolle proprement si long (Spacers retirés de timedBody).
+                .frame(maxWidth: .infinity, minHeight: geo.size.height)
+            }
+            // Revue comité 2026-06-06 (Sally P1-b) : sur la tenue `.hold`, la
+            // description dépliée déborde souvent sous la ligne de flottaison →
+            // dégradé de fade en bas pour signaler « il y a une suite à scroller ».
+            .overlay(alignment: .bottom) {
+                if phase.kind == .hold {
+                    LinearGradient(colors: [Color.coachingBackground.opacity(0), Color.coachingBackground],
+                                   startPoint: .top, endPoint: .bottom)
+                        .frame(height: 28)
+                        .allowsHitTesting(false)
+                }
+            }
             }
         } else if timerEngine.isFinished {
             // Bug #7 — en fin de séance minutée, `currentPhase` devient nil → l'écran
             // restait blanc le temps que la feuille de récap monte. On affiche une
             // célébration visible dès la dernière phase passée.
-            VStack(spacing: 16) {
-                Image(systemName: "checkmark.seal.fill")
+            // Bug device-test Sophie 2026-06-08 : la feuille récap est ASYNC (save) → si
+            // elle ne monte pas (offline/échec/edge), l'user restait coincé ici sans
+            // bouton (juste le petit ✕). Bouton « Terminer » explicite = sortie garantie.
+            VStack(spacing: 20) {
+                Image(systemName: "trophy.fill")
                     .font(.system(size: 72))
+                    .symbolRenderingMode(.hierarchical)
                     .foregroundStyle(Color.coachingSuccess)
                 Text("coaching.session.focus.celebration")
                     .font(.title2.bold())
                     .multilineTextAlignment(.center)
+                Button { dismiss() } label: {
+                    Text("coaching.session.focus.finish.cta")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 15)
+                        .foregroundStyle(.white)
+                        .background(Color.coachingPrimary)
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
+                .buttonStyle(.plain)
+                .padding(.horizontal, 40)
+                .padding(.top, 4)
+                .accessibilityIdentifier("coaching.session.focus.timed.finish.cta")
             }
+            .padding(.horizontal, 24)
             .accessibilityIdentifier("coaching.session.focus.timed.finished")
         }
     }
@@ -645,21 +874,60 @@ struct SessionFocusView: View {
             bigTime
             timeScrubber(phase: phase)
             VStack(alignment: .leading, spacing: 10) {
-                ForEach(Array(lines.enumerated()), id: \.offset) { idx, line in
+                if Self.isPlaceholderGuidance(lines) {
+                    // Revue ui-reviewer 2026-06-07 (P1, finding Sophie) : un warmup/récup
+                    // « placeholder » (« Échauffement standard 7 min. ») ne produisait qu'une
+                    // puce tautologique → écran ressenti vide. Fallback utile, jamais vide.
                     Label {
-                        Text(verbatim: line)
-                            .font(idx == current ? .body.bold() : .body)
-                            .foregroundStyle(idx == current ? .primary : .secondary)
+                        Text(phase.kind == .cooldown
+                             ? "coaching.session.focus.guided.cooldown.fallback"
+                             : "coaching.session.focus.guided.warmup.fallback")
+                            .font(.body)
+                            .foregroundStyle(.secondary)
                             .fixedSize(horizontal: false, vertical: true)
                     } icon: {
-                        Image(systemName: idx == current ? "circle.fill" : "circle")
-                            .font(.system(size: 7))
-                            .foregroundStyle(idx == current ? phaseTint(phase) : .secondary)
+                        Image(systemName: "sparkles")
+                            .font(.system(size: 9))
+                            .foregroundStyle(phaseTint(phase))
+                    }
+                } else {
+                    ForEach(Array(lines.enumerated()), id: \.offset) { idx, line in
+                        Label {
+                            // Revue comité 2026-06-06 (P0 challenger) : le jargon des
+                            // sous-étapes d'échauffement (glutes, band, mobilité…) devient
+                            // tappable via le glossaire au lieu d'être du texte opaque.
+                            GlossaryRichText(text: line,
+                                             font: idx == current ? .body.bold() : .body,
+                                             foreground: idx == current ? .primary : .secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        } icon: {
+                            Image(systemName: idx == current ? "circle.fill" : "circle")
+                                .font(.system(size: 7))
+                                .foregroundStyle(idx == current ? phaseTint(phase) : .secondary)
+                        }
                     }
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
+    }
+
+    /// Un texte de phase guidée est un « placeholder » sans valeur (« Échauffement standard
+    /// 7 min. », « Étirements 5 min standards. ») s'il ne reste quasi aucune instruction une
+    /// fois retirés le mot de phase, « standard » et la durée. Dans ce cas on affiche un
+    /// fallback générique plutôt qu'une puce tautologique. Robuste tous sports.
+    static func isPlaceholderGuidance(_ lines: [String]) -> Bool {
+        guard lines.count <= 1 else { return false }
+        guard let only = lines.first else { return true }
+        var s = only.lowercased()
+        for w in ["échauffement", "echauffement", "étirements", "etirements", "récupération",
+                  "recuperation", "standard", "standards", "warm-up", "warmup", "warm up",
+                  "cool-down", "cooldown", "cool down", "stretching", "stretch"] {
+            s = s.replacingOccurrences(of: w, with: " ")
+        }
+        s = s.replacingOccurrences(of: #"[0-9]+\s*(min|sec|s)?\b"#, with: " ", options: .regularExpression)
+        let letters = s.filter { $0.isLetter }
+        return letters.count < 4
     }
 
     /// Index de la sous-étape courante d'un échauffement/récup, par tranche de temps
@@ -684,7 +952,11 @@ struct SessionFocusView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.originalName)
-            ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey)
+            // Revue comité 2026-06-06 (reco Sally, décision Sophie) : « Comment
+            // l'exécuter » déplié sur les phases STATIQUES/LONGUES (tenue `.hold` =
+            // posture yoga, gainage), replié sur l'effort court chiffré (`.work` =
+            // HIIT, série muscu) — règle déterministe par phase, découplée du sport.
+            ExerciseHowToDisclosure(exercise: ex, fallbackTip: tipKey, initiallyExpanded: phase.kind == .hold)
         }
     }
 
@@ -734,6 +1006,18 @@ struct SessionFocusView: View {
             .accessibilityIdentifier("coaching.session.focus.timed.countdown")
     }
 
+    /// Chrono « filet » discret pour la muscu : le temps n'est qu'une estimation, les reps
+    /// sont le héros (chantier dosage AC2). Garde l'`accessibilityIdentifier` countdown pour
+    /// rester repérable par les tests, mais en taille réduite secondaire.
+    private var chronoFilet: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "timer").font(.caption)
+            Text(verbatim: timeString(timerEngine.remaining)).font(.callout.monospacedDigit())
+        }
+        .foregroundStyle(.secondary)
+        .accessibilityIdentifier("coaching.session.focus.timed.countdown")
+    }
+
     /// Barre de progression du segment : « écoulé · [====   ] · total » — montre où
     /// on en est sans aucun « / » (retour Sophie 2026-06-03).
     private func timeScrubber(phase: SessionTimerPhase) -> some View {
@@ -760,8 +1044,21 @@ struct SessionFocusView: View {
             EmptyView()
         } else {
             // Toutes les phases chronométrées (y compris échauffement/récup depuis le
-            // bug #6) : pause/reprise + passer.
+            // bug #6) : précédent + pause/reprise + passer.
             HStack(spacing: 16) {
+                // Revue ui-reviewer 2026-06-07 (P1) : parité avec le mode Manuel — on peut
+                // revenir au set/exo précédent en minuté (compact pour ne pas serrer Pause).
+                Button { withAnimation { timerEngine.back() } } label: {
+                    Image(systemName: "chevron.left")
+                        .font(.headline)
+                        .frame(width: 52)
+                        .padding(.vertical, 15)
+                        .foregroundStyle(.primary)
+                        .background(Color(uiColor: .secondarySystemBackground))
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
+                .disabled(timerEngine.currentIndex == 0 && !timerEngine.isFinished)
+                .accessibilityLabel("coaching.session.focus.previous")
                 Button { timerEngine.togglePause() } label: {
                     Label(
                         timerEngine.isPaused ? "coaching.session.focus.timed.resume" : "coaching.session.focus.timed.pause",

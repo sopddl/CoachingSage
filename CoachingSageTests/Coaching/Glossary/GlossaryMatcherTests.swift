@@ -32,6 +32,35 @@ final class GlossaryMatcherTests: XCTestCase {
         XCTAssertEqual(matches.first?.entry.id, "tempo")
     }
 
+    // MARK: - Revue comité 2026-06-06 — jargon échauffement (glutes / band / mobilité / récup)
+
+    func testGlutesMatch() {
+        XCTAssertEqual(Glossary.matches(in: "activation glutes").first?.entry.id, "glutes")
+        XCTAssertEqual(Glossary.matches(in: "activation des fessiers").first?.entry.id, "glutes")
+    }
+
+    func testBandMatch() {
+        XCTAssertEqual(Glossary.matches(in: "activation glutes (band)").last?.entry.id, "band")
+        XCTAssertEqual(Glossary.matches(in: "avec un élastique").first?.entry.id, "band")
+    }
+
+    func testMobiliteMatch() {
+        XCTAssertEqual(Glossary.matches(in: "mobilité épaules").first?.entry.id, "mobility")
+    }
+
+    func testRecupMatch() {
+        XCTAssertEqual(Glossary.matches(in: "récup active 90s").first?.entry.id, "recovery")
+    }
+
+    // Longest-first : les patterns spécifiques existants gardent la priorité.
+    func testMobiliteThoraciqueStillThoracic() {
+        XCTAssertEqual(Glossary.matches(in: "mobilité thoracique").first?.entry.id, "thoracic")
+    }
+
+    func testBandPullApartStillWins() {
+        XCTAssertEqual(Glossary.matches(in: "band pull apart x15").first?.entry.id, "bandpullapart")
+    }
+
     // MARK: - Matches multiples ordonnés
 
     func testMultipleMatchesOrderedByPosition() {

@@ -71,6 +71,24 @@ final class SessionTimerEngine {
         advance()
     }
 
+    /// Revient à la phase précédente et réinitialise son temps (symétrique de `skip()`).
+    /// Cas limites : si la séquence est terminée → reprend la dernière phase ; si déjà sur
+    /// la première → redémarre son chrono. Préserve l'état run/pause courant.
+    func back() {
+        if isFinished {
+            isFinished = false
+            remaining = currentPhase?.duration ?? 0
+            return
+        }
+        let prev = currentIndex - 1
+        guard phases.indices.contains(prev) else {
+            remaining = currentPhase?.duration ?? remaining
+            return
+        }
+        currentIndex = prev
+        remaining = phases[prev].duration
+    }
+
     /// Avance d'une seconde. No-op si pas démarré, en pause, terminé, ou sur une
     /// phase MANUELLE (échauffement/récup : on attend le tap « Avancer »).
     func tick() {

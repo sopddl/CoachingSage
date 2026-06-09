@@ -43,6 +43,12 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
     case tricepsPushdown // 3 frames — câble HAUT extension coude
     case lateralRaises   // 3 frames — haltères élévation latérale deltoïdes
 
+    // Revue dessins muscu 2026-06-08 — 4 patterns créés (dessinés sur demande Sophie)
+    case hangingLegRaise // 3 frames — suspendu barre, jambes montent à l'horizontale
+    case tricepsOverhead // 3 frames — haltère derrière la nuque, extension verticale
+    case woodchopper     // 3 frames — câble diagonal haut→bas (coup de hache)
+    case pullover        // 3 frames — allongé banc, haltère arc derrière tête → poitrine
+
     // Running (3 cases dont 1 statique)
     case runEndurance
     case runInterval

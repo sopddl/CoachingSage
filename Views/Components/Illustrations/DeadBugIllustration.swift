@@ -1,140 +1,51 @@
 // Views/Components/Illustrations/DeadBugIllustration.swift
-// Story 3.23 Lot 5 v2 — Dead-bug 3 frames, viewbox 48×48.
-// Source : https://en.wikipedia.org/wiki/Dead_bug_(exercise)
-// Signature v2 : DOS au sol + table top → extension controlatérale MARQUÉE
-// (bras + jambe opposée se TENDENT clairement vers les extrémités du viewbox).
-// Refonte v2 : contraste controlatéral plus prononcé pour différencier les frames.
+// Chantier refonte dessins muscu — lot 2 (2026-06-07) — dead-bug REFONDU (profil).
+// Allongé sur le dos (gainage) : bras + jambe OPPOSÉE s'étendent en controlatéral,
+// le bas du dos reste plaqué. Membres « au repos » estompés, membres actifs pleins.
 import SwiftUI
 
 struct DeadBugIllustration: View {
     let sportCode: String
     let frame: Int
+    var exerciseName: String? = nil
 
     var body: some View {
         Canvas { ctx, size in
             let s = size.width / IllustrationStyle.frameSize
-            let stroke = StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s, lineCap: .round, lineJoin: .round)
-            let silhouette = IllustrationStyle.silhouette(sportCode: sportCode)
-
-            // Sol matelas pointillé y=40 (corps couché dessus)
-            var ground = Path()
-            ground.move(to: CGPoint(x: 4 * s, y: 40 * s))
-            ground.addLine(to: CGPoint(x: 44 * s, y: 40 * s))
-            ctx.stroke(ground, with: .color(IllustrationStyle.groundLine),
-                       style: StrokeStyle(lineWidth: 1 * s, dash: [2 * s, 2 * s]))
-
-            // Tête (à gauche, sur le sol)
-            let headSize: CGFloat = 6 * s
-            ctx.stroke(
-                Path(ellipseIn: CGRect(x: 8 * s - headSize / 2, y: 36 * s - headSize / 2,
-                                        width: headSize, height: headSize)),
-                with: .color(silhouette), style: stroke
-            )
-
-            // Tronc allongé horizontal au sol (épaule → bassin sur y=36)
-            var trunk = Path()
-            trunk.move(to: CGPoint(x: 12 * s, y: 36 * s))
-            trunk.addLine(to: CGPoint(x: 30 * s, y: 36 * s))
-            ctx.stroke(trunk, with: .color(silhouette), style: stroke)
-
-            switch frame {
-            case 0:
-                // Position de départ — TOUS les membres au ciel (table top + bras vertical)
-                var armL = Path()
-                armL.move(to: CGPoint(x: 12 * s, y: 36 * s))     // épaule
-                armL.addLine(to: CGPoint(x: 12 * s, y: 18 * s))  // main au ciel
-                ctx.stroke(armL, with: .color(silhouette), style: stroke)
-                var armR = Path()
-                armR.move(to: CGPoint(x: 14 * s, y: 36 * s))
-                armR.addLine(to: CGPoint(x: 14 * s, y: 18 * s))
-                ctx.stroke(armR, with: .color(silhouette), style: stroke)
-
-                // Jambes en table top (cuisses verticales)
-                var legL = Path()
-                legL.move(to: CGPoint(x: 28 * s, y: 36 * s))
-                legL.addLine(to: CGPoint(x: 28 * s, y: 22 * s))  // genoux ciel
-                legL.addLine(to: CGPoint(x: 22 * s, y: 22 * s))  // tibias horizontaux gauche
-                ctx.stroke(legL, with: .color(silhouette), style: stroke)
-                var legR = Path()
-                legR.move(to: CGPoint(x: 30 * s, y: 36 * s))
-                legR.addLine(to: CGPoint(x: 30 * s, y: 22 * s))
-                legR.addLine(to: CGPoint(x: 36 * s, y: 22 * s)) // tibias horizontaux droite
-                ctx.stroke(legR, with: .color(silhouette), style: stroke)
-
-            case 1:
-                // Mi-extension controlatérale — bras GAUCHE et jambe DROITE s'étendent
-                // Bras gauche EN HAUT (tendu en arrière au-dessus de la tête)
-                var armActive = Path()
-                armActive.move(to: CGPoint(x: 12 * s, y: 36 * s))
-                armActive.addLine(to: CGPoint(x: 8 * s, y: 24 * s))   // s'étend en arrière
-                ctx.stroke(armActive, with: .color(silhouette), style: stroke)
-
-                // Bras droit RESTE table top vertical
-                var armStable = Path()
-                armStable.move(to: CGPoint(x: 14 * s, y: 36 * s))
-                armStable.addLine(to: CGPoint(x: 14 * s, y: 22 * s))
-                ctx.stroke(armStable, with: .color(silhouette), style: stroke)
-
-                // Jambe droite TENDUE en bas-droite (extension)
-                var legActive = Path()
-                legActive.move(to: CGPoint(x: 30 * s, y: 36 * s))
-                legActive.addLine(to: CGPoint(x: 38 * s, y: 32 * s))
-                legActive.addLine(to: CGPoint(x: 42 * s, y: 30 * s))
-                ctx.stroke(legActive, with: .color(silhouette), style: stroke)
-
-                // Jambe gauche RESTE table top
-                var legStable = Path()
-                legStable.move(to: CGPoint(x: 28 * s, y: 36 * s))
-                legStable.addLine(to: CGPoint(x: 28 * s, y: 22 * s))
-                legStable.addLine(to: CGPoint(x: 22 * s, y: 22 * s))
-                ctx.stroke(legStable, with: .color(silhouette), style: stroke)
-
-            default:
-                // Extension MAX controlatérale — bras gauche TENDU bas (en arrière)
-                // + jambe droite TENDUE haut (vers le ciel)
-                var armActive = Path()
-                armActive.move(to: CGPoint(x: 12 * s, y: 36 * s))
-                armActive.addLine(to: CGPoint(x: 4 * s, y: 30 * s))   // tendu en arrière proche tête
-                ctx.stroke(armActive, with: .color(silhouette), style: stroke)
-
-                var armStable = Path()
-                armStable.move(to: CGPoint(x: 14 * s, y: 36 * s))
-                armStable.addLine(to: CGPoint(x: 14 * s, y: 22 * s))
-                ctx.stroke(armStable, with: .color(silhouette), style: stroke)
-
-                // Jambe droite TENDUE à l'horizontale (signature opposition complète)
-                var legActive = Path()
-                legActive.move(to: CGPoint(x: 30 * s, y: 36 * s))
-                legActive.addLine(to: CGPoint(x: 44 * s, y: 34 * s))   // tendue presque horizontale
-                ctx.stroke(legActive, with: .color(silhouette), style: stroke)
-
-                var legStable = Path()
-                legStable.move(to: CGPoint(x: 28 * s, y: 36 * s))
-                legStable.addLine(to: CGPoint(x: 28 * s, y: 22 * s))
-                legStable.addLine(to: CGPoint(x: 22 * s, y: 22 * s))
-                ctx.stroke(legStable, with: .color(silhouette), style: stroke)
-
-                // Marqueurs flèche extension orange (signal allongement actif)
-                var arrowArm = Path()
-                arrowArm.move(to: CGPoint(x: 6 * s, y: 28 * s))
-                arrowArm.addLine(to: CGPoint(x: 4 * s, y: 30 * s))
-                arrowArm.addLine(to: CGPoint(x: 6 * s, y: 32 * s))
-                ctx.stroke(arrowArm, with: .color(IllustrationStyle.movementArrow),
-                           style: StrokeStyle(lineWidth: 1.5 * s, lineCap: .round))
-                var arrowLeg = Path()
-                arrowLeg.move(to: CGPoint(x: 42 * s, y: 32 * s))
-                arrowLeg.addLine(to: CGPoint(x: 44 * s, y: 34 * s))
-                arrowLeg.addLine(to: CGPoint(x: 42 * s, y: 36 * s))
-                ctx.stroke(arrowLeg, with: .color(IllustrationStyle.movementArrow),
-                           style: StrokeStyle(lineWidth: 1.5 * s, lineCap: .round))
+            let bodyColor = IllustrationStyle.silhouette(sportCode: sportCode)
+            let faint = bodyColor.opacity(0.4)
+            func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+            func mix(_ a: CGPoint, _ b: CGPoint, _ t: CGFloat) -> CGPoint {
+                CGPoint(x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t)
             }
+
+            // Sol = mat où le dos repose (ligne pleine basse, pas le sol pointillé habituel)
+            StrengthFigureKit.limb(ctx, [p(6, 42), p(42, 42)], color: IllustrationStyle.groundLine, s: s)
+            let ext: CGFloat = frame == 0 ? 0 : (frame == 1 ? 0.5 : 1) // extension controlatérale
+
+            // Dos à plat sur le sol (tête à gauche), bien posé sur le mat
+            let shldr = p(16, 41), hip = p(28, 41), headC = p(11, 40)
+            StrengthFigureKit.limb(ctx, [shldr, hip], color: bodyColor, s: s)
+            StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: bodyColor, s: s, r: 2.6)
+
+            // Membres AU REPOS (estompés) pointant vers le HAUT (bras tendu vertical + genou tabletop) :
+            // donne de la hauteur verticale → la posture « sur le dos, membres en l'air » se lit.
+            StrengthFigureKit.limb(ctx, [shldr, p(16, 22)], color: faint, s: s)               // bras haut
+            StrengthFigureKit.limb(ctx, [hip, p(28, 24), p(34, 24)], color: faint, s: s)        // genou haut (tabletop)
+
+            // Membres ACTIFS : bras tendu vers l'arrière (au-dessus de la tête, vers le sol) +
+            // jambe opposée qui se TEND (du genou-haut vers l'avant, parallèle au sol).
+            let hand = mix(p(16, 22), p(5, 35), ext)
+            StrengthFigureKit.limb(ctx, [shldr, hand], color: bodyColor, s: s)
+            let foot = mix(p(34, 24), p(44, 37), ext)
+            StrengthFigureKit.limb(ctx, [hip, mix(p(31, 30), p(39, 37), ext), foot], color: bodyColor, s: s)
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)
     }
 }
 
 #if DEBUG
-#Preview("Dead-bug v2") {
+#Preview("Dead bug") {
     HStack(spacing: 4) {
         DeadBugIllustration(sportCode: "strengthTraining", frame: 0)
         Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
@@ -142,7 +53,6 @@ struct DeadBugIllustration: View {
         Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
         DeadBugIllustration(sportCode: "strengthTraining", frame: 2)
     }
-    .padding()
-    .background(Color.coachingBackground)
+    .padding().background(Color.coachingBackground)
 }
 #endif

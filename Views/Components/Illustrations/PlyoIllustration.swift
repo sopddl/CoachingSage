@@ -1,182 +1,127 @@
 // Views/Components/Illustrations/PlyoIllustration.swift
-// Story 3.19 Jalon 2a — jump squat / plyometric 3 frames.
-// Grille didactique : EXCEPTION SAUT EXPLICITE. Les pieds DÉCOLLENT visiblement
-// en frame 1 (air sous les pieds = message saut). Frame 2 = atterrissage.
-//
-// Frame 0 : squat préparation (silhouette baissée prête à exploser)
-// Frame 1 : SAUT — pieds bien au-dessus du sol, bras tendus, corps vertical
-// Frame 2 : atterrissage (genoux fléchis pour absorber)
+// Chantier refonte dessins muscu — lot 2 (2026-06-07) — pliométrie REFONDUE (profil + variantes).
+// Variantes (mouvements distincts, pas une simple interpolation) :
+//   - burpee : sol/planche → groupé → saut bras en l'air (corrige « burpee = petit saut »).
+//   - jumpSquat : squat → extension → envol bras en l'air.
+//   - boxJump : groupé → envol → réception sur le box.
 import SwiftUI
 
 struct PlyoIllustration: View {
     let sportCode: String
     let frame: Int
+    var exerciseName: String? = nil
+
+    enum Variant { case burpee, jumpSquat, boxJump }
+    var variant: Variant { Self.resolveVariant(from: exerciseName) }
+
+    static func resolveVariant(from name: String?) -> Variant {
+        guard let lower = name?.lowercased() else { return .jumpSquat }
+        if lower.contains("burpee") { return .burpee }
+        if lower.contains("box") || lower.contains("boîte") || lower.contains("boite") { return .boxJump }
+        return .jumpSquat
+    }
 
     var body: some View {
         Canvas { ctx, size in
             let s = size.width / IllustrationStyle.frameSize
-            let stroke = StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s, lineCap: .round, lineJoin: .round)
+            let body = IllustrationStyle.silhouette(sportCode: sportCode)
+            func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
 
-            // Sol pointillé fixe
-            var ground = Path()
-            ground.move(to: CGPoint(x: 4 * s, y: 46 * s))
-            ground.addLine(to: CGPoint(x: 44 * s, y: 46 * s))
-            ctx.stroke(ground, with: .color(IllustrationStyle.groundLine),
-                       style: StrokeStyle(lineWidth: 1 * s, dash: [2 * s, 2 * s]))
+            StrengthFigureKit.ground(ctx, s: s)
 
-            let centerX: CGFloat = 24 * s
-            let headSize: CGFloat = 6 * s
+            // Petites marques « air » sous les pieds quand le sujet décolle.
+            func airTicks(_ x: CGFloat) {
+                for dx in [CGFloat(-3), 0, 3] {
+                    StrengthFigureKit.limb(ctx, [p(x + dx, 41), p(x + dx, 43)],
+                                           color: IllustrationStyle.movementArrow, s: s)
+                }
+            }
 
-            // Frame 0 : squat préparation (corps baissé, pieds au sol)
-            // Frame 1 : SAUT — corps droit vertical, pieds DÉCOLLÉS du sol
-            // Frame 2 : atterrissage (corps mi-haut, pieds au sol, genoux fléchis)
+            switch variant {
+            case .burpee:
+                switch frame {
+                case 0: // planche au sol
+                    StrengthFigureKit.limb(ctx, [p(9, 40), p(20, 39), p(30, 38)], color: body, s: s) // corps gainé
+                    StrengthFigureKit.limb(ctx, [p(30, 38), p(33, 44)], color: body, s: s) // bras au sol
+                    StrengthFigureKit.headNeck(ctx, head: p(34, 36), shoulder: p(30, 38), color: body, s: s, r: 2.6)
+                case 1: // groupé (pieds ramenés)
+                    StrengthFigureKit.limb(ctx, [p(28, 44), p(26, 36), p(22, 34)], color: body, s: s) // jambe repliée
+                    StrengthFigureKit.limb(ctx, [p(22, 34), p(24, 28)], color: body, s: s) // tronc
+                    StrengthFigureKit.limb(ctx, [p(24, 28), p(30, 33)], color: body, s: s) // bras vers sol
+                    StrengthFigureKit.headNeck(ctx, head: p(25, 24), shoulder: p(24, 28), color: body, s: s, r: 2.6)
+                default: // saut bras en l'air
+                    airTicks(24)
+                    StrengthFigureKit.limb(ctx, [p(24, 40), p(24, 18)], color: body, s: s) // corps tendu
+                    StrengthFigureKit.limb(ctx, [p(24, 22), p(20, 8)], color: body, s: s)  // bras levés
+                    StrengthFigureKit.limb(ctx, [p(24, 22), p(28, 8)], color: body, s: s)
+                    StrengthFigureKit.headNeck(ctx, head: p(24, 13), shoulder: p(24, 18), color: body, s: s, r: 2.8)
+                }
 
-            switch frame {
-            case 0: drawSquatPrep(ctx: ctx, s: s, stroke: stroke, centerX: centerX, headSize: headSize)
-            case 1: drawJump(ctx: ctx, s: s, stroke: stroke, centerX: centerX, headSize: headSize)
-            default: drawLanding(ctx: ctx, s: s, stroke: stroke, centerX: centerX, headSize: headSize)
+            case .jumpSquat:
+                switch frame {
+                case 0: // squat bas, bras en arrière (armé)
+                    StrengthFigureKit.limb(ctx, [p(20, 44), p(26, 37), p(18, 33)], color: body, s: s)
+                    StrengthFigureKit.limb(ctx, [p(18, 33), p(23, 25)], color: body, s: s)
+                    StrengthFigureKit.limb(ctx, [p(23, 25), p(16, 28)], color: body, s: s) // bras arrière
+                    StrengthFigureKit.headNeck(ctx, head: p(26, 22), shoulder: p(23, 25), color: body, s: s, r: 2.8)
+                case 1: // extension debout, bras qui montent
+                    StrengthFigureKit.limb(ctx, [p(22, 44), p(23, 33), p(24, 22)], color: body, s: s)
+                    StrengthFigureKit.limb(ctx, [p(24, 22), p(28, 14)], color: body, s: s)
+                    StrengthFigureKit.headNeck(ctx, head: p(24, 17), shoulder: p(24, 22), color: body, s: s)
+                default: // envol bras en l'air
+                    airTicks(24)
+                    StrengthFigureKit.limb(ctx, [p(24, 40), p(24, 18)], color: body, s: s)
+                    StrengthFigureKit.limb(ctx, [p(24, 22), p(20, 8)], color: body, s: s)
+                    StrengthFigureKit.limb(ctx, [p(24, 22), p(28, 8)], color: body, s: s)
+                    StrengthFigureKit.headNeck(ctx, head: p(24, 13), shoulder: p(24, 18), color: body, s: s, r: 2.8)
+                }
+
+            case .boxJump:
+                // Box à droite
+                StrengthFigureKit.box(ctx, rect: CGRect(x: 30 * s, y: 30 * s, width: 14 * s, height: 14 * s), s: s, filled: true)
+                switch frame {
+                case 0: // groupé avant le box
+                    StrengthFigureKit.limb(ctx, [p(12, 44), p(16, 37), p(11, 33)], color: body, s: s)
+                    StrengthFigureKit.limb(ctx, [p(11, 33), p(15, 25)], color: body, s: s)
+                    StrengthFigureKit.limb(ctx, [p(15, 25), p(9, 27)], color: body, s: s)
+                    StrengthFigureKit.headNeck(ctx, head: p(18, 22), shoulder: p(15, 25), color: body, s: s, r: 2.8)
+                case 1: // envol vers le box
+                    airTicks(20)
+                    StrengthFigureKit.limb(ctx, [p(18, 38), p(22, 26)], color: body, s: s)
+                    StrengthFigureKit.limb(ctx, [p(22, 26), p(27, 22)], color: body, s: s) // bras avant
+                    StrengthFigureKit.headNeck(ctx, head: p(24, 22), shoulder: p(22, 26), color: body, s: s, r: 2.8)
+                default: // réception sur le box
+                    StrengthFigureKit.limb(ctx, [p(37, 30), p(35, 24), p(38, 20)], color: body, s: s)
+                    StrengthFigureKit.headNeck(ctx, head: p(39, 16), shoulder: p(38, 20), color: body, s: s, r: 2.8)
+                }
             }
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)
     }
-
-    // MARK: - Frame 0 : squat préparation
-
-    private func drawSquatPrep(ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle,
-                                centerX: CGFloat, headSize: CGFloat) {
-        let topOfHeadY: CGFloat = 16 * s
-        let shoulderY: CGFloat = topOfHeadY + headSize
-        let hipY: CGFloat = 32 * s
-        let kneeY: CGFloat = 40 * s
-        let ankleY: CGFloat = 46 * s
-
-        drawHead(ctx: ctx, x: centerX, topY: topOfHeadY, size: headSize, stroke: stroke)
-        drawTrunk(ctx: ctx, from: CGPoint(x: centerX, y: shoulderY),
-                  to: CGPoint(x: centerX, y: hipY), stroke: stroke)
-        drawLegs(ctx: ctx, hipX: centerX, hipY: hipY,
-                 kneeOffsetX: 5 * s, kneeY: kneeY, ankleY: ankleY, stroke: stroke)
-        // Bras pendants
-        drawArmPair(ctx: ctx, shoulderY: shoulderY, centerX: centerX,
-                    handX1: centerX - 4 * s, handY1: hipY,
-                    handX2: centerX + 4 * s, handY2: hipY, stroke: stroke)
-    }
-
-    // MARK: - Frame 1 : SAUT pieds décollés
-
-    private func drawJump(ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle,
-                          centerX: CGFloat, headSize: CGFloat) {
-        // Corps remonté, pieds DÉCOLLÉS (ankleY bien au-dessus du sol)
-        let topOfHeadY: CGFloat = 4 * s
-        let shoulderY: CGFloat = topOfHeadY + headSize
-        let hipY: CGFloat = 20 * s
-        let kneeY: CGFloat = 28 * s
-        let ankleY: CGFloat = 36 * s // 10s AU-DESSUS du sol (46s) = saut clair !
-
-        drawHead(ctx: ctx, x: centerX, topY: topOfHeadY, size: headSize, stroke: stroke)
-        drawTrunk(ctx: ctx, from: CGPoint(x: centerX, y: shoulderY),
-                  to: CGPoint(x: centerX, y: hipY), stroke: stroke)
-        // Jambes tendues (saut)
-        drawLegs(ctx: ctx, hipX: centerX, hipY: hipY,
-                 kneeOffsetX: 2 * s, kneeY: kneeY, ankleY: ankleY, stroke: stroke)
-        // Bras tendus vers le HAUT (signature saut)
-        drawArmPair(ctx: ctx, shoulderY: shoulderY, centerX: centerX,
-                    handX1: centerX - 3 * s, handY1: 0,
-                    handX2: centerX + 3 * s, handY2: 0, stroke: stroke)
-
-        // Marqueur visuel air sous pieds (chevrons orange)
-        var marker1 = Path()
-        marker1.move(to: CGPoint(x: centerX - 6 * s, y: 42 * s))
-        marker1.addLine(to: CGPoint(x: centerX - 4 * s, y: 40 * s))
-        marker1.addLine(to: CGPoint(x: centerX - 2 * s, y: 42 * s))
-        ctx.stroke(marker1, with: .color(IllustrationStyle.movementArrow),
-                   style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
-        var marker2 = Path()
-        marker2.move(to: CGPoint(x: centerX + 2 * s, y: 42 * s))
-        marker2.addLine(to: CGPoint(x: centerX + 4 * s, y: 40 * s))
-        marker2.addLine(to: CGPoint(x: centerX + 6 * s, y: 42 * s))
-        ctx.stroke(marker2, with: .color(IllustrationStyle.movementArrow),
-                   style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
-    }
-
-    // MARK: - Frame 2 : atterrissage genoux fléchis
-
-    private func drawLanding(ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle,
-                             centerX: CGFloat, headSize: CGFloat) {
-        let topOfHeadY: CGFloat = 14 * s
-        let shoulderY: CGFloat = topOfHeadY + headSize
-        let hipY: CGFloat = 28 * s
-        let kneeY: CGFloat = 38 * s
-        let ankleY: CGFloat = 46 * s
-
-        drawHead(ctx: ctx, x: centerX, topY: topOfHeadY, size: headSize, stroke: stroke)
-        drawTrunk(ctx: ctx, from: CGPoint(x: centerX, y: shoulderY),
-                  to: CGPoint(x: centerX, y: hipY), stroke: stroke)
-        // Jambes très fléchies (absorption choc)
-        drawLegs(ctx: ctx, hipX: centerX, hipY: hipY,
-                 kneeOffsetX: 5 * s, kneeY: kneeY, ankleY: ankleY, stroke: stroke)
-        // Bras pendants vers l'avant pour équilibre
-        drawArmPair(ctx: ctx, shoulderY: shoulderY, centerX: centerX,
-                    handX1: centerX - 6 * s, handY1: hipY,
-                    handX2: centerX + 6 * s, handY2: hipY, stroke: stroke)
-    }
-
-    // MARK: - Helpers
-
-    private func drawHead(ctx: GraphicsContext, x: CGFloat, topY: CGFloat, size: CGFloat, stroke: StrokeStyle) {
-        ctx.stroke(
-            Path(ellipseIn: CGRect(x: x - size / 2, y: topY, width: size, height: size)),
-            with: .color(IllustrationStyle.silhouette(sportCode: sportCode)),
-            style: stroke
-        )
-    }
-
-    private func drawTrunk(ctx: GraphicsContext, from: CGPoint, to: CGPoint, stroke: StrokeStyle) {
-        var p = Path()
-        p.move(to: from)
-        p.addLine(to: to)
-        ctx.stroke(p, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
-    }
-
-    private func drawLegs(ctx: GraphicsContext, hipX: CGFloat, hipY: CGFloat,
-                          kneeOffsetX: CGFloat, kneeY: CGFloat, ankleY: CGFloat, stroke: StrokeStyle) {
-        var legL = Path()
-        legL.move(to: CGPoint(x: hipX, y: hipY))
-        legL.addLine(to: CGPoint(x: hipX - kneeOffsetX, y: kneeY))
-        legL.addLine(to: CGPoint(x: hipX - kneeOffsetX + 2, y: ankleY))
-        ctx.stroke(legL, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
-
-        var legR = Path()
-        legR.move(to: CGPoint(x: hipX, y: hipY))
-        legR.addLine(to: CGPoint(x: hipX + kneeOffsetX, y: kneeY))
-        legR.addLine(to: CGPoint(x: hipX + kneeOffsetX - 2, y: ankleY))
-        ctx.stroke(legR, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
-    }
-
-    private func drawArmPair(ctx: GraphicsContext, shoulderY: CGFloat, centerX: CGFloat,
-                             handX1: CGFloat, handY1: CGFloat,
-                             handX2: CGFloat, handY2: CGFloat, stroke: StrokeStyle) {
-        var armL = Path()
-        armL.move(to: CGPoint(x: centerX - 1, y: shoulderY))
-        armL.addLine(to: CGPoint(x: handX1, y: handY1))
-        ctx.stroke(armL, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
-
-        var armR = Path()
-        armR.move(to: CGPoint(x: centerX + 1, y: shoulderY))
-        armR.addLine(to: CGPoint(x: handX2, y: handY2))
-        ctx.stroke(armR, with: .color(IllustrationStyle.silhouette(sportCode: sportCode)), style: stroke)
-    }
 }
 
 #if DEBUG
-#Preview("Plyo — jump squat 3 frames") {
-    HStack(spacing: 4) {
-        PlyoIllustration(sportCode: "strengthTraining", frame: 0)
-        Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
-        PlyoIllustration(sportCode: "strengthTraining", frame: 1)
-        Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
-        PlyoIllustration(sportCode: "strengthTraining", frame: 2)
+private struct PlyoRow: View {
+    let title: String; let name: String?
+    var body: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(title).font(.caption2).foregroundStyle(.secondary)
+            HStack(spacing: 4) {
+                PlyoIllustration(sportCode: "strengthTraining", frame: 0, exerciseName: name)
+                Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
+                PlyoIllustration(sportCode: "strengthTraining", frame: 1, exerciseName: name)
+                Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
+                PlyoIllustration(sportCode: "strengthTraining", frame: 2, exerciseName: name)
+            }
+        }
     }
-    .padding()
-    .background(Color.coachingBackground)
+}
+#Preview("Plyo — 3 variantes") {
+    VStack(alignment: .leading, spacing: 14) {
+        PlyoRow(title: "Burpee", name: "Burpee")
+        PlyoRow(title: "Jump squat", name: "Jump squat")
+        PlyoRow(title: "Box jump", name: "Box jump")
+    }
+    .padding().background(Color.coachingBackground)
 }
 #endif

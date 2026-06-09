@@ -183,24 +183,28 @@ struct ExerciseTimelineCard: View {
             || (ex.restSeconds ?? 0) > 0
             || (ex.targetZone?.isEmpty == false)
         if hasAnyMetric {
-            HStack(spacing: 6) {
-                if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
-                    metricChip { Text(verbatim: "\(sets) × \(reps.sanitizedForDisplay)") }
-                } else if let reps = ex.reps, !reps.isEmpty {
-                    metricChip { Text(verbatim: reps.sanitizedForDisplay) }
-                } else if let sets = ex.sets {
-                    metricChip { Text(verbatim: "\(sets) ×") }
-                }
-                if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
-                    metricChip { Text(verbatim: duration.sanitizedForDisplay) }
-                }
-                if let rest = ex.restSeconds, rest > 0 {
-                    metricChip { Text("coaching.adapter.exercise.rest \(rest)") }
+            // Revue qualité thème #1 : intensité sur sa propre ligne (sensation + code tappable),
+            // même structure/composant que le FOCUS (SessionFocusView) pour cohérence HUB↔FOCUS.
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 6) {
+                    if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
+                        metricChip { Text(verbatim: "\(sets) × \(reps.sanitizedForDisplay)") }
+                    } else if let reps = ex.reps, !reps.isEmpty {
+                        metricChip { Text(verbatim: reps.sanitizedForDisplay) }
+                    } else if let sets = ex.sets {
+                        metricChip { Text(verbatim: "\(sets) ×") }
+                    }
+                    if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
+                        metricChip { Text(verbatim: duration.sanitizedForDisplay) }
+                    }
+                    if let rest = ex.restSeconds, rest > 0 {
+                        metricChip { Text("coaching.adapter.exercise.rest \(rest)") }
+                    }
+                    Spacer(minLength: 0)
                 }
                 if let zone = ex.targetZone, !zone.isEmpty {
-                    glossaryChip(zone)
+                    IntensityLabel(zone: zone)
                 }
-                Spacer(minLength: 0)
             }
             .padding(.top, 2)
         }
@@ -213,15 +217,6 @@ struct ExerciseTimelineCard: View {
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
             .background(Color(uiColor: .tertiarySystemBackground))
-            .clipShape(Capsule())
-    }
-
-    private func glossaryChip(_ term: String) -> some View {
-        GlossaryTermBadge(term: term)
-            .font(.caption2.bold())
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(Color.coachingPrimary.opacity(0.10))
             .clipShape(Capsule())
     }
 }

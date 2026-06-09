@@ -14,113 +14,301 @@
     "micro_pattern": "run/walk + renforcement + run/walk",
     "recovery_cadence": "1 cutback W5 sur plan 8 sem"
   },
-  "deload_weeks": [5],
+  "deload_weeks": [
+    5
+  ],
   "progression_logic": "Progression construite sur 5 principes, alignés NHS Couch to 5K et recommandations ACSM :\n(1) RÈGLE DES 10-20% : augmentation hebdomadaire du volume ou de l'intensité limitée, jamais les deux la même semaine. Volume hebdo de course : 16 → 18 → 18 → 22 → 18 (cutback W5) → 22 → 30 → 50 min (W8 inclut la séance phare 30 min continu en J5 + 20 min de tapering en J1).\n(2) CUTBACK WEEK : semaine 5 = volume -18% pour consolidation (passage de 22 min de course en W4 à 18 min en W5), pas de nouveauté technique cette semaine. L'introduction du bloc 8 min continu est repoussée en W6 J5 (palier qualité), pédagogiquement plus juste après la consolidation. Les semaines allégées sont CONSTITUTIVES de l'adaptation, ne pas les sauter.\n(3) RENFORCEMENT PRÉVENTIF : mollets (calf raises bipodal) et core (planche, bird-dog) dès W1 pour prévenir shin splints et stabiliser le tronc. Clamshells dès W1 pour prévenir ITBS — ne pas les repousser aux semaines ultérieures (ACSM, Strength Running).\n(4) ALLURE CONVERSATIONNELLE STRICTE : 100% des blocs de course en zone Daniels-E (allure facile) — pas de Daniels-T/I/R chez le débutant tant que la course continue 30 min n'est pas acquise. Pacing par test de la parole (proxy Z1-Z2 quand pas de GPS / pas de race time).\n(5) TAPERING W8 : séances 1 (20 min léger) et 2 (mobility) allégées pour arriver frais à la séance phare J5. Les séances de taper sont indispensables à la performance finale.\n\nStructure hebdo : 2 séances running + 1 renforcement, 4-5 jours de repos entre les sollicitations identiques. Pattern recommandé : J1 run / J3 strength / J5 run, J2-J4-J6-J7 repos.",
   "safety_notes": "DRAPEAUX ROUGES à surveiller (arrêter la séance et consulter un professionnel de santé si les symptômes persistent > 1 semaine) :\n• Douleur vive sur le tibia antérieur (shin splints / périostite tibiale) : risque n°1 du débutant, jusqu'à 50% des blessures lower-leg en running. Stop immédiat, glace 15 min, repos 3 jours minimum. Cause fréquente : volume trop élevé, chaussures inadaptées, sol trop dur.\n• Douleur sous le talon ou arche plantaire (fasciite plantaire) : étirer les mollets (gastrocs + soléaire) 2×/jour, vérifier l'usure des chaussures (< 600 km).\n• Douleur derrière le talon (tendinopathie d'Achille) : réduire le volume de 30%, glacer, calf raises excentriques en douceur.\n• Douleur face externe du genou (syndrome bandelette ilio-tibiale / ITBS) : les clamshells sont préventifs ; si la douleur s'installe, repos 1 semaine et avis d'un kinésithérapeute.\n• Douleur antérieure rotule (PFPS, genou du coureur) : fentes statiques avec bon alignement genou-pied (genou aligné sur le 2e orteil, pas en valgus).\n• Douleur articulaire genou > 2/10 : marcher immédiatement, arrêter la séance. Fatigue musculaire = OK, douleur articulaire = pas OK.\n• Si tu as des antécédents cardiaques connus, plus de 50 ans avec sédentarité prolongée, ou si tu es en grossesse / postpartum récent : consulte un médecin avant de commencer ce programme.\n\nRÈGLES GÉNÉRALES :\n• Chaussures de running avec amorti correct, à renouveler tous les 600-800 km.\n• Surfaces souples privilégiées (chemin terre, piste tartan, bitume lisse). Éviter dénivelé important en début de plan.\n• 1 jour de repos complet entre chaque séance (pattern recommandé : J1 run / J2 repos / J3 strength / J4 repos / J5 run / J6-J7 repos).\n• Hydratation : 500 ml dans l'heure précédant la séance, 500 ml dans l'heure suivante (plus en conditions chaudes).\n• Échauffement NON optionnel : sauter l'échauffement triple le risque de blessure chez le débutant.\n• Courbatures 24-72h après séance = adaptation normale. Inconfort PENDANT la séance qui s'aggrave = signal d'arrêt.\n\nINTENSITÉ :\n• Test de la parole : tu dois pouvoir dire une phrase complète en courant. Si tu ne peux dire que des mots isolés = trop rapide, ralentis. C'est le repère central du plan, plus fiable qu'une montre cardio chez un débutant qui n'a pas encore de VDOT calibré.\n• Cadence cible ~170-180 pas/min. Attaque médio-pied ou talon léger, pas d'attaque talon franche.\n• Aucun fractionné dur, aucune ligne droite à fond, aucun sprint dans ce plan. Toute l'énergie va dans la construction de la base aérobie.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine allégée type W5 cutback, refaire la semaine précédente avec volume -20%) :\n• FC de repos +10 bpm inhabituelle au réveil.\n• Sommeil dégradé > 3 nuits d'affilée.\n• Courbatures persistantes > 72h après séance.\n• Motivation effondrée subitement, irritabilité accrue.\n\nSI SÉANCE MANQUÉE :\n• < 1 semaine de pause : reprendre la même séance 1-2 jours plus tard.\n• 1-2 semaines de pause : reprendre la semaine précédente (W-1).\n• > 2 semaines de pause : reprendre la semaine -2 (W-2) pour resécuriser l'adaptation. La précipitation après une coupure est la première cause de récidive de shin splints.",
   "weeks": [
     {
       "week_number": 1,
-      "theme": "Fondations — premiers pas",
-      "goal": "Habituer le corps à l'effort running et activer le renforcement préventif. Volume cible : ~8 min de course par séance, alternance 1 min course / 1 min 30 marche.",
+      "theme": {
+        "fr": "Fondations — premiers pas",
+        "en": "Foundations — first steps",
+        "es": "Fundamentos — primeros pasos"
+      },
+      "goal": {
+        "fr": "Habituer le corps à l'effort running et activer le renforcement préventif. Volume cible : ~8 min de course par séance, alternance 1 min course / 1 min 30 marche.",
+        "en": "Get your body used to running and switch on injury-prevention strength work. Target volume: ~8 min of running per session, alternating 1 min run / 1 min 30 walk.",
+        "es": "Acostumbra al cuerpo al esfuerzo de correr y activa el refuerzo preventivo. Volumen objetivo: ~8 min de carrera por sesión, alternando 1 min corriendo / 1 min 30 caminando."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "Run/walk découverte",
+          "name": {
+            "fr": "Course/marche découverte",
+            "en": "Run/walk discovery",
+            "es": "Correr/caminar de iniciación"
+          },
           "type": "mixed",
           "duration_minutes": 35,
-          "warmup": "5 min de marche progressive + 10 cercles de chevilles/côté + 10 balancements de jambe avant-arrière/côté + 10 demi-squats lents. Total : 8 min. Ne jamais sauter cette étape.",
-          "cooldown": "3 min marche lente. Étirements statiques : mollets 30 sec/jambe, quadriceps 30 sec/jambe, ischio-jambiers 30 sec/jambe. Hydratation.",
+          "warmup": {
+            "fr": "5 min de marche progressive + 10 cercles de chevilles/côté + 10 balancements de jambe avant-arrière/côté + 10 demi-squats lents. Total : 8 min. Ne jamais sauter cette étape.",
+            "en": "5 min of progressive walking + 10 ankle circles/side + 10 leg swings front-to-back/side + 10 slow half-squats. Total: 8 min. Never skip this step.",
+            "es": "5 min de caminata progresiva + 10 círculos de tobillo/lado + 10 balanceos de pierna adelante-atrás/lado + 10 medias sentadillas lentas. Total: 8 min. No te saltes nunca este paso."
+          },
+          "cooldown": {
+            "fr": "3 min marche lente. Étirements statiques : mollets 30 sec/jambe, quadriceps 30 sec/jambe, ischio-jambiers 30 sec/jambe. Hydratation.",
+            "en": "3 min slow walk. Static stretches: calves 30 sec/leg, quads 30 sec/leg, hamstrings 30 sec/leg. Hydrate.",
+            "es": "3 min de caminata lenta. Estiramientos estáticos: gemelos 30 s/pierna, cuádriceps 30 s/pierna, isquiotibiales 30 s/pierna. Hidrátate."
+          },
           "exercises": [
             {
-              "name": "Bloc run/walk 1 min / 1 min 30",
+              "name": {
+                "fr": "Bloc course/marche 1 min / 1 min 30",
+                "en": "Run/walk block 1 min / 1 min 30",
+                "es": "Bloque correr/caminar 1 min / 1 min 30"
+              },
+              "match_key": "Bloc run/walk 1 min / 1 min 30",
               "sets": 8,
               "duration": "1 min course lente + 1 min 30 marche rapide",
               "rest_seconds": 0,
-              "notes": "Allure de course TRÈS lente, test de la parole : tu dois pouvoir dire une phrase entière. Si le souffle coupe au bout de 30 sec, ralentis encore. Total bloc : 20 min.",
+              "notes": {
+                "fr": "Allure de course TRÈS lente, test de la parole : tu dois pouvoir dire une phrase entière. Si le souffle coupe au bout de 30 sec, ralentis encore. Total bloc : 20 min.",
+                "en": "VERY slow running pace, talk test: you should be able to say a full sentence. If you're out of breath after 30 sec, slow down even more. Block total: 20 min.",
+                "es": "Ritmo de carrera MUY lento, test del habla: debes poder decir una frase entera. Si te falta el aire a los 30 s, baja todavía más. Total del bloque: 20 min."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 30 min", "Vélo Z1 30 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 30 min",
+                  "en": "Brisk walk 30 min",
+                  "es": "Caminata rápida 30 min"
+                },
+                {
+                  "fr": "Vélo Z1 30 min",
+                  "en": "Z1 cycling 30 min",
+                  "es": "Bici Z1 30 min"
+                }
+              ],
               "volume_axis": "sets"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Renforcement foundation",
+          "name": {
+            "fr": "Renforcement fondation",
+            "en": "Foundation strength",
+            "es": "Refuerzo de base"
+          },
           "type": "strength",
           "duration_minutes": 35,
-          "warmup": "5 min marche rapide + rotations bassin 10/sens + talons-fesses 20 pas + montées de genoux 20 pas. Total : 7 min.",
-          "cooldown": "Étirement mollets (30 sec/côté), étirement fessier allongé (30 sec/côté), marche 2 min.",
+          "warmup": {
+            "fr": "5 min marche rapide + rotations bassin 10/sens + talons-fesses 20 pas + montées de genoux 20 pas. Total : 7 min.",
+            "en": "5 min brisk walk + pelvis rotations 10/direction + butt kicks 20 steps + high knees 20 steps. Total: 7 min.",
+            "es": "5 min de caminata rápida + rotaciones de pelvis 10/sentido + talones a los glúteos 20 pasos + rodillas arriba 20 pasos. Total: 7 min."
+          },
+          "cooldown": {
+            "fr": "Étirement mollets (30 sec/côté), étirement fessier allongé (30 sec/côté), marche 2 min.",
+            "en": "Calf stretch (30 sec/side), lying glute stretch (30 sec/side), 2 min walk.",
+            "es": "Estiramiento de gemelos (30 s/lado), estiramiento de glúteo tumbado (30 s/lado), 2 min de caminata."
+          },
           "exercises": [
             {
-              "name": "Wall sit partiel",
+              "name": {
+                "fr": "Chaise contre le mur partielle",
+                "en": "Partial wall sit",
+                "es": "Sentadilla isométrica parcial en pared"
+              },
+              "match_key": "Wall sit partiel",
               "sets": 3,
               "duration": "20 sec",
               "rest_seconds": 45,
-              "notes": "Dos plat contre le mur, descente à 60-70° (pas 90°). Renforce le quadriceps avec peu de charge articulaire.",
+              "notes": {
+                "fr": "Dos plat contre le mur, descente à 60-70° (pas 90°). Renforce le quadriceps avec peu de charge articulaire.",
+                "en": "Flat back against the wall, lower to 60-70° (not 90°). Builds the quads with little joint loading.",
+                "es": "Espalda plana contra la pared, baja a 60-70° (no a 90°). Fortalece el cuádriceps con poca carga articular."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Squats partiels poids du corps", "Step-ups bas"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Squats partiels au poids du corps",
+                  "en": "Partial bodyweight squats",
+                  "es": "Sentadillas parciales con peso corporal"
+                },
+                {
+                  "fr": "Montées sur step bas",
+                  "en": "Low step-ups",
+                  "es": "Subidas a escalón bajo"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Pont fessier",
+              "name": {
+                "fr": "Pont fessier",
+                "en": "Glute bridge",
+                "es": "Puente de glúteos"
+              },
+              "match_key": "Pont fessier",
               "sets": 3,
               "reps": "10",
               "rest_seconds": 40,
-              "notes": "Tenir 2 sec en haut. Cible les fessiers (stabilisateurs clés de la foulée).",
+              "notes": {
+                "fr": "Tenir 2 sec en haut. Cible les fessiers (stabilisateurs clés de la foulée).",
+                "en": "Hold 2 sec at the top. Targets the glutes (key stride stabilizers).",
+                "es": "Mantén 2 s arriba. Trabaja los glúteos (estabilizadores clave de la zancada)."
+              },
               "target_zone": "RPE 6-7",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain"],
-              "alternatives": ["Pont fessier appui pieds sur chaise", "Bridge isométrique 20 sec"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Pont fessier pieds sur chaise",
+                  "en": "Glute bridge with feet on a chair",
+                  "es": "Puente de glúteos con los pies en una silla"
+                },
+                {
+                  "fr": "Pont isométrique 20 sec",
+                  "en": "Isometric bridge 20 sec",
+                  "es": "Puente isométrico 20 s"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Clamshell",
+              "name": {
+                "fr": "Coquillage (clamshell)",
+                "en": "Clamshell",
+                "es": "Almeja (clamshell)"
+              },
+              "match_key": "Clamshell",
               "sets": 3,
               "reps": "12 par côté",
               "rest_seconds": 35,
-              "notes": "Allongé sur le côté, genoux pliés. Ouvre le genou du dessus sans bouger le bassin. Cible les abducteurs de hanche — prévention ITBS (syndrome de l'essuie-glace) dès la semaine 1.",
+              "notes": {
+                "fr": "Allongé sur le côté, genoux pliés. Ouvre le genou du dessus sans bouger le bassin. Cible les abducteurs de hanche — prévention ITBS (syndrome de l'essuie-glace) dès la semaine 1.",
+                "en": "Lie on your side, knees bent. Open the top knee without moving your pelvis. Targets the hip abductors — ITBS (iliotibial band syndrome) prevention from week 1.",
+                "es": "Tumbado de lado, rodillas flexionadas. Abre la rodilla de arriba sin mover la pelvis. Trabaja los abductores de cadera — prevención del síndrome de la cintilla iliotibial (ITBS) desde la semana 1."
+              },
               "target_zone": "RPE 6-7",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain"],
-              "alternatives": ["Side-lying leg raise", "Clamshell avec mini-band résistive"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Élévation de jambe en décubitus latéral",
+                  "en": "Side-lying leg raise",
+                  "es": "Elevación de pierna en decúbito lateral"
+                },
+                {
+                  "fr": "Coquillage avec mini-bande élastique",
+                  "en": "Clamshell with mini resistance band",
+                  "es": "Almeja con mini banda elástica"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Calf raises bipodal",
+              "name": {
+                "fr": "Mollets debout (deux pieds)",
+                "en": "Two-leg calf raises",
+                "es": "Elevaciones de gemelo a dos piernas"
+              },
+              "match_key": "Calf raises bipodal",
               "sets": 3,
               "reps": "15",
               "rest_seconds": 30,
-              "notes": "Montées sur la pointe des pieds, les deux pieds ensemble. Prévention shin splints (les mollets forts absorbent jusqu'à 30% de la charge tibiale). Obligatoire chez le débutant.",
+              "notes": {
+                "fr": "Montées sur la pointe des pieds, les deux pieds ensemble. Prévention shin splints (les mollets forts absorbent jusqu'à 30% de la charge tibiale). Obligatoire chez le débutant.",
+                "en": "Rise onto the balls of your feet, both feet together. Shin-splint prevention (strong calves absorb up to 30% of the tibial load). Mandatory for beginners.",
+                "es": "Elévate sobre las puntas de los pies, ambos pies juntos. Prevención de la periostitis tibial (unos gemelos fuertes absorben hasta el 30% de la carga tibial). Obligatorio para principiantes."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
-              "incompatible_constraints": ["ankle-injury"],
-              "alternatives": ["Calf raises assis sur chaise", "Wall calf raise (appui mains au mur)"],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Mollets assis sur chaise",
+                  "en": "Seated calf raises on a chair",
+                  "es": "Elevaciones de gemelo sentado en una silla"
+                },
+                {
+                  "fr": "Mollets en appui mains au mur",
+                  "en": "Wall calf raise (hands on the wall)",
+                  "es": "Elevaciones de gemelo con apoyo de manos en la pared"
+                }
+              ],
               "volume_axis": "reps"
             }
           ]
         },
         {
           "day": 5,
-          "name": "Run/walk découverte — répétition",
+          "name": {
+            "fr": "Course/marche découverte — répétition",
+            "en": "Run/walk discovery — repeat",
+            "es": "Correr/caminar de iniciación — repetición"
+          },
           "type": "mixed",
           "duration_minutes": 35,
-          "warmup": "Identique à séance 1 (8 min échauffement complet).",
-          "cooldown": "Même retour au calme qu'en J1.",
+          "warmup": {
+            "fr": "Identique à séance 1 (8 min échauffement complet).",
+            "en": "Same as session 1 (8 min full warm-up).",
+            "es": "Igual que la sesión 1 (8 min de calentamiento completo)."
+          },
+          "cooldown": {
+            "fr": "Même retour au calme qu'en J1.",
+            "en": "Same cool-down as on D1.",
+            "es": "Misma vuelta a la calma que en el D1."
+          },
           "exercises": [
             {
-              "name": "Bloc run/walk 1 min / 1 min 30",
+              "name": {
+                "fr": "Bloc course/marche 1 min / 1 min 30",
+                "en": "Run/walk block 1 min / 1 min 30",
+                "es": "Bloque correr/caminar 1 min / 1 min 30"
+              },
+              "match_key": "Bloc run/walk 1 min / 1 min 30",
               "sets": 8,
               "duration": "1 min course lente + 1 min 30 marche rapide",
               "rest_seconds": 0,
-              "notes": "Même séance qu'en J1. La répétition à volume égal permet au corps d'adapter l'os tibial (adaptation lente, 6-8 semaines). Ne pas forcer l'augmentation.",
+              "notes": {
+                "fr": "Même séance qu'en J1. La répétition à volume égal permet au corps d'adapter l'os tibial (adaptation lente, 6-8 semaines). Ne pas forcer l'augmentation.",
+                "en": "Same session as D1. Repeating at the same volume lets your body adapt the tibial bone (slow adaptation, 6-8 weeks). Don't force the progression.",
+                "es": "Misma sesión que el D1. Repetir al mismo volumen permite que el cuerpo adapte el hueso tibial (adaptación lenta, 6-8 semanas). No fuerces el aumento."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 30 min", "Vélo Z1 30 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 30 min",
+                  "en": "Brisk walk 30 min",
+                  "es": "Caminata rápida 30 min"
+                },
+                {
+                  "fr": "Vélo Z1 30 min",
+                  "en": "Z1 cycling 30 min",
+                  "es": "Bici Z1 30 min"
+                }
+              ],
               "volume_axis": "sets"
             }
           ]
@@ -129,116 +317,315 @@
     },
     {
       "week_number": 2,
-      "theme": "Adaptation — allonger la course",
-      "goal": "Passer à 1 min 30 de course continue, volume hebdo +12%. Renforcement avec ajout du gainage ventral.",
+      "theme": {
+        "fr": "Adaptation — allonger la course",
+        "en": "Adaptation — lengthen the running",
+        "es": "Adaptación — alargar la carrera"
+      },
+      "goal": {
+        "fr": "Passer à 1 min 30 de course continue, volume hebdo +12%. Renforcement avec ajout du gainage ventral.",
+        "en": "Move up to 1 min 30 of continuous running, weekly volume +12%. Strength work with the addition of front planks.",
+        "es": "Pasar a 1 min 30 de carrera continua, volumen semanal +12%. Refuerzo añadiendo la plancha frontal."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "Run/walk 1m30",
+          "name": {
+            "fr": "Course/marche 1m30",
+            "en": "Run/walk 1m30",
+            "es": "Correr/caminar 1m30"
+          },
           "type": "mixed",
           "duration_minutes": 38,
-          "warmup": "Échauffement standard 8 min.",
-          "cooldown": "5 min marche + étirements 4 min.",
+          "warmup": {
+            "fr": "Échauffement standard 8 min.",
+            "en": "Standard 8 min warm-up.",
+            "es": "Calentamiento estándar de 8 min."
+          },
+          "cooldown": {
+            "fr": "5 min marche + étirements 4 min.",
+            "en": "5 min walk + 4 min stretching.",
+            "es": "5 min de caminata + 4 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Bloc run/walk 1m30 / 2 min",
+              "name": {
+                "fr": "Bloc course/marche 1m30 / 2 min",
+                "en": "Run/walk block 1m30 / 2 min",
+                "es": "Bloque correr/caminar 1m30 / 2 min"
+              },
+              "match_key": "Bloc run/walk 1m30 / 2 min",
               "sets": 6,
               "duration": "1 min 30 course + 2 min marche",
               "rest_seconds": 0,
-              "notes": "Respiration conversationnelle maintenue. Total bloc : 21 min. Marche active = pas trop lente, garde un rythme dynamique pour entretenir la fréquence cardiaque.",
+              "notes": {
+                "fr": "Respiration conversationnelle maintenue. Total bloc : 21 min. Marche active = pas trop lente, garde un rythme dynamique pour entretenir la fréquence cardiaque.",
+                "en": "Keep your breathing conversational. Block total: 21 min. Active walking = not too slow, keep a dynamic rhythm to maintain your heart rate.",
+                "es": "Mantén una respiración conversacional. Total del bloque: 21 min. Caminata activa = no demasiado lenta, mantén un ritmo dinámico para sostener la frecuencia cardíaca."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 35 min", "Vélo Z1 35 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 35 min",
+                  "en": "Brisk walk 35 min",
+                  "es": "Caminata rápida 35 min"
+                },
+                {
+                  "fr": "Vélo Z1 35 min",
+                  "en": "Z1 cycling 35 min",
+                  "es": "Bici Z1 35 min"
+                }
+              ],
               "volume_axis": "sets"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Renforcement + gainage",
+          "name": {
+            "fr": "Renforcement + gainage",
+            "en": "Strength + core",
+            "es": "Refuerzo + core"
+          },
           "type": "strength",
           "duration_minutes": 35,
-          "warmup": "7 min : marche rapide + rotations bassin + talons-fesses + montées de genoux.",
-          "cooldown": "Étirements 5 min (mollets, fessiers, ischio-jambiers).",
+          "warmup": {
+            "fr": "7 min : marche rapide + rotations bassin + talons-fesses + montées de genoux.",
+            "en": "7 min: brisk walk + pelvis rotations + butt kicks + high knees.",
+            "es": "7 min: caminata rápida + rotaciones de pelvis + talones a los glúteos + rodillas arriba."
+          },
+          "cooldown": {
+            "fr": "Étirements 5 min (mollets, fessiers, ischio-jambiers).",
+            "en": "5 min stretching (calves, glutes, hamstrings).",
+            "es": "5 min de estiramientos (gemelos, glúteos, isquiotibiales)."
+          },
           "exercises": [
             {
-              "name": "Wall sit",
+              "name": {
+                "fr": "Chaise contre le mur",
+                "en": "Wall sit",
+                "es": "Sentadilla isométrica en pared"
+              },
+              "match_key": "Wall sit",
               "sets": 3,
               "duration": "30 sec",
               "rest_seconds": 45,
-              "notes": "Progression vs W1. Toujours angle 60-70° au genou.",
+              "notes": {
+                "fr": "Progression vs W1. Toujours angle 60-70° au genou.",
+                "en": "Progression vs W1. Still a 60-70° knee angle.",
+                "es": "Progresión respecto a la S1. Mantén siempre 60-70° de ángulo en la rodilla."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Squats partiels", "Step-ups bas"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Squats partiels",
+                  "en": "Partial squats",
+                  "es": "Sentadillas parciales"
+                },
+                {
+                  "fr": "Montées sur step bas",
+                  "en": "Low step-ups",
+                  "es": "Subidas a escalón bajo"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Pont fessier",
+              "name": {
+                "fr": "Pont fessier",
+                "en": "Glute bridge",
+                "es": "Puente de glúteos"
+              },
+              "match_key": "Pont fessier",
               "sets": 3,
               "reps": "12",
               "rest_seconds": 40,
               "target_zone": "RPE 6-7",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain"],
-              "alternatives": ["Pont fessier appui pieds sur chaise", "Bridge isométrique 25 sec"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Pont fessier pieds sur chaise",
+                  "en": "Glute bridge with feet on a chair",
+                  "es": "Puente de glúteos con los pies en una silla"
+                },
+                {
+                  "fr": "Pont isométrique 25 sec",
+                  "en": "Isometric bridge 25 sec",
+                  "es": "Puente isométrico 25 s"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Clamshell",
+              "name": {
+                "fr": "Coquillage (clamshell)",
+                "en": "Clamshell",
+                "es": "Almeja (clamshell)"
+              },
+              "match_key": "Clamshell",
               "sets": 3,
               "reps": "15 par côté",
               "rest_seconds": 35,
               "target_zone": "RPE 6-7",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain"],
-              "alternatives": ["Side-lying leg raise", "Clamshell avec resistance-band"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Élévation de jambe en décubitus latéral",
+                  "en": "Side-lying leg raise",
+                  "es": "Elevación de pierna en decúbito lateral"
+                },
+                {
+                  "fr": "Coquillage avec bande élastique",
+                  "en": "Clamshell with resistance band",
+                  "es": "Almeja con banda elástica"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Calf raises bipodal",
+              "name": {
+                "fr": "Mollets debout (deux pieds)",
+                "en": "Two-leg calf raises",
+                "es": "Elevaciones de gemelo a dos piernas"
+              },
+              "match_key": "Calf raises bipodal",
               "sets": 3,
               "reps": "20",
               "rest_seconds": 30,
               "target_zone": "RPE 6-7",
               "required_equipment": [],
-              "incompatible_constraints": ["ankle-injury"],
-              "alternatives": ["Calf raises assis sur chaise", "Wall calf raise"],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Mollets assis sur chaise",
+                  "en": "Seated calf raises on a chair",
+                  "es": "Elevaciones de gemelo sentado en una silla"
+                },
+                {
+                  "fr": "Mollets en appui au mur",
+                  "en": "Wall calf raise",
+                  "es": "Elevaciones de gemelo en la pared"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Planche ventrale",
+              "name": {
+                "fr": "Planche ventrale",
+                "en": "Front plank",
+                "es": "Plancha frontal"
+              },
+              "match_key": "Planche ventrale",
               "sets": 3,
               "duration": "20 sec",
               "rest_seconds": 45,
-              "notes": "Coudes sous épaules, corps aligné, fessiers engagés. Introduction du core, minimum ACSM pour les coureurs.",
+              "notes": {
+                "fr": "Coudes sous épaules, corps aligné, fessiers engagés. Introduction du core, minimum ACSM pour les coureurs.",
+                "en": "Elbows under shoulders, body aligned, glutes engaged. Introducing core work, the ACSM minimum for runners.",
+                "es": "Codos bajo los hombros, cuerpo alineado, glúteos activados. Introducción del trabajo de core, el mínimo ACSM para corredores."
+              },
               "target_zone": "RPE 6-7",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
-              "alternatives": ["Planche genoux au sol 30 sec", "Dead bug"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Planche sur les genoux 30 sec",
+                  "en": "Plank on knees 30 sec",
+                  "es": "Plancha con rodillas en el suelo 30 s"
+                },
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
         },
         {
           "day": 5,
-          "name": "Run/walk 1m30 — consolidation",
+          "name": {
+            "fr": "Course/marche 1m30 — consolidation",
+            "en": "Run/walk 1m30 — consolidation",
+            "es": "Correr/caminar 1m30 — consolidación"
+          },
           "type": "mixed",
           "duration_minutes": 38,
-          "warmup": "Échauffement standard 8 min.",
-          "cooldown": "5 min marche + étirements 4 min.",
+          "warmup": {
+            "fr": "Échauffement standard 8 min.",
+            "en": "Standard 8 min warm-up.",
+            "es": "Calentamiento estándar de 8 min."
+          },
+          "cooldown": {
+            "fr": "5 min marche + étirements 4 min.",
+            "en": "5 min walk + 4 min stretching.",
+            "es": "5 min de caminata + 4 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Bloc run/walk 1m30 / 2 min",
+              "name": {
+                "fr": "Bloc course/marche 1m30 / 2 min",
+                "en": "Run/walk block 1m30 / 2 min",
+                "es": "Bloque correr/caminar 1m30 / 2 min"
+              },
+              "match_key": "Bloc run/walk 1m30 / 2 min",
               "sets": 6,
               "duration": "1 min 30 course + 2 min marche",
               "rest_seconds": 0,
-              "notes": "Identique à J1. Consolidation avant le palier W3.",
+              "notes": {
+                "fr": "Identique à J1. Consolidation avant le palier W3.",
+                "en": "Same as D1. Consolidation before the W3 step up.",
+                "es": "Igual que el D1. Consolidación antes del salto de la S3."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 35 min", "Vélo Z1 35 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 35 min",
+                  "en": "Brisk walk 35 min",
+                  "es": "Caminata rápida 35 min"
+                },
+                {
+                  "fr": "Vélo Z1 35 min",
+                  "en": "Z1 cycling 35 min",
+                  "es": "Bici Z1 35 min"
+                }
+              ],
               "volume_axis": "sets"
             }
           ]
@@ -247,128 +634,350 @@
     },
     {
       "week_number": 3,
-      "theme": "Premier palier — bloc 3 min",
-      "goal": "Introduire le bloc de 3 min continu via un format laddered. Volume stable (consolidation qualité, pas de hausse de volume cette semaine).",
+      "theme": {
+        "fr": "Premier palier — bloc 3 min",
+        "en": "First step up — 3-min block",
+        "es": "Primer salto — bloque de 3 min"
+      },
+      "goal": {
+        "fr": "Introduire le bloc de 3 min continu via un format laddered. Volume stable (consolidation qualité, pas de hausse de volume cette semaine).",
+        "en": "Introduce the 3-min continuous block via a ladder format. Volume stays flat (quality consolidation, no volume increase this week).",
+        "es": "Introducir el bloque de 3 min continuos con un formato escalonado. Volumen estable (consolidación de la calidad, sin aumento de volumen esta semana)."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "Run/walk laddered",
+          "name": {
+            "fr": "Course/marche en escalier",
+            "en": "Laddered run/walk",
+            "es": "Correr/caminar escalonado"
+          },
           "type": "mixed",
           "duration_minutes": 38,
-          "warmup": "Échauffement standard 8 min.",
-          "cooldown": "5 min marche + étirements 5 min.",
+          "warmup": {
+            "fr": "Échauffement standard 8 min.",
+            "en": "Standard 8 min warm-up.",
+            "es": "Calentamiento estándar de 8 min."
+          },
+          "cooldown": {
+            "fr": "5 min marche + étirements 5 min.",
+            "en": "5 min walk + 5 min stretching.",
+            "es": "5 min de caminata + 5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Bloc laddered 1m30 + 3 min",
+              "name": {
+                "fr": "Bloc en escalier 1m30 + 3 min",
+                "en": "Ladder block 1m30 + 3 min",
+                "es": "Bloque escalonado 1m30 + 3 min"
+              },
+              "match_key": "Bloc laddered 1m30 + 3 min",
               "sets": 2,
               "duration": "1 min 30 course + 1 min 30 marche + 3 min course + 3 min marche",
               "rest_seconds": 0,
-              "notes": "Enchaîner 2 fois ce cycle. Total course par cycle : 4 min 30. Le bloc 3 min est nouveau — reste à allure conversationnelle, ne force pas. Total bloc : 18 min.",
+              "notes": {
+                "fr": "Enchaîner 2 fois ce cycle. Total course par cycle : 4 min 30. Le bloc 3 min est nouveau — reste à allure conversationnelle, ne force pas. Total bloc : 18 min.",
+                "en": "Run this cycle twice. Running per cycle: 4 min 30. The 3-min block is new — stay at conversational pace, don't push. Block total: 18 min.",
+                "es": "Encadena este ciclo dos veces. Carrera por ciclo: 4 min 30. El bloque de 3 min es nuevo — mantente a ritmo conversacional, no fuerces. Total del bloque: 18 min."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 35 min", "Vélo Z1 35 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 35 min",
+                  "en": "Brisk walk 35 min",
+                  "es": "Caminata rápida 35 min"
+                },
+                {
+                  "fr": "Vélo Z1 35 min",
+                  "en": "Z1 cycling 35 min",
+                  "es": "Bici Z1 35 min"
+                }
+              ],
               "volume_axis": "sets"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Renforcement + bird-dog",
+          "name": {
+            "fr": "Renforcement + bird-dog",
+            "en": "Strength + bird-dog",
+            "es": "Refuerzo + bird-dog"
+          },
           "type": "strength",
           "duration_minutes": 37,
-          "warmup": "7 min : marche rapide + mobilité dynamique.",
-          "cooldown": "Étirements 5 min.",
+          "warmup": {
+            "fr": "7 min : marche rapide + mobilité dynamique.",
+            "en": "7 min: brisk walk + dynamic mobility.",
+            "es": "7 min: caminata rápida + movilidad dinámica."
+          },
+          "cooldown": {
+            "fr": "Étirements 5 min.",
+            "en": "5 min stretching.",
+            "es": "5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Wall sit",
+              "name": {
+                "fr": "Chaise contre le mur",
+                "en": "Wall sit",
+                "es": "Sentadilla isométrica en pared"
+              },
+              "match_key": "Wall sit",
               "sets": 3,
               "duration": "40 sec",
               "rest_seconds": 45,
               "target_zone": "RPE 6-7",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Squats partiels", "Step-ups bas"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Squats partiels",
+                  "en": "Partial squats",
+                  "es": "Sentadillas parciales"
+                },
+                {
+                  "fr": "Montées sur step bas",
+                  "en": "Low step-ups",
+                  "es": "Subidas a escalón bajo"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Fentes statiques",
+              "name": {
+                "fr": "Fentes statiques",
+                "en": "Static lunges",
+                "es": "Zancadas estáticas"
+              },
+              "match_key": "Fentes statiques",
               "sets": 3,
               "reps": "8 par jambe",
               "rest_seconds": 45,
-              "notes": "Genou avant à 90° max. Ne pas laisser le genou dépasser la pointe du pied.",
+              "notes": {
+                "fr": "Genou avant à 90° max. Ne pas laisser le genou dépasser la pointe du pied.",
+                "en": "Front knee at 90° max. Don't let the knee go past the toes.",
+                "es": "Rodilla delantera a 90° máximo. No dejes que la rodilla rebase la punta del pie."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Fentes mains au mur", "Step-ups bas"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Fentes mains au mur",
+                  "en": "Lunges with hands on the wall",
+                  "es": "Zancadas con manos en la pared"
+                },
+                {
+                  "fr": "Montées sur step bas",
+                  "en": "Low step-ups",
+                  "es": "Subidas a escalón bajo"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Pont fessier unilatéral",
+              "name": {
+                "fr": "Pont fessier sur une jambe",
+                "en": "Single-leg glute bridge",
+                "es": "Puente de glúteos a una pierna"
+              },
+              "match_key": "Pont fessier unilatéral",
               "sets": 3,
               "reps": "10 par côté",
               "rest_seconds": 40,
-              "notes": "Progression vs W2. Renforce l'équilibre G/D.",
+              "notes": {
+                "fr": "Progression vs W2. Renforce l'équilibre G/D.",
+                "en": "Progression vs W2. Builds left/right balance.",
+                "es": "Progresión respecto a la S2. Mejora el equilibrio izquierda/derecha."
+              },
               "target_zone": "RPE 7-8",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain"],
-              "alternatives": ["Pont fessier bipodal", "Pont fessier pieds sur chaise"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Pont fessier à deux jambes",
+                  "en": "Two-leg glute bridge",
+                  "es": "Puente de glúteos a dos piernas"
+                },
+                {
+                  "fr": "Pont fessier pieds sur chaise",
+                  "en": "Glute bridge with feet on a chair",
+                  "es": "Puente de glúteos con los pies en una silla"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Calf raises bipodal",
+              "name": {
+                "fr": "Mollets debout (deux pieds)",
+                "en": "Two-leg calf raises",
+                "es": "Elevaciones de gemelo a dos piernas"
+              },
+              "match_key": "Calf raises bipodal",
               "sets": 3,
               "reps": "20",
               "rest_seconds": 30,
               "target_zone": "RPE 6-7",
               "required_equipment": [],
-              "incompatible_constraints": ["ankle-injury"],
-              "alternatives": ["Calf raises assis sur chaise", "Wall calf raise"],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Mollets assis sur chaise",
+                  "en": "Seated calf raises on a chair",
+                  "es": "Elevaciones de gemelo sentado en una silla"
+                },
+                {
+                  "fr": "Mollets en appui au mur",
+                  "en": "Wall calf raise",
+                  "es": "Elevaciones de gemelo en la pared"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Planche ventrale",
+              "name": {
+                "fr": "Planche ventrale",
+                "en": "Front plank",
+                "es": "Plancha frontal"
+              },
+              "match_key": "Planche ventrale",
               "sets": 3,
               "duration": "30 sec",
               "rest_seconds": 45,
               "target_zone": "RPE 6-7",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
-              "alternatives": ["Planche genoux au sol 40 sec", "Dead bug"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Planche sur les genoux 40 sec",
+                  "en": "Plank on knees 40 sec",
+                  "es": "Plancha con rodillas en el suelo 40 s"
+                },
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Bird-dog",
+              "name": {
+                "fr": "Bird-dog",
+                "en": "Bird-dog",
+                "es": "Bird-dog"
+              },
+              "match_key": "Bird-dog",
               "sets": 3,
               "reps": "8 par côté",
               "rest_seconds": 30,
-              "notes": "À 4 pattes, tendre bras opposé + jambe opposée. Tenir 2 sec. Cible le core profond et l'anti-rotation lombaire.",
+              "notes": {
+                "fr": "À 4 pattes, tendre bras opposé + jambe opposée. Tenir 2 sec. Cible le core profond et l'anti-rotation lombaire.",
+                "en": "On all fours, extend opposite arm + opposite leg. Hold 2 sec. Targets the deep core and lumbar anti-rotation.",
+                "es": "A cuatro patas, extiende el brazo y la pierna contrarios. Mantén 2 s. Trabaja el core profundo y la antirotación lumbar."
+              },
               "target_zone": "RPE 6-7",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["wrist-pain", "lower-back-pain"],
-              "alternatives": ["Dead bug", "Bird-dog avant-bras au sol"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "wrist-pain",
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                },
+                {
+                  "fr": "Bird-dog avant-bras au sol",
+                  "en": "Bird-dog on forearm",
+                  "es": "Bird-dog con antebrazo en el suelo"
+                }
+              ],
               "volume_axis": "reps"
             }
           ]
         },
         {
           "day": 5,
-          "name": "Run/walk laddered — consolidation",
+          "name": {
+            "fr": "Course/marche en escalier — consolidation",
+            "en": "Laddered run/walk — consolidation",
+            "es": "Correr/caminar escalonado — consolidación"
+          },
           "type": "mixed",
           "duration_minutes": 38,
-          "warmup": "Échauffement standard 8 min.",
-          "cooldown": "5 min marche + étirements 5 min.",
+          "warmup": {
+            "fr": "Échauffement standard 8 min.",
+            "en": "Standard 8 min warm-up.",
+            "es": "Calentamiento estándar de 8 min."
+          },
+          "cooldown": {
+            "fr": "5 min marche + étirements 5 min.",
+            "en": "5 min walk + 5 min stretching.",
+            "es": "5 min de caminata + 5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Bloc laddered 1m30 + 3 min",
+              "name": {
+                "fr": "Bloc en escalier 1m30 + 3 min",
+                "en": "Ladder block 1m30 + 3 min",
+                "es": "Bloque escalonado 1m30 + 3 min"
+              },
+              "match_key": "Bloc laddered 1m30 + 3 min",
               "sets": 2,
               "duration": "1 min 30 course + 1 min 30 marche + 3 min course + 3 min marche",
               "rest_seconds": 0,
-              "notes": "Identique à J1. Répéter la même séance stabilise l'adaptation au bloc 3 min.",
+              "notes": {
+                "fr": "Identique à J1. Répéter la même séance stabilise l'adaptation au bloc 3 min.",
+                "en": "Same as D1. Repeating the same session stabilizes adaptation to the 3-min block.",
+                "es": "Igual que el D1. Repetir la misma sesión estabiliza la adaptación al bloque de 3 min."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 35 min", "Vélo Z1 35 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 35 min",
+                  "en": "Brisk walk 35 min",
+                  "es": "Caminata rápida 35 min"
+                },
+                {
+                  "fr": "Vélo Z1 35 min",
+                  "en": "Z1 cycling 35 min",
+                  "es": "Bici Z1 35 min"
+                }
+              ],
               "volume_axis": "sets"
             }
           ]
@@ -377,150 +986,414 @@
     },
     {
       "week_number": 4,
-      "theme": "Bloc 5 min — premier vrai cap",
-      "goal": "Introduire le bloc de 5 min continu. Volume hebdo +22% vs W3.",
+      "theme": {
+        "fr": "Bloc 5 min — premier vrai cap",
+        "en": "5-min block — first real milestone",
+        "es": "Bloque de 5 min — primer hito real"
+      },
+      "goal": {
+        "fr": "Introduire le bloc de 5 min continu. Volume hebdo +22% vs W3.",
+        "en": "Introduce the 5-min continuous block. Weekly volume +22% vs W3.",
+        "es": "Introducir el bloque de 5 min continuos. Volumen semanal +22% respecto a la S3."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "Run/walk bloc 5",
+          "name": {
+            "fr": "Course/marche bloc 5",
+            "en": "Run/walk block 5",
+            "es": "Correr/caminar bloque 5"
+          },
           "type": "mixed",
           "duration_minutes": 40,
-          "warmup": "Échauffement standard 8 min.",
-          "cooldown": "5 min marche + étirements 5 min.",
+          "warmup": {
+            "fr": "Échauffement standard 8 min.",
+            "en": "Standard 8 min warm-up.",
+            "es": "Calentamiento estándar de 8 min."
+          },
+          "cooldown": {
+            "fr": "5 min marche + étirements 5 min.",
+            "en": "5 min walk + 5 min stretching.",
+            "es": "5 min de caminata + 5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Blocs courts 3 min",
+              "name": {
+                "fr": "Blocs courts 3 min",
+                "en": "Short 3-min blocks",
+                "es": "Bloques cortos de 3 min"
+              },
+              "match_key": "Blocs courts 3 min",
               "sets": 2,
               "duration": "3 min course + 2 min marche",
               "rest_seconds": 0,
-              "notes": "Deux blocs de 3 min pour préparer le bloc long final.",
+              "notes": {
+                "fr": "Deux blocs de 3 min pour préparer le bloc long final.",
+                "en": "Two 3-min blocks to prepare for the final long block.",
+                "es": "Dos bloques de 3 min para preparar el bloque largo final."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 12 min", "Vélo Z1 12 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 12 min",
+                  "en": "Brisk walk 12 min",
+                  "es": "Caminata rápida 12 min"
+                },
+                {
+                  "fr": "Vélo Z1 12 min",
+                  "en": "Z1 cycling 12 min",
+                  "es": "Bici Z1 12 min"
+                }
+              ],
               "volume_axis": "sets"
             },
             {
-              "name": "Bloc long 5 min",
+              "name": {
+                "fr": "Bloc long 5 min",
+                "en": "Long 5-min block",
+                "es": "Bloque largo de 5 min"
+              },
+              "match_key": "Bloc long 5 min",
               "sets": 1,
               "duration": "5 min course",
               "rest_seconds": 0,
-              "notes": "Enchaîner directement après les blocs courts. Allure TOUJOURS conversationnelle. Si tu ne peux plus parler, ralentis. Total course séance : 11 min (6 min en blocs courts + 5 min long).",
+              "notes": {
+                "fr": "Enchaîner directement après les blocs courts. Allure TOUJOURS conversationnelle. Si tu ne peux plus parler, ralentis. Total course séance : 11 min (6 min en blocs courts + 5 min long).",
+                "en": "Run it straight after the short blocks. ALWAYS conversational pace. If you can't talk any more, slow down. Total running for the session: 11 min (6 min in short blocks + 5 min long).",
+                "es": "Encadénalo justo después de los bloques cortos. Ritmo SIEMPRE conversacional. Si ya no puedes hablar, baja el ritmo. Total de carrera de la sesión: 11 min (6 min en bloques cortos + 5 min largo)."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 5 min", "Vélo Z1 5 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 5 min",
+                  "en": "Brisk walk 5 min",
+                  "es": "Caminata rápida 5 min"
+                },
+                {
+                  "fr": "Vélo Z1 5 min",
+                  "en": "Z1 cycling 5 min",
+                  "es": "Bici Z1 5 min"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Renforcement progression",
+          "name": {
+            "fr": "Renforcement progression",
+            "en": "Strength progression",
+            "es": "Refuerzo en progresión"
+          },
           "type": "strength",
           "duration_minutes": 37,
-          "warmup": "7 min : marche rapide + mobilité dynamique.",
-          "cooldown": "Étirements 5 min.",
+          "warmup": {
+            "fr": "7 min : marche rapide + mobilité dynamique.",
+            "en": "7 min: brisk walk + dynamic mobility.",
+            "es": "7 min: caminata rápida + movilidad dinámica."
+          },
+          "cooldown": {
+            "fr": "Étirements 5 min.",
+            "en": "5 min stretching.",
+            "es": "5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Wall sit",
+              "name": {
+                "fr": "Chaise contre le mur",
+                "en": "Wall sit",
+                "es": "Sentadilla isométrica en pared"
+              },
+              "match_key": "Wall sit",
               "sets": 3,
               "duration": "45 sec",
               "rest_seconds": 45,
               "target_zone": "RPE 7-8",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Squats partiels", "Step-ups bas"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Squats partiels",
+                  "en": "Partial squats",
+                  "es": "Sentadillas parciales"
+                },
+                {
+                  "fr": "Montées sur step bas",
+                  "en": "Low step-ups",
+                  "es": "Subidas a escalón bajo"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Fentes dynamiques",
+              "name": {
+                "fr": "Fentes dynamiques",
+                "en": "Walking lunges",
+                "es": "Zancadas dinámicas"
+              },
+              "match_key": "Fentes dynamiques",
               "sets": 3,
               "reps": "8 par jambe",
               "rest_seconds": 45,
-              "notes": "Alternance G/D avec retour au centre. Progression vs fentes statiques.",
+              "notes": {
+                "fr": "Alternance G/D avec retour au centre. Progression vs fentes statiques.",
+                "en": "Alternate left/right with a return to center. Progression vs static lunges.",
+                "es": "Alterna izquierda/derecha volviendo al centro. Progresión respecto a las zancadas estáticas."
+              },
               "target_zone": "RPE 7-8",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Fentes statiques", "Step-ups"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Fentes statiques",
+                  "en": "Static lunges",
+                  "es": "Zancadas estáticas"
+                },
+                {
+                  "fr": "Montées sur step",
+                  "en": "Step-ups",
+                  "es": "Subidas a escalón"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Pont fessier unilatéral",
+              "name": {
+                "fr": "Pont fessier sur une jambe",
+                "en": "Single-leg glute bridge",
+                "es": "Puente de glúteos a una pierna"
+              },
+              "match_key": "Pont fessier unilatéral",
               "sets": 3,
               "reps": "12 par côté",
               "rest_seconds": 40,
               "target_zone": "RPE 7-8",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain"],
-              "alternatives": ["Pont fessier bipodal", "Pont fessier pieds sur chaise"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Pont fessier à deux jambes",
+                  "en": "Two-leg glute bridge",
+                  "es": "Puente de glúteos a dos piernas"
+                },
+                {
+                  "fr": "Pont fessier pieds sur chaise",
+                  "en": "Glute bridge with feet on a chair",
+                  "es": "Puente de glúteos con los pies en una silla"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Calf raises surélevés",
+              "name": {
+                "fr": "Mollets sur une marche",
+                "en": "Calf raises on a step",
+                "es": "Elevaciones de gemelo en escalón"
+              },
+              "match_key": "Calf raises surélevés",
               "sets": 3,
               "reps": "15 par côté",
               "rest_seconds": 30,
-              "notes": "Debout sur le bord d'une marche, talons dans le vide. Amplitude complète (descente sous la marche). Charge accrue sur les mollets.",
+              "notes": {
+                "fr": "Debout sur le bord d'une marche, talons dans le vide. Amplitude complète (descente sous la marche). Charge accrue sur les mollets.",
+                "en": "Stand on the edge of a step, heels off the edge. Full range (drop below the step). More load on the calves.",
+                "es": "De pie en el borde de un escalón, talones al aire. Recorrido completo (baja por debajo del escalón). Mayor carga sobre los gemelos."
+              },
               "target_zone": "RPE 7-8",
               "required_equipment": [],
-              "incompatible_constraints": ["ankle-injury"],
-              "alternatives": ["Calf raises bipodal sol", "Calf raises assis"],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Mollets debout (deux pieds) au sol",
+                  "en": "Two-leg calf raises on the floor",
+                  "es": "Elevaciones de gemelo a dos piernas en el suelo"
+                },
+                {
+                  "fr": "Mollets assis",
+                  "en": "Seated calf raises",
+                  "es": "Elevaciones de gemelo sentado"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Planche ventrale",
+              "name": {
+                "fr": "Planche ventrale",
+                "en": "Front plank",
+                "es": "Plancha frontal"
+              },
+              "match_key": "Planche ventrale",
               "sets": 3,
               "duration": "40 sec",
               "rest_seconds": 45,
               "target_zone": "RPE 7-8",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
-              "alternatives": ["Planche genoux 50 sec", "Dead bug"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Planche sur les genoux 50 sec",
+                  "en": "Plank on knees 50 sec",
+                  "es": "Plancha con rodillas 50 s"
+                },
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Bird-dog",
+              "name": {
+                "fr": "Bird-dog",
+                "en": "Bird-dog",
+                "es": "Bird-dog"
+              },
+              "match_key": "Bird-dog",
               "sets": 3,
               "reps": "10 par côté",
               "rest_seconds": 30,
               "target_zone": "RPE 6-7",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["wrist-pain", "lower-back-pain"],
-              "alternatives": ["Dead bug", "Bird-dog avant-bras au sol"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "wrist-pain",
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                },
+                {
+                  "fr": "Bird-dog avant-bras au sol",
+                  "en": "Bird-dog on forearm",
+                  "es": "Bird-dog con antebrazo en el suelo"
+                }
+              ],
               "volume_axis": "reps"
             }
           ]
         },
         {
           "day": 5,
-          "name": "Run/walk bloc 5 — consolidation",
+          "name": {
+            "fr": "Course/marche bloc 5 — consolidation",
+            "en": "Run/walk block 5 — consolidation",
+            "es": "Correr/caminar bloque 5 — consolidación"
+          },
           "type": "mixed",
           "duration_minutes": 40,
-          "warmup": "Échauffement standard 8 min.",
-          "cooldown": "5 min marche + étirements 5 min.",
+          "warmup": {
+            "fr": "Échauffement standard 8 min.",
+            "en": "Standard 8 min warm-up.",
+            "es": "Calentamiento estándar de 8 min."
+          },
+          "cooldown": {
+            "fr": "5 min marche + étirements 5 min.",
+            "en": "5 min walk + 5 min stretching.",
+            "es": "5 min de caminata + 5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Blocs courts 3 min",
+              "name": {
+                "fr": "Blocs courts 3 min",
+                "en": "Short 3-min blocks",
+                "es": "Bloques cortos de 3 min"
+              },
+              "match_key": "Blocs courts 3 min",
               "sets": 2,
               "duration": "3 min course + 2 min marche",
               "rest_seconds": 0,
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 12 min", "Vélo Z1 12 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 12 min",
+                  "en": "Brisk walk 12 min",
+                  "es": "Caminata rápida 12 min"
+                },
+                {
+                  "fr": "Vélo Z1 12 min",
+                  "en": "Z1 cycling 12 min",
+                  "es": "Bici Z1 12 min"
+                }
+              ],
               "volume_axis": "sets"
             },
             {
-              "name": "Bloc long 5 min",
+              "name": {
+                "fr": "Bloc long 5 min",
+                "en": "Long 5-min block",
+                "es": "Bloque largo de 5 min"
+              },
+              "match_key": "Bloc long 5 min",
               "sets": 1,
               "duration": "5 min course",
               "rest_seconds": 0,
-              "notes": "Même séance qu'en J1. Le bloc 5 min doit devenir confortable avant d'avancer. Cadence cible 170-180 pas/min : compte tes appuis pendant 15 sec sur un pied = vise 22-23. Une cadence trop basse (< 160 spm) augmente le risque shin splints.",
+              "notes": {
+                "fr": "Même séance qu'en J1. Le bloc 5 min doit devenir confortable avant d'avancer. Cadence cible 170-180 pas/min : compte tes appuis pendant 15 sec sur un pied = vise 22-23. Une cadence trop basse (< 160 spm) augmente le risque shin splints.",
+                "en": "Same session as D1. The 5-min block should become comfortable before you move on. Target cadence 170-180 steps/min: count your foot strikes on one foot over 15 sec = aim for 22-23. Too low a cadence (< 160 spm) raises the shin-splint risk.",
+                "es": "Misma sesión que el D1. El bloque de 5 min debe volverse cómodo antes de avanzar. Cadencia objetivo 170-180 pasos/min: cuenta tus apoyos durante 15 s en un pie = apunta a 22-23. Una cadencia demasiado baja (< 160 ppm) aumenta el riesgo de periostitis tibial."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 5 min", "Vélo Z1 5 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 5 min",
+                  "en": "Brisk walk 5 min",
+                  "es": "Caminata rápida 5 min"
+                },
+                {
+                  "fr": "Vélo Z1 5 min",
+                  "en": "Z1 cycling 5 min",
+                  "es": "Bici Z1 5 min"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
@@ -529,163 +1402,452 @@
     },
     {
       "week_number": 5,
-      "theme": "Cutback — consolidation",
-      "goal": "Semaine cutback (volume -18% vs W4 : 22 → 18 min de course). Pas de nouveauté — on consolide les acquis avant le palier 8 min continu de W6. Les semaines allégées sont essentielles pour l'adaptation — ne pas les sauter.",
+      "theme": {
+        "fr": "Cutback — consolidation",
+        "en": "Cutback — consolidation",
+        "es": "Semana ligera — consolidación"
+      },
+      "goal": {
+        "fr": "Semaine cutback (volume -18% vs W4 : 22 → 18 min de course). Pas de nouveauté — on consolide les acquis avant le palier 8 min continu de W6. Les semaines allégées sont essentielles pour l'adaptation — ne pas les sauter.",
+        "en": "Cutback week (volume -18% vs W4: 22 → 18 min of running). Nothing new — we consolidate the gains before W6's 8-min continuous step up. Reduced weeks are essential for adaptation — don't skip them.",
+        "es": "Semana ligera (volumen -18% respecto a la S4: 22 → 18 min de carrera). Sin novedades — consolidamos lo adquirido antes del salto de 8 min continuos de la S6. Las semanas ligeras son esenciales para la adaptación — no te las saltes."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "Cutback — run/walk allégé",
+          "name": {
+            "fr": "Cutback — course/marche allégée",
+            "en": "Cutback — lighter run/walk",
+            "es": "Semana ligera — correr/caminar suavizado"
+          },
           "type": "mixed",
           "duration_minutes": 32,
-          "warmup": "Échauffement standard 8 min.",
-          "cooldown": "5 min marche + étirements 4 min.",
+          "warmup": {
+            "fr": "Échauffement standard 8 min.",
+            "en": "Standard 8 min warm-up.",
+            "es": "Calentamiento estándar de 8 min."
+          },
+          "cooldown": {
+            "fr": "5 min marche + étirements 4 min.",
+            "en": "5 min walk + 4 min stretching.",
+            "es": "5 min de caminata + 4 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Bloc run/walk 5 min",
+              "name": {
+                "fr": "Bloc course/marche 5 min",
+                "en": "Run/walk block 5 min",
+                "es": "Bloque correr/caminar 5 min"
+              },
+              "match_key": "Bloc run/walk 5 min",
               "sets": 1,
               "duration": "5 min course + 2 min marche",
               "rest_seconds": 0,
-              "notes": "Premier bloc de la séance allégée. Allure très confortable.",
+              "notes": {
+                "fr": "Premier bloc de la séance allégée. Allure très confortable.",
+                "en": "First block of the lighter session. Very comfortable pace.",
+                "es": "Primer bloque de la sesión suavizada. Ritmo muy cómodo."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 7 min", "Vélo Z1 7 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 7 min",
+                  "en": "Brisk walk 7 min",
+                  "es": "Caminata rápida 7 min"
+                },
+                {
+                  "fr": "Vélo Z1 7 min",
+                  "en": "Z1 cycling 7 min",
+                  "es": "Bici Z1 7 min"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Bloc run/walk 3 min",
+              "name": {
+                "fr": "Bloc course/marche 3 min",
+                "en": "Run/walk block 3 min",
+                "es": "Bloque correr/caminar 3 min"
+              },
+              "match_key": "Bloc run/walk 3 min",
               "sets": 1,
               "duration": "3 min course + 2 min marche",
               "rest_seconds": 0,
-              "notes": "Session allégée pour consolidation. Total course séance : 8 min (5 + 3). Ne pas pousser au-delà — la cutback week est constitutive de l'adaptation.",
+              "notes": {
+                "fr": "Session allégée pour consolidation. Total course séance : 8 min (5 + 3). Ne pas pousser au-delà — la cutback week est constitutive de l'adaptation.",
+                "en": "Lighter session for consolidation. Total running for the session: 8 min (5 + 3). Don't push beyond it — the cutback week is part of the adaptation.",
+                "es": "Sesión suavizada para consolidar. Total de carrera de la sesión: 8 min (5 + 3). No vayas más allá — la semana ligera forma parte de la adaptación."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 5 min", "Vélo Z1 5 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 5 min",
+                  "en": "Brisk walk 5 min",
+                  "es": "Caminata rápida 5 min"
+                },
+                {
+                  "fr": "Vélo Z1 5 min",
+                  "en": "Z1 cycling 5 min",
+                  "es": "Bici Z1 5 min"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Renforcement + side plank",
+          "name": {
+            "fr": "Renforcement + planche latérale",
+            "en": "Strength + side plank",
+            "es": "Refuerzo + plancha lateral"
+          },
           "type": "strength",
           "duration_minutes": 35,
-          "warmup": "7 min : marche rapide + mobilité dynamique.",
-          "cooldown": "Étirements 5 min.",
+          "warmup": {
+            "fr": "7 min : marche rapide + mobilité dynamique.",
+            "en": "7 min: brisk walk + dynamic mobility.",
+            "es": "7 min: caminata rápida + movilidad dinámica."
+          },
+          "cooldown": {
+            "fr": "Étirements 5 min.",
+            "en": "5 min stretching.",
+            "es": "5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Wall sit",
+              "name": {
+                "fr": "Chaise contre le mur",
+                "en": "Wall sit",
+                "es": "Sentadilla isométrica en pared"
+              },
+              "match_key": "Wall sit",
               "sets": 3,
               "duration": "45 sec",
               "rest_seconds": 45,
-              "notes": "Volume cutback aussi sur le strength : on maintient l'intensité W4 sans la pousser.",
+              "notes": {
+                "fr": "Volume cutback aussi sur le strength : on maintient l'intensité W4 sans la pousser.",
+                "en": "Cutback volume on strength too: we keep W4's intensity without pushing it.",
+                "es": "Volumen reducido también en la fuerza: mantenemos la intensidad de la S4 sin forzarla."
+              },
               "target_zone": "RPE 7-8",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Squats partiels", "Step-ups bas"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Squats partiels",
+                  "en": "Partial squats",
+                  "es": "Sentadillas parciales"
+                },
+                {
+                  "fr": "Montées sur step bas",
+                  "en": "Low step-ups",
+                  "es": "Subidas a escalón bajo"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Fentes dynamiques",
+              "name": {
+                "fr": "Fentes dynamiques",
+                "en": "Walking lunges",
+                "es": "Zancadas dinámicas"
+              },
+              "match_key": "Fentes dynamiques",
               "sets": 3,
               "reps": "10 par jambe",
               "rest_seconds": 45,
               "target_zone": "RPE 7-8",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Fentes statiques", "Step-ups"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Fentes statiques",
+                  "en": "Static lunges",
+                  "es": "Zancadas estáticas"
+                },
+                {
+                  "fr": "Montées sur step",
+                  "en": "Step-ups",
+                  "es": "Subidas a escalón"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Pont fessier unilatéral",
+              "name": {
+                "fr": "Pont fessier sur une jambe",
+                "en": "Single-leg glute bridge",
+                "es": "Puente de glúteos a una pierna"
+              },
+              "match_key": "Pont fessier unilatéral",
               "sets": 3,
               "reps": "12 par côté",
               "rest_seconds": 40,
               "target_zone": "RPE 7-8",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain"],
-              "alternatives": ["Pont fessier bipodal", "Pont fessier pieds sur chaise"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Pont fessier à deux jambes",
+                  "en": "Two-leg glute bridge",
+                  "es": "Puente de glúteos a dos piernas"
+                },
+                {
+                  "fr": "Pont fessier pieds sur chaise",
+                  "en": "Glute bridge with feet on a chair",
+                  "es": "Puente de glúteos con los pies en una silla"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Calf raises surélevés",
+              "name": {
+                "fr": "Mollets sur une marche",
+                "en": "Calf raises on a step",
+                "es": "Elevaciones de gemelo en escalón"
+              },
+              "match_key": "Calf raises surélevés",
               "sets": 3,
               "reps": "15 par côté",
               "rest_seconds": 30,
               "target_zone": "RPE 7-8",
               "required_equipment": [],
-              "incompatible_constraints": ["ankle-injury"],
-              "alternatives": ["Calf raises bipodal sol", "Calf raises assis"],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Mollets debout (deux pieds) au sol",
+                  "en": "Two-leg calf raises on the floor",
+                  "es": "Elevaciones de gemelo a dos piernas en el suelo"
+                },
+                {
+                  "fr": "Mollets assis",
+                  "en": "Seated calf raises",
+                  "es": "Elevaciones de gemelo sentado"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Planche ventrale",
+              "name": {
+                "fr": "Planche ventrale",
+                "en": "Front plank",
+                "es": "Plancha frontal"
+              },
+              "match_key": "Planche ventrale",
               "sets": 3,
               "duration": "30 sec",
               "rest_seconds": 45,
-              "notes": "Retour au volume W3 (cutback core aussi).",
+              "notes": {
+                "fr": "Retour au volume W3 (cutback core aussi).",
+                "en": "Back to W3 volume (core cutback too).",
+                "es": "Vuelta al volumen de la S3 (core también reducido)."
+              },
               "target_zone": "RPE 6-7",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
-              "alternatives": ["Planche genoux 40 sec", "Dead bug"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Planche sur les genoux 40 sec",
+                  "en": "Plank on knees 40 sec",
+                  "es": "Plancha con rodillas 40 s"
+                },
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Side plank",
+              "name": {
+                "fr": "Planche latérale",
+                "en": "Side plank",
+                "es": "Plancha lateral"
+              },
+              "match_key": "Side plank",
               "sets": 2,
               "duration": "20 sec par côté",
               "rest_seconds": 30,
-              "notes": "Nouveauté cutback week : latéral, anti-rotation. Cible les obliques et les moyens fessiers.",
+              "notes": {
+                "fr": "Nouveauté cutback week : latéral, anti-rotation. Cible les obliques et les moyens fessiers.",
+                "en": "New for the cutback week: lateral, anti-rotation. Targets the obliques and the gluteus medius.",
+                "es": "Novedad de la semana ligera: lateral, antirotación. Trabaja los oblicuos y el glúteo medio."
+              },
               "target_zone": "RPE 7-8",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain", "shoulder-injury", "wrist-pain"],
-              "alternatives": ["Side plank genoux pliés 30 sec/côté", "Bird-dog"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury",
+                "wrist-pain"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Planche latérale genoux pliés 30 sec/côté",
+                  "en": "Side plank with bent knees 30 sec/side",
+                  "es": "Plancha lateral con rodillas flexionadas 30 s/lado"
+                },
+                {
+                  "fr": "Bird-dog",
+                  "en": "Bird-dog",
+                  "es": "Bird-dog"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
         },
         {
           "day": 5,
-          "name": "Cutback — consolidation run/walk",
+          "name": {
+            "fr": "Cutback — consolidation course/marche",
+            "en": "Cutback — run/walk consolidation",
+            "es": "Semana ligera — consolidación correr/caminar"
+          },
           "type": "mixed",
           "duration_minutes": 35,
-          "warmup": "Échauffement standard 8 min.",
-          "cooldown": "5 min marche + étirements 5 min.",
+          "warmup": {
+            "fr": "Échauffement standard 8 min.",
+            "en": "Standard 8 min warm-up.",
+            "es": "Calentamiento estándar de 8 min."
+          },
+          "cooldown": {
+            "fr": "5 min marche + étirements 5 min.",
+            "en": "5 min walk + 5 min stretching.",
+            "es": "5 min de caminata + 5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Bloc course 5 min",
+              "name": {
+                "fr": "Bloc course 5 min",
+                "en": "5-min run block",
+                "es": "Bloque de carrera de 5 min"
+              },
+              "match_key": "Bloc course 5 min",
               "sets": 1,
               "duration": "5 min course",
               "rest_seconds": 0,
-              "notes": "Premier bloc, allure très confortable.",
+              "notes": {
+                "fr": "Premier bloc, allure très confortable.",
+                "en": "First block, very comfortable pace.",
+                "es": "Primer bloque, ritmo muy cómodo."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 5 min", "Vélo Z1 5 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 5 min",
+                  "en": "Brisk walk 5 min",
+                  "es": "Caminata rápida 5 min"
+                },
+                {
+                  "fr": "Vélo Z1 5 min",
+                  "en": "Z1 cycling 5 min",
+                  "es": "Bici Z1 5 min"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Marche récupération",
+              "name": {
+                "fr": "Marche de récupération",
+                "en": "Recovery walk",
+                "es": "Caminata de recuperación"
+              },
+              "match_key": "Marche récupération",
               "sets": 1,
               "duration": "3 min",
               "rest_seconds": 0,
               "target_zone": "walking-recovery",
               "required_equipment": [],
               "incompatible_constraints": [],
-              "alternatives": ["Repos passif debout 2 min", "Étirements doux gastrocnémiens 30 sec/côté"],
+              "alternatives": [
+                {
+                  "fr": "Repos passif debout 2 min",
+                  "en": "Standing passive rest 2 min",
+                  "es": "Descanso pasivo de pie 2 min"
+                },
+                {
+                  "fr": "Étirements doux des mollets 30 sec/côté",
+                  "en": "Gentle calf stretches 30 sec/side",
+                  "es": "Estiramientos suaves de gemelos 30 s/lado"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Bloc course 5 min",
+              "name": {
+                "fr": "Bloc course 5 min",
+                "en": "5-min run block",
+                "es": "Bloque de carrera de 5 min"
+              },
+              "match_key": "Bloc course 5 min",
               "sets": 1,
               "duration": "5 min course",
               "rest_seconds": 0,
-              "notes": "Deuxième bloc identique. Total course séance : 10 min. Volume hebdo W5 = 18 min de course (vs 22 min en W4 = -18%). La cutback week consolide l'adaptation avant la reprise W6.",
+              "notes": {
+                "fr": "Deuxième bloc identique. Total course séance : 10 min. Volume hebdo W5 = 18 min de course (vs 22 min en W4 = -18%). La cutback week consolide l'adaptation avant la reprise W6.",
+                "en": "Second identical block. Total running for the session: 10 min. W5 weekly volume = 18 min of running (vs 22 min in W4 = -18%). The cutback week consolidates the adaptation before W6's resumption.",
+                "es": "Segundo bloque idéntico. Total de carrera de la sesión: 10 min. Volumen semanal de la S5 = 18 min de carrera (vs 22 min en la S4 = -18%). La semana ligera consolida la adaptación antes de retomar en la S6."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 5 min", "Vélo Z1 5 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 5 min",
+                  "en": "Brisk walk 5 min",
+                  "es": "Caminata rápida 5 min"
+                },
+                {
+                  "fr": "Vélo Z1 5 min",
+                  "en": "Z1 cycling 5 min",
+                  "es": "Bici Z1 5 min"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
@@ -694,173 +1856,474 @@
     },
     {
       "week_number": 6,
-      "theme": "Bloc 8 min — introduction de la course continue",
-      "goal": "Introduire le premier bloc de 8 min continu après la consolidation W5. Volume hebdo +22% vs W5 cutback (18 → 22 min de course).",
+      "theme": {
+        "fr": "Bloc 8 min — introduction de la course continue",
+        "en": "8-min block — introducing continuous running",
+        "es": "Bloque de 8 min — introducción a la carrera continua"
+      },
+      "goal": {
+        "fr": "Introduire le premier bloc de 8 min continu après la consolidation W5. Volume hebdo +22% vs W5 cutback (18 → 22 min de course).",
+        "en": "Introduce the first 8-min continuous block after W5's consolidation. Weekly volume +22% vs the W5 cutback (18 → 22 min of running).",
+        "es": "Introducir el primer bloque de 8 min continuos tras la consolidación de la S5. Volumen semanal +22% respecto a la semana ligera S5 (18 → 22 min de carrera)."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "Reprise — blocs 5 min",
+          "name": {
+            "fr": "Reprise — blocs 5 min",
+            "en": "Resumption — 5-min blocks",
+            "es": "Retoma — bloques de 5 min"
+          },
           "type": "mixed",
           "duration_minutes": 35,
-          "warmup": "Échauffement standard 8 min.",
-          "cooldown": "5 min marche + étirements 5 min.",
+          "warmup": {
+            "fr": "Échauffement standard 8 min.",
+            "en": "Standard 8 min warm-up.",
+            "es": "Calentamiento estándar de 8 min."
+          },
+          "cooldown": {
+            "fr": "5 min marche + étirements 5 min.",
+            "en": "5 min walk + 5 min stretching.",
+            "es": "5 min de caminata + 5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Bloc course 5 min",
+              "name": {
+                "fr": "Bloc course 5 min",
+                "en": "5-min run block",
+                "es": "Bloque de carrera de 5 min"
+              },
+              "match_key": "Bloc course 5 min",
               "sets": 1,
               "duration": "5 min course",
               "rest_seconds": 0,
-              "notes": "Reprise progressive après cutback W5. Allure conversationnelle maintenue.",
+              "notes": {
+                "fr": "Reprise progressive après cutback W5. Allure conversationnelle maintenue.",
+                "en": "Gradual resumption after the W5 cutback. Keep a conversational pace.",
+                "es": "Retoma progresiva tras la semana ligera S5. Mantén el ritmo conversacional."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 5 min", "Vélo Z1 5 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 5 min",
+                  "en": "Brisk walk 5 min",
+                  "es": "Caminata rápida 5 min"
+                },
+                {
+                  "fr": "Vélo Z1 5 min",
+                  "en": "Z1 cycling 5 min",
+                  "es": "Bici Z1 5 min"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Marche récupération",
+              "name": {
+                "fr": "Marche de récupération",
+                "en": "Recovery walk",
+                "es": "Caminata de recuperación"
+              },
+              "match_key": "Marche récupération",
               "sets": 1,
               "duration": "2 min",
               "rest_seconds": 0,
               "target_zone": "walking-recovery",
               "required_equipment": [],
               "incompatible_constraints": [],
-              "alternatives": ["Repos passif debout 2 min", "Étirements doux gastrocnémiens 30 sec/côté"],
+              "alternatives": [
+                {
+                  "fr": "Repos passif debout 2 min",
+                  "en": "Standing passive rest 2 min",
+                  "es": "Descanso pasivo de pie 2 min"
+                },
+                {
+                  "fr": "Étirements doux des mollets 30 sec/côté",
+                  "en": "Gentle calf stretches 30 sec/side",
+                  "es": "Estiramientos suaves de gemelos 30 s/lado"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Bloc course 5 min",
+              "name": {
+                "fr": "Bloc course 5 min",
+                "en": "5-min run block",
+                "es": "Bloque de carrera de 5 min"
+              },
+              "match_key": "Bloc course 5 min",
               "sets": 1,
               "duration": "5 min course",
               "rest_seconds": 0,
-              "notes": "Deuxième bloc identique. Total course séance : 10 min. Prépare le palier 8 min continu de J5.",
+              "notes": {
+                "fr": "Deuxième bloc identique. Total course séance : 10 min. Prépare le palier 8 min continu de J5.",
+                "en": "Second identical block. Total running for the session: 10 min. Prepares for D5's 8-min continuous step up.",
+                "es": "Segundo bloque idéntico. Total de carrera de la sesión: 10 min. Prepara el salto de 8 min continuos del D5."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 5 min", "Vélo Z1 5 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 5 min",
+                  "en": "Brisk walk 5 min",
+                  "es": "Caminata rápida 5 min"
+                },
+                {
+                  "fr": "Vélo Z1 5 min",
+                  "en": "Z1 cycling 5 min",
+                  "es": "Bici Z1 5 min"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Renforcement progression",
+          "name": {
+            "fr": "Renforcement progression",
+            "en": "Strength progression",
+            "es": "Refuerzo en progresión"
+          },
           "type": "strength",
           "duration_minutes": 37,
-          "warmup": "7 min : marche rapide + mobilité dynamique.",
-          "cooldown": "Étirements 5 min.",
+          "warmup": {
+            "fr": "7 min : marche rapide + mobilité dynamique.",
+            "en": "7 min: brisk walk + dynamic mobility.",
+            "es": "7 min: caminata rápida + movilidad dinámica."
+          },
+          "cooldown": {
+            "fr": "Étirements 5 min.",
+            "en": "5 min stretching.",
+            "es": "5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Wall sit",
+              "name": {
+                "fr": "Chaise contre le mur",
+                "en": "Wall sit",
+                "es": "Sentadilla isométrica en pared"
+              },
+              "match_key": "Wall sit",
               "sets": 3,
               "duration": "60 sec",
               "rest_seconds": 45,
               "target_zone": "RPE 7-8",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Squats partiels", "Step-ups bas"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Squats partiels",
+                  "en": "Partial squats",
+                  "es": "Sentadillas parciales"
+                },
+                {
+                  "fr": "Montées sur step bas",
+                  "en": "Low step-ups",
+                  "es": "Subidas a escalón bajo"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Fentes dynamiques",
+              "name": {
+                "fr": "Fentes dynamiques",
+                "en": "Walking lunges",
+                "es": "Zancadas dinámicas"
+              },
+              "match_key": "Fentes dynamiques",
               "sets": 3,
               "reps": "10 par jambe",
               "rest_seconds": 45,
               "target_zone": "RPE 7-8",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Fentes statiques", "Step-ups"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Fentes statiques",
+                  "en": "Static lunges",
+                  "es": "Zancadas estáticas"
+                },
+                {
+                  "fr": "Montées sur step",
+                  "en": "Step-ups",
+                  "es": "Subidas a escalón"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Step-ups",
+              "name": {
+                "fr": "Montées sur step",
+                "en": "Step-ups",
+                "es": "Subidas a escalón"
+              },
+              "match_key": "Step-ups",
               "sets": 3,
               "reps": "10 par jambe",
               "rest_seconds": 45,
-              "notes": "Sur une marche/chaise stable. Montée jambe d'appel explosive, descente contrôlée. Transfère vers la foulée.",
+              "notes": {
+                "fr": "Sur une marche/chaise stable. Montée jambe d'appel explosive, descente contrôlée. Transfère vers la foulée.",
+                "en": "On a stable step/chair. Explosive push-up leg, controlled descent. Transfers to your stride.",
+                "es": "Sobre un escalón/silla estable. Subida explosiva con la pierna de apoyo, bajada controlada. Transfiere a la zancada."
+              },
               "target_zone": "RPE 7-8",
-              "required_equipment": ["box"],
-              "incompatible_constraints": ["knee-injury", "ankle-injury"],
-              "alternatives": ["Fentes dynamiques", "Squats poids du corps"],
+              "required_equipment": [
+                "box"
+              ],
+              "incompatible_constraints": [
+                "knee-injury",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Fentes dynamiques",
+                  "en": "Walking lunges",
+                  "es": "Zancadas dinámicas"
+                },
+                {
+                  "fr": "Squats au poids du corps",
+                  "en": "Bodyweight squats",
+                  "es": "Sentadillas con peso corporal"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Calf raises excentriques",
+              "name": {
+                "fr": "Mollets excentriques",
+                "en": "Eccentric calf raises",
+                "es": "Elevaciones de gemelo excéntricas"
+              },
+              "match_key": "Calf raises excentriques",
               "sets": 3,
               "reps": "12 par côté",
               "rest_seconds": 30,
-              "notes": "Monter sur 2 pieds, descendre sur 1 seul en 3 sec. Protection tendon d'Achille (Alfredson protocol-inspired), progression majeure vs calf raises classiques.",
+              "notes": {
+                "fr": "Monter sur 2 pieds, descendre sur 1 seul en 3 sec. Protection tendon d'Achille (inspiré du protocole Alfredson), progression majeure vs calf raises classiques.",
+                "en": "Rise on 2 feet, lower on 1 over 3 sec. Achilles-tendon protection (Alfredson-protocol inspired), a major progression vs classic calf raises.",
+                "es": "Sube con los 2 pies, baja con 1 solo en 3 s. Protección del tendón de Aquiles (inspirado en el protocolo de Alfredson), gran progresión frente a las elevaciones clásicas."
+              },
               "target_zone": "RPE 7-8",
               "required_equipment": [],
-              "incompatible_constraints": ["ankle-injury"],
-              "alternatives": ["Calf raises bipodal", "Calf raises sur marche en double"],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Mollets debout (deux pieds)",
+                  "en": "Two-leg calf raises",
+                  "es": "Elevaciones de gemelo a dos piernas"
+                },
+                {
+                  "fr": "Mollets sur une marche (deux pieds)",
+                  "en": "Two-leg calf raises on a step",
+                  "es": "Elevaciones de gemelo a dos piernas en escalón"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Planche ventrale",
+              "name": {
+                "fr": "Planche ventrale",
+                "en": "Front plank",
+                "es": "Plancha frontal"
+              },
+              "match_key": "Planche ventrale",
               "sets": 3,
               "duration": "45 sec",
               "rest_seconds": 45,
               "target_zone": "RPE 7-8",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
-              "alternatives": ["Planche genoux 60 sec", "Dead bug"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Planche sur les genoux 60 sec",
+                  "en": "Plank on knees 60 sec",
+                  "es": "Plancha con rodillas 60 s"
+                },
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Bird-dog",
+              "name": {
+                "fr": "Bird-dog",
+                "en": "Bird-dog",
+                "es": "Bird-dog"
+              },
+              "match_key": "Bird-dog",
               "sets": 3,
               "reps": "10 par côté",
               "rest_seconds": 30,
               "target_zone": "RPE 6-7",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["wrist-pain", "lower-back-pain"],
-              "alternatives": ["Dead bug", "Bird-dog avant-bras au sol"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "wrist-pain",
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                },
+                {
+                  "fr": "Bird-dog avant-bras au sol",
+                  "en": "Bird-dog on forearm",
+                  "es": "Bird-dog con antebrazo en el suelo"
+                }
+              ],
               "volume_axis": "reps"
             }
           ]
         },
         {
           "day": 5,
-          "name": "Bloc 8 min — palier qualité",
+          "name": {
+            "fr": "Bloc 8 min — palier qualité",
+            "en": "8-min block — quality step up",
+            "es": "Bloque de 8 min — salto de calidad"
+          },
           "type": "mixed",
           "duration_minutes": 38,
-          "warmup": "Échauffement standard 8 min.",
-          "cooldown": "5 min marche + étirements 5 min.",
+          "warmup": {
+            "fr": "Échauffement standard 8 min.",
+            "en": "Standard 8 min warm-up.",
+            "es": "Calentamiento estándar de 8 min."
+          },
+          "cooldown": {
+            "fr": "5 min marche + étirements 5 min.",
+            "en": "5 min walk + 5 min stretching.",
+            "es": "5 min de caminata + 5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Bloc long 8 min",
+              "name": {
+                "fr": "Bloc long 8 min",
+                "en": "Long 8-min block",
+                "es": "Bloque largo de 8 min"
+              },
+              "match_key": "Bloc long 8 min",
               "sets": 1,
               "duration": "8 min course",
               "rest_seconds": 0,
-              "notes": "Premier bloc de 8 min continu du plan, introduit après la consolidation W5. Allure lente et régulière, si tu dois marcher tu marches mais tu reviens au jogging dès que possible. Si tu coupes, ce n'est pas un échec — note la durée tenue, ça devient ta référence.",
+              "notes": {
+                "fr": "Premier bloc de 8 min continu du plan, introduit après la consolidation W5. Allure lente et régulière, si tu dois marcher tu marches mais tu reviens au jogging dès que possible. Si tu coupes, ce n'est pas un échec — note la durée tenue, ça devient ta référence.",
+                "en": "First 8-min continuous block of the plan, introduced after the W5 consolidation. Slow and steady pace; if you need to walk, walk, but get back to jogging as soon as you can. If you break it up, it's not a failure — note how long you held, that becomes your reference.",
+                "es": "Primer bloque de 8 min continuos del plan, introducido tras la consolidación de la S5. Ritmo lento y regular; si tienes que caminar, camina, pero vuelve a trotar en cuanto puedas. Si lo cortas, no es un fracaso — anota cuánto aguantaste, eso se convierte en tu referencia."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 8 min", "Vélo Z1 8 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 8 min",
+                  "en": "Brisk walk 8 min",
+                  "es": "Caminata rápida 8 min"
+                },
+                {
+                  "fr": "Vélo Z1 8 min",
+                  "en": "Z1 cycling 8 min",
+                  "es": "Bici Z1 8 min"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Marche récupération",
+              "name": {
+                "fr": "Marche de récupération",
+                "en": "Recovery walk",
+                "es": "Caminata de recuperación"
+              },
+              "match_key": "Marche récupération",
               "sets": 1,
               "duration": "3 min",
               "rest_seconds": 0,
               "target_zone": "walking-recovery",
               "required_equipment": [],
               "incompatible_constraints": [],
-              "alternatives": ["Repos passif debout 2 min", "Étirements doux gastrocnémiens 30 sec/côté"],
+              "alternatives": [
+                {
+                  "fr": "Repos passif debout 2 min",
+                  "en": "Standing passive rest 2 min",
+                  "es": "Descanso pasivo de pie 2 min"
+                },
+                {
+                  "fr": "Étirements doux des mollets 30 sec/côté",
+                  "en": "Gentle calf stretches 30 sec/side",
+                  "es": "Estiramientos suaves de gemelos 30 s/lado"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Bloc course 4 min",
+              "name": {
+                "fr": "Bloc course 4 min",
+                "en": "4-min run block",
+                "es": "Bloque de carrera de 4 min"
+              },
+              "match_key": "Bloc course 4 min",
               "sets": 1,
               "duration": "4 min course",
               "rest_seconds": 0,
-              "notes": "Retour à un bloc plus court après la nouveauté. Total course séance : 12 min. Volume hebdo W6 = 22 min (vs 18 min W5 cutback = +22%).",
+              "notes": {
+                "fr": "Retour à un bloc plus court après la nouveauté. Total course séance : 12 min. Volume hebdo W6 = 22 min (vs 18 min W5 cutback = +22%).",
+                "en": "Back to a shorter block after the new one. Total running for the session: 12 min. W6 weekly volume = 22 min (vs 18 min in the W5 cutback = +22%).",
+                "es": "Vuelta a un bloque más corto tras la novedad. Total de carrera de la sesión: 12 min. Volumen semanal de la S6 = 22 min (vs 18 min de la semana ligera S5 = +22%)."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 4 min", "Vélo Z1 4 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 4 min",
+                  "en": "Brisk walk 4 min",
+                  "es": "Caminata rápida 4 min"
+                },
+                {
+                  "fr": "Vélo Z1 4 min",
+                  "en": "Z1 cycling 4 min",
+                  "es": "Bici Z1 4 min"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
@@ -869,115 +2332,306 @@
     },
     {
       "week_number": 7,
-      "theme": "Course continue — 12 à 18 min",
-      "goal": "Passer à la course continue sans phases de marche. Volume hebdo +36% vs W6 (22 → 30 min). Introduction du concept d'allure stable.",
+      "theme": {
+        "fr": "Course continue — 12 à 18 min",
+        "en": "Continuous running — 12 to 18 min",
+        "es": "Carrera continua — de 12 a 18 min"
+      },
+      "goal": {
+        "fr": "Passer à la course continue sans phases de marche. Volume hebdo +36% vs W6 (22 → 30 min). Introduction du concept d'allure stable.",
+        "en": "Move to continuous running with no walk breaks. Weekly volume +36% vs W6 (22 → 30 min). Introducing the concept of steady pace.",
+        "es": "Pasar a la carrera continua sin caminatas. Volumen semanal +36% respecto a la S6 (22 → 30 min). Introducción del concepto de ritmo estable."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "12 min continu",
+          "name": {
+            "fr": "12 min en continu",
+            "en": "12 min continuous",
+            "es": "12 min en continuo"
+          },
           "type": "endurance",
           "duration_minutes": 32,
-          "warmup": "Échauffement standard 8 min.",
-          "cooldown": "7 min marche + étirements 5 min.",
+          "warmup": {
+            "fr": "Échauffement standard 8 min.",
+            "en": "Standard 8 min warm-up.",
+            "es": "Calentamiento estándar de 8 min."
+          },
+          "cooldown": {
+            "fr": "7 min marche + étirements 5 min.",
+            "en": "7 min walk + 5 min stretching.",
+            "es": "7 min de caminata + 5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Course continue 12 min",
+              "name": {
+                "fr": "Course continue 12 min",
+                "en": "12-min continuous run",
+                "es": "Carrera continua de 12 min"
+              },
+              "match_key": "Course continue 12 min",
               "sets": 1,
               "duration": "12 min",
               "rest_seconds": 0,
-              "notes": "Première course SANS pause marche. Allure conversationnelle maintenue. Si tu n'arrives pas à tenir les 12 min sans marcher, recule d'une semaine — c'est normal et ce n'est pas un échec.",
+              "notes": {
+                "fr": "Première course SANS pause marche. Allure conversationnelle maintenue. Si tu n'arrives pas à tenir les 12 min sans marcher, recule d'une semaine — c'est normal et ce n'est pas un échec.",
+                "en": "First run with NO walk break. Keep a conversational pace. If you can't hold the 12 min without walking, drop back a week — it's normal and not a failure.",
+                "es": "Primera carrera SIN pausas de caminata. Mantén el ritmo conversacional. Si no logras aguantar los 12 min sin caminar, retrocede una semana — es normal y no es un fracaso."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 22 min", "Vélo Z1 22 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 22 min",
+                  "en": "Brisk walk 22 min",
+                  "es": "Caminata rápida 22 min"
+                },
+                {
+                  "fr": "Vélo Z1 22 min",
+                  "en": "Z1 cycling 22 min",
+                  "es": "Bici Z1 22 min"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Renforcement maintien",
+          "name": {
+            "fr": "Renforcement maintien",
+            "en": "Maintenance strength",
+            "es": "Refuerzo de mantenimiento"
+          },
           "type": "strength",
           "duration_minutes": 35,
-          "warmup": "7 min : marche rapide + mobilité dynamique.",
-          "cooldown": "Étirements 5 min.",
+          "warmup": {
+            "fr": "7 min : marche rapide + mobilité dynamique.",
+            "en": "7 min: brisk walk + dynamic mobility.",
+            "es": "7 min: caminata rápida + movilidad dinámica."
+          },
+          "cooldown": {
+            "fr": "Étirements 5 min.",
+            "en": "5 min stretching.",
+            "es": "5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Wall sit",
+              "name": {
+                "fr": "Chaise contre le mur",
+                "en": "Wall sit",
+                "es": "Sentadilla isométrica en pared"
+              },
+              "match_key": "Wall sit",
               "sets": 3,
               "duration": "60 sec",
               "rest_seconds": 45,
               "target_zone": "RPE 7-8",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Squats partiels", "Step-ups bas"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Squats partiels",
+                  "en": "Partial squats",
+                  "es": "Sentadillas parciales"
+                },
+                {
+                  "fr": "Montées sur step bas",
+                  "en": "Low step-ups",
+                  "es": "Subidas a escalón bajo"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Squats poids du corps",
+              "name": {
+                "fr": "Squats au poids du corps",
+                "en": "Bodyweight squats",
+                "es": "Sentadillas con peso corporal"
+              },
+              "match_key": "Squats poids du corps",
               "sets": 3,
               "reps": "15",
               "rest_seconds": 45,
               "target_zone": "RPE 7-8",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Squats partiels", "Wall sit 50 sec"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Squats partiels",
+                  "en": "Partial squats",
+                  "es": "Sentadillas parciales"
+                },
+                {
+                  "fr": "Chaise contre le mur 50 sec",
+                  "en": "Wall sit 50 sec",
+                  "es": "Sentadilla isométrica en pared 50 s"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Fentes dynamiques",
+              "name": {
+                "fr": "Fentes dynamiques",
+                "en": "Walking lunges",
+                "es": "Zancadas dinámicas"
+              },
+              "match_key": "Fentes dynamiques",
               "sets": 3,
               "reps": "10 par jambe",
               "rest_seconds": 45,
               "target_zone": "RPE 7-8",
               "required_equipment": [],
-              "incompatible_constraints": ["knee-injury"],
-              "alternatives": ["Fentes statiques", "Step-ups"],
+              "incompatible_constraints": [
+                "knee-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Fentes statiques",
+                  "en": "Static lunges",
+                  "es": "Zancadas estáticas"
+                },
+                {
+                  "fr": "Montées sur step",
+                  "en": "Step-ups",
+                  "es": "Subidas a escalón"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Calf raises bipodal",
+              "name": {
+                "fr": "Mollets debout (deux pieds)",
+                "en": "Two-leg calf raises",
+                "es": "Elevaciones de gemelo a dos piernas"
+              },
+              "match_key": "Calf raises bipodal",
               "sets": 3,
               "reps": "20",
               "rest_seconds": 30,
-              "notes": "Retour au format simple pour le maintien avant la séance phare W8.",
+              "notes": {
+                "fr": "Retour au format simple pour le maintien avant la séance phare W8.",
+                "en": "Back to the simple format for maintenance before W8's key session.",
+                "es": "Vuelta al formato simple para el mantenimiento antes de la sesión estrella de la S8."
+              },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
-              "incompatible_constraints": ["ankle-injury"],
-              "alternatives": ["Calf raises sur marche en double", "Wall calf raise"],
+              "incompatible_constraints": [
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Mollets sur une marche (deux pieds)",
+                  "en": "Two-leg calf raises on a step",
+                  "es": "Elevaciones de gemelo a dos piernas en escalón"
+                },
+                {
+                  "fr": "Mollets en appui au mur",
+                  "en": "Wall calf raise",
+                  "es": "Elevaciones de gemelo en la pared"
+                }
+              ],
               "volume_axis": "reps"
             },
             {
-              "name": "Planche ventrale",
+              "name": {
+                "fr": "Planche ventrale",
+                "en": "Front plank",
+                "es": "Plancha frontal"
+              },
+              "match_key": "Planche ventrale",
               "sets": 3,
               "duration": "45 sec",
               "rest_seconds": 45,
               "target_zone": "RPE 7-8",
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain", "shoulder-injury"],
-              "alternatives": ["Planche genoux 60 sec", "Dead bug"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain",
+                "shoulder-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Planche sur les genoux 60 sec",
+                  "en": "Plank on knees 60 sec",
+                  "es": "Plancha con rodillas 60 s"
+                },
+                {
+                  "fr": "Dead bug",
+                  "en": "Dead bug",
+                  "es": "Dead bug"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
         },
         {
           "day": 5,
-          "name": "18 min continu",
+          "name": {
+            "fr": "18 min en continu",
+            "en": "18 min continuous",
+            "es": "18 min en continuo"
+          },
           "type": "endurance",
           "duration_minutes": 38,
-          "warmup": "Échauffement standard 8 min.",
-          "cooldown": "6 min marche + étirements 5 min.",
+          "warmup": {
+            "fr": "Échauffement standard 8 min.",
+            "en": "Standard 8 min warm-up.",
+            "es": "Calentamiento estándar de 8 min."
+          },
+          "cooldown": {
+            "fr": "6 min marche + étirements 5 min.",
+            "en": "6 min walk + 5 min stretching.",
+            "es": "6 min de caminata + 5 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Course continue 18 min",
+              "name": {
+                "fr": "Course continue 18 min",
+                "en": "18-min continuous run",
+                "es": "Carrera continua de 18 min"
+              },
+              "match_key": "Course continue 18 min",
               "sets": 1,
               "duration": "18 min",
               "rest_seconds": 0,
-              "notes": "Objectif : 18 min d'affilée sans marcher. Total course hebdo W7 = 30 min. Si coup dur, marcher 1 min et reprendre — ne pas abandonner. Cadence cible ~170-180 pas/min, attaque médio-pied ou talon léger.",
+              "notes": {
+                "fr": "Objectif : 18 min d'affilée sans marcher. Total course hebdo W7 = 30 min. Si coup dur, marcher 1 min et reprendre — ne pas abandonner. Cadence cible ~170-180 pas/min, attaque médio-pied ou talon léger.",
+                "en": "Goal: 18 min straight without walking. Total weekly running for W7 = 30 min. If you hit a rough patch, walk 1 min and start again — don't give up. Target cadence ~170-180 steps/min, midfoot or light heel strike.",
+                "es": "Objetivo: 18 min seguidos sin caminar. Total de carrera semanal de la S7 = 30 min. Si pasas un mal momento, camina 1 min y retoma — no abandones. Cadencia objetivo ~170-180 pasos/min, apoyo de mediopié o talón ligero."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 28 min", "Vélo Z1 28 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 28 min",
+                  "en": "Brisk walk 28 min",
+                  "es": "Caminata rápida 28 min"
+                },
+                {
+                  "fr": "Vélo Z1 28 min",
+                  "en": "Z1 cycling 28 min",
+                  "es": "Bici Z1 28 min"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
@@ -986,83 +2640,223 @@
     },
     {
       "week_number": 8,
-      "theme": "Séance phare — 30 min continu",
-      "goal": "Tapering sur les deux premières séances, pic W8 J5 à 30 min continu (alignement NHS C25K semaine 9). Équivaut à ~5 km pour un coureur qui tient ~6 min/km, ~3-4 km pour un débutant à 8-10 min/km. Le plan se conclut par une checklist d'autonomie 4 critères mesurables (cf. notes séance phare).",
+      "theme": {
+        "fr": "Séance phare — 30 min continu",
+        "en": "Key session — 30 min continuous",
+        "es": "Sesión estrella — 30 min en continuo"
+      },
+      "goal": {
+        "fr": "Tapering sur les deux premières séances, pic W8 J5 à 30 min continu (alignement NHS C25K semaine 9). Équivaut à ~5 km pour un coureur qui tient ~6 min/km, ~3-4 km pour un débutant à 8-10 min/km. Le plan se conclut par une checklist d'autonomie 4 critères mesurables (cf. notes séance phare).",
+        "en": "Tapering on the first two sessions, W8 D5 peak at 30 min continuous (aligned with NHS C25K week 9). That's ~5 km for a runner holding ~6 min/km, ~3-4 km for a beginner at 8-10 min/km. The plan ends with a 4-criterion measurable self-sufficiency checklist (see key-session notes).",
+        "es": "Afinamiento en las dos primeras sesiones, pico de la S8 D5 a 30 min en continuo (alineado con la semana 9 del NHS C25K). Equivale a ~5 km para un corredor que aguanta ~6 min/km, ~3-4 km para un principiante a 8-10 min/km. El plan termina con una lista de autonomía de 4 criterios medibles (ver las notas de la sesión estrella)."
+      },
       "sessions": [
         {
           "day": 1,
-          "name": "Activation 20 min",
+          "name": {
+            "fr": "Mise en route 20 min",
+            "en": "20-min activation",
+            "es": "Puesta en marcha de 20 min"
+          },
           "type": "endurance",
           "duration_minutes": 35,
-          "warmup": "5 min marche + 3 min activation douce (talons-fesses lents, montées de genoux).",
-          "cooldown": "5 min marche + étirements 2 min.",
+          "warmup": {
+            "fr": "5 min marche + 3 min activation douce (talons-fesses lents, montées de genoux).",
+            "en": "5 min walk + 3 min gentle activation (slow butt kicks, high knees).",
+            "es": "5 min de caminata + 3 min de activación suave (talones a los glúteos lentos, rodillas arriba)."
+          },
+          "cooldown": {
+            "fr": "5 min marche + étirements 2 min.",
+            "en": "5 min walk + 2 min stretching.",
+            "es": "5 min de caminata + 2 min de estiramientos."
+          },
           "exercises": [
             {
-              "name": "Course continue légère 20 min",
+              "name": {
+                "fr": "Course continue légère 20 min",
+                "en": "Light continuous run 20 min",
+                "es": "Carrera continua suave de 20 min"
+              },
+              "match_key": "Course continue légère 20 min",
               "sets": 1,
               "duration": "20 min",
               "rest_seconds": 0,
-              "notes": "Séance de remise en jambes, PAS un test. Allure très confortable, respiration facile. Tapering = réduire pour arriver frais à la séance phare J5.",
+              "notes": {
+                "fr": "Séance de remise en jambes, PAS un test. Allure très confortable, respiration facile. Tapering = réduire pour arriver frais à la séance phare J5.",
+                "en": "A loosening-up session, NOT a test. Very comfortable pace, easy breathing. Tapering = cutting back to arrive fresh for the D5 key session.",
+                "es": "Sesión para soltar las piernas, NO un test. Ritmo muy cómodo, respiración fácil. Afinamiento = reducir para llegar fresco a la sesión estrella del D5."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 30 min", "Vélo Z1 30 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 30 min",
+                  "en": "Brisk walk 30 min",
+                  "es": "Caminata rápida 30 min"
+                },
+                {
+                  "fr": "Vélo Z1 30 min",
+                  "en": "Z1 cycling 30 min",
+                  "es": "Bici Z1 30 min"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
         },
         {
           "day": 3,
-          "name": "Mobilité pré-test",
+          "name": {
+            "fr": "Mobilité pré-test",
+            "en": "Pre-test mobility",
+            "es": "Movilidad pre-test"
+          },
           "type": "mobility",
           "duration_minutes": 30,
-          "warmup": "5 min marche + mobilité dynamique 5 min (cercles hanches, chevilles, talons-fesses lents).",
-          "cooldown": "5 min respiration profonde + visualisation positive de la séance phare de J5.",
+          "warmup": {
+            "fr": "5 min marche + mobilité dynamique 5 min (cercles hanches, chevilles, talons-fesses lents).",
+            "en": "5 min walk + 5 min dynamic mobility (hip circles, ankles, slow butt kicks).",
+            "es": "5 min de caminata + 5 min de movilidad dinámica (círculos de cadera, tobillos, talones a los glúteos lentos)."
+          },
+          "cooldown": {
+            "fr": "5 min respiration profonde + visualisation positive de la séance phare de J5.",
+            "en": "5 min deep breathing + positive visualization of the D5 key session.",
+            "es": "5 min de respiración profunda + visualización positiva de la sesión estrella del D5."
+          },
           "exercises": [
             {
-              "name": "Routine mobilité hanches + chevilles",
+              "name": {
+                "fr": "Routine mobilité hanches + chevilles",
+                "en": "Hip + ankle mobility routine",
+                "es": "Rutina de movilidad de caderas + tobillos"
+              },
+              "match_key": "Routine mobilité hanches + chevilles",
               "sets": 1,
               "duration": "10 min",
               "rest_seconds": 0,
-              "notes": "Pas d'intensité, relâchement. Prépare les articulations au pic de W8 J5. Cercles hanches 10/sens, cercles chevilles 10/sens, fentes basses tenues 30 sec/côté, squat profond tenu 30 sec.",
+              "notes": {
+                "fr": "Pas d'intensité, relâchement. Prépare les articulations au pic de W8 J5. Cercles hanches 10/sens, cercles chevilles 10/sens, fentes basses tenues 30 sec/côté, squat profond tenu 30 sec.",
+                "en": "No intensity, stay relaxed. Prepares the joints for the W8 D5 peak. Hip circles 10/direction, ankle circles 10/direction, low lunges held 30 sec/side, deep squat held 30 sec.",
+                "es": "Sin intensidad, en relajación. Prepara las articulaciones para el pico de la S8 D5. Círculos de cadera 10/sentido, círculos de tobillo 10/sentido, zancadas bajas mantenidas 30 s/lado, sentadilla profunda mantenida 30 s."
+              },
               "target_zone": null,
-              "required_equipment": ["mat"],
+              "required_equipment": [
+                "mat"
+              ],
               "incompatible_constraints": [],
-              "alternatives": ["Yoga doux 15 min", "Étirements statiques globaux 10 min"],
+              "alternatives": [
+                {
+                  "fr": "Yoga doux 15 min",
+                  "en": "Gentle yoga 15 min",
+                  "es": "Yoga suave 15 min"
+                },
+                {
+                  "fr": "Étirements statiques globaux 10 min",
+                  "en": "Full-body static stretching 10 min",
+                  "es": "Estiramientos estáticos globales 10 min"
+                }
+              ],
               "volume_axis": "duration"
             },
             {
-              "name": "Activation fessiers légère",
+              "name": {
+                "fr": "Activation fessiers légère",
+                "en": "Light glute activation",
+                "es": "Activación ligera de glúteos"
+              },
+              "match_key": "Activation fessiers légère",
               "sets": 1,
               "duration": "5 min",
               "rest_seconds": 0,
-              "notes": "10 ponts fessiers + 10 clamshells par côté + 10 bird-dogs par côté, sans charge.",
+              "notes": {
+                "fr": "10 ponts fessiers + 10 clamshells par côté + 10 bird-dogs par côté, sans charge.",
+                "en": "10 glute bridges + 10 clamshells per side + 10 bird-dogs per side, no load.",
+                "es": "10 puentes de glúteos + 10 almejas por lado + 10 bird-dogs por lado, sin carga."
+              },
               "target_zone": null,
-              "required_equipment": ["mat"],
-              "incompatible_constraints": ["lower-back-pain"],
-              "alternatives": ["Marche rapide 10 min", "Vélo Z1 10 min"],
+              "required_equipment": [
+                "mat"
+              ],
+              "incompatible_constraints": [
+                "lower-back-pain"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 10 min",
+                  "en": "Brisk walk 10 min",
+                  "es": "Caminata rápida 10 min"
+                },
+                {
+                  "fr": "Vélo Z1 10 min",
+                  "en": "Z1 cycling 10 min",
+                  "es": "Bici Z1 10 min"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]
         },
         {
           "day": 5,
-          "name": "Séance phare — 30 min continu",
+          "name": {
+            "fr": "Séance phare — 30 min continu",
+            "en": "Key session — 30 min continuous",
+            "es": "Sesión estrella — 30 min en continuo"
+          },
           "type": "endurance",
           "duration_minutes": 55,
-          "warmup": "5 min marche progressive + 3 min activation (talons-fesses, montées de genoux lents).",
-          "cooldown": "7 min marche lente + étirements complets 10 min (mollets, quadriceps, ischio-jambiers, fessiers, piriformis). Hydratation + collation post-effort.",
+          "warmup": {
+            "fr": "5 min marche progressive + 3 min activation (talons-fesses, montées de genoux lents).",
+            "en": "5 min progressive walk + 3 min activation (butt kicks, slow high knees).",
+            "es": "5 min de caminata progresiva + 3 min de activación (talones a los glúteos, rodillas arriba lentas)."
+          },
+          "cooldown": {
+            "fr": "7 min marche lente + étirements complets 10 min (mollets, quadriceps, ischio-jambiers, fessiers, piriformis). Hydratation + collation post-effort.",
+            "en": "7 min slow walk + 10 min full stretching (calves, quads, hamstrings, glutes, piriformis). Hydrate + post-effort snack.",
+            "es": "7 min de caminata lenta + 10 min de estiramientos completos (gemelos, cuádriceps, isquiotibiales, glúteos, piriforme). Hidrátate + tentempié post-esfuerzo."
+          },
           "exercises": [
             {
-              "name": "30 min course continue",
+              "name": {
+                "fr": "30 min de course continue",
+                "en": "30 min continuous run",
+                "es": "30 min de carrera continua"
+              },
+              "match_key": "30 min course continue",
               "sets": 1,
               "duration": "30 min",
               "rest_seconds": 0,
-              "notes": "Objectif : 30 min sans marcher, à TON allure. Si tu couvres 5 km dans ce temps, super. Sinon tu continues au-delà de 30 min jusqu'à atteindre 5 km (max 45 min), ou tu t'arrêtes à 30 min et le 5K sera pour la semaine suivante en course libre. Les deux scénarios sont des réussites — l'objectif réel est la course continue, pas le chrono.\n\nCHECKLIST D'AUTONOMIE (à valider après la séance) :\n1. Je tiens 30 min de course sans marcher au moins une fois sur cette séance.\n2. Je respire en phrases complètes pendant la majorité du run (test de la parole maintenu).\n3. Je sens mes mollets fatigués mais sans douleur tibiale (= shin splints sous contrôle).\n4. Je récupère ma fréquence cardiaque en dessous de 100 bpm en moins de 3 min après la course (proxy : je me sens calme et capable de tenir une conversation normale sous 3 min).\n\nSi tu coches 3+ critères, tu es autonome pour enchaîner sur un programme `recreational` 10K. Si 2 critères ou moins, refais W7 et W8 (cycle de 2 sem) avant de progresser.",
+              "notes": {
+                "fr": "Objectif : 30 min sans marcher, à TON allure. Si tu couvres 5 km dans ce temps, super. Sinon tu continues au-delà de 30 min jusqu'à atteindre 5 km (max 45 min), ou tu t'arrêtes à 30 min et le 5K sera pour la semaine suivante en course libre. Les deux scénarios sont des réussites — l'objectif réel est la course continue, pas le chrono.\n\nCHECKLIST D'AUTONOMIE (à valider après la séance) :\n1. Je tiens 30 min de course sans marcher au moins une fois sur cette séance.\n2. Je respire en phrases complètes pendant la majorité du run (test de la parole maintenu).\n3. Je sens mes mollets fatigués mais sans douleur tibiale (= shin splints sous contrôle).\n4. Je récupère ma fréquence cardiaque en dessous de 100 bpm en moins de 3 min après la course (proxy : je me sens calme et capable de tenir une conversation normale sous 3 min).\n\nSi tu coches 3+ critères, tu es autonome pour enchaîner sur un programme `recreational` 10K. Si 2 critères ou moins, refais W7 et W8 (cycle de 2 sem) avant de progresser.",
+                "en": "Goal: 30 min without walking, at YOUR pace. If you cover 5 km in that time, great. Otherwise keep going past 30 min until you reach 5 km (max 45 min), or stop at 30 min and save the 5K for next week as a free run. Both scenarios are wins — the real goal is continuous running, not the clock.\n\nSELF-SUFFICIENCY CHECKLIST (to validate after the session):\n1. I held 30 min of running without walking even once in this session.\n2. I breathed in full sentences for most of the run (talk test maintained).\n3. My calves feel tired but with no shin pain (= shin splints under control).\n4. My heart rate drops below 100 bpm within 3 min of finishing (proxy: I feel calm and able to hold a normal conversation within 3 min).\n\nIf you tick 3+ criteria, you're ready to move on to a `recreational` 10K program. If 2 or fewer, redo W7 and W8 (a 2-week cycle) before progressing.",
+                "es": "Objetivo: 30 min sin caminar, a TU ritmo. Si cubres 5 km en ese tiempo, genial. Si no, sigue más allá de los 30 min hasta llegar a 5 km (máx. 45 min), o párate a los 30 min y deja el 5K para la semana siguiente como carrera libre. Ambos escenarios son éxitos — el objetivo real es la carrera continua, no el crono.\n\nLISTA DE AUTONOMÍA (a validar tras la sesión):\n1. Aguanto 30 min de carrera sin caminar ni una sola vez en esta sesión.\n2. Respiro en frases completas durante la mayor parte de la carrera (test del habla mantenido).\n3. Siento los gemelos cansados pero sin dolor tibial (= periostitis bajo control).\n4. Recupero la frecuencia cardíaca por debajo de 100 bpm en menos de 3 min tras la carrera (indicador: me siento tranquilo y capaz de mantener una conversación normal en menos de 3 min).\n\nSi marcas 3+ criterios, eres autónomo para pasar a un programa `recreational` de 10K. Si 2 o menos, repite la S7 y la S8 (ciclo de 2 semanas) antes de progresar."
+              },
               "target_zone": "Daniels-E",
               "required_equipment": [],
-              "incompatible_constraints": ["shin-splints", "knee-injury", "cardiac-clearance-required", "ankle-injury"],
-              "alternatives": ["Marche rapide 45 min", "Vélo Z1 45 min"],
+              "incompatible_constraints": [
+                "shin-splints",
+                "knee-injury",
+                "cardiac-clearance-required",
+                "ankle-injury"
+              ],
+              "alternatives": [
+                {
+                  "fr": "Marche rapide 45 min",
+                  "en": "Brisk walk 45 min",
+                  "es": "Caminata rápida 45 min"
+                },
+                {
+                  "fr": "Vélo Z1 45 min",
+                  "en": "Z1 cycling 45 min",
+                  "es": "Bici Z1 45 min"
+                }
+              ],
               "volume_axis": "duration"
             }
           ]

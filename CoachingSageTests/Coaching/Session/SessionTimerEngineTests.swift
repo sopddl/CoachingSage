@@ -287,6 +287,36 @@ final class SessionTimerEngineTests: XCTestCase {
             AdaptedExercise(name: "x", originalName: "x", sets: 3)), SessionTimerPhaseBuilder.defaultWorkSeconds)
     }
 
+    // MARK: - back() (revue ui-reviewer 2026-06-07 — retour arrière en minuté)
+
+    func test_back_returnsToPreviousPhaseAndResetsTime() {
+        let e = SessionTimerEngine(phases: [phase(.work, 40), phase(.rest, 20)])
+        e.start()
+        e.skip()
+        XCTAssertEqual(e.currentIndex, 1)
+        e.back()
+        XCTAssertEqual(e.currentIndex, 0)
+        XCTAssertEqual(e.remaining, 40)
+    }
+
+    func test_back_onFirstPhase_restartsItNoUnderflow() {
+        let e = SessionTimerEngine(phases: [phase(.work, 40)])
+        e.start(); tick(e, 2)
+        e.back()
+        XCTAssertEqual(e.currentIndex, 0)
+        XCTAssertEqual(e.remaining, 40)
+    }
+
+    func test_back_whenFinished_reopensLastPhase() {
+        let e = SessionTimerEngine(phases: [phase(.work, 40)])
+        e.start(); e.skip()
+        XCTAssertTrue(e.isFinished)
+        e.back()
+        XCTAssertFalse(e.isFinished)
+        XCTAssertEqual(e.currentPhase?.kind, .work)
+        XCTAssertEqual(e.remaining, 40)
+    }
+
     private func tick(_ e: SessionTimerEngine, _ n: Int) {
         for _ in 0..<n { e.tick() }
     }

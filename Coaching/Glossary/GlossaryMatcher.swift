@@ -116,6 +116,25 @@ extension Glossary {
         ("reps", "reps"),
         ("cars", "cars"),
         ("rir", "rir"),
+        // Revue comité 2026-06-06 — jargon échauffement (glutes / band / mobilité / récup).
+        // Multi-mots / longs d'abord (le tri global longest-first gère l'ordre réel).
+        ("resistance band", "band"),
+        ("récupération", "recovery"),
+        ("recuperation", "recovery"),
+        ("élastique", "band"),
+        ("elastique", "band"),
+        ("mini-band", "band"),
+        ("mini band", "band"),
+        ("recovery", "recovery"),
+        ("fessiers", "glutes"),
+        ("mobilité", "mobility"),
+        ("mobilite", "mobility"),
+        ("mobility", "mobility"),
+        ("glutes", "glutes"),
+        ("glute", "glutes"),
+        ("récup", "recovery"),
+        ("recup", "recovery"),
+        ("band", "band"),
         // Story 3.26 Phase A — 27 termes sport-spécifiques (yoga / tennis / football / hiking / triathlon / HIIT).
         // Multi-mots d'abord (longest-first via sortedPatterns).
         // Yoga
