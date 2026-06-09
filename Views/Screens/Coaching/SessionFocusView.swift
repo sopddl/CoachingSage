@@ -304,35 +304,29 @@ struct SessionFocusView: View {
         let hasAny = ex.sets != nil || (ex.reps?.isEmpty == false) || (ex.duration?.isEmpty == false)
             || (ex.restSeconds ?? 0) > 0 || (ex.targetZone?.isEmpty == false)
         if hasAny {
-            HStack(spacing: 6) {
-                if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
-                    chip { Text(verbatim: "\(sets) × \(reps.sanitizedForDisplay)") }
-                } else if let reps = ex.reps, !reps.isEmpty {
-                    chip { Text(verbatim: reps.sanitizedForDisplay) }
-                } else if let sets = ex.sets {
-                    chip { Text(verbatim: "\(sets) ×") }
-                }
-                if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
-                    chip { Text(verbatim: duration.sanitizedForDisplay) }
-                }
-                if let rest = ex.restSeconds, rest > 0 {
-                    chip { Text("coaching.adapter.exercise.rest \(rest)") }
+            // Revue qualité thème #1 : l'intensité passe sur SA PROPRE ligne (référentiel
+            // dosage, « bandeau 1 ligne ») — un libellé sensation (« endurance — tu peux
+            // parler ») ne tient pas dans la rangée de chips sets/reps/repos sans tronquer.
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 6) {
+                    if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
+                        chip { Text(verbatim: "\(sets) × \(reps.sanitizedForDisplay)") }
+                    } else if let reps = ex.reps, !reps.isEmpty {
+                        chip { Text(verbatim: reps.sanitizedForDisplay) }
+                    } else if let sets = ex.sets {
+                        chip { Text(verbatim: "\(sets) ×") }
+                    }
+                    if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
+                        chip { Text(verbatim: duration.sanitizedForDisplay) }
+                    }
+                    if let rest = ex.restSeconds, rest > 0 {
+                        chip { Text("coaching.adapter.exercise.rest \(rest)") }
+                    }
+                    Spacer(minLength: 0)
                 }
                 if let zone = ex.targetZone, !zone.isEmpty {
-                    // Chantier dosage D1/AC1 : le jargon RPE/RIR ne s'affiche plus —
-                    // « RPE 6-7 » devient « effort 6-7 sur 10 » (chip neutre, plus de
-                    // glossaire). Les vraies zones d'allure (Z2, Daniels) gardent le badge.
-                    if let effort = DosageFormatting.plainEffort(from: zone, locale: locale) {
-                        chip { Text(verbatim: effort) }
-                    } else {
-                        GlossaryTermBadge(term: zone)
-                            .font(.caption2.bold())
-                            .padding(.horizontal, 8).padding(.vertical, 4)
-                            .background(Color.coachingPrimary.opacity(0.10))
-                            .clipShape(Capsule())
-                    }
+                    IntensityLabel(zone: zone)
                 }
-                Spacer(minLength: 0)
             }
         }
     }
