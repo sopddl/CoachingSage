@@ -47,6 +47,13 @@ enum DosageFormatting {
         }
         if lower.contains("sweet") { return "coaching.zone.sensation.sweetspot" }
 
+        // Muscu — %1RM 75-80 / 80-85 / 85-90 % → échelle de lourdeur (la borne basse distingue).
+        // Coexiste avec la consigne de charge (ChargeGuidance) : ici on dit « combien c'est lourd »,
+        // la consigne dit « comment doser » — adjacence validée par revue persona (réserve #2).
+        if lower.contains("1rm"), let n = firstCapture(#"1rm\D*(\d{2})"#, in: lower) {
+            return "coaching.zone.sensation.load.\(n)"
+        }
+
         // Course — Daniels-E/M/T/I/R + allures de référence.
         if let c = firstCapture(#"daniels[-\s]?([emtir])"#, in: lower) {
             return "coaching.zone.sensation.daniels.\(c)"

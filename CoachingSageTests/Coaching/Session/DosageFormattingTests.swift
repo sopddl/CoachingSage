@@ -56,6 +56,14 @@ final class DosageFormattingTests: XCTestCase {
         XCTAssertEqual(DosageFormatting.sensationKey(for: "Z4"), "coaching.zone.sensation.hr.z4")
     }
 
+    // %1RM (muscu) → échelle de lourdeur, distinguée par la borne basse.
+    func test_sensationKey_mapsLoadPercent() {
+        XCTAssertEqual(DosageFormatting.sensationKey(for: "%1RM 75-80%"), "coaching.zone.sensation.load.75")
+        XCTAssertEqual(DosageFormatting.sensationKey(for: "%1RM 80-85%"), "coaching.zone.sensation.load.80")
+        XCTAssertEqual(DosageFormatting.sensationKey(for: "%1RM 85-90%"), "coaching.zone.sensation.load.85")
+        XCTAssertEqual(DosageFormatting.sensationLabel(from: "%1RM 85-90%", locale: fr), "proche du max — dernière rép dure")
+    }
+
     // FTP-Zx ne doit PAS être happé par le matcher des zones FC génériques.
     func test_sensationKey_ftpNotConfusedWithGenericHRZone() {
         XCTAssertEqual(DosageFormatting.sensationKey(for: "FTP-Z3"), "coaching.zone.sensation.ftp.z3")
@@ -65,7 +73,6 @@ final class DosageFormattingTests: XCTestCase {
     // Hors périmètre thème #1 → nil (l'appelant garde le badge glossaire / chip effort).
     func test_sensationKey_nilForOutOfScope() {
         XCTAssertNil(DosageFormatting.sensationKey(for: "RPE 6-7"))      // → plainEffort
-        XCTAssertNil(DosageFormatting.sensationKey(for: "%1RM 85-90%"))  // charge muscu (autre chantier)
         XCTAssertNil(DosageFormatting.sensationKey(for: "technique"))    // déjà clair
         XCTAssertNil(DosageFormatting.sensationKey(for: "maintien 30 s"))// déjà clair
         XCTAssertNil(DosageFormatting.sensationKey(for: "EMOM"))         // format HIIT (thème #5)
@@ -79,7 +86,7 @@ final class DosageFormattingTests: XCTestCase {
         XCTAssertEqual(z2, "endurance — tu peux parler")
         XCTAssertFalse(z2!.uppercased().contains("FTP"))
         let css = DosageFormatting.sensationLabel(from: "CSS pace", locale: fr)
-        XCTAssertEqual(css, "allure seuil")
+        XCTAssertEqual(css, "seuil — 2-3 mots")
         XCTAssertFalse(css!.uppercased().contains("CSS"))
     }
 

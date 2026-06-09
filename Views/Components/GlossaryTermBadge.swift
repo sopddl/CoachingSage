@@ -9,10 +9,6 @@ import SwiftUI
 
 struct GlossaryTermBadge: View {
     let term: String
-    /// Revue qualité thème #1 : quand le code coach est relégué en sous-texte derrière une
-    /// sensation (« endurance — tu peux parler » + `FTP-Z2`), on l'affiche en gris discret —
-    /// il reste tappable (icône info conservée pour la découvrabilité), mais n'est plus l'accent.
-    var secondary: Bool = false
 
     @State private var showDefinition: Bool = false
 
@@ -26,7 +22,7 @@ struct GlossaryTermBadge: View {
                     Image(systemName: "info.circle")
                         .font(.caption2)
                 }
-                .foregroundStyle(secondary ? AnyShapeStyle(.secondary) : AnyShapeStyle(Color.coachingPrimary))
+                .foregroundStyle(Color.coachingPrimary)
             }
             .buttonStyle(.plain)
             .accessibilityIdentifier("coaching.glossary.term.\(entry.id)")
