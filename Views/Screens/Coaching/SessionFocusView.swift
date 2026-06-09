@@ -168,7 +168,12 @@ struct SessionFocusView: View {
                 repository: deps.adaptedProgramRepository
             )
             completionVM = vm
+            // Device-test 2026-06-09 : le « Bravo » était mangé par la feuille notation
+            // (elle montait direct). On célèbre D'ABORD, puis on bascule sur la feuille.
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) { showCompletion = true }
             Task {
+                // La célébration reste lisible ≥1.6 s, en parallèle de l'enregistrement.
+                async let minDisplay: Void = Task.sleep(nanoseconds: 1_600_000_000)
                 await vm.load()
                 // Story 3.35h — enregistre la complétion DÈS la fin du FOCUS (et non
                 // seulement si l'user valide la feuille) → le dashboard ne reproposera
@@ -177,6 +182,8 @@ struct SessionFocusView: View {
                 if vm.completion == nil {
                     await vm.save(actualDurationMinutes: nil, rpe: nil, notes: nil)
                 }
+                try? await minDisplay
+                withAnimation(.easeInOut(duration: 0.25)) { showCompletion = false }
                 showCompleteSheet = true
             }
         } else {
