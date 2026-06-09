@@ -37,4 +37,24 @@ final class ChargeGuidanceTests: XCTestCase {
         // Exo muscu non reconnu comme élastique/poids du corps → charge libre par défaut.
         XCTAssertEqual(ChargeGuidance.resistance(for: exo("Développé Arnold"), isStrength: true), .freeOrMachine)
     }
+
+    // Device-test #16 : exo en TENUE (durée, pas de reps) → repère de tension, pas « reps ».
+    func test_isHold_durationNoReps() {
+        let plank = AdaptedExercise(name: LocalizedText(fr: "Planche ventrale"), originalName: "Planche ventrale",
+                                    reps: nil, duration: "30 sec")
+        XCTAssertTrue(ChargeGuidance.isHold(plank))
+        let wallSit = AdaptedExercise(name: LocalizedText(fr: "Chaise contre le mur"), originalName: "Chaise contre le mur",
+                                      reps: "", duration: "30 sec")
+        XCTAssertTrue(ChargeGuidance.isHold(wallSit))
+    }
+
+    func test_isHold_falseWhenReps() {
+        let squat = AdaptedExercise(name: LocalizedText(fr: "Squat"), originalName: "Squat",
+                                    reps: "10", duration: nil)
+        XCTAssertFalse(ChargeGuidance.isHold(squat))
+        // Reps + durée (estimation) → pas une tenue : les reps priment.
+        let repsAndDur = AdaptedExercise(name: LocalizedText(fr: "Pont fessier"), originalName: "Pont fessier",
+                                         reps: "12", duration: "40 sec")
+        XCTAssertFalse(ChargeGuidance.isHold(repsAndDur))
+    }
 }

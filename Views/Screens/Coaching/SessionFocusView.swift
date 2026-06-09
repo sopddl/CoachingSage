@@ -337,7 +337,11 @@ struct SessionFocusView: View {
     /// JAMAIS de kg. `nil` (exo non-muscu / cas vide) → rien (jamais « 0 kg », règle P0).
     @ViewBuilder
     private func chargeGuidance(for ex: AdaptedExercise) -> some View {
-        if let resistance = ChargeGuidance.resistance(for: ex, isStrength: isStrengthSession) {
+        // Exo en TENUE (planche, chaise au mur…) : repère de tension, pas « ajoute des reps »
+        // (device-test #16). Sinon : consigne charge selon la résistance (band/poids/charge libre).
+        if isStrengthSession, ChargeGuidance.isHold(ex) {
+            cueLabel("coaching.dosage.charge.hold", icon: "figure.core.training")
+        } else if let resistance = ChargeGuidance.resistance(for: ex, isStrength: isStrengthSession) {
             let key: LocalizedStringKey = {
                 switch resistance {
                 case .band: return "coaching.dosage.charge.band"
@@ -345,11 +349,15 @@ struct SessionFocusView: View {
                 case .freeOrMachine: return "coaching.dosage.charge.hint"
                 }
             }()
-            Label { Text(key) } icon: { Image(systemName: "scalemass") }
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
+            cueLabel(key, icon: "scalemass")
         }
+    }
+
+    private func cueLabel(_ key: LocalizedStringKey, icon: String) -> some View {
+        Label { Text(key) } icon: { Image(systemName: icon) }
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .fixedSize(horizontal: false, vertical: true)
     }
 
     private func chip<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
@@ -670,6 +678,14 @@ struct SessionFocusView: View {
                             chronoFilet
                         } else {
                             bigTime
+                            // Exo muscu en TENUE (pas de reps : chaise au mur, planche) : la
+                            // consigne était couplée au héros reps → invisible (#16). On la rend
+                            // ici aussi, en repère de tension. Gardé à .work muscu (pas en récup).
+                            if isStrengthSession, phase.kind == .work, let ex = exercise(at: phase.stepIndex) {
+                                chargeGuidance(for: ex)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.top, 2)
+                            }
                         }
                         timeScrubber(phase: phase)
                         if let next = upcomingLabel, next != displayString(phase.label) {

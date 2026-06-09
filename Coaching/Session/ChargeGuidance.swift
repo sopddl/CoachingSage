@@ -49,4 +49,14 @@ public enum ChargeGuidance {
         //    reste valable et n'impose aucun kg).
         return .freeOrMachine
     }
+
+    /// Exo muscu en TENUE (chaise au mur, planche…) : pas de reps mais une durée. La consigne
+    /// « reps en réserve » n'a alors aucun sens → l'appelant affiche un repère de TENSION
+    /// (« tiens jusqu'à ce que ça devienne dur »). Device-test 2026-06-09 : ces exos
+    /// n'affichaient AUCUNE consigne (couplée au héros reps) — c'est le trou #16.
+    public static func isHold(_ exercise: AdaptedExercise) -> Bool {
+        let hasReps = !(exercise.reps?.isEmpty ?? true)
+        let hasDuration = !(exercise.duration?.isEmpty ?? true)
+        return !hasReps && hasDuration
+    }
 }
