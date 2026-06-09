@@ -145,6 +145,23 @@ struct ExercisePatternIllustration: View {
             tripletStrip { LegPressIllustration(sportCode: sportCode, frame: $0) }
         case .reverseHyper:
             tripletStrip { ReverseHyperIllustration(sportCode: sportCode, frame: $0) }
+        // Party illustrations 2026-06-08 — lot HIIT
+        case .mountainClimber:
+            tripletStrip { MountainClimberIllustration(sportCode: sportCode, frame: $0) }
+        case .jumpingJack:
+            tripletStrip { JumpingJackIllustration(sportCode: sportCode, frame: $0) }
+        case .tibialisRaise:
+            tripletStrip { TibialisRaiseIllustration(sportCode: sportCode, frame: $0) }
+        case .turkishGetUp:
+            tripletStrip { TurkishGetUpIllustration(sportCode: sportCode, frame: $0) }
+        case .powerClean:
+            tripletStrip { PowerCleanIllustration(sportCode: sportCode, frame: $0) }
+        case .sledPush:
+            tripletStrip { SledPushIllustration(sportCode: sportCode, frame: $0) }
+        case .farmerCarry:
+            tripletStrip { FarmerCarryIllustration(sportCode: sportCode, frame: $0) }
+        case .doubleUnders:
+            tripletStrip { DoubleUndersIllustration(sportCode: sportCode, frame: $0) }
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels (foulée running, crawl, fractionné, drill rattrapé).

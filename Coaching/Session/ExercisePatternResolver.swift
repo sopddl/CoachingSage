@@ -217,6 +217,34 @@ public enum ExercisePatternResolver {
             return .reverseHyper
         }
 
+        // Party illustrations 2026-06-08 — lot HIIT (placé EN TÊTE : « jumping jack » contient
+        // « jump » qui matcherait .plyo plus bas, donc à intercepter avant).
+        if matchesAny(lower, ["mountain climber", "mountain-climber", "climber alterné", "climber alterne"]) {
+            return .mountainClimber
+        }
+        if matchesAny(lower, ["jumping jack", "jumping-jack", "step-jack", "step jack", "stepjack", "jumping-jacks"]) {
+            return .jumpingJack
+        }
+        if matchesAny(lower, ["tibialis", "tibial antérieur", "tibial anterieur"]) {
+            return .tibialisRaise
+        }
+        if matchesAny(lower, ["turkish get-up", "turkish getup", "turkish get up", "tgu", "get-up turc", "relevé turc", "releve turc"]) {
+            return .turkishGetUp
+        }
+        if matchesAny(lower, ["power clean", "hang clean", "hang power clean", "power snatch", "hang snatch",
+                              "hang power snatch", "clean barbell", "clean db", "clean & jerk", "épaulé", "epaule-jete", "arraché", "arrache", "snatch"]) {
+            return .powerClean
+        }
+        if matchesAny(lower, ["sled push", "sled-push", "sled", "traîneau", "traineau", "prowler"]) {
+            return .sledPush
+        }
+        if matchesAny(lower, ["farmer carry", "farmer's carry", "farmers carry", "farmer walk", "farmers walk", "port de charge", "loaded carry"]) {
+            return .farmerCarry
+        }
+        if matchesAny(lower, ["double-under", "double under", "doubleunder", "double-unders", "double unders"]) {
+            return .doubleUnders
+        }
+
         // Strength keywords (ordre = du plus spécifique au plus générique)
         // Story 3.23 Tier 1 Jalon 2 — pattern dédié `.hipThrust` (créé Jalon 2).
         // Mapping initial Jalon 1 vers `.hinge` annulé.
@@ -279,7 +307,8 @@ public enum ExercisePatternResolver {
                               "ischio nordique", "ischio nordic"]) {
             return .nordicCurl
         }
-        if matchesAny(lower, ["jump", "burpee", "bondiss", "saut", "box jump", "lateral bound", "bound latéral"]) {
+        if matchesAny(lower, ["jump", "burpee", "bondiss", "saut", "box jump", "lateral bound", "bound latéral",
+                              "depth drop", "depth jump", "drop jump", "atterrissage", "depth landing"]) {
             return .plyo
         }
         // Story 3.23 Lot 5 — Foam rolling AVANT mobility générique

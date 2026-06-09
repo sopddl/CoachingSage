@@ -112,6 +112,23 @@ public enum SessionTipCatalog {
             return "coaching.tip.squat"              // quads + fessiers compound
         case .reverseHyper:
             return "coaching.tip.hipThrust"          // fessiers + lombaires postérieurs
+        // Party illustrations 2026-06-08 — lot HIIT (réutilise tips proches) :
+        case .mountainClimber:
+            return "coaching.tip.core"               // gainage dynamique
+        case .jumpingJack:
+            return "coaching.tip.plyo"               // pliométrie légère
+        case .tibialisRaise:
+            return "coaching.tip.calfRaise"          // cheville / bas de jambe
+        case .turkishGetUp:
+            return "coaching.tip.core"               // stabilité globale
+        case .powerClean:
+            return "coaching.tip.plyo"               // triple extension explosive
+        case .sledPush:
+            return "coaching.tip.squat"              // poussée des jambes
+        case .farmerCarry:
+            return "coaching.tip.core"               // anti-flexion / grip
+        case .doubleUnders:
+            return "coaching.tip.plyo"               // sauts répétés
         case .generic:
             return nil
         }
