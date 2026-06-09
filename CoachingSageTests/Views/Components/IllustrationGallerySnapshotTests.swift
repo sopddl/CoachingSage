@@ -33,6 +33,7 @@ final class IllustrationGallerySnapshotTests: XCTestCase {
         ("hipthrust-barbell", "Hip thrust barre", "Hip thrust barre"),
         ("glutebridge", "Glute Bridge (barre)", "Glute Bridge (barre)"),
         ("pushh-pushup", "Pompes", "Pompes complètes (pattern push horizontal)"),
+        ("pushh-incline-chair", "Pompes inclinées sur chaise", "Pompes inclinées mains sur chaise"),
         ("pushh-bench-barbell", "Bench Press (barre)", "Bench Press (barre)"),
         ("pushh-bench-dumbbell", "Incline DB bench press 30°", "Incline DB bench press 30°"),
         ("pushh-dips", "Dips lestés", "Dips lestés"),

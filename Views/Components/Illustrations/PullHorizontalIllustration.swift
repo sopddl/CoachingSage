@@ -49,18 +49,24 @@ struct PullHorizontalIllustration: View {
                 StrengthFigureKit.barbellEndOn(ctx, center: hand, s: s)
 
             case .dumbbellRow:
-                // Appui une main sur le banc, buste horizontal, l'autre main tire l'haltère
-                StrengthFigureKit.box(ctx, rect: CGRect(x: 28 * s, y: 30 * s, width: 14 * s, height: 6 * s), s: s, filled: true)
-                let hip = p(12, 26), shldr = p(30, 26), headC = p(36, 25)
-                // jambe arrière au sol
-                StrengthFigureKit.limb(ctx, [hip, p(14, 36), p(12, 44)], color: body, s: s)
-                StrengthFigureKit.limb(ctx, [hip, shldr], color: body, s: s)
+                // Device-test 2026-06-09 : la tête semblait posée sur le banc et le GENOU
+                // d'appui manquait. Position canonique = un GENOU + une MAIN sur le banc,
+                // buste horizontal au-dessus, tête dégagée vers l'avant, l'autre bras tire.
+                StrengthFigureKit.box(ctx, rect: CGRect(x: 10 * s, y: 31 * s, width: 28 * s, height: 4 * s), s: s, filled: true)
+                StrengthFigureKit.limb(ctx, [p(14, 35), p(14, 44)], color: IllustrationStyle.equipment, s: s) // pied banc avant
+                StrengthFigureKit.limb(ctx, [p(34, 35), p(34, 44)], color: IllustrationStyle.equipment, s: s) // pied banc arrière
+                let hip = p(20, 26), shldr = p(33, 26), headC = p(38, 24)
+                let knee = p(17, 31)                              // genou POSÉ sur le banc
+                StrengthFigureKit.limb(ctx, [p(12, 31), knee], color: body, s: s)   // tibia sur le banc
+                StrengthFigureKit.limb(ctx, [knee, hip], color: body, s: s)         // cuisse (à genoux)
+                StrengthFigureKit.limb(ctx, [hip, shldr], color: body, s: s)        // dos plat horizontal
+                StrengthFigureKit.limb(ctx, [hip, p(17, 36), p(18, 44)], color: body, s: s) // jambe libre au sol
                 StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s)
-                // bras d'appui (épaule → banc)
-                StrengthFigureKit.limb(ctx, [shldr, p(33, 30)], color: body.opacity(0.55), s: s)
+                // bras d'appui (épaule → main sur le banc), atténué
+                StrengthFigureKit.limb(ctx, [shldr, p(35, 31)], color: body.opacity(0.55), s: s)
                 // bras qui tire l'haltère (épaule → coude → main, le coude monte)
-                let hand = p(22, L(40, 28, ro))
-                let elbow = p(L(24, 22, ro), L(33, 26, ro))
+                let hand = p(31, L(38, 28, ro))
+                let elbow = p(L(33, 31, ro), L(33, 26, ro))
                 StrengthFigureKit.limb(ctx, [shldr, elbow, hand], color: body, s: s)
                 StrengthFigureKit.dumbbell(ctx, center: hand, s: s)
 

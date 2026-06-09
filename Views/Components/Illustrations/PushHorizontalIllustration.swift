@@ -9,12 +9,19 @@ struct PushHorizontalIllustration: View {
     let frame: Int
     var exerciseName: String? = nil
 
-    enum Variant { case pushup, benchBarbell, benchDumbbell, dips }
+    enum Variant { case pushup, inclinePushup, benchBarbell, benchDumbbell, dips }
     var variant: Variant { Self.resolveVariant(from: exerciseName) }
 
     static func resolveVariant(from name: String?) -> Variant {
         guard let lower = name?.lowercased() else { return .pushup }
         if lower.contains("dips") { return .dips }
+        // Device-test 2026-06-09 : « Pompes inclinées mains sur chaise » tombait sur
+        // .pushup (pieds au sol, chaise invisible). On capte la pompe inclinée
+        // (mains surélevées) — gaté sur pompe/push pour NE PAS voler « Développé
+        // incliné haltères » (qui reste un bench press, capté plus bas).
+        if lower.contains("inclin") && (lower.contains("pompe") || lower.contains("push")) {
+            return .inclinePushup
+        }
         // Revue images muscu 2026-06-08 (bug Sophie) : l'abréviation « DB » (Incline DB
         // bench press) n'était pas détectée → tombait sur la barre. On capte db/incline db.
         if lower.contains("haltère") || lower.contains("haltere") || lower.contains("dumbbell")
@@ -48,6 +55,25 @@ struct PushHorizontalIllustration: View {
                 StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s, r: 2.8)
                 let elbow = p(L(33, 36, pd), L(36, 41, pd))
                 StrengthFigureKit.limb(ctx, [shldr, elbow, hand], color: body, s: s)
+
+            case .inclinePushup:
+                // Pompe inclinée : pieds au sol (bas/arrière), mains posées sur l'ASSISE
+                // d'une chaise (haut/avant) → torse relevé, version plus facile.
+                StrengthFigureKit.ground(ctx, s: s)
+                let seatY: CGFloat = 28
+                // Chaise : assise + 2 pieds visibles (sinon « on ne voit pas la chaise »).
+                StrengthFigureKit.box(ctx, rect: CGRect(x: 30 * s, y: seatY * s, width: 13 * s, height: 3 * s), s: s, filled: true)
+                StrengthFigureKit.limb(ctx, [p(32, seatY + 3), p(32, 44)], color: IllustrationStyle.equipment, s: s)
+                StrengthFigureKit.limb(ctx, [p(41, seatY + 3), p(41, 44)], color: IllustrationStyle.equipment, s: s)
+                let toe2 = p(8, 44)
+                let hand2 = p(35, seatY)                       // mains sur l'assise
+                let shldr2 = p(30, L(21, 26, pd))              // épaule descend vers les mains en bas
+                let hip2 = CGPoint(x: toe2.x + (shldr2.x - toe2.x) * 0.5, y: toe2.y + (shldr2.y - toe2.y) * 0.5)
+                let headC2 = CGPoint(x: shldr2.x + 4 * s, y: shldr2.y - 1 * s)
+                StrengthFigureKit.limb(ctx, [toe2, hip2, shldr2], color: body, s: s) // corps gainé incliné
+                StrengthFigureKit.headNeck(ctx, head: headC2, shoulder: shldr2, color: body, s: s, r: 2.8)
+                let elbow2 = p(L(33, 35, pd), L(24, 27, pd))
+                StrengthFigureKit.limb(ctx, [shldr2, elbow2, hand2], color: body, s: s)
 
             case .benchBarbell, .benchDumbbell:
                 StrengthFigureKit.ground(ctx, s: s)
@@ -105,6 +131,7 @@ private struct PushHRow: View {
 #Preview("Push horizontal — 4 variantes") {
     VStack(alignment: .leading, spacing: 12) {
         PushHRow(title: "Pompe", name: "Pompes complètes")
+        PushHRow(title: "Pompe inclinée sur chaise", name: "Pompes inclinées mains sur chaise")
         PushHRow(title: "Développé couché barre", name: "Développé couché barre")
         PushHRow(title: "Développé haltères", name: "Développé incliné haltères")
         PushHRow(title: "Dips", name: "Dips lestés")
