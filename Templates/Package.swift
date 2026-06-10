@@ -12,7 +12,6 @@ let package = Package(
         .executable(name: "ChallengeTemplates", targets: ["ChallengeTemplates"]),
         .executable(name: "ReviseTemplates", targets: ["ReviseTemplates"]),
         .executable(name: "TestAdaptability", targets: ["TestAdaptability"]),
-        .executable(name: "GenerateManifest", targets: ["GenerateManifest"]),
     ],
     targets: [
         .target(
@@ -41,11 +40,7 @@ let package = Package(
         .target(
             name: "TemplateLoader",
             dependencies: ["TemplateModel"],
-            resources: [.copy("Resources/Templates"), .copy("Resources/templates-manifest.json")]
-        ),
-        .executableTarget(
-            name: "GenerateManifest",
-            dependencies: ["TemplateModel", "TemplateLoader"]
+            resources: [.copy("Resources/Templates")]
         ),
         .testTarget(
             name: "TemplateModelTests",
