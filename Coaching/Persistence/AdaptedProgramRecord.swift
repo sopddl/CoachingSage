@@ -120,6 +120,21 @@ final class AdaptedProgramRecord {
         set { exerciseWeightsJsonData = (try? JSONEncoder().encode(newValue)) ?? Data() }
     }
 
+    /// **Chantier indoor/outdoor vélo (2026-06-10)** — lieu choisi par séance (clé
+    /// `"week-day"` stable, valeur = `SessionEnvironment.rawValue`). Mirroir léger (même
+    /// pattern que `exerciseWeights` : default `Data()` → `.empty`, migration lightweight
+    /// sans crash). PRÉSERVÉ au renouvellement de cycle (le choix de lieu survit).
+    private var sessionLocationsJsonData: Data = Data()
+    var sessionLocations: SessionLocationState {
+        get { (try? JSONDecoder().decode(SessionLocationState.self, from: sessionLocationsJsonData)) ?? .empty }
+        set { sessionLocationsJsonData = (try? JSONEncoder().encode(newValue)) ?? Data() }
+    }
+
+    /// **Chantier indoor/outdoor vélo** — défaut de lieu du programme (réponse à la question
+    /// au lancement : `"indoor"` / `"outdoor"` / `"both"`). `nil` = pas demandé / sport sans
+    /// lieu. Optionnel → migration SwiftData lightweight sûre.
+    var environmentDefaultRaw: String?
+
     var isActive: Bool                          // false = archivé (programme terminé/abandonné)
     var archivedAt: Date?                       // timestamp d'archivage, nil tant qu'`isActive`
 
