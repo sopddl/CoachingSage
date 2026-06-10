@@ -5,6 +5,7 @@
 // filtrées sur cette séance, footer médical EU MDR.
 import SwiftUI
 import TemplateModel
+import TemplateLoader
 
 struct SessionDetailView: View {
     @Environment(\.locale) private var locale
@@ -31,21 +32,35 @@ struct SessionDetailView: View {
     @State private var showFocus: Bool = false
     @State private var focusProgress: Set<Int> = []
 
+    /// Chantier indoor/outdoor vélo (2026-06-10) — séance template « à lieu » (vélo
+    /// avec variantes indoor/outdoor) résolue depuis le bundle, nil si la séance est
+    /// agnostique (cas général). Quand non-nil, on affiche la puce 🏠/🛣️ et on
+    /// substitue la variante effective au contenu adapté.
+    @State private var templateSession: TemplateSession?
+    /// Lieu effectif retenu pour cette séance (override séance ?? défaut ?? natif).
+    @State private var locationEnv: SessionEnvironment?
+
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
                 VStack(alignment: .leading, spacing: 18) {
-                    SessionHeroHeader(session: session, week: week, program: program)
+                    SessionHeroHeader(session: displaySession, week: week, program: program)
+
+                    // Indoor/outdoor vélo (2026-06-10) — puce lieu flippable AVANT
+                    // Démarrer (D3). 1 tap = bascule la VRAIE variante affichée.
+                    if isLocationSession, let env = locationEnv {
+                        SessionLocationChip(environment: env, onFlip: flipLocation)
+                    }
 
                     // Story 3.35d — bouton Démarrer aussi EN HAUT (visible sans
                     // scroller), en plus de celui du bas.
                     startFocusButton
 
-                    SessionWhyPanel(session: session, week: week, program: program)
+                    SessionWhyPanel(session: displaySession, week: week, program: program)
 
                     // Story 3.32 (AC7) — aperçu scannable : tap d'une ligne ancre
                     // vers le bloc correspondant dans la timeline détaillée.
-                    SessionOverviewList(session: session) { anchorIndex in
+                    SessionOverviewList(session: displaySession) { anchorIndex in
                         withAnimation(.easeInOut(duration: 0.3)) {
                             proxy.scrollTo(SessionStepAnchor.id(anchorIndex), anchor: .top)
                         }
@@ -55,7 +70,7 @@ struct SessionDetailView: View {
                         regenAdjustedBanner
                     }
 
-                    SessionTimelineView(session: session, sportColor: sessionSportColor, sportCode: effectiveSessionSportCode)
+                    SessionTimelineView(session: displaySession, sportColor: sessionSportColor, sportCode: effectiveSessionSportCode)
 
                     // Story 3.33 — bouton « ▶ Démarrer / Reprendre » : ouvre le
                     // mode FOCUS plein écran (exécution guidée pas-à-pas).
@@ -77,24 +92,80 @@ struct SessionDetailView: View {
                 .padding()
             }
         }
-        .navigationTitle(Text(verbatim: session.name.resolved(locale).sanitizedForDisplay))
+        .navigationTitle(Text(verbatim: displaySession.name.resolved(locale).sanitizedForDisplay))
         .navigationBarTitleDisplayMode(.inline)
         .glossaryDiscoveryTooltip(isPresented: $showDiscoveryTooltip)
         .task {
+            await resolveLocationIfNeeded()
             await bootstrapCompletionVMIfNeeded()
             await presentDiscoveryTooltipIfNeeded()
             reloadFocusProgress()
         }
         .sheet(isPresented: $showCompleteSheet) {
             if let vm = completionVM {
-                SessionCompleteSheet(vm: vm, plannedDurationMinutes: session.durationMinutes)
+                SessionCompleteSheet(vm: vm, plannedDurationMinutes: displaySession.durationMinutes)
             }
         }
         .fullScreenCover(isPresented: $showFocus, onDismiss: {
             reloadFocusProgress()
             Task { await completionVM?.load() }
         }) {
-            SessionFocusView(session: session, week: week, program: program, recordId: recordId)
+            SessionFocusView(session: displaySession, week: week, program: program, recordId: recordId)
+        }
+    }
+
+    // MARK: - Indoor/outdoor (chantier vélo 2026-06-10)
+
+    /// Vrai si cette séance porte des variantes de lieu (vélo) → on montre la puce.
+    private var isLocationSession: Bool {
+        templateSession?.environment != nil && locationEnv != nil
+    }
+
+    /// Séance effectivement affichée : variante native → contenu adapté inchangé ;
+    /// variante alternate → passthrough du template (cf `SessionEnvironmentResolver`).
+    private var displaySession: AdaptedSession {
+        guard let ts = templateSession, let env = locationEnv else { return session }
+        return SessionEnvironmentResolver.displaySession(adapted: session, templateSession: ts, effective: env)
+    }
+
+    /// Charge la séance template correspondante (vélo only) et résout le lieu effectif
+    /// (override séance ?? défaut programme ?? natif). No-op si la séance n'a pas de
+    /// variantes de lieu (cas général).
+    private func resolveLocationIfNeeded() async {
+        guard program.sport == .cycling, templateSession == nil else { return }
+        guard let template = try? TemplateLoader.load(id: program.templateId),
+              week.weekNumber - 1 >= 0, week.weekNumber - 1 < template.weeks.count else { return }
+        let tWeek = template.weeks[week.weekNumber - 1]
+        guard let tSession = tWeek.sessions.first(where: { $0.day == session.day }),
+              let native = tSession.environment else { return }
+        var sessionOverride: SessionEnvironment?
+        var programDefault: String?
+        if let recordId, let deps {
+            let svc = SessionLocationService(repository: deps.adaptedProgramRepository)
+            sessionOverride = (try? await svc.currentLocation(recordId: recordId, week: week.weekNumber, day: session.day)) ?? nil
+            programDefault = (try? await svc.currentDefault(recordId: recordId)) ?? nil
+        }
+        templateSession = tSession
+        locationEnv = SessionEnvironmentResolver.effectiveEnvironment(
+            native: native, sessionOverride: sessionOverride, programDefault: programDefault
+        )
+    }
+
+    /// Bascule la séance vers l'autre lieu (D3 : 1 tap). Persiste l'override par séance
+    /// et repart d'une progression FOCUS propre (les 2 variantes diffèrent en nb d'étapes).
+    private func flipLocation() {
+        guard let ts = templateSession, let current = locationEnv,
+              let target = SessionEnvironmentResolver.flipTarget(from: current, templateSession: ts) else { return }
+        locationEnv = target
+        if let recordId {
+            SessionProgressStore.documentsDefault()
+                .clear(recordId: recordId, week: week.weekNumber, day: session.day)
+            focusProgress = []
+        }
+        guard let recordId, let deps else { return }
+        Task {
+            let svc = SessionLocationService(repository: deps.adaptedProgramRepository)
+            try? await svc.recordLocation(recordId: recordId, week: week.weekNumber, day: session.day, environment: target)
         }
     }
 
@@ -102,7 +173,7 @@ struct SessionDetailView: View {
 
     /// Étapes FOCUS de la séance (warmup→exos→cooldown). Vide pour une séance de
     /// repos → le bouton Démarrer est alors masqué.
-    private var focusSteps: [SessionStep] { SessionStep.steps(for: session) }
+    private var focusSteps: [SessionStep] { SessionStep.steps(for: displaySession) }
 
     /// True si une reprise est possible : on a un programme ancré (recordId), des
     /// étapes faites mais pas toutes.
@@ -294,7 +365,7 @@ struct SessionDetailView: View {
     /// la palette silhouette des illustrations exo.
     private var effectiveSessionSportCode: String {
         SessionSportInference.sportCode(
-            forSessionName: session.name.canonical,
+            forSessionName: displaySession.name.canonical,
             programSportCode: program.sport.appSportCode
         )
     }
