@@ -57,4 +57,55 @@ final class SessionPhaseTextTests: XCTestCase {
         let lines = SessionPhaseText.bulletLines(from: "3 min marche lente.")
         XCTAssertEqual(lines, ["3 min marche lente"]) // point final retiré
     }
+
+    // MARK: - Voix échauffement/récup égrenée (device-test 2026-06-09)
+
+    func test_voiceCues_egrene_timedSegmentsAtCumulativeOffsets() {
+        // Deux segments minutés → 1ʳᵉ annonce d'entrée à 0:00, la 2ᵉ à 5:00 (300 s).
+        let cues = SessionPhaseVoiceSchedule.cues(
+            text: "5 min vélo facile + 2 min montées de genoux",
+            header: "Échauffement, 7 minutes"
+        )
+        XCTAssertEqual(cues, [
+            .init(offset: 0, phrase: "Échauffement, 7 minutes. 5 min vélo facile."),
+            .init(offset: 300, phrase: "2 min montées de genoux."),
+        ])
+    }
+
+    func test_voiceCues_cuesWithoutDuration_spokenAtStart() {
+        // Cas B : « épaules détendues » / « fessiers » = cues posturaux sans durée →
+        // dits au DÉBUT avec le 1ᵉʳ segment, pas égrenés. Une seule annonce, à 0:00.
+        let cues = SessionPhaseVoiceSchedule.cues(
+            text: "5 min vélo facile + épaules détendues + fessiers serrés",
+            header: "Échauffement, 5 minutes"
+        )
+        XCTAssertEqual(cues.count, 1)
+        XCTAssertEqual(cues[0].offset, 0)
+        XCTAssertEqual(cues[0].phrase, "Échauffement, 5 minutes. 5 min vélo facile. épaules détendues. fessiers serrés.")
+    }
+
+    func test_voiceCues_cueBetweenTimedSegments_doesNotShiftOffset() {
+        // Un cue sans durée intercalé ne décale PAS l'offset du segment minuté suivant
+        // (offset = somme des durées chiffrées uniquement).
+        let cues = SessionPhaseVoiceSchedule.cues(
+            text: "5 min course + dos droit + 2 min vélo",
+            header: "Échauffement"
+        )
+        XCTAssertEqual(cues.count, 2)
+        XCTAssertEqual(cues[0], .init(offset: 0, phrase: "Échauffement. 5 min course. dos droit."))
+        XCTAssertEqual(cues[1], .init(offset: 300, phrase: "2 min vélo."))
+    }
+
+    func test_voiceCues_singleProseBlock_readAtStart() {
+        // Échauffement muscu en prose (un seul bloc minuté, sous-liste sur « . ») →
+        // tout lu à 0:00, « Total : … » retiré.
+        let cues = SessionPhaseVoiceSchedule.cues(
+            text: "5 min mobilité articulaire : cercles d'épaules, rotations de poignets. Total : 7 min.",
+            header: "Échauffement, 7 minutes"
+        )
+        XCTAssertEqual(cues.count, 1)
+        XCTAssertEqual(cues[0].offset, 0)
+        XCTAssertFalse(cues[0].phrase.contains("Total"))
+        XCTAssertTrue(cues[0].phrase.hasPrefix("Échauffement, 7 minutes."))
+    }
 }

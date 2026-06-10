@@ -43,6 +43,10 @@ struct SessionFocusView: View {
     @State private var audioCues = SessionAudioCues()
     // Story 3.35 — mode Audio (voix par-dessus le déroulé chronométré).
     @State private var voiceGuide: SessionVoiceGuide?
+    // Voix échauffement/récup égrenée (device-test 2026-06-09) : script vocal de la
+    // phase courante + curseur des cues déjà prononcés (cf SessionPhaseVoiceSchedule).
+    @State private var phaseVoiceCues: [SessionPhaseVoiceSchedule.Cue] = []
+    @State private var phaseVoiceFiredCount = 0
     // Story 3.35d — toggle son (le sélecteur H/F vit désormais dans le profil).
     @AppStorage(SessionVoicePrefs.enabledKey) private var voiceEnabled = true
     // Chantier charge muscu V2 (increment 2, décision B) — poids NOTÉ par l'user, par exo
@@ -606,7 +610,7 @@ struct SessionFocusView: View {
         case .rest:
             audioCues.play(.restStart)
         case .warmup, .cooldown:
-            voiceGuide?.announce(displayString(phase.label))
+            beginPhaseVoice(phase) // voix égrenée : lit le contenu, réparti dans le temps
         case .prepare:
             // Bug #7 — la pré-annonce dure exactement 3 s : `onChange(remaining)` ne
             // voit jamais la valeur initiale (3 == durée), donc on n'entendait que
@@ -643,6 +647,10 @@ struct SessionFocusView: View {
     /// « 3, 2, 1 » sur les 3 dernières secondes (anti-Decathlon).
     private func handleTick(remaining new: Int) {
         guard !timerEngine.isPaused, let phase = timerEngine.currentPhase, !phase.isManual else { return }
+        // Voix échauffement/récup égrenée : émet les segments minutés à leur offset.
+        if phase.kind == .warmup || phase.kind == .cooldown, let guide = voiceGuide {
+            firePhaseVoiceCues(upTo: phase.duration - new, guide: guide)
+        }
         // Pré-annonce vocale du prochain segment, en fin de phase active (mode Audio).
         if isAudioMode, phase.kind != .prepare, new == 5, phase.duration >= 7, let next = upcomingLabel {
             voiceGuide?.announce(String.localized("coaching.session.voice.next \(next)", locale: locale))
@@ -675,10 +683,51 @@ struct SessionFocusView: View {
         case .prepare:
             guide.announce(String.localized("coaching.session.voice.next \(displayString(phase.label))", locale: locale))
         case .warmup, .cooldown:
-            guide.announce(displayString(phase.label)) // « Échauffement » / « Retour au calme »
+            beginPhaseVoice(phase) // voix égrenée (lit le contenu détaillé, pas juste le titre)
         default:
             break
         }
+    }
+
+    // MARK: - Voix échauffement / récup égrenée (device-test 2026-06-09)
+
+    /// Démarre le script vocal de la phase warmup/cooldown : construit les cues
+    /// (titre + durée + contenu, segments minutés répartis dans le temps) et émet
+    /// immédiatement ceux d'offset 0. La suite est égrenée par `handleTick`.
+    private func beginPhaseVoice(_ phase: SessionTimerPhase) {
+        guard let guide = voiceGuide else { return }
+        let cues = SessionPhaseVoiceSchedule.cues(
+            text: manualPhaseText(phase), header: phaseVoiceHeader(phase)
+        )
+        phaseVoiceCues = cues
+        phaseVoiceFiredCount = 0
+        firePhaseVoiceCues(upTo: 0, guide: guide)
+    }
+
+    /// Émet, dans l'ordre, les cues dont l'offset est ≤ `elapsed` et pas encore dits.
+    private func firePhaseVoiceCues(upTo elapsed: Int, guide: SessionVoiceGuide) {
+        while phaseVoiceFiredCount < phaseVoiceCues.count,
+              phaseVoiceCues[phaseVoiceFiredCount].offset <= elapsed {
+            guide.announce(phaseVoiceCues[phaseVoiceFiredCount].phrase)
+            phaseVoiceFiredCount += 1
+        }
+    }
+
+    /// Préfixe parlé d'une phase : « Échauffement, 7 minutes » (durée localisée via
+    /// `DateComponentsFormatter`, pas de clé i18n dédiée). Titre seul si < 1 min.
+    private func phaseVoiceHeader(_ phase: SessionTimerPhase) -> String {
+        let title = displayString(phase.label)
+        guard phase.duration >= 60 else { return title }
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.minute]
+        formatter.unitsStyle = .full
+        var calendar = Calendar.current
+        calendar.locale = locale
+        formatter.calendar = calendar
+        if let spoken = formatter.string(from: TimeInterval(phase.duration)), !spoken.isEmpty {
+            return "\(title), \(spoken)"
+        }
+        return title
     }
 
     /// POC yoga (D3) : annonce le script de placement de la posture dont la phase
