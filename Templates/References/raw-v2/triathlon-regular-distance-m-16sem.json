@@ -7,7 +7,7 @@
   "duration_weeks": 16,
   "sessions_per_week": 6,
   "default_objective": "Préparer un triathlon distance M (1500 m natation + 40 km vélo + 10 km course) sur 16 semaines, periodization Joe Friel — Olympic finisher avec objectif chrono personnel maîtrisé.",
-  "assumed_profile": "Triathlète régulier ayant fini ≥ 1 sprint, capable de nager 1000-1500 m crawl en continu (CSS connue ou estimable via test 400+200 m), de rouler 60-90 min en confort à FTP-Z2 (FTP connue ou test 20 min réalisable), de courir 10 km sans s'arrêter en allure conversationnelle. Pratique 4-5×/sem depuis ≥ 1 saison. Équipement : piscine 25-50 m, pull-buoy, kickboard, fins, swim-paddles, lunettes, vélo de route avec power-meter ou GPS, indoor-trainer disponible météo, casque, chaussures running. Aucune pathologie cardiaque déclarée. Profil équilibré (pas de discipline déclarée comme point faible majeur, distribution standard).",
+  "assumed_profile": "Triathlète régulier ayant fini ≥ 1 sprint, capable de nager 1000-1500 m crawl en continu (CSS connue ou estimable via test 400+200 m), de rouler 60-90 min en confort à FTP-Z2 (FTP connue ou test 20 min réalisable), de courir 10 km sans s'arrêter en allure conversationnelle. Pratique 4-5×/sem depuis ≥ 1 saison. Équipement : piscine 25-50 m, pull-buoy, kickboard, fins, swim-paddles, lunettes, vélo de route avec power-meter ou GPS, indoor-trainer disponible météo, casque, chaussures running. Aucun problème cardiaque déclaré. Profil équilibré (pas de discipline déclarée comme point faible majeur, distribution standard).",
   "summary": "Plan 16 semaines, 6 sessions/sem (2 swim + 2 bike + 2 run + 1 S&C/mob, brick intégré dès W3 sur la session bike longue ou run longue) — W16 race-week ajoute la course J7 comme 7e session compte hors `sessions_per_week`. Les 3 disciplines progressent EN PARALLÈLE chaque semaine (Friel TTB 5e éd., USA Triathlon Brick Guide, World Triathlon Olympic Standard). Phases : Base W1-W4 → Build 1 W5-W8 → Build 2 W9-W12 → Peak W13-W14 → Taper W15 → Race W16. Pic volume W13 ≈9h00 cumul effort sport-pur (≈2h05 swim + 3h35 bike + 2h00 run + brick contribution + 50 min S&C). Long pic par discipline : swim 2400 m, bike 2h45 / 75 km, run 90 min / 14 km. Cutbacks W5, W10, W15 (-15 à -47%). Brick bike→run hebdo dès W3 (45+15 light), progression W6 (60+20) → pic W13 (75+30 race-pace). Brick long all-3-disciplines W12 simulation Olympic réduite (1000 m + 50 min bike + 25 min run avec T1/T2 réelles). Test CSS W2 + retest W11. FTP test W2 + retest W11. Distribution polarized 80/20 en build. Taper 14 jours W15 (-47% J-14, J-7 -50%) puis race J7 W16. Checklist d'autonomie 5 critères mesurables jour J en W16.",
   "week_structure": {
     "type": "block",
@@ -20,7 +20,7 @@
     15
   ],
   "progression_logic": "Progression construite sur 7 principes alignés Friel TTB 5e éd. (2024), Your Best Triathlon (Friel), USA Triathlon Brick Workouts Guide, World Triathlon Age-Group Olympic Standard, Triathlete 16wk Olympic, TrainingPeaks Beginner 16wk Olympic, 80/20 Triathlon (Fitzgerald/Warden), Daniels VDOT (run), Coggan FTP (bike), Maglischo + Swim Smooth CSS (swim) :\n\n(1) PARALLÉLISME STRICT 3 DISCIPLINES (Friel) : chaque semaine contient 2 swim + 2 bike + 2 run + 1 S&C/mob, le 6e jour intègre brick dès W3. Jamais de bloc mono-discipline. 48h minimum entre 2 séances qualité même discipline (CSS swim J1 + long swim J5 ; intervals bike J3 + long bike+brick J6 ; intervals run J2 + long run J7). Friel TTB 5e éd. : 'Train all three sports every week.'\n\n(2) PROGRESSION VOLUME EN PARALLÈLE (h cumul effort sport-pur, hors warmup/cooldown courts) — fenêtre regular 8-10h/sem pic doctrine §2.2 master prompt : W1 ≈5h45 → W2 ≈6h15 (tests CSS+FTP intégrés) → W3 ≈6h45 (intro brick W3 light 45+15) → W4 ≈7h15 → W5 cutback ≈5h50 (-19%) → W6 ≈7h45 → W7 ≈8h15 → W8 ≈8h35 → W9 ≈8h45 → W10 cutback ≈7h00 (-20%) → W11 ≈8h45 (retests CSS/FTP) → W12 ≈8h55 (brick long all-3-disciplines simulation) → W13 PIC ≈9h00 → W14 ≈8h00 → W15 taper J-14 ≈4h45 (-47% vs pic) → W16 race week ≈3h30 hors course. Pic 9h cumul cohérent fenêtre regular 8-10h/sem (Triathlete 16wk Olympic, TrainingPeaks Beginner 16wk Olympic, World Triathlon Standard).\n\n(3) LONG WORKOUT PIC PAR DISCIPLINE (W12-W13) — fenêtre regular doctrine §2.2 : swim 2400 m W13 (vs 1500 course = 160% over-distance), bike 2h45 / 75 km W13 (vs 40 km course = 187%), run 90 min / 14 km W12 (vs 10 km course = 140%, run cap car sur-stressé par bricks). Compatible §2.2 master prompt + §3.3 regular.\n\n(4) DISTRIBUTION POLARIZED 80/20 EN BUILD : Phase Base W1-W4 90% Z1-Z2/EN1/Daniels-E + 10% intensité douce. Phase Build 1 W5-W8 80% LIT / 20% HIT structuré (CSS swim + FTP-Z4 bike + Daniels-T/I run). Phase Build 2 W9-W12 75-80% LIT, dérive race-pace W11-W12 (sweet spot, MP run, brick long). Phase Peak W13-W14 75% LIT, brick race-pace, simulation parcours. Aucune session HIT bike + HIT run consécutive. Daniels-R rare.\n\n(5) BRICK INTRODUIT W3 : 1 brick/sem build + 1 brick long all-3-disciplines en peak W12. W3 45+15 → W4 50+18 → W5 cutback 35+10 → W6 60+20 → W7 65+22 → W8 70+25 (intro race-pace bike) → W9 simulation 700m+30+15 transitions chronométrées → W10 cutback 50+15 → W11 75+28 (sweet spot 20 min + 4 km @MP) → W12 brick long all-3-disciplines (1000m + 50 min bike + 25 min run = simulation Olympic réduite) → W13 PIC brick 75+30 race-pace (sweet spot 25 min + 10 min @MP) → W14 race-rehearsal 600m+25+10 → W15 taper brick court 30+10 J-3 → W16 race J7. Sur dernière 5-min bike avant T2 : 95-100 rpm. Volume run en brick jamais > 35% volume run hebdo regular.\n\n(6) TRANSITIONS T1/T2 ENTRAÎNÉES : à sec dès W2 (S&C/mob), simulées pool-side dès W4, chronométrées dès W6 (T1 < 1min30, T2 < 1min15 cibles regular). Simulations complètes : W9, W12 (brick long Olympic réduite), W14 (race-rehearsal). PAS de nouveau matériel les 14 derniers jours.\n\n(7) CUTBACKS W5 W10 + TAPER W15 + RACE W16 : cycle 4 build + 1 deload W5 → 4 build + 1 deload W10 → 4 build → peak W13-W14 → taper W15 → race W16. Cutback W5 (-19%, brick light maintenu, intensité courte préservée). Cutback W10 (-20%). Taper J-14 W15 : volume -47% vs W13, intensité courte maintenue (sweet spot 2×8 min, tempo 12 min, strides 4×100 m, sighting drill swim, brick court 30+10 J-3). Race week W16 : volume -50% vs W15, séances très courtes par discipline (15-20 min easy + drill court), simulation transitions à sec J-2, repos complet J-1. JAMAIS nouvelle nutrition / nouvelle combinaison / nouvelles chaussures les 14 derniers jours.\n\nTESTS CALIBRATION INTÉGRÉS (regular doctrine §3.3) : • CSS swim test W2 (400 m + 200 m all-out, formule CSS = 200 / (T400-T200) en sec). Retest W11 — gain attendu 3-5 s/100m. • FTP bike test W2 (20 min all-out). Retest W11 — gain attendu 5-15 W. • VDOT estimation via 10K solo W2 (utilisé toute saison). Calibrer toutes zones à partir de ces 3 tests dès W2. Sans powermeter, FTP-Z* mappés sur RPE + cadence + sensation respiration (équivalents fournis dans `notes`).\n\nZONES D'EFFORT — RAPPEL UNIVERSEL :\n• Run (Daniels VDOT) : Daniels-E = MP+1:00 à 1:30/km (~70% FCmax, RPE 4-5). Daniels-M = Marathon Pace (~78% FCmax, RPE 6-7). Daniels-T = 10K+15-30s/km (~85-88% FCmax, RPE 7-8). Daniels-I = allure 3K-5K (~93-97% FCmax, RPE 8-9).\n• Bike (Coggan FTP) : FTP-Z2 56-75% (~70% FCmax, RPE 3-4). FTP-Z3 76-90% (~80% FCmax, RPE 5-6). Sweet-Spot 88-94% (~85% FCmax, RPE 6-7). FTP-Z4 91-105% (~90% FCmax, RPE 7-8). FTP-Z5 106-120% (~95% FCmax, RPE 8-9).\n• Swim (Maglischo + CSS) : EN1 = CSS+8-12s/100m (~70% FCmax). EN2 = CSS±0-3s (~83% FCmax). EN3 = CSS-5 à -10s (~90% FCmax). CSS pace = pace seuil sustained.\n• S&C : RPE 6-7 préventif, RPE 7-8 force-endurance hors-saison.",
-  "safety_notes": "DRAPEAUX ROUGES MULTI-DISCIPLINE (cumul charges regular) — STOP séance et consulte un professionnel de santé si les symptômes persistent > 1 semaine :\n• Tendinopathie achille (talon postérieur) : risque accru triathlon (bike SFR cadence basse + run rapide consécutif = double charge tendon). Calf raises excentriques 2×/sem dès W1 obligatoires (protocole Alfredson 1998, 3×15/jambe lent). Glace 15 min post-séance si tension chronique.\n• Tendinopathie ischio-jambier haute (sous-fessière, irradiation cuisse postérieure) : run post-bike répété + position aéro chronique = raccourcissement chaîne postérieure. Nordic curl assisté + single-leg deadlift préventifs dès W3.\n• ITBS (face externe genou, syndrome essuie-glace) : run post-bike prolongé + faiblesse abducteurs hanche + bricks répétés. Clamshells + side-lying leg raise dès W1 obligatoires.\n• Swimmer's shoulder (épaule sous-acromiale) : volume swim regular 2×/sem 60-80 min + position aéro vélo épaules en avant = double impingement. Y-T-W + external rotation band 1-2×/sem dès W1. Protocole prévention coiffe 2024 (PMC NIH meta-analysis).\n• PFPS (douleur antérieure rotule) : selle vélo trop basse + run intensité + brick. Bike fit basique dès W1, step-up + pont fessier en S&C. Cadence cible 85-95 rpm jamais < 65 rpm gros braquet.\n• Tendinites bilatérales (regular volume) : signal volume + intensité montés trop vite. Reculer 1 cycle de 4 sem si bilatéralité.\n• Stress fracture tibiale (point précis très douloureux palpation, douleur nuit et repos, distinct shin splints diffus) : arrêt total run, imagerie médicale (IRM), arrêt 6-8 sem typiquement.\n• Douleur articulaire genou > 2/10, claquement épaule en swim, lombalgie aiguë post-vélo : arrêt immédiat, glace, consultation kiné. Fatigue musculaire = OK, douleur articulaire = pas OK.\n• Antécédents cardiaques connus, > 50 ans débutant complet sans test effort cardio récent, grossesse / postpartum récent, asthme sévère, otites externes récurrentes (3+/12 mois), reprise post-chirurgie épaule/dos/genou < 6 mois : consulte un médecin avant de commencer ce programme.\n\nOPEN WATER (eau libre) — transition W6+ recommandée pour habituation race-day :\n• Hypothermie : eau < 16°C sans combinaison = risque vital sortie > 20 min. Combinaison quasi-obligatoire < 14°C, recommandée < 16°C, optionnelle 14-22°C, INTERDITE > 24°C (risque hyperthermie inverse).\n• Si tu utilises une combinaison le jour J : faire AU MOINS 3-4 sorties bassin avec combinaison W11-W14 pour habituation (épaules plus raides, flottabilité accrue, frottement cou).\n• Coup de chaleur : swim eau > 28°C ou bike été > 30°C + déshydratation = céphalée, frissons paradoxaux, désorientation, nausées = STOP immédiat.\n• Panique respiratoire eau libre : prévisualiser plan d'eau, s'acclimater bassin avec combinaison W-3 à W-1, repère visuel obligatoire, sighting drill (lever tête tous les 6 strokes) entraîné dès W6. En cas panique : roulé sur le dos, respiration calmée, lever bras pour assistance. JAMAIS seul en eau libre.\n\nSÉCURITÉ ROUTE BIKE :\n• Casque OBLIGATOIRE chaque sortie, sans exception. Ne JAMAIS rouler sans.\n• Éclairages avant/arrière en faible visibilité, gilet réfléchissant en hiver, vigilance trafic, pas d'écouteurs en environnement urbain.\n• Bike fit : si douleur > 2 sorties consécutives → bike fit professionnel. Repère : genou flexion 25-30° en bas du pédalage, hanches stables sur la selle, mains détendues sur le cintre.\n• Long ride > 90 min : 2 bidons obligatoires + 30-60 g glucides/h + sodium 300-700 mg/L.\n\nTECHNIQUE / INTENSITÉ — RÈGLE DU REGULAR :\n• Pacing par discipline calibré sur tests : Daniels-E vs T vs I pour run (calibrés sur 10K récent), FTP-Z2 vs Sweet-Spot vs FTP-Z4 pour bike (calibrés sur FTP test W2), EN1 vs EN2 vs CSS pour swim (calibrés sur CSS test W2).\n• Cadence vélo cible 85-95 rpm sur le plat, jamais < 65 rpm sur gros braquet (= tendinite genou). Dernières 5 min bike avant T2 : 95-100 rpm.\n• Cadence run cible 175-185 pas/min, attaque médio-pied.\n• Brick : les 5-10 premières min de run post-bike sont inconfortables (jambes en coton — physiologique, redistribution flux sanguin). Ne pas paniquer, ne pas ralentir au-delà du nécessaire. Cette sensation s'estompe avec la régularité brick.\n• Compter les coups de bras swim par 25 m (objectif < 20 coups/25m allure EN2 d'ici W8).\n\nNUTRITION-HYDRATATION (regular, sortie > 90 min systématique) :\n• Bike + brick > 90 min : 60-90 g glucides/h (ratio 2:1 glucose:fructose au-delà 60 g/h). Tester en simulation W11-W12. Gut training progressif si profil non habitué (démarrer 30 g/h, progresser sur 4-6 sem).\n• Hydratation 500-1000 ml/h selon T° + sodium 300-700 mg/L.\n• Long swim > 1500 m : ravito post-séance dans les 30 min (40-60 g glucides + 20-25 g protéines).\n• Repas pré-séance : 2-3 h avant, glucides modérés, peu de fibres lourdes. Tester nutrition jour J W11-W12 en simulation race-pace. JAMAIS de nouvelle nutrition les 14 derniers jours / le jour J.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine cutback type W5/W10 anticipé, refaire la semaine précédente avec volume -20%) :\n• FC repos +10 bpm chronique au réveil (3+ jours).\n• Sommeil dégradé > 3 nuits consécutives.\n• Courbatures persistantes > 72h après séance, toutes disciplines confondues.\n• Motivation effondrée 2+ semaines, irritabilité accrue.\n• Baisse perf 2 séances consécutives sans explication (allure facile dégradée, FTP en chute, CSS en chute).\n• Immunité dégradée (rhumes répétés) — signal surentraînement précoce.\n\nSI SÉANCE MANQUÉE :\n• < 5 jours : reprendre au jour suivant, compresser la semaine en réduisant 1 séance (priorité brick + 1 swim + 1 run + 1 bike + S&C).\n• 1-2 semaines : reprendre la semaine précédente du plan.\n• > 2 semaines : reculer de 3 sem dans le plan. La course peut être reportée d'une saison si pause tombe dans les 4 dernières sem (W13-W16).\n• NE PAS remplacer une séance piscine par une séance vélo / course sans avis. Le cross-training maintient le cardio mais ne remplace pas l'adaptation locomotrice spécifique nage. La feel for the water se perd en 7-10 jours sans stimulus.\n\nÉQUIPEMENT MINIMAL :\n• Swim : maillot, lunettes, bonnet, pull-buoy, kickboard, fins, swim-paddles (regular OK). Piscine 25-50 m.\n• Bike : casque (obligatoire), vélo de route bien réglé, indoor-trainer pour météo, power-meter ou GPS, bike-computer, 2 bidons, éclairages.\n• Run : chaussures running (< 600 km), GPS-watch.\n• Brick W3+ : transition-area-setup (sac, tapis, chaussures bike + run prêtes côte-à-côte), race-belt + elastic-laces.",
+  "safety_notes": "À SURVEILLER — MULTI-DISCIPLINE (cumul charges regular) : si une gêne inhabituelle persiste, lève le pied et adapte.\n• Gêne au tendon d'Achille (talon postérieur) : risque accru triathlon (bike SFR cadence basse + run rapide consécutif = double charge tendon). Calf raises excentriques 2×/sem dès W1 obligatoires (3×15/jambe lent). Glace 15 min post-séance si tension chronique.\n• Gêne au tendon des ischio-jambiers (sous-fessière, irradiation cuisse postérieure) : run post-bike répété + position aéro chronique = raccourcissement chaîne postérieure. Nordic curl assisté + single-leg deadlift préventifs dès W3.\n• Gêne sur la face externe du genou : run post-bike prolongé + faiblesse abducteurs hanche + bricks répétés. Clamshells + side-lying leg raise dès W1 obligatoires.\n• Gêne à l'épaule : volume swim regular 2×/sem 60-80 min + position aéro vélo épaules en avant = sursollicitation. Y-T-W + external rotation band 1-2×/sem dès W1.\n• Gêne antérieure de la rotule : selle vélo trop basse + run intensité + brick. Bike fit basique dès W1, step-up + pont fessier en S&C. Cadence cible 85-95 rpm jamais < 65 rpm gros braquet.\n• Gênes tendineuses des deux côtés (regular volume) : signal volume + intensité montés trop vite. Reculer 1 cycle de 4 sem si bilatéralité.\n• Gêne au tibia (point précis très sensible à la palpation, gêne la nuit et au repos, distincte d'une gêne diffuse) : arrêt total run, lève le pied (6-8 sem typiquement).\n• Gêne articulaire au genou, claquement épaule en swim, gêne lombaire aiguë post-vélo : arrêt immédiat, glace. Fatigue musculaire = OK, gêne articulaire = on lève le pied.\n\nOPEN WATER (eau libre) — transition W6+ recommandée pour habituation race-day :\n• Hypothermie : eau < 16°C sans combinaison = risque vital sortie > 20 min. Combinaison quasi-obligatoire < 14°C, recommandée < 16°C, optionnelle 14-22°C, INTERDITE > 24°C (risque hyperthermie inverse).\n• Si tu utilises une combinaison le jour J : faire AU MOINS 3-4 sorties bassin avec combinaison W11-W14 pour habituation (épaules plus raides, flottabilité accrue, frottement cou).\n• Coup de chaleur : swim eau > 28°C ou bike été > 30°C + déshydratation = céphalée, frissons paradoxaux, désorientation, nausées = STOP immédiat.\n• Panique respiratoire eau libre : prévisualiser plan d'eau, s'acclimater bassin avec combinaison W-3 à W-1, repère visuel obligatoire, sighting drill (lever tête tous les 6 strokes) entraîné dès W6. En cas panique : roulé sur le dos, respiration calmée, lever bras pour assistance. JAMAIS seul en eau libre.\n\nSÉCURITÉ ROUTE BIKE :\n• Casque OBLIGATOIRE chaque sortie, sans exception. Ne JAMAIS rouler sans.\n• Éclairages avant/arrière en faible visibilité, gilet réfléchissant en hiver, vigilance trafic, pas d'écouteurs en environnement urbain.\n• Bike fit : si douleur > 2 sorties consécutives → bike fit professionnel. Repère : genou flexion 25-30° en bas du pédalage, hanches stables sur la selle, mains détendues sur le cintre.\n• Long ride > 90 min : 2 bidons obligatoires + 30-60 g glucides/h + sodium 300-700 mg/L.\n\nTECHNIQUE / INTENSITÉ — RÈGLE DU REGULAR :\n• Pacing par discipline calibré sur tests : Daniels-E vs T vs I pour run (calibrés sur 10K récent), FTP-Z2 vs Sweet-Spot vs FTP-Z4 pour bike (calibrés sur FTP test W2), EN1 vs EN2 vs CSS pour swim (calibrés sur CSS test W2).\n• Cadence vélo cible 85-95 rpm sur le plat, jamais < 65 rpm sur gros braquet (= gêne au genou). Dernières 5 min bike avant T2 : 95-100 rpm.\n• Cadence run cible 175-185 pas/min, attaque médio-pied.\n• Brick : les 5-10 premières min de run post-bike sont inconfortables (jambes en coton — physiologique, redistribution flux sanguin). Ne pas paniquer, ne pas ralentir au-delà du nécessaire. Cette sensation s'estompe avec la régularité brick.\n• Compter les coups de bras swim par 25 m (objectif < 20 coups/25m allure EN2 d'ici W8).\n\nNUTRITION-HYDRATATION (regular, sortie > 90 min systématique) :\n• Bike + brick > 90 min : 60-90 g glucides/h (ratio 2:1 glucose:fructose au-delà 60 g/h). Tester en simulation W11-W12. Gut training progressif si profil non habitué (démarrer 30 g/h, progresser sur 4-6 sem).\n• Hydratation 500-1000 ml/h selon T° + sodium 300-700 mg/L.\n• Long swim > 1500 m : ravito post-séance dans les 30 min (40-60 g glucides + 20-25 g protéines).\n• Repas pré-séance : 2-3 h avant, glucides modérés, peu de fibres lourdes. Tester nutrition jour J W11-W12 en simulation race-pace. JAMAIS de nouvelle nutrition les 14 derniers jours / le jour J.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → semaine cutback type W5/W10 anticipé, refaire la semaine précédente avec volume -20%) :\n• FC repos +10 bpm chronique au réveil (3+ jours).\n• Sommeil dégradé > 3 nuits consécutives.\n• Courbatures persistantes > 72h après séance, toutes disciplines confondues.\n• Motivation effondrée 2+ semaines, irritabilité accrue.\n• Baisse perf 2 séances consécutives sans explication (allure facile dégradée, FTP en chute, CSS en chute).\n• Immunité dégradée (rhumes répétés) — signal surentraînement précoce.\n\nSI SÉANCE MANQUÉE :\n• < 5 jours : reprendre au jour suivant, compresser la semaine en réduisant 1 séance (priorité brick + 1 swim + 1 run + 1 bike + S&C).\n• 1-2 semaines : reprendre la semaine précédente du plan.\n• > 2 semaines : reculer de 3 sem dans le plan. La course peut être reportée d'une saison si pause tombe dans les 4 dernières sem (W13-W16).\n• NE PAS remplacer une séance piscine par une séance vélo / course sans avis. Le cross-training maintient le cardio mais ne remplace pas l'adaptation locomotrice spécifique nage. La feel for the water se perd en 7-10 jours sans stimulus.\n\nÉQUIPEMENT MINIMAL :\n• Swim : maillot, lunettes, bonnet, pull-buoy, kickboard, fins, swim-paddles (regular OK). Piscine 25-50 m.\n• Bike : casque (obligatoire), vélo de route bien réglé, indoor-trainer pour météo, power-meter ou GPS, bike-computer, 2 bidons, éclairages.\n• Run : chaussures running (< 600 km), GPS-watch.\n• Brick W3+ : transition-area-setup (sac, tapis, chaussures bike + run prêtes côte-à-côte), race-belt + elastic-laces.",
   "weeks": [
     {
       "week_number": 1,
@@ -369,9 +369,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -406,9 +406,9 @@
               "reps": "15",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998.",
-                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike + run combined). Alfredson 1998 protocol.",
-                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998."
+                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course).",
+                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike + run combined).",
+                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
@@ -1054,9 +1054,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -1091,9 +1091,9 @@
               "reps": "15",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998.",
-                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike + run combined). Alfredson 1998 protocol.",
-                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998."
+                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course).",
+                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike + run combined).",
+                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
@@ -1813,9 +1813,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -1850,9 +1850,9 @@
               "reps": "15",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998.",
-                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike + run combined). Alfredson 1998 protocol.",
-                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998."
+                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course).",
+                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike + run combined).",
+                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
@@ -1995,9 +1995,9 @@
               "reps": "6 reps",
               "rest_seconds": 60,
               "notes": {
-                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Préventif tendinopathie haute des ischio-jambiers (Mjølsnes 2004, -51 % de blessures).",
-                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Prevents high hamstring tendinopathy (Mjolsnes 2004, -51% injuries).",
-                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Previene la tendinopatía alta de isquios (Mjølsnes 2004, -51 % de lesiones)."
+                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Renforce le tendon haut des ischio-jambiers.",
+                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Strengthens the high hamstring tendon.",
+                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Refuerza el tendón alto de isquios."
               },
               "target_zone": "RPE 8-9",
               "required_equipment": [
@@ -2726,9 +2726,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -2763,9 +2763,9 @@
               "reps": "15",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998.",
-                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike + run combined). Alfredson 1998 protocol.",
-                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998."
+                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course).",
+                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike + run combined).",
+                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
@@ -2908,9 +2908,9 @@
               "reps": "6 reps",
               "rest_seconds": 60,
               "notes": {
-                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Préventif tendinopathie haute des ischio-jambiers (Mjølsnes 2004, -51 % de blessures).",
-                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Prevents high hamstring tendinopathy (Mjolsnes 2004, -51% injuries).",
-                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Previene la tendinopatía alta de isquios (Mjølsnes 2004, -51 % de lesiones)."
+                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Renforce le tendon haut des ischio-jambiers.",
+                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Strengthens the high hamstring tendon.",
+                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Refuerza el tendón alto de isquios."
               },
               "target_zone": "RPE 8-9",
               "required_equipment": [
@@ -3675,9 +3675,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -4254,9 +4254,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -4291,9 +4291,9 @@
               "reps": "15",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998.",
-                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike + run combined). Alfredson 1998 protocol.",
-                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998."
+                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course).",
+                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike + run combined).",
+                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
@@ -4436,9 +4436,9 @@
               "reps": "6 reps",
               "rest_seconds": 60,
               "notes": {
-                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Préventif tendinopathie haute des ischio-jambiers (Mjølsnes 2004, -51 % de blessures).",
-                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Prevents high hamstring tendinopathy (Mjolsnes 2004, -51% injuries).",
-                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Previene la tendinopatía alta de isquios (Mjølsnes 2004, -51 % de lesiones)."
+                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Renforce le tendon haut des ischio-jambiers.",
+                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Strengthens the high hamstring tendon.",
+                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Refuerza el tendón alto de isquios."
               },
               "target_zone": "RPE 8-9",
               "required_equipment": [
@@ -5129,9 +5129,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -5166,9 +5166,9 @@
               "reps": "15",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998.",
-                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike + run combined). Alfredson 1998 protocol.",
-                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998."
+                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course).",
+                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike + run combined).",
+                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
@@ -5311,9 +5311,9 @@
               "reps": "6 reps",
               "rest_seconds": 60,
               "notes": {
-                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Préventif tendinopathie haute des ischio-jambiers (Mjølsnes 2004, -51 % de blessures).",
-                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Prevents high hamstring tendinopathy (Mjolsnes 2004, -51% injuries).",
-                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Previene la tendinopatía alta de isquios (Mjølsnes 2004, -51 % de lesiones)."
+                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Renforce le tendon haut des ischio-jambiers.",
+                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Strengthens the high hamstring tendon.",
+                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Refuerza el tendón alto de isquios."
               },
               "target_zone": "RPE 8-9",
               "required_equipment": [
@@ -6003,9 +6003,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -6040,9 +6040,9 @@
               "reps": "15",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998.",
-                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike + run combined). Alfredson 1998 protocol.",
-                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998."
+                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course).",
+                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike + run combined).",
+                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
@@ -6185,9 +6185,9 @@
               "reps": "6 reps",
               "rest_seconds": 60,
               "notes": {
-                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Préventif tendinopathie haute des ischio-jambiers (Mjølsnes 2004, -51 % de blessures).",
-                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Prevents high hamstring tendinopathy (Mjolsnes 2004, -51% injuries).",
-                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Previene la tendinopatía alta de isquios (Mjølsnes 2004, -51 % de lesiones)."
+                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Renforce le tendon haut des ischio-jambiers.",
+                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Strengthens the high hamstring tendon.",
+                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Refuerza el tendón alto de isquios."
               },
               "target_zone": "RPE 8-9",
               "required_equipment": [
@@ -6879,9 +6879,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -6916,9 +6916,9 @@
               "reps": "15",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998.",
-                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike + run combined). Alfredson 1998 protocol.",
-                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998."
+                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course).",
+                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike + run combined).",
+                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
@@ -7061,9 +7061,9 @@
               "reps": "6 reps",
               "rest_seconds": 60,
               "notes": {
-                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Préventif tendinopathie haute des ischio-jambiers (Mjølsnes 2004, -51 % de blessures).",
-                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Prevents high hamstring tendinopathy (Mjolsnes 2004, -51% injuries).",
-                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Previene la tendinopatía alta de isquios (Mjølsnes 2004, -51 % de lesiones)."
+                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Renforce le tendon haut des ischio-jambiers.",
+                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Strengthens the high hamstring tendon.",
+                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Refuerza el tendón alto de isquios."
               },
               "target_zone": "RPE 8-9",
               "required_equipment": [
@@ -7979,9 +7979,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -8601,9 +8601,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -8638,9 +8638,9 @@
               "reps": "15",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998.",
-                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike + run combined). Alfredson 1998 protocol.",
-                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998."
+                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course).",
+                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike + run combined).",
+                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
@@ -8783,9 +8783,9 @@
               "reps": "6 reps",
               "rest_seconds": 60,
               "notes": {
-                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Préventif tendinopathie haute des ischio-jambiers (Mjølsnes 2004, -51 % de blessures).",
-                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Prevents high hamstring tendinopathy (Mjolsnes 2004, -51% injuries).",
-                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Previene la tendinopatía alta de isquios (Mjølsnes 2004, -51 % de lesiones)."
+                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Renforce le tendon haut des ischio-jambiers.",
+                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Strengthens the high hamstring tendon.",
+                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Refuerza el tendón alto de isquios."
               },
               "target_zone": "RPE 8-9",
               "required_equipment": [
@@ -9477,9 +9477,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -9514,9 +9514,9 @@
               "reps": "15",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998.",
-                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike + run combined). Alfredson 1998 protocol.",
-                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998."
+                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course).",
+                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike + run combined).",
+                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
@@ -9659,9 +9659,9 @@
               "reps": "6 reps",
               "rest_seconds": 60,
               "notes": {
-                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Préventif tendinopathie haute des ischio-jambiers (Mjølsnes 2004, -51 % de blessures).",
-                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Prevents high hamstring tendinopathy (Mjolsnes 2004, -51% injuries).",
-                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Previene la tendinopatía alta de isquios (Mjølsnes 2004, -51 % de lesiones)."
+                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Renforce le tendon haut des ischio-jambiers.",
+                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Strengthens the high hamstring tendon.",
+                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Refuerza el tendón alto de isquios."
               },
               "target_zone": "RPE 8-9",
               "required_equipment": [
@@ -10417,9 +10417,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -10454,9 +10454,9 @@
               "reps": "15",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998.",
-                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike + run combined). Alfredson 1998 protocol.",
-                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998."
+                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course).",
+                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike + run combined).",
+                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
@@ -10599,9 +10599,9 @@
               "reps": "6 reps",
               "rest_seconds": 60,
               "notes": {
-                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Préventif tendinopathie haute des ischio-jambiers (Mjølsnes 2004, -51 % de blessures).",
-                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Prevents high hamstring tendinopathy (Mjolsnes 2004, -51% injuries).",
-                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Previene la tendinopatía alta de isquios (Mjølsnes 2004, -51 % de lesiones)."
+                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Renforce le tendon haut des ischio-jambiers.",
+                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Strengthens the high hamstring tendon.",
+                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Refuerza el tendón alto de isquios."
               },
               "target_zone": "RPE 8-9",
               "required_equipment": [
@@ -11293,9 +11293,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -11330,9 +11330,9 @@
               "reps": "15",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Préventif tendinopathie d'Achille en triathlon (cumul vélo à basse cadence + course). Protocole Alfredson 1998.",
-                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Prevents triathlon Achilles tendinopathy (low-cadence bike + run combined). Alfredson 1998 protocol.",
-                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Previene la tendinopatía de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas). Protocolo Alfredson 1998."
+                "fr": "Montées 1 s, descente lente 3 s sous le niveau de la marche (excentrique). Renforce le tendon d'Achille en triathlon (cumul vélo à basse cadence + course).",
+                "en": "Rise 1 sec, lower slowly 3 sec below step level (eccentric). Strengthens the Achilles tendon for triathlon (low-cadence bike + run combined).",
+                "es": "Subida 1 s, bajada lenta 3 s por debajo del escalón (excéntrica). Refuerza el tendón de Aquiles en triatlón (bici a baja cadencia + carrera acumuladas)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [],
@@ -11475,9 +11475,9 @@
               "reps": "6 reps",
               "rest_seconds": 60,
               "notes": {
-                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Préventif tendinopathie haute des ischio-jambiers (Mjølsnes 2004, -51 % de blessures).",
-                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Prevents high hamstring tendinopathy (Mjolsnes 2004, -51% injuries).",
-                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Previene la tendinopatía alta de isquios (Mjølsnes 2004, -51 % de lesiones)."
+                "fr": "À genoux, chevilles bloquées, descente excentrique lente (3-5 s) en contrôlant. Mains pour amortir en bas. Renforce le tendon haut des ischio-jambiers.",
+                "en": "Kneeling, ankles fixed, slow eccentric lowering (3-5 sec) under control. Hands to cushion at the bottom. Strengthens the high hamstring tendon.",
+                "es": "De rodillas, tobillos fijados, bajada excéntrica lenta (3-5 s) controlando. Manos para amortiguar abajo. Refuerza el tendón alto de isquios."
               },
               "target_zone": "RPE 8-9",
               "required_equipment": [
@@ -12267,9 +12267,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
@@ -12918,9 +12918,9 @@
               "reps": "12 par côté",
               "rest_seconds": 30,
               "notes": {
-                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Préventif ITBS en triathlon (course après le vélo).",
-                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Prevents triathlon ITBS (run off the bike).",
-                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Previene el STIT en triatlón (carrera tras la bici)."
+                "fr": "Allongé sur le côté, genoux pliés, mini-bande au-dessus des genoux. Ouvrir le genou supérieur sans bouger le bassin. Stabilité du genou et de la hanche en triathlon (course après le vélo).",
+                "en": "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
+                "es": "Tumbado de lado, rodillas flexionadas, mini-banda por encima de las rodillas. Abre la rodilla superior sin mover la pelvis. Estabilidad de la rodilla y la cadera en triatlón (carrera tras la bici)."
               },
               "target_zone": "RPE 6-7",
               "required_equipment": [
