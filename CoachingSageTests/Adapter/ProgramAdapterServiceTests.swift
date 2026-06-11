@@ -82,12 +82,20 @@ final class ProgramAdapterServiceTests: XCTestCase {
         XCTAssertEqual(sport.adapterFacade.equipment, ["none", "running-shoes", "mat"])
     }
 
-    /// Sport non-supporté V1 : pas d'implicit équipement (les autres sports n'ont pas
-    /// encore leur catalogue d'implicits — les templates sont là mais le mapping
-    /// arrivera avec leurs questionnaires Story 3.4+).
-    func testNonRunningSportDoesNotAddImplicits() {
-        let sport = makeSport(sportCode: "cycling", equipment: ["gps_watch"])
+    /// Sport sans catalogue d'implicits (ex: swimming) : pas d'ajout — les templates
+    /// sont là mais le mapping arrivera avec leurs questionnaires Story 3.4+.
+    func testSportWithoutImplicitsCatalogDoesNotAddImplicits() {
+        let sport = makeSport(sportCode: "swimming", equipment: ["gps_watch"])
         XCTAssertEqual(sport.adapterFacade.equipment, ["gps-watch"])
+    }
+
+    /// L3 indoor/outdoor (2026-06-11) — « choisir le vélo ⇒ a un vélo » : le kit de
+    /// roulage de base est assumé pour qu'aucune sortie ne dégrade en « Marche rapide ».
+    func testCyclingAddsImplicitRideKit() {
+        let sport = makeSport(sportCode: "cycling", equipment: ["gps_watch"])
+        XCTAssertEqual(sport.adapterFacade.equipment, [
+            "gps-watch", "road-bike", "indoor-trainer", "helmet", "bidons", "front-light", "rear-light"
+        ])
     }
 
     // MARK: - Helpers

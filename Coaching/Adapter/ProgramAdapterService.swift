@@ -128,6 +128,15 @@ extension CoachingSportProfile {
             // 13/60 exos running requirent `mat` (plancher de sol pour gainage), 7/60 `gps-watch`.
             // running-shoes : assumé acquis pour quelqu'un qui demande un programme running.
             mapped.append(contentsOf: ["running-shoes", "mat"])
+        case "cycling":
+            // L3 indoor/outdoor (2026-06-11) — « choisir le vélo ⇒ a un vélo » (décision
+            // Sophie, pragmatique). L'indoor/outdoor est un choix de LIEU (la puce), PAS
+            // d'équipement → on assume le kit de roulage de base (vélo route + home-trainer
+            // + casque/bidons/éclairage) pour qu'EquipmentSubstitutionRule ne dégrade JAMAIS
+            // une sortie vélo en « Marche rapide »/elliptique. Le matériel de PERF
+            // (power-meter, bike-computer, hrm) et de RENFO (dumbbells, mat) reste
+            // substituable légitimement vers une version « au ressenti »/poids du corps.
+            mapped.append(contentsOf: ["road-bike", "indoor-trainer", "helmet", "bidons", "front-light", "rear-light"])
         default:
             break
         }
