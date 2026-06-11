@@ -516,6 +516,7 @@
           },
           "day" : 2,
           "duration_minutes" : 65,
+          "environment" : "outdoor",
           "exercises" : [
             {
               "alternatives" : [
@@ -565,6 +566,69 @@
             "fr" : "Travail de cadence — 50 min"
           },
           "type" : "technique",
+          "variants" : [
+            {
+              "cooldown" : {
+                "en" : "5 min of FTP-Z1 pedaling at minimal resistance, then get off the bike and do: standing quad stretch (30 sec/leg), calf stretch with a hand on the wall (30 sec/leg). Hydrate 500 ml, more if you sweated a lot.",
+                "es" : "5 min de pedaleo FTP-Z1 con resistencia mínima, luego baja de la bici y haz: estiramiento de cuádriceps de pie (30 s/pierna), estiramiento de gemelos con la mano en la pared (30 s/pierna). Hidrátate 500 ml, más si has sudado mucho.",
+                "fr" : "5 min de pédalage FTP-Z1 sur résistance minimale, puis descends du vélo et fais : étirement quadriceps debout (30 sec/jambe), étirement mollets main contre mur (30 sec/jambe). Hydratation 500 ml, davantage si tu as beaucoup transpiré."
+              },
+              "duration_minutes" : 55,
+              "environment" : "indoor",
+              "exercises" : [
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Elliptical 40 min, alternating fast/normal cadence",
+                      "es" : "Elíptica 40 min, alternando cadencia rápida/normal",
+                      "fr" : "Vélo elliptique 40 min, alternance cadence rapide/normale"
+                    },
+                    {
+                      "en" : "Brisk walk 50 min",
+                      "es" : "Caminata rápida 50 min",
+                      "fr" : "Marche rapide 50 min"
+                    }
+                  ],
+                  "duration" : "3 min à 95-100 rpm + 3 min à 85 rpm",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "knee-injury",
+                    "cardiac-clearance-required",
+                    "no-bike"
+                  ],
+                  "match_key" : "Bloc cadence élevée alternée",
+                  "name" : {
+                    "en" : "Alternating high cadence",
+                    "es" : "Cadencia alta alternada",
+                    "fr" : "Cadence rapide en alternance"
+                  },
+                  "notes" : {
+                    "en" : "On an indoor trainer, pedaling is CONTINUOUS (no coasting like outdoors): at the same pace the effort feels slightly harder — that's normal. Alternate 3 min of high cadence (95-100 rpm, low resistance, light cardio in FTP-Z2) and 3 min of normal cadence (85 rpm). High cadence improves pedaling smoothness and reduces knee stress. With no cadence sensor, count right-pedal strokes over 15 sec × 4. Block total: 24 min. Round it out to 45 min total at free FTP-Z2. Equivalent to 69-83% max HR, RPE 2-3. Fan on, a few sips every 10-15 min.",
+                    "es" : "En el rodillo, el pedaleo es CONTINUO (sin rueda libre como en exterior): a igual ritmo el esfuerzo parece algo mayor, es normal. Alterna 3 min de cadencia alta (95-100 rpm, resistencia baja, esfuerzo cardio ligero en FTP-Z2) y 3 min de cadencia normal (85 rpm). La cadencia alta mejora la fluidez del pedaleo y reduce el estrés en las rodillas. Sin sensor de cadencia, cuenta las pedaladas del pie derecho durante 15 s × 4. Total del bloque: 24 min. Completa hasta 45 min en total en FTP-Z2 libre. Equivalente a 69-83% FCmáx, RPE 2-3. Ventilador encendido, unos sorbos cada 10-15 min.",
+                    "fr" : "Sur home-trainer, le pédalage est CONTINU (pas de roue libre comme dehors) : à allure égale l'effort paraît un peu plus soutenu, c'est normal. Alterne 3 min de cadence haute (95-100 rpm, résistance faible, effort cardio léger en FTP-Z2) et 3 min de cadence normale (85 rpm). La cadence haute améliore la fluidité du pédalage et réduit le stress sur les genoux. Sans compteur de cadence, compte les coups de pédale droite pendant 15 sec × 4. Total bloc : 24 min. Complète jusqu'à 45 min total en FTP-Z2 libre. Équivalent 69-83% FCmax, RPE 2-3. Ventilateur allumé, quelques gorgées toutes les 10-15 min."
+                  },
+                  "required_equipment" : [
+                    "indoor-trainer",
+                    "bidons"
+                  ],
+                  "rest_seconds" : 0,
+                  "sets" : 4,
+                  "target_zone" : "FTP-Z2",
+                  "volume_axis" : "sets"
+                }
+              ],
+              "name" : {
+                "en" : "Indoor trainer cadence — 45 min",
+                "es" : "Rodillo cadencia — 45 min",
+                "fr" : "Home-trainer cadence — 45 min"
+              },
+              "warmup" : {
+                "en" : "8 min of easy FTP-Z1 pedaling at low resistance, free cadence. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you. Check your position (saddle at the right height, hands relaxed, elbows slightly bent).",
+                "es" : "8 min de pedaleo suave en FTP-Z1 con resistencia baja, cadencia libre. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte. Comprueba tu posición (sillín a la altura correcta, manos relajadas, codos ligeramente flexionados).",
+                "fr" : "8 min de pédalage souple en FTP-Z1 sur résistance faible, cadence libre. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir. Vérifie ta position (selle à bonne hauteur, mains relâchées, coudes légèrement fléchis)."
+              }
+            }
+          ],
           "warmup" : {
             "en" : "8 min of easy FTP-Z1 pedaling, free cadence.",
             "es" : "8 min de pedaleo suave FTP-Z1, cadencia libre.",
@@ -579,6 +643,7 @@
           },
           "day" : 5,
           "duration_minutes" : 85,
+          "environment" : "outdoor",
           "exercises" : [
             {
               "alternatives" : [
@@ -732,6 +797,178 @@
             "fr" : "Sortie longue — 1h + renforcement"
           },
           "type" : "mixed",
+          "variants" : [
+            {
+              "cooldown" : {
+                "en" : "5 min of FTP-Z1 pedaling at minimal resistance, then get off the bike and do 8 min of full stretches: quads, calves, hip flexors, hamstrings (30 sec each). Drink 500 ml within 30 min and have a carb snack (banana, cereal bar), more water if you sweated a lot.",
+                "es" : "5 min de pedaleo FTP-Z1 con resistencia mínima, luego baja de la bici y haz 8 min de estiramientos completos: cuádriceps, gemelos, flexores de cadera, isquiotibiales (30 s cada uno). Bebe 500 ml en los siguientes 30 min y toma un tentempié de hidratos (plátano, barrita), más agua si has sudado mucho.",
+                "fr" : "5 min de pédalage FTP-Z1 sur résistance minimale, puis descends du vélo et étirements complets 8 min : quadriceps, mollets, fléchisseurs de hanche, ischio-jambiers (30 sec chacun). Bois 500 ml dans les 30 min et prends une collation glucidique (banane, barre de céréales), davantage d'eau si tu as beaucoup transpiré."
+              },
+              "duration_minutes" : 80,
+              "environment" : "indoor",
+              "exercises" : [
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Elliptical 60 min, endurance",
+                      "es" : "Elíptica 60 min en resistencia",
+                      "fr" : "Vélo elliptique 60 min en endurance"
+                    },
+                    {
+                      "en" : "Brisk walk 65 min",
+                      "es" : "Caminata rápida 65 min",
+                      "fr" : "Marche rapide 65 min"
+                    }
+                  ],
+                  "duration" : "50 min",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "knee-injury",
+                    "cardiac-clearance-required",
+                    "no-bike"
+                  ],
+                  "match_key" : "Sortie continue FTP-Z2",
+                  "name" : {
+                    "en" : "Steady pedaling, conversational pace",
+                    "es" : "Pedaleo continuo, ritmo conversacional",
+                    "fr" : "Pédalage continu, allure conversationnelle"
+                  },
+                  "notes" : {
+                    "en" : "On an indoor trainer, continuous pedaling: at the same pace the effort feels slightly harder — that's normal. First 50-minute milestone without getting off the bike. FTP-Z2 zone: 56-75% FTP, RPE 2-3, you can speak in full sentences but no longer sing. Cadence 85-90 rpm. To vary, raise the resistance slightly for 1-2 min then ease back, never grinding a heavy resistance at low cadence (knee risk). Fan on, take a few sips every 15 min without waiting to feel thirsty.",
+                    "es" : "En el rodillo, pedaleo continuo: a igual ritmo el esfuerzo parece algo mayor, es normal. Primer hito de 50 min sin bajar de la bici. Zona FTP-Z2: 56-75% FTP, RPE 2-3, hablas en frases completas pero ya no cantas. Cadencia 85-90 rpm. Para variar, sube ligeramente la resistencia en bloques de 1-2 min y luego afloja, sin forzar nunca una resistencia dura a baja cadencia (riesgo de rodilla). Ventilador encendido, bebe unos sorbos cada 15 min sin esperar a tener sed.",
+                    "fr" : "Sur home-trainer, pédalage continu : à allure égale l'effort paraît un peu plus soutenu, c'est normal. Premier cap à 50 min sans descendre du vélo. Zone FTP-Z2 : 56-75% FTP, RPE 2-3, tu parles en phrases complètes mais ne chantes plus. Cadence 85-90 rpm. Pour varier, augmente légèrement la résistance par paliers de 1-2 min puis reviens, sans jamais forcer sur une résistance trop dure à basse cadence (risque genou). Ventilateur allumé, bois quelques gorgées toutes les 15 min sans attendre la soif."
+                  },
+                  "required_equipment" : [
+                    "indoor-trainer",
+                    "bidons"
+                  ],
+                  "rest_seconds" : 0,
+                  "sets" : 1,
+                  "target_zone" : "FTP-Z2",
+                  "volume_axis" : "duration"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Plank on knees 35 sec",
+                      "es" : "Plancha con rodillas en el suelo 35 s",
+                      "fr" : "Planche sur les genoux 35 sec"
+                    },
+                    {
+                      "en" : "Dead bug",
+                      "es" : "Dead bug",
+                      "fr" : "Dead bug"
+                    }
+                  ],
+                  "duration" : "25 sec",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "shoulder-injury"
+                  ],
+                  "match_key" : "Planche ventrale",
+                  "name" : {
+                    "en" : "Front plank",
+                    "es" : "Plancha frontal",
+                    "fr" : "Planche ventrale"
+                  },
+                  "notes" : {
+                    "en" : "After pedaling, get off the bike and do this strength work on the floor. Elbows under shoulders, body aligned, glutes engaged. Builds lower-back stability, essential to hold the riding position without back tension. Progression vs W1 (20 → 25 sec). RPE 6-7.",
+                    "es" : "Tras pedalear, baja de la bici y haz este refuerzo en el suelo. Codos bajo los hombros, cuerpo alineado, glúteos activados. Fortalece la zona lumbar, esencial para mantener la posición sobre la bici sin tensión dorsal. Progresión respecto a la S1 (20 → 25 s). RPE 6-7.",
+                    "fr" : "Après le pédalage, descends du vélo et fais ce renforcement au sol. Coudes sous les épaules, corps aligné, fessiers engagés. Renforce le gainage lombaire, essentiel pour tenir la position vélo sans tension dorsale. Progression vs W1 (20 → 25 sec). RPE 6-7."
+                  },
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 40,
+                  "sets" : 3,
+                  "target_zone" : "RPE 6-7",
+                  "volume_axis" : "duration"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Glute bridge with feet on a chair",
+                      "es" : "Puente de glúteos con los pies en una silla",
+                      "fr" : "Pont fessier pieds sur chaise"
+                    },
+                    {
+                      "en" : "Isometric bridge 30 sec",
+                      "es" : "Puente isométrico 30 s",
+                      "fr" : "Pont isométrique 30 sec"
+                    }
+                  ],
+                  "incompatible_constraints" : [
+                    "lower-back-pain"
+                  ],
+                  "match_key" : "Pont fessier bipodal",
+                  "name" : {
+                    "en" : "Two-leg glute bridge",
+                    "es" : "Puente de glúteos a dos piernas",
+                    "fr" : "Pont fessier (deux jambes)"
+                  },
+                  "notes" : {
+                    "en" : "Lie on your back, feet flat, push your hips up. Hold 2 sec at the top. Activates the glutes, which offset the quads' overwork on the bike. RPE 6-7.",
+                    "es" : "Tumbado boca arriba, pies apoyados, empuja las caderas hacia arriba. Mantén 2 s arriba. Activa los glúteos, que compensan el trabajo excesivo de los cuádriceps sobre la bici. RPE 6-7.",
+                    "fr" : "Allongé sur le dos, pieds à plat, pousser les hanches vers le haut. Tenir 2 sec en haut. Active les fessiers qui compensent le travail excessif des quadriceps sur le vélo. RPE 6-7."
+                  },
+                  "reps" : "15",
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 35,
+                  "sets" : 3,
+                  "target_zone" : "RPE 6-7",
+                  "volume_axis" : "reps"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Two-leg calf raises on the floor",
+                      "es" : "Elevaciones de gemelo a dos piernas en el suelo",
+                      "fr" : "Mollets debout (deux pieds) au sol"
+                    },
+                    {
+                      "en" : "Seated calf raises on a chair",
+                      "es" : "Elevaciones de gemelo sentado en una silla",
+                      "fr" : "Mollets assis sur chaise"
+                    }
+                  ],
+                  "incompatible_constraints" : [
+                    "ankle-injury"
+                  ],
+                  "match_key" : "Calf raises surélevés",
+                  "name" : {
+                    "en" : "Calf raises on a step",
+                    "es" : "Elevaciones de gemelo en escalón",
+                    "fr" : "Mollets sur une marche"
+                  },
+                  "notes" : {
+                    "en" : "On the edge of a step, drop your heel below the step. Full range. More load on the calves. Prevents cramps and fatigue at the end of long sessions. RPE 7-8.",
+                    "es" : "En el borde de un escalón, baja el talón por debajo del escalón. Recorrido completo. Mayor carga sobre los gemelos. Previene calambres y fatiga al final de las sesiones largas. RPE 7-8.",
+                    "fr" : "Sur le bord d'une marche, descendre le talon sous la marche. Amplitude complète. Charge accrue sur les mollets. Prévention crampes et fatigue en fin de séance longue. RPE 7-8."
+                  },
+                  "reps" : "12 par côté",
+                  "required_equipment" : [
+
+                  ],
+                  "rest_seconds" : 30,
+                  "sets" : 3,
+                  "target_zone" : "RPE 7-8",
+                  "volume_axis" : "reps"
+                }
+              ],
+              "name" : {
+                "en" : "Indoor trainer long ride — 50 min + strength",
+                "es" : "Rodillo largo — 50 min + refuerzo",
+                "fr" : "Home-trainer longue — 50 min + renforcement"
+              },
+              "warmup" : {
+                "en" : "10 min of progressive FTP-Z1 pedaling at low resistance, cadence climbing 75 to 90 rpm. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
+                "es" : "10 min de pedaleo FTP-Z1 progresivo con resistencia baja, cadencia subiendo de 75 a 90 rpm. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
+                "fr" : "10 min de pédalage FTP-Z1 progressif sur résistance faible, cadence montante de 75 à 90 rpm. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
+              }
+            }
+          ],
           "warmup" : {
             "en" : "10 min progressive FTP-Z1, cadence climbing 75 → 90 rpm.",
             "es" : "10 min FTP-Z1 progresivo, cadencia subiendo 75 → 90 rpm.",
@@ -761,6 +998,7 @@
           },
           "day" : 2,
           "duration_minutes" : 70,
+          "environment" : "outdoor",
           "exercises" : [
             {
               "alternatives" : [
@@ -810,6 +1048,69 @@
             "fr" : "Sortie vallonnée légère — 55 min"
           },
           "type" : "endurance",
+          "variants" : [
+            {
+              "cooldown" : {
+                "en" : "5 min of very slow pedaling at minimal resistance, then get off the bike and stretch hip flexors and hamstrings (often tight after the resistance blocks), 30 sec/side. Hydrate 500 ml, more if you sweated a lot.",
+                "es" : "5 min de pedaleo muy lento con resistencia mínima, luego baja de la bici y estira flexores de cadera e isquiotibiales (a menudo tensos tras los bloques de resistencia), 30 s/lado. Hidrátate 500 ml, más si has sudado mucho.",
+                "fr" : "5 min de pédalage très lent sur résistance minimale, puis descends du vélo et étirements fléchisseurs de hanche et ischio-jambiers (souvent tendus après les blocs de résistance), 30 sec/côté. Hydratation 500 ml, davantage si tu as beaucoup transpiré."
+              },
+              "duration_minutes" : 65,
+              "environment" : "indoor",
+              "exercises" : [
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Elliptical 45 min, resistance blocks",
+                      "es" : "Elíptica 45 min, bloques de resistencia",
+                      "fr" : "Vélo elliptique 45 min, paliers de résistance"
+                    },
+                    {
+                      "en" : "Brisk walk 55 min with uphill sections",
+                      "es" : "Caminata rápida 55 min con tramos en cuesta",
+                      "fr" : "Marche rapide 55 min avec passages en côte"
+                    }
+                  ],
+                  "duration" : "45 min",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "knee-injury",
+                    "cardiac-clearance-required",
+                    "no-bike"
+                  ],
+                  "match_key" : "Sortie vallonnée FTP-Z2",
+                  "name" : {
+                    "en" : "Variable-resistance pedaling",
+                    "es" : "Pedaleo con resistencia variable",
+                    "fr" : "Pédalage à résistance variable"
+                  },
+                  "notes" : {
+                    "en" : "The rolling road terrain transposes here into blocks of higher resistance. On an indoor trainer, pedaling is continuous: the effort feels slightly harder — that's normal. Insert 2 blocks of 4-5 min at raised resistance (simulating a < 5% climb), keeping 75-85 rpm, then ease back to low resistance at 85-90 rpm to recover. HR may briefly rise toward FTP-Z3 (84-94% max HR) on the blocks — that's normal, not the goal. Drop back to FTP-Z2 (69-83% max HR) between blocks. Average RPE 2-3, peak 3-4 on the blocks. Never grind at low cadence (knee risk). Fan on, drink every 15 min.",
+                    "es" : "El terreno ondulado de la salida en carretera se transpone aquí en bloques de mayor resistencia. En el rodillo, pedaleo continuo: el esfuerzo parece algo mayor, es normal. Inserta 2 bloques de 4-5 min con resistencia aumentada (simula una cuesta < 5%) manteniendo 75-85 rpm, luego vuelve a resistencia baja a 85-90 rpm para recuperar. La FC puede subir momentáneamente hacia FTP-Z3 (84-94% FCmáx) en los bloques — es normal, no el objetivo. Vuelve a FTP-Z2 (69-83% FCmáx) entre bloques. RPE medio 2-3, pico 3-4 en los bloques. Nunca fuerces a baja cadencia (riesgo de rodilla). Ventilador encendido, bebe cada 15 min.",
+                    "fr" : "Le vallonné de la sortie route se transpose ici en blocs de résistance accrue. Sur home-trainer, pédalage continu : l'effort paraît un peu plus soutenu, c'est normal. Insère 2 blocs de 4-5 min à résistance augmentée (simule une côte < 5%) en gardant 75-85 rpm, puis reviens en résistance faible 85-90 rpm pour souffler. La FC peut monter temporairement vers FTP-Z3 (84-94% FCmax) sur les blocs — c'est normal, pas l'objectif. Redescends en FTP-Z2 (69-83% FCmax) entre les blocs. RPE moyen 2-3, pic 3-4 sur les blocs. Ne jamais forcer à basse cadence (risque genou). Ventilateur allumé, bois toutes les 15 min."
+                  },
+                  "required_equipment" : [
+                    "indoor-trainer",
+                    "bidons"
+                  ],
+                  "rest_seconds" : 0,
+                  "sets" : 1,
+                  "target_zone" : "FTP-Z2",
+                  "volume_axis" : "duration"
+                }
+              ],
+              "name" : {
+                "en" : "Indoor trainer variable resistance — 50 min",
+                "es" : "Rodillo resistencia variable — 50 min",
+                "fr" : "Home-trainer résistance variable — 50 min"
+              },
+              "warmup" : {
+                "en" : "10 min of easy FTP-Z1 pedaling at low resistance, cadence climbing 75 to 90 rpm. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
+                "es" : "10 min de pedaleo FTP-Z1 suave con resistencia baja, cadencia subiendo de 75 a 90 rpm. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
+                "fr" : "10 min de pédalage FTP-Z1 souple sur résistance faible, cadence montante de 75 à 90 rpm. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
+              }
+            }
+          ],
           "warmup" : {
             "en" : "10 min FTP-Z1 on the flat.",
             "es" : "10 min FTP-Z1 en llano.",
@@ -824,6 +1125,7 @@
           },
           "day" : 5,
           "duration_minutes" : 100,
+          "environment" : "outdoor",
           "exercises" : [
             {
               "alternatives" : [
@@ -1014,6 +1316,215 @@
             "fr" : "Sortie longue — 1h15 + renforcement"
           },
           "type" : "mixed",
+          "variants" : [
+            {
+              "cooldown" : {
+                "en" : "5 min of FTP-Z1 pedaling at minimal resistance, then get off the bike and do 10 min of full stretches: quads, calves, hip flexors, hamstrings. Hydrate 500 ml, more if you sweated a lot.",
+                "es" : "5 min de pedaleo FTP-Z1 con resistencia mínima, luego baja de la bici y haz 10 min de estiramientos completos: cuádriceps, gemelos, flexores de cadera, isquiotibiales. Hidrátate 500 ml, más si has sudado mucho.",
+                "fr" : "5 min de pédalage FTP-Z1 sur résistance minimale, puis descends du vélo et étirements complets 10 min : quadriceps, mollets, fléchisseurs de hanche, ischio-jambiers. Hydratation 500 ml, davantage si tu as beaucoup transpiré."
+              },
+              "duration_minutes" : 90,
+              "environment" : "indoor",
+              "exercises" : [
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Elliptical 75 min, endurance",
+                      "es" : "Elíptica 75 min en resistencia",
+                      "fr" : "Vélo elliptique 75 min en endurance"
+                    },
+                    {
+                      "en" : "Brisk walk 80 min",
+                      "es" : "Caminata rápida 80 min",
+                      "fr" : "Marche rapide 80 min"
+                    }
+                  ],
+                  "duration" : "60 min",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "knee-injury",
+                    "cardiac-clearance-required",
+                    "no-bike"
+                  ],
+                  "match_key" : "Sortie continue FTP-Z2",
+                  "name" : {
+                    "en" : "Steady pedaling, conversational pace",
+                    "es" : "Pedaleo continuo, ritmo conversacional",
+                    "fr" : "Pédalage continu, allure conversationnelle"
+                  },
+                  "notes" : {
+                    "en" : "The longest continuous ride of the plan so far, transposed to the indoor trainer (continuous pedaling: the effort feels slightly harder — that's normal). Manage your pacing: don't set off too fast (a classic comeback mistake). Clear fatigue at 35-40 min means you started too quickly — note it. FTP-Z2 zone: 56-75% FTP, RPE 2-3, full sentences possible. Cadence 85-90 rpm. Nutrition: at least 1 bottle + 1 bar or banana around 35 min (learn to eat while pedaling). Fan on, drink every 15 min.",
+                    "es" : "La salida continua más larga del plan hasta ahora, transpuesta al rodillo (pedaleo continuo: el esfuerzo parece algo mayor, es normal). Gestiona el ritmo: no salgas demasiado fuerte (error clásico de retomar). Si notas fatiga clara a los 35-40 min, es que saliste demasiado rápido — anótalo. Zona FTP-Z2: 56-75% FTP, RPE 2-3, frases completas posibles. Cadencia 85-90 rpm. Nutrición: al menos 1 bidón + 1 barrita o plátano hacia los 35 min (aprende a comer pedaleando). Ventilador encendido, bebe cada 15 min.",
+                    "fr" : "La sortie continue la plus longue du plan jusqu'ici, transposée au home-trainer (pédalage continu : l'effort paraît un peu plus soutenu, c'est normal). Gère le rythme : ne pars pas trop fort (erreur classique de reprise). Si fatigue nette à 35-40 min, c'est que le départ était trop rapide — note-le. Zone FTP-Z2 : 56-75% FTP, RPE 2-3, phrases complètes possibles. Cadence 85-90 rpm. Nutrition : 1 bidon minimum + 1 barre ou banane vers 35 min (apprends à manger en pédalant). Ventilateur allumé, bois toutes les 15 min."
+                  },
+                  "required_equipment" : [
+                    "indoor-trainer",
+                    "bidons"
+                  ],
+                  "rest_seconds" : 0,
+                  "sets" : 1,
+                  "target_zone" : "FTP-Z2",
+                  "volume_axis" : "duration"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Plank on knees 40 sec",
+                      "es" : "Plancha con rodillas en el suelo 40 s",
+                      "fr" : "Planche sur les genoux 40 sec"
+                    },
+                    {
+                      "en" : "Dead bug",
+                      "es" : "Dead bug",
+                      "fr" : "Dead bug"
+                    }
+                  ],
+                  "duration" : "30 sec",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "shoulder-injury"
+                  ],
+                  "match_key" : "Planche ventrale",
+                  "name" : {
+                    "en" : "Front plank",
+                    "es" : "Plancha frontal",
+                    "fr" : "Planche ventrale"
+                  },
+                  "notes" : {
+                    "en" : "After pedaling, get off the bike and do this strength work on the floor. Elbows under shoulders, body aligned, glutes engaged. Linear progression (20 → 25 → 30 sec over 3 weeks). RPE 6-7.",
+                    "es" : "Tras pedalear, baja de la bici y haz este refuerzo en el suelo. Codos bajo los hombros, cuerpo alineado, glúteos activados. Progresión lineal (20 → 25 → 30 s en 3 semanas). RPE 6-7.",
+                    "fr" : "Après le pédalage, descends du vélo et fais ce renforcement au sol. Coudes sous les épaules, corps aligné, fessiers engagés. Progression linéaire (20 → 25 → 30 sec en 3 semaines). RPE 6-7."
+                  },
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 40,
+                  "sets" : 3,
+                  "target_zone" : "RPE 6-7",
+                  "volume_axis" : "duration"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Two-leg glute bridge",
+                      "es" : "Puente de glúteos a dos piernas",
+                      "fr" : "Pont fessier à deux jambes"
+                    },
+                    {
+                      "en" : "Glute bridge with feet on a chair",
+                      "es" : "Puente de glúteos con los pies en una silla",
+                      "fr" : "Pont fessier pieds sur chaise"
+                    }
+                  ],
+                  "incompatible_constraints" : [
+                    "lower-back-pain"
+                  ],
+                  "match_key" : "Pont fessier unilatéral",
+                  "name" : {
+                    "en" : "Single-leg glute bridge",
+                    "es" : "Puente de glúteos a una pierna",
+                    "fr" : "Pont fessier sur une jambe"
+                  },
+                  "notes" : {
+                    "en" : "Progression vs two-leg glute bridge. Left/right balance, builds the posterior chain on each side independently. RPE 7-8.",
+                    "es" : "Progresión respecto al puente a dos piernas. Equilibrio izquierda/derecha, fortalece la cadena posterior de cada lado de forma independiente. RPE 7-8.",
+                    "fr" : "Progression vs pont fessier bipodal. Équilibre gauche/droite, renforce la chaîne postérieure de chaque côté indépendamment. RPE 7-8."
+                  },
+                  "reps" : "10 par côté",
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 35,
+                  "sets" : 3,
+                  "target_zone" : "RPE 7-8",
+                  "volume_axis" : "reps"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Two-leg calf raises on the floor",
+                      "es" : "Elevaciones de gemelo a dos piernas en el suelo",
+                      "fr" : "Mollets debout (deux pieds) au sol"
+                    },
+                    {
+                      "en" : "Seated calf raises on a chair",
+                      "es" : "Elevaciones de gemelo sentado en una silla",
+                      "fr" : "Mollets assis sur chaise"
+                    }
+                  ],
+                  "incompatible_constraints" : [
+                    "ankle-injury"
+                  ],
+                  "match_key" : "Calf raises surélevés",
+                  "name" : {
+                    "en" : "Calf raises on a step",
+                    "es" : "Elevaciones de gemelo en escalón",
+                    "fr" : "Mollets sur une marche"
+                  },
+                  "notes" : {
+                    "en" : "On the edge of a step, drop your heel below the step. Full range. Prevents cramps and calf fatigue at the end of long sessions. RPE 7-8.",
+                    "es" : "En el borde de un escalón, baja el talón por debajo del escalón. Recorrido completo. Previene calambres y fatiga de los gemelos al final de las sesiones largas. RPE 7-8.",
+                    "fr" : "Sur le bord d'une marche, descendre le talon sous la marche. Amplitude complète. Prévention crampes et fatigue des mollets en fin de séance longue. RPE 7-8."
+                  },
+                  "reps" : "15 par côté",
+                  "required_equipment" : [
+
+                  ],
+                  "rest_seconds" : 30,
+                  "sets" : 3,
+                  "target_zone" : "RPE 7-8",
+                  "volume_axis" : "reps"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Dead bug",
+                      "es" : "Dead bug",
+                      "fr" : "Dead bug"
+                    },
+                    {
+                      "en" : "Bird-dog on forearm",
+                      "es" : "Bird-dog con antebrazo en el suelo",
+                      "fr" : "Bird-dog avant-bras au sol"
+                    }
+                  ],
+                  "incompatible_constraints" : [
+                    "wrist-injury",
+                    "lower-back-pain"
+                  ],
+                  "match_key" : "Bird-dog",
+                  "name" : {
+                    "en" : "Bird-dog",
+                    "es" : "Bird-dog",
+                    "fr" : "Bird-dog"
+                  },
+                  "notes" : {
+                    "en" : "On all fours: extend the left arm + right leg at the same time, hold 2 sec. Builds the deep anti-rotation core, essential to hold a riding position for 1h+ without lower-back tension. RPE 6-7.",
+                    "es" : "A cuatro patas: extiende el brazo izquierdo y la pierna derecha a la vez, mantén 2 s. Fortalece el core profundo antirotación, imprescindible para mantener la posición sobre la bici 1h+ sin tensión lumbar. RPE 6-7.",
+                    "fr" : "À 4 pattes : tendre bras gauche + jambe droite simultanément, tenir 2 sec. Renforce le core profond anti-rotation, indispensable pour tenir une position vélo 1h+ sans tension lombaire. RPE 6-7."
+                  },
+                  "reps" : "8 par côté",
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 30,
+                  "sets" : 3,
+                  "target_zone" : "RPE 6-7",
+                  "volume_axis" : "reps"
+                }
+              ],
+              "name" : {
+                "en" : "Indoor trainer long ride — 1h + strength",
+                "es" : "Rodillo largo — 1h + refuerzo",
+                "fr" : "Home-trainer longue — 1h + renforcement"
+              },
+              "warmup" : {
+                "en" : "10 min of FTP-Z1 pedaling at low resistance. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
+                "es" : "10 min de pedaleo FTP-Z1 con resistencia baja. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
+                "fr" : "10 min de pédalage FTP-Z1 sur résistance faible. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
+              }
+            }
+          ],
           "warmup" : {
             "en" : "10 min FTP-Z1.",
             "es" : "10 min FTP-Z1.",
@@ -1043,6 +1554,7 @@
           },
           "day" : 2,
           "duration_minutes" : 55,
+          "environment" : "outdoor",
           "exercises" : [
             {
               "alternatives" : [
@@ -1092,6 +1604,69 @@
             "fr" : "Récupération active — 45 min très facile"
           },
           "type" : "endurance",
+          "variants" : [
+            {
+              "cooldown" : {
+                "en" : "5 min of gentle mobility: hip circles, ankle rotations, shoulder mobility. 5 min of easy stretching. Hydrate, more if you sweated.",
+                "es" : "5 min de movilidad suave: círculos de cadera, rotaciones de tobillo, movilidad de hombros. 5 min de estiramientos suaves. Hidrátate, más si has sudado.",
+                "fr" : "5 min de mobilisation douce : cercles de hanches, rotations des chevilles, mobilisation des épaules. Étirements doux 5 min. Hydratation, davantage si tu as transpiré."
+              },
+              "duration_minutes" : 50,
+              "environment" : "indoor",
+              "exercises" : [
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Elliptical 40 min very easy",
+                      "es" : "Elíptica 40 min muy fácil",
+                      "fr" : "Vélo elliptique 40 min très facile"
+                    },
+                    {
+                      "en" : "Brisk walk 50 min",
+                      "es" : "Caminata rápida 50 min",
+                      "fr" : "Marche rapide 50 min"
+                    }
+                  ],
+                  "duration" : "40 min",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "knee-injury",
+                    "cardiac-clearance-required",
+                    "no-bike"
+                  ],
+                  "match_key" : "Sortie FTP-Z1 récupération",
+                  "name" : {
+                    "en" : "Recovery pedaling, very easy pace",
+                    "es" : "Pedaleo de recuperación, ritmo muy fácil",
+                    "fr" : "Pédalage de récupération, allure très facile"
+                  },
+                  "notes" : {
+                    "en" : "Easy week: this gentle pedaling is deliberately very easy. On an indoor trainer, continuous pedaling: at the same pace the effort feels slightly harder, so keep the resistance truly minimal. FTP-Z1 zone only (< 55% FTP, < 68% max HR, RPE 1-2). Free cadence 80-90 rpm. Feeling good and fresh is the sign that recovery is working — resist the urge to push. The goal is to reach W5 fresh for the quality step (introducing short sustained blocks). Fan on, a few sips every 10 min.",
+                    "es" : "Semana ligera: este pedaleo suave es deliberadamente muy fácil. En el rodillo, pedaleo continuo: a igual ritmo el esfuerzo parece algo mayor, así que mantén la resistencia realmente mínima. Solo zona FTP-Z1 (< 55% FTP, < 68% FCmáx, RPE 1-2). Cadencia libre 80-90 rpm. Si te sientes bien y en forma, es la señal de que la recuperación funciona — resiste la tentación de apretar. El objetivo es llegar fresco a la S5 para el salto de calidad (introducción de bloques sostenidos cortos). Ventilador encendido, unos sorbos cada 10 min.",
+                    "fr" : "Semaine allégée : ce pédalage doux est volontairement très facile. Sur home-trainer, pédalage continu : à allure égale l'effort paraît un peu plus soutenu, garde donc la résistance vraiment minimale. Zone FTP-Z1 uniquement (< 55% FTP, < 68% FCmax, RPE 1-2). Cadence libre 80-90 rpm. Si tu te sens bien et en forme, c'est le signe que la récupération fonctionne — résiste à l'envie de pousser. L'objectif est d'arriver frais à W5 pour le palier qualité (intro efforts soutenus courts). Ventilateur allumé, quelques gorgées toutes les 10 min."
+                  },
+                  "required_equipment" : [
+                    "indoor-trainer",
+                    "bidons"
+                  ],
+                  "rest_seconds" : 0,
+                  "sets" : 1,
+                  "target_zone" : "FTP-Z1",
+                  "volume_axis" : "duration"
+                }
+              ],
+              "name" : {
+                "en" : "Indoor trainer recovery — 40 min very easy",
+                "es" : "Rodillo recuperación — 40 min muy fácil",
+                "fr" : "Home-trainer récupération — 40 min très facile"
+              },
+              "warmup" : {
+                "en" : "5 min of ultra-light pedaling at minimal resistance. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
+                "es" : "5 min de pedaleo muy suave con resistencia mínima. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
+                "fr" : "5 min de pédalage ultra-léger sur résistance minimale. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
+              }
+            }
+          ],
           "warmup" : {
             "en" : "5 min of ultra-light pedaling.",
             "es" : "5 min de pedaleo muy suave.",
@@ -1106,6 +1681,7 @@
           },
           "day" : 5,
           "duration_minutes" : 80,
+          "environment" : "outdoor",
           "exercises" : [
             {
               "alternatives" : [
@@ -1293,6 +1869,217 @@
             "fr" : "Sortie de descharge — 55 min + renforcement"
           },
           "type" : "mixed",
+          "variants" : [
+            {
+              "cooldown" : {
+                "en" : "5 min of FTP-Z1 pedaling at minimal resistance, then get off the bike and do 8 min of full stretches: quads, calves, hip flexors, hamstrings. Hydrate, more if you sweated a lot.",
+                "es" : "5 min de pedaleo FTP-Z1 con resistencia mínima, luego baja de la bici y haz 8 min de estiramientos completos: cuádriceps, gemelos, flexores de cadera, isquiotibiales. Hidrátate, más si has sudado mucho.",
+                "fr" : "5 min de pédalage FTP-Z1 sur résistance minimale, puis descends du vélo et étirements complets 8 min : quadriceps, mollets, fléchisseurs de hanche, ischio-jambiers. Hydratation, davantage si tu as beaucoup transpiré."
+              },
+              "duration_minutes" : 75,
+              "environment" : "indoor",
+              "exercises" : [
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Elliptical 55 min, endurance",
+                      "es" : "Elíptica 55 min en resistencia",
+                      "fr" : "Vélo elliptique 55 min en endurance"
+                    },
+                    {
+                      "en" : "Brisk walk 60 min",
+                      "es" : "Caminata rápida 60 min",
+                      "fr" : "Marche rapide 60 min"
+                    }
+                  ],
+                  "duration" : "50 min",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "knee-injury",
+                    "cardiac-clearance-required",
+                    "no-bike"
+                  ],
+                  "match_key" : "Sortie continue FTP-Z2",
+                  "name" : {
+                    "en" : "Steady pedaling, conversational pace",
+                    "es" : "Pedaleo continuo, ritmo conversacional",
+                    "fr" : "Pédalage continu, allure conversationnelle"
+                  },
+                  "notes" : {
+                    "en" : "On an indoor trainer, continuous pedaling: the effort feels slightly harder — that's normal. Comfortable FTP-Z2 pace (56-75% FTP, 69-83% max HR, RPE 2-3). You can add 1-2 raised-resistance blocks of 2-3 min if you want variety, without pushing. Reminder: an easy week doesn't mean inactivity — this light pedaling keeps your fitness without piling on fatigue. Cadence 85-90 rpm. Fan on, drink every 15 min.",
+                    "es" : "En el rodillo, pedaleo continuo: el esfuerzo parece algo mayor, es normal. Ritmo cómodo FTP-Z2 (56-75% FTP, 69-83% FCmáx, RPE 2-3). Puedes añadir 1-2 bloques de mayor resistencia de 2-3 min si quieres variar, sin forzar. Recuerda: una semana ligera no significa quedarse parado — este pedaleo suave mantiene la forma sin acumular fatiga. Cadencia 85-90 rpm. Ventilador encendido, bebe cada 15 min.",
+                    "fr" : "Sur home-trainer, pédalage continu : l'effort paraît un peu plus soutenu, c'est normal. Allure confortable FTP-Z2 (56-75% FTP, 69-83% FCmax, RPE 2-3). Tu peux ajouter 1-2 paliers de résistance accrue de 2-3 min si tu veux varier, sans forcer. Rappel : semaine allégée ne signifie pas statique — ce pédalage léger maintient la forme sans accumuler de fatigue. Cadence 85-90 rpm. Ventilateur allumé, bois toutes les 15 min."
+                  },
+                  "required_equipment" : [
+                    "indoor-trainer",
+                    "bidons"
+                  ],
+                  "rest_seconds" : 0,
+                  "sets" : 1,
+                  "target_zone" : "FTP-Z2",
+                  "volume_axis" : "duration"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Plank on knees 40 sec",
+                      "es" : "Plancha con rodillas en el suelo 40 s",
+                      "fr" : "Planche sur les genoux 40 sec"
+                    },
+                    {
+                      "en" : "Dead bug",
+                      "es" : "Dead bug",
+                      "fr" : "Dead bug"
+                    }
+                  ],
+                  "duration" : "30 sec",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "shoulder-injury"
+                  ],
+                  "match_key" : "Planche ventrale",
+                  "name" : {
+                    "en" : "Front plank",
+                    "es" : "Plancha frontal",
+                    "fr" : "Planche ventrale"
+                  },
+                  "notes" : {
+                    "en" : "After pedaling, get off the bike and do this strength work on the floor. Volume held at the W3 level (no cutback on the short strength work — the cutback applies to cycling volume). RPE 6-7.",
+                    "es" : "Tras pedalear, baja de la bici y haz este refuerzo en el suelo. Volumen mantenido al nivel de la S3 (sin descarga en el refuerzo corto — la descarga afecta al volumen de ciclismo). RPE 6-7.",
+                    "fr" : "Après le pédalage, descends du vélo et fais ce renforcement au sol. Volume maintenu au niveau W3 (pas d'allègement sur le renforcement court — l'allègement porte sur le volume vélo). RPE 6-7."
+                  },
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 40,
+                  "sets" : 3,
+                  "target_zone" : "RPE 6-7",
+                  "volume_axis" : "duration"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Two-leg glute bridge",
+                      "es" : "Puente de glúteos a dos piernas",
+                      "fr" : "Pont fessier à deux jambes"
+                    },
+                    {
+                      "en" : "Glute bridge with feet on a chair",
+                      "es" : "Puente de glúteos con los pies en una silla",
+                      "fr" : "Pont fessier pieds sur chaise"
+                    }
+                  ],
+                  "incompatible_constraints" : [
+                    "lower-back-pain"
+                  ],
+                  "match_key" : "Pont fessier unilatéral",
+                  "name" : {
+                    "en" : "Single-leg glute bridge",
+                    "es" : "Puente de glúteos a una pierna",
+                    "fr" : "Pont fessier sur une jambe"
+                  },
+                  "notes" : {
+                    "en" : "Left/right balance, builds the posterior chain on each side independently. RPE 7-8.",
+                    "es" : "Equilibrio izquierda/derecha, fortalece la cadena posterior de cada lado de forma independiente. RPE 7-8.",
+                    "fr" : "Équilibre gauche/droite, renforce la chaîne postérieure de chaque côté indépendamment. RPE 7-8."
+                  },
+                  "reps" : "10 par côté",
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 35,
+                  "sets" : 3,
+                  "target_zone" : "RPE 7-8",
+                  "volume_axis" : "reps"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Side plank with knees bent 30 sec/side",
+                      "es" : "Plancha lateral con rodillas flexionadas 30 s/lado",
+                      "fr" : "Planche latérale genoux pliés 30 sec/côté"
+                    },
+                    {
+                      "en" : "Bird-dog",
+                      "es" : "Bird-dog",
+                      "fr" : "Bird-dog"
+                    }
+                  ],
+                  "duration" : "20 sec par côté",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "shoulder-injury",
+                    "wrist-injury"
+                  ],
+                  "match_key" : "Side plank",
+                  "name" : {
+                    "en" : "Side plank",
+                    "es" : "Plancha lateral",
+                    "fr" : "Planche latérale"
+                  },
+                  "notes" : {
+                    "en" : "New movement introduced during the easy week: side plank. Targets the obliques and gluteus medius — key muscles for pelvic stability in the saddle. Knee down if it's too hard. RPE 7-8.",
+                    "es" : "Movimiento nuevo introducido durante la semana ligera: plancha lateral. Trabaja los oblicuos y el glúteo medio — músculos clave para la estabilidad de la pelvis en el sillín. Rodilla al suelo si es demasiado difícil. RPE 7-8.",
+                    "fr" : "Nouveauté introduite pendant la semaine allégée : planche latérale. Cible les obliques et le moyen fessier — muscles clés pour la stabilité du bassin sur la selle. Genou au sol si trop dur. RPE 7-8."
+                  },
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 30,
+                  "sets" : 2,
+                  "target_zone" : "RPE 7-8",
+                  "volume_axis" : "duration"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Dead bug",
+                      "es" : "Dead bug",
+                      "fr" : "Dead bug"
+                    },
+                    {
+                      "en" : "Bird-dog on forearm",
+                      "es" : "Bird-dog con antebrazo en el suelo",
+                      "fr" : "Bird-dog avant-bras au sol"
+                    }
+                  ],
+                  "incompatible_constraints" : [
+                    "wrist-injury",
+                    "lower-back-pain"
+                  ],
+                  "match_key" : "Bird-dog",
+                  "name" : {
+                    "en" : "Bird-dog",
+                    "es" : "Bird-dog",
+                    "fr" : "Bird-dog"
+                  },
+                  "notes" : {
+                    "en" : "On all fours: extend the left arm + right leg at the same time, hold 2 sec. Builds the deep anti-rotation core. RPE 6-7.",
+                    "es" : "A cuatro patas: extiende el brazo izquierdo y la pierna derecha a la vez, mantén 2 s. Fortalece el core profundo antirotación. RPE 6-7.",
+                    "fr" : "À 4 pattes : tendre bras gauche + jambe droite simultanément, tenir 2 sec. Renforce le core profond anti-rotation. RPE 6-7."
+                  },
+                  "reps" : "8 par côté",
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 30,
+                  "sets" : 3,
+                  "target_zone" : "RPE 6-7",
+                  "volume_axis" : "reps"
+                }
+              ],
+              "name" : {
+                "en" : "Indoor trainer cutback — 50 min + strength",
+                "es" : "Rodillo descarga — 50 min + refuerzo",
+                "fr" : "Home-trainer allégée — 50 min + renforcement"
+              },
+              "warmup" : {
+                "en" : "8 min of FTP-Z1 pedaling at low resistance. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
+                "es" : "8 min de pedaleo FTP-Z1 con resistencia baja. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
+                "fr" : "8 min de pédalage FTP-Z1 sur résistance faible. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
+              }
+            }
+          ],
           "warmup" : {
             "en" : "8 min FTP-Z1.",
             "es" : "8 min FTP-Z1.",
@@ -1322,6 +2109,7 @@
           },
           "day" : 2,
           "duration_minutes" : 75,
+          "environment" : "outdoor",
           "exercises" : [
             {
               "alternatives" : [
@@ -1371,6 +2159,69 @@
             "fr" : "Sortie avec efforts soutenus — 55 min"
           },
           "type" : "interval",
+          "variants" : [
+            {
+              "cooldown" : {
+                "en" : "8 min of FTP-Z1 pedaling at minimal resistance (recovery) + quad and calf stretches 5 min. Hydrate, more if you sweated a lot.",
+                "es" : "8 min de pedaleo FTP-Z1 con resistencia mínima (recuperación) + estiramientos de cuádriceps y gemelos 5 min. Hidrátate, más si has sudado mucho.",
+                "fr" : "8 min de pédalage FTP-Z1 sur résistance minimale (récupération) + étirements quadriceps et mollets 5 min. Hydratation, davantage si tu as beaucoup transpiré."
+              },
+              "duration_minutes" : 70,
+              "environment" : "indoor",
+              "exercises" : [
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Elliptical 50 min, 3 sustained 8-min blocks",
+                      "es" : "Elíptica 50 min, 3 bloques sostenidos de 8 min",
+                      "fr" : "Vélo elliptique 50 min, 3 blocs soutenus de 8 min"
+                    },
+                    {
+                      "en" : "Brisk walk 55 min, 3 uphill 8-min sections",
+                      "es" : "Caminata rápida 55 min, 3 tramos en cuesta de 8 min",
+                      "fr" : "Marche rapide 55 min, 3 portions en côte de 8 min"
+                    }
+                  ],
+                  "duration" : "8 min FTP-Z3 + 5 min FTP-Z2 récupération",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "knee-injury",
+                    "cardiac-clearance-required",
+                    "no-bike"
+                  ],
+                  "match_key" : "Blocs FTP-Z3 tempo",
+                  "name" : {
+                    "en" : "Sustained tempo blocks",
+                    "es" : "Bloques de tempo sostenidos",
+                    "fr" : "Blocs à allure soutenue"
+                  },
+                  "notes" : {
+                    "en" : "On an indoor trainer, continuous pedaling: the effort feels slightly harder — that's normal, go by feel rather than exact numbers. Do the blocks by raising the resistance (and/or an ERG mode if your trainer has one). Sustained but controlled effort: you can only speak in short phrases (FTP-Z3 = 76-90% FTP, 84-94% max HR, RPE 3-4). Cadence 85-90 rpm. These blocks prepare your muscles and cardio for the sustained effort of the W6 hero session (1h30 continuous without drift). Don't exceed FTP-Z3: at the first sense of deep muscle burn or breathlessness, ease back to FTP-Z2 (low resistance) immediately. Active block total: 39 min (24 min Z3 + 15 min Z2 recovery). Round it out to 50 min total with 11 min of free FTP-Z2. Fan on, drink between blocks.",
+                    "es" : "En el rodillo, pedaleo continuo: el esfuerzo parece algo mayor, es normal, guíate por la sensación más que por cifras exactas. Los bloques se hacen subiendo la resistencia (y/o un modo ERG si tu máquina lo tiene). Esfuerzo sostenido pero controlado: solo puedes hablar en frases cortas (FTP-Z3 = 76-90% FTP, 84-94% FCmáx, RPE 3-4). Cadencia 85-90 rpm. Estos bloques preparan los músculos y el cardio para el esfuerzo sostenido de la sesión estrella de la S6 (1h30 continuos sin deriva). No superes FTP-Z3: ante la mínima quemazón muscular profunda o falta de aire, vuelve a FTP-Z2 (resistencia baja) de inmediato. Total de bloques activos: 39 min (24 min Z3 + 15 min Z2 de recuperación). Completa hasta 50 min en total con 11 min de FTP-Z2 libre. Ventilador encendido, bebe entre bloques.",
+                    "fr" : "Sur home-trainer, pédalage continu : l'effort paraît un peu plus soutenu, c'est normal, vise le ressenti plutôt que des chiffres exacts. Les blocs se font en augmentant la résistance (et/ou un mode ERG si ta machine en a un). Effort soutenu mais contrôlé : tu peux parler par phrases courtes uniquement (FTP-Z3 = 76-90% FTP, 84-94% FCmax, RPE 3-4). Cadence 85-90 rpm. Ces blocs préparent les muscles et le cardio à l'effort soutenu de la séance phare W6 (1h30 continu sans dérive). Ne dépasse pas FTP-Z3 : à la moindre brûlure musculaire profonde ou souffle coupé, reviens en FTP-Z2 (résistance faible) immédiatement. Total blocs actifs : 39 min (24 min Z3 + 15 min Z2 récup). Complète jusqu'à 50 min total avec 11 min FTP-Z2 libre. Ventilateur allumé, bois entre les blocs."
+                  },
+                  "required_equipment" : [
+                    "indoor-trainer",
+                    "bidons"
+                  ],
+                  "rest_seconds" : 0,
+                  "sets" : 3,
+                  "target_zone" : "FTP-Z3",
+                  "volume_axis" : "sets"
+                }
+              ],
+              "name" : {
+                "en" : "Indoor trainer sustained blocks — 50 min",
+                "es" : "Rodillo bloques sostenidos — 50 min",
+                "fr" : "Home-trainer efforts soutenus — 50 min"
+              },
+              "warmup" : {
+                "en" : "12 min of FTP-Z1 then progressive FTP-Z2 pedaling at low resistance, cadence climbing 75 to 90 rpm. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
+                "es" : "12 min de pedaleo FTP-Z1 y luego FTP-Z2 progresivo con resistencia baja, cadencia subiendo de 75 a 90 rpm. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
+                "fr" : "12 min de pédalage FTP-Z1 puis FTP-Z2 progressif sur résistance faible, cadence montant de 75 à 90 rpm. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
+              }
+            }
+          ],
           "warmup" : {
             "en" : "12 min FTP-Z1 then progressive FTP-Z2, cadence climbing 75 → 90 rpm.",
             "es" : "12 min FTP-Z1 y luego FTP-Z2 progresivo, cadencia subiendo 75 → 90 rpm.",
@@ -1385,6 +2236,7 @@
           },
           "day" : 5,
           "duration_minutes" : 105,
+          "environment" : "outdoor",
           "exercises" : [
             {
               "alternatives" : [
@@ -1603,6 +2455,253 @@
             "fr" : "Sortie longue — 1h20 vallonnée + renforcement"
           },
           "type" : "mixed",
+          "variants" : [
+            {
+              "cooldown" : {
+                "en" : "5 min of FTP-Z1 pedaling at minimal resistance, then get off the bike and do 10 min of full stretches (quads, hamstrings, hip flexors, calves, lower back). Hydrate 600 ml + a carb-protein snack within 30 min, more water if you sweated a lot.",
+                "es" : "5 min de pedaleo FTP-Z1 con resistencia mínima, luego baja de la bici y haz 10 min de estiramientos completos (cuádriceps, isquiotibiales, flexores de cadera, gemelos, lumbares). Hidrátate 600 ml + un tentempié de hidratos y proteínas en los siguientes 30 min, más agua si has sudado mucho.",
+                "fr" : "5 min de pédalage FTP-Z1 sur résistance minimale, puis descends du vélo et étirements complets 10 min (quadriceps, ischio-jambiers, fléchisseurs de hanche, mollets, lombaires). Hydratation 600 ml + collation glucido-protéinée dans les 30 min, davantage d'eau si tu as beaucoup transpiré."
+              },
+              "duration_minutes" : 90,
+              "environment" : "indoor",
+              "exercises" : [
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Elliptical 80 min, endurance with resistance blocks",
+                      "es" : "Elíptica 80 min en resistencia, bloques de resistencia",
+                      "fr" : "Vélo elliptique 80 min en endurance, paliers de résistance"
+                    },
+                    {
+                      "en" : "Brisk walk 85 min with uphill sections",
+                      "es" : "Caminata rápida 85 min con tramos en cuesta",
+                      "fr" : "Marche rapide 85 min avec passages en côte"
+                    }
+                  ],
+                  "duration" : "65 min",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "knee-injury",
+                    "cardiac-clearance-required",
+                    "no-bike"
+                  ],
+                  "match_key" : "Sortie continue FTP-Z2 vallonnée",
+                  "name" : {
+                    "en" : "Steady pedaling, variable resistance",
+                    "es" : "Pedaleo continuo con resistencia variable",
+                    "fr" : "Pédalage continu à résistance variable"
+                  },
+                  "notes" : {
+                    "en" : "The longest ride before the hero session, transposed to the indoor trainer (continuous pedaling: the effort feels slightly harder — that's normal). The rolling terrain transposes into blocks of higher resistance: insert 3-4 blocks of 3-4 min at raised resistance, keeping 75-85 rpm, then ease back to low resistance at 85-90 rpm. HR may briefly reach FTP-Z3 (84-94% max HR) on the blocks — normal, not the goal. Average RPE 2-3. Nutrition: at least 1 bottle (500-750 ml), nibble a bar or a few dates around 35 min then 55 min to avoid an energy drop. Practice eating while pedaling. Fan on.",
+                    "es" : "La salida más larga antes de la sesión estrella, transpuesta al rodillo (pedaleo continuo: el esfuerzo parece algo mayor, es normal). El terreno ondulado se transpone en bloques de mayor resistencia: inserta 3-4 bloques de 3-4 min con resistencia aumentada manteniendo 75-85 rpm, luego vuelve a resistencia baja a 85-90 rpm. La FC puede llegar momentáneamente a FTP-Z3 (84-94% FCmáx) en los bloques — normal, no el objetivo. RPE medio 2-3. Nutrición: al menos 1 bidón (500-750 ml), pica una barrita o unos dátiles hacia los 35 min y luego a los 55 min para evitar la bajada de energía. Practica comer pedaleando. Ventilador encendido.",
+                    "fr" : "La sortie la plus longue avant la séance phare, transposée au home-trainer (pédalage continu : l'effort paraît un peu plus soutenu, c'est normal). Le vallonné se transpose en blocs de résistance accrue : insère 3-4 blocs de 3-4 min à résistance augmentée en gardant 75-85 rpm, puis reviens en résistance faible 85-90 rpm. La FC peut passer temporairement vers FTP-Z3 (84-94% FCmax) sur les blocs — normal, pas l'objectif. RPE moyen 2-3. Nutrition : 1 bidon minimum (500-750 ml), grignote une barre ou quelques dattes vers 35 min puis 55 min pour éviter la baisse d'énergie. Entraîne-toi à manger en pédalant. Ventilateur allumé."
+                  },
+                  "required_equipment" : [
+                    "indoor-trainer",
+                    "bidons"
+                  ],
+                  "rest_seconds" : 0,
+                  "sets" : 1,
+                  "target_zone" : "FTP-Z2",
+                  "volume_axis" : "duration"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Plank on knees 45 sec",
+                      "es" : "Plancha con rodillas en el suelo 45 s",
+                      "fr" : "Planche sur les genoux 45 sec"
+                    },
+                    {
+                      "en" : "Dead bug",
+                      "es" : "Dead bug",
+                      "fr" : "Dead bug"
+                    }
+                  ],
+                  "duration" : "35 sec",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "shoulder-injury"
+                  ],
+                  "match_key" : "Planche ventrale",
+                  "name" : {
+                    "en" : "Front plank",
+                    "es" : "Plancha frontal",
+                    "fr" : "Planche ventrale"
+                  },
+                  "notes" : {
+                    "en" : "After pedaling, get off the bike and do this strength work on the floor. Steady progression (20 → 25 → 30 → 30 → 35 sec over 5 weeks). RPE 7-8.",
+                    "es" : "Tras pedalear, baja de la bici y haz este refuerzo en el suelo. Progresión constante (20 → 25 → 30 → 30 → 35 s en 5 semanas). RPE 7-8.",
+                    "fr" : "Après le pédalage, descends du vélo et fais ce renforcement au sol. Progression régulière (20 → 25 → 30 → 30 → 35 sec sur 5 semaines). RPE 7-8."
+                  },
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 40,
+                  "sets" : 3,
+                  "target_zone" : "RPE 7-8",
+                  "volume_axis" : "duration"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Two-leg glute bridge",
+                      "es" : "Puente de glúteos a dos piernas",
+                      "fr" : "Pont fessier à deux jambes"
+                    },
+                    {
+                      "en" : "Glute bridge with feet on a chair",
+                      "es" : "Puente de glúteos con los pies en una silla",
+                      "fr" : "Pont fessier pieds sur chaise"
+                    }
+                  ],
+                  "incompatible_constraints" : [
+                    "lower-back-pain"
+                  ],
+                  "match_key" : "Pont fessier unilatéral",
+                  "name" : {
+                    "en" : "Single-leg glute bridge",
+                    "es" : "Puente de glúteos a una pierna",
+                    "fr" : "Pont fessier sur une jambe"
+                  },
+                  "notes" : {
+                    "en" : "Left/right balance, builds the posterior chain on each side independently. RPE 7-8.",
+                    "es" : "Equilibrio izquierda/derecha, fortalece la cadena posterior de cada lado de forma independiente. RPE 7-8.",
+                    "fr" : "Équilibre gauche/droite, renforce la chaîne postérieure de chaque côté indépendamment. RPE 7-8."
+                  },
+                  "reps" : "12 par côté",
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 35,
+                  "sets" : 3,
+                  "target_zone" : "RPE 7-8",
+                  "volume_axis" : "reps"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Side plank with knees bent 35 sec/side",
+                      "es" : "Plancha lateral con rodillas flexionadas 35 s/lado",
+                      "fr" : "Planche latérale genoux pliés 35 sec/côté"
+                    },
+                    {
+                      "en" : "Bird-dog",
+                      "es" : "Bird-dog",
+                      "fr" : "Bird-dog"
+                    }
+                  ],
+                  "duration" : "25 sec par côté",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "shoulder-injury",
+                    "wrist-injury"
+                  ],
+                  "match_key" : "Side plank",
+                  "name" : {
+                    "en" : "Side plank",
+                    "es" : "Plancha lateral",
+                    "fr" : "Planche latérale"
+                  },
+                  "notes" : {
+                    "en" : "Targets the obliques and gluteus medius — key muscles for pelvic stability in the saddle. Progression vs W4 (2 sets of 20 sec → 3 sets of 25 sec). Knee down if it's too hard. RPE 7-8.",
+                    "es" : "Trabaja los oblicuos y el glúteo medio — músculos clave para la estabilidad de la pelvis en el sillín. Progresión respecto a la S4 (2 series de 20 s → 3 series de 25 s). Rodilla al suelo si es demasiado difícil. RPE 7-8.",
+                    "fr" : "Cible les obliques et le moyen fessier — muscles clés pour la stabilité du bassin sur la selle. Progression vs W4 (2 séries 20 sec → 3 séries 25 sec). Genou au sol si trop dur. RPE 7-8."
+                  },
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 30,
+                  "sets" : 3,
+                  "target_zone" : "RPE 7-8",
+                  "volume_axis" : "duration"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Two-leg calf raises on the floor",
+                      "es" : "Elevaciones de gemelo a dos piernas en el suelo",
+                      "fr" : "Mollets debout (deux pieds) au sol"
+                    },
+                    {
+                      "en" : "Seated calf raises on a chair",
+                      "es" : "Elevaciones de gemelo sentado en una silla",
+                      "fr" : "Mollets assis sur chaise"
+                    }
+                  ],
+                  "incompatible_constraints" : [
+                    "ankle-injury"
+                  ],
+                  "match_key" : "Calf raises surélevés",
+                  "name" : {
+                    "en" : "Calf raises on a step",
+                    "es" : "Elevaciones de gemelo en escalón",
+                    "fr" : "Mollets sur une marche"
+                  },
+                  "notes" : {
+                    "en" : "On the edge of a step, drop your heel below the step. Full range. Prevents cramps and calf fatigue. RPE 7-8.",
+                    "es" : "En el borde de un escalón, baja el talón por debajo del escalón. Recorrido completo. Previene calambres y fatiga de los gemelos. RPE 7-8.",
+                    "fr" : "Sur le bord d'une marche, descendre le talon sous la marche. Amplitude complète. Prévention crampes et fatigue des mollets. RPE 7-8."
+                  },
+                  "reps" : "15 par côté",
+                  "required_equipment" : [
+
+                  ],
+                  "rest_seconds" : 30,
+                  "sets" : 3,
+                  "target_zone" : "RPE 7-8",
+                  "volume_axis" : "reps"
+                },
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Dead bug",
+                      "es" : "Dead bug",
+                      "fr" : "Dead bug"
+                    },
+                    {
+                      "en" : "Bird-dog on forearm",
+                      "es" : "Bird-dog con antebrazo en el suelo",
+                      "fr" : "Bird-dog avant-bras au sol"
+                    }
+                  ],
+                  "incompatible_constraints" : [
+                    "wrist-injury",
+                    "lower-back-pain"
+                  ],
+                  "match_key" : "Bird-dog",
+                  "name" : {
+                    "en" : "Bird-dog",
+                    "es" : "Bird-dog",
+                    "fr" : "Bird-dog"
+                  },
+                  "notes" : {
+                    "en" : "On all fours: extend the left arm + right leg at the same time, hold 2 sec. Builds the deep anti-rotation core. RPE 6-7.",
+                    "es" : "A cuatro patas: extiende el brazo izquierdo y la pierna derecha a la vez, mantén 2 s. Fortalece el core profundo antirotación. RPE 6-7.",
+                    "fr" : "À 4 pattes : tendre bras gauche + jambe droite simultanément, tenir 2 sec. Renforce le core profond anti-rotation. RPE 6-7."
+                  },
+                  "reps" : "10 par côté",
+                  "required_equipment" : [
+                    "mat"
+                  ],
+                  "rest_seconds" : 30,
+                  "sets" : 3,
+                  "target_zone" : "RPE 6-7",
+                  "volume_axis" : "reps"
+                }
+              ],
+              "name" : {
+                "en" : "Indoor trainer long ride — 1h05 + strength",
+                "es" : "Rodillo largo — 1h05 + refuerzo",
+                "fr" : "Home-trainer longue — 1h05 + renforcement"
+              },
+              "warmup" : {
+                "en" : "10 min of FTP-Z1 pedaling at low resistance. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
+                "es" : "10 min de pedaleo FTP-Z1 con resistencia baja. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
+                "fr" : "10 min de pédalage FTP-Z1 sur résistance faible. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
+              }
+            }
+          ],
           "warmup" : {
             "en" : "10 min FTP-Z1.",
             "es" : "10 min FTP-Z1.",
@@ -1632,6 +2731,7 @@
           },
           "day" : 2,
           "duration_minutes" : 65,
+          "environment" : "outdoor",
           "exercises" : [
             {
               "alternatives" : [
@@ -1681,6 +2781,69 @@
             "fr" : "Activation pré-phare — 50 min léger"
           },
           "type" : "endurance",
+          "variants" : [
+            {
+              "cooldown" : {
+                "en" : "5 min of FTP-Z1 pedaling at minimal resistance + 5 min of stretching. Rest for the next two days. Hydrate, more if you sweated.",
+                "es" : "5 min de pedaleo FTP-Z1 con resistencia mínima + 5 min de estiramientos. Descansa los dos días siguientes. Hidrátate, más si has sudado.",
+                "fr" : "5 min de pédalage FTP-Z1 sur résistance minimale + étirements 5 min. Repos les deux jours suivants. Hydratation, davantage si tu as transpiré."
+              },
+              "duration_minutes" : 60,
+              "environment" : "indoor",
+              "exercises" : [
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Elliptical 45 min, easy",
+                      "es" : "Elíptica 45 min, fácil",
+                      "fr" : "Vélo elliptique 45 min facile"
+                    },
+                    {
+                      "en" : "Brisk walk 55 min",
+                      "es" : "Caminata rápida 55 min",
+                      "fr" : "Marche rapide 55 min"
+                    }
+                  ],
+                  "duration" : "45 min",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "knee-injury",
+                    "cardiac-clearance-required",
+                    "no-bike"
+                  ],
+                  "match_key" : "Sortie activation FTP-Z1-Z2",
+                  "name" : {
+                    "en" : "Activation pedaling, easy pace",
+                    "es" : "Pedaleo de activación, ritmo suave",
+                    "fr" : "Pédalage d'activation, allure souple"
+                  },
+                  "notes" : {
+                    "en" : "A leg-loosener, NOT a test. On an indoor trainer, continuous pedaling: keep the resistance low. Stay in FTP-Z1 then easy FTP-Z2, cadence 85-90 rpm. RPE 2-3 maximum. Goal: arrive fresh and motivated for the D5 hero session. Check your trainer setup (bike mounting, wheel or roller tension) and prep your bottles and snacks for D5. Fan on, drink every 15 min.",
+                    "es" : "Una sesión para soltar piernas, NO un test. En el rodillo, pedaleo continuo: mantén la resistencia baja. Mantente en FTP-Z1 y luego FTP-Z2 suave, cadencia 85-90 rpm. RPE 2-3 máximo. Objetivo: llegar fresco y motivado a la sesión estrella del D5. Revisa el montaje del rodillo (fijación de la bici, tensión de la rueda o del rodillo) y prepara los bidones y tentempiés para el D5. Ventilador encendido, bebe cada 15 min.",
+                    "fr" : "Séance de remise en jambes, PAS un test. Sur home-trainer, pédalage continu : garde la résistance faible. Reste en FTP-Z1 puis FTP-Z2 souple, cadence 85-90 rpm. RPE 2-3 maximum. Objectif : arriver frais et motivé à la séance phare de J5. Vérifie l'état du home-trainer (fixation du vélo, tension de la roue ou du galet) et prépare tes bidons et collations pour J5. Ventilateur allumé, bois toutes les 15 min."
+                  },
+                  "required_equipment" : [
+                    "indoor-trainer",
+                    "bidons"
+                  ],
+                  "rest_seconds" : 0,
+                  "sets" : 1,
+                  "target_zone" : "FTP-Z2",
+                  "volume_axis" : "duration"
+                }
+              ],
+              "name" : {
+                "en" : "Indoor trainer activation — 45 min easy",
+                "es" : "Rodillo activación — 45 min suave",
+                "fr" : "Home-trainer activation — 45 min léger"
+              },
+              "warmup" : {
+                "en" : "8 min of FTP-Z1 pedaling at low resistance. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
+                "es" : "8 min de pedaleo FTP-Z1 con resistencia baja. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
+                "fr" : "8 min de pédalage FTP-Z1 sur résistance faible. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
+              }
+            }
+          ],
           "warmup" : {
             "en" : "8 min FTP-Z1.",
             "es" : "8 min FTP-Z1.",
@@ -1695,6 +2858,7 @@
           },
           "day" : 5,
           "duration_minutes" : 115,
+          "environment" : "outdoor",
           "exercises" : [
             {
               "alternatives" : [
@@ -1744,6 +2908,69 @@
             "fr" : "Séance phare — 1h30 continu"
           },
           "type" : "endurance",
+          "variants" : [
+            {
+              "cooldown" : {
+                "en" : "8 min of very slow FTP-Z1 pedaling at minimal resistance to avoid a blood-pressure drop when you stop. Get off the bike gradually. Full stretches 12 min: quads (30 sec/leg), seated hamstrings (30 sec/leg), hip flexors in a low lunge (40 sec/side), calves on the wall (30 sec/leg), lower back knee-to-chest (30 sec/side), gentle neck (5 rotations/direction). Hydrate 600-700 ml + a carb-protein meal within the next hour, more water if you sweated a lot. Well done: 1h15 of continuous indoor riding regained in 6 weeks.",
+                "es" : "8 min de pedaleo muy lento en FTP-Z1 con resistencia mínima para evitar la bajada de tensión al parar. Baja de la bici poco a poco. Estiramientos completos 12 min: cuádriceps (30 s/pierna), isquiotibiales sentado (30 s/pierna), flexores de cadera en zancada baja (40 s/lado), gemelos en la pared (30 s/pierna), lumbares rodilla al pecho (30 s/lado), cervicales suaves (5 rotaciones/sentido). Hidrátate 600-700 ml + una comida de hidratos y proteínas en la siguiente hora, más agua si has sudado mucho. Felicítate: 1h15 de rodillo continuo recuperado en 6 semanas.",
+                "fr" : "8 min de pédalage très lent en FTP-Z1 sur résistance minimale pour éviter la chute tensionnelle à l'arrêt. Descends du vélo progressivement. Étirements complets 12 min : quadriceps (30 sec/jambe), ischio-jambiers assis (30 sec/jambe), fléchisseurs de hanche en fente basse (40 sec/côté), mollets contre mur (30 sec/jambe), lombaires genou à la poitrine (30 sec/côté), cervicales douces (5 rotations/sens). Hydratation 600-700 ml + repas glucido-protéiné dans l'heure suivante, davantage d'eau si tu as beaucoup transpiré. Félicite-toi : 1h15 de home-trainer continu retrouvé en 6 semaines."
+              },
+              "duration_minutes" : 100,
+              "environment" : "indoor",
+              "exercises" : [
+                {
+                  "alternatives" : [
+                    {
+                      "en" : "Elliptical 90 min, endurance",
+                      "es" : "Elíptica 90 min en resistencia",
+                      "fr" : "Vélo elliptique 90 min en endurance"
+                    },
+                    {
+                      "en" : "Brisk walk 90 min",
+                      "es" : "Caminata rápida 90 min",
+                      "fr" : "Marche rapide 90 min"
+                    }
+                  ],
+                  "duration" : "75 min",
+                  "incompatible_constraints" : [
+                    "lower-back-pain",
+                    "knee-injury",
+                    "cardiac-clearance-required",
+                    "no-bike"
+                  ],
+                  "match_key" : "Sortie continue FTP-Z2 plat ou vallonné léger",
+                  "name" : {
+                    "en" : "1h15 continuous pedaling, flat or light resistance",
+                    "es" : "Pedaleo continuo de 1h15, llano o resistencia ligera",
+                    "fr" : "Pédalage continu 1h15, plat ou résistance légère"
+                  },
+                  "notes" : {
+                    "en" : "Hero session transposed to the indoor trainer: 1h15 continuous (indoor equivalence -15 to -20% vs the 1h30 outdoors, since continuous pedaling with no coasting makes the effort denser). Completing these 1h15 non-stop = the program 1h30 goal reached. Hold YOUR pace in FTP-Z2 (56-75% FTP, ~65-75% max HR, RPE 2-3). Hold the talk test in full sentences for ≥ 80% of the time.\n\nPACING: the first 20 min may feel easy — that's normal, don't speed up. Fatigue builds gradually after 50 min — ease the resistance slightly rather than push.\n\nNUTRITION: drink every 15-20 min without waiting to feel thirsty (750-1000 ml total, you sweat faster indoors). Eat something around 25 min, 50 min and 65 min (bar, gel, banana — aim for 30-60 g carbs/h).\n\nCADENCE: 85-95 rpm at low resistance, 75-85 rpm on the raised-resistance blocks. Never grind below 65 rpm. Fan on the whole time.\n\nFINAL AUTONOMY CHECKLIST (to confirm after the session):\n1. I can hold 1h15 on the trainer in FTP-Z2 (comfortable breathing, full sentences possible ≥ 80% of the time) with no forced stop.\n2. I keep a cadence of 85-95 rpm at low resistance for most of the session, and 75-85 rpm on the resistance blocks without grinding.\n3. My legs feel tired at the end but with no lower-back discomfort or front/back knee discomfort.\n4. My HR recovers below 100 bpm within 3 min of stopping (proxy: I feel calm and able to hold a normal conversation within 3 min).\n\nIf you tick 3+ criteria, you're ready to move on to a recreational cycling program (60-100 km rides, 6-8 h/week). If 2 or fewer, redo W5 and W6 (a 2-week cycle) before progressing to longer durations.",
+                    "es" : "Sesión estrella transpuesta al rodillo: 1h15 continuos (equivalencia indoor -15 a -20% respecto a la 1h30 en exterior, ya que el pedaleo continuo sin rueda libre densifica el esfuerzo). Completar estos 1h15 continuos = objetivo 1h30 del programa alcanzado. Aguantar a TU ritmo en FTP-Z2 (56-75% FTP, ~65-75% FCmáx, RPE 2-3). Mantén el test del habla en frases completas durante ≥ 80% del tiempo.\n\nGESTIÓN DEL RITMO: los primeros 20 min pueden parecer fáciles — es normal, no aceleres. La fatiga llega poco a poco a partir de los 50 min — baja ligeramente la resistencia en vez de forzar.\n\nNUTRICIÓN: bebe cada 15-20 min sin esperar a tener sed (750-1000 ml en total, en interior sudas más rápido). Come algo hacia los 25 min, 50 min y 65 min (barrita, gel, plátano — apunta a 30-60 g de hidratos/h).\n\nCADENCIA: 85-95 rpm con resistencia baja, 75-85 rpm en los bloques de mayor resistencia. Nunca fuerces por debajo de 65 rpm. Ventilador encendido todo el tiempo.\n\nLISTA DE AUTONOMÍA FINAL (a validar tras la sesión):\n1. Aguanto 1h15 de rodillo en FTP-Z2 (respiración cómoda, frases completas posibles ≥ 80% del tiempo) sin pausa forzada.\n2. Mantengo una cadencia de 85-95 rpm con resistencia baja en la mayor parte de la sesión, y 75-85 rpm en los bloques de resistencia sin atrancarme.\n3. Noto las piernas cansadas al final de la sesión pero sin molestia lumbar ni molestia anterior/posterior de rodilla.\n4. Recupero la FC por debajo de 100 ppm en menos de 3 min tras parar (referencia: me siento tranquilo y capaz de mantener una conversación normal en menos de 3 min).\n\nSi marcas 3+ criterios, eres autónomo para pasar a un programa de ciclismo recreativo (salidas de 60-100 km, 6-8 h/semana). Si marcas 2 o menos, repite la S5 y la S6 (ciclo de 2 semanas) antes de progresar a duraciones más largas.",
+                    "fr" : "Séance phare transposée au home-trainer : 1h15 continu (équivalence indoor -15 à -20% vs les 1h30 dehors, car le pédalage continu sans roue libre densifie l'effort). Boucler ces 1h15 en continu = objectif 1h30 du programme atteint. Tenir à TON allure en FTP-Z2 (56-75% FTP, ~65-75% FCmax, RPE 2-3). Test de la parole en phrases complètes pendant ≥ 80% de la durée.\n\nGESTION DU RYTHME : les 20 premières minutes peuvent sembler faciles — c'est normal, ne pas accélérer. La fatigue arrive progressivement après 50 min — réduire légèrement la résistance plutôt que de forcer.\n\nNUTRITION : bois toutes les 15-20 min sans attendre la soif (750-1000 ml total, on transpire plus vite en intérieur). Mange quelque chose vers 25 min, 50 min et 65 min (barre, gel, banane — viser 30-60 g glucides/h).\n\nCADENCE : 85-95 rpm en résistance faible, 75-85 rpm sur les blocs de résistance accrue. Ne jamais forcer sous 65 rpm. Ventilateur allumé en continu.\n\nCHECKLIST D'AUTONOMIE FINALE (à valider après la séance) :\n1. Je tiens 1h15 de home-trainer en FTP-Z2 (respiration confortable, phrases complètes possibles ≥ 80% du temps) sans pause forcée.\n2. Je maintiens une cadence de 85-95 rpm en résistance faible sur la majorité de la séance, et 75-85 rpm sur les blocs de résistance sans grinder.\n3. Je sens mes jambes fatiguées en fin de séance mais sans gêne lombaire ni gêne antérieure / postérieure du genou.\n4. Je récupère ma FC en dessous de 100 bpm en moins de 3 min après l'arrêt (proxy : je me sens calme et capable de tenir une conversation normale sous 3 min).\n\nSi tu coches 3+ critères, tu es autonome pour enchaîner sur un programme cycling recreational (sortie 60-100 km, vol 6-8 h/sem). Si 2 critères ou moins, refais W5 et W6 (cycle de 2 sem) avant de progresser vers des durées plus longues."
+                  },
+                  "required_equipment" : [
+                    "indoor-trainer",
+                    "bidons"
+                  ],
+                  "rest_seconds" : 0,
+                  "sets" : 1,
+                  "target_zone" : "FTP-Z2",
+                  "volume_axis" : "duration"
+                }
+              ],
+              "name" : {
+                "en" : "Indoor trainer hero session — 1h15 continuous",
+                "es" : "Rodillo sesión estrella — 1h15 continuos",
+                "fr" : "Home-trainer séance phare — 1h15 continu"
+              },
+              "warmup" : {
+                "en" : "10 min of progressive FTP-Z1 pedaling at low resistance, cadence climbing 75 to 90 rpm. Check your position, tighten your shoe straps, set up a fan in front of you and keep one or two water bottles within reach: indoors you sweat faster, with no wind to cool you.",
+                "es" : "10 min de pedaleo FTP-Z1 progresivo con resistencia baja, cadencia subiendo de 75 a 90 rpm. Comprueba tu posición, ajusta las correas de las zapatillas, coloca un ventilador delante de ti y ten uno o dos bidones a mano: en interior sudas más rápido y sin viento para refrescarte.",
+                "fr" : "10 min de pédalage FTP-Z1 progressif sur résistance faible, cadence montante de 75 à 90 rpm. Vérifie ta position, serre les sangles de chaussures, installe un ventilateur devant toi et garde un ou deux bidons à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
+              }
+            }
+          ],
           "warmup" : {
             "en" : "10 min progressive FTP-Z1, cadence climbing 75 → 90 rpm. Check your position, tighten your shoe straps, adjust your helmet.",
             "es" : "10 min FTP-Z1 progresivo, cadencia subiendo 75 → 90 rpm. Comprueba la posición, ajusta las correas de las zapatillas, ajusta el casco.",
