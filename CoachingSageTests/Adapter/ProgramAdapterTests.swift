@@ -133,4 +133,70 @@ final class ProgramAdapterTests: XCTestCase {
             }
         }
     }
+
+    // MARK: - L1 indoor/outdoor vélo (2026-06-11) — adaptSession adapte la variante
+
+    /// La variante ALTERNATE hérite des substitutions par-exercice (fin de la limite
+    /// passthrough) : un exercice de renfo incompatible est remplacé par son alternative.
+    func testAdaptSessionSubstitutesVariantExerciseOnConstraint() {
+        let variant = SessionVariant(
+            environment: .indoor,
+            name: "Home-trainer 45 min + renfo",
+            durationMinutes: 45,
+            warmup: "10 min Z1",
+            exercises: [
+                TemplateExercise(name: "Pédalage continu Z2", targetZone: "Z2"),
+                TemplateExercise(
+                    name: "Gainage planche 3×40s",
+                    incompatibleConstraints: ["lower-back-pain"],
+                    alternatives: ["Gainage genoux 3×30s"]
+                )
+            ],
+            cooldown: "5 min retour au calme"
+        )
+
+        let adapted = ProgramAdapter().adaptSession(
+            variant: variant,
+            day: 5,
+            type: .strength,
+            weekNumber: 1,
+            sport: .cycling,
+            level: .beginner,
+            templateId: "cycling-beginner-reprise-6sem",
+            sportProfile: AdapterTestFixtures.sportProfile(constraints: ["lower-back-pain"], equipment: []),
+            coachingProfile: AdapterTestFixtures.coachingProfile()
+        )
+
+        // Métadonnées de la variante préservées.
+        XCTAssertEqual(adapted.name.canonical, "Home-trainer 45 min + renfo")
+        XCTAssertEqual(adapted.durationMinutes, 45)
+        // Exercice incompatible → substitué par son alternative.
+        let plank = adapted.exercises.first(where: { $0.originalName == "Gainage planche 3×40s" })
+        XCTAssertNotNil(plank)
+        XCTAssertTrue(plank?.wasSubstituted == true)
+        XCTAssertEqual(plank?.name.canonical, "Gainage genoux 3×30s")
+        // Exercice sans contrainte → inchangé.
+        XCTAssertEqual(adapted.exercises.first?.name.canonical, "Pédalage continu Z2")
+        XCTAssertEqual(adapted.exercises.first?.wasSubstituted, false)
+    }
+
+    /// Sans contrainte/équipement manquant, adaptSession est un no-op fidèle (passthrough).
+    func testAdaptSessionNoOpWithoutConstraints() {
+        let variant = SessionVariant(
+            environment: .indoor,
+            name: "Home-trainer 40 min",
+            durationMinutes: 40,
+            warmup: nil,
+            exercises: [TemplateExercise(name: "Pédalage continu Z2", targetZone: "Z2")],
+            cooldown: nil
+        )
+        let adapted = ProgramAdapter().adaptSession(
+            variant: variant, day: 2, type: .endurance, weekNumber: 1,
+            sport: .cycling, level: .beginner, templateId: "cycling-beginner-reprise-6sem",
+            sportProfile: AdapterTestFixtures.sportProfile(equipment: []),
+            coachingProfile: AdapterTestFixtures.coachingProfile()
+        )
+        XCTAssertEqual(adapted.exercises.count, 1)
+        XCTAssertEqual(adapted.exercises.first?.wasSubstituted, false)
+    }
 }

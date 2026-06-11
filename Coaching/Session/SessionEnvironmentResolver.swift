@@ -2,12 +2,11 @@
 // Chantier indoor/outdoor vélo (2026-06-10) — résout, À L'AFFICHAGE, quelle variante
 // de lieu présenter et construit la séance effective. Logique PURE (testable hors UI).
 //
-// Archi PILOTE LÉGÈRE (cf mémoire v2_chantier_indoor_outdoor_velo) : l'adaptateur
-// n'est PAS dupliqué par variante. La variante NATIVE (= contenu racine du template,
-// déjà adapté → substitutions constraint/equipment/medical) est servie telle quelle
-// (zéro régression). La variante ALTERNATE est servie en passthrough du template brut
-// — LIMITE V1 ASSUMÉE : elle n'hérite pas des substitutions (OK vélo ride-centric, à
-// fermer en prod/extension).
+// La variante NATIVE (= contenu racine du template, déjà adapté → substitutions
+// constraint/equipment/medical) est servie telle quelle (zéro régression). La variante
+// ALTERNATE est adaptée À LA VOLÉE via le hook `adaptVariant` (L1, 2026-06-11 — rejoue
+// les règles par-exercice, cf `ProgramAdapter.adaptSession`). Sans hook fourni (Previews,
+// tests purs), fallback passthrough du template brut.
 import Foundation
 import TemplateModel
 
@@ -30,15 +29,21 @@ enum SessionEnvironmentResolver {
     /// ADAPTÉE inchangée. Lieu alternate → on construit une `AdaptedSession` passthrough
     /// depuis la variante du template. `day` et `type` (absents de `SessionVariant`) sont
     /// conservés depuis la séance adaptée.
+    /// `adaptVariant` (L1) : adapte la variante alternate via les règles par-exercice
+    /// (fourni par la vue quand les profils sont chargés). nil → fallback passthrough.
     static func displaySession(
         adapted: AdaptedSession,
         templateSession: TemplateSession,
-        effective: SessionEnvironment
+        effective: SessionEnvironment,
+        adaptVariant: ((SessionVariant) -> AdaptedSession)? = nil
     ) -> AdaptedSession {
         guard let native = templateSession.environment,
               effective != native,
               let variant = templateSession.variant(for: effective) else {
             return adapted
+        }
+        if let adaptVariant {
+            return adaptVariant(variant)
         }
         return AdaptedSession(
             day: adapted.day,

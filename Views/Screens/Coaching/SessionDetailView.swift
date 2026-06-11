@@ -39,6 +39,11 @@ struct SessionDetailView: View {
     @State private var templateSession: TemplateSession?
     /// Lieu effectif retenu pour cette séance (override séance ?? défaut ?? natif).
     @State private var locationEnv: SessionEnvironment?
+    /// L1 (2026-06-11) — profils chargés une fois pour adapter la variante ALTERNATE via
+    /// les règles par-exercice (constraint/equipment/medical), comme la séance native.
+    /// nil tant que non chargés (ou hors vélo) → la variante retombe en passthrough.
+    @State private var adapterFacade: AdapterSportProfile?
+    @State private var coachingFacade: AdapterCoachingProfile?
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -122,10 +127,33 @@ struct SessionDetailView: View {
     }
 
     /// Séance effectivement affichée : variante native → contenu adapté inchangé ;
-    /// variante alternate → passthrough du template (cf `SessionEnvironmentResolver`).
+    /// variante alternate → adaptée via les règles par-exercice (L1) si profils chargés,
+    /// sinon passthrough (cf `SessionEnvironmentResolver`).
     private var displaySession: AdaptedSession {
         guard let ts = templateSession, let env = locationEnv else { return session }
-        return SessionEnvironmentResolver.displaySession(adapted: session, templateSession: ts, effective: env)
+        return SessionEnvironmentResolver.displaySession(
+            adapted: session, templateSession: ts, effective: env, adaptVariant: variantAdapter
+        )
+    }
+
+    /// Hook L1 — adapte la variante alternate via `ProgramAdapter.adaptSession` (rejoue
+    /// constraint/equipment/medical sur ses exercices) dès que les profils sont chargés.
+    /// nil → le resolver retombe en passthrough du template brut.
+    private var variantAdapter: ((SessionVariant) -> AdaptedSession)? {
+        guard let facade = adapterFacade, let coaching = coachingFacade else { return nil }
+        return { variant in
+            ProgramAdapter().adaptSession(
+                variant: variant,
+                day: session.day,
+                type: session.type,
+                weekNumber: week.weekNumber,
+                sport: program.sport,
+                level: program.level,
+                templateId: program.templateId,
+                sportProfile: facade,
+                coachingProfile: coaching
+            )
+        }
     }
 
     /// Charge la séance template correspondante (vélo only) et résout le lieu effectif
@@ -149,6 +177,14 @@ struct SessionDetailView: View {
         locationEnv = SessionEnvironmentResolver.effectiveEnvironment(
             native: native, sessionOverride: sessionOverride, programDefault: programDefault
         )
+        // L1 — charge les profils (une fois) pour adapter la variante alternate via les
+        // règles par-exercice. Échec/absent → variantAdapter reste nil → passthrough.
+        if let deps,
+           let sp = (try? await deps.coachingSportProfileRepository.fetchProfile(for: program.sport.rawValue)) ?? nil,
+           let cp = (try? await deps.coachingProfileRepository.fetchCurrentProfile()) ?? nil {
+            adapterFacade = sp.adapterFacade(merging: cp.equipment)
+            coachingFacade = cp.adapterFacade
+        }
     }
 
     /// Bascule la séance vers l'autre lieu (D3 : 1 tap). Persiste l'override par séance
