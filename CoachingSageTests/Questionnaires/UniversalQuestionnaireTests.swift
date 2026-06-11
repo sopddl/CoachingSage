@@ -480,4 +480,58 @@ struct UniversalQuestionnaireTests {
         let next = q.nextQuestion(after: "q3_frequency", answer: .single("3"), accumulated: acc)
         #expect(next?.id == "q4_duration")
     }
+
+    // MARK: - Indoor/outdoor vélo (2026-06-11) — Q5 lieu (cycling only, posée en dernier)
+
+    @Test("Cycling goal non-eligible (reprise) → Q3 enchaîne sur Q5 lieu")
+    func cycling_nonEligibleGoal_posesQ5Location() {
+        let q = UniversalQuestionnaire(sportCode: "cycling")
+        let acc: [QuestionId: AnswerValue] = [
+            "q1_level": .single("beginner"),
+            "q2_goal": .single("reprise"),   // cycling reprise = non deadline-eligible
+            "q3_frequency": .single("3")
+        ]
+        let next = q.nextQuestion(after: "q3_frequency", answer: .single("3"), accumulated: acc)
+        #expect(next?.id == "q5_location")
+        #expect(next?.answerType == .singleChoice)
+        #expect(next?.options.map(\.code) == ["outdoor", "indoor", "both"])
+    }
+
+    @Test("Cycling cyclosportive → Q4 let_me_estimate enchaîne sur Q5 lieu (dernier)")
+    func cycling_afterQ4_posesQ5Location() {
+        let q = UniversalQuestionnaire(sportCode: "cycling")
+        let acc: [QuestionId: AnswerValue] = [
+            "q1_level": .single("competitive"),
+            "q2_goal": .single("cyclosportive"),
+            "q3_frequency": .single("4_or_more")
+        ]
+        // Q4=let_me_estimate (pas target_date) → Q5 (et non fin)
+        let next = q.nextQuestion(after: "q4_duration", answer: .single(UniversalQuestionnaire.q4LetMeEstimateCode), accumulated: acc)
+        #expect(next?.id == "q5_location")
+        // Q5 répondue → fin
+        let acc2 = acc.merging(["q5_location": .single("outdoor")]) { _, b in b }
+        #expect(q.nextQuestion(after: "q5_location", answer: .single("outdoor"), accumulated: acc2) == nil)
+    }
+
+    @Test("Sport non-vélo (running) ne pose JAMAIS Q5 lieu")
+    func nonCycling_neverPosesQ5() {
+        let q = UniversalQuestionnaire(sportCode: "running")
+        let acc: [QuestionId: AnswerValue] = [
+            "q1_level": .single("beginner"),
+            "q2_goal": .single("wellness"),   // non-eligible → flow se termine
+            "q3_frequency": .single("3")
+        ]
+        #expect(q.nextQuestion(after: "q3_frequency", answer: .single("3"), accumulated: acc) == nil)
+    }
+
+    @Test("environmentDefault extrait le code Q5 de l'historique (outdoor/indoor/both/absent)")
+    func environmentDefault_extractsFromHistory() {
+        func history(_ code: String) -> [ConversationEntry] {
+            [ConversationEntry(questionId: "q5_location", questionTextKey: "questionnaire.cycling.q5.text", answer: .single(code), askedAt: Date())]
+        }
+        #expect(UniversalQuestionnaire.environmentDefault(from: history("outdoor")) == "outdoor")
+        #expect(UniversalQuestionnaire.environmentDefault(from: history("indoor")) == "indoor")
+        #expect(UniversalQuestionnaire.environmentDefault(from: history("both")) == "both")
+        #expect(UniversalQuestionnaire.environmentDefault(from: []) == nil)
+    }
 }

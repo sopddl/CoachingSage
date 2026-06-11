@@ -54,7 +54,6 @@ struct SessionView: View {
     @State private var showPreparedSheet: Bool = false
     /// Indoor/outdoor vélo (2026-06-10) — non-nil = sheet « tu roules plutôt où ? »
     /// présentée au lancement d'un programme vélo (D2). Au choix → `commitProgram`.
-    @State private var pendingCyclingLaunch: AdaptedProgramRoute?
 
     /// **Story 3.10** — Contexte de l'alerte cap pour résoudre titre/message
     /// i18n côté View. `Identifiable` pour `.alert(item:)` SwiftUI.
@@ -197,15 +196,6 @@ struct SessionView: View {
             )
             .presentationDetents([.medium, .large])
             .presentationDragIndicator(.visible)
-        }
-        // Indoor/outdoor vélo (D2) — sheet « tu roules plutôt où ? » au lancement
-        // d'un programme vélo. Le choix pose le défaut de lieu puis commit.
-        .sheet(item: $pendingCyclingLaunch) { route in
-            CyclingLocationSheet { choice in
-                pendingCyclingLaunch = nil
-                guard let deps else { return }
-                Task { await commitProgram(route: route, deps: deps, environmentDefault: choice) }
-            }
         }
         // **Story 3.10 AC12/AC13** — alerte cap dormant ou démarré atteint.
         // CTA primary "OK" dismiss. Pas de "Voir mes programmes" en V1
@@ -683,14 +673,12 @@ struct SessionView: View {
         for route: AdaptedProgramRoute,
         deps: AppDependencies
     ) -> (() async -> Void)? {
-        guard route.previewSportProfile != nil else { return nil }
-        // Indoor/outdoor vélo (D2) — un programme vélo demande d'abord le lieu par
-        // défaut (sheet « tu roules plutôt où ? ») ; le choix rappelle `commitProgram`.
-        // Les autres sports committent directement (lieu non pertinent).
-        if route.program.sport == .cycling {
-            return { pendingCyclingLaunch = route }
-        }
-        return { await commitProgram(route: route, deps: deps, environmentDefault: nil) }
+        guard let profile = route.previewSportProfile else { return nil }
+        // Indoor/outdoor vélo (2026-06-11) — le défaut de lieu est posé DANS le
+        // questionnaire de création (Q5, cycling only) ; on l'extrait de l'historique
+        // et on le persiste juste après le commit. nil pour les sports sans lieu.
+        let environmentDefault = UniversalQuestionnaire.environmentDefault(from: profile.conversationHistory)
+        return { await commitProgram(route: route, deps: deps, environmentDefault: environmentDefault) }
     }
 
     /// Commit + activation d'un programme depuis la preview. `environmentDefault`

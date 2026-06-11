@@ -147,7 +147,8 @@ struct SportQuestionnaireViewModelTests {
         await vm.answer(.single("competitive"))
         await vm.answer(.single("cyclosportive"))    // deadline-eligible
         await vm.answer(.single("4_or_more"))         // Q3 → poses Q4
-        await vm.answer(.single(UniversalQuestionnaire.q4LetMeEstimateCode))  // Q4 → submit
+        await vm.answer(.single(UniversalQuestionnaire.q4LetMeEstimateCode))  // Q4 → poses Q5 (cycling)
+        await vm.answer(.single("outdoor"))           // Q5 lieu (cycling only) → submit
 
         #expect(repo.saveCallCount == 1)
         #expect(repo.stored["cycling"]?.level == "competitive")
@@ -156,6 +157,9 @@ struct SportQuestionnaireViewModelTests {
         #expect(repo.stored["cycling"]?.frequencyLabel == "4_or_more")
         #expect(repo.stored["cycling"]?.questionnaireVersion == "universal_v1")
         #expect(repo.stored["cycling"]?.durationMode == .deadlineEstimated)
+        // Indoor/outdoor vélo (2026-06-11) — Q5 lieu capturée dans l'historique →
+        // consommée au commit pour poser environmentDefaultRaw.
+        #expect(UniversalQuestionnaire.environmentDefault(from: repo.stored["cycling"]?.conversationHistory ?? []) == "outdoor")
     }
 
     // MARK: - Recovery UserDefaults (review P1-6)
