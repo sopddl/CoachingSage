@@ -23,6 +23,9 @@ struct SessionDetailView: View {
     var recordId: UUID? = nil
 
     @Environment(\.appDependencies) private var deps
+    /// Pop de ce détail (push depuis le programme) — sert à remonter au programme
+    /// une fois la séance complétée (Sophie 2026-06-12).
+    @Environment(\.dismiss) private var dismiss
     @State private var completionVM: SessionCompletionViewModel?
     @State private var showCompleteSheet: Bool = false
     /// Story 3.17 Phase 1 — tooltip 1ère ouverture découvrabilité glossaire.
@@ -113,7 +116,16 @@ struct SessionDetailView: View {
         }
         .fullScreenCover(isPresented: $showFocus, onDismiss: {
             reloadFocusProgress()
-            Task { await completionVM?.load() }
+            Task {
+                let wasDone = completionVM?.completion != nil
+                await completionVM?.load()
+                // Séance complétée PENDANT ce FOCUS → on remonte au programme avec la
+                // séance faite, au lieu de retomber sur l'écran « Démarrer » (retour
+                // Sophie 2026-06-12 : « je reviens au démarrage comme si pas faite »).
+                // Sortie avant la fin (Reprendre plus tard / ✕) → completion nil → on
+                // reste sur le détail pour permettre la reprise.
+                if !wasDone, completionVM?.completion != nil { dismiss() }
+            }
         }) {
             SessionFocusView(session: displaySession, week: week, program: program, recordId: recordId)
         }
