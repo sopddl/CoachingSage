@@ -131,9 +131,12 @@ struct SessionDetailView: View {
     /// sinon passthrough (cf `SessionEnvironmentResolver`).
     private var displaySession: AdaptedSession {
         guard let ts = templateSession, let env = locationEnv else { return session }
-        return SessionEnvironmentResolver.displaySession(
+        let resolved = SessionEnvironmentResolver.displaySession(
             adapted: session, templateSession: ts, effective: env, adaptVariant: variantAdapter
         )
+        // 2A — en sortie extérieure, le renfo hors-vélo est retiré (gardé en home-trainer).
+        // Au niveau vue car le lieu natif court-circuite `displaySession` (return adapted).
+        return SessionEnvironmentResolver.filteringOffBikeStrength(resolved, sport: program.sport, effective: env)
     }
 
     /// Hook L1 — adapte la variante alternate via `ProgramAdapter.adaptSession` (rejoue

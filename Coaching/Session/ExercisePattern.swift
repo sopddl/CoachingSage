@@ -90,4 +90,24 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
     public var isStatic: Bool {
         return frameCount == 1
     }
+
+    /// Famille « renforcement musculaire » (gainage, squat, hinge, mollets…) par
+    /// opposition aux patterns cardio/sport (course, vélo, natation, yoga, mobilité).
+    /// Sert au filtre indoor/outdoor vélo (décision Sophie 2026-06-12, 2A) : en SORTIE
+    /// EXTÉRIEURE on retire le renfo hors-vélo (sur la route, on ne fait que pédaler) ;
+    /// en INDOOR (home-trainer) on le garde (on descend, on enchaîne au sol).
+    /// Switch exhaustif SANS `default` → tout nouveau pattern force une classification.
+    public var isStrengthFamily: Bool {
+        switch self {
+        case .squat, .hinge, .pushHorizontal, .pushVertical, .pullHorizontal, .pullVertical,
+             .lunge, .core, .plyo, .hipThrust, .calfRaise, .forearmPlank, .ytwActivation,
+             .pallofPress, .nordicCurl, .birdDog, .deadBug, .clamshell, .kbSwing, .facePull,
+             .foamRolling, .bicepsCurl, .tricepsPushdown, .lateralRaises, .hangingLegRaise,
+             .tricepsOverhead, .woodchopper, .pullover:
+            return true
+        case .mobility, .runEndurance, .runInterval, .runDrills, .swimDrill, .swimEndurance,
+             .cycleEndurance, .cycleInterval, .yoga, .generic:
+            return false
+        }
+    }
 }

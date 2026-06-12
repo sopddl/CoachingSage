@@ -56,6 +56,35 @@ enum SessionEnvironmentResolver {
         )
     }
 
+    /// Décision Sophie 2026-06-12 (2A) : le renfo hors-vélo (gainage, pont fessier, mollets)
+    /// reste sur les séances INDOOR (home-trainer : on descend du vélo, on enchaîne au sol),
+    /// mais en sortie EXTÉRIEURE on le retire (sur la route on ne fait que pédaler — ces exos
+    /// au sol ne parlaient pas, retour device-test). S'applique au résultat FINAL de
+    /// `displaySession` (natif comme variante) car le lieu natif court-circuite la résolution.
+    /// Robuste : on RETIRE par DENYLIST (patterns de la famille renfo) plutôt que par allowlist
+    /// → un exo de pédalage non reconnu retombe sur `.cycleEndurance` (sport-fallback) et reste.
+    /// Défensif : on ne vide jamais une séance (si tout est filtré, on rend l'original).
+    static func filteringOffBikeStrength(
+        _ session: AdaptedSession,
+        sport: Sport,
+        effective: SessionEnvironment
+    ) -> AdaptedSession {
+        guard sport == .cycling, effective == .outdoor else { return session }
+        let kept = session.exercises.filter {
+            !ExercisePatternResolver.resolve($0, sportCode: "cycling").isStrengthFamily
+        }
+        guard kept.count != session.exercises.count, !kept.isEmpty else { return session }
+        return AdaptedSession(
+            day: session.day,
+            name: session.name,
+            durationMinutes: session.durationMinutes,
+            type: session.type,
+            warmup: session.warmup,
+            exercises: kept,
+            cooldown: session.cooldown
+        )
+    }
+
     /// Lieu vers lequel basculer au tap de la puce : l'autre variante disponible.
     /// V1 = 2 variantes (indoor/outdoor) → on renvoie simplement l'opposé présent dans
     /// `environmentVariants`. nil si la séance n'a pas de seconde variante.

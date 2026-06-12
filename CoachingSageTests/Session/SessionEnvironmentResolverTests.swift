@@ -94,6 +94,66 @@ final class SessionEnvironmentResolverTests: XCTestCase {
         XCTAssertEqual(out, adapted)
     }
 
+    // MARK: - filteringOffBikeStrength (2A — renfo indoor only)
+
+    /// Séance vélo « mixte » : pédalage + 3 exos de renfo hors-vélo. `originalName` = les
+    /// `match_key` réels du template (le resolver classe sur cette clé stable).
+    private func mixedAdaptedSession() -> AdaptedSession {
+        AdaptedSession(
+            day: 5,
+            name: LocalizedText(fr: "Sortie endurance — 45 min + renforcement"),
+            durationMinutes: 70,
+            type: .mixed,
+            warmup: LocalizedText(fr: "10 min souple"),
+            exercises: [
+                AdaptedExercise(name: LocalizedText(fr: "Sortie tranquille"), originalName: "Sortie continue FTP-Z2"),
+                AdaptedExercise(name: LocalizedText(fr: "Planche ventrale"), originalName: "Planche ventrale"),
+                AdaptedExercise(name: LocalizedText(fr: "Pont fessier (deux jambes)"), originalName: "Pont fessier bipodal"),
+                AdaptedExercise(name: LocalizedText(fr: "Mollets debout (deux pieds)"), originalName: "Calf raises bipodal")
+            ],
+            cooldown: LocalizedText(fr: "5 min retour au calme")
+        )
+    }
+
+    func testOutdoorCyclingStripsRenfoKeepsPedaling() {
+        let out = SessionEnvironmentResolver.filteringOffBikeStrength(
+            mixedAdaptedSession(), sport: .cycling, effective: .outdoor)
+        XCTAssertEqual(out.exercises.count, 1)
+        XCTAssertEqual(out.exercises.first?.originalName, "Sortie continue FTP-Z2") // le pédalage reste
+    }
+
+    func testIndoorCyclingKeepsRenfo() {
+        let session = mixedAdaptedSession()
+        let out = SessionEnvironmentResolver.filteringOffBikeStrength(
+            session, sport: .cycling, effective: .indoor)
+        XCTAssertEqual(out, session) // home-trainer : renfo gardé (no-op)
+    }
+
+    func testNonCyclingNeverFiltered() {
+        let session = mixedAdaptedSession()
+        let out = SessionEnvironmentResolver.filteringOffBikeStrength(
+            session, sport: .running, effective: .outdoor)
+        XCTAssertEqual(out, session) // le filtre ne touche que le vélo
+    }
+
+    func testOutdoorCyclingPureRideUnchanged() {
+        let ride = adaptedOutdoor() // un seul exo de pédalage, aucun renfo
+        let out = SessionEnvironmentResolver.filteringOffBikeStrength(
+            ride, sport: .cycling, effective: .outdoor)
+        XCTAssertEqual(out, ride) // rien à retirer → identité
+    }
+
+    func testNeverEmptiesSession() {
+        // Cas défensif : une séance 100% renfo ne doit pas se vider en outdoor.
+        let allRenfo = AdaptedSession(
+            day: 5, name: LocalizedText(fr: "Renfo"), durationMinutes: 20, type: .strength, warmup: nil,
+            exercises: [AdaptedExercise(name: LocalizedText(fr: "Planche"), originalName: "Planche ventrale")],
+            cooldown: nil)
+        let out = SessionEnvironmentResolver.filteringOffBikeStrength(
+            allRenfo, sport: .cycling, effective: .outdoor)
+        XCTAssertEqual(out, allRenfo) // jamais vide → on rend l'original
+    }
+
     // MARK: - flipTarget
 
     func testFlipTarget() {
