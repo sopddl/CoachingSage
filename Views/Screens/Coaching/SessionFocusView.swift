@@ -18,6 +18,10 @@ struct SessionFocusView: View {
     let week: AdaptedWeek
     let program: AdaptedProgram
     var recordId: UUID? = nil
+    /// Levé quand la séance est complétée pendant CE FOCUS (1ʳᵉ fois OU refaite) → la vue
+    /// détail remonte alors au programme au lieu de retomber sur « Démarrer » (Sophie
+    /// 2026-06-12). Default `.constant(false)` : Previews / scénarios UI inchangés.
+    @Binding private var didComplete: Bool
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.appDependencies) private var deps
@@ -52,11 +56,13 @@ struct SessionFocusView: View {
     /// Tick 1 s qui pilote le moteur de timer (mode Minuté).
     private let secondTick = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
-    init(session: AdaptedSession, week: AdaptedWeek, program: AdaptedProgram, recordId: UUID? = nil) {
+    init(session: AdaptedSession, week: AdaptedWeek, program: AdaptedProgram, recordId: UUID? = nil,
+         didComplete: Binding<Bool> = .constant(false)) {
         self.session = session
         self.week = week
         self.program = program
         self.recordId = recordId
+        self._didComplete = didComplete
         let vm = SessionFocusViewModel(session: session, recordId: recordId, week: week.weekNumber, day: session.day)
         _viewModel = State(initialValue: vm)
         _selectedIndex = State(initialValue: vm.resumeIndex)
@@ -186,6 +192,8 @@ struct SessionFocusView: View {
                 repository: deps.adaptedProgramRepository
             )
             completionVM = vm
+            // Séance complétée ce FOCUS → la vue détail remontera au programme (1A-bis).
+            didComplete = true
             // Device-test 2026-06-09 : le « Bravo » était mangé par la feuille notation
             // (elle montait direct). On célèbre D'ABORD, puis on bascule sur la feuille.
             withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) { showCompletion = true }

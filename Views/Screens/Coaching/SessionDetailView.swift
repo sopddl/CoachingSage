@@ -34,6 +34,9 @@ struct SessionDetailView: View {
     /// reprise (indices d'étapes déjà faites, relu depuis `SessionProgressStore`).
     @State private var showFocus: Bool = false
     @State private var focusProgress: Set<Int> = []
+    /// Levé par le FOCUS quand la séance est complétée pendant cette session (1ʳᵉ fois
+    /// OU refaite) → on remonte au programme à la fermeture (Sophie 2026-06-12).
+    @State private var focusDidComplete: Bool = false
 
     /// Chantier indoor/outdoor vélo (2026-06-10) — séance template « à lieu » (vélo
     /// avec variantes indoor/outdoor) résolue depuis le bundle, nil si la séance est
@@ -116,18 +119,15 @@ struct SessionDetailView: View {
         }
         .fullScreenCover(isPresented: $showFocus, onDismiss: {
             reloadFocusProgress()
-            Task {
-                let wasDone = completionVM?.completion != nil
-                await completionVM?.load()
-                // Séance complétée PENDANT ce FOCUS → on remonte au programme avec la
-                // séance faite, au lieu de retomber sur l'écran « Démarrer » (retour
-                // Sophie 2026-06-12 : « je reviens au démarrage comme si pas faite »).
-                // Sortie avant la fin (Reprendre plus tard / ✕) → completion nil → on
-                // reste sur le détail pour permettre la reprise.
-                if !wasDone, completionVM?.completion != nil { dismiss() }
-            }
+            Task { await completionVM?.load() } // rafraîchit la section complétion
+            // Séance FINIE pendant ce FOCUS (1ʳᵉ fois ou refaite) → on remonte au programme
+            // avec la séance faite, au lieu de retomber sur « Démarrer » (retour Sophie
+            // 2026-06-12). Sortie avant la fin (Reprendre plus tard / ✕) → flag à false →
+            // on reste sur le détail pour permettre la reprise.
+            if focusDidComplete { focusDidComplete = false; dismiss() }
         }) {
-            SessionFocusView(session: displaySession, week: week, program: program, recordId: recordId)
+            SessionFocusView(session: displaySession, week: week, program: program,
+                             recordId: recordId, didComplete: $focusDidComplete)
         }
     }
 
