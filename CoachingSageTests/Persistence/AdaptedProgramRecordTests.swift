@@ -319,6 +319,34 @@ final class AdaptedProgramRecordTests: XCTestCase {
         XCTAssertEqual(fetched.first?.id, record.id)
     }
 
+    // MARK: - Chantier indoor/outdoor vélo — sessionLocations + environmentDefault
+
+    func testSessionLocationStateSetGetAndRemove() {
+        var s = SessionLocationState.empty
+        XCTAssertNil(s.environment(week: 3, day: 5))
+        s.set(.indoor, week: 3, day: 5)
+        XCTAssertEqual(s.environment(week: 3, day: 5), .indoor)
+        XCTAssertEqual(SessionLocationState.key(week: 3, day: 5), "3-5")
+        s.set(nil, week: 3, day: 5) // retrait override
+        XCTAssertNil(s.environment(week: 3, day: 5))
+    }
+
+    func testSessionLocationsAndEnvironmentDefaultRoundTripThroughSwiftData() throws {
+        let (container, ctx) = try Self.makeProgramContext()
+        _ = container
+        let record = AdaptedProgramRecord(from: makeAdaptedFixture(), userId: UUID())
+        var state = record.sessionLocations
+        state.set(.indoor, week: 1, day: 5)
+        record.sessionLocations = state
+        record.environmentDefaultRaw = "both"
+        ctx.insert(record)
+        try ctx.save()
+
+        let fetched = try ctx.fetch(FetchDescriptor<AdaptedProgramRecord>()).first
+        XCTAssertEqual(fetched?.sessionLocations.environment(week: 1, day: 5), .indoor)
+        XCTAssertEqual(fetched?.environmentDefaultRaw, "both")
+    }
+
     func testArchivingFlipsIsActiveAndSetsArchivedAt() throws {
         let (container, ctx) = try Self.makeProgramContext()
         _ = container

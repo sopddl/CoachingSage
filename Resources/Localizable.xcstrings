@@ -1,6 +1,102 @@
 {
   "sourceLanguage" : "fr",
   "strings" : {
+    "questionnaire.cycling.q5.text" : {
+      "comment" : "Indoor/outdoor vélo (2026-06-11) — question lieu posée dans le questionnaire de création vélo.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you ride mostly outdoors or on a home trainer?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Ruedas más al aire libre o en rodillo?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu roules plutôt dehors ou en home-trainer ?"
+          }
+        }
+      }
+    },
+    "questionnaire.cycling.q5.option.outdoor" : {
+      "comment" : "Indoor/outdoor vélo (2026-06-11) — question lieu posée dans le questionnaire de création vélo.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostly outdoors 🛣️"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más al aire libre 🛣️"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plutôt dehors 🛣️"
+          }
+        }
+      }
+    },
+    "questionnaire.cycling.q5.option.indoor" : {
+      "comment" : "Indoor/outdoor vélo (2026-06-11) — question lieu posée dans le questionnaire de création vélo.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostly home trainer 🏠"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más en rodillo 🏠"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plutôt en home-trainer 🏠"
+          }
+        }
+      }
+    },
+    "questionnaire.cycling.q5.option.both" : {
+      "comment" : "Indoor/outdoor vélo (2026-06-11) — question lieu posée dans le questionnaire de création vélo.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Both, choose day to day"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ambos, elijo según el día"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les deux, je choisis selon le jour"
+          }
+        }
+      }
+    },
     "coaching.dosage.charge.hold" : {
       "localizations" : {
         "en" : {
@@ -2826,6 +2922,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Séance terminée 💪"
+          }
+        }
+      }
+    },
+    "coaching.session.focus.close.cancel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler"
+          }
+        }
+      }
+    },
+    "coaching.session.focus.close.finish" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, finish 🏆"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sí, terminar 🏆"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oui, terminer 🏆"
+          }
+        }
+      }
+    },
+    "coaching.session.focus.close.later" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resume later"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar más tarde"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reprendre plus tard"
+          }
+        }
+      }
+    },
+    "coaching.session.focus.close.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish session?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Sesión terminada?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Séance terminée ?"
           }
         }
       }
@@ -15278,6 +15462,222 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aujourd'hui"
+          }
+        }
+      }
+    },
+    "coaching.location.indoor" : {
+      "comment" : "Chantier indoor/outdoor vélo (2026-06-10) — lieu de pratique vélo (puce HUB + sheet lancement).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indoor trainer"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rodillo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home-trainer"
+          }
+        }
+      }
+    },
+    "coaching.location.outdoor" : {
+      "comment" : "Chantier indoor/outdoor vélo (2026-06-10) — lieu de pratique vélo (puce HUB + sheet lancement).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outdoors"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exterior"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dehors"
+          }
+        }
+      }
+    },
+    "coaching.location.chip.hint" : {
+      "comment" : "Chantier indoor/outdoor vélo (2026-06-10) — lieu de pratique vélo (puce HUB + sheet lancement).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to switch location"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca para cambiar de lugar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toucher pour changer de lieu"
+          }
+        }
+      }
+    },
+    "coaching.location.sheet.title" : {
+      "comment" : "Chantier indoor/outdoor vélo (2026-06-10) — lieu de pratique vélo (puce HUB + sheet lancement).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Where do you usually ride?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Dónde sueles rodar?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu roules plutôt où ?"
+          }
+        }
+      }
+    },
+    "coaching.location.sheet.subtitle" : {
+      "comment" : "Chantier indoor/outdoor vélo (2026-06-10) — lieu de pratique vélo (puce HUB + sheet lancement).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We'll tailor your sessions to your setup. You can switch for each session."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adaptamos tus sesiones a tu entorno. Podrás cambiar en cada sesión."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On adapte tes séances à ton lieu. Tu pourras changer pour chaque séance."
+          }
+        }
+      }
+    },
+    "coaching.location.sheet.indoor" : {
+      "comment" : "Chantier indoor/outdoor vélo (2026-06-10) — lieu de pratique vélo (puce HUB + sheet lancement).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🏠 Indoor trainer"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🏠 Rodillo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🏠 Home-trainer"
+          }
+        }
+      }
+    },
+    "coaching.location.sheet.outdoor" : {
+      "comment" : "Chantier indoor/outdoor vélo (2026-06-10) — lieu de pratique vélo (puce HUB + sheet lancement).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🛣️ Outdoors"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🛣️ Exterior"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🛣️ Dehors"
+          }
+        }
+      }
+    },
+    "coaching.location.sheet.both" : {
+      "comment" : "Chantier indoor/outdoor vélo (2026-06-10) — lieu de pratique vélo (puce HUB + sheet lancement).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Both"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ambos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les deux"
+          }
+        }
+      }
+    },
+    "coaching.location.sheet.both.detail" : {
+      "comment" : "Chantier indoor/outdoor vélo (2026-06-10) — lieu de pratique vélo (puce HUB + sheet lancement).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You'll choose case by case"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elegirás caso por caso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu choisiras au cas par cas"
           }
         }
       }

@@ -75,6 +75,16 @@ public struct TemplateSession: Codable, Equatable, Sendable {
     public let exercises: [TemplateExercise]
     public let cooldown: LocalizedText?
 
+    /// Lieu que représente le contenu RACINE de la séance (= variante native/défaut).
+    /// `nil` = séance agnostique (pas de bascule lieu — tous les sports hors chantier
+    /// indoor/outdoor). Chantier indoor/outdoor vélo 2026-06-10.
+    public let environment: SessionEnvironment?
+
+    /// Variantes ALTERNATIVES par lieu (l'autre / les autres lieux). `nil` = séance mono
+    /// (comportement historique, rétro-compatible : champ absent du JSON → nil).
+    /// Le contenu natif (champs racine ci-dessus) sert de variante par défaut.
+    public let variants: [SessionVariant]?
+
     public init(
         day: Int,
         name: LocalizedText,
@@ -82,7 +92,9 @@ public struct TemplateSession: Codable, Equatable, Sendable {
         type: SessionType,
         warmup: LocalizedText?,
         exercises: [TemplateExercise],
-        cooldown: LocalizedText?
+        cooldown: LocalizedText?,
+        environment: SessionEnvironment? = nil,
+        variants: [SessionVariant]? = nil
     ) {
         self.day = day
         self.name = name
@@ -91,6 +103,29 @@ public struct TemplateSession: Codable, Equatable, Sendable {
         self.warmup = warmup
         self.exercises = exercises
         self.cooldown = cooldown
+        self.environment = environment
+        self.variants = variants
+    }
+
+    /// Toutes les variantes de lieu (native incluse), si la séance est « à lieu ».
+    /// Vide si la séance est agnostique (`environment == nil`).
+    public var environmentVariants: [SessionVariant] {
+        guard let environment else { return [] }
+        let native = SessionVariant(
+            environment: environment, name: name, durationMinutes: durationMinutes,
+            warmup: warmup, exercises: exercises, cooldown: cooldown
+        )
+        return [native] + (variants ?? [])
+    }
+
+    /// Variante effective pour un lieu choisi. `nil` env (ou lieu absent des variantes)
+    /// → variante native (défaut, = contenu racine). Renvoie `nil` si la séance n'a
+    /// aucune variante de lieu (l'appelant utilise alors le contenu racine directement).
+    public func variant(for env: SessionEnvironment?) -> SessionVariant? {
+        let all = environmentVariants
+        guard let native = all.first else { return nil }
+        guard let env else { return native }
+        return all.first(where: { $0.environment == env }) ?? native
     }
 }
 

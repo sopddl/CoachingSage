@@ -52,6 +52,8 @@ struct SessionView: View {
     /// pushed hors écran par la liste séances scrollable Zone 2. Trigger
     /// désormais en `.safeAreaInset(.bottom)` du content SessionView.
     @State private var showPreparedSheet: Bool = false
+    /// Indoor/outdoor vélo (2026-06-10) — non-nil = sheet « tu roules plutôt où ? »
+    /// présentée au lancement d'un programme vélo (D2). Au choix → `commitProgram`.
 
     /// **Story 3.10** — Contexte de l'alerte cap pour résoudre titre/message
     /// i18n côté View. `Identifiable` pour `.alert(item:)` SwiftUI.
@@ -671,46 +673,65 @@ struct SessionView: View {
         for route: AdaptedProgramRoute,
         deps: AppDependencies
     ) -> (() async -> Void)? {
-        guard let previewProfile = route.previewSportProfile else { return nil }
-        return {
-            guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else { return }
-            do {
-                let factory = AutoProgramFactory(
-                    sportProfileRepository: deps.coachingSportProfileRepository,
-                    adaptedProgramRepository: deps.adaptedProgramRepository,
-                    coachingProfileRepository: deps.coachingProfileRepository
-                )
-                let preview = AutoProgramPreview(program: route.program, sportProfile: previewProfile)
-                let recordId = try await factory.commit(
-                    preview: preview,
-                    userId: userId,
-                    locale: languageManager.currentLocale
-                )
-                // **Story 3.12** : commit + markStarted dans la foulée → programme
-                // ACTIF directement après tap "Démarrer" (preview). Évite l'étape
-                // intermédiaire "dormant" qui obligeait l'user à re-tap "Démarrer"
-                // depuis le carrousel pour vraiment activer.
-                // Si cap démarré atteint, on garde le programme dormant et on
-                // affiche l'alerte cap.
-                do {
-                    try await deps.adaptedProgramRepository.markStarted(recordId: recordId)
-                } catch ProgramCapReached.started(let limit) {
-                    capAlertContext = .started(limit: limit)
-                    // Le programme reste persisté en dormant. User peut archiver
-                    // un programme démarré puis re-démarrer celui-ci depuis le carrousel.
-                }
-                await refreshDashboard()
-                // Pop vers Séances : dashboard refresh montre maintenant le programme
-                // démarré en mode active.
-                adaptedRoute = nil
-            } catch ProgramCapReached.dormant(let limit) {
-                // **Story 3.10 AC12** — cap dormant atteint : on garde l'écran
-                // preview ouvert, on affiche l'alerte. L'user peut choisir
-                // d'archiver un dormant existant puis retenter.
-                capAlertContext = .dormant(limit: limit)
-            } catch {
-                presentationError = error.localizedDescription
+        guard let profile = route.previewSportProfile else { return nil }
+        // Indoor/outdoor vélo (2026-06-11) — le défaut de lieu est posé DANS le
+        // questionnaire de création (Q5, cycling only) ; on l'extrait de l'historique
+        // et on le persiste juste après le commit. nil pour les sports sans lieu.
+        let environmentDefault = UniversalQuestionnaire.environmentDefault(from: profile.conversationHistory)
+        return { await commitProgram(route: route, deps: deps, environmentDefault: environmentDefault) }
+    }
+
+    /// Commit + activation d'un programme depuis la preview. `environmentDefault`
+    /// (indoor/outdoor vélo) = défaut de lieu choisi au lancement, persisté juste
+    /// après le commit. nil pour les sports sans variante de lieu.
+    private func commitProgram(
+        route: AdaptedProgramRoute,
+        deps: AppDependencies,
+        environmentDefault: String?
+    ) async {
+        guard let previewProfile = route.previewSportProfile else { return }
+        guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else { return }
+        do {
+            let factory = AutoProgramFactory(
+                sportProfileRepository: deps.coachingSportProfileRepository,
+                adaptedProgramRepository: deps.adaptedProgramRepository,
+                coachingProfileRepository: deps.coachingProfileRepository
+            )
+            let preview = AutoProgramPreview(program: route.program, sportProfile: previewProfile)
+            let recordId = try await factory.commit(
+                preview: preview,
+                userId: userId,
+                locale: languageManager.currentLocale
+            )
+            // Indoor/outdoor vélo (D2) — pose le défaut de lieu choisi au lancement.
+            if let environmentDefault {
+                let svc = SessionLocationService(repository: deps.adaptedProgramRepository)
+                try? await svc.recordDefault(recordId: recordId, value: environmentDefault)
             }
+            // **Story 3.12** : commit + markStarted dans la foulée → programme
+            // ACTIF directement après tap "Démarrer" (preview). Évite l'étape
+            // intermédiaire "dormant" qui obligeait l'user à re-tap "Démarrer"
+            // depuis le carrousel pour vraiment activer.
+            // Si cap démarré atteint, on garde le programme dormant et on
+            // affiche l'alerte cap.
+            do {
+                try await deps.adaptedProgramRepository.markStarted(recordId: recordId)
+            } catch ProgramCapReached.started(let limit) {
+                capAlertContext = .started(limit: limit)
+                // Le programme reste persisté en dormant. User peut archiver
+                // un programme démarré puis re-démarrer celui-ci depuis le carrousel.
+            }
+            await refreshDashboard()
+            // Pop vers Séances : dashboard refresh montre maintenant le programme
+            // démarré en mode active.
+            adaptedRoute = nil
+        } catch ProgramCapReached.dormant(let limit) {
+            // **Story 3.10 AC12** — cap dormant atteint : on garde l'écran
+            // preview ouvert, on affiche l'alerte. L'user peut choisir
+            // d'archiver un dormant existant puis retenter.
+            capAlertContext = .dormant(limit: limit)
+        } catch {
+            presentationError = error.localizedDescription
         }
     }
 
@@ -955,7 +976,7 @@ struct SessionView: View {
 
 // MARK: - AdaptedProgramRoute (wrapper Hashable pour navigationDestination)
 
-private struct AdaptedProgramRoute: Hashable {
+private struct AdaptedProgramRoute: Hashable, Identifiable {
     let id: UUID = UUID()
     let program: AdaptedProgram
     /// Id de l'`AdaptedProgramRecord` persisté ; alimente le fetch progress +

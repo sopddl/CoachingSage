@@ -18,6 +18,10 @@ struct SessionFocusView: View {
     let week: AdaptedWeek
     let program: AdaptedProgram
     var recordId: UUID? = nil
+    /// Levé quand la séance est complétée pendant CE FOCUS (1ʳᵉ fois OU refaite) → la vue
+    /// détail remonte alors au programme au lieu de retomber sur « Démarrer » (Sophie
+    /// 2026-06-12). Default `.constant(false)` : Previews / scénarios UI inchangés.
+    @Binding private var didComplete: Bool
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.appDependencies) private var deps
@@ -28,6 +32,11 @@ struct SessionFocusView: View {
     @State private var showCompletion = false
     @State private var showCompleteSheet = false
     @State private var completionVM: SessionCompletionViewModel?
+    // Device-test Sophie 2026-06-12 — en audio/minuté (vélo, course, rando) on ne
+    // regarde pas le chrono finir à 0:00 : on ferme avec ✕ quand on a fini. ✕ propose
+    // alors « Terminer » (bravo + date) ou « Reprendre plus tard » (décision 1A).
+    @State private var showCloseConfirm = false
+    @State private var resumeAfterConfirm = false
 
     // Story 3.34 — mode Minuté (HIIT/yoga).
     @State private var timerEngine: SessionTimerEngine
@@ -47,11 +56,13 @@ struct SessionFocusView: View {
     /// Tick 1 s qui pilote le moteur de timer (mode Minuté).
     private let secondTick = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
-    init(session: AdaptedSession, week: AdaptedWeek, program: AdaptedProgram, recordId: UUID? = nil) {
+    init(session: AdaptedSession, week: AdaptedWeek, program: AdaptedProgram, recordId: UUID? = nil,
+         didComplete: Binding<Bool> = .constant(false)) {
         self.session = session
         self.week = week
         self.program = program
         self.recordId = recordId
+        self._didComplete = didComplete
         let vm = SessionFocusViewModel(session: session, recordId: recordId, week: week.weekNumber, day: session.day)
         _viewModel = State(initialValue: vm)
         _selectedIndex = State(initialValue: vm.resumeIndex)
@@ -105,6 +116,19 @@ struct SessionFocusView: View {
         .sheet(isPresented: $showCompleteSheet, onDismiss: { dismiss() }) {
             if let vm = completionVM {
                 SessionCompleteSheet(vm: vm, plannedDurationMinutes: session.durationMinutes)
+            }
+        }
+        .confirmationDialog(
+            Text("coaching.session.focus.close.title"),
+            isPresented: $showCloseConfirm,
+            titleVisibility: .visible
+        ) {
+            Button("coaching.session.focus.close.finish") { finishTimedNow() }
+            Button("coaching.session.focus.close.later") { dismiss() }
+            Button("coaching.session.focus.close.cancel", role: .cancel) {
+                // Reprise : on ne relance le chrono que si c'est NOUS qui l'avons mis en pause.
+                if resumeAfterConfirm { timerEngine.togglePause() }
+                resumeAfterConfirm = false
             }
         }
     }
@@ -168,7 +192,14 @@ struct SessionFocusView: View {
                 repository: deps.adaptedProgramRepository
             )
             completionVM = vm
+            // Séance complétée ce FOCUS → la vue détail remontera au programme (1A-bis).
+            didComplete = true
+            // Device-test 2026-06-09 : le « Bravo » était mangé par la feuille notation
+            // (elle montait direct). On célèbre D'ABORD, puis on bascule sur la feuille.
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) { showCompletion = true }
             Task {
+                // La célébration reste lisible ≥1.6 s, en parallèle de l'enregistrement.
+                async let minDisplay: Void = Task.sleep(nanoseconds: 1_600_000_000)
                 await vm.load()
                 // Story 3.35h — enregistre la complétion DÈS la fin du FOCUS (et non
                 // seulement si l'user valide la feuille) → le dashboard ne reproposera
@@ -177,6 +208,8 @@ struct SessionFocusView: View {
                 if vm.completion == nil {
                     await vm.save(actualDurationMinutes: nil, rpe: nil, notes: nil)
                 }
+                try? await minDisplay
+                withAnimation(.easeInOut(duration: 0.25)) { showCompletion = false }
                 showCompleteSheet = true
             }
         } else {
@@ -678,9 +711,53 @@ struct SessionFocusView: View {
         steps.forEach { viewModel.markDone($0) }
     }
 
+    /// Fermeture ✕ d'une séance audio/minutée (décision 1A, device-test 2026-06-12).
+    /// On ne laisse pas le chrono finir à 0:00 → sans ça, ni date ni bravo. Si la
+    /// séance est déjà bien avancée, on propose « Terminer » / « Reprendre plus tard »
+    /// (on met le chrono + la voix en pause le temps du choix) ; démarrage / ouverture
+    /// accidentelle → fermeture directe, sans nag.
+    private func requestCloseTimed() {
+        guard !timerEngine.isFinished, hasMeaningfulTimedProgress else {
+            dismiss()
+            return
+        }
+        if !timerEngine.isPaused {
+            timerEngine.togglePause()
+            resumeAfterConfirm = true
+        }
+        voiceGuide?.stop()
+        showCloseConfirm = true
+    }
+
+    /// « Terminer » depuis la confirmation : même chemin que la fin naturelle du chrono
+    /// (marque tout fait → `handleCompletionChange` → bravo + date + récap). Si tout est
+    /// déjà coché, on présente la complétion directement (l'`onChange` ne se déclencherait
+    /// pas faute d'incrément).
+    private func finishTimedNow() {
+        audioCues.play(.finish)
+        if viewModel.allCompleted {
+            presentCompletion()
+        } else {
+            steps.forEach { viewModel.markDone($0) }
+        }
+    }
+
+    /// Vrai dès qu'au moins une étape est faite ou ~30 s de séance écoulées : évite de
+    /// proposer la complétion sur une ouverture accidentelle, sans rater une vraie séance.
+    private var hasMeaningfulTimedProgress: Bool {
+        viewModel.completedCount > 0 || timedElapsedSeconds >= 30
+    }
+
+    /// Temps écoulé total : phases entièrement passées + l'écoulé de la phase courante.
+    private var timedElapsedSeconds: Int {
+        let before = timerEngine.phases.prefix(timerEngine.currentIndex).reduce(0) { $0 + $1.duration }
+        let inCurrent = (timerEngine.currentPhase?.duration ?? 0) - timerEngine.remaining
+        return before + max(0, inCurrent)
+    }
+
     private var timedTopBar: some View {
         HStack {
-            Button { dismiss() } label: {
+            Button { requestCloseTimed() } label: {
                 Image(systemName: "xmark").font(.title3).foregroundStyle(.secondary)
             }
             .accessibilityIdentifier("coaching.session.focus.close")
