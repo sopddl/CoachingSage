@@ -2,20 +2,30 @@ import XCTest
 @testable import TemplateLoader
 import TemplateModel
 
-/// Filet de régression passe qualité #2c ES (2026-06-13) : aucun nom d'exercice,
-/// alternative ou titre de séance ne doit rester en anglais côté `es`
-/// (c.-à-d. `es == en`). Suite de #2b (franglais→FR) propagée à l'espagnol.
+/// Filet de régression passe qualité #2c ES (2026-06-13). Vérifie le CHEMIN DE
+/// RENDU réel : `LocalizedText.resolved(Locale)` — la même fonction que les vues
+/// appellent pour afficher un nom d'exercice dans la langue de l'app.
 ///
-/// Politique (validée Sophie) : espagnol naturel de salle, l'anglicisme n'est
-/// gardé QUE là où c'est le terme dominant en ES → liste `allowedAnglicisms`.
-/// Hors périmètre : `notes`, `goal`, `theme` (textes longs, RPE/RIR/FTP/tempo
-/// sont du vocabulaire volontaire présent dans les 3 langues, pas de l'anglais
-/// résiduel — cf #2c).
+/// Trois garanties :
+///  1. `testSpanishResolvesToSpanish` — pour CHAQUE nom d'exo/alternative/séance,
+///     la résolution en `es` ne renvoie PAS la valeur anglaise (`es == en`),
+///     hors anglicismes dominants whitelistés. C'est l'invariant de #2c.
+///  2. `testGoldenSpanishNames` — ancres « golden » : une poignée de traductions
+///     clés sont figées (Dead bug → Bicho muerto…) pour attraper une dérive de
+///     contenu future (re-génération, ré-import) qui les casserait silencieusement.
+///  3. `testFallbackToFrenchWhenSpanishMissing` — quand `es` est absent (titres
+///     top-level fr-only), la résolution `es` retombe bien sur `fr` (pas de vide).
+///
+/// Hors périmètre : `notes`/`goal` (textes longs ; RPE/RIR/FTP/tempo = vocabulaire
+/// volontaire présent dans les 3 langues, ≠ anglais résiduel — cf #2c).
 final class NoUntranslatedSpanishNamesTests: XCTestCase {
 
+    private static let es = Locale(identifier: "es")
+    private static let en = Locale(identifier: "en")
+    private static let fr = Locale(identifier: "fr")
+
     /// Anglicismes dominants en salle ES : `es == en` y est volontaire.
-    /// (StairMaster = nom de machine ; "resistencia alta" = fragment déjà ES
-    /// mistaggé côté `en`.)
+    /// (StairMaster = nom de machine ; "resistencia" = fragment déjà ES mistaggé.)
     private static let allowedAnglicisms = [
         "push press", "hip thrust", "good morning", "sculling", "catch-up",
         "z-press", "stairmaster", "yin yoga", "resistencia",
@@ -26,7 +36,7 @@ final class NoUntranslatedSpanishNamesTests: XCTestCase {
         return Self.allowedAnglicisms.contains { lower.contains($0) }
     }
 
-    /// Champs « nom » courts d'un template (exercice, alternative, séance, variante).
+    /// Tous les `LocalizedText` « nom » (exercice, alternative, séance, variante).
     private func nameTexts(_ t: ProgramTemplate) -> [(field: String, text: LocalizedText)] {
         var out: [(String, LocalizedText)] = []
         for w in t.weeks {
@@ -49,26 +59,71 @@ final class NoUntranslatedSpanishNamesTests: XCTestCase {
         }
     }
 
-    func testNoExerciseNameLeftUntranslatedInSpanish() async throws {
+    private func loadTemplates() async throws -> [ProgramTemplate] {
         let templates = try await TemplateLoader.loadAll()
         guard templates.count >= 30 else { throw XCTSkip("bundle non peuplé (\(templates.count))") }
+        return templates
+    }
 
+    /// (1) Invariant #2c, via la résolution de rendu réelle.
+    func testSpanishResolvesToSpanish() async throws {
         var seen = Set<String>()
         var failures: [String] = []
-        for t in templates {
+        for t in try await loadTemplates() {
             for (field, lt) in nameTexts(t) {
-                guard let en = lt.en, let es = lt.es else { continue }
-                let fr = lt.fr
-                // es == en (anglais non traduit) ET fr a bien été francisé (fr != en)
-                guard es == en, fr != en, !isAllowed(es) else { continue }
-                if seen.insert(es).inserted {
-                    failures.append("[\(t.id)] \(field).es == en : « \(es) » (fr: « \(fr.prefix(40)) »)")
+                let esVal = lt.resolved(Self.es)
+                let enVal = lt.resolved(Self.en)
+                let frVal = lt.resolved(Self.fr)
+                // anglais non traduit ET fr bien francisé ET pas un anglicisme voulu
+                guard esVal == enVal, frVal != enVal, !isAllowed(esVal) else { continue }
+                if seen.insert(esVal).inserted {
+                    failures.append("[\(t.id)] \(field) → es « \(esVal) » (fr « \(frVal.prefix(40)) »)")
                 }
             }
         }
         XCTAssertTrue(
             failures.isEmpty,
-            "Noms d'exos ES restés en anglais (\(failures.count) uniques) :\n" + failures.prefix(40).joined(separator: "\n")
+            "Noms d'exos résolus en anglais sous locale ES (\(failures.count) uniques) :\n"
+                + failures.prefix(40).joined(separator: "\n")
         )
+    }
+
+    /// (2) Ancres golden : traductions clés figées contre la dérive de contenu.
+    func testGoldenSpanishNames() async throws {
+        // Ancres choisies UNIQUEMENT parmi les canonicals dont l'ES est stable
+        // partout (1 seule valeur dans tout le bundle). NB : « Gainage croisé au
+        // sol » (Dead bug) / « Pointeur » (Bird-dog) sont volontairement EXCLUS :
+        // ils ont encore des variantes anglais-en-tête non traduites (résidu #2d,
+        // cf incohérence documentée) → mauvaises ancres tant que #2d n'est pas fait.
+        let golden: [String: String] = [   // fr (canonical) → es attendu
+            "Squat gobelet": "Sentadilla goblet",
+            "Rowing barre en T 4×10": "Remo en T 4×10",
+            "Rowing seal 4×8": "Remo seal 4×8",
+            "Gainage croisé au sol + pointeur": "Bicho muerto + perro-pájaro",
+            "Soulevé de terre roumain 3x6 @60% TM": "Peso muerto rumano 3x6 @60% TM",
+        ]
+        var found = Set<String>()
+        var mismatches: [String] = []
+        for t in try await loadTemplates() {
+            for (_, lt) in nameTexts(t) {
+                guard let expectedES = golden[lt.canonical] else { continue }
+                found.insert(lt.canonical)
+                let esVal = lt.resolved(Self.es)
+                if esVal != expectedES {
+                    mismatches.append("« \(lt.canonical) » → es « \(esVal) » (attendu « \(expectedES) »)")
+                }
+            }
+        }
+        XCTAssertTrue(mismatches.isEmpty, "Traductions golden cassées :\n" + mismatches.joined(separator: "\n"))
+        // garde-fou : si une ancre disparaît du bundle, le test ne doit pas devenir vide-vrai
+        let missing = Set(golden.keys).subtracting(found)
+        XCTAssertTrue(missing.isEmpty, "Ancres golden absentes du bundle (à mettre à jour) : \(missing.sorted())")
+    }
+
+    /// (3) Fallback FR quand l'ES manque (ne jamais afficher vide).
+    func testFallbackToFrenchWhenSpanishMissing() {
+        let frOnly = LocalizedText(fr: "Vélo reprise — Retrouver le plaisir")
+        XCTAssertEqual(frOnly.resolved(Self.es), "Vélo reprise — Retrouver le plaisir")
+        XCTAssertEqual(frOnly.resolved(Self.en), "Vélo reprise — Retrouver le plaisir")
     }
 }
