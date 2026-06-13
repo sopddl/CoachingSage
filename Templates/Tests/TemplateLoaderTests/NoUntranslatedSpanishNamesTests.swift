@@ -29,6 +29,9 @@ final class NoUntranslatedSpanishNamesTests: XCTestCase {
     private static let allowedAnglicisms = [
         "push press", "hip thrust", "good morning", "sculling", "catch-up",
         "z-press", "stairmaster", "yin yoga", "resistencia",
+        // #2d : anglicismes dominants en salle ES, gardés volontairement (lead anglais).
+        "back squat", "front squat", "hack squat", "step-up", "hollow",
+        "glute-ham", "face pull", "superman glide", "kettlebell",
     ]
 
     private func isAllowed(_ s: String) -> Bool {
