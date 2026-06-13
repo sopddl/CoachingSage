@@ -66,9 +66,9 @@
                 "fr" : "Test 5K chronométré"
               },
               "notes" : {
-                "en" : "8/10 RPE effort, steady from start to finish. Note your time. Example: 30 min → 5K pace = 6:00 min/km. This time sets ALL your plan paces: Daniels-T (threshold) = 5K pace + 30-45 s/km (e.g. 6:30-6:45 min/km); Daniels-E (easy/long run) = 5K pace + 90-120 s/km (e.g. 7:30-8:00 min/km); target 10K pace = 5K pace + 45-75 s/km (e.g. 6:45-7:15 min/km). Adjust to your actual result.",
-                "es" : "Esfuerzo 8/10 RPE, constante de principio a fin. Anota tu tiempo. Ejemplo: 30 min → ritmo de 5K = 6:00 min/km. Este tiempo determina TODOS tus ritmos del plan: Daniels-T (umbral) = ritmo de 5K + 30-45 s/km (p. ej. 6:30-6:45 min/km); Daniels-E (suave/tirada larga) = ritmo de 5K + 90-120 s/km (p. ej. 7:30-8:00 min/km); ritmo objetivo de 10K = ritmo de 5K + 45-75 s/km (p. ej. 6:45-7:15 min/km). Ajusta según tu resultado real.",
-                "fr" : "Effort 8/10 RPE, régulier du début à la fin. Note ton temps. Exemple : 30 min → allure 5K = 6:00 min/km. Ce temps détermine TOUTES tes allures du plan : Daniels-T (seuil) = allure 5K + 30-45 s/km (ex: 6:30-6:45 min/km) ; Daniels-E (easy/long run) = allure 5K + 90-120 s/km (ex: 7:30-8:00 min/km) ; allure 10K cible = allure 5K + 45-75 s/km (ex: 6:45-7:15 min/km). Adapter selon ton résultat réel."
+                "en" : "8/10 RPE effort, steady from start to finish. Note your time. Example: 30 min → 5K pace = 6:00 min/km. This time sets ALL your plan paces: at threshold (threshold) = 5K pace + 30-45 s/km (e.g. 6:30-6:45 min/km); easy (you can talk) (easy/long run) = 5K pace + 90-120 s/km (e.g. 7:30-8:00 min/km); target 10K pace = 5K pace + 45-75 s/km (e.g. 6:45-7:15 min/km). Adjust to your actual result.",
+                "es" : "Esfuerzo 8/10 RPE, constante de principio a fin. Anota tu tiempo. Ejemplo: 30 min → ritmo de 5K = 6:00 min/km. Este tiempo determina TODOS tus ritmos del plan: en el umbral (umbral) = ritmo de 5K + 30-45 s/km (p. ej. 6:30-6:45 min/km); fácil (puedes hablar) (suave/tirada larga) = ritmo de 5K + 90-120 s/km (p. ej. 7:30-8:00 min/km); ritmo objetivo de 10K = ritmo de 5K + 45-75 s/km (p. ej. 6:45-7:15 min/km). Ajusta según tu resultado real.",
+                "fr" : "Effort 8/10 RPE, régulier du début à la fin. Note ton temps. Exemple : 30 min → allure 5K = 6:00 min/km. Ce temps détermine TOUTES tes allures du plan : au seuil (seuil) = allure 5K + 30-45 s/km (ex: 6:30-6:45 min/km) ; facile (tu peux parler) (easy/long run) = allure 5K + 90-120 s/km (ex: 7:30-8:00 min/km) ; allure 10K cible = allure 5K + 45-75 s/km (ex: 6:45-7:15 min/km). Adapter selon ton résultat réel."
               },
               "required_equipment" : [
                 "gps-watch"
@@ -264,9 +264,9 @@
         },
         {
           "cooldown" : {
-            "en" : "10 min very slow jog (Daniels-E, extended cooldown) + 5 min stretching (calves, quads, hamstrings).",
-            "es" : "10 min de trote muy lento (Daniels-E, vuelta a la calma prolongada) + 5 min de estiramientos (gemelos, cuádriceps, isquiotibiales).",
-            "fr" : "10 min footing très lent (Daniels-E, cooldown extended) + étirements 5 min (mollets, quadriceps, ischio)."
+            "en" : "10 min very slow jog (easy (you can talk), extended cooldown) + 5 min stretching (calves, quads, hamstrings).",
+            "es" : "10 min de trote muy lento (fácil (puedes hablar), vuelta a la calma prolongada) + 5 min de estiramientos (gemelos, cuádriceps, isquiotibiales).",
+            "fr" : "10 min footing très lent (facile (tu peux parler), cooldown extended) + étirements 5 min (mollets, quadriceps, ischio)."
           },
           "day" : 3,
           "duration_minutes" : 55,
@@ -274,14 +274,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill jog 20 min Z1-Z2",
-                  "es" : "Trote en cinta 20 min Z1-Z2",
-                  "fr" : "Footing tapis 20 min Z1-Z2"
+                  "en" : "Treadmill jog 20 min very easy to easy endurance",
+                  "es" : "Trote en cinta 20 min muy fácil a resistencia fácil",
+                  "fr" : "Footing tapis 20 min très facile à endurance facile"
                 },
                 {
-                  "en" : "Z2 cycling 25 min",
-                  "es" : "Bici Z2 25 min",
-                  "fr" : "Vélo Z2 25 min"
+                  "en" : "easy endurance cycling 25 min",
+                  "es" : "Bici resistencia fácil 25 min",
+                  "fr" : "Vélo endurance facile 25 min"
                 }
               ],
               "duration" : "35 min",
@@ -297,9 +297,9 @@
                 "fr" : "Footing facile"
               },
               "notes" : {
-                "en" : "Daniels-E pace = 5K pace + 90-120 s/km. Fully conversational pace, RPE 5-6/10. Cadence ~170-180 steps/min. This is the zone where base aerobic endurance is built. 35 min = ~4.7 km of Daniels-E, consolidated aerobic base for the recreational runner.",
-                "es" : "Ritmo Daniels-E = ritmo de 5K + 90-120 s/km. Ritmo totalmente conversacional, RPE 5-6/10. Cadencia ~170-180 pasos/min. Es la zona donde se construye la resistencia aeróbica de base. 35 min = ~4,7 km de Daniels-E, base aeróbica consolidada para el recreativo.",
-                "fr" : "Allure Daniels-E = allure 5K + 90-120 s/km. Allure conversationnelle complète, RPE 5-6/10. Cadence ~170-180 pas/min. C'est la zone où se construit l'endurance aérobie de base. 35 min = ~4.7 km de Daniels-E, base aérobie consolidée pour le recreational."
+                "en" : "easy (you can talk) pace = 5K pace + 90-120 s/km. Fully conversational pace, RPE 5-6/10. Cadence ~170-180 steps/min. This is the zone where base aerobic endurance is built. 35 min = ~4.7 km of easy (you can talk), consolidated aerobic base for the recreational runner.",
+                "es" : "Ritmo fácil (puedes hablar) = ritmo de 5K + 90-120 s/km. Ritmo totalmente conversacional, RPE 5-6/10. Cadencia ~170-180 pasos/min. Es la zona donde se construye la resistencia aeróbica de base. 35 min = ~4,7 km de fácil (puedes hablar), base aeróbica consolidada para el recreativo.",
+                "fr" : "Allure facile (tu peux parler) = allure 5K + 90-120 s/km. Allure conversationnelle complète, RPE 5-6/10. Cadence ~170-180 pas/min. C'est la zone où se construit l'endurance aérobie de base. 35 min = ~4.7 km de facile (tu peux parler), base aérobie consolidée pour le recreational."
               },
               "required_equipment" : [
 
@@ -355,9 +355,9 @@
           },
           "type" : "endurance",
           "warmup" : {
-            "en" : "5 min brisk walk + 5 min very slow jog (Daniels-E). Dynamic mobility: walking lunges 10 steps, high knees 20 steps, butt kicks 20 steps.",
-            "es" : "5 min de caminata rápida + 5 min de trote muy lento (Daniels-E). Movilidad dinámica: zancadas caminando 10 pasos, rodillas arriba 20 pasos, talones a los glúteos 20 pasos.",
-            "fr" : "5 min marche rapide + 5 min footing très lent (Daniels-E). Mobilité dynamique : fentes marchées 10 pas, high knees 20 pas, talons-fesses 20 pas."
+            "en" : "5 min brisk walk + 5 min very slow jog (easy (you can talk)). Dynamic mobility: walking lunges 10 steps, high knees 20 steps, butt kicks 20 steps.",
+            "es" : "5 min de caminata rápida + 5 min de trote muy lento (fácil (puedes hablar)). Movilidad dinámica: zancadas caminando 10 pasos, rodillas arriba 20 pasos, talones a los glúteos 20 pasos.",
+            "fr" : "5 min marche rapide + 5 min footing très lent (facile (tu peux parler)). Mobilité dynamique : fentes marchées 10 pas, high knees 20 pas, talons-fesses 20 pas."
           }
         },
         {
@@ -372,14 +372,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill long run 6 km Z2",
-                  "es" : "Tirada larga en cinta 6 km Z2",
-                  "fr" : "Long run tapis 6 km Z2"
+                  "en" : "Treadmill long run 6 km easy endurance",
+                  "es" : "Tirada larga en cinta 6 km resistencia fácil",
+                  "fr" : "Long run tapis 6 km endurance facile"
                 },
                 {
-                  "en" : "Z2 cycling 50 min",
-                  "es" : "Bici Z2 50 min",
-                  "fr" : "Vélo Z2 50 min"
+                  "en" : "easy endurance cycling 50 min",
+                  "es" : "Bici resistencia fácil 50 min",
+                  "fr" : "Vélo endurance facile 50 min"
                 }
               ],
               "duration" : "6 km",
@@ -390,14 +390,14 @@
               ],
               "match_key" : "Course continue Daniels-E",
               "name" : {
-                "en" : "Daniels-E continuous run",
-                "es" : "Carrera continua Daniels-E",
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
                 "fr" : "Course continue (allure facile)"
               },
               "notes" : {
-                "en" : "Daniels-E = 5K pace + 90-120 s/km. E.g. if 5K pace = 6:00 min/km → long run = 7:30-8:00 min/km. The long run builds aerobic endurance and running economy. It must NOT be run fast. If the pace feels too slow, it's probably right. The recreational runner's #1 mistake: long runs too fast.",
-                "es" : "Daniels-E = ritmo de 5K + 90-120 s/km. P. ej. si el ritmo de 5K = 6:00 min/km → tirada larga = 7:30-8:00 min/km. La tirada larga construye la resistencia aeróbica y la economía de carrera. NO debe correrse rápido. Si el ritmo te parece demasiado lento, probablemente sea el correcto. El error nº1 del recreativo: tiradas largas demasiado rápidas.",
-                "fr" : "Daniels-E = allure 5K + 90-120 s/km. Ex : si allure 5K = 6:00 min/km → long run = 7:30-8:00 min/km. Le long run construit l'endurance aérobie et l'économie de course. Il ne doit PAS être couru vite. Si l'allure te semble trop lente, c'est probablement la bonne. Erreur n°1 du recreational : trop vite sur les longs runs."
+                "en" : "easy (you can talk) = 5K pace + 90-120 s/km. E.g. if 5K pace = 6:00 min/km → long run = 7:30-8:00 min/km. The long run builds aerobic endurance and running economy. It must NOT be run fast. If the pace feels too slow, it's probably right. The recreational runner's #1 mistake: long runs too fast.",
+                "es" : "fácil (puedes hablar) = ritmo de 5K + 90-120 s/km. P. ej. si el ritmo de 5K = 6:00 min/km → tirada larga = 7:30-8:00 min/km. La tirada larga construye la resistencia aeróbica y la economía de carrera. NO debe correrse rápido. Si el ritmo te parece demasiado lento, probablemente sea el correcto. El error nº1 del recreativo: tiradas largas demasiado rápidas.",
+                "fr" : "facile (tu peux parler) = allure 5K + 90-120 s/km. Ex : si allure 5K = 6:00 min/km → long run = 7:30-8:00 min/km. Le long run construit l'endurance aérobie et l'économie de course. Il ne doit PAS être couru vite. Si l'allure te semble trop lente, c'est probablement la bonne. Erreur n°1 du recreational : trop vite sur les longs runs."
               },
               "required_equipment" : [
 
@@ -447,14 +447,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill jog 25 min Z2",
-                  "es" : "Trote en cinta 25 min Z2",
-                  "fr" : "Footing tapis 25 min Z2"
+                  "en" : "Treadmill jog 25 min easy endurance",
+                  "es" : "Trote en cinta 25 min resistencia fácil",
+                  "fr" : "Footing tapis 25 min endurance facile"
                 },
                 {
-                  "en" : "Z2 cycling 30 min",
-                  "es" : "Bici Z2 30 min",
-                  "fr" : "Vélo Z2 30 min"
+                  "en" : "easy endurance cycling 30 min",
+                  "es" : "Bici resistencia fácil 30 min",
+                  "fr" : "Vélo endurance facile 30 min"
                 }
               ],
               "duration" : "40 min",
@@ -470,9 +470,9 @@
                 "fr" : "Footing facile"
               },
               "notes" : {
-                "en" : "Pure Daniels-E, fully conversational pace. ~5.3 km of continuous Daniels-E. Volume +20 min vs W1 D3 to consolidate the recreational aerobic base (target 30-50 km/week at peak).",
-                "es" : "Daniels-E puro, ritmo totalmente conversacional. ~5,3 km de Daniels-E continuo. Volumen +20 min respecto a la S1 D3 para consolidar la base aeróbica recreativa (objetivo 30-50 km/sem en el pico).",
-                "fr" : "Daniels-E pur, allure conversationnelle complète. ~5.3 km de Daniels-E continu. Volume +20 min vs W1 J3 pour consolider la base aérobie recreational (cible 30-50 km/sem au pic)."
+                "en" : "Pure easy (you can talk), fully conversational pace. ~5.3 km of continuous easy (you can talk). Volume +20 min vs W1 D3 to consolidate the recreational aerobic base (target 30-50 km/week at peak).",
+                "es" : "fácil (puedes hablar) puro, ritmo totalmente conversacional. ~5,3 km de fácil (puedes hablar) continuo. Volumen +20 min respecto a la S1 D3 para consolidar la base aeróbica recreativa (objetivo 30-50 km/sem en el pico).",
+                "fr" : "facile (tu peux parler) pur, allure conversationnelle complète. ~5.3 km de facile (tu peux parler) continu. Volume +20 min vs W1 J3 pour consolider la base aérobie recreational (cible 30-50 km/sem au pic)."
               },
               "required_equipment" : [
 
@@ -589,16 +589,16 @@
           },
           "type" : "mixed",
           "warmup" : {
-            "en" : "10 min very slow jog (Daniels-E) + 5 min dynamic mobility.",
-            "es" : "10 min de trote muy lento (Daniels-E) + 5 min de movilidad dinámica.",
-            "fr" : "10 min footing très lent (Daniels-E) + mobilité dynamique 5 min."
+            "en" : "10 min very slow jog (easy (you can talk)) + 5 min dynamic mobility.",
+            "es" : "10 min de trote muy lento (fácil (puedes hablar)) + 5 min de movilidad dinámica.",
+            "fr" : "10 min footing très lent (facile (tu peux parler)) + mobilité dynamique 5 min."
           }
         },
         {
           "cooldown" : {
-            "en" : "15 min very slow jog (Daniels-E, extended cooldown ~2 km) + 5 min stretching.",
-            "es" : "15 min de trote muy lento (Daniels-E, vuelta a la calma prolongada ~2 km) + 5 min de estiramientos.",
-            "fr" : "15 min footing très lent (Daniels-E, cooldown extended ~2 km) + étirements 5 min."
+            "en" : "15 min very slow jog (easy (you can talk), extended cooldown ~2 km) + 5 min stretching.",
+            "es" : "15 min de trote muy lento (fácil (puedes hablar), vuelta a la calma prolongada ~2 km) + 5 min de estiramientos.",
+            "fr" : "15 min footing très lent (facile (tu peux parler), cooldown extended ~2 km) + étirements 5 min."
           },
           "day" : 3,
           "duration_minutes" : 60,
@@ -606,9 +606,9 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill jog 15 min Z2",
-                  "es" : "Trote en cinta 15 min Z2",
-                  "fr" : "Footing tapis 15 min Z2"
+                  "en" : "Treadmill jog 15 min easy endurance",
+                  "es" : "Trote en cinta 15 min resistencia fácil",
+                  "fr" : "Footing tapis 15 min endurance facile"
                 }
               ],
               "duration" : "20 min",
@@ -624,9 +624,9 @@
                 "fr" : "Footing facile"
               },
               "notes" : {
-                "en" : "Prep jog before the strides, Daniels-E pace. ~2.7 km of Daniels-E.",
-                "es" : "Trote preparatorio antes de las progresiones, ritmo Daniels-E. ~2,7 km de Daniels-E.",
-                "fr" : "Footing préparatoire avant les strides, allure Daniels-E. ~2.7 km de Daniels-E."
+                "en" : "Prep jog before the strides, easy (you can talk) pace. ~2.7 km of easy (you can talk).",
+                "es" : "Trote preparatorio antes de las progresiones, ritmo fácil (puedes hablar). ~2,7 km de fácil (puedes hablar).",
+                "fr" : "Footing préparatoire avant les strides, allure facile (tu peux parler). ~2.7 km de facile (tu peux parler)."
               },
               "required_equipment" : [
 
@@ -682,9 +682,9 @@
           },
           "type" : "interval",
           "warmup" : {
-            "en" : "10 min easy jog (Daniels-E) + 5 min dynamic mobility.",
-            "es" : "10 min de trote suave (Daniels-E) + 5 min de movilidad dinámica.",
-            "fr" : "10 min footing facile (Daniels-E) + mobilité dynamique 5 min."
+            "en" : "10 min easy jog (easy (you can talk)) + 5 min dynamic mobility.",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 5 min de movilidad dinámica.",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + mobilité dynamique 5 min."
           }
         },
         {
@@ -699,14 +699,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill long run 7 km Z2",
-                  "es" : "Tirada larga en cinta 7 km Z2",
-                  "fr" : "Long run tapis 7 km Z2"
+                  "en" : "Treadmill long run 7 km easy endurance",
+                  "es" : "Tirada larga en cinta 7 km resistencia fácil",
+                  "fr" : "Long run tapis 7 km endurance facile"
                 },
                 {
-                  "en" : "Z2 cycling 60 min",
-                  "es" : "Bici Z2 60 min",
-                  "fr" : "Vélo Z2 60 min"
+                  "en" : "easy endurance cycling 60 min",
+                  "es" : "Bici resistencia fácil 60 min",
+                  "fr" : "Vélo endurance facile 60 min"
                 }
               ],
               "duration" : "7 km",
@@ -717,14 +717,14 @@
               ],
               "match_key" : "Course continue Daniels-E",
               "name" : {
-                "en" : "Daniels-E continuous run",
-                "es" : "Carrera continua Daniels-E",
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
                 "fr" : "Course continue (allure facile)"
               },
               "notes" : {
-                "en" : "Daniels-E (RPE 5-6/10, 5K pace + 90-120 s/km). +1 km vs W1 long run (~17% progression). Hydration: carry 500 ml in hot conditions. Remember to relax your shoulders every 5 min.",
-                "es" : "Daniels-E (RPE 5-6/10, ritmo de 5K + 90-120 s/km). +1 km respecto a la tirada larga de la S1 (~17% de progresión). Hidratación: lleva 500 ml si hace calor. Acuérdate de relajar los hombros cada 5 min.",
-                "fr" : "Daniels-E (RPE 5-6/10, allure 5K + 90-120 s/km). +1 km vs W1 long run (progression ~17%). Hydratation : emporter 500 ml si conditions chaudes. Penser à relâcher les épaules toutes les 5 min."
+                "en" : "easy (you can talk) (RPE 5-6/10, 5K pace + 90-120 s/km). +1 km vs W1 long run (~17% progression). Hydration: carry 500 ml in hot conditions. Remember to relax your shoulders every 5 min.",
+                "es" : "fácil (puedes hablar) (RPE 5-6/10, ritmo de 5K + 90-120 s/km). +1 km respecto a la tirada larga de la S1 (~17% de progresión). Hidratación: lleva 500 ml si hace calor. Acuérdate de relajar los hombros cada 5 min.",
+                "fr" : "facile (tu peux parler) (RPE 5-6/10, allure 5K + 90-120 s/km). +1 km vs W1 long run (progression ~17%). Hydratation : emporter 500 ml si conditions chaudes. Penser à relâcher les épaules toutes les 5 min."
               },
               "required_equipment" : [
 
@@ -757,9 +757,9 @@
     },
     {
       "goal" : {
-        "en" : "First continuous Daniels-T tempo (15 min). 8 km long run. Pure weekly running volume: ~21 km.",
-        "es" : "Primer tempo continuo en Daniels-T (15 min). Tirada larga de 8 km. Volumen semanal de carrera pura: ~21 km.",
-        "fr" : "Premier tempo continu en Daniels-T (15 min). Long run 8 km. Volume hebdo de course pure : ~21 km."
+        "en" : "First continuous at threshold tempo (15 min). 8 km long run. Pure weekly running volume: ~21 km.",
+        "es" : "Primer tempo continuo en en el umbral (15 min). Tirada larga de 8 km. Volumen semanal de carrera pura: ~21 km.",
+        "fr" : "Premier tempo continu en au seuil (15 min). Long run 8 km. Volume hebdo de course pure : ~21 km."
       },
       "sessions" : [
         {
@@ -774,14 +774,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill jog 25 min Z2",
-                  "es" : "Trote en cinta 25 min Z2",
-                  "fr" : "Footing tapis 25 min Z2"
+                  "en" : "Treadmill jog 25 min easy endurance",
+                  "es" : "Trote en cinta 25 min resistencia fácil",
+                  "fr" : "Footing tapis 25 min endurance facile"
                 },
                 {
-                  "en" : "Z2 cycling 30 min",
-                  "es" : "Bici Z2 30 min",
-                  "fr" : "Vélo Z2 30 min"
+                  "en" : "easy endurance cycling 30 min",
+                  "es" : "Bici resistencia fácil 30 min",
+                  "fr" : "Vélo endurance facile 30 min"
                 }
               ],
               "duration" : "40 min",
@@ -797,9 +797,9 @@
                 "fr" : "Footing facile"
               },
               "notes" : {
-                "en" : "Daniels-E maintained (~5.3 km). Volume steady vs W2 D1 for this session; the weekly increase comes from D3's tempo and its extended cooldown.",
-                "es" : "Daniels-E mantenido (~5,3 km). Volumen estable respecto a la S2 D1 en esta sesión; el aumento semanal viene del tempo del D3 y su vuelta a la calma prolongada.",
-                "fr" : "Daniels-E maintenu (~5.3 km). Volume stable vs W2 J1 sur cette séance, l'augmentation hebdo passe par le tempo de J3 et son cooldown extended."
+                "en" : "easy (you can talk) maintained (~5.3 km). Volume steady vs W2 D1 for this session; the weekly increase comes from D3's tempo and its extended cooldown.",
+                "es" : "fácil (puedes hablar) mantenido (~5,3 km). Volumen estable respecto a la S2 D1 en esta sesión; el aumento semanal viene del tempo del D3 y su vuelta a la calma prolongada.",
+                "fr" : "facile (tu peux parler) maintenu (~5.3 km). Volume stable vs W2 J1 sur cette séance, l'augmentation hebdo passe par le tempo de J3 et son cooldown extended."
               },
               "required_equipment" : [
 
@@ -955,9 +955,9 @@
         },
         {
           "cooldown" : {
-            "en" : "12 min very slow jog (Daniels-E, extended cooldown ~1.6 km) + 5 min stretching (quads, hamstrings, calves).",
-            "es" : "12 min de trote muy lento (Daniels-E, vuelta a la calma prolongada ~1,6 km) + 5 min de estiramientos (cuádriceps, isquiotibiales, gemelos).",
-            "fr" : "12 min footing très lent (Daniels-E, cooldown extended ~1.6 km) + étirements 5 min (quadriceps, ischio, mollets)."
+            "en" : "12 min very slow jog (easy (you can talk), extended cooldown ~1.6 km) + 5 min stretching (quads, hamstrings, calves).",
+            "es" : "12 min de trote muy lento (fácil (puedes hablar), vuelta a la calma prolongada ~1,6 km) + 5 min de estiramientos (cuádriceps, isquiotibiales, gemelos).",
+            "fr" : "12 min footing très lent (facile (tu peux parler), cooldown extended ~1.6 km) + étirements 5 min (quadriceps, ischio, mollets)."
           },
           "day" : 3,
           "duration_minutes" : 62,
@@ -970,9 +970,9 @@
                   "fr" : "Tempo continu sur tapis 15 min"
                 },
                 {
-                  "en" : "Cruise intervals 3×5 min Daniels-T with 2 min easy between",
-                  "es" : "Cruise intervals 3×5 min Daniels-T con 2 min suave entre cada uno",
-                  "fr" : "Cruise intervals 3×5 min Daniels-T avec 2 min easy entre"
+                  "en" : "Cruise intervals 3×5 min at threshold with 2 min easy between",
+                  "es" : "Cruise intervals 3×5 min en el umbral con 2 min suave entre cada uno",
+                  "fr" : "Cruise intervals 3×5 min au seuil avec 2 min easy entre"
                 }
               ],
               "duration" : "15 min",
@@ -983,14 +983,14 @@
               ],
               "match_key" : "Bloc tempo Daniels-T",
               "name" : {
-                "en" : "Daniels-T tempo block",
-                "es" : "Bloque tempo Daniels-T",
+                "en" : "at threshold tempo block",
+                "es" : "Bloque tempo en el umbral",
                 "fr" : "Bloc tempo (au seuil)"
               },
               "notes" : {
-                "en" : "FIRST TEMPO of the plan. Daniels-T pace = 5K pace + 30-45 s/km (e.g. 6:30-6:45 min/km if your 5K is 6:00). Talk test: you can say a short sentence (4-5 words) but not hold a conversation. RPE 7/10. Daniels-T corresponds to lactate threshold 1: peak metabolic efficiency. No pace swings: steadiness is the goal. If you can't hold the pace for 15 min, ease to RPE 6-7 and note it.",
-                "es" : "PRIMER TEMPO del plan. Ritmo Daniels-T = ritmo de 5K + 30-45 s/km (p. ej. 6:30-6:45 min/km si tu 5K es a 6:00). Test del habla: puedes decir una frase corta (4-5 palabras) pero no mantener una conversación. RPE 7/10. Daniels-T corresponde al umbral de lactato 1: máxima eficiencia metabólica. Sin variaciones de ritmo: la regularidad es el objetivo. Si no aguantas el ritmo durante 15 min, baja a RPE 6-7 y anótalo.",
-                "fr" : "PREMIER TEMPO du plan. Allure Daniels-T = allure 5K + 30-45 s/km (ex: 6:30-6:45 min/km si ton 5K est à 6:00). Test de la parole : tu peux dire une phrase courte (4-5 mots) mais pas tenir une conversation. RPE 7/10. Daniels-T correspond au lactate threshold 1 : efficacité métabolique maximale. Pas de variations d'allure : régularité = l'objectif. Si tu ne tiens pas l'allure pendant 15 min, ralentis à RPE 6-7 et note-le."
+                "en" : "FIRST TEMPO of the plan. at threshold pace = 5K pace + 30-45 s/km (e.g. 6:30-6:45 min/km if your 5K is 6:00). Talk test: you can say a short sentence (4-5 words) but not hold a conversation. RPE 7/10. at threshold corresponds to lactate threshold 1: peak metabolic efficiency. No pace swings: steadiness is the goal. If you can't hold the pace for 15 min, ease to RPE 6-7 and note it.",
+                "es" : "PRIMER TEMPO del plan. Ritmo en el umbral = ritmo de 5K + 30-45 s/km (p. ej. 6:30-6:45 min/km si tu 5K es a 6:00). Test del habla: puedes decir una frase corta (4-5 palabras) pero no mantener una conversación. RPE 7/10. en el umbral corresponde al umbral de lactato 1: máxima eficiencia metabólica. Sin variaciones de ritmo: la regularidad es el objetivo. Si no aguantas el ritmo durante 15 min, baja a RPE 6-7 y anótalo.",
+                "fr" : "PREMIER TEMPO du plan. Allure au seuil = allure 5K + 30-45 s/km (ex: 6:30-6:45 min/km si ton 5K est à 6:00). Test de la parole : tu peux dire une phrase courte (4-5 mots) mais pas tenir une conversation. RPE 7/10. au seuil correspond au lactate threshold 1 : efficacité métabolique maximale. Pas de variations d'allure : régularité = l'objectif. Si tu ne tiens pas l'allure pendant 15 min, ralentis à RPE 6-7 et note-le."
               },
               "required_equipment" : [
                 "gps-watch"
@@ -1008,9 +1008,9 @@
                   "fr" : "Marche rapide 15 min"
                 },
                 {
-                  "en" : "Z1 cycling 15 min",
-                  "es" : "Bici Z1 15 min",
-                  "fr" : "Vélo Z1 15 min"
+                  "en" : "very easy cycling 15 min",
+                  "es" : "Bici muy fácil 15 min",
+                  "fr" : "Vélo très facile 15 min"
                 }
               ],
               "duration" : "12 min",
@@ -1020,14 +1020,14 @@
               ],
               "match_key" : "Cooldown extended Daniels-E",
               "name" : {
-                "en" : "Extended Daniels-E cooldown",
-                "es" : "Vuelta a la calma prolongada Daniels-E",
+                "en" : "Extended easy (you can talk) cooldown",
+                "es" : "Vuelta a la calma prolongada fácil (puedes hablar)",
                 "fr" : "Retour au calme prolongé (allure facile)"
               },
               "notes" : {
-                "en" : "Post-tempo Daniels-E block (~1.6 km), very easy pace (RPE 4-5/10) on top of the standard cooldown. Consolidates aerobic volume and helps clear the lactate built up during the tempo.",
-                "es" : "Bloque post-tempo Daniels-E (~1,6 km), ritmo muy suave (RPE 4-5/10) por encima de la vuelta a la calma estándar. Consolida el volumen aeróbico y facilita la eliminación del lactato acumulado durante el tempo.",
-                "fr" : "Bloc post-tempo Daniels-E (~1.6 km), allure très facile (RPE 4-5/10) au-dessus du cooldown standard. Consolide le volume aérobie et facilite l'élimination du lactate accumulé pendant le tempo."
+                "en" : "Post-tempo easy (you can talk) block (~1.6 km), very easy pace (RPE 4-5/10) on top of the standard cooldown. Consolidates aerobic volume and helps clear the lactate built up during the tempo.",
+                "es" : "Bloque post-tempo fácil (puedes hablar) (~1,6 km), ritmo muy suave (RPE 4-5/10) por encima de la vuelta a la calma estándar. Consolida el volumen aeróbico y facilita la eliminación del lactato acumulado durante el tempo.",
+                "fr" : "Bloc post-tempo facile (tu peux parler) (~1.6 km), allure très facile (RPE 4-5/10) au-dessus du cooldown standard. Consolide le volume aérobie et facilite l'élimination du lactate accumulé pendant le tempo."
               },
               "required_equipment" : [
 
@@ -1039,15 +1039,15 @@
             }
           ],
           "name" : {
-            "en" : "First tempo — 15 min Daniels-T",
-            "es" : "Tempo de iniciación — 15 min Daniels-T",
+            "en" : "First tempo — 15 min at threshold",
+            "es" : "Tempo de iniciación — 15 min en el umbral",
             "fr" : "Tempo découverte — 15 min au seuil"
           },
           "type" : "interval",
           "warmup" : {
-            "en" : "10 min easy jog (Daniels-E) + 5 min progressive accelerations (4×30 sec gradual). Dynamic mobility: walking lunges 10 steps, high knees 20 steps.",
-            "es" : "10 min de trote suave (Daniels-E) + 5 min de aceleraciones progresivas (4×30 s graduales). Movilidad dinámica: zancadas caminando 10 pasos, rodillas arriba 20 pasos.",
-            "fr" : "10 min footing facile (Daniels-E) + 5 min accélérations progressives (4×30 sec graduels). Mobilité dynamique : fentes marchées 10 pas, high knees 20 pas."
+            "en" : "10 min easy jog (easy (you can talk)) + 5 min progressive accelerations (4×30 sec gradual). Dynamic mobility: walking lunges 10 steps, high knees 20 steps.",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 5 min de aceleraciones progresivas (4×30 s graduales). Movilidad dinámica: zancadas caminando 10 pasos, rodillas arriba 20 pasos.",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + 5 min accélérations progressives (4×30 sec graduels). Mobilité dynamique : fentes marchées 10 pas, high knees 20 pas."
           }
         },
         {
@@ -1062,14 +1062,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill long run 8 km Z2",
-                  "es" : "Tirada larga en cinta 8 km Z2",
-                  "fr" : "Long run tapis 8 km Z2"
+                  "en" : "Treadmill long run 8 km easy endurance",
+                  "es" : "Tirada larga en cinta 8 km resistencia fácil",
+                  "fr" : "Long run tapis 8 km endurance facile"
                 },
                 {
-                  "en" : "Z2 cycling 70 min",
-                  "es" : "Bici Z2 70 min",
-                  "fr" : "Vélo Z2 70 min"
+                  "en" : "easy endurance cycling 70 min",
+                  "es" : "Bici resistencia fácil 70 min",
+                  "fr" : "Vélo endurance facile 70 min"
                 }
               ],
               "duration" : "8 km",
@@ -1080,14 +1080,14 @@
               ],
               "match_key" : "Course continue Daniels-E",
               "name" : {
-                "en" : "Daniels-E continuous run",
-                "es" : "Carrera continua Daniels-E",
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
                 "fr" : "Course continue (allure facile)"
               },
               "notes" : {
-                "en" : "Daniels-E (RPE 5-6/10). +1 km vs W2 long run (~14% progression). From this volume on, think about fueling strategy: if the run is > 60 min, consider 1 gel or a few dates at 40 min. Hydrate at km 3-4.",
-                "es" : "Daniels-E (RPE 5-6/10). +1 km respecto a la tirada larga de la S2 (~14% de progresión). A partir de este volumen, piensa en la estrategia de alimentación: si la salida es > 60 min, considera 1 gel o unos dátiles a los 40 min. Hidrátate en los km 3-4.",
-                "fr" : "Daniels-E (RPE 5-6/10). +1 km vs W2 long run (progression ~14%). À partir de ce volume, penser à la stratégie nutritive : si sortie > 60 min, envisager 1 gel ou quelques dattes à 40 min. Hydratation aux km 3-4."
+                "en" : "easy (you can talk) (RPE 5-6/10). +1 km vs W2 long run (~14% progression). From this volume on, think about fueling strategy: if the run is > 60 min, consider 1 gel or a few dates at 40 min. Hydrate at km 3-4.",
+                "es" : "fácil (puedes hablar) (RPE 5-6/10). +1 km respecto a la tirada larga de la S2 (~14% de progresión). A partir de este volumen, piensa en la estrategia de alimentación: si la salida es > 60 min, considera 1 gel o unos dátiles a los 40 min. Hidrátate en los km 3-4.",
+                "fr" : "facile (tu peux parler) (RPE 5-6/10). +1 km vs W2 long run (progression ~14%). À partir de ce volume, penser à la stratégie nutritive : si sortie > 60 min, envisager 1 gel ou quelques dattes à 40 min. Hydratation aux km 3-4."
               },
               "required_equipment" : [
 
@@ -1112,8 +1112,8 @@
         }
       ],
       "theme" : {
-        "en" : "Introducing Daniels-T — first continuous tempo",
-        "es" : "Introducción a Daniels-T — primer tempo continuo",
+        "en" : "Introducing at threshold — first continuous tempo",
+        "es" : "Introducción a en el umbral — primer tempo continuo",
         "fr" : "Introduction au seuil — premier tempo continu"
       },
       "week_number" : 3
@@ -1147,7 +1147,7 @@
                   "fr" : "Lignes 8×100 m"
                 }
               ],
-              "duration" : "1 min à allure 5K (RPE 8) + 1 min footing easy (Daniels-E)",
+              "duration" : "1 min à allure 5K (RPE 8) + 1 min footing easy (facile (tu peux parler))",
               "incompatible_constraints" : [
                 "knee-injury",
                 "shin-splints",
@@ -1160,9 +1160,9 @@
                 "fr" : "Jeu d'allures (fartlek) 6×1 min vite / 1 min facile"
               },
               "notes" : {
-                "en" : "FIRST FARTLEK of the plan. No strict Daniels-I intervals at this stage: structured fartlek stimulates VO2max without the traumatic rigor of a track session. The 'on' blocks at RPE 8 should stay even (all 6 reps consistent in effort), the 'off' blocks pure Daniels-E. Total quality: 6 cumulative min at 5K pace. If the 5th or 6th block drops off sharply, stop at 5 reps.",
-                "es" : "PRIMER FARTLEK del plan. Nada de series Daniels-I estrictas en esta fase: el fartlek estructurado estimula la VO2máx sin el rigor traumático de una sesión de pista. Los bloques 'on' a RPE 8 deben mantenerse regulares (las 6 reps coherentes en esfuerzo), los bloques 'off' en Daniels-E puro. Total de calidad: 6 min acumulados a ritmo de 5K. Si el 5º o 6º bloque cae mucho, párate en 5 reps.",
-                "fr" : "PREMIER FARTLEK du plan. Pas d'intervalles Daniels-I stricts à ce stade : le fartlek structuré stimule la VO2max sans la rigueur traumatique d'une séance piste. Les blocs 'on' à RPE 8 doivent rester réguliers (les 6 reps cohérents en effort), les blocs 'off' en Daniels-E pur. Total qualité : 6 min cumulées à allure 5K. Si le 5e ou 6e bloc dégrade fortement, s'arrêter à 5 reps."
+                "en" : "FIRST FARTLEK of the plan. No strict very hard (intervals) intervals at this stage: structured fartlek stimulates VO2max without the traumatic rigor of a track session. The 'on' blocks at RPE 8 should stay even (all 6 reps consistent in effort), the 'off' blocks pure easy (you can talk). Total quality: 6 cumulative min at 5K pace. If the 5th or 6th block drops off sharply, stop at 5 reps.",
+                "es" : "PRIMER FARTLEK del plan. Nada de series muy duro (intervalos) estrictas en esta fase: el fartlek estructurado estimula la VO2máx sin el rigor traumático de una sesión de pista. Los bloques 'on' a RPE 8 deben mantenerse regulares (las 6 reps coherentes en esfuerzo), los bloques 'off' en fácil (puedes hablar) puro. Total de calidad: 6 min acumulados a ritmo de 5K. Si el 5º o 6º bloque cae mucho, párate en 5 reps.",
+                "fr" : "PREMIER FARTLEK du plan. Pas d'intervalles très dur (intervalles) stricts à ce stade : le fartlek structuré stimule la VO2max sans la rigueur traumatique d'une séance piste. Les blocs 'on' à RPE 8 doivent rester réguliers (les 6 reps cohérents en effort), les blocs 'off' en facile (tu peux parler) pur. Total qualité : 6 min cumulées à allure 5K. Si le 5e ou 6e bloc dégrade fortement, s'arrêter à 5 reps."
               },
               "required_equipment" : [
 
@@ -1180,9 +1180,9 @@
                   "fr" : "Marche rapide 12 min"
                 },
                 {
-                  "en" : "Z1 cycling 12 min",
-                  "es" : "Bici Z1 12 min",
-                  "fr" : "Vélo Z1 12 min"
+                  "en" : "very easy cycling 12 min",
+                  "es" : "Bici muy fácil 12 min",
+                  "fr" : "Vélo très facile 12 min"
                 }
               ],
               "duration" : "12 min",
@@ -1192,14 +1192,14 @@
               ],
               "match_key" : "Footing recovery post-fartlek Daniels-E",
               "name" : {
-                "en" : "Daniels-E recovery jog after fartlek",
-                "es" : "Trote de recuperación post-fartlek Daniels-E",
+                "en" : "easy (you can talk) recovery jog after fartlek",
+                "es" : "Trote de recuperación post-fartlek fácil (puedes hablar)",
                 "fr" : "Footing de récupération (allure facile)"
               },
               "notes" : {
-                "en" : "Daniels-E block (~1.6 km) between the fartlek and the strength work. Consolidates weekly aerobic volume and helps clear lactate. RPE 4-5/10.",
-                "es" : "Bloque Daniels-E (~1,6 km) entre el fartlek y la fuerza. Consolida el volumen aeróbico semanal y facilita la eliminación del lactato. RPE 4-5/10.",
-                "fr" : "Bloc Daniels-E (~1.6 km) entre le fartlek et le strength. Consolide le volume aérobie hebdo et facilite l'élimination du lactate. RPE 4-5/10."
+                "en" : "easy (you can talk) block (~1.6 km) between the fartlek and the strength work. Consolidates weekly aerobic volume and helps clear lactate. RPE 4-5/10.",
+                "es" : "Bloque fácil (puedes hablar) (~1,6 km) entre el fartlek y la fuerza. Consolida el volumen aeróbico semanal y facilita la eliminación del lactato. RPE 4-5/10.",
+                "fr" : "Bloc facile (tu peux parler) (~1.6 km) entre le fartlek et le strength. Consolide le volume aérobie hebdo et facilite l'élimination du lactate. RPE 4-5/10."
               },
               "required_equipment" : [
 
@@ -1316,16 +1316,16 @@
           },
           "type" : "mixed",
           "warmup" : {
-            "en" : "12 min easy jog (Daniels-E) + 4×100 m progressive strides (45 sec recovery between each). Dynamic mobility 3 min.",
-            "es" : "12 min de trote suave (Daniels-E) + 4×100 m de progresiones (45 s de recuperación entre cada una). Movilidad dinámica 3 min.",
-            "fr" : "12 min footing facile (Daniels-E) + 4×100 m strides progressifs (récupération 45 sec entre chaque). Mobilité dynamique 3 min."
+            "en" : "12 min easy jog (easy (you can talk)) + 4×100 m progressive strides (45 sec recovery between each). Dynamic mobility 3 min.",
+            "es" : "12 min de trote suave (fácil (puedes hablar)) + 4×100 m de progresiones (45 s de recuperación entre cada una). Movilidad dinámica 3 min.",
+            "fr" : "12 min footing facile (facile (tu peux parler)) + 4×100 m strides progressifs (récupération 45 sec entre chaque). Mobilité dynamique 3 min."
           }
         },
         {
           "cooldown" : {
-            "en" : "12 min very slow jog (Daniels-E, extended cooldown ~1.6 km) + 5 min stretching.",
-            "es" : "12 min de trote muy lento (Daniels-E, vuelta a la calma prolongada ~1,6 km) + 5 min de estiramientos.",
-            "fr" : "12 min footing très lent (Daniels-E, cooldown extended ~1.6 km) + étirements 5 min."
+            "en" : "12 min very slow jog (easy (you can talk), extended cooldown ~1.6 km) + 5 min stretching.",
+            "es" : "12 min de trote muy lento (fácil (puedes hablar), vuelta a la calma prolongada ~1,6 km) + 5 min de estiramientos.",
+            "fr" : "12 min footing très lent (facile (tu peux parler), cooldown extended ~1.6 km) + étirements 5 min."
           },
           "day" : 3,
           "duration_minutes" : 62,
@@ -1338,9 +1338,9 @@
                   "fr" : "Tempo tapis 20 min"
                 },
                 {
-                  "en" : "Cruise intervals 4×5 min Daniels-T with 2 min easy between",
-                  "es" : "Cruise intervals 4×5 min Daniels-T con 2 min suave entre cada uno",
-                  "fr" : "Cruise intervals 4×5 min Daniels-T avec 2 min easy entre"
+                  "en" : "Cruise intervals 4×5 min at threshold with 2 min easy between",
+                  "es" : "Cruise intervals 4×5 min en el umbral con 2 min suave entre cada uno",
+                  "fr" : "Cruise intervals 4×5 min au seuil avec 2 min easy entre"
                 }
               ],
               "duration" : "20 min",
@@ -1351,14 +1351,14 @@
               ],
               "match_key" : "Bloc tempo Daniels-T",
               "name" : {
-                "en" : "Daniels-T tempo block",
-                "es" : "Bloque tempo Daniels-T",
+                "en" : "at threshold tempo block",
+                "es" : "Bloque tempo en el umbral",
                 "fr" : "Bloc tempo (au seuil)"
               },
               "notes" : {
-                "en" : "+5 min vs W3. Daniels-T pace (5K pace + 30-45 s/km), RPE 7/10 from start to finish. If you lose pace after 15 min, that's normal: keep the perceived effort (RPE 7) even if you slow slightly at the end of the block. This is the training zone that produces the biggest aerobic-endurance gains for going from 5K to 10K.",
-                "es" : "+5 min respecto a la S3. Ritmo Daniels-T (ritmo de 5K + 30-45 s/km), RPE 7/10 de principio a fin. Si pierdes ritmo a los 15 min, es normal: mantén el esfuerzo percibido (RPE 7) aunque bajes ligeramente al final del bloque. Es la zona de entrenamiento que produce las mayores ganancias de resistencia aeróbica para pasar de 5K a 10K.",
-                "fr" : "+5 min vs W3. Allure Daniels-T (allure 5K + 30-45 s/km), RPE 7/10 du début à la fin. Si tu perds l'allure après 15 min, c'est normal : maintenir l'effort perçu (RPE 7) même si tu ralentis légèrement en fin de bloc. C'est la zone d'entraînement qui produit les plus grands gains d'endurance aérobie pour passer du 5K au 10K."
+                "en" : "+5 min vs W3. at threshold pace (5K pace + 30-45 s/km), RPE 7/10 from start to finish. If you lose pace after 15 min, that's normal: keep the perceived effort (RPE 7) even if you slow slightly at the end of the block. This is the training zone that produces the biggest aerobic-endurance gains for going from 5K to 10K.",
+                "es" : "+5 min respecto a la S3. Ritmo en el umbral (ritmo de 5K + 30-45 s/km), RPE 7/10 de principio a fin. Si pierdes ritmo a los 15 min, es normal: mantén el esfuerzo percibido (RPE 7) aunque bajes ligeramente al final del bloque. Es la zona de entrenamiento que produce las mayores ganancias de resistencia aeróbica para pasar de 5K a 10K.",
+                "fr" : "+5 min vs W3. Allure au seuil (allure 5K + 30-45 s/km), RPE 7/10 du début à la fin. Si tu perds l'allure après 15 min, c'est normal : maintenir l'effort perçu (RPE 7) même si tu ralentis légèrement en fin de bloc. C'est la zone d'entraînement qui produit les plus grands gains d'endurance aérobie pour passer du 5K au 10K."
               },
               "required_equipment" : [
                 "gps-watch"
@@ -1376,9 +1376,9 @@
                   "fr" : "Marche rapide 15 min"
                 },
                 {
-                  "en" : "Z1 cycling 15 min",
-                  "es" : "Bici Z1 15 min",
-                  "fr" : "Vélo Z1 15 min"
+                  "en" : "very easy cycling 15 min",
+                  "es" : "Bici muy fácil 15 min",
+                  "fr" : "Vélo très facile 15 min"
                 }
               ],
               "duration" : "12 min",
@@ -1388,14 +1388,14 @@
               ],
               "match_key" : "Cooldown extended Daniels-E",
               "name" : {
-                "en" : "Extended Daniels-E cooldown",
-                "es" : "Vuelta a la calma prolongada Daniels-E",
+                "en" : "Extended easy (you can talk) cooldown",
+                "es" : "Vuelta a la calma prolongada fácil (puedes hablar)",
                 "fr" : "Retour au calme prolongé (allure facile)"
               },
               "notes" : {
-                "en" : "Post-tempo Daniels-E block (~1.6 km), very easy pace (RPE 4-5/10). Consolidates the recreational weekly aerobic volume.",
-                "es" : "Bloque post-tempo Daniels-E (~1,6 km), ritmo muy suave (RPE 4-5/10). Consolida el volumen aeróbico semanal recreativo.",
-                "fr" : "Bloc post-tempo Daniels-E (~1.6 km), allure très facile (RPE 4-5/10). Consolide le volume aérobie hebdo recreational."
+                "en" : "Post-tempo easy (you can talk) block (~1.6 km), very easy pace (RPE 4-5/10). Consolidates the recreational weekly aerobic volume.",
+                "es" : "Bloque post-tempo fácil (puedes hablar) (~1,6 km), ritmo muy suave (RPE 4-5/10). Consolida el volumen aeróbico semanal recreativo.",
+                "fr" : "Bloc post-tempo facile (tu peux parler) (~1.6 km), allure très facile (RPE 4-5/10). Consolide le volume aérobie hebdo recreational."
               },
               "required_equipment" : [
 
@@ -1407,15 +1407,15 @@
             }
           ],
           "name" : {
-            "en" : "20 min Daniels-T tempo",
-            "es" : "Tempo 20 min Daniels-T",
+            "en" : "20 min at threshold tempo",
+            "es" : "Tempo 20 min en el umbral",
             "fr" : "Tempo 20 min (au seuil)"
           },
           "type" : "interval",
           "warmup" : {
-            "en" : "10 min easy jog (Daniels-E) + 4×30 sec progressive accelerations. Dynamic mobility 3 min.",
-            "es" : "10 min de trote suave (Daniels-E) + 4×30 s de aceleraciones progresivas. Movilidad dinámica 3 min.",
-            "fr" : "10 min footing facile (Daniels-E) + 4×30 sec accélérations progressives. Mobilité dynamique 3 min."
+            "en" : "10 min easy jog (easy (you can talk)) + 4×30 sec progressive accelerations. Dynamic mobility 3 min.",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 4×30 s de aceleraciones progresivas. Movilidad dinámica 3 min.",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + 4×30 sec accélérations progressives. Mobilité dynamique 3 min."
           }
         },
         {
@@ -1430,14 +1430,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill long run 9 km Z2",
-                  "es" : "Tirada larga en cinta 9 km Z2",
-                  "fr" : "Long run tapis 9 km Z2"
+                  "en" : "Treadmill long run 9 km easy endurance",
+                  "es" : "Tirada larga en cinta 9 km resistencia fácil",
+                  "fr" : "Long run tapis 9 km endurance facile"
                 },
                 {
-                  "en" : "Z2 cycling 80 min",
-                  "es" : "Bici Z2 80 min",
-                  "fr" : "Vélo Z2 80 min"
+                  "en" : "easy endurance cycling 80 min",
+                  "es" : "Bici resistencia fácil 80 min",
+                  "fr" : "Vélo endurance facile 80 min"
                 }
               ],
               "duration" : "9 km",
@@ -1448,14 +1448,14 @@
               ],
               "match_key" : "Course continue Daniels-E",
               "name" : {
-                "en" : "Daniels-E continuous run",
-                "es" : "Carrera continua Daniels-E",
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
                 "fr" : "Course continue (allure facile)"
               },
               "notes" : {
-                "en" : "Daniels-E (RPE 5-6/10). +1 km vs W3 long run. You're now running 9 km — that's 90% of the target distance. Don't push the pace to 'test' the 10K. The target distance comes in W6. Long-distance fueling: if > 70 min, carbohydrate refuel recommended (1 gel or dates at 40-50 min).",
-                "es" : "Daniels-E (RPE 5-6/10). +1 km respecto a la tirada larga de la S3. Ya corres 9 km — estás al 90% de la distancia objetivo. No fuerces el ritmo para 'probar' el 10K. La distancia objetivo llega en la S6. Alimentación de larga distancia: si > 70 min, se recomienda recarga de carbohidratos (1 gel o dátiles a los 40-50 min).",
-                "fr" : "Daniels-E (RPE 5-6/10). +1 km vs W3 long run. Tu cours maintenant 9 km — tu es à 90% de la distance cible. Ne pas forcer l'allure pour 'tester' le 10K. La distance cible viendra en W6. Nutrition longue distance : si > 70 min, ravitaillement glucidique recommandé (1 gel ou dattes à 40-50 min)."
+                "en" : "easy (you can talk) (RPE 5-6/10). +1 km vs W3 long run. You're now running 9 km — that's 90% of the target distance. Don't push the pace to 'test' the 10K. The target distance comes in W6. Long-distance fueling: if > 70 min, carbohydrate refuel recommended (1 gel or dates at 40-50 min).",
+                "es" : "fácil (puedes hablar) (RPE 5-6/10). +1 km respecto a la tirada larga de la S3. Ya corres 9 km — estás al 90% de la distancia objetivo. No fuerces el ritmo para 'probar' el 10K. La distancia objetivo llega en la S6. Alimentación de larga distancia: si > 70 min, se recomienda recarga de carbohidratos (1 gel o dátiles a los 40-50 min).",
+                "fr" : "facile (tu peux parler) (RPE 5-6/10). +1 km vs W3 long run. Tu cours maintenant 9 km — tu es à 90% de la distance cible. Ne pas forcer l'allure pour 'tester' le 10K. La distance cible viendra en W6. Nutrition longue distance : si > 70 min, ravitaillement glucidique recommandé (1 gel ou dattes à 40-50 min)."
               },
               "required_equipment" : [
 
@@ -1515,7 +1515,7 @@
                   "fr" : "Lignes 5×100 m"
                 }
               ],
-              "duration" : "1 min à allure 5K (RPE 8) + 1 min 30 footing easy (Daniels-E)",
+              "duration" : "1 min à allure 5K (RPE 8) + 1 min 30 footing easy (facile (tu peux parler))",
               "incompatible_constraints" : [
                 "knee-injury",
                 "shin-splints",
@@ -1548,9 +1548,9 @@
                   "fr" : "Marche rapide 8 min"
                 },
                 {
-                  "en" : "Z1 cycling 10 min",
-                  "es" : "Bici Z1 10 min",
-                  "fr" : "Vélo Z1 10 min"
+                  "en" : "very easy cycling 10 min",
+                  "es" : "Bici muy fácil 10 min",
+                  "fr" : "Vélo très facile 10 min"
                 }
               ],
               "duration" : "8 min",
@@ -1560,14 +1560,14 @@
               ],
               "match_key" : "Footing recovery post-fartlek Daniels-E",
               "name" : {
-                "en" : "Daniels-E recovery jog after fartlek",
-                "es" : "Trote de recuperación post-fartlek Daniels-E",
+                "en" : "easy (you can talk) recovery jog after fartlek",
+                "es" : "Trote de recuperación post-fartlek fácil (puedes hablar)",
                 "fr" : "Footing de récupération (allure facile)"
               },
               "notes" : {
-                "en" : "Short Daniels-E block (~1 km) after the fartlek; deload week so shorter than in W4. RPE 4-5/10.",
-                "es" : "Bloque Daniels-E corto (~1 km) post-fartlek; semana de descarga, por eso más corto que en la S4. RPE 4-5/10.",
-                "fr" : "Bloc Daniels-E court (~1 km) post-fartlek, deload week donc plus court qu'en W4. RPE 4-5/10."
+                "en" : "Short easy (you can talk) block (~1 km) after the fartlek; deload week so shorter than in W4. RPE 4-5/10.",
+                "es" : "Bloque fácil (puedes hablar) corto (~1 km) post-fartlek; semana de descarga, por eso más corto que en la S4. RPE 4-5/10.",
+                "fr" : "Bloc facile (tu peux parler) court (~1 km) post-fartlek, deload week donc plus court qu'en W4. RPE 4-5/10."
               },
               "required_equipment" : [
 
@@ -1688,9 +1688,9 @@
           },
           "type" : "mixed",
           "warmup" : {
-            "en" : "10 min easy jog (Daniels-E) + 3×80 m progressive strides (60 sec recovery).",
-            "es" : "10 min de trote suave (Daniels-E) + 3×80 m de progresiones (60 s de recuperación).",
-            "fr" : "10 min footing facile (Daniels-E) + 3×80 m strides progressifs (récupération 60 sec)."
+            "en" : "10 min easy jog (easy (you can talk)) + 3×80 m progressive strides (60 sec recovery).",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 3×80 m de progresiones (60 s de recuperación).",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + 3×80 m strides progressifs (récupération 60 sec)."
           }
         },
         {
@@ -1710,9 +1710,9 @@
                   "fr" : "Tempo tapis 12 min"
                 },
                 {
-                  "en" : "Cruise intervals 2×6 min Daniels-T with 2 min easy between",
-                  "es" : "Cruise intervals 2×6 min Daniels-T con 2 min suave entre cada uno",
-                  "fr" : "Cruise intervals 2×6 min Daniels-T avec 2 min easy entre"
+                  "en" : "Cruise intervals 2×6 min at threshold with 2 min easy between",
+                  "es" : "Cruise intervals 2×6 min en el umbral con 2 min suave entre cada uno",
+                  "fr" : "Cruise intervals 2×6 min au seuil avec 2 min easy entre"
                 }
               ],
               "duration" : "14 min",
@@ -1723,14 +1723,14 @@
               ],
               "match_key" : "Bloc tempo Daniels-T",
               "name" : {
-                "en" : "Daniels-T tempo block",
-                "es" : "Bloque tempo Daniels-T",
+                "en" : "at threshold tempo block",
+                "es" : "Bloque tempo en el umbral",
                 "fr" : "Bloc tempo (au seuil)"
               },
               "notes" : {
-                "en" : "Short tempo (-6 min vs W4). Daniels-T pace maintained. Consolidation week: your cardiovascular system and tendons absorb the previous 4 weeks. Don't spontaneously extend it 'because you feel good' — the deload is part of the adaptation.",
-                "es" : "Tempo corto (-6 min vs la S4). Ritmo Daniels-T mantenido. Semana de consolidación: tu sistema cardiovascular y tus tendones absorben las 4 semanas previas. No lo alargues por impulso 'porque te sientes bien' — la descarga forma parte de la adaptación.",
-                "fr" : "Tempo court (-6 min vs W4). Allure Daniels-T maintenue. Semaine de consolidation : le système cardiovasculaire et les tendons absorbent les 4 semaines précédentes. Ne pas allonger spontanément 'parce que tu te sens bien' — le deload est constitutif de l'adaptation."
+                "en" : "Short tempo (-6 min vs W4). at threshold pace maintained. Consolidation week: your cardiovascular system and tendons absorb the previous 4 weeks. Don't spontaneously extend it 'because you feel good' — the deload is part of the adaptation.",
+                "es" : "Tempo corto (-6 min vs la S4). Ritmo en el umbral mantenido. Semana de consolidación: tu sistema cardiovascular y tus tendones absorben las 4 semanas previas. No lo alargues por impulso 'porque te sientes bien' — la descarga forma parte de la adaptación.",
+                "fr" : "Tempo court (-6 min vs W4). Allure au seuil maintenue. Semaine de consolidation : le système cardiovasculaire et les tendons absorbent les 4 semaines précédentes. Ne pas allonger spontanément 'parce que tu te sens bien' — le deload est constitutif de l'adaptation."
               },
               "required_equipment" : [
                 "gps-watch"
@@ -1742,15 +1742,15 @@
             }
           ],
           "name" : {
-            "en" : "Short 14 min Daniels-T tempo",
-            "es" : "Tempo corto 14 min Daniels-T",
+            "en" : "Short 14 min at threshold tempo",
+            "es" : "Tempo corto 14 min en el umbral",
             "fr" : "Tempo court 14 min (au seuil)"
           },
           "type" : "interval",
           "warmup" : {
-            "en" : "10 min easy jog (Daniels-E) + 3×30 sec progressive accelerations.",
-            "es" : "10 min de trote suave (Daniels-E) + 3×30 s de aceleraciones progresivas.",
-            "fr" : "10 min footing facile (Daniels-E) + 3×30 sec accélérations progressives."
+            "en" : "10 min easy jog (easy (you can talk)) + 3×30 sec progressive accelerations.",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 3×30 s de aceleraciones progresivas.",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + 3×30 sec accélérations progressives."
           }
         },
         {
@@ -1765,14 +1765,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill long run 7 km Z2",
-                  "es" : "Tirada larga en cinta 7 km Z2",
-                  "fr" : "Long run tapis 7 km Z2"
+                  "en" : "Treadmill long run 7 km easy endurance",
+                  "es" : "Tirada larga en cinta 7 km resistencia fácil",
+                  "fr" : "Long run tapis 7 km endurance facile"
                 },
                 {
-                  "en" : "Z2 cycling 60 min",
-                  "es" : "Bici Z2 60 min",
-                  "fr" : "Vélo Z2 60 min"
+                  "en" : "easy endurance cycling 60 min",
+                  "es" : "Bici resistencia fácil 60 min",
+                  "fr" : "Vélo endurance facile 60 min"
                 }
               ],
               "duration" : "7.5 km",
@@ -1783,14 +1783,14 @@
               ],
               "match_key" : "Course continue Daniels-E",
               "name" : {
-                "en" : "Daniels-E continuous run",
-                "es" : "Carrera continua Daniels-E",
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
                 "fr" : "Course continue (allure facile)"
               },
               "notes" : {
-                "en" : "Very conservative Daniels-E (RPE 4-5/10), even slower than usual. -1.5 km vs W4 long run. If you feel exceptionally good, that's normal: it's the cutback week working. DON'T go chasing 9-10 km 'because you feel good': it would be counterproductive. W6 will demand energy from you.",
-                "es" : "Daniels-E muy conservador (RPE 4-5/10), aún más lento de lo habitual. -1,5 km respecto a la tirada larga de la S4. Si te sientes excepcionalmente bien, es normal: es la semana de descarga funcionando. NO vayas a por 9-10 km 'porque te sientes bien': sería contraproducente. La S6 te exigirá energía.",
-                "fr" : "Daniels-E très conservateur (RPE 4-5/10), encore plus lente que d'habitude. -1.5 km vs W4 long run. Si tu te sens exceptionnellement en forme, c'est normal : c'est la semaine de cutback qui fonctionne. NE PAS aller chercher 9-10 km 'parce que tu te sens bien' : ce serait contre-productif. La W6 te demandera de l'énergie."
+                "en" : "Very conservative easy (you can talk) (RPE 4-5/10), even slower than usual. -1.5 km vs W4 long run. If you feel exceptionally good, that's normal: it's the cutback week working. DON'T go chasing 9-10 km 'because you feel good': it would be counterproductive. W6 will demand energy from you.",
+                "es" : "fácil (puedes hablar) muy conservador (RPE 4-5/10), aún más lento de lo habitual. -1,5 km respecto a la tirada larga de la S4. Si te sientes excepcionalmente bien, es normal: es la semana de descarga funcionando. NO vayas a por 9-10 km 'porque te sientes bien': sería contraproducente. La S6 te exigirá energía.",
+                "fr" : "facile (tu peux parler) très conservateur (RPE 4-5/10), encore plus lente que d'habitude. -1.5 km vs W4 long run. Si tu te sens exceptionnellement en forme, c'est normal : c'est la semaine de cutback qui fonctionne. NE PAS aller chercher 9-10 km 'parce que tu te sens bien' : ce serait contre-productif. La W6 te demandera de l'énergie."
               },
               "required_equipment" : [
 
@@ -1850,7 +1850,7 @@
                   "fr" : "Lignes 10×100 m"
                 }
               ],
-              "duration" : "1 min à allure 5K (RPE 8) + 1 min footing easy (Daniels-E)",
+              "duration" : "1 min à allure 5K (RPE 8) + 1 min footing easy (facile (tu peux parler))",
               "incompatible_constraints" : [
                 "knee-injury",
                 "shin-splints",
@@ -1863,9 +1863,9 @@
                 "fr" : "Jeu d'allures 8×1 min vite / 1 min facile"
               },
               "notes" : {
-                "en" : "+2 reps vs W4. RPE 8 on each 'on' block. 1 min Daniels-E recovery. If you hold all 8 reps at an even pace, that's a sign your VO2max has improved since W4. Total quality: 8 min at 5K pace.",
-                "es" : "+2 reps respecto a la S4. RPE 8 en cada bloque 'on'. Recuperación de 1 min en Daniels-E. Si aguantas bien las 8 repeticiones a ritmo regular, es señal de que tu VO2máx ha progresado desde la S4. Total de calidad: 8 min a ritmo de 5K.",
-                "fr" : "+2 reps vs W4. RPE 8 sur chaque bloc 'on'. Récupération 1 min en Daniels-E. Si tu tiens bien les 8 répétitions à allure régulière, c'est le signe que ta VO2max a progressé depuis W4. Total qualité : 8 min à allure 5K."
+                "en" : "+2 reps vs W4. RPE 8 on each 'on' block. 1 min easy (you can talk) recovery. If you hold all 8 reps at an even pace, that's a sign your VO2max has improved since W4. Total quality: 8 min at 5K pace.",
+                "es" : "+2 reps respecto a la S4. RPE 8 en cada bloque 'on'. Recuperación de 1 min en fácil (puedes hablar). Si aguantas bien las 8 repeticiones a ritmo regular, es señal de que tu VO2máx ha progresado desde la S4. Total de calidad: 8 min a ritmo de 5K.",
+                "fr" : "+2 reps vs W4. RPE 8 sur chaque bloc 'on'. Récupération 1 min en facile (tu peux parler). Si tu tiens bien les 8 répétitions à allure régulière, c'est le signe que ta VO2max a progressé depuis W4. Total qualité : 8 min à allure 5K."
               },
               "required_equipment" : [
 
@@ -1883,9 +1883,9 @@
                   "fr" : "Marche rapide 12 min"
                 },
                 {
-                  "en" : "Z1 cycling 12 min",
-                  "es" : "Bici Z1 12 min",
-                  "fr" : "Vélo Z1 12 min"
+                  "en" : "very easy cycling 12 min",
+                  "es" : "Bici muy fácil 12 min",
+                  "fr" : "Vélo très facile 12 min"
                 }
               ],
               "duration" : "12 min",
@@ -1895,14 +1895,14 @@
               ],
               "match_key" : "Footing recovery post-fartlek Daniels-E",
               "name" : {
-                "en" : "Daniels-E recovery jog after fartlek",
-                "es" : "Trote de recuperación post-fartlek Daniels-E",
+                "en" : "easy (you can talk) recovery jog after fartlek",
+                "es" : "Trote de recuperación post-fartlek fácil (puedes hablar)",
                 "fr" : "Footing de récupération (allure facile)"
               },
               "notes" : {
-                "en" : "Daniels-E block (~1.6 km) after the fartlek, RPE 4-5/10. Consolidates the recreational weekly aerobic volume on the way to the peak.",
-                "es" : "Bloque Daniels-E (~1,6 km) post-fartlek, RPE 4-5/10. Consolida el volumen aeróbico semanal recreativo de camino al pico.",
-                "fr" : "Bloc Daniels-E (~1.6 km) post-fartlek, RPE 4-5/10. Consolide le volume aérobie hebdo recreational en montée vers le pic."
+                "en" : "easy (you can talk) block (~1.6 km) after the fartlek, RPE 4-5/10. Consolidates the recreational weekly aerobic volume on the way to the peak.",
+                "es" : "Bloque fácil (puedes hablar) (~1,6 km) post-fartlek, RPE 4-5/10. Consolida el volumen aeróbico semanal recreativo de camino al pico.",
+                "fr" : "Bloc facile (tu peux parler) (~1.6 km) post-fartlek, RPE 4-5/10. Consolide le volume aérobie hebdo recreational en montée vers le pic."
               },
               "required_equipment" : [
 
@@ -2024,16 +2024,16 @@
           },
           "type" : "mixed",
           "warmup" : {
-            "en" : "12 min easy jog (Daniels-E) + 4×100 m progressive strides.",
-            "es" : "12 min de trote suave (Daniels-E) + 4×100 m de progresiones.",
-            "fr" : "12 min footing facile (Daniels-E) + 4×100 m strides progressifs."
+            "en" : "12 min easy jog (easy (you can talk)) + 4×100 m progressive strides.",
+            "es" : "12 min de trote suave (fácil (puedes hablar)) + 4×100 m de progresiones.",
+            "fr" : "12 min footing facile (facile (tu peux parler)) + 4×100 m strides progressifs."
           }
         },
         {
           "cooldown" : {
-            "en" : "12 min very slow jog (Daniels-E, extended cooldown ~1.6 km) + 5 min stretching.",
-            "es" : "12 min de trote muy lento (Daniels-E, vuelta a la calma prolongada ~1,6 km) + 5 min de estiramientos.",
-            "fr" : "12 min footing très lent (Daniels-E, cooldown extended ~1.6 km) + étirements 5 min."
+            "en" : "12 min very slow jog (easy (you can talk), extended cooldown ~1.6 km) + 5 min stretching.",
+            "es" : "12 min de trote muy lento (fácil (puedes hablar), vuelta a la calma prolongada ~1,6 km) + 5 min de estiramientos.",
+            "fr" : "12 min footing très lent (facile (tu peux parler), cooldown extended ~1.6 km) + étirements 5 min."
           },
           "day" : 3,
           "duration_minutes" : 67,
@@ -2046,9 +2046,9 @@
                   "fr" : "Tempo tapis 22 min"
                 },
                 {
-                  "en" : "Cruise intervals 4×5 min 30 Daniels-T with 2 min easy between",
-                  "es" : "Cruise intervals 4×5 min 30 Daniels-T con 2 min suave entre cada uno",
-                  "fr" : "Cruise intervals 4×5 min 30 Daniels-T avec 2 min easy entre"
+                  "en" : "Cruise intervals 4×5 min 30 at threshold with 2 min easy between",
+                  "es" : "Cruise intervals 4×5 min 30 en el umbral con 2 min suave entre cada uno",
+                  "fr" : "Cruise intervals 4×5 min 30 au seuil avec 2 min easy entre"
                 }
               ],
               "duration" : "22 min",
@@ -2059,14 +2059,14 @@
               ],
               "match_key" : "Bloc tempo Daniels-T",
               "name" : {
-                "en" : "Daniels-T tempo block",
-                "es" : "Bloque tempo Daniels-T",
+                "en" : "at threshold tempo block",
+                "es" : "Bloque tempo en el umbral",
                 "fr" : "Bloc tempo (au seuil)"
               },
               "notes" : {
-                "en" : "+2 min vs W4 (continued progression after the deload). Daniels-T pace, RPE 7/10. You're now in the heart of the threshold training zone for going from 5K to 10K. Focus on even stride rhythm and breathing (inhale over 3 strides, exhale over 2 as a base rhythm).",
-                "es" : "+2 min respecto a la S4 (progresión continuada tras la descarga). Ritmo Daniels-T, RPE 7/10. Ya estás en el corazón de la zona de umbral para pasar de 5K a 10K. Concéntrate en la regularidad de la zancada y la respiración (inspira en 3 zancadas, espira en 2 como ritmo base).",
-                "fr" : "+2 min vs W4 (continuité de progression après deload). Allure Daniels-T, RPE 7/10. Tu es maintenant dans le coeur de la zone d'entraînement seuil pour passer du 5K au 10K. Concentre-toi sur la régularité des foulées et la respiration (inspire 3 foulées, expire 2 foulées comme cadence de base)."
+                "en" : "+2 min vs W4 (continued progression after the deload). at threshold pace, RPE 7/10. You're now in the heart of the threshold training zone for going from 5K to 10K. Focus on even stride rhythm and breathing (inhale over 3 strides, exhale over 2 as a base rhythm).",
+                "es" : "+2 min respecto a la S4 (progresión continuada tras la descarga). Ritmo en el umbral, RPE 7/10. Ya estás en el corazón de la zona de umbral para pasar de 5K a 10K. Concéntrate en la regularidad de la zancada y la respiración (inspira en 3 zancadas, espira en 2 como ritmo base).",
+                "fr" : "+2 min vs W4 (continuité de progression après deload). Allure au seuil, RPE 7/10. Tu es maintenant dans le coeur de la zone d'entraînement seuil pour passer du 5K au 10K. Concentre-toi sur la régularité des foulées et la respiration (inspire 3 foulées, expire 2 foulées comme cadence de base)."
               },
               "required_equipment" : [
                 "gps-watch"
@@ -2084,9 +2084,9 @@
                   "fr" : "Marche rapide 15 min"
                 },
                 {
-                  "en" : "Z1 cycling 15 min",
-                  "es" : "Bici Z1 15 min",
-                  "fr" : "Vélo Z1 15 min"
+                  "en" : "very easy cycling 15 min",
+                  "es" : "Bici muy fácil 15 min",
+                  "fr" : "Vélo très facile 15 min"
                 }
               ],
               "duration" : "12 min",
@@ -2096,14 +2096,14 @@
               ],
               "match_key" : "Cooldown extended Daniels-E",
               "name" : {
-                "en" : "Extended Daniels-E cooldown",
-                "es" : "Vuelta a la calma prolongada Daniels-E",
+                "en" : "Extended easy (you can talk) cooldown",
+                "es" : "Vuelta a la calma prolongada fácil (puedes hablar)",
                 "fr" : "Retour au calme prolongé (allure facile)"
               },
               "notes" : {
-                "en" : "Post-tempo Daniels-E block (~1.6 km), very easy pace (RPE 4-5/10). Consolidates the recreational weekly aerobic volume during the specificity phase.",
-                "es" : "Bloque post-tempo Daniels-E (~1,6 km), ritmo muy suave (RPE 4-5/10). Consolida el volumen aeróbico semanal recreativo durante la fase de especificidad.",
-                "fr" : "Bloc post-tempo Daniels-E (~1.6 km), allure très facile (RPE 4-5/10). Consolide le volume aérobie hebdo recreational pendant la phase de spécificité."
+                "en" : "Post-tempo easy (you can talk) block (~1.6 km), very easy pace (RPE 4-5/10). Consolidates the recreational weekly aerobic volume during the specificity phase.",
+                "es" : "Bloque post-tempo fácil (puedes hablar) (~1,6 km), ritmo muy suave (RPE 4-5/10). Consolida el volumen aeróbico semanal recreativo durante la fase de especificidad.",
+                "fr" : "Bloc post-tempo facile (tu peux parler) (~1.6 km), allure très facile (RPE 4-5/10). Consolide le volume aérobie hebdo recreational pendant la phase de spécificité."
               },
               "required_equipment" : [
 
@@ -2115,15 +2115,15 @@
             }
           ],
           "name" : {
-            "en" : "22 min Daniels-T tempo",
-            "es" : "Tempo 22 min Daniels-T",
+            "en" : "22 min at threshold tempo",
+            "es" : "Tempo 22 min en el umbral",
             "fr" : "Tempo 22 min (au seuil)"
           },
           "type" : "interval",
           "warmup" : {
-            "en" : "10 min easy jog (Daniels-E) + 4×30 sec progressive accelerations.",
-            "es" : "10 min de trote suave (Daniels-E) + 4×30 s de aceleraciones progresivas.",
-            "fr" : "10 min footing facile (Daniels-E) + 4×30 sec accélérations progressives."
+            "en" : "10 min easy jog (easy (you can talk)) + 4×30 sec progressive accelerations.",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 4×30 s de aceleraciones progresivas.",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + 4×30 sec accélérations progressives."
           }
         },
         {
@@ -2138,14 +2138,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill long run 11 km Z2",
-                  "es" : "Tirada larga en cinta 11 km Z2",
-                  "fr" : "Long run tapis 11 km Z2"
+                  "en" : "Treadmill long run 11 km easy endurance",
+                  "es" : "Tirada larga en cinta 11 km resistencia fácil",
+                  "fr" : "Long run tapis 11 km endurance facile"
                 },
                 {
-                  "en" : "Z2 cycling 95 min",
-                  "es" : "Bici Z2 95 min",
-                  "fr" : "Vélo Z2 95 min"
+                  "en" : "easy endurance cycling 95 min",
+                  "es" : "Bici resistencia fácil 95 min",
+                  "fr" : "Vélo endurance facile 95 min"
                 }
               ],
               "duration" : "11 km",
@@ -2156,14 +2156,14 @@
               ],
               "match_key" : "Course continue Daniels-E",
               "name" : {
-                "en" : "Daniels-E continuous run",
-                "es" : "Carrera continua Daniels-E",
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
                 "fr" : "Course continue (allure facile)"
               },
               "notes" : {
-                "en" : "FIRST LONG RUN BEYOND THE TARGET. Daniels-E (RPE 5-6/10) — the goal is to FINISH, not to chase a time. 11 km = 110% of the 10K target, first overshoot of the target distance (the 12 km peak comes in W7 = 120%). If you need to walk 1-2 min between km 8 and 10, walk and start again. W6's goal is to get your body used to covering beyond the target distance. Take a gel or carbs at km 5 (about 45-50 min of effort). Hydration planned at km 3 and km 7.",
-                "es" : "PRIMERA TIRADA LARGA MÁS ALLÁ DEL OBJETIVO. Daniels-E (RPE 5-6/10) — el objetivo es TERMINAR, no el crono. 11 km = 110% del objetivo de 10K, primera vez que superas la distancia objetivo (el pico de 12 km llega en la S7 = 120%). Si tienes que caminar 1-2 min entre el km 8 y el 10, camina y retoma. El objetivo de la S6 es acostumbrar al cuerpo a cubrir más de la distancia objetivo. Toma de gel o carbohidratos en el km 5 (unos 45-50 min de esfuerzo). Hidratación planificada en el km 3 y el km 7.",
-                "fr" : "PREMIER LONG RUN AU-DELÀ DE LA CIBLE. Daniels-E (RPE 5-6/10) — le but est de TERMINER, pas de chrono. 11 km = 110% de la cible 10K, premier dépassement de la distance cible (le pic 12 km arrive en W7 = 120%). Si tu dois marcher 1-2 min entre le km 8 et 10, tu marches et tu reprends. L'objectif de W6 est d'habituer le corps à couvrir au-delà de la distance cible. Prise de gel ou glucides à km 5 (environ 45-50 min d'effort). Hydratation planifiée km 3 et km 7."
+                "en" : "FIRST LONG RUN BEYOND THE TARGET. easy (you can talk) (RPE 5-6/10) — the goal is to FINISH, not to chase a time. 11 km = 110% of the 10K target, first overshoot of the target distance (the 12 km peak comes in W7 = 120%). If you need to walk 1-2 min between km 8 and 10, walk and start again. W6's goal is to get your body used to covering beyond the target distance. Take a gel or carbs at km 5 (about 45-50 min of effort). Hydration planned at km 3 and km 7.",
+                "es" : "PRIMERA TIRADA LARGA MÁS ALLÁ DEL OBJETIVO. fácil (puedes hablar) (RPE 5-6/10) — el objetivo es TERMINAR, no el crono. 11 km = 110% del objetivo de 10K, primera vez que superas la distancia objetivo (el pico de 12 km llega en la S7 = 120%). Si tienes que caminar 1-2 min entre el km 8 y el 10, camina y retoma. El objetivo de la S6 es acostumbrar al cuerpo a cubrir más de la distancia objetivo. Toma de gel o carbohidratos en el km 5 (unos 45-50 min de esfuerzo). Hidratación planificada en el km 3 y el km 7.",
+                "fr" : "PREMIER LONG RUN AU-DELÀ DE LA CIBLE. facile (tu peux parler) (RPE 5-6/10) — le but est de TERMINER, pas de chrono. 11 km = 110% de la cible 10K, premier dépassement de la distance cible (le pic 12 km arrive en W7 = 120%). Si tu dois marcher 1-2 min entre le km 8 et 10, tu marches et tu reprends. L'objectif de W6 est d'habituer le corps à couvrir au-delà de la distance cible. Prise de gel ou glucides à km 5 (environ 45-50 min d'effort). Hydratation planifiée km 3 et km 7."
               },
               "required_equipment" : [
 
@@ -2218,12 +2218,12 @@
                   "fr" : "Fartlek 8×1 min 30 sur tapis"
                 },
                 {
-                  "en" : "Cruise intervals 4×3 min Daniels-T",
-                  "es" : "Cruise intervals 4×3 min Daniels-T",
-                  "fr" : "Cruise intervals 4×3 min Daniels-T"
+                  "en" : "Cruise intervals 4×3 min en el umbral",
+                  "es" : "Cruise intervals 4×3 min en el umbral",
+                  "fr" : "Cruise intervals 4×3 min en el umbral"
                 }
               ],
-              "duration" : "1 min 30 à allure 5K (RPE 8) + 1 min 30 footing easy (Daniels-E)",
+              "duration" : "1 min 30 à allure 5K (RPE 8) + 1 min 30 footing easy (facile (tu peux parler))",
               "incompatible_constraints" : [
                 "knee-injury",
                 "shin-splints",
@@ -2256,9 +2256,9 @@
                   "fr" : "Marche rapide 12 min"
                 },
                 {
-                  "en" : "Z1 cycling 12 min",
-                  "es" : "Bici Z1 12 min",
-                  "fr" : "Vélo Z1 12 min"
+                  "en" : "very easy cycling 12 min",
+                  "es" : "Bici muy fácil 12 min",
+                  "fr" : "Vélo très facile 12 min"
                 }
               ],
               "duration" : "12 min",
@@ -2268,14 +2268,14 @@
               ],
               "match_key" : "Footing recovery post-fartlek Daniels-E",
               "name" : {
-                "en" : "Daniels-E recovery jog after fartlek",
-                "es" : "Trote de recuperación post-fartlek Daniels-E",
+                "en" : "easy (you can talk) recovery jog after fartlek",
+                "es" : "Trote de recuperación post-fartlek fácil (puedes hablar)",
                 "fr" : "Footing de récupération (allure facile)"
               },
               "notes" : {
-                "en" : "Daniels-E block (~1.6 km) after the fartlek, RPE 4-5/10. Consolidates the recreational weekly aerobic volume at the plan's peak.",
-                "es" : "Bloque Daniels-E (~1,6 km) post-fartlek, RPE 4-5/10. Consolida el volumen aeróbico semanal recreativo en el pico del plan.",
-                "fr" : "Bloc Daniels-E (~1.6 km) post-fartlek, RPE 4-5/10. Consolide le volume aérobie hebdo recreational au pic du plan."
+                "en" : "easy (you can talk) block (~1.6 km) after the fartlek, RPE 4-5/10. Consolidates the recreational weekly aerobic volume at the plan's peak.",
+                "es" : "Bloque fácil (puedes hablar) (~1,6 km) post-fartlek, RPE 4-5/10. Consolida el volumen aeróbico semanal recreativo en el pico del plan.",
+                "fr" : "Bloc facile (tu peux parler) (~1.6 km) post-fartlek, RPE 4-5/10. Consolide le volume aérobie hebdo recreational au pic du plan."
               },
               "required_equipment" : [
 
@@ -2388,16 +2388,16 @@
           },
           "type" : "mixed",
           "warmup" : {
-            "en" : "12 min easy jog (Daniels-E) + 4×100 m progressive strides.",
-            "es" : "12 min de trote suave (Daniels-E) + 4×100 m de progresiones.",
-            "fr" : "12 min footing facile (Daniels-E) + 4×100 m strides progressifs."
+            "en" : "12 min easy jog (easy (you can talk)) + 4×100 m progressive strides.",
+            "es" : "12 min de trote suave (fácil (puedes hablar)) + 4×100 m de progresiones.",
+            "fr" : "12 min footing facile (facile (tu peux parler)) + 4×100 m strides progressifs."
           }
         },
         {
           "cooldown" : {
-            "en" : "15 min very slow jog (Daniels-E, extended cooldown ~2 km) + 5 min stretching.",
-            "es" : "15 min de trote muy lento (Daniels-E, vuelta a la calma prolongada ~2 km) + 5 min de estiramientos.",
-            "fr" : "15 min footing très lent (Daniels-E, cooldown extended ~2 km) + étirements 5 min."
+            "en" : "15 min very slow jog (easy (you can talk), extended cooldown ~2 km) + 5 min stretching.",
+            "es" : "15 min de trote muy lento (fácil (puedes hablar), vuelta a la calma prolongada ~2 km) + 5 min de estiramientos.",
+            "fr" : "15 min footing très lent (facile (tu peux parler), cooldown extended ~2 km) + étirements 5 min."
           },
           "day" : 3,
           "duration_minutes" : 75,
@@ -2410,9 +2410,9 @@
                   "fr" : "Tempo tapis 25 min"
                 },
                 {
-                  "en" : "Cruise intervals 5×5 min Daniels-T with 2 min easy between",
-                  "es" : "Cruise intervals 5×5 min Daniels-T con 2 min suave entre cada uno",
-                  "fr" : "Cruise intervals 5×5 min Daniels-T avec 2 min easy entre"
+                  "en" : "Cruise intervals 5×5 min at threshold with 2 min easy between",
+                  "es" : "Cruise intervals 5×5 min en el umbral con 2 min suave entre cada uno",
+                  "fr" : "Cruise intervals 5×5 min au seuil avec 2 min easy entre"
                 }
               ],
               "duration" : "25 min",
@@ -2423,14 +2423,14 @@
               ],
               "match_key" : "Bloc tempo Daniels-T",
               "name" : {
-                "en" : "Daniels-T tempo block",
-                "es" : "Bloque tempo Daniels-T",
+                "en" : "at threshold tempo block",
+                "es" : "Bloque tempo en el umbral",
                 "fr" : "Bloc tempo (au seuil)"
               },
               "notes" : {
-                "en" : "Longest tempo of the plan. Daniels-T pace (5K pace + 30-45 s/km), RPE 7/10. Focus on even stride rhythm and breathing (inhale over 3 strides, exhale over 2). It's exactly the duration of a 10K at target pace (a 10K at 7:00 min/km = 70 min, but at threshold pace you run faster than your 10K pace).",
-                "es" : "El tempo más largo del plan. Ritmo Daniels-T (ritmo de 5K + 30-45 s/km), RPE 7/10. Concéntrate en la regularidad de la zancada y la respiración (inspira en 3 zancadas, espira en 2). Es exactamente la duración de un 10K a ritmo objetivo (un 10K a 7:00 min/km = 70 min, pero a ritmo de umbral corres más rápido que tu ritmo de 10K).",
-                "fr" : "Tempo le plus long du plan. Allure Daniels-T (allure 5K + 30-45 s/km), RPE 7/10. Concentre-toi sur la régularité des foulées et la respiration (inspire 3 foulées, expire 2 foulées). C'est exactement la durée d'un 10K à allure cible (un 10K à 7:00 min/km = 70 min, mais à allure seuil tu cours plus vite que ton allure 10K)."
+                "en" : "Longest tempo of the plan. at threshold pace (5K pace + 30-45 s/km), RPE 7/10. Focus on even stride rhythm and breathing (inhale over 3 strides, exhale over 2). It's exactly the duration of a 10K at target pace (a 10K at 7:00 min/km = 70 min, but at threshold pace you run faster than your 10K pace).",
+                "es" : "El tempo más largo del plan. Ritmo en el umbral (ritmo de 5K + 30-45 s/km), RPE 7/10. Concéntrate en la regularidad de la zancada y la respiración (inspira en 3 zancadas, espira en 2). Es exactamente la duración de un 10K a ritmo objetivo (un 10K a 7:00 min/km = 70 min, pero a ritmo de umbral corres más rápido que tu ritmo de 10K).",
+                "fr" : "Tempo le plus long du plan. Allure au seuil (allure 5K + 30-45 s/km), RPE 7/10. Concentre-toi sur la régularité des foulées et la respiration (inspire 3 foulées, expire 2 foulées). C'est exactement la durée d'un 10K à allure cible (un 10K à 7:00 min/km = 70 min, mais à allure seuil tu cours plus vite que ton allure 10K)."
               },
               "required_equipment" : [
                 "gps-watch"
@@ -2448,9 +2448,9 @@
                   "fr" : "Marche rapide 18 min"
                 },
                 {
-                  "en" : "Z1 cycling 18 min",
-                  "es" : "Bici Z1 18 min",
-                  "fr" : "Vélo Z1 18 min"
+                  "en" : "very easy cycling 18 min",
+                  "es" : "Bici muy fácil 18 min",
+                  "fr" : "Vélo très facile 18 min"
                 }
               ],
               "duration" : "15 min",
@@ -2460,14 +2460,14 @@
               ],
               "match_key" : "Cooldown extended Daniels-E",
               "name" : {
-                "en" : "Extended Daniels-E cooldown",
-                "es" : "Vuelta a la calma prolongada Daniels-E",
+                "en" : "Extended easy (you can talk) cooldown",
+                "es" : "Vuelta a la calma prolongada fácil (puedes hablar)",
                 "fr" : "Retour au calme prolongé (allure facile)"
               },
               "notes" : {
-                "en" : "Post-tempo Daniels-E block (~2 km), very easy pace (RPE 4-5/10). At the plan's peak, this extended cooldown adds aerobic volume without extra load.",
-                "es" : "Bloque post-tempo Daniels-E (~2 km), ritmo muy suave (RPE 4-5/10). En el pico del plan, esta vuelta a la calma prolongada añade volumen aeróbico sin carga adicional.",
-                "fr" : "Bloc post-tempo Daniels-E (~2 km), allure très facile (RPE 4-5/10). Au pic du plan, ce cooldown extended ajoute du volume aérobie sans charge supplémentaire."
+                "en" : "Post-tempo easy (you can talk) block (~2 km), very easy pace (RPE 4-5/10). At the plan's peak, this extended cooldown adds aerobic volume without extra load.",
+                "es" : "Bloque post-tempo fácil (puedes hablar) (~2 km), ritmo muy suave (RPE 4-5/10). En el pico del plan, esta vuelta a la calma prolongada añade volumen aeróbico sin carga adicional.",
+                "fr" : "Bloc post-tempo facile (tu peux parler) (~2 km), allure très facile (RPE 4-5/10). Au pic du plan, ce cooldown extended ajoute du volume aérobie sans charge supplémentaire."
               },
               "required_equipment" : [
 
@@ -2479,15 +2479,15 @@
             }
           ],
           "name" : {
-            "en" : "25 min Daniels-T tempo",
-            "es" : "Tempo 25 min Daniels-T",
+            "en" : "25 min at threshold tempo",
+            "es" : "Tempo 25 min en el umbral",
             "fr" : "Tempo 25 min (au seuil)"
           },
           "type" : "interval",
           "warmup" : {
-            "en" : "10 min easy jog (Daniels-E) + 4×30 sec progressive accelerations.",
-            "es" : "10 min de trote suave (Daniels-E) + 4×30 s de aceleraciones progresivas.",
-            "fr" : "10 min footing facile (Daniels-E) + 4×30 sec accélérations progressives."
+            "en" : "10 min easy jog (easy (you can talk)) + 4×30 sec progressive accelerations.",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 4×30 s de aceleraciones progresivas.",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + 4×30 sec accélérations progressives."
           }
         },
         {
@@ -2502,14 +2502,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill long run 12 km Z2",
-                  "es" : "Tirada larga en cinta 12 km Z2",
-                  "fr" : "Long run tapis 12 km Z2"
+                  "en" : "Treadmill long run 12 km easy endurance",
+                  "es" : "Tirada larga en cinta 12 km resistencia fácil",
+                  "fr" : "Long run tapis 12 km endurance facile"
                 },
                 {
-                  "en" : "Z2 cycling 105 min",
-                  "es" : "Bici Z2 105 min",
-                  "fr" : "Vélo Z2 105 min"
+                  "en" : "easy endurance cycling 105 min",
+                  "es" : "Bici resistencia fácil 105 min",
+                  "fr" : "Vélo endurance facile 105 min"
                 }
               ],
               "duration" : "12 km",
@@ -2520,14 +2520,14 @@
               ],
               "match_key" : "Course continue Daniels-E",
               "name" : {
-                "en" : "Daniels-E continuous run",
-                "es" : "Carrera continua Daniels-E",
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
                 "fr" : "Course continue (allure facile)"
               },
               "notes" : {
-                "en" : "PEAK LONG RUN of the plan. Daniels-E (RPE 5-6/10). +2 km vs W6 long run. The 'peak long run = 120% of the target distance' rule is met: 12 km = 10 km × 1.2. This long run makes W8's key session more accessible psychologically and physiologically — you'll know your body can handle 12 km before going for 10 km at target pace. Nutrition: gel or carbs at km 5 and km 9. Hydration planned at km 4 and km 8.",
-                "es" : "TIRADA LARGA PICO del plan. Daniels-E (RPE 5-6/10). +2 km respecto a la tirada larga de la S6. Se cumple la regla 'tirada larga pico = 120% de la distancia objetivo': 12 km = 10 km × 1,2. Esta tirada larga hace que la sesión estrella de la S8 sea más accesible psicológica y fisiológicamente — sabrás que tu cuerpo aguanta 12 km antes de ir a por 10 km a ritmo objetivo. Nutrición: gel o carbohidratos en el km 5 y el km 9. Hidratación planificada en el km 4 y el km 8.",
-                "fr" : "LONG RUN PIC du plan. Daniels-E (RPE 5-6/10). +2 km vs W6 long run. La règle 'long run pic = 120% de la distance cible' est respectée : 12 km = 10 km × 1.2. Ce long run rend la séance phare de W8 psychologiquement et physiologiquement plus accessible — tu sauras que ton corps tient 12 km avant d'aller chercher 10 km à allure cible. Nutrition : gel ou glucides à km 5 et km 9. Hydratation planifiée km 4 et km 8."
+                "en" : "PEAK LONG RUN of the plan. easy (you can talk) (RPE 5-6/10). +2 km vs W6 long run. The 'peak long run = 120% of the target distance' rule is met: 12 km = 10 km × 1.2. This long run makes W8's key session more accessible psychologically and physiologically — you'll know your body can handle 12 km before going for 10 km at target pace. Nutrition: gel or carbs at km 5 and km 9. Hydration planned at km 4 and km 8.",
+                "es" : "TIRADA LARGA PICO del plan. fácil (puedes hablar) (RPE 5-6/10). +2 km respecto a la tirada larga de la S6. Se cumple la regla 'tirada larga pico = 120% de la distancia objetivo': 12 km = 10 km × 1,2. Esta tirada larga hace que la sesión estrella de la S8 sea más accesible psicológica y fisiológicamente — sabrás que tu cuerpo aguanta 12 km antes de ir a por 10 km a ritmo objetivo. Nutrición: gel o carbohidratos en el km 5 y el km 9. Hidratación planificada en el km 4 y el km 8.",
+                "fr" : "LONG RUN PIC du plan. facile (tu peux parler) (RPE 5-6/10). +2 km vs W6 long run. La règle 'long run pic = 120% de la distance cible' est respectée : 12 km = 10 km × 1.2. Ce long run rend la séance phare de W8 psychologiquement et physiologiquement plus accessible — tu sauras que ton corps tient 12 km avant d'aller chercher 10 km à allure cible. Nutrition : gel ou glucides à km 5 et km 9. Hydratation planifiée km 4 et km 8."
               },
               "required_equipment" : [
 
@@ -2577,14 +2577,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill jog 6 km Z2 very slow",
-                  "es" : "Trote en cinta 6 km Z2 muy lento",
-                  "fr" : "Footing tapis 6 km Z2 très lent"
+                  "en" : "Treadmill jog 6 km easy endurance very slow",
+                  "es" : "Trote en cinta 6 km resistencia fácil muy lento",
+                  "fr" : "Footing tapis 6 km endurance facile très lent"
                 },
                 {
-                  "en" : "Z1 cycling 45 min",
-                  "es" : "Bici Z1 45 min",
-                  "fr" : "Vélo Z1 45 min"
+                  "en" : "very easy cycling 45 min",
+                  "es" : "Bici muy fácil 45 min",
+                  "fr" : "Vélo très facile 45 min"
                 }
               ],
               "duration" : "6 km",
@@ -2637,14 +2637,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Treadmill jog 3 km Z2 very slow",
-                  "es" : "Trote en cinta 3 km Z2 muy lento",
-                  "fr" : "Footing tapis 3 km Z2 très lent"
+                  "en" : "Treadmill jog 3 km easy endurance very slow",
+                  "es" : "Trote en cinta 3 km resistencia fácil muy lento",
+                  "fr" : "Footing tapis 3 km endurance facile très lent"
                 },
                 {
-                  "en" : "Z1 cycling 25 min",
-                  "es" : "Bici Z1 25 min",
-                  "fr" : "Vélo Z1 25 min"
+                  "en" : "very easy cycling 25 min",
+                  "es" : "Bici muy fácil 25 min",
+                  "fr" : "Vélo très facile 25 min"
                 }
               ],
               "duration" : "3 km",
@@ -2775,9 +2775,9 @@
                   "fr" : "10 km tapis allure cible"
                 },
                 {
-                  "en" : "Free 10 km long run at Daniels-E if residual fatigue",
-                  "es" : "Tirada larga libre de 10 km en Daniels-E si hay fatiga residual",
-                  "fr" : "Long run libre 10 km Daniels-E si fatigue résiduelle"
+                  "en" : "Free 10 km long run at easy (you can talk) if residual fatigue",
+                  "es" : "Tirada larga libre de 10 km en fácil (puedes hablar) si hay fatiga residual",
+                  "fr" : "Long run libre 10 km facile (tu peux parler) si fatigue résiduelle"
                 }
               ],
               "duration" : "10 km",
@@ -2793,9 +2793,9 @@
                 "fr" : "10 km à allure cible 10K"
               },
               "notes" : {
-                "en" : "Target 10K pace = W1 5K test pace + 45-75 s/km (e.g. 5K pace 6:00 min/km → target 10K pace = 6:45-7:15 min/km, i.e. a 10K in 67-72 min).\n\nRACE STRATEGY: km 1-2 slightly slower than target pace (RPE 6/10), don't go out too fast; km 3-7 at target pace (RPE 7/10); km 8-10 hold or slightly accelerate if you have reserves (RPE 7-8/10). Km 5-7 are typically the hardest — hold the line. If you have to slow 15-20 sec/km over the last 2 km, that's acceptable: you'll still finish.\n\nSELF-SUFFICIENCY CHECKLIST (validate it mentally at the finish):\n1. I held an even pace over at least 80% of the 10 km (variations < 30 sec/km between km 2 and km 8).\n2. I breathed steadily without respiratory panic — I could say 4-5 words mid-race (talk test maintained near Daniels-T).\n3. I managed the km 5-7 low without walking (or with less than 1 min of cumulative walking).\n4. I can tell a joint pain (to watch, to report) from muscular fatigue (normal and expected at this distance).\n\nIf you tick 3+ criteria, you're ready to move on to a `regular` half-marathon or 10K-performance program. If 2 or fewer, redo W6 and W7 (a 2-week cycle) before progressing.",
-                "es" : "Ritmo objetivo de 10K = ritmo del test de 5K de la S1 + 45-75 s/km (p. ej. ritmo de 5K 6:00 min/km → ritmo objetivo de 10K = 6:45-7:15 min/km, es decir un 10K en 67-72 min).\n\nESTRATEGIA DE CARRERA: km 1-2 algo más lentos que el ritmo objetivo (RPE 6/10), no salgas demasiado rápido; km 3-7 a ritmo objetivo (RPE 7/10); km 8-10 mantén o acelera ligeramente si te quedan reservas (RPE 7-8/10). Los km 5-7 suelen ser los más difíciles — aguanta. Si tienes que bajar 15-20 s/km en los 2 últimos km, es aceptable: igualmente terminarás.\n\nLISTA DE AUTONOMÍA (a validar mentalmente en la llegada):\n1. Mantuve un ritmo regular en al menos el 80% de los 10 km (variaciones < 30 s/km entre el km 2 y el km 8).\n2. Respiré de forma continua sin pánico respiratorio — podía decir 4-5 palabras a media carrera (test del habla mantenido cerca de Daniels-T).\n3. Gestioné el bache de los km 5-7 sin caminar (o con menos de 1 min de caminata acumulada).\n4. Sé distinguir un dolor articular (a vigilar, a comunicar) de una fatiga muscular (normal y esperable a esta distancia).\n\nSi marcas 3+ criterios, eres autónomo para pasar a un programa `regular` de medio maratón o de 10K de rendimiento. Si 2 o menos, repite la S6 y la S7 (ciclo de 2 semanas) antes de progresar.",
-                "fr" : "Allure cible 10K = allure 5K test W1 + 45-75 s/km (ex : allure 5K 6:00 min/km → allure 10K cible = 6:45-7:15 min/km, soit 10K en 67-72 min).\n\nSTRATÉGIE DE COURSE : km 1-2 légèrement plus lents que l'allure cible (RPE 6/10), ne pas partir trop vite ; km 3-7 à allure cible (RPE 7/10) ; km 8-10 maintien ou légère accélération si réserves disponibles (RPE 7-8/10). Km 5-7 sont typiquement les plus difficiles — tenir le cap. Si tu dois ralentir de 15-20 sec/km sur les 2 derniers km, c'est acceptable : tu finiras quand même.\n\nCHECKLIST D'AUTONOMIE (à valider mentalement à l'arrivée) :\n1. J'ai tenu une allure régulière sur au moins 80% des 10 km (variations < 30 sec/km entre km 2 et km 8).\n2. J'ai respiré de façon continue sans panique respiratoire — je pouvais dire 4-5 mots à mi-course (test de la parole maintenu en Daniels-T proche).\n3. J'ai géré le creux km 5-7 sans marcher (ou avec moins de 1 min de marche cumulée).\n4. Je sais distinguer une douleur articulaire (à surveiller, à signaler) d'une fatigue musculaire (normale et attendue à cette distance).\n\nSi tu coches 3+ critères, tu es autonome pour enchaîner sur un programme `regular` semi-marathon ou 10K perf. Si 2 critères ou moins, refais W6 et W7 (cycle 2 sem) avant de progresser."
+                "en" : "Target 10K pace = W1 5K test pace + 45-75 s/km (e.g. 5K pace 6:00 min/km → target 10K pace = 6:45-7:15 min/km, i.e. a 10K in 67-72 min).\n\nRACE STRATEGY: km 1-2 slightly slower than target pace (RPE 6/10), don't go out too fast; km 3-7 at target pace (RPE 7/10); km 8-10 hold or slightly accelerate if you have reserves (RPE 7-8/10). Km 5-7 are typically the hardest — hold the line. If you have to slow 15-20 sec/km over the last 2 km, that's acceptable: you'll still finish.\n\nSELF-SUFFICIENCY CHECKLIST (validate it mentally at the finish):\n1. I held an even pace over at least 80% of the 10 km (variations < 30 sec/km between km 2 and km 8).\n2. I breathed steadily without respiratory panic — I could say 4-5 words mid-race (talk test maintained near at threshold).\n3. I managed the km 5-7 low without walking (or with less than 1 min of cumulative walking).\n4. I can tell a joint pain (to watch, to report) from muscular fatigue (normal and expected at this distance).\n\nIf you tick 3+ criteria, you're ready to move on to a `regular` half-marathon or 10K-performance program. If 2 or fewer, redo W6 and W7 (a 2-week cycle) before progressing.",
+                "es" : "Ritmo objetivo de 10K = ritmo del test de 5K de la S1 + 45-75 s/km (p. ej. ritmo de 5K 6:00 min/km → ritmo objetivo de 10K = 6:45-7:15 min/km, es decir un 10K en 67-72 min).\n\nESTRATEGIA DE CARRERA: km 1-2 algo más lentos que el ritmo objetivo (RPE 6/10), no salgas demasiado rápido; km 3-7 a ritmo objetivo (RPE 7/10); km 8-10 mantén o acelera ligeramente si te quedan reservas (RPE 7-8/10). Los km 5-7 suelen ser los más difíciles — aguanta. Si tienes que bajar 15-20 s/km en los 2 últimos km, es aceptable: igualmente terminarás.\n\nLISTA DE AUTONOMÍA (a validar mentalmente en la llegada):\n1. Mantuve un ritmo regular en al menos el 80% de los 10 km (variaciones < 30 s/km entre el km 2 y el km 8).\n2. Respiré de forma continua sin pánico respiratorio — podía decir 4-5 palabras a media carrera (test del habla mantenido cerca de en el umbral).\n3. Gestioné el bache de los km 5-7 sin caminar (o con menos de 1 min de caminata acumulada).\n4. Sé distinguir un dolor articular (a vigilar, a comunicar) de una fatiga muscular (normal y esperable a esta distancia).\n\nSi marcas 3+ criterios, eres autónomo para pasar a un programa `regular` de medio maratón o de 10K de rendimiento. Si 2 o menos, repite la S6 y la S7 (ciclo de 2 semanas) antes de progresar.",
+                "fr" : "Allure cible 10K = allure 5K test W1 + 45-75 s/km (ex : allure 5K 6:00 min/km → allure 10K cible = 6:45-7:15 min/km, soit 10K en 67-72 min).\n\nSTRATÉGIE DE COURSE : km 1-2 légèrement plus lents que l'allure cible (RPE 6/10), ne pas partir trop vite ; km 3-7 à allure cible (RPE 7/10) ; km 8-10 maintien ou légère accélération si réserves disponibles (RPE 7-8/10). Km 5-7 sont typiquement les plus difficiles — tenir le cap. Si tu dois ralentir de 15-20 sec/km sur les 2 derniers km, c'est acceptable : tu finiras quand même.\n\nCHECKLIST D'AUTONOMIE (à valider mentalement à l'arrivée) :\n1. J'ai tenu une allure régulière sur au moins 80% des 10 km (variations < 30 sec/km entre km 2 et km 8).\n2. J'ai respiré de façon continue sans panique respiratoire — je pouvais dire 4-5 mots à mi-course (test de la parole maintenu en au seuil proche).\n3. J'ai géré le creux km 5-7 sans marcher (ou avec moins de 1 min de marche cumulée).\n4. Je sais distinguer une douleur articulaire (à surveiller, à signaler) d'une fatigue musculaire (normale et attendue à cette distance).\n\nSi tu coches 3+ critères, tu es autonome pour enchaîner sur un programme `regular` semi-marathon ou 10K perf. Si 2 critères ou moins, refais W6 et W7 (cycle 2 sem) avant de progresser."
               },
               "required_equipment" : [
                 "gps-watch"
