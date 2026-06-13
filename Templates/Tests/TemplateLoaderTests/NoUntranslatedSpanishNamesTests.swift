@@ -123,6 +123,33 @@ final class NoUntranslatedSpanishNamesTests: XCTestCase {
         XCTAssertTrue(missing.isEmpty, "Ancres golden absentes du bundle (à mettre à jour) : \(missing.sorted())")
     }
 
+    /// (2-bis) « Screenshot swift » : fige la liste EXACTE des noms d'exos rendus
+    /// en ES pour une vraie séance (PPL semaine 1, Push A), telle que l'utilisateur
+    /// la verrait — et vérifie qu'ils diffèrent du rendu EN (= traduction appliquée,
+    /// pas un passthrough anglais). Équivalent déterministe d'une capture d'écran.
+    func testRealSessionRendersInSpanish() async throws {
+        let templates = try await loadTemplates()
+        guard let ppl = templates.first(where: { $0.id == "strength-training-regular-ppl-12sem" }),
+              let session = ppl.weeks.first?.sessions.first else {
+            throw XCTSkip("template PPL ou séance 1 absente")
+        }
+        let renderedES = session.exercises.map { $0.name.resolved(Self.es) }
+        let expectedES = [
+            "Press de banca con barra — series tope pesadas",
+            "Press militar con barra de pie",
+            "Press de banca inclinado con mancuernas a 30° (empuje horizontal (hipertrofia))",
+            "Elevaciones laterales con mancuernas (deltoides lateral aislamiento)",
+            "Extensión de tríceps en polea (cuerda)",
+            "Pallof press (core antirrotación — AL FINAL)",
+        ]
+        XCTAssertEqual(renderedES, expectedES, "Le rendu ES de la séance PPL Push A a changé (golden à mettre à jour si intentionnel).")
+        // chaque nom rendu en ES diffère du rendu EN → la traduction est bien appliquée
+        for ex in session.exercises {
+            XCTAssertNotEqual(ex.name.resolved(Self.es), ex.name.resolved(Self.en),
+                              "« \(ex.name.resolved(Self.es)) » identique en ES et EN (non traduit)")
+        }
+    }
+
     /// (3) Fallback FR quand l'ES manque (ne jamais afficher vide).
     func testFallbackToFrenchWhenSpanishMissing() {
         let frOnly = LocalizedText(fr: "Vélo reprise — Retrouver le plaisir")
