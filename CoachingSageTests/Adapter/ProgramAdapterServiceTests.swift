@@ -31,8 +31,8 @@ final class ProgramAdapterServiceTests: XCTestCase {
         coaching.requiresMedicalClearance = true
 
         XCTAssertEqual(sport.adapterFacade.constraints, ["knee-injury"])
-        // `running` ajoute mat implicit + dédup running-shoes déjà présent.
-        XCTAssertEqual(sport.adapterFacade.equipment, ["running-shoes", "mat"])
+        // `running` ajoute mat + montre/ceinture implicites + dédup running-shoes présent.
+        XCTAssertEqual(sport.adapterFacade.equipment, ["running-shoes", "mat", "gps-watch", "heart-rate-monitor"])
         XCTAssertEqual(sport.adapterFacade.frequencyPerWeek, 3)
         XCTAssertEqual(sport.adapterFacade.sessionDurationMinutes, 45)
         XCTAssertTrue(coaching.adapterFacade.requiresMedicalClearance)
@@ -75,11 +75,12 @@ final class ProgramAdapterServiceTests: XCTestCase {
         ])
     }
 
-    /// Sport running ajoute mat + running-shoes implicit (assumé acquis), même si
-    /// l'utilisateur a coché `none` côté équipement Q5.
+    /// Sport running ajoute mat + running-shoes + montre/ceinture implicites (assumés
+    /// acquis / appareils de mesure non-bloquants), même si l'utilisateur a coché `none`.
+    /// gps-watch/heart-rate-monitor bridgés (2026-06-12) → pas de dégradation en « Tapis ».
     func testRunningSportAddsImplicitEquipment() {
         let sport = makeSport(sportCode: "running", equipment: ["none"])
-        XCTAssertEqual(sport.adapterFacade.equipment, ["none", "running-shoes", "mat"])
+        XCTAssertEqual(sport.adapterFacade.equipment, ["none", "running-shoes", "mat", "gps-watch", "heart-rate-monitor"])
     }
 
     /// Sport sans catalogue d'implicits (ex: swimming) : pas d'ajout — les templates
@@ -141,7 +142,7 @@ final class ProgramAdapterServiceTests: XCTestCase {
         let sport = makeSport(equipment: ["gps_watch"])
         let merged = sport.adapterFacade(merging: ["gps_watch"])
 
-        XCTAssertEqual(merged.equipment, ["gps-watch", "running-shoes", "mat"])
+        XCTAssertEqual(merged.equipment, ["gps-watch", "running-shoes", "mat", "heart-rate-monitor"])
     }
 
     /// adapterFacade sans paramètre = adapterFacade(merging: []) — backward-compat.
