@@ -120,6 +120,7 @@ final class SessionEnvironmentResolverTests: XCTestCase {
             mixedAdaptedSession(), sport: .cycling, effective: .outdoor)
         XCTAssertEqual(out.exercises.count, 1)
         XCTAssertEqual(out.exercises.first?.originalName, "Sortie continue FTP-Z2") // le pédalage reste
+        XCTAssertEqual(out.type, .endurance) // « mixte » sans renfo → requalifiée endurance (why-panel)
     }
 
     func testIndoorCyclingKeepsRenfo() {
@@ -141,6 +142,21 @@ final class SessionEnvironmentResolverTests: XCTestCase {
         let out = SessionEnvironmentResolver.filteringOffBikeStrength(
             ride, sport: .cycling, effective: .outdoor)
         XCTAssertEqual(out, ride) // rien à retirer → identité
+    }
+
+    func testOutdoorCyclingMixedWithoutRenfoStillRequalifiedEndurance() {
+        // Cas réel post-fix-template : le natif outdoor n'a plus QUE le pédalage mais son
+        // `type` template reste « mixed » (partagé avec l'indoor) → le why-panel disait
+        // encore « mixte ». On requalifie en endurance même sans exo à retirer.
+        let pedalingOnlyMixed = AdaptedSession(
+            day: 5, name: LocalizedText(fr: "Sortie endurance — 45 min"), durationMinutes: 58,
+            type: .mixed, warmup: LocalizedText(fr: "10 min souple"),
+            exercises: [AdaptedExercise(name: LocalizedText(fr: "Sortie tranquille"), originalName: "Sortie continue FTP-Z2")],
+            cooldown: LocalizedText(fr: "5 min retour au calme"))
+        let out = SessionEnvironmentResolver.filteringOffBikeStrength(
+            pedalingOnlyMixed, sport: .cycling, effective: .outdoor)
+        XCTAssertEqual(out.exercises.count, 1)           // rien retiré (déjà propre)
+        XCTAssertEqual(out.type, .endurance)             // mais requalifiée endurance
     }
 
     func testNeverEmptiesSession() {

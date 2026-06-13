@@ -73,12 +73,20 @@ enum SessionEnvironmentResolver {
         let kept = session.exercises.filter {
             !ExercisePatternResolver.resolve($0, sportCode: "cycling").isStrengthFamily
         }
-        guard kept.count != session.exercises.count, !kept.isEmpty else { return session }
+        guard !kept.isEmpty else { return session } // ne vide jamais une séance
+        // En sortie extérieure, une séance vélo « mixte » n'est qu'une sortie de pédalage →
+        // on la requalifie en `.endurance` pour que « Pourquoi cette séance ? » ne dise plus
+        // « on combine plusieurs qualités » (le `type` template est partagé avec la variante
+        // indoor qui garde son renfo → reste « mixte »). À faire MÊME si aucun exo n'est
+        // retiré : le fix template a déjà nettoyé le natif, mais son `type` reste « mixed ».
+        let resolvedType: SessionType = session.type == .mixed ? .endurance : session.type
+        // Rien à changer (pas de renfo à retirer ET type déjà correct) → on rend l'original.
+        guard kept.count != session.exercises.count || resolvedType != session.type else { return session }
         return AdaptedSession(
             day: session.day,
             name: session.name,
             durationMinutes: session.durationMinutes,
-            type: session.type,
+            type: resolvedType,
             warmup: session.warmup,
             exercises: kept,
             cooldown: session.cooldown

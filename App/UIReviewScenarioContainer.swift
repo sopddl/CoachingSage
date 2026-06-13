@@ -321,6 +321,12 @@ struct UIReviewScenarioContainer: View {
             // Warrior I debout systématique) + une posture connue à la taille FOCUS
             // (grossie + centrée). Pour review Sally/Inès sans souci de timing timer.
             YogaPOCScenarioView()
+        case "ui_review_2a_cycling_j5":
+            // **2A indoor/outdoor (2026-06-12)** — rend la séance J5 « mixte » réelle de
+            // cycling-beginner-reprise dans SessionDetailView. En outdoor (natif) le renfo
+            // hors-vélo doit avoir DISPARU (pédalage seul + titre sans « + renforcement »).
+            // Vérif sans tap (taps simu bloqués).
+            RealCyclingJ5ScenarioView()
         case let s where s.hasPrefix("ui_review_session_hub_real_"):
             // Tour didactique multi-sports — charge le VRAI template bundlé du
             // sport (pipeline réel TemplateLoader → ProgramAdapter) et rend la
@@ -1318,6 +1324,57 @@ private struct RealTemplateHubScenarioView: View {
             self.session = s
         } catch {
             status = "Erreur chargement/adaptation \(sport.rawValue) : \(error)"
+        }
+    }
+}
+
+// MARK: - 2A indoor/outdoor — séance vélo J5 réelle (vérif sans tap)
+
+/// Charge le vrai template cycling débutant (reprise) et rend sa séance J5 « mixte »
+/// dans SessionDetailView. En outdoor (natif), le filtre/template 2A doit avoir retiré
+/// le renfo hors-vélo → pédalage seul, titre sans « + renforcement », durée recalée.
+private struct RealCyclingJ5ScenarioView: View {
+    @State private var program: AdaptedProgram?
+    @State private var session: AdaptedSession?
+    @State private var week: AdaptedWeek?
+    @State private var status: String = "Chargement…"
+
+    var body: some View {
+        Group {
+            if let program, let session, let week {
+                SessionDetailView(session: session, week: week, program: program)
+            } else {
+                VStack(spacing: 12) {
+                    ProgressView()
+                    Text(verbatim: status).font(.footnote).foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center).padding(.horizontal, 32)
+                }
+            }
+        }
+        .task { await load() }
+    }
+
+    private func load() async {
+        do {
+            let all = try await TemplateLoader.loadAll()
+            guard let template = all.first(where: { $0.sport == .cycling && $0.level == .beginner }) else {
+                status = "Template cycling beginner introuvable"; return
+            }
+            let adapted = ProgramAdapter().adapt(
+                template: template,
+                sportProfile: AdapterSportProfile(
+                    constraints: [], equipment: ["road-bike", "helmet", "bidons", "indoor-trainer"],
+                    frequencyPerWeek: 3, sportCode: "cycling", durationMode: .routineCyclic
+                ),
+                coachingProfile: AdapterCoachingProfile(requiresMedicalClearance: false)
+            )
+            guard let w = adapted.weeks.first,
+                  let s = w.sessions.first(where: { $0.day == 5 }) ?? w.sessions.last else {
+                status = "Séance J5 W1 introuvable (\(template.id))"; return
+            }
+            self.program = adapted; self.week = w; self.session = s
+        } catch {
+            status = "Erreur chargement : \(error)"
         }
     }
 }
