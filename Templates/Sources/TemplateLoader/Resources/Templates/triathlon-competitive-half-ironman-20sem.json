@@ -26,9 +26,9 @@
   "weeks" : [
     {
       "goal" : {
-        "en" : "Get the 3 disciplines going in parallel, set the reference tests (swim threshold pace, bike FTP, 10K run pace). Pure effort total volume: ~8h00 (swim 1h45 + bike 3h00 + run 2h15 + S&C 1h00). No brick in W1 (single-discipline calibration first).",
+        "en" : "Get the 3 disciplines going in parallel, set the reference tests (swim threshold pace, bike FTP, 10K run pace). Pure effort total volume: ~8h00 (swim 1h45 + bike 3h00 + run 2h15 + S&C 1h00). No bike-to-run combo in W1 (single-discipline calibration first).",
         "es" : "Poner en marcha las 3 disciplinas en paralelo, fijar los tests de referencia (ritmo umbral natación, potencia umbral bici, ritmo 10 km carrera). Volumen total de esfuerzo puro: ~8h00 (natación 1h45 + ciclismo 3h00 + carrera 2h15 + fuerza 1h00). Sin ladrillo en S1 (calibración monodisciplina primero).",
-        "fr" : "Activer les 3 disciplines en parallèle, poser les tests de référence (allure seuil natation, puissance seuil vélo, allure 10 km course). Volume cumul effort pur : ~8h00 (natation 1h45 + vélo 3h00 + course 2h15 + renfo 1h00). Pas de brick en S1 (calibration mono-discipline d'abord)."
+        "fr" : "Activer les 3 disciplines en parallèle, poser les tests de référence (allure seuil natation, puissance seuil vélo, allure 10 km course). Volume cumul effort pur : ~8h00 (natation 1h45 + vélo 3h00 + course 2h15 + renfo 1h00). Pas de enchaîné vélo-course en S1 (calibration mono-discipline d'abord)."
       },
       "sessions" : [
         {
@@ -142,12 +142,12 @@
               "name" : {
                 "en" : "Catch drill — forearm sculling",
                 "es" : "Ejercicio de agarre — remada con antebrazos (sculling)",
-                "fr" : "Éducatif appui — godille des avant-bras (sculling)"
+                "fr" : "Éducatif appui — godille des avant-bras (godille)"
               },
               "notes" : {
-                "en" : "Hands in catch position (vertical forearm), small figure-8 movements to feel water pressure. Develops EVF (early vertical forearm) proprioception. Post-test technique focus to reinstall a clean motor pattern.",
-                "es" : "Manos en posición de agarre (antebrazo vertical), pequeños movimientos en 8 para sentir la presión del agua. Desarrolla la propiocepción del antebrazo vertical (EVF). Foco técnico tras el test para reinstalar un patrón motor limpio.",
-                "fr" : "Mains en position d'appui (avant-bras vertical), petits mouvements en 8 pour sentir la pression de l'eau. Développe la proprioception de l'avant-bras vertical (EVF). Focus technique après le test pour réinstaller un patron moteur propre."
+                "en" : "Hands in catch position (vertical forearm), small figure-8 movements to feel water pressure. Develops EVF (early vertical forearm) balance work. Post-test technique focus to reinstall a clean motor pattern.",
+                "es" : "Manos en posición de agarre (antebrazo vertical), pequeños movimientos en 8 para sentir la presión del agua. Desarrolla la propiocepción del antebrazo vertical. Foco técnico tras el test para reinstalar un patrón motor limpio.",
+                "fr" : "Mains en position d'appui (avant-bras vertical), petits mouvements en 8 pour sentir la pression de l'eau. Développe la travail d'équilibre de l'avant-bras vertical. Focus technique après le test pour réinstaller un patron moteur propre."
               },
               "required_equipment" : [
                 "pool",
@@ -310,7 +310,7 @@
           "warmup" : {
             "en" : "10 min very easy free cadence + 3 × 1 min @100+ rpm with 1 min recovery + 5 min easy endurance + 5 min progressive to felt threshold. Total 25 min.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 3 × 1 min a cadencia 100+ rpm con 1 min de recuperación + 5 min en zona suave (resistencia fácil) + 5 min progresivos hasta el umbral percibido. Total 25 min.",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 3 × 1 min à cadence 100+ tr/min récup 1 min + 5 min en zone facile (endurance facile) + 5 min progressif jusqu'au seuil ressenti. Total 25 min."
+            "fr" : "10 min en zone très facile cadence libre + 3 × 1 min à cadence 100+ tr/min récup 1 min + 5 min en zone facile (endurance facile) + 5 min progressif jusqu'au seuil ressenti. Total 25 min."
           }
         },
         {
@@ -384,8 +384,8 @@
               "match_key" : "Strides — accélérations légères",
               "name" : {
                 "en" : "Light strides",
-                "es" : "Progresiones ligeras (strides)",
-                "fr" : "Accélérations légères (strides)"
+                "es" : "Progresiones ligeras",
+                "fr" : "Accélérations légères"
               },
               "notes" : {
                 "en" : "4 progressive strides 80-100 m, RPE 7-8 max (NOT a sprint). Activates fast fibers without fatigue. High cadence 185+ steps/min, midfoot strike. Walk/jog recovery.",
@@ -545,7 +545,7 @@
                 {
                   "en" : "Glute-ham raise machine",
                   "es" : "Glute-ham raise en máquina (isquios-glúteos)",
-                  "fr" : "Glute-ham raise à la machine (ischios-fessiers)"
+                  "fr" : "Extension ischio-fessiers à la machine (ischios-fessiers)"
                 }
               ],
               "incompatible_constraints" : [
@@ -556,7 +556,7 @@
               "name" : {
                 "en" : "Nordic curl",
                 "es" : "Curl nórdico (isquios excéntricos)",
-                "fr" : "Nordic curl (ischios excentriques)"
+                "fr" : "Curl nordique (ischios excentriques)"
               },
               "notes" : {
                 "en" : "Knee bent on the floor, a partner or stable furniture holds the ankles. Controlled 4 sec descent, hands to the floor to come back. Reference for hamstring prevention (Mjolsnes 2004), the most scientifically validated exercise for competitive triathletes.",
@@ -654,7 +654,7 @@
                 {
                   "en" : "Dead bug 12/side + bird-dog 10/side",
                   "es" : "Dead bug 12/lado + bird-dog 10/lado",
-                  "fr" : "Dead bug 12/côté + bird-dog 10/côté"
+                  "fr" : "Gainage croisé au sol 12/côté + pointeur 10/côté"
                 }
               ],
               "duration" : "45 sec ventrale + 30 sec/côté",
@@ -687,7 +687,7 @@
                 {
                   "en" : "Clamshell without band 18/side",
                   "es" : "Almeja (clamshell) sin banda 18/lado",
-                  "fr" : "Coquillage sans élastique 18/côté"
+                  "fr" : "Ouverture de hanche sans élastique 18/côté"
                 },
                 {
                   "en" : "Side-lying leg raise 15/side",
@@ -702,7 +702,7 @@
               "name" : {
                 "en" : "Clamshell mini-band",
                 "es" : "Almeja con mini-banda (clamshell)",
-                "fr" : "Coquillage avec mini-bande"
+                "fr" : "Ouverture de hanche avec mini-bande"
               },
               "notes" : {
                 "en" : "Lie on your side, knees bent, mini-band above the knees. Open the top knee without moving the pelvis. Knee and hip stability for triathlon (run off the bike).",
@@ -907,7 +907,7 @@
                 "fr" : "Sortie route d'endurance (zone facile)"
               },
               "notes" : {
-                "en" : "Conversational easy endurance pace 56-75% FTP (~65-75% HRmax, RPE 3-4). Target cadence 85-95 rpm on the flat. On climbs, stand for 30 sec max or shift down. Helmet MANDATORY. Hydration 1 × 500 ml bottle + 30 g carbs at 60 min (gut training start). Indicative distance ~35-45 km.",
+                "en" : "Conversational easy endurance pace 56-75% FTP (~65-75% HRmax, RPE 3-4). Target cadence 85-95 rpm on the flat. On climbs, stand for 30 sec max or shift down. Helmet MANDATORY. Hydration 1 × 500 ml bottle + 30 g carbs at 60 min (training your gut to handle food start). Indicative distance ~35-45 km.",
                 "es" : "Ritmo conversacional en zona suave (~65-75 % de FCmax, RPE 3-4). Cadencia objetivo 85-95 rpm en llano. En subidas, ponte de pie 30 s máx. o reduce el desarrollo. Casco OBLIGATORIO. Hidratación 1 bidón de 500 ml + 30 g de carbohidratos a los 60 min (inicio del entrenamiento digestivo). Distancia indicativa ~35-45 km.",
                 "fr" : "Allure conversationnelle en zone facile (~65-75 % FCmax, RPE 3-4). Cadence cible 85-95 tr/min sur le plat. Si dénivelé, monter en danseuse 30 s max ou rétrograder. Casque OBLIGATOIRE. Hydratation 1 bidon 500 ml + 30 g de glucides à 60 min (début de l'entraînement digestif). Distance indicative ~35-45 km."
               },
@@ -934,7 +934,7 @@
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance (check tire pressure + brakes before heading out on the road).",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil) (revisa presión de neumáticos + frenos antes de salir a la carretera).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile) (vérifier la pression des pneus + les freins avant de partir sur route)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile) (vérifier la pression des pneus + les freins avant de partir sur route)."
           }
         },
         {
@@ -1009,9 +1009,9 @@
     },
     {
       "goal" : {
-        "en" : "Introduce the brick (short, feel-focused), structure 7 parallel 3-discipline sessions. Pure effort total volume: ~9h15 (swim 2h00 + bike 3h45 incl. brick + run 2h30 incl. brick + S&C 1h00).",
+        "en" : "Introduce the bike-to-run combo (short, feel-focused), structure 7 parallel 3-discipline sessions. Pure effort total volume: ~9h15 (swim 2h00 + bike 3h45 incl. bike-to-run combo + run 2h30 incl. bike-to-run combo + S&C 1h00).",
         "es" : "Introducir el ladrillo (corto, foco en la sensación), estructurar 7 sesiones en paralelo de 3 disciplinas. Volumen total de esfuerzo puro: ~9h15 (natación 2h00 + ciclismo 3h45 con ladrillo + carrera 2h30 con ladrillo + fuerza 1h00).",
-        "fr" : "Introduire le brick (court, focus sensation), structurer 7 séances en parallèle sur les 3 disciplines. Volume cumul effort pur : ~9h15 (natation 2h00 + vélo 3h45 brick inclus + course 2h30 brick inclus + renfo 1h00)."
+        "fr" : "Introduire le enchaîné vélo-course (court, focus sensation), structurer 7 séances en parallèle sur les 3 disciplines. Volume cumul effort pur : ~9h15 (natation 2h00 + vélo 3h45 enchaîné vélo-course inclus + course 2h30 enchaîné vélo-course inclus + renfo 1h00)."
       },
       "sessions" : [
         {
@@ -1044,8 +1044,8 @@
               "match_key" : "Drill catch — fingertip drag",
               "name" : {
                 "en" : "Catch drill — fingertip drag",
-                "es" : "Ejercicio de agarre — roce con la punta de los dedos (fingertip drag)",
-                "fr" : "Éducatif appui — effleurement du bout des doigts (fingertip drag)"
+                "es" : "Ejercicio de agarre — roce con la punta de los dedos",
+                "fr" : "Éducatif appui — effleurement du bout des doigts"
               },
               "notes" : {
                 "en" : "Fingers slide along the surface during recovery. Forces a high elbow, sets up a clean catch. Swim at 60% effort.",
@@ -1166,14 +1166,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Sweet spot 3 × 8 min flat road",
-                  "es" : "Sweet spot 3 × 8 min en ruta llana",
+                  "en" : "Sustained tempo effort 3 × 8 min flat road",
+                  "es" : "Ritmo sostenido 3 × 8 min en ruta llana",
                   "fr" : "Tempo soutenu 3 × 8 min sur route plate"
                 },
                 {
                   "en" : "Road tempo tempo 3 × 10 min RPE 5-6",
-                  "es" : "Tempo de ruta zona tempo (tempo) 3 × 10 min RPE 5-6",
-                  "fr" : "Tempo route zone tempo (tempo) 3 × 10 min RPE 5-6"
+                  "es" : "Tempo de ruta zona tempo 3 × 10 min RPE 5-6",
+                  "fr" : "Tempo route zone tempo 3 × 10 min RPE 5-6"
                 }
               ],
               "duration" : "8 min @tempo soutenu 88-92% FTP + 5 min très facile récup",
@@ -1184,14 +1184,14 @@
               ],
               "match_key" : "Sweet spot intro 3 × 8 min",
               "name" : {
-                "en" : "Sweet spot intro 3 × 8 min",
-                "es" : "Sweet spot intro 3 × 8 min",
+                "en" : "Sustained tempo effort intro 3 × 8 min",
+                "es" : "Ritmo sostenido intro 3 × 8 min",
                 "fr" : "Tempo soutenu intro 3 × 8 min"
               },
               "notes" : {
-                "en" : "First sweet spot session, RPE 6-7 (~80-87% HRmax). Cadence 90-95 rpm. Without a power meter, feel cue = sustained effort but conversation impossible (single words OK). 5 min active very easy recovery between.",
-                "es" : "Primera sesión de sweet spot, RPE 6-7 (~80-87 % de FCmax). Cadencia 90-95 rpm. Sin potenciómetro, referencia de sensación = esfuerzo sostenido pero conversación imposible (palabras sueltas OK). Recuperación activa 5 min en zona muy suave (muy fácil) entre series.",
-                "fr" : "Première séance de tempo soutenu, RPE 6-7 (~80-87 % FCmax). Cadence 90-95 tr/min. Sans capteur de puissance, repère sensation = effort soutenu mais conversation impossible (mots isolés OK). Récup active 5 min en zone très facile (très facile) entre."
+                "en" : "First sustained tempo effort session, RPE 6-7 (~80-87% HRmax). Cadence 90-95 rpm. Without a power meter, feel cue = sustained effort but conversation impossible (single words OK). 5 min active very easy recovery between.",
+                "es" : "Primera sesión de ritmo sostenido, RPE 6-7 (~80-87 % de FCmax). Cadencia 90-95 rpm. Sin potenciómetro, referencia de sensación = esfuerzo sostenido pero conversación imposible (palabras sueltas OK). Recuperación activa 5 min en zona muy suave (muy fácil) entre series.",
+                "fr" : "Première séance de tempo soutenu, RPE 6-7 (~80-87 % FCmax). Cadence 90-95 tr/min. Sans capteur de puissance, repère sensation = effort soutenu mais conversation impossible (mots isolés OK). Récup active 5 min en zone très facile entre."
               },
               "required_equipment" : [
                 "indoor-trainer",
@@ -1243,15 +1243,15 @@
             }
           ],
           "name" : {
-            "en" : "Bike — sweet spot intro + endurance",
-            "es" : "Bici — intro de sweet spot + resistencia",
+            "en" : "Bike — sustained tempo effort intro + endurance",
+            "es" : "Bici — intro de ritmo sostenido + resistencia",
             "fr" : "Vélo — intro tempo soutenu + endurance"
           },
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 3 × 1 min @100+ rpm with 1 min recovery + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 3 × 1 min a cadencia 100+ rpm con 1 min de recuperación + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 3 × 1 min à cadence 100+ tr/min récup 1 min + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 3 × 1 min à cadence 100+ tr/min récup 1 min + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -1384,9 +1384,9 @@
               ],
               "match_key" : "Bike Z2 endurance pré-brick",
               "name" : {
-                "en" : "Easy-bike endurance pre-brick",
+                "en" : "Easy-bike endurance pre-bike-to-run combo",
                 "es" : "Bici de resistencia suave pre-ladrillo",
-                "fr" : "Vélo endurance facile avant le brick"
+                "fr" : "Vélo endurance facile avant le enchaîné vélo-course"
               },
               "notes" : {
                 "en" : "Conversational easy endurance pace (~65-75% HRmax, RPE 3-4). Cadence 85-95 rpm. Over the last 5 min, raise cadence to 95-100 rpm to prep a smooth T2. Dry-simulated T1/T2 transition: rack bike, helmet OFF, bike shoes OFF, running shoes ON, race belt, start running (timing < 1 min 30).",
@@ -1428,14 +1428,14 @@
               ],
               "match_key" : "Run Daniels-E post-bike (premier brick)",
               "name" : {
-                "en" : "Easy run off the bike (first brick)",
+                "en" : "Easy run off the bike (first bike-to-run combo)",
                 "es" : "Carrera suave tras la bici (primer ladrillo)",
-                "fr" : "Course facile après le vélo (premier brick)"
+                "fr" : "Course facile après le vélo (premier enchaîné vélo-course)"
               },
               "notes" : {
-                "en" : "First brick: VERY short 15 min easy-pace run to focus on the jelly-legs feel. The first 5-10 min are uncomfortable (physiological, blood-flow redistribution). Cadence 180+ steps/min. No clock, no performance — it's learning the brick.",
+                "en" : "First bike-to-run combo: VERY short 15 min easy-pace run to focus on the jelly-legs feel. The first 5-10 min are uncomfortable (physiological, blood-flow redistribution). Cadence 180+ steps/min. No clock, no performance — it's learning the bike-to-run combo.",
                 "es" : "Primer ladrillo: carrera MUY corta 15 min a ritmo suave para centrarse en la sensación de piernas de gelatina. Los primeros 5-10 min son incómodos (fisiológico, redistribución del flujo sanguíneo). Cadencia 180+ pasos/min. Sin crono, sin rendimiento — es el aprendizaje del ladrillo.",
-                "fr" : "Premier brick : course TRÈS courte 15 min à allure facile pour focus sensation jambes en coton. Les 5-10 premières min sont inconfortables (physiologique, redistribution du flux sanguin). Cadence 180+ pas/min. Pas de chrono, pas de perf — c'est l'apprentissage du brick."
+                "fr" : "Premier enchaîné vélo-course : course TRÈS courte 15 min à allure facile pour focus sensation jambes en coton. Les 5-10 premières min sont inconfortables (physiologique, redistribution du flux sanguin). Cadence 180+ pas/min. Pas de chrono, pas de perf — c'est l'apprentissage du enchaîné vélo-course."
               },
               "required_equipment" : [
                 "running-shoes",
@@ -1448,15 +1448,15 @@
             }
           ],
           "name" : {
-            "en" : "Short brick — easy bike + easy run (first brick)",
-            "es" : "Ladrillo (brick) corto — bici suave + carrera suave (primer ladrillo)",
-            "fr" : "Brick court — vélo facile + course facile (premier brick)"
+            "en" : "Short bike-to-run combo — easy bike + easy run (first bike-to-run combo)",
+            "es" : "Ladrillo (encadenado bici-carrera) corto — bici suave + carrera suave (primer ladrillo)",
+            "fr" : "Enchaîné vélo-course court — vélo facile + course facile (premier enchaîné vélo-course)"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -1598,7 +1598,7 @@
                 "fr" : "Sortie route d'endurance longue (zone facile)"
               },
               "notes" : {
-                "en" : "Conversational easy endurance pace (~65-75% HRmax, RPE 3-4). Cadence 85-95 rpm. Hydration 2 × 500 ml bottles + 45-60 g carbs total (progressive gut training). Indicative distance ~45-55 km.",
+                "en" : "Conversational easy endurance pace (~65-75% HRmax, RPE 3-4). Cadence 85-95 rpm. Hydration 2 × 500 ml bottles + 45-60 g carbs total (progressive training your gut to handle food). Indicative distance ~45-55 km.",
                 "es" : "Ritmo en zona suave (resistencia fácil) conversacional (~65-75 % de FCmax, RPE 3-4). Cadencia 85-95 rpm. Hidratación 2 bidones de 500 ml + 45-60 g de carbohidratos en total (entrenamiento digestivo progresivo). Distancia indicativa ~45-55 km.",
                 "fr" : "Allure en zone facile (endurance facile) conversationnelle (~65-75 % FCmax, RPE 3-4). Cadence 85-95 tr/min. Hydratation 2 bidons 500 ml + 45-60 g de glucides au total (entraînement digestif progressif). Distance indicative ~45-55 km."
               },
@@ -1625,7 +1625,7 @@
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -1692,17 +1692,17 @@
         }
       ],
       "theme" : {
-        "en" : "Base 1 — First brick + 7-session structure",
+        "en" : "Base 1 — First bike-to-run combo + 7-session structure",
         "es" : "Base 1 — Primer ladrillo + estructura de 7 sesiones",
-        "fr" : "Base 1 — Premier brick + structure de 7 séances"
+        "fr" : "Base 1 — Premier enchaîné vélo-course + structure de 7 séances"
       },
       "week_number" : 2
     },
     {
       "goal" : {
-        "en" : "Build aerobic volume, introduce the cadence tempo brick (short, bike sweet spot + marathon pace (steady) run intro). Pure effort total volume: ~10h30.",
-        "es" : "Aumentar el volumen aeróbico, introducir el ladrillo de tempo en cadencia (corto, sweet spot en bici + intro de carrera a ritmo de competición). Volumen total de esfuerzo puro: ~10h30.",
-        "fr" : "Augmenter le volume aérobie, introduire le brick tempo en cadence (court, tempo soutenu vélo + intro course à allure de course). Volume cumul effort pur : ~10h30."
+        "en" : "Build aerobic volume, introduce the cadence tempo bike-to-run combo (short, bike sustained tempo effort + marathon pace (steady) run intro). Pure effort total volume: ~10h30.",
+        "es" : "Aumentar el volumen aeróbico, introducir el ladrillo de tempo en cadencia (corto, ritmo sostenido en bici + intro de carrera a ritmo de competición). Volumen total de esfuerzo puro: ~10h30.",
+        "fr" : "Augmenter le volume aérobie, introduire le enchaîné vélo-course tempo en cadence (court, tempo soutenu vélo + intro course à allure de course). Volume cumul effort pur : ~10h30."
       },
       "sessions" : [
         {
@@ -1824,8 +1824,8 @@
                   "fr" : "Au seuil 4 × 6 min sur route plate"
                 },
                 {
-                  "en" : "Sweet spot 3 × 12 min RPE 7",
-                  "es" : "Sweet spot 3 × 12 min RPE 7",
+                  "en" : "Sustained tempo effort 3 × 12 min RPE 7",
+                  "es" : "Ritmo sostenido 3 × 12 min RPE 7",
                   "fr" : "Tempo soutenu 3 × 12 min RPE 7"
                 }
               ],
@@ -1844,7 +1844,7 @@
               "notes" : {
                 "en" : "Continuous threshold, RPE 7-8 (~85-92% HRmax). Cadence 90-95 rpm. Without a power meter, cue = very demanding sustained effort, single words possible. 5 min active very easy recovery.",
                 "es" : "En umbral continuo, RPE 7-8 (~85-92 % de FCmax). Cadencia 90-95 rpm. Sin potenciómetro, referencia = esfuerzo sostenido muy exigente, palabras sueltas posibles. Recuperación activa 5 min en zona muy suave (muy fácil).",
-                "fr" : "Au seuil en continu, RPE 7-8 (~85-92 % FCmax). Cadence 90-95 tr/min. Sans capteur de puissance, repère = effort soutenu très exigeant, mots isolés possibles. Récup active 5 min en zone très facile (très facile)."
+                "fr" : "Au seuil en continu, RPE 7-8 (~85-92 % FCmax). Cadence 90-95 tr/min. Sans capteur de puissance, repère = effort soutenu très exigeant, mots isolés possibles. Récup active 5 min en zone très facile."
               },
               "required_equipment" : [
                 "indoor-trainer",
@@ -1904,7 +1904,7 @@
           "warmup" : {
             "en" : "10 min very easy free cadence + 3 × 1 min @100+ rpm + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 3 × 1 min a cadencia 100+ rpm + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 3 × 1 min à cadence 100+ tr/min + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 3 × 1 min à cadence 100+ tr/min + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -1980,13 +1980,13 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Road bike sweet spot 55 min",
-                  "es" : "Bici de ruta sweet spot 55 min",
+                  "en" : "Road bike sustained tempo effort 55 min",
+                  "es" : "Bici de ruta ritmo sostenido 55 min",
                   "fr" : "Vélo route tempo soutenu 55 min"
                 },
                 {
-                  "en" : "ERG trainer sweet spot 55 min",
-                  "es" : "Rodillo ERG sweet spot 55 min",
+                  "en" : "ERG trainer sustained tempo effort 55 min",
+                  "es" : "Rodillo ERG ritmo sostenido 55 min",
                   "fr" : "Home-trainer ERG tempo soutenu 55 min"
                 }
               ],
@@ -1999,13 +1999,13 @@
               ],
               "match_key" : "Bike sweet spot bloc continu",
               "name" : {
-                "en" : "Bike — continuous sweet spot block",
-                "es" : "Bici — bloque de sweet spot continuo",
+                "en" : "Bike — continuous sustained tempo effort block",
+                "es" : "Bici — bloque de ritmo sostenido continuo",
                 "fr" : "Vélo — bloc tempo soutenu continu"
               },
               "notes" : {
-                "en" : "10 min easy endurance warm-up + 30 min continuous sweet spot (88-92% FTP, RPE 6-7) + 10 min easy endurance + final 5 min at 95-100 rpm to prep T2. Dry-simulated T1/T2 transition: helmet OFF, bike shoes OFF, running shoes ON, race belt, timing < 1 min 30.",
-                "es" : "Calentamiento 10 min en zona suave (resistencia fácil) + 30 min continuos de sweet spot (88-92 % de FTP, RPE 6-7) + 10 min en zona suave (resistencia fácil) + últimos 5 min a cadencia 95-100 rpm para preparar la T2. Transición T1/T2 simulada en seco: casco fuera, zapatillas de bici fuera, zapatillas de correr puestas, cinturón portadorsal, crono < 1 min 30.",
+                "en" : "10 min easy endurance warm-up + 30 min continuous sustained tempo effort (88-92% FTP, RPE 6-7) + 10 min easy endurance + final 5 min at 95-100 rpm to prep T2. Dry-simulated T1/T2 transition: helmet OFF, bike shoes OFF, running shoes ON, race belt, timing < 1 min 30.",
+                "es" : "Calentamiento 10 min en zona suave (resistencia fácil) + 30 min continuos de ritmo sostenido (88-92 % de FTP, RPE 6-7) + 10 min en zona suave (resistencia fácil) + últimos 5 min a cadencia 95-100 rpm para preparar la T2. Transición T1/T2 simulada en seco: casco fuera, zapatillas de bici fuera, zapatillas de correr puestas, cinturón portadorsal, crono < 1 min 30.",
                 "fr" : "Échauffement 10 min en zone facile (endurance facile) + 30 min continu de tempo soutenu (88-92 % FTP, RPE 6-7) + 10 min en zone facile (endurance facile) + 5 dernières min à cadence 95-100 tr/min pour préparer la T2. Transition T1/T2 simulée à sec : casque enlevé, chaussures de vélo enlevées, chaussures de course enfilées, ceinture porte-dossard, chrono < 1 min 30."
               },
               "required_equipment" : [
@@ -2043,9 +2043,9 @@
               ],
               "match_key" : "Run Daniels-M post-bike (brick tempo)",
               "name" : {
-                "en" : "Marathon-pace run off the bike (tempo brick)",
+                "en" : "Marathon-pace run off the bike (tempo bike-to-run combo)",
                 "es" : "Carrera a ritmo de competición (maratón) tras la bici (ladrillo de tempo)",
-                "fr" : "Course à allure de course (marathon) après le vélo (brick tempo)"
+                "fr" : "Course à allure de course (marathon) après le vélo (enchaîné vélo-course tempo)"
               },
               "notes" : {
                 "en" : "5 min easy warm-up + 12 min race-pace (Half-Ironman target Marathon Pace ~75-83% HRmax, RPE 6-7) + 3 min easy cooldown. Cadence 180+ steps/min. First race-pace block off the bike — learning the target pace.",
@@ -2063,15 +2063,15 @@
             }
           ],
           "name" : {
-            "en" : "Cadence tempo brick — bike sweet spot + marathon pace (steady) run intro",
-            "es" : "Ladrillo (brick) de tempo en cadencia — sweet spot en bici + intro de carrera a ritmo de competición",
-            "fr" : "Brick tempo en cadence — tempo soutenu vélo + intro course à allure de course"
+            "en" : "Cadence tempo bike-to-run combo — bike sustained tempo effort + marathon pace (steady) run intro",
+            "es" : "Ladrillo (encadenado bici-carrera) de tempo en cadencia — ritmo sostenido en bici + intro de carrera a ritmo de competición",
+            "fr" : "Enchaîné vélo-course tempo en cadence — tempo soutenu vélo + intro course à allure de course"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -2150,7 +2150,7 @@
               "notes" : {
                 "en" : "Paddles + pull-buoy, clean EVF catch focus. Max 10-15% of weekly volume in paddles. RPE 7.",
                 "es" : "Palas + pull-buoy, foco en el agarre limpio EVF. Máximo 10-15 % del volumen semanal con palas. RPE 7.",
-                "fr" : "Plaquettes + pull-buoy, focus appui propre EVF. Maximum 10-15 % du volume hebdo en plaquettes. RPE 7."
+                "fr" : "Plaquettes + pull-buoy, focus appui propre appui coude haut. Maximum 10-15 % du volume hebdo en plaquettes. RPE 7."
               },
               "required_equipment" : [
                 "pool",
@@ -2208,13 +2208,13 @@
               ],
               "match_key" : "Sortie route long avec bloc sweet spot",
               "name" : {
-                "en" : "Long road ride with a sweet spot block",
-                "es" : "Salida de ruta larga con bloque de sweet spot",
+                "en" : "Long road ride with a sustained tempo effort block",
+                "es" : "Salida de ruta larga con bloque de ritmo sostenido",
                 "fr" : "Sortie route longue avec bloc tempo soutenu"
               },
               "notes" : {
-                "en" : "110 min conversational easy endurance + 20 min continuous sweet spot (88-92% FTP, RPE 6-7) + 20 min easy endurance cooldown. Hydration 2-3 bottles + 60 g carbs/h (gut-training progression). Indicative distance ~60-75 km.",
-                "es" : "110 min en zona suave (resistencia fácil) conversacional + 20 min continuos de sweet spot (88-92 % de FTP, RPE 6-7) + 20 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 2-3 bidones + 60 g de carbohidratos/h (progresión del entrenamiento digestivo). Distancia indicativa ~60-75 km.",
+                "en" : "110 min conversational easy endurance + 20 min continuous sustained tempo effort (88-92% FTP, RPE 6-7) + 20 min easy endurance cooldown. Hydration 2-3 bottles + 60 g carbs/h (gut-training progression). Indicative distance ~60-75 km.",
+                "es" : "110 min en zona suave (resistencia fácil) conversacional + 20 min continuos de ritmo sostenido (88-92 % de FTP, RPE 6-7) + 20 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 2-3 bidones + 60 g de carbohidratos/h (progresión del entrenamiento digestivo). Distancia indicativa ~60-75 km.",
                 "fr" : "110 min en zone facile (endurance facile) conversationnelle + 20 min continu de tempo soutenu (88-92 % FTP, RPE 6-7) + 20 min en zone facile (endurance facile) de retour au calme. Hydratation 2-3 bidons + 60 g de glucides/h (progression de l'entraînement digestif). Distance indicative ~60-75 km."
               },
               "required_equipment" : [
@@ -2232,15 +2232,15 @@
             }
           ],
           "name" : {
-            "en" : "Long bike (easy zone) + 1 sweet spot block",
-            "es" : "Bici larga (zona suave) + 1 bloque de sweet spot",
+            "en" : "Long bike (easy zone) + 1 sustained tempo effort block",
+            "es" : "Bici larga (zona suave) + 1 bloque de ritmo sostenido",
             "fr" : "Vélo long (zone facile) + 1 bloc tempo soutenu"
           },
           "type" : "endurance",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -2307,9 +2307,9 @@
         }
       ],
       "theme" : {
-        "en" : "Base 1 — Volume + cadence tempo brick",
+        "en" : "Base 1 — Volume + cadence tempo bike-to-run combo",
         "es" : "Base 1 — Volumen + ladrillo de tempo en cadencia",
-        "fr" : "Base 1 — Volume + brick tempo en cadence"
+        "fr" : "Base 1 — Volume + enchaîné vélo-course tempo en cadence"
       },
       "week_number" : 3
     },
@@ -2459,7 +2459,7 @@
               "notes" : {
                 "en" : "Max-effort VO2max, RPE 8-9 (~95-100% HRmax). High cadence 95-105 rpm. First VO2max session — pacing crucial, don't blow up on the first rep. 4 min active very easy recovery between.",
                 "es" : "VO2máx a tope, RPE 8-9 (~95-100 % de FCmax). Cadencia alta 95-105 rpm. Primera sesión de VO2máx — gestión del ritmo crucial, no te revientes en la primera repetición. Recuperación activa 4 min en zona muy suave (muy fácil) entre series.",
-                "fr" : "VO2max à fond, RPE 8-9 (~95-100 % FCmax). Cadence haute 95-105 tr/min. Première séance VO2max — pacing crucial, ne pas exploser sur la première répétition. Récup active 4 min en zone très facile (très facile) entre."
+                "fr" : "VO2max à fond, RPE 8-9 (~95-100 % FCmax). Cadence haute 95-105 tr/min. Première séance VO2max — pacing crucial, ne pas exploser sur la première répétition. Récup active 4 min en zone très facile entre."
               },
               "required_equipment" : [
                 "indoor-trainer",
@@ -2481,8 +2481,8 @@
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 4 × 1 min @100+ rpm + 5 min progressive easy endurance + 2 × 1 min preparatory tempo with 1 min recovery.",
-            "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min progresivos en zona suave (resistencia fácil) + 2 × 1 min en zona tempo (tempo) preparatoria con 1 min de recuperación.",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min progressif en zone facile (endurance facile) + 2 × 1 min en zone tempo (tempo) préparatoire récup 1 min."
+            "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min progresivos en zona suave (resistencia fácil) + 2 × 1 min en zona tempo preparatoria con 1 min de recuperación.",
+            "fr" : "10 min en zone très facile cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min progressif en zone facile (endurance facile) + 2 × 1 min en zone tempo préparatoire récup 1 min."
           }
         },
         {
@@ -2615,9 +2615,9 @@
               ],
               "match_key" : "Bike Z2 endurance pré-brick long",
               "name" : {
-                "en" : "Easy-bike endurance pre-long-brick",
+                "en" : "Easy-bike endurance pre-long-bike-to-run combo",
                 "es" : "Bici de resistencia suave pre-ladrillo largo",
-                "fr" : "Vélo endurance facile avant le brick long"
+                "fr" : "Vélo endurance facile avant le enchaîné vélo-course long"
               },
               "notes" : {
                 "en" : "Conversational easy endurance pace (~65-75% HRmax, RPE 3-4). Cadence 85-95 rpm. Hydration 1-2 bottles + 30-45 g carbs at 60 min. Over the last 5 min, cadence 95-100 rpm. Dry-simulated T1/T2.",
@@ -2679,15 +2679,15 @@
             }
           ],
           "name" : {
-            "en" : "Long endurance brick — easy bike + easy run",
-            "es" : "Ladrillo (brick) largo de resistencia — bici suave + carrera suave",
-            "fr" : "Brick long endurance — vélo facile + course facile"
+            "en" : "Long endurance bike-to-run combo — easy bike + easy run",
+            "es" : "Ladrillo (encadenado bici-carrera) largo de resistencia — bici suave + carrera suave",
+            "fr" : "Enchaîné vélo-course long endurance — vélo facile + course facile"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -2864,13 +2864,13 @@
               ],
               "match_key" : "Bike route Z2 + sweet spot bloc",
               "name" : {
-                "en" : "Road bike easy endurance + sweet spot block",
-                "es" : "Bici de ruta (zona suave) + bloque de sweet spot",
+                "en" : "Road bike easy endurance + sustained tempo effort block",
+                "es" : "Bici de ruta (zona suave) + bloque de ritmo sostenido",
                 "fr" : "Vélo route (zone facile) + bloc tempo soutenu"
               },
               "notes" : {
-                "en" : "15 min easy endurance + 30 min continuous sweet spot (RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. Simulated T2: helmet OFF + running shoes ON + race belt at the end → T2 timing < 1 min 30.",
-                "es" : "15 min en zona suave (resistencia fácil) + 30 min de sweet spot continuo (RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. T2 simulada: casco fuera + zapatillas de correr puestas + cinturón portadorsal al final → crono T2 < 1 min 30.",
+                "en" : "15 min easy endurance + 30 min continuous sustained tempo effort (RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. Simulated T2: helmet OFF + running shoes ON + race belt at the end → T2 timing < 1 min 30.",
+                "es" : "15 min en zona suave (resistencia fácil) + 30 min de ritmo sostenido continuo (RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. T2 simulada: casco fuera + zapatillas de correr puestas + cinturón portadorsal al final → crono T2 < 1 min 30.",
                 "fr" : "15 min en zone facile (endurance facile) + 30 min de tempo soutenu continu (RPE 6-7) + 15 min en zone facile (endurance facile) dont les 5 dernières à cadence 95-100 tr/min. T2 simulée : casque enlevé + chaussures de course enfilées + ceinture porte-dossard finale → chrono T2 < 1 min 30."
               },
               "required_equipment" : [
@@ -3047,12 +3047,12 @@
               "name" : {
                 "en" : "Catch + forearm sculling drill",
                 "es" : "Ejercicio de agarre + remada con antebrazos (sculling)",
-                "fr" : "Éducatif appui + godille des avant-bras (sculling)"
+                "fr" : "Éducatif appui + godille des avant-bras (godille)"
               },
               "notes" : {
                 "en" : "Pure-technique deload focus, RPE 5. Sculling + clean EVF catch.",
                 "es" : "Foco de técnica pura (descarga), RPE 5. Remada + agarre limpio EVF.",
-                "fr" : "Focus technique pure (décharge), RPE 5. Godille + appui propre EVF."
+                "fr" : "Focus technique pure (décharge), RPE 5. Godille + appui propre appui coude haut."
               },
               "required_equipment" : [
                 "pool",
@@ -3128,14 +3128,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Sweet spot 2 × 8 min flat road",
-                  "es" : "Sweet spot 2 × 8 min en ruta llana",
+                  "en" : "Sustained tempo effort 2 × 8 min flat road",
+                  "es" : "Ritmo sostenido 2 × 8 min en ruta llana",
                   "fr" : "Tempo soutenu 2 × 8 min sur route plate"
                 },
                 {
                   "en" : "Tempo tempo 2 × 10 min",
-                  "es" : "Tempo zona tempo (tempo) 2 × 10 min",
-                  "fr" : "Tempo zone tempo (tempo) 2 × 10 min"
+                  "es" : "Tempo zona tempo 2 × 10 min",
+                  "fr" : "Tempo zone tempo 2 × 10 min"
                 }
               ],
               "duration" : "8 min @tempo soutenu 88-92% FTP + 4 min très facile récup",
@@ -3146,14 +3146,14 @@
               ],
               "match_key" : "Sweet spot court 2 × 8 min",
               "name" : {
-                "en" : "Short sweet spot 2 × 8 min",
-                "es" : "Sweet spot corto 2 × 8 min",
+                "en" : "Short sustained tempo effort 2 × 8 min",
+                "es" : "Ritmo sostenido corto 2 × 8 min",
                 "fr" : "Tempo soutenu court 2 × 8 min"
               },
               "notes" : {
                 "en" : "Reduced deload volume but intensity kept, RPE 6-7. Cadence 90-95 rpm. 4 min very easy recovery.",
                 "es" : "Volumen reducido (descarga) pero intensidad mantenida, RPE 6-7. Cadencia 90-95 rpm. Recuperación 4 min en zona muy suave (muy fácil).",
-                "fr" : "Volume réduit (décharge) mais intensité maintenue, RPE 6-7. Cadence 90-95 tr/min. Récup 4 min en zone très facile (très facile)."
+                "fr" : "Volume réduit (décharge) mais intensité maintenue, RPE 6-7. Cadence 90-95 tr/min. Récup 4 min en zone très facile."
               },
               "required_equipment" : [
                 "indoor-trainer",
@@ -3205,15 +3205,15 @@
             }
           ],
           "name" : {
-            "en" : "Bike — short sweet spot + reduced endurance",
-            "es" : "Bici — sweet spot corto + resistencia reducida",
+            "en" : "Bike — short sustained tempo effort + reduced endurance",
+            "es" : "Bici — ritmo sostenido corto + resistencia reducida",
             "fr" : "Vélo — tempo soutenu court + endurance réduite"
           },
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -3393,9 +3393,9 @@
                 "fr" : "Course facile courte après le vélo"
               },
               "notes" : {
-                "en" : "Short easy run, RPE 4-5. Reduced deload volume but keeps the brick feel.",
+                "en" : "Short easy run, RPE 4-5. Reduced deload volume but keeps the bike-to-run combo feel.",
                 "es" : "Carrera corta suave, RPE 4-5. Volumen reducido (descarga) pero mantiene la sensación de ladrillo.",
-                "fr" : "Course courte facile, RPE 4-5. Volume réduit (décharge) mais maintien de la sensation brick."
+                "fr" : "Course courte facile, RPE 4-5. Volume réduit (décharge) mais maintien de la sensation enchaîné vélo-course."
               },
               "required_equipment" : [
                 "running-shoes",
@@ -3408,15 +3408,15 @@
             }
           ],
           "name" : {
-            "en" : "Short deload brick — easy bike + easy run",
-            "es" : "Ladrillo (brick) corto de descarga — bici suave + carrera suave",
-            "fr" : "Brick court de décharge — vélo facile + course facile"
+            "en" : "Short deload bike-to-run combo — easy bike + easy run",
+            "es" : "Ladrillo (encadenado bici-carrera) corto de descarga — bici suave + carrera suave",
+            "fr" : "Enchaîné vélo-course court de décharge — vélo facile + course facile"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -3586,7 +3586,7 @@
                 {
                   "en" : "Dead bug 12/side + bird-dog 10/side",
                   "es" : "Dead bug 12/lado + bird-dog 10/lado",
-                  "fr" : "Dead bug 12/côté + bird-dog 10/côté"
+                  "fr" : "Gainage croisé au sol 12/côté + pointeur 10/côté"
                 }
               ],
               "duration" : "45 sec ventrale + 30 sec/côté",
@@ -3690,7 +3690,7 @@
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -3971,8 +3971,8 @@
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 4 × 1 min @100+ rpm + 5 min progressive easy endurance + 2 × 1 min tempo with 1 min recovery.",
-            "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min progresivos en zona suave (resistencia fácil) + 2 × 1 min en zona tempo (tempo) con 1 min de recuperación.",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min progressif en zone facile (endurance facile) + 2 × 1 min en zone tempo (tempo) récup 1 min."
+            "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min progresivos en zona suave (resistencia fácil) + 2 × 1 min en zona tempo con 1 min de recuperación.",
+            "fr" : "10 min en zone très facile cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min progressif en zone facile (endurance facile) + 2 × 1 min en zone tempo récup 1 min."
           }
         },
         {
@@ -4105,9 +4105,9 @@
               ],
               "match_key" : "Bike Z2 endurance pré-brick long",
               "name" : {
-                "en" : "Easy-bike endurance pre-long-brick",
+                "en" : "Easy-bike endurance pre-long-bike-to-run combo",
                 "es" : "Bici de resistencia suave pre-ladrillo largo",
-                "fr" : "Vélo endurance facile avant le brick long"
+                "fr" : "Vélo endurance facile avant le enchaîné vélo-course long"
               },
               "notes" : {
                 "en" : "Conversational easy endurance (~65-75% HRmax, RPE 3-4). Cadence 85-95 rpm. Hydration 1-2 bottles + 45 g carbs at 60 min. T1/T2 timed < 1 min 30. Final cadence 95-100 rpm for 5 min.",
@@ -4169,15 +4169,15 @@
             }
           ],
           "name" : {
-            "en" : "Long endurance brick — easy bike + easy run",
-            "es" : "Ladrillo (brick) largo de resistencia — bici suave + carrera suave",
-            "fr" : "Brick long endurance — vélo facile + course facile"
+            "en" : "Long endurance bike-to-run combo — easy bike + easy run",
+            "es" : "Ladrillo (encadenado bici-carrera) largo de resistencia — bici suave + carrera suave",
+            "fr" : "Enchaîné vélo-course long endurance — vélo facile + course facile"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -4316,13 +4316,13 @@
               ],
               "match_key" : "Sortie route long avec bloc sweet spot 30 min",
               "name" : {
-                "en" : "Long road ride with a 30 min sweet spot block",
-                "es" : "Salida de ruta larga con bloque de sweet spot 30 min",
+                "en" : "Long road ride with a 30 min sustained tempo effort block",
+                "es" : "Salida de ruta larga con bloque de ritmo sostenido 30 min",
                 "fr" : "Sortie route longue avec bloc tempo soutenu 30 min"
               },
               "notes" : {
-                "en" : "105 min easy endurance + 30 min sweet spot (88-92% FTP, RPE 6-7) + 15 min easy endurance cooldown. Hydration 2-3 bottles + 60-75 g carbs/h. Distance ~60-75 km.",
-                "es" : "105 min en zona suave (resistencia fácil) + 30 min de sweet spot (88-92 % de FTP, RPE 6-7) + 15 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 2-3 bidones + 60-75 g de carbohidratos/h. Distancia ~60-75 km.",
+                "en" : "105 min easy endurance + 30 min sustained tempo effort (88-92% FTP, RPE 6-7) + 15 min easy endurance cooldown. Hydration 2-3 bottles + 60-75 g carbs/h. Distance ~60-75 km.",
+                "es" : "105 min en zona suave (resistencia fácil) + 30 min de ritmo sostenido (88-92 % de FTP, RPE 6-7) + 15 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 2-3 bidones + 60-75 g de carbohidratos/h. Distancia ~60-75 km.",
                 "fr" : "105 min en zone facile (endurance facile) + 30 min de tempo soutenu (88-92 % FTP, RPE 6-7) + 15 min en zone facile (endurance facile) de retour au calme. Hydratation 2-3 bidons + 60-75 g de glucides/h. Distance ~60-75 km."
               },
               "required_equipment" : [
@@ -4340,15 +4340,15 @@
             }
           ],
           "name" : {
-            "en" : "Long bike (easy zone) + sweet spot block",
-            "es" : "Bici larga (zona suave) + bloque de sweet spot",
+            "en" : "Long bike (easy zone) + sustained tempo effort block",
+            "es" : "Bici larga (zona suave) + bloque de ritmo sostenido",
             "fr" : "Vélo long (zone facile) + bloc tempo soutenu"
           },
           "type" : "endurance",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -4423,9 +4423,9 @@
     },
     {
       "goal" : {
-        "en" : "Maintain Base-2 pressure, the long brick progresses to 105+30. Pure effort total volume: ~12h00.",
+        "en" : "Maintain Base-2 pressure, the long bike-to-run combo progresses to 105+30. Pure effort total volume: ~12h00.",
         "es" : "Mantener la presión de Base 2, el ladrillo largo progresa a 105+30. Volumen total de esfuerzo puro: ~12h00.",
-        "fr" : "Maintenir la pression de Base 2, le brick long progresse à 105+30. Volume cumul effort pur : ~12h00."
+        "fr" : "Maintenir la pression de Base 2, le enchaîné vélo-course long progresse à 105+30. Volume cumul effort pur : ~12h00."
       },
       "sessions" : [
         {
@@ -4547,8 +4547,8 @@
                   "fr" : "Au seuil 4 × 10 min récup 5 min"
                 },
                 {
-                  "en" : "Sweet spot 3 × 15 min RPE 7",
-                  "es" : "Sweet spot 3 × 15 min RPE 7",
+                  "en" : "Sustained tempo effort 3 × 15 min RPE 7",
+                  "es" : "Ritmo sostenido 3 × 15 min RPE 7",
                   "fr" : "Tempo soutenu 3 × 15 min RPE 7"
                 }
               ],
@@ -4590,7 +4590,7 @@
           "warmup" : {
             "en" : "10 min very easy free cadence + 4 × 1 min @100+ rpm + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -4723,9 +4723,9 @@
               ],
               "match_key" : "Bike Z2 endurance pré-brick long progression",
               "name" : {
-                "en" : "Easy-bike endurance pre-long-brick (progression)",
+                "en" : "Easy-bike endurance pre-long-bike-to-run combo (progression)",
                 "es" : "Bici de resistencia suave pre-ladrillo largo (progresión)",
-                "fr" : "Vélo endurance facile avant le brick long (progression)"
+                "fr" : "Vélo endurance facile avant le enchaîné vélo-course long (progression)"
               },
               "notes" : {
                 "en" : "easy endurance (~65-75% HRmax, RPE 3-4). Cadence 85-95 rpm. Hydration 2 bottles + 60 g carbs total. T1/T2 timing < 1 min 30. Final 5 min at 95-100 rpm.",
@@ -4787,15 +4787,15 @@
             }
           ],
           "name" : {
-            "en" : "Long endurance brick — easy bike + easy run",
-            "es" : "Ladrillo (brick) largo de resistencia — bici suave + carrera suave",
-            "fr" : "Brick long endurance — vélo facile + course facile"
+            "en" : "Long endurance bike-to-run combo — easy bike + easy run",
+            "es" : "Ladrillo (encadenado bici-carrera) largo de resistencia — bici suave + carrera suave",
+            "fr" : "Enchaîné vélo-course long endurance — vélo facile + course facile"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -4932,13 +4932,13 @@
               ],
               "match_key" : "Long ride Z2 + bloc sweet spot 40 min",
               "name" : {
-                "en" : "Long ride (easy zone) + 40 min sweet spot block",
-                "es" : "Salida larga (zona suave) + bloque de sweet spot 40 min",
+                "en" : "Long ride (easy zone) + 40 min sustained tempo effort block",
+                "es" : "Salida larga (zona suave) + bloque de ritmo sostenido 40 min",
                 "fr" : "Sortie longue (zone facile) + bloc tempo soutenu 40 min"
               },
               "notes" : {
-                "en" : "110 min easy endurance + 40 min sweet spot (88-92% FTP, RPE 6-7) as a continuous block + 15 min easy endurance cooldown. Hydration 3 bottles + 60-75 g carbs/h. Distance ~70-85 km.",
-                "es" : "110 min en zona suave (resistencia fácil) + 40 min de sweet spot (88-92 % de FTP, RPE 6-7) en bloque continuo + 15 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 3 bidones + 60-75 g de carbohidratos/h. Distancia ~70-85 km.",
+                "en" : "110 min easy endurance + 40 min sustained tempo effort (88-92% FTP, RPE 6-7) as a continuous block + 15 min easy endurance cooldown. Hydration 3 bottles + 60-75 g carbs/h. Distance ~70-85 km.",
+                "es" : "110 min en zona suave (resistencia fácil) + 40 min de ritmo sostenido (88-92 % de FTP, RPE 6-7) en bloque continuo + 15 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 3 bidones + 60-75 g de carbohidratos/h. Distancia ~70-85 km.",
                 "fr" : "110 min en zone facile (endurance facile) + 40 min de tempo soutenu (88-92 % FTP, RPE 6-7) en bloc continu + 15 min en zone facile (endurance facile) de retour au calme. Hydratation 3 bidons + 60-75 g de glucides/h. Distance ~70-85 km."
               },
               "required_equipment" : [
@@ -4956,15 +4956,15 @@
             }
           ],
           "name" : {
-            "en" : "Long bike (easy zone) + sweet spot block",
-            "es" : "Bici larga (zona suave) + bloque de sweet spot",
+            "en" : "Long bike (easy zone) + sustained tempo effort block",
+            "es" : "Bici larga (zona suave) + bloque de ritmo sostenido",
             "fr" : "Vélo long (zone facile) + bloc tempo soutenu"
           },
           "type" : "endurance",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -5031,17 +5031,17 @@
         }
       ],
       "theme" : {
-        "en" : "Base 2 — Sustained volume + progressive brick",
+        "en" : "Base 2 — Sustained volume + progressive bike-to-run combo",
         "es" : "Base 2 — Volumen sostenido + ladrillo progresivo",
-        "fr" : "Base 2 — Volume soutenu + brick progressif"
+        "fr" : "Base 2 — Volume soutenu + enchaîné vélo-course progressif"
       },
       "week_number" : 7
     },
     {
       "goal" : {
-        "en" : "Base-2 peak: 3h long ride, brick 120+35, TT-bike position validated. Pure effort total volume: ~13h00.",
+        "en" : "Base-2 peak: 3h long ride, bike-to-run combo 120+35, TT-bike position validated. Pure effort total volume: ~13h00.",
         "es" : "Pico de Base 2: salida larga en bici 3h, ladrillo 120+35, posición de contrarreloj validada. Volumen total de esfuerzo puro: ~13h00.",
-        "fr" : "Pic Base 2 : sortie longue vélo 3h, brick 120+35, position de contre-la-montre validée. Volume cumul effort pur : ~13h00."
+        "fr" : "Pic Base 2 : sortie longue vélo 3h, enchaîné vélo-course 120+35, position de contre-la-montre validée. Volume cumul effort pur : ~13h00."
       },
       "sessions" : [
         {
@@ -5288,8 +5288,8 @@
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 4 × 1 min @100+ rpm + 5 min easy endurance + 2 × 1 min tempo with 1 min recovery.",
-            "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min en zona suave (resistencia fácil) + 2 × 1 min en zona tempo (tempo) con 1 min de recuperación.",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min en zone facile (endurance facile) + 2 × 1 min en zone tempo (tempo) récup 1 min."
+            "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min en zona suave (resistencia fácil) + 2 × 1 min en zona tempo con 1 min de recuperación.",
+            "fr" : "10 min en zone très facile cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min en zone facile (endurance facile) + 2 × 1 min en zone tempo récup 1 min."
           }
         },
         {
@@ -5464,13 +5464,13 @@
               ],
               "match_key" : "Bike route TT + sweet spot",
               "name" : {
-                "en" : "Road bike TT + sweet spot",
-                "es" : "Bici de ruta posición de contrarreloj + sweet spot",
+                "en" : "Road bike TT + sustained tempo effort",
+                "es" : "Bici de ruta posición de contrarreloj + ritmo sostenido",
                 "fr" : "Vélo route position contre-la-montre + tempo soutenu"
               },
               "notes" : {
-                "en" : "15 min easy endurance + 45 min continuous sweet spot in TT-bike position (RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. T2 timing < 1 min 30.",
-                "es" : "15 min en zona suave (resistencia fácil) + 45 min de sweet spot continuo en posición de contrarreloj (RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. T2 crono < 1 min 30.",
+                "en" : "15 min easy endurance + 45 min continuous sustained tempo effort in TT-bike position (RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. T2 timing < 1 min 30.",
+                "es" : "15 min en zona suave (resistencia fácil) + 45 min de ritmo sostenido continuo en posición de contrarreloj (RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. T2 crono < 1 min 30.",
                 "fr" : "15 min en zone facile (endurance facile) + 45 min de tempo soutenu continu en position contre-la-montre (RPE 6-7) + 15 min en zone facile (endurance facile) dont les 5 dernières à cadence 95-100 tr/min. T2 chrono < 1 min 30."
               },
               "required_equipment" : [
@@ -5636,13 +5636,13 @@
               ],
               "match_key" : "Long ride Z2 + bloc sweet spot 50 min position TT",
               "name" : {
-                "en" : "Long ride (easy zone) + 50 min sweet spot block TT position",
-                "es" : "Salida larga (zona suave) + bloque de sweet spot 50 min posición de contrarreloj",
+                "en" : "Long ride (easy zone) + 50 min sustained tempo effort block TT position",
+                "es" : "Salida larga (zona suave) + bloque de ritmo sostenido 50 min posición de contrarreloj",
                 "fr" : "Sortie longue (zone facile) + bloc tempo soutenu 50 min position contre-la-montre"
               },
               "notes" : {
-                "en" : "110 min easy endurance + 50 min sweet spot (88-92% FTP) in TT-bike position (RPE 6-7) + 20 min easy endurance cooldown. TT position validated for 50 min continuous. Hydration 3 bottles + 75 g carbs/h. Distance ~80-95 km.",
-                "es" : "110 min en zona suave (resistencia fácil) + 50 min de sweet spot (88-92 % de FTP) en posición de contrarreloj (RPE 6-7) + 20 min en zona suave (resistencia fácil) de vuelta a la calma. Posición de contrarreloj validada en 50 min continuos. Hidratación 3 bidones + 75 g de carbohidratos/h. Distancia ~80-95 km.",
+                "en" : "110 min easy endurance + 50 min sustained tempo effort (88-92% FTP) in TT-bike position (RPE 6-7) + 20 min easy endurance cooldown. TT position validated for 50 min continuous. Hydration 3 bottles + 75 g carbs/h. Distance ~80-95 km.",
+                "es" : "110 min en zona suave (resistencia fácil) + 50 min de ritmo sostenido (88-92 % de FTP) en posición de contrarreloj (RPE 6-7) + 20 min en zona suave (resistencia fácil) de vuelta a la calma. Posición de contrarreloj validada en 50 min continuos. Hidratación 3 bidones + 75 g de carbohidratos/h. Distancia ~80-95 km.",
                 "fr" : "110 min en zone facile (endurance facile) + 50 min de tempo soutenu (88-92 % FTP) en position contre-la-montre (RPE 6-7) + 20 min en zone facile (endurance facile) de retour au calme. Position contre-la-montre validée sur 50 min continu. Hydratation 3 bidons + 75 g de glucides/h. Distance ~80-95 km."
               },
               "required_equipment" : [
@@ -5661,15 +5661,15 @@
             }
           ],
           "name" : {
-            "en" : "Long bike (easy zone) + sweet spot block Base-2 peak",
-            "es" : "Bici larga (zona suave) + bloque de sweet spot pico Base 2",
+            "en" : "Long bike (easy zone) + sustained tempo effort block Base-2 peak",
+            "es" : "Bici larga (zona suave) + bloque de ritmo sostenido pico Base 2",
             "fr" : "Vélo long (zone facile) + bloc tempo soutenu pic Base 2"
           },
           "type" : "endurance",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -5744,9 +5744,9 @@
     },
     {
       "goal" : {
-        "en" : "Pre-deload consolidation, brick 105+30, S&C maintenance. Pure effort total volume: ~12h30.",
+        "en" : "Pre-deload consolidation, bike-to-run combo 105+30, S&C maintenance. Pure effort total volume: ~12h30.",
         "es" : "Consolidación antes de la descarga, ladrillo 105+30, fuerza de mantenimiento. Volumen total de esfuerzo puro: ~12h30.",
-        "fr" : "Consolidation avant décharge, brick 105+30, renforcement maintien. Volume cumul effort pur : ~12h30."
+        "fr" : "Consolidation avant décharge, enchaîné vélo-course 105+30, renforcement maintien. Volume cumul effort pur : ~12h30."
       },
       "sessions" : [
         {
@@ -5863,13 +5863,13 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Sweet spot 3 × 15 min, 5 min rest",
-                  "es" : "Sweet spot 3 × 15 min, 5 min de descanso",
+                  "en" : "Sustained tempo effort 3 × 15 min, 5 min rest",
+                  "es" : "Ritmo sostenido 3 × 15 min, 5 min de descanso",
                   "fr" : "Tempo soutenu 3 × 15 min récup 5 min"
                 },
                 {
-                  "en" : "Sweet spot flat road 45 min",
-                  "es" : "Sweet spot en ruta llana 45 min",
+                  "en" : "Sustained tempo effort flat road 45 min",
+                  "es" : "Ritmo sostenido en ruta llana 45 min",
                   "fr" : "Tempo soutenu sur route plate 45 min"
                 }
               ],
@@ -5882,13 +5882,13 @@
               ],
               "match_key" : "Sweet spot bloc continu 45 min",
               "name" : {
-                "en" : "Continuous sweet spot block 45 min",
-                "es" : "Bloque de sweet spot continuo 45 min",
+                "en" : "Continuous sustained tempo effort block 45 min",
+                "es" : "Bloque de ritmo sostenido continuo 45 min",
                 "fr" : "Bloc tempo soutenu continu 45 min"
               },
               "notes" : {
-                "en" : "Continuous 45 min sweet spot block in TT position (vs intervals). RPE 6-7. Cadence 90-95 rpm.",
-                "es" : "Bloque continuo de sweet spot 45 min en posición de contrarreloj (vs intervalos). RPE 6-7. Cadencia 90-95 rpm.",
+                "en" : "Continuous 45 min sustained tempo effort block in TT position (vs intervals). RPE 6-7. Cadence 90-95 rpm.",
+                "es" : "Bloque continuo de ritmo sostenido 45 min en posición de contrarreloj (vs intervalos). RPE 6-7. Cadencia 90-95 rpm.",
                 "fr" : "Bloc continu de tempo soutenu 45 min en position contre-la-montre (vs intervalles). RPE 6-7. Cadence 90-95 tr/min."
               },
               "required_equipment" : [
@@ -5942,15 +5942,15 @@
             }
           ],
           "name" : {
-            "en" : "Bike — sweet spot block + endurance",
-            "es" : "Bici — bloque de sweet spot + resistencia",
+            "en" : "Bike — sustained tempo effort block + endurance",
+            "es" : "Bici — bloque de ritmo sostenido + resistencia",
             "fr" : "Vélo — bloc tempo soutenu + endurance"
           },
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -6083,9 +6083,9 @@
               ],
               "match_key" : "Bike Z2 endurance pré-brick long",
               "name" : {
-                "en" : "Easy-bike endurance pre-long-brick",
+                "en" : "Easy-bike endurance pre-long-bike-to-run combo",
                 "es" : "Bici de resistencia suave pre-ladrillo largo",
-                "fr" : "Vélo endurance facile avant le brick long"
+                "fr" : "Vélo endurance facile avant le enchaîné vélo-course long"
               },
               "notes" : {
                 "en" : "easy endurance (~65-75% HRmax, RPE 3-4). Cadence 85-95 rpm. Hydration 2 bottles + 60 g carbs total. T1/T2 timing < 1 min 30.",
@@ -6147,15 +6147,15 @@
             }
           ],
           "name" : {
-            "en" : "Long endurance brick — easy bike + easy run",
-            "es" : "Ladrillo (brick) largo de resistencia — bici suave + carrera suave",
-            "fr" : "Brick long endurance — vélo facile + course facile"
+            "en" : "Long endurance bike-to-run combo — easy bike + easy run",
+            "es" : "Ladrillo (encadenado bici-carrera) largo de resistencia — bici suave + carrera suave",
+            "fr" : "Enchaîné vélo-course long endurance — vélo facile + course facile"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -6252,7 +6252,7 @@
                 {
                   "en" : "Glute-ham raise machine",
                   "es" : "Glute-ham raise en máquina (isquios-glúteos)",
-                  "fr" : "Glute-ham raise à la machine (ischios-fessiers)"
+                  "fr" : "Extension ischio-fessiers à la machine (ischios-fessiers)"
                 }
               ],
               "incompatible_constraints" : [
@@ -6263,7 +6263,7 @@
               "name" : {
                 "en" : "Nordic curl",
                 "es" : "Curl nórdico (isquios excéntricos)",
-                "fr" : "Nordic curl (ischios excentriques)"
+                "fr" : "Curl nordique (ischios excentriques)"
               },
               "notes" : {
                 "en" : "Hamstring-prevention reference.",
@@ -6362,7 +6362,7 @@
                 {
                   "en" : "Bird-dog 12/side + dead bug 12/side",
                   "es" : "Bird-dog 12/lado + dead bug 12/lado",
-                  "fr" : "Bird-dog 12/côté + dead bug 12/côté"
+                  "fr" : "Pointeur 12/côté + gainage croisé au sol 12/côté"
                 }
               ],
               "duration" : "60 sec ventrale + 40 sec/côté + 12 dead bug/côté",
@@ -6375,7 +6375,7 @@
               "name" : {
                 "en" : "Plank + side plank + dead bug",
                 "es" : "Plancha + plancha lateral + dead bug",
-                "fr" : "Planche + planche latérale + dead bug"
+                "fr" : "Planche + planche latérale + gainage croisé au sol"
               },
               "notes" : {
                 "en" : "Core + lateral stability + anti-rotation.",
@@ -6435,13 +6435,13 @@
               ],
               "match_key" : "Long ride Z2 + bloc sweet spot 40 min",
               "name" : {
-                "en" : "Long ride (easy zone) + 40 min sweet spot block",
-                "es" : "Salida larga (zona suave) + bloque de sweet spot 40 min",
+                "en" : "Long ride (easy zone) + 40 min sustained tempo effort block",
+                "es" : "Salida larga (zona suave) + bloque de ritmo sostenido 40 min",
                 "fr" : "Sortie longue (zone facile) + bloc tempo soutenu 40 min"
               },
               "notes" : {
-                "en" : "110 min easy endurance + 40 min sweet spot in TT position (RPE 6-7) + 15 min easy endurance cooldown. Hydration 3 bottles + 75 g carbs/h. Distance ~70-85 km.",
-                "es" : "110 min en zona suave (resistencia fácil) + 40 min de sweet spot en posición de contrarreloj (RPE 6-7) + 15 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 3 bidones + 75 g de carbohidratos/h. Distancia ~70-85 km.",
+                "en" : "110 min easy endurance + 40 min sustained tempo effort in TT position (RPE 6-7) + 15 min easy endurance cooldown. Hydration 3 bottles + 75 g carbs/h. Distance ~70-85 km.",
+                "es" : "110 min en zona suave (resistencia fácil) + 40 min de ritmo sostenido en posición de contrarreloj (RPE 6-7) + 15 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 3 bidones + 75 g de carbohidratos/h. Distancia ~70-85 km.",
                 "fr" : "110 min en zone facile (endurance facile) + 40 min de tempo soutenu en position contre-la-montre (RPE 6-7) + 15 min en zone facile (endurance facile) de retour au calme. Hydratation 3 bidons + 75 g de glucides/h. Distance ~70-85 km."
               },
               "required_equipment" : [
@@ -6460,15 +6460,15 @@
             }
           ],
           "name" : {
-            "en" : "Long bike (easy zone) + sweet spot block",
-            "es" : "Bici larga (zona suave) + bloque de sweet spot",
+            "en" : "Long bike (easy zone) + sustained tempo effort block",
+            "es" : "Bici larga (zona suave) + bloque de ritmo sostenido",
             "fr" : "Vélo long (zone facile) + bloc tempo soutenu"
           },
           "type" : "endurance",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -6662,14 +6662,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Sweet spot 2 × 10 min flat road",
-                  "es" : "Sweet spot 2 × 10 min en ruta llana",
+                  "en" : "Sustained tempo effort 2 × 10 min flat road",
+                  "es" : "Ritmo sostenido 2 × 10 min en ruta llana",
                   "fr" : "Tempo soutenu 2 × 10 min sur route plate"
                 },
                 {
                   "en" : "Tempo tempo 2 × 12 min RPE 6",
-                  "es" : "Tempo zona tempo (tempo) 2 × 12 min RPE 6",
-                  "fr" : "Tempo zone tempo (tempo) 2 × 12 min RPE 6"
+                  "es" : "Tempo zona tempo 2 × 12 min RPE 6",
+                  "fr" : "Tempo zone tempo 2 × 12 min RPE 6"
                 }
               ],
               "duration" : "10 min @tempo soutenu 88-92% FTP + 5 min très facile récup",
@@ -6680,8 +6680,8 @@
               ],
               "match_key" : "Sweet spot court 2 × 10 min",
               "name" : {
-                "en" : "Short sweet spot 2 × 10 min",
-                "es" : "Sweet spot corto 2 × 10 min",
+                "en" : "Short sustained tempo effort 2 × 10 min",
+                "es" : "Ritmo sostenido corto 2 × 10 min",
                 "fr" : "Tempo soutenu court 2 × 10 min"
               },
               "notes" : {
@@ -6738,15 +6738,15 @@
             }
           ],
           "name" : {
-            "en" : "Bike — short sweet spot + reduced endurance",
-            "es" : "Bici — sweet spot corto + resistencia reducida",
+            "en" : "Bike — short sustained tempo effort + reduced endurance",
+            "es" : "Bici — ritmo sostenido corto + resistencia reducida",
             "fr" : "Vélo — tempo soutenu court + endurance réduite"
           },
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -6883,9 +6883,9 @@
                 "fr" : "Vélo endurance facile court (décharge)"
               },
               "notes" : {
-                "en" : "Volume -25% vs W9 brick, easy endurance (~65-75% HRmax, RPE 3-4). T1/T2 kept.",
+                "en" : "Volume -25% vs W9 bike-to-run combo, easy endurance (~65-75% HRmax, RPE 3-4). T1/T2 kept.",
                 "es" : "Volumen -25 % vs ladrillo S9, zona suave (resistencia fácil) (~65-75 % de FCmax, RPE 3-4). T1/T2 mantenida.",
-                "fr" : "Volume -25 % vs brick S9, zone facile (endurance facile) (~65-75 % FCmax, RPE 3-4). T1/T2 maintenue."
+                "fr" : "Volume -25 % vs enchaîné vélo-course S9, zone facile (endurance facile) (~65-75 % FCmax, RPE 3-4). T1/T2 maintenue."
               },
               "required_equipment" : [
                 "road-bike",
@@ -6941,15 +6941,15 @@
             }
           ],
           "name" : {
-            "en" : "Short deload brick — easy bike + easy run",
-            "es" : "Ladrillo (brick) corto de descarga — bici suave + carrera suave",
-            "fr" : "Brick court de décharge — vélo facile + course facile"
+            "en" : "Short deload bike-to-run combo — easy bike + easy run",
+            "es" : "Ladrillo (encadenado bici-carrera) corto de descarga — bici suave + carrera suave",
+            "fr" : "Enchaîné vélo-course court de décharge — vélo facile + course facile"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -7078,7 +7078,7 @@
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -7153,9 +7153,9 @@
     },
     {
       "goal" : {
-        "en" : "Post-deload resumption, Build-1 intro with long brick 120+35 race-pace bike. Pure effort total volume: ~12h30.",
+        "en" : "Post-deload resumption, Build-1 intro with long bike-to-run combo 120+35 race-pace bike. Pure effort total volume: ~12h30.",
         "es" : "Reanudación tras descarga, intro desarrollo 1 con ladrillo largo 120+35 bici a ritmo de competición. Volumen total de esfuerzo puro: ~12h30.",
-        "fr" : "Reprise après décharge, intro développement 1 avec brick long 120+35 vélo à allure de course. Volume cumul effort pur : ~12h30."
+        "fr" : "Reprise après décharge, intro développement 1 avec enchaîné vélo-course long 120+35 vélo à allure de course. Volume cumul effort pur : ~12h30."
       },
       "sessions" : [
         {
@@ -7402,8 +7402,8 @@
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 4 × 1 min @100+ rpm + 5 min easy endurance + 2 × 1 min tempo with 1 min recovery.",
-            "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min en zona suave (resistencia fácil) + 2 × 1 min en zona tempo (tempo) con 1 min de recuperación.",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min en zone facile (endurance facile) + 2 × 1 min en zone tempo (tempo) récup 1 min."
+            "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min en zona suave (resistencia fácil) + 2 × 1 min en zona tempo con 1 min de recuperación.",
+            "fr" : "10 min en zone très facile cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min en zone facile (endurance facile) + 2 × 1 min en zone tempo récup 1 min."
           }
         },
         {
@@ -7536,13 +7536,13 @@
               ],
               "match_key" : "Bike Z2 + bloc race-pace pré-brick",
               "name" : {
-                "en" : "Easy bike + race-pace block pre-brick",
+                "en" : "Easy bike + race-pace block pre-bike-to-run combo",
                 "es" : "Bici suave + bloque a ritmo de competición pre-ladrillo",
-                "fr" : "Vélo facile + bloc à allure de course avant le brick"
+                "fr" : "Vélo facile + bloc à allure de course avant le enchaîné vélo-course"
               },
               "notes" : {
-                "en" : "75 min easy endurance + 30 min sweet spot (88-92% FTP) in TT position (Half-Ironman race-pace, RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. T1/T2 timing < 1 min 30. Hydration 2 bottles + 75 g carbs total.",
-                "es" : "75 min en zona suave (resistencia fácil) + 30 min de sweet spot (88-92 % de FTP) en posición de contrarreloj (ritmo de competición Half-Ironman, RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. T1/T2 crono < 1 min 30. Hidratación 2 bidones + 75 g de carbohidratos en total.",
+                "en" : "75 min easy endurance + 30 min sustained tempo effort (88-92% FTP) in TT position (Half-Ironman race-pace, RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. T1/T2 timing < 1 min 30. Hydration 2 bottles + 75 g carbs total.",
+                "es" : "75 min en zona suave (resistencia fácil) + 30 min de ritmo sostenido (88-92 % de FTP) en posición de contrarreloj (ritmo de competición Half-Ironman, RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. T1/T2 crono < 1 min 30. Hidratación 2 bidones + 75 g de carbohidratos en total.",
                 "fr" : "75 min en zone facile (endurance facile) + 30 min de tempo soutenu (88-92 % FTP) en position contre-la-montre (allure de course Half-Ironman, RPE 6-7) + 15 min en zone facile (endurance facile) dont les 5 dernières à cadence 95-100 tr/min. T1/T2 chrono < 1 min 30. Hydratation 2 bidons + 75 g de glucides au total."
               },
               "required_equipment" : [
@@ -7601,15 +7601,15 @@
             }
           ],
           "name" : {
-            "en" : "Long endurance + race-pace progression brick — easy/sweet-spot bike + easy run",
-            "es" : "Ladrillo (brick) largo de resistencia + progresión a ritmo de competición — bici suave/sweet spot + carrera suave",
-            "fr" : "Brick long endurance + progression à allure de course — vélo facile/tempo soutenu + course facile"
+            "en" : "Long endurance + race-pace progression bike-to-run combo — easy/sustained tempo effort bike + easy run",
+            "es" : "Ladrillo (encadenado bici-carrera) largo de resistencia + progresión a ritmo de competición — bici suave/ritmo sostenido + carrera suave",
+            "fr" : "Enchaîné vélo-course long endurance + progression à allure de course — vélo facile/tempo soutenu + course facile"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -7746,13 +7746,13 @@
               ],
               "match_key" : "Long ride Z2 + bloc sweet spot 50 min position TT",
               "name" : {
-                "en" : "Long ride (easy zone) + 50 min sweet spot block TT position",
-                "es" : "Salida larga (zona suave) + bloque de sweet spot 50 min posición de contrarreloj",
+                "en" : "Long ride (easy zone) + 50 min sustained tempo effort block TT position",
+                "es" : "Salida larga (zona suave) + bloque de ritmo sostenido 50 min posición de contrarreloj",
                 "fr" : "Sortie longue (zone facile) + bloc tempo soutenu 50 min position contre-la-montre"
               },
               "notes" : {
-                "en" : "110 min easy endurance + 50 min sweet spot in TT position (RPE 6-7) + 20 min easy endurance cooldown. Hydration 3 bottles + 75 g carbs/h. Distance ~80-95 km.",
-                "es" : "110 min en zona suave (resistencia fácil) + 50 min de sweet spot en posición de contrarreloj (RPE 6-7) + 20 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 3 bidones + 75 g de carbohidratos/h. Distancia ~80-95 km.",
+                "en" : "110 min easy endurance + 50 min sustained tempo effort in TT position (RPE 6-7) + 20 min easy endurance cooldown. Hydration 3 bottles + 75 g carbs/h. Distance ~80-95 km.",
+                "es" : "110 min en zona suave (resistencia fácil) + 50 min de ritmo sostenido en posición de contrarreloj (RPE 6-7) + 20 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 3 bidones + 75 g de carbohidratos/h. Distancia ~80-95 km.",
                 "fr" : "110 min en zone facile (endurance facile) + 50 min de tempo soutenu en position contre-la-montre (RPE 6-7) + 20 min en zone facile (endurance facile) de retour au calme. Hydratation 3 bidons + 75 g de glucides/h. Distance ~80-95 km."
               },
               "required_equipment" : [
@@ -7771,15 +7771,15 @@
             }
           ],
           "name" : {
-            "en" : "Long bike (easy zone) + sweet spot block",
-            "es" : "Bici larga (zona suave) + bloque de sweet spot",
+            "en" : "Long bike (easy zone) + sustained tempo effort block",
+            "es" : "Bici larga (zona suave) + bloque de ritmo sostenido",
             "fr" : "Vélo long (zone facile) + bloc tempo soutenu"
           },
           "type" : "endurance",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -7846,9 +7846,9 @@
         }
       ],
       "theme" : {
-        "en" : "Build 1 — Half-Ironman specificity + long brick 120+35",
+        "en" : "Build 1 — Half-Ironman specificity + long bike-to-run combo 120+35",
         "es" : "Desarrollo 1 — Especificidad Half-Ironman + ladrillo largo 120+35",
-        "fr" : "Développement 1 — Spécificité Half-Ironman + brick long 120+35"
+        "fr" : "Développement 1 — Spécificité Half-Ironman + enchaîné vélo-course long 120+35"
       },
       "week_number" : 11
     },
@@ -8019,8 +8019,8 @@
                   "fr" : "Au seuil 3 × 15 min position route"
                 },
                 {
-                  "en" : "Sweet spot 4 × 15 min RPE 7",
-                  "es" : "Sweet spot 4 × 15 min RPE 7",
+                  "en" : "Sustained tempo effort 4 × 15 min RPE 7",
+                  "es" : "Ritmo sostenido 4 × 15 min RPE 7",
                   "fr" : "Tempo soutenu 4 × 15 min RPE 7"
                 }
               ],
@@ -8040,7 +8040,7 @@
               "notes" : {
                 "en" : "Threshold TT-position progression. RPE 7-8. Cadence 90-95 rpm. 5 min very easy recovery.",
                 "es" : "En umbral en posición de contrarreloj, progresión. RPE 7-8. Cadencia 90-95 rpm. Recuperación 5 min en zona muy suave (muy fácil).",
-                "fr" : "Au seuil en position contre-la-montre, progression. RPE 7-8. Cadence 90-95 tr/min. Récup 5 min en zone très facile (très facile)."
+                "fr" : "Au seuil en position contre-la-montre, progression. RPE 7-8. Cadence 90-95 tr/min. Récup 5 min en zone très facile."
               },
               "required_equipment" : [
                 "tt-bike",
@@ -8065,7 +8065,7 @@
           "warmup" : {
             "en" : "10 min very easy free cadence + 4 × 1 min @100+ rpm + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -8246,8 +8246,8 @@
                 "fr" : "Vélo route position contre-la-montre à allure de course 90 min"
               },
               "notes" : {
-                "en" : "15 min easy endurance + 60 min continuous sweet spot in TT position (Half-Ironman race-pace, RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. Test race-day nutrition: 75 g carbs/h + hydration. T2 timing < 1 min 30.",
-                "es" : "15 min en zona suave (resistencia fácil) + 60 min de sweet spot continuo en posición de contrarreloj (ritmo de competición Half-Ironman, RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. Prueba la nutrición del día de competición: 75 g de carbohidratos/h + hidratación. T2 crono < 1 min 30.",
+                "en" : "15 min easy endurance + 60 min continuous sustained tempo effort in TT position (Half-Ironman race-pace, RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. Test race-day nutrition: 75 g carbs/h + hydration. T2 timing < 1 min 30.",
+                "es" : "15 min en zona suave (resistencia fácil) + 60 min de ritmo sostenido continuo en posición de contrarreloj (ritmo de competición Half-Ironman, RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. Prueba la nutrición del día de competición: 75 g de carbohidratos/h + hidratación. T2 crono < 1 min 30.",
                 "fr" : "15 min en zone facile (endurance facile) + 60 min de tempo soutenu continu en position contre-la-montre (allure de course Half-Ironman, RPE 6-7) + 15 min en zone facile (endurance facile) dont les 5 dernières à cadence 95-100 tr/min. Tester la nutrition du jour J : 75 g de glucides/h + hydratation. T2 chrono < 1 min 30."
               },
               "required_equipment" : [
@@ -8411,13 +8411,13 @@
               ],
               "match_key" : "Long ride Z2 + bloc sweet spot 50 min position TT",
               "name" : {
-                "en" : "Long ride (easy zone) + 50 min sweet spot block TT position",
-                "es" : "Salida larga (zona suave) + bloque de sweet spot 50 min posición de contrarreloj",
+                "en" : "Long ride (easy zone) + 50 min sustained tempo effort block TT position",
+                "es" : "Salida larga (zona suave) + bloque de ritmo sostenido 50 min posición de contrarreloj",
                 "fr" : "Sortie longue (zone facile) + bloc tempo soutenu 50 min position contre-la-montre"
               },
               "notes" : {
-                "en" : "110 min easy endurance + 50 min sweet spot in TT position (RPE 6-7) + 20 min easy endurance. Hydration 3 bottles + 75 g carbs/h. Distance ~80-95 km.",
-                "es" : "110 min en zona suave (resistencia fácil) + 50 min de sweet spot en posición de contrarreloj (RPE 6-7) + 20 min en zona suave (resistencia fácil). Hidratación 3 bidones + 75 g de carbohidratos/h. Distancia ~80-95 km.",
+                "en" : "110 min easy endurance + 50 min sustained tempo effort in TT position (RPE 6-7) + 20 min easy endurance. Hydration 3 bottles + 75 g carbs/h. Distance ~80-95 km.",
+                "es" : "110 min en zona suave (resistencia fácil) + 50 min de ritmo sostenido en posición de contrarreloj (RPE 6-7) + 20 min en zona suave (resistencia fácil). Hidratación 3 bidones + 75 g de carbohidratos/h. Distancia ~80-95 km.",
                 "fr" : "110 min en zone facile (endurance facile) + 50 min de tempo soutenu en position contre-la-montre (RPE 6-7) + 20 min en zone facile (endurance facile). Hydratation 3 bidons + 75 g de glucides/h. Distance ~80-95 km."
               },
               "required_equipment" : [
@@ -8436,15 +8436,15 @@
             }
           ],
           "name" : {
-            "en" : "Long bike (easy zone) + sweet spot block",
-            "es" : "Bici larga (zona suave) + bloque de sweet spot",
+            "en" : "Long bike (easy zone) + sustained tempo effort block",
+            "es" : "Bici larga (zona suave) + bloque de ritmo sostenido",
             "fr" : "Vélo long (zone facile) + bloc tempo soutenu"
           },
           "type" : "endurance",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -8519,9 +8519,9 @@
     },
     {
       "goal" : {
-        "en" : "Absolute volume peak 13h45 total, peak 3500 m long swim, peak race-pace brick 150+45. Pure effort total volume: ~13h45 (swim 3h05 + bike 6h15 incl. brick + run 3h25 incl. brick + S&C 1h00).",
+        "en" : "Absolute volume peak 13h45 total, peak 3500 m long swim, peak race-pace bike-to-run combo 150+45. Pure effort total volume: ~13h45 (swim 3h05 + bike 6h15 incl. bike-to-run combo + run 3h25 incl. bike-to-run combo + S&C 1h00).",
         "es" : "Pico absoluto de volumen 13h45 total, natación larga pico 3500 m, ladrillo pico 150+45 a ritmo de competición. Volumen total de esfuerzo puro: ~13h45 (natación 3h05 + ciclismo 6h15 con ladrillo + carrera 3h25 con ladrillo + fuerza 1h00).",
-        "fr" : "Pic absolu de volume 13h45 cumul, natation longue pic 3500 m, brick pic 150+45 à allure de course. Volume cumul effort pur : ~13h45 (natation 3h05 + vélo 6h15 brick inclus + course 3h25 brick inclus + renfo 1h00)."
+        "fr" : "Pic absolu de volume 13h45 cumul, natation longue pic 3500 m, enchaîné vélo-course pic 150+45 à allure de course. Volume cumul effort pur : ~13h45 (natation 3h05 + vélo 6h15 enchaîné vélo-course inclus + course 3h25 enchaîné vélo-course inclus + renfo 1h00)."
       },
       "sessions" : [
         {
@@ -8729,8 +8729,8 @@
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 4 × 1 min @100+ rpm + 5 min easy endurance + 2 × 1 min tempo with 1 min recovery.",
-            "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min en zona suave (resistencia fácil) + 2 × 1 min en zona tempo (tempo) con 1 min de recuperación.",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min en zone facile (endurance facile) + 2 × 1 min en zone tempo (tempo) récup 1 min."
+            "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min en zona suave (resistencia fácil) + 2 × 1 min en zona tempo con 1 min de recuperación.",
+            "fr" : "10 min en zone très facile cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min en zone facile (endurance facile) + 2 × 1 min en zone tempo récup 1 min."
           }
         },
         {
@@ -8868,9 +8868,9 @@
                 "fr" : "Vélo facile + bloc à allure de course pic 150 min"
               },
               "notes" : {
-                "en" : "PEAK brick: 90 min easy endurance + 45 min sweet spot (88-92% FTP) in TT position (race-pace, RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. T1/T2 timing < 1 min 30. Hydration 2-3 bottles + 75-90 g carbs total. Test race-day nutrition.",
-                "es" : "LADRILLO PICO: 90 min en zona suave (resistencia fácil) + 45 min de sweet spot (88-92 % de FTP) en posición de contrarreloj (ritmo de competición, RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. T1/T2 crono < 1 min 30. Hidratación 2-3 bidones + 75-90 g de carbohidratos en total. Prueba la nutrición del día de competición.",
-                "fr" : "BRICK PIC : 90 min en zone facile (endurance facile) + 45 min de tempo soutenu (88-92 % FTP) en position contre-la-montre (allure de course, RPE 6-7) + 15 min en zone facile (endurance facile) dont les 5 dernières à cadence 95-100 tr/min. T1/T2 chrono < 1 min 30. Hydratation 2-3 bidons + 75-90 g de glucides au total. Tester la nutrition du jour J."
+                "en" : "PEAK bike-to-run combo: 90 min easy endurance + 45 min sustained tempo effort (88-92% FTP) in TT position (race-pace, RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. T1/T2 timing < 1 min 30. Hydration 2-3 bottles + 75-90 g carbs total. Test race-day nutrition.",
+                "es" : "LADRILLO PICO: 90 min en zona suave (resistencia fácil) + 45 min de ritmo sostenido (88-92 % de FTP) en posición de contrarreloj (ritmo de competición, RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. T1/T2 crono < 1 min 30. Hidratación 2-3 bidones + 75-90 g de carbohidratos en total. Prueba la nutrición del día de competición.",
+                "fr" : "Enchaîné vélo-course PIC : 90 min en zone facile (endurance facile) + 45 min de tempo soutenu (88-92 % FTP) en position contre-la-montre (allure de course, RPE 6-7) + 15 min en zone facile (endurance facile) dont les 5 dernières à cadence 95-100 tr/min. T1/T2 chrono < 1 min 30. Hydratation 2-3 bidons + 75-90 g de glucides au total. Tester la nutrition du jour J."
               },
               "required_equipment" : [
                 "tt-bike",
@@ -8913,9 +8913,9 @@
                 "fr" : "Course à allure de course après le vélo, pic 45 min"
               },
               "notes" : {
-                "en" : "PEAK brick run at race-pace. 5 min easy + 35 min race-pace (Half-Ironman, RPE 6-7) + 5 min cooldown. Assessment: note the pace gap vs solo (< 20 s/km target).",
+                "en" : "PEAK bike-to-run combo run at race-pace. 5 min easy + 35 min race-pace (Half-Ironman, RPE 6-7) + 5 min cooldown. Assessment: note the pace gap vs solo (< 20 s/km target).",
                 "es" : "Carrera en ladrillo PICO a ritmo de competición. 5 min ritmo suave + 35 min a ritmo de competición (Half-Ironman, RPE 6-7) + 5 min de vuelta a la calma. Evaluación: anota la diferencia de ritmo vs solo (< 20 s/km objetivo).",
-                "fr" : "Course en brick PIC à allure de course. 5 min allure facile + 35 min à allure de course (Half-Ironman, RPE 6-7) + 5 min de retour au calme. Évaluation : noter l'écart d'allure vs solo (< 20 s/km objectif)."
+                "fr" : "Course en enchaîné vélo-course PIC à allure de course. 5 min allure facile + 35 min à allure de course (Half-Ironman, RPE 6-7) + 5 min de retour au calme. Évaluation : noter l'écart d'allure vs solo (< 20 s/km objectif)."
               },
               "required_equipment" : [
                 "running-shoes",
@@ -8928,15 +8928,15 @@
             }
           ],
           "name" : {
-            "en" : "PEAK long endurance brick — bike 150 min + run 45 min",
-            "es" : "Ladrillo (brick) PICO largo de resistencia — bici 150 min + carrera 45 min",
-            "fr" : "Brick PIC long endurance — vélo 150 min + course 45 min"
+            "en" : "PEAK long endurance bike-to-run combo — bike 150 min + run 45 min",
+            "es" : "Ladrillo (encadenado bici-carrera) PICO largo de resistencia — bici 150 min + carrera 45 min",
+            "fr" : "Enchaîné vélo-course PIC long endurance — vélo 150 min + course 45 min"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -9033,13 +9033,13 @@
               ],
               "match_key" : "Long ride Z2 + bloc sweet spot 60 min position TT",
               "name" : {
-                "en" : "Long ride (easy zone) + 60 min sweet spot block TT position",
-                "es" : "Salida larga (zona suave) + bloque de sweet spot 60 min posición de contrarreloj",
+                "en" : "Long ride (easy zone) + 60 min sustained tempo effort block TT position",
+                "es" : "Salida larga (zona suave) + bloque de ritmo sostenido 60 min posición de contrarreloj",
                 "fr" : "Sortie longue (zone facile) + bloc tempo soutenu 60 min position contre-la-montre"
               },
               "notes" : {
-                "en" : "115 min easy endurance + 60 min sweet spot in TT position (RPE 6-7) + 20 min easy endurance cooldown. Hydration 3-4 bottles + 75-90 g carbs/h. Distance ~90-105 km.",
-                "es" : "115 min en zona suave (resistencia fácil) + 60 min de sweet spot en posición de contrarreloj (RPE 6-7) + 20 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 3-4 bidones + 75-90 g de carbohidratos/h. Distancia ~90-105 km.",
+                "en" : "115 min easy endurance + 60 min sustained tempo effort in TT position (RPE 6-7) + 20 min easy endurance cooldown. Hydration 3-4 bottles + 75-90 g carbs/h. Distance ~90-105 km.",
+                "es" : "115 min en zona suave (resistencia fácil) + 60 min de ritmo sostenido en posición de contrarreloj (RPE 6-7) + 20 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 3-4 bidones + 75-90 g de carbohidratos/h. Distancia ~90-105 km.",
                 "fr" : "115 min en zone facile (endurance facile) + 60 min de tempo soutenu en position contre-la-montre (RPE 6-7) + 20 min en zone facile (endurance facile) de retour au calme. Hydratation 3-4 bidons + 75-90 g de glucides/h. Distance ~90-105 km."
               },
               "required_equipment" : [
@@ -9058,15 +9058,15 @@
             }
           ],
           "name" : {
-            "en" : "Long bike (easy zone) + sweet spot block",
-            "es" : "Bici larga (zona suave) + bloque de sweet spot",
+            "en" : "Long bike (easy zone) + sustained tempo effort block",
+            "es" : "Bici larga (zona suave) + bloque de ritmo sostenido",
             "fr" : "Vélo long (zone facile) + bloc tempo soutenu"
           },
           "type" : "endurance",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -9133,17 +9133,17 @@
         }
       ],
       "theme" : {
-        "en" : "Build 1 — PEAK volume 13h45 + peak brick 150+45",
+        "en" : "Build 1 — PEAK volume 13h45 + peak bike-to-run combo 150+45",
         "es" : "Desarrollo 1 — PICO de volumen 13h45 + ladrillo pico 150+45",
-        "fr" : "Développement 1 — PIC de volume 13h45 + brick pic 150+45"
+        "fr" : "Développement 1 — PIC de volume 13h45 + enchaîné vélo-course pic 150+45"
       },
       "week_number" : 13
     },
     {
       "goal" : {
-        "en" : "Post-peak load maintenance, race-pace brick 135+40. Pure effort total volume: ~12h45.",
+        "en" : "Post-peak load maintenance, race-pace bike-to-run combo 135+40. Pure effort total volume: ~12h45.",
         "es" : "Mantenimiento de carga tras el pico, ladrillo 135+40 a ritmo de competición. Volumen total de esfuerzo puro: ~12h45.",
-        "fr" : "Maintien de la charge après le pic, brick 135+40 à allure de course. Volume cumul effort pur : ~12h45."
+        "fr" : "Maintien de la charge après le pic, enchaîné vélo-course 135+40 à allure de course. Volume cumul effort pur : ~12h45."
       },
       "sessions" : [
         {
@@ -9306,8 +9306,8 @@
                   "fr" : "VO2max seul 6 × 5 min"
                 },
                 {
-                  "en" : "Sweet spot block 60 min",
-                  "es" : "Bloque de sweet spot 60 min",
+                  "en" : "Sustained tempo effort block 60 min",
+                  "es" : "Bloque de ritmo sostenido 60 min",
                   "fr" : "Bloc tempo soutenu 60 min"
                 }
               ],
@@ -9320,13 +9320,13 @@
               ],
               "match_key" : "VO2max 5 × 5 min @FTP-Z5 + sweet spot 20 min",
               "name" : {
-                "en" : "VO2max 5 × 5 min + 20 min sweet spot",
-                "es" : "VO2máx 5 × 5 min + sweet spot 20 min",
+                "en" : "VO2max 5 × 5 min + 20 min sustained tempo effort",
+                "es" : "VO2máx 5 × 5 min + ritmo sostenido 20 min",
                 "fr" : "VO2max 5 × 5 min + tempo soutenu 20 min"
               },
               "notes" : {
-                "en" : "VO2max + sweet spot block mix. RPE 8-9 then 6-7. TT position.",
-                "es" : "Mezcla VO2máx + bloque de sweet spot. RPE 8-9 y luego 6-7. Posición de contrarreloj.",
+                "en" : "VO2max + sustained tempo effort block mix. RPE 8-9 then 6-7. TT position.",
+                "es" : "Mezcla VO2máx + bloque de ritmo sostenido. RPE 8-9 y luego 6-7. Posición de contrarreloj.",
                 "fr" : "Mix VO2max + bloc tempo soutenu. RPE 8-9 puis 6-7. Position contre-la-montre."
               },
               "required_equipment" : [
@@ -9343,15 +9343,15 @@
             }
           ],
           "name" : {
-            "en" : "Bike — VO2max + sweet spot mix",
-            "es" : "Bici — VO2máx + sweet spot (mixto)",
+            "en" : "Bike — VO2max + sustained tempo effort mix",
+            "es" : "Bici — VO2máx + ritmo sostenido (mixto)",
             "fr" : "Vélo — VO2max + tempo soutenu (mix)"
           },
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 4 × 1 min @100+ rpm + 5 min easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min en zone facile (endurance facile)."
           }
         },
         {
@@ -9484,13 +9484,13 @@
               ],
               "match_key" : "Bike Z2 + bloc race-pace pré-brick 135 min",
               "name" : {
-                "en" : "Easy bike + race-pace block pre-brick 135 min",
+                "en" : "Easy bike + race-pace block pre-bike-to-run combo 135 min",
                 "es" : "Bici suave + bloque a ritmo de competición pre-ladrillo 135 min",
-                "fr" : "Vélo facile + bloc à allure de course avant le brick 135 min"
+                "fr" : "Vélo facile + bloc à allure de course avant le enchaîné vélo-course 135 min"
               },
               "notes" : {
-                "en" : "75 min easy endurance + 45 min sweet spot in TT position (race-pace, RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. T1/T2 timing < 1 min 30. Test race-day nutrition.",
-                "es" : "75 min en zona suave (resistencia fácil) + 45 min de sweet spot en posición de contrarreloj (ritmo de competición, RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. T1/T2 crono < 1 min 30. Prueba la nutrición del día de competición.",
+                "en" : "75 min easy endurance + 45 min sustained tempo effort in TT position (race-pace, RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. T1/T2 timing < 1 min 30. Test race-day nutrition.",
+                "es" : "75 min en zona suave (resistencia fácil) + 45 min de ritmo sostenido en posición de contrarreloj (ritmo de competición, RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. T1/T2 crono < 1 min 30. Prueba la nutrición del día de competición.",
                 "fr" : "75 min en zone facile (endurance facile) + 45 min de tempo soutenu en position contre-la-montre (allure de course, RPE 6-7) + 15 min en zone facile (endurance facile) dont les 5 dernières à cadence 95-100 tr/min. T1/T2 chrono < 1 min 30. Tester la nutrition du jour J."
               },
               "required_equipment" : [
@@ -9549,15 +9549,15 @@
             }
           ],
           "name" : {
-            "en" : "Long race-pace brick — bike 135 + marathon pace (steady) run 40",
-            "es" : "Ladrillo (brick) largo a ritmo de competición — bici 135 + carrera a ritmo de competición 40",
-            "fr" : "Brick long à allure de course — vélo 135 + course à allure de course 40"
+            "en" : "Long race-pace bike-to-run combo — bike 135 + marathon pace (steady) run 40",
+            "es" : "Ladrillo (encadenado bici-carrera) largo a ritmo de competición — bici 135 + carrera a ritmo de competición 40",
+            "fr" : "Enchaîné vélo-course long à allure de course — vélo 135 + course à allure de course 40"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -9694,13 +9694,13 @@
               ],
               "match_key" : "Long ride Z2 + bloc sweet spot 50 min position TT",
               "name" : {
-                "en" : "Long ride (easy zone) + 50 min sweet spot block TT position",
-                "es" : "Salida larga (zona suave) + bloque de sweet spot 50 min posición de contrarreloj",
+                "en" : "Long ride (easy zone) + 50 min sustained tempo effort block TT position",
+                "es" : "Salida larga (zona suave) + bloque de ritmo sostenido 50 min posición de contrarreloj",
                 "fr" : "Sortie longue (zone facile) + bloc tempo soutenu 50 min position contre-la-montre"
               },
               "notes" : {
-                "en" : "110 min easy endurance + 50 min sweet spot in TT position (RPE 6-7) + 20 min easy endurance cooldown. Hydration 3 bottles + 75 g carbs/h. Distance ~80-95 km.",
-                "es" : "110 min en zona suave (resistencia fácil) + 50 min de sweet spot en posición de contrarreloj (RPE 6-7) + 20 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 3 bidones + 75 g de carbohidratos/h. Distancia ~80-95 km.",
+                "en" : "110 min easy endurance + 50 min sustained tempo effort in TT position (RPE 6-7) + 20 min easy endurance cooldown. Hydration 3 bottles + 75 g carbs/h. Distance ~80-95 km.",
+                "es" : "110 min en zona suave (resistencia fácil) + 50 min de ritmo sostenido en posición de contrarreloj (RPE 6-7) + 20 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 3 bidones + 75 g de carbohidratos/h. Distancia ~80-95 km.",
                 "fr" : "110 min en zone facile (endurance facile) + 50 min de tempo soutenu en position contre-la-montre (RPE 6-7) + 20 min en zone facile (endurance facile) de retour au calme. Hydratation 3 bidons + 75 g de glucides/h. Distance ~80-95 km."
               },
               "required_equipment" : [
@@ -9719,15 +9719,15 @@
             }
           ],
           "name" : {
-            "en" : "Long bike (easy zone) + sweet spot block",
-            "es" : "Bici larga (zona suave) + bloque de sweet spot",
+            "en" : "Long bike (easy zone) + sustained tempo effort block",
+            "es" : "Bici larga (zona suave) + bloque de ritmo sostenido",
             "fr" : "Vélo long (zone facile) + bloc tempo soutenu"
           },
           "type" : "endurance",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -9794,9 +9794,9 @@
         }
       ],
       "theme" : {
-        "en" : "Build 2 — Volume maintenance + race-pace brick 135+40",
+        "en" : "Build 2 — Volume maintenance + race-pace bike-to-run combo 135+40",
         "es" : "Desarrollo 2 — Mantenimiento del volumen + ladrillo 135+40 a ritmo de competición",
-        "fr" : "Développement 2 — Maintien du volume + brick 135+40 à allure de course"
+        "fr" : "Développement 2 — Maintien du volume + enchaîné vélo-course 135+40 à allure de course"
       },
       "week_number" : 14
     },
@@ -9921,14 +9921,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Sweet spot 3 × 8 min flat road",
-                  "es" : "Sweet spot 3 × 8 min en ruta llana",
+                  "en" : "Sustained tempo effort 3 × 8 min flat road",
+                  "es" : "Ritmo sostenido 3 × 8 min en ruta llana",
                   "fr" : "Tempo soutenu 3 × 8 min sur route plate"
                 },
                 {
                   "en" : "Tempo tempo 3 × 10 min RPE 6",
-                  "es" : "Tempo zona tempo (tempo) 3 × 10 min RPE 6",
-                  "fr" : "Tempo zone tempo (tempo) 3 × 10 min RPE 6"
+                  "es" : "Tempo zona tempo 3 × 10 min RPE 6",
+                  "fr" : "Tempo zone tempo 3 × 10 min RPE 6"
                 }
               ],
               "duration" : "8 min @tempo soutenu 88-92% FTP + 4 min très facile récup",
@@ -9940,8 +9940,8 @@
               ],
               "match_key" : "Sweet spot 3 × 8 min position TT",
               "name" : {
-                "en" : "Sweet spot 3 × 8 min TT position",
-                "es" : "Sweet spot 3 × 8 min en posición de contrarreloj",
+                "en" : "Sustained tempo effort 3 × 8 min TT position",
+                "es" : "Ritmo sostenido 3 × 8 min en posición de contrarreloj",
                 "fr" : "Tempo soutenu 3 × 8 min en position contre-la-montre"
               },
               "notes" : {
@@ -10000,15 +10000,15 @@
             }
           ],
           "name" : {
-            "en" : "Bike — short sweet spot + endurance",
-            "es" : "Bici — sweet spot corto + resistencia",
+            "en" : "Bike — short sustained tempo effort + endurance",
+            "es" : "Bici — ritmo sostenido corto + resistencia",
             "fr" : "Vélo — tempo soutenu court + endurance"
           },
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -10204,15 +10204,15 @@
             }
           ],
           "name" : {
-            "en" : "Short deload brick — easy bike + easy run",
-            "es" : "Ladrillo (brick) corto de descarga — bici suave + carrera suave",
-            "fr" : "Brick court de décharge — vélo facile + course facile"
+            "en" : "Short deload bike-to-run combo — easy bike + easy run",
+            "es" : "Ladrillo (encadenado bici-carrera) corto de descarga — bici suave + carrera suave",
+            "fr" : "Enchaîné vélo-course court de décharge — vélo facile + course facile"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -10383,7 +10383,7 @@
                 {
                   "en" : "Dead bug 12/side + bird-dog 10/side",
                   "es" : "Dead bug 12/lado + bird-dog 10/lado",
-                  "fr" : "Dead bug 12/côté + bird-dog 10/côté"
+                  "fr" : "Gainage croisé au sol 12/côté + pointeur 10/côté"
                 }
               ],
               "duration" : "60 sec ventrale + 40 sec/côté",
@@ -10456,13 +10456,13 @@
               ],
               "match_key" : "Long ride Z2 réduit avec bloc sweet spot court",
               "name" : {
-                "en" : "Reduced long ride (easy zone) with a short sweet spot block",
-                "es" : "Salida larga (zona suave) reducida con bloque de sweet spot corto",
+                "en" : "Reduced long ride (easy zone) with a short sustained tempo effort block",
+                "es" : "Salida larga (zona suave) reducida con bloque de ritmo sostenido corto",
                 "fr" : "Sortie longue (zone facile) réduite avec bloc tempo soutenu court"
               },
               "notes" : {
-                "en" : "Volume -25% vs W14, 95 min easy endurance + 20 min sweet spot in TT position (RPE 6-7) + 5 min easy endurance. Hydration 2 bottles + 60 g carbs/h. Distance ~55-65 km.",
-                "es" : "Volumen -25 % vs S14, 95 min en zona suave (resistencia fácil) + 20 min de sweet spot en posición de contrarreloj (RPE 6-7) + 5 min en zona suave (resistencia fácil). Hidratación 2 bidones + 60 g de carbohidratos/h. Distancia ~55-65 km.",
+                "en" : "Volume -25% vs W14, 95 min easy endurance + 20 min sustained tempo effort in TT position (RPE 6-7) + 5 min easy endurance. Hydration 2 bottles + 60 g carbs/h. Distance ~55-65 km.",
+                "es" : "Volumen -25 % vs S14, 95 min en zona suave (resistencia fácil) + 20 min de ritmo sostenido en posición de contrarreloj (RPE 6-7) + 5 min en zona suave (resistencia fácil). Hidratación 2 bidones + 60 g de carbohidratos/h. Distancia ~55-65 km.",
                 "fr" : "Volume -25 % vs S14, 95 min en zone facile (endurance facile) + 20 min de tempo soutenu en position contre-la-montre (RPE 6-7) + 5 min en zone facile (endurance facile). Hydratation 2 bidons + 60 g de glucides/h. Distance ~55-65 km."
               },
               "required_equipment" : [
@@ -10489,7 +10489,7 @@
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -10564,9 +10564,9 @@
     },
     {
       "goal" : {
-        "en" : "Specific load resumption, race-pace brick 135+40, long ride approaching the peak. Pure effort total volume: ~13h00.",
+        "en" : "Specific load resumption, race-pace bike-to-run combo 135+40, long ride approaching the peak. Pure effort total volume: ~13h00.",
         "es" : "Reanudación de la carga específica, ladrillo 135+40 a ritmo de competición, la salida larga se acerca al pico. Volumen total de esfuerzo puro: ~13h00.",
-        "fr" : "Reprise de la charge spécifique, brick 135+40 à allure de course, la sortie longue approche du pic. Volume cumul effort pur : ~13h00."
+        "fr" : "Reprise de la charge spécifique, enchaîné vélo-course 135+40 à allure de course, la sortie longue approche du pic. Volume cumul effort pur : ~13h00."
       },
       "sessions" : [
         {
@@ -10813,8 +10813,8 @@
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 4 × 1 min @100+ rpm + 5 min easy endurance + 2 × 1 min tempo with 1 min recovery.",
-            "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min en zona suave (resistencia fácil) + 2 × 1 min en zona tempo (tempo) con 1 min de recuperación.",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min en zone facile (endurance facile) + 2 × 1 min en zone tempo (tempo) récup 1 min."
+            "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 4 × 1 min a cadencia 100+ rpm + 5 min en zona suave (resistencia fácil) + 2 × 1 min en zona tempo con 1 min de recuperación.",
+            "fr" : "10 min en zone très facile cadence libre + 4 × 1 min à cadence 100+ tr/min + 5 min en zone facile (endurance facile) + 2 × 1 min en zone tempo récup 1 min."
           }
         },
         {
@@ -10947,13 +10947,13 @@
               ],
               "match_key" : "Bike Z2 + bloc race-pace pré-brick 135 min",
               "name" : {
-                "en" : "Easy bike + race-pace block pre-brick 135 min",
+                "en" : "Easy bike + race-pace block pre-bike-to-run combo 135 min",
                 "es" : "Bici suave + bloque a ritmo de competición pre-ladrillo 135 min",
-                "fr" : "Vélo facile + bloc à allure de course avant le brick 135 min"
+                "fr" : "Vélo facile + bloc à allure de course avant le enchaîné vélo-course 135 min"
               },
               "notes" : {
-                "en" : "75 min easy endurance + 45 min sweet spot in TT position (race-pace, RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. T1/T2 timing < 1 min 30. Test race-day nutrition.",
-                "es" : "75 min en zona suave (resistencia fácil) + 45 min de sweet spot en posición de contrarreloj (ritmo de competición, RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. T1/T2 crono < 1 min 30. Prueba la nutrición del día de competición.",
+                "en" : "75 min easy endurance + 45 min sustained tempo effort in TT position (race-pace, RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. T1/T2 timing < 1 min 30. Test race-day nutrition.",
+                "es" : "75 min en zona suave (resistencia fácil) + 45 min de ritmo sostenido en posición de contrarreloj (ritmo de competición, RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. T1/T2 crono < 1 min 30. Prueba la nutrición del día de competición.",
                 "fr" : "75 min en zone facile (endurance facile) + 45 min de tempo soutenu en position contre-la-montre (allure de course, RPE 6-7) + 15 min en zone facile (endurance facile) dont les 5 dernières à cadence 95-100 tr/min. T1/T2 chrono < 1 min 30. Tester la nutrition du jour J."
               },
               "required_equipment" : [
@@ -11012,15 +11012,15 @@
             }
           ],
           "name" : {
-            "en" : "Long race-pace brick — bike 135 + marathon pace (steady) run 40",
-            "es" : "Ladrillo (brick) largo a ritmo de competición — bici 135 + carrera a ritmo de competición 40",
-            "fr" : "Brick long à allure de course — vélo 135 + course à allure de course 40"
+            "en" : "Long race-pace bike-to-run combo — bike 135 + marathon pace (steady) run 40",
+            "es" : "Ladrillo (encadenado bici-carrera) largo a ritmo de competición — bici 135 + carrera a ritmo de competición 40",
+            "fr" : "Enchaîné vélo-course long à allure de course — vélo 135 + course à allure de course 40"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -11119,13 +11119,13 @@
               ],
               "match_key" : "Long ride Z2 + bloc sweet spot 60 min position TT",
               "name" : {
-                "en" : "Long ride (easy zone) + 60 min sweet spot block TT position",
-                "es" : "Salida larga (zona suave) + bloque de sweet spot 60 min posición de contrarreloj",
+                "en" : "Long ride (easy zone) + 60 min sustained tempo effort block TT position",
+                "es" : "Salida larga (zona suave) + bloque de ritmo sostenido 60 min posición de contrarreloj",
                 "fr" : "Sortie longue (zone facile) + bloc tempo soutenu 60 min position contre-la-montre"
               },
               "notes" : {
-                "en" : "115 min easy endurance + 60 min sweet spot in TT position (RPE 6-7) + 20 min easy endurance cooldown. Hydration 3-4 bottles + 75-90 g carbs/h. Distance ~90-105 km.",
-                "es" : "115 min en zona suave (resistencia fácil) + 60 min de sweet spot en posición de contrarreloj (RPE 6-7) + 20 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 3-4 bidones + 75-90 g de carbohidratos/h. Distancia ~90-105 km.",
+                "en" : "115 min easy endurance + 60 min sustained tempo effort in TT position (RPE 6-7) + 20 min easy endurance cooldown. Hydration 3-4 bottles + 75-90 g carbs/h. Distance ~90-105 km.",
+                "es" : "115 min en zona suave (resistencia fácil) + 60 min de ritmo sostenido en posición de contrarreloj (RPE 6-7) + 20 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 3-4 bidones + 75-90 g de carbohidratos/h. Distancia ~90-105 km.",
                 "fr" : "115 min en zone facile (endurance facile) + 60 min de tempo soutenu en position contre-la-montre (RPE 6-7) + 20 min en zone facile (endurance facile) de retour au calme. Hydratation 3-4 bidons + 75-90 g de glucides/h. Distance ~90-105 km."
               },
               "required_equipment" : [
@@ -11144,15 +11144,15 @@
             }
           ],
           "name" : {
-            "en" : "Long bike (easy zone) + sweet spot block",
-            "es" : "Bici larga (zona suave) + bloque de sweet spot",
+            "en" : "Long bike (easy zone) + sustained tempo effort block",
+            "es" : "Bici larga (zona suave) + bloque de ritmo sostenido",
             "fr" : "Vélo long (zone facile) + bloc tempo soutenu"
           },
           "type" : "endurance",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -11219,17 +11219,17 @@
         }
       ],
       "theme" : {
-        "en" : "Build 2 — Post-deload resumption + race-pace brick",
+        "en" : "Build 2 — Post-deload resumption + race-pace bike-to-run combo",
         "es" : "Desarrollo 2 — Reanudación tras descarga + ladrillo a ritmo de competición",
-        "fr" : "Développement 2 — Reprise après décharge + brick à allure de course"
+        "fr" : "Développement 2 — Reprise après décharge + enchaîné vélo-course à allure de course"
       },
       "week_number" : 16
     },
     {
       "goal" : {
-        "en" : "Absolute peak 4h30 or 130 km long ride, full triathlon simulation, swim→bike brick intro to train T1. Pure effort total volume: ~13h30.",
+        "en" : "Absolute peak 4h30 or 130 km long ride, full triathlon simulation, swim→bike bike-to-run combo intro to train T1. Pure effort total volume: ~13h30.",
         "es" : "Salida larga en bici pico absoluto 4h30 o 130 km, simulación de triatlón completa, intro de ladrillo natación→bici para entrenar la T1. Volumen total de esfuerzo puro: ~13h30.",
-        "fr" : "Sortie longue vélo pic absolu 4h30 ou 130 km, simulation triathlon complète, intro brick natation→vélo pour entraîner la T1. Volume cumul effort pur : ~13h30."
+        "fr" : "Sortie longue vélo pic absolu 4h30 ou 130 km, simulation triathlon complète, intro enchaîné vélo-course natation→vélo pour entraîner la T1. Volume cumul effort pur : ~13h30."
       },
       "sessions" : [
         {
@@ -11472,9 +11472,9 @@
             }
           ],
           "name" : {
-            "en" : "Swim→bike brick (T1 training) — 1500 m swim + 60 min easy bike",
-            "es" : "Ladrillo (brick) natación→bici (entrenamiento T1) — 1500 m natación + 60 min bici suave",
-            "fr" : "Brick natation→vélo (entraînement T1) — 1500 m natation + 60 min vélo facile"
+            "en" : "Swim→bike bike-to-run combo (T1 training) — 1500 m swim + 60 min easy bike",
+            "es" : "Ladrillo (encadenado bici-carrera) natación→bici (entrenamiento T1) — 1500 m natación + 60 min bici suave",
+            "fr" : "Enchaîné vélo-course natation→vélo (entraînement T1) — 1500 m natation + 60 min vélo facile"
           },
           "type" : "mixed",
           "warmup" : {
@@ -11661,8 +11661,8 @@
                 "fr" : "Vélo route position contre-la-montre à allure de course 105 min"
               },
               "notes" : {
-                "en" : "15 min easy endurance + 75 min sweet spot in TT position (70.3 race-pace, RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. Test race-day nutrition: 75-90 g carbs/h + salted hydration. T2 timing < 1 min 30.",
-                "es" : "15 min en zona suave (resistencia fácil) + 75 min de sweet spot en posición de contrarreloj (ritmo de competición 70.3, RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. Prueba la nutrición del día de competición: 75-90 g de carbohidratos/h + hidratación salada. T2 crono < 1 min 30.",
+                "en" : "15 min easy endurance + 75 min sustained tempo effort in TT position (70.3 race-pace, RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. Test race-day nutrition: 75-90 g carbs/h + salted hydration. T2 timing < 1 min 30.",
+                "es" : "15 min en zona suave (resistencia fácil) + 75 min de ritmo sostenido en posición de contrarreloj (ritmo de competición 70.3, RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. Prueba la nutrición del día de competición: 75-90 g de carbohidratos/h + hidratación salada. T2 crono < 1 min 30.",
                 "fr" : "15 min en zone facile (endurance facile) + 75 min de tempo soutenu en position contre-la-montre (allure de course 70.3, RPE 6-7) + 15 min en zone facile (endurance facile) dont les 5 dernières à cadence 95-100 tr/min. Tester la nutrition du jour J : 75-90 g de glucides/h + hydratation salée. T2 chrono < 1 min 30."
               },
               "required_equipment" : [
@@ -11826,13 +11826,13 @@
               ],
               "match_key" : "Long ride PIC 4h30 Z2 + bloc sweet spot 75 min position TT",
               "name" : {
-                "en" : "PEAK 4h30 long ride easy endurance + 75 min sweet spot block TT position",
-                "es" : "Salida larga PICO 4h30 (zona suave) + bloque de sweet spot 75 min posición de contrarreloj",
+                "en" : "PEAK 4h30 long ride easy endurance + 75 min sustained tempo effort block TT position",
+                "es" : "Salida larga PICO 4h30 (zona suave) + bloque de ritmo sostenido 75 min posición de contrarreloj",
                 "fr" : "Sortie longue PIC 4h30 (zone facile) + bloc tempo soutenu 75 min position contre-la-montre"
               },
               "notes" : {
-                "en" : "Absolute PEAK 4h30 long ride. 160 min easy endurance + 75 min sweet spot in TT position (RPE 6-7) + 35 min easy endurance cooldown. Hydration 4-5 bottles + 75-90 g carbs/h (race-day nutrition test). Distance ~110-130 km. Logistics prep: refueling, emergency contacts, weather.",
-                "es" : "SALIDA LARGA PICO absoluta 4h30. 160 min en zona suave (resistencia fácil) + 75 min de sweet spot en posición de contrarreloj (RPE 6-7) + 35 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 4-5 bidones + 75-90 g de carbohidratos/h (prueba de la nutrición del día de competición). Distancia ~110-130 km. Preparación logística: avituallamiento, contactos de emergencia, meteorología.",
+                "en" : "Absolute PEAK 4h30 long ride. 160 min easy endurance + 75 min sustained tempo effort in TT position (RPE 6-7) + 35 min easy endurance cooldown. Hydration 4-5 bottles + 75-90 g carbs/h (race-day nutrition test). Distance ~110-130 km. Logistics prep: refueling, emergency contacts, weather.",
+                "es" : "SALIDA LARGA PICO absoluta 4h30. 160 min en zona suave (resistencia fácil) + 75 min de ritmo sostenido en posición de contrarreloj (RPE 6-7) + 35 min en zona suave (resistencia fácil) de vuelta a la calma. Hidratación 4-5 bidones + 75-90 g de carbohidratos/h (prueba de la nutrición del día de competición). Distancia ~110-130 km. Preparación logística: avituallamiento, contactos de emergencia, meteorología.",
                 "fr" : "SORTIE LONGUE PIC absolue 4h30. 160 min en zone facile (endurance facile) + 75 min de tempo soutenu en position contre-la-montre (RPE 6-7) + 35 min en zone facile (endurance facile) de retour au calme. Hydratation 4-5 bidons + 75-90 g de glucides/h (test de la nutrition du jour J). Distance ~110-130 km. Préparation logistique : ravitaillement, contacts d'urgence, météo."
               },
               "required_equipment" : [
@@ -11851,15 +11851,15 @@
             }
           ],
           "name" : {
-            "en" : "PEAK long bike 4h30 — easy endurance + sweet spot block",
-            "es" : "Bici larga PICO 4h30 — zona suave + bloque de sweet spot",
+            "en" : "PEAK long bike 4h30 — easy endurance + sustained tempo effort block",
+            "es" : "Bici larga PICO 4h30 — zona suave + bloque de ritmo sostenido",
             "fr" : "Vélo long PIC 4h30 — zone facile + bloc tempo soutenu"
           },
           "type" : "endurance",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -11926,9 +11926,9 @@
         }
       ],
       "theme" : {
-        "en" : "Build 2 — PEAK 4h30 long ride + W17 triathlon simulation + swim→bike brick intro",
+        "en" : "Build 2 — PEAK 4h30 long ride + W17 triathlon simulation + swim→bike bike-to-run combo intro",
         "es" : "Desarrollo 2 — Salida larga en bici PICO 4h30 + simulación de triatlón S17 + intro de ladrillo natación→bici",
-        "fr" : "Développement 2 — Sortie longue vélo PIC 4h30 + simulation triathlon S17 + intro brick natation→vélo"
+        "fr" : "Développement 2 — Sortie longue vélo PIC 4h30 + simulation triathlon S17 + intro enchaîné vélo-course natation→vélo"
       },
       "week_number" : 17
     },
@@ -12095,13 +12095,13 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Sweet spot flat road 60 min",
-                  "es" : "Sweet spot en ruta llana 60 min",
+                  "en" : "Sustained tempo effort flat road 60 min",
+                  "es" : "Ritmo sostenido en ruta llana 60 min",
                   "fr" : "Tempo soutenu sur route plate 60 min"
                 },
                 {
-                  "en" : "Sweet spot 4 × 15 min, 5 min rest",
-                  "es" : "Sweet spot 4 × 15 min, 5 min de descanso",
+                  "en" : "Sustained tempo effort 4 × 15 min, 5 min rest",
+                  "es" : "Ritmo sostenido 4 × 15 min, 5 min de descanso",
                   "fr" : "Tempo soutenu 4 × 15 min récup 5 min"
                 }
               ],
@@ -12114,8 +12114,8 @@
               ],
               "match_key" : "Sweet spot bloc continu 60 min position TT race-pace",
               "name" : {
-                "en" : "Continuous sweet spot block 60 min TT position race-pace",
-                "es" : "Bloque de sweet spot continuo 60 min posición de contrarreloj a ritmo de competición",
+                "en" : "Continuous sustained tempo effort block 60 min TT position race-pace",
+                "es" : "Bloque de ritmo sostenido continuo 60 min posición de contrarreloj a ritmo de competición",
                 "fr" : "Bloc tempo soutenu continu 60 min position contre-la-montre à allure de course"
               },
               "notes" : {
@@ -12175,15 +12175,15 @@
             }
           ],
           "name" : {
-            "en" : "Race-pace dialed bike + continuous sweet spot",
-            "es" : "Bici a ritmo de competición ajustado + sweet spot continuo",
+            "en" : "Race-pace dialed bike + continuous sustained tempo effort",
+            "es" : "Bici a ritmo de competición ajustado + ritmo sostenido continuo",
             "fr" : "Vélo à allure de course réglée + tempo soutenu continu"
           },
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -12321,8 +12321,8 @@
                 "fr" : "Vélo à allure de course 105 min en position contre-la-montre"
               },
               "notes" : {
-                "en" : "15 min easy endurance + 75 min race-pace sweet spot in TT position (RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. Test full race-day nutrition. T1/T2 timing < 1 min 30.",
-                "es" : "15 min en zona suave (resistencia fácil) + 75 min de sweet spot en posición de contrarreloj a ritmo de competición (RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. Prueba toda la nutrición del día de competición. T1/T2 crono < 1 min 30.",
+                "en" : "15 min easy endurance + 75 min race-pace sustained tempo effort in TT position (RPE 6-7) + 15 min easy endurance with the final 5 at 95-100 rpm. Test full race-day nutrition. T1/T2 timing < 1 min 30.",
+                "es" : "15 min en zona suave (resistencia fácil) + 75 min de ritmo sostenido en posición de contrarreloj a ritmo de competición (RPE 6-7) + 15 min en zona suave (resistencia fácil) con los últimos 5 a cadencia 95-100 rpm. Prueba toda la nutrición del día de competición. T1/T2 crono < 1 min 30.",
                 "fr" : "15 min en zone facile (endurance facile) + 75 min de tempo soutenu en position contre-la-montre à allure de course (RPE 6-7) + 15 min en zone facile (endurance facile) dont les 5 dernières à cadence 95-100 tr/min. Tester l'intégralité de la nutrition du jour J. T1/T2 chrono < 1 min 30."
               },
               "required_equipment" : [
@@ -12381,15 +12381,15 @@
             }
           ],
           "name" : {
-            "en" : "Short race-pace brick — bike 105 + marathon pace (steady) run 30",
-            "es" : "Ladrillo (brick) corto a ritmo de competición — bici 105 + carrera a ritmo de competición 30",
-            "fr" : "Brick court à allure de course — vélo 105 + course à allure de course 30"
+            "en" : "Short race-pace bike-to-run combo — bike 105 + marathon pace (steady) run 30",
+            "es" : "Ladrillo (encadenado bici-carrera) corto a ritmo de competición — bici 105 + carrera a ritmo de competición 30",
+            "fr" : "Enchaîné vélo-course court à allure de course — vélo 105 + course à allure de course 30"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -12466,9 +12466,9 @@
               ],
               "match_key" : "Bike easy FTP-Z2 post-T1 swim→bike brick",
               "name" : {
-                "en" : "Easy easy endurance bike post-T1 swim→bike brick",
+                "en" : "Easy easy endurance bike post-T1 swim→bike bike-to-run combo",
                 "es" : "Bici suave (zona suave) tras la T1, ladrillo natación→bici",
-                "fr" : "Vélo facile (zone facile) après la T1, brick natation→vélo"
+                "fr" : "Vélo facile (zone facile) après la T1, enchaîné vélo-course natation→vélo"
               },
               "notes" : {
                 "en" : "Easy easy endurance bike post-T1 (~65-75% HRmax, RPE 3-4). Water→bike cardiac adaptation mastered. TT position 30 min then road 15 min.",
@@ -12489,9 +12489,9 @@
             }
           ],
           "name" : {
-            "en" : "Swim — long easy + swim→bike T1 brick",
+            "en" : "Swim — long easy + swim→bike T1 bike-to-run combo",
             "es" : "Natación — largo suave + ladrillo natación→bici T1",
-            "fr" : "Natation — long facile + brick natation→vélo T1"
+            "fr" : "Natation — long facile + enchaîné vélo-course natation→vélo T1"
           },
           "type" : "mixed",
           "warmup" : {
@@ -12532,13 +12532,13 @@
               ],
               "match_key" : "Long ride Z2 + bloc sweet spot 30 min position TT",
               "name" : {
-                "en" : "Long ride (easy zone) + 30 min sweet spot block TT position",
-                "es" : "Salida larga (zona suave) + bloque de sweet spot 30 min posición de contrarreloj",
+                "en" : "Long ride (easy zone) + 30 min sustained tempo effort block TT position",
+                "es" : "Salida larga (zona suave) + bloque de ritmo sostenido 30 min posición de contrarreloj",
                 "fr" : "Sortie longue (zone facile) + bloc tempo soutenu 30 min position contre-la-montre"
               },
               "notes" : {
-                "en" : "D-21 long ride reduced -20% vs W17 peak. 105 min easy endurance + 30 min sweet spot in TT position (RPE 6-7) + 15 min easy endurance. Hydration 3 bottles + 75 g carbs/h. Distance ~65-80 km.",
-                "es" : "Salida larga D-21 reducida -20 % vs pico S17. 105 min en zona suave (resistencia fácil) + 30 min de sweet spot en posición de contrarreloj (RPE 6-7) + 15 min en zona suave (resistencia fácil). Hidratación 3 bidones + 75 g de carbohidratos/h. Distancia ~65-80 km.",
+                "en" : "D-21 long ride reduced -20% vs W17 peak. 105 min easy endurance + 30 min sustained tempo effort in TT position (RPE 6-7) + 15 min easy endurance. Hydration 3 bottles + 75 g carbs/h. Distance ~65-80 km.",
+                "es" : "Salida larga D-21 reducida -20 % vs pico S17. 105 min en zona suave (resistencia fácil) + 30 min de ritmo sostenido en posición de contrarreloj (RPE 6-7) + 15 min en zona suave (resistencia fácil). Hidratación 3 bidones + 75 g de carbohidratos/h. Distancia ~65-80 km.",
                 "fr" : "Sortie longue J-21 réduite -20 % vs pic S17. 105 min en zone facile (endurance facile) + 30 min de tempo soutenu en position contre-la-montre (RPE 6-7) + 15 min en zone facile (endurance facile). Hydratation 3 bidons + 75 g de glucides/h. Distance ~65-80 km."
               },
               "required_equipment" : [
@@ -12565,7 +12565,7 @@
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -12759,14 +12759,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Sweet spot 2 × 8 min flat road",
-                  "es" : "Sweet spot 2 × 8 min en ruta llana",
+                  "en" : "Sustained tempo effort 2 × 8 min flat road",
+                  "es" : "Ritmo sostenido 2 × 8 min en ruta llana",
                   "fr" : "Tempo soutenu 2 × 8 min sur route plate"
                 },
                 {
                   "en" : "Tempo tempo 2 × 10 min RPE 6",
-                  "es" : "Tempo zona tempo (tempo) 2 × 10 min RPE 6",
-                  "fr" : "Tempo zone tempo (tempo) 2 × 10 min RPE 6"
+                  "es" : "Tempo zona tempo 2 × 10 min RPE 6",
+                  "fr" : "Tempo zone tempo 2 × 10 min RPE 6"
                 }
               ],
               "duration" : "8 min @tempo soutenu 88-92% FTP + 5 min très facile récup",
@@ -12778,8 +12778,8 @@
               ],
               "match_key" : "Sweet spot 2 × 8 min position TT",
               "name" : {
-                "en" : "Sweet spot 2 × 8 min TT position",
-                "es" : "Sweet spot 2 × 8 min en posición de contrarreloj",
+                "en" : "Sustained tempo effort 2 × 8 min TT position",
+                "es" : "Ritmo sostenido 2 × 8 min en posición de contrarreloj",
                 "fr" : "Tempo soutenu 2 × 8 min en position contre-la-montre"
               },
               "notes" : {
@@ -12838,15 +12838,15 @@
             }
           ],
           "name" : {
-            "en" : "Bike — short sweet spot (taper) + endurance",
-            "es" : "Bici — sweet spot corto (afinamiento) + resistencia",
+            "en" : "Bike — short sustained tempo effort (taper) + endurance",
+            "es" : "Bici — ritmo sostenido corto (afinamiento) + resistencia",
             "fr" : "Vélo — tempo soutenu court (affûtage) + endurance"
           },
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -12983,9 +12983,9 @@
                 "fr" : "Vélo endurance facile court (affûtage J-3, réveil neuromusculaire)"
               },
               "notes" : {
-                "en" : "Volume -50% vs W17 brick, easy endurance (~65-75% HRmax, RPE 3-4). Cadence 85-95 rpm. Final timed T1/T2. Final cadence 95-100 rpm for 5 min.",
+                "en" : "Volume -50% vs W17 bike-to-run combo, easy endurance (~65-75% HRmax, RPE 3-4). Cadence 85-95 rpm. Final timed T1/T2. Final cadence 95-100 rpm for 5 min.",
                 "es" : "Volumen -50 % vs ladrillo S17, zona suave (resistencia fácil) (~65-75 % de FCmax, RPE 3-4). Cadencia 85-95 rpm. T1/T2 final cronometrada. Cadencia final 95-100 rpm durante 5 min.",
-                "fr" : "Volume -50 % vs brick S17, zone facile (endurance facile) (~65-75 % FCmax, RPE 3-4). Cadence 85-95 tr/min. T1/T2 finale chronométrée. Cadence finale 95-100 tr/min sur 5 min."
+                "fr" : "Volume -50 % vs enchaîné vélo-course S17, zone facile (endurance facile) (~65-75 % FCmax, RPE 3-4). Cadence 85-95 tr/min. T1/T2 finale chronométrée. Cadence finale 95-100 tr/min sur 5 min."
               },
               "required_equipment" : [
                 "tt-bike",
@@ -13043,15 +13043,15 @@
             }
           ],
           "name" : {
-            "en" : "Short taper brick D-3 — easy bike + easy run",
-            "es" : "Ladrillo (brick) corto de afinamiento D-3 — bici suave + carrera suave",
-            "fr" : "Brick court d'affûtage J-3 — vélo facile + course facile"
+            "en" : "Short taper bike-to-run combo D-3 — easy bike + easy run",
+            "es" : "Ladrillo (encadenado bici-carrera) corto de afinamiento D-3 — bici suave + carrera suave",
+            "fr" : "Enchaîné vélo-course court d'affûtage J-3 — vélo facile + course facile"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -13085,7 +13085,7 @@
               "name" : {
                 "en" : "Catch + forearm sculling drill",
                 "es" : "Ejercicio de agarre + remada con antebrazos (sculling)",
-                "fr" : "Éducatif appui + godille des avant-bras (sculling)"
+                "fr" : "Éducatif appui + godille des avant-bras (godille)"
               },
               "notes" : {
                 "en" : "Pure-technique taper focus, RPE 5. Keep the feel for the water.",
@@ -13258,7 +13258,7 @@
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -13369,9 +13369,9 @@
     },
     {
       "goal" : {
-        "en" : "Race-week culmination: D-3 to D-1 very short sessions + dry transition simulations, D7 = Half-Ironman 70.3 race (1.9 km swim + 90 km bike + 21.1 km run). Off-race pure effort total volume: ~4h30. 5-criteria readiness checklist on the D7 key session.\n\n5-CRITERIA READINESS CHECKLIST (to confirm on the D7 race or in the days that follow):\n• My W17 4h30 long ride with a 75 min sweet spot block held with no power drift > 5% (validated pre-race).\n• My W12 1h45 long run with a 30 min marathon pace (steady) block holds with no pace drift > 5 s/km (validated pre-race).\n• My W13 peak 150+45 race-pace brick was held with controlled sensations and a run-pace gap vs solo < 20 s/km (validated pre-race).\n• My race-day nutrition (75-90 g carbs/h, salted hydration 700-1000 mg/L) is tested in W13 + W17 + W18 race-pace simulations and tolerated — applicable on race day with no GI issue.\n• Multi-discipline self-assessment: I tell normal fatigue from discomfort signals (shoulder, Achilles tendon, outer knee, kneecap, shin) and signals of insufficient intake / persistent fatigue (sleep/resting HR/immunity); I know to stop or slow down if 2+ signals appear in the race or during taper.",
-        "es" : "Culminación de la semana de competición: de D-3 a D-1 sesiones muy cortas + simulaciones de transiciones en seco, D7 = competición Half-Ironman 70.3 (1,9 km natación + 90 km bici + 21,1 km carrera). Volumen total de esfuerzo puro sin competición: ~4h30. Checklist de autonomía de 5 criterios medibles en la sesión clave D7.\n\nCHECKLIST DE AUTONOMÍA — 5 CRITERIOS (a validar en la competición D7 o en los días siguientes):\n• Mi salida larga en bici 4h30 S17 con bloque de 75 min de sweet spot aguantó sin deriva de potencia > 5 % (validado antes de la competición).\n• Mi tirada larga 1h45 S12 con bloque de 30 min a ritmo de competición aguanta sin deriva de ritmo > 5 s/km (validado antes de la competición).\n• Mi ladrillo largo pico 150+45 a ritmo de competición S13 se aguantó con sensaciones controladas y una diferencia de ritmo de carrera vs solo < 20 s/km (validado antes de la competición).\n• Mi nutrición del día de competición (75-90 g de carbohidratos/h, hidratación salada 700-1000 mg/L) está probada en simulación a ritmo de competición S13 + S17 + S18 y tolerada — aplicable el día de competición sin problema digestivo.\n• Autoevaluación multidisciplina: distingo la fatiga normal de las señales de molestia (hombro, tendón de Aquiles, cara externa de la rodilla, rótula, tibia) y las señales de aportes insuficientes / fatiga persistente (sueño/FC de reposo/inmunidad); sé parar o reducir si aparecen 2 o más señales en competición o durante el afinamiento.",
-        "fr" : "Aboutissement de la semaine de course : de J-3 à J-1 séances très courtes + simulations de transitions à sec, J7 = course Half-Ironman 70.3 (1,9 km natation + 90 km vélo + 21,1 km course). Volume cumul effort pur hors course : ~4h30. Check-list d'autonomie 5 critères mesurables sur la séance phare J7.\n\nCHECK-LIST D'AUTONOMIE — 5 CRITÈRES (à valider sur la course J7 ou dans les jours qui suivent) :\n• Ma sortie longue vélo 4h30 S17 avec bloc 75 min sweet spot a tenu sans dérive de puissance > 5 % (validé avant la course).\n• Ma sortie longue course 1h45 S12 avec bloc 30 min à allure de course tient sans dérive d'allure > 5 s/km (validé avant la course).\n• Mon brick long pic 150+45 à allure de course S13 a été tenu avec des sensations contrôlées et un écart d'allure course vs solo < 20 s/km (validé avant la course).\n• Ma nutrition du jour J (75-90 g de glucides/h, hydratation salée 700-1000 mg/L) est testée en simulation à allure de course S13 + S17 + S18 et tolérée — applicable le jour J sans trouble digestif.\n• Auto-évaluation des signaux à surveiller multi-discipline : je distingue une fatigue normale des signaux de gêne (épaule, tendon d'Achille, face externe du genou, rotule, tibia) et des signaux d'apports insuffisants / fatigue persistante (sommeil/FC de repos/immunité), je sais arrêter ou ralentir si 2 signaux ou plus apparaissent en course ou pendant l'affûtage."
+        "en" : "Race-week culmination: D-3 to D-1 very short sessions + dry transition simulations, D7 = Half-Ironman 70.3 race (1.9 km swim + 90 km bike + 21.1 km run). Off-race pure effort total volume: ~4h30. 5-criteria readiness checklist on the D7 key session.\n\n5-CRITERIA READINESS CHECKLIST (to confirm on the D7 race or in the days that follow):\n• My W17 4h30 long ride with a 75 min sustained tempo effort block held with no power drift > 5% (validated pre-race).\n• My W12 1h45 long run with a 30 min marathon pace (steady) block holds with no pace drift > 5 s/km (validated pre-race).\n• My W13 peak 150+45 race-pace bike-to-run combo was held with controlled sensations and a run-pace gap vs solo < 20 s/km (validated pre-race).\n• My race-day nutrition (75-90 g carbs/h, salted hydration 700-1000 mg/L) is tested in W13 + W17 + W18 race-pace simulations and tolerated — applicable on race day with no GI issue.\n• Multi-discipline self-assessment: I tell normal fatigue from discomfort signals (shoulder, Achilles tendon, outer knee, kneecap, shin) and signals of insufficient intake / persistent fatigue (sleep/resting HR/immunity); I know to stop or slow down if 2+ signals appear in the race or during taper.",
+        "es" : "Culminación de la semana de competición: de D-3 a D-1 sesiones muy cortas + simulaciones de transiciones en seco, D7 = competición Half-Ironman 70.3 (1,9 km natación + 90 km bici + 21,1 km carrera). Volumen total de esfuerzo puro sin competición: ~4h30. Checklist de autonomía de 5 criterios medibles en la sesión clave D7.\n\nCHECKLIST DE AUTONOMÍA — 5 CRITERIOS (a validar en la competición D7 o en los días siguientes):\n• Mi salida larga en bici 4h30 S17 con bloque de 75 min de ritmo sostenido aguantó sin deriva de potencia > 5 % (validado antes de la competición).\n• Mi tirada larga 1h45 S12 con bloque de 30 min a ritmo de competición aguanta sin deriva de ritmo > 5 s/km (validado antes de la competición).\n• Mi ladrillo largo pico 150+45 a ritmo de competición S13 se aguantó con sensaciones controladas y una diferencia de ritmo de carrera vs solo < 20 s/km (validado antes de la competición).\n• Mi nutrición del día de competición (75-90 g de carbohidratos/h, hidratación salada 700-1000 mg/L) está probada en simulación a ritmo de competición S13 + S17 + S18 y tolerada — aplicable el día de competición sin problema digestivo.\n• Autoevaluación multidisciplina: distingo la fatiga normal de las señales de molestia (hombro, tendón de Aquiles, cara externa de la rodilla, rótula, tibia) y las señales de aportes insuficientes / fatiga persistente (sueño/FC de reposo/inmunidad); sé parar o reducir si aparecen 2 o más señales en competición o durante el afinamiento.",
+        "fr" : "Aboutissement de la semaine de course : de J-3 à J-1 séances très courtes + simulations de transitions à sec, J7 = course Half-Ironman 70.3 (1,9 km natation + 90 km vélo + 21,1 km course). Volume cumul effort pur hors course : ~4h30. Check-list d'autonomie 5 critères mesurables sur la séance phare J7.\n\nCHECK-LIST D'AUTONOMIE — 5 CRITÈRES (à valider sur la course J7 ou dans les jours qui suivent) :\n• Ma sortie longue vélo 4h30 S17 avec bloc 75 min tempo soutenu a tenu sans dérive de puissance > 5 % (validé avant la course).\n• Ma sortie longue course 1h45 S12 avec bloc 30 min à allure de course tient sans dérive d'allure > 5 s/km (validé avant la course).\n• Mon enchaîné vélo-course long pic 150+45 à allure de course S13 a été tenu avec des sensations contrôlées et un écart d'allure course vs solo < 20 s/km (validé avant la course).\n• Ma nutrition du jour J (75-90 g de glucides/h, hydratation salée 700-1000 mg/L) est testée en simulation à allure de course S13 + S17 + S18 et tolérée — applicable le jour J sans trouble digestif.\n• Auto-évaluation des signaux à surveiller multi-discipline : je distingue une fatigue normale des signaux de gêne (épaule, tendon d'Achille, face externe du genou, rotule, tibia) et des signaux d'apports insuffisants / fatigue persistante (sommeil/FC de repos/immunité), je sais arrêter ou ralentir si 2 signaux ou plus apparaissent en course ou pendant l'affûtage."
       },
       "sessions" : [
         {
@@ -13404,8 +13404,8 @@
               "match_key" : "Drill catch + sighting",
               "name" : {
                 "en" : "Catch + sighting drill",
-                "es" : "Ejercicio de agarre + orientación (sighting)",
-                "fr" : "Éducatif appui + repérage (sighting)"
+                "es" : "Ejercicio de agarre + orientación",
+                "fr" : "Éducatif appui + repérage"
               },
               "notes" : {
                 "en" : "Race-week technique focus. Sighting drill once every 25 m (race-day prep).",
@@ -13526,14 +13526,14 @@
             {
               "alternatives" : [
                 {
-                  "en" : "Sweet spot 2 × 4 min flat road",
-                  "es" : "Sweet spot 2 × 4 min en ruta llana",
+                  "en" : "Sustained tempo effort 2 × 4 min flat road",
+                  "es" : "Ritmo sostenido 2 × 4 min en ruta llana",
                   "fr" : "Tempo soutenu 2 × 4 min sur route plate"
                 },
                 {
                   "en" : "Tempo tempo 2 × 5 min RPE 6",
-                  "es" : "Tempo zona tempo (tempo) 2 × 5 min RPE 6",
-                  "fr" : "Tempo zone tempo (tempo) 2 × 5 min RPE 6"
+                  "es" : "Tempo zona tempo 2 × 5 min RPE 6",
+                  "fr" : "Tempo zone tempo 2 × 5 min RPE 6"
                 }
               ],
               "duration" : "4 min @tempo soutenu 88-92% FTP + 4 min très facile récup",
@@ -13545,8 +13545,8 @@
               ],
               "match_key" : "Sweet spot court 2 × 4 min position TT",
               "name" : {
-                "en" : "Short sweet spot 2 × 4 min TT position",
-                "es" : "Sweet spot corto 2 × 4 min en posición de contrarreloj",
+                "en" : "Short sustained tempo effort 2 × 4 min TT position",
+                "es" : "Ritmo sostenido corto 2 × 4 min en posición de contrarreloj",
                 "fr" : "Tempo soutenu court 2 × 4 min en position contre-la-montre"
               },
               "notes" : {
@@ -13605,15 +13605,15 @@
             }
           ],
           "name" : {
-            "en" : "Short easy bike D-5 + 2 × 4 min sweet spot activation",
-            "es" : "Bici suave corta D-5 + 2 × 4 min sweet spot (activación)",
+            "en" : "Short easy bike D-5 + 2 × 4 min sustained tempo effort activation",
+            "es" : "Bici suave corta D-5 + 2 × 4 min ritmo sostenido (activación)",
             "fr" : "Vélo facile court J-5 + 2 × 4 min tempo soutenu (activation)"
           },
           "type" : "interval",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -13697,9 +13697,9 @@
                 "fr" : "Course courte facile J-3 (réveil)"
               },
               "notes" : {
-                "en" : "Short D-3 race-week run, easy pace (RPE 4-5). Cadence 180+ steps/min. Keeps the brick feel without fatigue.",
+                "en" : "Short D-3 race-week run, easy pace (RPE 4-5). Cadence 180+ steps/min. Keeps the bike-to-run combo feel without fatigue.",
                 "es" : "Carrera corta D-3 (semana de competición), ritmo suave (RPE 4-5). Cadencia 180+ pasos/min. Mantiene la sensación de ladrillo sin fatiga.",
-                "fr" : "Course courte J-3 (semaine de course), allure facile (RPE 4-5). Cadence 180+ pas/min. Maintien de la sensation brick sans fatigue."
+                "fr" : "Course courte J-3 (semaine de course), allure facile (RPE 4-5). Cadence 180+ pas/min. Maintien de la sensation enchaîné vélo-course sans fatigue."
               },
               "required_equipment" : [
                 "running-shoes",
@@ -13712,15 +13712,15 @@
             }
           ],
           "name" : {
-            "en" : "Race-week brick D-3 — bike 30 + run 10 (neuromuscular wake-up)",
-            "es" : "Ladrillo (brick) semana de competición D-3 — bici 30 + carrera 10 (activación neuromuscular)",
-            "fr" : "Brick semaine de course J-3 — vélo 30 + course 10 (réveil neuromusculaire)"
+            "en" : "Race-week bike-to-run combo D-3 — bike 30 + run 10 (neuromuscular wake-up)",
+            "es" : "Ladrillo (encadenado bici-carrera) semana de competición D-3 — bici 30 + carrera 10 (activación neuromuscular)",
+            "fr" : "Enchaîné vélo-course semaine de course J-3 — vélo 30 + course 10 (réveil neuromusculaire)"
           },
           "type" : "mixed",
           "warmup" : {
             "en" : "10 min very easy free cadence + 5 min progressive easy endurance.",
             "es" : "10 min en zona muy suave (muy fácil) cadencia libre + 5 min progresivos en zona suave (resistencia fácil).",
-            "fr" : "10 min en zone très facile (très facile) cadence libre + 5 min progressif en zone facile (endurance facile)."
+            "fr" : "10 min en zone très facile cadence libre + 5 min progressif en zone facile (endurance facile)."
           }
         },
         {
@@ -14061,9 +14061,9 @@
                 "fr" : "Vélo de course 90 km en position contre-la-montre à allure de course 70.3"
               },
               "notes" : {
-                "en" : "90 km race bike in TT position, sweet spot 70.3 race-pace (88-92% FTP, RPE 6-7). Cadence 90-95 rpm. Pacing: first 30 min conservative easy endurance, progressive build into sweet spot. Hydration 1 bottle every 45 min + 75-90 g carbs/h (gels + drink). Final 5 min at 95-100 rpm for a smooth T2. T2 timed < 1 min 30: helmet OFF + running shoes ON + race belt + race cap/glasses. CRITERION 2 (to confirm): my average 90 km power is within 5% of my pre-race sweet spot target, with no power drift > 5% over the last 30 km.",
-                "es" : "Bici de competición 90 km en posición de contrarreloj, sweet spot a ritmo de competición 70.3 (88-92 % de FTP, RPE 6-7). Cadencia 90-95 rpm. Gestión del ritmo: primeros 30 min en zona suave (resistencia fácil) conservadora, subida progresiva al sweet spot. Hidratación 1 bidón cada 45 min + 75-90 g de carbohidratos/h (geles + bebida). Cadencia final 5 min a 95-100 rpm para una T2 fluida. T2 cronometrada < 1 min 30: casco fuera + zapatillas de correr puestas + cinturón portadorsal + gorra/gafas de competición. CRITERIO 2 (a validar): mi potencia media en 90 km está dentro de una ventana del 5 % de mi objetivo de sweet spot pre-competición, sin deriva de potencia > 5 % en los últimos 30 km.",
-                "fr" : "Vélo de course 90 km en position contre-la-montre, tempo soutenu à allure de course 70.3 (88-92 % FTP, RPE 6-7). Cadence 90-95 tr/min. Gestion d'allure : 30 premières min en zone facile (endurance facile) conservatrice, montée progressive en sweet spot. Hydratation 1 bidon toutes les 45 min + 75-90 g de glucides/h (gels + boisson). Cadence finale 5 min à 95-100 tr/min pour une T2 fluide. T2 chronométrée < 1 min 30 : casque enlevé + chaussures de course enfilées + ceinture porte-dossard + casquette/lunettes de course. CRITÈRE 2 (à valider) : ma puissance moyenne sur 90 km est dans une fenêtre de 5 % de ma cible sweet spot pré-course, sans dérive de puissance > 5 % sur les 30 derniers km."
+                "en" : "90 km race bike in TT position, sustained tempo effort 70.3 race-pace (88-92% FTP, RPE 6-7). Cadence 90-95 rpm. Pacing: first 30 min conservative easy endurance, progressive build into sustained tempo effort. Hydration 1 bottle every 45 min + 75-90 g carbs/h (gels + drink). Final 5 min at 95-100 rpm for a smooth T2. T2 timed < 1 min 30: helmet OFF + running shoes ON + race belt + race cap/glasses. CRITERION 2 (to confirm): my average 90 km power is within 5% of my pre-race sustained tempo effort target, with no power drift > 5% over the last 30 km.",
+                "es" : "Bici de competición 90 km en posición de contrarreloj, ritmo sostenido a ritmo de competición 70.3 (88-92 % de FTP, RPE 6-7). Cadencia 90-95 rpm. Gestión del ritmo: primeros 30 min en zona suave (resistencia fácil) conservadora, subida progresiva al ritmo sostenido. Hidratación 1 bidón cada 45 min + 75-90 g de carbohidratos/h (geles + bebida). Cadencia final 5 min a 95-100 rpm para una T2 fluida. T2 cronometrada < 1 min 30: casco fuera + zapatillas de correr puestas + cinturón portadorsal + gorra/gafas de competición. CRITERIO 2 (a validar): mi potencia media en 90 km está dentro de una ventana del 5 % de mi objetivo de ritmo sostenido pre-competición, sin deriva de potencia > 5 % en los últimos 30 km.",
+                "fr" : "Vélo de course 90 km en position contre-la-montre, tempo soutenu à allure de course 70.3 (88-92 % FTP, RPE 6-7). Cadence 90-95 tr/min. Gestion d'allure : 30 premières min en zone facile (endurance facile) conservatrice, montée progressive en tempo soutenu. Hydratation 1 bidon toutes les 45 min + 75-90 g de glucides/h (gels + boisson). Cadence finale 5 min à 95-100 tr/min pour une T2 fluide. T2 chronométrée < 1 min 30 : casque enlevé + chaussures de course enfilées + ceinture porte-dossard + casquette/lunettes de course. CRITÈRE 2 (à valider) : ma puissance moyenne sur 90 km est dans une fenêtre de 5 % de ma cible tempo soutenu pré-course, sans dérive de puissance > 5 % sur les 30 derniers km."
               },
               "required_equipment" : [
                 "tt-bike",
@@ -14108,8 +14108,8 @@
               },
               "notes" : {
                 "en" : "Half-marathon race run 21.1 km at marathon pace (steady) 70.3 race-pace (~75-83% HRmax, RPE 6-7). Pacing: first 5 km at easy pace (jelly legs 5-10 min, the pattern returns at 2-3 km), progressive build to marathon pace (steady). Hydration at every aid station + 60-75 g carbs/h (gels). Cadence 180+ steps/min. Positive mantra over km 15-21 (the hardest block). CRITERION 3 (to confirm): my average half-marathon pace is within 5% of my pre-race marathon pace (steady) target, with second half ≥ first half (negative or even split). CRITERION 4 (to confirm): my race-day nutrition (75-90 g carbs/h bike + 60-75 g carbs/h run + salted hydration) holds with no GI issue, hypoglycemia, or hyponatremia over the 6h race. CRITERION 5 (to confirm): multi-discipline self-assessment — I tell normal fatigue from discomfort signals (shoulder, Achilles tendon, outer knee, kneecap, shin) and signals of insufficient intake / persistent fatigue; I know to stop or slow down if 2+ signals appear in the race.",
-                "es" : "Carrera de competición media maratón 21,1 km a ritmo de competición (maratón) 70.3 (~75-83 % de FCmax, RPE 6-7). Gestión del ritmo: primeros 5 km a ritmo suave (piernas de gelatina 5-10 min, el patrón vuelve a los 2-3 km), subida progresiva a ritmo de competición. Hidratación en cada avituallamiento + 60-75 g de carbohidratos/h (geles). Cadencia 180+ pasos/min. Mantra positivo en los km 15-21 (el bloque más duro). CRITERIO 3 (a validar): mi ritmo medio de media maratón está dentro de una ventana del 5 % de mi objetivo de ritmo de competición pre-competición, con 2.ª mitad ≥ 1.ª mitad (negative split o splits iguales). CRITERIO 4 (a validar): mi nutrición del día de competición (75-90 g de carbohidratos/h en bici + 60-75 g de carbohidratos/h en carrera + hidratación salada) aguanta sin problema digestivo, ni hipoglucemia, ni hiponatremia en las 6 h de competición. CRITERIO 5 (a validar): autoevaluación multidisciplina — distingo la fatiga normal de las señales de molestia (hombro, tendón de Aquiles, cara externa de la rodilla, rótula, tibia) y las señales de aportes insuficientes / fatiga persistente; sé parar o reducir si aparecen 2 o más señales en competición.",
-                "fr" : "Course de course semi-marathon 21,1 km à allure de course (marathon) 70.3 (~75-83 % FCmax, RPE 6-7). Gestion d'allure : 5 premiers km à allure facile (jambes en coton 5-10 min, le patron revient à 2-3 km), montée progressive à allure de course. Hydratation à chaque ravitaillement + 60-75 g de glucides/h (gels). Cadence 180+ pas/min. Mantra positif sur les km 15-21 (le bloc le plus dur). CRITÈRE 3 (à valider) : mon allure moyenne du semi-marathon est dans une fenêtre de 5 % de ma cible d'allure de course pré-course, avec une 2e moitié ≥ 1re moitié (negative split ou splits égaux). CRITÈRE 4 (à valider) : ma nutrition du jour J (75-90 g de glucides/h à vélo + 60-75 g de glucides/h en course + hydratation salée) tient sans trouble digestif, ni hypoglycémie, ni hyponatrémie sur les 6 h de course. CRITÈRE 5 (à valider) : auto-évaluation des signaux à surveiller multi-discipline — je distingue une fatigue normale des signaux de gêne (épaule, tendon d'Achille, face externe du genou, rotule, tibia) et des signaux d'apports insuffisants / fatigue persistante, je sais arrêter ou ralentir si 2 signaux ou plus apparaissent en course."
+                "es" : "Carrera de competición media maratón 21,1 km a ritmo de competición (maratón) 70.3 (~75-83 % de FCmax, RPE 6-7). Gestión del ritmo: primeros 5 km a ritmo suave (piernas de gelatina 5-10 min, el patrón vuelve a los 2-3 km), subida progresiva a ritmo de competición. Hidratación en cada avituallamiento + 60-75 g de carbohidratos/h (geles). Cadencia 180+ pasos/min. Mantra positivo en los km 15-21 (el bloque más duro). CRITERIO 3 (a validar): mi ritmo medio de media maratón está dentro de una ventana del 5 % de mi objetivo de ritmo de competición pre-competición, con 2.ª mitad ≥ 1.ª mitad (segunda mitad más rápida o splits iguales). CRITERIO 4 (a validar): mi nutrición del día de competición (75-90 g de carbohidratos/h en bici + 60-75 g de carbohidratos/h en carrera + hidratación salada) aguanta sin problema digestivo, ni hipoglucemia, ni hiponatremia en las 6 h de competición. CRITERIO 5 (a validar): autoevaluación multidisciplina — distingo la fatiga normal de las señales de molestia (hombro, tendón de Aquiles, cara externa de la rodilla, rótula, tibia) y las señales de aportes insuficientes / fatiga persistente; sé parar o reducir si aparecen 2 o más señales en competición.",
+                "fr" : "Course de course semi-marathon 21,1 km à allure de course (marathon) 70.3 (~75-83 % FCmax, RPE 6-7). Gestion d'allure : 5 premiers km à allure facile (jambes en coton 5-10 min, le patron revient à 2-3 km), montée progressive à allure de course. Hydratation à chaque ravitaillement + 60-75 g de glucides/h (gels). Cadence 180+ pas/min. Mantra positif sur les km 15-21 (le bloc le plus dur). CRITÈRE 3 (à valider) : mon allure moyenne du semi-marathon est dans une fenêtre de 5 % de ma cible d'allure de course pré-course, avec une 2e moitié ≥ 1re moitié (2e moitié plus rapide ou splits égaux). CRITÈRE 4 (à valider) : ma nutrition du jour J (75-90 g de glucides/h à vélo + 60-75 g de glucides/h en course + hydratation salée) tient sans trouble digestif, ni hypoglycémie, ni hyponatrémie sur les 6 h de course. CRITÈRE 5 (à valider) : auto-évaluation des signaux à surveiller multi-discipline — je distingue une fatigue normale des signaux de gêne (épaule, tendon d'Achille, face externe du genou, rotule, tibia) et des signaux d'apports insuffisants / fatigue persistante, je sais arrêter ou ralentir si 2 signaux ou plus apparaissent en course."
               },
               "required_equipment" : [
                 "running-shoes",
