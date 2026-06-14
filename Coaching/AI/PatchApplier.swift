@@ -40,6 +40,7 @@ public enum PatchApplier {
                         reps: ex.reps,
                         duration: ex.duration,
                         restSeconds: ex.restSeconds,
+                        dose: ex.dose,
                         notes: ex.notes,
                         targetZone: ex.targetZone,
                         volumeAxis: ex.volumeAxis,

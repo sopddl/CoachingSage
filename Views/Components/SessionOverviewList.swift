@@ -150,6 +150,10 @@ struct SessionOverviewList: View {
     /// on montre la durée TOTALE réelle (« 20 min ») plutôt que la durée tronquée
     /// d'un segment — la synthèse doit être juste (retour Sophie 2026-06-03).
     static func compactMetric(for ex: AdaptedExercise, locale: Locale) -> String? {
+        // Chantier dose i18n : dosage structuré localisé prioritaire (yoga migré).
+        if let doseLabel = ex.localizedDoseLabel(locale: locale)?.sanitizedForDisplay, !doseLabel.isEmpty {
+            return doseLabel
+        }
         if let s = ex.sets, s >= 2 {
             let segs = SessionDurationParser.segments(ex.duration)
             if segs.count >= 2 {

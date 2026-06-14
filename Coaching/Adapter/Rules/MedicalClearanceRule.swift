@@ -93,6 +93,7 @@ public struct MedicalClearanceRule: AdaptationRule {
             reps: ex.reps,
             duration: ex.duration,
             restSeconds: ex.restSeconds,
+            dose: ex.dose,
             notes: ex.notes,
             targetZone: downgradedZone,
             volumeAxis: ex.volumeAxis,

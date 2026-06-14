@@ -134,6 +134,12 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
     public let reps: String?
     public let duration: String?
     public let restSeconds: Int?
+
+    /// Dosage structuré i18n (chantier 2026-06-14, pilote yoga). Copié tel quel du template.
+    /// Quand présent, PRIME sur `reps`/`duration` à l'affichage + label minuteur (`DoseFormatter`,
+    /// FR/EN/ES). `nil` = legacy. Cf `TemplateExercise.dose`.
+    public let dose: Dose?
+
     public let notes: LocalizedText?
     public let targetZone: String?
     public let volumeAxis: VolumeAxis?
@@ -161,6 +167,7 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
         reps: String? = nil,
         duration: String? = nil,
         restSeconds: Int? = nil,
+        dose: Dose? = nil,
         notes: LocalizedText? = nil,
         targetZone: String? = nil,
         volumeAxis: VolumeAxis? = nil,
@@ -175,6 +182,7 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
         self.reps = reps
         self.duration = duration
         self.restSeconds = restSeconds
+        self.dose = dose
         self.notes = notes
         self.targetZone = targetZone
         self.volumeAxis = volumeAxis
@@ -220,6 +228,7 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
             reps: template.reps,
             duration: template.duration,
             restSeconds: template.restSeconds,
+            dose: template.dose,
             notes: template.notes,
             targetZone: template.targetZone,
             volumeAxis: template.volumeAxis,

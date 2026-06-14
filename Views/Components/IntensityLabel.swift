@@ -21,6 +21,10 @@ struct IntensityLabel: View {
     var body: some View {
         if let effort = DosageFormatting.plainEffort(from: zone, locale: locale) {
             neutralChip(effort)
+        } else if let yogaTag = DosageFormatting.yogaZoneLabel(from: zone, locale: locale) {
+            // Chantier dose i18n : tag qualitatif yoga (réparateur, méditation, maintien Xs…)
+            // traduit au rendu. Chip sensation non tappable (pas de code coach à révéler).
+            sensationChip(yogaTag, tappable: false)
         } else if let sensation = DosageFormatting.sensationLabel(from: zone, locale: locale) {
             if let entry = Glossary.entry(forZone: zone) {
                 // Sensation seule, tappable → le code coach n'apparaît QUE dans le popover.

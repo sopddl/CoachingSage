@@ -35,6 +35,31 @@ enum DosageFormatting {
         return String.localized(String.LocalizationValue(key), locale: locale)
     }
 
+    /// Chantier dose i18n (party 2026-06-14, décision Sophie) — tags qualitatifs YOGA portés par
+    /// `target_zone` mais qui ne sont PAS des codes zone : nature de la pratique (« réparateur »,
+    /// « méditation », « respiration guidée », « enchaînement ») ou tenue (« maintien 30 s »).
+    /// Comme les codes zone (passe #1), le FR reste en JSON et on TRADUIT au rendu → plus de fuite
+    /// FR sous EN/ES. nil = pas un tag yoga reconnu (→ l'appelant tente sensationLabel puis badge).
+    static func yogaZoneLabel(from targetZone: String, locale: Locale) -> String? {
+        let lower = targetZone.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        // « maintien 30 s » / « maintien 45 sec » → tenue chronométrée localisée.
+        if let n = firstCapture(#"maintien\s+(\d+)\s*s"#, in: lower) {
+            return String.localized("coaching.dosage.yoga.hold \(n)", locale: locale)
+        }
+        switch lower {
+        case "réparateur", "reparateur":
+            return String.localized("coaching.dosage.yoga.restorative", locale: locale)
+        case "méditation", "meditation":
+            return String.localized("coaching.dosage.yoga.meditation", locale: locale)
+        case "respiration guidée", "respiration guidee":
+            return String.localized("coaching.dosage.yoga.guidedbreath", locale: locale)
+        case "enchaînement", "enchainement":
+            return String.localized("coaching.dosage.yoga.flow", locale: locale)
+        default:
+            return nil
+        }
+    }
+
     /// Clé de localisation pour la sensation d'un code de zone, ou nil si non couvert.
     /// Exposé `internal` pour les tests (mapping pur, sans dépendance Locale).
     static func sensationKey(for targetZone: String) -> String? {
