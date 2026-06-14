@@ -35,9 +35,8 @@ enum AppLanguage: String, CaseIterable, Identifiable, Codable, Sendable {
 
     /// Langues exposées dans le sélecteur in-app.
     ///
-    /// ⚠️ `.spanish` est volontairement ABSENT tant que le chrome UI ES
-    /// (Story 0-bis, ~849 strings `Localizable.xcstrings`) et le contenu
-    /// templates ES (Story B2) ne sont pas livrés — éviter une app à moitié
-    /// traduite en prod. Ajouter `.spanish` ici une fois 0-bis mergée.
-    static let selectable: [AppLanguage] = [.french, .english]
+    /// ✅ `.spanish` activé le 2026-06-14 : contenu templates ES (B2 + passes
+    /// qualité #2c/#2d) ET chrome UI ES (0-bis, 776 strings) livrés. ES couvert
+    /// 894/921 (reste = trous de contenu toutes langues, fallback FR propre).
+    static let selectable: [AppLanguage] = [.french, .english, .spanish]
 }
