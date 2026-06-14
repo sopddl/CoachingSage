@@ -4949,6 +4949,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%#@rounds@ · %2$lld s · %3$lld s"
+          },
+          "substitutions" : {
+            "rounds" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg ronda"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg rondas"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "fr" : {
