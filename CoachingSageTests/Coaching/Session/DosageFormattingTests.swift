@@ -118,4 +118,18 @@ final class DosageFormattingTests: XCTestCase {
         XCTAssertEqual(DosageFormatting.repsHero(from: "8"), "8")
         XCTAssertEqual(DosageFormatting.repsHero(from: "12-15"), "12-15")
     }
+
+    // i18n : le suffixe de latéralité (contenu template FR « par côté ») est traduit
+    // pour l'affichage liste/chip — sinon il fuit en FR sous locale ES/EN (bug attrapé
+    // au screenshot ES 2026-06-14).
+    private let es = Locale(identifier: "es")
+    private let en = Locale(identifier: "en")
+    func test_localizedReps_translatesSideSuffix() {
+        XCTAssertEqual(DosageFormatting.localizedReps("10 par côté", locale: es), "10 por lado")
+        XCTAssertEqual(DosageFormatting.localizedReps("10 par côté", locale: en), "10 per side")
+        XCTAssertEqual(DosageFormatting.localizedReps("10 par côté", locale: fr), "10 par côté")
+        // pas de suffixe → inchangé ; chiffres neutres préservés
+        XCTAssertEqual(DosageFormatting.localizedReps("12-15", locale: es), "12-15")
+        XCTAssertEqual(DosageFormatting.localizedReps("8", locale: en), "8")
+    }
 }

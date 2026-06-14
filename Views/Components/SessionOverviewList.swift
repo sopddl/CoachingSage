@@ -135,7 +135,7 @@ struct SessionOverviewList: View {
                 anchorIndex: index,
                 kind: .exercise(number: exNumber),
                 title: ex.displayName(locale),
-                metric: compactMetric(for: ex)
+                metric: compactMetric(for: ex, locale: locale)
             ))
             index += 1
         }
@@ -149,7 +149,7 @@ struct SessionOverviewList: View {
     /// Métrique-clé courte d'un exo. Pour un bloc run/walk (sets≥2 + durée « + »),
     /// on montre la durée TOTALE réelle (« 20 min ») plutôt que la durée tronquée
     /// d'un segment — la synthèse doit être juste (retour Sophie 2026-06-03).
-    static func compactMetric(for ex: AdaptedExercise) -> String? {
+    static func compactMetric(for ex: AdaptedExercise, locale: Locale) -> String? {
         if let s = ex.sets, s >= 2 {
             let segs = SessionDurationParser.segments(ex.duration)
             if segs.count >= 2 {
@@ -158,13 +158,13 @@ struct SessionOverviewList: View {
             }
         }
         if let s = ex.sets, let r = ex.reps?.trimmingCharacters(in: .whitespaces), !r.isEmpty {
-            return "\(s)×\(r)".sanitizedForDisplay
+            return "\(s)×\(DosageFormatting.localizedReps(r, locale: locale))".sanitizedForDisplay
         }
         if let d = ex.duration?.trimmingCharacters(in: .whitespaces), !d.isEmpty {
             return d.sanitizedForDisplay
         }
         if let r = ex.reps?.trimmingCharacters(in: .whitespaces), !r.isEmpty {
-            return r.sanitizedForDisplay
+            return DosageFormatting.localizedReps(r, locale: locale).sanitizedForDisplay
         }
         return nil
     }

@@ -12,6 +12,7 @@ struct SessionWhyPanel: View {
     let program: AdaptedProgram
 
     @State private var isExpanded: Bool = false
+    @Environment(\.locale) private var locale
 
     /// Clé i18n de la justification, calculée une fois par cycle de body. Nil
     /// = pas de panel (séance .rest ou type non couvert).
@@ -60,12 +61,14 @@ struct SessionWhyPanel: View {
         }
     }
 
-    /// Résout la string localisée pour la key, en passant par le bundle
-    /// principal. On utilise `String(localized:)` avec un `LocalizationValue`
-    /// runtime pour que `LanguageManager` (override AppleLanguages) prenne effet
-    /// — c'est le pattern Sage standard (cf memo TS 2026-05-18).
+    /// Résout la string localisée pour la key dans la langue IN-APP. On passe par
+    /// `String.localized(_:locale:)` (= `locale.localizedBundle`) avec la locale de
+    /// l'environnement (mise à jour par AppLanguage), car `String(localized:bundle:.main)`
+    /// SANS `locale:` résout via les AppleLanguages du process et IGNORE la langue
+    /// in-app → fuite FR quand l'app est en ES/EN (bug attrapé au screenshot ES
+    /// 2026-06-14, cf [[memo_locale_strict_string_localized_pattern]]).
     private func localizedExplanation(key: String) -> String {
-        String(localized: String.LocalizationValue(key), bundle: .main)
+        String.localized(String.LocalizationValue(key), locale: locale)
     }
 }
 

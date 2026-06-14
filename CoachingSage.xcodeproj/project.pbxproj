@@ -1223,9 +1223,9 @@
 		FDD0B9C71B100DD7BD2A6CD5 /* testMuscuIllustrationGallery.GAP-reversehyper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testMuscuIllustrationGallery.GAP-reversehyper.png"; sourceTree = "<group>"; };
 		FE2EBCDA71129879332CF57F /* MockCoachingSportProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoachingSportProfileRepository.swift; sourceTree = "<group>"; };
 		FE4D8313E07E639BE62B7644 /* ProgramDurationResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDurationResolverTests.swift; sourceTree = "<group>"; };
-		"TEMP_2F150036-436E-4361-BA76-3EC5E08B84A3" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_D62FC138-CD59-4878-AB59-12F095CE0022" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_DBC15110-C706-47E6-B9A1-E71598BBEAF4" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_A717B0FC-25A0-4553-8F59-4AA388F2AF4A" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_DC7DD9A8-F57D-4D37-8745-82E63E1B8955" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_DF105DB8-AFE6-4A94-BBD1-A3786EB30423" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1740,6 +1740,7 @@
 				662F5D7F8B986F0F7FFA6312 /* Selector */,
 				49B234E794A66795314568CA /* Services */,
 				0EB6FF145C1FEE94F0495E0E /* Session */,
+				A5AE0E7C8338A6513BA2D28D /* Support */,
 				7A59DD1A56EB85B9A47656FD /* ViewModels */,
 				9B5FC3FFC6B03B6A6E878ED8 /* Views */,
 				D748D86D983DE72D41A9DCC8 /* CoachingSageTests.swift */,
@@ -1910,6 +1911,13 @@
 				03AACC6CC697F40038947E5B /* SportCodeMapperTests.swift */,
 			);
 			path = Progress;
+			sourceTree = "<group>";
+		};
+		A5AE0E7C8338A6513BA2D28D /* Support */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		A7D1FD4EA165346964968FFB /* Resources */ = {
@@ -2336,12 +2344,12 @@
 			path = SpanishExerciseNameSnapshotTests;
 			sourceTree = "<group>";
 		};
-		"TEMP_3CB50915-B4C0-4B34-8B5A-0B485B30394C" /* CoachingSage */ = {
+		"TEMP_E9A3B93F-BCEB-4357-9C4D-F28BCA88A881" /* CoachingSage */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_DBC15110-C706-47E6-B9A1-E71598BBEAF4" /* Config-Debug.xcconfig */,
-				"TEMP_D62FC138-CD59-4878-AB59-12F095CE0022" /* Config-Release.xcconfig */,
-				"TEMP_2F150036-436E-4361-BA76-3EC5E08B84A3" /* Config-Staging.xcconfig */,
+				"TEMP_A717B0FC-25A0-4553-8F59-4AA388F2AF4A" /* Config-Debug.xcconfig */,
+				"TEMP_DC7DD9A8-F57D-4D37-8745-82E63E1B8955" /* Config-Release.xcconfig */,
+				"TEMP_DF105DB8-AFE6-4A94-BBD1-A3786EB30423" /* Config-Staging.xcconfig */,
 			);
 			path = CoachingSage;
 			sourceTree = "<group>";
@@ -3292,7 +3300,7 @@
 		};
 		61B5E17E96E19C8E098AA3DC /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_2F150036-436E-4361-BA76-3EC5E08B84A3" /* Config-Staging.xcconfig */;
+			baseConfigurationReference = "TEMP_DF105DB8-AFE6-4A94-BBD1-A3786EB30423" /* Config-Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3353,7 +3361,7 @@
 		};
 		6444A73E993A0AE7B8936309 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_D62FC138-CD59-4878-AB59-12F095CE0022" /* Config-Release.xcconfig */;
+			baseConfigurationReference = "TEMP_DC7DD9A8-F57D-4D37-8745-82E63E1B8955" /* Config-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3504,7 +3512,7 @@
 		};
 		E103FFBD6D87D5F977B573D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_DBC15110-C706-47E6-B9A1-E71598BBEAF4" /* Config-Debug.xcconfig */;
+			baseConfigurationReference = "TEMP_A717B0FC-25A0-4553-8F59-4AA388F2AF4A" /* Config-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

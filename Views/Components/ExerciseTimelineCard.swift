@@ -188,9 +188,9 @@ struct ExerciseTimelineCard: View {
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 6) {
                     if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
-                        metricChip { Text(verbatim: "\(sets) × \(reps.sanitizedForDisplay)") }
+                        metricChip { Text(verbatim: "\(sets) × \(DosageFormatting.localizedReps(reps, locale: locale).sanitizedForDisplay)") }
                     } else if let reps = ex.reps, !reps.isEmpty {
-                        metricChip { Text(verbatim: reps.sanitizedForDisplay) }
+                        metricChip { Text(verbatim: DosageFormatting.localizedReps(reps, locale: locale).sanitizedForDisplay) }
                     } else if let sets = ex.sets {
                         metricChip { Text(verbatim: "\(sets) ×") }
                     }

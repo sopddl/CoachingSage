@@ -71,19 +71,19 @@ final class SessionOverviewListTests: XCTestCase {
     // MARK: - Métrique-clé
 
     func test_compactMetric_setsAndReps() {
-        XCTAssertEqual(SessionOverviewList.compactMetric(for: ex(sets: 4, reps: "8")), "4×8")
+        XCTAssertEqual(SessionOverviewList.compactMetric(for: ex(sets: 4, reps: "8"), locale: Locale(identifier: "fr")), "4×8")
     }
 
     func test_compactMetric_durationOnly() {
-        XCTAssertEqual(SessionOverviewList.compactMetric(for: ex(duration: "2 min")), "2 min")
+        XCTAssertEqual(SessionOverviewList.compactMetric(for: ex(duration: "2 min"), locale: Locale(identifier: "fr")), "2 min")
     }
 
     func test_compactMetric_repsOnly() {
-        XCTAssertEqual(SessionOverviewList.compactMetric(for: ex(reps: "12")), "12")
+        XCTAssertEqual(SessionOverviewList.compactMetric(for: ex(reps: "12"), locale: Locale(identifier: "fr")), "12")
     }
 
     func test_compactMetric_nothing_returnsNil() {
-        XCTAssertNil(SessionOverviewList.compactMetric(for: ex()))
+        XCTAssertNil(SessionOverviewList.compactMetric(for: ex(), locale: Locale(identifier: "fr")))
     }
 
     // MARK: - Durée de tête (warmup/cooldown)

@@ -106,9 +106,29 @@ enum DosageFormatting {
     /// côté » → « 10 ») — la latéralité est rendue à part en guidage « Côté droit · gauche ».
     static func repsHero(from reps: String) -> String {
         var r = reps
-        for token in ["par côté", "par cote", "/côté", "/cote", "each side", "per side", "/side", "por lado", "cada lado"] {
+        for token in sideTokens {
             r = r.replacingOccurrences(of: token, with: "", options: .caseInsensitive)
         }
         return r.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private static let sideTokens = ["par côté", "par cote", "/côté", "/cote",
+                                     "each side", "per side", "/side", "por lado", "cada lado"]
+
+    /// Reps localisés pour l'affichage liste/chip : traduit le suffixe de latéralité
+    /// (contenu template en FR « par côté ») vers la langue courante — sinon il fuit en
+    /// FR sous locale EN/ES (bug attrapé au screenshot ES 2026-06-14). Les chiffres sont
+    /// neutres. FR = inchangé.
+    static func localizedReps(_ reps: String, locale: Locale) -> String {
+        guard sideTokens.contains(where: { reps.range(of: $0, options: .caseInsensitive) != nil })
+        else { return reps }
+        let suffix: String
+        switch locale.language.languageCode?.identifier {
+        case "es": suffix = "por lado"
+        case "en": suffix = "per side"
+        default:   suffix = "par côté"
+        }
+        let base = repsHero(from: reps)
+        return base.isEmpty ? suffix : "\(base) \(suffix)"
     }
 }
