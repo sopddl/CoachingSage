@@ -203,6 +203,18 @@ public enum DoseFormatter {
         }
     }
 
+    /// Variante « reps compactes » pour la MUSCU (party muscu : affichage reps-héros/chip
+    /// minimal « 3 × 12 » / « 10 par côté », PAS « 3 × 12 reps »). Identique à
+    /// `string(_:locale:)` SAUF qu'on omet le nom d'unité quand `unit == .reps` ; les autres
+    /// unités (tenue « 30 s ») gardent leur nom, freeText/intervalle inchangés. Source unique :
+    /// réutilise `compose()`.
+    public static func repsCompactString(_ dose: Dose, locale: Locale) -> String {
+        if case .structured(let d) = dose, d.unit == .reps {
+            return compose(d, lang: lang(locale), omitNoun: true)
+        }
+        return string(dose, locale: locale)
+    }
+
     /// Secondes pour le minuteur, ou `nil` si non chronométrable (souffle/cycles/freeText/
     /// intervalle). `nil` → l'appelant retombe sur `SessionDurationParser` (string FR legacy,
     /// chiffres language-agnostic) en back-compat : le timer reste piloté par le canonical FR,
@@ -219,7 +231,7 @@ public enum DoseFormatter {
 
     // MARK: Composition
 
-    private static func compose(_ d: StructuredDose, lang: String) -> String {
+    private static func compose(_ d: StructuredDose, lang: String, omitNoun: Bool = false) -> String {
         let isSingular = (d.value == "1")
         let noun = unitNoun(d.unit, lang: lang, singular: isSingular)
         var parts: [String] = []
@@ -228,11 +240,11 @@ public enum DoseFormatter {
             // EN : adjectif de style AVANT le nom (« 5 Ujjayi breaths », « 3 breath-led cycles »).
             parts.append(d.value)
             if let s = d.style, let w = styleWord(s, lang: lang) { parts.append(w) }
-            parts.append(noun)
+            if !omitNoun { parts.append(noun) }
         } else {
             // FR/ES : style APRÈS le nom (« 5 respirations Ujjayi »).
             parts.append(d.value)
-            parts.append(noun)
+            if !omitNoun { parts.append(noun) }
             if let s = d.style, let w = styleWord(s, lang: lang) { parts.append(w) }
         }
         if let q = d.qualifier { parts.append(qualifierPhrase(q, lang: lang)) }

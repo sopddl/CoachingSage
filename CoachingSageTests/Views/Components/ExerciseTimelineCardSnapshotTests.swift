@@ -305,4 +305,45 @@ final class ExerciseTimelineCardSnapshotTests: XCTestCase {
         assertSnapshot(of: hiitDoseColumn(locale: Locale(identifier: "es")),
                        as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
     }
+
+    // MARK: - Lot 7 muscu — dosage localisé (FR/EN/ES)
+
+    // Cas représentatifs : reps nues + plage en COMPACT (party muscu : « 3 × 12 », pas
+    // « 3 × 12 reps »), latéralité jambe/épaule (LES fuites réelles muscu, non couvertes par
+    // l'ancien localizedReps) localisées, tenue exprimée en reps → secondes (nom gardé),
+    // schémas AMRAP/max freeText traduits. Chips dose suivent `\.locale` → invariant zéro fuite FR.
+    private func strengthDoseColumn(locale: Locale) -> some View {
+        let exos: [AdaptedExercise] = [
+            AdaptedExercise(name: "Développé couché", originalName: "Développé couché", sets: 4, reps: "8-10", targetZone: "RPE 8"),
+            AdaptedExercise(name: "Fentes bulgares", originalName: "Fentes bulgares", sets: 3, reps: "10 par jambe"),
+            AdaptedExercise(name: "Élévations latérales", originalName: "Élévations latérales", sets: 3, reps: "5 par épaule"),
+            AdaptedExercise(name: "Gainage", originalName: "Gainage", reps: "75 sec"),
+            AdaptedExercise(name: "Tractions", originalName: "Tractions", sets: 3, reps: "max propre"),
+            AdaptedExercise(name: "Soulevé de terre", originalName: "Soulevé de terre", reps: "5, 5, 5, 5+ AMRAP", targetZone: "RPE 9"),
+        ]
+        return VStack(spacing: 8) {
+            ForEach(Array(exos.enumerated()), id: \.offset) { _, ex in
+                ExerciseTimelineCard(exercise: ex, sportCode: "strengthTraining", isFirstExercise: false)
+            }
+        }
+        .frame(width: 360)
+        .padding()
+        .background(Color(uiColor: .systemBackground))
+        .environment(\.locale, locale)
+    }
+
+    func testStrengthDose_fr() {
+        assertSnapshot(of: strengthDoseColumn(locale: Locale(identifier: "fr")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testStrengthDose_en() {
+        assertSnapshot(of: strengthDoseColumn(locale: Locale(identifier: "en")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testStrengthDose_es() {
+        assertSnapshot(of: strengthDoseColumn(locale: Locale(identifier: "es")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
 }

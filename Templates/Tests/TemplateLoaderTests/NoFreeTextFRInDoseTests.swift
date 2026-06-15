@@ -44,6 +44,9 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
         // Lot 6 hiit — tokens FR-exclusifs (trad : front/side plank/per side/work/rest/knees…).
         // Noms d'exos gardés (dead bug, hollow, Nordic, sled, calf, tibialis…), non listés.
         "ventrale", "latérale", "repos", "bloc", "genoux", "haltères", "lecture",
+        // Lot 7 muscu — tokens FR-exclusifs (trad : clean max/of each exercise/attempts/set…).
+        // « AMRAP »/« max »/« RPE » = vocabulaire de salle gardé (3 langues), non listés.
+        "propre", "exercice", "essai", "essais",
     ]
 
     /// Diacritiques FR-exclusifs (absents de l'orthographe ES : ç, ô, ê, è, à, î, ë, œ).
@@ -127,6 +130,10 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
 
     func testEveryHiitExerciseHasDose() async throws {
         try await assertEverySportExerciseHasDose(.hiit, name: "hiit")
+    }
+
+    func testEveryStrengthExerciseHasDose() async throws {
+        try await assertEverySportExerciseHasDose(.strengthTraining, name: "strength")
     }
 
     private func assertEverySportExerciseHasDose(_ sport: Sport, name: String, file: StaticString = #filePath, line: UInt = #line) async throws {

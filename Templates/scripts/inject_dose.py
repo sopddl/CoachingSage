@@ -652,13 +652,54 @@ HIIT = {
     "5 Nordic + 8 split squat/jambe DB 14 kg": F("5 Nordic + 8 split squat par jambe, haltères 14 kg", "5 Nordic + 8 split squat per leg, 14 kg dumbbells", "5 Nordic + 8 split squat por pierna, mancuernas 14 kg"),
 }
 
+STRENGTH = {
+    # ====================== LOT 7 — STRENGTH (muscu) ======================
+    # Passe DÉDIÉE (interaction party muscu reps-héros/côté) : les reps muscu restent
+    # le HÉROS de l'affichage Minuté (chiffre = value, latéralité = qualifier rendus
+    # séparément par la vue) ; le DoseFormatter.string sert le chip metricsRow + l'overview.
+    # NB : seules les 24 strings NEUVES sont ici — les bare reps / sec / sec par côté
+    # déjà mappés par les lots précédents (« 12 », « 10 par côté », « 60 sec »…) restent
+    # dans LEUR section (pas de doublon de clé dans le dict Swift de LegacyDoseMigration).
+    # --- REPS (plages structurées) ---
+    "8-10": S("8-10", "reps"),
+    "8-12": S("8-12", "reps"),
+    "10-12": S("10-12", "reps"),
+    "10-15": S("10-15", "reps"),
+    "12-15": S("12-15", "reps"),
+    "6-10": S("6-10", "reps"),
+    "4-5": S("4-5", "reps"),
+    "3-5": S("3-5", "reps"),
+    # --- REPS unilatérales structurées ---
+    "8-10 par côté": S("8-10", "reps", qualifier="perSide"),
+    "5 par épaule": S("5", "reps", qualifier="perShoulder"),
+    # --- HOLDS exprimés dans le champ reps (→ secondes, le timer/bigTime fait foi) ---
+    "75 sec": S("75", "seconds"),
+    "50 sec par côté": S("50", "seconds", qualifier="perSide"),
+    # --- SCHÉMAS par série / AMRAP / max → freeText (T2 : pas de gabarit value+unit) ---
+    # Pur numérique : fr=en=es (aucun mot FR → aucune fuite), juste l'espacement normalisé.
+    "5,6,8,8": F("5, 6, 8, 8", "5, 6, 8, 8", "5, 6, 8, 8"),
+    "3,5,6,6": F("3, 5, 6, 6", "3, 5, 6, 6", "3, 5, 6, 6"),
+    "5, 5, 5, 5+ AMRAP": F("5, 5, 5, 5+ AMRAP", "5, 5, 5, 5+ AMRAP", "5, 5, 5, 5+ AMRAP"),
+    "5, 3, 1+ AMRAP": F("5, 3, 1+ AMRAP", "5, 3, 1+ AMRAP", "5, 3, 1+ AMRAP"),
+    "3, 3, 3, 3+ AMRAP": F("3, 3, 3, 3+ AMRAP", "3, 3, 3, 3+ AMRAP", "3, 3, 3, 3+ AMRAP"),
+    "5,6,8,AMRAP": F("5, 6, 8, AMRAP", "5, 6, 8, AMRAP", "5, 6, 8, AMRAP"),
+    "3,5,6,AMRAP": F("3, 5, 6, AMRAP", "3, 5, 6, AMRAP", "3, 5, 6, AMRAP"),
+    "AMRAP 1 set": F("AMRAP — 1 série", "AMRAP — 1 set", "AMRAP — 1 serie"),
+    "1 (3 attempts max)": F("1 (3 essais max)", "1 (3 attempts max)", "1 (3 intentos máx.)"),
+    "max": F("max", "max", "máx."),
+    "max propre": F("max propre", "clean max", "máx. limpias"),
+    "8 de chaque exercice": F("8 de chaque exercice", "8 of each exercise", "8 de cada ejercicio"),
+    "10 de chaque exercice": F("10 de chaque exercice", "10 of each exercise", "10 de cada ejercicio"),
+}
+
 # Table complète (union) + clés par lot (pour gen-migration ciblé sans toucher aux lots précédents).
-DOSE = {**YOGA, **RUNNING, **CYCLING, **SWIMMING, **HIKING, **HIIT}
+DOSE = {**YOGA, **RUNNING, **CYCLING, **SWIMMING, **HIKING, **HIIT, **STRENGTH}
 RUNNING_KEYS = list(RUNNING.keys())
 CYCLING_KEYS = list(CYCLING.keys())
 SWIMMING_KEYS = list(SWIMMING.keys())
 HIKING_KEYS = list(HIKING.keys())
 HIIT_KEYS = list(HIIT.keys())
+STRENGTH_KEYS = list(STRENGTH.keys())
 
 
 def inject(ex, missing):
@@ -745,6 +786,8 @@ if __name__ == "__main__":
             gen_migration(HIKING_KEYS)
         elif lot == "hiit":
             gen_migration(HIIT_KEYS)
+        elif lot == "strength":
+            gen_migration(STRENGTH_KEYS)
         else:
             gen_migration(list(DOSE.keys()))
     else:
