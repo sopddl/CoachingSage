@@ -82,16 +82,28 @@ public enum DoseActivity: String, Codable, Equatable, Sendable, CaseIterable {
     case pace10K                  // à allure 10K
     case work                     // HIIT : phase d'effort
     case rest                     // HIIT : phase de récupération
+    // Lot 8 — tennis/football : vocabulaire de drill du segment d'effort. Le segment de
+    // récup réutilise `rest`/`walkingRecovery`. Rendu post-nominal (« 5 min de cross »).
+    case crossCourt               // tennis : cross / cross-court
+    case sequenceDrill            // tennis : séquence (drill enchaîné)
+    case game                     // tennis/foot : jeu / jeu réduit
+    case patternDrill             // tennis : pattern (schéma de jeu)
+    case downTheLine              // tennis : long de ligne
+    case tieBreak                 // tennis : tie-break
+    case sprint                   // tennis/foot : sprint
+    case strikesDrill             // tennis : frappes (bloc minuté)
 }
 
 /// Un segment d'un dosage en intervalle (« 3 min course + 2 min marche »). Réutilise la
-/// grammaire de `StructuredDose` (value + unit) et porte une `activity` localisée.
+/// grammaire de `StructuredDose` (value + unit) et porte une `activity` localisée. L'activité
+/// est OPTIONNELLE (Lot 8) : un segment de comptage pur (« 30 frappes ») ou un effort nu
+/// (« 5 min » + récup) n'en porte pas → seul « value noun » est rendu.
 public struct IntervalSegment: Codable, Equatable, Sendable {
     public let value: String
     public let unit: DoseUnit
-    public let activity: DoseActivity
+    public let activity: DoseActivity?
 
-    public init(value: String, unit: DoseUnit, activity: DoseActivity) {
+    public init(value: String, unit: DoseUnit, activity: DoseActivity? = nil) {
         self.value = value
         self.unit = unit
         self.activity = activity
@@ -257,7 +269,8 @@ public enum DoseFormatter {
     private static func composeSegment(_ s: IntervalSegment, lang: String) -> String {
         let isSingular = (s.value == "1")
         let noun = unitNoun(s.unit, lang: lang, singular: isSingular)
-        return "\(s.value) \(noun) \(activityPhrase(s.activity, lang: lang))"
+        guard let a = s.activity else { return "\(s.value) \(noun)" }
+        return "\(s.value) \(noun) \(activityPhrase(a, lang: lang))"
     }
 
     private static func activityPhrase(_ a: DoseActivity, lang: String) -> String {
@@ -276,6 +289,14 @@ public enum DoseFormatter {
         case .pace10K:                 return t("à allure 10K", "at 10K pace", "a ritmo 10K")
         case .work:                    return t("d'effort", "work", "de trabajo")
         case .rest:                    return t("de récup", "rest", "de descanso")
+        case .crossCourt:              return t("de cross", "cross-court", "cruzado")
+        case .sequenceDrill:           return t("de séquence", "sequence", "de secuencia")
+        case .game:                    return t("de jeu", "of play", "de juego")
+        case .patternDrill:            return t("de pattern", "of patterns", "de patrones")
+        case .downTheLine:             return t("de long de ligne", "down-the-line", "paralelos")
+        case .tieBreak:                return t("de tie-break", "tie-break", "de tie-break")
+        case .sprint:                  return t("de sprint", "sprint", "de sprint")
+        case .strikesDrill:            return t("de frappes", "of hitting", "de golpeo")
         }
     }
 
@@ -315,7 +336,7 @@ public enum DoseFormatter {
         case .holds:      return pick(("tenue", "tenues"), ("hold", "holds"), ("posición", "posiciones"))
         case .serves:     return pick(("service", "services"), ("serve", "serves"), ("servicio", "servicios"))
         case .passes:     return pick(("passe", "passes"), ("pass", "passes"), ("pase", "pases"))
-        case .strikes:    return pick(("frappe", "frappes"), ("strike", "strikes"), ("golpe", "golpes"))
+        case .strikes:    return pick(("frappe", "frappes"), ("shot", "shots"), ("golpe", "golpes"))
         case .sequences:  return pick(("séquence", "séquences"), ("sequence", "sequences"), ("secuencia", "secuencias"))
         case .points:     return pick(("point", "points"), ("point", "points"), ("punto", "puntos"))
         }

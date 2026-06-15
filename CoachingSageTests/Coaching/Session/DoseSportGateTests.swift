@@ -134,6 +134,35 @@ final class DoseSportGateTests: XCTestCase {
         XCTAssertNil(ex.repsHeroDose(sportCode: "strengthTraining", locale: fr))
     }
 
+    // MARK: Tennis + football MIGRÉS (Lot 8) — comptages structurés, intervalles, freeText
+
+    func testTennisServesAreStructured() {
+        // Comptage sport STRUCTURÉ (décision Sophie) : « 10 services » → serves localisé.
+        let ex = AdaptedExercise(name: "Service", originalName: "Service", reps: "10 services")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "tennis", locale: fr), "10 services")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "tennis", locale: Locale(identifier: "en")), "10 serves")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "tennis", locale: Locale(identifier: "es")), "10 servicios")
+    }
+
+    func testTennisDrillIntervalIsLocalized() {
+        // Intervalle plat « cross + récup » → Dose.interval, activité drill localisée sans fuite.
+        let ex = AdaptedExercise(name: "Cross-court", originalName: "Cross-court", duration: "5 min cross + 90 sec récup")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "tennis", locale: Locale(identifier: "en")), "5 min cross-court + 90 s rest")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "tennis", locale: Locale(identifier: "es")), "5 min cruzado + 90 s de descanso")
+    }
+
+    func testFootballPassesPerFootFreeTextIsLocalized() {
+        // « 20 passes par pied (40 total) » : sous-spec gardée → freeText traduit, zéro fuite FR.
+        let ex = AdaptedExercise(name: "Passes", originalName: "Passes", reps: "20 passes par pied (40 total)")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "football", locale: Locale(identifier: "en")), "20 passes per foot (40 total)")
+    }
+
+    func testFootballOnOffIntervalIsLocalized() {
+        // « 4-5 min ON / 2 min OFF » → interval work/rest localisé.
+        let ex = AdaptedExercise(name: "Jeu réduit", originalName: "Jeu réduit", duration: "4-5 min ON / 2 min OFF")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "football", locale: Locale(identifier: "en")), "4-5 min work + 2 min rest")
+    }
+
     func testNilSportCodeDoesNotReinterpret() {
         let ex = AdaptedExercise(name: "Pompes", originalName: "Pompes", reps: "12")
         XCTAssertNil(ex.localizedDoseLabel(sportCode: nil, locale: fr))

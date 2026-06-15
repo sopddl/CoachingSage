@@ -53,6 +53,10 @@
                   "fr" : "Prise + visualisation d’une vidéo de coach 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "wrist-pain",
@@ -92,6 +96,13 @@
                   "fr" : "Au mur à 1 m, frappes très douces, 20 contacts"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 impacts",
+                  "es" : "20 impactos",
+                  "fr" : "20 impacts"
+                }
+              },
               "incompatible_constraints" : [
                 "wrist-pain"
               ],
@@ -130,6 +141,10 @@
                   "fr" : "Lance-balles à cadence lente, 10 balles × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -171,6 +186,10 @@
                   "fr" : "Coup droit à vide (sans balle), 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -233,6 +252,11 @@
                   "fr" : "Glissé des bras au mur (omoplates)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -270,6 +294,11 @@
                   "fr" : "Rotation externe au mur avec une balle de tennis coincée, 12/bras"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -306,6 +335,10 @@
                   "fr" : "Pont fessier tenu sans bouger 20 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -342,6 +375,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -379,6 +416,11 @@
                   "fr" : "Pointeur avant-bras au sol, 8/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "wrist-pain",
                 "lower-back-pain"
@@ -416,6 +458,10 @@
                   "fr" : "Montées de mollets en appui mains au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -489,6 +535,10 @@
                   "fr" : "Vidéo d’un joueur pro en modèle + gestes à vide, 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -526,6 +576,20 @@
                   "fr" : "Lance-balles, régularité, 4×2 min"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "strikesDrill",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  }
+                ]
+              },
               "duration" : "2 min frappes + 1 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -567,6 +631,10 @@
                   "fr" : "Travail de jeu de jambes au sol (sans balle), 3 séries"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -606,6 +674,10 @@
                   "fr" : "Coup droit à vide + échange simulé, 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -668,6 +740,11 @@
                   "fr" : "Glissé des bras au mur (omoplates)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -705,6 +782,11 @@
                   "fr" : "Rotation externe au mur, 12/bras × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -741,6 +823,10 @@
                   "fr" : "Y-T-W version T uniquement"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -778,6 +864,10 @@
                   "fr" : "Pont fessier tenu sans bouger 25 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -809,6 +899,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -841,6 +935,11 @@
                   "fr" : "Pointeur (bras-jambe opposés)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec par côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -879,6 +978,10 @@
                   "fr" : "Montées de mollets en appui au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "18"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -910,6 +1013,13 @@
                   "fr" : "Pas chassés avec échelle d’agilité, 4 schémas"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "4 round trips of 6 m",
+                  "es" : "4 idas y vueltas de 6 m",
+                  "fr" : "4 allers-retours de 6 m"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -984,6 +1094,10 @@
                   "fr" : "Coup droit à vide (sans balle), 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -1023,6 +1137,19 @@
                   "fr" : "Lance-balles, régularité, 30 balles × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "strikes",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  }
+                ]
+              },
               "duration" : "30 frappes + 1 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -1064,6 +1191,10 @@
                   "fr" : "Lance-balles, alimentation côté coup droit, 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1104,6 +1235,13 @@
                   "fr" : "Jeu de jambes au sol (sans balle), 3 séries × 8 cycles"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 cycles",
+                  "es" : "8 ciclos",
+                  "fr" : "8 cycles"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -1165,6 +1303,11 @@
                   "fr" : "Glissé des bras au mur (omoplates)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -1197,6 +1340,11 @@
                   "fr" : "Rotation externe au mur, 12/bras × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -1228,6 +1376,10 @@
                   "fr" : "Squat partiel à 60°"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -1264,6 +1416,11 @@
                   "fr" : "Montées sur step bas, 10/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -1300,6 +1457,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "35"
+              },
               "duration" : "35 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1332,6 +1493,11 @@
                   "fr" : "Pointeur avant-bras au sol, 10/côté × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "wrist-pain",
                 "lower-back-pain"
@@ -1364,6 +1530,10 @@
                   "fr" : "Montées de mollets en appui au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "20"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1395,6 +1565,13 @@
                   "fr" : "Pas chassés avec échelle d’agilité, 4 schémas × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "3 round trips of 8 m per pattern",
+                  "es" : "3 idas y vueltas de 8 m por patrón",
+                  "fr" : "3 allers-retours de 8 m par pattern"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -1469,6 +1646,10 @@
                   "fr" : "Vidéo d’un pro en modèle de revers + gestes à vide, 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -1506,6 +1687,10 @@
                   "fr" : "Revers à vide + échange simulé, 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1546,6 +1731,19 @@
                   "fr" : "Lance-balles côté revers, cadence lente, 20 balles × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "strikes",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  }
+                ]
+              },
               "duration" : "20 frappes + 1 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -1587,6 +1785,10 @@
                   "fr" : "Lance-balles, alimentation côté revers, 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1649,6 +1851,11 @@
                   "fr" : "Glissé des bras au mur (omoplates)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -1681,6 +1888,11 @@
                   "fr" : "Rotation externe au mur, 15/bras × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -1712,6 +1924,10 @@
                   "fr" : "Squat partiel à 60°"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -1743,6 +1959,11 @@
                   "fr" : "Montées sur step bas, 12/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -1774,6 +1995,10 @@
                   "fr" : "Pont fessier tenu sans bouger 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1805,6 +2030,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "40"
+              },
               "duration" : "40 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1837,6 +2066,11 @@
                   "fr" : "Pointeur (bras-jambe opposés)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec par côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1870,6 +2104,10 @@
                   "fr" : "Montées de mollets en appui au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "20"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1901,6 +2139,13 @@
                   "fr" : "Pas chassés latéraux, 30 sec × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "4 patterns",
+                  "es" : "4 patrones",
+                  "fr" : "4 patterns"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -1975,6 +2220,10 @@
                   "fr" : "Coup droit + revers à vide (sans balle), 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -2014,6 +2263,19 @@
                   "fr" : "Lance-balles, régularité, 20 balles × 2"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "strikes",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  }
+                ]
+              },
               "duration" : "20 frappes + 1 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -2055,6 +2317,19 @@
                   "fr" : "Lance-balles côté revers, cadence lente, 15 balles × 2"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "strikes",
+                    "value" : "15"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  }
+                ]
+              },
               "duration" : "15 frappes + 1 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -2118,6 +2393,11 @@
                   "fr" : "Glissé des bras au mur (omoplates)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -2155,6 +2435,11 @@
                   "fr" : "Rotation externe au mur, 12/bras × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2191,6 +2476,10 @@
                   "fr" : "Squat partiel à 60°"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -2222,6 +2511,10 @@
                   "fr" : "Pont fessier tenu sans bouger 25 sec × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2253,6 +2546,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2290,6 +2587,10 @@
                   "fr" : "Montées de mollets en appui au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "18"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2321,6 +2622,10 @@
                   "fr" : "Mobilité du haut du dos au rouleau (foam roller), 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -2394,6 +2699,10 @@
                   "fr" : "Au panier (coach), alimentation alternée coup droit/revers, 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2434,6 +2743,13 @@
                   "fr" : "Service à vide (sans balle), 10 cycles × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 throws + 10 trophy positions",
+                  "es" : "10 lanzamientos + 10 posiciones trofeo",
+                  "fr" : "10 lancers + 10 positions trophée"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -2474,6 +2790,10 @@
                   "fr" : "Service complet à vide (sans balle), 10 cycles × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -2514,6 +2834,19 @@
                   "fr" : "Lance-balles, régularité, 30 balles × 2"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "strikes",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  }
+                ]
+              },
               "duration" : "30 frappes + 1 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -2577,6 +2910,11 @@
                   "fr" : "Glissé des bras au mur (omoplates)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -2614,6 +2952,11 @@
                   "fr" : "Rotation externe au mur, 15/bras × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2650,6 +2993,10 @@
                   "fr" : "Y-T-W version T uniquement"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -2687,6 +3034,10 @@
                   "fr" : "Squat partiel à 60°"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -2718,6 +3069,11 @@
                   "fr" : "Montées sur step bas, 12/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -2754,6 +3110,11 @@
                   "fr" : "Pointeur, 10/côté × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -2791,6 +3152,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "40"
+              },
               "duration" : "40 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2823,6 +3188,10 @@
                   "fr" : "Montées de mollets en appui au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "20"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2854,6 +3223,13 @@
                   "fr" : "Pas chassés latéraux, 30 sec × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "4 patterns",
+                  "es" : "4 patrones",
+                  "fr" : "4 patterns"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -2928,6 +3304,19 @@
                   "fr" : "Lance-balles, régularité, 50 balles × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "strikes",
+                    "value" : "50"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "50 frappes + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -2969,6 +3358,19 @@
                   "fr" : "Lance-balles côté revers, cadence lente, 30 balles × 2"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "strikes",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  }
+                ]
+              },
               "duration" : "30 frappes + 1 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -3010,6 +3412,10 @@
                   "fr" : "Au panier (coach), alimentation alternée coup droit/revers, 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3050,6 +3456,10 @@
                   "fr" : "Service complet à vide (sans balle), 12 cycles × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -3112,6 +3522,11 @@
                   "fr" : "Glissé des bras au mur (omoplates)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -3144,6 +3559,11 @@
                   "fr" : "Rotation externe au mur, 15/bras × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -3175,6 +3595,10 @@
                   "fr" : "Y-T-W version T uniquement"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -3207,6 +3631,10 @@
                   "fr" : "Squat partiel à 60°"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "18"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -3238,6 +3666,11 @@
                   "fr" : "Montées sur step bas, 12/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -3269,6 +3702,11 @@
                   "fr" : "Pointeur, 12/côté × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -3301,6 +3739,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3333,6 +3775,11 @@
                   "fr" : "Pointeur (bras-jambe opposés)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3366,6 +3813,10 @@
                   "fr" : "Montées de mollets en appui au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "22"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3397,6 +3848,13 @@
                   "fr" : "Pas chassés + pas croisés, 30 sec × 5"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 patterns",
+                  "es" : "5 patrones",
+                  "fr" : "5 patterns"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -3471,6 +3929,11 @@
                   "fr" : "Glissé des bras au mur (omoplates)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -3508,6 +3971,11 @@
                   "fr" : "Rotation externe au mur, 12/bras × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -3539,6 +4007,10 @@
                   "fr" : "Étirements statiques généraux, 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -3575,6 +4047,10 @@
                   "fr" : "Mobilité du haut du dos au rouleau (foam roller), 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -3633,6 +4109,10 @@
                   "fr" : "Coup droit + revers à vide (sans balle), 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -3672,6 +4152,19 @@
                   "fr" : "Lance-balles, régularité, 50 balles × 2"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "strikes",
+                    "value" : "50"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "50 frappes + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -3713,6 +4206,10 @@
                   "fr" : "Au panier (coach), alimentation alternée coup droit/revers, 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3753,6 +4250,10 @@
                   "fr" : "Service complet à vide (sans balle), 12 cycles × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -3793,6 +4294,10 @@
                   "fr" : "Au panier (coach) : service + 1 échange, 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shoulder-injury",

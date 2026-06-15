@@ -346,4 +346,82 @@ final class ExerciseTimelineCardSnapshotTests: XCTestCase {
         assertSnapshot(of: strengthDoseColumn(locale: Locale(identifier: "es")),
                        as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
     }
+
+    // MARK: - Lot 8 tennis — dosage localisé (FR/EN/ES)
+
+    // Cas représentatifs : comptage sport structuré (services), intervalle drill plat
+    // (cross/jeu/tie-break + récup → activité localisée), comptage sans activité (frappes +
+    // récup marche), composite service freeText (sous-spec gardée). Chips suivent `\.locale`.
+    private func tennisDoseColumn(locale: Locale) -> some View {
+        let exos: [AdaptedExercise] = [
+            AdaptedExercise(name: "Service", originalName: "Service", reps: "10 services", targetZone: "RPE 6-7"),
+            AdaptedExercise(name: "Échange croisé", originalName: "Échange croisé", sets: 4, duration: "5 min cross + 90 sec récup", targetZone: "RPE 7-8"),
+            AdaptedExercise(name: "Tie-break", originalName: "Tie-break", sets: 2, duration: "10 min tie-break + 3 min récup"),
+            AdaptedExercise(name: "Frappes + récup", originalName: "Frappes + récup", sets: 2, duration: "30 frappes + 1 min récup marche"),
+            AdaptedExercise(name: "Service ciblé", originalName: "Service ciblé", reps: "10 services (5 T + 5 extérieur)"),
+        ]
+        return VStack(spacing: 8) {
+            ForEach(Array(exos.enumerated()), id: \.offset) { _, ex in
+                ExerciseTimelineCard(exercise: ex, sportCode: "tennis", isFirstExercise: false)
+            }
+        }
+        .frame(width: 360)
+        .padding()
+        .background(Color(uiColor: .systemBackground))
+        .environment(\.locale, locale)
+    }
+
+    func testTennisDose_fr() {
+        assertSnapshot(of: tennisDoseColumn(locale: Locale(identifier: "fr")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testTennisDose_en() {
+        assertSnapshot(of: tennisDoseColumn(locale: Locale(identifier: "en")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testTennisDose_es() {
+        assertSnapshot(of: tennisDoseColumn(locale: Locale(identifier: "es")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    // MARK: - Lot 8 football — dosage localisé (FR/EN/ES)
+
+    // Cas représentatifs : passes par pied (composite freeText, sous-spec gardée), intervalle
+    // ON/OFF (work/rest), course/marche (intensité Z droppée), jeu effectif (temps universel),
+    // équilibre unipodal yeux fermés (freeText). Chips suivent `\.locale`.
+    private func footballDoseColumn(locale: Locale) -> some View {
+        let exos: [AdaptedExercise] = [
+            AdaptedExercise(name: "Passes", originalName: "Passes", reps: "20 passes par pied (40 total)", targetZone: "technique"),
+            AdaptedExercise(name: "Jeu réduit", originalName: "Jeu réduit", sets: 4, duration: "4-5 min ON / 2 min OFF", targetZone: "RPE 7-8 intermittent"),
+            AdaptedExercise(name: "Intermittent", originalName: "Intermittent", sets: 2, duration: "30 sec course Z3-Z4 + 30 sec marche"),
+            AdaptedExercise(name: "Match", originalName: "Match", duration: "90 min jeu effectif"),
+            AdaptedExercise(name: "Équilibre", originalName: "Équilibre", duration: "30 sec / jambe yeux fermés"),
+        ]
+        return VStack(spacing: 8) {
+            ForEach(Array(exos.enumerated()), id: \.offset) { _, ex in
+                ExerciseTimelineCard(exercise: ex, sportCode: "football", isFirstExercise: false)
+            }
+        }
+        .frame(width: 360)
+        .padding()
+        .background(Color(uiColor: .systemBackground))
+        .environment(\.locale, locale)
+    }
+
+    func testFootballDose_fr() {
+        assertSnapshot(of: footballDoseColumn(locale: Locale(identifier: "fr")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testFootballDose_en() {
+        assertSnapshot(of: footballDoseColumn(locale: Locale(identifier: "en")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testFootballDose_es() {
+        assertSnapshot(of: footballDoseColumn(locale: Locale(identifier: "es")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
 }
