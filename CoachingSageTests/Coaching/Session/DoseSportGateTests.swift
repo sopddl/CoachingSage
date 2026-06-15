@@ -1,11 +1,11 @@
 // CoachingSageTests/Coaching/Session/DoseSportGateTests.swift
-// Chantier structuration i18n du dosage — Lot 2 running, Lot 3 cycling.
+// Chantier structuration i18n du dosage — Lots 2→7 (running, cycling, swimming, hiking, hiit, muscu).
 //
-// Filet du GATE sport : le backfill `LegacyDoseMigration` (display-time) ne doit s'appliquer
-// QU'AUX sports migrés (yoga/running/cycling). Sinon un dosage legacy générique partagé (« 12 »,
-// « 30 min »…) serait réinterprété sur un sport non migré — typiquement la MUSCU, dont les
-// reps « 12 » s'affichent en héros propre (party muscu) qu'on écraserait. Régression réelle
-// introduite quand la table migration a gagné des clés génériques (reps nues, durées rondes).
+// Filet du GATE sport : le backfill `LegacyDoseMigration` (display-time) ne s'applique QU'AUX
+// sports de `doseMigratedSports`. Sur un sport NON migré, un dosage legacy générique partagé
+// (« 12 », « 30 min »…) ne doit pas être réinterprété (gate fermé → `nil`). Depuis le Lot 7, la
+// MUSCU EST migrée : ses reps sont réinterprétées MAIS rendues en COMPACT (« 3 × 12 », pas
+// « 3 × 12 reps ») pour préserver l'affichage reps-héros minimal de la party muscu.
 import XCTest
 import TemplateModel
 
@@ -78,24 +78,66 @@ final class DoseSportGateTests: XCTestCase {
         XCTAssertEqual(ex.localizedDoseLabel(sportCode: "hiit", locale: fr), "1 min par round")
     }
 
-    // MARK: Sport NON migré → dosage legacy préservé (gate fermé)
+    // MARK: Muscu MIGRÉE (Lot 7) — reps compactes (party reps-héros) + latéralité localisée
 
-    func testStrengthRepsAreNotReinterpreted() {
-        // Cœur de la non-régression muscu : reps « 12 » NE doit PAS sortir un dose.
+    func testStrengthRepsAreCompactNoUnitNoun() {
+        // Party muscu : le chip reste minimal « 3 × 12 » (PAS « 3 × 12 reps ») — rendu compact.
         let ex = AdaptedExercise(name: "Pompes", originalName: "Pompes", sets: 3, reps: "12")
-        XCTAssertNil(ex.localizedDoseLabel(sportCode: "strengthTraining", locale: fr),
-                     "la muscu garde son affichage héros (reps legacy non réinterprétées)")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "strengthTraining", locale: fr), "3 × 12")
     }
 
-    func testStrengthGenericDurationIsNotReinterpreted() {
-        // « 30 min » NE doit PAS sortir un dose sur un sport NON migré (muscu garde son affichage).
-        let ex = AdaptedExercise(name: "Gainage", originalName: "Gainage", duration: "30 min")
-        XCTAssertNil(ex.localizedDoseLabel(sportCode: "strengthTraining", locale: fr))
+    func testStrengthPerLegLeakIsFixed() {
+        // LE point du lot : « 10 par jambe » fuyait en EN/ES (non couvert par localizedReps).
+        let ex = AdaptedExercise(name: "Fentes", originalName: "Fentes", sets: 3, reps: "10 par jambe")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "strengthTraining", locale: Locale(identifier: "en")), "3 × 10 per leg")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "strengthTraining", locale: Locale(identifier: "es")), "3 × 10 por pierna")
+    }
+
+    func testStrengthPerShoulderLeakIsFixed() {
+        // « 5 par épaule » : autre fuite non couverte par l'ancien chemin unilatéral.
+        let ex = AdaptedExercise(name: "Press", originalName: "Press", reps: "5 par épaule")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "strengthTraining", locale: Locale(identifier: "en")), "5 per shoulder")
+    }
+
+    func testStrengthFreeTextSchemeIsLocalized() {
+        // « max propre » freeText traduit (pas de fuite FR « propre » en EN).
+        let ex = AdaptedExercise(name: "Tractions", originalName: "Tractions", reps: "max propre")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "strengthTraining", locale: Locale(identifier: "en")), "clean max")
+    }
+
+    func testStrengthHoldSecondsKeepsUnitNoun() {
+        // Tenue exprimée dans reps (« 75 sec ») → secondes, le nom « s » est GARDÉ même compact.
+        let ex = AdaptedExercise(name: "Planche", originalName: "Planche", reps: "75 sec")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "strengthTraining", locale: fr), "75 s")
+    }
+
+    // MARK: Héros muscu (mode Minuté) — chiffre + latéralité tirés du dose structuré
+
+    func testRepsHeroDoseStripsLateralityIntoFlag() {
+        // « 10 par jambe » → chiffre héros « 10 » + drapeau latéralité (plus de fuite « par jambe »).
+        let ex = AdaptedExercise(name: "Fentes", originalName: "Fentes", sets: 3, reps: "10 par jambe")
+        let hero = ex.repsHeroDose(sportCode: "strengthTraining", locale: Locale(identifier: "en"))
+        XCTAssertEqual(hero?.value, "10")
+        XCTAssertEqual(hero?.isLateral, true)
+    }
+
+    func testRepsHeroDosePlainRepsNotLateral() {
+        let ex = AdaptedExercise(name: "Pompes", originalName: "Pompes", sets: 3, reps: "12")
+        let hero = ex.repsHeroDose(sportCode: "strengthTraining", locale: fr)
+        XCTAssertEqual(hero?.value, "12")
+        XCTAssertEqual(hero?.isLateral, false)
+    }
+
+    func testRepsHeroDoseSecondsHoldReturnsNil() {
+        // Tenue en secondes → pas un héros reps : la vue retombe sur le chrono/bigTime.
+        let ex = AdaptedExercise(name: "Planche", originalName: "Planche", reps: "75 sec")
+        XCTAssertNil(ex.repsHeroDose(sportCode: "strengthTraining", locale: fr))
     }
 
     func testNilSportCodeDoesNotReinterpret() {
         let ex = AdaptedExercise(name: "Pompes", originalName: "Pompes", reps: "12")
         XCTAssertNil(ex.localizedDoseLabel(sportCode: nil, locale: fr))
+        XCTAssertNil(ex.repsHeroDose(sportCode: nil, locale: fr))
     }
 
     // MARK: Overview compact — intervalle répété résumé par sa durée TOTALE (Sophie 2026-06-03)

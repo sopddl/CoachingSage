@@ -823,8 +823,16 @@ struct SessionFocusView: View {
                         // n'est qu'une ESTIMATION. Hors muscu (HIIT/yoga), le chrono reste héros.
                         let strengthRepTarget = phase.kind == .work ? strengthReps(for: phase) : nil
                         if let reps = strengthRepTarget {
+                            // Chantier dose i18n Lot 7 muscu : chiffre héros + latéralité tirés du
+                            // dose STRUCTURÉ (plus de strip-string `repsHero(from:)` qui laissait
+                            // fuir « par jambe »/« par épaule » en EN/ES). Fallback legacy si pas
+                            // de dose (sport non migré). L'unité « reps » reste minimale (party).
+                            let heroDose = (phase.kind == .work ? exercise(at: phase.stepIndex) : nil)?
+                                .repsHeroDose(sportCode: resolvedSportCode, locale: locale)
+                            let heroValue = heroDose?.value ?? DosageFormatting.repsHero(from: reps)
+                            let heroIsLateral = heroDose?.isLateral ?? DosageFormatting.isUnilateral(reps: reps)
                             VStack(spacing: 6) {
-                                Text(verbatim: DosageFormatting.repsHero(from: reps))
+                                Text(verbatim: heroValue)
                                     .font(.system(size: 80, weight: .bold, design: .rounded))
                                     .foregroundStyle(Color.coachingPrimary)
                                     .accessibilityIdentifier("coaching.session.focus.timed.strength.repsHero")
@@ -833,7 +841,7 @@ struct SessionFocusView: View {
                                     .foregroundStyle(.secondary)
                                 // D4 côté : exo unilatéral (« 10 par côté ») → guidage explicite.
                                 // Affiché seulement (la voix côté = mode Audio, hors muscu Minuté).
-                                if DosageFormatting.isUnilateral(reps: reps) {
+                                if heroIsLateral {
                                     Label {
                                         Text("coaching.dosage.side.right")
                                             + Text(verbatim: " · ")
