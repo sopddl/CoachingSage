@@ -52,6 +52,32 @@ final class DoseSportGateTests: XCTestCase {
         XCTAssertEqual(ex.localizedDoseLabel(sportCode: "swimming", locale: Locale(identifier: "es")), "150 m espalda suave")
     }
 
+    func testHikingRenfoPerLegIsLocalizedWithoutLeak() {
+        // Lot 5 : renfo « 30 sec par jambe » structuré, localisé EN, zéro fuite FR.
+        let ex = AdaptedExercise(name: "Fentes", originalName: "Fentes", duration: "30 sec par jambe")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "hiking", locale: Locale(identifier: "en")), "30 s per leg")
+    }
+
+    func testHikingTerrainCompositeIsLocalized() {
+        // Lot 5 : composite marche/D+/sac → freeText traduit (D+ → elevation gain).
+        let ex = AdaptedExercise(name: "Marche", originalName: "Marche", duration: "100 min marche / D+ 280 m / sac 6 kg")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "hiking", locale: Locale(identifier: "en")),
+                       "100 min walk / 280 m elevation gain / 6 kg pack")
+    }
+
+    func testHiitWorkRestIntervalIsLocalized() {
+        // Lot 6 : intervalle work/rest → Dose.interval, localisé EN/ES sans fuite FR.
+        let ex = AdaptedExercise(name: "Tabata", originalName: "Tabata", duration: "20 sec work + 10 sec rest")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "hiit", locale: Locale(identifier: "en")), "20 s work + 10 s rest")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "hiit", locale: Locale(identifier: "es")), "20 s de trabajo + 10 s de descanso")
+    }
+
+    func testHiitPerRoundIsReinterpretedViaMigration() {
+        // Lot 6 : « 1 min par round » structuré perRound.
+        let ex = AdaptedExercise(name: "AMRAP", originalName: "AMRAP", duration: "1 min par round")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "hiit", locale: fr), "1 min par round")
+    }
+
     // MARK: Sport NON migré → dosage legacy préservé (gate fermé)
 
     func testStrengthRepsAreNotReinterpreted() {

@@ -53,6 +53,10 @@
                   "fr" : "Visualisation des sensations cibles 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "2"
+              },
               "duration" : "2 min",
               "incompatible_constraints" : [
 
@@ -89,6 +93,20 @@
                   "fr" : "Chaise au mur 30 sec à 90°"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -127,6 +145,10 @@
                   "fr" : "Étirements doux gastrocnémiens 30 sec/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "120"
+              },
               "duration" : "120 sec",
               "incompatible_constraints" : [
 
@@ -163,6 +185,20 @@
                   "fr" : "Cercles bras + pas latéraux dynamiques 30 sec"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -224,6 +260,10 @@
                   "fr" : "Extension des mollets au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -260,6 +300,10 @@
                   "fr" : "Tibialis élévations avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -296,6 +340,10 @@
                   "fr" : "Charnière de hanche sans charge avec contrôle dos plat"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -333,6 +381,11 @@
                   "fr" : "Pont fessier pieds sur chaise"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -369,6 +422,10 @@
                   "fr" : "Planche avant-bras 45 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -407,6 +464,11 @@
                   "fr" : "Ouverture de hanche"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec par côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -445,6 +507,11 @@
                   "fr" : "Pelvic tilt"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -503,6 +570,20 @@
                   "fr" : "Écarts alternés sans saut 4 tours fractionné 20/10"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -542,6 +623,10 @@
                   "fr" : "Étirements doux mollets + quadriceps 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -578,6 +663,13 @@
                   "fr" : "12 chaise au mur assisté + 8 incliné pompe sur table"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 squats + 8 knee push-ups",
+                  "es" : "12 squats + 8 push-up de rodillas",
+                  "fr" : "12 squats + 8 push-up sur genoux"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "wrist-pain",
@@ -638,6 +730,10 @@
                   "fr" : "Étirements statiques globaux 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
 
@@ -674,6 +770,10 @@
                   "fr" : "Patterns isolés 1 par minute pendant 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -748,6 +848,20 @@
                   "fr" : "Chaise au mur 30 sec à 90°"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -786,6 +900,10 @@
                   "fr" : "Étirements doux 30 sec/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "120"
+              },
               "duration" : "120 sec",
               "incompatible_constraints" : [
 
@@ -817,6 +935,20 @@
                   "fr" : "Cercles bras + pas latéraux dynamiques 30 sec"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -878,6 +1010,10 @@
                   "fr" : "Extension des mollets au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -914,6 +1050,10 @@
                   "fr" : "Tibialis élévations avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "18"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -945,6 +1085,10 @@
                   "fr" : "Charnière de hanche sans charge avec contrôle dos plat"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -982,6 +1126,10 @@
                   "fr" : "Pont de hanches au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -1020,6 +1168,10 @@
                   "fr" : "Planche avant-bras 50 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "40"
+              },
               "duration" : "40 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1058,6 +1210,11 @@
                   "fr" : "Ouverture de hanche"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec par côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1096,6 +1253,11 @@
                   "fr" : "Pointeur avant-bras"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "wrist-pain",
                 "lower-back-pain"
@@ -1155,6 +1317,20 @@
                   "fr" : "Écarts alternés sans saut 5 tours fractionné 20/10"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1194,6 +1370,10 @@
                   "fr" : "Étirements doux mollets + quadriceps 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -1225,6 +1405,20 @@
                   "fr" : "Marche dynamique genoux haut 30 sec"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "wrist-pain",
@@ -1287,6 +1481,10 @@
                   "fr" : "Étirements statiques globaux 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
 
@@ -1323,6 +1521,10 @@
                   "fr" : "Marche rapide 10 min + planche 2×30 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -1396,6 +1598,20 @@
                   "fr" : "Chaise au mur 30 sec"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1434,6 +1650,10 @@
                   "fr" : "Étirements doux 30 sec/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "120"
+              },
               "duration" : "120 sec",
               "incompatible_constraints" : [
 
@@ -1465,6 +1685,20 @@
                   "fr" : "Marche dynamique genoux haut 30 sec"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "wrist-pain",
@@ -1527,6 +1761,11 @@
                   "fr" : "Extension des mollets au mur unipodal"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1563,6 +1802,10 @@
                   "fr" : "Tibialis élévations avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "20"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1594,6 +1837,11 @@
                   "fr" : "Montée sur banc sur chaise"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "hip-injury"
@@ -1631,6 +1879,10 @@
                   "fr" : "Charnière de hanche sans charge"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -1668,6 +1920,10 @@
                   "fr" : "Soulevé de terre roumain haltères unilatéral"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -1705,6 +1961,10 @@
                   "fr" : "Pont de hanches au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -1743,6 +2003,13 @@
                   "fr" : "Planche avant-bras 60 sec + ouverture de hanche"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s plank + 30 s side plank per side",
+                  "es" : "45 s de plancha + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec planche + 30 sec side plank/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1803,6 +2070,20 @@
                   "fr" : "Écarts alternés sans saut 6 tours fractionné 20/10"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1842,6 +2123,10 @@
                   "fr" : "Étirements doux 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -1873,6 +2158,10 @@
                   "fr" : "30/30 4 tours squat-air + pompe genoux alterné"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1935,6 +2224,10 @@
                   "fr" : "Étirements globaux 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
 
@@ -1971,6 +2264,10 @@
                   "fr" : "Marche rapide 10 min + planche 2×30 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -2044,6 +2341,20 @@
                   "fr" : "Écarts alternés sans saut 4 tours fractionné 20/10"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2083,6 +2394,10 @@
                   "fr" : "Étirements doux 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -2114,6 +2429,20 @@
                   "fr" : "Chaise au mur 30 sec"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2174,6 +2503,10 @@
                   "fr" : "Extension des mollets au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2210,6 +2543,10 @@
                   "fr" : "Tibialis élévations avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "18"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2241,6 +2578,10 @@
                   "fr" : "Charnière de hanche sans charge"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -2278,6 +2619,10 @@
                   "fr" : "Pont de hanches au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -2311,6 +2656,10 @@
                   "fr" : "Planche avant-bras 50 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "40"
+              },
               "duration" : "40 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2366,6 +2715,20 @@
                   "fr" : "Écarts alternés sans saut 3 tours 40/20"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "40"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  }
+                ]
+              },
               "duration" : "40 sec work + 20 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2405,6 +2768,10 @@
                   "fr" : "Étirements doux 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -2436,6 +2803,20 @@
                   "fr" : "Chaise au mur 30 sec"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2496,6 +2877,10 @@
                   "fr" : "Étirements statiques globaux 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
 
@@ -2569,6 +2954,20 @@
                   "fr" : "Montée sur banc alterné 40/20 6 tours"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "40"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  }
+                ]
+              },
               "duration" : "40 sec work + 20 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2607,6 +3006,10 @@
                   "fr" : "Étirements doux 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -2638,6 +3041,20 @@
                   "fr" : "Cercles bras + pas latéraux 30 sec"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2699,6 +3116,11 @@
                   "fr" : "Extension des mollets au mur unipodal"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2730,6 +3152,10 @@
                   "fr" : "Tibialis élévations avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "20"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2761,6 +3187,10 @@
                   "fr" : "Pont de hanches haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury",
@@ -2800,6 +3230,10 @@
                   "fr" : "Pont de hanches au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -2833,6 +3267,11 @@
                   "fr" : "Montée sur banc sur chaise"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "hip-injury"
@@ -2865,6 +3304,13 @@
                   "fr" : "Planche avant-bras 60 sec + ouverture de hanche 15/côté"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "50 s plank + 30 s side plank per side",
+                  "es" : "50 s de plancha + 30 s de plancha lateral por lado",
+                  "fr" : "50 s de planche + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "50 sec planche + 30 sec side plank/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2920,6 +3366,20 @@
                   "fr" : "Montée sur banc alterné fractionné 20/10 6 tours"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2958,6 +3418,10 @@
                   "fr" : "Étirements doux 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -2989,6 +3453,20 @@
                   "fr" : "Marche dynamique genoux haut 30 sec"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "wrist-pain",
@@ -3051,6 +3529,10 @@
                   "fr" : "Étirements globaux 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
 
@@ -3087,6 +3569,10 @@
                   "fr" : "Marche 10 min + planche"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -3161,6 +3647,10 @@
                   "fr" : "30/30 6 tours squat-air + pompe alternés"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3224,6 +3714,11 @@
                   "fr" : "Extension des mollets au mur unipodal"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3255,6 +3750,10 @@
                   "fr" : "Tibialis élévations avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "20"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3286,6 +3785,10 @@
                   "fr" : "Pont de hanches haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury",
@@ -3324,6 +3827,10 @@
                   "fr" : "Soulevé de terre roumain haltères unilatéral"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -3361,6 +3868,11 @@
                   "fr" : "Montée sur banc sur chaise"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "hip-injury"
@@ -3393,6 +3905,10 @@
                   "fr" : "Pont de hanches au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -3426,6 +3942,13 @@
                   "fr" : "Planche avant-bras 75 sec + ouverture de hanche 15/côté"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 s plank + 35 s side plank per side",
+                  "es" : "60 s de plancha + 35 s de plancha lateral por lado",
+                  "fr" : "60 s de planche + 35 s de planche latérale par côté"
+                }
+              },
               "duration" : "60 sec planche + 35 sec side plank/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3481,6 +4004,20 @@
                   "fr" : "Grimpeurs avant-bras fractionné 20/10 6 tours"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "wrist-pain",
@@ -3521,6 +4058,10 @@
                   "fr" : "Étirements doux 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -3552,6 +4093,20 @@
                   "fr" : "Montée sur banc alterné 40/20 6 tours"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "40"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  }
+                ]
+              },
               "duration" : "40 sec work + 20 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3612,6 +4167,10 @@
                   "fr" : "Étirements globaux 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
 
@@ -3648,6 +4207,10 @@
                   "fr" : "Marche 10 min + planche"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -3722,6 +4285,10 @@
                   "fr" : "30/30 6 tours squat-air + pompe alternés"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3787,6 +4354,11 @@
                   "fr" : "Extension des mollets au mur unipodal"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3818,6 +4390,10 @@
                   "fr" : "Tibialis élévations avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "20"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3849,6 +4425,10 @@
                   "fr" : "Pont de hanches haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury",
@@ -3887,6 +4467,10 @@
                   "fr" : "Soulevé de terre roumain haltères unilatéral"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "7"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -3924,6 +4508,11 @@
                   "fr" : "Montée sur banc sur chaise"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "hip-injury"
@@ -3961,6 +4550,10 @@
                   "fr" : "Pont de hanches au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -3994,6 +4587,13 @@
                   "fr" : "Planche avant-bras 75 sec + ouverture de hanche 18/côté"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 s plank + 40 s side plank per side",
+                  "es" : "60 s de plancha + 40 s de plancha lateral por lado",
+                  "fr" : "60 s de planche + 40 s de planche latérale par côté"
+                }
+              },
               "duration" : "60 sec planche + 40 sec side plank/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4049,6 +4649,20 @@
                   "fr" : "Montée sur banc fractionné 20/10 6 tours"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4087,6 +4701,10 @@
                   "fr" : "Étirements doux 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -4118,6 +4736,20 @@
                   "fr" : "Bloc 40/20 squat-air uniquement 6 tours"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "40"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  }
+                ]
+              },
               "duration" : "40 sec work + 20 sec rest",
               "incompatible_constraints" : [
                 "wrist-pain",
@@ -4183,6 +4815,10 @@
                   "fr" : "Étirements globaux 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
 
@@ -4256,6 +4892,20 @@
                   "fr" : "Chaise au mur 30 sec"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4294,6 +4944,10 @@
                   "fr" : "Étirements doux 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -4325,6 +4979,20 @@
                   "fr" : "Écarts alternés sans saut fractionné 20/10 4 tours"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4386,6 +5054,10 @@
                   "fr" : "Extension des mollets au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -4417,6 +5089,10 @@
                   "fr" : "Tibialis élévations avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "18"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -4448,6 +5124,10 @@
                   "fr" : "Pont de hanches haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury",
@@ -4486,6 +5166,10 @@
                   "fr" : "Pont de hanches au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -4519,6 +5203,10 @@
                   "fr" : "Planche avant-bras 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4574,6 +5262,20 @@
                   "fr" : "Montée sur banc fractionné 20/10 6 tours"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4612,6 +5314,10 @@
                   "fr" : "Étirements doux 4 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "240"
+              },
               "duration" : "240 sec",
               "incompatible_constraints" : [
 
@@ -4648,6 +5354,10 @@
                   "fr" : "Une série chaque minute 10 min équivalent"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4714,6 +5424,10 @@
                   "fr" : "Étirements globaux 20 min + savasana 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
 

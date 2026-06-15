@@ -53,6 +53,10 @@
                   "fr" : "Visualisation des sensations cibles 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "2"
+              },
               "duration" : "2 min",
               "incompatible_constraints" : [
 
@@ -89,6 +93,20 @@
                   "fr" : "Bloc fractionné 20/10 8 tours rower / assault bike all-out"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -132,6 +150,10 @@
                   "fr" : "Étirements doux gastrocnémiens 30 sec/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -168,6 +190,20 @@
                   "fr" : "Bloc 30/30 écarts alternés sans saut + planche dynamique 8 tours"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "wrist-pain",
@@ -208,6 +244,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 s front plank + 30 s side plank per side",
+                  "es" : "60 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "60 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "60 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -268,6 +311,10 @@
                   "fr" : "Footing facile 25 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -326,6 +373,13 @@
                   "fr" : "Une série chaque minute 15 min haltères substitut"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min per round (work + self-paced rest)",
+                  "es" : "1 min por ronda (trabajo + descanso autorregulado)",
+                  "fr" : "1 min par round (effort + repos auto-géré)"
+                }
+              },
               "duration" : "1 min par round (work + repos auto-régulé)",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -372,6 +426,13 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -432,6 +493,10 @@
                   "fr" : "Max de tours 12 min à faible impact"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -475,6 +540,13 @@
                   "fr" : "Bascules groupées + pointeur 30 sec"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s hollow rocks + 30 s dead bug",
+                  "es" : "30 s de hollow rocks + 30 s de dead bug",
+                  "fr" : "30 s de hollow rocks + 30 s de dead bug"
+                }
+              },
               "duration" : "30 sec hollow rocks + 30 sec dead bug",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -534,6 +606,10 @@
                   "fr" : "Soulevé de terre roumain haltères si charge dispo"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -571,6 +647,10 @@
                   "fr" : "Pont de hanches haltères chargé + pont fessier bipodal"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -608,6 +688,10 @@
                   "fr" : "Squat-air contrôlé amorti 3 sec en bas"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -646,6 +730,11 @@
                   "fr" : "Fente bulgare haltères"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -682,6 +771,11 @@
                   "fr" : "Extensions des mollets assis avec charge sur genoux"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -718,6 +812,11 @@
                   "fr" : "Tibialis élévations avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -754,6 +853,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 s front plank + 45 s side plank per side",
+                  "es" : "60 s de plancha frontal + 45 s de plancha lateral por lado",
+                  "fr" : "60 s de planche ventrale + 45 s de planche latérale par côté"
+                }
+              },
               "duration" : "60 sec ventrale + 45 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -829,6 +935,10 @@
                   "fr" : "Visualisation cibles"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min",
               "incompatible_constraints" : [
 
@@ -865,6 +975,20 @@
                   "fr" : "Bloc fractionné 20/10 8 tours burpee sans saut sur cône"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -908,6 +1032,10 @@
                   "fr" : "Étirements doux gastrocnémiens"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -944,6 +1072,20 @@
                   "fr" : "Bloc 40/20 gobelet squat dynamique + sauts en étoile"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "40"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  }
+                ]
+              },
               "duration" : "40 sec work + 20 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -986,6 +1128,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1046,6 +1195,10 @@
                   "fr" : "Footing facile 25 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -1104,6 +1257,11 @@
                   "fr" : "Une série chaque minute 18 min haltères substitut"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perRound",
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min par round",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1150,6 +1308,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1210,6 +1375,10 @@
                   "fr" : "Max de tours 15 à faible impact"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1255,6 +1424,13 @@
                   "fr" : "Bascules groupées + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s hollow rocks + 30 s V-ups",
+                  "es" : "30 s de hollow rocks + 30 s de V-ups",
+                  "fr" : "30 s de hollow rocks + 30 s de V-ups"
+                }
+              },
               "duration" : "30 sec hollow rocks + 30 sec V-ups",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1314,6 +1490,10 @@
                   "fr" : "Soulevé de terre roumain barre modéré"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury",
@@ -1353,6 +1533,10 @@
                   "fr" : "Soulevé de terre roumain haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -1390,6 +1574,10 @@
                   "fr" : "Pont fessier bipodal"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -1428,6 +1616,11 @@
                   "fr" : "Extensions des mollets assis avec charge"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1464,6 +1657,13 @@
                   "fr" : "Pointe-talon assis + tirage visage bande"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 tibialis + 12 scapular pull-up",
+                  "es" : "15 tibialis + 12 scapular pull-up",
+                  "fr" : "15 tibialis + 12 scapular pull-up"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "shoulder-injury"
@@ -1501,6 +1701,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 s front plank + 45 s side plank per side",
+                  "es" : "60 s de plancha frontal + 45 s de plancha lateral por lado",
+                  "fr" : "60 s de planche ventrale + 45 s de planche latérale par côté"
+                }
+              },
               "duration" : "60 sec ventrale + 45 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1576,6 +1783,10 @@
                   "fr" : "Visualisation cibles"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min",
               "incompatible_constraints" : [
 
@@ -1612,6 +1823,20 @@
                   "fr" : "Bloc fractionné 20/10 8 tours haltères swing 12 kg"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1653,6 +1878,10 @@
                   "fr" : "Étirements doux gastrocnémiens"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -1689,6 +1918,20 @@
                   "fr" : "Bloc 30/30 grimpeurs + squat-air dynamique"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1731,6 +1974,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1791,6 +2041,10 @@
                   "fr" : "Footing facile 30 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -1849,6 +2103,11 @@
                   "fr" : "Une série chaque minute 20 à faible impact"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perRound",
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min par round",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1895,6 +2154,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1955,6 +2221,10 @@
                   "fr" : "Max de tours 18 à faible impact (rowing buste penché haltères + pompe genoux + squat-air)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1997,6 +2267,13 @@
                   "fr" : "Bascules groupées + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s hollow + 30 s V-ups",
+                  "es" : "30 s de hollow + 30 s de V-ups",
+                  "fr" : "30 s de hollow + 30 s de V-ups"
+                }
+              },
               "duration" : "30 sec hollow + 30 sec V-ups",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2056,6 +2333,11 @@
                   "fr" : "Épaulé suspendu haltères"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury",
@@ -2096,6 +2378,13 @@
                   "fr" : "Soulevé de terre roumain haltères + fente haltères"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 Nordic + 8 split squat per leg, 12 kg dumbbells",
+                  "es" : "5 Nordic + 8 split squat por pierna, mancuernas 12 kg",
+                  "fr" : "5 Nordic + 8 split squat par jambe, haltères 12 kg"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -2135,6 +2424,10 @@
                   "fr" : "Squat-air contrôlé amorti 3 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -2173,6 +2466,13 @@
                   "fr" : "Pont fessier + gainage latéral genoux"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 hip thrust + 30 s copenhagen per side",
+                  "es" : "10 hip thrust + 30 s de copenhagen por lado",
+                  "fr" : "10 hip thrust + 30 s de copenhagen par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury",
@@ -2213,6 +2513,13 @@
                   "fr" : "Calf assis charge + pointe-talon assis"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 calf per leg + 15 tibialis per leg",
+                  "es" : "12 calf por pierna + 15 tibialis por pierna",
+                  "fr" : "12 calf par jambe + 15 tibialis par jambe"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2249,6 +2556,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 s front plank + 45 s side plank per side",
+                  "es" : "60 s de plancha frontal + 45 s de plancha lateral por lado",
+                  "fr" : "60 s de planche ventrale + 45 s de planche latérale par côté"
+                }
+              },
               "duration" : "60 sec ventrale + 45 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2324,6 +2638,10 @@
                   "fr" : "Visualisation cibles"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min",
               "incompatible_constraints" : [
 
@@ -2360,6 +2678,20 @@
                   "fr" : "Bloc fractionné 20/10 6 tours burpee sans saut"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2403,6 +2735,10 @@
                   "fr" : "Étirements doux gastrocnémiens"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -2439,6 +2775,20 @@
                   "fr" : "Bloc 30/30 sauts en étoile + planche dynamique 6 tours"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2481,6 +2831,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2541,6 +2898,10 @@
                   "fr" : "Footing facile 30 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -2599,6 +2960,11 @@
                   "fr" : "Une série chaque minute 15 à faible impact"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perRound",
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min par round",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2645,6 +3011,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2705,6 +3078,10 @@
                   "fr" : "Max de tours 12 à faible impact (squat-air + pompe genoux + fente + écarts alternés sans saut)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2748,6 +3125,13 @@
                   "fr" : "Planche genoux 45 sec + gainage latéral genoux 30 sec"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s dead bug + 30 s bird dog",
+                  "es" : "30 s de dead bug + 30 s de bird dog",
+                  "fr" : "30 s de dead bug + 30 s de bird dog"
+                }
+              },
               "duration" : "30 sec dead bug + 30 sec bird dog",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -2806,6 +3190,10 @@
                   "fr" : "Soulevé de terre roumain haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -2843,6 +3231,10 @@
                   "fr" : "Pont fessier bipodal"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -2881,6 +3273,13 @@
                   "fr" : "Calf assis charge + pointe-talon assis"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 calf per leg + 15 tibialis per leg",
+                  "es" : "12 calf por pierna + 15 tibialis por pierna",
+                  "fr" : "12 calf par jambe + 15 tibialis par jambe"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2917,6 +3316,13 @@
                   "fr" : "Wall-slide + tirage visage bande"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 scapular + 12 Y-raise",
+                  "es" : "12 scapular + 12 Y-raise",
+                  "fr" : "12 scapular + 12 Y-raise"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2954,6 +3360,10 @@
                   "fr" : "Auto-massage manuel 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -2990,6 +3400,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3065,6 +3482,10 @@
                   "fr" : "Visualisation cibles"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min",
               "incompatible_constraints" : [
 
@@ -3101,6 +3522,20 @@
                   "fr" : "Bloc fractionné 20/10 8 tours burpee sans saut"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3144,6 +3579,10 @@
                   "fr" : "Étirements doux gastrocnémiens"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -3180,6 +3619,20 @@
                   "fr" : "Bloc 40/20 haltères swing + développé avec impulsion haltères"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "40"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  }
+                ]
+              },
               "duration" : "40 sec work + 20 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3223,6 +3676,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3283,6 +3743,10 @@
                   "fr" : "Footing facile 30 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -3341,6 +3805,11 @@
                   "fr" : "Une série chaque minute 18 à faible impact"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perRound",
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min par round",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3387,6 +3856,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3447,6 +3923,10 @@
                   "fr" : "Max de tours 18 à faible impact"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3490,6 +3970,13 @@
                   "fr" : "Bascules groupées + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s hollow + 30 s V-ups",
+                  "es" : "30 s de hollow + 30 s de V-ups",
+                  "fr" : "30 s de hollow + 30 s de V-ups"
+                }
+              },
               "duration" : "30 sec hollow + 30 sec V-ups",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3549,6 +4036,10 @@
                   "fr" : "Step-down 30 cm + amorti contrôlé"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -3588,6 +4079,10 @@
                   "fr" : "Soulevé de terre roumain barre modéré + tirage menton explosif haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury",
@@ -3627,6 +4122,10 @@
                   "fr" : "Soulevé de terre roumain haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -3664,6 +4163,13 @@
                   "fr" : "Pont fessier + gainage latéral genoux"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 hip thrust + 30 s copenhagen per side",
+                  "es" : "10 hip thrust + 30 s de copenhagen por lado",
+                  "fr" : "10 hip thrust + 30 s de copenhagen par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury",
@@ -3704,6 +4210,13 @@
                   "fr" : "Calf assis + pointe-talon + tirage visage bande"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 calf per leg + 15 tibialis per leg + 12 scapular",
+                  "es" : "12 calf por pierna + 15 tibialis por pierna + 12 scapular",
+                  "fr" : "12 calf par jambe + 15 tibialis par jambe + 12 scapular"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "shoulder-injury"
@@ -3741,6 +4254,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 s front plank + 45 s side plank per side",
+                  "es" : "60 s de plancha frontal + 45 s de plancha lateral por lado",
+                  "fr" : "60 s de planche ventrale + 45 s de planche latérale par côté"
+                }
+              },
               "duration" : "60 sec ventrale + 45 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3816,6 +4336,10 @@
                   "fr" : "Visualisation cibles"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min",
               "incompatible_constraints" : [
 
@@ -3852,6 +4376,20 @@
                   "fr" : "Bloc fractionné 20/10 8 tours burpees over bar all-out"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3891,6 +4429,10 @@
                   "fr" : "Étirements doux gastrocnémiens"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -3927,6 +4469,20 @@
                   "fr" : "Bloc 40/20 haltères swing + step-down 30 cm contrôlé"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "40"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  }
+                ]
+              },
               "duration" : "40 sec work + 20 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3969,6 +4525,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4029,6 +4592,10 @@
                   "fr" : "Footing facile 30 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -4087,6 +4654,11 @@
                   "fr" : "Une série chaque minute 20 à faible impact"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perRound",
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min par round",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4133,6 +4705,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4193,6 +4772,10 @@
                   "fr" : "Max de tours 18 sans traction bar"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4238,6 +4821,13 @@
                   "fr" : "Bascules groupées + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s hollow + 30 s V-ups",
+                  "es" : "30 s de hollow + 30 s de V-ups",
+                  "fr" : "30 s de hollow + 30 s de V-ups"
+                }
+              },
               "duration" : "30 sec hollow + 30 sec V-ups",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4297,6 +4887,10 @@
                   "fr" : "Sauts en longueur (horizontal au lieu de vertical)"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -4336,6 +4930,10 @@
                   "fr" : "Soulevé de terre roumain barre modéré + tirage menton explosif haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "4"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury",
@@ -4375,6 +4973,13 @@
                   "fr" : "Marche de l'ours 20 m aller-retour"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 m per push",
+                  "es" : "20 m por empuje",
+                  "fr" : "20 m par poussée"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -4412,6 +5017,13 @@
                   "fr" : "Soulevé de terre roumain haltères + fente haltères"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 Nordic + 8 split squat per leg, 14 kg dumbbells",
+                  "es" : "5 Nordic + 8 split squat por pierna, mancuernas 14 kg",
+                  "fr" : "5 Nordic + 8 split squat par jambe, haltères 14 kg"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -4451,6 +5063,13 @@
                   "fr" : "Calf assis + pointe-talon + tirage visage bande"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 calf per leg + 15 tibialis per leg + 12 scapular",
+                  "es" : "12 calf por pierna + 15 tibialis por pierna + 12 scapular",
+                  "fr" : "12 calf par jambe + 15 tibialis par jambe + 12 scapular"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "shoulder-injury"
@@ -4488,6 +5107,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 s front plank + 45 s side plank per side",
+                  "es" : "60 s de plancha frontal + 45 s de plancha lateral por lado",
+                  "fr" : "60 s de planche ventrale + 45 s de planche latérale par côté"
+                }
+              },
               "duration" : "60 sec ventrale + 45 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4563,6 +5189,10 @@
                   "fr" : "Visualisation cibles"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min",
               "incompatible_constraints" : [
 
@@ -4599,6 +5229,20 @@
                   "fr" : "Bloc fractionné 20/10 8 tours burpee sans saut"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4642,6 +5286,10 @@
                   "fr" : "Étirements doux gastrocnémiens"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -4678,6 +5326,20 @@
                   "fr" : "Bloc 30/30 squat-jump + grimpeurs à faible impact"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4720,6 +5382,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4780,6 +5449,10 @@
                   "fr" : "Footing facile 30 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -4838,6 +5511,11 @@
                   "fr" : "Une série chaque minute 20 à faible impact"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perRound",
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min par round",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4885,6 +5563,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4945,6 +5630,10 @@
                   "fr" : "Max de tours 20 à faible impact"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4988,6 +5677,13 @@
                   "fr" : "Bascules groupées + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s hollow + 30 s V-ups",
+                  "es" : "30 s de hollow + 30 s de V-ups",
+                  "fr" : "30 s de hollow + 30 s de V-ups"
+                }
+              },
               "duration" : "30 sec hollow + 30 sec V-ups",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -5047,6 +5743,10 @@
                   "fr" : "Soulevé de terre roumain barre modéré + tirage menton explosif haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "4"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury",
@@ -5086,6 +5786,10 @@
                   "fr" : "Soulevé de terre roumain haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -5123,6 +5827,10 @@
                   "fr" : "Pont fessier bipodal"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -5161,6 +5869,13 @@
                   "fr" : "Calf assis + pointe-talon assis"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 calf per leg + 15 tibialis per leg",
+                  "es" : "12 calf por pierna + 15 tibialis por pierna",
+                  "fr" : "12 calf par jambe + 15 tibialis par jambe"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -5197,6 +5912,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -5272,6 +5994,10 @@
                   "fr" : "Visualisation cibles"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min",
               "incompatible_constraints" : [
 
@@ -5308,6 +6034,20 @@
                   "fr" : "Bloc fractionné 20/10 6 tours haltères swing 12 kg"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -5349,6 +6089,10 @@
                   "fr" : "Étirements doux gastrocnémiens"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -5385,6 +6129,20 @@
                   "fr" : "Bloc 30/30 sauts en étoile + planche dynamique 6 tours"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5427,6 +6185,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -5487,6 +6252,10 @@
                   "fr" : "Footing facile 35 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -5545,6 +6314,11 @@
                   "fr" : "Une série chaque minute 15 à faible impact"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perRound",
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min par round",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5591,6 +6365,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -5651,6 +6432,10 @@
                   "fr" : "Max de tours 15 à faible impact"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5695,6 +6480,13 @@
                   "fr" : "Planche genoux 45 sec + gainage latéral genoux 30 sec"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s dead bug + 30 s bird dog",
+                  "es" : "30 s de dead bug + 30 s de bird dog",
+                  "fr" : "30 s de dead bug + 30 s de bird dog"
+                }
+              },
               "duration" : "30 sec dead bug + 30 sec bird dog",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -5753,6 +6545,10 @@
                   "fr" : "Soulevé de terre roumain haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -5790,6 +6586,13 @@
                   "fr" : "Pont fessier + gainage latéral genoux"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 hip thrust + 30 s copenhagen per side",
+                  "es" : "10 hip thrust + 30 s de copenhagen por lado",
+                  "fr" : "10 hip thrust + 30 s de copenhagen par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury",
@@ -5830,6 +6633,13 @@
                   "fr" : "Calf assis + pointe-talon + tirage visage bande"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 calf per leg + 15 tibialis per leg + 12 scapular",
+                  "es" : "12 calf por pierna + 15 tibialis por pierna + 12 scapular",
+                  "fr" : "12 calf par jambe + 15 tibialis par jambe + 12 scapular"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "shoulder-injury"
@@ -5867,6 +6677,10 @@
                   "fr" : "Auto-massage manuel 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
 
@@ -5903,6 +6717,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -5978,6 +6799,10 @@
                   "fr" : "Visualisation cibles"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min",
               "incompatible_constraints" : [
 
@@ -6014,6 +6839,20 @@
                   "fr" : "Bloc fractionné 20/10 8 tours burpee sans saut"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6057,6 +6896,10 @@
                   "fr" : "Étirements doux gastrocnémiens"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -6093,6 +6936,20 @@
                   "fr" : "Bloc 40/20 haltères swing + développé avec impulsion haltères"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "40"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  }
+                ]
+              },
               "duration" : "40 sec work + 20 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6136,6 +6993,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6196,6 +7060,10 @@
                   "fr" : "Footing facile 30 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -6254,6 +7122,11 @@
                   "fr" : "Une série chaque minute 18 à faible impact"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perRound",
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min par round",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6300,6 +7173,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6360,6 +7240,10 @@
                   "fr" : "Max de tours 18 à faible impact (tirages aux anneaux + pompe genoux + squat-air)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6403,6 +7287,13 @@
                   "fr" : "Bascules groupées + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s hollow + 30 s V-ups",
+                  "es" : "30 s de hollow + 30 s de V-ups",
+                  "fr" : "30 s de hollow + 30 s de V-ups"
+                }
+              },
               "duration" : "30 sec hollow + 30 sec V-ups",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6462,6 +7353,10 @@
                   "fr" : "Sauts en longueur (horizontal au lieu de vertical)"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -6501,6 +7396,10 @@
                   "fr" : "Soulevé de terre roumain barre modéré + tirage menton explosif haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "4"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury",
@@ -6540,6 +7439,13 @@
                   "fr" : "Walking fente haltères 20 m + marche du fermier"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 m sled + 20 m farmer carry",
+                  "es" : "20 m de sled + 20 m de farmer carry",
+                  "fr" : "20 m de sled + 20 m de farmer carry"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -6577,6 +7483,13 @@
                   "fr" : "Soulevé de terre roumain haltères + fente haltères"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 Nordic + 8 split squat per leg, 14 kg dumbbells",
+                  "es" : "5 Nordic + 8 split squat por pierna, mancuernas 14 kg",
+                  "fr" : "5 Nordic + 8 split squat par jambe, haltères 14 kg"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -6616,6 +7529,13 @@
                   "fr" : "Calf assis + pointe-talon + tirage visage bande"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 calf per leg + 15 tibialis per leg + 12 scapular",
+                  "es" : "12 calf por pierna + 15 tibialis por pierna + 12 scapular",
+                  "fr" : "12 calf par jambe + 15 tibialis par jambe + 12 scapular"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "shoulder-injury"
@@ -6653,6 +7573,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 s front plank + 45 s side plank per side",
+                  "es" : "60 s de plancha frontal + 45 s de plancha lateral por lado",
+                  "fr" : "60 s de planche ventrale + 45 s de planche latérale par côté"
+                }
+              },
               "duration" : "60 sec ventrale + 45 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6728,6 +7655,10 @@
                   "fr" : "Visualisation cibles"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min",
               "incompatible_constraints" : [
 
@@ -6764,6 +7695,20 @@
                   "fr" : "Bloc fractionné 20/10 8 tours burpees over bar all-out"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6803,6 +7748,10 @@
                   "fr" : "Étirements doux gastrocnémiens"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -6839,6 +7788,20 @@
                   "fr" : "Bloc 30/30 squat-jump + step-down contrôlé"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6882,6 +7845,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6942,6 +7912,10 @@
                   "fr" : "Footing facile 30 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -7000,6 +7974,11 @@
                   "fr" : "Une série chaque minute 20 à faible impact"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perRound",
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min par round",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7047,6 +8026,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -7107,6 +8093,10 @@
                   "fr" : "Max de tours 20 à faible impact"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7150,6 +8140,13 @@
                   "fr" : "Bascules groupées + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s hollow + 30 s V-ups",
+                  "es" : "30 s de hollow + 30 s de V-ups",
+                  "fr" : "30 s de hollow + 30 s de V-ups"
+                }
+              },
               "duration" : "30 sec hollow + 30 sec V-ups",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -7209,6 +8206,10 @@
                   "fr" : "Soulevé de terre roumain barre modéré + tirage menton explosif haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "3"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury",
@@ -7248,6 +8249,10 @@
                   "fr" : "Soulevé de terre roumain haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -7285,6 +8290,10 @@
                   "fr" : "Pont fessier bipodal"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -7323,6 +8332,13 @@
                   "fr" : "Calf assis + pointe-talon assis"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 calf per leg + 15 tibialis per leg",
+                  "es" : "12 calf por pierna + 15 tibialis por pierna",
+                  "fr" : "12 calf par jambe + 15 tibialis par jambe"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -7359,6 +8375,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -7434,6 +8457,10 @@
                   "fr" : "Visualisation cibles"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min",
               "incompatible_constraints" : [
 
@@ -7470,6 +8497,20 @@
                   "fr" : "Bloc fractionné 20/10 8 tours haltères swing 14 kg"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -7511,6 +8552,10 @@
                   "fr" : "Étirements doux gastrocnémiens"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -7547,6 +8592,20 @@
                   "fr" : "Bloc 40/20 haltères swing + développé avec impulsion haltères"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "40"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  }
+                ]
+              },
               "duration" : "40 sec work + 20 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -7590,6 +8649,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -7650,6 +8716,10 @@
                   "fr" : "Footing facile 30 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -7708,6 +8778,11 @@
                   "fr" : "Une série chaque minute 18 à faible impact"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perRound",
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min par round",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7754,6 +8829,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -7814,6 +8896,10 @@
                   "fr" : "Max de tours 18 à faible impact (tirages aux anneaux + pompe genoux + squat-air + montée sur banc box)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7857,6 +8943,13 @@
                   "fr" : "Bascules groupées + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s hollow + 30 s V-ups",
+                  "es" : "30 s de hollow + 30 s de V-ups",
+                  "fr" : "30 s de hollow + 30 s de V-ups"
+                }
+              },
               "duration" : "30 sec hollow + 30 sec V-ups",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -7916,6 +9009,10 @@
                   "fr" : "Sauts en longueur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -7955,6 +9052,10 @@
                   "fr" : "Soulevé de terre roumain barre modéré"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "3"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury",
@@ -7994,6 +9095,10 @@
                   "fr" : "Soulevé de terre roumain haltères"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -8031,6 +9136,10 @@
                   "fr" : "Pont fessier bipodal"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hip-injury"
@@ -8069,6 +9178,13 @@
                   "fr" : "Calf assis + pointe-talon + tirage visage bande"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 calf per leg + 15 tibialis per leg + 12 scapular",
+                  "es" : "12 calf por pierna + 15 tibialis por pierna + 12 scapular",
+                  "fr" : "12 calf par jambe + 15 tibialis par jambe + 12 scapular"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "shoulder-injury"
@@ -8106,6 +9222,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s side plank per side",
+                  "es" : "45 s de plancha frontal + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche ventrale + 30 s de planche latérale par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -8181,6 +9304,10 @@
                   "fr" : "Visualisation cibles"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min",
               "incompatible_constraints" : [
 
@@ -8217,6 +9344,20 @@
                   "fr" : "Bloc fractionné 20/10 6 tours burpee sans saut step-back"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8260,6 +9401,10 @@
                   "fr" : "Étirements doux gastrocnémiens"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "180"
+              },
               "duration" : "180 sec",
               "incompatible_constraints" : [
 
@@ -8296,6 +9441,20 @@
                   "fr" : "Bloc 30/30 sauts en étoile + planche dynamique"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "30 sec work + 30 sec rest",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -8338,6 +9497,13 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s front plank + 20 s side plank per side",
+                  "es" : "30 s de plancha frontal + 20 s de plancha lateral por lado",
+                  "fr" : "30 s de planche ventrale + 20 s de planche latérale par côté"
+                }
+              },
               "duration" : "30 sec ventrale + 20 sec latérale/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -8398,6 +9564,10 @@
                   "fr" : "Footing facile 25 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -8456,6 +9626,13 @@
                   "fr" : "Yoga doux 20 min flow"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 min per block",
+                  "es" : "10 min por bloque",
+                  "fr" : "10 min par bloc"
+                }
+              },
               "duration" : "10 min par bloc",
               "incompatible_constraints" : [
 
@@ -8496,6 +9673,10 @@
                   "fr" : "Auto-massage manuel 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
 
@@ -8554,6 +9735,13 @@
                   "fr" : "Visualisation des 5 critères avant le warmup"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min reading before the session",
+                  "es" : "1 min de lectura antes de la sesión",
+                  "fr" : "1 min de lecture avant la séance"
+                }
+              },
               "duration" : "1 min lecture avant séance",
               "incompatible_constraints" : [
 
@@ -8590,6 +9778,20 @@
                   "fr" : "Bloc fractionné 20/10 8 tours burpee sans saut"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "10"
+                  }
+                ]
+              },
               "duration" : "20 sec work + 10 sec rest",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8633,6 +9835,10 @@
                   "fr" : "Étirements doux ischios + mollets 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "300"
+              },
               "duration" : "300 sec",
               "incompatible_constraints" : [
 
@@ -8669,6 +9875,10 @@
                   "fr" : "Max de tours 20 à faible impact"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8712,6 +9922,10 @@
                   "fr" : "Étirements doux 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "300"
+              },
               "duration" : "300 sec",
               "incompatible_constraints" : [
 
@@ -8748,6 +9962,11 @@
                   "fr" : "Une série chaque minute 12 à faible impact"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perRound",
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min par round",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8794,6 +10013,10 @@
                   "fr" : "Cooldown étirements doux + journalisation 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
 
@@ -8852,6 +10075,10 @@
                   "fr" : "Marche extérieure 30 min RPE 4-5"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
 
@@ -8888,6 +10115,10 @@
                   "fr" : "Auto-massage manuel 15 min ciblé"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
 
@@ -8924,6 +10155,10 @@
                   "fr" : "Discussion avec partenaire entraînement 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 

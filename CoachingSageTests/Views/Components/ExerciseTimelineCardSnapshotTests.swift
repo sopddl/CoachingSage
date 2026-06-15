@@ -225,4 +225,84 @@ final class ExerciseTimelineCardSnapshotTests: XCTestCase {
         assertSnapshot(of: swimmingDoseColumn(locale: Locale(identifier: "es")),
                        as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
     }
+
+    // MARK: - Lot 5 hiking — dosage localisé (FR/EN/ES)
+
+    // Cas représentatifs : minutes nues, renfo structuré (perSet/perLeg), heures freeText
+    // universelles (« 6 h »), composite terrain marche/D+/sac et intervalle montée/descente
+    // (RPE/pente inline, vocabulaire gardé) en freeText traduit. Chips dose suivent `\.locale`.
+    private func hikingDoseColumn(locale: Locale) -> some View {
+        let exos: [AdaptedExercise] = [
+            AdaptedExercise(name: "Sortie longue", originalName: "Sortie longue", duration: "240 min", targetZone: "RPE 4-5"),
+            AdaptedExercise(name: "Rando journée", originalName: "Rando journée", duration: "6 h", targetZone: "RPE 4-5"),
+            AdaptedExercise(name: "Marche chargée", originalName: "Marche chargée", duration: "100 min marche / D+ 280 m / sac 6 kg", targetZone: "RPE 5-6"),
+            AdaptedExercise(name: "Répétitions en côte", originalName: "Répétitions en côte", sets: 4, duration: "10 min montée RPE 8-9 gradient 15% sac 17 kg + 8 min descente très facile"),
+            AdaptedExercise(name: "Fentes lestées", originalName: "Fentes lestées", sets: 3, reps: "8 par série"),
+            AdaptedExercise(name: "Gainage latéral", originalName: "Gainage latéral", duration: "30 sec par jambe"),
+        ]
+        return VStack(spacing: 8) {
+            ForEach(Array(exos.enumerated()), id: \.offset) { _, ex in
+                ExerciseTimelineCard(exercise: ex, sportCode: "hiking", isFirstExercise: false)
+            }
+        }
+        .frame(width: 360)
+        .padding()
+        .background(Color(uiColor: .systemBackground))
+        .environment(\.locale, locale)
+    }
+
+    func testHikingDose_fr() {
+        assertSnapshot(of: hikingDoseColumn(locale: Locale(identifier: "fr")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testHikingDose_en() {
+        assertSnapshot(of: hikingDoseColumn(locale: Locale(identifier: "en")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testHikingDose_es() {
+        assertSnapshot(of: hikingDoseColumn(locale: Locale(identifier: "es")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    // MARK: - Lot 6 hiit — dosage localisé (FR/EN/ES)
+
+    // Cas représentatifs : intervalle work/rest (Dose.interval, activités neuves), « X min par
+    // round » structuré, secondes nues, reps par bras, composite de gainage freeText (planche/
+    // ventrale/latérale traduits, noms d'exos internationaux gardés). Chips dose suivent `\.locale`.
+    private func hiitDoseColumn(locale: Locale) -> some View {
+        let exos: [AdaptedExercise] = [
+            AdaptedExercise(name: "Tabata", originalName: "Tabata", sets: 8, duration: "20 sec work + 10 sec rest", targetZone: "RPE 9"),
+            AdaptedExercise(name: "AMRAP", originalName: "AMRAP", sets: 5, duration: "1 min par round", targetZone: "RPE 8"),
+            AdaptedExercise(name: "Effort long", originalName: "Effort long", sets: 4, duration: "180 sec", targetZone: "RPE 8"),
+            AdaptedExercise(name: "Renforcement épaules", originalName: "Renforcement épaules", sets: 3, reps: "10 par bras"),
+            AdaptedExercise(name: "Gainage combiné", originalName: "Gainage combiné", sets: 3, duration: "60 sec ventrale + 30 sec latérale/côté"),
+            AdaptedExercise(name: "Nordic + split squat", originalName: "Nordic + split squat", sets: 3, reps: "5 Nordic + 8 split squat/jambe DB 12 kg"),
+        ]
+        return VStack(spacing: 8) {
+            ForEach(Array(exos.enumerated()), id: \.offset) { _, ex in
+                ExerciseTimelineCard(exercise: ex, sportCode: "hiit", isFirstExercise: false)
+            }
+        }
+        .frame(width: 360)
+        .padding()
+        .background(Color(uiColor: .systemBackground))
+        .environment(\.locale, locale)
+    }
+
+    func testHiitDose_fr() {
+        assertSnapshot(of: hiitDoseColumn(locale: Locale(identifier: "fr")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testHiitDose_en() {
+        assertSnapshot(of: hiitDoseColumn(locale: Locale(identifier: "en")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testHiitDose_es() {
+        assertSnapshot(of: hiitDoseColumn(locale: Locale(identifier: "es")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
 }
