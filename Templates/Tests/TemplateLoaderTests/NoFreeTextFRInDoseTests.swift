@@ -27,6 +27,10 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
         "expulsions", "rapides", "lente", "descente", "contrôlée", "chacune", "chaque",
         "par côté", "par posture", "par variante", "par tenue", "par jambe", "par bras",
         "par pied", "par épaule", "cycles respiratoires", "côté", "posture", "variante",
+        // Lot 2 running — tokens FR-exclusifs (la trad propre est running/walking/pace/…).
+        // On EXCLUT volontairement « progressive »/« recovery » (mots EN légitimes des rendus).
+        "course", "marche", "allure", "footing", "tranquille", "rapide",
+        "accélération", "récupération", "selon", "objectif",
     ]
 
     /// Diacritiques FR-exclusifs (absents de l'orthographe ES : ç, ô, ê, è, à, î, ë, œ).
@@ -35,13 +39,21 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
 
     private func frLeak(in text: String) -> String? {
         let lower = text.lowercased()
-        for tok in Self.frTokens where lower.contains(tok) {
+        for tok in Self.frTokens where Self.containsWord(tok, in: lower) {
             return "token « \(tok) »"
         }
-        if text.lowercased().rangeOfCharacter(from: Self.frDiacritics) != nil {
+        if lower.rangeOfCharacter(from: Self.frDiacritics) != nil {
             return "diacritique FR"
         }
         return nil
+    }
+
+    /// Match par frontière de mot (lettres Unicode) : « recup » ne matche PAS l'espagnol
+    /// correct « recuperación », mais matche bien l'abréviation FR « recup » isolée.
+    private static func containsWord(_ token: String, in text: String) -> Bool {
+        let pattern = "(?<![\\p{L}])" + NSRegularExpression.escapedPattern(for: token) + "(?![\\p{L}])"
+        guard let re = try? NSRegularExpression(pattern: pattern) else { return text.contains(token) }
+        return re.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)) != nil
     }
 
     /// (chemin, dose) de tous les exercices d'un template, variantes incluses.
@@ -80,6 +92,30 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
         XCTAssertTrue(
             missing.isEmpty,
             "Exercices yoga avec dosage legacy mais sans `dose` structuré (\(missing.count)) — fuite FR à l'affichage :\n"
+                + missing.prefix(30).joined(separator: "\n")
+        )
+    }
+
+    func testEveryRunningExerciseHasDose() async throws {
+        let templates = try await TemplateLoader.loadAll()
+        guard templates.count >= 30 else { throw XCTSkip("bundle non peuplé (\(templates.count))") }
+        let running = templates.filter { $0.sport == .running }
+        XCTAssertFalse(running.isEmpty, "aucun template running chargé")
+
+        var missing: [String] = []
+        for t in running {
+            for w in t.weeks {
+                for s in w.sessions {
+                    let all = s.exercises + (s.variants ?? []).flatMap { $0.exercises }
+                    for e in all where (e.duration != nil || e.reps != nil) && e.dose == nil {
+                        missing.append("[\(t.id)] S\(w.weekNumber)D\(s.day) « \(e.stableMatchKey) » : duration/reps sans dose")
+                    }
+                }
+            }
+        }
+        XCTAssertTrue(
+            missing.isEmpty,
+            "Exercices running avec dosage legacy mais sans `dose` structuré (\(missing.count)) — fuite FR à l'affichage :\n"
                 + missing.prefix(30).joined(separator: "\n")
         )
     }

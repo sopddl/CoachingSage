@@ -71,7 +71,7 @@ struct SessionDetailView: View {
 
                     // Story 3.32 (AC7) — aperçu scannable : tap d'une ligne ancre
                     // vers le bloc correspondant dans la timeline détaillée.
-                    SessionOverviewList(session: displaySession) { anchorIndex in
+                    SessionOverviewList(session: displaySession, sportCode: effectiveSessionSportCode) { anchorIndex in
                         withAnimation(.easeInOut(duration: 0.3)) {
                             proxy.scrollTo(SessionStepAnchor.id(anchorIndex), anchor: .top)
                         }

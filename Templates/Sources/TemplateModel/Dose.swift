@@ -65,6 +65,36 @@ public enum DoseModifier: String, Codable, Equatable, Sendable, CaseIterable {
     case free
 }
 
+/// Activité d'un segment d'intervalle course/marche (Lot 2 running). Fermé, extensible
+/// par pilote-sport. Rendu localisé en phrase post-nominale (« 3 min de course »,
+/// « 1 min à allure 5K »). Les gloses redondantes du texte FR source (« (RPE 8) »,
+/// « (tu peux parler) ») sont DROPPÉES : l'intensité est portée par `target_zone`.
+public enum DoseActivity: String, Codable, Equatable, Sendable, CaseIterable {
+    case running                  // course
+    case walking                  // marche
+    case runningSlow              // course lente
+    case walkingFast              // marche rapide
+    case walkingRecovery          // marche de récupération
+    case accelerationProgressive  // accélération progressive
+    case easyJog                  // footing tranquille
+    case pace5K                   // à allure 5K
+    case pace10K                  // à allure 10K
+}
+
+/// Un segment d'un dosage en intervalle (« 3 min course + 2 min marche »). Réutilise la
+/// grammaire de `StructuredDose` (value + unit) et porte une `activity` localisée.
+public struct IntervalSegment: Codable, Equatable, Sendable {
+    public let value: String
+    public let unit: DoseUnit
+    public let activity: DoseActivity
+
+    public init(value: String, unit: DoseUnit, activity: DoseActivity) {
+        self.value = value
+        self.unit = unit
+        self.activity = activity
+    }
+}
+
 // MARK: - StructuredDose
 
 /// Dosage régulier décomposé en atomes traduisibles. `value` reste une `String` pour garder
@@ -96,16 +126,19 @@ public struct StructuredDose: Codable, Equatable, Sendable {
 /// Un dosage : structuré OU texte libre traduit. Jamais les deux (tout-ou-rien T2).
 public enum Dose: Codable, Equatable, Sendable {
     case structured(StructuredDose)
+    case interval([IntervalSegment])
     case freeText(LocalizedText)
 
     private enum CodingKeys: String, CodingKey {
         case freeText
+        case segments
         case value, unit, qualifier, style, modifier
     }
 
     public init(from decoder: Decoder) throws {
-        // Décodeur tolérant : { "freeText": {fr,en,es} } → libre ; { "value","unit",… } →
-        // structuré ; une String nue (legacy improbable, dose est un champ neuf) → freeText.fr.
+        // Décodeur tolérant : { "freeText": {fr,en,es} } → libre ; { "segments": [...] } →
+        // intervalle ; { "value","unit",… } → structuré ; une String nue (legacy improbable,
+        // dose est un champ neuf) → freeText.fr.
         if let single = try? decoder.singleValueContainer(),
            let raw = try? single.decode(String.self) {
             self = .freeText(LocalizedText(fr: raw))
@@ -114,6 +147,10 @@ public enum Dose: Codable, Equatable, Sendable {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         if let ft = try c.decodeIfPresent(LocalizedText.self, forKey: .freeText) {
             self = .freeText(ft)
+            return
+        }
+        if let segs = try c.decodeIfPresent([IntervalSegment].self, forKey: .segments) {
+            self = .interval(segs)
             return
         }
         let value = try c.decode(String.self, forKey: .value)
@@ -131,6 +168,8 @@ public enum Dose: Codable, Equatable, Sendable {
         switch self {
         case .freeText(let ft):
             try c.encode(ft, forKey: .freeText)
+        case .interval(let segs):
+            try c.encode(segs, forKey: .segments)
         case .structured(let d):
             try c.encode(d.value, forKey: .value)
             try c.encode(d.unit, forKey: .unit)
@@ -155,11 +194,16 @@ public enum DoseFormatter {
             return ft.resolved(locale)
         case .structured(let d):
             return compose(d, lang: lang(locale))
+        case .interval(let segs):
+            let l = lang(locale)
+            return segs.map { composeSegment($0, lang: l) }.joined(separator: " + ")
         }
     }
 
-    /// Secondes pour le minuteur, ou `nil` si non chronométrable (souffle/cycles/freeText).
-    /// `nil` → l'appelant retombe sur `SessionDurationParser` (string legacy) en back-compat.
+    /// Secondes pour le minuteur, ou `nil` si non chronométrable (souffle/cycles/freeText/
+    /// intervalle). `nil` → l'appelant retombe sur `SessionDurationParser` (string FR legacy,
+    /// chiffres language-agnostic) en back-compat : le timer reste piloté par le canonical FR,
+    /// pas de pièce non-réversible (cf. SessionTimerPhase, labels run/walk déjà typés).
     public static func timerSeconds(_ dose: Dose) -> Int? {
         guard case .structured(let d) = dose else { return nil }
         guard let n = leadingInt(d.value) else { return nil }
@@ -191,6 +235,31 @@ public enum DoseFormatter {
         if let q = d.qualifier { parts.append(qualifierPhrase(q, lang: lang)) }
         if let m = d.modifier { parts.append(modifierWord(m, lang: lang)) }
         return parts.joined(separator: " ")
+    }
+
+    /// Un segment d'intervalle : « 3 min de course », « 1 min à allure 5K »,
+    /// « 100 m d'accélération progressive ». La phrase d'activité porte sa propre préposition.
+    private static func composeSegment(_ s: IntervalSegment, lang: String) -> String {
+        let isSingular = (s.value == "1")
+        let noun = unitNoun(s.unit, lang: lang, singular: isSingular)
+        return "\(s.value) \(noun) \(activityPhrase(s.activity, lang: lang))"
+    }
+
+    private static func activityPhrase(_ a: DoseActivity, lang: String) -> String {
+        func t(_ fr: String, _ en: String, _ es: String) -> String {
+            (lang == "en") ? en : (lang == "es") ? es : fr
+        }
+        switch a {
+        case .running:                 return t("de course", "running", "de carrera")
+        case .walking:                 return t("de marche", "walking", "de caminata")
+        case .runningSlow:             return t("de course lente", "slow running", "de carrera lenta")
+        case .walkingFast:             return t("de marche rapide", "brisk walking", "de caminata rápida")
+        case .walkingRecovery:         return t("de marche de récupération", "recovery walk", "de caminata de recuperación")
+        case .accelerationProgressive: return t("d'accélération progressive", "progressive acceleration", "de aceleración progresiva")
+        case .easyJog:                 return t("de footing tranquille", "easy jogging", "de trote suave")
+        case .pace5K:                  return t("à allure 5K", "at 5K pace", "a ritmo 5K")
+        case .pace10K:                 return t("à allure 10K", "at 10K pace", "a ritmo 10K")
+        }
     }
 
     private static func lang(_ locale: Locale) -> String {

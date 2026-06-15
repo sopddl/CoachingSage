@@ -13,13 +13,21 @@ final class LegacyDoseMigrationTests: XCTestCase {
     private static let langs = [Locale(identifier: "fr"), Locale(identifier: "en"), Locale(identifier: "es")]
 
     func testMigrationTableMatchesBundledYogaDoses() async throws {
+        try await assertMigrationMatches(sport: .yoga)
+    }
+
+    func testMigrationTableMatchesBundledRunningDoses() async throws {
+        try await assertMigrationMatches(sport: .running)
+    }
+
+    private func assertMigrationMatches(sport: Sport, file: StaticString = #filePath, line: UInt = #line) async throws {
         let templates = try await TemplateLoader.loadAll()
         guard templates.count >= 30 else { throw XCTSkip("bundle non peuplé (\(templates.count))") }
-        let yoga = templates.filter { $0.sport == .yoga }
-        XCTAssertFalse(yoga.isEmpty)
+        let scoped = templates.filter { $0.sport == sport }
+        XCTAssertFalse(scoped.isEmpty, "aucun template \(sport) chargé", file: file, line: line)
 
         var mismatches: [String] = []
-        for t in yoga {
+        for t in scoped {
             for w in t.weeks {
                 for s in w.sessions {
                     let all = s.exercises + (s.variants ?? []).flatMap { $0.exercises }
@@ -44,7 +52,8 @@ final class LegacyDoseMigrationTests: XCTestCase {
         }
         XCTAssertTrue(
             mismatches.isEmpty,
-            "Divergence table migration ↔ templates (\(mismatches.count)) :\n" + mismatches.prefix(30).joined(separator: "\n")
+            "Divergence table migration ↔ templates \(sport) (\(mismatches.count)) :\n" + mismatches.prefix(30).joined(separator: "\n"),
+            file: file, line: line
         )
     }
 }

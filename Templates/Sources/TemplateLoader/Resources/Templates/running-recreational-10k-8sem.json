@@ -53,6 +53,13 @@
                   "fr" : "Test 20 min effort contrôlé sur piste"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 km at controlled effort (not an all-out sprint)",
+                  "es" : "5 km a esfuerzo controlado (no un sprint máximo)",
+                  "fr" : "5 km à effort contrôlé (pas un sprint maximal)"
+                }
+              },
               "duration" : "5 km à effort contrôlé (pas sprint maximal)",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -86,6 +93,10 @@
                   "fr" : "Footing très lent 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
 
@@ -117,6 +128,11 @@
                   "fr" : "Mollets assis sur chaise"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -153,6 +169,11 @@
                   "fr" : "Pont fessier pieds sur box"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -189,6 +210,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "40"
+              },
               "duration" : "40 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -226,6 +251,11 @@
                   "fr" : "Ouverture de hanche avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -284,6 +314,10 @@
                   "fr" : "Vélo endurance facile 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -322,6 +356,20 @@
                   "fr" : "Footing facile 5 min supplémentaires"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "accelerationProgressive",
+                    "unit" : "meters",
+                    "value" : "100"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  }
+                ]
+              },
               "duration" : "100 m accélération progressive + 60 sec marche récupération",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -382,6 +430,10 @@
                   "fr" : "Vélo endurance facile 50 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "6"
+              },
               "duration" : "6 km",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -457,6 +509,10 @@
                   "fr" : "Vélo endurance facile 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -495,6 +551,11 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -531,6 +592,11 @@
                   "fr" : "Mollets assis sur chaise"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -562,6 +628,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -611,6 +681,10 @@
                   "fr" : "Footing tapis 15 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -649,6 +723,20 @@
                   "fr" : "Jeu d'allures 6×30 sec rapide / 60 sec lent"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "accelerationProgressive",
+                    "unit" : "meters",
+                    "value" : "100"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  }
+                ]
+              },
               "duration" : "100 m accélération progressive + 60 sec marche récupération",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -709,6 +797,10 @@
                   "fr" : "Vélo endurance facile 60 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "7"
+              },
               "duration" : "7 km",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -784,6 +876,10 @@
                   "fr" : "Vélo endurance facile 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -822,6 +918,11 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -853,6 +954,11 @@
                   "fr" : "Pont de hanches pieds surélevés"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -884,6 +990,11 @@
                   "fr" : "Mollets sur une marche (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -915,6 +1026,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -975,6 +1091,10 @@
                   "fr" : "Intervalles 3×5 min au seuil avec 2 min facile entre"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1013,6 +1133,10 @@
                   "fr" : "Vélo très facile 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1072,6 +1196,10 @@
                   "fr" : "Vélo endurance facile 70 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "8"
+              },
               "duration" : "8 km",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1147,6 +1275,20 @@
                   "fr" : "Lignes 8×100 m"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "pace5K",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  },
+                  {
+                    "activity" : "easyJog",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  }
+                ]
+              },
               "duration" : "1 min à allure 5K (RPE 8) + 1 min footing easy (facile (tu peux parler))",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1185,6 +1327,10 @@
                   "fr" : "Vélo très facile 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1222,6 +1368,11 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -1258,6 +1409,11 @@
                   "fr" : "Mollets sur une marche (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1289,6 +1445,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "50"
+              },
               "duration" : "50 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1343,6 +1503,10 @@
                   "fr" : "Intervalles 4×5 min au seuil avec 2 min facile entre"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1381,6 +1545,10 @@
                   "fr" : "Vélo très facile 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1440,6 +1608,10 @@
                   "fr" : "Vélo endurance facile 80 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "9"
+              },
               "duration" : "9 km",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1515,6 +1687,13 @@
                   "fr" : "Lignes 5×100 m"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min at 5K pace + 1 min 30 easy jogging",
+                  "es" : "1 min a ritmo 5K + 1 min 30 de trote suave",
+                  "fr" : "1 min à allure 5K + 1 min 30 de footing tranquille"
+                }
+              },
               "duration" : "1 min à allure 5K (RPE 8) + 1 min 30 footing easy (facile (tu peux parler))",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1553,6 +1732,10 @@
                   "fr" : "Vélo très facile 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1590,6 +1773,11 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -1626,6 +1814,11 @@
                   "fr" : "Pont de hanches pieds surélevés"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1657,6 +1850,11 @@
                   "fr" : "Ouverture de hanche avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1715,6 +1913,10 @@
                   "fr" : "Intervalles 2×6 min au seuil avec 2 min facile entre"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "14"
+              },
               "duration" : "14 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1775,6 +1977,10 @@
                   "fr" : "Vélo endurance facile 60 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "7.5"
+              },
               "duration" : "7.5 km",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1850,6 +2056,20 @@
                   "fr" : "Lignes 10×100 m"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "pace5K",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  },
+                  {
+                    "activity" : "easyJog",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  }
+                ]
+              },
               "duration" : "1 min à allure 5K (RPE 8) + 1 min footing easy (facile (tu peux parler))",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1888,6 +2108,10 @@
                   "fr" : "Vélo très facile 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1925,6 +2149,11 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -1961,6 +2190,11 @@
                   "fr" : "Mollets sur une marche (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1997,6 +2231,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "55"
+              },
               "duration" : "55 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2051,6 +2289,10 @@
                   "fr" : "Intervalles 4×5 min 30 au seuil avec 2 min facile entre"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "22"
+              },
               "duration" : "22 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2089,6 +2331,10 @@
                   "fr" : "Vélo très facile 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2148,6 +2394,10 @@
                   "fr" : "Vélo endurance facile 95 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "11"
+              },
               "duration" : "11 km",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2223,6 +2473,13 @@
                   "fr" : "Intervalles 4×3 min au seuil"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min 30 at 5K pace + 1 min 30 easy jogging",
+                  "es" : "1 min 30 a ritmo 5K + 1 min 30 de trote suave",
+                  "fr" : "1 min 30 à allure 5K + 1 min 30 de footing tranquille"
+                }
+              },
               "duration" : "1 min 30 à allure 5K (RPE 8) + 1 min 30 footing easy (facile (tu peux parler))",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2261,6 +2518,10 @@
                   "fr" : "Vélo très facile 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2298,6 +2559,11 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -2329,6 +2595,11 @@
                   "fr" : "Pont de hanches pieds surélevés"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2360,6 +2631,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "35"
+              },
               "duration" : "35 sec par côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2415,6 +2691,10 @@
                   "fr" : "Intervalles 5×5 min au seuil avec 2 min facile entre"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2453,6 +2733,10 @@
                   "fr" : "Vélo très facile 18 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2512,6 +2796,10 @@
                   "fr" : "Vélo endurance facile 105 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "12"
+              },
               "duration" : "12 km",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2587,6 +2875,10 @@
                   "fr" : "Vélo très facile 45 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "6"
+              },
               "duration" : "6 km",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2647,6 +2939,10 @@
                   "fr" : "Vélo très facile 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "3"
+              },
               "duration" : "3 km",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2685,6 +2981,20 @@
                   "fr" : "Lignes 4×80 m allure facile"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "pace10K",
+                    "unit" : "meters",
+                    "value" : "60"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  }
+                ]
+              },
               "duration" : "60 m à allure cible 10K + 60 sec marche récupération",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2723,6 +3033,10 @@
                   "fr" : "Étirements statiques globaux 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
 
@@ -2780,6 +3094,10 @@
                   "fr" : "Sortie longue libre 10 km facile (tu peux parler) si fatigue résiduelle"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "10"
+              },
               "duration" : "10 km",
               "incompatible_constraints" : [
                 "shin-splints",
