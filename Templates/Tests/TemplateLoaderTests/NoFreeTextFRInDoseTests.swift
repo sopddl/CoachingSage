@@ -38,6 +38,12 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
         // « crawl »/« pull-buoy » sont des emprunts universels (gardés, non listés).
         "glisse", "glissé", "poussée", "flottaison", "godille", "apnée",
         "favori", "faible", "alterner", "comptage", "avancée", "séance",
+        // Lot 5 hiking — tokens FR-exclusifs (trad : walk/uphill/downhill/elevation gain/grade/pack…).
+        // « RPE »/« tempo »/« endurance » = vocabulaire gardé (3 langues), non listés.
+        "marche", "sac", "pente", "dont", "cumulé", "plate", "remontée", "facile",
+        // Lot 6 hiit — tokens FR-exclusifs (trad : front/side plank/per side/work/rest/knees…).
+        // Noms d'exos gardés (dead bug, hollow, Nordic, sled, calf, tibialis…), non listés.
+        "ventrale", "latérale", "repos", "bloc", "genoux", "haltères", "lecture",
     ]
 
     /// Diacritiques FR-exclusifs (absents de l'orthographe ES : ç, ô, ê, è, à, î, ë, œ).
@@ -113,6 +119,14 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
 
     func testEverySwimmingExerciseHasDose() async throws {
         try await assertEverySportExerciseHasDose(.swimming, name: "swimming")
+    }
+
+    func testEveryHikingExerciseHasDose() async throws {
+        try await assertEverySportExerciseHasDose(.hiking, name: "hiking")
+    }
+
+    func testEveryHiitExerciseHasDose() async throws {
+        try await assertEverySportExerciseHasDose(.hiit, name: "hiit")
     }
 
     private func assertEverySportExerciseHasDose(_ sport: Sport, name: String, file: StaticString = #filePath, line: UInt = #line) async throws {

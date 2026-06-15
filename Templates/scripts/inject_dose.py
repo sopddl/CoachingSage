@@ -467,11 +467,198 @@ SWIMMING = {
     "Auto-évaluation post-séance": F("Auto-évaluation post-séance", "Post-session self-assessment", "Autoevaluación post-sesión"),
 }
 
+HIKING = {
+    # ====================== LOT 5 — HIKING ======================
+    # DOCTRINE rando : marche/D+/sac/montée+descente = composites NON exprimables en structuré
+    # (terrain, dénivelé D+, charge sac, gradient, RPE inline) -> freeText traduit fidèlement
+    # (lossless). « RPE »/« tempo »/« endurance » = vocabulaire volontaire gardé tel quel (3 langues).
+    # « D+ » (dénivelé positif, notation FR) -> « elevation gain »/« desnivel » en EN/ES (pas une
+    # fuite : le concept est traduit). Renfo (reps/secondes par série/jambe/lettre/côté) = structuré.
+    # Heures (« 4 h », « 6 h 30 ») = freeText universel (pas d'unité heures ; « h » identique 3 langues).
+    # --- HEURES (sorties longues) : freeText universel, aucune fuite (chiffres + « h ») ---
+    "4 h": F("4 h", "4 h", "4 h"),
+    "4 h 30": F("4 h 30", "4 h 30", "4 h 30"),
+    "6 h": F("6 h", "6 h", "6 h"),
+    "6 h 30": F("6 h 30", "6 h 30", "6 h 30"),
+    "7 h": F("7 h", "7 h", "7 h"),
+    "7 h 30": F("7 h 30", "7 h 30", "7 h 30"),
+    "8 h": F("8 h", "8 h", "8 h"),
+    "8 h 30": F("8 h 30", "8 h 30", "8 h 30"),
+    "9 h": F("9 h", "9 h", "9 h"),
+    "9 h 30": F("9 h 30", "9 h 30", "9 h 30"),
+    "10 h": F("10 h", "10 h", "10 h"),
+    "11 h": F("11 h", "11 h", "11 h"),
+    # --- MINUTES nues -> structuré ---
+    "240 min": S("240", "minutes"),
+    "275 min": S("275", "minutes"),
+    "330 min": S("330", "minutes"),
+    "360 min": S("360", "minutes"),
+    "390 min": S("390", "minutes"),
+    # --- MARCHE / D+ / SAC : composite freeText traduit ---
+    "60 min marche / D+ 100 m / sac 8 kg": F("60 min de marche / D+ 100 m / sac 8 kg", "60 min walk / 100 m elevation gain / 8 kg pack", "60 min de caminata / 100 m de desnivel / mochila 8 kg"),
+    "70 min marche / D+ 180 m / sac 5 kg": F("70 min de marche / D+ 180 m / sac 5 kg", "70 min walk / 180 m elevation gain / 5 kg pack", "70 min de caminata / 180 m de desnivel / mochila 5 kg"),
+    "75 min marche / D+ 150 m / sac 4 kg": F("75 min de marche / D+ 150 m / sac 4 kg", "75 min walk / 150 m elevation gain / 4 kg pack", "75 min de caminata / 150 m de desnivel / mochila 4 kg"),
+    "85 min marche / D+ 200 m / sac 5 kg": F("85 min de marche / D+ 200 m / sac 5 kg", "85 min walk / 200 m elevation gain / 5 kg pack", "85 min de caminata / 200 m de desnivel / mochila 5 kg"),
+    "90 min marche / D+ 250 m / sac 6 kg": F("90 min de marche / D+ 250 m / sac 6 kg", "90 min walk / 250 m elevation gain / 6 kg pack", "90 min de caminata / 250 m de desnivel / mochila 6 kg"),
+    "100 min marche / D+ 280 m / sac 6 kg": F("100 min de marche / D+ 280 m / sac 6 kg", "100 min walk / 280 m elevation gain / 6 kg pack", "100 min de caminata / 280 m de desnivel / mochila 6 kg"),
+    "100 min marche / D+ 300 m / sac 5 kg": F("100 min de marche / D+ 300 m / sac 5 kg", "100 min walk / 300 m elevation gain / 5 kg pack", "100 min de caminata / 300 m de desnivel / mochila 5 kg"),
+    "105 min marche / D+ 250 m / sac 4 kg": F("105 min de marche / D+ 250 m / sac 4 kg", "105 min walk / 250 m elevation gain / 4 kg pack", "105 min de caminata / 250 m de desnivel / mochila 4 kg"),
+    "110 min marche / D+ 320 m / sac 7 kg": F("110 min de marche / D+ 320 m / sac 7 kg", "110 min walk / 320 m elevation gain / 7 kg pack", "110 min de caminata / 320 m de desnivel / mochila 7 kg"),
+    "120 min marche / D+ 350 m / sac 7 kg": F("120 min de marche / D+ 350 m / sac 7 kg", "120 min walk / 350 m elevation gain / 7 kg pack", "120 min de caminata / 350 m de desnivel / mochila 7 kg"),
+    "130 min marche / D+ 350 m / sac 5 kg": F("130 min de marche / D+ 350 m / sac 5 kg", "130 min walk / 350 m elevation gain / 5 kg pack", "130 min de caminata / 350 m de desnivel / mochila 5 kg"),
+    "130 min marche / D+ 380 m / sac 8 kg": F("130 min de marche / D+ 380 m / sac 8 kg", "130 min walk / 380 m elevation gain / 8 kg pack", "130 min de caminata / 380 m de desnivel / mochila 8 kg"),
+    "150 min marche / D+ 450 m / sac 6 kg": F("150 min de marche / D+ 450 m / sac 6 kg", "150 min walk / 450 m elevation gain / 6 kg pack", "150 min de caminata / 450 m de desnivel / mochila 6 kg"),
+    "160 min marche / D+ 530 m / sac 6 kg": F("160 min de marche / D+ 530 m / sac 6 kg", "160 min walk / 530 m elevation gain / 6 kg pack", "160 min de caminata / 530 m de desnivel / mochila 6 kg"),
+    "180 min marche / D+ 570 m / sac 6 kg": F("180 min de marche / D+ 570 m / sac 6 kg", "180 min walk / 570 m elevation gain / 6 kg pack", "180 min de caminata / 570 m de desnivel / mochila 6 kg"),
+    "200 min marche / D+ 680 m / sac 7 kg": F("200 min de marche / D+ 680 m / sac 7 kg", "200 min walk / 680 m elevation gain / 7 kg pack", "200 min de caminata / 680 m de desnivel / mochila 7 kg"),
+    "220 min marche / D+ 850 m / sac 7 kg": F("220 min de marche / D+ 850 m / sac 7 kg", "220 min walk / 850 m elevation gain / 7 kg pack", "220 min de caminata / 850 m de desnivel / mochila 7 kg"),
+    "240 min marche / D+ 950 m / sac 8 kg": F("240 min de marche / D+ 950 m / sac 8 kg", "240 min walk / 950 m elevation gain / 8 kg pack", "240 min de caminata / 950 m de desnivel / mochila 8 kg"),
+    "5 h marche / D+ 1000 m / sac 8 kg": F("5 h de marche / D+ 1000 m / sac 8 kg", "5 h walk / 1000 m elevation gain / 8 kg pack", "5 h de caminata / 1000 m de desnivel / mochila 8 kg"),
+    # --- « X min total dont Y m D+ cumulé » -> freeText ---
+    "45 min total dont 200 m D+ cumulé": F("45 min au total dont 200 m D+ cumulé", "45 min total incl. 200 m cumulative elevation gain", "45 min en total con 200 m de desnivel acumulado"),
+    "50 min total dont 250 m D+ cumulé": F("50 min au total dont 250 m D+ cumulé", "50 min total incl. 250 m cumulative elevation gain", "50 min en total con 250 m de desnivel acumulado"),
+    "60 min total dont 280 m D+ cumulé": F("60 min au total dont 280 m D+ cumulé", "60 min total incl. 280 m cumulative elevation gain", "60 min en total con 280 m de desnivel acumulado"),
+    "70 min total dont 350 m D+ cumulé": F("70 min au total dont 350 m D+ cumulé", "70 min total incl. 350 m cumulative elevation gain", "70 min en total con 350 m de desnivel acumulado"),
+    "75 min total dont 400 m D+ cumulé": F("75 min au total dont 400 m D+ cumulé", "75 min total incl. 400 m cumulative elevation gain", "75 min en total con 400 m de desnivel acumulado"),
+    "105 min total dont 550 m D+ cumulé": F("105 min au total dont 550 m D+ cumulé", "105 min total incl. 550 m cumulative elevation gain", "105 min en total con 550 m de desnivel acumulado"),
+    "120 min total dont 500 m D+ cumulé": F("120 min au total dont 500 m D+ cumulé", "120 min total incl. 500 m cumulative elevation gain", "120 min en total con 500 m de desnivel acumulado"),
+    "90 min total dont 500 m D+ cumulé": F("90 min au total dont 500 m D+ cumulé", "90 min total incl. 500 m cumulative elevation gain", "90 min en total con 500 m de desnivel acumulado"),
+    # --- MONTÉE tempo continue (gradient/sac) -> freeText ---
+    "30 min montée continue tempo sac 7 kg": F("30 min de montée continue tempo, sac 7 kg", "30 min steady tempo climb, 7 kg pack", "30 min de subida continua tempo, mochila 7 kg"),
+    "40 min montée continue tempo sac 7 kg": F("40 min de montée continue tempo, sac 7 kg", "40 min steady tempo climb, 7 kg pack", "40 min de subida continua tempo, mochila 7 kg"),
+    "45 min montée continue tempo sac 8 kg": F("45 min de montée continue tempo, sac 8 kg", "45 min steady tempo climb, 8 kg pack", "45 min de subida continua tempo, mochila 8 kg"),
+    "25 min montée tempo gradient 8-10% sac 12 kg": F("25 min de montée tempo, pente 8-10 %, sac 12 kg", "25 min tempo climb, 8-10% grade, 12 kg pack", "25 min de subida tempo, pendiente 8-10 %, mochila 12 kg"),
+    "40 min montée tempo gradient 10% sac 15 kg": F("40 min de montée tempo, pente 10 %, sac 15 kg", "40 min tempo climb, 10% grade, 15 kg pack", "40 min de subida tempo, pendiente 10 %, mochila 15 kg"),
+    "50 min montée tempo gradient 10% sac 14 kg": F("50 min de montée tempo, pente 10 %, sac 14 kg", "50 min tempo climb, 10% grade, 14 kg pack", "50 min de subida tempo, pendiente 10 %, mochila 14 kg"),
+    "50 min montée tempo gradient 10% sac 17 kg": F("50 min de montée tempo, pente 10 %, sac 17 kg", "50 min tempo climb, 10% grade, 17 kg pack", "50 min de subida tempo, pendiente 10 %, mochila 17 kg"),
+    "60 min montée tempo gradient 10-12% sac 13 kg": F("60 min de montée tempo, pente 10-12 %, sac 13 kg", "60 min tempo climb, 10-12% grade, 13 kg pack", "60 min de subida tempo, pendiente 10-12 %, mochila 13 kg"),
+    "70 min montée tempo gradient 10-15% sac 14 kg": F("70 min de montée tempo, pente 10-15 %, sac 14 kg", "70 min tempo climb, 10-15% grade, 14 kg pack", "70 min de subida tempo, pendiente 10-15 %, mochila 14 kg"),
+    "75 min montée tempo gradient 10-15% sac 15 kg": F("75 min de montée tempo, pente 10-15 %, sac 15 kg", "75 min tempo climb, 10-15% grade, 15 kg pack", "75 min de subida tempo, pendiente 10-15 %, mochila 15 kg"),
+    "75 min montée tempo gradient 10-15% sac 18 kg": F("75 min de montée tempo, pente 10-15 %, sac 18 kg", "75 min tempo climb, 10-15% grade, 18 kg pack", "75 min de subida tempo, pendiente 10-15 %, mochila 18 kg"),
+    "75 min montée tempo gradient 10-15% sac 20 kg": F("75 min de montée tempo, pente 10-15 %, sac 20 kg", "75 min tempo climb, 10-15% grade, 20 kg pack", "75 min de subida tempo, pendiente 10-15 %, mochila 20 kg"),
+    "80 min montée tempo gradient 10-15% sac 16 kg": F("80 min de montée tempo, pente 10-15 %, sac 16 kg", "80 min tempo climb, 10-15% grade, 16 kg pack", "80 min de subida tempo, pendiente 10-15 %, mochila 16 kg"),
+    "90 min montée tempo gradient 10-15% sac 18 kg": F("90 min de montée tempo, pente 10-15 %, sac 18 kg", "90 min tempo climb, 10-15% grade, 18 kg pack", "90 min de subida tempo, pendiente 10-15 %, mochila 18 kg"),
+    "20 min montée gradient 5-8% endurance facile à tempo": F("20 min de montée, pente 5-8 %, endurance facile à tempo", "20 min climb, 5-8% grade, easy endurance to tempo", "20 min de subida, pendiente 5-8 %, resistencia suave a tempo"),
+    # --- DESCENTE / MARCHE plate -> freeText ---
+    "15 min descente technique": F("15 min de descente technique", "15 min technical downhill", "15 min de bajada técnica"),
+    "20 min descente": F("20 min de descente", "20 min downhill", "20 min de bajada"),
+    "30 min marche plate très facile": F("30 min de marche plate très facile", "30 min flat walk, very easy", "30 min de caminata llana muy fácil"),
+    # --- INTERVALLES montée/descente (RPE/gradient/sac inline) -> freeText fidèle ---
+    "4 min montée RPE 6 + 3 min descente très facile": F("4 min de montée RPE 6 + 3 min de descente très facile", "4 min uphill RPE 6 + 3 min very easy downhill", "4 min de subida RPE 6 + 3 min de bajada muy fácil"),
+    "5 min montée RPE 5-6 + 4 min descente très facile": F("5 min de montée RPE 5-6 + 4 min de descente très facile", "5 min uphill RPE 5-6 + 4 min very easy downhill", "5 min de subida RPE 5-6 + 4 min de bajada muy fácil"),
+    "5 min montée RPE 6-7 + 4 min récup descente très facile": F("5 min de montée RPE 6-7 + 4 min de récup en descente très facile", "5 min uphill RPE 6-7 + 4 min recovery on very easy downhill", "5 min de subida RPE 6-7 + 4 min de recuperación en bajada muy fácil"),
+    "6 min montée RPE 6-7 + 4 min récup descente très facile": F("6 min de montée RPE 6-7 + 4 min de récup en descente très facile", "6 min uphill RPE 6-7 + 4 min recovery on very easy downhill", "6 min de subida RPE 6-7 + 4 min de recuperación en bajada muy fácil"),
+    "8 min montée RPE 6-7 + 5 min récup descente très facile": F("8 min de montée RPE 6-7 + 5 min de récup en descente très facile", "8 min uphill RPE 6-7 + 5 min recovery on very easy downhill", "8 min de subida RPE 6-7 + 5 min de recuperación en bajada muy fácil"),
+    "5 min descente technique + 3 min remontée très facile": F("5 min de descente technique + 3 min de remontée très facile", "5 min technical downhill + 3 min very easy climb back", "5 min de bajada técnica + 3 min de resubida muy fácil"),
+    "10 min montée RPE 8-9 gradient 15% sac 17 kg + 8 min descente très facile": F("10 min de montée RPE 8-9, pente 15 %, sac 17 kg + 8 min de descente très facile", "10 min uphill RPE 8-9, 15% grade, 17 kg pack + 8 min very easy downhill", "10 min de subida RPE 8-9, pendiente 15 %, mochila 17 kg + 8 min de bajada muy fácil"),
+    "10 min montée RPE 8-9 gradient 15-18% sac 15 kg + 7 min descente très facile": F("10 min de montée RPE 8-9, pente 15-18 %, sac 15 kg + 7 min de descente très facile", "10 min uphill RPE 8-9, 15-18% grade, 15 kg pack + 7 min very easy downhill", "10 min de subida RPE 8-9, pendiente 15-18 %, mochila 15 kg + 7 min de bajada muy fácil"),
+    "10 min montée RPE 8-9 gradient 15-20% sac 20 kg + 8 min descente très facile": F("10 min de montée RPE 8-9, pente 15-20 %, sac 20 kg + 8 min de descente très facile", "10 min uphill RPE 8-9, 15-20% grade, 20 kg pack + 8 min very easy downhill", "10 min de subida RPE 8-9, pendiente 15-20 %, mochila 20 kg + 8 min de bajada muy fácil"),
+    "8 min montée RPE 8-9 gradient 15-18% sac 15 kg + 8 min descente très facile récup": F("8 min de montée RPE 8-9, pente 15-18 %, sac 15 kg + 8 min de descente très facile en récup", "8 min uphill RPE 8-9, 15-18% grade, 15 kg pack + 8 min very easy downhill recovery", "8 min de subida RPE 8-9, pendiente 15-18 %, mochila 15 kg + 8 min de bajada muy fácil en recuperación"),
+    "6 min montée tempo gradient 8-12% + 4 min descente très facile récup": F("6 min de montée tempo, pente 8-12 % + 4 min de descente très facile en récup", "6 min tempo climb, 8-12% grade + 4 min very easy downhill recovery", "6 min de subida tempo, pendiente 8-12 % + 4 min de bajada muy fácil en recuperación"),
+    "6 min montée tempo gradient 8-12% sac 11 kg + 4 min descente très facile": F("6 min de montée tempo, pente 8-12 %, sac 11 kg + 4 min de descente très facile", "6 min tempo climb, 8-12% grade, 11 kg pack + 4 min very easy downhill", "6 min de subida tempo, pendiente 8-12 %, mochila 11 kg + 4 min de bajada muy fácil"),
+    "8 min montée tempo gradient 8-12% sac 11 kg + 5 min descente très facile": F("8 min de montée tempo, pente 8-12 %, sac 11 kg + 5 min de descente très facile", "8 min tempo climb, 8-12% grade, 11 kg pack + 5 min very easy downhill", "8 min de subida tempo, pendiente 8-12 %, mochila 11 kg + 5 min de bajada muy fácil"),
+    "8 min montée tempo gradient 10-12% sac 12 kg + 5 min descente très facile": F("8 min de montée tempo, pente 10-12 %, sac 12 kg + 5 min de descente très facile", "8 min tempo climb, 10-12% grade, 12 kg pack + 5 min very easy downhill", "8 min de subida tempo, pendiente 10-12 %, mochila 12 kg + 5 min de bajada muy fácil"),
+    "8 min montée tempo gradient 10-12% sac 13 kg + 5 min descente très facile": F("8 min de montée tempo, pente 10-12 %, sac 13 kg + 5 min de descente très facile", "8 min tempo climb, 10-12% grade, 13 kg pack + 5 min very easy downhill", "8 min de subida tempo, pendiente 10-12 %, mochila 13 kg + 5 min de bajada muy fácil"),
+    # --- RENFO (reps/secondes) -> structuré ---
+    "16": S("16", "reps"),
+    "18": S("18", "reps"),
+    "5 par série": S("5", "reps", "perSet"),
+    "6 par série": S("6", "reps", "perSet"),
+    "8 par série": S("8", "reps", "perSet"),
+    "10 par série": S("10", "reps", "perSet"),
+    "12 par série": S("12", "reps", "perSet"),
+    "8 par lettre": S("8", "reps", "perLetter"),
+    "14 par jambe": S("14", "reps", "perLeg"),
+    "8-10 par jambe": S("8-10", "reps", "perLeg"),
+    "30 sec par jambe": S("30", "seconds", "perLeg"),
+    "35 sec par jambe": S("35", "seconds", "perLeg"),
+    "40 sec par jambe": S("40", "seconds", "perLeg"),
+    "40 sec par côté": S("40", "seconds", "perSide"),
+    "10 lifts par côté": S("10", "reps", "perSide"),
+    # --- RENFO composites -> freeText ---
+    "12 par côté + 60 sec planche": F("12 par côté + 60 s de planche", "12 per side + 60 s plank", "12 por lado + 60 s de plancha"),
+    "60 sec planche + 12 Pallof/côté": F("60 s de planche + 12 Pallof par côté", "60 s plank + 12 Pallof per side", "60 s de plancha + 12 Pallof por lado"),
+    "60 sec planche + 45 sec/côté": F("60 s de planche + 45 s par côté", "60 s plank + 45 s per side", "60 s de plancha + 45 s por lado"),
+}
+
+HIIT = {
+    # ====================== LOT 6 — HIIT ======================
+    # DOCTRINE HIIT : intervalle work/rest = Dose.interval (DoseActivity work/rest, extension pilote-
+    # sport, party). « X min par round » = structuré perRound. Secondes/reps nues = structuré.
+    # Composites de gainage/renfo (planche + side plank + dead bug, calf+tibialis…) = freeText : les
+    # noms d'exos internationaux de salle (dead bug, bird dog, hollow, V-ups, Pallof, copenhagen,
+    # Nordic, split squat, hip thrust, farmer carry, sled, face pull, scapular, tibialis, calf) sont
+    # GARDÉS tels quels (anglicismes dominants en salle, 3 langues — cf. swimming crawl/pull-buoy) ;
+    # seuls les mots de structure (planche/ventrale/latérale, /côté, /jambe, genoux, sec…) sont traduits.
+    # --- INTERVALLES work/rest -> Dose.interval ---
+    "20 sec work + 10 sec rest": I(seg("20", "seconds", "work"), seg("10", "seconds", "rest")),
+    "30 sec work + 30 sec rest": I(seg("30", "seconds", "work"), seg("30", "seconds", "rest")),
+    "30 sec work + 60 sec rest": I(seg("30", "seconds", "work"), seg("60", "seconds", "rest")),
+    "40 sec work + 20 sec rest": I(seg("40", "seconds", "work"), seg("20", "seconds", "rest")),
+    # --- PAR ROUND / SECONDES / REPS nues -> structuré ---
+    "1 min par round": S("1", "minutes", "perRound"),
+    "1 min par round (work + repos auto-régulé)": F("1 min par round (effort + repos auto-géré)", "1 min per round (work + self-paced rest)", "1 min por ronda (trabajo + descanso autorregulado)"),
+    "10 min par bloc": F("10 min par bloc", "10 min per block", "10 min por bloque"),
+    "120 sec": S("120", "seconds"),
+    "180 sec": S("180", "seconds"),
+    "240 sec": S("240", "seconds"),
+    "300 sec": S("300", "seconds"),
+    "3": S("3", "reps"),
+    "4": S("4", "reps"),
+    "3 par côté": S("3", "reps", "perSide"),
+    "10 par bras": S("10", "reps", "perArm"),
+    "5 par bras": S("5", "reps", "perArm"),
+    # --- PRE-SÉANCE ---
+    "1 min lecture avant séance": F("1 min de lecture avant la séance", "1 min reading before the session", "1 min de lectura antes de la sesión"),
+    # --- CARRIES / SLED -> freeText ---
+    "20 m par push": F("20 m par poussée", "20 m per push", "20 m por empuje"),
+    "20 m sled + 20 m farmer carry": F("20 m de sled + 20 m de farmer carry", "20 m sled + 20 m farmer carry", "20 m de sled + 20 m de farmer carry"),
+    # --- RENFO membres (calf/tibialis/scapular/Y) -> freeText (noms gardés, /jambe traduit) ---
+    "12 calf/jambe + 15 tibialis/jambe": F("12 calf par jambe + 15 tibialis par jambe", "12 calf per leg + 15 tibialis per leg", "12 calf por pierna + 15 tibialis por pierna"),
+    "12 calf/jambe + 15 tibialis/jambe + 12 scapular": F("12 calf par jambe + 15 tibialis par jambe + 12 scapular", "12 calf per leg + 15 tibialis per leg + 12 scapular", "12 calf por pierna + 15 tibialis por pierna + 12 scapular"),
+    "15 calf/jambe + 18 tibialis/jambe": F("15 calf par jambe + 18 tibialis par jambe", "15 calf per leg + 18 tibialis per leg", "15 calf por pierna + 18 tibialis por pierna"),
+    "12 scapular + 12 Y-raise": F("12 scapular + 12 Y-raise", "12 scapular + 12 Y-raise", "12 scapular + 12 Y-raise"),
+    "12 Y + 12 face pull": F("12 Y + 12 face pull", "12 Y + 12 face pull", "12 Y + 12 face pull"),
+    "15 tibialis + 12 scapular pull-up": F("15 tibialis + 12 scapular pull-up", "15 tibialis + 12 scapular pull-up", "15 tibialis + 12 scapular pull-up"),
+    "12 squat + 8 push-up genoux": F("12 squats + 8 push-up sur genoux", "12 squats + 8 knee push-ups", "12 squats + 8 push-up de rodillas"),
+    # --- GAINAGE composites (planche/ventrale/latérale + dead bug/bird dog/hollow/V-ups) -> freeText ---
+    "30 sec dead bug + 30 sec bird dog": F("30 s de dead bug + 30 s de bird dog", "30 s dead bug + 30 s bird dog", "30 s de dead bug + 30 s de bird dog"),
+    "30 sec hollow + 30 sec V-ups": F("30 s de hollow + 30 s de V-ups", "30 s hollow + 30 s V-ups", "30 s de hollow + 30 s de V-ups"),
+    "30 sec hollow rocks + 30 sec V-ups": F("30 s de hollow rocks + 30 s de V-ups", "30 s hollow rocks + 30 s V-ups", "30 s de hollow rocks + 30 s de V-ups"),
+    "30 sec hollow rocks + 30 sec dead bug": F("30 s de hollow rocks + 30 s de dead bug", "30 s hollow rocks + 30 s dead bug", "30 s de hollow rocks + 30 s de dead bug"),
+    "30 sec ventrale + 20 sec latérale/côté": F("30 s de planche ventrale + 20 s de planche latérale par côté", "30 s front plank + 20 s side plank per side", "30 s de plancha frontal + 20 s de plancha lateral por lado"),
+    "45 sec ventrale + 30 sec latérale/côté": F("45 s de planche ventrale + 30 s de planche latérale par côté", "45 s front plank + 30 s side plank per side", "45 s de plancha frontal + 30 s de plancha lateral por lado"),
+    "60 sec ventrale + 30 sec latérale/côté": F("60 s de planche ventrale + 30 s de planche latérale par côté", "60 s front plank + 30 s side plank per side", "60 s de plancha frontal + 30 s de plancha lateral por lado"),
+    "60 sec ventrale + 45 sec latérale/côté": F("60 s de planche ventrale + 45 s de planche latérale par côté", "60 s front plank + 45 s side plank per side", "60 s de plancha frontal + 45 s de plancha lateral por lado"),
+    "45 sec planche + 30 sec dead bug + 30 sec bird dog": F("45 s de planche + 30 s de dead bug + 30 s de bird dog", "45 s plank + 30 s dead bug + 30 s bird dog", "45 s de plancha + 30 s de dead bug + 30 s de bird dog"),
+    "45 sec planche + 30 sec dead bug/côté": F("45 s de planche + 30 s de dead bug par côté", "45 s plank + 30 s dead bug per side", "45 s de plancha + 30 s de dead bug por lado"),
+    "45 sec planche + 30 sec side plank/côté": F("45 s de planche + 30 s de planche latérale par côté", "45 s plank + 30 s side plank per side", "45 s de plancha + 30 s de plancha lateral por lado"),
+    "45 sec planche + 30 sec side/côté + 30 sec dead bug": F("45 s de planche + 30 s de planche latérale par côté + 30 s de dead bug", "45 s plank + 30 s side plank per side + 30 s dead bug", "45 s de plancha + 30 s de plancha lateral por lado + 30 s de dead bug"),
+    "50 sec planche + 30 sec side plank/côté": F("50 s de planche + 30 s de planche latérale par côté", "50 s plank + 30 s side plank per side", "50 s de plancha + 30 s de plancha lateral por lado"),
+    "60 sec planche + 30 sec dead bug/côté": F("60 s de planche + 30 s de dead bug par côté", "60 s plank + 30 s dead bug per side", "60 s de plancha + 30 s de dead bug por lado"),
+    "60 sec planche + 30 sec side/côté": F("60 s de planche + 30 s de planche latérale par côté", "60 s plank + 30 s side plank per side", "60 s de plancha + 30 s de plancha lateral por lado"),
+    "60 sec planche + 35 sec side plank/côté": F("60 s de planche + 35 s de planche latérale par côté", "60 s plank + 35 s side plank per side", "60 s de plancha + 35 s de plancha lateral por lado"),
+    "60 sec planche + 40 sec side plank/côté": F("60 s de planche + 40 s de planche latérale par côté", "60 s plank + 40 s side plank per side", "60 s de plancha + 40 s de plancha lateral por lado"),
+    "75 sec planche + 30 sec dead bug/côté": F("75 s de planche + 30 s de dead bug par côté", "75 s plank + 30 s dead bug per side", "75 s de plancha + 30 s de dead bug por lado"),
+    "75 sec planche + 45 sec side/côté": F("75 s de planche + 45 s de planche latérale par côté", "75 s plank + 45 s side plank per side", "75 s de plancha + 45 s de plancha lateral por lado"),
+    "75 sec planche + 45 sec side/côté + 12 dead bug/côté": F("75 s de planche + 45 s de planche latérale par côté + 12 dead bug par côté", "75 s plank + 45 s side plank per side + 12 dead bug per side", "75 s de plancha + 45 s de plancha lateral por lado + 12 dead bug por lado"),
+    "90 sec planche + 30 sec dead bug/côté": F("90 s de planche + 30 s de dead bug par côté", "90 s plank + 30 s dead bug per side", "90 s de plancha + 30 s de dead bug por lado"),
+    "90 sec planche + 45 sec side/côté + 15 dead bug/côté": F("90 s de planche + 45 s de planche latérale par côté + 15 dead bug par côté", "90 s plank + 45 s side plank per side + 15 dead bug per side", "90 s de plancha + 45 s de plancha lateral por lado + 15 dead bug por lado"),
+    "15 reps tibialis + 60 sec planche + 30 sec side/côté": F("15 tibialis + 60 s de planche + 30 s de planche latérale par côté", "15 tibialis + 60 s plank + 30 s side plank per side", "15 tibialis + 60 s de plancha + 30 s de plancha lateral por lado"),
+    "15 tibialis/jambe + 60 sec planche": F("15 tibialis par jambe + 60 s de planche", "15 tibialis per leg + 60 s plank", "15 tibialis por pierna + 60 s de plancha"),
+    "15 tibialis/jambe + 60 sec planche + 30 sec side/côté": F("15 tibialis par jambe + 60 s de planche + 30 s de planche latérale par côté", "15 tibialis per leg + 60 s plank + 30 s side plank per side", "15 tibialis por pierna + 60 s de plancha + 30 s de plancha lateral por lado"),
+    "10 hip thrust + 30 sec copenhagen/côté": F("10 hip thrust + 30 s de copenhagen par côté", "10 hip thrust + 30 s copenhagen per side", "10 hip thrust + 30 s de copenhagen por lado"),
+    "5 Nordic + 8 split squat/jambe DB 12 kg": F("5 Nordic + 8 split squat par jambe, haltères 12 kg", "5 Nordic + 8 split squat per leg, 12 kg dumbbells", "5 Nordic + 8 split squat por pierna, mancuernas 12 kg"),
+    "5 Nordic + 8 split squat/jambe DB 14 kg": F("5 Nordic + 8 split squat par jambe, haltères 14 kg", "5 Nordic + 8 split squat per leg, 14 kg dumbbells", "5 Nordic + 8 split squat por pierna, mancuernas 14 kg"),
+}
+
 # Table complète (union) + clés par lot (pour gen-migration ciblé sans toucher aux lots précédents).
-DOSE = {**YOGA, **RUNNING, **CYCLING, **SWIMMING}
+DOSE = {**YOGA, **RUNNING, **CYCLING, **SWIMMING, **HIKING, **HIIT}
 RUNNING_KEYS = list(RUNNING.keys())
 CYCLING_KEYS = list(CYCLING.keys())
 SWIMMING_KEYS = list(SWIMMING.keys())
+HIKING_KEYS = list(HIKING.keys())
+HIIT_KEYS = list(HIIT.keys())
 
 
 def inject(ex, missing):
@@ -554,6 +741,10 @@ if __name__ == "__main__":
             gen_migration(CYCLING_KEYS)
         elif lot == "swimming":
             gen_migration(SWIMMING_KEYS)
+        elif lot == "hiking":
+            gen_migration(HIKING_KEYS)
+        elif lot == "hiit":
+            gen_migration(HIIT_KEYS)
         else:
             gen_migration(list(DOSE.keys()))
     else:

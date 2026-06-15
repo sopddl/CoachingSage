@@ -80,6 +80,8 @@ public enum DoseActivity: String, Codable, Equatable, Sendable, CaseIterable {
     case easyJog                  // footing tranquille
     case pace5K                   // à allure 5K
     case pace10K                  // à allure 10K
+    case work                     // HIIT : phase d'effort
+    case rest                     // HIIT : phase de récupération
 }
 
 /// Un segment d'un dosage en intervalle (« 3 min course + 2 min marche »). Réutilise la
@@ -260,6 +262,8 @@ public enum DoseFormatter {
         case .easyJog:                 return t("de footing tranquille", "easy jogging", "de trote suave")
         case .pace5K:                  return t("à allure 5K", "at 5K pace", "a ritmo 5K")
         case .pace10K:                 return t("à allure 10K", "at 10K pace", "a ritmo 10K")
+        case .work:                    return t("d'effort", "work", "de trabajo")
+        case .rest:                    return t("de récup", "rest", "de descanso")
         }
     }
 
