@@ -70,4 +70,37 @@ final class DoseSportGateTests: XCTestCase {
         XCTAssertEqual(SessionOverviewList.compactMetric(for: ex, locale: Locale(identifier: "en"), sportCode: "running"),
                        "5 min running")
     }
+
+    // MARK: Cohérence cross-représentation timer ↔ overview (le gap « live » du Minuté/Audio)
+
+    // Invariant : ce que le TIMER décompte (Minuté/Audio, lu sur la durée FR canonical) doit
+    // égaler ce que l'OVERVIEW résume (total). Si un dose désynchronisait l'affichage du chrono,
+    // l'utilisateur verrait un total ≠ du temps réellement décompté. Couvre le cas que seul un
+    // device-test voyait avant.
+    private func timerWorkRestSeconds(_ ex: AdaptedExercise) -> Int {
+        let session = AdaptedSession(day: 1, name: "Fractionné", durationMinutes: 40, type: .mixed,
+                                     warmup: nil, exercises: [ex], cooldown: nil)
+        return SessionTimerPhaseBuilder.phases(for: session, sportCode: "running")
+            .filter { $0.kind == .work || $0.kind == .rest }
+            .reduce(0) { $0 + $1.duration }
+    }
+
+    func testTimerTotalMatchesOverviewForStructuredInterval() {
+        // 8 × (3 min course + 2 min marche) = 2400 s = 40 min.
+        let ex = AdaptedExercise(name: "Run/Walk", originalName: "Run/Walk",
+                                 sets: 8, duration: "3 min course + 2 min marche", restSeconds: 0)
+        let timerSec = timerWorkRestSeconds(ex)
+        XCTAssertEqual(timerSec, 8 * (180 + 120))
+        XCTAssertEqual(SessionOverviewList.compactMetric(for: ex, locale: fr, sportCode: "running"), "\(timerSec / 60) min")
+    }
+
+    func testTimerTotalMatchesOverviewForFreeTextInterval() {
+        // « 1 min 30 » → dose freeText, mais timer + overview restent cohérents :
+        // 6 × (90 s + 120 s) = 1260 s = 21 min.
+        let ex = AdaptedExercise(name: "Run/Walk progressif", originalName: "Run/Walk progressif",
+                                 sets: 6, duration: "1 min 30 course + 2 min marche", restSeconds: 0)
+        let timerSec = timerWorkRestSeconds(ex)
+        XCTAssertEqual(timerSec, 6 * (90 + 120))
+        XCTAssertEqual(SessionOverviewList.compactMetric(for: ex, locale: fr, sportCode: "running"), "\(timerSec / 60) min")
+    }
 }
