@@ -1,8 +1,8 @@
 // CoachingSageTests/Coaching/Session/DoseSportGateTests.swift
-// Chantier structuration i18n du dosage — Lot 2 running.
+// Chantier structuration i18n du dosage — Lot 2 running, Lot 3 cycling.
 //
 // Filet du GATE sport : le backfill `LegacyDoseMigration` (display-time) ne doit s'appliquer
-// QU'AUX sports migrés (yoga/running). Sinon un dosage legacy générique partagé (« 12 »,
+// QU'AUX sports migrés (yoga/running/cycling). Sinon un dosage legacy générique partagé (« 12 »,
 // « 30 min »…) serait réinterprété sur un sport non migré — typiquement la MUSCU, dont les
 // reps « 12 » s'affichent en héros propre (party muscu) qu'on écraserait. Régression réelle
 // introduite quand la table migration a gagné des clés génériques (reps nues, durées rondes).
@@ -27,6 +27,18 @@ final class DoseSportGateTests: XCTestCase {
         XCTAssertEqual(ex.localizedDoseLabel(sportCode: "running", locale: Locale(identifier: "en")), "10 reps per leg")
     }
 
+    func testCyclingDurationIsReinterpretedViaMigration() {
+        // Lot 3 : un sport migré → backfill display-time depuis la string legacy.
+        let ex = AdaptedExercise(name: "Sortie tranquille", originalName: "Sortie tranquille", duration: "45 min")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "cycling", locale: fr), "45 min")
+    }
+
+    func testCyclingPerPositionIsLocalizedWithoutLeak() {
+        // « 40 sec par position » (gainage cycliste) localisé en EN, zéro fuite FR.
+        let ex = AdaptedExercise(name: "Gainage", originalName: "Gainage", duration: "40 sec par position")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "cycling", locale: Locale(identifier: "en")), "40 s per position")
+    }
+
     // MARK: Sport NON migré → dosage legacy préservé (gate fermé)
 
     func testStrengthRepsAreNotReinterpreted() {
@@ -37,8 +49,9 @@ final class DoseSportGateTests: XCTestCase {
     }
 
     func testStrengthGenericDurationIsNotReinterpreted() {
+        // « 30 min » NE doit PAS sortir un dose sur un sport NON migré (muscu garde son affichage).
         let ex = AdaptedExercise(name: "Gainage", originalName: "Gainage", duration: "30 min")
-        XCTAssertNil(ex.localizedDoseLabel(sportCode: "cycling", locale: fr))
+        XCTAssertNil(ex.localizedDoseLabel(sportCode: "strengthTraining", locale: fr))
     }
 
     func testNilSportCodeDoesNotReinterpret() {

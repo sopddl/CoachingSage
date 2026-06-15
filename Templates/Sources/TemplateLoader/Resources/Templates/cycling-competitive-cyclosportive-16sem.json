@@ -54,6 +54,10 @@
                   "fr" : "Allure soutenue 4×8 min sur le plat cadence libre si pas de côte ni home-trainer"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -95,6 +99,10 @@
                   "fr" : "Bloc d'endurance sur home-trainer sans capteur, à la fréquence cardiaque"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -150,6 +158,10 @@
                       "fr" : "Bloc endurance sur home-trainer 30 min cadence 90 tr/min si fatigue musculaire"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "4"
+                  },
                   "duration" : "4 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -190,6 +202,10 @@
                       "fr" : "Marche rapide 30 min si fatigue de jambes trop marquée"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "30"
+                  },
                   "duration" : "30 min",
                   "incompatible_constraints" : [
 
@@ -256,6 +272,10 @@
                   "fr" : "Sortie gravel en endurance sur chemin roulant"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "75"
+              },
               "duration" : "75 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -296,6 +316,10 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -333,6 +357,10 @@
                   "fr" : "Pont fessier lesté avec élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -370,6 +398,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -407,6 +439,11 @@
                   "fr" : "Pointeur avant-bras au sol"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "wrist-injury"
@@ -461,6 +498,10 @@
                       "fr" : "Marche rapide 70 min si home-trainer indisponible"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "65"
+                  },
                   "duration" : "65 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -500,6 +541,10 @@
                       "fr" : "Fente bulgare"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -537,6 +582,10 @@
                       "fr" : "Pont fessier lesté avec élastique"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -574,6 +623,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "45"
+                  },
                   "duration" : "45 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -611,6 +664,11 @@
                       "fr" : "Pointeur avant-bras au sol"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "wrist-injury"
@@ -677,6 +735,10 @@
                   "fr" : "Marche active 35 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
 
@@ -731,6 +793,10 @@
                       "fr" : "Vélo elliptique 30 min en zone très facile"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "35"
+                  },
                   "duration" : "35 min",
                   "incompatible_constraints" : [
 
@@ -796,6 +862,10 @@
                   "fr" : "Test 8 min × 2 (protocole Coggan court) si tu ne tiens pas 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -837,6 +907,10 @@
                   "fr" : "Marche active 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
 
@@ -891,6 +965,10 @@
                       "fr" : "Test 8 min × 2 (protocole Coggan court) si tu ne tiens pas 20 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "20"
+                  },
                   "duration" : "20 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -931,6 +1009,10 @@
                       "fr" : "Vélo elliptique 15 min en zone très facile"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "15"
+                  },
                   "duration" : "15 min",
                   "incompatible_constraints" : [
 
@@ -996,6 +1078,10 @@
                   "fr" : "Sortie gravel en endurance + tempo sur chemin roulant"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "220"
+              },
               "duration" : "220 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1056,6 +1142,10 @@
                       "fr" : "Rameur 90 min en endurance si jambes trop fatiguées pour 3h30 de pédalage"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "190"
+                  },
                   "duration" : "190 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -1142,6 +1232,10 @@
                   "fr" : "Tempo continu 25 min si l'allure soutenue n'est pas tenue"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1200,6 +1294,10 @@
                       "fr" : "Tempo continu 25 min si l'allure soutenue n'est pas tenue"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "15"
+                  },
                   "duration" : "15 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -1269,6 +1367,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "80"
+              },
               "duration" : "80 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1309,6 +1411,10 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -1346,6 +1452,10 @@
                   "fr" : "Pont fessier sur une jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1382,6 +1492,11 @@
                   "fr" : "Mollets sur une marche (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1418,6 +1533,10 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -1471,6 +1590,10 @@
                       "fr" : "Aviron 60 min en endurance endurance facile"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "70"
+                  },
                   "duration" : "70 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -1510,6 +1633,10 @@
                       "fr" : "Fente bulgare"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -1547,6 +1674,10 @@
                       "fr" : "Pont fessier sur une jambe"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -1583,6 +1714,11 @@
                       "fr" : "Mollets sur une marche (deux pieds)"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perLeg",
+                    "unit" : "reps",
+                    "value" : "12"
+                  },
                   "incompatible_constraints" : [
                     "ankle-injury"
                   ],
@@ -1619,6 +1755,10 @@
                       "fr" : "Pointeur"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
                   "duration" : "30 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain"
@@ -1684,6 +1824,10 @@
                   "fr" : "Marche active 40 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
 
@@ -1738,6 +1882,10 @@
                       "fr" : "Vélo elliptique 35 min en récupération"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "40"
+                  },
                   "duration" : "40 min",
                   "incompatible_constraints" : [
 
@@ -1803,6 +1951,10 @@
                   "fr" : "VO2max en côte 5×3 min sur pente 5-8 %"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1860,6 +2012,10 @@
                       "fr" : "Intervalles aviron 5×3 min à puissance maximale"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "3"
+                  },
                   "duration" : "3 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -1928,6 +2084,10 @@
                   "fr" : "Sortie gravel en endurance/tempo"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "235"
+              },
               "duration" : "235 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1988,6 +2148,10 @@
                       "fr" : "Aviron 2h en endurance puis marche active 30 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "200"
+                  },
                   "duration" : "200 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -2074,6 +2238,10 @@
                   "fr" : "Allure soutenue 4×10 min sur le plat cadence libre"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2115,6 +2283,10 @@
                   "fr" : "Tempo 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2171,6 +2343,10 @@
                       "fr" : "Pédalage en résistance progressive 4×8 min cadence libre sur home-trainer"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
                   "duration" : "5 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -2211,6 +2387,10 @@
                       "fr" : "Vélo elliptique 20 min en endurance haute"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "15"
+                  },
                   "duration" : "15 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -2278,6 +2458,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "90"
+              },
               "duration" : "90 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2318,6 +2502,10 @@
                   "fr" : "Fente bulgare lestée"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6-8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -2355,6 +2543,10 @@
                   "fr" : "Pont fessier lesté avec élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2392,6 +2584,10 @@
                   "fr" : "Gainage croisé au sol + pointeur"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2446,6 +2642,10 @@
                       "fr" : "Marche rapide 80 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "75"
+                  },
                   "duration" : "75 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -2485,6 +2685,10 @@
                       "fr" : "Fente bulgare lestée"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "6-8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -2522,6 +2726,10 @@
                       "fr" : "Pont fessier lesté avec élastique"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -2559,6 +2767,10 @@
                       "fr" : "Gainage croisé au sol + pointeur"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
                   "duration" : "60 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -2625,6 +2837,10 @@
                   "fr" : "Marche active 40 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
 
@@ -2679,6 +2895,10 @@
                       "fr" : "Marche active 45 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "40"
+                  },
                   "duration" : "40 min",
                   "incompatible_constraints" : [
 
@@ -2744,6 +2964,10 @@
                   "fr" : "Tempo continu 35 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2802,6 +3026,10 @@
                       "fr" : "Tempo continu 35 min sur home-trainer"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "20"
+                  },
                   "duration" : "20 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -2871,6 +3099,10 @@
                   "fr" : "Sortie gravel en endurance/tempo avec dénivelé modéré"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "250"
+              },
               "duration" : "250 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2931,6 +3163,10 @@
                       "fr" : "Vélo elliptique 3h30 endurance + 3×10 min effort soutenu"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "235"
+                  },
                   "duration" : "235 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -3017,6 +3253,10 @@
                   "fr" : "Tempo continu 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3073,6 +3313,10 @@
                       "fr" : "Tempo continu 20 min sur home-trainer à résistance modérée"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "10"
+                  },
                   "duration" : "10 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -3140,6 +3384,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "60"
+              },
               "duration" : "60 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3180,6 +3428,10 @@
                   "fr" : "Squat au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -3217,6 +3469,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3271,6 +3527,10 @@
                       "fr" : "Marche rapide 60 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "60"
+                  },
                   "duration" : "60 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -3310,6 +3570,10 @@
                       "fr" : "Squat au poids du corps"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -3347,6 +3611,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "45"
+                  },
                   "duration" : "45 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -3413,6 +3681,10 @@
                   "fr" : "Marche active 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -3467,6 +3739,10 @@
                       "fr" : "Vélo elliptique 25 min en récupération"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "30"
+                  },
                   "duration" : "30 min",
                   "incompatible_constraints" : [
 
@@ -3532,6 +3808,10 @@
                   "fr" : "VO2max en côte 4×3 min, pente 5-8 %"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3589,6 +3869,10 @@
                       "fr" : "Rameur 4×3 min à intensité élevée"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "3"
+                  },
                   "duration" : "3 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -3657,6 +3941,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "160"
+              },
               "duration" : "160 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3715,6 +4003,10 @@
                       "fr" : "Sortie gravel en endurance tranquille (alternative si conditions météo permettent de sortir)"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "140"
+                  },
                   "duration" : "140 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -3799,6 +4091,10 @@
                   "fr" : "Intervalles plus doux 3×12 min en allure soutenue si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3857,6 +4153,10 @@
                       "fr" : "Rowing machine 3×8 min effort soutenu avec 4 min de récup"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "8"
+                  },
                   "duration" : "8 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -3926,6 +4226,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "90"
+              },
               "duration" : "90 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3966,6 +4270,10 @@
                   "fr" : "Fente bulgare lestée"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -4003,6 +4311,10 @@
                   "fr" : "Pont fessier sur une jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -4039,6 +4351,11 @@
                   "fr" : "Mollets sur une marche (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -4075,6 +4392,11 @@
                   "fr" : "Pointeur avant-bras au sol"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "wrist-injury"
@@ -4129,6 +4451,10 @@
                       "fr" : "Marche rapide 80 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "75"
+                  },
                   "duration" : "75 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -4168,6 +4494,10 @@
                       "fr" : "Fente bulgare lestée"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -4205,6 +4535,10 @@
                       "fr" : "Pont fessier sur une jambe"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -4241,6 +4575,11 @@
                       "fr" : "Mollets sur une marche (deux pieds)"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perLeg",
+                    "unit" : "reps",
+                    "value" : "12"
+                  },
                   "incompatible_constraints" : [
                     "ankle-injury"
                   ],
@@ -4277,6 +4616,11 @@
                       "fr" : "Pointeur avant-bras au sol"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "wrist-injury"
@@ -4343,6 +4687,10 @@
                   "fr" : "Marche active 40 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
 
@@ -4397,6 +4745,10 @@
                       "fr" : "Vélo elliptique facile 35 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "35"
+                  },
                   "duration" : "35 min",
                   "incompatible_constraints" : [
 
@@ -4462,6 +4814,10 @@
                   "fr" : "VO2max en côte 5×3 min, pente 5-8 %"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4519,6 +4875,10 @@
                       "fr" : "Rowing machine 5×3 min effort maximal avec 3 min de récup"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "3"
+                  },
                   "duration" : "3 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -4587,6 +4947,10 @@
                   "fr" : "Sortie gravel en endurance/tempo"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "250"
+              },
               "duration" : "250 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4647,6 +5011,10 @@
                       "fr" : "Rowing machine 2 h en endurance (alternative si home-trainer indisponible > 3 h)"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "210"
+                  },
                   "duration" : "210 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -4733,6 +5101,10 @@
                   "fr" : "Intervalles plus doux 4×10 min en allure soutenue"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4791,6 +5163,10 @@
                       "fr" : "Intervalles doux : 4×10 min tempo soutenu (88-93 % FTP) sur home-trainer"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "12"
+                  },
                   "duration" : "12 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -4860,6 +5236,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "100"
+              },
               "duration" : "100 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4900,6 +5280,10 @@
                   "fr" : "Fente bulgare lestée"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6-8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -4937,6 +5321,10 @@
                   "fr" : "Pont fessier lesté avec élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -4974,6 +5362,10 @@
                   "fr" : "Gainage croisé au sol + pointeur combinés"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -5028,6 +5420,10 @@
                       "fr" : "Marche rapide 90 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "85"
+                  },
                   "duration" : "85 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -5067,6 +5463,10 @@
                       "fr" : "Fente bulgare lestée"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "6-8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -5104,6 +5504,10 @@
                       "fr" : "Pont fessier lesté avec élastique"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -5141,6 +5545,10 @@
                       "fr" : "Gainage croisé au sol + pointeur combinés"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
                   "duration" : "60 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -5207,6 +5615,10 @@
                   "fr" : "Marche active 40 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
 
@@ -5261,6 +5673,10 @@
                       "fr" : "Vélo elliptique 35 min en récupération"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "40"
+                  },
                   "duration" : "40 min",
                   "incompatible_constraints" : [
 
@@ -5326,6 +5742,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "70"
+              },
               "duration" : "70 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5383,6 +5803,10 @@
                       "fr" : "Marche rapide 70 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "60"
+                  },
                   "duration" : "60 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -5451,6 +5875,10 @@
                   "fr" : "Sortie longue sur home-trainer 4 h en endurance + simulation montagne (mode ERG)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "250"
+              },
               "duration" : "250 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5511,6 +5939,10 @@
                       "fr" : "Rameur 2×45 min en endurance avec 3×15 min à intensité modérée-haute (RPE 3-4)"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "210"
+                  },
                   "duration" : "210 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -5597,6 +6029,10 @@
                   "fr" : "Fractionné au seuil 3×15 min si l'allure soutenue n'est pas tenue"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5655,6 +6091,10 @@
                       "fr" : "Vélo elliptique 60 min en effort modéré-soutenu"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "20"
+                  },
                   "duration" : "20 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -5724,6 +6164,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "100"
+              },
               "duration" : "100 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5764,6 +6208,10 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -5801,6 +6249,10 @@
                   "fr" : "Pont fessier lesté avec élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -5838,6 +6290,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -5892,6 +6348,10 @@
                       "fr" : "Marche rapide 90 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "85"
+                  },
                   "duration" : "85 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -5931,6 +6391,10 @@
                       "fr" : "Fente bulgare"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -5968,6 +6432,10 @@
                       "fr" : "Pont fessier lesté avec élastique"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -6005,6 +6473,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
                   "duration" : "60 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -6071,6 +6543,10 @@
                   "fr" : "Marche active 40 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
 
@@ -6125,6 +6601,10 @@
                       "fr" : "Vélo elliptique 35 min en récupération active"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "35"
+                  },
                   "duration" : "35 min",
                   "incompatible_constraints" : [
 
@@ -6190,6 +6670,10 @@
                   "fr" : "VO2max en côte 5×4 min, pente 5-8 %"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6247,6 +6731,10 @@
                       "fr" : "Aviron 5×4 min en haute intensité"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "4"
+                  },
                   "duration" : "4 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -6315,6 +6803,10 @@
                   "fr" : "Sortie longue sur home-trainer 4h15, simulation montagne"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "265"
+              },
               "duration" : "265 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6375,6 +6867,10 @@
                       "fr" : "Aviron 3 h en endurance (remplacement partiel possible)"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "255"
+                  },
                   "duration" : "255 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -6461,6 +6957,10 @@
                   "fr" : "Tempo continu 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6517,6 +7017,10 @@
                       "fr" : "Vélo elliptique 30 min en rythme modéré-soutenu"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "12"
+                  },
                   "duration" : "12 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -6584,6 +7088,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "70"
+              },
               "duration" : "70 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6624,6 +7132,10 @@
                   "fr" : "Squat au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -6661,6 +7173,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6715,6 +7231,10 @@
                       "fr" : "Marche rapide 70 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "70"
+                  },
                   "duration" : "70 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -6754,6 +7274,10 @@
                       "fr" : "Squat au poids du corps"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -6791,6 +7315,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "45"
+                  },
                   "duration" : "45 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -6857,6 +7385,10 @@
                   "fr" : "Marche active 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -6911,6 +7443,10 @@
                       "fr" : "Vélo elliptique 25 min en zone très facile"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "30"
+                  },
                   "duration" : "30 min",
                   "incompatible_constraints" : [
 
@@ -6976,6 +7512,10 @@
                   "fr" : "VO2max en côte 4×3 min, pente 5-8 %"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7033,6 +7573,10 @@
                       "fr" : "Rameur 4×3 min intensité élevée"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "3"
+                  },
                   "duration" : "3 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -7101,6 +7645,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "160"
+              },
               "duration" : "160 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7159,6 +7707,10 @@
                       "fr" : "Marche rapide 2h30"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "135"
+                  },
                   "duration" : "135 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -7243,6 +7795,10 @@
                   "fr" : "Intervalles plus doux 4×12 min en allure soutenue"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7301,6 +7857,10 @@
                       "fr" : "Intervalles plus doux 4×12 min en allure soutenue sur home-trainer"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "15"
+                  },
                   "duration" : "15 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -7370,6 +7930,10 @@
                   "fr" : "Test 8 min × 2 si tu ne peux pas tenir l'endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7411,6 +7975,10 @@
                   "fr" : "Marche active 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
 
@@ -7465,6 +8033,10 @@
                       "fr" : "Test 8 min × 2 si tu ne peux pas tenir l'effort 20 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "20"
+                  },
                   "duration" : "20 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -7505,6 +8077,10 @@
                       "fr" : "Marche active 15 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "15"
+                  },
                   "duration" : "15 min",
                   "incompatible_constraints" : [
 
@@ -7570,6 +8146,10 @@
                   "fr" : "Marche active 40 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
 
@@ -7624,6 +8204,10 @@
                       "fr" : "Marche active 40 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "40"
+                  },
                   "duration" : "40 min",
                   "incompatible_constraints" : [
 
@@ -7689,6 +8273,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "80"
+              },
               "duration" : "80 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7729,6 +8317,10 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -7766,6 +8358,10 @@
                   "fr" : "Pont fessier lesté avec élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -7803,6 +8399,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -7857,6 +8457,10 @@
                       "fr" : "Marche rapide 75 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "70"
+                  },
                   "duration" : "70 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -7896,6 +8500,10 @@
                       "fr" : "Fente bulgare"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -7933,6 +8541,10 @@
                       "fr" : "Pont fessier lesté avec élastique"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -7970,6 +8582,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
                   "duration" : "60 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -8036,6 +8652,10 @@
                   "fr" : "Sortie longue sur home-trainer 4h15, simulation montagne (mode ERG)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "265"
+              },
               "duration" : "265 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8096,6 +8716,10 @@
                       "fr" : "Séance d'aviron 3h30 en endurance comme alternative cardio longue durée"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "230"
+                  },
                   "duration" : "230 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -8182,6 +8806,10 @@
                   "fr" : "VO2max en côte 6×4 min, pente 5-8 %"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8239,6 +8867,10 @@
                       "fr" : "Rameur 6×4 min intensité VO2max (RPE 6-7), récup 4 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "4"
+                  },
                   "duration" : "4 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -8307,6 +8939,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "80"
+              },
               "duration" : "80 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8347,6 +8983,10 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -8384,6 +9024,11 @@
                   "fr" : "Mollets sur une marche (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -8420,6 +9065,11 @@
                   "fr" : "Pointeur avant-bras au sol"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "wrist-injury"
@@ -8474,6 +9124,10 @@
                       "fr" : "Marche rapide 75 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "68"
+                  },
                   "duration" : "68 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -8513,6 +9167,10 @@
                       "fr" : "Fente bulgare"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -8550,6 +9208,11 @@
                       "fr" : "Mollets sur une marche (deux pieds)"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perLeg",
+                    "unit" : "reps",
+                    "value" : "12"
+                  },
                   "incompatible_constraints" : [
                     "ankle-injury"
                   ],
@@ -8586,6 +9249,11 @@
                       "fr" : "Pointeur avant-bras au sol"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "wrist-injury"
@@ -8652,6 +9320,10 @@
                   "fr" : "Marche active 40 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
 
@@ -8706,6 +9378,10 @@
                       "fr" : "Vélo elliptique 35 min intensité très faible"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "33"
+                  },
                   "duration" : "33 min",
                   "incompatible_constraints" : [
 
@@ -8771,6 +9447,10 @@
                   "fr" : "Sprint en côte 3×1 min, pente 5-7 %"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "1"
+              },
               "duration" : "1 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8811,6 +9491,10 @@
                   "fr" : "Tempo 45 min sur parcours roulant"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8869,6 +9553,10 @@
                       "fr" : "Rameur sprint 3×1 min intensité maximale, récup 3 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "1"
+                  },
                   "duration" : "1 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -8908,6 +9596,10 @@
                       "fr" : "Vélo elliptique 45 min intensité modérée soutenue (RPE 3-4)"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "45"
+                  },
                   "duration" : "45 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -8977,6 +9669,10 @@
                   "fr" : "Sortie gravel en endurance/tempo avec dénivelé"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "265"
+              },
               "duration" : "265 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -9037,6 +9733,10 @@
                       "fr" : "Rameur 3 h en endurance (endurance facile) + blocs tempo 1 h"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "225"
+                  },
                   "duration" : "225 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -9123,6 +9823,10 @@
                   "fr" : "Intervalles plus doux 5×10 min en allure soutenue"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -9181,6 +9885,10 @@
                       "fr" : "Intervalles plus doux 5×10 min en allure soutenue sur home-trainer"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "20"
+                  },
                   "duration" : "20 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -9250,6 +9958,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "100"
+              },
               "duration" : "100 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -9290,6 +10002,10 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -9327,6 +10043,10 @@
                   "fr" : "Pont fessier lesté avec élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -9364,6 +10084,10 @@
                   "fr" : "Gainage croisé au sol + pointeur combinés"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -9418,6 +10142,10 @@
                       "fr" : "Marche rapide 90 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "85"
+                  },
                   "duration" : "85 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -9457,6 +10185,10 @@
                       "fr" : "Fente bulgare"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -9494,6 +10226,10 @@
                       "fr" : "Pont fessier lesté avec élastique"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -9531,6 +10267,10 @@
                       "fr" : "Gainage croisé au sol + pointeur combinés"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
                   "duration" : "60 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -9597,6 +10337,10 @@
                   "fr" : "Marche active 50 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "50"
+              },
               "duration" : "50 min",
               "incompatible_constraints" : [
 
@@ -9651,6 +10395,10 @@
                       "fr" : "Marche active 50 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "45"
+                  },
                   "duration" : "45 min",
                   "incompatible_constraints" : [
 
@@ -9716,6 +10464,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "55"
+              },
               "duration" : "55 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -9756,6 +10508,10 @@
                   "fr" : "Sprints en côte 4×10 sec, pente 3-5 %"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "10"
+              },
               "duration" : "10 sec",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -9812,6 +10568,10 @@
                       "fr" : "Marche rapide 60 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "55"
+                  },
                   "duration" : "55 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -9851,6 +10611,10 @@
                       "fr" : "Accélérations debout 4×8 sec sur home-trainer"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "10"
+                  },
                   "duration" : "10 sec",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -9918,6 +10682,10 @@
                   "fr" : "Sortie longue sur home-trainer 4h30, simulation montagne (mode ERG, équivalence -10 %)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "300"
+              },
               "duration" : "300 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -9980,6 +10748,10 @@
                       "fr" : "Rowing 30 min + home-trainer 3h45 (alternative cardio mixte si siège douloureux)"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "270"
+                  },
                   "duration" : "270 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -10066,6 +10838,10 @@
                   "fr" : "Tempo continu 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -10122,6 +10898,10 @@
                       "fr" : "Tempo continu 30 min sur home-trainer"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "15"
+                  },
                   "duration" : "15 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -10189,6 +10969,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "70"
+              },
               "duration" : "70 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -10229,6 +11013,10 @@
                   "fr" : "Squat au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -10266,6 +11054,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -10320,6 +11112,10 @@
                       "fr" : "Marche rapide 65 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "60"
+                  },
                   "duration" : "60 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -10359,6 +11155,10 @@
                       "fr" : "Squat au poids du corps"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -10396,6 +11196,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "45"
+                  },
                   "duration" : "45 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -10462,6 +11266,10 @@
                   "fr" : "Marche active 40 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
 
@@ -10516,6 +11324,10 @@
                       "fr" : "Marche active 40 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "40"
+                  },
                   "duration" : "40 min",
                   "incompatible_constraints" : [
 
@@ -10581,6 +11393,10 @@
                   "fr" : "VO2max en côte 5×3 min, pente 5-8 %"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -10638,6 +11454,10 @@
                       "fr" : "Intervalles rameur 5×3 min effort max"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "3"
+                  },
                   "duration" : "3 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -10706,6 +11526,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "190"
+              },
               "duration" : "190 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -10764,6 +11588,10 @@
                       "fr" : "Rameur 90 min en endurance + vélo elliptique 60 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "160"
+                  },
                   "duration" : "160 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -10848,6 +11676,10 @@
                   "fr" : "Fractionné au seuil 3×12 min si l'allure soutenue n'est pas tenue"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -10906,6 +11738,10 @@
                       "fr" : "Elliptique 45 min à intensité modérée-haute (RPE 4)"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "15"
+                  },
                   "duration" : "15 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -10975,6 +11811,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "85"
+              },
               "duration" : "85 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -11015,6 +11855,10 @@
                   "fr" : "Fente bulgare"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -11052,6 +11896,10 @@
                   "fr" : "Pont fessier lesté avec élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -11089,6 +11937,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -11143,6 +11995,10 @@
                       "fr" : "Marche rapide 80 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "85"
+                  },
                   "duration" : "85 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -11182,6 +12038,10 @@
                       "fr" : "Fente bulgare"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -11219,6 +12079,10 @@
                       "fr" : "Pont fessier lesté avec élastique"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -11256,6 +12120,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
                   "duration" : "60 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -11322,6 +12190,10 @@
                   "fr" : "Marche active 40 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
 
@@ -11376,6 +12248,10 @@
                       "fr" : "Vélo elliptique 35 min à intensité très faible"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "40"
+                  },
                   "duration" : "40 min",
                   "incompatible_constraints" : [
 
@@ -11441,6 +12317,10 @@
                   "fr" : "VO2max en côte 5×4 min, pente 5-8 %"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -11498,6 +12378,10 @@
                       "fr" : "Rameur 5×4 min en intensité élevée (RPE 7)"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "4"
+                  },
                   "duration" : "4 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -11566,6 +12450,10 @@
                   "fr" : "Sortie gravel en endurance/tempo"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "220"
+              },
               "duration" : "220 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -11626,6 +12514,10 @@
                       "fr" : "Marche rapide 3 h (option recours si pas de home-trainer ni rameur)"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "220"
+                  },
                   "duration" : "220 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -11712,6 +12604,10 @@
                   "fr" : "Tempo continu 22 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -11768,6 +12664,10 @@
                       "fr" : "Tempo continu 22 min sur home-trainer"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "10"
+                  },
                   "duration" : "10 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -11835,6 +12735,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "60"
+              },
               "duration" : "60 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -11875,6 +12779,10 @@
                   "fr" : "Montées sur step"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -11912,6 +12820,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -11966,6 +12878,10 @@
                       "fr" : "Marche rapide 55 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "50"
+                  },
                   "duration" : "50 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -12005,6 +12921,10 @@
                       "fr" : "Montées sur step"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury"
@@ -12042,6 +12962,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "45"
+                  },
                   "duration" : "45 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -12108,6 +13032,10 @@
                   "fr" : "Marche active 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -12162,6 +13090,10 @@
                       "fr" : "Marche active 30 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "25"
+                  },
                   "duration" : "25 min",
                   "incompatible_constraints" : [
 
@@ -12227,6 +13159,10 @@
                   "fr" : "VO2max en côte 4×3 min, pente 5-8 %"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -12284,6 +13220,10 @@
                       "fr" : "Rameur 4×3 min en effort soutenu"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "3"
+                  },
                   "duration" : "3 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -12352,6 +13292,10 @@
                   "fr" : "Sortie gravel en endurance/tempo"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "145"
+              },
               "duration" : "145 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -12412,6 +13356,10 @@
                       "fr" : "Marche rapide 2h30 avec portions à allure soutenue"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "125"
+                  },
                   "duration" : "125 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -12498,6 +13446,10 @@
                   "fr" : "Tempo continu 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -12537,6 +13489,10 @@
                   "fr" : "Sprint en côte 3×30 sec, pente 3-5 %"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -12593,6 +13549,10 @@
                       "fr" : "Tempo continu 12 min sur home-trainer"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "10"
+                  },
                   "duration" : "10 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -12631,6 +13591,10 @@
                       "fr" : "Sprint 3×30 sec sur home-trainer résistance élevée"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
                   "duration" : "30 sec",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -12698,6 +13662,10 @@
                   "fr" : "Sortie gravel en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -12738,6 +13706,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -12775,6 +13747,11 @@
                   "fr" : "Pointeur avant-bras au sol"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "wrist-injury"
@@ -12829,6 +13806,10 @@
                       "fr" : "Marche rapide 50 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "45"
+                  },
                   "duration" : "45 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -12868,6 +13849,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
                   "duration" : "30 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -12905,6 +13890,11 @@
                       "fr" : "Pointeur avant-bras au sol"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "wrist-injury"
@@ -12971,6 +13961,10 @@
                   "fr" : "Marche active 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
 
@@ -13025,6 +14019,10 @@
                       "fr" : "Vélo elliptique 25 min en récupération"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "25"
+                  },
                   "duration" : "25 min",
                   "incompatible_constraints" : [
 
@@ -13090,6 +14088,10 @@
                   "fr" : "VO2max en côte 3×3 min, pente 5-8 %"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -13147,6 +14149,10 @@
                       "fr" : "Effort intense 3×3 min sur rameur"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "3"
+                  },
                   "duration" : "3 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -13215,6 +14221,10 @@
                   "fr" : "Sortie sur route en endurance/tempo sur un parcours connu"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "100"
+              },
               "duration" : "100 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -13275,6 +14285,10 @@
                       "fr" : "Vélo elliptique 90 min en endurance + 2 blocs de tempo 10 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "100"
+                  },
                   "duration" : "100 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -13361,6 +14375,10 @@
                   "fr" : "Sortie gravel en endurance + sprints"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -13418,6 +14436,10 @@
                       "fr" : "Marche rapide 45 min avec 2 accélérations de 10 sec"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "40"
+                  },
                   "duration" : "40 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -13486,6 +14508,10 @@
                   "fr" : "Sortie sur route courte en endurance + sprints"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -13544,6 +14570,10 @@
                       "fr" : "Marche rapide 35 min avec 3 accélérations de 10 sec"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "30"
+                  },
                   "duration" : "30 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -13613,6 +14643,10 @@
                   "fr" : "Sortie sur route 25 min + sprints sur le plat"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -13671,6 +14705,10 @@
                       "fr" : "Marche rapide 30 min avec 3 accélérations brèves"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "25"
+                  },
                   "duration" : "25 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -13734,6 +14772,13 @@
                   "fr" : "Yoga doux 20 min si tu en as l'habitude"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "Full day",
+                  "es" : "Jornada completa",
+                  "fr" : "Journée entière"
+                }
+              },
               "duration" : "Journée entière",
               "incompatible_constraints" : [
 
@@ -13786,6 +14831,13 @@
                   "fr" : "Course reportée en cas de maladie/blessure dans les 48 h avant"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "180-220 km / 3000+ m elevation gain",
+                  "es" : "180-220 km / 3000+ m de desnivel",
+                  "fr" : "180-220 km / 3000+ m D+"
+                }
+              },
               "duration" : "180-220 km / 3000+ m D+",
               "incompatible_constraints" : [
                 "knee-injury",

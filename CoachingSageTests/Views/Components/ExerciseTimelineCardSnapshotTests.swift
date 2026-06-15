@@ -142,4 +142,46 @@ final class ExerciseTimelineCardSnapshotTests: XCTestCase {
         assertSnapshot(of: runningDoseColumn(locale: Locale(identifier: "es")),
                        as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
     }
+
+    // MARK: - Lot 3 cycling — dosage localisé (FR/EN/ES)
+
+    // Cas représentatifs : glose d'intensité « tempo soutenu » DROPPÉE → « 10 min » nu,
+    // qualificateur neuf `perPosition`, reps per-leg, freeText terrain (D+/montée) + cadence
+    // (rpm). Le chrome reste FR (LocalizedStringKey non swizzlé) mais les chips dose suivent
+    // `\.locale` → l'invariant « zéro fuite FR EN/ES » est visible directement sur le rendu.
+    private func cyclingDoseColumn(locale: Locale) -> some View {
+        let exos: [AdaptedExercise] = [
+            AdaptedExercise(name: "Sortie tranquille", originalName: "Sortie tranquille", duration: "45 min", targetZone: "FTP-Z2"),
+            AdaptedExercise(name: "Blocs allure soutenue", originalName: "Blocs allure soutenue", sets: 3, duration: "10 min tempo soutenu", targetZone: "Sweet-Spot"),
+            AdaptedExercise(name: "Cadence haute", originalName: "Cadence haute", sets: 6, duration: "2 min à 100-105 rpm", targetZone: "FTP-Z2"),
+            AdaptedExercise(name: "Répétitions en côte", originalName: "Répétitions en côte", sets: 5, duration: "2 min en montée", targetZone: "FTP-Z4"),
+            AdaptedExercise(name: "Gainage ventral + dorsal", originalName: "Gainage ventral + dorsal", duration: "40 sec par position", targetZone: "RPE 7-8"),
+            AdaptedExercise(name: "Pont fessier unilatéral", originalName: "Pont fessier unilatéral", sets: 2, reps: "12 par jambe"),
+            AdaptedExercise(name: "Cyclosportive", originalName: "Cyclosportive", duration: "180-220 km / 3000+ m D+", targetZone: "FTP-Z2"),
+        ]
+        return VStack(spacing: 8) {
+            ForEach(Array(exos.enumerated()), id: \.offset) { _, ex in
+                ExerciseTimelineCard(exercise: ex, sportCode: "cycling", isFirstExercise: false)
+            }
+        }
+        .frame(width: 360)
+        .padding()
+        .background(Color(uiColor: .systemBackground))
+        .environment(\.locale, locale)
+    }
+
+    func testCyclingDose_fr() {
+        assertSnapshot(of: cyclingDoseColumn(locale: Locale(identifier: "fr")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testCyclingDose_en() {
+        assertSnapshot(of: cyclingDoseColumn(locale: Locale(identifier: "en")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testCyclingDose_es() {
+        assertSnapshot(of: cyclingDoseColumn(locale: Locale(identifier: "es")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
 }

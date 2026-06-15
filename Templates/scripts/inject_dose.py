@@ -12,7 +12,7 @@
 # Le format de sortie (swiftjson) est byte-compatible avec le sérialiseur des templates ;
 # le trailing newline de CHAQUE fichier est préservé -> le diff git ne contient que les `dose`.
 #
-# Lots livrés : yoga (Lot 1, 2026-06-14) · running (Lot 2, 2026-06-15).
+# Lots livrés : yoga (Lot 1, 2026-06-14) · running (Lot 2, 2026-06-15) · cycling (Lot 3, 2026-06-15).
 
 import sys, glob, json, copy, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -271,9 +271,104 @@ RUNNING = {
     "18 par jambe": S("18", "reps", qualifier="perLeg"),
 }
 
-# Table complète (union) + clés du seul Lot 2 (pour gen-migration ciblé sans toucher au yoga).
-DOSE = {**YOGA, **RUNNING}
+CYCLING = {
+    # ====================== LOT 3 — CYCLING ======================
+    # Repeat mécanique du running : durées/distances/intervalles, pas de conflit reps-héros.
+    # Seules les clés NOUVELLES sont déclarées ici (yoga+running couvrent déjà 30 sec, 10, 45 sec…).
+    #
+    # --- DURATIONS : minutes pleines ---
+    "33 min": S("33", "minutes"),
+    "45 min": S("45", "minutes"),
+    "47 min": S("47", "minutes"),
+    "64 min": S("64", "minutes"),
+    "68 min": S("68", "minutes"),
+    "72 min": S("72", "minutes"),
+    "77 min": S("77", "minutes"),
+    "80 min": S("80", "minutes"),
+    "85 min": S("85", "minutes"),
+    "90 min": S("90", "minutes"),
+    "95 min": S("95", "minutes"),
+    "100 min": S("100", "minutes"),
+    "110 min": S("110", "minutes"),
+    "120 min": S("120", "minutes"),
+    "125 min": S("125", "minutes"),
+    "135 min": S("135", "minutes"),
+    "140 min": S("140", "minutes"),
+    "145 min": S("145", "minutes"),
+    "150 min": S("150", "minutes"),
+    "153 min": S("153", "minutes"),
+    "155 min": S("155", "minutes"),
+    "160 min": S("160", "minutes"),
+    "170 min": S("170", "minutes"),
+    "180 min": S("180", "minutes"),
+    "190 min": S("190", "minutes"),
+    "195 min": S("195", "minutes"),
+    "200 min": S("200", "minutes"),
+    "210 min": S("210", "minutes"),
+    "220 min": S("220", "minutes"),
+    "225 min": S("225", "minutes"),
+    "230 min": S("230", "minutes"),
+    "235 min": S("235", "minutes"),
+    "250 min": S("250", "minutes"),
+    "255 min": S("255", "minutes"),
+    "265 min": S("265", "minutes"),
+    "270 min": S("270", "minutes"),
+    "290 min": S("290", "minutes"),
+    "300 min": S("300", "minutes"),
+    # --- DURATIONS : plages / approximatif (value String garde « ~ » et la plage) ---
+    "300-330 min": S("300-330", "minutes"),
+    "~150 min": S("~150", "minutes"),
+    "~65 min": S("~65", "minutes"),
+    # --- DURATIONS : glose d'intensité redondante DROPPÉE (target_zone=Sweet-Spot la porte,
+    #     + nom d'exo « Allure soutenue ») → plain minutes, cohérent avec le drop running des « (RPE 8) » ---
+    "5 min tempo soutenu": S("5", "minutes"),
+    "8 min tempo soutenu": S("8", "minutes"),
+    "10 min tempo soutenu": S("10", "minutes"),
+    "12 min tempo soutenu": S("12", "minutes"),
+    "15 min tempo soutenu": S("15", "minutes"),
+    "20 min tempo soutenu": S("20", "minutes"),
+    # --- DURATIONS/REPS structuré avec qualificateur (renfo de fin de sortie) ---
+    "25 sec par côté": S("25", "seconds", qualifier="perSide"),
+    "60 sec par jambe": S("60", "seconds", qualifier="perLeg"),
+    "40 sec par position": S("40", "seconds", qualifier="perPosition"),
+    "6-8": S("6-8", "reps"),
+    # --- DURATIONS : distance + glose temps estimé -> freeText (km/min universels : fr=en=es) ---
+    "25 km / ~55 min": F("25 km / ~55 min", "25 km / ~55 min", "25 km / ~55 min"),
+    "25 km / ~60 min": F("25 km / ~60 min", "25 km / ~60 min", "25 km / ~60 min"),
+    "28 km / ~55 min": F("28 km / ~55 min", "28 km / ~55 min", "28 km / ~55 min"),
+    "28 km / ~65 min": F("28 km / ~65 min", "28 km / ~65 min", "28 km / ~65 min"),
+    "30 km / ~70 min": F("30 km / ~70 min", "30 km / ~70 min", "30 km / ~70 min"),
+    "32 km / ~75 min": F("32 km / ~75 min", "32 km / ~75 min", "32 km / ~75 min"),
+    "35 km / ~70 min": F("35 km / ~70 min", "35 km / ~70 min", "35 km / ~70 min"),
+    "35 km / ~80 min": F("35 km / ~80 min", "35 km / ~80 min", "35 km / ~80 min"),
+    "40 km / ~85 min": F("40 km / ~85 min", "40 km / ~85 min", "40 km / ~85 min"),
+    "45 km / ~95 min": F("45 km / ~95 min", "45 km / ~95 min", "45 km / ~95 min"),
+    "50 km / ~105 min": F("50 km / ~105 min", "50 km / ~105 min", "50 km / ~105 min"),
+    "52 km / ~108 min": F("52 km / ~108 min", "52 km / ~108 min", "52 km / ~108 min"),
+    "60 km / ~125 min": F("60 km / ~125 min", "60 km / ~125 min", "60 km / ~125 min"),
+    "62 km / ~110 min": F("62 km / ~110 min", "62 km / ~110 min", "62 km / ~110 min"),
+    "62 km / ~130 min": F("62 km / ~130 min", "62 km / ~130 min", "62 km / ~130 min"),
+    "65 km / ~115 min": F("65 km / ~115 min", "65 km / ~115 min", "65 km / ~115 min"),
+    "65 km / ~135 min": F("65 km / ~135 min", "65 km / ~135 min", "65 km / ~135 min"),
+    "72 km / ~150 min": F("72 km / ~150 min", "72 km / ~150 min", "72 km / ~150 min"),
+    "78 km / ~165 min": F("78 km / ~165 min", "78 km / ~165 min", "78 km / ~165 min"),
+    "80 km / ~180 min": F("80 km / ~180 min", "80 km / ~180 min", "80 km / ~180 min"),
+    "82 km / ~175 min": F("82 km / ~175 min", "82 km / ~175 min", "82 km / ~175 min"),
+    # --- DURATIONS : descriptif/terrain/cadence -> freeText (mots à traduire : D+, montée, endurance…) ---
+    "180-220 km / 3000+ m D+": F("180-220 km / 3000+ m D+", "180-220 km / 3000+ m elevation gain", "180-220 km / 3000+ m de desnivel"),
+    "2 min en montée": F("2 min en montée", "2 min uphill", "2 min en subida"),
+    "2 min à 100-105 rpm": F("2 min à 100-105 rpm", "2 min at 100-105 rpm", "2 min a 100-105 rpm"),
+    "3 min à 100-105 rpm en endurance facile": F("3 min à 100-105 rpm en endurance facile", "3 min at 100-105 rpm, easy endurance", "3 min a 100-105 rpm, resistencia fácil"),
+    "3 min à 95-100 rpm + 3 min à 85 rpm": F("3 min à 95-100 rpm + 3 min à 85 rpm", "3 min at 95-100 rpm + 3 min at 85 rpm", "3 min a 95-100 rpm + 3 min a 85 rpm"),
+    "8 min tempo + 5 min endurance facile récupération": F("8 min tempo + 5 min d'endurance facile en récupération", "8 min tempo + 5 min easy recovery", "8 min tempo + 5 min de recuperación fácil"),
+    "8 par côté + 30 sec planche dorsale": F("8 par côté + 30 s de planche dorsale", "8 per side + 30 s reverse plank", "8 por lado + 30 s de plancha invertida"),
+    "Journée entière": F("Journée entière", "Full day", "Jornada completa"),
+}
+
+# Table complète (union) + clés par lot (pour gen-migration ciblé sans toucher aux lots précédents).
+DOSE = {**YOGA, **RUNNING, **CYCLING}
 RUNNING_KEYS = list(RUNNING.keys())
+CYCLING_KEYS = list(CYCLING.keys())
 
 
 def inject(ex, missing):
@@ -352,6 +447,8 @@ if __name__ == "__main__":
         lot = sys.argv[2] if len(sys.argv) > 2 else "all"
         if lot == "running":
             gen_migration(RUNNING_KEYS)
+        elif lot == "cycling":
+            gen_migration(CYCLING_KEYS)
         else:
             gen_migration(list(DOSE.keys()))
     else:

@@ -54,6 +54,13 @@
                   "fr" : "Vélo elliptique 90 min en endurance"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 km / ~95 min",
+                  "es" : "45 km / ~95 min",
+                  "fr" : "45 km / ~95 min"
+                }
+              },
               "duration" : "45 km / ~95 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -113,6 +120,10 @@
                       "fr" : "Marche rapide 90 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "80"
+                  },
                   "duration" : "80 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -183,6 +194,13 @@
                   "fr" : "Exercices de cadence 100 tr/min sur home-trainer en mode ERG"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "3 min at 100-105 rpm, easy endurance",
+                  "es" : "3 min a 100-105 rpm, resistencia fácil",
+                  "fr" : "3 min à 100-105 rpm en endurance facile"
+                }
+              },
               "duration" : "3 min à 100-105 rpm en endurance facile",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -223,6 +241,10 @@
                   "fr" : "Allure soutenue home-trainer en mode ERG 3 × 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min tempo soutenu",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -264,6 +286,11 @@
                   "fr" : "Squat à deux jambes lent"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -301,6 +328,10 @@
                   "fr" : "Pont de hanches dos sur banc"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -337,6 +368,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "40"
+              },
               "duration" : "40 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -391,6 +426,13 @@
                       "fr" : "Exercices de cadence 100 tr/min sur home-trainer en mode ERG"
                     }
                   ],
+                  "dose" : {
+                    "free_text" : {
+                      "en" : "3 min at 100-105 rpm, easy endurance",
+                      "es" : "3 min a 100-105 rpm, resistencia fácil",
+                      "fr" : "3 min à 100-105 rpm en endurance facile"
+                    }
+                  },
                   "duration" : "3 min à 100-105 rpm en endurance facile",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -430,6 +472,10 @@
                       "fr" : "Allure soutenue home-trainer en mode ERG 3 × 5 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
                   "duration" : "5 min tempo soutenu",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -470,6 +516,11 @@
                       "fr" : "Squat à deux jambes lent"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "knee-injury",
                     "lower-back-pain"
@@ -507,6 +558,10 @@
                       "fr" : "Pont de hanches dos sur banc"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "12"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -543,6 +598,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "40"
+                  },
                   "duration" : "40 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -609,6 +668,13 @@
                   "fr" : "Vélo elliptique 70 min très facile"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 km / ~70 min",
+                  "es" : "30 km / ~70 min",
+                  "fr" : "30 km / ~70 min"
+                }
+              },
               "duration" : "30 km / ~70 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -666,6 +732,10 @@
                       "fr" : "Marche rapide 65 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "60"
+                  },
                   "duration" : "60 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -749,6 +819,13 @@
                   "fr" : "Vélo elliptique 105 min en endurance"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "52 km / ~108 min",
+                  "es" : "52 km / ~108 min",
+                  "fr" : "52 km / ~108 min"
+                }
+              },
               "duration" : "52 km / ~108 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -808,6 +885,10 @@
                       "fr" : "Vélo elliptique 90 min en endurance"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "90"
+                  },
                   "duration" : "90 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -878,6 +959,10 @@
                   "fr" : "Allure soutenue home-trainer en mode ERG 4 × 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min tempo soutenu",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -919,6 +1004,10 @@
                   "fr" : "Pont de hanches dos sur banc"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -955,6 +1044,11 @@
                   "fr" : "Planche latérale avec montées de bassin"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1009,6 +1103,10 @@
                       "fr" : "Rameur 4 × 8 min en effort soutenu"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "8"
+                  },
                   "duration" : "8 min tempo soutenu",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -1049,6 +1147,10 @@
                       "fr" : "Pont de hanches dos sur banc"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "12"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -1085,6 +1187,11 @@
                       "fr" : "Planche latérale avec montées de bassin"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
                   "duration" : "30 sec par côté",
                   "incompatible_constraints" : [
                     "shoulder-injury",
@@ -1151,6 +1258,13 @@
                   "fr" : "Vélo elliptique 75 min très facile"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "32 km / ~75 min",
+                  "es" : "32 km / ~75 min",
+                  "fr" : "32 km / ~75 min"
+                }
+              },
               "duration" : "32 km / ~75 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1208,6 +1322,10 @@
                       "fr" : "Vélo elliptique 65 min très facile"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "65"
+                  },
                   "duration" : "65 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1291,6 +1409,13 @@
                   "fr" : "Vélo elliptique 120 min en endurance"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 km / ~125 min",
+                  "es" : "60 km / ~125 min",
+                  "fr" : "60 km / ~125 min"
+                }
+              },
               "duration" : "60 km / ~125 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1350,6 +1475,10 @@
                       "fr" : "Marche rapide 110 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "105"
+                  },
                   "duration" : "105 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1420,6 +1549,10 @@
                   "fr" : "Allure soutenue home-trainer en mode ERG 3 × 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min tempo soutenu",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1461,6 +1594,13 @@
                   "fr" : "Exercices 100 tr/min sur home-trainer"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 min at 100-105 rpm",
+                  "es" : "2 min a 100-105 rpm",
+                  "fr" : "2 min à 100-105 rpm"
+                }
+              },
               "duration" : "2 min à 100-105 rpm",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1517,6 +1657,10 @@
                       "fr" : "Allure soutenue home-trainer en mode ERG 3 × 10 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "10"
+                  },
                   "duration" : "10 min tempo soutenu",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -1557,6 +1701,13 @@
                       "fr" : "Vélo elliptique 15 min à allure rapide"
                     }
                   ],
+                  "dose" : {
+                    "free_text" : {
+                      "en" : "2 min at 100-105 rpm",
+                      "es" : "2 min a 100-105 rpm",
+                      "fr" : "2 min à 100-105 rpm"
+                    }
+                  },
                   "duration" : "2 min à 100-105 rpm",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -1624,6 +1775,13 @@
                   "fr" : "Vélo elliptique 75 min très facile"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "32 km / ~75 min",
+                  "es" : "32 km / ~75 min",
+                  "fr" : "32 km / ~75 min"
+                }
+              },
               "duration" : "32 km / ~75 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1681,6 +1839,10 @@
                       "fr" : "Marche rapide 70 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "64"
+                  },
                   "duration" : "64 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1764,6 +1926,13 @@
                   "fr" : "Vélo elliptique 105 min en endurance"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "50 km / ~105 min",
+                  "es" : "50 km / ~105 min",
+                  "fr" : "50 km / ~105 min"
+                }
+              },
               "duration" : "50 km / ~105 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1823,6 +1992,10 @@
                       "fr" : "Marche rapide 100 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "90"
+                  },
                   "duration" : "90 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1893,6 +2066,10 @@
                   "fr" : "Allure soutenue home-trainer en mode ERG 2 × 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min tempo soutenu",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1934,6 +2111,11 @@
                   "fr" : "Étirement psoas demi-genou 50 sec/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec par côté",
               "incompatible_constraints" : [
                 "knee-injury"
@@ -1970,6 +2152,11 @@
                   "fr" : "Étirement quadriceps debout avec appui au mur 30 sec/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par côté",
               "incompatible_constraints" : [
                 "knee-injury"
@@ -2023,6 +2210,10 @@
                       "fr" : "Aviron 2 × 8 min en effort soutenu"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "8"
+                  },
                   "duration" : "8 min tempo soutenu",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -2063,6 +2254,11 @@
                       "fr" : "Étirement psoas demi-genou 50 sec/côté"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "seconds",
+                    "value" : "45"
+                  },
                   "duration" : "45 sec par côté",
                   "incompatible_constraints" : [
                     "knee-injury"
@@ -2099,6 +2295,11 @@
                       "fr" : "Étirement quadriceps debout avec appui au mur 30 sec/côté"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
                   "duration" : "30 sec par côté",
                   "incompatible_constraints" : [
                     "knee-injury"
@@ -2164,6 +2365,13 @@
                   "fr" : "Vélo elliptique 60 min très facile"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 km / ~60 min",
+                  "es" : "25 km / ~60 min",
+                  "fr" : "25 km / ~60 min"
+                }
+              },
               "duration" : "25 km / ~60 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2221,6 +2429,10 @@
                       "fr" : "Marche rapide 60 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "50"
+                  },
                   "duration" : "50 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -2304,6 +2516,13 @@
                   "fr" : "Vélo elliptique 135 min en endurance"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "65 km / ~135 min",
+                  "es" : "65 km / ~135 min",
+                  "fr" : "65 km / ~135 min"
+                }
+              },
               "duration" : "65 km / ~135 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2363,6 +2582,13 @@
                       "fr" : "Vélo elliptique 120 min en endurance"
                     }
                   ],
+                  "dose" : {
+                    "free_text" : {
+                      "en" : "65 km / ~115 min",
+                      "es" : "65 km / ~115 min",
+                      "fr" : "65 km / ~115 min"
+                    }
+                  },
                   "duration" : "65 km / ~115 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -2433,6 +2659,10 @@
                   "fr" : "Allure soutenue home-trainer en mode ERG 2 × 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min tempo soutenu",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2474,6 +2704,13 @@
                   "fr" : "Exercices 100 tr/min sur home-trainer"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 min at 100-105 rpm",
+                  "es" : "2 min a 100-105 rpm",
+                  "fr" : "2 min à 100-105 rpm"
+                }
+              },
               "duration" : "2 min à 100-105 rpm",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2530,6 +2767,10 @@
                       "fr" : "Allure soutenue home-trainer en mode ERG 2 × 15 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "15"
+                  },
                   "duration" : "15 min tempo soutenu",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -2570,6 +2811,13 @@
                       "fr" : "Exercices 100 tr/min sur home-trainer"
                     }
                   ],
+                  "dose" : {
+                    "free_text" : {
+                      "en" : "2 min at 100-105 rpm",
+                      "es" : "2 min a 100-105 rpm",
+                      "fr" : "2 min à 100-105 rpm"
+                    }
+                  },
                   "duration" : "2 min à 100-105 rpm",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -2637,6 +2885,13 @@
                   "fr" : "Vélo elliptique 80 min très facile"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "35 km / ~80 min",
+                  "es" : "35 km / ~80 min",
+                  "fr" : "35 km / ~80 min"
+                }
+              },
               "duration" : "35 km / ~80 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2694,6 +2949,13 @@
                       "fr" : "Vélo elliptique 75 min très facile"
                     }
                   ],
+                  "dose" : {
+                    "free_text" : {
+                      "en" : "35 km / ~70 min",
+                      "es" : "35 km / ~70 min",
+                      "fr" : "35 km / ~70 min"
+                    }
+                  },
                   "duration" : "35 km / ~70 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -2777,6 +3039,13 @@
                   "fr" : "Vélo elliptique 150 min en endurance"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "72 km / ~150 min",
+                  "es" : "72 km / ~150 min",
+                  "fr" : "72 km / ~150 min"
+                }
+              },
               "duration" : "72 km / ~150 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2836,6 +3105,10 @@
                       "fr" : "Rameur 90 min allure modérée"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "130"
+                  },
                   "duration" : "130 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -2906,6 +3179,10 @@
                   "fr" : "Allure soutenue home-trainer en mode ERG 3 × 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min tempo soutenu",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2964,6 +3241,10 @@
                       "fr" : "Rameur 3 × 12 min allure soutenue, récup 4 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "15"
+                  },
                   "duration" : "15 min tempo soutenu",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -3033,6 +3314,13 @@
                   "fr" : "Vélo elliptique 80 min très facile"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "35 km / ~80 min",
+                  "es" : "35 km / ~80 min",
+                  "fr" : "35 km / ~80 min"
+                }
+              },
               "duration" : "35 km / ~80 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3090,6 +3378,13 @@
                       "fr" : "Vélo elliptique 70 min très facile"
                     }
                   ],
+                  "dose" : {
+                    "free_text" : {
+                      "en" : "35 km / ~80 min",
+                      "es" : "35 km / ~80 min",
+                      "fr" : "35 km / ~80 min"
+                    }
+                  },
                   "duration" : "35 km / ~80 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -3173,6 +3468,13 @@
                   "fr" : "Vélo elliptique 165 min en endurance"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "78 km / ~165 min",
+                  "es" : "78 km / ~165 min",
+                  "fr" : "78 km / ~165 min"
+                }
+              },
               "duration" : "78 km / ~165 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3232,6 +3534,10 @@
                       "fr" : "Marche rapide 165 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "140"
+                  },
                   "duration" : "140 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -3302,6 +3608,13 @@
                   "fr" : "Allure soutenue prolongée 5 × 3 min si pas de côte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 min uphill",
+                  "es" : "2 min en subida",
+                  "fr" : "2 min en montée"
+                }
+              },
               "duration" : "2 min en montée",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3343,6 +3656,10 @@
                   "fr" : "Allure soutenue home-trainer en mode ERG 2 × 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min tempo soutenu",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3401,6 +3718,10 @@
                       "fr" : "Rameur 5 × 2 min effort intense, récupération 3 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "2"
+                  },
                   "duration" : "2 min",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -3441,6 +3762,10 @@
                       "fr" : "Elliptique 40 min effort soutenu continu"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "20"
+                  },
                   "duration" : "20 min tempo soutenu",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -3510,6 +3835,13 @@
                   "fr" : "Vélo elliptique 80 min très facile"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "35 km / ~80 min",
+                  "es" : "35 km / ~80 min",
+                  "fr" : "35 km / ~80 min"
+                }
+              },
               "duration" : "35 km / ~80 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3567,6 +3899,10 @@
                       "fr" : "Marche rapide 75 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "68"
+                  },
                   "duration" : "68 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -3650,6 +3986,13 @@
                   "fr" : "Vélo elliptique 130 min en endurance"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "62 km / ~130 min",
+                  "es" : "62 km / ~130 min",
+                  "fr" : "62 km / ~130 min"
+                }
+              },
               "duration" : "62 km / ~130 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3709,6 +4052,13 @@
                       "fr" : "Marche rapide 120 min"
                     }
                   ],
+                  "dose" : {
+                    "free_text" : {
+                      "en" : "62 km / ~110 min",
+                      "es" : "62 km / ~110 min",
+                      "fr" : "62 km / ~110 min"
+                    }
+                  },
                   "duration" : "62 km / ~110 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -3779,6 +4129,10 @@
                   "fr" : "Allure soutenue home-trainer en mode ERG 2 × 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min tempo soutenu",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3820,6 +4174,13 @@
                   "fr" : "Exercices 100 tr/min sur home-trainer"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 min at 100-105 rpm",
+                  "es" : "2 min a 100-105 rpm",
+                  "fr" : "2 min à 100-105 rpm"
+                }
+              },
               "duration" : "2 min à 100-105 rpm",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3876,6 +4237,10 @@
                       "fr" : "Rowing machine 2 × 10 min effort soutenu"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "12"
+                  },
                   "duration" : "12 min tempo soutenu",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -3916,6 +4281,13 @@
                       "fr" : "Spinning sur vélo elliptique à cadence élevée"
                     }
                   ],
+                  "dose" : {
+                    "free_text" : {
+                      "en" : "2 min at 100-105 rpm",
+                      "es" : "2 min a 100-105 rpm",
+                      "fr" : "2 min à 100-105 rpm"
+                    }
+                  },
                   "duration" : "2 min à 100-105 rpm",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -3983,6 +4355,13 @@
                   "fr" : "Vélo elliptique 65 min très facile"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "28 km / ~65 min",
+                  "es" : "28 km / ~65 min",
+                  "fr" : "28 km / ~65 min"
+                }
+              },
               "duration" : "28 km / ~65 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4040,6 +4419,13 @@
                       "fr" : "Marche rapide 60 min"
                     }
                   ],
+                  "dose" : {
+                    "free_text" : {
+                      "en" : "28 km / ~55 min",
+                      "es" : "28 km / ~55 min",
+                      "fr" : "28 km / ~55 min"
+                    }
+                  },
                   "duration" : "28 km / ~55 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -4123,6 +4509,13 @@
                   "fr" : "Vélo elliptique 175 min en endurance"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "82 km / ~175 min",
+                  "es" : "82 km / ~175 min",
+                  "fr" : "82 km / ~175 min"
+                }
+              },
               "duration" : "82 km / ~175 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4182,6 +4575,10 @@
                       "fr" : "Sortie home-trainer allégée 130 min (durée -15%)"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "~150"
+                  },
                   "duration" : "~150 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -4252,6 +4649,10 @@
                   "fr" : "Allure soutenue home-trainer en mode ERG 2 × 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min tempo soutenu",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4310,6 +4711,10 @@
                       "fr" : "Elliptique résistance modérée-élevée 2 × 15 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "15"
+                  },
                   "duration" : "15 min tempo soutenu",
                   "incompatible_constraints" : [
                     "knee-injury",
@@ -4379,6 +4784,13 @@
                   "fr" : "Vélo elliptique 75 min très facile"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "32 km / ~75 min",
+                  "es" : "32 km / ~75 min",
+                  "fr" : "32 km / ~75 min"
+                }
+              },
               "duration" : "32 km / ~75 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4436,6 +4848,10 @@
                       "fr" : "Marche rapide 75 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "~65"
+                  },
                   "duration" : "~65 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -4519,6 +4935,13 @@
                   "fr" : "Vélo elliptique 85 min facile"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "40 km / ~85 min",
+                  "es" : "40 km / ~85 min",
+                  "fr" : "40 km / ~85 min"
+                }
+              },
               "duration" : "40 km / ~85 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4578,6 +5001,10 @@
                       "fr" : "Marche rapide 85 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "72"
+                  },
                   "duration" : "72 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -4648,6 +5075,13 @@
                   "fr" : "Vélo elliptique 55 min très facile"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 km / ~55 min",
+                  "es" : "25 km / ~55 min",
+                  "fr" : "25 km / ~55 min"
+                }
+              },
               "duration" : "25 km / ~55 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4688,6 +5122,10 @@
                   "fr" : "Rouleau de massage quadriceps + bande iliotibiale 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -4741,6 +5179,10 @@
                       "fr" : "Marche douce 55 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "47"
+                  },
                   "duration" : "47 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -4780,6 +5222,10 @@
                       "fr" : "Rouleau de massage quadriceps + bande iliotibiale 8 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "10"
+                  },
                   "duration" : "10 min",
                   "incompatible_constraints" : [
 
@@ -4845,6 +5291,13 @@
                   "fr" : "Vélo elliptique 180 min en endurance"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "80 km / ~180 min",
+                  "es" : "80 km / ~180 min",
+                  "fr" : "80 km / ~180 min"
+                }
+              },
               "duration" : "80 km / ~180 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4904,6 +5357,10 @@
                       "fr" : "Vélo elliptique 160 min en endurance"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "153"
+                  },
                   "duration" : "153 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",

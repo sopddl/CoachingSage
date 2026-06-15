@@ -49,6 +49,10 @@
                   "fr" : "Marche rapide 50 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -107,6 +111,10 @@
                       "fr" : "Marche rapide 50 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "35"
+                  },
                   "duration" : "35 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -171,6 +179,10 @@
                   "fr" : "Vélo elliptique 50 min en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -229,6 +241,10 @@
                       "fr" : "Marche rapide 55 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "40"
+                  },
                   "duration" : "40 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -269,6 +285,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
                   "duration" : "20 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -306,6 +326,10 @@
                       "fr" : "Pont tenu sans bouger 25 sec"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "12"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -342,6 +366,10 @@
                       "fr" : "Mollets en appui mains au mur"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "15"
+                  },
                   "incompatible_constraints" : [
                     "ankle-injury"
                   ],
@@ -422,6 +450,13 @@
                   "fr" : "Sortie route facile cadence libre 50 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "3 min at 95-100 rpm + 3 min at 85 rpm",
+                  "es" : "3 min a 95-100 rpm + 3 min a 85 rpm",
+                  "fr" : "3 min à 95-100 rpm + 3 min à 85 rpm"
+                }
+              },
               "duration" : "3 min à 95-100 rpm + 3 min à 85 rpm",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -480,6 +515,13 @@
                       "fr" : "Marche rapide 50 min"
                     }
                   ],
+                  "dose" : {
+                    "free_text" : {
+                      "en" : "3 min at 95-100 rpm + 3 min at 85 rpm",
+                      "es" : "3 min a 95-100 rpm + 3 min a 85 rpm",
+                      "fr" : "3 min à 95-100 rpm + 3 min à 85 rpm"
+                    }
+                  },
                   "duration" : "3 min à 95-100 rpm + 3 min à 85 rpm",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -549,6 +591,10 @@
                   "fr" : "Vélo elliptique 60 min en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "60"
+              },
               "duration" : "60 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -607,6 +653,10 @@
                       "fr" : "Marche rapide 65 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "50"
+                  },
                   "duration" : "50 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -647,6 +697,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "25"
+                  },
                   "duration" : "25 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -684,6 +738,10 @@
                       "fr" : "Pont tenu sans bouger 30 sec"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "reps",
+                    "value" : "15"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -720,6 +778,11 @@
                       "fr" : "Mollets assis sur chaise"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "12"
+                  },
                   "incompatible_constraints" : [
                     "ankle-injury"
                   ],
@@ -800,6 +863,10 @@
                   "fr" : "Home-trainer 50 min avec résistance variable"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "55"
+              },
               "duration" : "55 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -858,6 +925,10 @@
                       "fr" : "Marche rapide 55 min avec passages en côte"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "45"
+                  },
                   "duration" : "45 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -927,6 +998,10 @@
                   "fr" : "Vélo elliptique 75 min en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "75"
+              },
               "duration" : "75 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -985,6 +1060,10 @@
                       "fr" : "Marche rapide 80 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "60"
+                  },
                   "duration" : "60 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1025,6 +1104,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
                   "duration" : "30 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1062,6 +1145,11 @@
                       "fr" : "Pont fessier pieds sur chaise"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -1098,6 +1186,11 @@
                       "fr" : "Mollets assis sur chaise"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "15"
+                  },
                   "incompatible_constraints" : [
                     "ankle-injury"
                   ],
@@ -1134,6 +1227,11 @@
                       "fr" : "Pointeur avant-bras au sol"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "wrist-injury",
                     "lower-back-pain"
@@ -1215,6 +1313,10 @@
                   "fr" : "Marche rapide 50 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1273,6 +1375,10 @@
                       "fr" : "Marche rapide 50 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "40"
+                  },
                   "duration" : "40 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1342,6 +1448,10 @@
                   "fr" : "Vélo elliptique 55 min en endurance"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "55"
+              },
               "duration" : "55 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1400,6 +1510,10 @@
                       "fr" : "Marche rapide 60 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "50"
+                  },
                   "duration" : "50 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1440,6 +1554,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
                   "duration" : "30 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1477,6 +1595,11 @@
                       "fr" : "Pont fessier pieds sur chaise"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -1513,6 +1636,11 @@
                       "fr" : "Pointeur"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  },
                   "duration" : "20 sec par côté",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1551,6 +1679,11 @@
                       "fr" : "Pointeur avant-bras au sol"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "8"
+                  },
                   "incompatible_constraints" : [
                     "wrist-injury",
                     "lower-back-pain"
@@ -1632,6 +1765,13 @@
                   "fr" : "Sortie continue, allure conversationnelle 55 min sans blocs (si fatigue cumulée)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 min tempo + 5 min easy recovery",
+                  "es" : "8 min tempo + 5 min de recuperación fácil",
+                  "fr" : "8 min tempo + 5 min d'endurance facile en récupération"
+                }
+              },
               "duration" : "8 min tempo + 5 min endurance facile récupération",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1690,6 +1830,13 @@
                       "fr" : "Marche rapide 55 min, 3 portions en côte de 8 min"
                     }
                   ],
+                  "dose" : {
+                    "free_text" : {
+                      "en" : "8 min tempo + 5 min easy recovery",
+                      "es" : "8 min tempo + 5 min de recuperación fácil",
+                      "fr" : "8 min tempo + 5 min d'endurance facile en récupération"
+                    }
+                  },
                   "duration" : "8 min tempo + 5 min endurance facile récupération",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1759,6 +1906,10 @@
                   "fr" : "Home-trainer 65 min avec résistance variable"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "80"
+              },
               "duration" : "80 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1817,6 +1968,10 @@
                       "fr" : "Marche rapide 85 min avec passages en côte"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "65"
+                  },
                   "duration" : "65 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1857,6 +2012,10 @@
                       "fr" : "Gainage croisé au sol"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "seconds",
+                    "value" : "35"
+                  },
                   "duration" : "35 sec",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1894,6 +2053,11 @@
                       "fr" : "Pont fessier pieds sur chaise"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "12"
+                  },
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -1930,6 +2094,11 @@
                       "fr" : "Pointeur"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "seconds",
+                    "value" : "25"
+                  },
                   "duration" : "25 sec par côté",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -1968,6 +2137,11 @@
                       "fr" : "Mollets assis sur chaise"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "15"
+                  },
                   "incompatible_constraints" : [
                     "ankle-injury"
                   ],
@@ -2004,6 +2178,11 @@
                       "fr" : "Pointeur avant-bras au sol"
                     }
                   ],
+                  "dose" : {
+                    "qualifier" : "perSide",
+                    "unit" : "reps",
+                    "value" : "10"
+                  },
                   "incompatible_constraints" : [
                     "wrist-injury",
                     "lower-back-pain"
@@ -2085,6 +2264,10 @@
                   "fr" : "Marche rapide 60 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "50"
+              },
               "duration" : "50 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2143,6 +2326,10 @@
                       "fr" : "Marche rapide 55 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "45"
+                  },
                   "duration" : "45 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
@@ -2212,6 +2399,10 @@
                   "fr" : "Sortie route plate, allure conversationnelle 90 min (sans vallonné si trafic anxiogène)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "90"
+              },
               "duration" : "90 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2270,6 +2461,10 @@
                       "fr" : "Marche rapide 90 min"
                     }
                   ],
+                  "dose" : {
+                    "unit" : "minutes",
+                    "value" : "75"
+                  },
                   "duration" : "75 min",
                   "incompatible_constraints" : [
                     "lower-back-pain",
