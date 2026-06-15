@@ -103,4 +103,43 @@ final class ExerciseTimelineCardSnapshotTests: XCTestCase {
     // Note : pas de snapshot EN — `.environment(\.locale, .en)` ne swizzle pas
     // le bundle de localisation, donc les strings restent en FR. Couverture EN
     // visuelle = story snapshot-infra dédiée à venir (bundle swizzle).
+
+    // MARK: - Lot 2 running — dosage localisé (FR/EN/ES)
+
+    // Contrairement au chrome (LocalizedStringKey, non swizzlé → reste FR), les CHIPS dose
+    // passent par `DoseFormatter.string(dose, locale:)` qui lit la VALEUR de `\.locale` →
+    // ces snapshots montrent bien le dosage localisé EN/ES (zéro fuite FR = l'invariant clé).
+    // Exos en `reps`/`duration` legacy → dose via backfill migration (sportCode running).
+    private func runningDoseColumn(locale: Locale) -> some View {
+        let exos: [AdaptedExercise] = [
+            AdaptedExercise(name: "Sortie longue", originalName: "Sortie longue", duration: "9 km", targetZone: "Daniels-E"),
+            AdaptedExercise(name: "Montées de genou", originalName: "Montées de genou", sets: 3, reps: "10 par jambe"),
+            AdaptedExercise(name: "Run/Walk", originalName: "Run/Walk", sets: 8, duration: "3 min course + 2 min marche"),
+            AdaptedExercise(name: "Run/Walk progressif", originalName: "Run/Walk progressif", sets: 6, duration: "1 min 30 course + 2 min marche"),
+        ]
+        return VStack(spacing: 8) {
+            ForEach(Array(exos.enumerated()), id: \.offset) { _, ex in
+                ExerciseTimelineCard(exercise: ex, sportCode: "running", isFirstExercise: false)
+            }
+        }
+        .frame(width: 360)
+        .padding()
+        .background(Color(uiColor: .systemBackground))
+        .environment(\.locale, locale)
+    }
+
+    func testRunningDose_fr() {
+        assertSnapshot(of: runningDoseColumn(locale: Locale(identifier: "fr")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testRunningDose_en() {
+        assertSnapshot(of: runningDoseColumn(locale: Locale(identifier: "en")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testRunningDose_es() {
+        assertSnapshot(of: runningDoseColumn(locale: Locale(identifier: "es")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
 }
