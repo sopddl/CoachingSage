@@ -12,7 +12,7 @@
 # Le format de sortie (swiftjson) est byte-compatible avec le sérialiseur des templates ;
 # le trailing newline de CHAQUE fichier est préservé -> le diff git ne contient que les `dose`.
 #
-# Lots livrés : yoga (Lot 1, 2026-06-14) · running (Lot 2, 2026-06-15) · cycling (Lot 3, 2026-06-15).
+# Lots livrés : yoga (Lot 1, 2026-06-14) · running (Lot 2) · cycling (Lot 3) · swimming (Lot 4, 2026-06-15).
 
 import sys, glob, json, copy, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -365,10 +365,113 @@ CYCLING = {
     "Journée entière": F("Journée entière", "Full day", "Jornada completa"),
 }
 
+SWIMMING = {
+    # ====================== LOT 4 — SWIMMING ======================
+    # Repeat mécanique : distance (mètres) dominante. Seules les clés NOUVELLES ici.
+    # DOCTRINE : glose d'intensité/allure/« continu » SANS nage spécifiée DROPPÉE → distance nue
+    # (intensité portée par target_zone EN1/2/3·SP1/2/3·CSS·REC, rendue en sensation par le
+    # pipeline zones passe #1 ; cohérent avec passe #1 « cacher le code coach »). Dès qu'une NAGE
+    # (crawl/dos), un ÉDUCATIF, une RÉCUP explicite, du matériel ou un offset d'allure précis
+    # apparaît → freeText traduit (lossless : la nage n'est PAS dans le nom).
+    #
+    # --- DISTANCES pures (mètres) ---
+    "25 m": S("25", "meters"),
+    "50 m": S("50", "meters"),
+    "75 m": S("75", "meters"),
+    "100 m": S("100", "meters"),
+    "150 m": S("150", "meters"),
+    "175 m": S("175", "meters"),
+    "200 m": S("200", "meters"),
+    "250 m": S("250", "meters"),
+    "300 m": S("300", "meters"),
+    "500 m": S("500", "meters"),
+    "1200 m": S("1200", "meters"),
+    "1300 m": S("1300", "meters"),
+    "1500 m": S("1500", "meters"),
+    "1800 m": S("1800", "meters"),
+    "2000 m": S("2000", "meters"),
+    "2200 m": S("2200", "meters"),
+    "2300 m": S("2300", "meters"),
+    "2400 m": S("2400", "meters"),
+    "2500 m": S("2500", "meters"),
+    "2600 m": S("2600", "meters"),
+    "2700 m": S("2700", "meters"),
+    "3000 m": S("3000", "meters"),
+    "3200 m": S("3200", "meters"),
+    "3300 m": S("3300", "meters"),
+    # --- DISTANCE + glose intensité/allure/« continu » SANS nage → DROPPÉE (zone porte l'intensité) ---
+    "100 m endurance haute": S("100", "meters"),     # EN3
+    "150 m endurance haute": S("150", "meters"),     # EN3
+    "200 m endurance haute": S("200", "meters"),     # EN3
+    "50 m rapide": S("50", "meters"),                # SP1
+    "25 m très rapide": S("25", "meters"),           # SP2
+    "25 m sprint vitesse max": S("25", "meters"),    # SP3
+    "25 m vitesse libre 80-90%": S("25", "meters"),  # SP2
+    "400 m à allure régulière": S("400", "meters"),  # EN2
+    "1000 m à allure régulière": S("1000", "meters"),# EN1
+    "500 m à allure seuil pace": S("500", "meters"), # CSS pace (sans offset chiffré)
+    "400 m continu": S("400", "meters"),
+    "500 m continu": S("500", "meters"),
+    "600 m continu": S("600", "meters"),
+    "700 m continu": S("700", "meters"),
+    "800 m continu": S("800", "meters"),
+    "1000 m continu": S("1000", "meters"),
+    "1300 m continu": S("1300", "meters"),
+    # --- REPS renfo à sec (gate sport empêche tout conflit muscu reps-héros) ---
+    "10 reps": S("10", "reps"),
+    "12 reps": S("12", "reps"),
+    "14": S("14", "reps"),
+    "12 par bras": S("12", "reps", qualifier="perArm"),
+    "14 par côté": S("14", "reps", qualifier="perSide"),
+    "12 reps par côté": S("12", "reps", qualifier="perSide"),
+    "15 reps par côté": S("15", "reps", qualifier="perSide"),
+    "10 par lettre": S("10", "reps", qualifier="perLetter"),
+    "12 par lettre": S("12", "reps", qualifier="perLetter"),
+    "10 reps par lettre": S("10", "reps", qualifier="perLetter"),
+    "12 reps par lettre": S("12", "reps", qualifier="perLetter"),
+    "8 par lettre (Y, T, W)": S("8", "reps", qualifier="perLetter"),  # glose (Y,T,W) dans le nom → droppée
+    # --- FREETEXT : nage spécifiée / éducatif / récup explicite / matériel / offset allure / composite ---
+    "25 m crawl lent": F("25 m crawl lent", "25 m easy freestyle", "25 m crol suave"),
+    "200 m crawl lent": F("200 m crawl lent", "200 m easy freestyle", "200 m crol suave"),
+    "200 m crawl endurance facile": F("200 m crawl, endurance facile", "200 m freestyle, easy endurance", "200 m crol, resistencia fácil"),
+    "100 m dos crawl très lent": F("100 m dos très lent", "100 m very easy backstroke", "100 m espalda muy suave"),
+    "150 m dos lent": F("150 m dos lent", "150 m easy backstroke", "150 m espalda suave"),
+    "200 m dos lent": F("200 m dos lent", "200 m easy backstroke", "200 m espalda suave"),
+    "100 m crawl lent compteur cycles": F("100 m crawl lent, comptage des cycles", "100 m easy freestyle, stroke count", "100 m crol suave, conteo de brazadas"),
+    "150 m crawl lent compteur cycles": F("150 m crawl lent, comptage des cycles", "150 m easy freestyle, stroke count", "150 m crol suave, conteo de brazadas"),
+    "100 m crawl + 20 s récup": F("100 m crawl + 20 s de récup", "100 m freestyle + 20 s rest", "100 m crol + 20 s de descanso"),
+    "100 m crawl bilatérale 1/3 + 25 s récup": F("100 m crawl, respiration bilatérale 1/3 + 25 s de récup", "100 m freestyle, bilateral breathing 1/3 + 25 s rest", "100 m crol, respiración bilateral 1/3 + 25 s de descanso"),
+    "100 m crawl endurance haute + 45 s récup": F("100 m crawl, endurance haute + 45 s de récup", "100 m freestyle, high endurance + 45 s rest", "100 m crol, resistencia alta + 45 s de descanso"),
+    "100 m crawl endurance soutenue + 20 s récup": F("100 m crawl, endurance soutenue + 20 s de récup", "100 m freestyle, sustained endurance + 20 s rest", "100 m crol, resistencia sostenida + 20 s de descanso"),
+    "100 m crawl endurance soutenue + 25 s récup": F("100 m crawl, endurance soutenue + 25 s de récup", "100 m freestyle, sustained endurance + 25 s rest", "100 m crol, resistencia sostenida + 25 s de descanso"),
+    "200 m crawl endurance facile récup 60 s": F("200 m crawl, endurance facile, récup 60 s", "200 m freestyle, easy endurance, 60 s rest", "200 m crol, resistencia fácil, 60 s de descanso"),
+    "50 m crawl avec pull-buoy entre les jambes + 20 s récup": F("50 m crawl avec pull-buoy + 20 s de récup", "50 m freestyle with pull-buoy + 20 s rest", "50 m crol con pull-buoy + 20 s de descanso"),
+    "100 m à allure seuil+3s/100m": F("100 m à allure seuil + 3 s/100 m", "100 m at threshold pace + 3 s/100 m", "100 m a ritmo umbral + 3 s/100 m"),
+    "100 m à allure seuil+5s/100m": F("100 m à allure seuil + 5 s/100 m", "100 m at threshold pace + 5 s/100 m", "100 m a ritmo umbral + 5 s/100 m"),
+    "200 m à allure seuil+2s/100m": F("200 m à allure seuil + 2 s/100 m", "200 m at threshold pace + 2 s/100 m", "200 m a ritmo umbral + 2 s/100 m"),
+    "1 poussée + glisse 5 m": F("1 poussée au mur + glisse 5 m", "1 wall push-off + 5 m glide", "1 impulso en la pared + 5 m de deslizamiento"),
+    "1 poussée + glisse 8 m": F("1 poussée au mur + glisse 8 m", "1 wall push-off + 8 m glide", "1 impulso en la pared + 8 m de deslizamiento"),
+    "1 poussée + glisse max": F("1 poussée au mur + glisse maximale", "1 wall push-off + max glide", "1 impulso en la pared + deslizamiento máximo"),
+    "10 m glissé apnée": F("10 m en glisse, apnée", "10 m glide, breath-hold", "10 m de deslizamiento, en apnea"),
+    "10 sec expiration": F("10 s d'expiration", "10 s exhale", "10 s de exhalación"),
+    "10 sec flottaison + 5 m glisse": F("10 s de flottaison + 5 m de glisse", "10 s float + 5 m glide", "10 s de flotación + 5 m de deslizamiento"),
+    "15 m avancée": F("15 m de godille vers l'avant", "15 m sculling forward", "15 m de godella hacia adelante"),
+    "10 cycles lents": F("10 cycles lents", "10 slow cycles", "10 ciclos lentos"),
+    "25 m côté favori": F("25 m côté favori", "25 m favourite side", "25 m lado favorito"),
+    "25 m (alterner côté favori et côté faible)": F("25 m (alterner côté favori et côté faible)", "25 m (alternate favourite and weak side)", "25 m (alternar lado favorito y lado débil)"),
+    "25 m (alterner côtés)": F("25 m (alterner les côtés)", "25 m (alternate sides)", "25 m (alternar lados)"),
+    "25 m bras tendus devant figures-8 lentes (pull-buoy entre les jambes)": F("25 m bras tendus devant, figures en 8 lentes (pull-buoy)", "25 m arms extended forward, slow figure-8s (pull-buoy)", "25 m brazos extendidos al frente, ochos lentos (pull-buoy)"),
+    "25 m drill + 25 m crawl endurance facile (50 m total par série)": F("25 m éducatif + 25 m crawl facile (50 m par série)", "25 m drill + 25 m easy freestyle (50 m per set)", "25 m de técnica + 25 m crol suave (50 m por serie)"),
+    "50 m rapide, récup 90 s entre 50 m, récup 4 min entre séries de 4": F("50 m rapide, récup 90 s entre les 50 m, récup 4 min entre les séries de 4", "50 m fast, 90 s rest between 50 m, 4 min rest between sets of 4", "50 m rápido, 90 s de descanso entre los 50 m, 4 min entre series de 4"),
+    "3500 m continu OU 30 × 100 m à allure seuil récup 10 s (3000 m qualité)": F("3500 m en continu OU 30 × 100 m à allure seuil, récup 10 s (3000 m qualité)", "3500 m continuous OR 30 × 100 m at threshold pace, 10 s rest (3000 m quality)", "3500 m continuo O 30 × 100 m a ritmo umbral, 10 s de descanso (3000 m de calidad)"),
+    "Auto-évaluation post-séance": F("Auto-évaluation post-séance", "Post-session self-assessment", "Autoevaluación post-sesión"),
+}
+
 # Table complète (union) + clés par lot (pour gen-migration ciblé sans toucher aux lots précédents).
-DOSE = {**YOGA, **RUNNING, **CYCLING}
+DOSE = {**YOGA, **RUNNING, **CYCLING, **SWIMMING}
 RUNNING_KEYS = list(RUNNING.keys())
 CYCLING_KEYS = list(CYCLING.keys())
+SWIMMING_KEYS = list(SWIMMING.keys())
 
 
 def inject(ex, missing):
@@ -449,6 +552,8 @@ if __name__ == "__main__":
             gen_migration(RUNNING_KEYS)
         elif lot == "cycling":
             gen_migration(CYCLING_KEYS)
+        elif lot == "swimming":
+            gen_migration(SWIMMING_KEYS)
         else:
             gen_migration(list(DOSE.keys()))
     else:
