@@ -349,14 +349,18 @@ struct SessionFocusView: View {
             // parler ») ne tient pas dans la rangée de chips sets/reps/repos sans tronquer.
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 6) {
-                    if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
-                        chip { Text(verbatim: "\(sets) × \(reps.sanitizedForDisplay)") }
+                    // Chantier dose i18n : dosage structuré localisé (FR/EN/ES) prioritaire
+                    // sur le legacy verbatim `reps`/`duration` (yoga migré).
+                    if let doseLabel = ex.localizedDoseLabel(locale: locale)?.sanitizedForDisplay, !doseLabel.isEmpty {
+                        chip { Text(verbatim: doseLabel) }
+                    } else if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
+                        chip { Text(verbatim: "\(sets) × \(DosageFormatting.localizedReps(reps, locale: locale).sanitizedForDisplay)") }
                     } else if let reps = ex.reps, !reps.isEmpty {
-                        chip { Text(verbatim: reps.sanitizedForDisplay) }
+                        chip { Text(verbatim: DosageFormatting.localizedReps(reps, locale: locale).sanitizedForDisplay) }
                     } else if let sets = ex.sets {
                         chip { Text(verbatim: "\(sets) ×") }
                     }
-                    if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
+                    if ex.dose == nil, let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
                         chip { Text(verbatim: duration.sanitizedForDisplay) }
                     }
                     if let rest = ex.restSeconds, rest > 0 {

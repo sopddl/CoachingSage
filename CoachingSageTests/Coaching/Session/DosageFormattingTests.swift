@@ -132,4 +132,32 @@ final class DosageFormattingTests: XCTestCase {
         XCTAssertEqual(DosageFormatting.localizedReps("12-15", locale: es), "12-15")
         XCTAssertEqual(DosageFormatting.localizedReps("8", locale: en), "8")
     }
+
+    // Chantier dose i18n (2026-06-14, décision Sophie) — tags qualitatifs yoga portés par
+    // `target_zone` (pas des codes zone) traduits au rendu via le pipeline zones existant.
+    // Garde-fou pérenne du wording FR/EN/ES (remplace une vérif visuelle jetable au scroll HUB).
+    func test_yogaZoneLabel_translatesNatureTags() {
+        XCTAssertEqual(DosageFormatting.yogaZoneLabel(from: "réparateur", locale: fr), "réparateur")
+        XCTAssertEqual(DosageFormatting.yogaZoneLabel(from: "réparateur", locale: en), "restorative")
+        XCTAssertEqual(DosageFormatting.yogaZoneLabel(from: "réparateur", locale: es), "reparador")
+        XCTAssertEqual(DosageFormatting.yogaZoneLabel(from: "méditation", locale: en), "meditation")
+        XCTAssertEqual(DosageFormatting.yogaZoneLabel(from: "respiration guidée", locale: en), "guided breathing")
+        XCTAssertEqual(DosageFormatting.yogaZoneLabel(from: "respiration guidée", locale: es), "respiración guiada")
+        XCTAssertEqual(DosageFormatting.yogaZoneLabel(from: "enchaînement", locale: en), "flow")
+        XCTAssertEqual(DosageFormatting.yogaZoneLabel(from: "enchaînement", locale: es), "encadenamiento")
+    }
+
+    func test_yogaZoneLabel_holdInterpolatesSeconds() {
+        XCTAssertEqual(DosageFormatting.yogaZoneLabel(from: "maintien 30 s", locale: fr), "maintien 30 s")
+        XCTAssertEqual(DosageFormatting.yogaZoneLabel(from: "maintien 30 s", locale: en), "hold 30 s")
+        XCTAssertEqual(DosageFormatting.yogaZoneLabel(from: "maintien 45 s", locale: es), "mantén 45 s")
+        XCTAssertEqual(DosageFormatting.yogaZoneLabel(from: "maintien 90 s", locale: en), "hold 90 s")
+    }
+
+    func test_yogaZoneLabel_nilForNonYogaTags() {
+        // codes zone réels (gérés par sensationLabel) + RPE (plainEffort) ne passent pas ici
+        XCTAssertNil(DosageFormatting.yogaZoneLabel(from: "FTP-Z2", locale: fr))
+        XCTAssertNil(DosageFormatting.yogaZoneLabel(from: "RPE 6-7", locale: fr))
+        XCTAssertNil(DosageFormatting.yogaZoneLabel(from: "technique", locale: fr))
+    }
 }

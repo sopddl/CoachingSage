@@ -187,14 +187,18 @@ struct ExerciseTimelineCard: View {
             // même structure/composant que le FOCUS (SessionFocusView) pour cohérence HUB↔FOCUS.
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 6) {
-                    if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
+                    // Chantier dose i18n : dosage structuré localisé (FR/EN/ES) en PRIORITÉ
+                    // sur le chemin legacy verbatim `reps`/`duration` (yoga migré).
+                    if let doseLabel = ex.localizedDoseLabel(locale: locale)?.sanitizedForDisplay, !doseLabel.isEmpty {
+                        metricChip { Text(verbatim: doseLabel) }
+                    } else if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
                         metricChip { Text(verbatim: "\(sets) × \(DosageFormatting.localizedReps(reps, locale: locale).sanitizedForDisplay)") }
                     } else if let reps = ex.reps, !reps.isEmpty {
                         metricChip { Text(verbatim: DosageFormatting.localizedReps(reps, locale: locale).sanitizedForDisplay) }
                     } else if let sets = ex.sets {
                         metricChip { Text(verbatim: "\(sets) ×") }
                     }
-                    if let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
+                    if ex.dose == nil, let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
                         metricChip { Text(verbatim: duration.sanitizedForDisplay) }
                     }
                     if let rest = ex.restSeconds, rest > 0 {

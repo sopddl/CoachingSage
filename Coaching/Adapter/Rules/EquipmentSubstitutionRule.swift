@@ -103,6 +103,7 @@ public struct EquipmentSubstitutionRule: AdaptationRule {
                 reps: ex.reps,
                 duration: AlternativeName.embeddedDuration(in: alternativeName.canonical) ?? ex.duration,
                 restSeconds: ex.restSeconds,
+                dose: ex.dose,
                 notes: ex.notes,
                 targetZone: ex.targetZone,
                 volumeAxis: ex.volumeAxis,

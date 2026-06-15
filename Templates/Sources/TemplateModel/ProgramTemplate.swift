@@ -149,6 +149,14 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
     public let reps: String?
     public let duration: String?
     public let restSeconds: Int?
+
+    /// Dosage structuré i18n (chantier 2026-06-14, pilote yoga). SOURCE UNIQUE de rendu du
+    /// dosage à l'affichage (3 vues) et du label de phase du minuteur, localisé FR/EN/ES via
+    /// `DoseFormatter`. Quand présent il PRIME sur `reps`/`duration` (gardés en FR canonique
+    /// pour les ~40 consommateurs non-affichage : stats, parser timer fallback, règles adapter).
+    /// `nil` = sport pas encore migré → comportement legacy (rendu verbatim `reps`/`duration`).
+    public let dose: Dose?
+
     public let notes: LocalizedText?
 
     /// Hooks v2 — drive l'algo deterministic Story 3.3a (ProgramAdapter).
@@ -166,6 +174,7 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
         reps: String? = nil,
         duration: String? = nil,
         restSeconds: Int? = nil,
+        dose: Dose? = nil,
         notes: LocalizedText? = nil,
         targetZone: String? = nil,
         requiredEquipment: [String] = [],
@@ -179,6 +188,7 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
         self.reps = reps
         self.duration = duration
         self.restSeconds = restSeconds
+        self.dose = dose
         self.notes = notes
         self.targetZone = targetZone
         self.requiredEquipment = requiredEquipment
@@ -188,7 +198,7 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case name, matchKey, sets, reps, duration, restSeconds, notes
+        case name, matchKey, sets, reps, duration, restSeconds, dose, notes
         case targetZone, requiredEquipment, incompatibleConstraints, alternatives, volumeAxis
     }
 
@@ -200,6 +210,7 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
         self.reps = try c.decodeIfPresent(String.self, forKey: .reps)
         self.duration = try c.decodeIfPresent(String.self, forKey: .duration)
         self.restSeconds = try c.decodeIfPresent(Int.self, forKey: .restSeconds)
+        self.dose = try c.decodeIfPresent(Dose.self, forKey: .dose)
         self.notes = try c.decodeIfPresent(LocalizedText.self, forKey: .notes)
         self.targetZone = try c.decodeIfPresent(String.self, forKey: .targetZone)
         self.requiredEquipment = try c.decodeIfPresent([String].self, forKey: .requiredEquipment) ?? []
