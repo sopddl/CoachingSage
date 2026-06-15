@@ -188,8 +188,9 @@ struct ExerciseTimelineCard: View {
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 6) {
                     // Chantier dose i18n : dosage structuré localisé (FR/EN/ES) en PRIORITÉ
-                    // sur le chemin legacy verbatim `reps`/`duration` (yoga migré).
-                    if let doseLabel = ex.localizedDoseLabel(locale: locale)?.sanitizedForDisplay, !doseLabel.isEmpty {
+                    // sur le chemin legacy verbatim `reps`/`duration` (sports migrés).
+                    let doseLabel = ex.localizedDoseLabel(sportCode: sportCode, locale: locale)?.sanitizedForDisplay
+                    if let doseLabel, !doseLabel.isEmpty {
                         metricChip { Text(verbatim: doseLabel) }
                     } else if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
                         metricChip { Text(verbatim: "\(sets) × \(DosageFormatting.localizedReps(reps, locale: locale).sanitizedForDisplay)") }
@@ -198,7 +199,9 @@ struct ExerciseTimelineCard: View {
                     } else if let sets = ex.sets {
                         metricChip { Text(verbatim: "\(sets) ×") }
                     }
-                    if ex.dose == nil, let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
+                    // Chip durée legacy : UNIQUEMENT si aucun dose rendu (sinon doublon « 9 km /
+                    // 9 km » sur un exo migré dont le dose vient du backfill, ex.dose brut == nil).
+                    if (doseLabel?.isEmpty ?? true), let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
                         metricChip { Text(verbatim: duration.sanitizedForDisplay) }
                     }
                     if let rest = ex.restSeconds, rest > 0 {
@@ -258,4 +261,33 @@ struct ExerciseTimelineCard: View {
     )
     .padding()
 }
+
+// Lot 2 running — preview de validation visuelle du dosage localisé (FR/EN/ES).
+// Les exos portent des `reps`/`duration` legacy → backfill `dose` via migration (sportCode
+// running). Couvre : distance, minutes, reps par jambe, intervalle structuré, intervalle
+// freeText « 1 min 30 », intervalle à allure.
+@ViewBuilder
+private func runningDosePreviewColumn() -> some View {
+    let exos: [AdaptedExercise] = [
+        AdaptedExercise(name: "Sortie longue", originalName: "Sortie longue", duration: "9 km", targetZone: "Daniels-E"),
+        AdaptedExercise(name: "Footing", originalName: "Footing", duration: "20 min", targetZone: "Daniels-E"),
+        AdaptedExercise(name: "Montées de genou", originalName: "Montées de genou", sets: 3, reps: "10 par jambe"),
+        AdaptedExercise(name: "Run/Walk", originalName: "Run/Walk", sets: 8, duration: "3 min course + 2 min marche"),
+        AdaptedExercise(name: "Run/Walk progressif", originalName: "Run/Walk progressif", sets: 6, duration: "1 min 30 course + 2 min marche"),
+        AdaptedExercise(name: "Fractionné VMA", originalName: "Fractionné VMA", sets: 5,
+                        duration: "1 min à allure 5K (RPE 8) + 1 min footing easy (facile (tu peux parler))", targetZone: "@5K-pace"),
+    ]
+    ScrollView {
+        VStack(spacing: 8) {
+            ForEach(Array(exos.enumerated()), id: \.offset) { _, ex in
+                ExerciseTimelineCard(exercise: ex, sportCode: "running", isFirstExercise: false)
+            }
+        }
+        .padding()
+    }
+}
+
+#Preview("Running dose — FR") { runningDosePreviewColumn().environment(\.locale, Locale(identifier: "fr")) }
+#Preview("Running dose — EN") { runningDosePreviewColumn().environment(\.locale, Locale(identifier: "en")) }
+#Preview("Running dose — ES") { runningDosePreviewColumn().environment(\.locale, Locale(identifier: "es")) }
 #endif

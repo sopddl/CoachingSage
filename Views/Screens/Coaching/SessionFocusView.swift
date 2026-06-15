@@ -350,8 +350,9 @@ struct SessionFocusView: View {
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 6) {
                     // Chantier dose i18n : dosage structuré localisé (FR/EN/ES) prioritaire
-                    // sur le legacy verbatim `reps`/`duration` (yoga migré).
-                    if let doseLabel = ex.localizedDoseLabel(locale: locale)?.sanitizedForDisplay, !doseLabel.isEmpty {
+                    // sur le legacy verbatim `reps`/`duration` (sports migrés).
+                    let doseLabel = ex.localizedDoseLabel(sportCode: resolvedSportCode, locale: locale)?.sanitizedForDisplay
+                    if let doseLabel, !doseLabel.isEmpty {
                         chip { Text(verbatim: doseLabel) }
                     } else if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
                         chip { Text(verbatim: "\(sets) × \(DosageFormatting.localizedReps(reps, locale: locale).sanitizedForDisplay)") }
@@ -360,7 +361,8 @@ struct SessionFocusView: View {
                     } else if let sets = ex.sets {
                         chip { Text(verbatim: "\(sets) ×") }
                     }
-                    if ex.dose == nil, let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
+                    // Chip durée legacy : seulement si aucun dose rendu (sinon doublon sur exo migré).
+                    if (doseLabel?.isEmpty ?? true), let duration = ex.duration, !duration.isEmpty, ex.reps == nil {
                         chip { Text(verbatim: duration.sanitizedForDisplay) }
                     }
                     if let rest = ex.restSeconds, rest > 0 {

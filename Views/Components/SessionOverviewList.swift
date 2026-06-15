@@ -17,11 +17,14 @@ enum SessionStepAnchor {
 struct SessionOverviewList: View {
     @Environment(\.locale) private var locale
     let session: AdaptedSession
+    /// Sport résolu de la séance — gate le backfill dose (chantier i18n) : seul un sport
+    /// migré (yoga/running) réinterprète un dosage legacy en `dose` structuré.
+    var sportCode: String? = nil
     /// Appelé au tap d'une ligne avec l'index d'ancrage (= offset dans l'ordre
     /// de référence). Le parent fait `proxy.scrollTo(SessionStepAnchor.id(index))`.
     var onSelect: (Int) -> Void
 
-    private var rows: [SessionOverviewList.Row] { Self.rows(for: session, locale: locale) }
+    private var rows: [SessionOverviewList.Row] { Self.rows(for: session, locale: locale, sportCode: sportCode) }
 
     var body: some View {
         if !rows.isEmpty {
@@ -116,7 +119,7 @@ struct SessionOverviewList: View {
 
     /// Construit l'aperçu dans l'ordre de référence warmup → exos → cooldown.
     /// Pure & déterministe → testable (AC11).
-    static func rows(for session: AdaptedSession, locale: Locale) -> [Row] {
+    static func rows(for session: AdaptedSession, locale: Locale, sportCode: String? = nil) -> [Row] {
         var result: [Row] = []
         var index = 0
         // Warmup/cooldown : titre vide, seule la métrique de DURÉE compte → parsée
@@ -135,7 +138,7 @@ struct SessionOverviewList: View {
                 anchorIndex: index,
                 kind: .exercise(number: exNumber),
                 title: ex.displayName(locale),
-                metric: compactMetric(for: ex, locale: locale)
+                metric: compactMetric(for: ex, locale: locale, sportCode: sportCode)
             ))
             index += 1
         }
@@ -149,17 +152,21 @@ struct SessionOverviewList: View {
     /// Métrique-clé courte d'un exo. Pour un bloc run/walk (sets≥2 + durée « + »),
     /// on montre la durée TOTALE réelle (« 20 min ») plutôt que la durée tronquée
     /// d'un segment — la synthèse doit être juste (retour Sophie 2026-06-03).
-    static func compactMetric(for ex: AdaptedExercise, locale: Locale) -> String? {
-        // Chantier dose i18n : dosage structuré localisé prioritaire (yoga migré).
-        if let doseLabel = ex.localizedDoseLabel(locale: locale)?.sanitizedForDisplay, !doseLabel.isEmpty {
+    static func compactMetric(for ex: AdaptedExercise, locale: Locale, sportCode: String? = nil) -> String? {
+        // Chantier dose i18n : dosage structuré localisé prioritaire (sports migrés yoga/running).
+        // EXCEPTION : un bloc multi-segments répété (sets≥2, durée « X + Y ») est résumé par sa
+        // durée TOTALE plus bas, pas par le détail des segments (« 8 × 3 min course + 2 min
+        // marche » déborde la ligne) — retour Sophie 2026-06-03 « la synthèse doit être juste ».
+        // Critère = la DURÉE (couvre dose `interval` ET freeText « 1 min 30 + … »), pas le type.
+        let segs = SessionDurationParser.segments(ex.duration)
+        let isRepeatedInterval = (ex.sets ?? 0) >= 2 && segs.count >= 2
+        if !isRepeatedInterval,
+           let doseLabel = ex.localizedDoseLabel(sportCode: sportCode, locale: locale)?.sanitizedForDisplay, !doseLabel.isEmpty {
             return doseLabel
         }
-        if let s = ex.sets, s >= 2 {
-            let segs = SessionDurationParser.segments(ex.duration)
-            if segs.count >= 2 {
-                let totalSec = s * segs.reduce(0) { $0 + $1.seconds }
-                return totalSec >= 60 ? "\(totalSec / 60) min" : "\(totalSec) s"
-            }
+        if let s = ex.sets, s >= 2, segs.count >= 2 {
+            let totalSec = s * segs.reduce(0) { $0 + $1.seconds }
+            return totalSec >= 60 ? "\(totalSec / 60) min" : "\(totalSec) s"
         }
         if let s = ex.sets, let r = ex.reps?.trimmingCharacters(in: .whitespaces), !r.isEmpty {
             return "\(s)×\(DosageFormatting.localizedReps(r, locale: locale))".sanitizedForDisplay

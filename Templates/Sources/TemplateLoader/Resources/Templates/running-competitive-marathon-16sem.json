@@ -53,6 +53,10 @@
                   "fr" : "Vélo très facile à endurance facile 60 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "9"
+              },
               "duration" : "9 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -91,6 +95,15 @@
                   "fr" : "Suppression accélérations si fatigue"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "accelerationProgressive",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  }
+                ]
+              },
               "duration" : "20 sec accélération progressive",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -150,6 +163,11 @@
                   "fr" : "Extensions des mollets sur marche en double"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -186,6 +204,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5-6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -223,6 +245,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -260,6 +286,11 @@
                   "fr" : "Montées sur banc"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -296,6 +327,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -333,6 +368,11 @@
                   "fr" : "Pointeur avant-bras au sol"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "wrist-pain",
                 "lower-back-pain"
@@ -370,6 +410,11 @@
                   "fr" : "Allongé sur le côté relevé de jambes"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -428,6 +473,10 @@
                   "fr" : "Jeu d'allures structuré 4×5 min au seuil récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -487,6 +536,13 @@
                   "fr" : "Jeu d'allures 5×2 min très dur (intervalles) récup 2 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "600 m (≈ 2 min 20 - 2 min 45 depending on your level)",
+                  "es" : "600 m (≈ 2 min 20 - 2 min 45 según tu nivel)",
+                  "fr" : "600 m (≈ 2 min 20 - 2 min 45 selon ton niveau)"
+                }
+              },
               "duration" : "600m (≈ 2 min 20 - 2 min 45 selon ton niveau)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -548,6 +604,10 @@
                   "fr" : "Vélo endurance facile 2h"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "18"
+              },
               "duration" : "18 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -622,6 +682,10 @@
                   "fr" : "Vélo très facile à endurance facile 65 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "10"
+              },
               "duration" : "10 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -660,6 +724,15 @@
                   "fr" : "Suppression accélérations si fatigue"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "accelerationProgressive",
+                    "unit" : "seconds",
+                    "value" : "20"
+                  }
+                ]
+              },
               "duration" : "20 sec accélération progressive",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -719,6 +792,10 @@
                   "fr" : "Skipping A-march 4×20 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -757,6 +834,11 @@
                   "fr" : "Extensions des mollets sur marche en double"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -793,6 +875,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6-7"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -830,6 +916,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -862,6 +952,11 @@
                   "fr" : "Montées sur banc"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -893,6 +988,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "50"
+              },
               "duration" : "50 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -925,6 +1024,11 @@
                   "fr" : "Anti-rotation à l'élastique avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -985,6 +1089,10 @@
                   "fr" : "Jeu d'allures 5×5 min au seuil récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -1044,6 +1152,10 @@
                   "fr" : "Jeu d'allures 6×2 min très dur (intervalles) récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "600"
+              },
               "duration" : "600m",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -1105,6 +1217,10 @@
                   "fr" : "Vélo endurance facile 2h30"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "21"
+              },
               "duration" : "21 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1179,6 +1295,10 @@
                   "fr" : "Vélo très facile à endurance facile 70 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "11"
+              },
               "duration" : "11 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1217,6 +1337,10 @@
                   "fr" : "Suppression accélérations si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1271,6 +1395,10 @@
                   "fr" : "Skipping A-march 4×20 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -1304,6 +1432,10 @@
                   "fr" : "Charnière de hanche au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1340,6 +1472,11 @@
                   "fr" : "Extensions des mollets sur marche en double"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1376,6 +1513,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "7"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -1408,6 +1549,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1445,6 +1590,11 @@
                   "fr" : "Montées sur banc"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -1481,6 +1631,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1513,6 +1667,11 @@
                   "fr" : "Pointeur avant-bras au sol"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "wrist-pain",
                 "lower-back-pain"
@@ -1567,6 +1726,10 @@
                   "fr" : "Intervalles 4×8 min au seuil récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -1626,6 +1789,13 @@
                   "fr" : "Jeu d'allures 5×3 min très dur (intervalles) récup 3 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "800 m (≈ 3 min - 3 min 40)",
+                  "es" : "800 m (≈ 3 min - 3 min 40)",
+                  "fr" : "800 m (≈ 3 min - 3 min 40)"
+                }
+              },
               "duration" : "800m (≈ 3 min - 3 min 40)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -1688,6 +1858,10 @@
                   "fr" : "Vélo endurance facile 3h"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "24"
+              },
               "duration" : "24 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1762,6 +1936,10 @@
                   "fr" : "Vélo très facile à endurance facile 60 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "8"
+              },
               "duration" : "8 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1800,6 +1978,10 @@
                   "fr" : "Suppression accélérations si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1859,6 +2041,11 @@
                   "fr" : "Extensions des mollets sur marche"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1895,6 +2082,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -1927,6 +2118,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1959,6 +2154,11 @@
                   "fr" : "Montées sur banc"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -1990,6 +2190,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2044,6 +2248,10 @@
                   "fr" : "Jeu d'allures 4×5 min au seuil récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -2103,6 +2311,10 @@
                   "fr" : "Jeu d'allures 4×3 min très dur (intervalles) récup 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "800"
+              },
               "duration" : "800m",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -2165,6 +2377,10 @@
                   "fr" : "Vélo endurance facile 2h15"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "18"
+              },
               "duration" : "18 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2239,6 +2455,10 @@
                   "fr" : "Vélo très facile à endurance facile 70 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "11"
+              },
               "duration" : "11 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2272,6 +2492,10 @@
                   "fr" : "Suppression si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2326,6 +2550,10 @@
                   "fr" : "Skipping A-march 4×20 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -2359,6 +2587,10 @@
                   "fr" : "Charnière de hanche au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2390,6 +2622,11 @@
                   "fr" : "Extensions des mollets sur marche en double"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "16"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2421,6 +2658,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "7"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -2453,6 +2694,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2485,6 +2730,11 @@
                   "fr" : "Montées sur banc"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -2516,6 +2766,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2548,6 +2802,11 @@
                   "fr" : "Anti-rotation à l'élastique avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "35"
+              },
               "duration" : "35 sec par côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2603,6 +2862,13 @@
                   "fr" : "Intervalles 4×1km au seuil sur tapis"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 mile (≈ 6 min - 7 min 30)",
+                  "es" : "1 milla (≈ 6 min - 7 min 30)",
+                  "fr" : "1 mile (≈ 6 min - 7 min 30)"
+                }
+              },
               "duration" : "1 mile (≈ 6 min - 7 min 30)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -2662,6 +2928,13 @@
                   "fr" : "Jeu d'allures 5×4 min très dur (intervalles) récup 3 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1000 m (≈ 3 min 50 - 4 min 30)",
+                  "es" : "1000 m (≈ 3 min 50 - 4 min 30)",
+                  "fr" : "1000 m (≈ 3 min 50 - 4 min 30)"
+                }
+              },
               "duration" : "1000m (≈ 3 min 50 - 4 min 30)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -2724,6 +2997,10 @@
                   "fr" : "Bloc easy raccourci 12 km si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "14"
+              },
               "duration" : "14 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2761,6 +3038,10 @@
                   "fr" : "Bloc allure marathon sur tapis 8 km à allure cible"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "8"
+              },
               "duration" : "8 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2799,6 +3080,10 @@
                   "fr" : "Cooldown raccourci 3 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "4"
+              },
               "duration" : "4 km",
               "incompatible_constraints" : [
 
@@ -2872,6 +3157,10 @@
                   "fr" : "Vélo très facile à endurance facile 75 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "12"
+              },
               "duration" : "12 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2905,6 +3194,10 @@
                   "fr" : "Suppression si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2959,6 +3252,10 @@
                   "fr" : "Skipping A-march 4×20 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "7"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -2992,6 +3289,10 @@
                   "fr" : "Charnière de hanche au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -3023,6 +3324,11 @@
                   "fr" : "Extensions des mollets sur marche en double"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "18"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3054,6 +3360,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "7-8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -3086,6 +3396,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -3118,6 +3432,11 @@
                   "fr" : "Montées sur banc"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -3149,6 +3468,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3181,6 +3504,11 @@
                   "fr" : "Pointeur avant-bras au sol"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "wrist-pain",
                 "lower-back-pain"
@@ -3235,6 +3563,10 @@
                   "fr" : "Intervalles 5×1mi au seuil récup 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -3294,6 +3626,10 @@
                   "fr" : "Jeu d'allures 6×4 min très dur (intervalles) récup 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1000"
+              },
               "duration" : "1000m",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -3356,6 +3692,10 @@
                   "fr" : "Bloc easy raccourci 11 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "13"
+              },
               "duration" : "13 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3388,6 +3728,10 @@
                   "fr" : "Bloc allure marathon tapis 11 km à allure cible"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "11"
+              },
               "duration" : "11 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3426,6 +3770,10 @@
                   "fr" : "Cooldown raccourci 3 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "4"
+              },
               "duration" : "4 km",
               "incompatible_constraints" : [
 
@@ -3494,6 +3842,10 @@
                   "fr" : "Vélo très facile à endurance facile 80 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "13"
+              },
               "duration" : "13 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3527,6 +3879,10 @@
                   "fr" : "Suppression si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -3581,6 +3937,10 @@
                   "fr" : "Marche rapide 60 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "8"
+              },
               "duration" : "8 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3619,6 +3979,10 @@
                   "fr" : "Skipping A-march 3×20 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -3652,6 +4016,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -3684,6 +4052,11 @@
                   "fr" : "Extensions des mollets sur marche en double"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "18"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3715,6 +4088,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3769,6 +4146,13 @@
                   "fr" : "Intervalles 4×2km tapis"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 km (≈ 8 min - 9 min 30)",
+                  "es" : "2 km (≈ 8 min - 9 min 30)",
+                  "fr" : "2 km (≈ 8 min - 9 min 30)"
+                }
+              },
               "duration" : "2 km (≈ 8 min - 9 min 30)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -3828,6 +4212,13 @@
                   "fr" : "Jeu d'allures 5×5 min très dur (intervalles) récup 4 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1200 m (≈ 4 min 40 - 5 min 30)",
+                  "es" : "1200 m (≈ 4 min 40 - 5 min 30)",
+                  "fr" : "1200 m (≈ 4 min 40 - 5 min 30)"
+                }
+              },
               "duration" : "1200m (≈ 4 min 40 - 5 min 30)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -3890,6 +4281,10 @@
                   "fr" : "Bloc easy raccourci 10 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "12"
+              },
               "duration" : "12 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3922,6 +4317,10 @@
                   "fr" : "Bloc allure marathon tapis 15 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "15"
+              },
               "duration" : "15 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3960,6 +4359,10 @@
                   "fr" : "Cooldown raccourci 2 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "3"
+              },
               "duration" : "3 km",
               "incompatible_constraints" : [
 
@@ -4028,6 +4431,10 @@
                   "fr" : "Vélo très facile à endurance facile 65 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "10"
+              },
               "duration" : "10 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4061,6 +4468,10 @@
                   "fr" : "Suppression si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4115,6 +4526,10 @@
                   "fr" : "Skipping A-march 3×20 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -4148,6 +4563,11 @@
                   "fr" : "Extensions des mollets sur marche en double"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "16"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -4179,6 +4599,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "7"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -4211,6 +4635,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -4243,6 +4671,11 @@
                   "fr" : "Montées sur banc"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -4274,6 +4707,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "50"
+              },
               "duration" : "50 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4328,6 +4765,10 @@
                   "fr" : "Intervalles 3×1mi au seuil récup 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -4387,6 +4828,10 @@
                   "fr" : "Jeu d'allures 4×4 min très dur (intervalles) récup 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1000"
+              },
               "duration" : "1000m",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -4449,6 +4894,10 @@
                   "fr" : "Bloc easy raccourci 9 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "11"
+              },
               "duration" : "11 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4481,6 +4930,10 @@
                   "fr" : "Bloc allure marathon tapis 8 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "8"
+              },
               "duration" : "8 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4519,6 +4972,10 @@
                   "fr" : "Cooldown raccourci 2 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "3"
+              },
               "duration" : "3 km",
               "incompatible_constraints" : [
 
@@ -4587,6 +5044,10 @@
                   "fr" : "Vélo très facile à endurance facile 80 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "13"
+              },
               "duration" : "13 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4620,6 +5081,10 @@
                   "fr" : "Suppression si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4674,6 +5139,10 @@
                   "fr" : "Marche rapide 60 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "8"
+              },
               "duration" : "8 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4707,6 +5176,10 @@
                   "fr" : "Skipping A-march 4×20 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "7"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -4740,6 +5213,10 @@
                   "fr" : "Charnière de hanche au poids du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -4771,6 +5248,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -4803,6 +5284,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -4835,6 +5320,11 @@
                   "fr" : "Extensions des mollets sur marche en double"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "18"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -4866,6 +5356,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4920,6 +5414,10 @@
                   "fr" : "Intervalles 5×1.5km au seuil récup 75 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -4979,6 +5477,10 @@
                   "fr" : "Jeu d'allures 5×5 min très dur (intervalles) récup 4 min"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1200"
+              },
               "duration" : "1200m",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -5041,6 +5543,10 @@
                   "fr" : "Bloc easy raccourci 9 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "11"
+              },
               "duration" : "11 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5073,6 +5579,10 @@
                   "fr" : "Bloc allure marathon tapis 16 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "16"
+              },
               "duration" : "16 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5111,6 +5621,10 @@
                   "fr" : "Cooldown raccourci 2 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "3"
+              },
               "duration" : "3 km",
               "incompatible_constraints" : [
 
@@ -5179,6 +5693,10 @@
                   "fr" : "Vélo très facile à endurance facile 85 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "14"
+              },
               "duration" : "14 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5212,6 +5730,10 @@
                   "fr" : "Suppression si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -5266,6 +5788,10 @@
                   "fr" : "Marche rapide 65 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "9"
+              },
               "duration" : "9 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5299,6 +5825,10 @@
                   "fr" : "Skipping A-march 3×20 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -5337,6 +5867,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -5369,6 +5903,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "7"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -5406,6 +5944,11 @@
                   "fr" : "Extensions des mollets sur marche en double"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "18"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -5437,6 +5980,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -5491,6 +6038,10 @@
                   "fr" : "Intervalles 5×2km tapis"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "2"
+              },
               "duration" : "2 km",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -5550,6 +6101,10 @@
                   "fr" : "Jeu d'allures 5×5 min très dur (intervalles) récup 4 min"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1200"
+              },
               "duration" : "1200m",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -5612,6 +6167,10 @@
                   "fr" : "Bloc easy raccourci 7 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "9"
+              },
               "duration" : "9 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5649,6 +6208,10 @@
                   "fr" : "Bloc allure marathon tapis 20 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "20"
+              },
               "duration" : "20 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5687,6 +6250,10 @@
                   "fr" : "Marche 2 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "3"
+              },
               "duration" : "3 km",
               "incompatible_constraints" : [
 
@@ -5760,6 +6327,10 @@
                   "fr" : "Vélo très facile à endurance facile 85 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "14"
+              },
               "duration" : "14 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5793,6 +6364,10 @@
                   "fr" : "Suppression si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -5847,6 +6422,10 @@
                   "fr" : "Marche rapide 70 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "10"
+              },
               "duration" : "10 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5880,6 +6459,10 @@
                   "fr" : "Skipping A-march 3×20 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -5918,6 +6501,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -5950,6 +6537,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -5987,6 +6578,11 @@
                   "fr" : "Extensions des mollets sur marche en double"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "16"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -6018,6 +6614,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6072,6 +6672,10 @@
                   "fr" : "Intervalles 5×1.5km au seuil récup 75 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -6131,6 +6735,10 @@
                   "fr" : "Jeu d'allures 6×5 min très dur (intervalles) récup 4 min"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1200"
+              },
               "duration" : "1200m",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -6193,6 +6801,10 @@
                   "fr" : "Bloc easy raccourci 7 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "9"
+              },
               "duration" : "9 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6225,6 +6837,10 @@
                   "fr" : "Bloc allure marathon tapis 20 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "20"
+              },
               "duration" : "20 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6263,6 +6879,10 @@
                   "fr" : "Marche 2 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "3"
+              },
               "duration" : "3 km",
               "incompatible_constraints" : [
 
@@ -6331,6 +6951,10 @@
                   "fr" : "Vélo très facile à endurance facile 70 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "11"
+              },
               "duration" : "11 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6364,6 +6988,10 @@
                   "fr" : "Suppression si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -6418,6 +7046,10 @@
                   "fr" : "Skipping A-march 3×20 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -6451,6 +7083,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -6483,6 +7119,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -6515,6 +7155,11 @@
                   "fr" : "Extensions des mollets sur marche"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -6546,6 +7191,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "50"
+              },
               "duration" : "50 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6600,6 +7249,10 @@
                   "fr" : "Intervalles 4×1mi au seuil récup 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -6659,6 +7312,10 @@
                   "fr" : "Jeu d'allures 4×4 min très dur (intervalles) récup 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1000"
+              },
               "duration" : "1000m",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -6721,6 +7378,10 @@
                   "fr" : "Bloc easy raccourci 7 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "9"
+              },
               "duration" : "9 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6753,6 +7414,10 @@
                   "fr" : "Bloc allure marathon tapis 10 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "10"
+              },
               "duration" : "10 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6791,6 +7456,10 @@
                   "fr" : "Cooldown raccourci 2 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "3"
+              },
               "duration" : "3 km",
               "incompatible_constraints" : [
 
@@ -6859,6 +7528,10 @@
                   "fr" : "Vélo très facile à endurance facile 75 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "12"
+              },
               "duration" : "12 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6892,6 +7565,10 @@
                   "fr" : "Suppression si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -6946,6 +7623,10 @@
                   "fr" : "Marche rapide 65 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "9"
+              },
               "duration" : "9 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6979,6 +7660,10 @@
                   "fr" : "Skipping A-march 3×20 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -7012,6 +7697,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -7044,6 +7733,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "7"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -7076,6 +7769,11 @@
                   "fr" : "Extensions des mollets sur marche en double"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "16"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -7107,6 +7805,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "60"
+              },
               "duration" : "60 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -7161,6 +7863,10 @@
                   "fr" : "Intervalles 5×1mi au seuil récup 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -7220,6 +7926,10 @@
                   "fr" : "Jeu d'allures 5×4 min très dur (intervalles) récup 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1000"
+              },
               "duration" : "1000m",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -7282,6 +7992,10 @@
                   "fr" : "Bloc easy raccourci 9 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "11"
+              },
               "duration" : "11 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7314,6 +8028,10 @@
                   "fr" : "Bloc allure marathon tapis 14 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "14"
+              },
               "duration" : "14 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7352,6 +8070,10 @@
                   "fr" : "Cooldown raccourci 2 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "3"
+              },
               "duration" : "3 km",
               "incompatible_constraints" : [
 
@@ -7420,6 +8142,10 @@
                   "fr" : "Vélo très facile à endurance facile 60 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "9"
+              },
               "duration" : "9 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7453,6 +8179,10 @@
                   "fr" : "Suppression si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -7512,6 +8242,10 @@
                   "fr" : "Pont de hanches avec bande élastique"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -7549,6 +8283,10 @@
                   "fr" : "Extension ischio-fessiers machine"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -7581,6 +8319,11 @@
                   "fr" : "Extensions des mollets sur marche"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -7612,6 +8355,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -7666,6 +8413,10 @@
                   "fr" : "Intervalles 3×1mi au seuil récup 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -7725,6 +8476,10 @@
                   "fr" : "Jeu d'allures 4×3 min très dur (intervalles) récup 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "800"
+              },
               "duration" : "800m",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -7787,6 +8542,10 @@
                   "fr" : "Bloc easy raccourci 7 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "9"
+              },
               "duration" : "9 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7819,6 +8578,10 @@
                   "fr" : "Bloc allure marathon tapis 8 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "8"
+              },
               "duration" : "8 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7857,6 +8620,10 @@
                   "fr" : "Cooldown raccourci 2 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "3"
+              },
               "duration" : "3 km",
               "incompatible_constraints" : [
 
@@ -7925,6 +8692,10 @@
                   "fr" : "Vélo très facile à endurance facile 55 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "8"
+              },
               "duration" : "8 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7958,6 +8729,10 @@
                   "fr" : "Suppression si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -8012,6 +8787,10 @@
                   "fr" : "Étirements statiques globaux 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -8047,6 +8826,10 @@
                   "fr" : "Vélo très facile 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -8104,6 +8887,10 @@
                   "fr" : "Intervalles 3×1mi au seuil récup 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -8163,6 +8950,10 @@
                   "fr" : "Jeu d'allures 4×2 min très dur (intervalles) récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "600"
+              },
               "duration" : "600m",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -8224,6 +9015,10 @@
                   "fr" : "Bloc easy raccourci 4 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "5"
+              },
               "duration" : "5 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8256,6 +9051,10 @@
                   "fr" : "Bloc allure marathon tapis 6 km"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "6"
+              },
               "duration" : "6 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8294,6 +9093,10 @@
                   "fr" : "Étirements 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "1"
+              },
               "duration" : "1 km",
               "incompatible_constraints" : [
 
@@ -8362,6 +9165,10 @@
                   "fr" : "Marche rapide 40 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "5"
+              },
               "duration" : "5 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8400,6 +9207,10 @@
                   "fr" : "Suppression si tension dans les jambes"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "15"
+              },
               "duration" : "15 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -8459,6 +9270,10 @@
                   "fr" : "Marche rapide 35 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "4"
+              },
               "duration" : "4 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8497,6 +9312,10 @@
                   "fr" : "Suppression si fatigue"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "12"
+              },
               "duration" : "12 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -8556,6 +9375,10 @@
                   "fr" : "Marche rapide 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "3"
+              },
               "duration" : "3 km",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8594,6 +9417,10 @@
                   "fr" : "Suppression"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "10"
+              },
               "duration" : "10 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -8653,6 +9480,10 @@
                   "fr" : "Course différée si maladie / blessure 48h avant"
                 }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "42.2"
+              },
               "duration" : "42,2 km",
               "incompatible_constraints" : [
                 "knee-injury",
