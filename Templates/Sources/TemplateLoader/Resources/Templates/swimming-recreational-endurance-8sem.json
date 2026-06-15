@@ -53,6 +53,10 @@
                   "fr" : "Test 6 min nage continue distance maximale"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "400"
+              },
               "duration" : "400 m à allure régulière",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -92,6 +96,13 @@
                   "fr" : "Roulis du corps 6-3-6 lent"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 m favourite side",
+                  "es" : "25 m lado favorito",
+                  "fr" : "25 m côté favori"
+                }
+              },
               "duration" : "25 m côté favori",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -129,6 +140,13 @@
                   "fr" : "Glissé sur le dos bras le long du corps 8 m"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 m glide, breath-hold",
+                  "es" : "10 m de deslizamiento, en apnea",
+                  "fr" : "10 m en glisse, apnée"
+                }
+              },
               "duration" : "10 m glissé apnée",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -165,6 +183,10 @@
                   "fr" : "À un bras — bras dominant 25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -202,6 +224,13 @@
                   "fr" : "2×100 m crawl endurance facile récup 30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "200 m freestyle, easy endurance",
+                  "es" : "200 m crol, resistencia fácil",
+                  "fr" : "200 m crawl, endurance facile"
+                }
+              },
               "duration" : "200 m crawl endurance facile",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -261,6 +290,13 @@
                   "fr" : "Roulis du corps 6-3-6 4×25 m"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 m (alternate favourite and weak side)",
+                  "es" : "25 m (alternar lado favorito y lado débil)",
+                  "fr" : "25 m (alterner côté favori et côté faible)"
+                }
+              },
               "duration" : "25 m (alterner côté favori et côté faible)",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -298,6 +334,13 @@
                   "fr" : "4×50 m rattrapé éducatif récup 30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 m drill + 25 m easy freestyle (50 m per set)",
+                  "es" : "25 m de técnica + 25 m crol suave (50 m por serie)",
+                  "fr" : "25 m éducatif + 25 m crawl facile (50 m par série)"
+                }
+              },
               "duration" : "25 m drill + 25 m crawl endurance facile (50 m total par série)",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -335,6 +378,10 @@
                   "fr" : "Long swim 400 m avec pull-buoy"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "400"
+              },
               "duration" : "400 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -372,6 +419,11 @@
                   "fr" : "Pompe murale scapulaire"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -408,6 +460,11 @@
                   "fr" : "Scaption avec poids légers"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -444,6 +501,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -482,6 +543,13 @@
                   "fr" : "Child's pose 60 sec"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 slow cycles",
+                  "es" : "10 ciclos lentos",
+                  "fr" : "10 cycles lents"
+                }
+              },
               "incompatible_constraints" : [
 
               ],
@@ -554,6 +622,10 @@
                   "fr" : "Rattrapé éducatif 6×25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -591,6 +663,10 @@
                   "fr" : "Éducatif battements sur le côté with breath 6×25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -628,6 +704,13 @@
                   "fr" : "2×200 m endurance facile avec pull-buoy"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "200 m freestyle, easy endurance, 60 s rest",
+                  "es" : "200 m crol, resistencia fácil, 60 s de descanso",
+                  "fr" : "200 m crawl, endurance facile, récup 60 s"
+                }
+              },
               "duration" : "200 m crawl endurance facile récup 60 s",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -665,6 +748,13 @@
                   "fr" : "Glissé maximal 25 m noter nombre de cycles"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 m easy freestyle",
+                  "es" : "25 m crol suave",
+                  "fr" : "25 m crawl lent"
+                }
+              },
               "duration" : "25 m crawl lent",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -723,6 +813,10 @@
                   "fr" : "À un bras — bras dominant 4×25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -760,6 +854,13 @@
                   "fr" : "Battements sur le côté avec ceinture flottante"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 m (alternate sides)",
+                  "es" : "25 m (alternar lados)",
+                  "fr" : "25 m (alterner les côtés)"
+                }
+              },
               "duration" : "25 m (alterner côtés)",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -797,6 +898,10 @@
                   "fr" : "500 m endurance facile avec pull-buoy"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "500"
+              },
               "duration" : "500 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -834,6 +939,13 @@
                   "fr" : "Marche dans l'eau bord du bassin 2 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m very easy backstroke",
+                  "es" : "100 m espalda muy suave",
+                  "fr" : "100 m dos très lent"
+                }
+              },
               "duration" : "100 m dos crawl très lent",
               "incompatible_constraints" : [
 
@@ -870,6 +982,11 @@
                   "fr" : "Rétraction des omoplates à plat ventre"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -906,6 +1023,11 @@
                   "fr" : "Tirages visage élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -937,6 +1059,10 @@
                   "fr" : "Gainage latéral 25 sec/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "35"
+              },
               "duration" : "35 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1007,6 +1133,10 @@
                   "fr" : "6-3-6 éducatif 6×25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -1043,6 +1173,10 @@
                   "fr" : "Godille avant 4×25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1080,6 +1214,13 @@
                   "fr" : "1×800 m continu endurance facile"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m freestyle + 20 s rest",
+                  "es" : "100 m crol + 20 s de descanso",
+                  "fr" : "100 m crawl + 20 s de récup"
+                }
+              },
               "duration" : "100 m crawl + 20 s récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1118,6 +1259,13 @@
                   "fr" : "100 m crawl avec pull-buoy"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m easy freestyle, stroke count",
+                  "es" : "100 m crol suave, conteo de brazadas",
+                  "fr" : "100 m crawl lent, comptage des cycles"
+                }
+              },
               "duration" : "100 m crawl lent compteur cycles",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -1176,6 +1324,10 @@
                   "fr" : "Rattrapé avec planche 4×25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -1212,6 +1364,10 @@
                   "fr" : "700 m endurance facile avec pull-buoy"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "700"
+              },
               "duration" : "700 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1249,6 +1405,13 @@
                   "fr" : "100 m dos + 50 m marche dans eau"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "150 m easy backstroke",
+                  "es" : "150 m espalda suave",
+                  "fr" : "150 m dos lent"
+                }
+              },
               "duration" : "150 m dos lent",
               "incompatible_constraints" : [
 
@@ -1280,6 +1443,11 @@
                   "fr" : "Rétraction des omoplates à plat ventre"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -1311,6 +1479,10 @@
                   "fr" : "Oiseau avec poids légers"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -1347,6 +1519,11 @@
                   "fr" : "Scaption poids légers"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -1378,6 +1555,10 @@
                   "fr" : "Gainage latéral 30 sec/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "40"
+              },
               "duration" : "40 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1448,6 +1629,13 @@
                   "fr" : "Rattrapé éducatif avec pull-buoy 6×50 m"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "50 m freestyle with pull-buoy + 20 s rest",
+                  "es" : "50 m crol con pull-buoy + 20 s de descanso",
+                  "fr" : "50 m crawl avec pull-buoy + 20 s de récup"
+                }
+              },
               "duration" : "50 m crawl avec pull-buoy entre les jambes + 20 s récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1486,6 +1674,10 @@
                   "fr" : "Effleurement des doigts 4×25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -1517,6 +1709,10 @@
                   "fr" : "Battements sur le côté côté favori uniquement 4×25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1554,6 +1750,13 @@
                   "fr" : "1×400 m endurance facile continu"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m freestyle, bilateral breathing 1/3 + 25 s rest",
+                  "es" : "100 m crol, respiración bilateral 1/3 + 25 s de descanso",
+                  "fr" : "100 m crawl, respiration bilatérale 1/3 + 25 s de récup"
+                }
+              },
               "duration" : "100 m crawl bilatérale 1/3 + 25 s récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1613,6 +1816,10 @@
                   "fr" : "600 m endurance facile avec pull-buoy"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "600"
+              },
               "duration" : "600 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1650,6 +1857,13 @@
                   "fr" : "100 m crawl pull-buoy"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "150 m easy freestyle, stroke count",
+                  "es" : "150 m crol suave, conteo de brazadas",
+                  "fr" : "150 m crawl lent, comptage des cycles"
+                }
+              },
               "duration" : "150 m crawl lent compteur cycles",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -1686,6 +1900,11 @@
                   "fr" : "Rétraction des omoplates à plat ventre 12 × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -1722,6 +1941,11 @@
                   "fr" : "Scaption légers"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -1753,6 +1977,10 @@
                   "fr" : "Gainage croisé au sol 12/côté × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "40"
+              },
               "duration" : "40 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1823,6 +2051,13 @@
                   "fr" : "À un bras — bras dominant 4×25 m"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 m arms extended forward, slow figure-8s (pull-buoy)",
+                  "es" : "25 m brazos extendidos al frente, ochos lentos (pull-buoy)",
+                  "fr" : "25 m bras tendus devant, figures en 8 lentes (pull-buoy)"
+                }
+              },
               "duration" : "25 m bras tendus devant figures-8 lentes (pull-buoy entre les jambes)",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1861,6 +2096,10 @@
                   "fr" : "Effleurement des doigts 4×25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -1892,6 +2131,13 @@
                   "fr" : "8×50 m endurance soutenue récup 20 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m freestyle, high endurance + 45 s rest",
+                  "es" : "100 m crol, resistencia alta + 45 s de descanso",
+                  "fr" : "100 m crawl, endurance haute + 45 s de récup"
+                }
+              },
               "duration" : "100 m crawl endurance haute + 45 s récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1930,6 +2176,13 @@
                   "fr" : "200 m crawl pull-buoy"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "200 m easy freestyle",
+                  "es" : "200 m crol suave",
+                  "fr" : "200 m crawl lent"
+                }
+              },
               "duration" : "200 m crawl lent",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -1988,6 +2241,10 @@
                   "fr" : "Rattrapé 4×25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2021,6 +2278,10 @@
                   "fr" : "800 m endurance facile avec pull-buoy"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "800"
+              },
               "duration" : "800 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2058,6 +2319,13 @@
                   "fr" : "150 m dos + 50 m marche dans eau"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "200 m easy backstroke",
+                  "es" : "200 m espalda suave",
+                  "fr" : "200 m dos lent"
+                }
+              },
               "duration" : "200 m dos lent",
               "incompatible_constraints" : [
 
@@ -2089,6 +2357,11 @@
                   "fr" : "Rétraction des omoplates à plat ventre"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2120,6 +2393,11 @@
                   "fr" : "Tirages visage élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "14"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2151,6 +2429,10 @@
                   "fr" : "Oiseau poids légers"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2182,6 +2464,10 @@
                   "fr" : "Gainage latéral 30 sec/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2252,6 +2538,10 @@
                   "fr" : "Rattrapé avec planche 4×50 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2290,6 +2580,13 @@
                   "fr" : "4×200 m endurance soutenue récup 30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m freestyle, sustained endurance + 25 s rest",
+                  "es" : "100 m crol, resistencia sostenida + 25 s de descanso",
+                  "fr" : "100 m crawl, endurance soutenue + 25 s de récup"
+                }
+              },
               "duration" : "100 m crawl endurance soutenue + 25 s récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2328,6 +2625,10 @@
                   "fr" : "200 m crawl pull-buoy"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -2381,6 +2682,10 @@
                   "fr" : "1000 m endurance facile avec pull-buoy"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1000"
+              },
               "duration" : "1000 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2418,6 +2723,13 @@
                   "fr" : "150 m dos + 50 m marche dans eau"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "200 m easy backstroke",
+                  "es" : "200 m espalda suave",
+                  "fr" : "200 m dos lent"
+                }
+              },
               "duration" : "200 m dos lent",
               "incompatible_constraints" : [
 
@@ -2449,6 +2761,11 @@
                   "fr" : "Rétraction des omoplates à plat ventre"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2480,6 +2797,11 @@
                   "fr" : "Tirages visage élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "14"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2511,6 +2833,10 @@
                   "fr" : "Oiseau légers"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "14"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2542,6 +2868,10 @@
                   "fr" : "Gainage latéral 35 sec/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "50"
+              },
               "duration" : "50 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2612,6 +2942,10 @@
                   "fr" : "Un bras 4×50 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2645,6 +2979,13 @@
                   "fr" : "5×200 m endurance soutenue récup 30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m freestyle, sustained endurance + 20 s rest",
+                  "es" : "100 m crol, resistencia sostenida + 20 s de descanso",
+                  "fr" : "100 m crawl, endurance soutenue + 20 s de récup"
+                }
+              },
               "duration" : "100 m crawl endurance soutenue + 20 s récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2683,6 +3024,10 @@
                   "fr" : "200 m pull-buoy"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -2736,6 +3081,10 @@
                   "fr" : "1300 m endurance facile avec pull-buoy si fatigue jambes"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1300"
+              },
               "duration" : "1300 m continu",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2773,6 +3122,13 @@
                   "fr" : "150 m dos + 50 m marche dans eau"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "200 m easy backstroke",
+                  "es" : "200 m espalda suave",
+                  "fr" : "200 m dos lent"
+                }
+              },
               "duration" : "200 m dos lent",
               "incompatible_constraints" : [
 
@@ -2804,6 +3160,11 @@
                   "fr" : "Rétraction des omoplates à plat ventre"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2835,6 +3196,11 @@
                   "fr" : "Tirages visage élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "14"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2866,6 +3232,10 @@
                   "fr" : "Oiseau légers"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "14"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2897,6 +3267,10 @@
                   "fr" : "Gainage latéral 35 sec/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "50"
+              },
               "duration" : "50 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2967,6 +3341,13 @@
                   "fr" : "Battements sur le côté avec ceinture flottante"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 m (alternate sides)",
+                  "es" : "25 m (alternar lados)",
+                  "fr" : "25 m (alterner les côtés)"
+                }
+              },
               "duration" : "25 m (alterner côtés)",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3004,6 +3385,10 @@
                   "fr" : "Effleurement des doigts 4×25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -3040,6 +3425,10 @@
                   "fr" : "Un bras 2×50 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3078,6 +3467,13 @@
                   "fr" : "200 m endurance facile avec pull-buoy"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "200 m freestyle, easy endurance",
+                  "es" : "200 m crol, resistencia fácil",
+                  "fr" : "200 m crawl, endurance facile"
+                }
+              },
               "duration" : "200 m crawl endurance facile",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3137,6 +3533,10 @@
                   "fr" : "5×200 m endurance facile récup 20 s si fatigue résiduelle non récupérée"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1000"
+              },
               "duration" : "1000 m à allure régulière",
               "incompatible_constraints" : [
                 "shoulder-injury",

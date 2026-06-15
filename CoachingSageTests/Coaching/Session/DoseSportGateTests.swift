@@ -39,6 +39,19 @@ final class DoseSportGateTests: XCTestCase {
         XCTAssertEqual(ex.localizedDoseLabel(sportCode: "cycling", locale: Locale(identifier: "en")), "40 s per position")
     }
 
+    func testSwimmingDistanceIsReinterpretedViaMigration() {
+        // Lot 4 : distance nue backfillée (« m » universel).
+        let ex = AdaptedExercise(name: "Nage continue", originalName: "Nage continue", duration: "1500 m")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "swimming", locale: fr), "1500 m")
+    }
+
+    func testSwimmingStrokeFreeTextIsLocalized() {
+        // « 150 m dos lent » (nage spécifiée) → freeText traduit, zéro fuite FR en EN/ES.
+        let ex = AdaptedExercise(name: "Nage récup", originalName: "Nage récup", duration: "150 m dos lent")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "swimming", locale: Locale(identifier: "en")), "150 m easy backstroke")
+        XCTAssertEqual(ex.localizedDoseLabel(sportCode: "swimming", locale: Locale(identifier: "es")), "150 m espalda suave")
+    }
+
     // MARK: Sport NON migré → dosage legacy préservé (gate fermé)
 
     func testStrengthRepsAreNotReinterpreted() {

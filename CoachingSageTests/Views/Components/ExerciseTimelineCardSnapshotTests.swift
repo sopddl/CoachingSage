@@ -184,4 +184,45 @@ final class ExerciseTimelineCardSnapshotTests: XCTestCase {
         assertSnapshot(of: cyclingDoseColumn(locale: Locale(identifier: "es")),
                        as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
     }
+
+    // MARK: - Lot 4 swimming — dosage localisé (FR/EN/ES)
+
+    // Cas représentatifs : distance nue (glose intensité/allure DROPPÉE → « 1500 m », portée
+    // par la chip zone), nage spécifiée crawl/dos en freeText, éducatif/récup/matériel en
+    // freeText, renfo à sec `perLetter`. Chips dose suivent `\.locale` → invariant zéro fuite FR.
+    private func swimmingDoseColumn(locale: Locale) -> some View {
+        let exos: [AdaptedExercise] = [
+            AdaptedExercise(name: "Nage longue", originalName: "Nage longue", duration: "1500 m", targetZone: "EN1"),
+            AdaptedExercise(name: "Bloc VO2max", originalName: "Bloc VO2max", sets: 8, duration: "100 m endurance haute", targetZone: "EN3"),
+            AdaptedExercise(name: "Nage récupération", originalName: "Nage récupération", duration: "150 m dos lent", targetZone: "REC"),
+            AdaptedExercise(name: "Bloc endurance", originalName: "Bloc endurance", sets: 8, duration: "100 m crawl + 20 s récup", targetZone: "EN1"),
+            AdaptedExercise(name: "Bras au pull-buoy", originalName: "Bras au pull-buoy", sets: 4, duration: "50 m crawl avec pull-buoy entre les jambes + 20 s récup", targetZone: "technique"),
+            AdaptedExercise(name: "Position flèche", originalName: "Position flèche", sets: 6, duration: "1 poussée + glisse 8 m", targetZone: "technique"),
+            AdaptedExercise(name: "Y-T-W épaules", originalName: "Y-T-W épaules", sets: 2, reps: "10 par lettre", targetZone: "RPE 6-7"),
+        ]
+        return VStack(spacing: 8) {
+            ForEach(Array(exos.enumerated()), id: \.offset) { _, ex in
+                ExerciseTimelineCard(exercise: ex, sportCode: "swimming", isFirstExercise: false)
+            }
+        }
+        .frame(width: 360)
+        .padding()
+        .background(Color(uiColor: .systemBackground))
+        .environment(\.locale, locale)
+    }
+
+    func testSwimmingDose_fr() {
+        assertSnapshot(of: swimmingDoseColumn(locale: Locale(identifier: "fr")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testSwimmingDose_en() {
+        assertSnapshot(of: swimmingDoseColumn(locale: Locale(identifier: "en")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
+
+    func testSwimmingDose_es() {
+        assertSnapshot(of: swimmingDoseColumn(locale: Locale(identifier: "es")),
+                       as: .image(precision: 0.99, perceptualPrecision: 0.97, layout: .sizeThatFits))
+    }
 }

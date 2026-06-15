@@ -34,6 +34,10 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
         // Lot 3 cycling — tokens FR-exclusifs (trad : uphill/elevation/reverse plank/full day…).
         // « rpm » est universel (gardé) ; « endurance »/« tempo » sont des mots EN légitimes.
         "montée", "journée", "entière", "planche", "dorsale",
+        // Lot 4 swimming — tokens FR-exclusifs (trad : glide/push-off/float/sculling/backstroke…).
+        // « crawl »/« pull-buoy » sont des emprunts universels (gardés, non listés).
+        "glisse", "glissé", "poussée", "flottaison", "godille", "apnée",
+        "favori", "faible", "alterner", "comptage", "avancée", "séance",
     ]
 
     /// Diacritiques FR-exclusifs (absents de l'orthographe ES : ç, ô, ê, è, à, î, ë, œ).
@@ -105,6 +109,10 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
 
     func testEveryCyclingExerciseHasDose() async throws {
         try await assertEverySportExerciseHasDose(.cycling, name: "cycling")
+    }
+
+    func testEverySwimmingExerciseHasDose() async throws {
+        try await assertEverySportExerciseHasDose(.swimming, name: "swimming")
     }
 
     private func assertEverySportExerciseHasDose(_ sport: Sport, name: String, file: StaticString = #filePath, line: UInt = #line) async throws {

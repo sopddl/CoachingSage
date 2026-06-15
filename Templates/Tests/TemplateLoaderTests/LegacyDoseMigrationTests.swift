@@ -24,6 +24,10 @@ final class LegacyDoseMigrationTests: XCTestCase {
         try await assertMigrationMatches(sport: .cycling)
     }
 
+    func testMigrationTableMatchesBundledSwimmingDoses() async throws {
+        try await assertMigrationMatches(sport: .swimming)
+    }
+
     private func assertMigrationMatches(sport: Sport, file: StaticString = #filePath, line: UInt = #line) async throws {
         let templates = try await TemplateLoader.loadAll()
         guard templates.count >= 30 else { throw XCTSkip("bundle non peuplé (\(templates.count))") }
