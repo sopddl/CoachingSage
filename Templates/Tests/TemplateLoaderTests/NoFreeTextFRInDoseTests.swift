@@ -47,6 +47,16 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
         // Lot 7 muscu — tokens FR-exclusifs (trad : clean max/of each exercise/attempts/set…).
         // « AMRAP »/« max »/« RPE » = vocabulaire de salle gardé (3 langues), non listés.
         "propre", "exercice", "essai", "essais",
+        // Lot 8 tennis/football — tokens FR-exclusifs. EXCLUS volontairement : noms d'exos/sport
+        // gardés 3 langues (Pallof, bird-dog, split squat, hip thrust, box jump, lateral bound,
+        // broad jump, glute bridge, bridge, scaption, slam, rotational, smash, tie-break, sprint,
+        // patterns, corners, kick) + mots EN/ES légitimes (passages, services, set, points,
+        // normales, format, transition). Trad propre : serve/saque, pass/pase, shot/golpe…
+        "frappe", "frappes", "aller-retour", "allers-retours", "carré", "souplesse",
+        "extérieur", "extérieurs", "premières", "lancers", "trophée", "trophées", "têtes",
+        "contrôles", "puissance", "placée", "placées", "longueur", "effectif", "jeu", "jeux",
+        "filet", "revue", "coups", "francs", "levée", "levées", "yeux", "fermés", "ouverts",
+        "normaux", "balle", "balles", "pression", "rotations externes",
     ]
 
     /// Diacritiques FR-exclusifs (absents de l'orthographe ES : ç, ô, ê, è, à, î, ë, œ).
@@ -134,6 +144,14 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
 
     func testEveryStrengthExerciseHasDose() async throws {
         try await assertEverySportExerciseHasDose(.strengthTraining, name: "strength")
+    }
+
+    func testEveryTennisExerciseHasDose() async throws {
+        try await assertEverySportExerciseHasDose(.tennis, name: "tennis")
+    }
+
+    func testEveryFootballExerciseHasDose() async throws {
+        try await assertEverySportExerciseHasDose(.football, name: "football")
     }
 
     private func assertEverySportExerciseHasDose(_ sport: Sport, name: String, file: StaticString = #filePath, line: UInt = #line) async throws {

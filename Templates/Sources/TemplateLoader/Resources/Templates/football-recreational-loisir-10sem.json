@@ -53,6 +53,10 @@
                   "fr" : "Jonglages 2 contacts par pied 10 min sur place"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -91,6 +95,13 @@
                   "fr" : "Conduite autour de marqueurs improvisés (sacs, pierres) × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 round trips",
+                  "es" : "2 idas y vueltas",
+                  "fr" : "2 allers-retours"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -130,6 +141,13 @@
                   "fr" : "Jonglages + contrôle au sol 10/pied × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 controls per foot",
+                  "es" : "10 controles por pie",
+                  "fr" : "10 contrôles par pied"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -167,6 +185,10 @@
                   "fr" : "Frappe placée sans cible 10 × 2 (focus geste)"
                 }
               ],
+              "dose" : {
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -228,6 +250,10 @@
                   "fr" : "Marche rapide 12 min + montées de genoux légères 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -266,6 +292,20 @@
                   "fr" : "Exercice mur passes courtes 2 touches 5 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "game",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min jeu + 90 sec récup marche",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -305,6 +345,10 @@
                   "fr" : "Circuit de passes en alternance 4 stations 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -347,6 +391,13 @@
                   "fr" : "Frappe sans conduite vers cible 5 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 combinations",
+                  "es" : "5 encadenamientos",
+                  "fr" : "5 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "ankle-injury",
@@ -410,6 +461,13 @@
                   "fr" : "Demi-flexion sur 1 jambe"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s per leg eyes open",
+                  "es" : "30 s por pierna con ojos abiertos",
+                  "fr" : "30 s par jambe yeux ouverts"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -446,6 +504,10 @@
                   "fr" : "Pointeur 8/côté × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -482,6 +544,13 @@
                   "fr" : "Pointeur 8/côté + gainage croisé au sol 8/côté × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s plank + 20 s side plank per side",
+                  "es" : "30 s de plancha + 20 s de plancha lateral por lado",
+                  "fr" : "30 s de planche + 20 s de planche latérale par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -519,6 +588,10 @@
                   "fr" : "Mollets assis 15 × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -555,6 +628,13 @@
                   "fr" : "Montées de genoux basses + déplacements latéraux 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 slow round trip",
+                  "es" : "1 ida y vuelta lenta",
+                  "fr" : "1 aller-retour lent"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -592,6 +672,10 @@
                   "fr" : "Vélo home-trainer facile 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -667,6 +751,10 @@
                   "fr" : "Jonglages + passes en solo 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -704,6 +792,11 @@
                   "fr" : "Frappes longues sans cible 8 × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "passes",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "ankle-injury"
@@ -742,6 +835,13 @@
                   "fr" : "Conduite autour de marqueurs × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 runs",
+                  "es" : "2 pasadas",
+                  "fr" : "2 passages"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -781,6 +881,11 @@
                   "fr" : "Frappe sans cible, focus geste 8/pied × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -842,6 +947,10 @@
                   "fr" : "Vélo facile + jonglages posés 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -880,6 +989,20 @@
                   "fr" : "Exercice mur passes 2 touches 6 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "game",
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "6 min jeu + 90 sec récup marche",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -919,6 +1042,10 @@
                   "fr" : "Circuit de passes en alternance 4 stations 22 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "22"
+              },
               "duration" : "22 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -961,6 +1088,13 @@
                   "fr" : "Frappe directe sans conduite 5 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 combinations",
+                  "es" : "5 encadenamientos",
+                  "fr" : "5 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "ankle-injury"
@@ -1023,6 +1157,11 @@
                   "fr" : "Demi-flexion sur 1 jambe 10/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1059,6 +1198,13 @@
                   "fr" : "Pointeur 10/côté × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 two-legged + 6 single-leg per leg",
+                  "es" : "12 bipodal + 6 a una pierna por pierna",
+                  "fr" : "12 sur deux jambes + 6 sur une jambe par jambe"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1095,6 +1241,13 @@
                   "fr" : "Pointeur + gainage croisé au sol 10/côté × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "40 s plank + 25 s side plank per side",
+                  "es" : "40 s de plancha + 25 s de plancha lateral por lado",
+                  "fr" : "40 s de planche + 25 s de planche latérale par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -1132,6 +1285,13 @@
                   "fr" : "Mollets assis 15 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 two-legged + 6 single-leg per leg",
+                  "es" : "15 bipodal + 6 a una pierna por pierna",
+                  "fr" : "15 sur deux jambes + 6 sur une jambe par jambe"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1168,6 +1328,13 @@
                   "fr" : "Montées de genoux basses + déplacements latéraux 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 runs",
+                  "es" : "2 pasadas",
+                  "fr" : "2 passages"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -1205,6 +1372,10 @@
                   "fr" : "Marche rapide + montées de genoux fractionnées 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -1280,6 +1451,10 @@
                   "fr" : "Jonglages + passes en solo 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -1317,6 +1492,13 @@
                   "fr" : "Passes à deux une-deux retour 8 × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 combinations",
+                  "es" : "8 encadenamientos",
+                  "fr" : "8 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -1356,6 +1538,13 @@
                   "fr" : "Dribble + passe au mur sans frappe 5 × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 combinations",
+                  "es" : "5 encadenamientos",
+                  "fr" : "5 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "ankle-injury",
@@ -1397,6 +1586,11 @@
                   "fr" : "Frappe placée de l'intérieur (sans cou-de-pied) 8/pied × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain",
@@ -1459,6 +1653,10 @@
                   "fr" : "Marche rapide + jonglages 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -1496,6 +1694,20 @@
                   "fr" : "Exercice mur passes 3 touches 6 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "game",
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "6 min jeu + 90 sec récup",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -1536,6 +1748,10 @@
                   "fr" : "Circuit 4 stations 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -1578,6 +1794,11 @@
                   "fr" : "Frappe sans cible 8/pied × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -1639,6 +1860,11 @@
                   "fr" : "Demi-flexion sur 1 jambe 10/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1675,6 +1901,11 @@
                   "fr" : "Flexion de buste barre (deux pieds) sans charge 10 × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
@@ -1712,6 +1943,11 @@
                   "fr" : "Fente marchée 10/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -1749,6 +1985,13 @@
                   "fr" : "Pointeur + gainage croisé au sol 10/côté × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s plank + 30 s side plank per side",
+                  "es" : "45 s de plancha + 30 s de plancha lateral por lado",
+                  "fr" : "45 s de planche + 30 s de planche latérale par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -1786,6 +2029,13 @@
                   "fr" : "Montées de genoux + déplacements latéraux + pas croisé 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 run of each pattern",
+                  "es" : "1 pasada de cada patrón",
+                  "fr" : "1 passage de chaque pattern"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -1823,6 +2073,20 @@
                   "fr" : "Corde à sauter 8 × 30 s effort / 30 s repos"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "running",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "walking",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
                 "knee-injury",
@@ -1898,6 +2162,10 @@
                   "fr" : "Jonglages 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -1935,6 +2203,13 @@
                   "fr" : "Conduite autour de marqueurs × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 runs",
+                  "es" : "2 pasadas",
+                  "fr" : "2 passages"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -1974,6 +2249,13 @@
                   "fr" : "Passes à deux une-deux 6 × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 combinations",
+                  "es" : "6 encadenamientos",
+                  "fr" : "6 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -2013,6 +2295,11 @@
                   "fr" : "Frappe sans cible 6/pied × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -2074,6 +2361,10 @@
                   "fr" : "Marche rapide + jonglages 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -2111,6 +2402,20 @@
                   "fr" : "Exercice mur passes 6 min × 2"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "game",
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "6 min jeu + 2 min récup",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -2150,6 +2455,10 @@
                   "fr" : "Circuit 4 stations 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -2192,6 +2501,13 @@
                   "fr" : "Passes à deux sans conduite 5 × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 combinations",
+                  "es" : "5 encadenamientos",
+                  "fr" : "5 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2252,6 +2568,13 @@
                   "fr" : "Demi-flexion sur 1 jambe 8/jambe × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s per leg eyes closed",
+                  "es" : "30 s por pierna con ojos cerrados",
+                  "fr" : "30 s par jambe yeux fermés"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2288,6 +2611,13 @@
                   "fr" : "Planche ventrale 30 sec + gainage croisé au sol 10/côté × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 bridge + 8 bird-dog per side",
+                  "es" : "12 bridge + 8 bird-dog por lado",
+                  "fr" : "12 bridge + 8 bird-dog par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2324,6 +2654,13 @@
                   "fr" : "Pointeur 10/côté × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s plank + 20 s side plank per side",
+                  "es" : "30 s de plancha + 20 s de plancha lateral por lado",
+                  "fr" : "30 s de planche + 20 s de planche latérale par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -2361,6 +2698,13 @@
                   "fr" : "Marche pointe / talon 30 sec × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 reps + 30 s hold",
+                  "es" : "15 reps + 30 s de tensión",
+                  "fr" : "15 reps + tenue 30 s"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2397,6 +2741,10 @@
                   "fr" : "Étirements statiques globaux 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -2471,6 +2819,10 @@
                   "fr" : "Jonglages en solo 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -2508,6 +2860,13 @@
                   "fr" : "Dribble + passe au mur sans frappe 6 × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 combinations",
+                  "es" : "6 encadenamientos",
+                  "fr" : "6 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "ankle-injury",
@@ -2549,6 +2908,13 @@
                   "fr" : "Passes à deux une-deux + course 8 × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 combinations",
+                  "es" : "8 encadenamientos",
+                  "fr" : "8 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -2588,6 +2954,11 @@
                   "fr" : "Frappe placée de l'intérieur 8/pied × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain",
@@ -2650,6 +3021,10 @@
                   "fr" : "Vélo facile 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -2687,6 +3062,10 @@
                   "fr" : "Jeu réduit 5 contre 5 espace large 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -2730,6 +3109,10 @@
                   "fr" : "Marche autour du terrain 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -2766,6 +3149,10 @@
                   "fr" : "Jeu réduit 5 contre 5 espace large 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -2831,6 +3218,10 @@
                   "fr" : "Vélo très facile à facile 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -2867,6 +3258,13 @@
                   "fr" : "Demi-flexion sur 1 jambe 10/jambe × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s per leg eyes closed",
+                  "es" : "30 s por pierna con ojos cerrados",
+                  "fr" : "30 s par jambe yeux fermés"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2903,6 +3301,11 @@
                   "fr" : "Flexion de buste barre (deux pieds) 10 × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
@@ -2940,6 +3343,11 @@
                   "fr" : "Fente marchée 10/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -2977,6 +3385,13 @@
                   "fr" : "Gainage croisé au sol 12/côté + planche ventrale 45 sec × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s plank + 30 s side plank per side + 10 bird-dog per side",
+                  "es" : "45 s de plancha + 30 s de plancha lateral por lado + 10 bird-dog por lado",
+                  "fr" : "45 s de planche + 30 s de planche latérale par côté + 10 bird-dog par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -3014,6 +3429,10 @@
                   "fr" : "Étirements statiques globaux 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -3088,6 +3507,10 @@
                   "fr" : "Jonglages en solo 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -3125,6 +3548,13 @@
                   "fr" : "Contrôle de la poitrine + remise du pied 6 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 headers",
+                  "es" : "6 cabezazos",
+                  "fr" : "6 têtes"
+                }
+              },
               "incompatible_constraints" : [
                 "concussion-history",
                 "lower-back-pain"
@@ -3163,6 +3593,13 @@
                   "fr" : "Passes à deux + frappe 6 × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 combinations",
+                  "es" : "6 encadenamientos",
+                  "fr" : "6 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury",
@@ -3204,6 +3641,13 @@
                   "fr" : "Frappe placée seule 8/pied × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 power + 6 placed per foot",
+                  "es" : "6 de potencia + 6 colocadas por pie",
+                  "fr" : "6 en puissance + 6 placées par pied"
+                }
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain",
@@ -3266,6 +3710,10 @@
                   "fr" : "Marche rapide + jonglages 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -3303,6 +3751,20 @@
                   "fr" : "Exercice mur passes 6 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "game",
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "6 min jeu + 90 sec récup",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -3343,6 +3805,10 @@
                   "fr" : "Circuit 4 stations 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -3385,6 +3851,13 @@
                   "fr" : "Corners contre un mur (renvoi automatique) 10 × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 corners + 5 free kicks",
+                  "es" : "5 córners + 5 tiros libres",
+                  "fr" : "5 corners + 5 coups francs"
+                }
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -3447,6 +3920,13 @@
                   "fr" : "Demi-flexion sur 1 jambe 10/jambe × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s per leg eyes closed or with ball",
+                  "es" : "30 s por pierna con ojos cerrados o con balón",
+                  "fr" : "30 s par jambe yeux fermés ou avec ballon"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3483,6 +3963,11 @@
                   "fr" : "Flexion de buste barre (deux pieds) 12 × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
@@ -3520,6 +4005,11 @@
                   "fr" : "Fente marchée 12/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain",
@@ -3558,6 +4048,13 @@
                   "fr" : "Montées de genoux + déplacements latéraux + pas croisé 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 run of each",
+                  "es" : "1 pasada de cada",
+                  "fr" : "1 passage de chaque"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -3595,6 +4092,20 @@
                   "fr" : "Corde à sauter 10 × 30 s effort / 30 s repos"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "running",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "walking",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
                 "knee-injury",
@@ -3671,6 +4182,10 @@
                   "fr" : "Jonglages + passes en solo 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -3708,6 +4223,13 @@
                   "fr" : "Passes à deux + course verticale 8 × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 combinations",
+                  "es" : "8 encadenamientos",
+                  "fr" : "8 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -3748,6 +4270,13 @@
                   "fr" : "Dribble + passe sans frappe 5 × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 combinations",
+                  "es" : "5 encadenamientos",
+                  "fr" : "5 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "ankle-injury",
@@ -3790,6 +4319,11 @@
                   "fr" : "Frappe placée seule 8/pied × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain",
@@ -3852,6 +4386,10 @@
                   "fr" : "Marche rapide + jonglages 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -3889,6 +4427,20 @@
                   "fr" : "Exercice mur passes 6 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "game",
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "6 min jeu + 2 min récup marche",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -3929,6 +4481,20 @@
                   "fr" : "Circuit 4 stations 4 × 4 min"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "game",
+                    "unit" : "minutes",
+                    "value" : "4"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4 min jeu + 2 min récup marche",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -3973,6 +4539,13 @@
                   "fr" : "Corners contre un mur 12 × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 corners + 6 free kicks",
+                  "es" : "6 córners + 6 tiros libres",
+                  "fr" : "6 corners + 6 coups francs"
+                }
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -4035,6 +4608,11 @@
                   "fr" : "Demi-flexion sur 1 jambe 12/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -4071,6 +4649,11 @@
                   "fr" : "Flexion de buste barre (deux pieds) 12 × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
@@ -4108,6 +4691,13 @@
                   "fr" : "Fente marchée + pont fessier sur une jambe 10 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 split squat per leg + 8 hip thrust per leg",
+                  "es" : "10 split squat por pierna + 8 hip thrust por pierna",
+                  "fr" : "10 split squat par jambe + 8 hip thrust par jambe"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -4145,6 +4735,13 @@
                   "fr" : "Gainage croisé au sol + planche ventrale 60 sec × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 s plank + 40 s side plank per side + 12 bird-dog per side",
+                  "es" : "60 s de plancha + 40 s de plancha lateral por lado + 12 bird-dog por lado",
+                  "fr" : "60 s de planche + 40 s de planche latérale par côté + 12 bird-dog par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -4182,6 +4779,13 @@
                   "fr" : "Corde à sauter 2 × 8 × 30 s/30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 s work / 30 s rest) + 3 min rest between sets",
+                  "es" : "8 × (30 s de trabajo / 30 s de descanso) + 3 min de descanso entre series",
+                  "fr" : "8 × (30 s d'effort / 30 s de récup) + 3 min de récup entre séries"
+                }
+              },
               "duration" : "8 × 30s ON / 30s OFF + 3 min récup entre séries",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -4258,6 +4862,10 @@
                   "fr" : "Jonglages en solo 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -4295,6 +4903,13 @@
                   "fr" : "Conduite autour de marqueurs × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 runs",
+                  "es" : "5 pasadas",
+                  "fr" : "5 passages"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -4334,6 +4949,13 @@
                   "fr" : "Passes à deux une-deux 6 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 combinations",
+                  "es" : "6 encadenamientos",
+                  "fr" : "6 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -4373,6 +4995,11 @@
                   "fr" : "Frappe sans cible 6/pied × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -4434,6 +5061,10 @@
                   "fr" : "Marche rapide + jonglages 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -4471,6 +5102,20 @@
                   "fr" : "Exercice mur passes 5 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "game",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min jeu + 90 sec récup",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -4510,6 +5155,10 @@
                   "fr" : "Circuit 4 stations 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -4552,6 +5201,13 @@
                   "fr" : "Corners contre un mur 10 × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 corners + 5 free kicks",
+                  "es" : "5 córners + 5 tiros libres",
+                  "fr" : "5 corners + 5 coups francs"
+                }
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -4613,6 +5269,11 @@
                   "fr" : "Demi-flexion sur 1 jambe 8/jambe × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -4649,6 +5310,13 @@
                   "fr" : "Planche ventrale 30 sec + gainage croisé au sol 10/côté × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 bridge + 10 bird-dog per side",
+                  "es" : "12 bridge + 10 bird-dog por lado",
+                  "fr" : "12 bridge + 10 bird-dog par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -4685,6 +5353,13 @@
                   "fr" : "Pointeur 12/côté × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "40 s plank + 25 s side plank per side",
+                  "es" : "40 s de plancha + 25 s de plancha lateral por lado",
+                  "fr" : "40 s de planche + 25 s de planche latérale par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -4722,6 +5397,20 @@
                   "fr" : "Corde à sauter 6 × 30 s/30 s"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "running",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "walking",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
                 "knee-injury",
@@ -4760,6 +5449,10 @@
                   "fr" : "Étirements statiques globaux 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -4834,6 +5527,10 @@
                   "fr" : "Jonglages + passes en solo 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -4871,6 +5568,13 @@
                   "fr" : "Passes à deux + course verticale 8 × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 combinations",
+                  "es" : "8 encadenamientos",
+                  "fr" : "8 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -4912,6 +5616,13 @@
                   "fr" : "Dribble + passe sans frappe 5 × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 combinations",
+                  "es" : "5 encadenamientos",
+                  "fr" : "5 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "ankle-injury",
@@ -4954,6 +5665,13 @@
                   "fr" : "Frappe placée seule 8/pied × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 alternating-foot shots + 5 headers",
+                  "es" : "6 golpes alternando pie + 5 cabezazos",
+                  "fr" : "6 frappes en alternant les pieds + 5 têtes"
+                }
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain",
@@ -5017,6 +5735,10 @@
                   "fr" : "Vélo facile 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -5054,6 +5776,10 @@
                   "fr" : "Jeu réduit 6 contre 6 espace large 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -5097,6 +5823,10 @@
                   "fr" : "Marche autour du terrain 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -5133,6 +5863,10 @@
                   "fr" : "Jeu réduit 6 contre 6 espace large 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -5198,6 +5932,10 @@
                   "fr" : "Vélo très facile à facile 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -5234,6 +5972,13 @@
                   "fr" : "Demi-flexion sur 1 jambe 12/jambe × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s per leg eyes closed",
+                  "es" : "30 s por pierna con ojos cerrados",
+                  "fr" : "30 s par jambe yeux fermés"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -5270,6 +6015,11 @@
                   "fr" : "Flexion de buste barre (deux pieds) 12 × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
@@ -5307,6 +6057,13 @@
                   "fr" : "Fente marchée + pont fessier sur une jambe 10 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 split squat per leg + 10 hip thrust per leg",
+                  "es" : "10 split squat por pierna + 10 hip thrust por pierna",
+                  "fr" : "10 split squat par jambe + 10 hip thrust par jambe"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -5344,6 +6101,20 @@
                   "fr" : "Corde à sauter 8 × 30 s/30 s"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "running",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "walking",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
                 "knee-injury",
@@ -5420,6 +6191,10 @@
                   "fr" : "Jonglages + passes en solo 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -5457,6 +6232,13 @@
                   "fr" : "Conduite autour de marqueurs × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 runs",
+                  "es" : "5 pasadas",
+                  "fr" : "5 passages"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -5496,6 +6278,13 @@
                   "fr" : "Passes à deux une-deux 6 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 combinations",
+                  "es" : "6 encadenamientos",
+                  "fr" : "6 enchaînements"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -5535,6 +6324,11 @@
                   "fr" : "Frappe sans cible 6/pied × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -5596,6 +6390,10 @@
                   "fr" : "Vélo facile + passes posées 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -5633,6 +6431,10 @@
                   "fr" : "Jeu réduit 5 contre 5 espace large 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -5676,6 +6478,10 @@
                   "fr" : "Marche autour du terrain 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -5712,6 +6518,10 @@
                   "fr" : "Jeu réduit 5 contre 5 espace large 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -5777,6 +6587,13 @@
                   "fr" : "Demi-flexion sur 1 jambe + pointeur × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s per leg + 12 two-legged glute bridge",
+                  "es" : "30 s por pierna + 12 glute bridge bipodal",
+                  "fr" : "30 s par jambe + 12 glute bridge sur deux jambes"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "lower-back-pain"
@@ -5814,6 +6631,13 @@
                   "fr" : "Gainage croisé au sol + planche ventrale 45 sec × 1"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s plank + 30 s side plank per side + 10 bird-dog per side",
+                  "es" : "45 s de plancha + 30 s de plancha lateral por lado + 10 bird-dog por lado",
+                  "fr" : "45 s de planche + 30 s de planche latérale par côté + 10 bird-dog par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -5851,6 +6675,10 @@
                   "fr" : "Étirements statiques globaux 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
 
@@ -5888,6 +6716,10 @@
                   "fr" : "Yoga doux 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 

@@ -28,8 +28,11 @@ def S(value, unit, qualifier=None, style=None, modifier=None):
 def F(fr, en, es):
     return {"free_text": {"fr": fr, "en": en, "es": es}}
 
-def seg(value, unit, activity):
-    return {"value": value, "unit": unit, "activity": activity}
+def seg(value, unit, activity=None):
+    d = {"value": value, "unit": unit}
+    if activity:
+        d["activity"] = activity
+    return d
 
 def I(*segments):
     return {"segments": list(segments)}
@@ -360,7 +363,7 @@ CYCLING = {
     "2 min à 100-105 rpm": F("2 min à 100-105 rpm", "2 min at 100-105 rpm", "2 min a 100-105 rpm"),
     "3 min à 100-105 rpm en endurance facile": F("3 min à 100-105 rpm en endurance facile", "3 min at 100-105 rpm, easy endurance", "3 min a 100-105 rpm, resistencia fácil"),
     "3 min à 95-100 rpm + 3 min à 85 rpm": F("3 min à 95-100 rpm + 3 min à 85 rpm", "3 min at 95-100 rpm + 3 min at 85 rpm", "3 min a 95-100 rpm + 3 min a 85 rpm"),
-    "8 min tempo + 5 min endurance facile récupération": F("8 min tempo + 5 min d'endurance facile en récupération", "8 min tempo + 5 min easy recovery", "8 min tempo + 5 min de recuperación fácil"),
+    "8 min tempo + 5 min endurance facile récupération": F("8 min tempo + 5 min d'endurance facile en récupération", "8 min tempo + 5 min easy recovery", "8 min tempo + 5 min de recuperacióneración fácil"),
     "8 par côté + 30 sec planche dorsale": F("8 par côté + 30 s de planche dorsale", "8 per side + 30 s reverse plank", "8 por lado + 30 s de plancha invertida"),
     "Journée entière": F("Journée entière", "Full day", "Jornada completa"),
 }
@@ -546,9 +549,9 @@ HIKING = {
     # --- INTERVALLES montée/descente (RPE/gradient/sac inline) -> freeText fidèle ---
     "4 min montée RPE 6 + 3 min descente très facile": F("4 min de montée RPE 6 + 3 min de descente très facile", "4 min uphill RPE 6 + 3 min very easy downhill", "4 min de subida RPE 6 + 3 min de bajada muy fácil"),
     "5 min montée RPE 5-6 + 4 min descente très facile": F("5 min de montée RPE 5-6 + 4 min de descente très facile", "5 min uphill RPE 5-6 + 4 min very easy downhill", "5 min de subida RPE 5-6 + 4 min de bajada muy fácil"),
-    "5 min montée RPE 6-7 + 4 min récup descente très facile": F("5 min de montée RPE 6-7 + 4 min de récup en descente très facile", "5 min uphill RPE 6-7 + 4 min recovery on very easy downhill", "5 min de subida RPE 6-7 + 4 min de recuperación en bajada muy fácil"),
-    "6 min montée RPE 6-7 + 4 min récup descente très facile": F("6 min de montée RPE 6-7 + 4 min de récup en descente très facile", "6 min uphill RPE 6-7 + 4 min recovery on very easy downhill", "6 min de subida RPE 6-7 + 4 min de recuperación en bajada muy fácil"),
-    "8 min montée RPE 6-7 + 5 min récup descente très facile": F("8 min de montée RPE 6-7 + 5 min de récup en descente très facile", "8 min uphill RPE 6-7 + 5 min recovery on very easy downhill", "8 min de subida RPE 6-7 + 5 min de recuperación en bajada muy fácil"),
+    "5 min montée RPE 6-7 + 4 min récup descente très facile": F("5 min de montée RPE 6-7 + 4 min de récup en descente très facile", "5 min uphill RPE 6-7 + 4 min recovery on very easy downhill", "5 min de subida RPE 6-7 + 4 min de recuperacióneración en bajada muy fácil"),
+    "6 min montée RPE 6-7 + 4 min récup descente très facile": F("6 min de montée RPE 6-7 + 4 min de récup en descente très facile", "6 min uphill RPE 6-7 + 4 min recovery on very easy downhill", "6 min de subida RPE 6-7 + 4 min de recuperacióneración en bajada muy fácil"),
+    "8 min montée RPE 6-7 + 5 min récup descente très facile": F("8 min de montée RPE 6-7 + 5 min de récup en descente très facile", "8 min uphill RPE 6-7 + 5 min recovery on very easy downhill", "8 min de subida RPE 6-7 + 5 min de recuperacióneración en bajada muy fácil"),
     "5 min descente technique + 3 min remontée très facile": F("5 min de descente technique + 3 min de remontée très facile", "5 min technical downhill + 3 min very easy climb back", "5 min de bajada técnica + 3 min de resubida muy fácil"),
     "10 min montée RPE 8-9 gradient 15% sac 17 kg + 8 min descente très facile": F("10 min de montée RPE 8-9, pente 15 %, sac 17 kg + 8 min de descente très facile", "10 min uphill RPE 8-9, 15% grade, 17 kg pack + 8 min very easy downhill", "10 min de subida RPE 8-9, pendiente 15 %, mochila 17 kg + 8 min de bajada muy fácil"),
     "10 min montée RPE 8-9 gradient 15-18% sac 15 kg + 7 min descente très facile": F("10 min de montée RPE 8-9, pente 15-18 %, sac 15 kg + 7 min de descente très facile", "10 min uphill RPE 8-9, 15-18% grade, 15 kg pack + 7 min very easy downhill", "10 min de subida RPE 8-9, pendiente 15-18 %, mochila 15 kg + 7 min de bajada muy fácil"),
@@ -692,14 +695,332 @@ STRENGTH = {
     "10 de chaque exercice": F("10 de chaque exercice", "10 of each exercise", "10 de cada ejercicio"),
 }
 
+TENNISFOOT = {
+    # ====================== LOT 8 — TENNIS + FOOTBALL ======================
+    # Sports de drill : comptages propres (services/passes/frappes/séquences) STRUCTURÉS
+    # (unités serves/passes/strikes/sequences — décision Sophie 2026-06-15), intervalles
+    # PLATS effort+récup STRUCTURÉS via Dose.interval (activités drill cross/jeu/pattern/
+    # tie-break/long de ligne/sprint + récup/récup marche). Tout le reste — composites avec
+    # sous-spec (« 5 T + 5 ext »), renfo de salle (vocab international gardé), intervalles
+    # IMBRIQUÉS (« 8 × (… + …) » — 2 niveaux que le modèle interval 1-niveau n'exprime pas),
+    # match/jeu effectif/heures — en freeText traduit (lossless). Intensité (RPE/au seuil/
+    # ALL OUT) DROPPÉE (portée par target_zone, pipeline zones). NB : seules les clés NEUVES
+    # sont ici (bare reps/sec/min + perSide/perLeg/perArm/perLetter déjà mappés par les lots
+    # précédents → pas de doublon de clé dans le dict Swift de LegacyDoseMigration).
+
+    # --- DURÉE simple neuve ---
+    "13 min": S("13", "minutes"),
+
+    # --- REPS structurées (bare + plages neuves) ---
+    "22": S("22", "reps"),
+    "5 reps": S("5", "reps"),
+    "15 reps": S("15", "reps"),
+    "8 répétitions": S("8", "reps"),
+    "6-8 reps": S("6-8", "reps"),
+    "8-10 reps": S("8-10", "reps"),
+    "8-12 reps": S("8-12", "reps"),
+
+    # --- REPS unilatérales structurées ---
+    "5 par côté": S("5", "reps", qualifier="perSide"),
+    "6 par côté": S("6", "reps", qualifier="perSide"),
+    "5 reps par jambe": S("5", "reps", qualifier="perLeg"),
+    "8 reps par jambe": S("8", "reps", qualifier="perLeg"),
+    "10 reps par jambe": S("10", "reps", qualifier="perLeg"),
+    "8 / jambe": S("8", "reps", qualifier="perLeg"),
+    "8/jambe": S("8", "reps", qualifier="perLeg"),
+    "10 / jambe": S("10", "reps", qualifier="perLeg"),
+    "5-8 par jambe": S("5-8", "reps", qualifier="perLeg"),
+    "8-10/jambe": S("8-10", "reps", qualifier="perLeg"),
+    "10-15 par jambe": S("10-15", "reps", qualifier="perLeg"),
+    "8-10 reps par jambe": S("8-10", "reps", qualifier="perLeg"),
+    "10-15 reps par jambe": S("10-15", "reps", qualifier="perLeg"),
+    "12-15 reps par jambe": S("12-15", "reps", qualifier="perLeg"),
+    "8 / pied": S("8", "reps", qualifier="perFoot"),
+    "15 par bras": S("15", "reps", qualifier="perArm"),
+    "15 par lettre": S("15", "reps", qualifier="perLetter"),
+    "30 sec / jambe": S("30", "seconds", qualifier="perLeg"),
+
+    # --- COMPTAGES SPORT structurés (services / séquences / passes / frappes) ---
+    "6 services": S("6", "serves"),
+    "8 services": S("8", "serves"),
+    "10 services": S("10", "serves"),
+    "12 services": S("12", "serves"),
+    "15 services": S("15", "serves"),
+    "6 services par série": S("6", "serves", qualifier="perSet"),
+    "8 services par série": S("8", "serves", qualifier="perSet"),
+    "10 services par série": S("10", "serves", qualifier="perSet"),
+    "12 services par série": S("12", "serves", qualifier="perSet"),
+    "15 services par série": S("15", "serves", qualifier="perSet"),
+    "8 séquences": S("8", "sequences"),
+    "10 séquences": S("10", "sequences"),
+    "8 passes": S("8", "passes"),
+    "10 passes": S("10", "passes"),
+    "8 passes par pied": S("8", "passes", qualifier="perFoot"),
+    "15 passes par pied": S("15", "passes", qualifier="perFoot"),
+    "8 frappes": S("8", "strikes"),
+    "10 frappes": S("10", "strikes"),
+    "6 frappes par pied": S("6", "strikes", qualifier="perFoot"),
+    "8 frappes par pied": S("8", "strikes", qualifier="perFoot"),
+    "10 frappes par pied": S("10", "strikes", qualifier="perFoot"),
+    "15 frappes par pied": S("15", "strikes", qualifier="perFoot"),
+
+    # --- INTERVALLES PLATS effort+récup (Dose.interval) ---
+    # Tennis — cross
+    "3 min cross + 90 sec récup": I(seg("3", "minutes", "crossCourt"), seg("90", "seconds", "rest")),
+    "4 min cross + 90 sec récup": I(seg("4", "minutes", "crossCourt"), seg("90", "seconds", "rest")),
+    "5 min cross + 90 sec récup": I(seg("5", "minutes", "crossCourt"), seg("90", "seconds", "rest")),
+    "6 min cross + 90 sec récup": I(seg("6", "minutes", "crossCourt"), seg("90", "seconds", "rest")),
+    "5 min cross + 75 sec récup": I(seg("5", "minutes", "crossCourt"), seg("75", "seconds", "rest")),
+    "5 min cross + 2 min récup": I(seg("5", "minutes", "crossCourt"), seg("2", "minutes", "rest")),
+    "5 min cross + 90 sec récup marche": I(seg("5", "minutes", "crossCourt"), seg("90", "seconds", "walkingRecovery")),
+    "4 min cross + 2 min récup marche": I(seg("4", "minutes", "crossCourt"), seg("2", "minutes", "walkingRecovery")),
+    "5 min cross + 2 min récup marche": I(seg("5", "minutes", "crossCourt"), seg("2", "minutes", "walkingRecovery")),
+    "6 min cross + 2 min récup marche": I(seg("6", "minutes", "crossCourt"), seg("2", "minutes", "walkingRecovery")),
+    # Tennis — séquence
+    "5 min séquence + 90 sec récup": I(seg("5", "minutes", "sequenceDrill"), seg("90", "seconds", "rest")),
+    "6 min séquence + 90 sec récup": I(seg("6", "minutes", "sequenceDrill"), seg("90", "seconds", "rest")),
+    # Tennis — pattern
+    "4 min pattern + 90 sec récup": I(seg("4", "minutes", "patternDrill"), seg("90", "seconds", "rest")),
+    "5 min pattern + 90 sec récup": I(seg("5", "minutes", "patternDrill"), seg("90", "seconds", "rest")),
+    # Tennis — long de ligne
+    "5 min long de ligne + 90 sec récup": I(seg("5", "minutes", "downTheLine"), seg("90", "seconds", "rest")),
+    "4 min long de ligne + 2 min récup marche": I(seg("4", "minutes", "downTheLine"), seg("2", "minutes", "walkingRecovery")),
+    # Tennis — jeu
+    "8 min jeu + 2 min récup": I(seg("8", "minutes", "game"), seg("2", "minutes", "rest")),
+    "8 min jeu + 3 min récup": I(seg("8", "minutes", "game"), seg("3", "minutes", "rest")),
+    "6 min jeu + 3 min récup": I(seg("6", "minutes", "game"), seg("3", "minutes", "rest")),
+    # Tennis — tie-break
+    "10 min tie-break + 3 min récup": I(seg("10", "minutes", "tieBreak"), seg("3", "minutes", "rest")),
+    # Tennis — frappes minutées
+    "2 min frappes + 1 min récup marche": I(seg("2", "minutes", "strikesDrill"), seg("1", "minutes", "walkingRecovery")),
+    "5 min frappes + 2 min récup marche": I(seg("5", "minutes", "strikesDrill"), seg("2", "minutes", "walkingRecovery")),
+    "6 min frappes + 2 min récup marche": I(seg("6", "minutes", "strikesDrill"), seg("2", "minutes", "walkingRecovery")),
+    # Tennis — frappes comptées (segment sans activité)
+    "15 frappes + 1 min récup marche": I(seg("15", "strikes"), seg("1", "minutes", "walkingRecovery")),
+    "20 frappes + 1 min récup marche": I(seg("20", "strikes"), seg("1", "minutes", "walkingRecovery")),
+    "30 frappes + 1 min récup marche": I(seg("30", "strikes"), seg("1", "minutes", "walkingRecovery")),
+    "50 frappes + 90 sec récup marche": I(seg("50", "strikes"), seg("90", "seconds", "walkingRecovery")),
+    # Tennis — sprint (temps)
+    "30 sec sprint + 90 sec récup": I(seg("30", "seconds", "sprint"), seg("90", "seconds", "rest")),
+    "45 sec sprint + 90 sec récup": I(seg("45", "seconds", "sprint"), seg("90", "seconds", "rest")),
+    "45 sec sprint + 90 sec récup marche": I(seg("45", "seconds", "sprint"), seg("90", "seconds", "walkingRecovery")),
+    "60 sec sprint + 90 sec récup": I(seg("60", "seconds", "sprint"), seg("90", "seconds", "rest")),
+    "60 sec sprint + 90 sec récup marche": I(seg("60", "seconds", "sprint"), seg("90", "seconds", "walkingRecovery")),
+    "60 sec sprint + 120 sec récup marche": I(seg("60", "seconds", "sprint"), seg("120", "seconds", "walkingRecovery")),
+    # Tennis — sprint (distance)
+    "15 m sprint + 30 sec récup": I(seg("15", "meters", "sprint"), seg("30", "seconds", "rest")),
+    "15 m sprint + 30 sec récup marche": I(seg("15", "meters", "sprint"), seg("30", "seconds", "walkingRecovery")),
+    "20 m sprint + 30 sec récup": I(seg("20", "meters", "sprint"), seg("30", "seconds", "rest")),
+    "20 m sprint + 30 sec récup marche": I(seg("20", "meters", "sprint"), seg("30", "seconds", "walkingRecovery")),
+    "15-20 m sprint + 30 sec récup marche": I(seg("15-20", "meters", "sprint"), seg("30", "seconds", "walkingRecovery")),
+    "1 sprint 15 m": I(seg("15", "meters", "sprint")),
+    "1 sprint 20 m + 40 sec récup": I(seg("20", "meters", "sprint"), seg("40", "seconds", "rest")),
+    # Tennis — effort nu + récup (segment sans activité)
+    "4 min + 90 sec récup": I(seg("4", "minutes"), seg("90", "seconds", "rest")),
+    "5 min + 90 sec récup": I(seg("5", "minutes"), seg("90", "seconds", "rest")),
+    "6 min + 90 sec récup": I(seg("6", "minutes"), seg("90", "seconds", "rest")),
+    "5 min + 90 sec récup marche": I(seg("5", "minutes"), seg("90", "seconds", "walkingRecovery")),
+    "45 sec + 120 sec récup marche": I(seg("45", "seconds"), seg("120", "seconds", "walkingRecovery")),
+    # Football — ON/OFF
+    "3 min ON + 2 min OFF": I(seg("3", "minutes", "work"), seg("2", "minutes", "rest")),
+    "3-4 min ON / 2 min OFF": I(seg("3-4", "minutes", "work"), seg("2", "minutes", "rest")),
+    "4-5 min ON / 2 min OFF": I(seg("4-5", "minutes", "work"), seg("2", "minutes", "rest")),
+    "5-6 min ON / 2 min OFF": I(seg("5-6", "minutes", "work"), seg("2", "minutes", "rest")),
+    # Football — jeu
+    "5 min jeu + 90 sec récup": I(seg("5", "minutes", "game"), seg("90", "seconds", "rest")),
+    "5 min jeu + 90 sec récup marche": I(seg("5", "minutes", "game"), seg("90", "seconds", "walkingRecovery")),
+    "6 min jeu + 90 sec récup": I(seg("6", "minutes", "game"), seg("90", "seconds", "rest")),
+    "6 min jeu + 90 sec récup marche": I(seg("6", "minutes", "game"), seg("90", "seconds", "walkingRecovery")),
+    "6 min jeu + 2 min récup": I(seg("6", "minutes", "game"), seg("2", "minutes", "rest")),
+    "6 min jeu + 2 min récup marche": I(seg("6", "minutes", "game"), seg("2", "minutes", "walkingRecovery")),
+    "6 min jeu + 3 min récup marche": I(seg("6", "minutes", "game"), seg("3", "minutes", "walkingRecovery")),
+    "4 min jeu + 2 min récup marche": I(seg("4", "minutes", "game"), seg("2", "minutes", "walkingRecovery")),
+    "8 min jeu + 3 min récup marche": I(seg("8", "minutes", "game"), seg("3", "minutes", "walkingRecovery")),
+    # Football — course/marche (intensité Z3-Z4/modérée DROPPÉE, portée par target_zone)
+    "30 sec course Z3-Z4 + 30 sec marche": I(seg("30", "seconds", "running"), seg("30", "seconds", "walking")),
+    "30 sec course modérée + 30 sec marche": I(seg("30", "seconds", "running"), seg("30", "seconds", "walking")),
+
+    # --- INTERVALLES IMBRIQUÉS (2 niveaux) → freeText (modèle interval = 1 niveau) ---
+    "8 × (30s course tempo à au seuil + 30s marche)": F("8 × (30 s de course au seuil + 30 s de marche)", "8 × (30 s threshold run + 30 s walk)", "8 × (30 s de carrera a umbral + 30 s de caminata)"),
+    "10 cycles x 30 sec course au seuil / 30 sec marche": F("10 cycles × (30 s de course au seuil / 30 s de marche)", "10 cycles × (30 s threshold run / 30 s walk)", "10 ciclos × (30 s de carrera a umbral / 30 s de caminata)"),
+    "12 cycles x 15 sec course au seuil / 15 sec marche": F("12 cycles × (15 s de course au seuil / 15 s de marche)", "12 cycles × (15 s threshold run / 15 s walk)", "12 ciclos × (15 s de carrera a umbral / 15 s de caminata)"),
+    "8 x 30 m sprint / recup 25 sec entre reps": F("8 × (30 m sprint + 25 s de récup entre reps)", "8 × (30 m sprint + 25 s rest between reps)", "8 × (30 m sprint + 25 s de recuperación entre reps)"),
+    "6 x 30 m sprint / recup 25 sec entre reps": F("6 × (30 m sprint + 25 s de récup entre reps)", "6 × (30 m sprint + 25 s rest between reps)", "6 × (30 m sprint + 25 s de recuperación entre reps)"),
+    "10 x 30 m sprint / recup 25 sec entre reps": F("10 × (30 m sprint + 25 s de récup entre reps)", "10 × (30 m sprint + 25 s rest between reps)", "10 × (30 m sprint + 25 s de recuperación entre reps)"),
+    "6 x 25 m sprint / recup 25 sec": F("6 × (25 m sprint + 25 s de récup)", "6 × (25 m sprint + 25 s rest)", "6 × (25 m sprint + 25 s de recuperación)"),
+    "6 × (30 m sprint + 25 sec récup marche)": F("6 × (30 m sprint + 25 s de récup en marchant)", "6 × (30 m sprint + 25 s walking recovery)", "6 × (30 m sprint + 25 s de recuperacióneración caminando)"),
+    "6 × (30 m sprint ALL OUT + 25 sec récup marche)": F("6 × (30 m sprint + 25 s de récup en marchant)", "6 × (30 m sprint + 25 s walking recovery)", "6 × (30 m sprint + 25 s de recuperacióneración caminando)"),
+    "8 × 30s ON / 30s OFF + 3 min récup entre séries": F("8 × (30 s d'effort / 30 s de récup) + 3 min de récup entre séries", "8 × (30 s work / 30 s rest) + 3 min rest between sets", "8 × (30 s de trabajo / 30 s de descanso) + 3 min de descanso entre series"),
+    "5 strides x 30 m progressive 80-90 pct": F("5 lignes droites × 30 m en accélération progressive (80-90 %)", "5 strides × 30 m progressive (80-90%)", "5 rectas × 30 m en aceleración progresiva (80-90%)"),
+    "6 stations × 30 sec + 15 sec transition": F("6 stations × 30 s + 15 s de transition", "6 stations × 30 s + 15 s transition", "6 estaciones × 30 s + 15 s de transición"),
+    "6 stations 30 sec + 20 sec récup": F("6 stations × 30 s + 20 s de récup", "6 stations × 30 s + 20 s rest", "6 estaciones × 30 s + 20 s de recuperación"),
+    "1 set 6 jeux + 5 min récup entre sets": F("1 set de 6 jeux + 5 min de récup entre sets", "1 set of 6 games + 5 min rest between sets", "1 set de 6 juegos + 5 min de recuperación entre sets"),
+    "1 série + 2 min récup marche": F("1 série + 2 min de récup en marchant", "1 set + 2 min walking recovery", "1 serie + 2 min de recuperacióneración caminando"),
+    "1 série de 11 points + 2 min récup": F("1 série de 11 points + 2 min de récup", "1 set of 11 points + 2 min rest", "1 serie de 11 puntos + 2 min de recuperación"),
+    "1 tie-break 4 points + 2 min récup": F("1 tie-break en 4 points + 2 min de récup", "1 tie-break to 4 points + 2 min rest", "1 tie-break a 4 puntos + 2 min de recuperación"),
+
+    # --- PASSAGES / ALLERS-RETOURS / PATTERNS / ENCHAÎNEMENTS → freeText ---
+    "1 passage A/R": F("1 aller-retour", "1 round trip", "1 ida y vuelta"),
+    "1 passage A/R chaque": F("1 aller-retour chacun", "1 round trip each", "1 ida y vuelta cada uno"),
+    "1 passage A/R chaque pattern": F("1 aller-retour par pattern", "1 round trip per pattern", "1 ida y vuelta por patrón"),
+    "1 passage A/R lent": F("1 aller-retour lent", "1 slow round trip", "1 ida y vuelta lenta"),
+    "1 passage A/R par pattern": F("1 aller-retour par pattern", "1 round trip per pattern", "1 ida y vuelta por patrón"),
+    "1 passage in-out": F("1 passage in-out", "1 in-out run", "1 pasada in-out"),
+    "1 passage chronométré + 1 retour libre": F("1 passage chronométré + 1 retour libre", "1 timed run + 1 free return", "1 pasada cronometrada + 1 vuelta libre"),
+    "1 passage chronométré aller + 1 retour libre": F("1 passage chronométré à l'aller + 1 retour libre", "1 timed run out + 1 free return", "1 pasada cronometrada de ida + 1 vuelta libre"),
+    "1 passage de chaque": F("1 passage de chaque", "1 run of each", "1 pasada de cada"),
+    "1 passage de chaque pattern": F("1 passage de chaque pattern", "1 run of each pattern", "1 pasada de cada patrón"),
+    "2 passages": F("2 passages", "2 runs", "2 pasadas"),
+    "2 passages A/R": F("2 allers-retours", "2 round trips", "2 idas y vueltas"),
+    "2 passages aller-retour": F("2 allers-retours", "2 round trips", "2 idas y vueltas"),
+    "5 passages": F("5 passages", "5 runs", "5 pasadas"),
+    "2 allers-retours": F("2 allers-retours", "2 round trips", "2 idas y vueltas"),
+    "4 allers-retours 6 m": F("4 allers-retours de 6 m", "4 round trips of 6 m", "4 idas y vueltas de 6 m"),
+    "3 allers-retours 8 m de chaque pattern": F("3 allers-retours de 8 m par pattern", "3 round trips of 8 m per pattern", "3 idas y vueltas de 8 m por patrón"),
+    "20 m aller + récup retour marche 30 sec": F("20 m à l'aller + 30 s de récup en marchant au retour", "20 m out + 30 s walking recovery back", "20 m de ida + 30 s de recuperacióneración caminando a la vuelta"),
+    "4 patterns": F("4 patterns", "4 patterns", "4 patrones"),
+    "5 patterns": F("5 patterns", "5 patterns", "5 patrones"),
+    "5 enchaînements": F("5 enchaînements", "5 combinations", "5 encadenamientos"),
+    "6 enchaînements": F("6 enchaînements", "6 combinations", "6 encadenamientos"),
+    "8 enchaînements": F("8 enchaînements", "8 combinations", "8 encadenamientos"),
+
+    # --- DIVERS sport comptés → freeText ---
+    "8 cycles": F("8 cycles", "8 cycles", "8 ciclos"),
+    "20 impacts": F("20 impacts", "20 impacts", "20 impactos"),
+    "10 lancers + 10 trophées": F("10 lancers + 10 positions trophée", "10 throws + 10 trophy positions", "10 lanzamientos + 10 posiciones trofeo"),
+    "5 contacts cible": F("5 contacts cible", "5 target contacts", "5 contactos con diana"),
+    "6 têtes": F("6 têtes", "6 headers", "6 cabezazos"),
+    "10 contrôles par pied": F("10 contrôles par pied", "10 controls per foot", "10 controles por pie"),
+    "20 + 5 sec hold haut x 3": F("20 reps + tenue 5 s en haut × 3", "20 reps + 5 s hold at top × 3", "20 reps + 5 s en tensión arriba × 3"),
+    "15 reps + tenu 30 sec": F("15 reps + tenue 30 s", "15 reps + 30 s hold", "15 reps + 30 s de tensión"),
+
+    # --- SERVICES composites (sous-spec) → freeText ---
+    "10 services (3 normal + 7 break point pression)": F("10 services (3 normaux + 7 sous pression de balle de break)", "10 serves (3 normal + 7 break-point pressure)", "10 servicios (3 normales + 7 con presión de break)"),
+    "10 services (3 plat + 3 slice + 4 kick)": F("10 services (3 à plat + 3 slicés + 4 kickés)", "10 serves (3 flat + 3 slice + 4 kick)", "10 servicios (3 planos + 3 cortados + 4 liftados)"),
+    "10 services (5 1ère T + 5 2e kick)": F("10 services (5 premières au T + 5 secondes kickées)", "10 serves (5 first down the T + 5 second kick)", "10 servicios (5 primeros al centro + 5 segundos liftados)"),
+    "10 services (5 T + 5 ext) + 5 kick": F("10 services (5 au T + 5 extérieurs) + 5 kickés", "10 serves (5 down the T + 5 wide) + 5 kick", "10 servicios (5 al centro + 5 abiertos) + 5 liftados"),
+    "10 services (5 T + 5 extérieur)": F("10 services (5 au T + 5 extérieurs)", "10 serves (5 down the T + 5 wide)", "10 servicios (5 al centro + 5 abiertos)"),
+    "20 services (10 plat + 10 slice ou kick)": F("20 services (10 à plat + 10 slicés ou kickés)", "20 serves (10 flat + 10 slice or kick)", "20 servicios (10 planos + 10 cortados o liftados)"),
+    "12 services par carré": F("12 services par carré de service", "12 serves per service box", "12 servicios por cuadro de saque"),
+    "8 services par carré": F("8 services par carré de service", "8 serves per service box", "8 servicios por cuadro de saque"),
+    "8 services light": F("8 services en souplesse", "8 easy serves", "8 servicios suaves"),
+    "8 services + 1er coup": F("8 services + 1er coup", "8 serves + first shot", "8 servicios + primer golpe"),
+    "8 services + 2 coups": F("8 services + 2 coups", "8 serves + 2 shots", "8 servicios + 2 golpes"),
+
+    # --- SÉQUENCES composites → freeText ---
+    "8 séquences (1 volée FH + 1 volée BH + 1 smash)": F("8 séquences (1 volée de coup droit + 1 volée de revers + 1 smash)", "8 sequences (1 forehand volley + 1 backhand volley + 1 smash)", "8 secuencias (1 volea de derecha + 1 volea de revés + 1 smash)"),
+    "10 séquences (5 break point + 5 balle de set)": F("10 séquences (5 balles de break + 5 balles de set)", "10 sequences (5 break points + 5 set points)", "10 secuencias (5 puntos de break + 5 puntos de set)"),
+    "10 séquences (5 normal + 5 break point pression)": F("10 séquences (5 normales + 5 sous pression de break)", "10 sequences (5 normal + 5 break-point pressure)", "10 secuencias (5 normales + 5 con presión de break)"),
+    "10 séquences (5 service + 5 retour pression)": F("10 séquences (5 au service + 5 en retour sous pression)", "10 sequences (5 serving + 5 returning under pressure)", "10 secuencias (5 al saque + 5 al resto con presión)"),
+    "10 séquences (5 service + 5 retour)": F("10 séquences (5 au service + 5 en retour)", "10 sequences (5 serving + 5 returning)", "10 secuencias (5 al saque + 5 al resto)"),
+
+    # --- FRAPPES composites → freeText ---
+    "10 frappes (6 pied fort + 4 pied faible)": F("10 frappes (6 du pied fort + 4 du pied faible)", "10 shots (6 strong foot + 4 weak foot)", "10 golpes (6 con pie bueno + 4 con pie malo)"),
+    "6 frappes (3 par pied)": F("6 frappes (3 par pied)", "6 shots (3 per foot)", "6 golpes (3 por pie)"),
+    "8 frappes (4 par pied)": F("8 frappes (4 par pied)", "8 shots (4 per foot)", "8 golpes (4 por pie)"),
+    "6 frappes pied alterné + 5 têtes": F("6 frappes en alternant les pieds + 5 têtes", "6 alternating-foot shots + 5 headers", "6 golpes alternando pie + 5 cabezazos"),
+    "6 puissance + 6 placée par pied": F("6 en puissance + 6 placées par pied", "6 power + 6 placed per foot", "6 de potencia + 6 colocadas por pie"),
+    "5 frappes + sprint filet": F("5 frappes + sprint au filet", "5 shots + sprint to the net", "5 golpes + sprint a la red"),
+    "30 sec rapide + 30 sec marche": F("30 s rapide + 30 s de marche", "30 s fast + 30 s walk", "30 s rápido + 30 s de caminata"),
+
+    # --- PASSES / CORNERS composites → freeText ---
+    "20 passes par pied (40 total)": F("20 passes par pied (40 au total)", "20 passes per foot (40 total)", "20 pases por pie (40 en total)"),
+    "5 corners + 5 coups francs": F("5 corners + 5 coups francs", "5 corners + 5 free kicks", "5 córners + 5 tiros libres"),
+    "6 corners + 6 coups francs": F("6 corners + 6 coups francs", "6 corners + 6 free kicks", "6 córners + 6 tiros libres"),
+
+    # --- RENFO de salle (vocab international gardé, structure traduite) → freeText ---
+    "10 reps chaque": F("10 reps chacun", "10 reps each", "10 reps cada uno"),
+    "12 reps chaque": F("12 reps chacun", "12 reps each", "12 reps cada uno"),
+    "12 par mouvement": F("12 par mouvement", "12 per movement", "12 por movimiento"),
+    "8-10 reps contrôlées": F("8-10 reps contrôlées", "8-10 controlled reps", "8-10 reps controladas"),
+    "6 + 6 (3/côté)": F("6 + 6 (3 par côté)", "6 + 6 (3 per side)", "6 + 6 (3 por lado)"),
+    "8 + 6/côté": F("8 + 6 par côté", "8 + 6 per side", "8 + 6 por lado"),
+    "12 / 10 par côté": F("12 / 10 par côté", "12 / 10 per side", "12 / 10 por lado"),
+    "12 / 10/côté / 30 sec/côté": F("12 / 10 par côté / 30 s par côté", "12 / 10 per side / 30 s per side", "12 / 10 por lado / 30 s por lado"),
+    "10 par lettre / 10 par bras": F("10 par lettre / 10 par bras", "10 per letter / 10 per arm", "10 por letra / 10 por brazo"),
+    "10 par lettre / 10 par bras / 10 reps": F("10 par lettre / 10 par bras / 10 reps", "10 per letter / 10 per arm / 10 reps", "10 por letra / 10 por brazo / 10 reps"),
+    "12 par lettre / 12 par bras": F("12 par lettre / 12 par bras", "12 per letter / 12 per arm", "12 por letra / 12 por brazo"),
+    "12 par bras / 12 reps": F("12 par bras / 12 reps", "12 per arm / 12 reps", "12 por brazo / 12 reps"),
+    "10 par lettre + 8 scaption": F("10 par lettre + 8 scaption", "10 per letter + 8 scaption", "10 por letra + 8 scaption"),
+    "12 par lettre + 10 scaption": F("12 par lettre + 10 scaption", "12 per letter + 10 scaption", "12 por letra + 10 scaption"),
+    "12 Y-T-W + 12 ER": F("12 Y-T-W + 12 rotations externes", "12 Y-T-W + 12 external rotations", "12 Y-T-W + 12 rotaciones externas"),
+    "12 Y-T-W + 12 ER + 10 Pallof/côté": F("12 Y-T-W + 12 rotations externes + 10 Pallof par côté", "12 Y-T-W + 12 external rotations + 10 Pallof per side", "12 Y-T-W + 12 rotaciones externas + 10 Pallof por lado"),
+    "12 ER + 10 Pallof par côté": F("12 rotations externes + 10 Pallof par côté", "12 external rotations + 10 Pallof per side", "12 rotaciones externas + 10 Pallof por lado"),
+    "10 Pallof + 12 bird-dog par côté": F("10 Pallof + 12 bird-dog par côté", "10 Pallof + 12 bird-dog per side", "10 Pallof + 12 bird-dog por lado"),
+    "12 Pallof + 30 sec side plank par côté": F("12 Pallof + 30 s de planche latérale par côté", "12 Pallof + 30 s side plank per side", "12 Pallof + 30 s de plancha lateral por lado"),
+    "12 Pallof / 10 bird-dog par côté": F("12 Pallof / 10 bird-dog par côté", "12 Pallof / 10 bird-dog per side", "12 Pallof / 10 bird-dog por lado"),
+    "12 Pallof / 30 sec side plank par côté": F("12 Pallof / 30 s de planche latérale par côté", "12 Pallof / 30 s side plank per side", "12 Pallof / 30 s de plancha lateral por lado"),
+    "12 Pallof / 10 bird-dog / 30 sec side plank par côté": F("12 Pallof / 10 bird-dog / 30 s de planche latérale par côté", "12 Pallof / 10 bird-dog / 30 s side plank per side", "12 Pallof / 10 bird-dog / 30 s de plancha lateral por lado"),
+    "12 reps/cote Pallof + 30 sec side plank rotation/cote": F("12 Pallof par côté + 30 s de planche latérale avec rotation par côté", "12 Pallof per side + 30 s side plank rotation per side", "12 Pallof por lado + 30 s de plancha lateral con rotación por lado"),
+    "10 hip thrust + 25 sec plank/côté": F("10 hip thrust + 25 s de planche par côté", "10 hip thrust + 25 s plank per side", "10 hip thrust + 25 s de plancha por lado"),
+    "10 split squat + 12 hip thrust par jambe": F("10 split squat + 12 hip thrust par jambe", "10 split squat + 12 hip thrust per leg", "10 split squat + 12 hip thrust por pierna"),
+    "8 split squat + 10 hip thrust par jambe": F("8 split squat + 10 hip thrust par jambe", "8 split squat + 10 hip thrust per leg", "8 split squat + 10 hip thrust por pierna"),
+    "10 split squat / jambe + 10 hip thrust / jambe": F("10 split squat par jambe + 10 hip thrust par jambe", "10 split squat per leg + 10 hip thrust per leg", "10 split squat por pierna + 10 hip thrust por pierna"),
+    "10 split squat / jambe + 8 hip thrust / jambe": F("10 split squat par jambe + 8 hip thrust par jambe", "10 split squat per leg + 8 hip thrust per leg", "10 split squat por pierna + 8 hip thrust por pierna"),
+    "8 split squat / jambe + 8 hip thrust / jambe": F("8 split squat par jambe + 8 hip thrust par jambe", "8 split squat per leg + 8 hip thrust per leg", "8 split squat por pierna + 8 hip thrust por pierna"),
+    "10 split squat / jambe + 10 Pallof/côté": F("10 split squat par jambe + 10 Pallof par côté", "10 split squat per leg + 10 Pallof per side", "10 split squat por pierna + 10 Pallof por lado"),
+    "8 throws / côté + 8 split squat / jambe": F("8 lancers par côté + 8 split squat par jambe", "8 throws per side + 8 split squat per leg", "8 lanzamientos por lado + 8 split squat por pierna"),
+    "8 rotational/côté + 6 overhead slam": F("8 rotational throw par côté + 6 overhead slam", "8 rotational throws per side + 6 overhead slam", "8 lanzamientos rotacionales por lado + 6 overhead slam"),
+    "8 slam + 6 rotational/côté": F("8 slam + 6 rotational throw par côté", "8 slams + 6 rotational throws per side", "8 slams + 6 lanzamientos rotacionales por lado"),
+    "12 bipodal + 6 unilatéral / jambe": F("12 sur deux jambes + 6 sur une jambe par jambe", "12 two-legged + 6 single-leg per leg", "12 bipodal + 6 a una pierna por pierna"),
+    "15 bipodal + 6 unilatéral / jambe": F("15 sur deux jambes + 6 sur une jambe par jambe", "15 two-legged + 6 single-leg per leg", "15 bipodal + 6 a una pierna por pierna"),
+    "12 bridge + 10 bird-dog / côté": F("12 bridge + 10 bird-dog par côté", "12 bridge + 10 bird-dog per side", "12 bridge + 10 bird-dog por lado"),
+    "12 bridge + 8 bird-dog / côté": F("12 bridge + 8 bird-dog par côté", "12 bridge + 8 bird-dog per side", "12 bridge + 8 bird-dog por lado"),
+    "30 sec / jambe + 12 glute bridge bipodal": F("30 s par jambe + 12 glute bridge sur deux jambes", "30 s per leg + 12 two-legged glute bridge", "30 s por pierna + 12 glute bridge bipodal"),
+    "45 sec plank + 10 reps/cote bird-dog": F("45 s de planche + 10 bird-dog par côté", "45 s plank + 10 bird-dog per side", "45 s de plancha + 10 bird-dog por lado"),
+    "30 sec plank + 20 sec side plank / côté": F("30 s de planche + 20 s de planche latérale par côté", "30 s plank + 20 s side plank per side", "30 s de plancha + 20 s de plancha lateral por lado"),
+    "40 sec plank + 25 sec side plank / côté": F("40 s de planche + 25 s de planche latérale par côté", "40 s plank + 25 s side plank per side", "40 s de plancha + 25 s de plancha lateral por lado"),
+    "45 sec plank + 30 sec side plank / côté": F("45 s de planche + 30 s de planche latérale par côté", "45 s plank + 30 s side plank per side", "45 s de plancha + 30 s de plancha lateral por lado"),
+    "45 sec plank + 30 sec side plank / côté + 10 bird-dog / côté": F("45 s de planche + 30 s de planche latérale par côté + 10 bird-dog par côté", "45 s plank + 30 s side plank per side + 10 bird-dog per side", "45 s de plancha + 30 s de plancha lateral por lado + 10 bird-dog por lado"),
+    "60 sec plank + 40 sec side plank / côté + 12 bird-dog / côté": F("60 s de planche + 40 s de planche latérale par côté + 12 bird-dog par côté", "60 s plank + 40 s side plank per side + 12 bird-dog per side", "60 s de plancha + 40 s de plancha lateral por lado + 12 bird-dog por lado"),
+    "5 box jump + 5 lateral bound (3 droite + 2 gauche)": F("5 box jump + 5 lateral bound (3 à droite + 2 à gauche)", "5 box jump + 5 lateral bound (3 right + 2 left)", "5 box jump + 5 lateral bound (3 derecha + 2 izquierda)"),
+    "5 box jumps + 5 lateral bounds/cote": F("5 box jump + 5 lateral bound par côté", "5 box jumps + 5 lateral bounds per side", "5 box jumps + 5 lateral bounds por lado"),
+    "6 box jump + 6 lateral bound (3/côté)": F("6 box jump + 6 lateral bound (3 par côté)", "6 box jump + 6 lateral bound (3 per side)", "6 box jump + 6 lateral bound (3 por lado)"),
+    "5 lateral bound/côté + 4 box jump": F("5 lateral bound par côté + 4 box jump", "5 lateral bound per side + 4 box jump", "5 lateral bound por lado + 4 box jump"),
+    "6 lateral bound/côté + 5 box jump": F("6 lateral bound par côté + 5 box jump", "6 lateral bound per side + 5 box jump", "6 lateral bound por lado + 5 box jump"),
+    "5/cote lateral + 5 broad jumps": F("5 sauts latéraux par côté + 5 sauts en longueur", "5 lateral jumps per side + 5 broad jumps", "5 saltos laterales por lado + 5 saltos de longitud"),
+    "6 lateral par côté + 8 vertical": F("6 sauts latéraux par côté + 8 sauts verticaux", "6 lateral jumps per side + 8 vertical jumps", "6 saltos laterales por lado + 8 saltos verticales"),
+    "8 vertical + 5 lateral par côté": F("8 sauts verticaux + 5 sauts latéraux par côté", "8 vertical jumps + 5 lateral jumps per side", "8 saltos verticales + 5 saltos laterales por lado"),
+
+    # --- ÉQUILIBRE unipodal football (yeux ouverts/fermés) → freeText ---
+    "30 sec / jambe yeux ouverts": F("30 s par jambe yeux ouverts", "30 s per leg eyes open", "30 s por pierna con ojos abiertos"),
+    "30 sec / jambe yeux fermés": F("30 s par jambe yeux fermés", "30 s per leg eyes closed", "30 s por pierna con ojos cerrados"),
+    "30 sec / jambe yeux fermés ou ballon": F("30 s par jambe yeux fermés ou avec ballon", "30 s per leg eyes closed or with ball", "30 s por pierna con ojos cerrados o con balón"),
+    "30 sec par jambe (15 sec yeux ouverts + 15 sec yeux fermés)": F("30 s par jambe (15 s yeux ouverts + 15 s yeux fermés)", "30 s per leg (15 s eyes open + 15 s eyes closed)", "30 s por pierna (15 s ojos abiertos + 15 s ojos cerrados)"),
+    "20 sec par jambe levée": F("20 s par jambe levée", "20 s per raised leg", "20 s por pierna elevada"),
+    "25 sec par jambe levée": F("25 s par jambe levée", "25 s per raised leg", "25 s por pierna elevada"),
+    "30 sec par jambe levée": F("30 s par jambe levée", "30 s per raised leg", "30 s por pierna elevada"),
+    "30 sec par jambe levée alternée": F("30 s par jambe levée en alternance", "30 s per raised leg, alternating", "30 s por pierna elevada alternando"),
+    "35 sec par jambe levée alternée": F("35 s par jambe levée en alternance", "35 s per raised leg, alternating", "35 s por pierna elevada alternando"),
+
+    # --- TEMPS DE JEU EFFECTIF / MATCH / REVUE → freeText (heures/format universels) ---
+    "12 min effectif": F("12 min effectif", "12 min effective", "12 min efectivos"),
+    "15 min effectif": F("15 min effectif", "15 min effective", "15 min efectivos"),
+    "20 min effectif": F("20 min effectif", "20 min effective", "20 min efectivos"),
+    "30 min effectif": F("30 min effectif", "30 min effective", "30 min efectivos"),
+    "35 min effectif": F("35 min effectif", "35 min effective", "35 min efectivos"),
+    "5 min effectif/set": F("5 min effectif / set", "5 min effective / set", "5 min efectivos / set"),
+    "45 min jeu effectif": F("45 min de jeu effectif", "45 min effective play", "45 min de juego efectivo"),
+    "60 min jeu effectif": F("60 min de jeu effectif", "60 min effective play", "60 min de juego efectivo"),
+    "70 min jeu effectif": F("70 min de jeu effectif", "70 min effective play", "70 min de juego efectivo"),
+    "80 min jeu effectif": F("80 min de jeu effectif", "80 min effective play", "80 min de juego efectivo"),
+    "90 min jeu effectif": F("90 min de jeu effectif", "90 min effective play", "90 min de juego efectivo"),
+    "90 min (2 x 45 min)": F("90 min (2 × 45 min)", "90 min (2 × 45 min)", "90 min (2 × 45 min)"),
+    "10 min review (peut etre fait apres seance)": F("10 min de revue (à faire après la séance si besoin)", "10 min review (can be done after the session)", "10 min de revisión (se puede hacer después de la sesión)"),
+    "match (60-150 min selon format)": F("match (60-150 min selon le format)", "match (60-150 min depending on format)", "partido (60-150 min según el formato)"),
+    "match (60-150 min selon format 2 sets ou 3 sets gagnants)": F("match (60-150 min selon le format : 2 ou 3 sets gagnants)", "match (60-150 min depending on format: best of 3 or 5 sets)", "partido (60-150 min según el formato: al mejor de 3 o 5 sets)"),
+    "match (60-180 min selon format et niveau)": F("match (60-180 min selon le format et le niveau)", "match (60-180 min depending on format and level)", "partido (60-180 min según el formato y el nivel)"),
+}
+
 # Table complète (union) + clés par lot (pour gen-migration ciblé sans toucher aux lots précédents).
-DOSE = {**YOGA, **RUNNING, **CYCLING, **SWIMMING, **HIKING, **HIIT, **STRENGTH}
+DOSE = {**YOGA, **RUNNING, **CYCLING, **SWIMMING, **HIKING, **HIIT, **STRENGTH, **TENNISFOOT}
 RUNNING_KEYS = list(RUNNING.keys())
 CYCLING_KEYS = list(CYCLING.keys())
 SWIMMING_KEYS = list(SWIMMING.keys())
 HIKING_KEYS = list(HIKING.keys())
 HIIT_KEYS = list(HIIT.keys())
 STRENGTH_KEYS = list(STRENGTH.keys())
+TENNISFOOT_KEYS = list(TENNISFOOT.keys())
 
 
 def inject(ex, missing):
@@ -755,7 +1076,8 @@ def _swift_dose(d):
     if "segments" in d:
         segs = []
         for sg in d["segments"]:
-            segs.append(f'IntervalSegment(value: {_swift_str(sg["value"])}, unit: DoseUnit(rawValue: {_swift_str(sg["unit"])})!, activity: DoseActivity(rawValue: {_swift_str(sg["activity"])})!)')
+            act = (f', activity: DoseActivity(rawValue: {_swift_str(sg["activity"])})!' if sg.get("activity") else "")
+            segs.append(f'IntervalSegment(value: {_swift_str(sg["value"])}, unit: DoseUnit(rawValue: {_swift_str(sg["unit"])})!{act})')
         return f'.interval([{", ".join(segs)}])'
     parts = [f'value: {_swift_str(d["value"])}', f'unit: DoseUnit(rawValue: {_swift_str(d["unit"])})!']
     if d.get("qualifier"): parts.append(f'qualifier: DoseQualifier(rawValue: {_swift_str(d["qualifier"])})!')
@@ -788,6 +1110,8 @@ if __name__ == "__main__":
             gen_migration(HIIT_KEYS)
         elif lot == "strength":
             gen_migration(STRENGTH_KEYS)
+        elif lot == "tennisfoot":
+            gen_migration(TENNISFOOT_KEYS)
         else:
             gen_migration(list(DOSE.keys()))
     else:

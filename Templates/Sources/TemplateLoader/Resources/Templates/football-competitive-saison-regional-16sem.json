@@ -58,6 +58,10 @@
                   "fr" : "Squat sur banc 3 × 12"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12-15"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -101,6 +105,10 @@
                   "fr" : "Pont fessier sur une jambe 3 × 10/jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10-12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -144,6 +152,13 @@
                   "fr" : "Gainage croisé au sol 3 × 10/côté"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s plank + 10 bird-dog per side",
+                  "es" : "45 s de plancha + 10 bird-dog por lado",
+                  "fr" : "45 s de planche + 10 bird-dog par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -185,6 +200,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5-6"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -229,6 +248,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "5-8"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -294,6 +318,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -340,6 +368,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -384,6 +419,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -432,6 +474,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "5-6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5-6 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -480,6 +536,13 @@
                   "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jumps + 5 lateral bounds per side",
+                  "es" : "5 box jumps + 5 lateral bounds por lado",
+                  "fr" : "5 box jump + 5 lateral bound par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -524,6 +587,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -588,6 +655,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -634,6 +705,13 @@
                   "fr" : "Navette 5-10 m, 15 sec effort / 15 sec repos"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 cycles × (15 s threshold run / 15 s walk)",
+                  "es" : "12 ciclos × (15 s de carrera a umbral / 15 s de caminata)",
+                  "fr" : "12 cycles × (15 s de course au seuil / 15 s de marche)"
+                }
+              },
               "duration" : "12 cycles x 15 sec course au seuil / 15 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -679,6 +757,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "6 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "6 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "6 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -726,6 +811,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -774,6 +873,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -857,6 +960,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -903,6 +1010,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -947,6 +1061,11 @@
                   "fr" : "Passes diagonales 25 m si fatigue"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "passes",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -992,6 +1111,13 @@
                   "fr" : "Conduite vers le mur + retour"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 min effective / set",
+                  "es" : "5 min efectivos / set",
+                  "fr" : "5 min effectif / set"
+                }
+              },
               "duration" : "5 min effectif/set",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -1037,6 +1163,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -1083,6 +1214,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -1131,6 +1269,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "5-6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5-6 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -1179,6 +1331,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -1262,6 +1418,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5-6"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -1306,6 +1466,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "5-8"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -1349,6 +1514,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -1428,6 +1597,10 @@
                   "fr" : "Squat sur banc 3 × 12"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12-15"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -1471,6 +1644,10 @@
                   "fr" : "Pont fessier sur une jambe 3 × 10/jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10-12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1514,6 +1691,13 @@
                   "fr" : "Gainage croisé au sol 3 × 10/côté"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s plank + 10 bird-dog per side",
+                  "es" : "45 s de plancha + 10 bird-dog por lado",
+                  "fr" : "45 s de planche + 10 bird-dog par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1555,6 +1739,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5-6"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -1599,6 +1787,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "5-8"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -1664,6 +1857,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -1710,6 +1907,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1754,6 +1958,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -1802,6 +2013,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "5-6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5-6 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -1850,6 +2075,13 @@
                   "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jumps + 5 lateral bounds per side",
+                  "es" : "5 box jumps + 5 lateral bounds por lado",
+                  "fr" : "5 box jump + 5 lateral bound par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -1894,6 +2126,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -1958,6 +2194,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -2004,6 +2244,13 @@
                   "fr" : "Vélo seuil fractionné 30 s/30 s si genou sensible"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 cycles × (30 s threshold run / 30 s walk)",
+                  "es" : "10 ciclos × (30 s de carrera a umbral / 30 s de caminata)",
+                  "fr" : "10 cycles × (30 s de course au seuil / 30 s de marche)"
+                }
+              },
               "duration" : "10 cycles x 30 sec course au seuil / 30 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -2048,6 +2295,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "6 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "6 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "6 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -2095,6 +2349,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -2143,6 +2411,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -2226,6 +2498,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -2272,6 +2548,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2316,6 +2599,11 @@
                   "fr" : "Passes diagonales 25 m si fatigue"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "passes",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -2361,6 +2649,13 @@
                   "fr" : "Conduite vers le mur + retour"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 min effective / set",
+                  "es" : "5 min efectivos / set",
+                  "fr" : "5 min effectif / set"
+                }
+              },
               "duration" : "5 min effectif/set",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -2406,6 +2701,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -2452,6 +2752,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -2500,6 +2807,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "5-6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5-6 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -2548,6 +2869,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -2612,6 +2937,13 @@
                   "fr" : "Exercice match simulé 4 contre 4, 6 séries × 4 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 min effective play",
+                  "es" : "45 min de juego efectivo",
+                  "fr" : "45 min de jeu effectif"
+                }
+              },
               "duration" : "45 min jeu effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -2684,6 +3016,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -2763,6 +3099,11 @@
                   "fr" : "Squat sur boîte 3 × 12"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8-10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -2807,6 +3148,11 @@
                   "fr" : "Extension ischio-fessiers (ischios-fessiers) 3 × 8"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
@@ -2850,6 +3196,11 @@
                   "fr" : "Passage entre jambes à la poulie 3 × 12"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8-10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2892,6 +3243,13 @@
                   "fr" : "Roue abdominale si dispo"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof per side + 30 s side plank rotation per side",
+                  "es" : "12 Pallof por lado + 30 s de plancha lateral con rotación por lado",
+                  "fr" : "12 Pallof par côté + 30 s de planche latérale avec rotation par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -2935,6 +3293,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5-6"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -2979,6 +3341,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "5-8"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -3044,6 +3411,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3090,6 +3461,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3134,6 +3512,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3182,6 +3567,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "5-6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5-6 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3230,6 +3629,13 @@
                   "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jumps + 5 lateral bounds per side",
+                  "es" : "5 box jumps + 5 lateral bounds por lado",
+                  "fr" : "5 box jump + 5 lateral bound par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -3274,6 +3680,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -3338,6 +3748,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3384,6 +3798,13 @@
                   "fr" : "Navette 5-10 m, 15 sec effort / 15 sec repos"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 cycles × (15 s threshold run / 15 s walk)",
+                  "es" : "12 ciclos × (15 s de carrera a umbral / 15 s de caminata)",
+                  "fr" : "12 cycles × (15 s de course au seuil / 15 s de marche)"
+                }
+              },
               "duration" : "12 cycles x 15 sec course au seuil / 15 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -3429,6 +3850,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "6 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "6 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "6 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -3476,6 +3904,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3524,6 +3966,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -3602,6 +4048,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -3645,6 +4095,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3689,6 +4146,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3737,6 +4201,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3785,6 +4256,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -3831,6 +4307,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -3895,6 +4375,13 @@
                   "fr" : "Exercice match simulé 4 contre 4, 6 séries × 4 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "70 min effective play",
+                  "es" : "70 min de juego efectivo",
+                  "fr" : "70 min de jeu effectif"
+                }
+              },
               "duration" : "70 min jeu effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3967,6 +4454,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -4046,6 +4537,11 @@
                   "fr" : "Squat sur boîte 3 × 12"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8-10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -4090,6 +4586,11 @@
                   "fr" : "Extension ischio-fessiers (ischios-fessiers) 3 × 8"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
@@ -4133,6 +4634,11 @@
                   "fr" : "Passage entre jambes à la poulie 3 × 12"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8-10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -4175,6 +4681,13 @@
                   "fr" : "Roue abdominale si dispo"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof per side + 30 s side plank rotation per side",
+                  "es" : "12 Pallof por lado + 30 s de plancha lateral con rotación por lado",
+                  "fr" : "12 Pallof par côté + 30 s de planche latérale avec rotation par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -4218,6 +4731,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5-6"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -4284,6 +4801,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -4330,6 +4851,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -4374,6 +4902,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -4422,6 +4957,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -4470,6 +5019,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -4534,6 +5087,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -4580,6 +5137,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "6 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "6 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "6 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -4627,6 +5191,13 @@
                   "fr" : "Vélo seuil fractionné 30 s/30 s si genou sensible"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 cycles × (30 s threshold run / 30 s walk)",
+                  "es" : "10 ciclos × (30 s de carrera a umbral / 30 s de caminata)",
+                  "fr" : "10 cycles × (30 s de course au seuil / 30 s de marche)"
+                }
+              },
               "duration" : "10 cycles x 30 sec course au seuil / 30 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -4671,6 +5242,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -4749,6 +5324,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -4792,6 +5371,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -4836,6 +5422,13 @@
                   "fr" : "Conduite vers le mur + retour"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 min effective / set",
+                  "es" : "5 min efectivos / set",
+                  "fr" : "5 min effectif / set"
+                }
+              },
               "duration" : "5 min effectif/set",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -4881,6 +5474,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -4929,6 +5529,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -4993,6 +5597,13 @@
                   "fr" : "Exercice match simulé 4 contre 4, 6 séries × 4 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 min effective play",
+                  "es" : "60 min de juego efectivo",
+                  "fr" : "60 min de jeu effectif"
+                }
+              },
               "duration" : "60 min jeu effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -5065,6 +5676,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -5144,6 +5759,10 @@
                   "fr" : "Squat sur boîte 4 × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -5186,6 +5805,10 @@
                   "fr" : "Soulevé de terre sumo 4 × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -5227,6 +5850,10 @@
                   "fr" : "Développé incliné aux haltères 3 × 8"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6-8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -5270,6 +5897,13 @@
                   "fr" : "Roue abdominale si dispo"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof per side + 30 s side plank rotation per side",
+                  "es" : "12 Pallof por lado + 30 s de plancha lateral con rotación por lado",
+                  "fr" : "12 Pallof par côté + 30 s de planche latérale avec rotation par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -5313,6 +5947,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -5357,6 +5995,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -5422,6 +6065,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -5468,6 +6115,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -5512,6 +6166,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -5560,6 +6221,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "5-6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5-6 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -5608,6 +6283,13 @@
                   "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jumps + 5 lateral bounds per side",
+                  "es" : "5 box jumps + 5 lateral bounds por lado",
+                  "fr" : "5 box jump + 5 lateral bound par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -5652,6 +6334,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -5716,6 +6402,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -5762,6 +6452,13 @@
                   "fr" : "Navette 5-10 m, 15 sec effort / 15 sec repos"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 cycles × (15 s threshold run / 15 s walk)",
+                  "es" : "12 ciclos × (15 s de carrera a umbral / 15 s de caminata)",
+                  "fr" : "12 cycles × (15 s de course au seuil / 15 s de marche)"
+                }
+              },
               "duration" : "12 cycles x 15 sec course au seuil / 15 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -5807,6 +6504,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "8 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "8 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "8 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -5854,6 +6558,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -5902,6 +6620,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -5980,6 +6702,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -6023,6 +6749,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -6067,6 +6800,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -6115,6 +6855,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -6163,6 +6910,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -6209,6 +6961,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -6273,6 +7029,13 @@
                   "fr" : "Exercice match simulé 4 contre 4, 6 séries × 4 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "80 min effective play",
+                  "es" : "80 min de juego efectivo",
+                  "fr" : "80 min de jeu effectif"
+                }
+              },
               "duration" : "80 min jeu effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -6345,6 +7108,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -6424,6 +7191,10 @@
                   "fr" : "Squat sur boîte 4 × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -6466,6 +7237,10 @@
                   "fr" : "Soulevé de terre sumo 4 × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -6507,6 +7282,10 @@
                   "fr" : "Développé incliné aux haltères 3 × 8"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6-8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -6550,6 +7329,13 @@
                   "fr" : "Roue abdominale si dispo"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof per side + 30 s side plank rotation per side",
+                  "es" : "12 Pallof por lado + 30 s de plancha lateral con rotación por lado",
+                  "fr" : "12 Pallof par côté + 30 s de planche latérale avec rotation par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -6593,6 +7379,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -6637,6 +7427,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -6702,6 +7497,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -6748,6 +7547,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -6792,6 +7598,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -6840,6 +7653,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "5-6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5-6 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -6888,6 +7715,13 @@
                   "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jumps + 5 lateral bounds per side",
+                  "es" : "5 box jumps + 5 lateral bounds por lado",
+                  "fr" : "5 box jump + 5 lateral bound par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -6932,6 +7766,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -6996,6 +7834,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -7042,6 +7884,13 @@
                   "fr" : "Vélo seuil fractionné 30 s/30 s si genou sensible"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 cycles × (30 s threshold run / 30 s walk)",
+                  "es" : "10 ciclos × (30 s de carrera a umbral / 30 s de caminata)",
+                  "fr" : "10 cycles × (30 s de course au seuil / 30 s de marche)"
+                }
+              },
               "duration" : "10 cycles x 30 sec course au seuil / 30 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -7086,6 +7935,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "8 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "8 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "8 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -7133,6 +7989,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -7181,6 +8051,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -7245,6 +8119,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -7289,6 +8167,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -7332,6 +8215,13 @@
                   "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jumps + 5 lateral bounds per side",
+                  "es" : "5 box jumps + 5 lateral bounds por lado",
+                  "fr" : "5 box jump + 5 lateral bound par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -7376,6 +8266,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -7435,6 +8329,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -7478,6 +8376,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -7522,6 +8427,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -7570,6 +8482,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -7618,6 +8537,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -7664,6 +8588,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -7728,6 +8656,13 @@
                   "fr" : "Exercice match simulé 4 contre 4, 6 séries × 4 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min effective play",
+                  "es" : "90 min de juego efectivo",
+                  "fr" : "90 min de jeu effectif"
+                }
+              },
               "duration" : "90 min jeu effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -7800,6 +8735,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -7879,6 +8818,10 @@
                   "fr" : "Saut horizontal 4 × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury",
@@ -7922,6 +8865,10 @@
                   "fr" : "Saut vertical au poids du corps 4 × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "3-5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -7964,6 +8911,13 @@
                   "fr" : "Saut patineur latéral bas 3 × 5/côté"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 lateral jumps per side + 5 broad jumps",
+                  "es" : "5 saltos laterales por lado + 5 saltos de longitud",
+                  "fr" : "5 sauts latéraux par côté + 5 sauts en longueur"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "knee-injury",
@@ -8008,6 +8962,13 @@
                   "fr" : "Roue abdominale si dispo"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof per side + 30 s side plank rotation per side",
+                  "es" : "12 Pallof por lado + 30 s de plancha lateral con rotación por lado",
+                  "fr" : "12 Pallof par côté + 30 s de planche latérale avec rotation par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -8051,6 +9012,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -8095,6 +9060,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -8160,6 +9130,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -8206,6 +9180,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -8250,6 +9231,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -8298,6 +9286,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "5-6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5-6 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -8346,6 +9348,13 @@
                   "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jumps + 5 lateral bounds per side",
+                  "es" : "5 box jumps + 5 lateral bounds por lado",
+                  "fr" : "5 box jump + 5 lateral bound par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -8390,6 +9399,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -8454,6 +9467,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -8500,6 +9517,13 @@
                   "fr" : "Navette 5-10 m, 15 sec effort / 15 sec repos"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 cycles × (15 s threshold run / 15 s walk)",
+                  "es" : "12 ciclos × (15 s de carrera a umbral / 15 s de caminata)",
+                  "fr" : "12 cycles × (15 s de course au seuil / 15 s de marche)"
+                }
+              },
               "duration" : "12 cycles x 15 sec course au seuil / 15 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -8545,6 +9569,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "8 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "8 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "8 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -8592,6 +9623,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -8640,6 +9685,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -8718,6 +9767,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -8761,6 +9814,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -8805,6 +9865,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -8853,6 +9920,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -8901,6 +9975,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -8947,6 +10026,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -9011,6 +10094,13 @@
                   "fr" : "Exercice match simulé 4 contre 4, 6 séries × 4 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min effective play",
+                  "es" : "90 min de juego efectivo",
+                  "fr" : "90 min de jeu effectif"
+                }
+              },
               "duration" : "90 min jeu effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -9083,6 +10173,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -9162,6 +10256,10 @@
                   "fr" : "Chaise contre le mur 3 × 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -9204,6 +10302,11 @@
                   "fr" : "Passage entre jambes à la poulie 3 × 12"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -9246,6 +10349,13 @@
                   "fr" : "Roue abdominale si dispo"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof per side + 30 s side plank rotation per side",
+                  "es" : "12 Pallof por lado + 30 s de plancha lateral con rotación por lado",
+                  "fr" : "12 Pallof par côté + 30 s de planche latérale avec rotation par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -9289,6 +10399,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -9333,6 +10447,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -9398,6 +10517,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -9444,6 +10567,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -9488,6 +10618,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -9536,6 +10673,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -9584,6 +10735,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -9648,6 +10803,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -9694,6 +10853,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "8 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "8 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "8 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -9741,6 +10907,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -9789,6 +10962,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -9867,6 +11044,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -9910,6 +11091,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -9954,6 +11142,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -10002,6 +11197,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -10050,6 +11252,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -10096,6 +11303,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -10160,6 +11371,13 @@
                   "fr" : "Repos complet + visualisation du match si surcharge déclarée"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min (2 × 45 min)",
+                  "es" : "90 min (2 × 45 min)",
+                  "fr" : "90 min (2 × 45 min)"
+                }
+              },
               "duration" : "90 min (2 x 45 min)",
               "incompatible_constraints" : [
                 "acl-history",
@@ -10232,6 +11450,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -10311,6 +11533,10 @@
                   "fr" : "Chaise contre le mur 3 × 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -10353,6 +11579,11 @@
                   "fr" : "Passage entre jambes à la poulie 3 × 12"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -10395,6 +11626,13 @@
                   "fr" : "Roue abdominale si dispo"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof per side + 30 s side plank rotation per side",
+                  "es" : "12 Pallof por lado + 30 s de plancha lateral con rotación por lado",
+                  "fr" : "12 Pallof par côté + 30 s de planche latérale avec rotation par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -10438,6 +11676,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-12"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -10482,6 +11724,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10-15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -10547,6 +11794,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -10593,6 +11844,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -10637,6 +11895,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -10685,6 +11950,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "5-6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5-6 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -10733,6 +12012,13 @@
                   "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jumps + 5 lateral bounds per side",
+                  "es" : "5 box jumps + 5 lateral bounds por lado",
+                  "fr" : "5 box jump + 5 lateral bound par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -10777,6 +12063,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -10841,6 +12131,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -10887,6 +12181,13 @@
                   "fr" : "Navette 5-10 m, 15 sec effort / 15 sec repos"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 cycles × (15 s threshold run / 15 s walk)",
+                  "es" : "12 ciclos × (15 s de carrera a umbral / 15 s de caminata)",
+                  "fr" : "12 cycles × (15 s de course au seuil / 15 s de marche)"
+                }
+              },
               "duration" : "12 cycles x 15 sec course au seuil / 15 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -10932,6 +12233,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "8 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "8 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "8 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -10979,6 +12287,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -11027,6 +12349,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -11105,6 +12431,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -11148,6 +12478,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -11192,6 +12529,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -11240,6 +12584,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -11288,6 +12639,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -11334,6 +12690,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -11398,6 +12758,13 @@
                   "fr" : "Repos complet + visualisation du match si surcharge déclarée"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min (2 × 45 min)",
+                  "es" : "90 min (2 × 45 min)",
+                  "fr" : "90 min (2 × 45 min)"
+                }
+              },
               "duration" : "90 min (2 x 45 min)",
               "incompatible_constraints" : [
                 "acl-history",
@@ -11470,6 +12837,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -11549,6 +12920,10 @@
                   "fr" : "Chaise contre le mur 3 × 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -11591,6 +12966,11 @@
                   "fr" : "Passage entre jambes à la poulie 3 × 12"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -11633,6 +13013,13 @@
                   "fr" : "Roue abdominale si dispo"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof per side + 30 s side plank rotation per side",
+                  "es" : "12 Pallof por lado + 30 s de plancha lateral con rotación por lado",
+                  "fr" : "12 Pallof par côté + 30 s de planche latérale avec rotation par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -11676,6 +13063,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-12"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -11720,6 +13111,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10-15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -11785,6 +13181,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -11831,6 +13231,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -11875,6 +13282,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -11923,6 +13337,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "5-6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5-6 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -11971,6 +13399,13 @@
                   "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jumps + 5 lateral bounds per side",
+                  "es" : "5 box jumps + 5 lateral bounds por lado",
+                  "fr" : "5 box jump + 5 lateral bound par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -12015,6 +13450,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -12079,6 +13518,13 @@
                   "fr" : "Repos complet + visualisation du match si surcharge déclarée"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min (2 × 45 min)",
+                  "es" : "90 min (2 × 45 min)",
+                  "fr" : "90 min (2 × 45 min)"
+                }
+              },
               "duration" : "90 min (2 x 45 min)",
               "incompatible_constraints" : [
                 "acl-history",
@@ -12151,6 +13597,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -12210,6 +13660,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -12253,6 +13707,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -12297,6 +13758,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -12345,6 +13813,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -12393,6 +13868,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -12439,6 +13919,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -12503,6 +13987,13 @@
                   "fr" : "Repos complet + visualisation du match si surcharge déclarée"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min (2 × 45 min)",
+                  "es" : "90 min (2 × 45 min)",
+                  "fr" : "90 min (2 × 45 min)"
+                }
+              },
               "duration" : "90 min (2 x 45 min)",
               "incompatible_constraints" : [
                 "acl-history",
@@ -12575,6 +14066,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -12654,6 +14149,10 @@
                   "fr" : "Chaise contre le mur 3 × 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -12696,6 +14195,11 @@
                   "fr" : "Passage entre jambes à la poulie 3 × 12"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -12738,6 +14242,13 @@
                   "fr" : "Roue abdominale si dispo"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof per side + 30 s side plank rotation per side",
+                  "es" : "12 Pallof por lado + 30 s de plancha lateral con rotación por lado",
+                  "fr" : "12 Pallof par côté + 30 s de planche latérale avec rotation par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -12781,6 +14292,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-12"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -12825,6 +14340,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10-15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -12890,6 +14410,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -12936,6 +14460,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -12980,6 +14511,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "35 min effective",
+                  "es" : "35 min efectivos",
+                  "fr" : "35 min effectif"
+                }
+              },
               "duration" : "35 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -13028,6 +14566,13 @@
                   "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jumps + 5 lateral bounds per side",
+                  "es" : "5 box jumps + 5 lateral bounds por lado",
+                  "fr" : "5 box jump + 5 lateral bound par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -13072,6 +14617,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -13136,6 +14685,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -13182,6 +14735,13 @@
                   "fr" : "Navette 5-10 m, 15 sec effort / 15 sec repos"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 cycles × (15 s threshold run / 15 s walk)",
+                  "es" : "12 ciclos × (15 s de carrera a umbral / 15 s de caminata)",
+                  "fr" : "12 cycles × (15 s de course au seuil / 15 s de marche)"
+                }
+              },
               "duration" : "12 cycles x 15 sec course au seuil / 15 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -13227,6 +14787,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "10 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "10 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "10 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -13274,6 +14841,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -13322,6 +14903,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -13400,6 +14985,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -13443,6 +15032,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -13487,6 +15083,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -13535,6 +15138,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -13583,6 +15193,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -13629,6 +15244,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -13693,6 +15312,13 @@
                   "fr" : "Repos complet + visualisation du match si surcharge déclarée"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min (2 × 45 min)",
+                  "es" : "90 min (2 × 45 min)",
+                  "fr" : "90 min (2 × 45 min)"
+                }
+              },
               "duration" : "90 min (2 x 45 min)",
               "incompatible_constraints" : [
                 "acl-history",
@@ -13765,6 +15391,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -13844,6 +15474,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-12"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -13888,6 +15522,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10-15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -13931,6 +15570,10 @@
                   "fr" : "Chaise contre le mur 3 × 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -13973,6 +15616,11 @@
                   "fr" : "Passage entre jambes à la poulie 3 × 12"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -14015,6 +15663,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -14079,6 +15731,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -14125,6 +15781,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -14169,6 +15832,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -14217,6 +15887,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -14265,6 +15949,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -14329,6 +16017,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -14375,6 +16067,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "10 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "10 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "10 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -14422,6 +16121,13 @@
                   "fr" : "Navette 5-10 m, 15 sec effort / 15 sec repos"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 cycles × (15 s threshold run / 15 s walk)",
+                  "es" : "12 ciclos × (15 s de carrera a umbral / 15 s de caminata)",
+                  "fr" : "12 cycles × (15 s de course au seuil / 15 s de marche)"
+                }
+              },
               "duration" : "12 cycles x 15 sec course au seuil / 15 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -14467,6 +16173,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -14545,6 +16255,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -14588,6 +16302,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -14632,6 +16353,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -14680,6 +16408,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -14728,6 +16463,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -14774,6 +16514,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -14838,6 +16582,13 @@
                   "fr" : "Repos complet + visualisation du match si surcharge déclarée"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min (2 × 45 min)",
+                  "es" : "90 min (2 × 45 min)",
+                  "fr" : "90 min (2 × 45 min)"
+                }
+              },
               "duration" : "90 min (2 x 45 min)",
               "incompatible_constraints" : [
                 "acl-history",
@@ -14910,6 +16661,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -14989,6 +16744,10 @@
                   "fr" : "Chaise contre le mur 3 × 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -15031,6 +16790,11 @@
                   "fr" : "Passage entre jambes à la poulie 3 × 12"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -15073,6 +16837,13 @@
                   "fr" : "Roue abdominale si dispo"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof per side + 30 s side plank rotation per side",
+                  "es" : "12 Pallof por lado + 30 s de plancha lateral con rotación por lado",
+                  "fr" : "12 Pallof par côté + 30 s de planche latérale avec rotation par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -15116,6 +16887,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-12"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -15160,6 +16935,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10-15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -15225,6 +17005,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -15271,6 +17055,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -15315,6 +17106,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -15363,6 +17161,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "5-6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5-6 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -15411,6 +17223,13 @@
                   "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jumps + 5 lateral bounds per side",
+                  "es" : "5 box jumps + 5 lateral bounds por lado",
+                  "fr" : "5 box jump + 5 lateral bound par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -15455,6 +17274,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -15519,6 +17342,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -15565,6 +17392,13 @@
                   "fr" : "Navette 5-10 m, 15 sec effort / 15 sec repos"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 cycles × (15 s threshold run / 15 s walk)",
+                  "es" : "12 ciclos × (15 s de carrera a umbral / 15 s de caminata)",
+                  "fr" : "12 cycles × (15 s de course au seuil / 15 s de marche)"
+                }
+              },
               "duration" : "12 cycles x 15 sec course au seuil / 15 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -15610,6 +17444,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "10 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "10 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "10 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -15657,6 +17498,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -15705,6 +17560,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -15783,6 +17642,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -15826,6 +17689,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -15870,6 +17740,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -15918,6 +17795,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -15966,6 +17850,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -16012,6 +17901,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -16076,6 +17969,13 @@
                   "fr" : "Repos complet + visualisation du match si surcharge déclarée"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min (2 × 45 min)",
+                  "es" : "90 min (2 × 45 min)",
+                  "fr" : "90 min (2 × 45 min)"
+                }
+              },
               "duration" : "90 min (2 x 45 min)",
               "incompatible_constraints" : [
                 "acl-history",
@@ -16148,6 +18048,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -16227,6 +18131,10 @@
                   "fr" : "Chaise contre le mur 3 × 60 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -16269,6 +18177,11 @@
                   "fr" : "Passage entre jambes à la poulie 3 × 12"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -16311,6 +18224,13 @@
                   "fr" : "Roue abdominale si dispo"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof per side + 30 s side plank rotation per side",
+                  "es" : "12 Pallof por lado + 30 s de plancha lateral con rotación por lado",
+                  "fr" : "12 Pallof par côté + 30 s de planche latérale avec rotation par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -16354,6 +18274,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-12"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -16398,6 +18322,13 @@
                   "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jumps + 5 lateral bounds per side",
+                  "es" : "5 box jumps + 5 lateral bounds por lado",
+                  "fr" : "5 box jump + 5 lateral bound par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -16464,6 +18395,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -16510,6 +18445,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -16554,6 +18496,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 min effective",
+                  "es" : "30 min efectivos",
+                  "fr" : "30 min effectif"
+                }
+              },
               "duration" : "30 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -16602,6 +18551,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "3-4"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "3-4 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -16650,6 +18613,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -16714,6 +18681,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -16760,6 +18731,13 @@
                   "fr" : "Vélo seuil fractionné 30 s/30 s si genou sensible"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 cycles × (30 s threshold run / 30 s walk)",
+                  "es" : "10 ciclos × (30 s de carrera a umbral / 30 s de caminata)",
+                  "fr" : "10 cycles × (30 s de course au seuil / 30 s de marche)"
+                }
+              },
               "duration" : "10 cycles x 30 sec course au seuil / 30 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -16804,6 +18782,13 @@
                   "fr" : "Navette 10-20-30 m, récup 30 sec (volume réduit)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 × (30 m sprint + 25 s rest between reps)",
+                  "es" : "10 × (30 m sprint + 25 s de recuperación entre reps)",
+                  "fr" : "10 × (30 m sprint + 25 s de récup entre reps)"
+                }
+              },
               "duration" : "10 x 30 m sprint / recup 25 sec entre reps",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -16851,6 +18836,20 @@
                   "fr" : "Exercice technique en solo si pas d'effectif"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "4-5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4-5 min ON / 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -16899,6 +18898,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -16977,6 +18980,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -17020,6 +19027,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -17064,6 +19078,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -17112,6 +19133,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -17160,6 +19188,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -17206,6 +19239,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -17270,6 +19307,13 @@
                   "fr" : "Repos complet + visualisation du match si surcharge déclarée"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min (2 × 45 min)",
+                  "es" : "90 min (2 × 45 min)",
+                  "fr" : "90 min (2 × 45 min)"
+                }
+              },
               "duration" : "90 min (2 x 45 min)",
               "incompatible_constraints" : [
                 "acl-history",
@@ -17342,6 +19386,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -17421,6 +19469,10 @@
                   "fr" : "Leg curl glissé avec une serviette sur sol glissant"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-12"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -17465,6 +19517,11 @@
                   "fr" : "Squat cosaque"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10-15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -17508,6 +19565,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -17572,6 +19633,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -17618,6 +19683,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -17662,6 +19734,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -17710,6 +19789,13 @@
                   "fr" : "Montées de genoux (skipping) 4 × 15 sec"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (25 m sprint + 25 s rest)",
+                  "es" : "6 × (25 m sprint + 25 s de recuperación)",
+                  "fr" : "6 × (25 m sprint + 25 s de récup)"
+                }
+              },
               "duration" : "6 x 25 m sprint / recup 25 sec",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -17755,6 +19841,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -17819,6 +19909,10 @@
                   "fr" : "FIFA 11+ partie 1 + échelle de rythme 4 min (dedans-dehors, sauts latéraux, ickey shuffle) si échelle disponible — travail de pieds rapides"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -17865,6 +19959,13 @@
                   "fr" : "Navette 5-10 m, 15 sec effort / 15 sec repos"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 cycles × (15 s threshold run / 15 s walk)",
+                  "es" : "12 ciclos × (15 s de carrera a umbral / 15 s de caminata)",
+                  "fr" : "12 cycles × (15 s de course au seuil / 15 s de marche)"
+                }
+              },
               "duration" : "12 cycles x 15 sec course au seuil / 15 sec marche",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -17910,6 +20011,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 min effective",
+                  "es" : "12 min efectivos",
+                  "fr" : "12 min effectif"
+                }
+              },
               "duration" : "12 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -17958,6 +20066,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -18036,6 +20148,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -18079,6 +20195,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -18123,6 +20246,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -18171,6 +20301,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -18219,6 +20356,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -18265,6 +20407,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -18329,6 +20475,13 @@
                   "fr" : "Repos complet + visualisation du match si surcharge déclarée"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min (2 × 45 min)",
+                  "es" : "90 min (2 × 45 min)",
+                  "fr" : "90 min (2 × 45 min)"
+                }
+              },
               "duration" : "90 min (2 x 45 min)",
               "incompatible_constraints" : [
                 "acl-history",
@@ -18401,6 +20554,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 
@@ -18480,6 +20637,10 @@
                   "fr" : "Marche 30 min (ultra-légère)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
 
@@ -18522,6 +20683,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -18581,6 +20746,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -18624,6 +20793,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -18668,6 +20844,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min effective",
+                  "es" : "20 min efectivos",
+                  "fr" : "20 min effectif"
+                }
+              },
               "duration" : "20 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -18716,6 +20899,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 min effective",
+                  "es" : "12 min efectivos",
+                  "fr" : "12 min effectif"
+                }
+              },
               "duration" : "12 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -18764,6 +20954,13 @@
                   "fr" : "Footing avec accélérations 4 × 30 m modérées"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 strides × 30 m progressive (80-90%)",
+                  "es" : "5 rectas × 30 m en aceleración progresiva (80-90%)",
+                  "fr" : "5 lignes droites × 30 m en accélération progressive (80-90 %)"
+                }
+              },
               "duration" : "5 strides x 30 m progressive 80-90 pct",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -18807,6 +21004,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -18885,6 +21086,10 @@
                   "fr" : "FIFA 11+ partie 1 seule 6 min si fatigue accumulée"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -18928,6 +21133,13 @@
                   "fr" : "Passes longues 25 m si le partenaire est aguerri"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 passes per foot (40 total)",
+                  "es" : "20 pases por pie (40 en total)",
+                  "fr" : "20 passes par pied (40 au total)"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -18972,6 +21184,13 @@
                   "fr" : "Analyse tactique vidéo 20 min (jour de pluie)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min effective",
+                  "es" : "15 min efectivos",
+                  "fr" : "15 min effectif"
+                }
+              },
               "duration" : "15 min effectif",
               "incompatible_constraints" : [
                 "acl-history",
@@ -19020,6 +21239,11 @@
                   "fr" : "Coup franc 20 m si genou sensible"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -19066,6 +21290,13 @@
                   "fr" : "Carnet perso sur les ressentis 10 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 min review (can be done after the session)",
+                  "es" : "10 min de revisión (se puede hacer después de la sesión)",
+                  "fr" : "10 min de revue (à faire après la séance si besoin)"
+                }
+              },
               "duration" : "10 min review (peut etre fait apres seance)",
               "incompatible_constraints" : [
 
@@ -19106,6 +21337,10 @@
                   "fr" : "Bain froid 8 min après match (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -19189,6 +21424,13 @@
                   "fr" : "Repos complet + visualisation du match si surcharge déclarée"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min (2 × 45 min)",
+                  "es" : "90 min (2 × 45 min)",
+                  "fr" : "90 min (2 × 45 min)"
+                }
+              },
               "duration" : "90 min (2 x 45 min)",
               "incompatible_constraints" : [
                 "acl-history",
@@ -19261,6 +21503,10 @@
                   "fr" : "Bain froid 10 min + sieste (récupération avancée)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
 

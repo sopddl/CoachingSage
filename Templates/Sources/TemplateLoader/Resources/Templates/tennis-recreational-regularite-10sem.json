@@ -53,6 +53,10 @@
                   "fr" : "Gestes à vide (shadow) coup droit + revers 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -93,6 +97,20 @@
                   "fr" : "Lance-balles coup droit croisé 5 min × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 2 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -133,6 +151,20 @@
                   "fr" : "Gestes à vide (shadow) revers + croisé au mur 4 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "downTheLine",
+                    "unit" : "minutes",
+                    "value" : "4"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4 min long de ligne + 2 min récup marche",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -174,6 +206,10 @@
                   "fr" : "Gestes de service à vide (shadow) + service léger contre le mur 15 × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -236,6 +272,20 @@
                   "fr" : "Lance-balles croisé régularité 6 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "strikesDrill",
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "6 min frappes + 2 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -277,6 +327,10 @@
                   "fr" : "Panier avec coach, alimentation alternée 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -317,6 +371,11 @@
                   "fr" : "Glissé des bras au mur (omoplates)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -354,6 +413,11 @@
                   "fr" : "Rotation externe au mur 12/bras × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -390,6 +454,13 @@
                   "fr" : "Montées de genoux basses + déplacements latéraux 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 slow round trip",
+                  "es" : "1 ida y vuelta lenta",
+                  "fr" : "1 aller-retour lent"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -465,6 +536,10 @@
                   "fr" : "Gestes à vide (shadow) coup droit + revers 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -505,6 +580,20 @@
                   "fr" : "Lance-balles coup droit croisé 5 min × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -545,6 +634,19 @@
                   "fr" : "Gestes à vide (shadow) revers + croisé au mur 5 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min + 90 sec récup marche",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -586,6 +688,10 @@
                   "fr" : "Gestes à vide (shadow) séquence service + retour 10 × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -648,6 +754,20 @@
                   "fr" : "Lance-balles croisé régularité 6 min × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "strikesDrill",
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "6 min frappes + 2 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -689,6 +809,10 @@
                   "fr" : "Panier avec coach, alimentation alternée 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -729,6 +853,13 @@
                   "fr" : "Glissé des bras au mur + extension en I (omoplates)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 per movement",
+                  "es" : "12 por movimiento",
+                  "fr" : "12 par mouvement"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -767,6 +898,13 @@
                   "fr" : "Rotation externe au mur + planche anti-rotation 30 sec × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 external rotations + 10 Pallof per side",
+                  "es" : "12 rotaciones externas + 10 Pallof por lado",
+                  "fr" : "12 rotations externes + 10 Pallof par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -804,6 +942,20 @@
                   "fr" : "6 × 1 min de montées de genoux + 1 min de marche"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "meters",
+                    "value" : "15"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
                 "knee-injury",
@@ -879,6 +1031,10 @@
                   "fr" : "Gestes à vide (shadow) coup droit + revers 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -919,6 +1075,20 @@
                   "fr" : "Lance-balles croisé régularité 5 min × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -959,6 +1129,20 @@
                   "fr" : "Lance-balles revers croisé 5 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1000,6 +1184,10 @@
                   "fr" : "Panier avec coach, service + 1er coup 8 × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -1062,6 +1250,20 @@
                   "fr" : "Panier avec coach, croisé alterné 6 min × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "6 min cross + 2 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -1102,6 +1304,10 @@
                   "fr" : "Panier avec coach, schémas 18 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1142,6 +1348,13 @@
                   "fr" : "Glissé des bras au mur + rotation externe à l'élastique × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Y-T-W + 12 external rotations",
+                  "es" : "12 Y-T-W + 12 rotaciones externas",
+                  "fr" : "12 Y-T-W + 12 rotations externes"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -1180,6 +1393,11 @@
                   "fr" : "Pont fessier sur une jambe 8/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -1217,6 +1435,13 @@
                   "fr" : "Pont fessier sur une jambe 8/jambe + planche sur les avant-bras 30 sec × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 hip thrust + 25 s plank per side",
+                  "es" : "10 hip thrust + 25 s de plancha por lado",
+                  "fr" : "10 hip thrust + 25 s de planche par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -1254,6 +1479,20 @@
                   "fr" : "8 × 1 min de montées de genoux + 1 min de marche"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "meters",
+                    "value" : "15"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
                 "knee-injury",
@@ -1329,6 +1568,10 @@
                   "fr" : "Gestes à vide (shadow) 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1369,6 +1612,20 @@
                   "fr" : "Lance-balles croisé 5 min × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -1409,6 +1666,13 @@
                   "fr" : "Lance-balles intensité aléatoire 11 balles × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -1450,6 +1714,10 @@
                   "fr" : "Service + retour au mur 10 × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -1512,6 +1780,20 @@
                   "fr" : "Panier avec coach, croisé 6 min × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "6 min cross + 2 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -1552,6 +1834,13 @@
                   "fr" : "Au mur, intensité contrôlée 6 min × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 tie-break to 4 points + 2 min rest",
+                  "es" : "1 tie-break a 4 puntos + 2 min de recuperación",
+                  "fr" : "1 tie-break en 4 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -1593,6 +1882,13 @@
                   "fr" : "Glissé des bras au mur + rotation externe à l'élastique × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Y-T-W + 12 external rotations",
+                  "es" : "12 Y-T-W + 12 rotaciones externas",
+                  "fr" : "12 Y-T-W + 12 rotations externes"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -1631,6 +1927,13 @@
                   "fr" : "Fentes marchées 10/jambe + pont fessier sur une jambe 8/jambe × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 split squat per leg + 8 hip thrust per leg",
+                  "es" : "8 split squat por pierna + 8 hip thrust por pierna",
+                  "fr" : "8 split squat par jambe + 8 hip thrust par jambe"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -1668,6 +1971,13 @@
                   "fr" : "Pas chassés latéraux rapides 30 sec × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip",
+                  "es" : "1 ida y vuelta",
+                  "fr" : "1 aller-retour"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -1706,6 +2016,20 @@
                   "fr" : "10 × 1 min de montées de genoux + 1 min de marche"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "meters",
+                    "value" : "15-20"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
                 "knee-injury",
@@ -1781,6 +2105,10 @@
                   "fr" : "Gestes à vide (shadow) coup droit + revers 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1821,6 +2149,20 @@
                   "fr" : "Lance-balles croisé 5 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 2 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -1861,6 +2203,20 @@
                   "fr" : "Lance-balles revers croisé 4 min × 2"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "4"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "4 min cross + 2 min récup marche",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1902,6 +2258,10 @@
                   "fr" : "Gestes de service complet à vide (shadow) 15 × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -1964,6 +2324,20 @@
                   "fr" : "Lance-balles croisé 5 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "strikesDrill",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5 min frappes + 2 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -2005,6 +2379,10 @@
                   "fr" : "Panier avec coach, alimentation neutre 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2045,6 +2423,11 @@
                   "fr" : "Glissé des bras au mur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -2082,6 +2465,11 @@
                   "fr" : "Rotation externe au mur 12/bras × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2118,6 +2506,10 @@
                   "fr" : "Étirements statiques globaux 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -2192,6 +2584,10 @@
                   "fr" : "Gestes à vide (shadow) 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2232,6 +2628,20 @@
                   "fr" : "Lance-balles croisé alterné 5 min × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -2272,6 +2682,10 @@
                   "fr" : "Lance-balles volée à mi-court 8 min × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2313,6 +2727,10 @@
                   "fr" : "Gestes de service complet à vide (shadow) 12 × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -2375,6 +2793,20 @@
                   "fr" : "Panier avec coach, croisé 5 min × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -2415,6 +2847,10 @@
                   "fr" : "Panier avec coach, schémas 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2455,6 +2891,13 @@
                   "fr" : "Glissé des bras au mur + rotation externe + pointeur 8/côté × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Y-T-W + 12 external rotations + 10 Pallof per side",
+                  "es" : "12 Y-T-W + 12 rotaciones externas + 10 Pallof por lado",
+                  "fr" : "12 Y-T-W + 12 rotations externes + 10 Pallof par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -2493,6 +2936,13 @@
                   "fr" : "Fentes marchées 12/jambe + pont fessier sur une jambe 8 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 split squat per leg + 8 hip thrust per leg",
+                  "es" : "10 split squat por pierna + 8 hip thrust por pierna",
+                  "fr" : "10 split squat par jambe + 8 hip thrust par jambe"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -2530,6 +2980,20 @@
                   "fr" : "10 × 1 min de montées de genoux + 1 min de marche"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "meters",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
                 "knee-injury",
@@ -2605,6 +3069,10 @@
                   "fr" : "Gestes à vide (shadow) 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2645,6 +3113,20 @@
                   "fr" : "Lance-balles croisé 5 min × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -2685,6 +3167,10 @@
                   "fr" : "Service au mur + gestes de volée à vide (shadow) 8 × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain",
@@ -2726,6 +3212,13 @@
                   "fr" : "Lance-balles intensité aléatoire 11 balles × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -2789,6 +3282,20 @@
                   "fr" : "Panier avec coach, croisé 5 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -2829,6 +3336,10 @@
                   "fr" : "3 × tie-break partiel 4 points avec un partenaire"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -2871,6 +3382,13 @@
                   "fr" : "Glissé des bras au mur + rotation externe à l'élastique × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Y-T-W + 12 external rotations",
+                  "es" : "12 Y-T-W + 12 rotaciones externas",
+                  "fr" : "12 Y-T-W + 12 rotations externes"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -2909,6 +3427,13 @@
                   "fr" : "Anti-rotation à l'élastique 10/côté + squat sur deux jambes 12 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 throws per side + 8 split squat per leg",
+                  "es" : "8 lanzamientos por lado + 8 split squat por pierna",
+                  "fr" : "8 lancers par côté + 8 split squat par jambe"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury",
@@ -2947,6 +3472,13 @@
                   "fr" : "10 × 1 min de montées de genoux + 1 min de marche"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 m out + 30 s walking recovery back",
+                  "es" : "20 m de ida + 30 s de recuperacióneración caminando a la vuelta",
+                  "fr" : "20 m à l'aller + 30 s de récup en marchant au retour"
+                }
+              },
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
                 "knee-injury",
@@ -3022,6 +3554,10 @@
                   "fr" : "Gestes à vide (shadow) + au mur 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3062,6 +3598,13 @@
                   "fr" : "Lance-balles intensité aléatoire 11 balles × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -3103,6 +3646,10 @@
                   "fr" : "Service au mur + gestes de volée à vide (shadow) 8 × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain",
@@ -3166,6 +3713,20 @@
                   "fr" : "Panier avec coach, croisé 5 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -3206,6 +3767,10 @@
                   "fr" : "3 × tie-break partiel 4 points avec un partenaire"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -3248,6 +3813,13 @@
                   "fr" : "Glissé des bras au mur + rotation externe + pointeur × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Y-T-W + 12 external rotations + 10 Pallof per side",
+                  "es" : "12 Y-T-W + 12 rotaciones externas + 10 Pallof por lado",
+                  "fr" : "12 Y-T-W + 12 rotations externes + 10 Pallof par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -3286,6 +3858,13 @@
                   "fr" : "Fentes marchées 12/jambe + pont fessier sur une jambe 10 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 split squat per leg + 10 hip thrust per leg",
+                  "es" : "10 split squat por pierna + 10 hip thrust por pierna",
+                  "fr" : "10 split squat par jambe + 10 hip thrust par jambe"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -3323,6 +3902,20 @@
                   "fr" : "12 × 1 min de montées de genoux + 1 min de marche"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "meters",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
                 "knee-injury",
@@ -3398,6 +3991,10 @@
                   "fr" : "Gestes à vide (shadow) 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3438,6 +4035,20 @@
                   "fr" : "Panier avec coach, croisé 5 min × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -3478,6 +4089,13 @@
                   "fr" : "Lance-balles aléatoire 11 balles × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -3519,6 +4137,10 @@
                   "fr" : "Service au mur + gestes à vide (shadow) 8 × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain",
@@ -3582,6 +4204,20 @@
                   "fr" : "Panier avec coach, croisé 5 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -3622,6 +4258,10 @@
                   "fr" : "3 × tie-break partiel 4 points avec un partenaire"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -3664,6 +4304,13 @@
                   "fr" : "Glissé des bras au mur + rotation externe à l'élastique × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Y-T-W + 12 external rotations",
+                  "es" : "12 Y-T-W + 12 rotaciones externas",
+                  "fr" : "12 Y-T-W + 12 rotations externes"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -3702,6 +4349,13 @@
                   "fr" : "Fentes marchées 10/jambe + pointeur 8/côté × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 split squat per leg + 10 Pallof per side",
+                  "es" : "10 split squat por pierna + 10 Pallof por lado",
+                  "fr" : "10 split squat par jambe + 10 Pallof par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -3740,6 +4394,20 @@
                   "fr" : "8 × 1 min de montées de genoux + 1 min de marche"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "meters",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
                 "knee-injury",
@@ -3815,6 +4483,10 @@
                   "fr" : "Gestes à vide (shadow) + au mur 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3855,6 +4527,20 @@
                   "fr" : "Panier avec coach, croisé 5 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -3895,6 +4581,10 @@
                   "fr" : "Service au mur + gestes de volée à vide (shadow) 8 × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain",
@@ -3936,6 +4626,10 @@
                   "fr" : "Glissé des bras au mur + rotation externe + mobilité des hanches 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3996,6 +4690,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -4036,6 +4734,13 @@
                   "fr" : "Panier avec coach, croisé régularité × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set + 2 min walking recovery",
+                  "es" : "1 serie + 2 min de recuperacióneración caminando",
+                  "fr" : "1 série + 2 min de récup en marchant"
+                }
+              },
               "duration" : "1 série + 2 min récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -4076,6 +4781,13 @@
                   "fr" : "Lance-balles aléatoire 11 balles × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -4117,6 +4829,10 @@
                   "fr" : "3 × tie-break partiel 4 points avec un partenaire"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -4159,6 +4875,10 @@
                   "fr" : "Yoga doux 13 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "13"
+              },
               "duration" : "13 min",
               "incompatible_constraints" : [
 

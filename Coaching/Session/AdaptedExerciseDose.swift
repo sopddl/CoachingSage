@@ -18,7 +18,7 @@ extension AdaptedExercise {
     /// ne s'applique QU'À ces sports — ailleurs un dosage legacy générique (« 12 », « 30 min »,
     /// « 5 km »…) ne doit PAS être réinterprété : la muscu, p. ex., rend ses reps en affichage
     /// « héros » propre (party muscu) qu'on écraserait sinon. À étendre à chaque nouveau lot-sport.
-    static let doseMigratedSports: Set<String> = ["yoga", "running", "cycling", "swimming", "hiking", "hiit", "strengthTraining"]
+    static let doseMigratedSports: Set<String> = ["yoga", "running", "cycling", "swimming", "hiking", "hiit", "strengthTraining", "tennis", "football"]
 
     func effectiveDose(sportCode: String?) -> Dose? {
         if let dose { return dose }   // contenu neuf (option A) : porte déjà son dose

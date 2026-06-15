@@ -53,6 +53,10 @@
                   "fr" : "Rouler le ballon sous la main au sol 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -91,6 +95,10 @@
                   "fr" : "Passe contre un rebondisseur portable 10 passes × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "passes",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "groin-injury"
@@ -130,6 +138,10 @@
                   "fr" : "Passe latérale assis sur un banc, pied faible 8 × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "passes",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "groin-injury"
@@ -169,6 +181,10 @@
                   "fr" : "Contrôle face à face avec un partenaire 3 min × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -208,6 +224,10 @@
                   "fr" : "Étirements debout 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
 
@@ -267,6 +287,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -303,6 +327,11 @@
                   "fr" : "Ouverture de hanche allongé sur le côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -340,6 +369,11 @@
                   "fr" : "Talons-fesses alternés"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par jambe",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -376,6 +410,10 @@
                   "fr" : "Chaise contre le mur 30 sec × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -413,6 +451,11 @@
                   "fr" : "Pointeur avant-bras au sol 8/côté × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "wrist-pain",
                 "lower-back-pain"
@@ -450,6 +493,10 @@
                   "fr" : "Mollets avec appui des mains au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -523,6 +570,10 @@
                   "fr" : "Passe contre un mur 5 + jonglage cuisse seule 1 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -561,6 +612,13 @@
                   "fr" : "Conduite slalom autour de 4 piquets dans un parc 4 × 2 allers-retours"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 round trips",
+                  "es" : "2 idas y vueltas",
+                  "fr" : "2 allers-retours"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -601,6 +659,10 @@
                   "fr" : "Exercice avec rebondisseur portable 2 min × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "2"
+              },
               "duration" : "2 min",
               "incompatible_constraints" : [
                 "groin-injury",
@@ -640,6 +702,10 @@
                   "fr" : "Marche rapide ballon dans les pieds 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -679,6 +745,10 @@
                   "fr" : "Marche libre 3 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
 
@@ -737,6 +807,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -773,6 +847,11 @@
                   "fr" : "Ouverture de hanche allongé sur le côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -810,6 +889,13 @@
                   "fr" : "Équilibre sur une jambe, appui d'un doigt sur le mur 30 sec/jambe × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s per leg (15 s eyes open + 15 s eyes closed)",
+                  "es" : "30 s por pierna (15 s ojos abiertos + 15 s ojos cerrados)",
+                  "fr" : "30 s par jambe (15 s yeux ouverts + 15 s yeux fermés)"
+                }
+              },
               "duration" : "30 sec par jambe (15 sec yeux ouverts + 15 sec yeux fermés)",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -846,6 +932,10 @@
                   "fr" : "Chaise contre le mur 30 sec × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -883,6 +973,10 @@
                   "fr" : "Pont tenu sans bouger 25 sec × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -919,6 +1013,11 @@
                   "fr" : "Pointeur sur avant-bras 10/côté × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "wrist-pain",
                 "lower-back-pain"
@@ -956,6 +1055,10 @@
                   "fr" : "Mollets avec appui au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "18"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1029,6 +1132,10 @@
                   "fr" : "Passe à deux + conduite slalom autour de piquets 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -1067,6 +1174,10 @@
                   "fr" : "Frappe demi-puissance sans cible 8 × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "strikes",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -1108,6 +1219,10 @@
                   "fr" : "Exercice avec rebondisseur portable 3 min × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "groin-injury",
@@ -1147,6 +1262,13 @@
                   "fr" : "Conduite en ligne droite 15 m intérieur du pied 4 × 2 allers-retours"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 round trips",
+                  "es" : "2 idas y vueltas",
+                  "fr" : "2 allers-retours"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -1187,6 +1309,10 @@
                   "fr" : "Marche rapide ballon dans les pieds 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1226,6 +1352,10 @@
                   "fr" : "Étirements debout 4 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
 
@@ -1285,6 +1415,13 @@
                   "fr" : "Planche genoux au sol, jambe levée 25 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 s per raised leg",
+                  "es" : "20 s por pierna elevada",
+                  "fr" : "20 s par jambe levée"
+                }
+              },
               "duration" : "20 sec par jambe levée",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -1321,6 +1458,11 @@
                   "fr" : "Planche latérale sur genoux 30 sec/côté × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1358,6 +1500,11 @@
                   "fr" : "Équilibre sur une jambe, appui d'un doigt au mur 30 sec/jambe × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par jambe",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -1394,6 +1541,10 @@
                   "fr" : "Chaise contre le mur 35 sec × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -1431,6 +1582,10 @@
                   "fr" : "Sauts à la corde 30 sec × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -1468,6 +1623,10 @@
                   "fr" : "Pont tenu sans bouger 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1504,6 +1663,10 @@
                   "fr" : "Mollets avec appui au mur 20 × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "20"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1577,6 +1740,10 @@
                   "fr" : "Révision à deux, passes-contrôles enchaînés 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -1616,6 +1783,10 @@
                   "fr" : "Exercice mur : 30 passes consécutives + conduite slalom 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -1659,6 +1830,10 @@
                   "fr" : "Étirements debout 4 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
 
@@ -1717,6 +1892,10 @@
                   "fr" : "Gainage croisé au sol 10/côté × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -1753,6 +1932,11 @@
                   "fr" : "Ouverture de hanche allongé sur le côté 12/côté × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1790,6 +1974,11 @@
                   "fr" : "Appui d'un doigt au mur 30 sec/jambe × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par jambe",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -1826,6 +2015,10 @@
                   "fr" : "Chaise contre le mur 30 sec × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -1863,6 +2056,10 @@
                   "fr" : "Pont tenu sans bouger 25 sec × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1899,6 +2096,10 @@
                   "fr" : "Mollets avec appui au mur 15 × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -1972,6 +2173,10 @@
                   "fr" : "Passe à deux + frappe sur cible 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -2011,6 +2216,13 @@
                   "fr" : "Conduite en ligne droite + virages larges 5 × 2 allers-retours"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 round trips",
+                  "es" : "2 idas y vueltas",
+                  "fr" : "2 allers-retours"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -2051,6 +2263,10 @@
                   "fr" : "Exercice mur : passe + déplacement latéral 3 min × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "groin-injury",
@@ -2090,6 +2306,13 @@
                   "fr" : "Frappe placée contre un mur sur point précis 6 × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 shots (3 per foot)",
+                  "es" : "6 golpes (3 por pie)",
+                  "fr" : "6 frappes (3 par pied)"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -2131,6 +2354,10 @@
                   "fr" : "Marche rapide ballon dans les pieds 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2170,6 +2397,10 @@
                   "fr" : "Étirements debout 4 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
 
@@ -2228,6 +2459,13 @@
                   "fr" : "Planche genoux, jambe levée 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 s per raised leg",
+                  "es" : "25 s por pierna elevada",
+                  "fr" : "25 s par jambe levée"
+                }
+              },
               "duration" : "25 sec par jambe levée",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -2264,6 +2502,11 @@
                   "fr" : "Planche latérale genoux 35 sec/côté × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2301,6 +2544,11 @@
                   "fr" : "Montée sur marche basse 8/jambe × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -2338,6 +2586,11 @@
                   "fr" : "Ouverture de hanche allongé sur le côté 12/côté × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -2375,6 +2628,11 @@
                   "fr" : "Équilibre sur une jambe avec appui au mur 30 sec/jambe × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par jambe",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -2411,6 +2669,10 @@
                   "fr" : "Pont tenu sans bouger 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2447,6 +2709,10 @@
                   "fr" : "Mollets avec appui au mur 20 × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "20"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2520,6 +2786,10 @@
                   "fr" : "Révision à deux 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -2559,6 +2829,13 @@
                   "fr" : "Jonglage main-pied (lancer + 1 contact)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 target contacts",
+                  "es" : "5 contactos con diana",
+                  "fr" : "5 contacts cible"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -2597,6 +2874,10 @@
                   "fr" : "Conduite + passe à deux 2 min × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "2"
+              },
               "duration" : "2 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -2637,6 +2918,20 @@
                   "fr" : "Exercice mur : 50 passes consécutives + conduite slalom 12 min"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "game",
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "3"
+                  }
+                ]
+              },
               "duration" : "6 min jeu + 3 min récup marche",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -2681,6 +2976,10 @@
                   "fr" : "Étirements debout 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
 
@@ -2739,6 +3038,13 @@
                   "fr" : "Planche genoux, jambe levée en alternance 35 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s per raised leg, alternating",
+                  "es" : "30 s por pierna elevada alternando",
+                  "fr" : "30 s par jambe levée en alternance"
+                }
+              },
               "duration" : "30 sec par jambe levée alternée",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -2775,6 +3081,11 @@
                   "fr" : "Planche latérale genoux 35 sec/côté × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2812,6 +3123,11 @@
                   "fr" : "Montée sur marche basse 8/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -2849,6 +3165,13 @@
                   "fr" : "Sauts à la corde 30 sec × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 vertical jumps + 5 lateral jumps per side",
+                  "es" : "8 saltos verticales + 5 saltos laterales por lado",
+                  "fr" : "8 sauts verticaux + 5 sauts latéraux par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -2886,6 +3209,11 @@
                   "fr" : "Une jambe yeux fermés 30 sec/jambe × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par jambe",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -2922,6 +3250,11 @@
                   "fr" : "Pont pieds sur une chaise 12 × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
@@ -2959,6 +3292,10 @@
                   "fr" : "Mollets avec appui au mur 22 × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "22"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3032,6 +3369,10 @@
                   "fr" : "Passes à deux ou rebondisseur 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -3071,6 +3412,13 @@
                   "fr" : "Conduite en ligne droite + virages 5 × 1"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 timed run + 1 free return",
+                  "es" : "1 pasada cronometrada + 1 vuelta libre",
+                  "fr" : "1 passage chronométré + 1 retour libre"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -3111,6 +3459,13 @@
                   "fr" : "Frappe contre un mur sur point précis 8 × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 shots (4 per foot)",
+                  "es" : "8 golpes (4 por pie)",
+                  "fr" : "8 frappes (4 par pied)"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -3152,6 +3507,20 @@
                   "fr" : "Exercice mur : 50 passes + conduite slalom enchaînés 16 min"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "game",
+                    "unit" : "minutes",
+                    "value" : "8"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "minutes",
+                    "value" : "3"
+                  }
+                ]
+              },
               "duration" : "8 min jeu + 3 min récup marche",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -3196,6 +3565,10 @@
                   "fr" : "Étirements debout 5 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
 
@@ -3254,6 +3627,13 @@
                   "fr" : "Planche genoux, jambe levée 40 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "35 s per raised leg, alternating",
+                  "es" : "35 s por pierna elevada alternando",
+                  "fr" : "35 s par jambe levée en alternance"
+                }
+              },
               "duration" : "35 sec par jambe levée alternée",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -3290,6 +3670,11 @@
                   "fr" : "Planche latérale genoux 40 sec/côté × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "35"
+              },
               "duration" : "35 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3327,6 +3712,11 @@
                   "fr" : "Montée sur marche basse 10/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -3364,6 +3754,13 @@
                   "fr" : "Sauts à la corde 40 sec × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 lateral jumps per side + 8 vertical jumps",
+                  "es" : "6 saltos laterales por lado + 8 saltos verticales",
+                  "fr" : "6 sauts latéraux par côté + 8 sauts verticaux"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -3401,6 +3798,11 @@
                   "fr" : "Pont pieds sur une chaise 12 × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
@@ -3438,6 +3840,11 @@
                   "fr" : "Pointeur sur avant-bras 10/côté × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "wrist-pain",
                 "lower-back-pain"
@@ -3475,6 +3882,13 @@
                   "fr" : "Mollets avec appui au mur 22 × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 reps + 5 s hold at top × 3",
+                  "es" : "20 reps + 5 s en tensión arriba × 3",
+                  "fr" : "20 reps + tenue 5 s en haut × 3"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3548,6 +3962,10 @@
                   "fr" : "Passes à deux ou rebondisseur, test 4 min × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -3587,6 +4005,13 @@
                   "fr" : "Conduite en ligne droite chronométrée 3 × 1"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 timed run out + 1 free return",
+                  "es" : "1 pasada cronometrada de ida + 1 vuelta libre",
+                  "fr" : "1 passage chronométré à l'aller + 1 retour libre"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -3627,6 +4052,13 @@
                   "fr" : "Frappe contre un mur sur point précis 10 × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 shots (6 strong foot + 4 weak foot)",
+                  "es" : "10 golpes (6 con pie bueno + 4 con pie malo)",
+                  "fr" : "10 frappes (6 du pied fort + 4 du pied faible)"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "groin-injury",
@@ -3668,6 +4100,10 @@
                   "fr" : "Exercice mur : 50 passes + conduite slalom + jonglage 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -3712,6 +4148,10 @@
                   "fr" : "Étirements debout + bilan 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -3770,6 +4210,13 @@
                   "fr" : "Planche genoux, jambe levée 35 sec × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 s per raised leg",
+                  "es" : "30 s por pierna elevada",
+                  "fr" : "30 s par jambe levée"
+                }
+              },
               "duration" : "30 sec par jambe levée",
               "incompatible_constraints" : [
                 "lower-back-pain"
@@ -3806,6 +4253,11 @@
                   "fr" : "Planche latérale genoux 35 sec/côté × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par côté",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3843,6 +4295,11 @@
                   "fr" : "Équilibre sur une jambe avec appui au mur 30 sec/jambe × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par jambe",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -3879,6 +4336,11 @@
                   "fr" : "Montée sur marche basse 10/jambe × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -3916,6 +4378,11 @@
                   "fr" : "Pont pieds sur une chaise 10 × 2"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "hamstring-injury"
@@ -3953,6 +4420,10 @@
                   "fr" : "Mollets avec appui au mur 20 × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "20"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],

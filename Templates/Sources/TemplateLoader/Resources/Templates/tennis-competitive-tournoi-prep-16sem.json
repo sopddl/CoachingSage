@@ -53,6 +53,10 @@
                   "fr" : "Gestes à vide (shadow) coup droit + revers 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -93,6 +97,20 @@
                   "fr" : "Lance-balles coup droit croisé 5 min × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup marche",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -133,6 +151,19 @@
                   "fr" : "Lance-balles revers croisé 5 min × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min + 90 sec récup marche",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -174,6 +205,13 @@
                   "fr" : "Gestes à vide (shadow) service + service léger contre le mur 20 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 serves (10 flat + 10 slice or kick)",
+                  "es" : "20 servicios (10 planos + 10 cortados o liftados)",
+                  "fr" : "20 services (10 à plat + 10 slicés ou kickés)"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -236,6 +274,11 @@
                   "fr" : "Glissé au mur scapulaire"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -274,6 +317,11 @@
                   "fr" : "Rotation externe au mur 12/bras × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -310,6 +358,11 @@
                   "fr" : "Fente arrière au poids du corps 10/jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -347,6 +400,11 @@
                   "fr" : "Pont fessier lesté sur banc (deux jambes)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -384,6 +442,11 @@
                   "fr" : "Planche latérale avec rotation 30 sec/côté × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -420,6 +483,10 @@
                   "fr" : "Montée sur banc explosive 6/jambe × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -480,6 +547,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -520,6 +591,10 @@
                   "fr" : "Gestes à vide (shadow) service + coup droit au mur 10 × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -560,6 +635,10 @@
                   "fr" : "Gestes à vide (shadow) retour + panier 10 × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow",
@@ -601,6 +680,13 @@
                   "fr" : "Gestes à vide (shadow) volée + smash au mur 8 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 sequences (1 forehand volley + 1 backhand volley + 1 smash)",
+                  "es" : "8 secuencias (1 volea de derecha + 1 volea de revés + 1 smash)",
+                  "fr" : "8 séquences (1 volée de coup droit + 1 volée de revers + 1 smash)"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -663,6 +749,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -703,6 +793,20 @@
                   "fr" : "Lance-balles aléatoire 45 sec × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "45"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "45 sec sprint + 90 sec récup marche",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -746,6 +850,20 @@
                   "fr" : "Lance-balles croisé régularité 5 min × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 2 min récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -786,6 +904,13 @@
                   "fr" : "Gestes à vide (shadow) service + service léger sur cibles 10 × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 serves (5 down the T + 5 wide)",
+                  "es" : "10 servicios (5 al centro + 5 abiertos)",
+                  "fr" : "10 services (5 au T + 5 extérieurs)"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -849,6 +974,13 @@
                   "fr" : "Y-T-W debout 12/lettre × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 reps each",
+                  "es" : "12 reps cada uno",
+                  "fr" : "12 reps chacun"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -887,6 +1019,11 @@
                   "fr" : "Gainage croisé au sol 10/côté × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -923,6 +1060,13 @@
                   "fr" : "Montées de genoux basses + déplacements latéraux 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip per pattern",
+                  "es" : "1 ida y vuelta por patrón",
+                  "fr" : "1 aller-retour par pattern"
+                }
+              },
               "duration" : "1 passage A/R chaque pattern",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -961,6 +1105,20 @@
                   "fr" : "Corde à sauter en intermittent 30 sec × 8"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "meters",
+                    "value" : "15"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "15 m sprint + 30 sec récup marche",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1036,6 +1194,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1076,6 +1238,20 @@
                   "fr" : "Lance-balles coup droit croisé 5 min × 6"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min cross + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -1116,6 +1292,19 @@
                   "fr" : "Lance-balles revers 5 min × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min + 90 sec récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1157,6 +1346,13 @@
                   "fr" : "Gestes à vide (shadow) service + retour 10 × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 sequences (5 serving + 5 returning)",
+                  "es" : "10 secuencias (5 al saque + 5 al resto)",
+                  "fr" : "10 séquences (5 au service + 5 en retour)"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -1219,6 +1415,11 @@
                   "fr" : "Glissé au mur scapulaire"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -1257,6 +1458,11 @@
                   "fr" : "Rotation externe au mur × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -1293,6 +1499,11 @@
                   "fr" : "Fente arrière au poids du corps × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
@@ -1330,6 +1541,11 @@
                   "fr" : "Pont fessier sur une jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -1367,6 +1583,11 @@
                   "fr" : "Bûcheron à la poulie (wood chop) haltère 8/côté × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -1404,6 +1625,13 @@
                   "fr" : "Montée sur banc explosive + saut du patineur (skater) × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 box jump + 6 lateral bound (3 per side)",
+                  "es" : "6 box jump + 6 lateral bound (3 por lado)",
+                  "fr" : "6 box jump + 6 lateral bound (3 par côté)"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -1464,6 +1692,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1504,6 +1736,10 @@
                   "fr" : "Gestes à vide (shadow) + mur × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -1544,6 +1780,10 @@
                   "fr" : "Gestes à vide (shadow) retour + panier × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow",
@@ -1585,6 +1825,10 @@
                   "fr" : "Gestes à vide (shadow) volée × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -1647,6 +1891,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -1687,6 +1935,20 @@
                   "fr" : "Lance-balles aléatoire × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "45"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "45 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1730,6 +1992,13 @@
                   "fr" : "Lance-balles aléatoire 11 balles × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -1771,6 +2040,13 @@
                   "fr" : "Gestes à vide (shadow) service + service léger × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 serves (5 down the T + 5 wide)",
+                  "es" : "10 servicios (5 al centro + 5 abiertos)",
+                  "fr" : "10 services (5 au T + 5 extérieurs)"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -1834,6 +2110,13 @@
                   "fr" : "Y-T-W debout × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 reps each",
+                  "es" : "12 reps cada uno",
+                  "fr" : "12 reps chacun"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -1872,6 +2155,11 @@
                   "fr" : "Anti-rotation à l'élastique 12/côté × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
@@ -1909,6 +2197,13 @@
                   "fr" : "Montées de genoux + déplacements latéraux × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip each",
+                  "es" : "1 ida y vuelta cada uno",
+                  "fr" : "1 aller-retour chacun"
+                }
+              },
               "duration" : "1 passage A/R chaque",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -1947,6 +2242,20 @@
                   "fr" : "Corde à sauter en intermittent 30 sec × 10"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "meters",
+                    "value" : "15"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "15 m sprint + 30 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2022,6 +2331,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2062,6 +2375,20 @@
                   "fr" : "Lance-balles coup droit croisé × 6"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "6 min cross + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -2102,6 +2429,19 @@
                   "fr" : "Lance-balles revers × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min + 90 sec récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2143,6 +2483,10 @@
                   "fr" : "Gestes à vide (shadow) + mur × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -2205,6 +2549,11 @@
                   "fr" : "Glissé au mur × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -2243,6 +2592,11 @@
                   "fr" : "Rotation externe au mur × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2279,6 +2633,10 @@
                   "fr" : "Fente bulgare 8/jambe × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -2317,6 +2675,10 @@
                   "fr" : "Pont fessier (deux jambes)"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2354,6 +2716,10 @@
                   "fr" : "Rotation à la poulie 8/côté × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -2391,6 +2757,10 @@
                   "fr" : "Montée sur banc explosive × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -2429,6 +2799,11 @@
                   "fr" : "Pas chassé + saut × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -2488,6 +2863,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2528,6 +2907,10 @@
                   "fr" : "Gestes à vide (shadow) complet × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -2568,6 +2951,10 @@
                   "fr" : "Gestes à vide (shadow) retour × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow",
@@ -2609,6 +2996,10 @@
                   "fr" : "Gestes à vide (shadow) volée × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -2671,6 +3062,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -2711,6 +3106,20 @@
                   "fr" : "Lance-balles aléatoire × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "60 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -2754,6 +3163,13 @@
                   "fr" : "Lance-balles aléatoire 11 balles × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -2795,6 +3211,13 @@
                   "fr" : "Gestes à vide (shadow) service + service léger × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 serves (5 first down the T + 5 second kick)",
+                  "es" : "10 servicios (5 primeros al centro + 5 segundos liftados)",
+                  "fr" : "10 services (5 premières au T + 5 secondes kickées)"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -2858,6 +3281,13 @@
                   "fr" : "Y-T-W debout × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 reps each",
+                  "es" : "12 reps cada uno",
+                  "fr" : "12 reps chacun"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -2896,6 +3326,13 @@
                   "fr" : "Planche latérale statique + pointeur × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof / 30 s side plank per side",
+                  "es" : "12 Pallof / 30 s de plancha lateral por lado",
+                  "fr" : "12 Pallof / 30 s de planche latérale par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2933,6 +3370,13 @@
                   "fr" : "Montées de genoux + déplacements latéraux × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip each",
+                  "es" : "1 ida y vuelta cada uno",
+                  "fr" : "1 aller-retour chacun"
+                }
+              },
               "duration" : "1 passage A/R chaque",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -2972,6 +3416,20 @@
                   "fr" : "Corde à sauter en intermittent × 10"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "meters",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "20 m sprint + 30 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3048,6 +3506,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3088,6 +3550,20 @@
                   "fr" : "Lance-balles coup droit × 7"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "crossCourt",
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "6 min cross + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -3128,6 +3604,19 @@
                   "fr" : "Lance-balles revers × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "6 min + 90 sec récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3169,6 +3658,10 @@
                   "fr" : "Gestes à vide (shadow) complet × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -3231,6 +3724,11 @@
                   "fr" : "Glissé au mur × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -3269,6 +3767,11 @@
                   "fr" : "Rotation externe au mur × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perArm",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -3305,6 +3808,10 @@
                   "fr" : "Fente bulgare × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -3343,6 +3850,10 @@
                   "fr" : "Pont fessier (deux jambes) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -3380,6 +3891,10 @@
                   "fr" : "Rotation à la poulie × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -3417,6 +3932,13 @@
                   "fr" : "Montée sur banc explosive + saut du patineur (skater) × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 box jump + 6 lateral bound (3 per side)",
+                  "es" : "6 box jump + 6 lateral bound (3 por lado)",
+                  "fr" : "6 box jump + 6 lateral bound (3 par côté)"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -3477,6 +3999,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3517,6 +4043,10 @@
                   "fr" : "Gestes à vide (shadow) complet × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -3557,6 +4087,10 @@
                   "fr" : "Gestes à vide (shadow) retour × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow",
@@ -3598,6 +4132,10 @@
                   "fr" : "Gestes à vide (shadow) volée × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -3660,6 +4198,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -3700,6 +4242,20 @@
                   "fr" : "Lance-balles aléatoire × 6"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "60 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3743,6 +4299,13 @@
                   "fr" : "Lance-balles aléatoire × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -3784,6 +4347,13 @@
                   "fr" : "Gestes à vide (shadow) service × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 serves (5 down the T + 5 wide) + 5 kick",
+                  "es" : "10 servicios (5 al centro + 5 abiertos) + 5 liftados",
+                  "fr" : "10 services (5 au T + 5 extérieurs) + 5 kickés"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -3847,6 +4417,13 @@
                   "fr" : "Y-T-W debout × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 reps each",
+                  "es" : "12 reps cada uno",
+                  "fr" : "12 reps chacun"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -3885,6 +4462,13 @@
                   "fr" : "Planche latérale + gainage croisé au sol × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof / 10 bird-dog per side",
+                  "es" : "12 Pallof / 10 bird-dog por lado",
+                  "fr" : "12 Pallof / 10 bird-dog par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -3922,6 +4506,13 @@
                   "fr" : "Montées de genoux + déplacements × 5"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip each",
+                  "es" : "1 ida y vuelta cada uno",
+                  "fr" : "1 aller-retour chacun"
+                }
+              },
               "duration" : "1 passage A/R chaque",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -3961,6 +4552,13 @@
                   "fr" : "Vélo en intervalles × 12"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 stations × 30 s + 15 s transition",
+                  "es" : "6 estaciones × 30 s + 15 s de transición",
+                  "fr" : "6 stations × 30 s + 15 s de transition"
+                }
+              },
               "duration" : "6 stations × 30 sec + 15 sec transition",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4040,6 +4638,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -4080,6 +4682,19 @@
                   "fr" : "Lance-balles coup droit × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -4120,6 +4735,19 @@
                   "fr" : "Lance-balles revers × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min + 90 sec récup",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -4161,6 +4789,10 @@
                   "fr" : "Gestes à vide (shadow) service × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -4223,6 +4855,13 @@
                   "fr" : "Glissé au mur + rotation externe × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 per letter / 12 per arm",
+                  "es" : "12 por letra / 12 por brazo",
+                  "fr" : "12 par lettre / 12 par bras"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -4262,6 +4901,10 @@
                   "fr" : "Fente bulgare × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -4300,6 +4943,10 @@
                   "fr" : "Pont fessier × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -4337,6 +4984,10 @@
                   "fr" : "Montée sur banc × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -4397,6 +5048,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -4437,6 +5092,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -4477,6 +5136,10 @@
                   "fr" : "Gestes à vide (shadow) volée × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -4539,6 +5202,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -4579,6 +5246,20 @@
                   "fr" : "Lance-balles aléatoire × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "45"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "45 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -4622,6 +5303,13 @@
                   "fr" : "Lance-balles aléatoire × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -4663,6 +5351,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -4725,6 +5417,13 @@
                   "fr" : "Glissé au mur + tirage poulie visage × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 reps each",
+                  "es" : "12 reps cada uno",
+                  "fr" : "12 reps chacun"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -4764,6 +5463,10 @@
                   "fr" : "Étirements globaux 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
 
@@ -4800,6 +5503,13 @@
                   "fr" : "Montées de genoux lentes × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 in-out run",
+                  "es" : "1 pasada in-out",
+                  "fr" : "1 passage in-out"
+                }
+              },
               "duration" : "1 passage in-out",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -4875,6 +5585,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -4915,6 +5629,19 @@
                   "fr" : "Lance-balles croisé × 7"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "6 min + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -4955,6 +5682,10 @@
                   "fr" : "Gestes à vide (shadow) complet × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -4995,6 +5726,10 @@
                   "fr" : "Gestes à vide (shadow) service × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -5058,6 +5793,11 @@
                   "fr" : "Glissé au mur × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -5096,6 +5836,13 @@
                   "fr" : "Rotation externe allongé + Y-T-W × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 per arm / 12 reps",
+                  "es" : "12 por brazo / 12 reps",
+                  "fr" : "12 par bras / 12 reps"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -5133,6 +5880,10 @@
                   "fr" : "Fente bulgare × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -5171,6 +5922,10 @@
                   "fr" : "Pont fessier × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -5208,6 +5963,13 @@
                   "fr" : "Bûcheron à la poulie (wood chop) + slam × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 slams + 6 rotational throws per side",
+                  "es" : "8 slams + 6 lanzamientos rotacionales por lado",
+                  "fr" : "8 slam + 6 rotational throw par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -5245,6 +6007,13 @@
                   "fr" : "Montée sur banc explosive + saut du patineur (skater) × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 box jump + 6 lateral bound (3 per side)",
+                  "es" : "6 box jump + 6 lateral bound (3 por lado)",
+                  "fr" : "6 box jump + 6 lateral bound (3 par côté)"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -5305,6 +6074,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -5345,6 +6118,10 @@
                   "fr" : "Gestes à vide (shadow) complet × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -5385,6 +6162,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow",
@@ -5426,6 +6207,10 @@
                   "fr" : "Gestes à vide (shadow) volée + lob × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -5488,6 +6273,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -5528,6 +6317,20 @@
                   "fr" : "Lance-balles aléatoire × 6"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "60 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5571,6 +6374,13 @@
                   "fr" : "Lance-balles aléatoire × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -5612,6 +6422,13 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 serves (5 first down the T + 5 second kick)",
+                  "es" : "10 servicios (5 primeros al centro + 5 segundos liftados)",
+                  "fr" : "10 services (5 premières au T + 5 secondes kickées)"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -5675,6 +6492,13 @@
                   "fr" : "Y-T-W debout × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 reps each",
+                  "es" : "12 reps cada uno",
+                  "fr" : "12 reps chacun"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -5713,6 +6537,13 @@
                   "fr" : "Rotation à la poulie + pointeur × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof / 10 bird-dog / 30 s side plank per side",
+                  "es" : "12 Pallof / 10 bird-dog / 30 s de plancha lateral por lado",
+                  "fr" : "12 Pallof / 10 bird-dog / 30 s de planche latérale par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -5750,6 +6581,13 @@
                   "fr" : "Montées de genoux + déplacements × 5"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip each",
+                  "es" : "1 ida y vuelta cada uno",
+                  "fr" : "1 aller-retour chacun"
+                }
+              },
               "duration" : "1 passage A/R chaque",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -5789,6 +6627,13 @@
                   "fr" : "Vélo en intervalles × 14"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 stations × 30 s + 15 s transition",
+                  "es" : "6 estaciones × 30 s + 15 s de transición",
+                  "fr" : "6 stations × 30 s + 15 s de transition"
+                }
+              },
               "duration" : "6 stations × 30 sec + 15 sec transition",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -5868,6 +6713,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -5908,6 +6757,19 @@
                   "fr" : "Lance-balles croisé × 6"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "6 min + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -5948,6 +6810,10 @@
                   "fr" : "Gestes à vide (shadow) × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -5988,6 +6854,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -6051,6 +6921,13 @@
                   "fr" : "Glissé au mur + tirage poulie visage × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 per letter / 12 per arm",
+                  "es" : "12 por letra / 12 por brazo",
+                  "fr" : "12 par lettre / 12 par bras"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -6090,6 +6967,10 @@
                   "fr" : "Fente bulgare × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -6128,6 +7009,10 @@
                   "fr" : "Pont fessier × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -6165,6 +7050,13 @@
                   "fr" : "Bûcheron à la poulie (wood chop) × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 slams + 6 rotational throws per side",
+                  "es" : "8 slams + 6 lanzamientos rotacionales por lado",
+                  "fr" : "8 slam + 6 rotational throw par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -6202,6 +7094,13 @@
                   "fr" : "Montée sur banc + saut du patineur (skater) × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 box jump + 6 lateral bound (3 per side)",
+                  "es" : "6 box jump + 6 lateral bound (3 por lado)",
+                  "fr" : "6 box jump + 6 lateral bound (3 par côté)"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -6262,6 +7161,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -6302,6 +7205,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -6342,6 +7249,10 @@
                   "fr" : "Tie-break sec × 3 + panier 11 points"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -6406,6 +7317,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -6446,6 +7361,20 @@
                   "fr" : "Lance-balles aléatoire × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "60 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6489,6 +7418,13 @@
                   "fr" : "Lance-balles aléatoire × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -6530,6 +7466,13 @@
                   "fr" : "Gestes à vide (shadow) + service au mur × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 serves (3 flat + 3 slice + 4 kick)",
+                  "es" : "10 servicios (3 planos + 3 cortados + 4 liftados)",
+                  "fr" : "10 services (3 à plat + 3 slicés + 4 kickés)"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -6593,6 +7536,13 @@
                   "fr" : "Y-T-W debout × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 reps each",
+                  "es" : "12 reps cada uno",
+                  "fr" : "12 reps chacun"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -6630,6 +7580,13 @@
                   "fr" : "Rotation à la poulie + planche latérale × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof / 30 s side plank per side",
+                  "es" : "12 Pallof / 30 s de plancha lateral por lado",
+                  "fr" : "12 Pallof / 30 s de planche latérale par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -6667,6 +7624,13 @@
                   "fr" : "Montées de genoux + déplacements × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip each",
+                  "es" : "1 ida y vuelta cada uno",
+                  "fr" : "1 aller-retour chacun"
+                }
+              },
               "duration" : "1 passage A/R chaque",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -6705,6 +7669,20 @@
                   "fr" : "Corde à sauter en intermittent × 10"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "meters",
+                    "value" : "20"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "20 m sprint + 30 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -6781,6 +7759,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -6821,6 +7803,19 @@
                   "fr" : "Lance-balles × 7"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "6 min + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -6861,6 +7856,10 @@
                   "fr" : "Gestes à vide (shadow) × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -6901,6 +7900,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -6964,6 +7967,13 @@
                   "fr" : "Glissé au mur × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 per letter / 12 per arm",
+                  "es" : "12 por letra / 12 por brazo",
+                  "fr" : "12 par lettre / 12 par bras"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -7003,6 +8013,10 @@
                   "fr" : "Fente bulgare × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -7041,6 +8055,10 @@
                   "fr" : "Pont fessier × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -7078,6 +8096,13 @@
                   "fr" : "Bûcheron à la poulie (wood chop) × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 slams + 6 rotational throws per side",
+                  "es" : "8 slams + 6 lanzamientos rotacionales por lado",
+                  "fr" : "8 slam + 6 rotational throw par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -7115,6 +8140,13 @@
                   "fr" : "Montée sur banc + saut du patineur (skater) × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 box jump + 6 lateral bound (3 per side)",
+                  "es" : "6 box jump + 6 lateral bound (3 por lado)",
+                  "fr" : "6 box jump + 6 lateral bound (3 par côté)"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -7175,6 +8207,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -7215,6 +8251,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -7255,6 +8295,10 @@
                   "fr" : "Tie-break sec × 3 + panier × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -7319,6 +8363,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -7359,6 +8407,20 @@
                   "fr" : "Lance-balles aléatoire × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "60 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7402,6 +8464,13 @@
                   "fr" : "Lance-balles × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -7443,6 +8512,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -7506,6 +8579,13 @@
                   "fr" : "Y-T-W debout × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 reps each",
+                  "es" : "12 reps cada uno",
+                  "fr" : "12 reps chacun"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -7543,6 +8623,13 @@
                   "fr" : "Rotation à la poulie × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 Pallof / 10 bird-dog per side",
+                  "es" : "12 Pallof / 10 bird-dog por lado",
+                  "fr" : "12 Pallof / 10 bird-dog par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -7580,6 +8667,13 @@
                   "fr" : "Vélo en intervalles × 14"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 stations × 30 s + 15 s transition",
+                  "es" : "6 estaciones × 30 s + 15 s de transición",
+                  "fr" : "6 stations × 30 s + 15 s de transition"
+                }
+              },
               "duration" : "6 stations × 30 sec + 15 sec transition",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -7659,6 +8753,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -7699,6 +8797,19 @@
                   "fr" : "Lance-balles × 6"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "6 min + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -7739,6 +8850,13 @@
                   "fr" : "Gestes à vide (shadow) + mur × 5"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 sequences (5 normal + 5 break-point pressure)",
+                  "es" : "10 secuencias (5 normales + 5 con presión de break)",
+                  "fr" : "10 séquences (5 normales + 5 sous pression de break)"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -7779,6 +8897,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -7842,6 +8964,13 @@
                   "fr" : "Glissé au mur × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 per letter / 12 per arm",
+                  "es" : "12 por letra / 12 por brazo",
+                  "fr" : "12 par lettre / 12 par bras"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -7880,6 +9009,10 @@
                   "fr" : "Fente bulgare × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -7918,6 +9051,10 @@
                   "fr" : "Pont fessier × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -7955,6 +9092,13 @@
                   "fr" : "Montée sur banc × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 + 6 (3 per side)",
+                  "es" : "6 + 6 (3 por lado)",
+                  "fr" : "6 + 6 (3 par côté)"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -8015,6 +9159,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -8055,6 +9203,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -8095,6 +9247,10 @@
                   "fr" : "Tie-break sec × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -8159,6 +9315,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -8199,6 +9359,20 @@
                   "fr" : "Lance-balles × 6"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "60 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -8242,6 +9416,13 @@
                   "fr" : "Lance-balles × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -8283,6 +9464,13 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 serves (3 normal + 7 break-point pressure)",
+                  "es" : "10 servicios (3 normales + 7 con presión de break)",
+                  "fr" : "10 services (3 normaux + 7 sous pression de balle de break)"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -8346,6 +9534,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -8386,6 +9578,10 @@
                   "fr" : "Tie-break sec × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -8428,6 +9624,10 @@
                   "fr" : "Mobilité globale 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -8502,6 +9702,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -8542,6 +9746,19 @@
                   "fr" : "Lance-balles × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -8582,6 +9799,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -8622,6 +9843,10 @@
                   "fr" : "Gestes à vide (shadow) × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -8684,6 +9909,13 @@
                   "fr" : "Glissé au mur × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 per letter / 12 per arm",
+                  "es" : "12 por letra / 12 por brazo",
+                  "fr" : "12 par lettre / 12 par bras"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -8722,6 +9954,10 @@
                   "fr" : "Fente bulgare × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -8760,6 +9996,10 @@
                   "fr" : "Pont fessier × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -8797,6 +10037,10 @@
                   "fr" : "Montée sur banc × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -8857,6 +10101,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -8897,6 +10145,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -8937,6 +10189,10 @@
                   "fr" : "Gestes à vide (shadow) volée × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -8999,6 +10255,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -9039,6 +10299,20 @@
                   "fr" : "Lance-balles × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "45"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "45 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -9082,6 +10356,13 @@
                   "fr" : "Lance-balles × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -9123,6 +10404,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -9186,6 +10471,13 @@
                   "fr" : "Glissé au mur × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 reps each",
+                  "es" : "12 reps cada uno",
+                  "fr" : "12 reps chacun"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -9224,6 +10516,10 @@
                   "fr" : "Étirements globaux 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
 
@@ -9260,6 +10556,13 @@
                   "fr" : "Montées de genoux lentes × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 in-out run",
+                  "es" : "1 pasada in-out",
+                  "fr" : "1 passage in-out"
+                }
+              },
               "duration" : "1 passage in-out",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -9335,6 +10638,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -9375,6 +10682,19 @@
                   "fr" : "Lance-balles × 7"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "6 min + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -9415,6 +10735,10 @@
                   "fr" : "Gestes à vide (shadow) × 5"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -9455,6 +10779,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -9518,6 +10846,13 @@
                   "fr" : "Glissé au mur × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 per letter / 12 per arm",
+                  "es" : "12 por letra / 12 por brazo",
+                  "fr" : "12 par lettre / 12 par bras"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -9556,6 +10891,10 @@
                   "fr" : "Fente bulgare × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -9594,6 +10933,10 @@
                   "fr" : "Pont fessier × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -9631,6 +10974,13 @@
                   "fr" : "Bûcheron à la poulie (wood chop) × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 + 6 per side",
+                  "es" : "8 + 6 por lado",
+                  "fr" : "8 + 6 par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "lower-back-pain"
@@ -9668,6 +11018,13 @@
                   "fr" : "Montée sur banc × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 + 6 (3 per side)",
+                  "es" : "6 + 6 (3 por lado)",
+                  "fr" : "6 + 6 (3 par côté)"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -9728,6 +11085,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -9768,6 +11129,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -9808,6 +11173,13 @@
                   "fr" : "1 set complet + 4 × panier 11 points"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 6 games + 5 min rest between sets",
+                  "es" : "1 set de 6 juegos + 5 min de recuperación entre sets",
+                  "fr" : "1 set de 6 jeux + 5 min de récup entre sets"
+                }
+              },
               "duration" : "1 set 6 jeux + 5 min récup entre sets",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -9872,6 +11244,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -9912,6 +11288,20 @@
                   "fr" : "Lance-balles × 6"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "60 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -9955,6 +11345,13 @@
                   "fr" : "Lance-balles × 5"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -9996,6 +11393,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -10059,6 +11460,13 @@
                   "fr" : "Y-T-W + rotation externe debout × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 reps each",
+                  "es" : "12 reps cada uno",
+                  "fr" : "12 reps chacun"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -10097,6 +11505,13 @@
                   "fr" : "Rotation à la poulie + pointeur × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 / 10 per side / 30 s per side",
+                  "es" : "12 / 10 por lado / 30 s por lado",
+                  "fr" : "12 / 10 par côté / 30 s par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -10134,6 +11549,13 @@
                   "fr" : "Vélo en intervalles × 14"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 stations × 30 s + 15 s transition",
+                  "es" : "6 estaciones × 30 s + 15 s de transición",
+                  "fr" : "6 stations × 30 s + 15 s de transition"
+                }
+              },
               "duration" : "6 stations × 30 sec + 15 sec transition",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -10213,6 +11635,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -10253,6 +11679,19 @@
                   "fr" : "Lance-balles × 6"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "6"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "6 min + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -10293,6 +11732,13 @@
                   "fr" : "Gestes à vide (shadow) × 5"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 sequences (5 break points + 5 set points)",
+                  "es" : "10 secuencias (5 puntos de break + 5 puntos de set)",
+                  "fr" : "10 séquences (5 balles de break + 5 balles de set)"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -10333,6 +11779,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -10396,6 +11846,13 @@
                   "fr" : "Glissé au mur × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 per letter / 12 per arm",
+                  "es" : "12 por letra / 12 por brazo",
+                  "fr" : "12 par lettre / 12 par bras"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -10434,6 +11891,10 @@
                   "fr" : "Fente bulgare × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -10472,6 +11933,10 @@
                   "fr" : "Pont fessier × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -10509,6 +11974,13 @@
                   "fr" : "Montée sur banc × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 + 6 (3 per side)",
+                  "es" : "6 + 6 (3 por lado)",
+                  "fr" : "6 + 6 (3 par côté)"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -10569,6 +12041,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -10609,6 +12085,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -10649,6 +12129,10 @@
                   "fr" : "Tie-break sec × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "50"
+              },
               "duration" : "50 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -10713,6 +12197,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -10753,6 +12241,20 @@
                   "fr" : "Lance-balles × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "60 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -10796,6 +12298,13 @@
                   "fr" : "Lance-balles × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -10837,6 +12346,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -10900,6 +12413,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -10940,6 +12457,10 @@
                   "fr" : "Tie-break sec × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "50"
+              },
               "duration" : "50 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -10982,6 +12503,10 @@
                   "fr" : "Mobilité globale 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -11056,6 +12581,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -11096,6 +12625,19 @@
                   "fr" : "Lance-balles × 5"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -11136,6 +12678,10 @@
                   "fr" : "Gestes à vide (shadow) × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -11176,6 +12722,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -11239,6 +12789,13 @@
                   "fr" : "Glissé au mur × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 per letter / 12 per arm",
+                  "es" : "12 por letra / 12 por brazo",
+                  "fr" : "12 par lettre / 12 par bras"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -11277,6 +12834,10 @@
                   "fr" : "Fente bulgare × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -11315,6 +12876,10 @@
                   "fr" : "Pont fessier × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -11352,6 +12917,10 @@
                   "fr" : "Montée sur banc explosive × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -11412,6 +12981,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -11452,6 +13025,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -11492,6 +13069,10 @@
                   "fr" : "Panier simulation de match × 5 + tie-break × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "60"
+              },
               "duration" : "60 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -11556,6 +13137,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -11596,6 +13181,20 @@
                   "fr" : "Lance-balles × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "45"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "45 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -11639,6 +13238,13 @@
                   "fr" : "Lance-balles × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -11680,6 +13286,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -11743,6 +13353,13 @@
                   "fr" : "Y-T-W debout × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 reps each",
+                  "es" : "12 reps cada uno",
+                  "fr" : "12 reps chacun"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -11781,6 +13398,13 @@
                   "fr" : "Rotation à la poulie × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 / 10 per side",
+                  "es" : "12 / 10 por lado",
+                  "fr" : "12 / 10 par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -11818,6 +13442,10 @@
                   "fr" : "Étirements globaux 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -11854,6 +13482,20 @@
                   "fr" : "Corde à sauter en intermittent × 6"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "meters",
+                    "value" : "15"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  }
+                ]
+              },
               "duration" : "15 m sprint + 30 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -11930,6 +13572,10 @@
                   "fr" : "Gestes à vide (shadow) 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -11970,6 +13616,19 @@
                   "fr" : "Lance-balles × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -12010,6 +13669,13 @@
                   "fr" : "Gestes à vide (shadow) + mur × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 sequences (5 serving + 5 returning under pressure)",
+                  "es" : "10 secuencias (5 al saque + 5 al resto con presión)",
+                  "fr" : "10 séquences (5 au service + 5 en retour sous pression)"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -12051,6 +13717,10 @@
                   "fr" : "Gestes à vide (shadow) × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -12114,6 +13784,13 @@
                   "fr" : "Glissé au mur × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 per letter / 12 per arm",
+                  "es" : "12 por letra / 12 por brazo",
+                  "fr" : "12 par lettre / 12 par bras"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -12152,6 +13829,10 @@
                   "fr" : "Fente bulgare × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "4"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -12190,6 +13871,10 @@
                   "fr" : "Pont fessier × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -12227,6 +13912,10 @@
                   "fr" : "Montée sur banc explosive × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "4"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -12287,6 +13976,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -12327,6 +14020,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -12367,6 +14064,10 @@
                   "fr" : "Tie-break sec × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -12431,6 +14132,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -12471,6 +14176,20 @@
                   "fr" : "Lance-balles × 4"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "sprint",
+                    "unit" : "seconds",
+                    "value" : "30"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "30 sec sprint + 90 sec récup",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -12514,6 +14233,13 @@
                   "fr" : "Lance-balles × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 set of 11 points + 2 min rest",
+                  "es" : "1 serie de 11 puntos + 2 min de recuperación",
+                  "fr" : "1 série de 11 points + 2 min de récup"
+                }
+              },
               "incompatible_constraints" : [
                 "tennis-elbow",
                 "shoulder-injury",
@@ -12555,6 +14281,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -12618,6 +14348,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -12658,6 +14392,10 @@
                   "fr" : "Tie-break sec × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -12700,6 +14438,10 @@
                   "fr" : "Mobilité globale 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury"
@@ -12774,6 +14516,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -12814,6 +14560,19 @@
                   "fr" : "Lance-balles × 3"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -12854,6 +14613,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -12917,6 +14680,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -12957,6 +14724,10 @@
                   "fr" : "Gestes à vide (shadow) × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "sequences",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "tennis-elbow"
@@ -12997,6 +14768,10 @@
                   "fr" : "Set partiel 4 jeux × 1"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -13061,6 +14836,13 @@
                   "fr" : "Y-T-W + rotation externe + scaption debout × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 per letter / 10 per arm / 10 reps",
+                  "es" : "10 por letra / 10 por brazo / 10 reps",
+                  "fr" : "10 par lettre / 10 par bras / 10 reps"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -13099,6 +14881,13 @@
                   "fr" : "Montée sur banc explosive 5 + saut du patineur (skater) 5 × 1"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 box jump + 5 lateral bound (3 right + 2 left)",
+                  "es" : "5 box jump + 5 lateral bound (3 derecha + 2 izquierda)",
+                  "fr" : "5 box jump + 5 lateral bound (3 à droite + 2 à gauche)"
+                }
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "ankle-injury"
@@ -13137,6 +14926,10 @@
                   "fr" : "Gestes à vide (shadow) 20 min + panier auto-alimenté"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -13199,6 +14992,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -13239,6 +15036,19 @@
                   "fr" : "Lance-balles × 2"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "unit" : "minutes",
+                    "value" : "5"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "seconds",
+                    "value" : "90"
+                  }
+                ]
+              },
               "duration" : "5 min + 90 sec récup",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -13279,6 +15089,10 @@
                   "fr" : "Gestes à vide (shadow) × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "serves",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury",
                 "wrist-pain"
@@ -13357,6 +15171,13 @@
                   "fr" : "Panier simulation de match (11 points) × 5 + tie-break × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "match (60-150 min depending on format: best of 3 or 5 sets)",
+                  "es" : "partido (60-150 min según el formato: al mejor de 3 o 5 sets)",
+                  "fr" : "match (60-150 min selon le format : 2 ou 3 sets gagnants)"
+                }
+              },
               "duration" : "match (60-150 min selon format 2 sets ou 3 sets gagnants)",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -13422,6 +15243,13 @@
                   "fr" : "Y-T-W + rotation externe debout × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 per letter / 10 per arm / 10 reps",
+                  "es" : "10 por letra / 10 por brazo / 10 reps",
+                  "fr" : "10 par lettre / 10 par bras / 10 reps"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -13460,6 +15288,10 @@
                   "fr" : "Étirements globaux 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
 
@@ -13497,6 +15329,10 @@
                   "fr" : "Gestes à vide (shadow) 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shoulder-injury",
@@ -13559,6 +15395,13 @@
                   "fr" : "Récupération active complète + exercice court sur le court 30 min si éliminé"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "match (60-150 min depending on format)",
+                  "es" : "partido (60-150 min según el formato)",
+                  "fr" : "match (60-150 min selon le format)"
+                }
+              },
               "duration" : "match (60-150 min selon format)",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -13624,6 +15467,13 @@
                   "fr" : "Y-T-W debout × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 per letter / 10 per arm",
+                  "es" : "10 por letra / 10 por brazo",
+                  "fr" : "10 par lettre / 10 par bras"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -13662,6 +15512,10 @@
                   "fr" : "Étirements globaux 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
 
@@ -13721,6 +15575,13 @@
                   "fr" : "Récupération active 90 min si éliminé"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "match (60-180 min depending on format and level)",
+                  "es" : "partido (60-180 min según el formato y el nivel)",
+                  "fr" : "match (60-180 min selon le format et le niveau)"
+                }
+              },
               "duration" : "match (60-180 min selon format et niveau)",
               "incompatible_constraints" : [
                 "tennis-elbow",
@@ -13786,6 +15647,10 @@
                   "fr" : "Étirements globaux 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
 
@@ -13823,6 +15688,13 @@
                   "fr" : "Y-T-W debout × 2"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 reps each",
+                  "es" : "10 reps cada uno",
+                  "fr" : "10 reps chacun"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -13861,6 +15733,10 @@
                   "fr" : "Débrief avec un coach ou un partenaire d'entraînement"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
 

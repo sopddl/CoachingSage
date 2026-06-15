@@ -53,6 +53,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -94,6 +98,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -134,6 +142,10 @@
                   "fr" : "Conduite entre cônes, 5 plots espacés de 2 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -174,6 +186,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -217,6 +233,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -275,6 +295,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -316,6 +340,10 @@
                   "fr" : "Vélo facile 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "cardiac-clearance-required"
@@ -353,6 +381,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -393,6 +425,11 @@
                   "fr" : "Frappe placée 10 m sur cible élargie 15 frappes par pied × séries"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perFoot",
+                "unit" : "strikes",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "groin-injury",
@@ -435,6 +472,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -478,6 +519,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -536,6 +581,10 @@
                   "fr" : "FIFA 11+ partie 1 seule, course 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -576,6 +625,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -616,6 +669,10 @@
                   "fr" : "Conduite + frappe"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -656,6 +713,10 @@
                   "fr" : "Passe à 10 à deux 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "ankle-injury"
@@ -696,6 +757,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -754,6 +819,11 @@
                   "fr" : "Fente avant statique au poids du corps"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -792,6 +862,10 @@
                   "fr" : "Pont fessier lesté sur une jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -829,6 +903,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -865,6 +944,13 @@
                   "fr" : "Montées de genoux basses + déplacements latéraux 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip per pattern",
+                  "es" : "1 ida y vuelta por patrón",
+                  "fr" : "1 aller-retour par pattern"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -997,6 +1083,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -1038,6 +1128,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -1078,6 +1172,10 @@
                   "fr" : "Conduite entre cônes, 5 plots espacés de 2 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -1118,6 +1216,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 22 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "22"
+              },
               "duration" : "22 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -1161,6 +1263,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -1219,6 +1325,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -1260,6 +1370,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -1300,6 +1414,13 @@
                   "fr" : "Footing continu facile à tempo 15 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 s threshold run + 30 s walk)",
+                  "es" : "8 × (30 s de carrera a umbral + 30 s de caminata)",
+                  "fr" : "8 × (30 s de course au seuil + 30 s de marche)"
+                }
+              },
               "duration" : "8 × (30s course tempo à au seuil + 30s marche)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -1339,6 +1460,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 18 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -1382,6 +1507,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -1440,6 +1569,10 @@
                   "fr" : "FIFA 11+ partie 1 seule, course 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -1480,6 +1613,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -1520,6 +1657,10 @@
                   "fr" : "Conduite + frappe"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1560,6 +1701,10 @@
                   "fr" : "Toro 5 contre 2 conservation 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -1601,6 +1746,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -1659,6 +1808,11 @@
                   "fr" : "Fente avant statique au poids du corps"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -1697,6 +1851,10 @@
                   "fr" : "Pont fessier lesté sur une jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1734,6 +1892,11 @@
                   "fr" : "Équilibre dynamique sur une jambe 10 sec par jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -1772,6 +1935,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1808,6 +1976,13 @@
                   "fr" : "Montées de genoux basses + déplacements latéraux 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip per pattern",
+                  "es" : "1 ida y vuelta por patrón",
+                  "fr" : "1 aller-retour par pattern"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -1940,6 +2115,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -1981,6 +2160,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -2021,6 +2204,10 @@
                   "fr" : "Toro 5 contre 2 conservation 18 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -2062,6 +2249,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 22 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "22"
+              },
               "duration" : "22 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -2105,6 +2296,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -2163,6 +2358,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -2204,6 +2403,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -2244,6 +2447,13 @@
                   "fr" : "Fractionné 20 s/40 s zone seuil × séries"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (30 m sprint + 25 s walking recovery)",
+                  "es" : "6 × (30 m sprint + 25 s de recuperacióneración caminando)",
+                  "fr" : "6 × (30 m sprint + 25 s de récup en marchant)"
+                }
+              },
               "duration" : "6 × (30 m sprint ALL OUT + 25 sec récup marche)",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -2285,6 +2495,13 @@
                   "fr" : "Footing continu facile à tempo 15 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 s threshold run + 30 s walk)",
+                  "es" : "8 × (30 s de carrera a umbral + 30 s de caminata)",
+                  "fr" : "8 × (30 s de course au seuil + 30 s de marche)"
+                }
+              },
               "duration" : "8 × (30s course tempo à au seuil + 30s marche)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -2324,6 +2541,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -2367,6 +2588,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -2425,6 +2650,10 @@
                   "fr" : "FIFA 11+ partie 1 seule, course 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -2465,6 +2694,10 @@
                   "fr" : "Corners en exercice statique sans pression 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "concussion-history"
@@ -2505,6 +2738,10 @@
                   "fr" : "Conduite + frappe"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2545,6 +2782,10 @@
                   "fr" : "Toro 5 contre 2 conservation 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -2586,6 +2827,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -2644,6 +2889,10 @@
                   "fr" : "Pont fessier sur 1 jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -2683,6 +2932,11 @@
                   "fr" : "Adducteurs allongé avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -2721,6 +2975,11 @@
                   "fr" : "Fente avant statique au poids du corps"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -2759,6 +3018,10 @@
                   "fr" : "Pont fessier lesté sur une jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2796,6 +3059,11 @@
                   "fr" : "Équilibre dynamique sur une jambe 10 sec par jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -2834,6 +3102,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2964,6 +3237,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3005,6 +3282,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -3045,6 +3326,10 @@
                   "fr" : "Conduite entre cônes, 5 plots espacés de 2 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "knee-injury",
@@ -3085,6 +3370,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3128,6 +3417,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -3186,6 +3479,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3227,6 +3524,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -3267,6 +3568,13 @@
                   "fr" : "Footing continu facile à tempo 15 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 s threshold run + 30 s walk)",
+                  "es" : "8 × (30 s de carrera a umbral + 30 s de caminata)",
+                  "fr" : "8 × (30 s de course au seuil + 30 s de marche)"
+                }
+              },
               "duration" : "8 × (30s course tempo à au seuil + 30s marche)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -3306,6 +3614,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3349,6 +3661,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -3407,6 +3723,10 @@
                   "fr" : "FIFA 11+ partie 1 seule, course 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3447,6 +3767,10 @@
                   "fr" : "Conduite + frappe"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3487,6 +3811,10 @@
                   "fr" : "Toro 5 contre 2 conservation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -3528,6 +3856,10 @@
                   "fr" : "Corners en exercice statique sans pression 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "concussion-history"
@@ -3568,6 +3900,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -3626,6 +3962,10 @@
                   "fr" : "Pont fessier sur 1 jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -3665,6 +4005,11 @@
                   "fr" : "Adducteurs allongé avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -3703,6 +4048,11 @@
                   "fr" : "Fente avant statique au poids du corps"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -3741,6 +4091,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -3871,6 +4226,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -3912,6 +4271,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -3952,6 +4315,10 @@
                   "fr" : "Toro 5 contre 2 conservation 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -3993,6 +4360,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -4036,6 +4407,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -4094,6 +4469,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -4135,6 +4514,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -4175,6 +4558,13 @@
                   "fr" : "Fractionné 20 s/40 s zone seuil × séries"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (30 m sprint + 25 s walking recovery)",
+                  "es" : "6 × (30 m sprint + 25 s de recuperacióneración caminando)",
+                  "fr" : "6 × (30 m sprint + 25 s de récup en marchant)"
+                }
+              },
               "duration" : "6 × (30 m sprint ALL OUT + 25 sec récup marche)",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -4216,6 +4606,13 @@
                   "fr" : "Footing continu facile à tempo 15 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 s threshold run + 30 s walk)",
+                  "es" : "8 × (30 s de carrera a umbral + 30 s de caminata)",
+                  "fr" : "8 × (30 s de course au seuil + 30 s de marche)"
+                }
+              },
               "duration" : "8 × (30s course tempo à au seuil + 30s marche)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -4255,6 +4652,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -4298,6 +4699,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -4356,6 +4761,10 @@
                   "fr" : "FIFA 11+ partie 1 seule, course 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -4396,6 +4805,10 @@
                   "fr" : "Toro 5 contre 2 conservation 18 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -4437,6 +4850,10 @@
                   "fr" : "Corners en exercice statique sans pression 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "concussion-history"
@@ -4477,6 +4894,10 @@
                   "fr" : "Conduite + frappe"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -4517,6 +4938,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -4575,6 +5000,10 @@
                   "fr" : "Pont fessier sur 1 jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6-8"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -4614,6 +5043,11 @@
                   "fr" : "Adducteurs allongé avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8-10"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -4652,6 +5086,11 @@
                   "fr" : "Fente avant statique au poids du corps"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -4690,6 +5129,10 @@
                   "fr" : "Pont fessier lesté sur une jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -4727,6 +5170,11 @@
                   "fr" : "Équilibre dynamique sur une jambe 10 sec par jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -4765,6 +5213,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -4801,6 +5254,13 @@
                   "fr" : "Montées de genoux basses + déplacements latéraux 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip per pattern",
+                  "es" : "1 ida y vuelta por patrón",
+                  "fr" : "1 aller-retour par pattern"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -4933,6 +5393,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -4974,6 +5438,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -5014,6 +5482,10 @@
                   "fr" : "Toro 5 contre 2 conservation 18 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -5055,6 +5527,10 @@
                   "fr" : "Jeu réduit 6 contre 6 espace large 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -5098,6 +5574,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -5156,6 +5636,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -5197,6 +5681,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -5237,6 +5725,13 @@
                   "fr" : "Fractionné 20 s/40 s zone seuil × séries"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (30 m sprint + 25 s walking recovery)",
+                  "es" : "6 × (30 m sprint + 25 s de recuperacióneración caminando)",
+                  "fr" : "6 × (30 m sprint + 25 s de récup en marchant)"
+                }
+              },
               "duration" : "6 × (30 m sprint ALL OUT + 25 sec récup marche)",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -5278,6 +5773,13 @@
                   "fr" : "Footing continu facile à tempo 15 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 s threshold run + 30 s walk)",
+                  "es" : "8 × (30 s de carrera a umbral + 30 s de caminata)",
+                  "fr" : "8 × (30 s de course au seuil + 30 s de marche)"
+                }
+              },
               "duration" : "8 × (30s course tempo à au seuil + 30s marche)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -5317,6 +5819,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -5360,6 +5866,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -5418,6 +5928,10 @@
                   "fr" : "FIFA 11+ partie 1 seule, course 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -5458,6 +5972,10 @@
                   "fr" : "Toro 5 contre 2 conservation 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -5499,6 +6017,10 @@
                   "fr" : "Corners en exercice statique sans pression 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "concussion-history"
@@ -5539,6 +6061,10 @@
                   "fr" : "Conduite + frappe"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -5579,6 +6105,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -5637,6 +6167,10 @@
                   "fr" : "Pont fessier sur 1 jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-10"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -5676,6 +6210,11 @@
                   "fr" : "Adducteurs allongé avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10-15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -5714,6 +6253,11 @@
                   "fr" : "Fente avant statique au poids du corps"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -5752,6 +6296,10 @@
                   "fr" : "Pont fessier lesté sur une jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -5789,6 +6337,11 @@
                   "fr" : "Équilibre dynamique sur une jambe 10 sec par jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -5827,6 +6380,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -5863,6 +6421,13 @@
                   "fr" : "Montées de genoux basses + déplacements latéraux 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip per pattern",
+                  "es" : "1 ida y vuelta por patrón",
+                  "fr" : "1 aller-retour par pattern"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -5995,6 +6560,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -6036,6 +6605,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -6076,6 +6649,10 @@
                   "fr" : "Toro 5 contre 2 conservation 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -6117,6 +6694,10 @@
                   "fr" : "Jeu réduit 6 contre 6 espace large 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -6160,6 +6741,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -6218,6 +6803,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -6259,6 +6848,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -6299,6 +6892,13 @@
                   "fr" : "Fractionné 20 s/40 s zone seuil × séries"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (30 m sprint + 25 s walking recovery)",
+                  "es" : "6 × (30 m sprint + 25 s de recuperacióneración caminando)",
+                  "fr" : "6 × (30 m sprint + 25 s de récup en marchant)"
+                }
+              },
               "duration" : "6 × (30 m sprint ALL OUT + 25 sec récup marche)",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -6340,6 +6940,13 @@
                   "fr" : "Footing continu facile à tempo 15 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 s threshold run + 30 s walk)",
+                  "es" : "8 × (30 s de carrera a umbral + 30 s de caminata)",
+                  "fr" : "8 × (30 s de course au seuil + 30 s de marche)"
+                }
+              },
               "duration" : "8 × (30s course tempo à au seuil + 30s marche)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -6379,6 +6986,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -6422,6 +7033,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -6480,6 +7095,10 @@
                   "fr" : "FIFA 11+ partie 1 seule, course 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -6520,6 +7139,10 @@
                   "fr" : "Toro 5 contre 2 conservation 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -6561,6 +7184,10 @@
                   "fr" : "Corners en exercice statique sans pression 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "concussion-history"
@@ -6601,6 +7228,10 @@
                   "fr" : "Conduite + frappe"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6641,6 +7272,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -6699,6 +7334,10 @@
                   "fr" : "Pont fessier sur 1 jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-10"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -6738,6 +7377,11 @@
                   "fr" : "Adducteurs allongé avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12-15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -6776,6 +7420,11 @@
                   "fr" : "Fente avant statique au poids du corps"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -6814,6 +7463,10 @@
                   "fr" : "Pont fessier lesté sur une jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -6851,6 +7504,11 @@
                   "fr" : "Équilibre dynamique sur une jambe 10 sec par jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -6889,6 +7547,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -6925,6 +7588,13 @@
                   "fr" : "Montées de genoux basses + déplacements latéraux 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip per pattern",
+                  "es" : "1 ida y vuelta por patrón",
+                  "fr" : "1 aller-retour par pattern"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -7057,6 +7727,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -7098,6 +7772,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -7138,6 +7816,10 @@
                   "fr" : "Toro 5 contre 2 conservation 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -7179,6 +7861,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 18 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -7222,6 +7908,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -7280,6 +7970,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -7321,6 +8015,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -7361,6 +8059,13 @@
                   "fr" : "Footing continu facile à tempo 15 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 s threshold run + 30 s walk)",
+                  "es" : "8 × (30 s de carrera a umbral + 30 s de caminata)",
+                  "fr" : "8 × (30 s de course au seuil + 30 s de marche)"
+                }
+              },
               "duration" : "8 × (30s course tempo à au seuil + 30s marche)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -7400,6 +8105,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -7443,6 +8152,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -7501,6 +8214,10 @@
                   "fr" : "FIFA 11+ partie 1 seule, course 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -7541,6 +8258,10 @@
                   "fr" : "Toro 5 contre 2 conservation 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -7582,6 +8303,10 @@
                   "fr" : "Corners en exercice statique sans pression 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "concussion-history"
@@ -7622,6 +8347,10 @@
                   "fr" : "Conduite + frappe"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -7662,6 +8391,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -7720,6 +8453,10 @@
                   "fr" : "Pont fessier sur 1 jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6-8"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -7759,6 +8496,11 @@
                   "fr" : "Adducteurs allongé avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -7797,6 +8539,11 @@
                   "fr" : "Fente avant statique au poids du corps"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -7835,6 +8582,10 @@
                   "fr" : "Pont fessier lesté sur une jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -7872,6 +8623,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -8002,6 +8758,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -8043,6 +8803,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -8083,6 +8847,10 @@
                   "fr" : "Toro 5 contre 2 conservation 18 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -8124,6 +8892,10 @@
                   "fr" : "Jeu réduit 6 contre 6 espace large 35 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -8167,6 +8939,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -8225,6 +9001,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -8266,6 +9046,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -8306,6 +9090,13 @@
                   "fr" : "Fractionné 20 s/40 s zone seuil × séries"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (30 m sprint + 25 s walking recovery)",
+                  "es" : "6 × (30 m sprint + 25 s de recuperacióneración caminando)",
+                  "fr" : "6 × (30 m sprint + 25 s de récup en marchant)"
+                }
+              },
               "duration" : "6 × (30 m sprint ALL OUT + 25 sec récup marche)",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -8347,6 +9138,13 @@
                   "fr" : "Footing continu facile à tempo 15 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 s threshold run + 30 s walk)",
+                  "es" : "8 × (30 s de carrera a umbral + 30 s de caminata)",
+                  "fr" : "8 × (30 s de course au seuil + 30 s de marche)"
+                }
+              },
               "duration" : "8 × (30s course tempo à au seuil + 30s marche)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -8386,6 +9184,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -8429,6 +9231,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -8487,6 +9293,10 @@
                   "fr" : "FIFA 11+ partie 1 seule, course 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -8527,6 +9337,10 @@
                   "fr" : "Toro 5 contre 2 conservation 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -8568,6 +9382,10 @@
                   "fr" : "Corners en exercice statique sans pression 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "concussion-history"
@@ -8608,6 +9426,10 @@
                   "fr" : "Conduite + frappe"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -8648,6 +9470,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -8706,6 +9532,10 @@
                   "fr" : "Pont fessier sur 1 jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-10"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -8745,6 +9575,11 @@
                   "fr" : "Adducteurs allongé avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12-15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -8783,6 +9618,11 @@
                   "fr" : "Fente avant statique au poids du corps"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -8821,6 +9661,10 @@
                   "fr" : "Pont fessier lesté sur une jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -8858,6 +9702,11 @@
                   "fr" : "Équilibre dynamique sur une jambe 10 sec par jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -8896,6 +9745,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -8932,6 +9786,13 @@
                   "fr" : "Montées de genoux basses + déplacements latéraux 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip per pattern",
+                  "es" : "1 ida y vuelta por patrón",
+                  "fr" : "1 aller-retour par pattern"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -9064,6 +9925,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -9105,6 +9970,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -9145,6 +10014,10 @@
                   "fr" : "Toro 5 contre 2 conservation 22 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "22"
+              },
               "duration" : "22 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -9186,6 +10059,20 @@
                   "fr" : "Fractionné 30 s/30 s × 12 cycles × 3 séries"
                 }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "work",
+                    "unit" : "minutes",
+                    "value" : "3"
+                  },
+                  {
+                    "activity" : "rest",
+                    "unit" : "minutes",
+                    "value" : "2"
+                  }
+                ]
+              },
               "duration" : "3 min ON + 2 min OFF",
               "incompatible_constraints" : [
                 "acl-history",
@@ -9229,6 +10116,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -9287,6 +10178,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -9328,6 +10223,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -9368,6 +10267,13 @@
                   "fr" : "Fractionné 20 s/40 s zone seuil × séries"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (30 m sprint + 25 s walking recovery)",
+                  "es" : "6 × (30 m sprint + 25 s de recuperacióneración caminando)",
+                  "fr" : "6 × (30 m sprint + 25 s de récup en marchant)"
+                }
+              },
               "duration" : "6 × (30 m sprint ALL OUT + 25 sec récup marche)",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -9409,6 +10315,13 @@
                   "fr" : "Footing continu facile à tempo 15 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 s threshold run + 30 s walk)",
+                  "es" : "8 × (30 s de carrera a umbral + 30 s de caminata)",
+                  "fr" : "8 × (30 s de course au seuil + 30 s de marche)"
+                }
+              },
               "duration" : "8 × (30s course tempo à au seuil + 30s marche)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -9448,6 +10361,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -9491,6 +10408,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -9549,6 +10470,10 @@
                   "fr" : "FIFA 11+ partie 1 seule, course 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -9589,6 +10514,10 @@
                   "fr" : "Toro 5 contre 2 conservation 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -9630,6 +10559,10 @@
                   "fr" : "Corners en exercice statique sans pression 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "concussion-history"
@@ -9670,6 +10603,10 @@
                   "fr" : "Conduite + frappe"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -9710,6 +10647,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -9768,6 +10709,10 @@
                   "fr" : "Pont fessier sur 1 jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-10"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -9807,6 +10752,11 @@
                   "fr" : "Adducteurs allongé avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12-15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -9845,6 +10795,11 @@
                   "fr" : "Fente avant statique au poids du corps"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -9883,6 +10838,10 @@
                   "fr" : "Pont fessier lesté sur une jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -9920,6 +10879,11 @@
                   "fr" : "Équilibre dynamique sur une jambe 10 sec par jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -9958,6 +10922,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -9994,6 +10963,13 @@
                   "fr" : "Montées de genoux basses + déplacements latéraux 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip per pattern",
+                  "es" : "1 ida y vuelta por patrón",
+                  "fr" : "1 aller-retour par pattern"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -10126,6 +11102,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -10167,6 +11147,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -10207,6 +11191,10 @@
                   "fr" : "Toro 5 contre 2 conservation 18 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -10248,6 +11236,10 @@
                   "fr" : "Jeu réduit 6 contre 6 espace large 40 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -10291,6 +11283,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -10349,6 +11345,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -10390,6 +11390,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -10430,6 +11434,13 @@
                   "fr" : "Fractionné 20 s/40 s zone seuil × séries"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (30 m sprint + 25 s walking recovery)",
+                  "es" : "6 × (30 m sprint + 25 s de recuperacióneración caminando)",
+                  "fr" : "6 × (30 m sprint + 25 s de récup en marchant)"
+                }
+              },
               "duration" : "6 × (30 m sprint ALL OUT + 25 sec récup marche)",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -10471,6 +11482,13 @@
                   "fr" : "Footing continu facile à tempo 15 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 × (30 s threshold run + 30 s walk)",
+                  "es" : "8 × (30 s de carrera a umbral + 30 s de caminata)",
+                  "fr" : "8 × (30 s de course au seuil + 30 s de marche)"
+                }
+              },
               "duration" : "8 × (30s course tempo à au seuil + 30s marche)",
               "incompatible_constraints" : [
                 "cardiac-clearance-required",
@@ -10510,6 +11528,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -10553,6 +11575,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -10611,6 +11637,10 @@
                   "fr" : "FIFA 11+ partie 1 seule, course 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -10651,6 +11681,10 @@
                   "fr" : "Toro 5 contre 2 conservation 22 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "22"
+              },
               "duration" : "22 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -10692,6 +11726,10 @@
                   "fr" : "Corners en exercice statique sans pression 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "concussion-history"
@@ -10732,6 +11770,10 @@
                   "fr" : "Conduite + frappe"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -10772,6 +11814,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -10830,6 +11876,10 @@
                   "fr" : "Pont fessier sur 1 jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-12"
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain",
@@ -10869,6 +11919,11 @@
                   "fr" : "Adducteurs allongé avec bande élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12-15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -10907,6 +11962,11 @@
                   "fr" : "Fente avant statique au poids du corps"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -10945,6 +12005,10 @@
                   "fr" : "Pont fessier lesté sur une jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -10982,6 +12046,11 @@
                   "fr" : "Équilibre dynamique sur une jambe 10 sec par jambe × 3"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "5"
+              },
               "incompatible_constraints" : [
                 "acl-history",
                 "ankle-injury",
@@ -11020,6 +12089,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -11056,6 +12130,13 @@
                   "fr" : "Montées de genoux basses + déplacements latéraux 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 round trip per pattern",
+                  "es" : "1 ida y vuelta por patrón",
+                  "fr" : "1 aller-retour par pattern"
+                }
+              },
               "incompatible_constraints" : [
                 "ankle-injury",
                 "knee-injury"
@@ -11188,6 +12269,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -11229,6 +12314,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "4"
+              },
               "duration" : "4 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -11269,6 +12358,10 @@
                   "fr" : "Toro 5 contre 2 conservation 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -11310,6 +12403,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 18 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "18"
+              },
               "duration" : "18 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -11353,6 +12450,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -11411,6 +12512,10 @@
                   "fr" : "Échauffement libre dynamique + activation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -11452,6 +12557,10 @@
                   "fr" : "Exercice de conduite slalom, cônes à 5 m × séries"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "3"
+              },
               "duration" : "3 min",
               "incompatible_constraints" : [
                 "ankle-injury",
@@ -11492,6 +12601,13 @@
                   "fr" : "Vélo fractionné test 6 × 30 sec à fond"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "6 × (30 m sprint + 25 s walking recovery)",
+                  "es" : "6 × (30 m sprint + 25 s de recuperacióneración caminando)",
+                  "fr" : "6 × (30 m sprint + 25 s de récup en marchant)"
+                }
+              },
               "duration" : "6 × (30 m sprint + 25 sec récup marche)",
               "incompatible_constraints" : [
                 "hamstring-injury",
@@ -11533,6 +12649,10 @@
                   "fr" : "Exercice possession 3 contre 1, conservation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -11576,6 +12696,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -11634,6 +12758,10 @@
                   "fr" : "FIFA 11+ partie 1 seule, course 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "acl-history",
@@ -11674,6 +12802,10 @@
                   "fr" : "Conduite + frappe"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -11714,6 +12846,10 @@
                   "fr" : "Corners en exercice statique sans pression 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "concussion-history"
@@ -11754,6 +12890,10 @@
                   "fr" : "Toro 5 contre 2 conservation 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "acl-history"
@@ -11795,6 +12935,10 @@
                   "fr" : "Marche libre 8 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
 
@@ -11853,6 +12997,13 @@
                   "fr" : "Pont fessier sur 1 jambe"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8-10 controlled reps",
+                  "es" : "8-10 reps controladas",
+                  "fr" : "8-10 reps contrôlées"
+                }
+              },
               "incompatible_constraints" : [
                 "hamstring-injury",
                 "lower-back-pain"
@@ -11891,6 +13042,11 @@
                   "fr" : "Adducteurs allongé avec bande"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12-15"
+              },
               "incompatible_constraints" : [
                 "groin-injury",
                 "lower-back-pain"
@@ -11929,6 +13085,11 @@
                   "fr" : "Fente avant statique au poids du corps"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -11967,6 +13128,11 @@
                   "fr" : "Pointeur"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
