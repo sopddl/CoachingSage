@@ -42,6 +42,7 @@ public enum DoseQualifier: String, Codable, Equatable, Sendable, CaseIterable {
     case perFoot
     case perShoulder
     case perPose       // par posture
+    case perPosition   // par position (gainage cyclisme : ventral/dorsal)
     case perVariation  // par variante
     case perSet        // par série
     case perRound      // par round
@@ -328,6 +329,7 @@ public enum DoseFormatter {
         case .perFoot:      return t("par pied", "per foot", "por pie")
         case .perShoulder:  return t("par épaule", "per shoulder", "por hombro")
         case .perPose:      return t("par posture", "per pose", "por postura")
+        case .perPosition:  return t("par position", "per position", "por posición")
         case .perVariation: return t("par variante", "per variation", "por variación")
         case .perSet:       return t("par série", "per set", "por serie")
         case .perRound:     return t("par round", "per round", "por ronda")

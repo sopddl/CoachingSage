@@ -13,12 +13,12 @@ extension AdaptedExercise {
     /// Dose effective : le `dose` structuré si présent (contenu neuf, option A), sinon le backfill
     /// migration T3 (zéro dette) reconstruit depuis les strings legacy `duration`/`reps` des
     /// séances persistées AVANT le chantier (blob sans `dose`). nil = ni l'un ni l'autre → legacy.
-    /// Sports dont le dosage a été structuré (chantier i18n : Lot 1 yoga, Lot 2 running).
-    /// Le backfill `LegacyDoseMigration` ne s'applique QU'À ces sports — ailleurs un dosage
-    /// legacy générique (« 12 », « 30 min », « 5 km »…) ne doit PAS être réinterprété : la
-    /// muscu, p. ex., rend ses reps en affichage « héros » propre (party muscu) qu'on
-    /// écraserait sinon. À étendre à chaque nouveau lot-sport.
-    static let doseMigratedSports: Set<String> = ["yoga", "running"]
+    /// Sports dont le dosage a été structuré (chantier i18n : Lot 1 yoga, Lot 2 running,
+    /// Lot 3 cycling). Le backfill `LegacyDoseMigration` ne s'applique QU'À ces sports —
+    /// ailleurs un dosage legacy générique (« 12 », « 30 min », « 5 km »…) ne doit PAS être
+    /// réinterprété : la muscu, p. ex., rend ses reps en affichage « héros » propre (party
+    /// muscu) qu'on écraserait sinon. À étendre à chaque nouveau lot-sport.
+    static let doseMigratedSports: Set<String> = ["yoga", "running", "cycling"]
 
     func effectiveDose(sportCode: String?) -> Dose? {
         if let dose { return dose }   // contenu neuf (option A) : porte déjà son dose

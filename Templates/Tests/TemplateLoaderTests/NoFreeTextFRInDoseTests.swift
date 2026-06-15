@@ -31,6 +31,9 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
         // On EXCLUT volontairement « progressive »/« recovery » (mots EN légitimes des rendus).
         "course", "marche", "allure", "footing", "tranquille", "rapide",
         "accélération", "récupération", "selon", "objectif",
+        // Lot 3 cycling — tokens FR-exclusifs (trad : uphill/elevation/reverse plank/full day…).
+        // « rpm » est universel (gardé) ; « endurance »/« tempo » sont des mots EN légitimes.
+        "montée", "journée", "entière", "planche", "dorsale",
     ]
 
     /// Diacritiques FR-exclusifs (absents de l'orthographe ES : ç, ô, ê, è, à, î, ë, œ).
@@ -97,13 +100,21 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
     }
 
     func testEveryRunningExerciseHasDose() async throws {
+        try await assertEverySportExerciseHasDose(.running, name: "running")
+    }
+
+    func testEveryCyclingExerciseHasDose() async throws {
+        try await assertEverySportExerciseHasDose(.cycling, name: "cycling")
+    }
+
+    private func assertEverySportExerciseHasDose(_ sport: Sport, name: String, file: StaticString = #filePath, line: UInt = #line) async throws {
         let templates = try await TemplateLoader.loadAll()
         guard templates.count >= 30 else { throw XCTSkip("bundle non peuplé (\(templates.count))") }
-        let running = templates.filter { $0.sport == .running }
-        XCTAssertFalse(running.isEmpty, "aucun template running chargé")
+        let scoped = templates.filter { $0.sport == sport }
+        XCTAssertFalse(scoped.isEmpty, "aucun template \(name) chargé", file: file, line: line)
 
         var missing: [String] = []
-        for t in running {
+        for t in scoped {
             for w in t.weeks {
                 for s in w.sessions {
                     let all = s.exercises + (s.variants ?? []).flatMap { $0.exercises }
@@ -115,8 +126,9 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
         }
         XCTAssertTrue(
             missing.isEmpty,
-            "Exercices running avec dosage legacy mais sans `dose` structuré (\(missing.count)) — fuite FR à l'affichage :\n"
-                + missing.prefix(30).joined(separator: "\n")
+            "Exercices \(name) avec dosage legacy mais sans `dose` structuré (\(missing.count)) — fuite FR à l'affichage :\n"
+                + missing.prefix(30).joined(separator: "\n"),
+            file: file, line: line
         )
     }
 
