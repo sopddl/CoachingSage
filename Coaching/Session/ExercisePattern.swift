@@ -120,7 +120,10 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
              .lunge, .core, .plyo, .hipThrust, .calfRaise, .forearmPlank, .ytwActivation,
              .pallofPress, .nordicCurl, .birdDog, .deadBug, .clamshell, .kbSwing, .facePull,
              .foamRolling, .bicepsCurl, .tricepsPushdown, .lateralRaises, .hangingLegRaise,
-             .tricepsOverhead, .woodchopper, .pullover:
+             .tricepsOverhead, .woodchopper, .pullover,
+             .cableFly, .legExtension, .legCurl, .legPress, .reverseHyper,
+             .mountainClimber, .jumpingJack, .tibialisRaise, .turkishGetUp, .powerClean,
+             .sledPush, .farmerCarry, .doubleUnders:
             return true
         case .mobility, .runEndurance, .runInterval, .runDrills, .swimDrill, .swimEndurance,
              .cycleEndurance, .cycleInterval, .yoga, .generic:
