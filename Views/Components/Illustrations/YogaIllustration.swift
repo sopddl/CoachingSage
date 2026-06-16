@@ -3387,9 +3387,11 @@ struct YogaIllustration: View {
         func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
         yLimb(ctx, [p(48, 46), p(48, 22)], stroke)       // jambes verticales (poussées à droite)
         yLimb(ctx, [p(42, 46), p(54, 46)], stroke)       // pieds au sol
-        yCurve(ctx, p(48, 22), p(33, 41), p(34, 28), stroke) // buste plié BIEN à gauche (espace négatif vs jambe)
-        yHead(ctx, p(32, 41), s, stroke)                 // tête basse près des pieds, dégagée à gauche
-        yLimb(ctx, [p(40, 31), p(47, 45)], stroke)       // bras qui descend vers les mains sous les pieds
+        // buste qui bombe NETTEMENT à gauche (gros espace négatif vs jambe) puis tête qui revient
+        // vers les pieds en bas → lit « personne pliée en deux », pas un aplat collé à la jambe.
+        yCurve(ctx, p(48, 23), p(46, 44), p(30, 30), stroke) // dos bombé large à gauche → tête près des pieds
+        yHead(ctx, p(45, 43), s, stroke)                 // tête basse entre/près des pieds
+        yLimb(ctx, [p(36, 33), p(47, 45)], stroke)       // bras qui descend vers les mains sous les pieds
     }
 
     /// Ardha Matsyendrasana — torsion vertébrale assise.
@@ -3406,11 +3408,13 @@ struct YogaIllustration: View {
     /// Kapotasana (Pigeon royal) — à genoux, cambrure arrière profonde, mains vers les pieds.
     private func drawKapotasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
         func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
-        yLimb(ctx, [p(26, 46), p(40, 46)], stroke)       // tibias/pieds au sol (à genoux)
-        yLimb(ctx, [p(33, 46), p(33, 28)], stroke)       // cuisses VERTICALES, bassin poussé haut (à genoux)
-        yCurve(ctx, p(33, 28), p(46, 44), p(50, 28), stroke) // grande cambrure ARRIÈRE, tête bascule vers les pieds
-        yHead(ctx, p(45, 44), s, stroke)                 // tête renversée bas-arrière
-        yCurve(ctx, p(33, 30), p(42, 45), p(34, 24), stroke) // bras tendus par-dessus la tête vers les pieds
+        // Base à genoux DISTINCTE (tibia au sol + cuisse verticale) séparée de la grande cambrure
+        // arrière, pour éviter la lecture « lettre D ». Chest qui monte puis tête qui bascule en arrière.
+        yLimb(ctx, [p(26, 46), p(38, 46)], stroke)       // tibias/pieds au sol (à genoux)
+        yLimb(ctx, [p(32, 46), p(32, 31)], stroke)       // cuisse VERTICALE (à genoux, bassin haut)
+        yCurve(ctx, p(32, 31), p(50, 41), p(43, 23), stroke) // torse monte puis grande cambrure arrière
+        yHead(ctx, p(50, 42), s, stroke)                 // tête renversée bas-arrière (vers les pieds)
+        yCurve(ctx, p(33, 32), p(45, 45), p(38, 26), stroke) // bras par-dessus la tête vers les pieds
     }
 
     /// Bhujapidasana (Pression épaule) — équilibre bras, jambes en appui sur les bras, pieds devant.
@@ -3433,12 +3437,15 @@ struct YogaIllustration: View {
         // Embryon : en équilibre sur le sacrum (point d'appui bas), corps roulé en boule compacte.
         // Vue de profil. Jambes croisées (lotus) ramenées haut contre le buste, BRAS qui sortent
         // d'entre les cuisses et remontent vers le VISAGE (signature : « bras passés dans les jambes »).
-        yLimb(ctx, [p(36, 46), p(46, 46)], stroke)            // sacrum/fesses : point d'appui au sol
-        yCurve(ctx, p(40, 45), p(31, 31), p(28, 42), stroke)  // dos arrondi (bombe LARGE à gauche) → tête
-        yHead(ctx, p(34, 28), s, stroke)                      // tête en haut de la boule
-        yCurve(ctx, p(43, 45), p(54, 33), p(55, 45), stroke)  // cuisses repliées (bombe LARGE à droite, écartées du dos)
-        yLimb(ctx, [p(54, 33), p(44, 36)], stroke)            // tibias croisés (lotus) ramenés
-        yLimb(ctx, [p(46, 37), p(37, 30)], stroke)            // bras qui sort d'entre les jambes vers le visage
+        // Lecture « personne roulée en boule, genoux serrés contre la poitrine » : tête nette en
+        // haut, dos rond, genoux remontés haut devant, tibias repliés, bras qui enlace les jambes.
+        // Membres DISTINCTS avec espace négatif (vs blob).
+        yLimb(ctx, [p(38, 46), p(46, 46)], stroke)            // fesses/sacrum : point d'appui au sol
+        yHead(ctx, p(35, 28), s, stroke)                      // tête nette en haut
+        yCurve(ctx, p(40, 45), p(36, 31), p(31, 40), stroke)  // dos arrondi (bombe gauche) → vers la tête
+        yLimb(ctx, [p(43, 45), p(50, 33)], stroke)            // cuisses remontées haut vers la poitrine (genou)
+        yLimb(ctx, [p(50, 33), p(42, 33)], stroke)            // tibias repliés (genou → pied) vers le corps
+        yLimb(ctx, [p(38, 33), p(48, 37)], stroke)            // bras qui enlace les tibias
     }
 
     /// Karnapidasana (Genoux aux oreilles) — charrue COMPRESSÉE : épaules au sol, bassin renversé
@@ -3471,12 +3478,16 @@ struct YogaIllustration: View {
     /// Ardha Baddha Padmottanasana — debout demi-lotus, flexion avant, bras lié dans le dos.
     private func drawArdhaBaddhaPadmottanasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
         func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
-        yLimb(ctx, [p(46, 46), p(46, 24)], stroke)        // jambe d'appui VERTICALE (poussée à droite)
-        yLimb(ctx, [p(40, 47), p(52, 47)], stroke)        // pied d'appui au sol
-        yLimb(ctx, [p(46, 33), p(36, 36), p(45, 30)], stroke) // pied demi-lotus posé sur la cuisse (triangle écarté)
-        yCurve(ctx, p(46, 24), p(33, 40), p(33, 30), stroke)  // buste plié BIEN à gauche (espace négatif vs jambe)
-        yHead(ctx, p(32, 40), s, stroke)                  // tête BASSE dégagée à gauche
-        yLimb(ctx, [p(39, 29), p(44, 35)], stroke)        // bras lié vers le pied du lotus
+        // Approche revue : figure DEBOUT nette (verticale) en équilibre sur une jambe, l'autre
+        // genou plié vers l'extérieur avec le pied posé sur la cuisse (demi-lotus), léger penché
+        // avant + bras qui descend. Privilégie une silhouette humaine debout lisible (vs l'aplat « 7 »).
+        yLimb(ctx, [p(44, 46), p(43, 26)], stroke)        // jambe d'appui verticale
+        yLimb(ctx, [p(40, 47), p(48, 47)], stroke)        // pied d'appui au sol
+        yLimb(ctx, [p(43, 26), p(41, 18)], stroke)        // buste droit, léger penché avant
+        yHead(ctx, p(40, 15), s, stroke)                  // tête en haut (debout)
+        yLimb(ctx, [p(43, 33), p(33, 35), p(42, 30)], stroke) // genou plié dehors + pied demi-lotus sur la cuisse
+        yLimb(ctx, [p(42, 20), p(35, 33)], stroke)        // bras qui descend attraper le pied du lotus
+        yLimb(ctx, [p(42, 19), p(48, 28)], stroke)        // autre bras le long
     }
 }
 
