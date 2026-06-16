@@ -58,7 +58,7 @@ YOGA = {
     "3.5 min finishing": S("3.5", "minutes"),
     "3.5 min séquence": S("3.5", "minutes"),
     "4 min": S("4", "minutes"),
-    "4 min finishing cutback": S("4", "minutes"),
+    "4 min finishing semaine allégée": S("4", "minutes"),
     "4 min séquence": S("4", "minutes"),
     "4.5 min finishing": S("4.5", "minutes"),
     "5 min": S("5", "minutes"),
@@ -477,20 +477,21 @@ HIKING = {
     # (lossless). « RPE »/« tempo »/« endurance » = vocabulaire volontaire gardé tel quel (3 langues).
     # « D+ » (dénivelé positif, notation FR) -> « elevation gain »/« desnivel » en EN/ES (pas une
     # fuite : le concept est traduit). Renfo (reps/secondes par série/jambe/lettre/côté) = structuré.
-    # Heures (« 4 h », « 6 h 30 ») = freeText universel (pas d'unité heures ; « h » identique 3 langues).
-    # --- HEURES (sorties longues) : freeText universel, aucune fuite (chiffres + « h ») ---
-    "4 h": F("4 h", "4 h", "4 h"),
-    "4 h 30": F("4 h 30", "4 h 30", "4 h 30"),
-    "6 h": F("6 h", "6 h", "6 h"),
-    "6 h 30": F("6 h 30", "6 h 30", "6 h 30"),
-    "7 h": F("7 h", "7 h", "7 h"),
-    "7 h 30": F("7 h 30", "7 h 30", "7 h 30"),
-    "8 h": F("8 h", "8 h", "8 h"),
-    "8 h 30": F("8 h 30", "8 h 30", "8 h 30"),
-    "9 h": F("9 h", "9 h", "9 h"),
-    "9 h 30": F("9 h 30", "9 h 30", "9 h 30"),
-    "10 h": F("10 h", "10 h", "10 h"),
-    "11 h": F("11 h", "11 h", "11 h"),
+    # Heures (sorties longues) : FR garde la convention « 4 h » / « 4 h 30 » (espaces), EN/ES
+    # collent « 4h » / « 4h30 » (« 4 h 30 » est une convention FR qui lit mal hors-FR — décision
+    # Sophie 2026-06-16). Toujours freeText universel, aucune fuite (chiffres + « h »).
+    "4 h": F("4 h", "4h", "4h"),
+    "4 h 30": F("4 h 30", "4h30", "4h30"),
+    "6 h": F("6 h", "6h", "6h"),
+    "6 h 30": F("6 h 30", "6h30", "6h30"),
+    "7 h": F("7 h", "7h", "7h"),
+    "7 h 30": F("7 h 30", "7h30", "7h30"),
+    "8 h": F("8 h", "8h", "8h"),
+    "8 h 30": F("8 h 30", "8h30", "8h30"),
+    "9 h": F("9 h", "9h", "9h"),
+    "9 h 30": F("9 h 30", "9h30", "9h30"),
+    "10 h": F("10 h", "10h", "10h"),
+    "11 h": F("11 h", "11h", "11h"),
     # --- MINUTES nues -> structuré ---
     "240 min": S("240", "minutes"),
     "275 min": S("275", "minutes"),
@@ -617,12 +618,12 @@ HIIT = {
     "20 m par push": F("20 m par poussée", "20 m per push", "20 m por empuje"),
     "20 m sled + 20 m farmer carry": F("20 m de sled + 20 m de farmer carry", "20 m sled + 20 m farmer carry", "20 m de sled + 20 m de farmer carry"),
     # --- RENFO membres (calf/tibialis/scapular/Y) -> freeText (noms gardés, /jambe traduit) ---
-    "12 calf/jambe + 15 tibialis/jambe": F("12 calf par jambe + 15 tibialis par jambe", "12 calf per leg + 15 tibialis per leg", "12 calf por pierna + 15 tibialis por pierna"),
-    "12 calf/jambe + 15 tibialis/jambe + 12 scapular": F("12 calf par jambe + 15 tibialis par jambe + 12 scapular", "12 calf per leg + 15 tibialis per leg + 12 scapular", "12 calf por pierna + 15 tibialis por pierna + 12 scapular"),
-    "15 calf/jambe + 18 tibialis/jambe": F("15 calf par jambe + 18 tibialis par jambe", "15 calf per leg + 18 tibialis per leg", "15 calf por pierna + 18 tibialis por pierna"),
-    "12 scapular + 12 Y-raise": F("12 scapular + 12 Y-raise", "12 scapular + 12 Y-raise", "12 scapular + 12 Y-raise"),
+    "12 calf/jambe + 15 tibialis/jambe": F("12 calf raises par jambe + 15 tibialis raises par jambe", "12 calf raises per leg + 15 tibialis raises per leg", "12 calf raises por pierna + 15 tibialis raises por pierna"),
+    "12 calf/jambe + 15 tibialis/jambe + 12 scapular": F("12 calf raises par jambe + 15 tibialis raises par jambe + 12 scapular pull-ups", "12 calf raises per leg + 15 tibialis raises per leg + 12 scapular pull-ups", "12 calf raises por pierna + 15 tibialis raises por pierna + 12 scapular pull-ups"),
+    "15 calf/jambe + 18 tibialis/jambe": F("15 calf raises par jambe + 18 tibialis raises par jambe", "15 calf raises per leg + 18 tibialis raises per leg", "15 calf raises por pierna + 18 tibialis raises por pierna"),
+    "12 scapular + 12 Y-raise": F("12 scapular pull-ups + 12 Y-raise", "12 scapular pull-ups + 12 Y-raise", "12 scapular pull-ups + 12 Y-raise"),
     "12 Y + 12 face pull": F("12 Y + 12 face pull", "12 Y + 12 face pull", "12 Y + 12 face pull"),
-    "15 tibialis + 12 scapular pull-up": F("15 tibialis + 12 scapular pull-up", "15 tibialis + 12 scapular pull-up", "15 tibialis + 12 scapular pull-up"),
+    "15 tibialis + 12 scapular pull-up": F("15 tibialis raises + 12 scapular pull-ups", "15 tibialis raises + 12 scapular pull-ups", "15 tibialis raises + 12 scapular pull-ups"),
     "12 squat + 8 push-up genoux": F("12 squats + 8 push-up sur genoux", "12 squats + 8 knee push-ups", "12 squats + 8 push-up de rodillas"),
     # --- GAINAGE composites (planche/ventrale/latérale + dead bug/bird dog/hollow/V-ups) -> freeText ---
     "30 sec dead bug + 30 sec bird dog": F("30 s de dead bug + 30 s de bird dog", "30 s dead bug + 30 s bird dog", "30 s de dead bug + 30 s de bird dog"),
@@ -647,10 +648,10 @@ HIIT = {
     "75 sec planche + 45 sec side/côté + 12 dead bug/côté": F("75 s de planche + 45 s de planche latérale par côté + 12 dead bug par côté", "75 s plank + 45 s side plank per side + 12 dead bug per side", "75 s de plancha + 45 s de plancha lateral por lado + 12 dead bug por lado"),
     "90 sec planche + 30 sec dead bug/côté": F("90 s de planche + 30 s de dead bug par côté", "90 s plank + 30 s dead bug per side", "90 s de plancha + 30 s de dead bug por lado"),
     "90 sec planche + 45 sec side/côté + 15 dead bug/côté": F("90 s de planche + 45 s de planche latérale par côté + 15 dead bug par côté", "90 s plank + 45 s side plank per side + 15 dead bug per side", "90 s de plancha + 45 s de plancha lateral por lado + 15 dead bug por lado"),
-    "15 reps tibialis + 60 sec planche + 30 sec side/côté": F("15 tibialis + 60 s de planche + 30 s de planche latérale par côté", "15 tibialis + 60 s plank + 30 s side plank per side", "15 tibialis + 60 s de plancha + 30 s de plancha lateral por lado"),
-    "15 tibialis/jambe + 60 sec planche": F("15 tibialis par jambe + 60 s de planche", "15 tibialis per leg + 60 s plank", "15 tibialis por pierna + 60 s de plancha"),
-    "15 tibialis/jambe + 60 sec planche + 30 sec side/côté": F("15 tibialis par jambe + 60 s de planche + 30 s de planche latérale par côté", "15 tibialis per leg + 60 s plank + 30 s side plank per side", "15 tibialis por pierna + 60 s de plancha + 30 s de plancha lateral por lado"),
-    "10 hip thrust + 30 sec copenhagen/côté": F("10 hip thrust + 30 s de copenhagen par côté", "10 hip thrust + 30 s copenhagen per side", "10 hip thrust + 30 s de copenhagen por lado"),
+    "15 reps tibialis + 60 sec planche + 30 sec side/côté": F("15 tibialis raises + 60 s de planche + 30 s de planche latérale par côté", "15 tibialis raises + 60 s plank + 30 s side plank per side", "15 tibialis raises + 60 s de plancha + 30 s de plancha lateral por lado"),
+    "15 tibialis/jambe + 60 sec planche": F("15 tibialis raises par jambe + 60 s de planche", "15 tibialis raises per leg + 60 s plank", "15 tibialis raises por pierna + 60 s de plancha"),
+    "15 tibialis/jambe + 60 sec planche + 30 sec side/côté": F("15 tibialis raises par jambe + 60 s de planche + 30 s de planche latérale par côté", "15 tibialis raises per leg + 60 s plank + 30 s side plank per side", "15 tibialis raises por pierna + 60 s de plancha + 30 s de plancha lateral por lado"),
+    "10 hip thrust + 30 sec copenhagen/côté": F("10 hip thrust + 30 s de Copenhagen par côté", "10 hip thrust + 30 s Copenhagen per side", "10 hip thrust + 30 s de Copenhagen por lado"),
     "5 Nordic + 8 split squat/jambe DB 12 kg": F("5 Nordic + 8 split squat par jambe, haltères 12 kg", "5 Nordic + 8 split squat per leg, 12 kg dumbbells", "5 Nordic + 8 split squat por pierna, mancuernas 12 kg"),
     "5 Nordic + 8 split squat/jambe DB 14 kg": F("5 Nordic + 8 split squat par jambe, haltères 14 kg", "5 Nordic + 8 split squat per leg, 14 kg dumbbells", "5 Nordic + 8 split squat por pierna, mancuernas 14 kg"),
 }
@@ -682,12 +683,16 @@ STRENGTH = {
     # Pur numérique : fr=en=es (aucun mot FR → aucune fuite), juste l'espacement normalisé.
     "5,6,8,8": F("5, 6, 8, 8", "5, 6, 8, 8", "5, 6, 8, 8"),
     "3,5,6,6": F("3, 5, 6, 6", "3, 5, 6, 6", "3, 5, 6, 6"),
-    "5, 5, 5, 5+ AMRAP": F("5, 5, 5, 5+ AMRAP", "5, 5, 5, 5+ AMRAP", "5, 5, 5, 5+ AMRAP"),
-    "5, 3, 1+ AMRAP": F("5, 3, 1+ AMRAP", "5, 3, 1+ AMRAP", "5, 3, 1+ AMRAP"),
-    "3, 3, 3, 3+ AMRAP": F("3, 3, 3, 3+ AMRAP", "3, 3, 3, 3+ AMRAP", "3, 3, 3, 3+ AMRAP"),
-    "5,6,8,AMRAP": F("5, 6, 8, AMRAP", "5, 6, 8, AMRAP", "5, 6, 8, AMRAP"),
-    "3,5,6,AMRAP": F("3, 5, 6, AMRAP", "3, 5, 6, AMRAP", "3, 5, 6, AMRAP"),
-    "AMRAP 1 set": F("AMRAP — 1 série", "AMRAP — 1 set", "AMRAP — 1 serie"),
+    # AMRAP glosé (passe #3 « jargon affiché ») : FR « (max de reps) », ES « (máximo de reps) »,
+    # EN non glosé (terme natif, EN hors-périmètre du filet jargon). Le neutre `reps` reste clé sans
+    # glose ; la glose localisée vit dans le dose freeText (source unique). Corrige la fuite ES en FR/EN
+    # introduite par l'édition manuelle passe #3 (resync pipeline dose+migration).
+    "5, 5, 5, 5+ AMRAP": F("5, 5, 5, 5+ AMRAP (max de reps)", "5, 5, 5, 5+ AMRAP", "5, 5, 5, 5+ AMRAP (máximo de reps)"),
+    "5, 3, 1+ AMRAP": F("5, 3, 1+ AMRAP (max de reps)", "5, 3, 1+ AMRAP", "5, 3, 1+ AMRAP (máximo de reps)"),
+    "3, 3, 3, 3+ AMRAP": F("3, 3, 3, 3+ AMRAP (max de reps)", "3, 3, 3, 3+ AMRAP", "3, 3, 3, 3+ AMRAP (máximo de reps)"),
+    "5,6,8,AMRAP": F("5, 6, 8, AMRAP (max de reps)", "5, 6, 8, AMRAP", "5, 6, 8, AMRAP (máximo de reps)"),
+    "3,5,6,AMRAP": F("3, 5, 6, AMRAP (max de reps)", "3, 5, 6, AMRAP", "3, 5, 6, AMRAP (máximo de reps)"),
+    "AMRAP 1 set": F("AMRAP (max de reps) — 1 série", "AMRAP — 1 set", "AMRAP (máximo de reps) — 1 serie"),
     "1 (3 attempts max)": F("1 (3 essais max)", "1 (3 attempts max)", "1 (3 intentos máx.)"),
     "max": F("max", "max", "máx."),
     "max propre": F("max propre", "clean max", "máx. limpias"),
