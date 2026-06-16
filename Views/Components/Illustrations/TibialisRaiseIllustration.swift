@@ -24,12 +24,13 @@ struct TibialisRaiseIllustration: View {
             // Corps debout légèrement incliné, dos vers le mur
             StrengthFigureKit.headNeck(ctx, head: p(15, 10), shoulder: p(14, 16), color: body, s: s)
             StrengthFigureKit.limb(ctx, [p(14, 16), p(18, 30)], color: body, s: s)   // tronc
-            let ankle = p(24, 44)
-            StrengthFigureKit.limb(ctx, [p(18, 30), ankle], color: body, s: s)        // jambe vers le talon
+            let heel = p(22, 44)
+            StrengthFigureKit.limb(ctx, [p(18, 30), heel], color: body, s: s)        // jambe vers le talon
 
-            // Pied : talon fixe au sol, avant-pied (orteils) qui se lève
-            let toe = p(34, L(44, 38, r))
-            StrengthFigureKit.limb(ctx, [ankle, toe], color: body, s: s, heavy: true)
+            // Pied : talon fixe ancré au sol, avant-pied (orteils) qui se lève FRANCHEMENT
+            // (dorsiflexion exagérée pour la lisibilité — reproche revue « mouvement invisible »).
+            let toe = p(L(34, 30, r), L(44, 31, r))
+            StrengthFigureKit.limb(ctx, [heel, toe], color: body, s: s, heavy: true)
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)
     }

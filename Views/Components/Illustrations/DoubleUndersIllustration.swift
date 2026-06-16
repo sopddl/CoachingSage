@@ -17,24 +17,39 @@ struct DoubleUndersIllustration: View {
 
             StrengthFigureKit.ground(ctx, s: s)
             let r: CGFloat = frame == 0 ? 0 : (frame == 1 ? 0.5 : 1)
-            let hop = L(0, -3, r) // saut maximal quand la corde est en haut
+            // Saut net : au sol (frame 0, corde sous les pieds) → en l'air (frame 2, corde au-dessus).
+            // L'écart pieds↔sol pointillé rend le « saut » visible (reproche revue : pieds plantés).
+            let hop = L(2, -7, r)
 
             StrengthFigureKit.headNeck(ctx, head: p(24, 9 + hop), shoulder: p(24, 15 + hop), color: body, s: s)
             StrengthFigureKit.limb(ctx, [p(24, 15 + hop), p(24, 28 + hop)], color: body, s: s) // tronc
-            // Bras coudes près du corps, mains qui tiennent les poignées
-            let handL = p(16, 24 + hop), handR = p(32, 24 + hop)
-            StrengthFigureKit.limb(ctx, [p(24, 16 + hop), handL], color: body, s: s)
-            StrengthFigureKit.limb(ctx, [p(24, 16 + hop), handR], color: body, s: s)
-            // Jambes légèrement fléchies
+            // Bras le long du corps, avant-bras vers l'extérieur, mains qui tiennent les poignées
+            let handL = p(15, 26 + hop), handR = p(33, 26 + hop)
+            StrengthFigureKit.limb(ctx, [p(24, 17 + hop), p(20, 24 + hop), handL], color: body, s: s)
+            StrengthFigureKit.limb(ctx, [p(24, 17 + hop), p(28, 24 + hop), handR], color: body, s: s)
+            // Jambes : tendues+jointes en l'air (frame 2), légèrement fléchies à la réception (frame 0)
             let hip = p(24, 28 + hop)
-            StrengthFigureKit.limb(ctx, [hip, p(21, 42 + hop)], color: body, s: s)
-            StrengthFigureKit.limb(ctx, [hip, p(27, 42 + hop)], color: body, s: s)
+            let footY = L(43, 38, r) + hop
+            StrengthFigureKit.limb(ctx, [hip, p(L(21, 23, r), footY)], color: body, s: s)
+            StrengthFigureKit.limb(ctx, [hip, p(L(27, 25, r), footY)], color: body, s: s)
 
-            // Corde : arc entre les deux mains, point de contrôle bas (sous pieds) → haut (overhead)
+            // Corde à sauter : grande boucle qui passe SOUS les pieds (frame 0) → remonte sur les
+            // côtés (frame 1) → AU-DESSUS de la tête (frame 2). Boucle fermée = lecture « corde ».
+            let ctrlY = L(52, -4, r)          // bas (sous pieds) → haut (overhead)
+            let sideX = L(6, 18, r)           // largeur de la boucle : large en bas, resserrée en haut
             var rope = Path()
             rope.move(to: handL)
-            rope.addQuadCurve(to: handR, control: p(24, L(50, 0, r)))
+            rope.addQuadCurve(to: handR, control: p(24, ctrlY))                      // brin qui balaie
+            rope.move(to: handL)
+            rope.addQuadCurve(to: handR, control: p(24, L(20, 24, r) + hop))          // brin proche du corps
+            // arcs latéraux reliant les mains au brin qui balaie (donne la boucle ovale)
+            var loop = Path()
+            loop.move(to: handL)
+            loop.addQuadCurve(to: p(24, ctrlY), control: p(handL.x - sideX, (handL.y + ctrlY) / 2))
+            loop.addQuadCurve(to: handR, control: p(handR.x + sideX, (handR.y + ctrlY) / 2))
             ctx.stroke(rope, with: .color(IllustrationStyle.equipment),
+                       style: StrokeStyle(lineWidth: IllustrationStyle.strokeWidthThin * s, lineCap: .round))
+            ctx.stroke(loop, with: .color(IllustrationStyle.equipment),
                        style: StrokeStyle(lineWidth: IllustrationStyle.strokeWidthThin * s, lineCap: .round))
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)
