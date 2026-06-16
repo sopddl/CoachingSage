@@ -49,6 +49,23 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
     case woodchopper     // 3 frames — câble diagonal haut→bas (coup de hache)
     case pullover        // 3 frames — allongé banc, haltère arc derrière tête → poitrine
 
+    // Party illustrations 2026-06-08 — lot muscu machines (trous .generic confirmés au dump)
+    case cableFly        // 3 frames — écarté poulie/pec deck, bras ouvrent→ferment devant
+    case legExtension    // 3 frames — assis machine, jambes tendent (quadriceps)
+    case legCurl         // 3 frames — allongé machine, talons fléchissent (ischios)
+    case legPress        // 3 frames — assis incliné, jambes poussent le chariot
+    case reverseHyper    // 3 frames — buste sur banc, jambes montent à l'horizontale (lombaires)
+
+    // Party illustrations 2026-06-08 — lot HIIT (mouvements .generic confirmés au dump)
+    case mountainClimber // 3 frames — gainage planche, genou qui monte alterné
+    case jumpingJack     // 3 frames — bras+jambes ouvrent (jumping/step-jack) vue de face
+    case tibialisRaise   // 3 frames — dos calé, orteils montent (tibial antérieur)
+    case turkishGetUp    // 3 frames storyboard — allongé→appui→debout, charge au-dessus
+    case powerClean      // 3 frames storyboard — barre sol→tirage→réception épaules
+    case sledPush        // 3 frames — buste penché, pousse le traîneau lesté
+    case farmerCarry     // 3 frames — marche debout, charges aux deux mains
+    case doubleUnders    // 3 frames — petit saut, corde passe (vue de face)
+
     // Running (3 cases dont 1 statique)
     case runEndurance
     case runInterval
@@ -103,7 +120,10 @@ public enum ExercisePattern: String, Equatable, Sendable, CaseIterable {
              .lunge, .core, .plyo, .hipThrust, .calfRaise, .forearmPlank, .ytwActivation,
              .pallofPress, .nordicCurl, .birdDog, .deadBug, .clamshell, .kbSwing, .facePull,
              .foamRolling, .bicepsCurl, .tricepsPushdown, .lateralRaises, .hangingLegRaise,
-             .tricepsOverhead, .woodchopper, .pullover:
+             .tricepsOverhead, .woodchopper, .pullover,
+             .cableFly, .legExtension, .legCurl, .legPress, .reverseHyper,
+             .mountainClimber, .jumpingJack, .tibialisRaise, .turkishGetUp, .powerClean,
+             .sledPush, .farmerCarry, .doubleUnders:
             return true
         case .mobility, .runEndurance, .runInterval, .runDrills, .swimDrill, .swimEndurance,
              .cycleEndurance, .cycleInterval, .yoga, .generic:

@@ -46,6 +46,11 @@ public enum ExercisePatternResolver {
         //   → ce sont des postures yoga, elles rendent la figure yoga.
         if lowerName.contains("salabhasana") || lowerName.contains("sauterelle")
             || lowerName.contains("bakasana") { return .yoga }
+        // Party illustrations 2026-06-08 — asanas avancées dont le NOM contient un mot
+        // strength/mobility (plank, étirement…) qui les détournerait vers .core/.mobility
+        // avant le fallback sport yoga. Noms yoga-exclusifs → force .yoga (zéro risque autres sports).
+        if lowerName.contains("phalakasana") || lowerName.contains("uttana padasana")
+            || lowerName.contains("purvottanasana") || lowerName.contains("utthita hasta") { return .yoga }
         // FIFA 11+ « The Bench » = GAINAGE (planche), PAS un développé couché ; « Sideways
         // Bench » = side plank. On exclut le vrai « bench press »/« développé » (→ pushHorizontal).
         if lowerName.contains("bench") && !lowerName.contains("press") && !lowerName.contains("développé") {
@@ -199,6 +204,52 @@ public enum ExercisePatternResolver {
     static func patternFromKeyword(in name: String) -> ExercisePattern? {
         let lower = name.lowercased()
 
+        // Party illustrations 2026-06-08 — lot muscu machines (placé EN TÊTE = noms d'exos
+        // très spécifiques « machine », pas de collision avec les keywords génériques en dessous).
+        if matchesAny(lower, ["cable fly", "chest fly", "cable chest fly", "pec deck", "écarté poulie", "ecarte poulie"]) {
+            return .cableFly
+        }
+        if matchesAny(lower, ["leg extension", "leg-extension"]) {
+            return .legExtension
+        }
+        if matchesAny(lower, ["leg curl", "leg-curl"]) {
+            return .legCurl
+        }
+        if matchesAny(lower, ["leg press", "leg-press", "presse à cuisses", "presse a cuisses"]) {
+            return .legPress
+        }
+        if matchesAny(lower, ["reverse hyper", "reverse hyperextension", "hyperextension inversée", "hyperextension inversee"]) {
+            return .reverseHyper
+        }
+
+        // Party illustrations 2026-06-08 — lot HIIT (placé EN TÊTE : « jumping jack » contient
+        // « jump » qui matcherait .plyo plus bas, donc à intercepter avant).
+        if matchesAny(lower, ["mountain climber", "mountain-climber", "climber alterné", "climber alterne"]) {
+            return .mountainClimber
+        }
+        if matchesAny(lower, ["jumping jack", "jumping-jack", "step-jack", "step jack", "stepjack", "jumping-jacks"]) {
+            return .jumpingJack
+        }
+        if matchesAny(lower, ["tibialis", "tibial antérieur", "tibial anterieur"]) {
+            return .tibialisRaise
+        }
+        if matchesAny(lower, ["turkish get-up", "turkish getup", "turkish get up", "tgu", "get-up turc", "relevé turc", "releve turc"]) {
+            return .turkishGetUp
+        }
+        if matchesAny(lower, ["power clean", "hang clean", "hang power clean", "power snatch", "hang snatch",
+                              "hang power snatch", "clean barbell", "clean db", "clean & jerk", "épaulé", "epaule-jete", "arraché", "arrache", "snatch"]) {
+            return .powerClean
+        }
+        if matchesAny(lower, ["sled push", "sled-push", "sled", "traîneau", "traineau", "prowler"]) {
+            return .sledPush
+        }
+        if matchesAny(lower, ["farmer carry", "farmer's carry", "farmers carry", "farmer walk", "farmers walk", "port de charge", "loaded carry"]) {
+            return .farmerCarry
+        }
+        if matchesAny(lower, ["double-under", "double under", "doubleunder", "double-unders", "double unders"]) {
+            return .doubleUnders
+        }
+
         // Strength keywords (ordre = du plus spécifique au plus générique)
         // Story 3.23 Tier 1 Jalon 2 — pattern dédié `.hipThrust` (créé Jalon 2).
         // Mapping initial Jalon 1 vers `.hinge` annulé.
@@ -261,7 +312,8 @@ public enum ExercisePatternResolver {
                               "ischio nordique", "ischio nordic"]) {
             return .nordicCurl
         }
-        if matchesAny(lower, ["jump", "burpee", "bondiss", "saut", "box jump", "lateral bound", "bound latéral"]) {
+        if matchesAny(lower, ["jump", "burpee", "bondiss", "saut", "box jump", "lateral bound", "bound latéral",
+                              "depth drop", "depth jump", "drop jump", "atterrissage", "depth landing"]) {
             return .plyo
         }
         // Story 3.23 Lot 5 — Foam rolling AVANT mobility générique
@@ -271,7 +323,8 @@ public enum ExercisePatternResolver {
         }
         // Story 3.23 — fix bug "Foam rolling tombe .generic" : ajout des keywords
         // "foam" / "rolling" / "rouleau" pour mapper sur `.mobility`.
-        if matchesAny(lower, ["étirement", "etirement", "stretch", "mobility", "mobilité", "mobilite", "foam", "rolling", "rouleau"]) {
+        if matchesAny(lower, ["étirement", "etirement", "stretch", "mobility", "mobilité", "mobilite", "foam", "rolling", "rouleau",
+                              "controlled articular", "shoulder cars", "scapular cars"]) {
             return .mobility
         }
         // Story 3.23 Lot 5 — patterns moyenne fréquence
