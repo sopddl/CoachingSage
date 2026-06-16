@@ -39,10 +39,13 @@ final class DoseFormatterHikingTests: XCTestCase {
                      fr: "8-10 reps par jambe", en: "8-10 reps per leg", es: "8-10 reps por pierna")
     }
 
-    // Heures = freeText universel (pas d'unité heures ; « h » identique 3 langues).
-    func testHoursUniversal() {
-        assertRender(.freeText(LocalizedText(fr: "6 h", en: "6 h", es: "6 h")),
-                     fr: "6 h", en: "6 h", es: "6 h")
+    // Heures = freeText. FR garde la convention « 6 h » / « 4 h 30 » (espaces) ; EN/ES collent
+    // « 6h » / « 4h30 » (« 4 h 30 » est une convention FR qui lit mal hors-FR — décision Sophie 2026-06-16).
+    func testHoursFormat() {
+        assertRender(.freeText(LocalizedText(fr: "6 h", en: "6h", es: "6h")),
+                     fr: "6 h", en: "6h", es: "6h")
+        assertRender(.freeText(LocalizedText(fr: "4 h 30", en: "4h30", es: "4h30")),
+                     fr: "4 h 30", en: "4h30", es: "4h30")
     }
 
     // Composite marche / D+ / sac -> freeText traduit (D+ -> elevation gain / desnivel).

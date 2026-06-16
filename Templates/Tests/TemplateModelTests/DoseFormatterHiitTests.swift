@@ -53,13 +53,13 @@ final class DoseFormatterHiitTests: XCTestCase {
                      es: "60 s de plancha frontal + 30 s de plancha lateral por lado")
     }
 
-    // Noms d'exos internationaux gardés (dead bug/bird dog) ; seul « /jambe » est traduit.
+    // Noms d'exos internationaux gardés (tibialis raises) ; seul « /jambe » est traduit.
     func testKeptExerciseNames() {
-        assertRender(.freeText(LocalizedText(fr: "15 tibialis par jambe + 60 s de planche",
-                                             en: "15 tibialis per leg + 60 s plank",
-                                             es: "15 tibialis por pierna + 60 s de plancha")),
-                     fr: "15 tibialis par jambe + 60 s de planche",
-                     en: "15 tibialis per leg + 60 s plank",
-                     es: "15 tibialis por pierna + 60 s de plancha")
+        assertRender(.freeText(LocalizedText(fr: "15 tibialis raises par jambe + 60 s de planche",
+                                             en: "15 tibialis raises per leg + 60 s plank",
+                                             es: "15 tibialis raises por pierna + 60 s de plancha")),
+                     fr: "15 tibialis raises par jambe + 60 s de planche",
+                     en: "15 tibialis raises per leg + 60 s plank",
+                     es: "15 tibialis raises por pierna + 60 s de plancha")
     }
 }
