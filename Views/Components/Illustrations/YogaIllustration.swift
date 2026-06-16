@@ -45,7 +45,19 @@ struct YogaIllustration: View {
             // la frame respecte déjà le ratio du viewbox, robuste sinon.
             ctx.translateBy(x: (canvasSize.width - IllustrationStyle.staticFrameSize.width * s) / 2,
                             y: (canvasSize.height - IllustrationStyle.staticFrameSize.height * s) / 2)
-            let stroke = StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s, lineCap: .round, lineJoin: .round)
+            // Passe design systémique (revue panel 2026-06-16) : les poses REPLIÉES / inversées /
+            // équilibres bras entassent les segments ; à trait épais (2.5) ils fusionnent en aplat
+            // « forme-objet » illisible. On rend ces poses avec un trait plus FIN pour rouvrir les
+            // membres (les poses debout/profil gardent le trait épais qui marche bien).
+            let compactPoses: Set<YogaPose> = [
+                .salabhasana, .dhanurasana, .bakasana, .bhujapidasana, .garbhaPindasana,
+                .karnapidasana, .kapotasana, .prasaritaPadottanasana, .upavisthaKonasana,
+                .ardhaBaddhaPadmottanasana, .phalakasana, .utthitaHastaPadangusthasana,
+                .marichyasanaA, .kurmasana, .halasana,
+            ]
+            let lw = compactPoses.contains(poseKind)
+                ? IllustrationStyle.strokeWidth * 0.7 : IllustrationStyle.strokeWidth
+            let stroke = StrokeStyle(lineWidth: lw * s, lineCap: .round, lineJoin: .round)
 
             // Sol pointillé fixe (référentiel ancrage)
             var ground = Path()
@@ -3373,11 +3385,11 @@ struct YogaIllustration: View {
     /// de la jambe, tête basse près des pieds, bras qui plongent vers les mains SOUS les pieds.
     private func drawPadahastasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
         func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
-        yLimb(ctx, [p(46, 46), p(46, 22)], stroke)       // jambes verticales (côté droit, nettes)
-        yLimb(ctx, [p(40, 46), p(52, 46)], stroke)       // pieds au sol
-        yCurve(ctx, p(46, 22), p(40, 42), p(38, 30), stroke) // buste plié vers l'avant (à gauche de la jambe)
-        yHead(ctx, p(39, 42), s, stroke)                 // tête basse près des pieds
-        yLimb(ctx, [p(44, 28), p(43, 45)], stroke)       // bras qui descend vers les mains sous les pieds
+        yLimb(ctx, [p(48, 46), p(48, 22)], stroke)       // jambes verticales (poussées à droite)
+        yLimb(ctx, [p(42, 46), p(54, 46)], stroke)       // pieds au sol
+        yCurve(ctx, p(48, 22), p(33, 41), p(34, 28), stroke) // buste plié BIEN à gauche (espace négatif vs jambe)
+        yHead(ctx, p(32, 41), s, stroke)                 // tête basse près des pieds, dégagée à gauche
+        yLimb(ctx, [p(40, 31), p(47, 45)], stroke)       // bras qui descend vers les mains sous les pieds
     }
 
     /// Ardha Matsyendrasana — torsion vertébrale assise.
@@ -3421,13 +3433,12 @@ struct YogaIllustration: View {
         // Embryon : en équilibre sur le sacrum (point d'appui bas), corps roulé en boule compacte.
         // Vue de profil. Jambes croisées (lotus) ramenées haut contre le buste, BRAS qui sortent
         // d'entre les cuisses et remontent vers le VISAGE (signature : « bras passés dans les jambes »).
-        yLimb(ctx, [p(36, 46), p(44, 46)], stroke)            // sacrum/fesses : point d'appui au sol
-        yCurve(ctx, p(40, 45), p(34, 30), p(30, 40), stroke)  // dos arrondi qui remonte vers la tête
-        yHead(ctx, p(36, 28), s, stroke)                      // tête en haut de la boule
-        yCurve(ctx, p(40, 45), p(50, 32), p(52, 42), stroke)  // cuisses/lotus ramenées en boule devant
-        yCurve(ctx, p(50, 32), p(40, 33), p(45, 30), stroke)  // tibias croisés (lotus) repliés vers le buste
-        yLimb(ctx, [p(44, 38), p(38, 31)], stroke)            // bras qui sort d'entre les jambes vers le visage
-        yLimb(ctx, [p(46, 39), p(40, 30)], stroke)            // 2e bras vers le visage (cale la tête)
+        yLimb(ctx, [p(36, 46), p(46, 46)], stroke)            // sacrum/fesses : point d'appui au sol
+        yCurve(ctx, p(40, 45), p(31, 31), p(28, 42), stroke)  // dos arrondi (bombe LARGE à gauche) → tête
+        yHead(ctx, p(34, 28), s, stroke)                      // tête en haut de la boule
+        yCurve(ctx, p(43, 45), p(54, 33), p(55, 45), stroke)  // cuisses repliées (bombe LARGE à droite, écartées du dos)
+        yLimb(ctx, [p(54, 33), p(44, 36)], stroke)            // tibias croisés (lotus) ramenés
+        yLimb(ctx, [p(46, 37), p(37, 30)], stroke)            // bras qui sort d'entre les jambes vers le visage
     }
 
     /// Karnapidasana (Genoux aux oreilles) — charrue COMPRESSÉE : épaules au sol, bassin renversé
@@ -3460,12 +3471,12 @@ struct YogaIllustration: View {
     /// Ardha Baddha Padmottanasana — debout demi-lotus, flexion avant, bras lié dans le dos.
     private func drawArdhaBaddhaPadmottanasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
         func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
-        yLimb(ctx, [p(40, 46), p(40, 24)], stroke)        // jambe d'appui VERTICALE nette (centrée)
-        yLimb(ctx, [p(34, 47), p(44, 47)], stroke)        // pied d'appui au sol
-        yLimb(ctx, [p(40, 33), p(30, 36), p(39, 30)], stroke) // pied en demi-lotus posé HAUT sur la cuisse (triangle)
-        yCurve(ctx, p(40, 24), p(43, 41), p(37, 33), stroke)  // buste plié vers le BAS le long de la jambe (flexion avant)
-        yHead(ctx, p(43, 42), s, stroke)                  // tête BASSE près du tibia
-        yLimb(ctx, [p(41, 30), p(33, 35)], stroke)        // bras lié qui passe dans le dos attraper le pied du lotus
+        yLimb(ctx, [p(46, 46), p(46, 24)], stroke)        // jambe d'appui VERTICALE (poussée à droite)
+        yLimb(ctx, [p(40, 47), p(52, 47)], stroke)        // pied d'appui au sol
+        yLimb(ctx, [p(46, 33), p(36, 36), p(45, 30)], stroke) // pied demi-lotus posé sur la cuisse (triangle écarté)
+        yCurve(ctx, p(46, 24), p(33, 40), p(33, 30), stroke)  // buste plié BIEN à gauche (espace négatif vs jambe)
+        yHead(ctx, p(32, 40), s, stroke)                  // tête BASSE dégagée à gauche
+        yLimb(ctx, [p(39, 29), p(44, 35)], stroke)        // bras lié vers le pied du lotus
     }
 }
 
