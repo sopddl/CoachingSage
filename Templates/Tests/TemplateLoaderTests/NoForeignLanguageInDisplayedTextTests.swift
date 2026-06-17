@@ -30,6 +30,16 @@ final class NoForeignLanguageInDisplayedTextTests: XCTestCase {
         pattern: [#"\bsemaine allégée\b"#, #"\btrès facile\b"#].joined(separator: "|"),
         options: [.caseInsensitive])
 
+    /// Jargon anglais interdit en FR affiché (chantier vulgarisation bucket B). `tempo` reste
+    /// volontairement gardé (vocabulaire). Le « semaine semaine » verrouille la non-régression
+    /// du doublon créé/corrigé en bucket A.
+    private static let englishInFr = try! NSRegularExpression(
+        pattern: [
+            #"\brestorative\b"#, #"\bflow\b"#, #"\bchild\b"#, #"\bwarm-?up\b"#, #"\bcool-?down\b"#,
+            #"\bknees-down\b"#, #"\bbreath-led\b"#, #"\bfeeling\b"#, #"\bwall-only\b"#,
+            #"\bgrip\b"#, #"\bcore\b"#, #"\beasy\b"#, #"\bsemaine\s+semaine\b"#,
+        ].joined(separator: "|"), options: [.caseInsensitive])
+
     private func hits(_ re: NSRegularExpression, _ text: String) -> [String] {
         let r = NSRange(text.startIndex..., in: text)
         return re.matches(in: text, range: r).compactMap { Range($0.range, in: text).map { String(text[$0]) } }
@@ -59,7 +69,10 @@ final class NoForeignLanguageInDisplayedTextTests: XCTestCase {
         for e in ex {
             out.append(("exercise.name", e.name))
             if let n = e.notes { out.append(("exercise.notes", n)) }
-            if let d = e.duration { out.append(("exercise.duration", LocalizedText(fr: d))) }
+            // `duration`/`reps` (String plates) sont des CLÉS d'injection dose, pas du texte
+            // directement rendu : la vue affiche le `dose` (déjà localisé, garde-fou
+            // `NoFreeTextFRInDoseTests`). On ne les contrôle donc pas ici (ex. clé yoga
+            // « 9 respirations breath-led » → dose « ...au rythme du souffle » rendu).
             for alt in e.alternatives { out.append(("exercise.alternative", alt)) }
         }
     }
@@ -85,6 +98,12 @@ final class NoForeignLanguageInDisplayedTextTests: XCTestCase {
                     if !h.isEmpty {
                         failures.append("[\(t.id)] \(field).en FR: \(Set(h).sorted()) — « \(en.prefix(70))… »")
                     }
+                }
+                // Jargon anglais interdit en FR affiché (bucket B vulgarisation).
+                let frVal = lt.fr
+                let hFr = hits(Self.englishInFr, frVal)
+                if !hFr.isEmpty {
+                    failures.append("[\(t.id)] \(field).fr EN: \(Set(hFr).sorted()) — « \(frVal.prefix(70))… »")
                 }
             }
         }
