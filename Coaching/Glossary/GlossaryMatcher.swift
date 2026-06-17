@@ -177,6 +177,8 @@ extension Glossary {
         ("une touche", "football.unetouche"),
         ("transition", "football.transition"),
         ("rsa", "football.rsa"),
+        ("fifa 11+", "football.fifa11plus"),
+        ("fifa 11", "football.fifa11plus"),
         // Hiking
         ("dénivelé positif", "hiking.denivele"),
         ("dénivelé", "hiking.denivele"),

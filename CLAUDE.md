@@ -59,6 +59,20 @@ anglicisme gardé UNIQUEMENT s'il est le terme dominant en salle. **Pas de
 parenthèses de glose** (cohérent passe #2a). `RPE/RIR/FTP/TM/tempo` = vocabulaire
 volontaire conservé tel quel dans les 3 langues (≠ anglais résiduel).
 
+**Politique nommage exos FR/EN** (ratifiée Sophie 2026-06-17, décision B chantier
+vulgarisation) : (1) **anglicismes dominants gardés** dans les 3 langues = noms
+canoniques de salle / protocoles (burpees, deadlift, kettlebell/KB, wall ball,
+box jump, Nordic, push-ups, pull-ups, Pallof, scaption, inside-out, catch-up,
+Turkish get-up, FIFA 11+, Tabata/AMRAP/EMOM, Cindy/Fran) ; (2) **génériques &
+anatomiques traduits** (pompes, tractions, planche, fessiers, mollets, chaise,
+montées de genoux…) ; (3) **sanskrit gardé partout + glose FR** entre parenthèses
+(« Posture de l'enfant (balasana) ») ; (4) **codes de zone vulgarisés en
+sensation dans les titres** affichés (« (zone 2) » → « (allure facile) »,
+« au tempo (zone 3) » → « à allure modérée soutenue ») — le code reste tappable
+via glossaire. Filet : `NoForeignLanguageInDisplayedTextTests` (anglais/espagnol
+hors-liste interdit en FR affiché). Le champ `duration`/`reps` = clé d'injection
+dose (non rendu, le dose localisé prime) → exclu des filets langue.
+
 ## Constants build / simu pour l'agent
 
 - **Project** : `/Users/sophieslama/CL3/CoachingSage/CoachingSage.xcodeproj`

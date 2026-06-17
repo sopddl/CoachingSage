@@ -175,6 +175,7 @@ public enum Glossary {
         GlossaryEntry(id: "football.unetouche",    titleKey: "glossary.football.unetouche.title",    definitionKey: "glossary.football.unetouche.definition",    sportCodes: [Sport.football]),
         GlossaryEntry(id: "football.transition",   titleKey: "glossary.football.transition.title",   definitionKey: "glossary.football.transition.definition",   sportCodes: [Sport.football]),
         GlossaryEntry(id: "football.rsa",          titleKey: "glossary.football.rsa.title",          definitionKey: "glossary.football.rsa.definition",          sportCodes: [Sport.football]),
+        GlossaryEntry(id: "football.fifa11plus",   titleKey: "glossary.football.fifa11plus.title",   definitionKey: "glossary.football.fifa11plus.definition",   sportCodes: [Sport.football]),
         // Hiking (4)
         GlossaryEntry(id: "hiking.denivele",    titleKey: "glossary.hiking.denivele.title",    definitionKey: "glossary.hiking.denivele.definition",   sportCodes: [Sport.hiking]),
         GlossaryEntry(id: "hiking.elevation",   titleKey: "glossary.hiking.elevation.title",   definitionKey: "glossary.hiking.elevation.definition",  sportCodes: [Sport.hiking]),
