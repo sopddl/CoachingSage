@@ -34,6 +34,10 @@ final class NoResidualEnglishInDisplayedFRTests: XCTestCase {
             // — passe « traduire tout » 2026-06-19 (reps→répétitions, sets→séries,
             //   rowing→tirage/rameur, drills→exercices/éducatifs, plyo→pliométrie) —
             #"\breps?\b"#, #"\bsets?\b"#, #"\browing\b"#, #"\bdrills?\b"#, #"\bplyo\b"#,
+            // — passe « anglais large » 2026-06-19 (prose anglaise + exos génériques
+            //   francisés ; vertical jump→saut vertical, skater jumps→sauts de
+            //   patineur, race week→semaine de course, S&C→renforcement physique) —
+            #"\bvertical jump\b"#, #"\bskater jumps?\b"#, #"\brace week\b"#, #"S&C"#,
         ].joined(separator: "|"), options: [.caseInsensitive])
 
     /// Phrases tolérées : noms canoniques d'exos / méthodes / matériel / marques

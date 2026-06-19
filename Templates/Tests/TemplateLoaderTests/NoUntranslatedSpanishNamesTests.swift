@@ -101,7 +101,7 @@ final class NoUntranslatedSpanishNamesTests: XCTestCase {
         let golden: [String: String] = [   // fr (canonical) → es attendu
             "Squat gobelet": "Sentadilla goblet",
             "Tirage barre en T 4×10": "Remo en T 4×10",
-            "Tirage seal 4×8": "Remo seal 4×8",
+            "Tirage allongé sur banc (seal row) 4×8": "Remo seal 4×8",
             "Gainage croisé au sol + pointeur": "Bicho muerto + perro-pájaro",
             "Soulevé de terre roumain 3x6 @60% TM": "Peso muerto rumano 3x6 @60% TM",
         ]
