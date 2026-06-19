@@ -39,6 +39,9 @@ final class NoResidualEnglishInSafetyNotesFRTests: XCTestCase {
             // — termes S&C propres à safety_notes (traités ce sous-chantier) —
             #"\bcross-training\b"#, #"\bsaddle sores?\b"#, #"\boverreaching\b"#,
             #"\bsingle-leg\b"#, #"\bRDL\b"#, #"\bOHP\b"#, #"\bhot foot\b"#,
+            // — passe « traduire tout » 2026-06-19 —
+            #"\breps?\b"#, #"\bsets?\b"#, #"\browing\b"#, #"\bdrills?\b"#, #"\bplyo\b"#,
+            #"\bcore\b"#, #"\bcool-?down\b"#,
         ].joined(separator: "|"), options: [.caseInsensitive])
 
     /// Phrases tolérées : noms canoniques d'exos / méthodes / matériel / marques (règle 1)
@@ -47,6 +50,7 @@ final class NoResidualEnglishInSafetyNotesFRTests: XCTestCase {
         "split-step", "swim-smooth", "swim smooth", "bike fit", "assault bike",
         "world's greatest stretch", "couch stretch", "sleeper stretch", "thread the needle",
         "glute-ham", "glute ham", "uphill athlete", "aerobic threshold", "long swim",
+        "balle de set", "balles de set",
     ]
 
     /// Matches de `forbidden` dans `text`, SAUF ceux couverts par une phrase `allowed`.

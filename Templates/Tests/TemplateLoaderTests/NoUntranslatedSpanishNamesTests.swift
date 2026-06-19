@@ -100,8 +100,8 @@ final class NoUntranslatedSpanishNamesTests: XCTestCase {
         // cf incohérence documentée) → mauvaises ancres tant que #2d n'est pas fait.
         let golden: [String: String] = [   // fr (canonical) → es attendu
             "Squat gobelet": "Sentadilla goblet",
-            "Rowing barre en T 4×10": "Remo en T 4×10",
-            "Rowing seal 4×8": "Remo seal 4×8",
+            "Tirage barre en T 4×10": "Remo en T 4×10",
+            "Tirage seal 4×8": "Remo seal 4×8",
             "Gainage croisé au sol + pointeur": "Bicho muerto + perro-pájaro",
             "Soulevé de terre roumain 3x6 @60% TM": "Peso muerto rumano 3x6 @60% TM",
         ]

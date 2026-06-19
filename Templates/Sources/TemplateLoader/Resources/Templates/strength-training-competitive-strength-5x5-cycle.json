@@ -3,7 +3,7 @@
     "fr" : "Pratiquant expert avec 3+ ans de musculation, force maximale connue (1RM établi sur les 5 mouvements composés — si non disponible, effectuer un test 1RM 2-3 jours avant W1). Accès salle complète avec rack squat, plateau de bench, barre olympique, plaques fractionnées (1,25 kg disponibles). Aucune blessure en cours."
   },
   "default_objective" : {
-    "fr" : "Progresser en force pure sur squat, bench press, deadlift, overhead press et rowing barbell selon protocole 5x5 progressif avec double progression et gestion de la fatigue sur 12 semaines"
+    "fr" : "Progresser en force pure sur squat, bench press, deadlift, overhead press et tirage barbell selon protocole 5x5 progressif avec double progression et gestion de la fatigue sur 12 semaines"
   },
   "duration_weeks" : 12,
   "id" : "strength-training-competitive-strength-5x5-cycle",
@@ -12,23 +12,23 @@
     "fr" : "Force 5x5 — Cycle de progression 12 semaines"
   },
   "progression_logic" : {
-    "fr" : "Progression construite sur 6 principes, alignés Madcow 5x5, Texas Method (Rippetoe/Pendlay), Sheiko block periodization, Israetel (RP Strength) volume landmarks et NSCA Essentials of Strength Training :\n\n(1) BLOCK PERIODIZATION 3 PHASES : (a) Volume Block W1-W4 — accumulation 70-80% 1RM, RPE 6-8, 5x5 sur les 5 compounds, objectif construire la base musculaire et neurogène ; (b) Intensity Block W5-W8 — intensification 80-90% 1RM, RPE 8-9, 5x5 maintenu sur compound principal, baisse de volume sur secondaires (5x3 deadlift) ; (c) Realization Block W9-W12 — culmination 85-100%+ 1RM, schéma 5/3/1 progression W9 (5,5,5+) → W10 (3,3,3+) → W11 (5,3,1+ peak set) → W12 deload + test 1RM. Chaque bloc démarre légèrement au-dessus du pic du précédent (Bompa & Haff 2009, Sheiko Russian Squat Routine).\n\n(2) DOUBLE PROGRESSION FRACTIONNÉE EXPERT : +5 kg/sem sur squat et deadlift, +2,5 kg/sem sur bench / OHP / row en Volume Block. En Intensity et Realization Blocks, paliers réduits à +2,5 kg squat/DL et +1,25 kg bench/OHP/row (microloading expert via plaques fractionnées). Si stagnation (impossibilité 5x5 sur 2 séances consécutives), réduire palier de moitié et maintenir volume — jamais réduire les 2 variables simultanément (Helms Pyramid, NSCA).\n\n(3) CUTBACK W4 & W8 OBLIGATOIRES (-15% charges + -40% sets) : 5x5 → 3x5 sur compounds principaux, charges retombent à ~72-74% 1RM, RPE 6-7. Variantes paused squat (1-2 sec en bas) et paused bench (1-2 sec sur la poitrine) systématiques sur TOUTES les séances squat/bench de W4 et W8 — renforce les zones de transition + qualité technique sans charge max. Justification : la charge nerveuse + articulaire des compounds heavy nécessite un déload marqué (-40 à -50% sets, convention strength validée NSCA, Israetel RP volume landmarks). La super-compensation se fait PENDANT le cutback, jamais en chargeant indéfiniment.\n\n(4) PEAK + AFFÛTAGE REALIZATION BLOCK : W9 entrée à charges = pic W7 +2,5 kg, RPE 8,5-9, schéma reps progressivement réduit (5 reps → 3 reps → 1 rep). W10 charges +2,5 kg, schéma 3,3,3+ (AMRAP last set). W11 = peak week — affûtage J1-J3 (3x3 @90% TM), pic technique J5 (5,3,1+ AMRAP @95% TM). W12 J5 = TEST 1RM officiel sur squat/bench/deadlift + AMRAP @85% TM sur OHP/row. La réduction de volume précédant un test 1RM augmente la performance de 5-8% (Plisk & Stone 2003, Pritchard et al. 2015 systematic review affûtage strength).\n\n(5) 5+1 PATTERNS FONDAMENTAUX COUVERTS CHAQUE SEMAINE : squat (back squat 3x/sem), hinge (deadlift conventionnel 1-2x/sem en Volume, 1x/sem ailleurs), push H (bench press 2x/sem), push V (OHP 1-2x/sem), pull H (bent-over barbell row 2x/sem), pull V (pull-up lestés 1-2x/sem dès W3 + sans lest en cutback). Dips lestés introduits dès W3 comme accessoire push secondaire (renforce lockout bench + triceps). Core systématique en fin de séance (planche, side plank, bird-dog, dead bug, crunch inverse) — JAMAIS en début (un core préfatigué compromet le bracing sur compounds heavy = risque blessure majeur).\n\n(6) REPOS INTER-SÉRIES NSCA/ACSM EXPERT : compounds heavy (squat, bench, OHP, row) à 70-90% 1RM = 180 sec (3 min) minimum, conforme ACSM 2026 (2-3 min force standard, 3-5 min force max). Deadlift = 240 sec (4 min) en raison de la sollicitation SNC + lombaire supérieure documentée — ce repos additionnel est délibéré et non négociable même sur série unique. PR attempts W11 / Test 1RM W12 = 300 sec (5 min) entre tentatives. Doctrine CoachingSage : JAMAIS < 60 sec sur compound — la récupération neuromusculaire incomplète compromet la qualité technique."
+    "fr" : "Progression construite sur 6 principes, alignés Madcow 5x5, Texas Method (Rippetoe/Pendlay), Sheiko block periodization, Israetel (RP Strength) volume landmarks et NSCA Essentials of Strength Training :\n\n(1) BLOCK PERIODIZATION 3 PHASES : (a) Volume Block W1-W4 — accumulation 70-80% 1RM, RPE 6-8, 5x5 sur les 5 compounds, objectif construire la base musculaire et neurogène ; (b) Intensity Block W5-W8 — intensification 80-90% 1RM, RPE 8-9, 5x5 maintenu sur compound principal, baisse de volume sur secondaires (5x3 deadlift) ; (c) Realization Block W9-W12 — culmination 85-100%+ 1RM, schéma 5/3/1 progression W9 (5,5,5+) → W10 (3,3,3+) → W11 (5,3,1+ peak série) → W12 deload + test 1RM. Chaque bloc démarre légèrement au-dessus du pic du précédent (Bompa & Haff 2009, Sheiko Russian Squat Routine).\n\n(2) DOUBLE PROGRESSION FRACTIONNÉE EXPERT : +5 kg/sem sur squat et deadlift, +2,5 kg/sem sur bench / OHP / row en Volume Block. En Intensity et Realization Blocks, paliers réduits à +2,5 kg squat/DL et +1,25 kg bench/OHP/row (microloading expert via plaques fractionnées). Si stagnation (impossibilité 5x5 sur 2 séances consécutives), réduire palier de moitié et maintenir volume — jamais réduire les 2 variables simultanément (Helms Pyramid, NSCA).\n\n(3) CUTBACK W4 & W8 OBLIGATOIRES (-15% charges + -40% séries) : 5x5 → 3x5 sur compounds principaux, charges retombent à ~72-74% 1RM, RPE 6-7. Variantes paused squat (1-2 sec en bas) et paused bench (1-2 sec sur la poitrine) systématiques sur TOUTES les séances squat/bench de W4 et W8 — renforce les zones de transition + qualité technique sans charge max. Justification : la charge nerveuse + articulaire des compounds heavy nécessite un déload marqué (-40 à -50% séries, convention strength validée NSCA, Israetel RP volume landmarks). La super-compensation se fait PENDANT le cutback, jamais en chargeant indéfiniment.\n\n(4) PEAK + AFFÛTAGE REALIZATION BLOCK : W9 entrée à charges = pic W7 +2,5 kg, RPE 8,5-9, schéma répétitions progressivement réduit (5 répétitions → 3 répétitions → 1 répétition). W10 charges +2,5 kg, schéma 3,3,3+ (AMRAP last série). W11 = peak week — affûtage J1-J3 (3x3 @90% TM), pic technique J5 (5,3,1+ AMRAP @95% TM). W12 J5 = TEST 1RM officiel sur squat/bench/deadlift + AMRAP @85% TM sur OHP/row. La réduction de volume précédant un test 1RM augmente la performance de 5-8% (Plisk & Stone 2003, Pritchard et al. 2015 systematic review affûtage strength).\n\n(5) 5+1 PATTERNS FONDAMENTAUX COUVERTS CHAQUE SEMAINE : squat (back squat 3x/sem), hinge (deadlift conventionnel 1-2x/sem en Volume, 1x/sem ailleurs), push H (bench press 2x/sem), push V (OHP 1-2x/sem), pull H (bent-over barbell row 2x/sem), pull V (pull-up lestés 1-2x/sem dès W3 + sans lest en cutback). Dips lestés introduits dès W3 comme accessoire push secondaire (renforce lockout bench + triceps). Gainage systématique en fin de séance (planche, side plank, bird-dog, dead bug, crunch inverse) — JAMAIS en début (un gainage préfatigué compromet le bracing sur compounds heavy = risque blessure majeur).\n\n(6) REPOS INTER-SÉRIES NSCA/ACSM EXPERT : compounds heavy (squat, bench, OHP, row) à 70-90% 1RM = 180 sec (3 min) minimum, conforme ACSM 2026 (2-3 min force standard, 3-5 min force max). Deadlift = 240 sec (4 min) en raison de la sollicitation SNC + lombaire supérieure documentée — ce repos additionnel est délibéré et non négociable même sur série unique. PR attempts W11 / Test 1RM W12 = 300 sec (5 min) entre tentatives. Doctrine CoachingSage : JAMAIS < 60 sec sur compound — la récupération neuromusculaire incomplète compromet la qualité technique."
   },
   "safety_notes" : {
-    "fr" : "À SURVEILLER — ARRÊT IMMÉDIAT ET ADAPTATION :\n• Gêne lombaire sur deadlift/squat (dos arrondi sous charge) : stop immédiat, repos 48-72h minimum, lève le pied. Ne JAMAIS travailler à travers une gêne lombaire vive.\n• Gêne irradiant dans la jambe (fourmillements, faiblesse) : stop tout mouvement poly-articulaire chargeant le bas du dos, lève le pied. Ne pas pousser à travers.\n• Gêne antéro-latérale épaule sur développé couché / développé épaules : réduire amplitude, bascule sur haltères temporairement, lève le pied si > 5 jours.\n• Gêne cervicale sur squat barre haute (compression mauvaise position de barre) : repositionner barre sur trapèzes (pas C7), arrêt si la gêne irradie dans le bras.\n• Gêne antérieure de la rotule sur squat : vérifier valgus dynamique, réduire charge, renforcer abducteurs hanche (clamshells).\n• Engourdissement / fourmillements bras ou jambes PENDANT un mouvement poly-articulaire : arrêt immédiat.\n• Charge cumulée + fatigue persistante / apports insuffisants : fatigue chronique, baisse force ≥ 5% sur 2 sem consécutives, sommeil dégradé, irritabilité, FC repos +8-10 bpm, cycle perturbé (femmes), libido effondrée — STOP cycle, semaine de repos complet, restaure les apports.\n\nÀ ADAPTER SELON TON PROFIL :\n• Gêne lombaire chronique connue : préfère trap bar deadlift et goblet/front squat en démarrage, monte en charge progressivement sur deadlift et squat lourds.\n• Profil sensible à la tension (antécédent cardiovasculaire, hypertension, arythmie) : la manœuvre Valsalva (apnée avec gainage) peut élever fortement la tension artérielle sur record squat/dead. Profils hypertendus = préférer reps > 3 avec respiration libre, ceinture de force recommandée dès 80% 1RM.\n• Reprise après une coupure prolongée (épaule, genou, dos, hanche) : reprends progressivement et à charge réduite.\n• Profil > 50 ans débutant complet : monte en charge prudemment.\n• Grossesse : adapte fortement squat / deadlift lourds, programme adapté nécessaire.\n\nRÈGLES GÉNÉRALES POUR EXPERT :\n• Échauffement non négociable : 10-12 min mobilité globale + montée en charge spécifique (3-5 séries de charge croissante, 10-25 reps cumulés max) avant séries effectives. Sauter l'échauffement multiplie risque blessure x3 sur charges > 80% 1RM.\n• Ceinture lombaire recommandée dès 80% 1RM sur squat / deadlift / good morning. Ne remplace pas le gainage, augmente la pression intra-abdominale.\n• Magnésie sur deadlift et rowing > 85% pour éviter le lâcher de prise (perdre la barre = risque blessure majeur).\n• Repos inter-séries : 180 sec mouvements poly-articulaires (squat / développé couché / développé épaules / rowing), 240 sec deadlift, 300 sec tentatives de record. Une séance force bien construite dure 75-100 min. Ne pas sacrifier les repos pour raccourcir.\n• Pareur ou cage avec barres de sécurité OBLIGATOIRE sur squat ≥ 85% 1RM et développé couché ≥ 85% 1RM.\n• Sommeil ≥ 7h, idéalement 8h en bloc de réalisation. Performance force chute 10-20% en deçà de 7h (NSF 2024).\n• Apport protéique ≥ 1,6 g/kg/j (ISSN), collation protéines + glucides dans 45 min post-séance.\n\nINTENSITÉ ET RPE / %1RM :\n• RPE expliqué + grille calibrée Training Max (TM) : RPE 7 = 3 RIR, RPE 8 = 2 RIR, RPE 9 = 1 RIR, RPE 10 = échec/max. TM = 90% du 1RM testé (Wendler 5/3/1). Tous les % de ce programme sont calculés sur le TM, pas le 1RM brut.\n• RPE 9-10 réservé W10-W11-W12 uniquement. Travailler RPE > 9 chaque semaine = fatigue neuromusculaire cumulative qui annule les gains.\n• Vérification arithmétique pré-séance : si TM squat = 150 kg, alors 80% TM = 120 kg, 85% = 127,5 kg, 90% = 135 kg, 95% = 142,5 kg. Plaques fractionnées 1,25 kg indispensables.\n• Valgus dynamique genou sous charge = urgence technique : arrêt série immédiat, déchargement, renforcement abducteurs hanche.\n• DOMS vs douleur articulaire : DOMS = muscle douloureux à la pression, 24-72h post-séance, normal. Douleur articulaire = douleur à l'articulation même ou irradiation = anormal, stop.\n\nSIGNES DE SURCHARGE EN FORCE (3+ signes simultanés = décharge immédiate ou repos 3 jours) :\n• FC repos +8-10 bpm sur 3+ jours consécutifs au réveil.\n• Vitesse de barre perceptiblement plus lente sur charges habituelles (test mental simple : la barre semble lourde dès la montée en charge).\n• Force subjective -15% ou incapacité à compléter reps cibles 5x5 sur 2 séances consécutives.\n• Sommeil dégradé > 3 nuits, réveils nocturnes, sommeil non récupérateur.\n• Irritabilité / apathie inhabituelle (surmenage SNC).\n• Courbatures > 72h récurrentes, douleurs articulaires multiples.\n• Motivation effondrée après période de régularité.\n\nSI SÉANCE MANQUÉE :\n• 1 séance manquée (< 4 jours) : reprendre planning prévu à la séance suivante, pas de rattrapage compensatoire.\n• 4-7 jours de pause : redémarrer la semaine en cours, séance par séance, à -2,5 kg vs charges prévues.\n• 1-2 semaines : reprendre à -1 sem de charge (ex : pause en W6 = redémarrer W5).\n• > 2 semaines : reculer 2-3 semaines (W-2 ou W-3) pour ressécuriser l'adaptation, ré-évaluer TM.\n• Décharge W4/W8 et décharge W12 = NON NÉGOCIABLES — même si tu te sens en forme. La super-compensation est CONSTITUTIVE de la performance long terme."
+    "fr" : "À SURVEILLER — ARRÊT IMMÉDIAT ET ADAPTATION :\n• Gêne lombaire sur deadlift/squat (dos arrondi sous charge) : stop immédiat, repos 48-72h minimum, lève le pied. Ne JAMAIS travailler à travers une gêne lombaire vive.\n• Gêne irradiant dans la jambe (fourmillements, faiblesse) : stop tout mouvement poly-articulaire chargeant le bas du dos, lève le pied. Ne pas pousser à travers.\n• Gêne antéro-latérale épaule sur développé couché / développé épaules : réduire amplitude, bascule sur haltères temporairement, lève le pied si > 5 jours.\n• Gêne cervicale sur squat barre haute (compression mauvaise position de barre) : repositionner barre sur trapèzes (pas C7), arrêt si la gêne irradie dans le bras.\n• Gêne antérieure de la rotule sur squat : vérifier valgus dynamique, réduire charge, renforcer abducteurs hanche (clamshells).\n• Engourdissement / fourmillements bras ou jambes PENDANT un mouvement poly-articulaire : arrêt immédiat.\n• Charge cumulée + fatigue persistante / apports insuffisants : fatigue chronique, baisse force ≥ 5% sur 2 sem consécutives, sommeil dégradé, irritabilité, FC repos +8-10 bpm, cycle perturbé (femmes), libido effondrée — STOP cycle, semaine de repos complet, restaure les apports.\n\nÀ ADAPTER SELON TON PROFIL :\n• Gêne lombaire chronique connue : préfère trap bar deadlift et goblet/front squat en démarrage, monte en charge progressivement sur deadlift et squat lourds.\n• Profil sensible à la tension (antécédent cardiovasculaire, hypertension, arythmie) : la manœuvre Valsalva (apnée avec gainage) peut élever fortement la tension artérielle sur record squat/dead. Profils hypertendus = préférer répétitions > 3 avec respiration libre, ceinture de force recommandée dès 80% 1RM.\n• Reprise après une coupure prolongée (épaule, genou, dos, hanche) : reprends progressivement et à charge réduite.\n• Profil > 50 ans débutant complet : monte en charge prudemment.\n• Grossesse : adapte fortement squat / deadlift lourds, programme adapté nécessaire.\n\nRÈGLES GÉNÉRALES POUR EXPERT :\n• Échauffement non négociable : 10-12 min mobilité globale + montée en charge spécifique (3-5 séries de charge croissante, 10-25 répétitions cumulés max) avant séries effectives. Sauter l'échauffement multiplie risque blessure x3 sur charges > 80% 1RM.\n• Ceinture lombaire recommandée dès 80% 1RM sur squat / deadlift / good morning. Ne remplace pas le gainage, augmente la pression intra-abdominale.\n• Magnésie sur deadlift et tirage > 85% pour éviter le lâcher de prise (perdre la barre = risque blessure majeur).\n• Repos inter-séries : 180 sec mouvements poly-articulaires (squat / développé couché / développé épaules / tirage), 240 sec deadlift, 300 sec tentatives de record. Une séance force bien construite dure 75-100 min. Ne pas sacrifier les repos pour raccourcir.\n• Pareur ou cage avec barres de sécurité OBLIGATOIRE sur squat ≥ 85% 1RM et développé couché ≥ 85% 1RM.\n• Sommeil ≥ 7h, idéalement 8h en bloc de réalisation. Performance force chute 10-20% en deçà de 7h (NSF 2024).\n• Apport protéique ≥ 1,6 g/kg/j (ISSN), collation protéines + glucides dans 45 min post-séance.\n\nINTENSITÉ ET RPE / %1RM :\n• RPE expliqué + grille calibrée Training Max (TM) : RPE 7 = 3 RIR, RPE 8 = 2 RIR, RPE 9 = 1 RIR, RPE 10 = échec/max. TM = 90% du 1RM testé (Wendler 5/3/1). Tous les % de ce programme sont calculés sur le TM, pas le 1RM brut.\n• RPE 9-10 réservé W10-W11-W12 uniquement. Travailler RPE > 9 chaque semaine = fatigue neuromusculaire cumulative qui annule les gains.\n• Vérification arithmétique pré-séance : si TM squat = 150 kg, alors 80% TM = 120 kg, 85% = 127,5 kg, 90% = 135 kg, 95% = 142,5 kg. Plaques fractionnées 1,25 kg indispensables.\n• Valgus dynamique genou sous charge = urgence technique : arrêt série immédiat, déchargement, renforcement abducteurs hanche.\n• DOMS vs douleur articulaire : DOMS = muscle douloureux à la pression, 24-72h post-séance, normal. Douleur articulaire = douleur à l'articulation même ou irradiation = anormal, stop.\n\nSIGNES DE SURCHARGE EN FORCE (3+ signes simultanés = décharge immédiate ou repos 3 jours) :\n• FC repos +8-10 bpm sur 3+ jours consécutifs au réveil.\n• Vitesse de barre perceptiblement plus lente sur charges habituelles (test mental simple : la barre semble lourde dès la montée en charge).\n• Force subjective -15% ou incapacité à compléter répétitions cibles 5x5 sur 2 séances consécutives.\n• Sommeil dégradé > 3 nuits, réveils nocturnes, sommeil non récupérateur.\n• Irritabilité / apathie inhabituelle (surmenage SNC).\n• Courbatures > 72h récurrentes, douleurs articulaires multiples.\n• Motivation effondrée après période de régularité.\n\nSI SÉANCE MANQUÉE :\n• 1 séance manquée (< 4 jours) : reprendre planning prévu à la séance suivante, pas de rattrapage compensatoire.\n• 4-7 jours de pause : redémarrer la semaine en cours, séance par séance, à -2,5 kg vs charges prévues.\n• 1-2 semaines : reprendre à -1 sem de charge (ex : pause en W6 = redémarrer W5).\n• > 2 semaines : reculer 2-3 semaines (W-2 ou W-3) pour ressécuriser l'adaptation, ré-évaluer TM.\n• Décharge W4/W8 et décharge W12 = NON NÉGOCIABLES — même si tu te sens en forme. La super-compensation est CONSTITUTIVE de la performance long terme."
   },
   "schema_version" : 2,
   "sessions_per_week" : 3,
   "sport" : "strength_training",
   "summary" : {
-    "fr" : "Cycle force 12 semaines, 3 séances/sem (Lundi/Mercredi/Vendredi), inspiré Madcow 5x5 / Texas Method / Sheiko-Israetel block periodization. 3 blocs : Volume W1-W4 (5x5 @70-80% 1RM, RPE 6-8), Intensity W5-W8 (5x5 @80-90% 1RM, RPE 8-9), Realization W9-W12 (3-5 reps @85-95%+, peak W11 + test 1RM W12). Cutbacks W4 & W8 (-15% charges + -40% volume sets, paused squat + paused bench systématiques). Patterns 5+1 fondamentaux couverts chaque semaine (squat, hinge deadlift, push H bench, push V OHP, pull H row, pull V pull-up lestés). Volume hebdo cible MAV-MRV 16-22 sets/muscle principaux W3-W7, 18-22 sets pic W10. Test final W12 J5 = 1RM officiel sur squat/bench/deadlift + AMRAP @85% TM sur OHP et row. Repos compounds 180 sec, deadlift 240 sec (justifié SNC + lombaire). Core systématique en fin de séance."
+    "fr" : "Cycle force 12 semaines, 3 séances/sem (Lundi/Mercredi/Vendredi), inspiré Madcow 5x5 / Texas Method / Sheiko-Israetel block periodization. 3 blocs : Volume W1-W4 (5x5 @70-80% 1RM, RPE 6-8), Intensity W5-W8 (5x5 @80-90% 1RM, RPE 8-9), Realization W9-W12 (3-5 répétitions @85-95%+, peak W11 + test 1RM W12). Cutbacks W4 & W8 (-15% charges + -40% volume séries, paused squat + paused bench systématiques). Patterns 5+1 fondamentaux couverts chaque semaine (squat, hinge deadlift, push H bench, push V OHP, pull H row, pull V pull-up lestés). Volume hebdo cible MAV-MRV 16-22 séries/muscle principaux W3-W7, 18-22 séries pic W10. Test final W12 J5 = 1RM officiel sur squat/bench/deadlift + AMRAP @85% TM sur OHP et row. Repos compounds 180 sec, deadlift 240 sec (justifié SNC + lombaire). Gainage systématique en fin de séance."
   },
   "weeks" : [
     {
       "goal" : {
         "en" : "Lay the mechanical foundations of the 5 compounds at moderate load (70% TM). Calibrate the starting loads, spot any residual technical deficits. Target RPE 6-7. Weekly compound volume ~14-16 sets/main muscle (squat 3×/week 5x5 = 15 quad sets). Sessions A-B-A.",
         "es" : "Sienta las bases mecánicas de los 5 compuestos con carga moderada (70% TM). Calibra las cargas de inicio, detecta déficits técnicos residuales. RPE objetivo 6-7. Volumen semanal de compuestos ~14-16 series/músculo principal (sentadilla 3×/semana 5x5 = 15 series de cuádriceps). Sesiones A-B-A.",
-        "fr" : "Poser les bases mécaniques des 5 polyarticulaires à charge modérée (70 % de la charge cible). Calibrer les charges de départ, repérer déficits techniques résiduels. effort cible 6-7/10. Volume hebdo polyarticulaires ~14-16 sets/muscle principal (squat 3x/sem 5x5 = 15 séries quadriceps). Séances A-B-A."
+        "fr" : "Poser les bases mécaniques des 5 polyarticulaires à charge modérée (70 % de la charge cible). Calibrer les charges de départ, repérer déficits techniques résiduels. effort cible 6-7/10. Volume hebdo polyarticulaires ~14-16 séries/muscle principal (squat 3x/sem 5x5 = 15 séries quadriceps). Séances A-B-A."
       },
       "sessions" : [
         {
@@ -145,17 +145,17 @@
                 {
                   "en" : "Pendlay row 5x5",
                   "es" : "Remo Pendlay 5x5",
-                  "fr" : "Rowing Pendlay 5x5"
+                  "fr" : "Tirage Pendlay 5x5"
                 },
                 {
                   "en" : "Chest-supported DB row 5x6-8",
                   "es" : "Remo con apoyo en pecho con mancuernas 5x6-8",
-                  "fr" : "Rowing buste appuyé haltère 5x6-8"
+                  "fr" : "Tirage buste appuyé haltère 5x6-8"
                 },
                 {
                   "en" : "T-bar row 5x5",
                   "es" : "Remo en T 5x5",
-                  "fr" : "Rowing barre en T 5x5"
+                  "fr" : "Tirage barre en T 5x5"
                 }
               ],
               "dose" : {
@@ -170,12 +170,12 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "70% TM. Pronated by default (Pendlay row possible if you have it mastered). Torso leaned to ~45°, neutral back, bar pulled to the navel/lower sternum, elbows in line with the trunk. No lumbar cheating (don't raise the torso to finish). Pull volume = push volume = a long-term shoulder-health rule. RPE 6-7.",
                 "es" : "70% TM. Pronado por defecto (remo Pendlay posible si lo dominas). Torso inclinado a ~45°, espalda neutra, barra tirada hacia el ombligo/parte baja del esternón, codos alineados con el tronco. Sin trampa lumbar (no subas el torso para terminar). Volumen de tracción = volumen de empuje = regla de salud del hombro a largo plazo. RPE 6-7.",
-                "fr" : "70% TM. Pronation par défaut (rowing Pendlay possible si tu maîtrises). Buste penché à ~45°, dos neutre, barre tirée vers le nombril/bas du sternum, coudes dans l'axe du tronc. Pas de triche lombaire (ne remonte pas le buste pour finir). Volume tirage = volume poussée = règle santé épaule long terme. RPE 6-7."
+                "fr" : "70% TM. Pronation par défaut (tirage Pendlay possible si tu maîtrises). Buste penché à ~45°, dos neutre, barre tirée vers le nombril/bas du sternum, coudes dans l'axe du tronc. Pas de triche lombaire (ne remonte pas le buste pour finir). Volume tirage = volume poussée = règle santé épaule long terme. RPE 6-7."
               },
               "reps" : "5",
               "required_equipment" : [
@@ -280,13 +280,13 @@
           "name" : {
             "en" : "Session A1 — Squat / Bench / Row",
             "es" : "Sesión A1 — Sentadilla / Banca / Remo",
-            "fr" : "Séance A1 — Squat / Développé couché / Rowing"
+            "fr" : "Séance A1 — Squat / Développé couché / Tirage"
           },
           "type" : "strength",
           "warmup" : {
             "en" : "10 min full-body mobility: shoulder circles 10/direction, thoracic rotations 10/side, world's greatest stretch 5/side, knee circles 10/direction, glute activation (clamshell 15/side, glute bridge 15 reps). Squat ramping: bar x10, +20 kg x5, +40 kg x3 before the working sets. RPE / TM SCALE REMINDER: RPE 7 = 3 reps in reserve, RPE 8 = 2 reps in reserve, RPE 9 = 1 rep in reserve, RPE 10 = max. TM = 90% of the tested 1RM. All %s are calculated on the TM. 1.25 kg fractional plates essential.",
             "es" : "10 min de movilidad global: círculos de hombros 10/sentido, rotaciones torácicas 10/lado, world's greatest stretch 5/lado, círculos de rodilla 10/sentido, activación de glúteos (clamshell 15/lado, puente de glúteos 15 reps). Ramping de sentadilla: barra x10, +20 kg x5, +40 kg x3 antes de las series efectivas. RECORDATORIO ESCALA RPE / TM: RPE 7 = 3 repeticiones en reserva, RPE 8 = 2 repeticiones en reserva, RPE 9 = 1 repetición en reserva, RPE 10 = máximo. TM = 90% del 1RM probado. Todos los % se calculan sobre el TM. Discos fraccionados de 1,25 kg imprescindibles.",
-            "fr" : "10 min mobilité globale : cercles épaules 10/sens, rotations thoraciques 10/côté, world's greatest stretch 5/côté, cercles genoux 10/sens, activation fessiers (ouverture de hanche 15/côté, pont fessier 15 reps). Ramping squat : barre x10, +20 kg x5, +40 kg x3 avant séries effectives. RAPPEL GRILLE RPE / TM : RPE 7 = 3 reps en réserve, RPE 8 = 2 reps en réserve, RPE 9 = 1 rep en réserve, RPE 10 = max. TM = 90% du 1RM testé. Tous les % sont calculés sur le TM. Plaques fractionnées 1,25 kg indispensables."
+            "fr" : "10 min mobilité globale : cercles épaules 10/sens, rotations thoraciques 10/côté, world's greatest stretch 5/côté, cercles genoux 10/sens, activation fessiers (ouverture de hanche 15/côté, pont fessier 15 répétitions). Ramping squat : barre x10, +20 kg x5, +40 kg x3 avant séries effectives. RAPPEL GRILLE RPE / TM : RPE 7 = 3 répétitions en réserve, RPE 8 = 2 répétitions en réserve, RPE 9 = 1 répétition en réserve, RPE 10 = max. TM = 90% du 1RM testé. Tous les % sont calculés sur le TM. Plaques fractionnées 1,25 kg indispensables."
           }
         },
         {
@@ -532,7 +532,7 @@
           "warmup" : {
             "en" : "10 min mobility: banded shoulder rotations 15 reps, light-band face pulls 15 reps, back activation (Y-T-W 10 reps), ankle mobilization (circles 15/side). OHP ramping: bar x10, +10 kg x5, +20 kg x3. Deadlift ramping: 60% x5, 70% x3.",
             "es" : "10 min de movilidad: rotaciones de hombro con banda 15 reps, face pulls con banda ligera 15 reps, activación dorsal (Y-T-W 10 reps), movilización de tobillos (círculos 15/lado). Ramping de OHP: barra x10, +10 kg x5, +20 kg x3. Ramping de peso muerto: 60% x5, 70% x3.",
-            "fr" : "10 min mobilité : rotations épaules avec bande 15 reps, tirages visage bande légère 15 reps, activation dorsale (Y-T-W 10 reps), mobilisation chevilles (cercles 15/côté). Ramping OHP : barre x10, +10 kg x5, +20 kg x3. Ramping soulevé de terre : 60% x5, 70% x3."
+            "fr" : "10 min mobilité : rotations épaules avec bande 15 répétitions, tirages visage bande légère 15 répétitions, activation dorsale (Y-T-W 10 répétitions), mobilisation chevilles (cercles 15/côté). Ramping OHP : barre x10, +10 kg x5, +20 kg x3. Ramping soulevé de terre : 60% x5, 70% x3."
           }
         },
         {
@@ -637,12 +637,12 @@
                 {
                   "en" : "Pendlay row 5x5",
                   "es" : "Remo Pendlay 5x5",
-                  "fr" : "Rowing Pendlay 5x5"
+                  "fr" : "Tirage Pendlay 5x5"
                 },
                 {
                   "en" : "Chest-supported DB row 5x6-8",
                   "es" : "Remo con apoyo en pecho con mancuernas 5x6-8",
-                  "fr" : "Rowing buste appuyé haltère 5x6-8"
+                  "fr" : "Tirage buste appuyé haltère 5x6-8"
                 }
               ],
               "dose" : {
@@ -657,7 +657,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "70% TM. Same load as A1. Pull volume = push volume = a long-term shoulder-health rule.",
@@ -761,7 +761,7 @@
           "name" : {
             "en" : "Session A2 — Squat / Bench / Row",
             "es" : "Sesión A2 — Sentadilla / Banca / Remo",
-            "fr" : "Séance A2 — Squat / Développé couché / Rowing"
+            "fr" : "Séance A2 — Squat / Développé couché / Tirage"
           },
           "type" : "strength",
           "warmup" : {
@@ -782,7 +782,7 @@
       "goal" : {
         "en" : "+5 kg squat / deadlift, +2.5 kg bench / OHP / row vs W1. Constant 5x5 volume. RPE 7-8. Sessions B-A-B (weekly pattern alternation).",
         "es" : "+5 kg sentadilla / peso muerto, +2,5 kg banca / OHP / remo respecto a la S1. Volumen constante 5x5. RPE 7-8. Sesiones B-A-B (alternancia semanal del patrón).",
-        "fr" : "+5 kg squat / soulevé de terre, +2,5 kg développé couché / développé militaire / rowing par rapport à la semaine 1. Volume constant 5x5. effort 7-8/10. Séances B-A-B (alternance mouvement hebdo)."
+        "fr" : "+5 kg squat / soulevé de terre, +2,5 kg développé couché / développé militaire / tirage par rapport à la semaine 1. Volume constant 5x5. effort 7-8/10. Séances B-A-B (alternance mouvement hebdo)."
       },
       "sessions" : [
         {
@@ -1111,7 +1111,7 @@
               "notes" : {
                 "en" : "+2.5 kg vs W1. RPE 7-8. Check that the 5th reps stay clean — if RPE > 9 from the 3rd set, drop 2.5 kg.",
                 "es" : "+2,5 kg respecto a la S1. RPE 7-8. Comprueba que las 5.ª repeticiones sigan limpias — si el RPE > 9 desde la 3.ª serie, baja 2,5 kg.",
-                "fr" : "+2,5 kg vs W1. RPE 7-8. Vérifier que les 5èmes reps restent propres — si RPE > 9 dès la 3ème série, réduire de 2,5 kg."
+                "fr" : "+2,5 kg vs W1. RPE 7-8. Vérifier que les 5èmes répétitions restent propres — si RPE > 9 dès la 3ème série, réduire de 2,5 kg."
               },
               "reps" : "5",
               "required_equipment" : [
@@ -1130,12 +1130,12 @@
                 {
                   "en" : "Pendlay row 5x5",
                   "es" : "Remo Pendlay 5x5",
-                  "fr" : "Rowing Pendlay 5x5"
+                  "fr" : "Tirage Pendlay 5x5"
                 },
                 {
                   "en" : "Chest-supported DB row 5x6-8",
                   "es" : "Remo con apoyo en pecho con mancuernas 5x6-8",
-                  "fr" : "Rowing buste appuyé haltère 5x6-8"
+                  "fr" : "Tirage buste appuyé haltère 5x6-8"
                 }
               ],
               "dose" : {
@@ -1150,7 +1150,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "+2.5 kg vs W1. RPE 7-8.",
@@ -1253,7 +1253,7 @@
           "name" : {
             "en" : "Session A3 — Squat / Bench / Row",
             "es" : "Sesión A3 — Sentadilla / Banca / Remo",
-            "fr" : "Séance A3 — Squat / Développé couché / Rowing"
+            "fr" : "Séance A3 — Squat / Développé couché / Tirage"
           },
           "type" : "strength",
           "warmup" : {
@@ -1507,7 +1507,7 @@
       "goal" : {
         "en" : "+5 kg squat / deadlift, +2.5 kg bench / OHP / row vs W2 (~80% TM). 5x5 volume. RPE 8. Sessions A-B-A. Weighted dips (vertical-push accessory) and weighted pull-ups (vertical pull) introduced as vertical strengthening accessories.",
         "es" : "+5 kg sentadilla / peso muerto, +2,5 kg banca / OHP / remo respecto a la S2 (~80% TM). Volumen 5x5. RPE 8. Sesiones A-B-A. Introducción de fondos lastrados (accesorio de empuje V) y dominadas lastradas (tracción V) como accesorios de refuerzo vertical.",
-        "fr" : "+5 kg squat / soulevé de terre, +2,5 kg développé couché / développé militaire / rowing par rapport à la semaine 2 (~80 % de la charge cible). Volume 5x5. effort 8/10. Séances A-B-A. Introduction dips lestés (push V accessoire) et tractions lestés (pull V) comme accessoires de renforcement vertical."
+        "fr" : "+5 kg squat / soulevé de terre, +2,5 kg développé couché / développé militaire / tirage par rapport à la semaine 2 (~80 % de la charge cible). Volume 5x5. effort 8/10. Séances A-B-A. Introduction dips lestés (push V accessoire) et tractions lestés (pull V) comme accessoires de renforcement vertical."
       },
       "sessions" : [
         {
@@ -1550,7 +1550,7 @@
               "notes" : {
                 "en" : "+10 kg vs W1 (~80% TM). RPE 8. The last 3 reps of the 5th set should be hard but clean. If form breaks down (knee valgus, forward tip), it's too heavy — drop 5 kg.",
                 "es" : "+10 kg respecto a la S1 (~80% TM). RPE 8. Las últimas 3 repeticiones de la 5.ª serie deben ser difíciles pero limpias. Si la técnica se deteriora (valgo de rodilla, vuelco hacia delante), es demasiado pesado — baja 5 kg.",
-                "fr" : "+10 kg vs W1 (~80% TM). RPE 8. Les 3 dernières reps de la 5ème série doivent être difficiles mais propres. Si forme se dégrade (genou en valgus, bascule avant), c'est trop lourd — réduire 5 kg."
+                "fr" : "+10 kg vs W1 (~80% TM). RPE 8. Les 3 dernières répétitions de la 5ème série doivent être difficiles mais propres. Si forme se dégrade (genou en valgus, bascule avant), c'est trop lourd — réduire 5 kg."
               },
               "reps" : "5",
               "required_equipment" : [
@@ -1612,12 +1612,12 @@
                 {
                   "en" : "Pendlay row 5x5",
                   "es" : "Remo Pendlay 5x5",
-                  "fr" : "Rowing Pendlay 5x5"
+                  "fr" : "Tirage Pendlay 5x5"
                 },
                 {
                   "en" : "T-bar row 5x5",
                   "es" : "Remo en T 5x5",
-                  "fr" : "Rowing barre en T 5x5"
+                  "fr" : "Tirage barre en T 5x5"
                 }
               ],
               "dose" : {
@@ -1632,12 +1632,12 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "+5 kg vs W1. RPE 8. Don't sacrifice technique for reps — every pull finishes with the elbows behind the back line.",
                 "es" : "+5 kg respecto a la S1. RPE 8. No sacrifiques la técnica por las repeticiones — cada tracción termina con los codos por detrás de la línea de la espalda.",
-                "fr" : "+5 kg vs W1. RPE 8. Ne pas sacrifier technique pour reps — chaque tirage finit coudes derrière la ligne dorsale."
+                "fr" : "+5 kg vs W1. RPE 8. Ne pas sacrifier technique pour répétitions — chaque tirage finit coudes derrière la ligne dorsale."
               },
               "reps" : "5",
               "required_equipment" : [
@@ -1684,7 +1684,7 @@
               "notes" : {
                 "en" : "FIRST CONTACT. Starting load: 5 kg if bodyweight dips are mastered, 10 kg if you do 10+ easily. If the compound loads make this session hard, start at 2x3 reps this week, build to 3x8 in W4. Triceps + front delt + lower chest. Builds the bench lockout. Elbows at 45°, controlled descent.",
                 "es" : "PRIMER CONTACTO. Carga de inicio: 5 kg si dominas los fondos con peso corporal, 10 kg si haces 10+ con facilidad. Si las cargas de los compuestos hacen dura esta sesión, empieza con 2x3 repeticiones esta semana, sube a 3x8 en la S4. Tríceps + deltoides anterior + pecho bajo. Refuerza el lockout del press de banca. Codos a 45°, bajada controlada.",
-                "fr" : "PREMIER CONTACT. Lest départ : 5 kg si dips au poids du corps maîtrisés, 10 kg si tu en fais 10+ facilement. Si charges compounds rendent cette séance difficile, débuter à 2x3 reps cette semaine, monter à 3x8 W4. Triceps + deltoïde antérieur + pec bas. Renforce lockout banc. Coudes à 45°, descente contrôlée."
+                "fr" : "PREMIER CONTACT. Lest départ : 5 kg si dips au poids du corps maîtrisés, 10 kg si tu en fais 10+ facilement. Si charges compounds rendent cette séance difficile, débuter à 2x3 répétitions cette semaine, monter à 3x8 W4. Triceps + deltoïde antérieur + pec bas. Renforce lockout banc. Coudes à 45°, descente contrôlée."
               },
               "reps" : "8",
               "required_equipment" : [
@@ -1781,7 +1781,7 @@
           "name" : {
             "en" : "Session A4 — Squat / Bench / Row + Weighted dips",
             "es" : "Sesión A4 — Sentadilla / Banca / Remo + Fondos lastrados",
-            "fr" : "Séance A4 — Squat / Développé couché / Rowing + Dips lestés"
+            "fr" : "Séance A4 — Squat / Développé couché / Tirage + Dips lestés"
           },
           "type" : "strength",
           "warmup" : {
@@ -1915,7 +1915,7 @@
               "notes" : {
                 "en" : "+10 kg vs W1. RPE 8. The single heavy set treated as a near-max — total focus, Valsalva on every rep. 4 min rest.",
                 "es" : "+10 kg respecto a la S1. RPE 8. La serie pesada única se trata como un casi-máximo — concentración total, Valsalva en cada repetición. 4 min de descanso.",
-                "fr" : "+10 kg vs W1. RPE 8. La série unique lourde traitée comme quasi-max — concentration totale, Valsalva sur chaque rep. 4 min repos."
+                "fr" : "+10 kg vs W1. RPE 8. La série unique lourde traitée comme quasi-max — concentration totale, Valsalva sur chaque répétition. 4 min repos."
               },
               "reps" : "5",
               "required_equipment" : [
@@ -1943,7 +1943,7 @@
                 {
                   "en" : "Inverted row 3x10 if no bar",
                   "es" : "Remo invertido 3x10 si no hay barra",
-                  "fr" : "Rowing inversé 3x10 si pas de barre"
+                  "fr" : "Tirage inversé 3x10 si pas de barre"
                 }
               ],
               "dose" : {
@@ -2170,12 +2170,12 @@
                 {
                   "en" : "Pendlay row 5x5",
                   "es" : "Remo Pendlay 5x5",
-                  "fr" : "Rowing Pendlay 5x5"
+                  "fr" : "Tirage Pendlay 5x5"
                 },
                 {
                   "en" : "T-bar row 5x5",
                   "es" : "Remo en T 5x5",
-                  "fr" : "Rowing barre en T 5x5"
+                  "fr" : "Tirage barre en T 5x5"
                 }
               ],
               "dose" : {
@@ -2190,7 +2190,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "Same load. RPE 8.",
@@ -2334,7 +2334,7 @@
           "name" : {
             "en" : "Session A5 — Squat / Bench / Row + Weighted dips",
             "es" : "Sesión A5 — Sentadilla / Banca / Remo + Fondos lastrados",
-            "fr" : "Séance A5 — Squat / Développé couché / Rowing + Dips lestés"
+            "fr" : "Séance A5 — Squat / Développé couché / Tirage + Dips lestés"
           },
           "type" : "strength",
           "warmup" : {
@@ -2355,7 +2355,7 @@
       "goal" : {
         "en" : "Mandatory cutback week: -15% loads (back to ~72% TM), 3x5 volume (-40% sets), RPE 6-7. Allows supercompensation before the W5 intensity block. Every squat session uses the PAUSED SQUAT (1-2 sec at the bottom), every bench session uses the PAUSED BENCH (1-2 sec on the chest). Validated strength convention: NEVER skip this cutback, supercompensation happens DURING the rest.",
         "es" : "Semana de semana ligera obligatoria: -15% de cargas (vuelta a ~72% TM), volumen 3x5 (-40% series), RPE 6-7. Permite la supercompensación antes del bloque de intensidad de la S5. Todas las sesiones de sentadilla usan el PAUSED SQUAT (1-2 s abajo), todas las de banca usan el PAUSED BENCH (1-2 s en el pecho). Convención de fuerza validada: NUNCA te saltes este semana ligera, la supercompensación ocurre DURANTE el descanso.",
-        "fr" : "Semaine allégée obligatoire : -15% charges (retour ~72 % de la charge cible), volume 3x5 (-40% sets), effort 6-7/10. Permet surcompensation avant bloc intensité semaine 5. Toutes les séances squat utilisent le SQUAT MARQUÉ EN BAS (1-2 sec en bas), toutes les séances développé couché utilisent le DÉVELOPPÉ COUCHÉ MARQUÉ (1-2 sec sur la poitrine). Convention strength validée : ne JAMAIS sauter cette semaine allégée, la surcompensation se fait PENDANT le repos."
+        "fr" : "Semaine allégée obligatoire : -15% charges (retour ~72 % de la charge cible), volume 3x5 (-40% séries), effort 6-7/10. Permet surcompensation avant bloc intensité semaine 5. Toutes les séances squat utilisent le SQUAT MARQUÉ EN BAS (1-2 sec en bas), toutes les séances développé couché utilisent le DÉVELOPPÉ COUCHÉ MARQUÉ (1-2 sec sur la poitrine). Convention strength validée : ne JAMAIS sauter cette semaine allégée, la surcompensation se fait PENDANT le repos."
       },
       "sessions" : [
         {
@@ -2403,7 +2403,7 @@
               "notes" : {
                 "en" : "72% TM (-15% vs W3). RPE 6-7. PAUSED SQUAT: mandatory 1-2 sec pause at the bottom each rep, total control without bouncing. 100% focus on movement quality, speed out of the hole, depth. The technical week par excellence.",
                 "es" : "72% TM (-15% respecto a la S3). RPE 6-7. PAUSED SQUAT: pausa obligatoria de 1-2 s abajo en cada repetición, control total sin rebote. 100% de enfoque en la calidad del movimiento, la velocidad al salir del hoyo, la profundidad. La semana técnica por excelencia.",
-                "fr" : "72% TM (-15% vs W3). RPE 6-7. PAUSED SQUAT : pause obligatoire 1-2 sec en bas chaque rep, contrôle total sans rebond. Focus 100% sur qualité de mouvement, vitesse hors du trou, profondeur. Semaine technique par excellence."
+                "fr" : "72% TM (-15% vs W3). RPE 6-7. PAUSED SQUAT : pause obligatoire 1-2 sec en bas chaque répétition, contrôle total sans rebond. Focus 100% sur qualité de mouvement, vitesse hors du trou, profondeur. Semaine technique par excellence."
               },
               "reps" : "5",
               "required_equipment" : [
@@ -2489,7 +2489,7 @@
               "notes" : {
                 "en" : "72% TM. 3 reps only (reduced volume). Focus on speed off the floor and the starting hip position. 3 min rest is enough at reduced intensity.",
                 "es" : "72% TM. Solo 3 repeticiones (volumen reducido). Enfoque en la velocidad desde el suelo y la posición inicial de las caderas. 3 min de descanso bastan a intensidad reducida.",
-                "fr" : "72% TM. 3 reps seulement (volume réduit). Focus vitesse hors du sol et position initiale hanches. 3 min repos suffisants à intensité réduite."
+                "fr" : "72% TM. 3 répétitions seulement (volume réduit). Focus vitesse hors du sol et position initiale hanches. 3 min repos suffisants à intensité réduite."
               },
               "reps" : "3",
               "required_equipment" : [
@@ -2511,7 +2511,7 @@
                 {
                   "en" : "Inverted row 3x10",
                   "es" : "Remo invertido 3x10",
-                  "fr" : "Rowing inversé 3x10"
+                  "fr" : "Tirage inversé 3x10"
                 },
                 {
                   "en" : "Band-assisted pull-up 3x10",
@@ -2702,12 +2702,12 @@
                 {
                   "en" : "Pendlay row 3x5",
                   "es" : "Remo Pendlay 3x5",
-                  "fr" : "Rowing Pendlay 3x5"
+                  "fr" : "Tirage Pendlay 3x5"
                 },
                 {
                   "en" : "Chest-supported DB row 3x8",
                   "es" : "Remo con apoyo en pecho con mancuernas 3x8",
-                  "fr" : "Rowing buste appuyé haltère 3x8"
+                  "fr" : "Tirage buste appuyé haltère 3x8"
                 }
               ],
               "dose" : {
@@ -2722,7 +2722,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "72% TM. RPE 6-7.",
@@ -2784,7 +2784,7 @@
           "name" : {
             "en" : "Session A6 — Squat / Bench / Row (cutback)",
             "es" : "Sesión A6 — Sentadilla / Banca / Remo (semana ligera)",
-            "fr" : "Séance A6 — Squat / Développé couché / Rowing (semaine allégée)"
+            "fr" : "Séance A6 — Squat / Développé couché / Tirage (semaine allégée)"
           },
           "type" : "strength",
           "warmup" : {
@@ -2997,7 +2997,7 @@
       "goal" : {
         "en" : "Resume 5x5 at loads = W3 peak +2.5 kg on every movement (~82% TM). RPE 8-8.5. Full 5x5 volume. Sessions A-B-A. Expert microloading via 1.25 kg fractional plates on OHP/bench/row.",
         "es" : "Retoma el 5x5 con cargas = pico de la S3 +2,5 kg en todos los movimientos (~82% TM). RPE 8-8,5. Volumen 5x5 completo. Sesiones A-B-A. Microloading de experto con discos fraccionados de 1,25 kg en OHP/banca/remo.",
-        "fr" : "Reprendre 5x5 à charges = pic de la semaine 3 +2,5 kg sur tous mouvements (~82 % de la charge cible). effort 8-8,5/10. Volume 5x5 complet. Séances A-B-A. Micro-chargement expert via plaques fractionnées 1,25 kg sur développé militaire/développé couché/rowing."
+        "fr" : "Reprendre 5x5 à charges = pic de la semaine 3 +2,5 kg sur tous mouvements (~82 % de la charge cible). effort 8-8,5/10. Volume 5x5 complet. Séances A-B-A. Micro-chargement expert via plaques fractionnées 1,25 kg sur développé militaire/développé couché/tirage."
       },
       "sessions" : [
         {
@@ -3083,7 +3083,7 @@
               "notes" : {
                 "en" : "W3 peak +2.5 kg. RPE 8-8.5. The 5th reps of the last 2 sets should be challenging. If you stall on the 4th rep, it's too heavy.",
                 "es" : "Pico de la S3 +2,5 kg. RPE 8-8,5. Las 5.ª repeticiones de las 2 últimas series deben ser exigentes. Si te bloqueas en la 4.ª repetición, es demasiado pesado.",
-                "fr" : "Pic W3 +2,5 kg. RPE 8-8,5. Les 5èmes reps des 2 dernières séries doivent être challengeantes. Si tu bloques sur la 4ème rep, c'est trop lourd."
+                "fr" : "Pic W3 +2,5 kg. RPE 8-8,5. Les 5èmes répétitions des 2 dernières séries doivent être challengeantes. Si tu bloques sur la 4ème répétition, c'est trop lourd."
               },
               "reps" : "5",
               "required_equipment" : [
@@ -3102,12 +3102,12 @@
                 {
                   "en" : "Pendlay row 5x5",
                   "es" : "Remo Pendlay 5x5",
-                  "fr" : "Rowing Pendlay 5x5"
+                  "fr" : "Tirage Pendlay 5x5"
                 },
                 {
                   "en" : "T-bar row 5x5",
                   "es" : "Remo en T 5x5",
-                  "fr" : "Rowing barre en T 5x5"
+                  "fr" : "Tirage barre en T 5x5"
                 }
               ],
               "dose" : {
@@ -3122,7 +3122,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "W3 peak +2.5 kg. RPE 8-8.5.",
@@ -3266,13 +3266,13 @@
           "name" : {
             "en" : "Session A7 — Squat / Bench / Row + Weighted dips",
             "es" : "Sesión A7 — Sentadilla / Banca / Remo + Fondos lastrados",
-            "fr" : "Séance A7 — Squat / Développé couché / Rowing + Dips lestés"
+            "fr" : "Séance A7 — Squat / Développé couché / Tirage + Dips lestés"
           },
           "type" : "strength",
           "warmup" : {
             "en" : "12 min enhanced mobility: world's greatest stretch 8/side, thoracic rotations 12/side, band pull-aparts 20 reps, glute activation. Squat: bar x8, +30 kg x5, +55 kg x3, +75 kg x2.",
             "es" : "12 min de movilidad reforzada: world's greatest stretch 8/lado, rotaciones torácicas 12/lado, band pull-aparts 20 reps, activación de glúteos. Sentadilla: barra x8, +30 kg x5, +55 kg x3, +75 kg x2.",
-            "fr" : "12 min mobilité renforcée : world's greatest stretch 8/côté, rotations thoraciques 12/côté, écartements à l'élastique 20 reps, activation fessiers. Squat : barre x8, +30 kg x5, +55 kg x3, +75 kg x2."
+            "fr" : "12 min mobilité renforcée : world's greatest stretch 8/côté, rotations thoraciques 12/côté, écartements à l'élastique 20 répétitions, activation fessiers. Squat : barre x8, +30 kg x5, +55 kg x3, +75 kg x2."
           }
         },
         {
@@ -3400,7 +3400,7 @@
               "notes" : {
                 "en" : "W3 peak +2.5 kg. RPE 8-8.5. A lifting belt is strongly recommended at this load. Full Valsalva on every rep. 4 min rest.",
                 "es" : "Pico de la S3 +2,5 kg. RPE 8-8,5. Cinturón lumbar muy recomendable a este nivel de carga. Valsalva completo en cada repetición. 4 min de descanso.",
-                "fr" : "Pic W3 +2,5 kg. RPE 8-8,5. Ceinture lombaire fortement recommandée à ce niveau de charge. Valsalva complet sur chaque rep. 4 min repos."
+                "fr" : "Pic W3 +2,5 kg. RPE 8-8,5. Ceinture lombaire fortement recommandée à ce niveau de charge. Valsalva complet sur chaque répétition. 4 min repos."
               },
               "reps" : "5",
               "required_equipment" : [
@@ -3650,12 +3650,12 @@
                 {
                   "en" : "Pendlay row 5x5",
                   "es" : "Remo Pendlay 5x5",
-                  "fr" : "Rowing Pendlay 5x5"
+                  "fr" : "Tirage Pendlay 5x5"
                 },
                 {
                   "en" : "T-bar row 5x5",
                   "es" : "Remo en T 5x5",
-                  "fr" : "Rowing barre en T 5x5"
+                  "fr" : "Tirage barre en T 5x5"
                 }
               ],
               "dose" : {
@@ -3670,7 +3670,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "Same load. RPE 8-8.5.",
@@ -3814,7 +3814,7 @@
           "name" : {
             "en" : "Session A8 — Squat / Bench / Row + Weighted dips",
             "es" : "Sesión A8 — Sentadilla / Banca / Remo + Fondos lastrados",
-            "fr" : "Séance A8 — Squat / Développé couché / Rowing + Dips lestés"
+            "fr" : "Séance A8 — Squat / Développé couché / Tirage + Dips lestés"
           },
           "type" : "strength",
           "warmup" : {
@@ -3835,7 +3835,7 @@
       "goal" : {
         "en" : "+5 kg squat / deadlift, +1.25 kg bench / OHP / row vs W5 (~85% TM). RPE 8.5. 5x5 volume. Sessions B-A-B.",
         "es" : "+5 kg sentadilla / peso muerto, +1,25 kg banca / OHP / remo respecto a la S5 (~85% TM). RPE 8,5. Volumen 5x5. Sesiones B-A-B.",
-        "fr" : "+5 kg squat / soulevé de terre, +1,25 kg développé couché / développé militaire / rowing par rapport à la semaine 5 (~85 % de la charge cible). effort 8,5/10. Volume 5x5. Séances B-A-B."
+        "fr" : "+5 kg squat / soulevé de terre, +1,25 kg développé couché / développé militaire / tirage par rapport à la semaine 5 (~85 % de la charge cible). effort 8,5/10. Volume 5x5. Séances B-A-B."
       },
       "sessions" : [
         {
@@ -4195,7 +4195,7 @@
               "notes" : {
                 "en" : "+1.25 kg vs W5. RPE 8.5. If you repeatedly stall on the 5th reps, log the completed sets (e.g. 5-5-5-5-4) — data to adjust next week.",
                 "es" : "+1,25 kg respecto a la S5. RPE 8,5. Si te bloqueas repetidamente en las 5.ª repeticiones, anota las series completadas (p. ej. 5-5-5-5-4) — dato para ajustar la semana siguiente.",
-                "fr" : "+1,25 kg vs W5. RPE 8,5. Si blocage répété sur 5èmes reps, noter séries complétées (ex : 5-5-5-5-4) — donnée pour adapter prochaine semaine."
+                "fr" : "+1,25 kg vs W5. RPE 8,5. Si blocage répété sur 5èmes répétitions, noter séries complétées (ex : 5-5-5-5-4) — donnée pour adapter prochaine semaine."
               },
               "reps" : "5",
               "required_equipment" : [
@@ -4214,12 +4214,12 @@
                 {
                   "en" : "Pendlay row 5x5",
                   "es" : "Remo Pendlay 5x5",
-                  "fr" : "Rowing Pendlay 5x5"
+                  "fr" : "Tirage Pendlay 5x5"
                 },
                 {
                   "en" : "T-bar row 5x5",
                   "es" : "Remo en T 5x5",
-                  "fr" : "Rowing barre en T 5x5"
+                  "fr" : "Tirage barre en T 5x5"
                 }
               ],
               "dose" : {
@@ -4234,7 +4234,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "+1.25 kg vs W5. RPE 8.5.",
@@ -4378,7 +4378,7 @@
           "name" : {
             "en" : "Session A10 — Squat / Bench / Row + Weighted dips",
             "es" : "Sesión A10 — Sentadilla / Banca / Remo + Fondos lastrados",
-            "fr" : "Séance A10 — Squat / Développé couché / Rowing + Dips lestés"
+            "fr" : "Séance A10 — Squat / Développé couché / Tirage + Dips lestés"
           },
           "type" : "strength",
           "warmup" : {
@@ -4631,7 +4631,7 @@
       "goal" : {
         "en" : "+5 kg squat / deadlift, +1.25 kg bench / OHP / row vs W6 (~88% TM). RPE 8.5-9. 5x5 volume. Sessions A-B-A. Last full 5x5 week before the W8 cutback.",
         "es" : "+5 kg sentadilla / peso muerto, +1,25 kg banca / OHP / remo respecto a la S6 (~88% TM). RPE 8,5-9. Volumen 5x5. Sesiones A-B-A. Última semana de 5x5 completo antes de la semana ligera de la S8.",
-        "fr" : "+5 kg squat / soulevé de terre, +1,25 kg développé couché / développé militaire / rowing par rapport à la semaine 6 (~88 % de la charge cible). effort 8,5-9/10. Volume 5x5. Séances A-B-A. Dernière semaine 5x5 complet avant semaine allégée semaine 8."
+        "fr" : "+5 kg squat / soulevé de terre, +1,25 kg développé couché / développé militaire / tirage par rapport à la semaine 6 (~88 % de la charge cible). effort 8,5-9/10. Volume 5x5. Séances A-B-A. Dernière semaine 5x5 complet avant semaine allégée semaine 8."
       },
       "sessions" : [
         {
@@ -4737,12 +4737,12 @@
                 {
                   "en" : "Pendlay row 5x5",
                   "es" : "Remo Pendlay 5x5",
-                  "fr" : "Rowing Pendlay 5x5"
+                  "fr" : "Tirage Pendlay 5x5"
                 },
                 {
                   "en" : "T-bar row 5x5",
                   "es" : "Remo en T 5x5",
-                  "fr" : "Rowing barre en T 5x5"
+                  "fr" : "Tirage barre en T 5x5"
                 }
               ],
               "dose" : {
@@ -4757,7 +4757,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "+1.25 kg vs W6. RPE 8.5-9.",
@@ -4901,7 +4901,7 @@
           "name" : {
             "en" : "Session A11 — Squat / Bench / Row + Weighted dips",
             "es" : "Sesión A11 — Sentadilla / Banca / Remo + Fondos lastrados",
-            "fr" : "Séance A11 — Squat / Développé couché / Rowing + Dips lestés"
+            "fr" : "Séance A11 — Squat / Développé couché / Tirage + Dips lestés"
           },
           "type" : "strength",
           "warmup" : {
@@ -5286,12 +5286,12 @@
                 {
                   "en" : "Pendlay row 5x5",
                   "es" : "Remo Pendlay 5x5",
-                  "fr" : "Rowing Pendlay 5x5"
+                  "fr" : "Tirage Pendlay 5x5"
                 },
                 {
                   "en" : "T-bar row 5x5",
                   "es" : "Remo en T 5x5",
-                  "fr" : "Rowing barre en T 5x5"
+                  "fr" : "Tirage barre en T 5x5"
                 }
               ],
               "dose" : {
@@ -5306,7 +5306,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "Same load. RPE 8.5-9.",
@@ -5450,7 +5450,7 @@
           "name" : {
             "en" : "Session A12 — Squat / Bench / Row + Weighted dips",
             "es" : "Sesión A12 — Sentadilla / Banca / Remo + Fondos lastrados",
-            "fr" : "Séance A12 — Squat / Développé couché / Rowing + Dips lestés"
+            "fr" : "Séance A12 — Squat / Développé couché / Tirage + Dips lestés"
           },
           "type" : "strength",
           "warmup" : {
@@ -5471,7 +5471,7 @@
       "goal" : {
         "en" : "Mandatory cutback week before the realization block: -15% loads (~75% TM), 3x5 (-40% sets), RPE 6-7. The post-cutback supercompensation is the foundation of the realization block, which will chase PRs. Systematic PAUSED SQUAT and PAUSED BENCH.",
         "es" : "Semana de semana ligera obligatoria antes del bloque de realización: -15% de cargas (~75% TM), 3x5 (-40% series), RPE 6-7. La supercompensación tras la semana ligera es la base del bloque de realización, que buscará récords. PAUSED SQUAT y PAUSED BENCH sistemáticos.",
-        "fr" : "Semaine allégée obligatoire avant bloc réalisation : -15% charges (~75 % de la charge cible), 3x5 (-40% sets), effort 6-7/10. La surcompensation post-semaine allégée est la fondation du bloc réalisation qui visera les records. SQUAT MARQUÉ EN BAS et DÉVELOPPÉ COUCHÉ MARQUÉ systématiques."
+        "fr" : "Semaine allégée obligatoire avant bloc réalisation : -15% charges (~75 % de la charge cible), 3x5 (-40% séries), effort 6-7/10. La surcompensation post-semaine allégée est la fondation du bloc réalisation qui visera les records. SQUAT MARQUÉ EN BAS et DÉVELOPPÉ COUCHÉ MARQUÉ systématiques."
       },
       "sessions" : [
         {
@@ -5599,7 +5599,7 @@
               "notes" : {
                 "en" : "-15% vs W7. RPE 6. 3 reps focusing on the hip position and the pull initiation. 3 min rest.",
                 "es" : "-15% respecto a la S7. RPE 6. 3 repeticiones concentrándote en la posición de la cadera y el inicio de la tracción. 3 min de descanso.",
-                "fr" : "-15% vs W7. RPE 6. 3 reps en se concentrant sur position hanche et initiation traction. 3 min repos."
+                "fr" : "-15% vs W7. RPE 6. 3 répétitions en se concentrant sur position hanche et initiation traction. 3 min repos."
               },
               "reps" : "3",
               "required_equipment" : [
@@ -5621,7 +5621,7 @@
                 {
                   "en" : "Inverted row 3x10",
                   "es" : "Remo invertido 3x10",
-                  "fr" : "Rowing inversé 3x10"
+                  "fr" : "Tirage inversé 3x10"
                 }
               ],
               "dose" : {
@@ -5807,12 +5807,12 @@
                 {
                   "en" : "Pendlay row 3x5",
                   "es" : "Remo Pendlay 3x5",
-                  "fr" : "Rowing Pendlay 3x5"
+                  "fr" : "Tirage Pendlay 3x5"
                 },
                 {
                   "en" : "Chest-supported DB row 3x8",
                   "es" : "Remo con apoyo en pecho con mancuernas 3x8",
-                  "fr" : "Rowing buste appuyé haltère 3x8"
+                  "fr" : "Tirage buste appuyé haltère 3x8"
                 }
               ],
               "dose" : {
@@ -5827,7 +5827,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "-15% vs W7. RPE 6-7.",
@@ -5889,7 +5889,7 @@
           "name" : {
             "en" : "Session A13 — Squat / Bench / Row (cutback)",
             "es" : "Sesión A13 — Sentadilla / Banca / Remo (semana ligera)",
-            "fr" : "Séance A13 — Squat / Développé couché / Rowing (semaine allégée)"
+            "fr" : "Séance A13 — Squat / Développé couché / Tirage (semaine allégée)"
           },
           "type" : "strength",
           "warmup" : {
@@ -6102,7 +6102,7 @@
       "goal" : {
         "en" : "Start the realization block at loads = W7 peak +2.5 kg on every movement (~90% TM). Scheme inspired by 5/3/1 W1: main compounds 3x5 then 1 as many reps as possible set @ the same load (5+ reps). Reduced accessory volume. RPE 8.5-9. Sessions A-B-A. Goal: beat your current PRs in W11.",
         "es" : "Empieza el bloque de realización con cargas = pico de la S7 +2,5 kg en todos los movimientos (~90% TM). Esquema inspirado en 5/3/1 S1: compuestos principales 3x5 y luego 1 serie al máximo de repeticiones @ la misma carga (5+ repeticiones). Volumen de accesorios reducido. RPE 8,5-9. Sesiones A-B-A. Objetivo: superar tus récords actuales en la S11.",
-        "fr" : "Démarrer bloc réalisation à charges = pic de la semaine 7 +2,5 kg sur tous mouvements (~90 % de la charge cible). Schéma inspiré du schéma 5/3/1 semaine 1 : polyarticulaires principaux 3x5 puis 1 set max de reps à même charge (5+ reps). Volume secondaires réduit. effort 8,5-9/10. Séances A-B-A. Objectif : dépasser tes records actuels en semaine 11."
+        "fr" : "Démarrer bloc réalisation à charges = pic de la semaine 7 +2,5 kg sur tous mouvements (~90 % de la charge cible). Schéma inspiré du schéma 5/3/1 semaine 1 : polyarticulaires principaux 3x5 puis 1 série max de répétitions à même charge (5+ répétitions). Volume secondaires réduit. effort 8,5-9/10. Séances A-B-A. Objectif : dépasser tes records actuels en semaine 11."
       },
       "sessions" : [
         {
@@ -6131,7 +6131,7 @@
                 "free_text" : {
                   "en" : "5, 5, 5, 5+ AMRAP",
                   "es" : "5, 5, 5, 5+ AMRAP (máximo de reps)",
-                  "fr" : "5, 5, 5, 5+ AMRAP (max de reps)"
+                  "fr" : "5, 5, 5, 5+ AMRAP (max de répétitions)"
                 }
               },
               "incompatible_constraints" : [
@@ -6149,7 +6149,7 @@
               "notes" : {
                 "en" : "W7 +2.5 kg (~90% TM). RPE 8.5-9. 5/3/1 W1 scheme: 3 sets of 5 then 1 as many reps as possible set (As Many Reps As Possible) at the same load — aim for 6-8 reps minimum if form is clean. Stop the moment form breaks down. Total focus, spotter or cage with safety bars at shoulder height mandatory.",
                 "es" : "S7 +2,5 kg (~90% TM). RPE 8,5-9. Esquema 5/3/1 S1: 3 series de 5 y luego 1 serie al máximo de repeticiones (tantas repeticiones como sea posible) a la misma carga — apunta a 6-8 repeticiones mínimo si la forma es limpia. Para en cuanto la forma se deteriore. Concentración total, ayudante o jaula con barras de seguridad a la altura de los hombros obligatorio.",
-                "fr" : "W7 +2,5 kg (~90% TM). RPE 8,5-9. Schéma 5/3/1 W1 : 3 séries de 5 puis 1 série au max de répétitions (As Many Reps As Possible) à même charge — viser 6-8 reps minimum si forme propre. Stop dès que la forme se dégrade. Concentration totale, spotter ou cage avec barres de sécurité à hauteur des épaules obligatoire."
+                "fr" : "W7 +2,5 kg (~90% TM). RPE 8,5-9. Schéma 5/3/1 W1 : 3 séries de 5 puis 1 série au max de répétitions (As Many Répétitions As Possible) à même charge — viser 6-8 répétitions minimum si forme propre. Stop dès que la forme se dégrade. Concentration totale, spotter ou cage avec barres de sécurité à hauteur des épaules obligatoire."
               },
               "reps" : "5, 5, 5, 5+ AMRAP",
               "required_equipment" : [
@@ -6179,7 +6179,7 @@
                 "free_text" : {
                   "en" : "5, 5, 5, 5+ AMRAP",
                   "es" : "5, 5, 5, 5+ AMRAP (máximo de reps)",
-                  "fr" : "5, 5, 5, 5+ AMRAP (max de reps)"
+                  "fr" : "5, 5, 5, 5+ AMRAP (max de répétitions)"
                 }
               },
               "incompatible_constraints" : [
@@ -6195,7 +6195,7 @@
               "notes" : {
                 "en" : "W7 +1.25 kg. RPE 8.5-9. Same 5/3/1 W1 scheme. Spotter advised on the as many reps as possible. If the as many reps as possible is < 5 reps, it's too heavy — drop 2.5 kg for W10.",
                 "es" : "S7 +1,25 kg. RPE 8,5-9. Mismo esquema 5/3/1 S1. Se aconseja un ayudante en el serie al máximo de repeticiones. Si el serie al máximo de repeticiones < 5 repeticiones, es demasiado pesado — baja 2,5 kg para la S10.",
-                "fr" : "W7 +1,25 kg. RPE 8,5-9. Même schéma 5/3/1 W1. Spotter conseillé sur série au max de répétitions. Si série au max de répétitions < 5 reps, c'est trop lourd — réduire 2,5 kg pour W10."
+                "fr" : "W7 +1,25 kg. RPE 8,5-9. Même schéma 5/3/1 W1. Spotter conseillé sur série au max de répétitions. Si série au max de répétitions < 5 répétitions, c'est trop lourd — réduire 2,5 kg pour W10."
               },
               "reps" : "5, 5, 5, 5+ AMRAP",
               "required_equipment" : [
@@ -6214,12 +6214,12 @@
                 {
                   "en" : "Pendlay row 4x5",
                   "es" : "Remo Pendlay 4x5",
-                  "fr" : "Rowing Pendlay 4x5"
+                  "fr" : "Tirage Pendlay 4x5"
                 },
                 {
                   "en" : "T-bar row 4x5",
                   "es" : "Remo en T 4x5",
-                  "fr" : "Rowing barre en T 4x5"
+                  "fr" : "Tirage barre en T 4x5"
                 }
               ],
               "dose" : {
@@ -6234,12 +6234,12 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "W7 +1.25 kg. RPE 8.5-9. No as many reps as possible on the row (lower-back safety — rounding risk under fatigue).",
                 "es" : "S7 +1,25 kg. RPE 8,5-9. Sin serie al máximo de repeticiones en el remo (seguridad lumbar — riesgo de redondeo bajo fatiga).",
-                "fr" : "W7 +1,25 kg. RPE 8,5-9. Pas de série au max de répétitions sur rowing (sécurité lombaire — risque rounding sous fatigue)."
+                "fr" : "W7 +1,25 kg. RPE 8,5-9. Pas de série au max de répétitions sur tirage (sécurité lombaire — risque rounding sous fatigue)."
               },
               "reps" : "5",
               "required_equipment" : [
@@ -6378,7 +6378,7 @@
           "name" : {
             "en" : "Session A14 — Squat / Bench / Row + Weighted dips",
             "es" : "Sesión A14 — Sentadilla / Banca / Remo + Fondos lastrados",
-            "fr" : "Séance A14 — Squat / Développé couché / Rowing + Dips lestés"
+            "fr" : "Séance A14 — Squat / Développé couché / Tirage + Dips lestés"
           },
           "type" : "strength",
           "warmup" : {
@@ -6456,7 +6456,7 @@
                 "free_text" : {
                   "en" : "5, 5, 5, 5+ AMRAP",
                   "es" : "5, 5, 5, 5+ AMRAP (máximo de reps)",
-                  "fr" : "5, 5, 5, 5+ AMRAP (max de reps)"
+                  "fr" : "5, 5, 5, 5+ AMRAP (max de répétitions)"
                 }
               },
               "incompatible_constraints" : [
@@ -6766,12 +6766,12 @@
                 {
                   "en" : "Pendlay row 4x5",
                   "es" : "Remo Pendlay 4x5",
-                  "fr" : "Rowing Pendlay 4x5"
+                  "fr" : "Tirage Pendlay 4x5"
                 },
                 {
                   "en" : "T-bar row 4x5",
                   "es" : "Remo en T 4x5",
-                  "fr" : "Rowing barre en T 4x5"
+                  "fr" : "Tirage barre en T 4x5"
                 }
               ],
               "dose" : {
@@ -6786,7 +6786,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "Same load. RPE 8.5-9.",
@@ -6930,7 +6930,7 @@
           "name" : {
             "en" : "Session A15 — Squat / Bench / Row + Weighted dips",
             "es" : "Sesión A15 — Sentadilla / Banca / Remo + Fondos lastrados",
-            "fr" : "Séance A15 — Squat / Développé couché / Rowing + Dips lestés"
+            "fr" : "Séance A15 — Squat / Développé couché / Tirage + Dips lestés"
           },
           "type" : "strength",
           "warmup" : {
@@ -6943,7 +6943,7 @@
       "theme" : {
         "en" : "Realization block W9 — 5,5,5+ as many reps as possible @90% TM scheme, RPE 8.5-9",
         "es" : "Bloque de realización S9 — Esquema 5,5,5+ serie al máximo de repeticiones @90% TM, RPE 8,5-9",
-        "fr" : "Bloc réalisation, semaine 9 — schéma 5,5,5 + max de reps (~90 % de la charge cible)"
+        "fr" : "Bloc réalisation, semaine 9 — schéma 5,5,5 + max de répétitions (~90 % de la charge cible)"
       },
       "week_number" : 9
     },
@@ -6951,7 +6951,7 @@
       "goal" : {
         "en" : "+2.5 kg squat / deadlift, +1.25 kg bench / OHP / row vs W9 (~92% TM). 5/3/1 W2 scheme: main compounds 3x3 then 1 as many reps as possible set @ the same load (3+ reps). RPE 9. Sessions B-A-B.",
         "es" : "+2,5 kg sentadilla / peso muerto, +1,25 kg banca / OHP / remo respecto a la S9 (~92% TM). Esquema 5/3/1 S2: compuestos principales 3x3 y luego 1 serie al máximo de repeticiones @ la misma carga (3+ repeticiones). RPE 9. Sesiones B-A-B.",
-        "fr" : "+2,5 kg squat / soulevé de terre, +1,25 kg développé couché / développé militaire / rowing par rapport à la semaine 9 (~92 % de la charge cible). Schéma 5/3/1 semaine 2 : polyarticulaires principaux 3x3 puis 1 set max de reps à même charge (3+ reps). effort 9/10. Séances B-A-B."
+        "fr" : "+2,5 kg squat / soulevé de terre, +1,25 kg développé couché / développé militaire / tirage par rapport à la semaine 9 (~92 % de la charge cible). Schéma 5/3/1 semaine 2 : polyarticulaires principaux 3x3 puis 1 série max de répétitions à même charge (3+ répétitions). effort 9/10. Séances B-A-B."
       },
       "sessions" : [
         {
@@ -6980,7 +6980,7 @@
                 "free_text" : {
                   "en" : "3, 3, 3, 3+ AMRAP",
                   "es" : "3, 3, 3, 3+ AMRAP (máximo de reps)",
-                  "fr" : "3, 3, 3, 3+ AMRAP (max de reps)"
+                  "fr" : "3, 3, 3, 3+ AMRAP (max de répétitions)"
                 }
               },
               "incompatible_constraints" : [
@@ -6998,7 +6998,7 @@
               "notes" : {
                 "en" : "W9 +2.5 kg (~92% TM). RPE 9. 5/3/1 W2 scheme: 3x3 then as many reps as possible. As many reps as possible target: 4-6 reps minimum. Absolute focus, spotter or cage mandatory.",
                 "es" : "S9 +2,5 kg (~92% TM). RPE 9. Esquema 5/3/1 S2: 3x3 y luego serie al máximo de repeticiones. Objetivo del serie al máximo de repeticiones: 4-6 repeticiones mínimo. Concentración absoluta, ayudante o jaula obligatorio.",
-                "fr" : "W9 +2,5 kg (~92% TM). RPE 9. Schéma 5/3/1 W2 : 3x3 puis série au max de répétitions. Série au max de répétitions cible : 4-6 reps minimum. Concentration absolue, spotter ou cage obligatoire."
+                "fr" : "W9 +2,5 kg (~92% TM). RPE 9. Schéma 5/3/1 W2 : 3x3 puis série au max de répétitions. Série au max de répétitions cible : 4-6 répétitions minimum. Concentration absolue, spotter ou cage obligatoire."
               },
               "reps" : "3, 3, 3, 3+ AMRAP",
               "required_equipment" : [
@@ -7028,7 +7028,7 @@
                 "free_text" : {
                   "en" : "3, 3, 3, 3+ AMRAP",
                   "es" : "3, 3, 3, 3+ AMRAP (máximo de reps)",
-                  "fr" : "3, 3, 3, 3+ AMRAP (max de reps)"
+                  "fr" : "3, 3, 3, 3+ AMRAP (max de répétitions)"
                 }
               },
               "incompatible_constraints" : [
@@ -7306,7 +7306,7 @@
                 "free_text" : {
                   "en" : "3, 3, 3, 3+ AMRAP",
                   "es" : "3, 3, 3, 3+ AMRAP (máximo de reps)",
-                  "fr" : "3, 3, 3, 3+ AMRAP (max de reps)"
+                  "fr" : "3, 3, 3, 3+ AMRAP (max de répétitions)"
                 }
               },
               "incompatible_constraints" : [
@@ -7341,12 +7341,12 @@
                 {
                   "en" : "Pendlay row 4x5",
                   "es" : "Remo Pendlay 4x5",
-                  "fr" : "Rowing Pendlay 4x5"
+                  "fr" : "Tirage Pendlay 4x5"
                 },
                 {
                   "en" : "T-bar row 4x5",
                   "es" : "Remo en T 4x5",
-                  "fr" : "Rowing barre en T 4x5"
+                  "fr" : "Tirage barre en T 4x5"
                 }
               ],
               "dose" : {
@@ -7361,7 +7361,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "W9 +1.25 kg. RPE 8.5-9. No as many reps as possible (lower-back safety).",
@@ -7505,7 +7505,7 @@
           "name" : {
             "en" : "Session A16 — Squat / Bench / Row + Weighted dips",
             "es" : "Sesión A16 — Sentadilla / Banca / Remo + Fondos lastrados",
-            "fr" : "Séance A16 — Squat / Développé couché / Rowing + Dips lestés"
+            "fr" : "Séance A16 — Squat / Développé couché / Tirage + Dips lestés"
           },
           "type" : "strength",
           "warmup" : {
@@ -7750,15 +7750,15 @@
       "theme" : {
         "en" : "Realization block W10 — 3,3,3+ as many reps as possible @92% TM scheme, RPE 9",
         "es" : "Bloque de realización S10 — Esquema 3,3,3+ serie al máximo de repeticiones @92% TM, RPE 9",
-        "fr" : "Bloc réalisation, semaine 10 — schéma 3,3,3 + max de reps (~92 % de la charge cible)"
+        "fr" : "Bloc réalisation, semaine 10 — schéma 3,3,3 + max de répétitions (~92 % de la charge cible)"
       },
       "week_number" : 10
     },
     {
       "goal" : {
         "en" : "Realization-block peak week. D1 lightened taper session (3x3 @85% TM). D3 dedicated mobility session (CNS recovery). D5 = technical peak 5/3/1 W3: 5,3,1+ as many reps as possible @95% TM scheme on the main compounds. RPE 9-9.5 on D5. Direct prep for the W12 1RM test.",
-        "es" : "Semana pico del bloque de realización. D1 sesión de taper aligerada (3x3 @85% TM). D3 sesión de movilidad dedicada (recuperación del SNC). D5 = pico técnico 5/3/1 S3: esquema 5,3,1+ serie al máximo de repeticiones @95% TM en los compuestos principales. RPE 9-9,5 en D5. Preparación inmediata para el test de 1RM de la S12.",
-        "fr" : "Semaine pic bloc réalisation. J1 séance d'affûtage allégée (3x3 à ~85 % de la charge cible). J3 séance mobilité dédiée (récupération nerveuse). J5 = pic technique 5/3/1 semaine 3 : schéma 5,3,1+ max de reps à ~95 % de la charge cible sur polyarticulaires principaux. effort 9-9,5/10 J5. Préparation immédiate au test de charge maximale semaine 12."
+        "es" : "Semana pico del bloque de realización. D1 sesión de Afinamiento aligerada (3x3 @85% TM). D3 sesión de movilidad dedicada (recuperación del SNC). D5 = pico técnico 5/3/1 S3: esquema 5,3,1+ serie al máximo de repeticiones @95% TM en los compuestos principales. RPE 9-9,5 en D5. Preparación inmediata para el test de 1RM de la S12.",
+        "fr" : "Semaine pic bloc réalisation. J1 séance d'affûtage allégée (3x3 à ~85 % de la charge cible). J3 séance mobilité dédiée (récupération nerveuse). J5 = pic technique 5/3/1 semaine 3 : schéma 5,3,1+ max de répétitions à ~95 % de la charge cible sur polyarticulaires principaux. effort 9-9,5/10 J5. Préparation immédiate au test de charge maximale semaine 12."
       },
       "sessions" : [
         {
@@ -7800,7 +7800,7 @@
               },
               "notes" : {
                 "en" : "85% TM (taper -5%). RPE 7. Reduced volume to arrive fresh at D5. Focus on bar speed and confidence — don't chase fatigue.",
-                "es" : "85% TM (taper -5%). RPE 7. Volumen reducido para llegar fresco al D5. Enfoque en la velocidad de la barra y la confianza — no busques fatiga.",
+                "es" : "85% TM (Afinamiento -5%). RPE 7. Volumen reducido para llegar fresco al D5. Enfoque en la velocidad de la barra y la confianza — no busques fatiga.",
                 "fr" : "85% TM (affûtage -5%). RPE 7. Volume réduit pour arriver frais à J5. Focus vitesse de barre et confiance — ne pas chercher fatigue."
               },
               "reps" : "3",
@@ -7843,7 +7843,7 @@
               },
               "notes" : {
                 "en" : "85% TM. RPE 7. Taper.",
-                "es" : "85% TM. RPE 7. Taper.",
+                "es" : "85% TM. RPE 7. Afinamiento.",
                 "fr" : "85% TM. RPE 7. Affûtage."
               },
               "reps" : "3",
@@ -7887,7 +7887,7 @@
               },
               "notes" : {
                 "en" : "85% TM. RPE 7. Taper.",
-                "es" : "85% TM. RPE 7. Taper.",
+                "es" : "85% TM. RPE 7. Afinamiento.",
                 "fr" : "85% TM. RPE 7. Affûtage."
               },
               "reps" : "3",
@@ -7906,12 +7906,12 @@
                 {
                   "en" : "Pendlay row 3x5 @75% TM",
                   "es" : "Remo Pendlay 3x5 @75% TM",
-                  "fr" : "Rowing Pendlay 3x5 @75% TM"
+                  "fr" : "Tirage Pendlay 3x5 @75% TM"
                 },
                 {
                   "en" : "Chest-supported DB row 3x8",
                   "es" : "Remo con apoyo en pecho con mancuernas 3x8",
-                  "fr" : "Rowing buste appuyé haltère 3x8"
+                  "fr" : "Tirage buste appuyé haltère 3x8"
                 }
               ],
               "dose" : {
@@ -7926,7 +7926,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "75% TM. RPE 7. Light pull-volume maintenance.",
@@ -7953,7 +7953,7 @@
                 {
                   "en" : "Inverted row 2x10",
                   "es" : "Remo invertido 2x10",
-                  "fr" : "Rowing inversé 2x10"
+                  "fr" : "Tirage inversé 2x10"
                 }
               ],
               "dose" : {
@@ -8014,7 +8014,7 @@
               },
               "notes" : {
                 "en" : "Core taper.",
-                "es" : "Core en taper.",
+                "es" : "Core en Afinamiento.",
                 "fr" : "Gainage affûtage."
               },
               "required_equipment" : [
@@ -8028,8 +8028,8 @@
           ],
           "name" : {
             "en" : "Taper session — Squat / Bench / OHP / Row 3x3",
-            "es" : "Sesión de taper — Sentadilla / Banca / OHP / Remo 3x3",
-            "fr" : "Séance d'affûtage — Squat / Développé couché / Militaire / Rowing 3×3"
+            "es" : "Sesión de Afinamiento — Sentadilla / Banca / OHP / Remo 3x3",
+            "fr" : "Séance d'affûtage — Squat / Développé couché / Militaire / Tirage 3×3"
           },
           "type" : "strength",
           "warmup" : {
@@ -8042,7 +8042,7 @@
           "cooldown" : {
             "en" : "5 min diaphragmatic breathing. Visualize the D5 peak sets: picture every movement clean and complete. Hydrate, full meal 2h before D5.",
             "es" : "5 min de respiración diafragmática. Visualiza las series pico del D5: imagina cada movimiento limpio y completo. Hidrátate, comida completa 2 h antes del D5.",
-            "fr" : "5 min respiration diaphragmatique. Visualisation des peak sets de J5 : imaginer chaque mouvement propre et complet. Hydratation, repas complet 2h avant J5."
+            "fr" : "5 min respiration diaphragmatique. Visualisation des peak séries de J5 : imaginer chaque mouvement propre et complet. Hydratation, repas complet 2h avant J5."
           },
           "day" : 3,
           "duration_minutes" : 40,
@@ -8117,7 +8117,7 @@
               "notes" : {
                 "en" : "Thoracic foam rolling 2 min, banded shoulder rotations 15 reps, light-band face pulls 15 reps, doorway stretch 30 sec/side.",
                 "es" : "Foam roller torácico 2 min, rotaciones de hombro con banda 15 reps, face pulls con banda ligera 15 reps, doorway stretch 30 s/lado.",
-                "fr" : "Rouleau de massage thoracique 2 min, rotations épaules avec bande 15 reps, tirages visage bande légère 15 reps, étirement encadrement de porte 30 sec/côté."
+                "fr" : "Rouleau de massage thoracique 2 min, rotations épaules avec bande 15 répétitions, tirages visage bande légère 15 répétitions, étirement encadrement de porte 30 sec/côté."
               },
               "required_equipment" : [
                 "foam-roller",
@@ -8153,7 +8153,7 @@
               "notes" : {
                 "en" : "Glute bridge 15 reps, bird-dog 8/side, plank 30 sec, scapular pull-up 8 reps. Activate without creating fatigue.",
                 "es" : "Puente de glúteos 15 reps, bird-dog 8/lado, plancha 30 s, pull-up escapular 8 reps. Activa sin generar fatiga.",
-                "fr" : "Pont fessier 15 reps, pointeur 8/côté, planche 30 sec, traction scapulaire 8 reps. Activer sans créer fatigue."
+                "fr" : "Pont fessier 15 répétitions, pointeur 8/côté, planche 30 sec, traction scapulaire 8 répétitions. Activer sans créer fatigue."
               },
               "required_equipment" : [
                 "mat"
@@ -8230,19 +8230,19 @@
                 {
                   "en" : "Front squat 3 sets 5/3/1+ @78/85/88% TM",
                   "es" : "Front squat 3 sets 5/3/1+ @78/85/88% TM",
-                  "fr" : "Front squat 3 sets 5/3/1+ @78/85/88% TM"
+                  "fr" : "Front squat 3 séries 5/3/1+ @78/85/88% TM"
                 },
                 {
                   "en" : "Box squat 3 sets same",
                   "es" : "Box squat 3 sets igual",
-                  "fr" : "Box squat 3 sets idem"
+                  "fr" : "Box squat 3 séries idem"
                 }
               ],
               "dose" : {
                 "free_text" : {
                   "en" : "5, 3, 1+ AMRAP",
                   "es" : "5, 3, 1+ AMRAP (máximo de reps)",
-                  "fr" : "5, 3, 1+ AMRAP (max de reps)"
+                  "fr" : "5, 3, 1+ AMRAP (max de répétitions)"
                 }
               },
               "incompatible_constraints" : [
@@ -8260,7 +8260,7 @@
               "notes" : {
                 "en" : "5/3/1 W3 peak scheme: 5 reps @85% TM (heavy warm-up) → 3 reps @92% TM → 1 as many reps as possible set @95% TM (aim for 2-4 reps minimum). RPE 9.5 on the as many reps as possible. Spotter or cage with safety bars MANDATORY. If 5+ reps on the as many reps as possible @95%: your TM is underestimated — adjust +5 kg for the W12 1RM test.",
                 "es" : "Esquema 5/3/1 S3 pico: 5 repeticiones @85% TM (calentamiento pesado) → 3 repeticiones @92% TM → 1 serie al máximo de repeticiones @95% TM (apunta a 2-4 repeticiones mínimo). RPE 9,5 en el serie al máximo de repeticiones. Ayudante o jaula con barras de seguridad OBLIGATORIO. Si 5+ repeticiones en el serie al máximo de repeticiones @95%: tu TM está infravalorado — ajusta +5 kg para el test de 1RM de la S12.",
-                "fr" : "Schéma 5/3/1 W3 peak : 5 reps @85% TM (échauffement lourd) → 3 reps @92% TM → 1 set série au max de répétitions @95% TM (viser 2-4 reps minimum). RPE 9,5 sur série au max de répétitions. Spotter ou cage avec barres de sécurité OBLIGATOIRE. Si 5+ reps sur série au max de répétitions @95% : ton TM est sous-évalué — ajuster +5 kg pour W12 test 1RM."
+                "fr" : "Schéma 5/3/1 W3 peak : 5 répétitions @85% TM (échauffement lourd) → 3 répétitions @92% TM → 1 série au max de répétitions @95% TM (viser 2-4 répétitions minimum). RPE 9,5 sur série au max de répétitions. Spotter ou cage avec barres de sécurité OBLIGATOIRE. Si 5+ répétitions sur série au max de répétitions @95% : ton TM est sous-évalué — ajuster +5 kg pour W12 test 1RM."
               },
               "reps" : "5, 3, 1+ AMRAP",
               "required_equipment" : [
@@ -8283,14 +8283,14 @@
                 {
                   "en" : "Incline bench 3 sets 5/3/1",
                   "es" : "Press inclinado 3 sets 5/3/1",
-                  "fr" : "Développé incliné 3 sets 5/3/1"
+                  "fr" : "Développé incliné 3 séries 5/3/1"
                 }
               ],
               "dose" : {
                 "free_text" : {
                   "en" : "5, 3, 1+ AMRAP",
                   "es" : "5, 3, 1+ AMRAP (máximo de reps)",
-                  "fr" : "5, 3, 1+ AMRAP (max de reps)"
+                  "fr" : "5, 3, 1+ AMRAP (max de répétitions)"
                 }
               },
               "incompatible_constraints" : [
@@ -8306,7 +8306,7 @@
               "notes" : {
                 "en" : "5,3,1+ scheme: 5 @85% TM → 3 @92% TM → 1+ as many reps as possible @95% TM. Spotter MANDATORY on the last set. RPE 9.5 on the as many reps as possible. Aim for 2-4 reps.",
                 "es" : "Esquema 5,3,1+: 5 @85% TM → 3 @92% TM → 1+ serie al máximo de repeticiones @95% TM. Ayudante OBLIGATORIO en la última serie. RPE 9,5 en el serie al máximo de repeticiones. Apunta a 2-4 repeticiones.",
-                "fr" : "Schéma 5,3,1+ : 5 @85% TM → 3 @92% TM → 1+ série au max de répétitions @95% TM. Spotter OBLIGATOIRE sur dernière série. RPE 9,5 sur série au max de répétitions. Viser 2-4 reps."
+                "fr" : "Schéma 5,3,1+ : 5 @85% TM → 3 @92% TM → 1+ série au max de répétitions @95% TM. Spotter OBLIGATOIRE sur dernière série. RPE 9,5 sur série au max de répétitions. Viser 2-4 répétitions."
               },
               "reps" : "5, 3, 1+ AMRAP",
               "required_equipment" : [
@@ -8325,19 +8325,19 @@
                 {
                   "en" : "Push press 3 sets 5/3/1",
                   "es" : "Push press 3 series 5/3/1",
-                  "fr" : "Développé avec impulsion 3 sets 5/3/1"
+                  "fr" : "Développé avec impulsion 3 séries 5/3/1"
                 },
                 {
                   "en" : "Z-press 3 sets 5/3/1",
                   "es" : "Z-press 3 series 5/3/1",
-                  "fr" : "Développé assis au sol 3 sets 5/3/1"
+                  "fr" : "Développé assis au sol 3 séries 5/3/1"
                 }
               ],
               "dose" : {
                 "free_text" : {
                   "en" : "5, 3, 1+ AMRAP",
                   "es" : "5, 3, 1+ AMRAP (máximo de reps)",
-                  "fr" : "5, 3, 1+ AMRAP (max de reps)"
+                  "fr" : "5, 3, 1+ AMRAP (max de répétitions)"
                 }
               },
               "incompatible_constraints" : [
@@ -8371,12 +8371,12 @@
                 {
                   "en" : "Pendlay row 3x5",
                   "es" : "Remo Pendlay 3x5",
-                  "fr" : "Rowing Pendlay 3x5"
+                  "fr" : "Tirage Pendlay 3x5"
                 },
                 {
                   "en" : "T-bar row 3x5",
                   "es" : "Remo en T 3x5",
-                  "fr" : "Rowing barre en T 3x5"
+                  "fr" : "Tirage barre en T 3x5"
                 }
               ],
               "dose" : {
@@ -8391,7 +8391,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "@88% TM. RPE 8.5. Pull-volume maintenance. No as many reps as possible (lower-back safety).",
@@ -8497,7 +8497,7 @@
           "name" : {
             "en" : "Peak session — 5,3,1+ as many reps as possible @95% TM",
             "es" : "Sesión pico — 5,3,1+ serie al máximo de repeticiones @95% TM",
-            "fr" : "Séance pic — Schéma 5,3,1 + max de reps (~95 % de la charge cible)"
+            "fr" : "Séance pic — Schéma 5,3,1 + max de répétitions (~95 % de la charge cible)"
           },
           "type" : "strength",
           "warmup" : {
@@ -8509,16 +8509,16 @@
       ],
       "theme" : {
         "en" : "Realization block W11 — Peak week, taper D1-D3, 5,3,1+ as many reps as possible @95% TM on D5",
-        "es" : "Bloque de realización S11 — Semana pico, taper D1-D3, 5,3,1+ serie al máximo de repeticiones @95% TM en D5",
-        "fr" : "Bloc réalisation, semaine 11 — semaine pic, affûtage J1-J3, schéma 5,3,1 + max de reps (~95 % de la charge cible) en J5"
+        "es" : "Bloque de realización S11 — Semana pico, Afinamiento D1-D3, 5,3,1+ serie al máximo de repeticiones @95% TM en D5",
+        "fr" : "Bloc réalisation, semaine 11 — semaine pic, affûtage J1-J3, schéma 5,3,1 + max de répétitions (~95 % de la charge cible) en J5"
       },
       "week_number" : 11
     },
     {
       "goal" : {
         "en" : "Final test week: D1 minimal taper session (2x3 @75% TM, RPE 5-6) to preserve CNS freshness. D3 light mobility + visualization. D5 = official 1RM TEST on squat / bench / deadlift + as many reps as possible @85% TM on OHP / row. A 5-criterion measurable self-assessment checklist built into the test session to close the cycle and plan the next mesocycle.",
-        "es" : "Semana de test final: D1 sesión de taper mínima (2x3 @75% TM, RPE 5-6) para preservar la frescura del SNC. D3 movilidad ligera + visualización. D5 = TEST de 1RM oficial en sentadilla / banca / peso muerto + serie al máximo de repeticiones @85% TM en OHP / remo. Lista de autoevaluación de 5 criterios medibles integrada en la sesión de test para cerrar el ciclo y planificar el siguiente mesociclo.",
-        "fr" : "Semaine test final : J1 séance affûtage minimal (2x3 à ~75 % de la charge cible, effort 5-6/10) pour préserver fraîcheur système nerveux. J3 mobilité légère + visualisation. J5 = TEST de charge maximale officiel sur squat / développé couché / soulevé de terre + max de reps à ~85 % de la charge cible sur développé militaire / rowing. Checklist d'autoévaluation 5 critères mesurables intégrée à la séance test pour clore le cycle et projeter le prochain cycle."
+        "es" : "Semana de test final: D1 sesión de Afinamiento mínima (2x3 @75% TM, RPE 5-6) para preservar la frescura del SNC. D3 movilidad ligera + visualización. D5 = TEST de 1RM oficial en sentadilla / banca / peso muerto + serie al máximo de repeticiones @85% TM en OHP / remo. Lista de autoevaluación de 5 criterios medibles integrada en la sesión de test para cerrar el ciclo y planificar el siguiente mesociclo.",
+        "fr" : "Semaine test final : J1 séance affûtage minimal (2x3 à ~75 % de la charge cible, effort 5-6/10) pour préserver fraîcheur système nerveux. J3 mobilité légère + visualisation. J5 = TEST de charge maximale officiel sur squat / développé couché / soulevé de terre + max de répétitions à ~85 % de la charge cible sur développé militaire / tirage. Checklist d'autoévaluation 5 critères mesurables intégrée à la séance test pour clore le cycle et projeter le prochain cycle."
       },
       "sessions" : [
         {
@@ -8602,7 +8602,7 @@
               },
               "notes" : {
                 "en" : "75% TM. RPE 5-6. Minimal taper.",
-                "es" : "75% TM. RPE 5-6. Taper mínimo.",
+                "es" : "75% TM. RPE 5-6. Afinamiento mínimo.",
                 "fr" : "75% TM. RPE 5-6. Affûtage minimal."
               },
               "reps" : "3",
@@ -8646,7 +8646,7 @@
               },
               "notes" : {
                 "en" : "75% TM. RPE 5-6. Minimal taper.",
-                "es" : "75% TM. RPE 5-6. Taper mínimo.",
+                "es" : "75% TM. RPE 5-6. Afinamiento mínimo.",
                 "fr" : "75% TM. RPE 5-6. Affûtage minimal."
               },
               "reps" : "3",
@@ -8665,12 +8665,12 @@
                 {
                   "en" : "Pendlay row 2x5",
                   "es" : "Remo Pendlay 2x5",
-                  "fr" : "Rowing Pendlay 2x5"
+                  "fr" : "Tirage Pendlay 2x5"
                 },
                 {
                   "en" : "Chest-supported DB row 2x8",
                   "es" : "Remo con apoyo en pecho con mancuernas 2x8",
-                  "fr" : "Rowing buste appuyé haltère 2x8"
+                  "fr" : "Tirage buste appuyé haltère 2x8"
                 }
               ],
               "dose" : {
@@ -8685,7 +8685,7 @@
               "name" : {
                 "en" : "Bent-over barbell row",
                 "es" : "Remo inclinado con barra",
-                "fr" : "Rowing barre buste penché"
+                "fr" : "Tirage barre buste penché"
               },
               "notes" : {
                 "en" : "70% TM. RPE 5-6.",
@@ -8712,7 +8712,7 @@
                 {
                   "en" : "Inverted row 2x8",
                   "es" : "Remo invertido 2x8",
-                  "fr" : "Rowing inversé 2x8"
+                  "fr" : "Tirage inversé 2x8"
                 }
               ],
               "dose" : {
@@ -8787,8 +8787,8 @@
           ],
           "name" : {
             "en" : "Deload session — Squat / Bench / OHP / Row taper",
-            "es" : "Sesión de semana ligera — Sentadilla / Banca / OHP / Remo taper",
-            "fr" : "Séance allégée — Squat / Développé couché / Militaire / Rowing en affûtage"
+            "es" : "Sesión de semana ligera — Sentadilla / Banca / OHP / Remo Afinamiento",
+            "fr" : "Séance allégée — Squat / Développé couché / Militaire / Tirage en affûtage"
           },
           "type" : "strength",
           "warmup" : {
@@ -8801,7 +8801,7 @@
           "cooldown" : {
             "en" : "5 min diaphragmatic breathing. Visualize the D5 1RM attempts: picture every rep complete and clean. 8h+ sleep mandatory before D5. Hydrate, carb-rich meal 3-4h before the test.",
             "es" : "5 min de respiración diafragmática. Visualiza los intentos de 1RM del D5: imagina cada repetición completa y limpia. Sueño de 8 h+ obligatorio antes del D5. Hidrátate, comida rica en carbohidratos 3-4 h antes del test.",
-            "fr" : "5 min respiration diaphragmatique. Visualisation des 1RM attempts J5 : imaginer chaque rep complète et propre. Sommeil 8h+ obligatoire avant J5. Hydratation, repas riche en glucides 3-4h avant test."
+            "fr" : "5 min respiration diaphragmatique. Visualisation des 1RM attempts J5 : imaginer chaque répétition complète et propre. Sommeil 8h+ obligatoire avant J5. Hydratation, repas riche en glucides 3-4h avant test."
           },
           "day" : 3,
           "duration_minutes" : 35,
@@ -8876,7 +8876,7 @@
               "notes" : {
                 "en" : "Thoracic foam rolling 2 min, banded shoulder rotations 15 reps, light-band face pulls 12 reps, doorway stretch 30 sec/side.",
                 "es" : "Foam roller torácico 2 min, rotaciones de hombro con banda 15 reps, face pulls con banda ligera 12 reps, doorway stretch 30 s/lado.",
-                "fr" : "Rouleau de massage thoracique 2 min, rotations épaules avec bande 15 reps, tirages visage bande légère 12 reps, étirement encadrement de porte 30 sec/côté."
+                "fr" : "Rouleau de massage thoracique 2 min, rotations épaules avec bande 15 répétitions, tirages visage bande légère 12 répétitions, étirement encadrement de porte 30 sec/côté."
               },
               "required_equipment" : [
                 "foam-roller",
@@ -9113,7 +9113,7 @@
                 "free_text" : {
                   "en" : "AMRAP — 1 set",
                   "es" : "AMRAP (máximo de reps) — 1 serie",
-                  "fr" : "AMRAP (max de reps) — 1 série"
+                  "fr" : "AMRAP (max de répétitions) — 1 série"
                 }
               },
               "incompatible_constraints" : [
@@ -9124,12 +9124,12 @@
               "name" : {
                 "en" : "Overhead press (OHP) — As many reps as possible @85% TM",
                 "es" : "Press militar (OHP) — Serie al máximo de repeticiones @85% TM",
-                "fr" : "Développé militaire — max de reps"
+                "fr" : "Développé militaire — max de répétitions"
               },
               "notes" : {
                 "en" : "Indirect 1RM test via as many reps as possible @85% TM. Aim for 6+ reps minimum (equivalent to an intact TM). If 8+ reps: TM underestimated, the next cycle starts at TM +2.5 kg. If < 5 reps: residual fatigue, the next cycle starts at TM -2.5 kg. RPE 9-9.5.",
                 "es" : "Test indirecto de 1RM mediante serie al máximo de repeticiones @85% TM. Apunta a 6+ repeticiones mínimo (equivale a un TM intacto). Si 8+ repeticiones: TM infravalorado, el siguiente ciclo empieza en TM +2,5 kg. Si < 5 repeticiones: fatiga residual, el siguiente ciclo empieza en TM -2,5 kg. RPE 9-9,5.",
-                "fr" : "Test indirect 1RM via série au max de répétitions @85% TM. Viser 6+ reps minimum (équivaut à TM intact). Si 8+ reps : TM sous-évalué, prochain cycle démarre TM +2,5 kg. Si < 5 reps : fatigue résiduelle, prochain cycle démarre TM -2,5 kg. RPE 9-9,5."
+                "fr" : "Test indirect 1RM via série au max de répétitions @85% TM. Viser 6+ répétitions minimum (équivaut à TM intact). Si 8+ répétitions : TM sous-évalué, prochain cycle démarre TM +2,5 kg. Si < 5 répétitions : fatigue résiduelle, prochain cycle démarre TM -2,5 kg. RPE 9-9,5."
               },
               "reps" : "AMRAP 1 set",
               "required_equipment" : [
@@ -9147,19 +9147,19 @@
                 {
                   "en" : "Pendlay row as many reps as possible @85% TM",
                   "es" : "Remo Pendlay serie al máximo de repeticiones @85% TM",
-                  "fr" : "Rowing Pendlay série au max de répétitions @85% TM"
+                  "fr" : "Tirage Pendlay série au max de répétitions @85% TM"
                 },
                 {
                   "en" : "Chest-supported DB row as many reps as possible",
                   "es" : "Remo con apoyo en pecho con mancuernas serie al máximo de repeticiones",
-                  "fr" : "Rowing buste appuyé haltère série au max de répétitions"
+                  "fr" : "Tirage buste appuyé haltère série au max de répétitions"
                 }
               ],
               "dose" : {
                 "free_text" : {
                   "en" : "AMRAP — 1 set",
                   "es" : "AMRAP (máximo de reps) — 1 serie",
-                  "fr" : "AMRAP (max de reps) — 1 série"
+                  "fr" : "AMRAP (max de répétitions) — 1 série"
                 }
               },
               "incompatible_constraints" : [
@@ -9170,12 +9170,12 @@
               "name" : {
                 "en" : "Bent-over barbell row — As many reps as possible @85% TM",
                 "es" : "Remo inclinado con barra — Serie al máximo de repeticiones @85% TM",
-                "fr" : "Rowing barre buste penché — max de reps"
+                "fr" : "Tirage barre buste penché — max de répétitions"
               },
               "notes" : {
                 "en" : "Indirect 1RM test via as many reps as possible @85% TM. Aim for 6+ reps. Stop the moment form breaks down (lumbar rounding). RPE 9. No direct 1RM on the row (lower-back safety — repeated sub-maximal risk at the max).",
                 "es" : "Test indirecto de 1RM mediante serie al máximo de repeticiones @85% TM. Apunta a 6+ repeticiones. Para en cuanto la forma se deteriore (redondeo lumbar). RPE 9. Sin 1RM directo en el remo (seguridad lumbar — riesgo submáximo repetido al máximo).",
-                "fr" : "Test indirect 1RM via série au max de répétitions @85% TM. Viser 6+ reps. Stop dès que la forme se dégrade (rounding lombaire). RPE 9. Pas de 1RM direct sur rowing (sécurité lombaire — risque sub-maximal répété au max)."
+                "fr" : "Test indirect 1RM via série au max de répétitions @85% TM. Viser 6+ répétitions. Stop dès que la forme se dégrade (rounding lombaire). RPE 9. Pas de 1RM direct sur tirage (sécurité lombaire — risque sub-maximal répété au max)."
               },
               "reps" : "AMRAP 1 set",
               "required_equipment" : [
@@ -9212,7 +9212,7 @@
               "notes" : {
                 "en" : "SELF-ASSESSMENT CHECKLIST (5 measurable criteria, to fill in writing, quick 1-2 min/question format):\n\n1. PRs HIT: note your new W12 1RMs vs pre-cycle 1RMs for squat / bench / deadlift, and your W12 as many reps as possible @85% TM vs the start of the cycle for OHP / row. Format: 'Squat 1RM: [_____] kg vs [_____] kg pre-cycle = +[__] kg / +[__]%'. A PR on ≥ 3 of the 5 movements = a successful cycle. Standard 5/3/1 projects +5 to +10 kg lower body and +2.5 to +5 kg upper body over 12 weeks for an expert.\n\n2. RELATIVE RPE ON THE INITIAL LOAD: does the W1 load (initial 70% TM) now feel like RPE 5 or less on a 5-rep set? YES / NO. If YES = base strength has progressed.\n\n3. TECHNICAL QUALITY: on the W1 squat vs W11 peak squat videos, identify 1 concrete improvement per movement (e.g. more stable squat depth, more vertical OHP elbow position, flatter back on the deadlift, more retracted scapula on the bench, more consistent bar path on the row). 5 improvements identified = technical quality consolidated.\n\n4. FATIGUE MANAGEMENT: did you complete ≥ 32/36 planned sessions (≥ 89%)? YES / NO. If < 80% completion (< 29 sessions), identify the cause (life over-commitment, injury, loads too high) and adapt the next cycle (starting TM -5 kg, 2 sessions/week).\n\n5. NEXT-CYCLE PROJECTION: identify the movement with the WEAKEST progression — that's the weak point to address first in the next mesocycle. Examples: OHP < +2.5 kg = add 1 push-press accessory session/week; stalled deadlift = add 1 RDL accessory session/week; squat < +5 kg = check ankle mobility + tibialis. Update the TMs = 90% of the new W12 1RMs for the next cycle.\n\nThis written review is the foundation of the next cycle (Volume block W1 starts at W12 TM +0 kg minimum). Keep this sheet — it's your long-term progress log.",
                 "es" : "LISTA DE AUTOEVALUACIÓN (5 criterios medibles, a rellenar por escrito, formato rápido 1-2 min/pregunta):\n\n1. RÉCORDS LOGRADOS: anota tus nuevos 1RM de la S12 vs los 1RM previos al ciclo para sentadilla / banca / peso muerto, y tus serie al máximo de repeticiones @85% TM de la S12 vs el inicio del ciclo para OHP / remo. Formato: 'Sentadilla 1RM: [_____] kg vs [_____] kg previo al ciclo = +[__] kg / +[__]%'. Un récord en ≥ 3 de los 5 movimientos = ciclo exitoso. El 5/3/1 estándar proyecta +5 a +10 kg en tren inferior y +2,5 a +5 kg en tren superior en 12 semanas para un experto.\n\n2. RPE RELATIVO SOBRE LA CARGA INICIAL: ¿la carga de la S1 (70% TM inicial) te parece ahora RPE 5 o menos en una serie de 5 repeticiones? SÍ / NO. Si SÍ = la fuerza base ha progresado.\n\n3. CALIDAD TÉCNICA: en los vídeos de sentadilla de la S1 vs la sentadilla pico de la S11, identifica 1 mejora concreta por movimiento (p. ej. profundidad de sentadilla más estable, posición de codos del OHP más vertical, espalda más plana en el peso muerto, escápula más retraída en la banca, trayectoria de barra más regular en el remo). 5 mejoras identificadas = calidad técnica consolidada.\n\n4. GESTIÓN DE LA FATIGA: ¿completaste ≥ 32/36 sesiones previstas (≥ 89%)? SÍ / NO. Si < 80% de cumplimiento (< 29 sesiones), identifica la causa (sobrecompromiso vital, lesión, cargas demasiado altas) y adapta el siguiente ciclo (TM de inicio -5 kg, 2 sesiones/semana).\n\n5. PROYECCIÓN DEL SIGUIENTE CICLO: identifica el movimiento con la progresión MÁS DÉBIL — ese es el punto débil a abordar primero en el siguiente mesociclo. Ejemplos: OHP < +2,5 kg = añade 1 sesión accesoria de push press/semana; peso muerto estancado = añade 1 sesión accesoria de RDL/semana; sentadilla < +5 kg = revisa la movilidad de tobillos + el tibial. Actualiza los TM = 90% de los nuevos 1RM de la S12 para el siguiente ciclo.\n\nEste balance escrito es la base del siguiente ciclo (el bloque de volumen S1 empieza en el TM de la S12 +0 kg mínimo). Conserva esta hoja — es tu registro de progreso a largo plazo.",
-                "fr" : "CHECKLIST D'AUTOÉVALUATION (5 critères mesurables, à compléter par écrit, format rapide 1-2 min/question) :\n\n1. PR ATTEINTS : note tes nouveaux 1RM W12 vs 1RM pré-cycle pour squat / banc / soulevé de terre, et tes série au max de répétitions @85% TM W12 vs début cycle pour OHP / rowing. Format : 'Squat 1RM : [_____] kg vs [_____] kg pré-cycle = +[__] kg / +[__]%'. PR sur ≥ 3 des 5 mouvements = cycle réussi. Le 5/3/1 standard projette +5 à +10 kg bas du corps et +2,5 à +5 kg haut du corps sur 12 sem expert.\n\n2. RPE RELATIF SUR CHARGE INITIALE : la charge W1 (70% TM initial) te semble-t-elle maintenant à RPE 5 ou moins sur set de 5 reps ? OUI / NON. Si OUI = la force de base a progressé.\n\n3. QUALITÉ TECHNIQUE : sur les vidéos squat W1 vs squat peak W11, identifie 1 amélioration concrète par mouvement (ex : profondeur squat plus stable, position coudes OHP plus verticale, dos plus plat sur soulevé de terre, omoplate plus rétractée banc, position barre rowing plus régulière). 5 améliorations identifiées = qualité technique consolidée.\n\n4. GESTION DE LA FATIGUE : as-tu complété ≥ 32/36 séances prévues (≥ 89%) ? OUI / NON. Si < 80% complétude (< 29 séances), identifier la cause (sur-engagement vie, blessure, charges trop hautes) et adapter le prochain cycle (TM démarrage -5 kg, sessions 2/sem).\n\n5. PROJECTION PROCHAIN CYCLE : identifie le mouvement avec la PLUS FAIBLE progression — c'est le point faible à adresser en priorité dans le prochain mésocycle. Exemples : OHP < +2,5 kg = ajouter 1 séance développé avec impulsion accessoire/sem ; soulevé de terre stagnant = ajouter 1 séance soulevé de terre roumain accessoire/sem ; squat < +5 kg = vérifier mobilité chevilles + tibialis. Mettre à jour les TM = 90% des nouveaux 1RM W12 pour le prochain cycle.\n\nCe bilan écrit est la base du prochain cycle (Volume Block W1 démarre à TM W12 +0 kg minimum). Conserve cette feuille — c'est ton journal de progression long terme."
+                "fr" : "CHECKLIST D'AUTOÉVALUATION (5 critères mesurables, à compléter par écrit, format rapide 1-2 min/question) :\n\n1. PR ATTEINTS : note tes nouveaux 1RM W12 vs 1RM pré-cycle pour squat / banc / soulevé de terre, et tes série au max de répétitions @85% TM W12 vs début cycle pour OHP / tirage. Format : 'Squat 1RM : [_____] kg vs [_____] kg pré-cycle = +[__] kg / +[__]%'. PR sur ≥ 3 des 5 mouvements = cycle réussi. Le 5/3/1 standard projette +5 à +10 kg bas du corps et +2,5 à +5 kg haut du corps sur 12 sem expert.\n\n2. RPE RELATIF SUR CHARGE INITIALE : la charge W1 (70% TM initial) te semble-t-elle maintenant à RPE 5 ou moins sur série de 5 répétitions ? OUI / NON. Si OUI = la force de base a progressé.\n\n3. QUALITÉ TECHNIQUE : sur les vidéos squat W1 vs squat peak W11, identifie 1 amélioration concrète par mouvement (ex : profondeur squat plus stable, position coudes OHP plus verticale, dos plus plat sur soulevé de terre, omoplate plus rétractée banc, position barre tirage plus régulière). 5 améliorations identifiées = qualité technique consolidée.\n\n4. GESTION DE LA FATIGUE : as-tu complété ≥ 32/36 séances prévues (≥ 89%) ? OUI / NON. Si < 80% complétude (< 29 séances), identifier la cause (sur-engagement vie, blessure, charges trop hautes) et adapter le prochain cycle (TM démarrage -5 kg, sessions 2/sem).\n\n5. PROJECTION PROCHAIN CYCLE : identifie le mouvement avec la PLUS FAIBLE progression — c'est le point faible à adresser en priorité dans le prochain mésocycle. Exemples : OHP < +2,5 kg = ajouter 1 séance développé avec impulsion accessoire/sem ; soulevé de terre stagnant = ajouter 1 séance soulevé de terre roumain accessoire/sem ; squat < +5 kg = vérifier mobilité chevilles + tibialis. Mettre à jour les TM = 90% des nouveaux 1RM W12 pour le prochain cycle.\n\nCe bilan écrit est la base du prochain cycle (Volume Block W1 démarre à TM W12 +0 kg minimum). Conserve cette feuille — c'est ton journal de progression long terme."
               },
               "required_equipment" : [
 
@@ -9226,7 +9226,7 @@
           "name" : {
             "en" : "1RM test — Squat / Bench / Deadlift + as many reps as possible OHP/Row + Autonomy checklist",
             "es" : "Test de 1RM — Sentadilla / Banca / Peso muerto + serie al máximo de repeticiones OHP/Remo + Lista de autonomía",
-            "fr" : "Test de charge maximale — Squat / Développé couché / Soulevé de terre + max de reps militaire/rowing + checklist d'autonomie"
+            "fr" : "Test de charge maximale — Squat / Développé couché / Soulevé de terre + max de répétitions militaire/tirage + checklist d'autonomie"
           },
           "type" : "strength",
           "warmup" : {
@@ -9238,7 +9238,7 @@
       ],
       "theme" : {
         "en" : "Realization block W12 — Deload taper D1 + mobility D3 + 1RM TEST D5 + autonomy checklist",
-        "es" : "Bloque de realización S12 — Taper de semana ligera D1 + movilidad D3 + TEST de 1RM D5 + lista de autonomía",
+        "es" : "Bloque de realización S12 — Afinamiento de semana ligera D1 + movilidad D3 + TEST de 1RM D5 + lista de autonomía",
         "fr" : "Bloc réalisation, semaine 12 — affûtage allégé J1, mobilité J3, test de charge maximale J5 et checklist d'autonomie"
       },
       "week_number" : 12

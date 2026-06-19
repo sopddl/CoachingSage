@@ -31,6 +31,9 @@ final class NoResidualEnglishInDisplayedFRTests: XCTestCase {
             #"\bfull-load\b"#, #"\bstretch(es)?\b"#, #"\bfoam\b"#, #"\bshadow\b"#, #"\bholds?\b"#,
             #"\bday hikes?\b"#, #"\btaper\w*\b"#, #"\bbridges?\b"#, #"\bforehand\b"#,
             #"\bbackhand\b"#, #"\bhigh volume\b"#,
+            // — passe « traduire tout » 2026-06-19 (reps→répétitions, sets→séries,
+            //   rowing→tirage/rameur, drills→exercices/éducatifs, plyo→pliométrie) —
+            #"\breps?\b"#, #"\bsets?\b"#, #"\browing\b"#, #"\bdrills?\b"#, #"\bplyo\b"#,
         ].joined(separator: "|"), options: [.caseInsensitive])
 
     /// Phrases tolérées : noms canoniques d'exos / méthodes / matériel / marques
@@ -40,6 +43,7 @@ final class NoResidualEnglishInDisplayedFRTests: XCTestCase {
         "split-step", "swim-smooth", "swim smooth", "bike fit", "assault bike",
         "world's greatest stretch", "couch stretch", "sleeper stretch", "thread the needle",
         "glute-ham", "glute ham", "uphill athlete", "aerobic threshold", "long swim",
+        "balle de set", "balles de set", // « set » = set point au tennis (manche gardée FR)
     ]
 
     private func displayedTexts(_ t: ProgramTemplate) -> [(String, LocalizedText)] {
