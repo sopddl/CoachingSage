@@ -30,6 +30,12 @@ final class NoForeignLanguageInDisplayedTextTests: XCTestCase {
         pattern: [#"\bsemaine allégée\b"#, #"\btrès facile\b"#].joined(separator: "|"),
         options: [.caseInsensitive])
 
+    /// Anglais résiduel interdit en ES affiché (passe « traduire tout » 2026-06-19 :
+    /// `Tapering`/`Taper`→afinamiento, `Flow`→secuencia).
+    private static let englishInEs = try! NSRegularExpression(
+        pattern: [#"\btaper\w*\b"#, #"\bflow\b"#].joined(separator: "|"),
+        options: [.caseInsensitive])
+
     /// Jargon anglais interdit en FR affiché (chantier vulgarisation bucket B). `tempo` reste
     /// volontairement gardé (vocabulaire). Le « semaine semaine » verrouille la non-régression
     /// du doublon créé/corrigé en bucket A.
@@ -104,6 +110,13 @@ final class NoForeignLanguageInDisplayedTextTests: XCTestCase {
                 let hFr = hits(Self.englishInFr, frVal)
                 if !hFr.isEmpty {
                     failures.append("[\(t.id)] \(field).fr EN: \(Set(hFr).sorted()) — « \(frVal.prefix(70))… »")
+                }
+                // Anglais résiduel interdit en ES affiché (passe « traduire tout »).
+                if let es = lt.es {
+                    let hEs = hits(Self.englishInEs, es)
+                    if !hEs.isEmpty {
+                        failures.append("[\(t.id)] \(field).es EN: \(Set(hEs).sorted()) — « \(es.prefix(70))… »")
+                    }
                 }
             }
         }
