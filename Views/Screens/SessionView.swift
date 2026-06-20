@@ -887,7 +887,14 @@ struct SessionView: View {
         presentationError = nil
 
         let selector = ProgramTemplateSelector(library: library)
-        let template = selector.select(profile: sportProfile)
+        let summary = selector.select(profile: sportProfile)
+        let template: ProgramTemplate
+        do {
+            template = try await library.fullTemplate(id: summary.id)
+        } catch {
+            presentationError = String.localized("session.adapter.libraryUnavailable", locale: locale)
+            return
+        }
         let adapted = adapterService.adapt(
             template: template,
             sportProfile: sportProfile,
