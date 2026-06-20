@@ -133,6 +133,12 @@ struct AdaptedProgramView: View {
                 // seule porte de sortie pour archiver/supprimer.
                 if record != nil, onConfirmStart == nil, onDeleteProgram != nil {
                     deleteProgramFooter
+                    // Dégagement bas : le footer "Supprimer" est le dernier élément du
+                    // scroll, sous la tab bar custom (overlay ZStack, MainTabView). Le
+                    // `tabBarReservedHeight` (64) ne couvre pas le FAB Léon `offset -22`
+                    // qui déborde → sans ce spacer la zone de tap du bouton chevauche la
+                    // tab bar (visible mais intappable). Cf bug device-test Sophie.
+                    Color.clear.frame(height: 44)
                 }
             }
             .padding()
@@ -251,6 +257,7 @@ struct AdaptedProgramView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
+                .contentShape(Rectangle()) // tout le rectangle tappable, pas que le glyphe
             }
             .buttonStyle(.plain)
             .foregroundStyle(Color.coachingError)
