@@ -176,7 +176,9 @@ struct SessionDetailView: View {
     /// variantes de lieu (cas général).
     private func resolveLocationIfNeeded() async {
         guard program.sport == .cycling, templateSession == nil else { return }
-        guard let template = try? TemplateLoader.load(id: program.templateId),
+        // Chantier perf 2026-06-20 : via le cache partagé (mémoïsé) plutôt qu'un
+        // décodage/scan à chaque flip indoor/outdoor.
+        guard let template = try? await TemplateStore.shared.template(id: program.templateId),
               week.weekNumber - 1 >= 0, week.weekNumber - 1 < template.weeks.count else { return }
         let tWeek = template.weeks[week.weekNumber - 1]
         guard let tSession = tWeek.sessions.first(where: { $0.day == session.day }),

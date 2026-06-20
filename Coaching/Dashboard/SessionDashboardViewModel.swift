@@ -77,7 +77,7 @@ final class SessionDashboardViewModel {
     /// **Story 3.15** : déprécié — Phase 3 supprime cette propriété et le call-site
     /// `SessionView.swift:242`. Les "suggestions" deviennent des dormants persistés
     /// via `DormantBootstrapService` au post-onboarding.
-    private(set) var emptyModeSuggestions: [ProgramTemplate] = []
+    private(set) var emptyModeSuggestions: [TemplateSummary] = []
 
     /// Sports actifs déclarés à l'onboarding (passé au questionnaire universel
     /// quand l'utilisateur tape « Voir → » sur une suggestion). Cache de
@@ -483,7 +483,7 @@ final class SessionDashboardViewModel {
             // FR. Le titre des records modernes est localisé via `displayTitle(locale:)`
             // (AutoTitleBuilder, Story 3.28) — la localisation du titre programme est
             // hors scope B1 (= contenu des séances).
-            let resolvedName = cachedLibrary?.templates
+            let resolvedName = cachedLibrary?.summaries
                 .first { $0.id == record.templateId }?.name.canonical ?? record.templateId
             let sport = Sport(sportCode: record.sportCode) ?? .running
             // **Story 3.31 follow-up** — comptage active-only (hors `.rest`).

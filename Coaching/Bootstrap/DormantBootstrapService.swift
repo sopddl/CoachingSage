@@ -150,14 +150,16 @@ final class DormantBootstrapService {
 
         // Étape 6 — generate + commit chaque template
         var persisted = 0
-        for template in templates {
+        for summary in templates {
             do {
                 let sportProfile = AutoProgramFactory.makeDefaultSportProfile(
                     userId: userId,
-                    sportCode: template.sport.appSportCode,
+                    sportCode: summary.sport.appSportCode,
                     autoprofileLevel: suggestionLevelProvider(profile),
                     medicalClearanceAcknowledged: profile.requiresMedicalClearance
                 )
+                // Template COMPLET chargé paresseusement (l'adaptation a besoin des `weeks`).
+                let template = try await library.fullTemplate(id: summary.id)
                 let preview = try await factory.previewGenerate(
                     template: template,
                     sportProfile: sportProfile,
@@ -169,7 +171,7 @@ final class DormantBootstrapService {
                 Self.logger.debug("bootstrap hit dormant cap mid-loop (persisted=\(persisted))")
                 break
             } catch {
-                Self.logger.error("bootstrap commit failed for template \(template.id): \(error.localizedDescription) — continue")
+                Self.logger.error("bootstrap commit failed for template \(summary.id): \(error.localizedDescription) — continue")
                 continue
             }
         }

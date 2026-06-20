@@ -102,7 +102,8 @@ final class AutoProgramFactory {
 
         let library = try await templateLibraryProvider()
         let selector = ProgramTemplateSelector(library: library)
-        let template = selector.select(profile: sportProfile)
+        let summary = selector.select(profile: sportProfile)
+        let template = try await library.fullTemplate(id: summary.id)
 
         let adapted = adapterService.adapt(
             template: template,

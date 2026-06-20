@@ -37,6 +37,9 @@ public enum TemplateLoader {
     /// Sous-dossier des templates dans le bundle (préservé par `.copy("Resources/Templates")`).
     static let templatesSubdir = "Templates"
 
+    /// Nom du manifest léger des métadonnées (chantier perf 2026-06-20).
+    static let summariesManifest = "template-summaries"
+
     /// URLs de tous les JSON de templates bundlés, triées par nom de fichier (ordre déterministe).
     static func templateURLs(in bundle: Bundle) throws -> [URL] {
         guard let urls = bundle.urls(forResourcesWithExtension: "json", subdirectory: templatesSubdir),
@@ -76,8 +79,42 @@ public enum TemplateLoader {
         return templates
     }
 
-    /// Charge un seul template par id (scan + décodage jusqu'à correspondance).
+    /// Charge le manifest léger des métadonnées (`template-summaries.json`).
+    /// ~10 KB → décodage quasi instantané, contre ~18 MB pour `loadAll`. Les
+    /// chemins qui n'exécutent pas une séance (sélection, suggestions, résolution
+    /// du nom d'un programme) consomment ça. Chantier perf 2026-06-20.
+    public static func loadSummaries(from bundle: Bundle = TemplateLoader.defaultBundle) throws -> [TemplateSummary] {
+        guard let url = bundle.url(forResource: summariesManifest, withExtension: "json") else {
+            throw TemplateLoaderError.templatesDirectoryNotFound
+        }
+        let data: Data
+        do { data = try Data(contentsOf: url) }
+        catch { throw TemplateLoaderError.templateDecodeFailed(file: "\(summariesManifest).json", reason: "read: \(error)") }
+        do { return try TemplateSummaryCoding.decode(data) }
+        catch { throw TemplateLoaderError.templateDecodeFailed(file: "\(summariesManifest).json", reason: "\(error)") }
+    }
+
+    /// Charge un seul template complet par id.
+    ///
+    /// Fast-path O(1) : le nom de fichier == id (invariant des templates générés),
+    /// donc on construit l'URL directement (1 seul décodage ~450 KB) au lieu de
+    /// scanner et décoder jusqu'à 40 fichiers (~1,5 s worst-case). Fallback scan
+    /// séquentiel si l'invariant ne tient pas (sécurité).
     public static func load(id: String, from bundle: Bundle = TemplateLoader.defaultBundle, validate: Bool = false) throws -> ProgramTemplate {
+        // Fast-path : <id>.json existe dans le sous-dossier ?
+        if let directURL = bundle.url(forResource: id, withExtension: "json", subdirectory: templatesSubdir) {
+            let tpl = try decodeTemplate(at: directURL, validate: false)
+            if tpl.id == id {
+                if validate {
+                    do { try TemplateValidator.validate(tpl) }
+                    catch { throw TemplateLoaderError.validationFailed(id: id, reason: "\(error)") }
+                }
+                return tpl
+            }
+            // Fichier <id>.json présent mais id interne différent → on retombe sur le scan.
+        }
+
+        // Fallback : scan séquentiel (invariant filename==id non garanti).
         for url in try templateURLs(in: bundle) {
             let tpl = try decodeTemplate(at: url, validate: false)
             if tpl.id == id {
