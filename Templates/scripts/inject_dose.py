@@ -1017,8 +1017,162 @@ TENNISFOOT = {
     "match (60-180 min selon format et niveau)": F("match (60-180 min selon le format et le niveau)", "match (60-180 min depending on format and level)", "partido (60-180 min según el formato y el nivel)"),
 }
 
+# ====================== LOT 9 — TRIATHLON (2026-06-20) ======================
+# Dernier sport non dosé (les 9 autres couverts par Lots 1-8). 118 clés NOUVELLES
+# (76 réutilisées des lots précédents : 30 min, 100 m, 10 par côté, 8 par jambe…).
+# Décisions Sophie (AskUser 2026-06-20) :
+#   D1 — cibles chiffrées GARDÉES (FTP whitelisté + sport de précision) : « (88-92 % FTP) »,
+#        offsets nat « -5 s/100 m ». Format % : FR/ES « 88-92 % FTP » (espace), EN « 88-92% FTP ».
+#   D2 — gros découpages d'endurance = freeText prose nettoyée (glose « (tu peux parler) »
+#        DROPPÉE), pas de segments structurés (évite ~5 activités enum + sous-gloses TT/cadence).
+# Vocabulaire gardé 3 langues : FTP, RPE, tempo, sweet spot, VO2max, rpm, TT, strides, sprint,
+#   squat(s), RDL, clamshell, bird-dog, dead bug. Brick T1/T2 gardé (standard triathlon).
+TRIATHLON = {
+    # --- Repos / valeurs non-clean (fr=en=es) ---
+    "0 min": F("Repos", "Rest", "Descanso"),
+    "Repos": F("Repos", "Rest", "Descanso"),
+    "1 min 15": F("1 min 15", "1 min 15", "1 min 15"),
+    "1 min 30 chaque": F("1 min 30 chacun", "1 min 30 each", "1 min 30 cada uno"),
+    "1 min 30 par essai": F("1 min 30 par essai", "1 min 30 per attempt", "1 min 30 por intento"),
+    "1 min 45 par essai": F("1 min 45 par essai", "1 min 45 per attempt", "1 min 45 por intento"),
+    "12 + 12": F("12 + 12", "12 + 12", "12 + 12"),
+
+    # --- Distances pures (réutilise meters) ---
+    "225 m": S("225", "meters"),
+    "700 m": S("700", "meters"),
+    "750 m": S("750", "meters"),
+    "1100 m": S("1100", "meters"),
+    "1700 m": S("1700", "meters"),
+    "1900 m": S("1900", "meters"),
+    "2800 m": S("2800", "meters"),
+    "3500 m": S("3500", "meters"),
+
+    # --- Durées pures ---
+    "28 min": S("28", "minutes"),
+    "38 min": S("38", "minutes"),
+    "115 min": S("115", "minutes"),
+    "6 reps": S("6", "reps"),
+
+    # --- Reps + qualifier (structuré) ---
+    "10 chaque": S("10", "reps", qualifier="perEach"),
+    "25 m chaque": S("25", "meters", qualifier="perEach"),
+    "8/lettre": S("8", "reps", qualifier="perLetter"),
+    "8 chaque lettre": S("8", "reps", qualifier="perLetter"),
+    "8 chaque lettre (Y, T, W)": S("8", "reps", qualifier="perLetter"),
+    "10 chaque lettre": S("10", "reps", qualifier="perLetter"),
+    "10 chaque lettre (Y, T, W)": S("10", "reps", qualifier="perLetter"),
+    "1 min par essai": S("1", "minutes", qualifier="perAttempt"),
+    "2 min par essai": S("2", "minutes", qualifier="perAttempt"),
+
+    # --- « par tour » = par boucle (pas de qualifier dédié → freeText) ---
+    "1 min par tour": F("1 min par tour", "1 min per lap", "1 min por vuelta"),
+    "2 min par tour": F("2 min par tour", "2 min per lap", "2 min por vuelta"),
+    "3 min par tour": F("3 min par tour", "3 min per lap", "3 min por vuelta"),
+    "5 min par tour": F("5 min par tour", "5 min per lap", "5 min por vuelta"),
+
+    # --- Nat : crawl / rapide / sprint / sighting / offsets ---
+    "25 m crawl": F("25 m crawl", "25 m freestyle", "25 m crol"),
+    "50 m crawl": F("50 m crawl", "50 m freestyle", "50 m crol"),
+    "25 m sprint": F("25 m sprint", "25 m sprint", "25 m sprint"),
+    "50 m @rapide": F("50 m rapide", "50 m fast", "50 m rápido"),
+    "75 m @rapide": F("75 m rapide", "75 m fast", "75 m rápido"),
+    "50 m @rapide (allure 200 m race)": F("50 m rapide (allure course 200 m)", "50 m fast (200 m race pace)", "50 m rápido (ritmo carrera 200 m)"),
+    "50 m (alternance sighting/normal)": F("50 m (alternance sighting / nage normale)", "50 m (alternating sighting / normal swim)", "50 m (alternando sighting / nado normal)"),
+    "400 m cumul": F("400 m cumulés", "400 m total", "400 m en total"),
+    "100 m à allure seuil pace": S("100", "meters"),
+    "200 m à allure seuil pace": S("200", "meters"),
+    "300 m à allure seuil pace": S("300", "meters"),
+    "100 m à allure seuil-5s/100m": F("100 m à allure seuil -5 s/100 m", "100 m at threshold pace -5 s/100 m", "100 m a ritmo umbral -5 s/100 m"),
+
+    # --- Distance + glose temps/distance estimés ---
+    "10 min (300 m total)": F("10 min (300 m au total)", "10 min (300 m total)", "10 min (300 m en total)"),
+    "120 min (21.1 km estimé)": F("120 min (~21,1 km estimés)", "120 min (~21.1 km estimated)", "120 min (~21,1 km estimados)"),
+    "180 min (90 km estimé selon profil parcours)": F("180 min (~90 km estimés selon le profil du parcours)", "180 min (~90 km estimated depending on the route profile)", "180 min (~90 km estimados según el perfil del recorrido)"),
+
+    # --- Intervalles vélo/run avec cible chiffrée GARDÉE (D1) ---
+    "8 min @au seuil + 90 sec récup": F("8 min au seuil + 90 s de récup", "8 min at threshold + 90 s recovery", "8 min en umbral + 90 s de recuperación"),
+    "10 min @au seuil + 2 min jogging récup": F("10 min au seuil + 2 min de footing de récup", "10 min at threshold + 2 min recovery jog", "10 min en umbral + 2 min de trote de recuperación"),
+    "8 min @au seuil 95-100% FTP + 5 min très facile récup": F("8 min au seuil (95-100 % FTP) + 5 min très facile en récup", "8 min at threshold (95-100% FTP) + 5 min very easy recovery", "8 min en umbral (95-100 % FTP) + 5 min muy fácil en recuperación"),
+    "12 min @au seuil 95-100% FTP + 5 min très facile récup": F("12 min au seuil (95-100 % FTP) + 5 min très facile en récup", "12 min at threshold (95-100% FTP) + 5 min very easy recovery", "12 min en umbral (95-100 % FTP) + 5 min muy fácil en recuperación"),
+    "12 min @au seuil 95-100% FTP + 6 min très facile récup": F("12 min au seuil (95-100 % FTP) + 6 min très facile en récup", "12 min at threshold (95-100% FTP) + 6 min very easy recovery", "12 min en umbral (95-100 % FTP) + 6 min muy fácil en recuperación"),
+    "4 min @tempo soutenu 88-92% FTP + 4 min très facile récup": F("4 min au tempo soutenu (88-92 % FTP) + 4 min très facile en récup", "4 min sustained tempo (88-92% FTP) + 4 min very easy recovery", "4 min tempo sostenido (88-92 % FTP) + 4 min muy fácil en recuperación"),
+    "8 min @tempo soutenu 88-92% FTP + 4 min très facile récup": F("8 min au tempo soutenu (88-92 % FTP) + 4 min très facile en récup", "8 min sustained tempo (88-92% FTP) + 4 min very easy recovery", "8 min tempo sostenido (88-92 % FTP) + 4 min muy fácil en recuperación"),
+    "8 min @tempo soutenu 88-92% FTP + 5 min très facile récup": F("8 min au tempo soutenu (88-92 % FTP) + 5 min très facile en récup", "8 min sustained tempo (88-92% FTP) + 5 min very easy recovery", "8 min tempo sostenido (88-92 % FTP) + 5 min muy fácil en recuperación"),
+    "10 min @tempo soutenu 88-92% FTP + 5 min très facile récup": F("10 min au tempo soutenu (88-92 % FTP) + 5 min très facile en récup", "10 min sustained tempo (88-92% FTP) + 5 min very easy recovery", "10 min tempo sostenido (88-92 % FTP) + 5 min muy fácil en recuperación"),
+    "45 min @tempo soutenu 88-92% FTP": F("45 min au tempo soutenu (88-92 % FTP)", "45 min sustained tempo (88-92% FTP)", "45 min tempo sostenido (88-92 % FTP)"),
+    "60 min @tempo soutenu 88-92% FTP": F("60 min au tempo soutenu (88-92 % FTP)", "60 min sustained tempo (88-92% FTP)", "60 min tempo sostenido (88-92 % FTP)"),
+    "4 min @très dur (court) 110-120% FTP + 4 min très facile récup": F("4 min très dur (court, 110-120 % FTP) + 4 min très facile en récup", "4 min very hard (short, 110-120% FTP) + 4 min very easy recovery", "4 min muy duro (corto, 110-120 % FTP) + 4 min muy fácil en recuperación"),
+    "5 min @très dur (court) 110-120% FTP + 5 min très facile récup": F("5 min très dur (court, 110-120 % FTP) + 5 min très facile en récup", "5 min very hard (short, 110-120% FTP) + 5 min very easy recovery", "5 min muy duro (corto, 110-120 % FTP) + 5 min muy fácil en recuperación"),
+    "1000 m @très dur (intervalles) + 3 min jogging récup": F("1000 m très dur (intervalles) + 3 min de footing de récup", "1000 m very hard (intervals) + 3 min recovery jog", "1000 m muy duro (intervalos) + 3 min de trote de recuperación"),
+    "20 min (15 endurance facile + 2 × 30 sec @tempo soutenu récup 90 sec)": F("20 min (15 en endurance facile + 2 × 30 s au tempo soutenu, récup 90 s)", "20 min (15 easy endurance + 2 × 30 s sustained tempo, 90 s recovery)", "20 min (15 resistencia fácil + 2 × 30 s tempo sostenido, 90 s de recuperación)"),
+    "2000 m (1500 endurance facile + 5 × 100 endurance soutenue récup 20 sec)": F("2000 m (1500 en endurance facile + 5 × 100 en endurance soutenue, récup 20 s)", "2000 m (1500 easy endurance + 5 × 100 sustained endurance, 20 s recovery)", "2000 m (1500 resistencia fácil + 5 × 100 resistencia sostenida, 20 s de recuperación)"),
+    "15 min (10 facile (tu peux parler) + 4 strides 100 m récup 90 sec)": F("15 min (10 facile + 4 strides 100 m, récup 90 s)", "15 min (10 easy + 4 × 100 m strides, 90 s recovery)", "15 min (10 fácil + 4 strides 100 m, 90 s de recuperación)"),
+    "VO2max bloc 50 min (5 × 5 min très dur (court) + 5 récup) puis sweet spot 20 min @88-92% FTP": F("bloc VO2max 50 min (5 × 5 min très dur (court) + 5 récup) puis sweet spot 20 min (88-92 % FTP)", "VO2max block 50 min (5 × 5 min very hard (short) + 5 recovery) then sweet spot 20 min (88-92% FTP)", "bloque VO2max 50 min (5 × 5 min muy duro (corto) + 5 recuperación) luego sweet spot 20 min (88-92 % FTP)"),
+
+    # --- Sorties longues run : découpage facile / allure marathon / marche récup (D2) ---
+    "20 min (5 facile (tu peux parler) + 12 allure marathon (soutenu) + 3 facile (tu peux parler))": F("20 min (5 facile + 12 à allure marathon + 3 facile)", "20 min (5 easy + 12 at marathon pace + 3 easy)", "20 min (5 fácil + 12 a ritmo maratón + 3 fácil)"),
+    "30 min (5 facile (tu peux parler) + 22 allure marathon (soutenu) + 3 walking-recovery)": F("30 min (5 facile + 22 à allure marathon + 3 de marche de récup)", "30 min (5 easy + 22 at marathon pace + 3 recovery walk)", "30 min (5 fácil + 22 a ritmo maratón + 3 de caminata de recuperación)"),
+    "40 min (5 facile (tu peux parler) + 30 allure marathon (soutenu) + 5 walking-recovery)": F("40 min (5 facile + 30 à allure marathon + 5 de marche de récup)", "40 min (5 easy + 30 at marathon pace + 5 recovery walk)", "40 min (5 fácil + 30 a ritmo maratón + 5 de caminata de recuperación)"),
+    "45 min (5 facile (tu peux parler) + 35 allure marathon (soutenu) + 5 walking-recovery)": F("45 min (5 facile + 35 à allure marathon + 5 de marche de récup)", "45 min (5 easy + 35 at marathon pace + 5 recovery walk)", "45 min (5 fácil + 35 a ritmo maratón + 5 de caminata de recuperación)"),
+    "50 min (5 facile (tu peux parler) + 40 allure marathon (soutenu) + 5 walking-recovery)": F("50 min (5 facile + 40 à allure marathon + 5 de marche de récup)", "50 min (5 easy + 40 at marathon pace + 5 recovery walk)", "50 min (5 fácil + 40 a ritmo maratón + 5 de caminata de recuperación)"),
+    "75 min (60 facile (tu peux parler) + 12 allure marathon (soutenu) + 3 walking-recovery)": F("75 min (60 facile + 12 à allure marathon + 3 de marche de récup)", "75 min (60 easy + 12 at marathon pace + 3 recovery walk)", "75 min (60 fácil + 12 a ritmo maratón + 3 de caminata de recuperación)"),
+    "80 min (60 facile (tu peux parler) + 17 allure marathon (soutenu) + 3 walking-recovery)": F("80 min (60 facile + 17 à allure marathon + 3 de marche de récup)", "80 min (60 easy + 17 at marathon pace + 3 recovery walk)", "80 min (60 fácil + 17 a ritmo maratón + 3 de caminata de recuperación)"),
+    "85 min (65 facile (tu peux parler) + 17 allure marathon (soutenu) + 3 walking-recovery)": F("85 min (65 facile + 17 à allure marathon + 3 de marche de récup)", "85 min (65 easy + 17 at marathon pace + 3 recovery walk)", "85 min (65 fácil + 17 a ritmo maratón + 3 de caminata de recuperación)"),
+    "95 min (70 facile (tu peux parler) + 22 allure marathon (soutenu) + 3 walking-recovery)": F("95 min (70 facile + 22 à allure marathon + 3 de marche de récup)", "95 min (70 easy + 22 at marathon pace + 3 recovery walk)", "95 min (70 fácil + 22 a ritmo maratón + 3 de caminata de recuperación)"),
+    "100 min (70 facile (tu peux parler) + 27 allure marathon (soutenu) + 3 walking-recovery)": F("100 min (70 facile + 27 à allure marathon + 3 de marche de récup)", "100 min (70 easy + 27 at marathon pace + 3 recovery walk)", "100 min (70 fácil + 27 a ritmo maratón + 3 de caminata de recuperación)"),
+    "100 min (75 facile (tu peux parler) + 22 allure marathon (soutenu) + 3 walking-recovery)": F("100 min (75 facile + 22 à allure marathon + 3 de marche de récup)", "100 min (75 easy + 22 at marathon pace + 3 recovery walk)", "100 min (75 fácil + 22 a ritmo maratón + 3 de caminata de recuperación)"),
+    "110 min (75 facile (tu peux parler) + 30 allure marathon (soutenu) + 5 walking-recovery)": F("110 min (75 facile + 30 à allure marathon + 5 de marche de récup)", "110 min (75 easy + 30 at marathon pace + 5 recovery walk)", "110 min (75 fácil + 30 a ritmo maratón + 5 de caminata de recuperación)"),
+
+    # --- Sorties longues vélo : endurance facile / tempo soutenu / cadence (D2) ---
+    "55 min (10 endurance facile + 30 tempo soutenu + 10 endurance facile + 5 cadence 100 rpm)": F("55 min (10 en endurance facile + 30 au tempo soutenu + 10 en endurance facile + 5 cadence 100 rpm)", "55 min (10 easy endurance + 30 sustained tempo + 10 easy endurance + 5 at 100 rpm cadence)", "55 min (10 resistencia fácil + 30 tempo sostenido + 10 resistencia fácil + 5 cadencia 100 rpm)"),
+    "60 min (15 endurance facile + 30 tempo soutenu + 15 endurance facile cadence 95-100 rpm finale)": F("60 min (15 en endurance facile + 30 au tempo soutenu + 15 en endurance facile, cadence finale 95-100 rpm)", "60 min (15 easy endurance + 30 sustained tempo + 15 easy endurance, 95-100 rpm final cadence)", "60 min (15 resistencia fácil + 30 tempo sostenido + 15 resistencia fácil, cadencia final 95-100 rpm)"),
+    "75 min (15 endurance facile + 45 tempo soutenu + 15 endurance facile cadence finale)": F("75 min (15 en endurance facile + 45 au tempo soutenu + 15 en endurance facile, cadence finale)", "75 min (15 easy endurance + 45 sustained tempo + 15 easy endurance, final cadence)", "75 min (15 resistencia fácil + 45 tempo sostenido + 15 resistencia fácil, cadencia final)"),
+    "90 min (15 endurance facile + 60 tempo soutenu + 15 endurance facile cadence finale)": F("90 min (15 en endurance facile + 60 au tempo soutenu + 15 en endurance facile, cadence finale)", "90 min (15 easy endurance + 60 sustained tempo + 15 easy endurance, final cadence)", "90 min (15 resistencia fácil + 60 tempo sostenido + 15 resistencia fácil, cadencia final)"),
+    "105 min (15 endurance facile + 75 tempo soutenu + 15 endurance facile cadence finale)": F("105 min (15 en endurance facile + 75 au tempo soutenu + 15 en endurance facile, cadence finale)", "105 min (15 easy endurance + 75 sustained tempo + 15 easy endurance, final cadence)", "105 min (15 resistencia fácil + 75 tempo sostenido + 15 resistencia fácil, cadencia final)"),
+    "120 min (75 endurance facile + 30 tempo soutenu + 15 endurance facile cadence finale)": F("120 min (75 en endurance facile + 30 au tempo soutenu + 15 en endurance facile, cadence finale)", "120 min (75 easy endurance + 30 sustained tempo + 15 easy endurance, final cadence)", "120 min (75 resistencia fácil + 30 tempo sostenido + 15 resistencia fácil, cadencia final)"),
+    "120 min (95 endurance facile + 20 tempo soutenu + 5 endurance facile)": F("120 min (95 en endurance facile + 20 au tempo soutenu + 5 en endurance facile)", "120 min (95 easy endurance + 20 sustained tempo + 5 easy endurance)", "120 min (95 resistencia fácil + 20 tempo sostenido + 5 resistencia fácil)"),
+    "135 min (75 endurance facile + 45 tempo soutenu + 15 endurance facile cadence finale)": F("135 min (75 en endurance facile + 45 au tempo soutenu + 15 en endurance facile, cadence finale)", "135 min (75 easy endurance + 45 sustained tempo + 15 easy endurance, final cadence)", "135 min (75 resistencia fácil + 45 tempo sostenido + 15 resistencia fácil, cadencia final)"),
+    "150 min (105 endurance facile + 30 tempo soutenu + 15 endurance facile)": F("150 min (105 en endurance facile + 30 au tempo soutenu + 15 en endurance facile)", "150 min (105 easy endurance + 30 sustained tempo + 15 easy endurance)", "150 min (105 resistencia fácil + 30 tempo sostenido + 15 resistencia fácil)"),
+    "150 min (110 endurance facile + 20 tempo soutenu + 20 endurance facile)": F("150 min (110 en endurance facile + 20 au tempo soutenu + 20 en endurance facile)", "150 min (110 easy endurance + 20 sustained tempo + 20 easy endurance)", "150 min (110 resistencia fácil + 20 tempo sostenido + 20 resistencia fácil)"),
+    "150 min (90 endurance facile + 45 tempo soutenu + 15 endurance facile cadence finale)": F("150 min (90 en endurance facile + 45 au tempo soutenu + 15 en endurance facile, cadence finale)", "150 min (90 easy endurance + 45 sustained tempo + 15 easy endurance, final cadence)", "150 min (90 resistencia fácil + 45 tempo sostenido + 15 resistencia fácil, cadencia final)"),
+    "165 min (110 endurance facile + 40 tempo soutenu + 15 endurance facile)": F("165 min (110 en endurance facile + 40 au tempo soutenu + 15 en endurance facile)", "165 min (110 easy endurance + 40 sustained tempo + 15 easy endurance)", "165 min (110 resistencia fácil + 40 tempo sostenido + 15 resistencia fácil)"),
+    "180 min (110 endurance facile + 50 tempo soutenu + 20 endurance facile)": F("180 min (110 en endurance facile + 50 au tempo soutenu + 20 en endurance facile)", "180 min (110 easy endurance + 50 sustained tempo + 20 easy endurance)", "180 min (110 resistencia fácil + 50 tempo sostenido + 20 resistencia fácil)"),
+    "180 min (110 endurance facile + 50 tempo soutenu position TT + 20 endurance facile)": F("180 min (110 en endurance facile + 50 au tempo soutenu en position TT + 20 en endurance facile)", "180 min (110 easy endurance + 50 sustained tempo in TT position + 20 easy endurance)", "180 min (110 resistencia fácil + 50 tempo sostenido en posición TT + 20 resistencia fácil)"),
+    "195 min (115 endurance facile + 60 tempo soutenu + 20 endurance facile)": F("195 min (115 en endurance facile + 60 au tempo soutenu + 20 en endurance facile)", "195 min (115 easy endurance + 60 sustained tempo + 20 easy endurance)", "195 min (115 resistencia fácil + 60 tempo sostenido + 20 resistencia fácil)"),
+    "270 min (160 endurance facile + 75 tempo soutenu + 35 endurance facile)": F("270 min (160 en endurance facile + 75 au tempo soutenu + 35 en endurance facile)", "270 min (160 easy endurance + 75 sustained tempo + 35 easy endurance)", "270 min (160 resistencia fácil + 75 tempo sostenido + 35 resistencia fácil)"),
+
+    # --- Brick transitions T1/T2 (standard gardé, fr=en=es) ---
+    "T1 < 1 min 30 + T2 < 1 min": F("T1 < 1 min 30 + T2 < 1 min", "T1 < 1 min 30 + T2 < 1 min", "T1 < 1 min 30 + T2 < 1 min"),
+    "T1 < 1 min 45 + T2 < 1 min": F("T1 < 1 min 45 + T2 < 1 min", "T1 < 1 min 45 + T2 < 1 min", "T1 < 1 min 45 + T2 < 1 min"),
+    "T1 < 2 min + T2 < 1 min": F("T1 < 2 min + T2 < 1 min", "T1 < 2 min + T2 < 1 min", "T1 < 2 min + T2 < 1 min"),
+
+    # --- Renfo composites (freeText, noms de salle gardés) ---
+    "10 + 10/jambe": F("10 + 10 par jambe", "10 + 10 per leg", "10 + 10 por pierna"),
+    "8 + 10/jambe": F("8 + 10 par jambe", "8 + 10 per leg", "8 + 10 por pierna"),
+    "10 chaque + 12 ext rot/côté": F("10 chacun + 12 rotations externes par côté", "10 each + 12 external rotations per side", "10 cada uno + 12 rotaciones externas por lado"),
+    "10 chaque + 12 ext rotation/côté": F("10 chacun + 12 rotations externes par côté", "10 each + 12 external rotations per side", "10 cada uno + 12 rotaciones externas por lado"),
+    "10 squat + 10 RDL/jambe": F("10 squats + 10 RDL par jambe", "10 squats + 10 RDLs per leg", "10 squats + 10 RDL por pierna"),
+    "8 squat + 10 RDL/jambe": F("8 squats + 10 RDL par jambe", "8 squats + 10 RDLs per leg", "8 squats + 10 RDL por pierna"),
+    "12 clam + 12 calf": F("12 clamshells + 12 extensions mollets", "12 clamshells + 12 calf raises", "12 clamshells + 12 calf raises"),
+    "12 clamshell + 12 calf": F("12 clamshells + 12 extensions mollets", "12 clamshells + 12 calf raises", "12 clamshells + 12 calf raises"),
+    "12 pont + 12 clam/côté": F("12 ponts fessiers + 12 clamshells par côté", "12 glute bridges + 12 clamshells per side", "12 puentes de glúteos + 12 clamshells por lado"),
+    "40 sec planche + 8 bird-dog/côté": F("40 s de planche + 8 bird-dog par côté", "40 s plank + 8 bird dog per side", "40 s de plancha + 8 bird dog por lado"),
+    "40s + 10 bird-dog/côté": F("40 s + 10 bird-dog par côté", "40 s + 10 bird dog per side", "40 s + 10 bird dog por lado"),
+    "45 sec ventrale + 30 sec/côté": F("45 s de planche ventrale + 30 s par côté", "45 s front plank + 30 s per side", "45 s de plancha frontal + 30 s por lado"),
+    "60 sec ventrale + 40 sec/côté": F("60 s de planche ventrale + 40 s par côté", "60 s front plank + 40 s per side", "60 s de plancha frontal + 40 s por lado"),
+    "60 sec ventrale + 40 sec/côté + 12 dead bug/côté": F("60 s de planche ventrale + 40 s par côté + 12 dead bug par côté", "60 s front plank + 40 s per side + 12 dead bug per side", "60 s de plancha frontal + 40 s por lado + 12 dead bug por lado"),
+    "45s plank + 30s/côté side + 10 bird-dog/côté": F("45 s de planche + 30 s de planche latérale par côté + 10 bird-dog par côté", "45 s plank + 30 s side plank per side + 10 bird dog per side", "45 s de plancha + 30 s de plancha lateral por lado + 10 bird dog por lado"),
+    "12 + 12 + 8/lettre": F("12 + 12 + 8 par lettre", "12 + 12 + 8 per letter", "12 + 12 + 8 por letra"),
+    "12 + 12 + 8/lettre + 12 ER": F("12 + 12 + 8 par lettre + 12 rotations externes", "12 + 12 + 8 per letter + 12 external rotations", "12 + 12 + 8 por letra + 12 rotaciones externas"),
+    "12 + 12 + 8/lettre + 40s plank": F("12 + 12 + 8 par lettre + 40 s de planche", "12 + 12 + 8 per letter + 40 s plank", "12 + 12 + 8 por letra + 40 s de plancha"),
+    "12 + 12 + 8/lettre + 45s plank": F("12 + 12 + 8 par lettre + 45 s de planche", "12 + 12 + 8 per letter + 45 s plank", "12 + 12 + 8 por letra + 45 s de plancha"),
+    "8/lettre + 12 ER + 45s plank": F("8 par lettre + 12 rotations externes + 45 s de planche", "8 per letter + 12 external rotations + 45 s plank", "8 por letra + 12 rotaciones externas + 45 s de plancha"),
+    "8/lettre + 12 ER/côté": F("8 par lettre + 12 rotations externes par côté", "8 per letter + 12 external rotations per side", "8 por letra + 12 rotaciones externas por lado"),
+    "8 chaque lettre + 12 ER/côté": F("8 par lettre + 12 rotations externes par côté", "8 per letter + 12 external rotations per side", "8 por letra + 12 rotaciones externas por lado"),
+}
+
 # Table complète (union) + clés par lot (pour gen-migration ciblé sans toucher aux lots précédents).
-DOSE = {**YOGA, **RUNNING, **CYCLING, **SWIMMING, **HIKING, **HIIT, **STRENGTH, **TENNISFOOT}
+DOSE = {**YOGA, **RUNNING, **CYCLING, **SWIMMING, **HIKING, **HIIT, **STRENGTH, **TENNISFOOT, **TRIATHLON}
 RUNNING_KEYS = list(RUNNING.keys())
 CYCLING_KEYS = list(CYCLING.keys())
 SWIMMING_KEYS = list(SWIMMING.keys())
@@ -1026,6 +1180,7 @@ HIKING_KEYS = list(HIKING.keys())
 HIIT_KEYS = list(HIIT.keys())
 STRENGTH_KEYS = list(STRENGTH.keys())
 TENNISFOOT_KEYS = list(TENNISFOOT.keys())
+TRIATHLON_KEYS = list(TRIATHLON.keys())
 
 
 def inject(ex, missing):
@@ -1117,6 +1272,8 @@ if __name__ == "__main__":
             gen_migration(STRENGTH_KEYS)
         elif lot == "tennisfoot":
             gen_migration(TENNISFOOT_KEYS)
+        elif lot == "triathlon":
+            gen_migration(TRIATHLON_KEYS)
         else:
             gen_migration(list(DOSE.keys()))
     else:

@@ -53,6 +53,10 @@
                   "fr" : "Test T-30 (distance max en 30 min)"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "400"
+              },
               "duration" : "400 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -93,6 +97,10 @@
                   "fr" : "Estimation de l'allure seuil à partir d'un 1500 m chronométré"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -133,6 +141,10 @@
                   "fr" : "Éducatif 6-1-6 50 m (6 battements + 1 mouvement de bras)"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -171,6 +183,10 @@
                   "fr" : "Crawl libre (allure facile) 100 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -233,6 +249,10 @@
                   "fr" : "Test 8 min × 2 (puissance seuil = moy × 0,90)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -276,6 +296,10 @@
                   "fr" : "Marche 15 min puis étirements"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "no-trainer"
@@ -335,6 +359,10 @@
                   "fr" : "Trail vallonné 50 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -375,6 +403,10 @@
                   "fr" : "Montées de genoux (A-march) 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -435,6 +467,10 @@
                   "fr" : "Pont fessier sur une jambe 8/jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -473,6 +509,11 @@
                   "fr" : "Soulevé de terre roumain sur une jambe sans charge"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -510,6 +551,11 @@
                   "fr" : "Squat sur deux jambes, lent"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -548,6 +594,10 @@
                   "fr" : "Extension ischio-fessiers à la machine (ischios-fessiers)"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "5-6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -585,6 +635,11 @@
                   "fr" : "Mollets debout lent (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -621,6 +676,11 @@
                   "fr" : "Rotation externe à l'élastique 12/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -657,6 +717,13 @@
                   "fr" : "Gainage croisé au sol 12/côté + pointeur 10/côté"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s per side",
+                  "es" : "45 s de plancha frontal + 30 s por lado",
+                  "fr" : "45 s de planche ventrale + 30 s par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -695,6 +762,11 @@
                   "fr" : "Élévation de jambe allongé sur le côté 15/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -754,6 +826,10 @@
                   "fr" : "Crawl respiration 1×4 50 m × 6"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -792,6 +868,10 @@
                   "fr" : "Crawl avec pull-buoy 1500 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1500"
+              },
               "duration" : "1500 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -832,6 +912,10 @@
                   "fr" : "Battements sur le côté 25 m × 8"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -892,6 +976,10 @@
                   "fr" : "VTT chemin roulant 95 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "95"
+              },
               "duration" : "95 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -959,6 +1047,10 @@
                   "fr" : "Trail vallonné 65 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "60"
+              },
               "duration" : "60 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1036,6 +1128,10 @@
                   "fr" : "Éducatif battements sur le côté 50 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -1074,6 +1170,10 @@
                   "fr" : "Crawl avec pull-buoy 1000 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1000"
+              },
               "duration" : "1000 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -1114,6 +1214,10 @@
                   "fr" : "Crawl tempo 75 m × 8 récup 25 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -1176,6 +1280,13 @@
                   "fr" : "Tempo route zone tempo 3 × 10 min RPE 5-6"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 min sustained tempo (88-92% FTP) + 5 min very easy recovery",
+                  "es" : "8 min tempo sostenido (88-92 % FTP) + 5 min muy fácil en recuperación",
+                  "fr" : "8 min au tempo soutenu (88-92 % FTP) + 5 min très facile en récup"
+                }
+              },
               "duration" : "8 min @tempo soutenu 88-92% FTP + 5 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -1217,6 +1328,10 @@
                   "fr" : "Zone facile cadence 95+ tr/min 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "no-trainer"
@@ -1276,6 +1391,10 @@
                   "fr" : "Tempo sur route plate 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1316,6 +1435,10 @@
                   "fr" : "Montées de genoux (A-march) 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1375,6 +1498,10 @@
                   "fr" : "Home-trainer 65 min (zone facile), mode ERG"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "60"
+              },
               "duration" : "60 min",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -1419,6 +1546,10 @@
                   "fr" : "Vélo elliptique 15 min (zone facile) si douleur au genou"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1481,6 +1612,10 @@
                   "fr" : "Crawl avec pull-buoy 1800 m focus haut du corps"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1800"
+              },
               "duration" : "1800 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -1521,6 +1656,10 @@
                   "fr" : "Crawl normal (seuil aérobie) 100 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -1583,6 +1722,10 @@
                   "fr" : "VTT chemin roulant 115 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "115"
+              },
               "duration" : "115 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -1650,6 +1793,10 @@
                   "fr" : "Trail vallonné 75 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "70"
+              },
               "duration" : "70 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1727,6 +1874,13 @@
                   "fr" : "Crawl au seuil aérobie 600 m continu"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m at threshold pace + 5 s/100 m",
+                  "es" : "100 m a ritmo umbral + 5 s/100 m",
+                  "fr" : "100 m à allure seuil + 5 s/100 m"
+                }
+              },
               "duration" : "100 m à allure seuil+5s/100m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -1767,6 +1921,10 @@
                   "fr" : "Crawl avec pull-buoy 600 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "600"
+              },
               "duration" : "600 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -1829,6 +1987,13 @@
                   "fr" : "Tempo soutenu 3 × 12 min RPE 7"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 min at threshold (95-100% FTP) + 5 min very easy recovery",
+                  "es" : "8 min en umbral (95-100 % FTP) + 5 min muy fácil en recuperación",
+                  "fr" : "8 min au seuil (95-100 % FTP) + 5 min très facile en récup"
+                }
+              },
               "duration" : "8 min @au seuil 95-100% FTP + 5 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -1870,6 +2035,10 @@
                   "fr" : "Zone facile cadence 95+ tr/min 25 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "no-trainer"
@@ -1929,6 +2098,10 @@
                   "fr" : "Trail roulant 45 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1990,6 +2163,13 @@
                   "fr" : "Home-trainer ERG tempo soutenu 55 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "55 min (10 easy endurance + 30 sustained tempo + 10 easy endurance + 5 at 100 rpm cadence)",
+                  "es" : "55 min (10 resistencia fácil + 30 tempo sostenido + 10 resistencia fácil + 5 cadencia 100 rpm)",
+                  "fr" : "55 min (10 en endurance facile + 30 au tempo soutenu + 10 en endurance facile + 5 cadence 100 rpm)"
+                }
+              },
               "duration" : "55 min (10 endurance facile + 30 tempo soutenu + 10 endurance facile + 5 cadence 100 rpm)",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -2035,6 +2215,13 @@
                   "fr" : "Course continue facile 20 min si fatigue"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min (5 easy + 12 at marathon pace + 3 easy)",
+                  "es" : "20 min (5 fácil + 12 a ritmo maratón + 3 fácil)",
+                  "fr" : "20 min (5 facile + 12 à allure marathon + 3 facile)"
+                }
+              },
               "duration" : "20 min (5 facile (tu peux parler) + 12 allure marathon (soutenu) + 3 facile (tu peux parler))",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2096,6 +2283,13 @@
                   "fr" : "Crawl avec pull-buoy 2000 m"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2000 m (1500 easy endurance + 5 × 100 sustained endurance, 20 s recovery)",
+                  "es" : "2000 m (1500 resistencia fácil + 5 × 100 resistencia sostenida, 20 s de recuperación)",
+                  "fr" : "2000 m (1500 en endurance facile + 5 × 100 en endurance soutenue, récup 20 s)"
+                }
+              },
               "duration" : "2000 m (1500 endurance facile + 5 × 100 endurance soutenue récup 20 sec)",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -2136,6 +2330,10 @@
                   "fr" : "Crawl normal (seuil aérobie) 100 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -2198,6 +2396,13 @@
                   "fr" : "VTT chemin roulant 150 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "150 min (110 easy endurance + 20 sustained tempo + 20 easy endurance)",
+                  "es" : "150 min (110 resistencia fácil + 20 tempo sostenido + 20 resistencia fácil)",
+                  "fr" : "150 min (110 en endurance facile + 20 au tempo soutenu + 20 en endurance facile)"
+                }
+              },
               "duration" : "150 min (110 endurance facile + 20 tempo soutenu + 20 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -2265,6 +2470,13 @@
                   "fr" : "Trail vallonné 80 min mixte (zone facile)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "75 min (60 easy + 12 at marathon pace + 3 recovery walk)",
+                  "es" : "75 min (60 fácil + 12 a ritmo maratón + 3 de caminata de recuperación)",
+                  "fr" : "75 min (60 facile + 12 à allure marathon + 3 de marche de récup)"
+                }
+              },
               "duration" : "75 min (60 facile (tu peux parler) + 12 allure marathon (soutenu) + 3 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2342,6 +2554,10 @@
                   "fr" : "Allure seuil 6 × 150 m récup 25 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -2382,6 +2598,10 @@
                   "fr" : "Crawl avec pull-buoy 500 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "500"
+              },
               "duration" : "500 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -2444,6 +2664,13 @@
                   "fr" : "Répétitions en côte 5 × 3 min en montée RPE 8-9"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "4 min very hard (short, 110-120% FTP) + 4 min very easy recovery",
+                  "es" : "4 min muy duro (corto, 110-120 % FTP) + 4 min muy fácil en recuperación",
+                  "fr" : "4 min très dur (court, 110-120 % FTP) + 4 min très facile en récup"
+                }
+              },
               "duration" : "4 min @très dur (court) 110-120% FTP + 4 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -2507,6 +2734,10 @@
                   "fr" : "Intervalles au seuil 4 × 1.5 km récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2547,6 +2778,10 @@
                   "fr" : "Montées de genoux (A-march) 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2606,6 +2841,10 @@
                   "fr" : "VTT chemin roulant 90 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "90"
+              },
               "duration" : "90 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -2651,6 +2890,10 @@
                   "fr" : "Vélo elliptique (zone facile) 25 min si douleur au genou"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2712,6 +2955,10 @@
                   "fr" : "Crawl avec pull-buoy 2200 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "2200"
+              },
               "duration" : "2200 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -2752,6 +2999,10 @@
                   "fr" : "Battements sur le côté 50 m × 6"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -2814,6 +3065,10 @@
                   "fr" : "Crawl avec pull-buoy 600 m si épaule sensible"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "600"
+              },
               "duration" : "600 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -2855,6 +3110,13 @@
                   "fr" : "Vélo route 60 min continu (zone facile) si fatigue"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 min (15 easy endurance + 30 sustained tempo + 15 easy endurance, 95-100 rpm final cadence)",
+                  "es" : "60 min (15 resistencia fácil + 30 tempo sostenido + 15 resistencia fácil, cadencia final 95-100 rpm)",
+                  "fr" : "60 min (15 en endurance facile + 30 au tempo soutenu + 15 en endurance facile, cadence finale 95-100 rpm)"
+                }
+              },
               "duration" : "60 min (15 endurance facile + 30 tempo soutenu + 15 endurance facile cadence 95-100 rpm finale)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -2900,6 +3162,13 @@
                   "fr" : "Tapis 20 min (zone tempo) pente 1 %"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min (5 easy + 12 at marathon pace + 3 easy)",
+                  "es" : "20 min (5 fácil + 12 a ritmo maratón + 3 fácil)",
+                  "fr" : "20 min (5 facile + 12 à allure marathon + 3 facile)"
+                }
+              },
               "duration" : "20 min (5 facile (tu peux parler) + 12 allure marathon (soutenu) + 3 facile (tu peux parler))",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2961,6 +3230,10 @@
                   "fr" : "Trail vallonné 90 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "85"
+              },
               "duration" : "85 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -3038,6 +3311,10 @@
                   "fr" : "Éducatif 6-3-6 50 m × 6"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -3076,6 +3353,10 @@
                   "fr" : "Crawl avec pull-buoy 1200 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1200"
+              },
               "duration" : "1200 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -3138,6 +3419,13 @@
                   "fr" : "Tempo zone tempo 2 × 10 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 min sustained tempo (88-92% FTP) + 4 min very easy recovery",
+                  "es" : "8 min tempo sostenido (88-92 % FTP) + 4 min muy fácil en recuperación",
+                  "fr" : "8 min au tempo soutenu (88-92 % FTP) + 4 min très facile en récup"
+                }
+              },
               "duration" : "8 min @tempo soutenu 88-92% FTP + 4 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -3179,6 +3467,10 @@
                   "fr" : "Zone facile cadence 95+ tr/min 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "no-trainer"
@@ -3238,6 +3530,10 @@
                   "fr" : "Trail roulant 30 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -3277,6 +3573,10 @@
                   "fr" : "Montées de genoux (A-march) 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -3336,6 +3636,10 @@
                   "fr" : "Home-trainer 60 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "60"
+              },
               "duration" : "60 min",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -3380,6 +3684,10 @@
                   "fr" : "Vélo elliptique 15 min (zone facile) si douleur au genou"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -3441,6 +3749,10 @@
                   "fr" : "Pont fessier sur une jambe 8/jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8-10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -3479,6 +3791,11 @@
                   "fr" : "Squat sur deux jambes, lent"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -3517,6 +3834,11 @@
                   "fr" : "Mollets debout lent (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3553,6 +3875,11 @@
                   "fr" : "Rotation externe à l'élastique 12/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -3589,6 +3916,13 @@
                   "fr" : "Gainage croisé au sol 12/côté + pointeur 10/côté"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 s front plank + 30 s per side",
+                  "es" : "45 s de plancha frontal + 30 s por lado",
+                  "fr" : "45 s de planche ventrale + 30 s par côté"
+                }
+              },
               "duration" : "45 sec ventrale + 30 sec/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3649,6 +3983,10 @@
                   "fr" : "VTT chemin roulant 90 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "90"
+              },
               "duration" : "90 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -3715,6 +4053,10 @@
                   "fr" : "Trail vallonné 65 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "60"
+              },
               "duration" : "60 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -3792,6 +4134,10 @@
                   "fr" : "Allure seuil 6 × 150 m récup 25 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -3832,6 +4178,13 @@
                   "fr" : "Soutenu 3 × 150 m récup 40 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m at threshold pace -5 s/100 m",
+                  "es" : "100 m a ritmo umbral -5 s/100 m",
+                  "fr" : "100 m à allure seuil -5 s/100 m"
+                }
+              },
               "duration" : "100 m à allure seuil-5s/100m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -3872,6 +4225,10 @@
                   "fr" : "Crawl avec pull-buoy 500 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "500"
+              },
               "duration" : "500 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -3934,6 +4291,13 @@
                   "fr" : "Répétitions en côte 5 × 4 min en montée RPE 8-9"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 min very hard (short, 110-120% FTP) + 5 min very easy recovery",
+                  "es" : "5 min muy duro (corto, 110-120 % FTP) + 5 min muy fácil en recuperación",
+                  "fr" : "5 min très dur (court, 110-120 % FTP) + 5 min très facile en récup"
+                }
+              },
               "duration" : "5 min @très dur (court) 110-120% FTP + 5 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -3997,6 +4361,10 @@
                   "fr" : "Intervalles au seuil 4 × 1.5 km récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4037,6 +4405,10 @@
                   "fr" : "Montées de genoux (A-march) 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4096,6 +4468,10 @@
                   "fr" : "VTT chemin roulant 90 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "90"
+              },
               "duration" : "90 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -4141,6 +4517,10 @@
                   "fr" : "Vélo elliptique (zone facile) 25 min si douleur au genou"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4202,6 +4582,10 @@
                   "fr" : "Crawl avec pull-buoy 2500 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "2500"
+              },
               "duration" : "2500 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -4244,6 +4628,10 @@
                   "fr" : "Battements sur le côté 50 m × 6"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -4306,6 +4694,13 @@
                   "fr" : "VTT chemin roulant 150 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "150 min (105 easy endurance + 30 sustained tempo + 15 easy endurance)",
+                  "es" : "150 min (105 resistencia fácil + 30 tempo sostenido + 15 resistencia fácil)",
+                  "fr" : "150 min (105 en endurance facile + 30 au tempo soutenu + 15 en endurance facile)"
+                }
+              },
               "duration" : "150 min (105 endurance facile + 30 tempo soutenu + 15 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -4373,6 +4768,13 @@
                   "fr" : "Trail vallonné 90 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "85 min (65 easy + 17 at marathon pace + 3 recovery walk)",
+                  "es" : "85 min (65 fácil + 17 a ritmo maratón + 3 de caminata de recuperación)",
+                  "fr" : "85 min (65 facile + 17 à allure marathon + 3 de marche de récup)"
+                }
+              },
               "duration" : "85 min (65 facile (tu peux parler) + 17 allure marathon (soutenu) + 3 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4450,6 +4852,10 @@
                   "fr" : "Allure seuil 8 × 150 m récup 20 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -4490,6 +4896,13 @@
                   "fr" : "Soutenu 4 × 150 m récup 40 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m at threshold pace -5 s/100 m",
+                  "es" : "100 m a ritmo umbral -5 s/100 m",
+                  "fr" : "100 m à allure seuil -5 s/100 m"
+                }
+              },
               "duration" : "100 m à allure seuil-5s/100m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -4552,6 +4965,13 @@
                   "fr" : "Tempo soutenu 3 × 15 min RPE 7"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 min at threshold (95-100% FTP) + 6 min very easy recovery",
+                  "es" : "12 min en umbral (95-100 % FTP) + 6 min muy fácil en recuperación",
+                  "fr" : "12 min au seuil (95-100 % FTP) + 6 min très facile en récup"
+                }
+              },
               "duration" : "12 min @au seuil 95-100% FTP + 6 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -4615,6 +5035,13 @@
                   "fr" : "Intervalles au seuil 5 × 6 min récup 90 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 min at threshold + 90 s recovery",
+                  "es" : "8 min en umbral + 90 s de recuperación",
+                  "fr" : "8 min au seuil + 90 s de récup"
+                }
+              },
               "duration" : "8 min @au seuil + 90 sec récup",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4655,6 +5082,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4714,6 +5145,10 @@
                   "fr" : "VTT chemin roulant 105 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "105"
+              },
               "duration" : "105 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -4759,6 +5194,10 @@
                   "fr" : "Vélo elliptique (zone facile) 30 min si douleur au genou"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4820,6 +5259,10 @@
                   "fr" : "Crawl avec pull-buoy 2800 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "2800"
+              },
               "duration" : "2800 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -4860,6 +5303,10 @@
                   "fr" : "Crawl normal (seuil aérobie) 100 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -4922,6 +5369,13 @@
                   "fr" : "VTT chemin roulant 165 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "165 min (110 easy endurance + 40 sustained tempo + 15 easy endurance)",
+                  "es" : "165 min (110 resistencia fácil + 40 tempo sostenido + 15 resistencia fácil)",
+                  "fr" : "165 min (110 en endurance facile + 40 au tempo soutenu + 15 en endurance facile)"
+                }
+              },
               "duration" : "165 min (110 endurance facile + 40 tempo soutenu + 15 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -4989,6 +5443,13 @@
                   "fr" : "Trail vallonné 100 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "95 min (70 easy + 22 at marathon pace + 3 recovery walk)",
+                  "es" : "95 min (70 fácil + 22 a ritmo maratón + 3 de caminata de recuperación)",
+                  "fr" : "95 min (70 facile + 22 à allure marathon + 3 de marche de récup)"
+                }
+              },
               "duration" : "95 min (70 facile (tu peux parler) + 22 allure marathon (soutenu) + 3 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -5066,6 +5527,10 @@
                   "fr" : "Allure seuil 6 × 150 m récup 20 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -5106,6 +5571,13 @@
                   "fr" : "Soutenu 4 × 150 m récup 40 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m at threshold pace -5 s/100 m",
+                  "es" : "100 m a ritmo umbral -5 s/100 m",
+                  "fr" : "100 m à allure seuil -5 s/100 m"
+                }
+              },
               "duration" : "100 m à allure seuil-5s/100m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -5146,6 +5618,10 @@
                   "fr" : "Crawl avec pull-buoy 400 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "400"
+              },
               "duration" : "400 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -5208,6 +5684,13 @@
                   "fr" : "VO2max position route 6 × 4 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "4 min very hard (short, 110-120% FTP) + 4 min very easy recovery",
+                  "es" : "4 min muy duro (corto, 110-120 % FTP) + 4 min muy fácil en recuperación",
+                  "fr" : "4 min très dur (court, 110-120 % FTP) + 4 min très facile en récup"
+                }
+              },
               "duration" : "4 min @très dur (court) 110-120% FTP + 4 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -5252,6 +5735,10 @@
                   "fr" : "Zone facile cadence 95+ tr/min 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -5314,6 +5801,10 @@
                   "fr" : "Intervalles au seuil 4 × 2 km récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -5354,6 +5845,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -5413,6 +5908,10 @@
                   "fr" : "Crawl avec pull-buoy 800 m si épaule sensible"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "800"
+              },
               "duration" : "800 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -5455,6 +5954,13 @@
                   "fr" : "Vélo route position route si contre-la-montre non disponible"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "75 min (15 easy endurance + 45 sustained tempo + 15 easy endurance, final cadence)",
+                  "es" : "75 min (15 resistencia fácil + 45 tempo sostenido + 15 resistencia fácil, cadencia final)",
+                  "fr" : "75 min (15 en endurance facile + 45 au tempo soutenu + 15 en endurance facile, cadence finale)"
+                }
+              },
               "duration" : "75 min (15 endurance facile + 45 tempo soutenu + 15 endurance facile cadence finale)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -5501,6 +6007,13 @@
                   "fr" : "Tapis 30 min (zone tempo) pente 1 %"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 min (5 easy + 22 at marathon pace + 3 recovery walk)",
+                  "es" : "30 min (5 fácil + 22 a ritmo maratón + 3 de caminata de recuperación)",
+                  "fr" : "30 min (5 facile + 22 à allure marathon + 3 de marche de récup)"
+                }
+              },
               "duration" : "30 min (5 facile (tu peux parler) + 22 allure marathon (soutenu) + 3 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -5562,6 +6075,10 @@
                   "fr" : "Crawl avec pull-buoy 3000 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "3000"
+              },
               "duration" : "3000 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -5626,6 +6143,13 @@
                   "fr" : "Vélo route position route 180 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "180 min (110 easy endurance + 50 sustained tempo in TT position + 20 easy endurance)",
+                  "es" : "180 min (110 resistencia fácil + 50 tempo sostenido en posición TT + 20 resistencia fácil)",
+                  "fr" : "180 min (110 en endurance facile + 50 au tempo soutenu en position TT + 20 en endurance facile)"
+                }
+              },
               "duration" : "180 min (110 endurance facile + 50 tempo soutenu position TT + 20 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -5694,6 +6218,13 @@
                   "fr" : "Trail vallonné 105 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 min (75 easy + 22 at marathon pace + 3 recovery walk)",
+                  "es" : "100 min (75 fácil + 22 a ritmo maratón + 3 de caminata de recuperación)",
+                  "fr" : "100 min (75 facile + 22 à allure marathon + 3 de marche de récup)"
+                }
+              },
               "duration" : "100 min (75 facile (tu peux parler) + 22 allure marathon (soutenu) + 3 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -5771,6 +6302,10 @@
                   "fr" : "Allure seuil 4 × 300 m récup 35 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -5811,6 +6346,13 @@
                   "fr" : "Soutenu 4 × 125 m récup 30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m at threshold pace -5 s/100 m",
+                  "es" : "100 m a ritmo umbral -5 s/100 m",
+                  "fr" : "100 m à allure seuil -5 s/100 m"
+                }
+              },
               "duration" : "100 m à allure seuil-5s/100m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -5873,6 +6415,13 @@
                   "fr" : "Tempo soutenu sur route plate 45 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 min sustained tempo (88-92% FTP)",
+                  "es" : "45 min tempo sostenido (88-92 % FTP)",
+                  "fr" : "45 min au tempo soutenu (88-92 % FTP)"
+                }
+              },
               "duration" : "45 min @tempo soutenu 88-92% FTP",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -5916,6 +6465,10 @@
                   "fr" : "Zone facile cadence 95+ tr/min 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "no-trainer"
@@ -5975,6 +6528,13 @@
                   "fr" : "Tempo au seuil 30 min si récup nécessaire"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1000 m very hard (intervals) + 3 min recovery jog",
+                  "es" : "1000 m muy duro (intervalos) + 3 min de trote de recuperación",
+                  "fr" : "1000 m très dur (intervalles) + 3 min de footing de récup"
+                }
+              },
               "duration" : "1000 m @très dur (intervalles) + 3 min jogging récup",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -6015,6 +6575,10 @@
                   "fr" : "Tapis 10 min en zone facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -6074,6 +6638,10 @@
                   "fr" : "VTT chemin roulant 105 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "105"
+              },
               "duration" : "105 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -6119,6 +6687,10 @@
                   "fr" : "Vélo elliptique (zone facile) 30 min si douleur au genou"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -6180,6 +6752,10 @@
                   "fr" : "Pont fessier sur une jambe 8/jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -6218,6 +6794,11 @@
                   "fr" : "Soulevé de terre roumain sur une jambe sans charge"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -6255,6 +6836,10 @@
                   "fr" : "Extension ischio-fessiers à la machine (ischios-fessiers)"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "6"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury"
@@ -6292,6 +6877,11 @@
                   "fr" : "Mollets debout (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -6328,6 +6918,13 @@
                   "fr" : "Rotation externe à l'élastique seule 15/côté"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 each + 12 external rotations per side",
+                  "es" : "10 cada uno + 12 rotaciones externas por lado",
+                  "fr" : "10 chacun + 12 rotations externes par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -6365,6 +6962,13 @@
                   "fr" : "Pointeur 12/côté + gainage croisé au sol 12/côté"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 s front plank + 40 s per side + 12 dead bug per side",
+                  "es" : "60 s de plancha frontal + 40 s por lado + 12 dead bug por lado",
+                  "fr" : "60 s de planche ventrale + 40 s par côté + 12 dead bug par côté"
+                }
+              },
               "duration" : "60 sec ventrale + 40 sec/côté + 12 dead bug/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -6425,6 +7029,13 @@
                   "fr" : "Vélo route position route 165 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "165 min (110 easy endurance + 40 sustained tempo + 15 easy endurance)",
+                  "es" : "165 min (110 resistencia fácil + 40 tempo sostenido + 15 resistencia fácil)",
+                  "fr" : "165 min (110 en endurance facile + 40 au tempo soutenu + 15 en endurance facile)"
+                }
+              },
               "duration" : "165 min (110 endurance facile + 40 tempo soutenu + 15 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -6493,6 +7104,13 @@
                   "fr" : "Trail vallonné 100 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "95 min (70 easy + 22 at marathon pace + 3 recovery walk)",
+                  "es" : "95 min (70 fácil + 22 a ritmo maratón + 3 de caminata de recuperación)",
+                  "fr" : "95 min (70 facile + 22 à allure marathon + 3 de marche de récup)"
+                }
+              },
               "duration" : "95 min (70 facile (tu peux parler) + 22 allure marathon (soutenu) + 3 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -6570,6 +7188,10 @@
                   "fr" : "Allure seuil 6 × 75 m récup 15 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -6610,6 +7232,10 @@
                   "fr" : "Crawl avec pull-buoy 1500 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1500"
+              },
               "duration" : "1500 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -6672,6 +7298,13 @@
                   "fr" : "Tempo zone tempo 2 × 12 min RPE 6"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 min sustained tempo (88-92% FTP) + 5 min very easy recovery",
+                  "es" : "10 min tempo sostenido (88-92 % FTP) + 5 min muy fácil en recuperación",
+                  "fr" : "10 min au tempo soutenu (88-92 % FTP) + 5 min très facile en récup"
+                }
+              },
               "duration" : "10 min @tempo soutenu 88-92% FTP + 5 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -6712,6 +7345,10 @@
                   "fr" : "Zone facile cadence 95+ tr/min 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "no-trainer"
@@ -6771,6 +7408,10 @@
                   "fr" : "Intervalles au seuil 2 × 1 km récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -6810,6 +7451,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -6869,6 +7514,10 @@
                   "fr" : "Vélo route 75 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "75"
+              },
               "duration" : "75 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -6913,6 +7562,10 @@
                   "fr" : "Vélo elliptique 20 min (zone facile) si douleur au genou"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -6974,6 +7627,10 @@
                   "fr" : "Crawl avec pull-buoy 2000 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "2000"
+              },
               "duration" : "2000 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -7036,6 +7693,10 @@
                   "fr" : "VTT chemin roulant 105 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "105"
+              },
               "duration" : "105 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -7103,6 +7764,10 @@
                   "fr" : "Trail vallonné 75 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "70"
+              },
               "duration" : "70 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -7180,6 +7845,10 @@
                   "fr" : "Allure seuil 4 × 250 m récup 25 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -7220,6 +7889,13 @@
                   "fr" : "Soutenu 4 × 150 m récup 35 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m at threshold pace -5 s/100 m",
+                  "es" : "100 m a ritmo umbral -5 s/100 m",
+                  "fr" : "100 m à allure seuil -5 s/100 m"
+                }
+              },
               "duration" : "100 m à allure seuil-5s/100m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -7260,6 +7936,10 @@
                   "fr" : "Crawl avec pull-buoy 400 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "400"
+              },
               "duration" : "400 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -7322,6 +8002,13 @@
                   "fr" : "VO2max position route 5 × 5 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 min very hard (short, 110-120% FTP) + 5 min very easy recovery",
+                  "es" : "5 min muy duro (corto, 110-120 % FTP) + 5 min muy fácil en recuperación",
+                  "fr" : "5 min très dur (court, 110-120 % FTP) + 5 min très facile en récup"
+                }
+              },
               "duration" : "5 min @très dur (court) 110-120% FTP + 5 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -7366,6 +8053,10 @@
                   "fr" : "Zone facile cadence 95+ tr/min 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -7428,6 +8119,13 @@
                   "fr" : "Intervalles au seuil 4 × 10 min récup 2 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 min at threshold + 90 s recovery",
+                  "es" : "8 min en umbral + 90 s de recuperación",
+                  "fr" : "8 min au seuil + 90 s de récup"
+                }
+              },
               "duration" : "8 min @au seuil + 90 sec récup",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -7468,6 +8166,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -7527,6 +8229,13 @@
                   "fr" : "Vélo route position route 120 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "120 min (75 easy endurance + 30 sustained tempo + 15 easy endurance, final cadence)",
+                  "es" : "120 min (75 resistencia fácil + 30 tempo sostenido + 15 resistencia fácil, cadencia final)",
+                  "fr" : "120 min (75 en endurance facile + 30 au tempo soutenu + 15 en endurance facile, cadence finale)"
+                }
+              },
               "duration" : "120 min (75 endurance facile + 30 tempo soutenu + 15 endurance facile cadence finale)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -7573,6 +8282,10 @@
                   "fr" : "Vélo elliptique (zone facile) 35 min si douleur au genou"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -7634,6 +8347,10 @@
                   "fr" : "Crawl avec pull-buoy 3000 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "3000"
+              },
               "duration" : "3000 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -7674,6 +8391,10 @@
                   "fr" : "Crawl normal (seuil aérobie) 100 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -7736,6 +8457,13 @@
                   "fr" : "Vélo route position route 180 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "180 min (110 easy endurance + 50 sustained tempo + 20 easy endurance)",
+                  "es" : "180 min (110 resistencia fácil + 50 tempo sostenido + 20 resistencia fácil)",
+                  "fr" : "180 min (110 en endurance facile + 50 au tempo soutenu + 20 en endurance facile)"
+                }
+              },
               "duration" : "180 min (110 endurance facile + 50 tempo soutenu + 20 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -7804,6 +8532,13 @@
                   "fr" : "Trail vallonné 105 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 min (75 easy + 22 at marathon pace + 3 recovery walk)",
+                  "es" : "100 min (75 fácil + 22 a ritmo maratón + 3 de caminata de recuperación)",
+                  "fr" : "100 min (75 facile + 22 à allure marathon + 3 de marche de récup)"
+                }
+              },
               "duration" : "100 min (75 facile (tu peux parler) + 22 allure marathon (soutenu) + 3 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -7881,6 +8616,10 @@
                   "fr" : "Allure seuil 4 × 300 m récup 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -7921,6 +8660,13 @@
                   "fr" : "Soutenu 4 × 75 m récup 30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "50 m fast (200 m race pace)",
+                  "es" : "50 m rápido (ritmo carrera 200 m)",
+                  "fr" : "50 m rapide (allure course 200 m)"
+                }
+              },
               "duration" : "50 m @rapide (allure 200 m race)",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -7962,6 +8708,10 @@
                   "fr" : "Crawl avec pull-buoy 400 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "400"
+              },
               "duration" : "400 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -8024,6 +8774,13 @@
                   "fr" : "Tempo soutenu 4 × 15 min RPE 7"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "12 min at threshold (95-100% FTP) + 5 min very easy recovery",
+                  "es" : "12 min en umbral (95-100 % FTP) + 5 min muy fácil en recuperación",
+                  "fr" : "12 min au seuil (95-100 % FTP) + 5 min très facile en récup"
+                }
+              },
               "duration" : "12 min @au seuil 95-100% FTP + 5 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -8090,6 +8847,13 @@
                   "fr" : "Intervalles au seuil 5 × 8 min récup 90 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 min at threshold + 2 min recovery jog",
+                  "es" : "10 min en umbral + 2 min de trote de recuperación",
+                  "fr" : "10 min au seuil + 2 min de footing de récup"
+                }
+              },
               "duration" : "10 min @au seuil + 2 min jogging récup",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -8130,6 +8894,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -8189,6 +8957,10 @@
                   "fr" : "Crawl avec pull-buoy 1500 m si épaule sensible"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1500"
+              },
               "duration" : "1500 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -8232,6 +9004,13 @@
                   "fr" : "Vélo route position route 90 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "90 min (15 easy endurance + 60 sustained tempo + 15 easy endurance, final cadence)",
+                  "es" : "90 min (15 resistencia fácil + 60 tempo sostenido + 15 resistencia fácil, cadencia final)",
+                  "fr" : "90 min (15 en endurance facile + 60 au tempo soutenu + 15 en endurance facile, cadence finale)"
+                }
+              },
               "duration" : "90 min (15 endurance facile + 60 tempo soutenu + 15 endurance facile cadence finale)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -8278,6 +9057,13 @@
                   "fr" : "Tapis 45 min (zone tempo) pente 1 %"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 min (5 easy + 35 at marathon pace + 5 recovery walk)",
+                  "es" : "45 min (5 fácil + 35 a ritmo maratón + 5 de caminata de recuperación)",
+                  "fr" : "45 min (5 facile + 35 à allure marathon + 5 de marche de récup)"
+                }
+              },
               "duration" : "45 min (5 facile (tu peux parler) + 35 allure marathon (soutenu) + 5 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -8339,6 +9125,10 @@
                   "fr" : "Crawl avec pull-buoy 3200 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "3200"
+              },
               "duration" : "3200 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -8401,6 +9191,13 @@
                   "fr" : "Vélo route position route 180 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "180 min (110 easy endurance + 50 sustained tempo + 20 easy endurance)",
+                  "es" : "180 min (110 resistencia fácil + 50 tempo sostenido + 20 resistencia fácil)",
+                  "fr" : "180 min (110 en endurance facile + 50 au tempo soutenu + 20 en endurance facile)"
+                }
+              },
               "duration" : "180 min (110 endurance facile + 50 tempo soutenu + 20 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -8469,6 +9266,13 @@
                   "fr" : "Trail vallonné 115 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "110 min (75 easy + 30 at marathon pace + 5 recovery walk)",
+                  "es" : "110 min (75 fácil + 30 a ritmo maratón + 5 de caminata de recuperación)",
+                  "fr" : "110 min (75 facile + 30 à allure marathon + 5 de marche de récup)"
+                }
+              },
               "duration" : "110 min (75 facile (tu peux parler) + 30 allure marathon (soutenu) + 5 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -8546,6 +9350,10 @@
                   "fr" : "Allure seuil 12 × 100 m récup 12 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "300"
+              },
               "duration" : "300 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -8586,6 +9394,13 @@
                   "fr" : "Soutenu 4 × 150 m récup 35 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m at threshold pace -5 s/100 m",
+                  "es" : "100 m a ritmo umbral -5 s/100 m",
+                  "fr" : "100 m à allure seuil -5 s/100 m"
+                }
+              },
               "duration" : "100 m à allure seuil-5s/100m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -8626,6 +9441,13 @@
                   "fr" : "Soutenu 6 × 75 m récup 25 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "50 m fast",
+                  "es" : "50 m rápido",
+                  "fr" : "50 m rapide"
+                }
+              },
               "duration" : "50 m @rapide",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -8689,6 +9511,13 @@
                   "fr" : "VO2max position route 6 × 5 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 min very hard (short, 110-120% FTP) + 5 min very easy recovery",
+                  "es" : "5 min muy duro (corto, 110-120 % FTP) + 5 min muy fácil en recuperación",
+                  "fr" : "5 min très dur (court, 110-120 % FTP) + 5 min très facile en récup"
+                }
+              },
               "duration" : "5 min @très dur (court) 110-120% FTP + 5 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -8755,6 +9584,10 @@
                   "fr" : "Intervalles au seuil 4 × 10 min récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -8795,6 +9628,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -8854,6 +9691,13 @@
                   "fr" : "Vélo route position route 150 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "150 min (90 easy endurance + 45 sustained tempo + 15 easy endurance, final cadence)",
+                  "es" : "150 min (90 resistencia fácil + 45 tempo sostenido + 15 resistencia fácil, cadencia final)",
+                  "fr" : "150 min (90 en endurance facile + 45 au tempo soutenu + 15 en endurance facile, cadence finale)"
+                }
+              },
               "duration" : "150 min (90 endurance facile + 45 tempo soutenu + 15 endurance facile cadence finale)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -8900,6 +9744,13 @@
                   "fr" : "Tapis 45 min (zone tempo) pente 1 %"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "45 min (5 easy + 35 at marathon pace + 5 recovery walk)",
+                  "es" : "45 min (5 fácil + 35 a ritmo maratón + 5 de caminata de recuperación)",
+                  "fr" : "45 min (5 facile + 35 à allure marathon + 5 de marche de récup)"
+                }
+              },
               "duration" : "45 min (5 facile (tu peux parler) + 35 allure marathon (soutenu) + 5 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -8961,6 +9812,10 @@
                   "fr" : "Crawl avec pull-buoy 3500 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "3500"
+              },
               "duration" : "3500 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -9023,6 +9878,13 @@
                   "fr" : "Vélo route position route 195 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "195 min (115 easy endurance + 60 sustained tempo + 20 easy endurance)",
+                  "es" : "195 min (115 resistencia fácil + 60 tempo sostenido + 20 resistencia fácil)",
+                  "fr" : "195 min (115 en endurance facile + 60 au tempo soutenu + 20 en endurance facile)"
+                }
+              },
               "duration" : "195 min (115 endurance facile + 60 tempo soutenu + 20 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -9091,6 +9953,13 @@
                   "fr" : "Trail vallonné 105 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 min (75 easy + 22 at marathon pace + 3 recovery walk)",
+                  "es" : "100 min (75 fácil + 22 a ritmo maratón + 3 de caminata de recuperación)",
+                  "fr" : "100 min (75 facile + 22 à allure marathon + 3 de marche de récup)"
+                }
+              },
               "duration" : "100 min (75 facile (tu peux parler) + 22 allure marathon (soutenu) + 3 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -9168,6 +10037,10 @@
                   "fr" : "Allure seuil 4 × 250 m récup 25 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -9208,6 +10081,13 @@
                   "fr" : "Soutenu 4 × 150 m récup 35 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m at threshold pace -5 s/100 m",
+                  "es" : "100 m a ritmo umbral -5 s/100 m",
+                  "fr" : "100 m à allure seuil -5 s/100 m"
+                }
+              },
               "duration" : "100 m à allure seuil-5s/100m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -9248,6 +10128,13 @@
                   "fr" : "Soutenu 4 × 75 m récup 30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "50 m fast",
+                  "es" : "50 m rápido",
+                  "fr" : "50 m rapide"
+                }
+              },
               "duration" : "50 m @rapide",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -9311,6 +10198,13 @@
                   "fr" : "Bloc tempo soutenu 60 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "VO2max block 50 min (5 × 5 min very hard (short) + 5 recovery) then sweet spot 20 min (88-92% FTP)",
+                  "es" : "bloque VO2max 50 min (5 × 5 min muy duro (corto) + 5 recuperación) luego sweet spot 20 min (88-92 % FTP)",
+                  "fr" : "bloc VO2max 50 min (5 × 5 min très dur (court) + 5 récup) puis sweet spot 20 min (88-92 % FTP)"
+                }
+              },
               "duration" : "VO2max bloc 50 min (5 × 5 min très dur (court) + 5 récup) puis sweet spot 20 min @88-92% FTP",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -9376,6 +10270,13 @@
                   "fr" : "Intervalles au seuil 5 × 8 min récup 90 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 min at threshold + 2 min recovery jog",
+                  "es" : "10 min en umbral + 2 min de trote de recuperación",
+                  "fr" : "10 min au seuil + 2 min de footing de récup"
+                }
+              },
               "duration" : "10 min @au seuil + 2 min jogging récup",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -9416,6 +10317,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -9475,6 +10380,13 @@
                   "fr" : "Vélo route position route 135 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "135 min (75 easy endurance + 45 sustained tempo + 15 easy endurance, final cadence)",
+                  "es" : "135 min (75 resistencia fácil + 45 tempo sostenido + 15 resistencia fácil, cadencia final)",
+                  "fr" : "135 min (75 en endurance facile + 45 au tempo soutenu + 15 en endurance facile, cadence finale)"
+                }
+              },
               "duration" : "135 min (75 endurance facile + 45 tempo soutenu + 15 endurance facile cadence finale)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -9521,6 +10433,13 @@
                   "fr" : "Tapis 40 min (zone tempo) pente 1 %"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "40 min (5 easy + 30 at marathon pace + 5 recovery walk)",
+                  "es" : "40 min (5 fácil + 30 a ritmo maratón + 5 de caminata de recuperación)",
+                  "fr" : "40 min (5 facile + 30 à allure marathon + 5 de marche de récup)"
+                }
+              },
               "duration" : "40 min (5 facile (tu peux parler) + 30 allure marathon (soutenu) + 5 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -9582,6 +10501,10 @@
                   "fr" : "Crawl avec pull-buoy 3000 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "3000"
+              },
               "duration" : "3000 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -9622,6 +10545,10 @@
                   "fr" : "Crawl normal (seuil aérobie) 100 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -9684,6 +10611,13 @@
                   "fr" : "Vélo route position route 180 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "180 min (110 easy endurance + 50 sustained tempo + 20 easy endurance)",
+                  "es" : "180 min (110 resistencia fácil + 50 tempo sostenido + 20 resistencia fácil)",
+                  "fr" : "180 min (110 en endurance facile + 50 au tempo soutenu + 20 en endurance facile)"
+                }
+              },
               "duration" : "180 min (110 endurance facile + 50 tempo soutenu + 20 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -9752,6 +10686,13 @@
                   "fr" : "Trail vallonné 100 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "95 min (70 easy + 22 at marathon pace + 3 recovery walk)",
+                  "es" : "95 min (70 fácil + 22 a ritmo maratón + 3 de caminata de recuperación)",
+                  "fr" : "95 min (70 facile + 22 à allure marathon + 3 de marche de récup)"
+                }
+              },
               "duration" : "95 min (70 facile (tu peux parler) + 22 allure marathon (soutenu) + 3 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -9829,6 +10770,10 @@
                   "fr" : "Allure seuil 8 × 75 m récup 12 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -9869,6 +10814,10 @@
                   "fr" : "Crawl avec pull-buoy 1500 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1500"
+              },
               "duration" : "1500 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -9931,6 +10880,13 @@
                   "fr" : "Tempo zone tempo 3 × 10 min RPE 6"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 min sustained tempo (88-92% FTP) + 4 min very easy recovery",
+                  "es" : "8 min tempo sostenido (88-92 % FTP) + 4 min muy fácil en recuperación",
+                  "fr" : "8 min au tempo soutenu (88-92 % FTP) + 4 min très facile en récup"
+                }
+              },
               "duration" : "8 min @tempo soutenu 88-92% FTP + 4 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -9974,6 +10930,10 @@
                   "fr" : "Zone facile cadence 95+ tr/min 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "no-trainer"
@@ -10033,6 +10993,10 @@
                   "fr" : "Intervalles au seuil 3 × 6 min récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -10072,6 +11036,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -10131,6 +11099,10 @@
                   "fr" : "Vélo route 90 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "90"
+              },
               "duration" : "90 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -10176,6 +11148,10 @@
                   "fr" : "Vélo elliptique 25 min (zone facile) si douleur au genou"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -10237,6 +11213,10 @@
                   "fr" : "Pont fessier sur une jambe 8/jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -10275,6 +11255,11 @@
                   "fr" : "Squat sur deux jambes, lent"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury",
                 "lower-back-pain"
@@ -10313,6 +11298,11 @@
                   "fr" : "Mollets debout (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLeg",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -10349,6 +11339,13 @@
                   "fr" : "Rotation externe à l'élastique seule 15/côté"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 each + 12 external rotations per side",
+                  "es" : "10 cada uno + 12 rotaciones externas por lado",
+                  "fr" : "10 chacun + 12 rotations externes par côté"
+                }
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -10386,6 +11383,13 @@
                   "fr" : "Gainage croisé au sol 12/côté + pointeur 10/côté"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 s front plank + 40 s per side",
+                  "es" : "60 s de plancha frontal + 40 s por lado",
+                  "fr" : "60 s de planche ventrale + 40 s par côté"
+                }
+              },
               "duration" : "60 sec ventrale + 40 sec/côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -10446,6 +11450,13 @@
                   "fr" : "Vélo route position route 120 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "120 min (95 easy endurance + 20 sustained tempo + 5 easy endurance)",
+                  "es" : "120 min (95 resistencia fácil + 20 tempo sostenido + 5 resistencia fácil)",
+                  "fr" : "120 min (95 en endurance facile + 20 au tempo soutenu + 5 en endurance facile)"
+                }
+              },
               "duration" : "120 min (95 endurance facile + 20 tempo soutenu + 5 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -10514,6 +11525,10 @@
                   "fr" : "Trail vallonné 80 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "75"
+              },
               "duration" : "75 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -10591,6 +11606,10 @@
                   "fr" : "Allure seuil 4 × 300 m récup 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -10631,6 +11650,13 @@
                   "fr" : "Soutenu 4 × 125 m récup 30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m at threshold pace -5 s/100 m",
+                  "es" : "100 m a ritmo umbral -5 s/100 m",
+                  "fr" : "100 m à allure seuil -5 s/100 m"
+                }
+              },
               "duration" : "100 m à allure seuil-5s/100m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -10671,6 +11697,13 @@
                   "fr" : "Soutenu 4 × 75 m récup 30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "50 m fast",
+                  "es" : "50 m rápido",
+                  "fr" : "50 m rapide"
+                }
+              },
               "duration" : "50 m @rapide",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -10734,6 +11767,13 @@
                   "fr" : "VO2max position route 5 × 5 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 min very hard (short, 110-120% FTP) + 5 min very easy recovery",
+                  "es" : "5 min muy duro (corto, 110-120 % FTP) + 5 min muy fácil en recuperación",
+                  "fr" : "5 min très dur (court, 110-120 % FTP) + 5 min très facile en récup"
+                }
+              },
               "duration" : "5 min @très dur (court) 110-120% FTP + 5 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -10777,6 +11817,10 @@
                   "fr" : "Zone facile cadence 95+ tr/min 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -10839,6 +11883,13 @@
                   "fr" : "Intervalles au seuil 5 × 8 min récup 90 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 min at threshold + 2 min recovery jog",
+                  "es" : "10 min en umbral + 2 min de trote de recuperación",
+                  "fr" : "10 min au seuil + 2 min de footing de récup"
+                }
+              },
               "duration" : "10 min @au seuil + 2 min jogging récup",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -10879,6 +11930,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -10938,6 +11993,13 @@
                   "fr" : "Vélo route position route 135 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "135 min (75 easy endurance + 45 sustained tempo + 15 easy endurance, final cadence)",
+                  "es" : "135 min (75 resistencia fácil + 45 tempo sostenido + 15 resistencia fácil, cadencia final)",
+                  "fr" : "135 min (75 en endurance facile + 45 au tempo soutenu + 15 en endurance facile, cadence finale)"
+                }
+              },
               "duration" : "135 min (75 endurance facile + 45 tempo soutenu + 15 endurance facile cadence finale)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -10984,6 +12046,13 @@
                   "fr" : "Tapis 40 min (zone tempo) pente 1 %"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "40 min (5 easy + 30 at marathon pace + 5 recovery walk)",
+                  "es" : "40 min (5 fácil + 30 a ritmo maratón + 5 de caminata de recuperación)",
+                  "fr" : "40 min (5 facile + 30 à allure marathon + 5 de marche de récup)"
+                }
+              },
               "duration" : "40 min (5 facile (tu peux parler) + 30 allure marathon (soutenu) + 5 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -11045,6 +12114,10 @@
                   "fr" : "Crawl avec pull-buoy 3200 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "3200"
+              },
               "duration" : "3200 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -11109,6 +12182,13 @@
                   "fr" : "Vélo route position route 195 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "195 min (115 easy endurance + 60 sustained tempo + 20 easy endurance)",
+                  "es" : "195 min (115 resistencia fácil + 60 tempo sostenido + 20 resistencia fácil)",
+                  "fr" : "195 min (115 en endurance facile + 60 au tempo soutenu + 20 en endurance facile)"
+                }
+              },
               "duration" : "195 min (115 endurance facile + 60 tempo soutenu + 20 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -11177,6 +12257,13 @@
                   "fr" : "Trail vallonné 105 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 min (70 easy + 27 at marathon pace + 3 recovery walk)",
+                  "es" : "100 min (70 fácil + 27 a ritmo maratón + 3 de caminata de recuperación)",
+                  "fr" : "100 min (70 facile + 27 à allure marathon + 3 de marche de récup)"
+                }
+              },
               "duration" : "100 min (70 facile (tu peux parler) + 27 allure marathon (soutenu) + 3 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -11254,6 +12341,10 @@
                   "fr" : "Allure seuil 4 × 250 m récup 25 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -11294,6 +12385,13 @@
                   "fr" : "Soutenu 4 × 125 m récup 30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m at threshold pace -5 s/100 m",
+                  "es" : "100 m a ritmo umbral -5 s/100 m",
+                  "fr" : "100 m à allure seuil -5 s/100 m"
+                }
+              },
               "duration" : "100 m à allure seuil-5s/100m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -11334,6 +12432,13 @@
                   "fr" : "Soutenu 4 × 100 m récup 30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "75 m fast",
+                  "es" : "75 m rápido",
+                  "fr" : "75 m rapide"
+                }
+              },
               "duration" : "75 m @rapide",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -11397,6 +12502,10 @@
                   "fr" : "Piscine sans combinaison 1500 m au seuil aérobie"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1500"
+              },
               "duration" : "1500 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -11440,6 +12549,10 @@
                   "fr" : "Vélo route position route 55 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "55"
+              },
               "duration" : "55 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -11505,6 +12618,10 @@
                   "fr" : "Intervalles au seuil 3 × 10 min récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -11545,6 +12662,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -11604,6 +12725,10 @@
                   "fr" : "Crawl avec pull-buoy 1900 m si épaule sensible"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1900"
+              },
               "duration" : "1900 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -11647,6 +12772,13 @@
                   "fr" : "Vélo route position route 105 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "105 min (15 easy endurance + 75 sustained tempo + 15 easy endurance, final cadence)",
+                  "es" : "105 min (15 resistencia fácil + 75 tempo sostenido + 15 resistencia fácil, cadencia final)",
+                  "fr" : "105 min (15 en endurance facile + 75 au tempo soutenu + 15 en endurance facile, cadence finale)"
+                }
+              },
               "duration" : "105 min (15 endurance facile + 75 tempo soutenu + 15 endurance facile cadence finale)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -11693,6 +12825,13 @@
                   "fr" : "Tapis 50 min (zone tempo) pente 1 %"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "50 min (5 easy + 40 at marathon pace + 5 recovery walk)",
+                  "es" : "50 min (5 fácil + 40 a ritmo maratón + 5 de caminata de recuperación)",
+                  "fr" : "50 min (5 facile + 40 à allure marathon + 5 de marche de récup)"
+                }
+              },
               "duration" : "50 min (5 facile (tu peux parler) + 40 allure marathon (soutenu) + 5 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -11754,6 +12893,10 @@
                   "fr" : "Crawl avec pull-buoy 2800 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "2800"
+              },
               "duration" : "2800 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -11816,6 +12959,13 @@
                   "fr" : "Vélo route position route 270 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "270 min (160 easy endurance + 75 sustained tempo + 35 easy endurance)",
+                  "es" : "270 min (160 resistencia fácil + 75 tempo sostenido + 35 resistencia fácil)",
+                  "fr" : "270 min (160 en endurance facile + 75 au tempo soutenu + 35 en endurance facile)"
+                }
+              },
               "duration" : "270 min (160 endurance facile + 75 tempo soutenu + 35 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -11884,6 +13034,10 @@
                   "fr" : "Trail vallonné 70 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "65"
+              },
               "duration" : "65 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -11961,6 +13115,10 @@
                   "fr" : "Allure seuil 3 × 250 m récup 25 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -12001,6 +13159,13 @@
                   "fr" : "Soutenu 3 × 125 m récup 30 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "100 m at threshold pace -5 s/100 m",
+                  "es" : "100 m a ritmo umbral -5 s/100 m",
+                  "fr" : "100 m à allure seuil -5 s/100 m"
+                }
+              },
               "duration" : "100 m à allure seuil-5s/100m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -12041,6 +13206,10 @@
                   "fr" : "Crawl avec pull-buoy 600 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "600"
+              },
               "duration" : "600 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -12105,6 +13274,13 @@
                   "fr" : "Tempo soutenu 4 × 15 min récup 5 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "60 min sustained tempo (88-92% FTP)",
+                  "es" : "60 min tempo sostenido (88-92 % FTP)",
+                  "fr" : "60 min au tempo soutenu (88-92 % FTP)"
+                }
+              },
               "duration" : "60 min @tempo soutenu 88-92% FTP",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -12149,6 +13325,10 @@
                   "fr" : "Zone facile cadence 95+ tr/min 15 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "no-trainer"
@@ -12208,6 +13388,13 @@
                   "fr" : "Intervalles au seuil 4 × 6 min récup 90 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 min at threshold + 90 s recovery",
+                  "es" : "8 min en umbral + 90 s de recuperación",
+                  "fr" : "8 min au seuil + 90 s de récup"
+                }
+              },
               "duration" : "8 min @au seuil + 90 sec récup",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -12248,6 +13435,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -12307,6 +13498,13 @@
                   "fr" : "Vélo route position route 105 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "105 min (15 easy endurance + 75 sustained tempo + 15 easy endurance, final cadence)",
+                  "es" : "105 min (15 resistencia fácil + 75 tempo sostenido + 15 resistencia fácil, cadencia final)",
+                  "fr" : "105 min (15 en endurance facile + 75 au tempo soutenu + 15 en endurance facile, cadence finale)"
+                }
+              },
               "duration" : "105 min (15 endurance facile + 75 tempo soutenu + 15 endurance facile cadence finale)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -12353,6 +13551,13 @@
                   "fr" : "Tapis 30 min (zone tempo) pente 1 %"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "30 min (5 easy + 22 at marathon pace + 3 recovery walk)",
+                  "es" : "30 min (5 fácil + 22 a ritmo maratón + 3 de caminata de recuperación)",
+                  "fr" : "30 min (5 facile + 22 à allure marathon + 3 de marche de récup)"
+                }
+              },
               "duration" : "30 min (5 facile (tu peux parler) + 22 allure marathon (soutenu) + 3 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -12414,6 +13619,10 @@
                   "fr" : "Crawl 500 m × 4 récup 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "2000"
+              },
               "duration" : "2000 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -12457,6 +13666,10 @@
                   "fr" : "Vélo route position route 45 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -12522,6 +13735,13 @@
                   "fr" : "Vélo route position route 150 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "150 min (105 easy endurance + 30 sustained tempo + 15 easy endurance)",
+                  "es" : "150 min (105 resistencia fácil + 30 tempo sostenido + 15 resistencia fácil)",
+                  "fr" : "150 min (105 en endurance facile + 30 au tempo soutenu + 15 en endurance facile)"
+                }
+              },
               "duration" : "150 min (105 endurance facile + 30 tempo soutenu + 15 endurance facile)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -12590,6 +13810,13 @@
                   "fr" : "Trail vallonné 85 min mixte"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "80 min (60 easy + 17 at marathon pace + 3 recovery walk)",
+                  "es" : "80 min (60 fácil + 17 a ritmo maratón + 3 de caminata de recuperación)",
+                  "fr" : "80 min (60 facile + 17 à allure marathon + 3 de marche de récup)"
+                }
+              },
               "duration" : "80 min (60 facile (tu peux parler) + 17 allure marathon (soutenu) + 3 walking-recovery)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -12667,6 +13894,10 @@
                   "fr" : "Allure seuil 6 × 75 m récup 12 s"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m à allure seuil pace",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -12707,6 +13938,10 @@
                   "fr" : "Crawl avec pull-buoy 1000 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1000"
+              },
               "duration" : "1000 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -12769,6 +14004,13 @@
                   "fr" : "Tempo zone tempo 2 × 10 min RPE 6"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "8 min sustained tempo (88-92% FTP) + 5 min very easy recovery",
+                  "es" : "8 min tempo sostenido (88-92 % FTP) + 5 min muy fácil en recuperación",
+                  "fr" : "8 min au tempo soutenu (88-92 % FTP) + 5 min très facile en récup"
+                }
+              },
               "duration" : "8 min @tempo soutenu 88-92% FTP + 5 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -12812,6 +14054,10 @@
                   "fr" : "Zone facile cadence 95+ tr/min 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "no-trainer"
@@ -12871,6 +14117,10 @@
                   "fr" : "Intervalles au seuil 2 × 5 min récup 2 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -12910,6 +14160,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -12969,6 +14223,10 @@
                   "fr" : "Vélo route 60 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "60"
+              },
               "duration" : "60 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -13015,6 +14273,10 @@
                   "fr" : "Vélo elliptique 15 min (zone facile) si douleur au genou"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -13076,6 +14338,10 @@
                   "fr" : "Éducatif 6-3-6 50 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -13114,6 +14380,10 @@
                   "fr" : "Crawl avec pull-buoy 800 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "800"
+              },
               "duration" : "800 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -13154,6 +14424,13 @@
                   "fr" : "Crawl rapide 4 × 50 m récup 75 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 m sprint",
+                  "es" : "25 m sprint",
+                  "fr" : "25 m sprint"
+                }
+              },
               "duration" : "25 m sprint",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -13216,6 +14493,10 @@
                   "fr" : "VTT chemin roulant 75 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "75"
+              },
               "duration" : "75 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -13283,6 +14564,10 @@
                   "fr" : "Marche-trot 20 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -13322,6 +14607,10 @@
                   "fr" : "Montées de genoux dynamiques 4 × 30 s"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "25"
+              },
               "duration" : "25 sec",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -13396,6 +14685,10 @@
                   "fr" : "Éducatif 6-3-6 50 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -13434,6 +14727,10 @@
                   "fr" : "Crawl avec pull-buoy 600 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "600"
+              },
               "duration" : "600 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -13474,6 +14771,13 @@
                   "fr" : "Crawl rapide 4 × 50 m récup 75 s"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 m sprint",
+                  "es" : "25 m sprint",
+                  "fr" : "25 m sprint"
+                }
+              },
               "duration" : "25 m sprint",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -13536,6 +14840,13 @@
                   "fr" : "Tempo zone tempo 2 × 5 min RPE 6"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "4 min sustained tempo (88-92% FTP) + 4 min very easy recovery",
+                  "es" : "4 min tempo sostenido (88-92 % FTP) + 4 min muy fácil en recuperación",
+                  "fr" : "4 min au tempo soutenu (88-92 % FTP) + 4 min très facile en récup"
+                }
+              },
               "duration" : "4 min @tempo soutenu 88-92% FTP + 4 min très facile récup",
               "incompatible_constraints" : [
                 "no-trainer",
@@ -13579,6 +14890,10 @@
                   "fr" : "Zone facile cadence 95+ tr/min 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "no-trainer"
@@ -13638,6 +14953,10 @@
                   "fr" : "Vélo route 30 min (zone facile)"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -13684,6 +15003,10 @@
                   "fr" : "Marche-trot 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -13745,6 +15068,10 @@
                   "fr" : "Marche calme 25 min en pleine nature"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
 
@@ -13802,6 +15129,13 @@
                   "fr" : "Reconnaissance du plan d'eau de la course"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "10 min (300 m total)",
+                  "es" : "10 min (300 m en total)",
+                  "fr" : "10 min (300 m au total)"
+                }
+              },
               "duration" : "10 min (300 m total)",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -13844,6 +15178,13 @@
                   "fr" : "Vélo route position route 20 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "20 min (15 easy endurance + 2 × 30 s sustained tempo, 90 s recovery)",
+                  "es" : "20 min (15 resistencia fácil + 2 × 30 s tempo sostenido, 90 s de recuperación)",
+                  "fr" : "20 min (15 en endurance facile + 2 × 30 s au tempo soutenu, récup 90 s)"
+                }
+              },
               "duration" : "20 min (15 endurance facile + 2 × 30 sec @tempo soutenu récup 90 sec)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -13887,6 +15228,13 @@
                   "fr" : "Marche-trot 15 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "15 min (10 easy + 4 × 100 m strides, 90 s recovery)",
+                  "es" : "15 min (10 fácil + 4 strides 100 m, 90 s de recuperación)",
+                  "fr" : "15 min (10 facile + 4 strides 100 m, récup 90 s)"
+                }
+              },
               "duration" : "15 min (10 facile (tu peux parler) + 4 strides 100 m récup 90 sec)",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -13948,6 +15296,13 @@
                   "fr" : "Mobilité douce 10 min si stress"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "Rest",
+                  "es" : "Descanso",
+                  "fr" : "Repos"
+                }
+              },
               "duration" : "Repos",
               "incompatible_constraints" : [
 
@@ -14005,6 +15360,10 @@
                   "fr" : "Brasse partielle si fatigue/panique (sécurité prioritaire)"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "1900"
+              },
               "duration" : "1900 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -14047,6 +15406,13 @@
                   "fr" : "Vélo zone facile (endurance facile) conservateur si fatigue/chaleur (sécurité prioritaire)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "180 min (~90 km estimated depending on the route profile)",
+                  "es" : "180 min (~90 km estimados según el perfil del recorrido)",
+                  "fr" : "180 min (~90 km estimés selon le profil du parcours)"
+                }
+              },
               "duration" : "180 min (90 km estimé selon profil parcours)",
               "incompatible_constraints" : [
                 "no-bike",
@@ -14094,6 +15460,13 @@
                   "fr" : "Marche-course progressive si crampes (sécurité prioritaire)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "120 min (~21.1 km estimated)",
+                  "es" : "120 min (~21,1 km estimados)",
+                  "fr" : "120 min (~21,1 km estimés)"
+                }
+              },
               "duration" : "120 min (21.1 km estimé)",
               "incompatible_constraints" : [
                 "shin-splints",
