@@ -65,7 +65,7 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
 
     private func frLeak(in text: String) -> String? {
         let lower = text.lowercased()
-        for tok in Self.frTokens where Self.containsWord(tok, in: lower) {
+        for (tok, re) in Self.frTokenRegexes where Self.containsWord(re, in: lower) {
             return "token « \(tok) »"
         }
         if lower.rangeOfCharacter(from: Self.frDiacritics) != nil {
@@ -74,12 +74,18 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
         return nil
     }
 
+    /// Regex pré-compilées une seule fois (frontière de mot par token). Compiler à chaque
+    /// appel coûtait O(rendus × tokens) compilations → des minutes sur Intel quand le corpus
+    /// dose a grossi (Lot 9 triathlon). Pré-compilation = quelques dizaines de compiles au total.
+    private static let frTokenRegexes: [(token: String, re: NSRegularExpression)] = frTokens.map { tok in
+        let pattern = "(?<![\\p{L}])" + NSRegularExpression.escapedPattern(for: tok) + "(?![\\p{L}])"
+        return (tok, try! NSRegularExpression(pattern: pattern))
+    }
+
     /// Match par frontière de mot (lettres Unicode) : « recup » ne matche PAS l'espagnol
     /// correct « recuperación », mais matche bien l'abréviation FR « recup » isolée.
-    private static func containsWord(_ token: String, in text: String) -> Bool {
-        let pattern = "(?<![\\p{L}])" + NSRegularExpression.escapedPattern(for: token) + "(?![\\p{L}])"
-        guard let re = try? NSRegularExpression(pattern: pattern) else { return text.contains(token) }
-        return re.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)) != nil
+    private static func containsWord(_ re: NSRegularExpression, in text: String) -> Bool {
+        re.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)) != nil
     }
 
     /// (chemin, dose) de tous les exercices d'un template, variantes incluses.
@@ -152,6 +158,10 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
 
     func testEveryFootballExerciseHasDose() async throws {
         try await assertEverySportExerciseHasDose(.football, name: "football")
+    }
+
+    func testEveryTriathlonExerciseHasDose() async throws {
+        try await assertEverySportExerciseHasDose(.triathlon, name: "triathlon")
     }
 
     private func assertEverySportExerciseHasDose(_ sport: Sport, name: String, file: StaticString = #filePath, line: UInt = #line) async throws {

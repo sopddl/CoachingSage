@@ -53,6 +53,10 @@
                   "fr" : "Glissée poussée mur"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -92,6 +96,13 @@
                   "fr" : "Crawl avec pull-buoy 25 m (focus haut du corps)"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 m easy freestyle",
+                  "es" : "25 m crol suave",
+                  "fr" : "25 m crawl lent"
+                }
+              },
               "duration" : "25 m crawl lent",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -132,6 +143,10 @@
                   "fr" : "Battements ventre tête en immersion 15 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -193,6 +208,10 @@
                   "fr" : "VTT chemin plat 45 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -256,6 +275,10 @@
                   "fr" : "Marche rapide 35 min + 5 min jogging final"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -317,6 +340,10 @@
                   "fr" : "Pont tenu sans bouger 20 sec × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -353,6 +380,11 @@
                   "fr" : "Ouverture de hanche avec mini-bande résistive"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -389,6 +421,10 @@
                   "fr" : "Extension des mollets au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -425,6 +461,11 @@
                   "fr" : "Rotation externe à l'élastique"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -461,6 +502,10 @@
                   "fr" : "Gainage croisé au sol"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "20"
+              },
               "duration" : "20 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -499,6 +544,11 @@
                   "fr" : "Pointeur avant-bras au sol"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "wrist-injury",
                 "lower-back-pain"
@@ -558,6 +608,10 @@
                   "fr" : "Étirements statiques globaux 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -630,6 +684,13 @@
                   "fr" : "Crawl avec pull-buoy 25 m × 8"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "25 m freestyle",
+                  "es" : "25 m crol",
+                  "fr" : "25 m crawl"
+                }
+              },
               "duration" : "25 m crawl",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -669,6 +730,10 @@
                   "fr" : "Crawl 6-3-6 (6 battements bras allongé, 3 brassées) 25 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -707,6 +772,13 @@
                   "fr" : "Brasse 50 m × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "50 m freestyle",
+                  "es" : "50 m crol",
+                  "fr" : "50 m crawl"
+                }
+              },
               "duration" : "50 m crawl",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -767,6 +839,10 @@
                   "fr" : "VTT chemin plat 60 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "60"
+              },
               "duration" : "60 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -830,6 +906,10 @@
                   "fr" : "Marche rapide 35 min + 5 min jogging final"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -891,6 +971,10 @@
                   "fr" : "Pont tenu sans bouger 25 sec × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -922,6 +1006,11 @@
                   "fr" : "Ouverture de hanche avec mini-bande"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -953,6 +1042,10 @@
                   "fr" : "Extension des mollets au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "20"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -984,6 +1077,11 @@
                   "fr" : "Rotation externe à l'élastique 15/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -1015,6 +1113,10 @@
                   "fr" : "Montées sur banc bas 10/jambe"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "knee-injury"
@@ -1051,6 +1153,10 @@
                   "fr" : "Gainage croisé au sol 12/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1084,6 +1190,11 @@
                   "fr" : "Pointeur avant-bras 10/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "wrist-injury",
                 "lower-back-pain"
@@ -1138,6 +1249,10 @@
                   "fr" : "Étirements statiques globaux 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -1210,6 +1325,10 @@
                   "fr" : "Un bras accroche 25 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -1248,6 +1367,10 @@
                   "fr" : "Crawl avec pull-buoy 100 m × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -1286,6 +1409,10 @@
                   "fr" : "Battements ventre tête immergée 15 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "chlorine-allergy"
@@ -1346,6 +1473,10 @@
                   "fr" : "VTT chemin plat 65 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "65"
+              },
               "duration" : "65 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -1409,6 +1540,10 @@
                   "fr" : "Course/marche 6 × 4 min course + 1 min marche"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1470,6 +1605,13 @@
                   "fr" : "T1 mentale visualisation 5 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min per lap",
+                  "es" : "1 min por vuelta",
+                  "fr" : "1 min par tour"
+                }
+              },
               "duration" : "1 min par tour",
               "incompatible_constraints" : [
 
@@ -1507,6 +1649,13 @@
                   "fr" : "T2 mentale visualisation 5 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min per lap",
+                  "es" : "1 min por vuelta",
+                  "fr" : "1 min par tour"
+                }
+              },
               "duration" : "1 min par tour",
               "incompatible_constraints" : [
 
@@ -1546,6 +1695,10 @@
                   "fr" : "Pont tenu sans bouger 30 sec × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -1577,6 +1730,11 @@
                   "fr" : "Rotation externe à l'élastique 12/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -1608,6 +1766,10 @@
                   "fr" : "Gainage croisé au sol 12/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "35"
+              },
               "duration" : "35 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -1663,6 +1825,10 @@
                   "fr" : "Étirements statiques globaux 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -1735,6 +1901,10 @@
                   "fr" : "Crawl pull-buoy 200 m × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -1773,6 +1943,10 @@
                   "fr" : "Éducatif 6-3-6 25 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -1833,6 +2007,10 @@
                   "fr" : "VTT chemin plat 75 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "75"
+              },
               "duration" : "75 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -1896,6 +2074,10 @@
                   "fr" : "Course/marche 6 × 4 min course + 1 min marche"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -1957,6 +2139,10 @@
                   "fr" : "VTT chemin plat 30 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -1998,6 +2184,10 @@
                   "fr" : "Pas de transition (course direct depuis vélo posé) 30 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "2"
+              },
               "duration" : "2 min",
               "incompatible_constraints" : [
 
@@ -2035,6 +2225,10 @@
                   "fr" : "Course/marche 4 min course + 1 min marche × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2096,6 +2290,13 @@
                   "fr" : "T2 seule × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 min per lap",
+                  "es" : "2 min por vuelta",
+                  "fr" : "2 min par tour"
+                }
+              },
               "duration" : "2 min par tour",
               "incompatible_constraints" : [
 
@@ -2134,6 +2335,11 @@
                   "fr" : "Pont fessier pieds sur chaise 10/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2170,6 +2376,10 @@
                   "fr" : "Extension des mollets au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "20"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2201,6 +2411,11 @@
                   "fr" : "Rotation externe à l'élastique 15/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -2269,6 +2484,10 @@
                   "fr" : "Un bras accroche 25 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "25"
+              },
               "duration" : "25 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -2307,6 +2526,10 @@
                   "fr" : "Crawl pull-buoy 200 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -2345,6 +2568,10 @@
                   "fr" : "Crawl pull-buoy 50 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -2405,6 +2632,10 @@
                   "fr" : "VTT chemin plat 50 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "50"
+              },
               "duration" : "50 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -2468,6 +2699,10 @@
                   "fr" : "Marche rapide 35 min + 5 min jogging"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2529,6 +2764,13 @@
                   "fr" : "T2 seule × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 min per lap",
+                  "es" : "2 min por vuelta",
+                  "fr" : "2 min par tour"
+                }
+              },
               "duration" : "2 min par tour",
               "incompatible_constraints" : [
 
@@ -2567,6 +2809,11 @@
                   "fr" : "Pont fessier pieds sur chaise"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -2598,6 +2845,10 @@
                   "fr" : "Extension des mollets au mur"
                 }
               ],
+              "dose" : {
+                "unit" : "reps",
+                "value" : "18"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -2629,6 +2880,10 @@
                   "fr" : "Gainage croisé au sol 12/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -2684,6 +2939,10 @@
                   "fr" : "Étirements statiques globaux 12 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
 
@@ -2756,6 +3015,10 @@
                   "fr" : "Crawl pull-buoy 200 m × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -2794,6 +3057,10 @@
                   "fr" : "Crawl normal 50 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -2855,6 +3122,10 @@
                   "fr" : "VTT chemin plat 80 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "80"
+              },
               "duration" : "80 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -2918,6 +3189,10 @@
                   "fr" : "Course/marche 6 × 4 min course + 1 min marche"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -2979,6 +3254,10 @@
                   "fr" : "VTT chemin plat 35 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -3020,6 +3299,13 @@
                   "fr" : "Pas de transition (course direct) 30 sec"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min 30",
+                  "es" : "1 min 30",
+                  "fr" : "1 min 30"
+                }
+              },
               "duration" : "1 min 30",
               "incompatible_constraints" : [
 
@@ -3058,6 +3344,10 @@
                   "fr" : "Course/marche 5 min course + 1 min marche × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "10"
+              },
               "duration" : "10 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -3119,6 +3409,13 @@
                   "fr" : "T1 mentale visualisation 5 min"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "2 min per lap",
+                  "es" : "2 min por vuelta",
+                  "fr" : "2 min par tour"
+                }
+              },
               "duration" : "2 min par tour",
               "incompatible_constraints" : [
 
@@ -3156,6 +3453,11 @@
                   "fr" : "Pont fessier pieds sur chaise"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -3187,6 +3489,11 @@
                   "fr" : "Extensions des mollets assis"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3223,6 +3530,11 @@
                   "fr" : "Rotation externe à l'élastique 15/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -3291,6 +3603,10 @@
                   "fr" : "Crawl pull-buoy 500 m si épaule fatiguée"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "500"
+              },
               "duration" : "500 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -3329,6 +3645,10 @@
                   "fr" : "Crawl normal 50 m × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -3390,6 +3710,10 @@
                   "fr" : "VTT chemin plat 80 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "80"
+              },
               "duration" : "80 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -3453,6 +3777,10 @@
                   "fr" : "Course/marche 7 × 4 min course + 1 min marche"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -3514,6 +3842,10 @@
                   "fr" : "VTT chemin plat 40 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -3555,6 +3887,13 @@
                   "fr" : "Pas de transition 30 sec"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min 30",
+                  "es" : "1 min 30",
+                  "fr" : "1 min 30"
+                }
+              },
               "duration" : "1 min 30",
               "incompatible_constraints" : [
 
@@ -3593,6 +3932,10 @@
                   "fr" : "Course/marche 5 min course + 1 min marche × 2"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -3654,6 +3997,11 @@
                   "fr" : "Pont fessier pieds sur chaise"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -3685,6 +4033,11 @@
                   "fr" : "Mollets debout (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -3721,6 +4074,11 @@
                   "fr" : "Rotation externe manuelle (sans élastique) 12/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perEach",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -3758,6 +4116,10 @@
                   "fr" : "Gainage croisé au sol 14/côté"
                 }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
@@ -3828,6 +4190,10 @@
                   "fr" : "Crawl pull-buoy 100 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "100"
+              },
               "duration" : "100 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -3866,6 +4232,13 @@
                   "fr" : "Crawl normal 50 m × 4"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "50 m (alternating sighting / normal swim)",
+                  "es" : "50 m (alternando sighting / nado normal)",
+                  "fr" : "50 m (alternance sighting / nage normale)"
+                }
+              },
               "duration" : "50 m (alternance sighting/normal)",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -3927,6 +4300,10 @@
                   "fr" : "VTT chemin plat 90 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "90"
+              },
               "duration" : "90 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -3990,6 +4367,10 @@
                   "fr" : "Course/marche 6 × 4 min course + 1 min marche"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4051,6 +4432,10 @@
                   "fr" : "VTT chemin plat 45 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -4092,6 +4477,13 @@
                   "fr" : "Pas de transition 30 sec"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min 30",
+                  "es" : "1 min 30",
+                  "fr" : "1 min 30"
+                }
+              },
               "duration" : "1 min 30",
               "incompatible_constraints" : [
 
@@ -4130,6 +4522,10 @@
                   "fr" : "Course/marche 5 min course + 1 min marche × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4191,6 +4587,13 @@
                   "fr" : "T1+T2 sans mime cyclisme/course"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "3 min per lap",
+                  "es" : "3 min por vuelta",
+                  "fr" : "3 min par tour"
+                }
+              },
               "duration" : "3 min par tour",
               "incompatible_constraints" : [
 
@@ -4229,6 +4632,11 @@
                   "fr" : "Pont fessier pieds sur chaise"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -4260,6 +4668,11 @@
                   "fr" : "Mollets debout (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -4291,6 +4704,11 @@
                   "fr" : "Rotation externe à l'élastique 15/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -4359,6 +4777,10 @@
                   "fr" : "Crawl pull-buoy 500 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "500"
+              },
               "duration" : "500 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -4397,6 +4819,10 @@
                   "fr" : "Crawl normal 50 m × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "50"
+              },
               "duration" : "50 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -4458,6 +4884,10 @@
                   "fr" : "VTT chemin plat 75 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "75"
+              },
               "duration" : "75 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -4521,6 +4951,10 @@
                   "fr" : "Course/marche 6 × 4 min course + 1 min marche"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "30"
+              },
               "duration" : "30 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4582,6 +5016,10 @@
                   "fr" : "VTT chemin plat 45 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "45"
+              },
               "duration" : "45 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -4623,6 +5061,13 @@
                   "fr" : "Pas de transition 30 sec"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min 30",
+                  "es" : "1 min 30",
+                  "fr" : "1 min 30"
+                }
+              },
               "duration" : "1 min 30",
               "incompatible_constraints" : [
 
@@ -4661,6 +5106,10 @@
                   "fr" : "Course/marche 5 min course + 1 min marche × 3"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -4722,6 +5171,13 @@
                   "fr" : "Simulation lente sans chrono"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 min per lap",
+                  "es" : "5 min por vuelta",
+                  "fr" : "5 min par tour"
+                }
+              },
               "duration" : "5 min par tour",
               "incompatible_constraints" : [
 
@@ -4760,6 +5216,11 @@
                   "fr" : "Pont fessier pieds sur chaise"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
@@ -4796,6 +5257,11 @@
                   "fr" : "Mollets debout (deux pieds)"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
@@ -4832,6 +5298,11 @@
                   "fr" : "Rotation externe à l'élastique 12/côté"
                 }
               ],
+              "dose" : {
+                "qualifier" : "perLetter",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "shoulder-injury"
               ],
@@ -4900,6 +5371,10 @@
                   "fr" : "Crawl pull-buoy 200 m"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "200"
+              },
               "duration" : "200 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -4960,6 +5435,10 @@
                   "fr" : "VTT chemin plat 35 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -5023,6 +5502,10 @@
                   "fr" : "Marche rapide 30 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "shin-splints",
@@ -5084,6 +5567,10 @@
                   "fr" : "Étirements statiques globaux 10 min"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
 
@@ -5119,6 +5606,13 @@
                   "fr" : "Mime T1+T2 1 fois lent"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "3 min per lap",
+                  "es" : "3 min por vuelta",
+                  "fr" : "3 min par tour"
+                }
+              },
               "duration" : "3 min par tour",
               "incompatible_constraints" : [
 
@@ -5179,6 +5673,10 @@
                   "fr" : "Crawl pull-buoy 500 m si épaule fatiguée"
                 }
               ],
+              "dose" : {
+                "unit" : "meters",
+                "value" : "500"
+              },
               "duration" : "500 m",
               "incompatible_constraints" : [
                 "chlorine-allergy",
@@ -5218,6 +5716,10 @@
                   "fr" : "Pas de T1 (départ direct vélo) 30 sec"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "2"
+              },
               "duration" : "2 min",
               "incompatible_constraints" : [
 
@@ -5254,6 +5756,10 @@
                   "fr" : "VTT chemin plat 55 min endurance facile"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "55"
+              },
               "duration" : "55 min",
               "incompatible_constraints" : [
                 "no-bike",
@@ -5295,6 +5801,13 @@
                   "fr" : "Pas de T2 30 sec"
                 }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min 30",
+                  "es" : "1 min 30",
+                  "fr" : "1 min 30"
+                }
+              },
               "duration" : "1 min 30",
               "incompatible_constraints" : [
 
@@ -5333,6 +5846,10 @@
                   "fr" : "Course/marche 5 min course + 1 min marche × 4"
                 }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "shin-splints",
