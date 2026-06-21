@@ -38,6 +38,18 @@ final class NoResidualEnglishInDisplayedFRTests: XCTestCase {
             //   francisés ; vertical jump→saut vertical, skater jumps→sauts de
             //   patineur, race week→semaine de course, S&C→renforcement physique) —
             #"\bvertical jump\b"#, #"\bskater jumps?\b"#, #"\brace week\b"#, #"S&C"#,
+            // — passe « warmup jargon EN→FR » 2026-06-21 (jargon mobilité/échauffement
+            //   muscu + HIIT resté anglais : rower→rameur, wall slides→glissements au
+            //   mur, lateral walks→pas latéraux, thoracic rotation→rotation thoracique,
+            //   ankle→cheville, gloses (back squat)/(knee-to-wall) retirées) —
+            #"\brower\b"#, #"\bwall slides\b"#, #"\blateral walks\b"#,
+            #"\bthoracic rotation\b"#, #"\bdislocate\b"#, #"\bback squat\b"#,
+            #"\bknee-to-wall\b"#, #"\bankle\b"#,
+            // — passe « notes longues » 2026-06-21 (anglais dans les notes denses,
+            //   sweep agent/sport : polarized→polarisé, threshold→seuil, woodchopper→
+            //   bûcheron). « polarized » (z anglais) ≠ « polarisé » (FR) → pas de faux
+            //   positif. « aerobic threshold » reste tolérée via `allowed`. —
+            #"\bpolarized\b"#, #"\bthreshold\b"#, #"\bwoodchopper\b"#,
         ].joined(separator: "|"), options: [.caseInsensitive])
 
     /// Phrases tolérées : noms canoniques d'exos / méthodes / matériel / marques
