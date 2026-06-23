@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onboarding — fil Léon · CoachingSage</title>
+<style>
+  :root{
+    --primary:#1E5090; --accent:#7BC142; --earth:#1B3A5C;
+    --text:#141E2B; --text2:#5A6577; --bg:#F5F2EE; --card:#EDE9E3;
+    --leonText:#E8F0FA; --success:#2D8A4E; --warning:#E08A3A;
+  }
+  *{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+    background:linear-gradient(160deg,#eef1f5,#e6e1d8);color:var(--text);padding:38px 20px 70px}
+  h1{font-size:25px;font-weight:800;text-align:center;margin:0 0 6px;letter-spacing:-.02em}
+  .sub{text-align:center;color:var(--text2);max-width:720px;margin:0 auto 26px;font-size:14.5px;line-height:1.5}
+  .stage{display:flex;gap:48px;justify-content:center;flex-wrap:wrap;align-items:flex-start}
+  .col{width:344px}
+  .col-label{text-align:center;margin-bottom:13px}
+  .col-label .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--primary);padding:4px 13px;border-radius:999px}
+  .col-label.prog .tag{background:var(--earth)}
+  .col-label p{margin:7px 6px 0;color:var(--text2);font-size:13px;line-height:1.45}
+
+  .phone{width:344px;height:712px;background:#0d1622;border-radius:46px;padding:11px;
+    box-shadow:0 30px 60px -20px rgba(20,30,43,.45),0 0 0 2px rgba(255,255,255,.04) inset;position:relative}
+  .screen{width:100%;height:100%;background:var(--bg);border-radius:36px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+  .notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:120px;height:26px;background:#0d1622;border-radius:0 0 16px 16px;z-index:5}
+  .statusbar{height:44px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 22px 5px;font-size:12.5px;font-weight:700}
+  .nav{display:flex;align-items:center;gap:11px;padding:5px 16px 8px}
+  .nav .back{width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid #e3ded5;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:17px;font-weight:800}
+  .nav .title{font-size:17px;font-weight:800;color:var(--earth)}
+  .flow{flex:1;overflow:hidden;padding:4px 15px 0;display:flex;flex-direction:column;gap:11px}
+
+  .leon{display:flex;gap:9px;align-items:flex-start}
+  .ava{flex:none;width:33px;height:33px;border-radius:50%;background:linear-gradient(150deg,#2a63ab,#1E5090);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;box-shadow:0 4px 10px rgba(30,80,144,.35)}
+  .bubble{background:var(--primary);color:var(--leonText);padding:10px 13px;border-radius:15px 15px 15px 5px;font-size:13.5px;line-height:1.45;max-width:235px;box-shadow:0 4px 12px rgba(30,80,144,.18)}
+  .bubble.sm{font-size:12.5px}
+
+  /* zones */
+  .zlabel{display:flex;align-items:center;gap:7px;font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--text2);margin:2px 0 1px}
+  .zlabel .num{width:17px;height:17px;border-radius:50%;background:var(--text2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px}
+  .ask{display:flex;align-items:flex-start;gap:10px;background:#fff;border:2px solid var(--primary);border-radius:15px;padding:14px;box-shadow:0 8px 18px -8px rgba(30,80,144,.28)}
+  .ask .ic{font-size:17px;line-height:1.3}
+  .ask .txt{font-size:13.5px;line-height:1.45;color:var(--text);font-weight:600}
+  .ask .ph{font-size:13.5px;color:#9aa3b1;font-style:italic}
+
+  /* tuiles sport colorées (reproduction SportTileView : bordure couleur, icône couleur, sélectionné = rempli) */
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+  /* carrousel sport (écran programme) : tes sports, swipeable ; le dernier "peek" signale le scroll */
+  .carousel{display:flex;gap:7px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent)}
+  .carousel .tile{flex:0 0 72px}
+  .tile.autre{--c:#9aa3b1;border-style:dashed;color:#7d8694}
+  .tile{border-radius:13px;border:2px solid var(--c);background:#fff;color:var(--c);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    padding:9px 4px;font-size:10.5px;font-weight:700;text-align:center;min-height:60px}
+  .tile .ic{font-size:21px;line-height:1}
+  .tile.sel{background:var(--c);color:#fff}
+  .t-course{--c:#1E5090}.t-velo{--c:#2D8A4E}.t-natation{--c:#4FB3D9}.t-yoga{--c:#9B6BB3}
+  .t-muscu{--c:#8C4A2E}.t-hiit{--c:#C43D3D}.t-rando{--c:#4A7044}.t-tennis{--c:#E08A3A}
+  .t-foot{--c:#1B3A5C}.t-tri{--c:#D4A85A}
+
+  /* consent */
+  .consent{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e6e0d6;border-radius:14px;padding:11px 13px;box-shadow:0 3px 10px rgba(20,30,43,.05)}
+  .consent .lock{font-size:17px}
+  .consent .ct{flex:1;font-size:12px;line-height:1.35;color:var(--text2)}
+  .consent .ct b{color:var(--text)}
+  .consent .allow{background:var(--primary);color:#fff;border:none;border-radius:10px;padding:8px 13px;font-size:12.5px;font-weight:700;white-space:nowrap}
+
+  /* zone restitution Léon (fond distinct) */
+  .resto{background:#eaf1fb;border:1px solid #d6e3f5;border-radius:16px;padding:12px}
+  .resto .head{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+  .resto .head .ava{width:28px;height:28px;font-size:13px}
+  .resto .head .who{font-size:12.5px;font-weight:800;color:var(--primary)}
+  .resto .say{font-size:12.5px;line-height:1.45;color:var(--earth);margin:0 0 10px}
+  .resto .say .ok{color:var(--success);font-weight:700}
+  .resto .say .soon{color:var(--warning);font-weight:700}
+  .recap{background:#fff;border:1px solid #e6e0d6;border-radius:12px;overflow:hidden}
+  .row{display:flex;align-items:center;justify-content:space-between;padding:9px 13px;border-bottom:1px solid #f0ece4}
+  .row:last-child{border-bottom:none}
+  .row .k{font-size:10.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--text2)}
+  .row .v{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:500;color:var(--text)}
+  .row .v .pen{color:var(--primary);font-size:12px}
+  .vwrap{display:flex;flex-direction:column;align-items:flex-end}
+  .row .why{font-size:10.5px;color:var(--text2);font-style:italic;margin-top:1px}
+  .sportmini{display:inline-flex;align-items:center;gap:5px;font-weight:600}
+  .sportmini .d{width:9px;height:9px;border-radius:50%}
+
+  .foot{padding:10px 15px 10px;margin-top:auto}
+  /* vraie barre : 3 onglets (gauche) + FAB Léon (droite, à cheval). Icônes = bouchons maquette,
+     l'app garde ses SF Symbols : figure.run / chart.bar.fill / person.fill */
+  .tabbar{display:flex;align-items:center;height:52px;border-top:1px solid #e2ddd4;background:rgba(255,255,255,.94);position:relative;padding:0 6px}
+  .tabbar .tabs{display:flex;flex:1;justify-content:space-around;padding-right:52px}
+  .tabbar .tab{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;font-weight:600;color:#9aa3b1}
+  .tabbar .tab.on{color:var(--primary)}
+  .tabbar .tab .ti{font-size:17px;line-height:1}
+  .tabbar .fab{position:absolute;right:16px;top:-15px;width:46px;height:46px;border-radius:50%;background:linear-gradient(150deg,#2a63ab,#1E5090);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;box-shadow:0 7px 16px rgba(30,80,144,.42);border:3px solid #fff}
+  .go{width:100%;background:var(--accent);color:#10371a;font-size:16px;font-weight:600;border:none;border-radius:15px;padding:14px;box-shadow:0 10px 24px -6px rgba(123,193,66,.5)}
+
+  .caption{max-width:720px;margin:42px auto 0;background:#fff;border:1px solid #e6e0d6;border-radius:16px;padding:18px 24px;box-shadow:0 8px 22px -12px rgba(20,30,43,.15)}
+  .caption h3{margin:0 0 9px;font-size:15.5px;color:var(--earth)}
+  .caption li{margin:6px 0;font-size:13.5px;line-height:1.5}
+  .caption b{color:var(--primary)}
+</style>
+</head>
+<body>
+
+  <h1>Le fil de Léon — un seul template</h1>
+  <p class="sub">L'app <b>demande</b> (sport + accord) ; le programme <b>écoute, puis restitue</b>. Deux zones franches : <b>ta demande</b> en haut, <b>ce que Léon propose</b> en bas. Tout reste éditable — tu changes d'avis, la proposition se recompose.</p>
+
+  <div class="stage">
+
+    <!-- ============ BIENVENUE (APP) ============ -->
+    <div class="col">
+      <div class="col-label">
+        <span class="tag">Bienvenue · App</span>
+        <p>On apprend juste tes <b>sports</b> (plusieurs possibles) et on demande l'<b>accord</b> pour lire tes séances de sport.</p>
+      </div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="statusbar"><span>9:41</span><span>5G&nbsp;&nbsp;100%</span></div>
+          <div class="nav"><div class="back">‹</div><div class="title">Bienvenue 👋</div></div>
+          <div class="flow">
+            <div class="leon">
+              <div class="ava">L</div>
+              <div class="bubble sm">Salut Sophie ! Moi c'est Léon. Tu pratiques quoi ? Choisis-en autant que tu veux — tu pourras changer.</div>
+            </div>
+            <div class="tiles">
+              <div class="tile t-course sel"><span class="ic">🏃</span>Course</div>
+              <div class="tile t-velo sel"><span class="ic">🚴</span>Vélo</div>
+              <div class="tile t-natation"><span class="ic">🏊</span>Natation</div>
+              <div class="tile t-yoga sel"><span class="ic">🧘</span>Yoga</div>
+              <div class="tile t-muscu"><span class="ic">🏋️</span>Muscu</div>
+              <div class="tile t-hiit"><span class="ic">⚡</span>HIIT</div>
+              <div class="tile t-rando"><span class="ic">🥾</span>Rando</div>
+              <div class="tile t-tennis"><span class="ic">🎾</span>Tennis</div>
+              <div class="tile t-foot"><span class="ic">⚽</span>Foot</div>
+              <div class="tile t-tri"><span class="ic">🏅</span>Triathlon</div>
+            </div>
+            <div class="consent">
+              <span class="lock">🔒</span>
+              <span class="ct">Je regarde tes <b>séances de sport</b> pour mieux te proposer. <b>Jamais ton poids ni ta santé.</b></span>
+              <button class="allow">Autoriser</button>
+            </div>
+          </div>
+          <div class="foot"><button class="go">C'est parti →</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PROGRAMME — AU DÉPART (VIDE) ============ -->
+    <div class="col">
+      <div class="col-label prog">
+        <span class="tag">Programme · au départ</span>
+        <p>Ce que l'user voit en arrivant : champ <b>vide</b> + ses sports. Léon <b>attend</b> sa demande.</p>
+      </div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="statusbar"><span>9:41</span><span>5G&nbsp;&nbsp;100%</span></div>
+          <div class="nav"><div class="back">‹</div><div class="title">Ton nouveau programme</div></div>
+          <div class="flow">
+            <div class="zlabel"><span class="num">1</span> Ta demande</div>
+            <div class="ask">
+              <span class="ic">💬</span>
+              <span class="ph">Dis ce que tu veux… (ex : « vélo 2×/sem, 45 min »)</span>
+            </div>
+            <div class="carousel">
+              <div class="tile t-course"><span class="ic">🏃</span>Course</div>
+              <div class="tile t-velo"><span class="ic">🚴</span>Vélo</div>
+              <div class="tile t-natation"><span class="ic">🏊</span>Natation</div>
+              <div class="tile t-yoga"><span class="ic">🧘</span>Yoga</div>
+              <div class="tile t-muscu"><span class="ic">🏋️</span>Muscu</div>
+              <div class="tile autre"><span class="ic">＋</span>Autre</div>
+            </div>
+            <div class="resto">
+              <div class="head"><div class="ava">L</div><div class="who">Ce que je te propose</div></div>
+              <p class="say" style="margin:0;color:var(--text2)">Dis-moi ce que tu veux, ou pioche un sport 👆 — je te prépare une proposition aussitôt.</p>
+            </div>
+          </div>
+          <div class="foot"><button class="go" style="opacity:.45">Créer mon programme →</button></div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab on"><span class="ti">🏃</span>Accueil</div>
+              <div class="tab"><span class="ti">📊</span>Progrès</div>
+              <div class="tab"><span class="ti">👤</span>Profil</div>
+            </div>
+            <div class="fab">L</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PROGRAMME — LA PROPOSITION (REMPLI) ============ -->
+    <div class="col">
+      <div class="col-label prog">
+        <span class="tag">Programme · la proposition</span>
+        <p>L'user a tapé sa demande → Léon <b>restitue</b> dans sa zone. Tuiles <b>même taille</b> qu'à l'accueil.</p>
+      </div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="statusbar"><span>9:41</span><span>5G&nbsp;&nbsp;100%</span></div>
+          <div class="nav"><div class="back">‹</div><div class="title">Ton nouveau programme</div></div>
+          <div class="flow">
+            <div class="zlabel"><span class="num">1</span> Ta demande</div>
+            <div class="ask">
+              <span class="ic">💬</span>
+              <span class="txt">Vélo + course : 45 min × 2 en semaine, 1h30 le week-end. Vacances 1→22 août : 3×2h/sem.</span>
+            </div>
+            <div class="carousel">
+              <div class="tile t-course sel"><span class="ic">🏃</span>Course</div>
+              <div class="tile t-velo sel"><span class="ic">🚴</span>Vélo</div>
+              <div class="tile t-natation"><span class="ic">🏊</span>Natation</div>
+              <div class="tile t-yoga"><span class="ic">🧘</span>Yoga</div>
+              <div class="tile t-muscu"><span class="ic">🏋️</span>Muscu</div>
+              <div class="tile autre"><span class="ic">＋</span>Autre</div>
+            </div>
+            <div class="resto">
+              <div class="head"><div class="ava">L</div><div class="who">Ce que je te propose</div></div>
+              <p class="say"><span class="ok">✓</span> Vélo + course noté. <span class="soon">⏳</span> Tes vacances, je ne sais pas encore les gérer — je le note pour bientôt.</p>
+              <div class="recap">
+                <div class="row"><span class="k">Semaine</span><div class="vwrap"><div class="v">2 × 45 min <span class="pen">✎</span></div><div class="why">comme demandé</div></div></div>
+                <div class="row"><span class="k">Week-end</span><div class="v">1 × 1h30 <span class="pen">✎</span></div></div>
+                <div class="row"><span class="k">Durée</span><div class="v">Routine 3 mois <span class="pen">✎</span></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="foot"><button class="go">Créer mon programme →</button></div>
+          <div class="tabbar">
+            <div class="tabs">
+              <div class="tab on"><span class="ti">🏃</span>Accueil</div>
+              <div class="tab"><span class="ti">📊</span>Progrès</div>
+              <div class="tab"><span class="ti">👤</span>Profil</div>
+            </div>
+            <div class="fab">L</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="caption">
+    <h3>Les règles du template</h3>
+    <ul>
+      <li><b>Deux zones franches</b> : <b>ta demande</b> (texte libre + tuiles) ↕ <b>la restitution de Léon</b> (fond bleuté, avatar). On ne confond plus qui parle.</li>
+      <li><b>Aperçu vivant</b> : tu modifies ta demande → la proposition se recompose. Rien n'est figé avant le bouton vert (le seul moment ferme).</li>
+      <li><b>Multi-sport via la bulle</b> conservé : « vélo + course » → Léon dit, dans sa zone, comment il gère.</li>
+      <li><b>Tuiles couleur</b> = identité sport (vraies icônes <code>SF Symbols</code> + couleurs <code>Color.coachingSport</code> en app ; emojis = placeholder maquette). Sélectionné = tuile remplie.</li>
+      <li><b>Léon ✓ / ⏳</b> : ✓ il fait · ⏳ pas encore (loggé → backlog de demandes réelles). <b>Vert = valider</b> (transversal app). <b>Zéro saisie corporelle.</b></li>
+    </ul>
+  </div>
+
+</body>
+</html>

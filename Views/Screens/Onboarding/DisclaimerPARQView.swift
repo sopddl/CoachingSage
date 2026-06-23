@@ -1,6 +1,8 @@
 // Views/Screens/Onboarding/DisclaimerPARQView.swift
-// Story 2.2 — écran 4 : disclaimer médical + PARQ-light + consentement analytics.
-// 3 sections visuellement séparées (review P2-1).
+// Onboarding app « fil de Léon » — écran ② : PARQ-light bref (exception MDR documentée).
+// Léon introduit les 5 questions sécurité (« les mêmes pour tout le monde »). Non médical,
+// non alarmiste : si un risque est signalé, Léon propose une intensité douce + suggère (sans
+// imposer) un avis médical. L'analytics a été déplacé dans le bloc accord du fil (écran ①).
 import SwiftUI
 import SageCore
 
@@ -17,57 +19,17 @@ struct DisclaimerPARQView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading, spacing: 16) {
 
-                // BLOC 1 — Disclaimer médical
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("onboarding.disclaimer.title")
-                        .font(.coachingH1)
-                        .foregroundStyle(Color.coachingTextPrimary)
-                    Text("onboarding.disclaimer.body")
-                        .font(.coachingBody)
-                        .foregroundStyle(Color.coachingTextPrimary)
-                        .fixedSize(horizontal: false, vertical: true)
-                    HStack(spacing: 4) {
-                        Text("onboarding.disclaimer.version")
-                        Text(verbatim: OnboardingViewModel.disclaimerCurrentVersion)
-                    }
-                    .font(.coachingCaption)
-                    .foregroundStyle(Color.coachingTextSecondary)
-                }
-                .padding(.top, 8)
+                Text("onboarding.parq.header.title")
+                    .font(.coachingDisplay)
+                    .foregroundStyle(Color.coachingTextPrimary)
+                    .padding(.top, 8)
 
-                Divider().padding(.vertical, 12)
+                // Léon introduit le PARQ — désamorce le sentiment d'être pris pour un cardiaque fragile.
+                OnboardingLeonBubble("onboarding.parq.leon.intro")
 
-                // BLOC 2 — Consentement analytics (Sophie 2026-05-11 : remonté avant PARQ
-                // sinon caché tout en bas → l'user ne voit jamais le toggle et on n'a jamais
-                // de oui. Mieux placé juste après le disclaimer médical avant les questions
-                // santé qui demandent de la concentration).
-                VStack(alignment: .leading, spacing: 8) {
-                    Toggle(isOn: $viewModel.analyticsConsent) {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("onboarding.analytics.toggle.label")
-                                .font(.coachingBody)
-                                .foregroundStyle(Color.coachingTextPrimary)
-                            Text("onboarding.analytics.toggle.helper")
-                                .font(.coachingCaption)
-                                .foregroundStyle(Color.coachingTextSecondary)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                    }
-                    .tint(Color.coachingPrimary)
-                    .accessibilityIdentifier("onboarding.analytics.toggle")
-                }
-
-                Divider().padding(.vertical, 12)
-
-                // BLOC 3 — PARQ-light (en dernier — questions santé requièrent
-                // de bien lire avant de tap Démarrer).
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("onboarding.parq.title")
-                        .font(.coachingH1)
-                        .foregroundStyle(Color.coachingTextPrimary)
-
                     ForEach(questions, id: \.0) { question, labelKey in
                         Toggle(isOn: bindingFor(question)) {
                             Text(labelKey)
@@ -78,28 +40,34 @@ struct DisclaimerPARQView: View {
                         .tint(Color.coachingPrimary)
                         .accessibilityIdentifier("onboarding.parq.\(question.rawValue).toggle")
                     }
-
-                    if viewModel.anyParqYes {
-                        HStack(alignment: .top, spacing: 8) {
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .foregroundStyle(Color.coachingWarning)
-                            Text("onboarding.parq.warning")
-                                .font(.coachingCaption)
-                                .foregroundStyle(Color.coachingTextPrimary)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                        .padding(10)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.coachingWarning.opacity(0.15), in: RoundedRectangle(cornerRadius: CoachingRadius.md))
-                        .accessibilityIdentifier("onboarding.parq.warning.banner")
-                    }
                 }
+
+                // Si un risque est signalé → bulle de Léon rassurante (intensité douce + avis médical
+                // suggéré, jamais imposé). Non médical, non alarmiste (réutilise le ton du disclaimer).
+                if viewModel.anyParqYes {
+                    OnboardingLeonBubble("onboarding.parq.leon.risk")
+                        .accessibilityIdentifier("onboarding.parq.warning.banner")
+                }
+
+                // Disclaimer médical compact + version acceptée (enregistrée au finalize).
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("onboarding.disclaimer.body")
+                        .font(.coachingCaption)
+                        .foregroundStyle(Color.coachingTextSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    HStack(spacing: 4) {
+                        Text("onboarding.disclaimer.version")
+                        Text(verbatim: OnboardingViewModel.disclaimerCurrentVersion)
+                    }
+                    .font(.coachingCaption)
+                    .foregroundStyle(Color.coachingTextSecondary)
+                }
+                .padding(.top, 4)
 
                 if let errorMessage = viewModel.saveErrorMessage {
                     Text(verbatim: errorMessage)
                         .font(.coachingCaption)
                         .foregroundStyle(Color.coachingError)
-                        .padding(.top, 12)
                         .accessibilityIdentifier("onboarding.save.error")
                 }
 
@@ -110,21 +78,15 @@ struct DisclaimerPARQView: View {
         .scrollIndicators(.visible)
         .safeAreaInset(edge: .bottom) {
             Button(action: { viewModel.goNext() }) {
-                HStack(spacing: 8) {
-                    if viewModel.isSaving {
-                        ProgressView().tint(Color.coachingOnPrimary)
-                    }
-                    Text("onboarding.start")
-                }
-                .frame(maxWidth: .infinity)
+                Text("onboarding.continue")
+                    .frame(maxWidth: .infinity)
             }
             .buttonStyle(PrimaryButtonStyle())
-            .disabled(viewModel.isSaving)
             .padding(.horizontal, 24)
             .padding(.top, 8)
             .padding(.bottom, 16)
             .background(Color.coachingBackground.ignoresSafeArea(edges: .bottom))
-            .accessibilityIdentifier("onboarding.start.button")
+            .accessibilityIdentifier("onboarding.parq.continue.button")
         }
     }
 

@@ -116,6 +116,14 @@ protocol HealthKitServiceProtocol: Sendable {
     /// Apple ne révèle pas le refus côté READ — la sémantique « refusé » se mesure via nil dans les fetch.
     func requestProfileAuthorization() async throws
 
+    /// Onboarding app « fil de Léon » — autorise la lecture des données de **séance + forme**
+    /// (workouts, FC, énergie, distances, FC repos, VFC, sommeil, VO2max). **N'inclut PAS**
+    /// poids / taille / sexe / date de naissance : l'onboarding ne lit jamais le corps
+    /// (ancre « jamais ton poids »). Une seule pop-up système, groupée. Marque l'autorisation
+    /// profil + Progrès comme demandées (évite une 2ᵉ pop-up à l'ouverture de l'onglet Progrès).
+    /// Throw uniquement si HealthKit est indisponible. Le refus reste silencieux côté READ.
+    func requestWorkoutAndFitnessAuthorization() async throws
+
     /// Story 3.9.0 — demande l'extension Progrès uniquement si elle n'a jamais été demandée
     /// (utilisateurs existants post-Story 2.1 dont l'onboarding n'a pas couvert RHR / HRV / Sleep).
     /// Invoquée au premier `onAppear` de l'onglet Progrès. No-op si déjà demandé ou si HealthKit indisponible.
@@ -282,6 +290,44 @@ final class DefaultHealthKitService: HealthKitServiceProtocol, @unchecked Sendab
         }
 
         try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
+        userDefaults.set(true, forKey: Self.authorizationRequestedKey)
+        userDefaults.set(Date(), forKey: Self.progressAuthorizationRequestedAtKey)
+    }
+
+    func requestWorkoutAndFitnessAuthorization() async throws {
+        guard !Self.isUITesting else { return }
+        guard HKHealthStore.isHealthDataAvailable() else {
+            throw HealthKitError.notAvailable
+        }
+
+        // Données de SÉANCE + forme uniquement. Pas de bodyMass / height / biologicalSex /
+        // dateOfBirth (jamais lus — ancre « jamais ton poids »).
+        var typesToRead: Set<HKObjectType> = [HKObjectType.workoutType()]
+        if let hr = HKQuantityType.quantityType(forIdentifier: .heartRate) {
+            typesToRead.insert(hr)
+        }
+        if let vo2 = HKQuantityType.quantityType(forIdentifier: .vo2Max) {
+            typesToRead.insert(vo2)
+        }
+        if let active = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) {
+            typesToRead.insert(active)
+        }
+        if let runDistance = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning) {
+            typesToRead.insert(runDistance)
+        }
+        if let cycleDistance = HKQuantityType.quantityType(forIdentifier: .distanceCycling) {
+            typesToRead.insert(cycleDistance)
+        }
+        if let swimDistance = HKQuantityType.quantityType(forIdentifier: .distanceSwimming) {
+            typesToRead.insert(swimDistance)
+        }
+        // FC repos / VFC / sommeil (bloc « forme » de l'onglet Progrès).
+        for type in Self.progressReadTypes() {
+            typesToRead.insert(type)
+        }
+
+        try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
+        // Marque profil + Progrès comme demandés : pas de 2ᵉ feuille HK ailleurs dans l'app.
         userDefaults.set(true, forKey: Self.authorizationRequestedKey)
         userDefaults.set(Date(), forKey: Self.progressAuthorizationRequestedAtKey)
     }
