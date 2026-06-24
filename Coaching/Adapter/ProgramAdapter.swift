@@ -69,7 +69,7 @@ public struct ProgramAdapter: Sendable {
             durationMinutes: variant.durationMinutes,
             type: type,
             warmup: variant.warmup,
-            exercises: variant.exercises.map { AdaptedExercise.passthrough($0) },
+            exercises: variant.exercises.map { AdaptedExercise.passthrough($0, sport: sport) },
             cooldown: variant.cooldown
         )
         // Template synthétique : la séance racine = la variante → findExercise la trouve.
@@ -134,7 +134,7 @@ public struct ProgramAdapter: Sendable {
                         durationMinutes: session.durationMinutes,
                         type: session.type,
                         warmup: session.warmup,
-                        exercises: session.exercises.map { AdaptedExercise.passthrough($0) },
+                        exercises: session.exercises.map { AdaptedExercise.passthrough($0, sport: template.sport) },
                         cooldown: session.cooldown
                     )
                 }

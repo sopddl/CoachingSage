@@ -22,17 +22,27 @@ struct SessionTimelineView: View {
         self.sportCode = sportCode
     }
 
-    /// Items dérivés (ordre stable : warmup si présent, exos, cooldown si présent).
+    /// Items dérivés. Ordre : warmup, exos DANS L'EAU, cooldown, puis (natation) les exos
+    /// HORS DE L'EAU regroupés sous un bandeau (chantier compréhensibilité 2026-06-24 : ne plus
+    /// intercaler le renforcement à sec / élastique au milieu du bassin).
     private var items: [TimelineItem] {
         var result: [TimelineItem] = []
         if let w = session.warmup?.resolved(locale), !w.isEmpty {
             result.append(.warmup(w))
         }
-        for ex in session.exercises {
+        let inWater = session.exercises.filter { $0.dryLand != true }
+        let dryLand = session.exercises.filter { $0.dryLand == true }
+        for ex in inWater {
             result.append(.exercise(ex))
         }
         if let c = session.cooldown?.resolved(locale), !c.isEmpty {
             result.append(.cooldown(c))
+        }
+        if !dryLand.isEmpty {
+            result.append(.dryLandBanner)
+            for ex in dryLand {
+                result.append(.exercise(ex))
+            }
         }
         return result
     }
@@ -123,14 +133,18 @@ struct SessionTimelineView: View {
                 .font(.caption2.bold())
         case .exercise:
             Text(verbatim: "\(exerciseIndex)")
+        case .dryLandBanner:
+            Image(systemName: "figure.strengthtraining")
+                .font(.caption2.bold())
         }
     }
 
     private func pastilleTint(for item: TimelineItem) -> Color {
         switch item {
-        case .warmup:   return .orange
-        case .cooldown: return .blue
-        case .exercise: return sportColor
+        case .warmup:        return .orange
+        case .cooldown:      return .blue
+        case .exercise:      return sportColor
+        case .dryLandBanner: return .coachingEarth
         }
     }
 
@@ -157,7 +171,28 @@ struct SessionTimelineView: View {
                 sportCode: sportCode,
                 isFirstExercise: isFirstExercise
             )
+        case .dryLandBanner:
+            dryLandBanner
         }
+    }
+
+    /// Bandeau « hors de l'eau » (natation) : sépare visuellement le renforcement à sec
+    /// du travail en bassin et indique qu'on le fait avant ou après la séance.
+    private var dryLandBanner: some View {
+        HStack(alignment: .top, spacing: 8) {
+            Image(systemName: "figure.strengthtraining")
+                .font(.callout.bold())
+                .foregroundStyle(Color.coachingEarth)
+            Text("coaching.session.dryland.banner")
+                .font(.caption.bold())
+                .foregroundStyle(Color.coachingEarth)
+                .textCase(.uppercase)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.coachingEarth.opacity(0.10))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 
     // Story 3.35f — libellé + durée totale en haut à droite, texte découpé en
@@ -207,6 +242,7 @@ struct SessionTimelineView: View {
         case warmup(String)
         case exercise(AdaptedExercise)
         case cooldown(String)
+        case dryLandBanner
     }
 }
 

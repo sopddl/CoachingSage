@@ -131,8 +131,14 @@ struct SessionOverviewList: View {
                               metric: SessionPhaseText.totalLabel(from: w) ?? leadingDuration(in: w)))
             index += 1
         }
+        // Ordre identique à SessionTimelineView : exos DANS L'EAU, puis cooldown, puis
+        // (natation) exos HORS DE L'EAU regroupés derrière un bandeau. L'`anchorIndex` doit
+        // suivre l'offset des items de la timeline (y compris l'item bandeau) pour que le
+        // tap scrolle au bon bloc.
+        let inWater = session.exercises.filter { $0.dryLand != true }
+        let dryLand = session.exercises.filter { $0.dryLand == true }
         var exNumber = 0
-        for ex in session.exercises {
+        for ex in inWater {
             exNumber += 1
             result.append(Row(
                 anchorIndex: index,
@@ -145,6 +151,20 @@ struct SessionOverviewList: View {
         if let c = session.cooldown?.canonical, !c.isEmpty {
             result.append(Row(anchorIndex: index, kind: .cooldown, title: "",
                               metric: SessionPhaseText.totalLabel(from: c) ?? leadingDuration(in: c)))
+            index += 1
+        }
+        if !dryLand.isEmpty {
+            index += 1 // l'item bandeau « hors de l'eau » occupe un offset timeline (pas de ligne d'aperçu)
+            for ex in dryLand {
+                exNumber += 1
+                result.append(Row(
+                    anchorIndex: index,
+                    kind: .exercise(number: exNumber),
+                    title: ex.displayName(locale),
+                    metric: compactMetric(for: ex, locale: locale, sportCode: sportCode)
+                ))
+                index += 1
+            }
         }
         return result
     }

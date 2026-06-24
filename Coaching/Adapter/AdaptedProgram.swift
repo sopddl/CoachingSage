@@ -160,6 +160,13 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
     /// Texte court "constraint:knee-injury" ou "equipment:no-track-access" ou nil.
     public let substitutionReason: String?
 
+    /// Exercice à faire HORS DE L'EAU (natation : renforcement à sec, élastique, gainage…).
+    /// Chantier compréhensibilité 2026-06-24 : la vue regroupe ces exos en fin de séance sous
+    /// un bandeau « à faire hors de l'eau (avant/après) » au lieu de les intercaler dans le bassin.
+    /// `Bool?` (et non `Bool`) = compat décodage des `AdaptedProgram` persistés AVANT ce champ
+    /// (clé absente → nil → traité comme « pas hors-eau »). nil/false = exo dans l'eau.
+    public let dryLand: Bool?
+
     public init(
         name: LocalizedText,
         originalName: String,
@@ -174,7 +181,8 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
         load: String? = nil,
         side: ExerciseSide? = nil,
         wasSubstituted: Bool = false,
-        substitutionReason: String? = nil
+        substitutionReason: String? = nil,
+        dryLand: Bool? = nil
     ) {
         self.name = name
         self.originalName = originalName
@@ -190,6 +198,7 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
         self.side = side
         self.wasSubstituted = wasSubstituted
         self.substitutionReason = substitutionReason
+        self.dryLand = dryLand
     }
 
     /// Nom à afficher à l'user, résolu pour `locale` : retire le suffixe technique
@@ -220,7 +229,7 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
     /// Lift d'un `TemplateExercise` vers `AdaptedExercise` sans modification.
     /// Point d'entrée de la cascade : avant que les règles agissent, tout exercice
     /// est en version "passthrough". `originalName` = clé de matching stable (`stableMatchKey`).
-    public static func passthrough(_ template: TemplateExercise) -> AdaptedExercise {
+    public static func passthrough(_ template: TemplateExercise, sport: Sport? = nil) -> AdaptedExercise {
         AdaptedExercise(
             name: template.name,
             originalName: template.stableMatchKey,
@@ -233,8 +242,19 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
             targetZone: template.targetZone,
             volumeAxis: template.volumeAxis,
             wasSubstituted: false,
-            substitutionReason: nil
+            substitutionReason: nil,
+            dryLand: Self.isDryLand(template, sport: sport)
         )
+    }
+
+    /// Heuristique hors-eau (natation uniquement) : un exo dont l'équipement requis est
+    /// renseigné MAIS ne contient pas « pool » se fait à sec (mat/élastique/haltère…).
+    /// nil (pas true/false) quand non hors-eau → garde le JSON propre + compat décodage.
+    static func isDryLand(_ template: TemplateExercise, sport: Sport?) -> Bool? {
+        guard sport == .swimming else { return nil }
+        let eq = template.requiredEquipment
+        guard !eq.isEmpty, !eq.contains("pool") else { return nil }
+        return true
     }
 }
 

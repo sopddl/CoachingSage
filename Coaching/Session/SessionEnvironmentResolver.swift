@@ -51,7 +51,7 @@ enum SessionEnvironmentResolver {
             durationMinutes: variant.durationMinutes,
             type: adapted.type,
             warmup: variant.warmup,
-            exercises: variant.exercises.map(AdaptedExercise.passthrough),
+            exercises: variant.exercises.map { AdaptedExercise.passthrough($0) },
             cooldown: variant.cooldown
         )
     }
