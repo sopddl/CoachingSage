@@ -35,7 +35,7 @@ struct ProgrammeOnboardingView: View {
                     demandeZone
                     proposalZone
                         .id(Self.proposalAnchor)
-                    if viewModel.proposal != nil {
+                    if viewModel.proposal != nil || !viewModel.conversation.isEmpty {
                         conversationZone
                     }
                 }
@@ -101,17 +101,35 @@ struct ProgrammeOnboardingView: View {
                 .padding(.vertical, 2)
             }
 
-            TextField(
-                "programme.fil.placeholder",
-                text: $viewModel.demandeText,
-                axis: .vertical
-            )
-            .lineLimit(2...5)
-            .font(.coachingBody)
-            .padding(12)
-            .background(Color.coachingCard, in: RoundedRectangle(cornerRadius: CoachingRadius.md))
-            .accessibilityIdentifier("programme.fil.demande.field")
+            HStack(alignment: .bottom, spacing: 8) {
+                TextField(
+                    "programme.fil.placeholder",
+                    text: $viewModel.demandeText,
+                    axis: .vertical
+                )
+                .lineLimit(2...5)
+                .font(.coachingBody)
+                .padding(12)
+                .background(Color.coachingCard, in: RoundedRectangle(cornerRadius: CoachingRadius.md))
+                .accessibilityIdentifier("programme.fil.demande.field")
+
+                if !demandeIsEmpty {
+                    Button {
+                        dismissKeyboard()
+                        viewModel.submitDemande()
+                    } label: {
+                        Image(systemName: "arrow.up.circle.fill")
+                            .font(.system(size: 30))
+                            .foregroundStyle(Color.coachingPrimary)
+                    }
+                    .accessibilityIdentifier("programme.fil.demande.send")
+                }
+            }
         }
+    }
+
+    private var demandeIsEmpty: Bool {
+        viewModel.demandeText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
     private var autreTile: some View {

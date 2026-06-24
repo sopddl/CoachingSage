@@ -110,8 +110,13 @@ final class ProgrammeOnboardingViewModel {
         }
     }
 
+    /// Demande déjà soumise au fil (le champ est vidé à la soumission). Sert de note
+    /// persistée (`freeTextNotes`) même après vidage du champ.
+    private var capturedNote: String?
+
     private var trimmedNotes: String? {
-        let t = demandeText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let raw = capturedNote ?? demandeText
+        let t = raw.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !t.isEmpty else { return nil }
         // CHECK SQL freeTextNotes ≤ 200 chars (cf. CoachingSportProfile).
         return String(t.prefix(200))
@@ -137,12 +142,27 @@ final class ProgrammeOnboardingViewModel {
 
     // MARK: - Actions zone ③ (conversation — inc1 : capté + réponse d'attente)
 
+    /// Soumission de la demande libre (zone ①) → interprétation NL. Vide le champ et
+    /// garde le texte comme note. MDR : c'est l'endroit le plus naturel pour exprimer
+    /// une blessure → il DOIT passer par le routage ✓/⏳/🚫 (jamais juste « noté »).
+    func submitDemande() {
+        let text = demandeText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !text.isEmpty else { return }
+        capturedNote = text
+        demandeText = ""
+        enqueueUserMessage(text)
+    }
+
     /// Envoi d'une relance dans le fil → passe par le service d'intention (inc2).
-    /// La bulle user est ajoutée tout de suite (sync) ; la restitution de Léon +
-    /// la recomposition + le log backlog suivent l'interprétation (async).
     func sendFollowUp(_ raw: String) {
         let text = raw.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
+        enqueueUserMessage(text)
+    }
+
+    /// Ajoute la bulle user (sync) puis lance l'interprétation (async) : restitution
+    /// de Léon + recomposition si supporté + log backlog si hors périmètre.
+    private func enqueueUserMessage(_ text: String) {
         conversation.append(FilMessage(sender: .user, text: text))
         Task { await processIntent(text: text) }
     }

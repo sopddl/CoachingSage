@@ -873,7 +873,11 @@ struct SessionView: View {
                 generatePreview: { profile in
                     let preview = try await factory.previewGenerate(sportProfile: profile, userId: userId)
                     return preview.program.weeks.count
-                }
+                },
+                // Inc2 : moteur NL réel (edge function) + backlog Supabase gated consentement.
+                intentService: DefaultLeonIntentService(),
+                unmetLogger: DefaultLeonUnmetRequestLogger(),
+                localeIdentifier: languageManager.currentLocale.identifier
             )
             ProgrammeOnboardingView(
                 viewModel: vm,

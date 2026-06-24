@@ -190,6 +190,51 @@ final class ProgrammeOnboardingViewModelTests: XCTestCase {
         XCTAssertEqual(vm.conversation.last?.text, "✓ Vélo 4×")
     }
 
+    func test_submitDemande_interpretsAndClearsField_keepsNote() {
+        let intent = LeonIntent(
+            route: .supported,
+            restitution: "✓ Yoga",
+            category: nil,
+            refusalFamily: nil,
+            slots: LeonIntentSlots(sportCodes: ["yoga"], frequencyPerWeek: 3)
+        )
+        let service = FakeIntentService(response: LeonIntentResponse(intents: [intent]))
+        let exp = expectation(description: "recomposed")
+        let vm = makeVM(intentService: service, onGenerate: { exp.fulfill() })
+
+        vm.demandeText = "yoga le matin"
+        vm.submitDemande()
+        XCTAssertEqual(vm.demandeText, "") // champ vidé à la soumission
+
+        wait(for: [exp], timeout: 1.0)
+        XCTAssertEqual(vm.selectedSport, .yoga)
+        XCTAssertEqual(vm.conversation.first?.text, "yoga le matin") // demande = 1er msg du fil
+        XCTAssertEqual(vm.finalizedSportProfile()?.freeTextNotes, "yoga le matin") // note conservée
+    }
+
+    // MARK: - Contrat Swift ⇄ Deno (filet : la forme JSON du backend doit décoder)
+
+    func test_leonIntentResponse_decodesBackendContract() throws {
+        let json = """
+        {"intents":[
+          {"route":"supported","restitution":"✓ Course, c'est parti.","category":null,"refusalFamily":null,"slots":{"sportCodes":["running"],"frequencyPerWeek":3}},
+          {"route":"not_yet","restitution":"⏳ je note l'idée","category":"multi_sport_combine","refusalFamily":null,"slots":null},
+          {"route":"refused_safety","restitution":"🚫 vois ça avec un pro de santé","category":"health_condition","refusalFamily":"health_condition","slots":null}
+        ]}
+        """.data(using: .utf8)!
+        let resp = try JSONDecoder().decode(LeonIntentResponse.self, from: json)
+        XCTAssertEqual(resp.intents.count, 3)
+        XCTAssertEqual(resp.intents[0].route, .supported)
+        XCTAssertEqual(resp.intents[0].slots?.sportCodes, ["running"])
+        XCTAssertEqual(resp.intents[0].slots?.frequencyPerWeek, 3)
+        XCTAssertEqual(resp.intents[1].route, .notYet)
+        XCTAssertEqual(resp.intents[1].category, .multiSportCombine)
+        XCTAssertNil(resp.intents[1].slots ?? nil)
+        XCTAssertEqual(resp.intents[2].route, .refusedSafety)
+        XCTAssertEqual(resp.intents[2].refusalFamily, .healthCondition)
+        XCTAssertEqual(resp.intents[2].category, .healthCondition)
+    }
+
     func test_sendFollowUp_refusalSafety_logsRefusedWithFamily() {
         let intent = LeonIntent(
             route: .refusedSafety,
