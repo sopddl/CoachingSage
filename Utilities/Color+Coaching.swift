@@ -13,6 +13,8 @@ extension Color {
 
     /// #7BC142 — Vert lime électrique, CTA "GO!" (démarrer séance, valider).
     static let coachingAccent = Color(hex: 0x7BC142)
+    /// #10371A — Vert sombre, texte/icône lisible sur fond `coachingAccent` (AccentButtonStyle).
+    static let coachingOnAccent = Color(hex: 0x10371A)
 
     /// #1B3A5C — Bleu marine profondeur, éléments secondaires (ex-primary).
     static let coachingEarth = Color(hex: 0x1B3A5C)

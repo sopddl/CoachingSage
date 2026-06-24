@@ -3,10 +3,63 @@
 // La struct Swift `AdaptationPatch` (Coaching/AI/AdaptationPatch.swift) doit rester
 // alignée 1:1 avec ces types. Tout changement = bump version client + Edge Function.
 
-/// Mode supporté pour l'instant : 'adapt-rare' uniquement (Story 3.3b).
-/// Stories suivantes ajouteront 'chat' (3.6), 'regen-week' (3.4), 'adapt-session' (3.6),
-/// 'generate' (3.5).
-export type LeonMode = "adapt-rare";
+/// Modes supportés : 'adapt-rare' (Story 3.3b) + 'onboarding-intent' (fil de Léon inc2).
+/// Stories suivantes ajouteront 'chat' (3.6), 'regen-week' (3.4), etc.
+export type LeonMode = "adapt-rare" | "onboarding-intent";
+
+// MARK: - Onboarding intent (fil de Léon inc2)
+//
+// Contrat aligné 1:1 avec Swift `LeonIntentService.swift` (clés camelCase = noms de
+// propriété Swift, décodage par défaut). Valeurs d'enum = rawValues Swift.
+
+export type LeonIntentRoute = "supported" | "not_yet" | "refused_safety";
+
+/// Doit matcher Swift `LeonRefusalFamily.rawValue`. Présent seulement si route == refused_safety.
+export type LeonRefusalFamily = "risky_goal" | "health_condition";
+
+/// Doit matcher Swift `LeonUnmetCategory.rawValue`.
+export type LeonUnmetCategory =
+  | "periodisation_temporelle"
+  | "multi_sport_combine"
+  | "nutrition"
+  | "weight_loss"
+  | "health_condition"
+  | "unknown";
+
+export interface LeonIntentSlots {
+  /// rawValues SportCode reconnus (le 1ᵉʳ amorce la proposition, V1 mono-sport).
+  sportCodes?: string[];
+  /// Rythme séances/semaine si exprimé.
+  frequencyPerWeek?: number;
+}
+
+export interface LeonIntent {
+  route: LeonIntentRoute;
+  /// Phrase de restitution mot-à-mot, DÉJÀ localisée selon la locale demandée.
+  restitution: string;
+  /// Catégorie backlog (requise si route ≠ supported ; sinon null).
+  category?: LeonUnmetCategory | null;
+  /// Famille du refus (seulement si route == refused_safety ; sinon null).
+  refusalFamily?: LeonRefusalFamily | null;
+  slots?: LeonIntentSlots | null;
+}
+
+export interface OnboardingIntentRequest {
+  mode: "onboarding-intent";
+  /// Texte libre de l'user (demande initiale ou relance).
+  text: string;
+  /// Sports déclarés de l'user (rawValues SportCode).
+  active_sports: string[];
+  /// Sport déjà sélectionné au carrousel, s'il y en a un.
+  selected_sport?: string | null;
+  /// Locale in-app ("fr", "en", "es", ou variantes "fr_FR"…).
+  locale: string;
+}
+
+/// Réponse renvoyée au client : 1+ intentions (une demande peut mêler ✓ + ⏳ + 🚫).
+export interface LeonIntentResponse {
+  intents: LeonIntent[];
+}
 
 export type TriggeredReason =
   | "atypical_constraints"   // adapter (3.3a) a remonté requiresAIAssist

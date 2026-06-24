@@ -1,34 +1,22 @@
 // ViewModels/OnboardingViewModel.swift
-// Story 2.2 — state machine 4 écrans + import HealthKit + finalize.
+// Onboarding APP « fil de Léon » (party onboarding élargi 2026-06-22/23).
+// 3 étapes : ① fil unique (prénom + sports + accord) · ② PARQ-light bref · ③ clôture Léon → finalize.
+// ZÉRO saisie corporelle (poids/taille/sexe/date de naissance supprimés — jamais lus dans le code).
 import Foundation
-import HealthKit
 import os
 import SwiftUI
 import SageCore
 
+/// Étapes de l'onboarding app. Le gros du flux tient dans `.welcome` (un seul écran qui défile) ;
+/// `.parq` = exception MDR documentée (5 questions sécurité) ; `.closing` = clôture Léon + finalize.
 enum OnboardingScreen: Int, CaseIterable {
-    case firstNameLanguage = 0
-    case thirdPartyAppsSync = 1  // Story 3.z — apps non sync Apple Santé, avant la pop-up HK
-    case personalData = 2
-    case howItWorks = 3          // Story sœur post-3.3b — écran pédagogique
-    case sportsSelection = 4
-    case equipment = 5
-    case disclaimerPARQ = 6
+    case welcome = 0
+    case parq = 1
+    case closing = 2
 
     var next: OnboardingScreen? {
         OnboardingScreen(rawValue: rawValue + 1)
     }
-}
-
-/// Story 3.z — apps sport tierces déclarées par l'utilisateur à l'onboarding
-/// (cas user qui logge avec Strava/Decathlon/Garmin/Runkeeper sans avoir
-/// activé la sync Apple Santé). Persisté en UserDefaults V1 — la donnée sert
-/// à afficher un rappel doux dans Progrès si l'historique est vide (V2).
-enum ThirdPartyApp: String, CaseIterable, Codable, Sendable {
-    case strava
-    case decathlon
-    case runkeeper
-    case garmin
 }
 
 @MainActor
@@ -37,91 +25,29 @@ final class OnboardingViewModel {
     private static let logger = Logger(subsystem: "com.sopddl.coachingsage", category: "onboarding")
     static let disclaimerCurrentVersion = "1.0"
     /// Délai max de la finalize Supabase. Au-delà, bascule en .error visible plutôt que de
-    /// laisser un spinner infini sur le bouton Démarrer (cas hang Supabase SDK / réseau lent).
+    /// laisser un spinner infini sur le bouton (cas hang Supabase SDK / réseau lent).
     static let finalizeTimeoutSeconds: TimeInterval = 10
 
     // MARK: - State machine
 
-    var currentScreen: OnboardingScreen = .firstNameLanguage
+    var currentScreen: OnboardingScreen = .welcome
 
-    // MARK: - Écran 1
+    // MARK: - Fil (écran ①)
 
     var firstName: String = ""
     var language: String = Locale.current.language.languageCode?.identifier ?? "fr"
-
-    // MARK: - Écran 2 (apps tierces — Story 3.z)
-
-    /// `nil` tant que l'écran n'est pas répondu ; `true` = "Oui j'utilise des apps non sync"
-    /// → on affiche la checklist ; `false` = "Non, suivant" → on skippe.
-    var usesUnsyncedApps: Bool?
-
-    /// Apps cochées si `usesUnsyncedApps == true`. Set rawValues `ThirdPartyApp.rawValue`.
-    var declaredThirdPartyApps: Set<String> = []
-
-    /// Texte libre optionnel (champ "Autre app"). Max 60 chars, non bloquant.
-    var otherAppText: String = ""
-
-    /// L'écran apps tierces n'est jamais bloquant — on peut passer "Oui" sans rien cocher
-    /// ou "Non" tout court.
-    var canContinueScreen2AppsSync: Bool { true }
-
-    func toggleThirdPartyApp(_ app: ThirdPartyApp) {
-        if declaredThirdPartyApps.contains(app.rawValue) {
-            declaredThirdPartyApps.remove(app.rawValue)
-        } else {
-            declaredThirdPartyApps.insert(app.rawValue)
-        }
-    }
-
-    /// Persiste la déclaration en UserDefaults (V1 — en attendant un champ JSONB côté Supabase).
-    /// Appelé au goNext depuis l'écran thirdPartyAppsSync.
-    func saveThirdPartyAppsDeclaration() {
-        guard let answered = usesUnsyncedApps else { return }
-        struct Declaration: Codable {
-            let usesUnsyncedApps: Bool
-            let apps: [String]
-            let other: String?
-            let timestamp: Date
-        }
-        let trimmed = otherAppText.trimmingCharacters(in: .whitespacesAndNewlines)
-        let payload = Declaration(
-            usesUnsyncedApps: answered,
-            apps: Array(declaredThirdPartyApps).sorted(),
-            other: trimmed.isEmpty ? nil : String(trimmed.prefix(60)),
-            timestamp: Date()
-        )
-        if let data = try? JSONEncoder().encode(payload) {
-            UserDefaults.standard.set(data, forKey: Self.thirdPartyAppsDefaultsKey)
-        }
-    }
-
-    static let thirdPartyAppsDefaultsKey = "onboarding_declared_apps"
-
-    // MARK: - Écran 3 (HealthKit-pre-fillable)
-
-    var biologicalSex: String?
-    var dateOfBirth: Date?
-    var weightKg: Double?
-    var heightCm: Double?
-
-    // MARK: - Écran 3
-
+    /// Sports pratiqués (rawValues `SportCode`). Multi-sélection, ≥ 1 requis pour valider.
     var activeSports: Set<String> = []
+    /// `true` une fois que l'utilisateur a tapé « Autoriser » sur le bloc accord (best-effort,
+    /// le refus système reste silencieux côté lecture HealthKit). Sert juste à basculer le
+    /// libellé du bouton en « Autorisé ✓ ».
+    private(set) var healthAuthorized: Bool = false
 
-    // MARK: - Écran 4
-
-    /// Équipement générique multi-sport. Vide possible (user sans matériel).
-    /// L'équipement spécifique sport (treadmill, etc.) reste dans le questionnaire sport.
-    var equipment: Set<String> = []
-    private(set) var hasUserEditedEquipment: Bool = false
-
-    /// `true` si HealthKit voit un workout sourcé par un appareil watchOS dans la fenêtre récente.
-    /// Utilisé pour pré-cocher gps_watch + heart_rate_monitor à l'écran équipement (overridable).
-    private(set) var appleWatchDetected: Bool = false
-
-    // MARK: - Écran 5
+    // MARK: - PARQ-light (écran ②)
 
     var parqResponses: [String: Bool] = PARQQuestion.defaultResponses
+    /// Consentement analytics — RGPD : finalité distincte de l'accord Apple Santé, non pré-coché,
+    /// refusable sans dégrader le service. Co-localisé dans le bloc accord du fil (Sophie : « un écran »).
     var analyticsConsent: Bool = false
 
     // MARK: - Save state
@@ -167,7 +93,7 @@ final class OnboardingViewModel {
     }
 
     /// Pré-remplit `firstName` depuis le profil core existant (cas user qui revient — ex. après réinstall).
-    /// À appeler depuis `.task` au mount de l'écran 1.
+    /// À appeler depuis `.task` au mount du fil.
     func prefillFromExistingProfile() async {
         guard firstName.isEmpty,
               let existing = try? await coreProfileRepository.fetchCurrentProfile(),
@@ -179,136 +105,75 @@ final class OnboardingViewModel {
 
     // MARK: - Validators
 
-    var canContinueScreen1: Bool {
+    /// Prénom valide (1–50 caractères après trim).
+    var hasValidFirstName: Bool {
         let trimmed = firstName.trimmingCharacters(in: .whitespacesAndNewlines)
         return (1...50).contains(trimmed.count)
     }
 
-    var canContinueScreen2: Bool {
-        guard let sex = biologicalSex, !sex.isEmpty,
-              dateOfBirth != nil,
-              let w = weightKg, (30.0...250.0).contains(w),
-              let h = heightCm, (100.0...230.0).contains(h)
-        else { return false }
-        return true
-    }
-
-    var canContinueScreen3: Bool {
-        !activeSports.isEmpty
-    }
-
-    /// Équipement = facultatif (l'user peut n'avoir aucun matériel).
-    var canContinueScreen4: Bool { true }
-
-    /// Pré-coche `gps_watch + heart_rate_monitor` si HealthKit a vu un workout sourcé Apple Watch
-    /// et que l'utilisateur n'a pas encore édité l'équipement. Idempotent.
-    func applyAppleWatchEquipmentSuggestionIfNeeded() {
-        guard appleWatchDetected, !hasUserEditedEquipment, equipment.isEmpty else { return }
-        equipment.insert(EquipmentCode.gpsWatch.rawValue)
-        equipment.insert(EquipmentCode.heartRateMonitor.rawValue)
-    }
-
-    func toggleEquipment(_ code: EquipmentCode) {
-        hasUserEditedEquipment = true
-        if equipment.contains(code.rawValue) {
-            equipment.remove(code.rawValue)
-        } else {
-            equipment.insert(code.rawValue)
-        }
-    }
-
-    /// Vrai si une capsule équipement a été pré-cochée depuis l'Apple Watch et n'a pas encore été touchée.
-    func isAppleWatchSuggested(_ code: EquipmentCode) -> Bool {
-        guard appleWatchDetected, !hasUserEditedEquipment else { return false }
-        return code == .gpsWatch || code == .heartRateMonitor
+    /// Le vert « C'est parti » s'active dès qu'on a un prénom ET au moins un sport.
+    var canStart: Bool {
+        hasValidFirstName && !activeSports.isEmpty
     }
 
     var anyParqYes: Bool {
         parqResponses.values.contains(true)
     }
 
-    var showHealthKitCTA: Bool {
-        healthKitService.isHealthDataAvailable && !healthKitService.hasRequestedAuthorization
+    /// Affiche le bouton « Autoriser » tant que HealthKit est dispo et que l'autorisation
+    /// n'a pas encore été demandée sur ce device. Sinon → libellé « Autorisé ✓ ».
+    var showHealthAuthorizeButton: Bool {
+        healthKitService.isHealthDataAvailable
+            && !healthKitService.hasRequestedAuthorization
+            && !healthAuthorized
     }
 
-    // MARK: - Navigation
-
-    func goNext() {
-        if currentScreen == .disclaimerPARQ {
-            Task { await finalize() }
-            return
-        }
-        // Story 3.z — quand on quitte l'écran apps tierces, persiste la déclaration
-        // utilisateur (V1 UserDefaults) avant de basculer sur personalData (qui déclenche
-        // la pop-up HK).
-        if currentScreen == .thirdPartyAppsSync {
-            saveThirdPartyAppsDeclaration()
-        }
-        if let next = currentScreen.next {
-            currentScreen = next
-        }
+    var isHealthDataAvailable: Bool {
+        healthKitService.isHealthDataAvailable
     }
 
-    /// Story 3.z — revenir à l'écran précédent. No-op sur le premier écran.
-    /// On ne reset aucune donnée saisie : si l'user revient sur l'écran apps tierces
-    /// après l'avoir validé, ses réponses sont conservées.
-    func goPrevious() {
-        guard let previous = OnboardingScreen(rawValue: currentScreen.rawValue - 1) else { return }
-        currentScreen = previous
-    }
+    // MARK: - Accord HealthKit (bloc ③ du fil)
 
-    var canGoPrevious: Bool {
-        currentScreen != .firstNameLanguage
-    }
-
-    // MARK: - HealthKit import (écran 2)
-
-    func importFromHealthKit() async {
+    /// Bloc accord — demande la lecture des données de SÉANCE + forme (workouts, FC, énergie,
+    /// distances, FC repos, VFC, sommeil, VO2max). Jamais poids/taille/sexe/date de naissance.
+    /// Best-effort : un refus système reste silencieux côté lecture, on ne bloque pas « C'est parti ».
+    func authorizeHealthData() async {
         do {
-            try await healthKitService.requestProfileAuthorization()
+            try await healthKitService.requestWorkoutAndFitnessAuthorization()
         } catch {
             #if DEBUG
             print("HealthKit auth failed (acceptable): \(error.localizedDescription)")
             #endif
         }
+        healthAuthorized = true
+    }
 
-        let data = await healthKitService.fetchProfileData()
+    // MARK: - Navigation
 
-        // Détection Apple Watch.
-        // Story 3.z — fenêtre 12 sem pour aligner sur la promesse "3 mois" du premier topo Progrès.
-        let summary = await healthKitService.fetchWorkoutSummary(weeksBack: 12)
-        appleWatchDetected = summary.appleWatchDetected
-
-        // Pré-fill per-field, uniquement si l'utilisateur n'a pas déjà saisi cette valeur
-        // (le check `== nil` protège la saisie user — pas besoin d'un flag global racy
-        // qui se déclenchait à l'ouverture de la pop-up HK, cf bug 2026-05-15).
-        if biologicalSex == nil, let sex = data.biologicalSex {
-            biologicalSex = Self.mapBiologicalSex(sex)
-        }
-        if dateOfBirth == nil, let dob = data.dateOfBirth {
-            dateOfBirth = dob
-        }
-        if weightKg == nil, let w = data.bodyMassKg, (30.0...250.0).contains(w) {
-            weightKg = w
-        }
-        if heightCm == nil, let h = data.heightCm, (100.0...230.0).contains(h) {
-            heightCm = h
+    func goNext() {
+        if let next = currentScreen.next {
+            currentScreen = next
         }
     }
 
-    static func mapBiologicalSex(_ value: HKBiologicalSex) -> String? {
-        switch value {
-        case .female: return "female"
-        case .male: return "male"
-        case .other: return "other"
-        case .notSet: return nil
-        @unknown default: return nil
-        }
+    /// Revenir à l'écran précédent. No-op sur le premier écran / sur la clôture (finalize en cours).
+    func goPrevious() {
+        guard canGoPrevious, let previous = OnboardingScreen(rawValue: currentScreen.rawValue - 1) else { return }
+        currentScreen = previous
+    }
+
+    /// Retour interdit sur le fil (premier écran) et sur la clôture (finalize en cours/terminé).
+    var canGoPrevious: Bool {
+        currentScreen == .parq
     }
 
     // MARK: - Finalize
 
     func finalize() async {
+        // Idempotent : pas de double-finalize si la clôture re-déclenche le .task.
+        if case .loading = saveState { return }
+        if case .success = saveState { return }
+
         saveState = .loading
         Self.logger.info("finalize: start")
 
@@ -351,15 +216,14 @@ final class OnboardingViewModel {
             // 2. Save coaching_profiles avec onboarding_completed_at.
             // Réutilise une row existante (cas hydrate-on-miss : reprise sur nouveau device après réinstall)
             // pour éviter un conflit @Attribute(.unique) var id.
+            // NB onboarding app : on NE touche PAS biologicalSex/dateOfBirth/weightKg/heightCm/equipment —
+            // l'app ne collecte plus le corps (zéro saisie corporelle) et l'équipement est déplacé vers
+            // l'onboarding programme. On laisse ces champs intacts (nil pour un nouvel utilisateur,
+            // conservés pour un retour après réinstall).
             Self.logger.info("finalize: fetchCurrentProfile coaching")
             let coaching = (try? await coachingProfileRepository.fetchCurrentProfile())
                 ?? CoachingProfile(id: coreProfile.id)
-            coaching.biologicalSex = biologicalSex
-            coaching.dateOfBirth = dateOfBirth
-            coaching.weightKg = weightKg
-            coaching.heightCm = heightCm
             coaching.activeSports = Array(activeSports).sorted()
-            coaching.equipment = Array(equipment).sorted()
             coaching.parqResponses = parqResponses
             coaching.requiresMedicalClearance = anyParqYes
             coaching.disclaimerVersionAccepted = Self.disclaimerCurrentVersion

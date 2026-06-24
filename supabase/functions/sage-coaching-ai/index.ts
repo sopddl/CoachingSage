@@ -17,10 +17,25 @@
 //   ANTHROPIC_API_KEY (à set manuellement dans Edge Function secrets)
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.43.0";
-import type { AdaptRareRequest, AdaptationPatch, LeonErrorResponse } from "./types.ts";
-import { buildAdaptRareSystemPrompt, findBannedWord, PROMPT_VERSION } from "./prompts.ts";
+import type { SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2.43.0";
+import type {
+  AdaptRareRequest,
+  AdaptationPatch,
+  LeonErrorResponse,
+  OnboardingIntentRequest,
+} from "./types.ts";
+import {
+  buildAdaptRareSystemPrompt,
+  buildOnboardingIntentSystemPrompt,
+  findBannedWord,
+  PROMPT_VERSION,
+} from "./prompts.ts";
 import { callAnthropicWithRetry } from "./anthropic.ts";
 import { checkQuota, logUsage } from "./rate_limit.ts";
+
+// Type attendu par rate_limit (checkQuota/logUsage). createClient() infère un type
+// au schéma plus large → cast unique au site de dispatch.
+type AdminClient = SupabaseClient;
 
 const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
 const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
@@ -54,17 +69,29 @@ Deno.serve(async (req) => {
   }
 
   // 2. Parse body
-  let body: AdaptRareRequest;
+  let rawBody: Record<string, unknown>;
   try {
-    body = (await req.json()) as AdaptRareRequest;
+    rawBody = (await req.json()) as Record<string, unknown>;
   } catch {
     return errorResponse(400, "invalid_request", "Body is not valid JSON");
   }
-  if (body.mode !== "adapt-rare") {
-    return errorResponse(400, "invalid_request", `Mode '${body.mode}' not supported in V1`);
-  }
 
   const adminClient = createClient(supabaseUrl, serviceRoleKey);
+  const mode = rawBody.mode;
+
+  // Dispatch — fil de Léon inc2 : interprétation NL de la demande d'onboarding.
+  if (mode === "onboarding-intent") {
+    return await handleOnboardingIntent({
+      adminClient: adminClient as unknown as AdminClient,
+      userId: user.id,
+      body: rawBody as unknown as OnboardingIntentRequest,
+    });
+  }
+
+  if (mode !== "adapt-rare") {
+    return errorResponse(400, "invalid_request", `Mode '${String(mode)}' not supported`);
+  }
+  const body = rawBody as unknown as AdaptRareRequest;
 
   // 3. Quota
   const quota = await checkQuota({ adminClient, userId: user.id });
@@ -189,6 +216,125 @@ Deno.serve(async (req) => {
     },
   });
 });
+
+// MARK: - Onboarding intent handler (fil de Léon inc2)
+
+/// Interprète la demande NL → restitution + routage ✓/⏳/🚫. Renvoie directement
+/// le JSON `LeonIntentResponse` (le client iOS le décode tel quel).
+async function handleOnboardingIntent(opts: {
+  adminClient: AdminClient;
+  userId: string;
+  body: OnboardingIntentRequest;
+}): Promise<Response> {
+  const { adminClient, userId, body } = opts;
+
+  if (typeof body.text !== "string") {
+    return errorResponse(400, "invalid_request", "Missing 'text'");
+  }
+
+  // Quota partagé (même pool que adapt-rare).
+  const quota = await checkQuota({ adminClient, userId });
+  if (!quota.allowed) {
+    const errorBody: LeonErrorResponse = {
+      error: {
+        code: "quota_exceeded",
+        message: "Daily Léon quota exceeded",
+        quota_resets_at: quota.resetsAt,
+      },
+    };
+    return jsonResponse(429, errorBody);
+  }
+
+  const systemPrompt = buildOnboardingIntentSystemPrompt();
+  const userMessage = JSON.stringify({
+    text: body.text,
+    active_sports: Array.isArray(body.active_sports) ? body.active_sports : [],
+    selected_sport: body.selected_sport ?? null,
+    locale: normalizeLocale(body.locale),
+  });
+
+  const logFailure = (errorCode: string, result?: { modelUsed: string; inputTokens: number; outputTokens: number; costUsd: number; durationMs: number }) =>
+    logUsage({
+      adminClient,
+      entry: {
+        user_id: userId,
+        mode: "onboarding-intent",
+        model: result?.modelUsed ?? "haiku-4-5",
+        tokens_in: result?.inputTokens ?? 0,
+        tokens_out: result?.outputTokens ?? 0,
+        cost_usd: result?.costUsd ?? 0,
+        duration_ms: result?.durationMs ?? 0,
+        triggered_reason: null,
+        success: false,
+        error_code: errorCode,
+      },
+    });
+
+  let result;
+  try {
+    result = await callAnthropicWithRetry({ systemPrompt, userMessage });
+  } catch (err) {
+    console.error(`[onboarding-intent] anthropic call failed:`, err);
+    await logFailure("anthropic_unavailable");
+    return errorResponse(502, "anthropic_unavailable", "Anthropic API unavailable");
+  }
+
+  if (result.parsedJSON === undefined || !isValidIntentResponse(result.parsedJSON)) {
+    console.error(`[onboarding-intent] invalid response from ${result.modelUsed}:`, result.rawContent.slice(0, 500));
+    await logFailure("invalid_patch", result);
+    return errorResponse(502, "invalid_patch", "Léon returned an unparseable response");
+  }
+
+  // Filet MDR dernière ligne : mots bannis (FR + EN + ES, cf. C1 revue MDR).
+  const banned = findBannedWord(result.rawContent, "fr")
+    ?? findBannedWord(result.rawContent, "en")
+    ?? findBannedWord(result.rawContent, "es");
+  if (banned) {
+    console.error(`[onboarding-intent] banned word '${banned}' in ${result.modelUsed} output`);
+    await logFailure("invalid_patch", result);
+    return errorResponse(502, "invalid_patch", "Léon output contained a forbidden term");
+  }
+
+  await logUsage({
+    adminClient,
+    entry: {
+      user_id: userId,
+      mode: "onboarding-intent",
+      model: result.modelUsed,
+      tokens_in: result.inputTokens,
+      tokens_out: result.outputTokens,
+      cost_usd: result.costUsd,
+      duration_ms: result.durationMs,
+      triggered_reason: null,
+      success: true,
+      error_code: null,
+    },
+  });
+
+  // Renvoie directement le LeonIntentResponse (décodé tel quel côté iOS).
+  return jsonResponse(200, result.parsedJSON);
+}
+
+/// Normalise une locale ("fr_FR" → "fr") vers fr/en/es (défaut fr).
+function normalizeLocale(locale: unknown): string {
+  if (typeof locale !== "string") return "fr";
+  const code = locale.toLowerCase().split(/[_-]/)[0];
+  return code === "en" || code === "es" ? code : "fr";
+}
+
+/// Valide la forme `LeonIntentResponse` : { intents: [{ route, restitution, ... }] }.
+function isValidIntentResponse(value: unknown): boolean {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) return false;
+  const v = value as Record<string, unknown>;
+  if (!Array.isArray(v.intents) || v.intents.length === 0) return false;
+  for (const item of v.intents) {
+    if (typeof item !== "object" || item === null) return false;
+    const i = item as Record<string, unknown>;
+    if (i.route !== "supported" && i.route !== "not_yet" && i.route !== "refused_safety") return false;
+    if (typeof i.restitution !== "string" || i.restitution.trim().length === 0) return false;
+  }
+  return true;
+}
 
 // MARK: - Helpers
 

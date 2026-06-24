@@ -1,5 +1,6 @@
 // Views/Screens/Onboarding/OnboardingView.swift
-// Story 2.2 — conteneur 4 écrans + indicateur de progression.
+// Onboarding app « fil de Léon » — conteneur 3 étapes (fil · PARQ · clôture).
+// Header = ‹ retour seul (titre porté par chaque écran), PAS de barre d'étapes (template figé).
 import SwiftUI
 
 struct OnboardingView: View {
@@ -31,26 +32,14 @@ struct OnboardingView: View {
                 .padding(.top, 8)
                 .padding(.horizontal, 24)
 
-                ProgressIndicator(currentIndex: viewModel.currentScreen.rawValue, total: OnboardingScreen.allCases.count)
-                    .padding(.top, 8)
-                    .padding(.horizontal, 24)
-
                 Group {
                     switch viewModel.currentScreen {
-                    case .firstNameLanguage:
-                        FirstNameLanguageView(viewModel: viewModel)
-                    case .thirdPartyAppsSync:
-                        ThirdPartyAppsSyncView(viewModel: viewModel)
-                    case .personalData:
-                        PersonalDataView(viewModel: viewModel)
-                    case .howItWorks:
-                        HowItWorksView(onContinue: { viewModel.goNext() })
-                    case .sportsSelection:
-                        SportsSelectionView(viewModel: viewModel)
-                    case .equipment:
-                        EquipmentSelectionView(viewModel: viewModel)
-                    case .disclaimerPARQ:
+                    case .welcome:
+                        WelcomeFilView(viewModel: viewModel)
+                    case .parq:
                         DisclaimerPARQView(viewModel: viewModel)
+                    case .closing:
+                        ClosingView(viewModel: viewModel, onCompleted: onCompleted)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -58,26 +47,5 @@ struct OnboardingView: View {
             }
         }
         .animation(.easeInOut(duration: 0.2), value: viewModel.currentScreen)
-        .onChange(of: viewModel.isOnboardingFinalized) { _, finalized in
-            if finalized { onCompleted() }
-        }
-    }
-}
-
-private struct ProgressIndicator: View {
-    let currentIndex: Int
-    let total: Int
-
-    var body: some View {
-        HStack(spacing: 8) {
-            ForEach(0..<total, id: \.self) { idx in
-                Capsule()
-                    .fill(idx <= currentIndex ? Color.coachingPrimary : Color.coachingDisabled.opacity(0.4))
-                    .frame(height: 4)
-            }
-        }
-        .accessibilityIdentifier("onboarding.progress")
-        .accessibilityLabel(Text("onboarding.progress.label"))
-        .accessibilityValue(Text(verbatim: "\(currentIndex + 1)/\(total)"))
     }
 }

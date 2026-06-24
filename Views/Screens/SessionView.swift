@@ -75,11 +75,14 @@ struct SessionView: View {
     enum SheetSelection: Identifiable {
         case questionnaire(sportCode: String)
         case sportPicker
+        /// Onboarding programme « fil de Léon » (inc1) — chemin de création principal.
+        case programmeFil
 
         var id: String {
             switch self {
             case .questionnaire(let s): return "questionnaire_\(s)"
             case .sportPicker:          return "sport_picker"
+            case .programmeFil:         return "programme_fil"
             }
         }
     }
@@ -256,7 +259,7 @@ struct SessionView: View {
         if dashboardViewModel != nil {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    sheetSelection = .sportPicker
+                    sheetSelection = .programmeFil
                 } label: {
                     Image(systemName: "plus.circle.fill")
                         .foregroundStyle(Color.coachingPrimary)
@@ -317,7 +320,7 @@ struct SessionView: View {
             EmptyDashboardView(
                 state: vm.emptyState,
                 onTapCustom: {
-                    sheetSelection = .sportPicker
+                    sheetSelection = .programmeFil
                 }
             )
         case let .dormantOnly(dormants):
@@ -377,7 +380,7 @@ struct SessionView: View {
                     replanifyTarget = summary
                 },
                 onTapStartNewProgram: {
-                    sheetSelection = .sportPicker
+                    sheetSelection = .programmeFil
                 },
                 onRenewRoutine: { summary in
                     Task { await handleRenewRoutine(summary) }
@@ -843,6 +846,51 @@ struct SessionView: View {
             SportPickerSheet { code in
                 sheetSelection = .questionnaire(sportCode: code)
             }
+        case .programmeFil:
+            programmeFilSheet()
+        }
+    }
+
+    /// Onboarding programme « fil de Léon » (inc1) — chemin de création principal.
+    /// Le fil ne fait que la PREVIEW ; `onCompleted` rend le `CoachingSportProfile`
+    /// finalisé → on réutilise `presentAdaptedProgram(for:)` (= chemin questionnaire,
+    /// commit + push) → zéro logique de commit dupliquée.
+    @ViewBuilder
+    private func programmeFilSheet() -> some View {
+        if let deps,
+           let userId = SupabaseService.shared.client.auth.currentSession?.user.id {
+            let sports = (coachingProfile?.activeSports ?? []).compactMap { SportCode(rawValue: $0) }
+            let factory = AutoProgramFactory(
+                sportProfileRepository: deps.coachingSportProfileRepository,
+                adaptedProgramRepository: deps.adaptedProgramRepository,
+                coachingProfileRepository: deps.coachingProfileRepository
+            )
+            let vm = ProgrammeOnboardingViewModel(
+                userId: userId,
+                activeSports: sports,
+                requiresMedicalClearance: coachingProfile?.requiresMedicalClearance ?? false,
+                autoprofileLevel: nil,
+                generatePreview: { profile in
+                    let preview = try await factory.previewGenerate(sportProfile: profile, userId: userId)
+                    return preview.program.weeks.count
+                },
+                // Inc2 : moteur NL réel (edge function) + backlog Supabase gated consentement.
+                intentService: DefaultLeonIntentService(),
+                unmetLogger: DefaultLeonUnmetRequestLogger(),
+                localeIdentifier: languageManager.currentLocale.identifier
+            )
+            ProgrammeOnboardingView(
+                viewModel: vm,
+                onCompleted: { sportProfile in
+                    sheetSelection = nil
+                    Task {
+                        await reloadProfile(silent: true)
+                        await presentAdaptedProgram(for: sportProfile)
+                    }
+                }
+            )
+        } else {
+            Text("session.requestProgram.noProfile")
         }
     }
 

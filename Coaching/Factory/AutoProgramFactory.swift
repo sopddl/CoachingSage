@@ -114,6 +114,36 @@ final class AutoProgramFactory {
         return AutoProgramPreview(program: adapted, sportProfile: sportProfile)
     }
 
+    /// Onboarding programme « fil de Léon » (inc1) — variant preview à partir
+    /// d'un `CoachingSportProfile` DÉJÀ construit (rythme/durée édités par l'user
+    /// dans le récap). Sélectionne le template depuis ce profil puis adapte, sans
+    /// persister. Permet l'« aperçu vivant » : éditer le rythme → recomposer.
+    ///
+    /// Le commit final n'est PAS fait ici : le fil rend le `CoachingSportProfile`
+    /// finalisé à `SessionView.onCompleted`, qui réutilise `presentAdaptedProgram(for:)`
+    /// (même chemin que le questionnaire) → zéro logique de commit dupliquée.
+    func previewGenerate(
+        sportProfile: CoachingSportProfile,
+        userId: UUID
+    ) async throws -> AutoProgramPreview {
+        guard let coachingProfile = try await coachingProfileRepository.fetchCurrentProfile() else {
+            throw AutoProgramFactoryError.coachingProfileMissing
+        }
+
+        let library = try await templateLibraryProvider()
+        let selector = ProgramTemplateSelector(library: library)
+        let summary = selector.select(profile: sportProfile)
+        let template = try await library.fullTemplate(id: summary.id)
+
+        let adapted = adapterService.adapt(
+            template: template,
+            sportProfile: sportProfile,
+            coachingProfile: coachingProfile
+        )
+
+        return AutoProgramPreview(program: adapted, sportProfile: sportProfile)
+    }
+
     /// Story sœur 3.z (2026-05-17) — persiste la preview (sportProfile +
     /// AdaptedProgramRecord). Retourne le recordId pour navigation/dashboard.
     /// Appelée quand l'utilisateur confirme "Démarrer ce programme" depuis
