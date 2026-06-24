@@ -31,6 +31,9 @@ final class ProgrammeOnboardingViewModel {
     /// pour un profil donné, sans persister. Injecté = testable (stub) ; en prod
     /// = wrapper sur `AutoProgramFactory.previewGenerate(sportProfile:userId:)`.
     private let generatePreview: (CoachingSportProfile) async throws -> Int
+    /// Interprétation NL (inc2). Phase 1 = `StubLeonIntentService` (⏳ honnête, pas de
+    /// classification locale) ; phase 2 = service edge function `sage-coaching-ai`.
+    private let intentService: LeonIntentService
     private let unmetLogger: LeonUnmetRequestLogger
     private let appVersion: String
     private let localeIdentifier: String
@@ -77,6 +80,7 @@ final class ProgrammeOnboardingViewModel {
         requiresMedicalClearance: Bool,
         autoprofileLevel: String?,
         generatePreview: @escaping (CoachingSportProfile) async throws -> Int,
+        intentService: LeonIntentService = StubLeonIntentService(),
         unmetLogger: LeonUnmetRequestLogger = NoopLeonUnmetRequestLogger(),
         appVersion: String = Bundle.main.shortVersion,
         localeIdentifier: String = Locale.current.identifier
@@ -86,6 +90,7 @@ final class ProgrammeOnboardingViewModel {
         self.requiresMedicalClearance = requiresMedicalClearance
         self.autoprofileLevel = autoprofileLevel
         self.generatePreview = generatePreview
+        self.intentService = intentService
         self.unmetLogger = unmetLogger
         self.appVersion = appVersion
         self.localeIdentifier = localeIdentifier
@@ -132,29 +137,67 @@ final class ProgrammeOnboardingViewModel {
 
     // MARK: - Actions zone ③ (conversation — inc1 : capté + réponse d'attente)
 
-    /// Envoi d'une relance dans le fil. Inc1 : on l'AJOUTE au fil + on logge
-    /// (no-op backlog), mais on N'INTERPRÈTE PAS (pas de routage ✓/⏳/🚫). Léon
-    /// répond une bulle d'attente honnête. L'interprétation arrive à l'inc NL.
+    /// Envoi d'une relance dans le fil → passe par le service d'intention (inc2).
+    /// La bulle user est ajoutée tout de suite (sync) ; la restitution de Léon +
+    /// la recomposition + le log backlog suivent l'interprétation (async).
     func sendFollowUp(_ raw: String) {
         let text = raw.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
         conversation.append(FilMessage(sender: .user, text: text))
-        conversation.append(FilMessage(sender: .leon, text: Self.holdingReplyKey))
-        // Backlog : inc1 = no-op (catégorie inconnue, pas d'interprétation).
-        Task {
-            await unmetLogger.log(
-                LeonUnmetRequest(
-                    category: .unknown,
-                    response: .notYet,
-                    locale: localeIdentifier,
-                    appVersion: appVersion
+        Task { await processIntent(text: text) }
+    }
+
+    /// Clé i18n de la réponse d'attente de Léon (repli si le service échoue ;
+    /// = restitution du `StubLeonIntentService` en phase 1).
+    static let holdingReplyKey = "programme.fil.leon.holding"
+
+    /// Interprète une demande/relance et applique le résultat au fil (restitution,
+    /// recomposition si supporté, log backlog si hors périmètre). Une demande peut
+    /// produire plusieurs intentions (ex. « vélo + course + perdre 5 kg »).
+    private func processIntent(text: String) async {
+        let request = LeonIntentRequest(
+            text: text,
+            activeSports: activeSports.map(\.rawValue),
+            selectedSport: selectedSport?.rawValue,
+            locale: localeIdentifier
+        )
+        let response: LeonIntentResponse
+        do {
+            response = try await intentService.interpret(request)
+        } catch {
+            // Dégradation propre : Léon reste poli, le fil reste utilisable au carrousel.
+            conversation.append(FilMessage(sender: .leon, text: Self.holdingReplyKey))
+            return
+        }
+        for intent in response.intents {
+            conversation.append(FilMessage(sender: .leon, text: intent.restitution))
+            switch intent.route {
+            case .supported:
+                await applySlots(intent.slots)
+            case .notYet, .refusedSafety:
+                await unmetLogger.log(
+                    LeonUnmetRequest(
+                        category: intent.category ?? .unknown,
+                        response: intent.route == .refusedSafety ? .refusedSafety : .notYet,
+                        locale: localeIdentifier,
+                        appVersion: appVersion
+                    )
                 )
-            )
+            }
         }
     }
 
-    /// Clé i18n de la réponse d'attente de Léon (inc1, pas d'interprétation).
-    static let holdingReplyKey = "programme.fil.leon.holding"
+    /// Applique les slots compris (sport / rythme) → recompose la proposition (aperçu vivant).
+    private func applySlots(_ slots: LeonIntentSlots?) async {
+        guard let slots else { return }
+        if let first = slots.sportCodes?.first, let sport = SportCode(rawValue: first) {
+            selectedSport = sport
+        }
+        if let freq = slots.frequencyPerWeek {
+            frequencyPerWeek = freq
+        }
+        await regenerate()
+    }
 
     // MARK: - Génération de l'aperçu (preview, sans persistance)
 

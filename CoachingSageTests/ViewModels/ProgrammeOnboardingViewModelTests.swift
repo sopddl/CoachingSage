@@ -33,13 +33,21 @@ final class ProgrammeOnboardingViewModelTests: XCTestCase {
 
     // MARK: - Helpers
 
+    /// Service d'intention contrôlé (renvoie une réponse fixée).
+    private struct FakeIntentService: LeonIntentService {
+        let response: LeonIntentResponse
+        func interpret(_ request: LeonIntentRequest) async throws -> LeonIntentResponse { response }
+    }
+
     private func makeVM(
         activeSports: [SportCode] = [.running, .cycling, .yoga],
         autoprofileLevel: String? = nil,
         requiresMedicalClearance: Bool = false,
         weekCount: Int = 12,
         generateThrows: Bool = false,
-        logger: SpyLogger = SpyLogger()
+        intentService: LeonIntentService = StubLeonIntentService(),
+        logger: SpyLogger = SpyLogger(),
+        onGenerate: (() -> Void)? = nil
     ) -> ProgrammeOnboardingViewModel {
         ProgrammeOnboardingViewModel(
             userId: UUID(),
@@ -47,9 +55,11 @@ final class ProgrammeOnboardingViewModelTests: XCTestCase {
             requiresMedicalClearance: requiresMedicalClearance,
             autoprofileLevel: autoprofileLevel,
             generatePreview: { _ in
+                onGenerate?()
                 if generateThrows { throw NSError(domain: "test", code: 1) }
                 return weekCount
             },
+            intentService: intentService,
             unmetLogger: logger,
             appVersion: "9.9",
             localeIdentifier: "fr_FR"
@@ -143,18 +153,62 @@ final class ProgrammeOnboardingViewModelTests: XCTestCase {
 
         vm.sendFollowUp("plutôt le soir")
 
-        XCTAssertEqual(vm.conversation.count, 2)
-        XCTAssertEqual(vm.conversation[0].sender, .user)
-        XCTAssertEqual(vm.conversation[0].text, "plutôt le soir")
-        XCTAssertEqual(vm.conversation[1].sender, .leon)
-        XCTAssertEqual(vm.conversation[1].text, ProgrammeOnboardingViewModel.holdingReplyKey)
+        // La bulle user est synchrone ; la restitution + le log suivent l'interprétation async.
+        XCTAssertEqual(vm.conversation.first?.sender, .user)
+        XCTAssertEqual(vm.conversation.first?.text, "plutôt le soir")
 
         wait(for: [exp], timeout: 1.0)
-        // Inc1 : pas d'interprétation → category unknown, response not_yet, aucun verbatim.
+        // Stub (phase 1) : pas d'interprétation → ⏳ holding + category unknown, response not_yet.
+        XCTAssertEqual(vm.conversation.count, 2)
+        XCTAssertEqual(vm.conversation[1].sender, .leon)
+        XCTAssertEqual(vm.conversation[1].text, ProgrammeOnboardingViewModel.holdingReplyKey)
         XCTAssertEqual(logger.logged.count, 1)
         XCTAssertEqual(logger.logged.first?.category, .unknown)
         XCTAssertEqual(logger.logged.first?.response, .notYet)
         XCTAssertEqual(logger.logged.first?.locale, "fr_FR")
+    }
+
+    func test_sendFollowUp_supportedIntent_appliesSlotsAndRecomposes() {
+        let intent = LeonIntent(
+            route: .supported,
+            restitution: "✓ Vélo 4×",
+            category: nil,
+            refusalFamily: nil,
+            slots: LeonIntentSlots(sportCodes: ["cycling"], frequencyPerWeek: 4)
+        )
+        let service = FakeIntentService(response: LeonIntentResponse(intents: [intent]))
+        // L'application des slots déclenche regenerate → generatePreview : on s'en sert de signal.
+        let exp = expectation(description: "recomposed")
+        let vm = makeVM(intentService: service, onGenerate: { exp.fulfill() })
+
+        vm.sendFollowUp("vélo 4 fois par semaine")
+
+        wait(for: [exp], timeout: 1.0)
+        XCTAssertEqual(vm.selectedSport, .cycling)
+        XCTAssertEqual(vm.frequencyPerWeek, 4)
+        XCTAssertEqual(vm.proposal?.frequencyPerWeek, 4)
+        XCTAssertEqual(vm.conversation.last?.text, "✓ Vélo 4×")
+    }
+
+    func test_sendFollowUp_refusalSafety_logsRefusedWithFamily() {
+        let intent = LeonIntent(
+            route: .refusedSafety,
+            restitution: "🚫 vois ça avec un pro de santé",
+            category: .healthCondition,
+            refusalFamily: .healthCondition,
+            slots: nil
+        )
+        let service = FakeIntentService(response: LeonIntentResponse(intents: [intent]))
+        let logger = SpyLogger()
+        let exp = expectation(description: "logged")
+        logger.expectation = exp
+        let vm = makeVM(intentService: service, logger: logger)
+
+        vm.sendFollowUp("j'ai mal au dos")
+
+        wait(for: [exp], timeout: 1.0)
+        XCTAssertEqual(logger.logged.first?.category, .healthCondition)
+        XCTAssertEqual(logger.logged.first?.response, .refusedSafety)
     }
 
     func test_sendFollowUp_emptyIgnored() {
