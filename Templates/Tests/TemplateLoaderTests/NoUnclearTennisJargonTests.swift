@@ -16,13 +16,18 @@ import TemplateModel
 /// EN/ES : reformulation MDR = suivi (ce chantier traite le FR, locale primaire).
 final class NoUnclearTennisJargonTests: XCTestCase {
 
+    // FR + EN + ES (la passe EN/ES 2026-06-25 a aussi reformulé le cadrage « prévention »).
     private static let pattern = try! NSRegularExpression(
-        pattern: #"prévention|préventif|préventive"#,
+        pattern: #"prévention|préventif|préventive|prevention|preventive|prevención|preventiv|\bMujika\b"#,
         options: [.caseInsensitive])
 
-    private func hit(_ text: String?) -> Bool {
-        guard let text else { return false }
-        return Self.pattern.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)) != nil
+    private func hit(_ loc: LocalizedText?) -> Bool {
+        guard let loc else { return false }
+        for v in [loc.fr, loc.en, loc.es] {
+            guard let v else { continue }
+            if Self.pattern.firstMatch(in: v, range: NSRange(v.startIndex..., in: v)) != nil { return true }
+        }
+        return false
     }
 
     func testNoMDRFramingInTennisDisplayedFR() async throws {
@@ -32,24 +37,26 @@ final class NoUnclearTennisJargonTests: XCTestCase {
         XCTAssertFalse(tennis.isEmpty, "aucun template tennis chargé")
 
         var failures: [String] = []
-        func scan(_ field: String, _ value: String?, _ id: String) {
-            if hit(value) { failures.append("[\(id)] \(field): « \((value ?? "").prefix(80))… »") }
+        func scan(_ field: String, _ loc: LocalizedText?, _ id: String) {
+            if hit(loc) { failures.append("[\(id)] \(field): « \((loc?.fr ?? "").prefix(80))… »") }
         }
         for t in tennis {
             for w in t.weeks {
                 for s in w.sessions {
-                    scan("session.name", s.name.fr, t.id)
-                    scan("session.warmup", s.warmup?.fr, t.id)
-                    scan("session.cooldown", s.cooldown?.fr, t.id)
+                    scan("session.name", s.name, t.id)
+                    scan("session.warmup", s.warmup, t.id)
+                    scan("session.cooldown", s.cooldown, t.id)
                     var exos = s.exercises
                     for v in s.variants ?? [] {
-                        scan("variant.name", v.name.fr, t.id)
+                        scan("variant.name", v.name, t.id)
+                        scan("variant.warmup", v.warmup, t.id)
+                        scan("variant.cooldown", v.cooldown, t.id)
                         exos += v.exercises
                     }
                     for e in exos {
-                        scan("exo.name", e.name.fr, t.id)
-                        scan("exo.notes", e.notes?.fr, t.id)
-                        for alt in e.alternatives { scan("alternative", alt.fr, t.id) }
+                        scan("exo.name", e.name, t.id)
+                        scan("exo.notes", e.notes, t.id)
+                        for alt in e.alternatives { scan("alternative", alt, t.id) }
                     }
                 }
             }

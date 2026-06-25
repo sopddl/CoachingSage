@@ -18,16 +18,25 @@ import TemplateModel
 /// traite le FR, locale primaire — cf. running/cycling/hiking).
 final class NoUnclearHiitJargonTests: XCTestCase {
 
+    // FR + EN + ES (passe EN/ES 2026-06-25). Tokens d'auteurs/orgs communs aux 3 langues +
+    // cadrages MDR propres à chaque langue.
     private static let pattern = try! NSRegularExpression(
         pattern: [#"\bNSCA\b"#, #"\bMujika\b"#, #"\bGibala\b"#, #"\bPetersen\b"#, #"\bBJSM\b"#,
-                  #"True Sports"#, #"170 ?% VO2max"#, #"fractionné 20/10 1996"#, #"20/10 \(1996\)"#,
+                  #"True Sports"#, #"170 ?% VO2má?x"#, #"fractionné 20/10 1996"#, #"20/10 \(1996\)"#,
                   #"[Pp]révention conflit"#, #"prévention valgus"#, #"Prévention coiffe"#,
-                  #"Obligatoire HIIT"#, #"Obligatoire chez le débutant HIIT"#].joined(separator: "|"),
-        options: [])
+                  #"\bimpingement\b"#, #"pinzamiento"#, #"subacromial"#,
+                  #"prévent"#, #"prevent"#, #"prevenc"#, #"preventi"#,
+                  #"Obligatoire (HIIT|chez le débutant HIIT)"#, #"Mandatory for the HIIT"#,
+                  #"Obligatorio para el principiante de HIIT"#].joined(separator: "|"),
+        options: [.caseInsensitive])
 
-    private func hit(_ text: String?) -> Bool {
-        guard let text else { return false }
-        return Self.pattern.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)) != nil
+    private func hit(_ loc: LocalizedText?) -> Bool {
+        guard let loc else { return false }
+        for v in [loc.fr, loc.en, loc.es] {
+            guard let v else { continue }
+            if Self.pattern.firstMatch(in: v, range: NSRange(v.startIndex..., in: v)) != nil { return true }
+        }
+        return false
     }
 
     func testNoCitationsOrMDRInHiitDisplayedFR() async throws {
@@ -37,24 +46,26 @@ final class NoUnclearHiitJargonTests: XCTestCase {
         XCTAssertFalse(hiit.isEmpty, "aucun template HIIT chargé")
 
         var failures: [String] = []
-        func scan(_ field: String, _ value: String?, _ id: String) {
-            if hit(value) { failures.append("[\(id)] \(field): « \((value ?? "").prefix(80))… »") }
+        func scan(_ field: String, _ loc: LocalizedText?, _ id: String) {
+            if hit(loc) { failures.append("[\(id)] \(field): « \((loc?.fr ?? "").prefix(80))… »") }
         }
         for t in hiit {
             for w in t.weeks {
                 for s in w.sessions {
-                    scan("session.name", s.name.fr, t.id)
-                    scan("session.warmup", s.warmup?.fr, t.id)
-                    scan("session.cooldown", s.cooldown?.fr, t.id)
+                    scan("session.name", s.name, t.id)
+                    scan("session.warmup", s.warmup, t.id)
+                    scan("session.cooldown", s.cooldown, t.id)
                     var exos = s.exercises
                     for v in s.variants ?? [] {
-                        scan("variant.name", v.name.fr, t.id)
+                        scan("variant.name", v.name, t.id)
+                        scan("variant.warmup", v.warmup, t.id)
+                        scan("variant.cooldown", v.cooldown, t.id)
                         exos += v.exercises
                     }
                     for e in exos {
-                        scan("exo.name", e.name.fr, t.id)
-                        scan("exo.notes", e.notes?.fr, t.id)
-                        for alt in e.alternatives { scan("alternative", alt.fr, t.id) }
+                        scan("exo.name", e.name, t.id)
+                        scan("exo.notes", e.notes, t.id)
+                        for alt in e.alternatives { scan("alternative", alt, t.id) }
                     }
                 }
             }

@@ -27,7 +27,9 @@ def weeks_line(lines):
 
 def main():
     sport, rules_path = sys.argv[1], sys.argv[2]
-    rules = json.load(open(rules_path))['rules']
+    lang = sys.argv[3] if len(sys.argv) > 3 else 'fr'        # langue ciblée (fr|en|es)
+    rules_key = sys.argv[4] if len(sys.argv) > 4 else 'rules' # clé dans le json (rules|en_rules|es_rules)
+    rules = json.load(open(rules_path))[rules_key]
     total = 0
     per_rule = {i: 0 for i in range(len(rules))}
     for path in sorted(glob.glob(os.path.join(TPL, f'{sport}-*.json'))):
@@ -36,8 +38,8 @@ def main():
         wl = weeks_line(lines)
         n = 0
         for i in range(wl, len(lines)):
-            # ne toucher que les valeurs FR affichées
-            if not re.match(r'\s*"fr"\s*:', lines[i]):
+            # ne toucher que les valeurs de la langue ciblée
+            if not re.match(r'\s*"' + lang + r'"\s*:', lines[i]):
                 continue
             for ri, r in enumerate(rules):
                 old, new = r['old'], r['new']
