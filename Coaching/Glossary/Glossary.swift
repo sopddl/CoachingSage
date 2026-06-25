@@ -89,10 +89,10 @@ public enum Glossary {
         GlossaryEntry(id: "en",         titleKey: "glossary.en.title",         definitionKey: "glossary.en.definition",
                       sportCodes: [Sport.swimming]),
         GlossaryEntry(id: "css",        titleKey: "glossary.css.title",        definitionKey: "glossary.css.definition",
-                      sportCodes: [Sport.swimming]),
+                      sportCodes: [Sport.swimming, Sport.triathlon]),
         // Cycling
         GlossaryEntry(id: "ftp",        titleKey: "glossary.ftp.title",        definitionKey: "glossary.ftp.definition",
-                      sportCodes: [Sport.cycling]),
+                      sportCodes: [Sport.cycling, Sport.triathlon]),
         GlossaryEntry(id: "sweetspot",  titleKey: "glossary.sweetspot.title",  definitionKey: "glossary.sweetspot.definition",
                       sportCodes: [Sport.cycling]),
         // Chantier compréhensibilité cycling (2026-06-25) — FCmax gardée comme repère cardio
@@ -119,7 +119,7 @@ public enum Glossary {
         GlossaryEntry(id: "threshold",  titleKey: "glossary.threshold.title",  definitionKey: "glossary.threshold.definition",
                       sportCodes: [Sport.running, Sport.cycling, Sport.swimming]),
         GlossaryEntry(id: "vo2max",     titleKey: "glossary.vo2max.title",     definitionKey: "glossary.vo2max.definition",
-                      sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.hiit]),
+                      sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.hiit, Sport.triathlon]),
         GlossaryEntry(id: "intervals",  titleKey: "glossary.intervals.title",  definitionKey: "glossary.intervals.definition",
                       sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.hiit]),
         GlossaryEntry(id: "strides",    titleKey: "glossary.strides.title",    definitionKey: "glossary.strides.definition",
