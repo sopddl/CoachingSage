@@ -98,7 +98,7 @@ public enum Glossary {
         // Chantier compréhensibilité cycling (2026-06-25) — FCmax gardée comme repère cardio
         // (décision Sophie : FTP/FCmax/VO2max gardés, rendus tappables ; FTP/VO2max déjà glosés).
         GlossaryEntry(id: "fcmax",      titleKey: "glossary.fcmax.title",      definitionKey: "glossary.fcmax.definition",
-                      sportCodes: [Sport.cycling, Sport.running, Sport.swimming, Sport.triathlon, Sport.hiit]),
+                      sportCodes: [Sport.cycling, Sport.running, Sport.swimming, Sport.triathlon, Sport.hiit, Sport.hiking]),
         // Protocoles HIIT / strength
         GlossaryEntry(id: "amrap",      titleKey: "glossary.amrap.title",      definitionKey: "glossary.amrap.definition",
                       sportCodes: [Sport.hiit, Sport.strengthTraining]),
