@@ -20,9 +20,13 @@ import TemplateModel
 /// reformulation MDR EN/ES reste un suivi (hors périmètre FR de ce chantier).
 final class NoUnclearFootballJargonTests: XCTestCase {
 
-    // Citations (noms propres) — interdites dans les 3 langues.
+    // Citations (noms propres) + cadrages MDR EN/ES — interdits dans les 3 langues
+    // (passe EN/ES 2026-06-25 : « prevention pillar », « injury-prevention », « pilar de
+    // prevención », « mobility-prevention/movilidad-prevención » reformulés en renforcement).
     private static let citationPattern = try! NSRegularExpression(
-        pattern: #"\bBompa\b|\bBuchheit\b|\bF-MARC\b|Petersen 201|Thorborg 202"#,
+        pattern: [#"\bBompa\b"#, #"\bBuchheit\b"#, #"\bF-MARC\b"#, #"Petersen 201"#, #"Thorborg 202"#,
+                  #"\bMujika\b"#, #"prévent"#, #"prevent"#, #"prevenc"#, #"preventi"#,
+                  #"mobilité-prévention"#, #"movilidad-prevención"#].joined(separator: "|"),
         options: [.caseInsensitive])
     // Allégations MDR — vérifiées en FR.
     private static let frClaimPattern = try! NSRegularExpression(
