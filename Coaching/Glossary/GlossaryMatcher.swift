@@ -77,6 +77,16 @@ extension Glossary {
         ("ftp", "ftp"),
         ("hmp", "hmp"),
         ("vdot", "vdot"),
+        // Chantier compréhensibilité running (2026-06-25) — jargon orphelin rendu tappable.
+        ("vma", "vma"),
+        ("seuils", "seuil"),
+        ("seuil", "seuil"),
+        ("affûtage", "affutage"),
+        ("affutage", "affutage"),
+        ("aérobie", "aerobie"),
+        ("aerobie", "aerobie"),
+        ("excentriques", "excentrique"),
+        ("excentrique", "excentrique"),
         // Multi-sport génériques (plus courts)
         ("threshold", "threshold"),
         ("intervals", "intervals"),

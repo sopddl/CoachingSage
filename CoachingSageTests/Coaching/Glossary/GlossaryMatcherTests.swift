@@ -39,6 +39,16 @@ final class GlossaryMatcherTests: XCTestCase {
         XCTAssertEqual(Glossary.matches(in: "activation des fessiers").first?.entry.id, "glutes")
     }
 
+    // Chantier compréhensibilité running 2026-06-25 — jargon orphelin rendu tappable.
+    func testRunningJargonNowMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Séries de 600 m (allure VMA)").first?.entry.id, "vma")
+        XCTAssertTrue(Glossary.matches(in: "Bloc tempo au seuil 20 min").contains { $0.entry.id == "seuil" })
+        XCTAssertEqual(Glossary.matches(in: "Plusieurs seuils dans la semaine").first?.entry.id, "seuil")
+        XCTAssertEqual(Glossary.matches(in: "Phase d'affûtage avant la course").first?.entry.id, "affutage")
+        XCTAssertEqual(Glossary.matches(in: "construit ta base aérobie").first?.entry.id, "aerobie")
+        XCTAssertEqual(Glossary.matches(in: "Mollets excentriques sur une marche").first?.entry.id, "excentrique")
+    }
+
     func testBandMatch() {
         XCTAssertEqual(Glossary.matches(in: "activation glutes (band)").last?.entry.id, "band")
         XCTAssertEqual(Glossary.matches(in: "avec un élastique").first?.entry.id, "band")
