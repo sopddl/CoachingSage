@@ -73,6 +73,18 @@ public enum Glossary {
                       sportCodes: [Sport.running]),
         GlossaryEntry(id: "vdot",       titleKey: "glossary.vdot.title",       definitionKey: "glossary.vdot.definition",
                       sportCodes: [Sport.running]),
+        // Chantier compréhensibilité running (2026-06-25) — jargon orphelin glosé
+        // (décision Sophie : VMA/seuil gardés comme vocabulaire coureur, rendus tappables).
+        GlossaryEntry(id: "vma",        titleKey: "glossary.vma.title",        definitionKey: "glossary.vma.definition",
+                      sportCodes: [Sport.running, Sport.cycling]),
+        GlossaryEntry(id: "seuil",      titleKey: "glossary.seuil.title",      definitionKey: "glossary.seuil.definition",
+                      sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.triathlon]),
+        GlossaryEntry(id: "affutage",   titleKey: "glossary.affutage.title",   definitionKey: "glossary.affutage.definition",
+                      sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.triathlon]),
+        GlossaryEntry(id: "aerobie",    titleKey: "glossary.aerobie.title",    definitionKey: "glossary.aerobie.definition",
+                      sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.triathlon, Sport.hiking]),
+        GlossaryEntry(id: "excentrique",titleKey: "glossary.excentrique.title",definitionKey: "glossary.excentrique.definition",
+                      sportCodes: [Sport.running, Sport.strengthTraining]),
         // Swimming
         GlossaryEntry(id: "en",         titleKey: "glossary.en.title",         definitionKey: "glossary.en.definition",
                       sportCodes: [Sport.swimming]),
