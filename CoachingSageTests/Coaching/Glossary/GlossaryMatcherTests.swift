@@ -49,6 +49,14 @@ final class GlossaryMatcherTests: XCTestCase {
         XCTAssertEqual(Glossary.matches(in: "Mollets excentriques sur une marche").first?.entry.id, "excentrique")
     }
 
+    // Chantier compréhensibilité cycling 2026-06-25 — FCmax rendue tappable (FTP/VO2max déjà glosés).
+    func testCyclingFCmaxNowMatches() {
+        XCTAssertTrue(Glossary.matches(in: "Allure soutenue (88-94 % FTP, 92-97 % FCmax, RPE 3-4)")
+            .contains { $0.entry.id == "fcmax" })
+        XCTAssertEqual(Glossary.matches(in: "reste sous 75 % FC max").first?.entry.id, "fcmax")
+        XCTAssertEqual(Glossary.matches(in: "stay under 90-95% max HR").first?.entry.id, "fcmax")
+    }
+
     func testBandMatch() {
         XCTAssertEqual(Glossary.matches(in: "activation glutes (band)").last?.entry.id, "band")
         XCTAssertEqual(Glossary.matches(in: "avec un élastique").first?.entry.id, "band")

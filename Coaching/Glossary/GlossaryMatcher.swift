@@ -77,6 +77,14 @@ extension Glossary {
         ("ftp", "ftp"),
         ("hmp", "hmp"),
         ("vdot", "vdot"),
+        // Chantier compréhensibilité cycling (2026-06-25) — FCmax rendue tappable (FR/EN/ES).
+        ("fréquence cardiaque maximale", "fcmax"),
+        ("fréquence cardiaque max", "fcmax"),
+        ("frecuencia cardíaca máxima", "fcmax"),
+        ("max hr", "fcmax"),
+        ("fcmáx", "fcmax"),
+        ("fcmax", "fcmax"),
+        ("fc max", "fcmax"),
         // Chantier compréhensibilité running (2026-06-25) — jargon orphelin rendu tappable.
         ("vma", "vma"),
         ("seuils", "seuil"),
