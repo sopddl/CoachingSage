@@ -95,6 +95,10 @@ public enum Glossary {
                       sportCodes: [Sport.cycling]),
         GlossaryEntry(id: "sweetspot",  titleKey: "glossary.sweetspot.title",  definitionKey: "glossary.sweetspot.definition",
                       sportCodes: [Sport.cycling]),
+        // Chantier compréhensibilité cycling (2026-06-25) — FCmax gardée comme repère cardio
+        // (décision Sophie : FTP/FCmax/VO2max gardés, rendus tappables ; FTP/VO2max déjà glosés).
+        GlossaryEntry(id: "fcmax",      titleKey: "glossary.fcmax.title",      definitionKey: "glossary.fcmax.definition",
+                      sportCodes: [Sport.cycling, Sport.running, Sport.swimming, Sport.triathlon, Sport.hiit]),
         // Protocoles HIIT / strength
         GlossaryEntry(id: "amrap",      titleKey: "glossary.amrap.title",      definitionKey: "glossary.amrap.definition",
                       sportCodes: [Sport.hiit, Sport.strengthTraining]),
