@@ -5,6 +5,7 @@ import Foundation
 import os
 import SwiftUI
 import SageCore
+import UserNotifications
 
 @MainActor
 @Observable
@@ -27,24 +28,37 @@ final class ProfileViewModel {
     /// Affiché 3s après échec save analytics (review P1-2).
     var privacyErrorVisible: Bool = false
 
+    // MARK: - Notifications (Epic 8)
+
+    /// Préférences notifs bindables (toggles + heure). Chargées au refresh.
+    var notificationPrefs = NotificationPreferences()
+    /// `true` si la permission système est refusée → on affiche un hint « Réglages iOS ».
+    var notificationSystemDenied = false
+    /// Spinner inline pendant un save des prefs notifs.
+    var isNotificationsSaving = false
+
     // MARK: - Dependencies
 
     private let coreProfileRepository: any CoreProfileRepository
     private let coachingProfileRepository: any CoachingProfileRepository
     private let authService: any AuthServiceProtocol
+    private let notificationService: NotificationService?
 
     // MARK: - Internals
 
     private var analyticsDebounceTask: Task<Void, Never>?
+    private var notificationDebounceTask: Task<Void, Never>?
 
     init(
         coreProfileRepository: any CoreProfileRepository,
         coachingProfileRepository: any CoachingProfileRepository,
-        authService: any AuthServiceProtocol
+        authService: any AuthServiceProtocol,
+        notificationService: NotificationService? = nil
     ) {
         self.coreProfileRepository = coreProfileRepository
         self.coachingProfileRepository = coachingProfileRepository
         self.authService = authService
+        self.notificationService = notificationService
     }
 
     // MARK: - Derived accessors
@@ -86,6 +100,10 @@ final class ProfileViewModel {
 
             state = .success((core: core, coaching: coaching))
             analyticsConsent = core.analyticsConsent
+            notificationPrefs = core.decodedNotificationPreferences
+            if let ns = notificationService {
+                notificationSystemDenied = await ns.currentAuthorizationStatus() == .denied
+            }
         } catch {
             guard authService.currentUserId == capturedUserId else { return }
             state = .error(error as? AppError ?? .sync(error.localizedDescription))
@@ -123,5 +141,62 @@ final class ProfileViewModel {
                 }
             }
         }
+    }
+
+    // MARK: - Notifications toggle / save (Epic 8)
+
+    /// Bascule l'interrupteur global. À l'activation, gère la permission système :
+    /// `.notDetermined` → demande ; `.denied` → revert + hint ; sinon → active.
+    func setNotificationsEnabled(_ on: Bool) async {
+        guard let core = loadedProfiles?.core, let ns = notificationService else {
+            notificationPrefs.enabled = on
+            return
+        }
+        if on {
+            let status = await ns.currentAuthorizationStatus()
+            switch status {
+            case .notDetermined:
+                let granted = await ns.requestAuthorization()
+                if granted {
+                    notificationPrefs.enabled = true
+                    await persistNotificationPrefs(core: core)
+                    await ns.reschedule()
+                } else {
+                    notificationPrefs.enabled = false
+                    notificationSystemDenied = await ns.currentAuthorizationStatus() == .denied
+                }
+            case .denied:
+                notificationPrefs.enabled = false
+                notificationSystemDenied = true
+            default:
+                notificationPrefs.enabled = true
+                await persistNotificationPrefs(core: core)
+                await ns.reschedule()
+            }
+        } else {
+            notificationPrefs.enabled = false
+            await persistNotificationPrefs(core: core)
+            await ns.cancelAll()
+        }
+    }
+
+    /// Save debouncé pour les changements de type/heure (quand le global est déjà ON).
+    func scheduleNotificationPrefsSave() {
+        notificationDebounceTask?.cancel()
+        notificationDebounceTask = Task { [weak self] in
+            try? await Task.sleep(for: .milliseconds(500))
+            guard !Task.isCancelled, let self else { return }
+            guard let core = self.loadedProfiles?.core else { return }
+            await self.persistNotificationPrefs(core: core)
+            await self.notificationService?.reschedule()
+        }
+    }
+
+    private func persistNotificationPrefs(core: SageCoreProfile) async {
+        isNotificationsSaving = true
+        defer { isNotificationsSaving = false }
+        core.setNotificationPreferences(notificationPrefs)
+        core.updatedAt = Date()
+        try? await coreProfileRepository.save(core)
     }
 }

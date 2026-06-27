@@ -29,6 +29,9 @@ struct AppDependencies {
     /// Story 3.15 — bootstrap 3 dormants au 1er launch post-onboarding via
     /// `selectTopN`. Appelé UNIQUEMENT depuis `OnboardingViewModel.finalize()`.
     let dormantBootstrapService: DormantBootstrapService
+    /// Epic 8 — notifications locales d'engagement (rappel séance, relance, célébration,
+    /// renouvellement). Câblé sur live() ; `localeProvider` réglé par l'App.
+    let notificationService: NotificationService
 
     @MainActor
     static func live(modelContext: ModelContext) -> AppDependencies {
@@ -64,6 +67,12 @@ struct AppDependencies {
             adaptedProgramRepository: adaptedProgramRepository,
             factory: autoProgramFactory
         )
+        let notificationService = NotificationService(
+            scheduler: SystemNotificationScheduler(),
+            coreProfileRepository: coreProfileRepository,
+            adaptedProgramRepository: adaptedProgramRepository,
+            routineCycleService: routineCycleService
+        )
         return AppDependencies(
             coreProfileRepository: coreProfileRepository,
             coachingProfileRepository: coachingProfileRepository,
@@ -78,7 +87,8 @@ struct AppDependencies {
             weeklyRegenApplicationService: weeklyRegenApplicationService,
             routineCycleService: routineCycleService,
             replanifyService: replanifyService,
-            dormantBootstrapService: dormantBootstrapService
+            dormantBootstrapService: dormantBootstrapService,
+            notificationService: notificationService
         )
     }
 }
