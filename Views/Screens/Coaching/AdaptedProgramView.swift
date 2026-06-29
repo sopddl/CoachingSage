@@ -116,10 +116,6 @@ struct AdaptedProgramView: View {
                     leonNotesSection(notes)
                 }
 
-                if record != nil {
-                    progressHeader
-                }
-
                 ForEach(program.weeks, id: \.weekNumber) { week in
                     weekAccordion(week)
                 }
@@ -181,6 +177,22 @@ struct AdaptedProgramView: View {
         }
         .navigationTitle(Text(verbatim: displayTitle))
         .navigationBarTitleDisplayMode(.inline)
+        // **Findings UX 2026-06-29 (#4)** — l'avancement (X/N + barre) reste
+        // visible pendant le scroll du contenu du programme : sorti du ScrollView
+        // vers un inset top sticky (le titre, lui, est déjà figé dans la nav bar
+        // `.inline`). Affiché uniquement en mode actif (record chargé), pas en
+        // preview/hot-path où il n'y a pas de progression à montrer.
+        .safeAreaInset(edge: .top, spacing: 0) {
+            if record != nil {
+                VStack(spacing: 0) {
+                    progressHeader
+                        .padding(.horizontal)
+                        .padding(.vertical, 10)
+                    Divider()
+                }
+                .background(.bar)
+            }
+        }
         // **Story 3.16 (Sophie 2026-05-21)** — sticky bottom 2 boutons en mode
         // preview post-questionnaire. "Retour" (sans persistance) + "Démarrer"
         // (commit). Avant : seul un bouton toolbar trailing (nav "bizarre").
@@ -731,7 +743,10 @@ struct AdaptedProgramView: View {
                 week: week,
                 program: program,
                 isModifiedByRegen: isModifiedByRegen,
-                recordId: recordId
+                recordId: recordId,
+                // **Findings UX 2026-06-29 (#1)** — gate le bouton « Démarrer »
+                // de la séance tant que le programme est dormant (jamais lancé).
+                programStarted: !isDormantRecord
             )
         } label: {
             if isNext {
@@ -760,6 +775,8 @@ struct AdaptedProgramView: View {
                     .foregroundStyle(.primary)
             }
             Spacer()
+            // Findings UX 2026-06-29 (#2) — « En cours » / « Faite » dérivés.
+            sessionStatusBadge(week: week.weekNumber, day: session.day)
             if isModifiedByRegen {
                 Image(systemName: "sparkles")
                     .foregroundStyle(.orange)
@@ -786,8 +803,11 @@ struct AdaptedProgramView: View {
     /// titre + gradient couleur du sport + CTA, à l'image de la carte focale de l'accueil.
     private func featuredSessionLabel(_ session: AdaptedSession, week: AdaptedWeek, isModifiedByRegen: Bool) -> some View {
         let sportColor = Color.coachingSport(forCode: sessionEffectiveSportCode(for: session))
+        // Findings UX 2026-06-29 (#2) — séance entamée : « REPRENDRE » plutôt que
+        // « PROCHAINE » (cohérent avec le bouton « Reprendre l'étape N » du détail).
+        let isInProgress = progressState(week: week.weekNumber, day: session.day) == .inProgress
         return VStack(alignment: .leading, spacing: 8) {
-            Text("dashboard.active.next.title")
+            Text(isInProgress ? "coaching.adapter.session.featured.resume" : "dashboard.active.next.title")
                 .font(.caption.bold())
                 .textCase(.uppercase)
                 .foregroundStyle(Color.coachingOnPrimary.opacity(0.9))
@@ -847,6 +867,51 @@ struct AdaptedProgramView: View {
 
     private func hasAdaptations(week: Int, day: Int) -> Bool {
         program.appliedRules.contains { $0.weekNumber == week && $0.day == day }
+    }
+
+    // MARK: - État de séance (Findings UX 2026-06-29 #2 — dérivé léger)
+
+    /// État d'avancement d'une séance, DÉRIVÉ (zéro nouveau champ persistant) :
+    /// `done` = une complétion enregistrée ; `inProgress` = de la progression
+    /// d'étapes existe (séance entamée puis quittée) mais pas de complétion ;
+    /// `notStarted` = rien. Une séance « lancée » n'est donc « Faite » qu'une fois
+    /// terminée — entre les deux elle est « En cours / Reprendre ».
+    private enum SessionProgressState { case notStarted, inProgress, done }
+
+    private func progressState(week: Int, day: Int) -> SessionProgressState {
+        guard let record,
+              let sid = record.sessions.first(where: { $0.weekNumber == week && $0.day == day })?.id
+        else { return .notStarted }
+        if record.completionState.sessionRecords[sid] != nil { return .done }
+        if let recordId,
+           !SessionProgressStore.documentsDefault()
+               .completedSteps(recordId: recordId, week: week, day: day).isEmpty {
+            return .inProgress
+        }
+        return .notStarted
+    }
+
+    @ViewBuilder
+    private func sessionStatusBadge(week: Int, day: Int) -> some View {
+        switch progressState(week: week, day: day) {
+        case .done:
+            Label("coaching.adapter.session.status.done", systemImage: "checkmark.circle.fill")
+                .labelStyle(.titleAndIcon)
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(Color.coachingRecord)
+                .accessibilityIdentifier("coaching.adapter.session.status.done")
+        case .inProgress:
+            Text("coaching.adapter.session.status.inProgress")
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(Color.coachingPrimary)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(Color.coachingPrimary.opacity(0.12))
+                .clipShape(Capsule())
+                .accessibilityIdentifier("coaching.adapter.session.status.inProgress")
+        case .notStarted:
+            EmptyView()
+        }
     }
 
     /// Story 3.35j — numéro de séance INCRÉMENTAL sur tout le programme (Sophie :

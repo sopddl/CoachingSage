@@ -66,6 +66,13 @@ final class SessionDashboardViewModel {
     private(set) var loading: Bool = true
     private(set) var error: String?
 
+    /// **Findings UX 2026-06-29 (#3)** — vrai dès la 1ʳᵉ `refresh` complète. Sert
+    /// à ne PLUS basculer `loading` (donc à ne plus invalider le body) sur les
+    /// refresh silencieux d'`onAppear` (chaque retour sur l'onglet). Combiné aux
+    /// gardes par égalité ci-dessous, supprime le clignotement « sapin de Noël »
+    /// du dashboard quand rien n'a changé.
+    private var hasCompletedInitialLoad = false
+
     /// **Story 3.10** — map interne `record.id → AdaptedProgramRecord` mise à jour
     /// à chaque `refresh`. Sert aux helpers (`modifiedSessionCoordinates`,
     /// `pushAdaptedProgram` côté View) qui ont besoin du `record` complet alors
@@ -188,8 +195,11 @@ final class SessionDashboardViewModel {
     /// mutation est faite EN PLACE sur les records, donc le `fetchActive` qui
     /// suit voit déjà les bonnes durées. Best-effort : un throw est silencé.
     func refresh(userId: UUID) async {
-        loading = true
-        error = nil
+        // **Findings UX 2026-06-29 (#3)** — `loading` ne bascule qu'au tout 1ᵉʳ
+        // chargement (spinner initial). Les refresh d'`onAppear` (retours onglet)
+        // sont silencieux : aucune bascule `loading` → pas d'invalidation de body.
+        if !hasCompletedInitialLoad { loading = true }
+        if error != nil { error = nil }
         // **Story 3.15 v7** — bootstrap idempotent. Si flag déjà true ou si
         // l'user a déjà des programmes, no-op. Sinon, génère jusqu'à 3 dormants
         // via selectTopN. Appelé AVANT fetchActive pour que les dormants frais
@@ -205,54 +215,69 @@ final class SessionDashboardViewModel {
             let programs = try await programsTask
             let profile = await profileTask
             coachingProfileSnapshot = profile
-            declaredSportCodes = profile?.activeSports ?? []
+            // **Findings UX #3** — toutes les assignations sont GARDÉES par égalité :
+            // un refresh d'`onAppear` sans changement réel ne produit aucune mutation
+            // Observation → le body de SessionView n'est pas invalidé → zéro flicker.
+            let newDeclared = profile?.activeSports ?? []
+            if declaredSportCodes != newDeclared { declaredSportCodes = newDeclared }
 
             // Map records pour les helpers internes (regen, push detail view).
-            recordsByID = Dictionary(uniqueKeysWithValues: programs.map { ($0.id, $0) })
+            // `AdaptedProgramRecord` est une classe @Model (référence) : tant que le
+            // jeu de clés est inchangé, le dict pointe déjà sur les MÊMES instances
+            // vivantes (mutées en place) → on ne réassigne que sur ajout/retrait.
+            let newKeys = Set(programs.map(\.id))
+            if Set(recordsByID.keys) != newKeys {
+                recordsByID = Dictionary(uniqueKeysWithValues: programs.map { ($0.id, $0) })
+            }
 
             let now = nowProvider()
             // **Story 3.31** — états de renouvellement de cycle des routines.
-            routineRenewalStatesByRecord = computeRoutineRenewalStates(programs: programs, now: now)
+            let newRenewal = computeRoutineRenewalStates(programs: programs, now: now)
+            if routineRenewalStatesByRecord != newRenewal { routineRenewalStatesByRecord = newRenewal }
             if programs.isEmpty {
-                mode = .empty
-                startedSummaries = []
-                dormantSummaries = []
-                emptyModeSuggestions = []
+                if mode != .empty { mode = .empty }
+                if !startedSummaries.isEmpty { startedSummaries = [] }
+                if !dormantSummaries.isEmpty { dormantSummaries = [] }
+                if !emptyModeSuggestions.isEmpty { emptyModeSuggestions = [] }
             } else {
-                emptyModeSuggestions = []
+                if !emptyModeSuggestions.isEmpty { emptyModeSuggestions = [] }
                 await ensureLibraryCached()
                 // **Story 3.15 AC1** — split started/dormant à la racine.
                 let split = makeProgramSummaries(programs: programs, now: now)
-                startedSummaries = split.started
-                dormantSummaries = split.dormant
+                if startedSummaries != split.started { startedSummaries = split.started }
+                if dormantSummaries != split.dormant { dormantSummaries = split.dormant }
                 // **Story 3.15 AC3** — bascule sur 3 modes :
                 //   - 0 started + N dormants → `.dormantOnly`
                 //   - ≥ 1 started → `.active`, selectedId ne référence QUE des started
-                if startedSummaries.isEmpty {
-                    mode = .dormantOnly(dormants: dormantSummaries)
+                let newMode: Mode
+                if split.started.isEmpty {
+                    newMode = .dormantOnly(dormants: split.dormant)
                 } else {
-                    let defaultSelection = startedSummaries.first?.id
+                    let defaultSelection = split.started.first?.id
+                    // Préserve la sélection courante si elle existe encore.
                     let previousSelection = currentSelectedId
                     let selectedId = previousSelection.flatMap { id in
-                        startedSummaries.contains(where: { $0.id == id }) ? id : nil
+                        split.started.contains(where: { $0.id == id }) ? id : nil
                     } ?? defaultSelection
-                    mode = .active(
-                        started: startedSummaries,
-                        dormants: dormantSummaries,
+                    newMode = .active(
+                        started: split.started,
+                        dormants: split.dormant,
                         selectedId: selectedId
                     )
                 }
+                if mode != newMode { mode = newMode }
             }
         } catch {
             self.error = error.localizedDescription
-            mode = .empty
-            startedSummaries = []
-            dormantSummaries = []
-            emptyModeSuggestions = []
-            recordsByID = [:]
-            routineRenewalStatesByRecord = [:]
+            if mode != .empty { mode = .empty }
+            if !startedSummaries.isEmpty { startedSummaries = [] }
+            if !dormantSummaries.isEmpty { dormantSummaries = [] }
+            if !emptyModeSuggestions.isEmpty { emptyModeSuggestions = [] }
+            if !recordsByID.isEmpty { recordsByID = [:] }
+            if !routineRenewalStatesByRecord.isEmpty { routineRenewalStatesByRecord = [:] }
         }
-        loading = false
+        if loading { loading = false }
+        hasCompletedInitialLoad = true
     }
 
     /// **Story 3.31** — calcule l'état de renouvellement de chaque routine
@@ -401,7 +426,7 @@ final class SessionDashboardViewModel {
     /// calendrier), on garde la plus récente (`appliedAt` desc).
     private func loadRegenBadges(userId: UUID) async {
         guard let repo = weeklyRegenRepository else {
-            regenBadgesByRecord = [:]
+            if !regenBadgesByRecord.isEmpty { regenBadgesByRecord = [:] }
             return
         }
         let now = nowProvider()
@@ -417,10 +442,11 @@ final class SessionDashboardViewModel {
             for entry in entries where map[entry.recordId] == nil {
                 map[entry.recordId] = RegenBadge.from(entry: entry)
             }
-            regenBadgesByRecord = map
+            // Garde par égalité (#3) — pas de mutation Observation si identique.
+            if regenBadgesByRecord != map { regenBadgesByRecord = map }
         } catch {
             Self.logger.debug("weeklyRegen.fetchJournalForCurrentWeek failed: \(error.localizedDescription)")
-            regenBadgesByRecord = [:]
+            if !regenBadgesByRecord.isEmpty { regenBadgesByRecord = [:] }
         }
     }
 
