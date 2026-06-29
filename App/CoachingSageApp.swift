@@ -5,6 +5,7 @@ import os
 import SwiftUI
 import SwiftData
 import SageCore
+import UserNotifications
 
 @main
 struct CoachingSageApp: App {
@@ -56,6 +57,8 @@ struct CoachingSageApp: App {
 
         // Epic 8 — le contenu des notifications suit la langue in-app (bon bundle).
         deps.notificationService.localeProvider = { lm.currentLocale }
+        // Epic 8 — présenter les notifs même app au premier plan (sinon iOS les supprime).
+        UNUserNotificationCenter.current().delegate = NotificationForegroundPresenter.shared
 
         if isUITesting {
             // Mode UI testing : pré-authentifié + onboarding bypass (cohérent flow existant).

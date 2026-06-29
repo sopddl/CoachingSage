@@ -78,6 +78,7 @@ final class NotificationService {
                 calendar: .current
             )
             let decision = NotificationDecisionEngine.decide(input)
+            Self.logger.notice("reschedule: programs=\(programs.count) pending=\(nextSession != nil) lastCompletion=\(lastCompletion?.description ?? "nil") weekly=\(stats.completedCount) renewalDue=\(renewalDue) → plans=\(decision.plans.count) [\(decision.plans.map { "\($0.kind.rawValue)@\($0.fireDate.description)" }.joined(separator: ", "))]")
             await scheduler.replacePending(with: decision.plans, locale: localeProvider())
 
             // Persiste l'état anti-spam uniquement s'il a changé (évite une écriture

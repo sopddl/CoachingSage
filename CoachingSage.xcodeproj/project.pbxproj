@@ -625,6 +625,7 @@
 		A938ED8F9762B5D00DA89273 /* SecondaryGoalOverlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6894E7F8EE87DAD269BB239F /* SecondaryGoalOverlayTests.swift */; };
 		A97E5A0B2E9B2CD533657432 /* EditIdentityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8E19E5BED6B375A764B60 /* EditIdentityViewModel.swift */; };
 		A9BAF5826C5717FD87AEAC90 /* SessionTipCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B6B746B0A19FA33DF0D23 /* SessionTipCatalogTests.swift */; };
+		A9C21D7043E9B40C509FDCF7 /* NotificationForegroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56051B0BAD2990A735E71F2 /* NotificationForegroundPresenter.swift */; };
 		A9C907BCC2212A6DCFC104F7 /* SessionTipCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A501F56C94AE3B03BC105F1A /* SessionTipCatalog.swift */; };
 		A9F8891EB940C0595862C47F /* OnboardingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FA9F8272DD2547280CA4D0 /* OnboardingViewModelTests.swift */; };
 		AA3B5A503CE2CA034D350339 /* SecondaryDrillsCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126E43DE10A83728B8863779 /* SecondaryDrillsCatalog.swift */; };
@@ -856,6 +857,7 @@
 		F548206820F767FA15C5F2C8 /* GlossaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD85FC3911EC36D20B52E98 /* GlossaryTests.swift */; };
 		F5591B878F220D412A767B9D /* ChargeGuidanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08031BCD6B25E288BC65FF7 /* ChargeGuidanceTests.swift */; };
 		F60A30DDBF1182AF1B05D80E /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D957E1FAE36AD570B5685 /* TodayView.swift */; };
+		F61D97EA87851D05BB9039D7 /* NotificationForegroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56051B0BAD2990A735E71F2 /* NotificationForegroundPresenter.swift */; };
 		F6A1C7B5C9F3E8036C8D6015 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D7C33CFE4977F4BDB7035 /* AuthView.swift */; };
 		F6E06348B11A558D280C997E /* testMuscuIllustrationGallery.GAP-legext.png in Resources */ = {isa = PBXBuildFile; fileRef = 2ABB9BDF270A0D024908395D /* testMuscuIllustrationGallery.GAP-legext.png */; };
 		F6EEAB4035F3A8FD7BC6A527 /* SportQuestionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D406CF7DFD027D6C9BBC1212 /* SportQuestionnaire.swift */; };
@@ -1277,6 +1279,7 @@
 		B419D46AC01C561634543225 /* LeonFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeonFloatingButton.swift; sourceTree = "<group>"; };
 		B50C787E61DF93D29383E63C /* testMuscuIllustrationGallery.hipthrust-barbell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testMuscuIllustrationGallery.hipthrust-barbell.png"; sourceTree = "<group>"; };
 		B556FBB419AD8BBD5F9E96E0 /* testMuscuIllustrationGallery.facepull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testMuscuIllustrationGallery.facepull.png; sourceTree = "<group>"; };
+		B56051B0BAD2990A735E71F2 /* NotificationForegroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationForegroundPresenter.swift; sourceTree = "<group>"; };
 		B5754280F0AFE191F1C7D76C /* SchemaV7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV7.swift; sourceTree = "<group>"; };
 		B5E61A68F7B621FD67D2A000 /* testHikingDose_en.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testHikingDose_en.1.png; sourceTree = "<group>"; };
 		B5FC72CF313A64BEEEEC9105 /* testMuscuIllustrationGallery.squat-bulgarian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testMuscuIllustrationGallery.squat-bulgarian.png"; sourceTree = "<group>"; };
@@ -1447,9 +1450,9 @@
 		FE2EBCDA71129879332CF57F /* MockCoachingSportProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoachingSportProfileRepository.swift; sourceTree = "<group>"; };
 		FE4D8313E07E639BE62B7644 /* ProgramDurationResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDurationResolverTests.swift; sourceTree = "<group>"; };
 		FFF6DAEE1A1EB4E15B60F13B /* testStrengthDose_fr.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testStrengthDose_fr.1.png; sourceTree = "<group>"; };
-		"TEMP_0B1282B7-FBBC-40F0-8987-636042BF9AC4" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_7AB87EC3-4B27-4E8F-A3EA-4F551009F227" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_FB47987D-CACC-4DB0-9275-EA8497DD7A85" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_1F63A46A-3A03-4B6F-8866-26AF9C70837E" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_887A6220-73E3-4FAB-8A7A-E61319964274" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_C867778E-E0E5-42BA-8939-1FF751500916" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1877,6 +1880,7 @@
 			isa = PBXGroup;
 			children = (
 				44F05EF4833F0ADCBAA8D963 /* NotificationDecisionEngine.swift */,
+				B56051B0BAD2990A735E71F2 /* NotificationForegroundPresenter.swift */,
 				25D26B68C710081A677D5E52 /* NotificationKind.swift */,
 				02B6AD095F77B31E508D6295 /* NotificationScheduling.swift */,
 				BD00FC129C4D120C02D72BAF /* NotificationService.swift */,
@@ -2731,12 +2735,12 @@
 			path = SpanishExerciseNameSnapshotTests;
 			sourceTree = "<group>";
 		};
-		"TEMP_0B1BDE52-CFA6-444D-A77D-EAA59DBFDFDA" /* CoachingSage */ = {
+		"TEMP_6F255DEF-EDAF-4C55-B3E0-A1FE41DAC840" /* CoachingSage */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_7AB87EC3-4B27-4E8F-A3EA-4F551009F227" /* Config-Debug.xcconfig */,
-				"TEMP_0B1282B7-FBBC-40F0-8987-636042BF9AC4" /* Config-Release.xcconfig */,
-				"TEMP_FB47987D-CACC-4DB0-9275-EA8497DD7A85" /* Config-Staging.xcconfig */,
+				"TEMP_C867778E-E0E5-42BA-8939-1FF751500916" /* Config-Debug.xcconfig */,
+				"TEMP_1F63A46A-3A03-4B6F-8866-26AF9C70837E" /* Config-Release.xcconfig */,
+				"TEMP_887A6220-73E3-4FAB-8A7A-E61319964274" /* Config-Staging.xcconfig */,
 			);
 			path = CoachingSage;
 			sourceTree = "<group>";
@@ -3183,6 +3187,7 @@
 				83578A1408519337454B1F77 /* NextSessionTeaser.swift in Sources */,
 				78BE9B0A9534CCB1AFBDFEC4 /* NordicCurlIllustration.swift in Sources */,
 				17FC0B9D067362E45E15AA98 /* NotificationDecisionEngine.swift in Sources */,
+				F61D97EA87851D05BB9039D7 /* NotificationForegroundPresenter.swift in Sources */,
 				7CE90EF68F0A418D44BC4D5B /* NotificationKind.swift in Sources */,
 				519D48190BC092F5D8B498F8 /* NotificationPreferences.swift in Sources */,
 				9EB917DACF615A33EF855AC6 /* NotificationScheduling.swift in Sources */,
@@ -3556,6 +3561,7 @@
 				3329A01F2C398A368C1B242C /* NordicCurlIllustration.swift in Sources */,
 				8227113F61579C4B1F6B19C1 /* NotificationDecisionEngine.swift in Sources */,
 				73D228AF39A86763A52D3487 /* NotificationDecisionEngineTests.swift in Sources */,
+				A9C21D7043E9B40C509FDCF7 /* NotificationForegroundPresenter.swift in Sources */,
 				49DE53F165DF26A04DA86B61 /* NotificationKind.swift in Sources */,
 				359D911E508F38AA991EFC72 /* NotificationPreferences.swift in Sources */,
 				9893C93F58AAFF5ADDC992BB /* NotificationScheduling.swift in Sources */,
@@ -3812,7 +3818,7 @@
 		};
 		61B5E17E96E19C8E098AA3DC /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_FB47987D-CACC-4DB0-9275-EA8497DD7A85" /* Config-Staging.xcconfig */;
+			baseConfigurationReference = "TEMP_887A6220-73E3-4FAB-8A7A-E61319964274" /* Config-Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3873,7 +3879,7 @@
 		};
 		6444A73E993A0AE7B8936309 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_0B1282B7-FBBC-40F0-8987-636042BF9AC4" /* Config-Release.xcconfig */;
+			baseConfigurationReference = "TEMP_1F63A46A-3A03-4B6F-8866-26AF9C70837E" /* Config-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4024,7 +4030,7 @@
 		};
 		E103FFBD6D87D5F977B573D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_7AB87EC3-4B27-4E8F-A3EA-4F551009F227" /* Config-Debug.xcconfig */;
+			baseConfigurationReference = "TEMP_C867778E-E0E5-42BA-8939-1FF751500916" /* Config-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
