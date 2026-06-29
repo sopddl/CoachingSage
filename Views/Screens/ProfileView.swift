@@ -38,7 +38,8 @@ struct ProfileView: View {
         viewModel = ProfileViewModel(
             coreProfileRepository: deps.coreProfileRepository,
             coachingProfileRepository: deps.coachingProfileRepository,
-            authService: deps.authService
+            authService: deps.authService,
+            notificationService: deps.notificationService
         )
     }
 
@@ -91,6 +92,7 @@ struct ProfileView: View {
                 sportsSection(coaching: profiles.coaching)
                 equipmentSection(coaching: profiles.coaching)
                 healthSection(coaching: profiles.coaching)
+                notificationsSection(vm: vm)
                 privacySection(vm: vm)
                 aboutSection(coaching: profiles.coaching)
                 accountSection
@@ -251,6 +253,92 @@ struct ProfileView: View {
             }
             .accessibilityIdentifier("profile.health.link")
         }
+    }
+
+    @ViewBuilder
+    private func notificationsSection(vm: ProfileViewModel) -> some View {
+        Section {
+            HStack {
+                Toggle(isOn: Binding(
+                    get: { vm.notificationPrefs.enabled },
+                    set: { newValue in Task { await vm.setNotificationsEnabled(newValue) } }
+                )) {
+                    Text("profile.notifications.enabled")
+                }
+                .tint(Color.coachingPrimary)
+                .accessibilityIdentifier("profile.notifications.enabled.toggle")
+                if vm.isNotificationsSaving {
+                    ProgressView().controlSize(.mini)
+                }
+            }
+
+            if vm.notificationSystemDenied {
+                Text("profile.notifications.deniedHint")
+                    .font(.coachingCaption)
+                    .foregroundStyle(Color.coachingTextSecondary)
+                Button("profile.notifications.openSettings") {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            } else if vm.notificationPrefs.enabled {
+                Toggle(isOn: typeBinding(vm: vm, \.sessionReminderEnabled)) {
+                    Text("profile.notifications.sessionReminder")
+                }
+                .tint(Color.coachingPrimary)
+                Toggle(isOn: typeBinding(vm: vm, \.nudgeEnabled)) {
+                    Text("profile.notifications.nudge")
+                }
+                .tint(Color.coachingPrimary)
+                Toggle(isOn: typeBinding(vm: vm, \.weeklyCelebrationEnabled)) {
+                    Text("profile.notifications.celebration")
+                }
+                .tint(Color.coachingPrimary)
+                Toggle(isOn: typeBinding(vm: vm, \.routineRenewalEnabled)) {
+                    Text("profile.notifications.routineRenewal")
+                }
+                .tint(Color.coachingPrimary)
+
+                DatePicker(
+                    "profile.notifications.preferredTime",
+                    selection: Binding(
+                        get: {
+                            Calendar.current.date(
+                                bySettingHour: vm.notificationPrefs.preferredHour,
+                                minute: vm.notificationPrefs.preferredMinute,
+                                second: 0,
+                                of: Date()
+                            ) ?? Date()
+                        },
+                        set: { date in
+                            let c = Calendar.current.dateComponents([.hour, .minute], from: date)
+                            vm.notificationPrefs.preferredHour = c.hour ?? 9
+                            vm.notificationPrefs.preferredMinute = c.minute ?? 0
+                            vm.scheduleNotificationPrefsSave()
+                        }
+                    ),
+                    displayedComponents: .hourAndMinute
+                )
+            }
+        } header: {
+            Text("profile.section.notifications")
+        } footer: {
+            Text("profile.notifications.footer")
+        }
+    }
+
+    /// Binding pour un toggle de type : mute la pref + save debouncé.
+    private func typeBinding(
+        vm: ProfileViewModel,
+        _ keyPath: WritableKeyPath<NotificationPreferences, Bool>
+    ) -> Binding<Bool> {
+        Binding(
+            get: { vm.notificationPrefs[keyPath: keyPath] },
+            set: { newValue in
+                vm.notificationPrefs[keyPath: keyPath] = newValue
+                vm.scheduleNotificationPrefsSave()
+            }
+        )
     }
 
     @ViewBuilder

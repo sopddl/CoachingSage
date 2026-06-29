@@ -591,6 +591,19 @@ struct SessionView: View {
               let userId = SupabaseService.shared.client.auth.currentSession?.user.id
         else { return }
         await vm.refresh(userId: userId)
+
+        // Epic 8 — point de convergence (création / démarrage / complétion reviennent
+        // tous au dashboard). On demande la permission notifs UNE seule fois, quand
+        // l'utilisateur a au moins un programme démarré (≠ dormants d'onboarding), puis
+        // on (re)planifie. `requestAuthorizationIfNeeded` est auto-gaté ; `reschedule`
+        // est idempotent et best-effort.
+        if let deps {
+            let started = (try? await deps.adaptedProgramRepository.fetchStartedCount(for: userId)) ?? 0
+            if started >= 1 {
+                await deps.notificationService.requestAuthorizationIfNeeded()
+            }
+            await deps.notificationService.reschedule()
+        }
     }
 
     /// Story 3.16 AC13 — hook best-effort silencieux pour demander l'autorisation HK
