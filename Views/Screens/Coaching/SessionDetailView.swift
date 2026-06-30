@@ -22,6 +22,13 @@ struct SessionDetailView: View {
     /// Quand non-nil, expose le bouton "Marquer comme terminée".
     var recordId: UUID? = nil
 
+    /// **Findings UX 2026-06-29 (#1)** — `false` quand cette séance appartient à
+    /// un programme **dormant** (`weekStartDate == nil`, jamais « Démarré »). On
+    /// désactive alors le bouton « Démarrer la séance » : il faut d'abord lancer
+    /// le programme depuis sa fiche. Default `true` = hot path / preview /
+    /// dashboard (programmes déjà actifs) → aucun gating.
+    var programStarted: Bool = true
+
     @Environment(\.appDependencies) private var deps
     /// Pop de ce détail (push depuis le programme) — sert à remonter au programme
     /// une fois la séance complétée (Sophie 2026-06-12).
@@ -242,36 +249,49 @@ struct SessionDetailView: View {
     @ViewBuilder
     private var startFocusButton: some View {
         if !focusSteps.isEmpty {
-            Button {
-                // Story 3.35h — un « Démarrer » (pas une reprise) repart à zéro :
-                // on efface la progression d'étapes pour permettre de REFAIRE une
-                // séance déjà faite (comme Decathlon Coach) sans qu'elle s'ouvre
-                // directement sur « terminée ».
-                if !canResume, let recordId {
-                    SessionProgressStore.documentsDefault()
-                        .clear(recordId: recordId, week: week.weekNumber, day: session.day)
-                    focusProgress = []
-                }
-                showFocus = true
-            } label: {
-                HStack(spacing: 10) {
-                    Image(systemName: "play.fill").font(.callout)
-                    if canResume {
-                        Text("coaching.session.focus.resume \(resumeStepNumber)")
-                            .font(.callout.bold())
-                    } else {
-                        Text("coaching.session.focus.start")
-                            .font(.callout.bold())
+            VStack(alignment: .leading, spacing: 6) {
+                Button {
+                    // Story 3.35h — un « Démarrer » (pas une reprise) repart à zéro :
+                    // on efface la progression d'étapes pour permettre de REFAIRE une
+                    // séance déjà faite (comme Decathlon Coach) sans qu'elle s'ouvre
+                    // directement sur « terminée ».
+                    if !canResume, let recordId {
+                        SessionProgressStore.documentsDefault()
+                            .clear(recordId: recordId, week: week.weekNumber, day: session.day)
+                        focusProgress = []
                     }
-                    Spacer()
+                    showFocus = true
+                } label: {
+                    HStack(spacing: 10) {
+                        Image(systemName: "play.fill").font(.callout)
+                        if canResume {
+                            Text("coaching.session.focus.resume \(resumeStepNumber)")
+                                .font(.callout.bold())
+                        } else {
+                            Text("coaching.session.focus.start")
+                                .font(.callout.bold())
+                        }
+                        Spacer()
+                    }
+                    .padding(.vertical, 15)
+                    .padding(.horizontal, 16)
+                    .foregroundStyle(.white)
+                    // **Findings UX 2026-06-29 (#1)** — programme dormant : bouton
+                    // grisé + indice. On ne lance pas une séance d'un programme
+                    // pas encore démarré (il faut le « Démarrer » depuis sa fiche).
+                    .background(programStarted ? Color.coachingPrimary : Color.coachingPrimary.opacity(0.4))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
-                .padding(.vertical, 15)
-                .padding(.horizontal, 16)
-                .foregroundStyle(.white)
-                .background(Color.coachingPrimary)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .disabled(!programStarted)
+                .accessibilityIdentifier("coaching.session.focus.start")
+
+                if !programStarted {
+                    Label("coaching.session.focus.start.dormant", systemImage: "info.circle")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .accessibilityIdentifier("coaching.session.focus.start.dormant")
+                }
             }
-            .accessibilityIdentifier("coaching.session.focus.start")
         }
     }
 

@@ -116,10 +116,6 @@ struct AdaptedProgramView: View {
                     leonNotesSection(notes)
                 }
 
-                if record != nil {
-                    progressHeader
-                }
-
                 ForEach(program.weeks, id: \.weekNumber) { week in
                     weekAccordion(week)
                 }
@@ -179,8 +175,32 @@ struct AdaptedProgramView: View {
                 leonLoadingOverlay
             }
         }
-        .navigationTitle(Text(verbatim: displayTitle))
+        // **Findings UX 2026-06-29 (#2)** — en mode actif/dormant (record chargé)
+        // le nom vit dans le bandeau sticky → on vide le titre nav pour ne pas
+        // l'afficher deux fois. En preview/hot-path (pas de sticky), il reste là.
+        .navigationTitle(Text(verbatim: record != nil ? "" : displayTitle))
         .navigationBarTitleDisplayMode(.inline)
+        // **Findings UX 2026-06-29 (#4)** — l'avancement (X/N + barre) reste
+        // visible pendant le scroll du contenu du programme : sorti du ScrollView
+        // vers un inset top sticky (le titre, lui, est déjà figé dans la nav bar
+        // `.inline`). Affiché uniquement en mode actif (record chargé), pas en
+        // preview/hot-path où il n'y a pas de progression à montrer.
+        .safeAreaInset(edge: .top, spacing: 0) {
+            if record != nil {
+                VStack(spacing: 8) {
+                    // **Findings UX 2026-06-29 (#2)** — nom du programme TOUJOURS
+                    // lisible (sticky), plus seulement la petite nav bar.
+                    stickyProgramTitle
+                    // **#4** — avancement (X/N + barre) qui ne défile plus.
+                    progressHeader
+                }
+                .padding(.horizontal)
+                .padding(.top, 8)
+                .padding(.bottom, 10)
+                .background(.bar)
+                .overlay(alignment: .bottom) { Divider() }
+            }
+        }
         // **Story 3.16 (Sophie 2026-05-21)** — sticky bottom 2 boutons en mode
         // preview post-questionnaire. "Retour" (sans persistance) + "Démarrer"
         // (commit). Avant : seul un bouton toolbar trailing (nav "bizarre").
@@ -198,17 +218,10 @@ struct AdaptedProgramView: View {
                     startToolbarButton
                 }
             }
-            // Menu titre (rename) — disponible dans tous les modes où on a un
-            // record SwiftData persisté.
-            if record != nil {
-                ToolbarTitleMenu {
-                    Button {
-                        renameBuffer = displayTitle
-                    } label: {
-                        Label("coaching.adapter.rename.action", systemImage: "pencil")
-                    }
-                }
-            }
+            // **Findings UX 2026-06-29 (#2)** — le renommage passe désormais par
+            // le NOM dans le bandeau sticky (tap + crayon discret), plus par le
+            // chevron ⌄ de la nav bar jugé pas parlant (retour Sophie). Le
+            // `ToolbarTitleMenu` est donc retiré.
         }
         .task(id: recordId) { await loadRecord(); scrollToNextUndone(proxy) }
         }
@@ -605,6 +618,33 @@ struct AdaptedProgramView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
+    // MARK: - Sticky program title (Findings UX 2026-06-29 #2)
+
+    /// Nom du programme dans le bandeau sticky : toujours lisible (jusqu'à 2 lignes,
+    /// jamais tronqué en « … »). Tap = renommer (réutilise l'alert `renameBuffer`).
+    /// Le crayon est discret (caption/secondary) : sur iPhone il n'y a pas de survol,
+    /// donc l'édition se déclenche au tap du nom, le crayon ne fait que signaler.
+    private var stickyProgramTitle: some View {
+        Button {
+            renameBuffer = displayTitle
+        } label: {
+            HStack(spacing: 6) {
+                Text(verbatim: displayTitle)
+                    .font(.headline)
+                    .foregroundStyle(Color.coachingTextPrimary)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+                Image(systemName: "pencil")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                Spacer(minLength: 0)
+            }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("coaching.adapter.rename.action")
+    }
+
     // MARK: - Progress header (Story 3.12)
 
     /// Compteur global de séances faites sur le programme + barre de progression.
@@ -724,14 +764,22 @@ struct AdaptedProgramView: View {
         )
         // Bug device-test Sophie 2026-06-08 : mettre la prochaine séance à lancer EN GROS
         // (comme l'accueil) au lieu d'une ligne plate indifférenciée.
-        let isNext = Self.sessionAnchor(week: week.weekNumber, day: session.day) == firstUndoneSessionAnchor
+        // **Findings UX 2026-06-29 (#1)** — MAIS pas sur un programme dormant : tant
+        // qu'il n'est pas démarré, aucune séance ne doit paraître « lançable » (carte
+        // verte + ▶). On la garde en ligne normale ; seul le ▶ « Démarrer le
+        // programme » (toolbar) agit. La carte focale revient une fois le prog lancé.
+        let isNext = !isDormantRecord
+            && Self.sessionAnchor(week: week.weekNumber, day: session.day) == firstUndoneSessionAnchor
         return NavigationLink {
             SessionDetailView(
                 session: session,
                 week: week,
                 program: program,
                 isModifiedByRegen: isModifiedByRegen,
-                recordId: recordId
+                recordId: recordId,
+                // **Findings UX 2026-06-29 (#1)** — gate le bouton « Démarrer »
+                // de la séance tant que le programme est dormant (jamais lancé).
+                programStarted: !isDormantRecord
             )
         } label: {
             if isNext {
@@ -760,6 +808,8 @@ struct AdaptedProgramView: View {
                     .foregroundStyle(.primary)
             }
             Spacer()
+            // Findings UX 2026-06-29 (#2) — « En cours » / « Faite » dérivés.
+            sessionStatusBadge(week: week.weekNumber, day: session.day)
             if isModifiedByRegen {
                 Image(systemName: "sparkles")
                     .foregroundStyle(.orange)
@@ -786,8 +836,11 @@ struct AdaptedProgramView: View {
     /// titre + gradient couleur du sport + CTA, à l'image de la carte focale de l'accueil.
     private func featuredSessionLabel(_ session: AdaptedSession, week: AdaptedWeek, isModifiedByRegen: Bool) -> some View {
         let sportColor = Color.coachingSport(forCode: sessionEffectiveSportCode(for: session))
+        // Findings UX 2026-06-29 (#2) — séance entamée : « REPRENDRE » plutôt que
+        // « PROCHAINE » (cohérent avec le bouton « Reprendre l'étape N » du détail).
+        let isInProgress = progressState(week: week.weekNumber, day: session.day) == .inProgress
         return VStack(alignment: .leading, spacing: 8) {
-            Text("dashboard.active.next.title")
+            Text(isInProgress ? "coaching.adapter.session.featured.resume" : "dashboard.active.next.title")
                 .font(.caption.bold())
                 .textCase(.uppercase)
                 .foregroundStyle(Color.coachingOnPrimary.opacity(0.9))
@@ -847,6 +900,51 @@ struct AdaptedProgramView: View {
 
     private func hasAdaptations(week: Int, day: Int) -> Bool {
         program.appliedRules.contains { $0.weekNumber == week && $0.day == day }
+    }
+
+    // MARK: - État de séance (Findings UX 2026-06-29 #2 — dérivé léger)
+
+    /// État d'avancement d'une séance, DÉRIVÉ (zéro nouveau champ persistant) :
+    /// `done` = une complétion enregistrée ; `inProgress` = de la progression
+    /// d'étapes existe (séance entamée puis quittée) mais pas de complétion ;
+    /// `notStarted` = rien. Une séance « lancée » n'est donc « Faite » qu'une fois
+    /// terminée — entre les deux elle est « En cours / Reprendre ».
+    private enum SessionProgressState { case notStarted, inProgress, done }
+
+    private func progressState(week: Int, day: Int) -> SessionProgressState {
+        guard let record,
+              let sid = record.sessions.first(where: { $0.weekNumber == week && $0.day == day })?.id
+        else { return .notStarted }
+        if record.completionState.sessionRecords[sid] != nil { return .done }
+        if let recordId,
+           !SessionProgressStore.documentsDefault()
+               .completedSteps(recordId: recordId, week: week, day: day).isEmpty {
+            return .inProgress
+        }
+        return .notStarted
+    }
+
+    @ViewBuilder
+    private func sessionStatusBadge(week: Int, day: Int) -> some View {
+        switch progressState(week: week, day: day) {
+        case .done:
+            Label("coaching.adapter.session.status.done", systemImage: "checkmark.circle.fill")
+                .labelStyle(.titleAndIcon)
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(Color.coachingRecord)
+                .accessibilityIdentifier("coaching.adapter.session.status.done")
+        case .inProgress:
+            Text("coaching.adapter.session.status.inProgress")
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(Color.coachingPrimary)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(Color.coachingPrimary.opacity(0.12))
+                .clipShape(Capsule())
+                .accessibilityIdentifier("coaching.adapter.session.status.inProgress")
+        case .notStarted:
+            EmptyView()
+        }
     }
 
     /// Story 3.35j — numéro de séance INCRÉMENTAL sur tout le programme (Sophie :
