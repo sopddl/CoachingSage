@@ -175,7 +175,10 @@ struct AdaptedProgramView: View {
                 leonLoadingOverlay
             }
         }
-        .navigationTitle(Text(verbatim: displayTitle))
+        // **Findings UX 2026-06-29 (#2)** — en mode actif/dormant (record chargé)
+        // le nom vit dans le bandeau sticky → on vide le titre nav pour ne pas
+        // l'afficher deux fois. En preview/hot-path (pas de sticky), il reste là.
+        .navigationTitle(Text(verbatim: record != nil ? "" : displayTitle))
         .navigationBarTitleDisplayMode(.inline)
         // **Findings UX 2026-06-29 (#4)** — l'avancement (X/N + barre) reste
         // visible pendant le scroll du contenu du programme : sorti du ScrollView
@@ -184,13 +187,18 @@ struct AdaptedProgramView: View {
         // preview/hot-path où il n'y a pas de progression à montrer.
         .safeAreaInset(edge: .top, spacing: 0) {
             if record != nil {
-                VStack(spacing: 0) {
+                VStack(spacing: 8) {
+                    // **Findings UX 2026-06-29 (#2)** — nom du programme TOUJOURS
+                    // lisible (sticky), plus seulement la petite nav bar.
+                    stickyProgramTitle
+                    // **#4** — avancement (X/N + barre) qui ne défile plus.
                     progressHeader
-                        .padding(.horizontal)
-                        .padding(.vertical, 10)
-                    Divider()
                 }
+                .padding(.horizontal)
+                .padding(.top, 8)
+                .padding(.bottom, 10)
                 .background(.bar)
+                .overlay(alignment: .bottom) { Divider() }
             }
         }
         // **Story 3.16 (Sophie 2026-05-21)** — sticky bottom 2 boutons en mode
@@ -210,17 +218,10 @@ struct AdaptedProgramView: View {
                     startToolbarButton
                 }
             }
-            // Menu titre (rename) — disponible dans tous les modes où on a un
-            // record SwiftData persisté.
-            if record != nil {
-                ToolbarTitleMenu {
-                    Button {
-                        renameBuffer = displayTitle
-                    } label: {
-                        Label("coaching.adapter.rename.action", systemImage: "pencil")
-                    }
-                }
-            }
+            // **Findings UX 2026-06-29 (#2)** — le renommage passe désormais par
+            // le NOM dans le bandeau sticky (tap + crayon discret), plus par le
+            // chevron ⌄ de la nav bar jugé pas parlant (retour Sophie). Le
+            // `ToolbarTitleMenu` est donc retiré.
         }
         .task(id: recordId) { await loadRecord(); scrollToNextUndone(proxy) }
         }
@@ -617,6 +618,33 @@ struct AdaptedProgramView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
+    // MARK: - Sticky program title (Findings UX 2026-06-29 #2)
+
+    /// Nom du programme dans le bandeau sticky : toujours lisible (jusqu'à 2 lignes,
+    /// jamais tronqué en « … »). Tap = renommer (réutilise l'alert `renameBuffer`).
+    /// Le crayon est discret (caption/secondary) : sur iPhone il n'y a pas de survol,
+    /// donc l'édition se déclenche au tap du nom, le crayon ne fait que signaler.
+    private var stickyProgramTitle: some View {
+        Button {
+            renameBuffer = displayTitle
+        } label: {
+            HStack(spacing: 6) {
+                Text(verbatim: displayTitle)
+                    .font(.headline)
+                    .foregroundStyle(Color.coachingTextPrimary)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+                Image(systemName: "pencil")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                Spacer(minLength: 0)
+            }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("coaching.adapter.rename.action")
+    }
+
     // MARK: - Progress header (Story 3.12)
 
     /// Compteur global de séances faites sur le programme + barre de progression.
@@ -736,7 +764,12 @@ struct AdaptedProgramView: View {
         )
         // Bug device-test Sophie 2026-06-08 : mettre la prochaine séance à lancer EN GROS
         // (comme l'accueil) au lieu d'une ligne plate indifférenciée.
-        let isNext = Self.sessionAnchor(week: week.weekNumber, day: session.day) == firstUndoneSessionAnchor
+        // **Findings UX 2026-06-29 (#1)** — MAIS pas sur un programme dormant : tant
+        // qu'il n'est pas démarré, aucune séance ne doit paraître « lançable » (carte
+        // verte + ▶). On la garde en ligne normale ; seul le ▶ « Démarrer le
+        // programme » (toolbar) agit. La carte focale revient une fois le prog lancé.
+        let isNext = !isDormantRecord
+            && Self.sessionAnchor(week: week.weekNumber, day: session.day) == firstUndoneSessionAnchor
         return NavigationLink {
             SessionDetailView(
                 session: session,
