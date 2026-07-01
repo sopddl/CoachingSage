@@ -44,6 +44,12 @@ struct SessionDetailView: View {
     /// Levé par le FOCUS quand la séance est complétée pendant cette session (1ʳᵉ fois
     /// OU refaite) → on remonte au programme à la fermeture (Sophie 2026-06-12).
     @State private var focusDidComplete: Bool = false
+    /// **Finding UX 2026-07-01 (Sophie)** — levé quand on ouvre la sheet de complétion
+    /// via le bouton « Marquer comme terminée » (séance PAS encore faite), pas via
+    /// « Modifier » (séance déjà faite). À la fermeture, si la séance a bien été
+    /// enregistrée → on remonte au programme (comme le FOCUS). La modif d'une séance
+    /// déjà faite reste sur place.
+    @State private var completingFresh: Bool = false
 
     /// Chantier indoor/outdoor vélo (2026-06-10) — séance template « à lieu » (vélo
     /// avec variantes indoor/outdoor) résolue depuis le bundle, nil si la séance est
@@ -119,7 +125,18 @@ struct SessionDetailView: View {
             await presentDiscoveryTooltipIfNeeded()
             reloadFocusProgress()
         }
-        .sheet(isPresented: $showCompleteSheet) {
+        .sheet(isPresented: $showCompleteSheet, onDismiss: {
+            // **Finding UX 2026-07-01 (Sophie)** — séance terminée via le bouton direct
+            // (pas le FOCUS) : si c'était une 1ʳᵉ complétion (`completingFresh`) ET
+            // qu'elle a bien été enregistrée → on remonte au programme, au lieu de
+            // rester sur le détail (cul-de-sac). Annulation sans valider → pas de pop.
+            guard completingFresh else { return }
+            completingFresh = false
+            Task {
+                await completionVM?.load()
+                if completionVM?.completion != nil { dismiss() }
+            }
+        }) {
             if let vm = completionVM {
                 SessionCompleteSheet(vm: vm, plannedDurationMinutes: displaySession.durationMinutes)
             }
@@ -331,6 +348,7 @@ struct SessionDetailView: View {
             completedCard(record: record, vm: vm)
         } else {
             Button {
+                completingFresh = true
                 showCompleteSheet = true
             } label: {
                 HStack(spacing: 10) {
@@ -375,6 +393,7 @@ struct SessionDetailView: View {
             }
             HStack(spacing: 12) {
                 Button("coaching.session.complete.modify") {
+                    completingFresh = false
                     showCompleteSheet = true
                 }
                 .buttonStyle(.bordered)

@@ -192,7 +192,12 @@ struct AdaptedProgramView: View {
                     // lisible (sticky), plus seulement la petite nav bar.
                     stickyProgramTitle
                     // **#4** — avancement (X/N + barre) qui ne défile plus.
-                    progressHeader
+                    // **Finding UX 2026-07-01 (Sophie)** — masqué tant que le programme
+                    // est dormant (`weekStartDate == nil`) : « 0/N » sur un programme
+                    // pas lancé n'a pas de sens (rien de fait) et induit en erreur.
+                    if !isDormantRecord {
+                        progressHeader
+                    }
                 }
                 .padding(.horizontal)
                 .padding(.top, 8)
