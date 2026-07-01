@@ -1,6 +1,6 @@
 // Repositories/Implementations/DefaultAdaptedProgramRepository.swift
 // Story 3.8 — backend SwiftData. Pas de Supabase V1 (local-first, cf Story 3.8 « Hors scope »).
-// Story 3.10 — caps dormant/démarré (10 / 5) + markStarted + auto-archive à complétion.
+// Story 3.10 — caps dormant/démarré (10 / 8) + markStarted + auto-archive à complétion.
 import Foundation
 import SwiftData
 
@@ -9,7 +9,9 @@ final class DefaultAdaptedProgramRepository: AdaptedProgramRepository {
     /// **Story 3.10** — cap programmes dormants simultanés actifs (`weekStartDate == nil`).
     static let dormantCap = 10
     /// **Story 3.10** — cap programmes démarrés simultanés actifs (`weekStartDate != nil`).
-    static let startedCap = 5
+    /// Relevé 5 → 8 (Sophie 2026-07-01) : plus de marge sans surcharger le carrousel
+    /// dashboard ni multiplier les regen/notifs. Reste sous `dormantCap` (10).
+    static let startedCap = 8
 
     private let modelContext: ModelContext
 
