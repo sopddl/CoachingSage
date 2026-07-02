@@ -87,10 +87,16 @@ targets:
         SUPABASE_ANON_KEY: $(SUPABASE_ANON_KEY)
         SUPABASE_HOST: $(SUPABASE_HOST)
         NSHealthShareUsageDescription: "CoachingSage utilise Apple Santé pour pré-remplir votre profil sportif (sexe, âge, poids, taille) et estimer votre niveau et fréquence d'activité depuis vos séances récentes. Vous pouvez aussi saisir ces informations manuellement à tout moment."
+        # Requis par la validation App Store car l'API HealthKit d'autorisation (toShare:read:)
+        # est référencée, même si l'app ne fait que LIRE (toShare: [] partout, cf HealthKitService).
+        NSHealthUpdateUsageDescription: "CoachingSage lit vos séances et données de forme pour personnaliser vos programmes. L'app ne modifie pas vos données Apple Santé."
         UILaunchScreen:
           UIColorName: ""
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
+        # App portrait uniquement : on opte hors du multitâche iPad (sinon l'App Store
+        # exige les 4 orientations sur iPad, erreur 90474). Garde l'iPad installable (plein écran).
+        UIRequiresFullScreen: true
         UIApplicationSupportsIndirectInputEvents: true
         # Story 3.35 — la voix + les bips du mode Audio continuent quand l'app est
         # en arrière-plan / écran verrouillé (course téléphone en poche).
