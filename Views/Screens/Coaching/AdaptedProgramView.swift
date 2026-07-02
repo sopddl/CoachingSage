@@ -1035,6 +1035,7 @@ enum AdaptedProgramFormatting {
         case .downgraded: return "arrow.down.circle.fill"
         case .requiresAI: return "sparkles"
         case .noChange: return "circle"
+        case .densified: return "plus.circle.fill"
         }
     }
 
@@ -1045,6 +1046,7 @@ enum AdaptedProgramFormatting {
         case .downgraded: return .blue
         case .requiresAI: return .purple
         case .noChange: return .gray
+        case .densified: return .teal
         }
     }
 }

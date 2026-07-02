@@ -18,10 +18,14 @@ public struct ProgramAdapter: Sendable {
     public let durationResolver: ProgramDurationResolver
 
     /// Pipeline par défaut, ordre figé (cascade documentée).
+    /// Densité en 4ᵉ position (chantier densité B) : APRÈS VolumeModulation (le cap G4
+    /// +20 % se calcule sur les séances restantes — pas de cumul de deux hausses),
+    /// AVANT LevelPacing/MedicalClearance.
     public static let defaultRules: [AdaptationRule] = [
         ConstraintSubstitutionRule(),
         EquipmentSubstitutionRule(),
         VolumeModulationRule(),
+        DensityRule(),
         LevelPacingRule(),
         MedicalClearanceRule()
     ]
