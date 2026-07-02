@@ -17,6 +17,12 @@ public struct ProgramTemplate: Codable, Equatable, Sendable {
     public let validatedAt: Date?
     public let validatedBy: String?
 
+    /// Semaines de décharge/taper (`week_number`) — JAMAIS densifiées (garde-fou G8,
+    /// chantier densité B 2026-07-02). Généré build-time depuis les thèmes/goals EN
+    /// (`scripts/densite_b/generate_deload_weeks.py`), verrouillé par
+    /// `DeloadWeeksMarkerTests`. `nil` = template pré-densité (fixtures, tests).
+    public let deloadWeeks: [Int]?
+
     public init(
         id: String,
         schemaVersion: Int,
@@ -32,7 +38,8 @@ public struct ProgramTemplate: Codable, Equatable, Sendable {
         safetyNotes: LocalizedText,
         progressionLogic: LocalizedText,
         validatedAt: Date? = nil,
-        validatedBy: String? = nil
+        validatedBy: String? = nil,
+        deloadWeeks: [Int]? = nil
     ) {
         self.id = id
         self.schemaVersion = schemaVersion
@@ -49,6 +56,7 @@ public struct ProgramTemplate: Codable, Equatable, Sendable {
         self.progressionLogic = progressionLogic
         self.validatedAt = validatedAt
         self.validatedBy = validatedBy
+        self.deloadWeeks = deloadWeeks
     }
 }
 

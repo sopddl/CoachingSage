@@ -5,6 +5,11 @@
   "default_objective" : {
     "fr" : "Améliorer la régularité fond de court (30+ échanges consécutifs), stabiliser service et retour, intégrer montée au filet"
   },
+  "deload_weeks" : [
+    5,
+    9,
+    10
+  ],
   "duration_weeks" : 10,
   "id" : "tennis-recreational-regularite-10sem",
   "level" : "recreational",
@@ -934,9 +939,9 @@
             {
               "alternatives" : [
                 {
-                  "en" : "6 × 30 sec moderate stationary bike + 30 sec recovery",
-                  "es" : "6 × 30 s de bicicleta estática moderada + 30 s de recuperación",
-                  "fr" : "6 × 30 sec de vélo d'appartement modéré + 30 sec récup"
+                  "en" : "6 × 30 sec fast stationary bike + 30 sec recovery",
+                  "es" : "6 × 30 s de bicicleta estática rápida + 30 s de recuperación",
+                  "fr" : "6 × 30 sec de vélo d'appartement rapide + 30 sec récup"
                 },
                 {
                   "en" : "6 × 1 min skips + 1 min walking",
@@ -970,9 +975,9 @@
                 "fr" : "Cardio intermittent — sprints courts en course"
               },
               "notes" : {
-                "en" : "6 straight-line 15 m sprints at moderate pace (RPE 6-7, ~75-80% max HR). Walk recovery between each. If space is limited, 6 × 30 sec moderate running + 30 sec walking.",
-                "es" : "6 sprints en línea recta de 15 m a ritmo moderado (RPE 6-7, ~75-80% de la FC máx). Recuperación caminando entre cada uno. Si el espacio es limitado, 6 × 30 s de carrera moderada + 30 s de caminata.",
-                "fr" : "6 sprints en ligne droite de 15 m à allure modérée (RPE 6-7, ~75-80 % FCmax). Récupération marche entre chaque. Si l'espace est limité, 6 × 30 sec de course modérée + 30 sec de marche."
+                "en" : "6 straight-line 15 m sprints at high intensity (RPE 8-9). Walk recovery between each. If space is limited, 6 × 30 sec fast running + 30 sec walking.",
+                "es" : "6 sprints en línea recta de 15 m a intensidad alta (RPE 8-9). Recuperación caminando entre cada uno. Si el espacio es limitado, 6 × 30 s de carrera rápida + 30 s de caminata.",
+                "fr" : "6 sprints en ligne droite de 15 m à intensité élevée (RPE 8-9). Récupération marche entre chaque. Si l'espace est limité, 6 × 30 sec de course rapide + 30 sec de marche."
               },
               "reps" : "15 m sprint + 30 sec récup marche",
               "required_equipment" : [
@@ -980,7 +985,7 @@
               ],
               "rest_seconds" : 30,
               "sets" : 6,
-              "target_zone" : "RPE 6-7",
+              "target_zone" : "RPE 8-9",
               "volume_axis" : "sets"
             }
           ],
@@ -1471,9 +1476,9 @@
             {
               "alternatives" : [
                 {
-                  "en" : "8 × 30 sec moderate stationary bike + 30 sec recovery",
-                  "es" : "8 × 30 s de bicicleta estática moderada + 30 s de recuperación",
-                  "fr" : "8 × 30 sec de vélo d'appartement modéré + 30 sec récup"
+                  "en" : "8 × 30 sec fast stationary bike + 30 sec recovery",
+                  "es" : "8 × 30 s de bicicleta estática rápida + 30 s de recuperación",
+                  "fr" : "8 × 30 sec de vélo d'appartement rapide + 30 sec récup"
                 },
                 {
                   "en" : "8 × 1 min skips + 1 min walking",
@@ -1507,9 +1512,9 @@
                 "fr" : "Cardio intermittent — 8 sprints de 15 m"
               },
               "notes" : {
-                "en" : "8 sprints of 15 m at moderate pace RPE 6-7 (~75-80% max HR). Walk recovery between each. Progressive tennis-specific interval cardio.",
-                "es" : "8 sprints de 15 m a ritmo moderado RPE 6-7 (~75-80% de la FC máx). Recuperación caminando entre cada uno. Cardio intermitente específico de tenis, progresivo.",
-                "fr" : "8 sprints de 15 m à allure modérée RPE 6-7 (~75-80% FCmax). Récupération marche entre chaque. Cardio intermittent spécifique au tennis, progressif."
+                "en" : "8 sprints of 15 m at high intensity RPE 8-9. Walk recovery between each. Progressive tennis-specific interval cardio.",
+                "es" : "8 sprints de 15 m a intensidad alta RPE 8-9. Recuperación caminando entre cada uno. Cardio intermitente específico de tenis, progresivo.",
+                "fr" : "8 sprints de 15 m à intensité élevée RPE 8-9. Récupération marche entre chaque. Cardio intermittent spécifique au tennis, progressif."
               },
               "reps" : "15 m sprint + 30 sec récup marche",
               "required_equipment" : [
@@ -1517,7 +1522,7 @@
               ],
               "rest_seconds" : 30,
               "sets" : 8,
-              "target_zone" : "RPE 6-7",
+              "target_zone" : "RPE 8-9",
               "volume_axis" : "sets"
             }
           ],
@@ -2008,9 +2013,9 @@
             {
               "alternatives" : [
                 {
-                  "en" : "10 × 30 sec moderate stationary bike + 30 sec recovery",
-                  "es" : "10 × 30 s de bicicleta estática moderada + 30 s de recuperación",
-                  "fr" : "10 × 30 sec de vélo d'appartement modéré + 30 sec récup"
+                  "en" : "10 × 30 sec fast stationary bike + 30 sec recovery",
+                  "es" : "10 × 30 s de bicicleta estática rápida + 30 s de recuperación",
+                  "fr" : "10 × 30 sec de vélo d'appartement rapide + 30 sec récup"
                 },
                 {
                   "en" : "10 × 1 min skips + 1 min walking",
@@ -2044,9 +2049,9 @@
                 "fr" : "Cardio intermittent — 10 sprints de 15-20 m"
               },
               "notes" : {
-                "en" : "10 sprints of 15-20 m at moderate-to-sustained pace RPE 6-7 (~78-83% max HR). Walk recovery between each.",
-                "es" : "10 sprints de 15-20 m a ritmo moderado a sostenido RPE 6-7 (~78-83% de la FC máx). Recuperación caminando entre cada uno.",
-                "fr" : "10 sprints de 15-20 m à allure modérée à soutenue RPE 6-7 (~78-83% FCmax). Récupération marche entre chaque."
+                "en" : "10 sprints of 15-20 m at high intensity RPE 8-9. Walk recovery between each.",
+                "es" : "10 sprints de 15-20 m a intensidad alta RPE 8-9. Recuperación caminando entre cada uno.",
+                "fr" : "10 sprints de 15-20 m à intensité élevée RPE 8-9. Récupération marche entre chaque."
               },
               "reps" : "15-20 m sprint + 30 sec récup marche",
               "required_equipment" : [
@@ -2054,7 +2059,7 @@
               ],
               "rest_seconds" : 30,
               "sets" : 10,
-              "target_zone" : "RPE 6-7",
+              "target_zone" : "RPE 8-9",
               "volume_axis" : "sets"
             }
           ],
@@ -2972,9 +2977,9 @@
             {
               "alternatives" : [
                 {
-                  "en" : "10 × 30 sec moderate stationary bike + 30 sec recovery",
-                  "es" : "10 × 30 s de bicicleta estática moderada + 30 s de recuperación",
-                  "fr" : "10 × 30 sec de vélo d'appartement modéré + 30 sec récup"
+                  "en" : "10 × 30 sec fast stationary bike + 30 sec recovery",
+                  "es" : "10 × 30 s de bicicleta estática rápida + 30 s de recuperación",
+                  "fr" : "10 × 30 sec de vélo d'appartement rapide + 30 sec récup"
                 },
                 {
                   "en" : "10 × 1 min skips + 1 min walking",
@@ -3008,9 +3013,9 @@
                 "fr" : "Cardio intermittent — 10 sprints de 20 m"
               },
               "notes" : {
-                "en" : "10 sprints of 20 m at sustained pace RPE 6-7 (~78-83% max HR). Walk recovery.",
-                "es" : "10 sprints de 20 m a ritmo sostenido RPE 6-7 (~78-83% de la FC máx). Recuperación caminando.",
-                "fr" : "10 sprints de 20 m à allure soutenue RPE 6-7 (~78-83% FCmax). Récupération marche."
+                "en" : "10 sprints of 20 m at high intensity RPE 8-9. Walk recovery.",
+                "es" : "10 sprints de 20 m a intensidad alta RPE 8-9. Recuperación caminando.",
+                "fr" : "10 sprints de 20 m à intensité élevée RPE 8-9. Récupération marche."
               },
               "reps" : "20 m sprint + 30 sec récup marche",
               "required_equipment" : [
@@ -3018,7 +3023,7 @@
               ],
               "rest_seconds" : 30,
               "sets" : 10,
-              "target_zone" : "RPE 6-7",
+              "target_zone" : "RPE 8-9",
               "volume_axis" : "sets"
             }
           ],
@@ -3464,9 +3469,9 @@
             {
               "alternatives" : [
                 {
-                  "en" : "10 × 30 sec moderate stationary bike + 30 sec recovery",
-                  "es" : "10 × 30 s de bicicleta estática moderada + 30 s de recuperación",
-                  "fr" : "10 × 30 sec de vélo d'appartement modéré + 30 sec récup"
+                  "en" : "10 × 30 sec fast stationary bike + 30 sec recovery",
+                  "es" : "10 × 30 s de bicicleta estática rápida + 30 s de recuperación",
+                  "fr" : "10 × 30 sec de vélo d'appartement rapide + 30 sec récup"
                 },
                 {
                   "en" : "10 × 1 min skips + 1 min walking",
@@ -3493,9 +3498,9 @@
                 "fr" : "Cardio intermittent — 10 sprints de 20 m + 2 directions"
               },
               "notes" : {
-                "en" : "10 sprints of 20 m alternating directions (forward / backward jogging recovery). RPE 6-7 pace (~78-83% max HR).",
-                "es" : "10 sprints de 20 m alternando direcciones (adelante / atrás en trote de recuperación). Ritmo RPE 6-7 (~78-83% de la FC máx).",
-                "fr" : "10 sprints de 20 m en alternant les directions (avant / arrière en jogging de récupération). Allure RPE 6-7 (~78-83% FCmax)."
+                "en" : "10 sprints of 20 m alternating directions (forward / backward jogging recovery). High intensity RPE 8-9.",
+                "es" : "10 sprints de 20 m alternando direcciones (adelante / atrás en trote de recuperación). Intensidad alta RPE 8-9.",
+                "fr" : "10 sprints de 20 m en alternant les directions (avant / arrière en jogging de récupération). Intensité élevée RPE 8-9."
               },
               "reps" : "20 m aller + récup retour marche 30 sec",
               "required_equipment" : [
@@ -3503,7 +3508,7 @@
               ],
               "rest_seconds" : 30,
               "sets" : 10,
-              "target_zone" : "RPE 6-7",
+              "target_zone" : "RPE 8-9",
               "volume_axis" : "sets"
             }
           ],
@@ -3894,9 +3899,9 @@
             {
               "alternatives" : [
                 {
-                  "en" : "12 × 30 sec moderate stationary bike + 30 sec recovery",
-                  "es" : "12 × 30 s de bicicleta estática moderada + 30 s de recuperación",
-                  "fr" : "12 × 30 sec de vélo d'appartement modéré + 30 sec récup"
+                  "en" : "12 × 30 sec fast stationary bike + 30 sec recovery",
+                  "es" : "12 × 30 s de bicicleta estática rápida + 30 s de recuperación",
+                  "fr" : "12 × 30 sec de vélo d'appartement rapide + 30 sec récup"
                 },
                 {
                   "en" : "12 × 1 min skips + 1 min walking",
@@ -3930,9 +3935,9 @@
                 "fr" : "Cardio intermittent — 12 sprints de 20 m"
               },
               "notes" : {
-                "en" : "12 sprints of 20 m at sustained pace RPE 6-7 (~78-83% max HR). The plan's peak interval-cardio volume.",
-                "es" : "12 sprints de 20 m a ritmo sostenido RPE 6-7 (~78-83% de la FC máx). Volumen pico del cardio intermitente del plan.",
-                "fr" : "12 sprints de 20 m à allure soutenue RPE 6-7 (~78-83% FCmax). Volume pic du cardio intermittent du plan."
+                "en" : "12 sprints of 20 m at high intensity RPE 8-9. The plan's peak interval-cardio volume.",
+                "es" : "12 sprints de 20 m a intensidad alta RPE 8-9. Volumen pico del cardio intermitente del plan.",
+                "fr" : "12 sprints de 20 m à intensité élevée RPE 8-9. Volume pic du cardio intermittent du plan."
               },
               "reps" : "20 m sprint + 30 sec récup marche",
               "required_equipment" : [
@@ -3940,7 +3945,7 @@
               ],
               "rest_seconds" : 30,
               "sets" : 12,
-              "target_zone" : "RPE 6-7",
+              "target_zone" : "RPE 8-9",
               "volume_axis" : "sets"
             }
           ],
@@ -4386,9 +4391,9 @@
             {
               "alternatives" : [
                 {
-                  "en" : "8 × 30 sec moderate stationary bike + 30 sec recovery",
-                  "es" : "8 × 30 s de bicicleta estática moderada + 30 s de recuperación",
-                  "fr" : "8 × 30 sec de vélo d'appartement modéré + 30 sec récup"
+                  "en" : "8 × 30 sec fast stationary bike + 30 sec recovery",
+                  "es" : "8 × 30 s de bicicleta estática rápida + 30 s de recuperación",
+                  "fr" : "8 × 30 sec de vélo d'appartement rapide + 30 sec récup"
                 },
                 {
                   "en" : "8 × 1 min skips + 1 min walking",
@@ -4422,9 +4427,9 @@
                 "fr" : "Cardio intermittent — 8 sprints de 20 m (affûtage)"
               },
               "notes" : {
-                "en" : "8 sprints of 20 m at moderate pace RPE 6-7. Taper volume before W10.",
-                "es" : "8 sprints de 20 m a ritmo moderado RPE 6-7. Volumen de puesta a punto antes de la W10.",
-                "fr" : "8 sprints de 20 m à allure modérée RPE 6-7. Volume d'affûtage avant la W10."
+                "en" : "8 sprints of 20 m at high intensity RPE 8-9. Taper volume before W10.",
+                "es" : "8 sprints de 20 m a intensidad alta RPE 8-9. Volumen de puesta a punto antes de la W10.",
+                "fr" : "8 sprints de 20 m à intensité élevée RPE 8-9. Volume d'affûtage avant la W10."
               },
               "reps" : "20 m sprint + 30 sec récup marche",
               "required_equipment" : [
@@ -4432,7 +4437,7 @@
               ],
               "rest_seconds" : 30,
               "sets" : 8,
-              "target_zone" : "RPE 6-7",
+              "target_zone" : "RPE 8-9",
               "volume_axis" : "sets"
             }
           ],
