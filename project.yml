@@ -252,6 +252,36 @@ schemes:
     archive:
       config: Release
 
+  # Nightly CI Xcode Cloud (chantier 1, pattern TailorSageUnitTests) :
+  # unit tests + filets contenu Templates, SANS UI tests ni snapshots
+  # (références snapshot liées au runtime simu local → faux rouges en cloud).
+  CoachingSageUnitTests:
+    build:
+      targets:
+        CoachingSage: all
+        CoachingSageTests: [test]
+    test:
+      config: Debug
+      targets:
+        - name: CoachingSageTests
+          parallelizable: false
+          skippedTests:
+            - DensityBannerSnapshotTests
+            - DryLandGroupingSnapshotTests
+            - ExerciseTimelineCardSnapshotTests
+            - IllustrationGallerySnapshotTests
+            - NewFiguresGallerySnapshotTests
+            - OnboardingFilSnapshotTests
+            - ProgramCardSnapshotTests
+            - ProgrammeFilSnapshotTests
+            - RunningComprehensibilitySnapshotTests
+            - SpanishExerciseNameSnapshotTests
+            - StrengthRepsHeroSnapshotTests
+        - package: Templates/TemplateLoaderTests
+          parallelizable: false
+        - package: Templates/TemplateModelTests
+          parallelizable: false
+
   CoachingSage Staging:
     build:
       targets:
