@@ -1,7 +1,6 @@
 // CoachingSageTests/Coaching/Session/SessionWhyExplainerTests.swift
 // Story 3.18 Phase 2 — tests heuristique justification "Pourquoi cette séance ?".
 import XCTest
-@testable import CoachingSage
 import TemplateModel
 
 final class SessionWhyExplainerTests: XCTestCase {

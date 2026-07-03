@@ -3,7 +3,6 @@
 // pilote la consigne charge NON-kg (élastique / poids du corps / charge libre).
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 final class ChargeGuidanceTests: XCTestCase {
 

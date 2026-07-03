@@ -2,7 +2,6 @@
 // Chantier charge muscu V2 — increment 2 (décision B). Poids noté par exo : round-trip
 // Codable + migration record pré-feature (Data() vide → .empty).
 import XCTest
-@testable import CoachingSage
 
 final class ExerciseWeightStateTests: XCTestCase {
 

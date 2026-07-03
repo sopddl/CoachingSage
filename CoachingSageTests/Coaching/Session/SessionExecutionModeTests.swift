@@ -2,7 +2,6 @@
 // Story 3.33 (AC0) — routage de la façon d'avancer + fallback gracieux Manuel +
 // triathlon hérite de sa discipline.
 import XCTest
-@testable import CoachingSage
 import TemplateModel
 
 final class SessionExecutionModeTests: XCTestCase {

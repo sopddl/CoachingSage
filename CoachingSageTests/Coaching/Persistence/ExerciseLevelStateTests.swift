@@ -2,7 +2,6 @@
 // Chantier charge muscu V2 — TRANCHE 2. Niveau relatif caché : round-trip Codable,
 // clamp des bornes, niveau initial par niveau de programme.
 import XCTest
-@testable import CoachingSage
 
 final class ExerciseLevelStateTests: XCTestCase {
 

@@ -1,7 +1,6 @@
 // CoachingSageTests/Coaching/Session/SessionDisplaySanitizeTests.swift
 // Story 3.35e — zéro « / » dans la présentation des séances.
 import XCTest
-@testable import CoachingSage
 import TemplateModel
 
 final class SessionDisplaySanitizeTests: XCTestCase {

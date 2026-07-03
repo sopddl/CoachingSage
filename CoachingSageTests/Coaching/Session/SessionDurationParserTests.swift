@@ -1,7 +1,6 @@
 // CoachingSageTests/Coaching/Session/SessionDurationParserTests.swift
 // Story 3.35d — parsing des durées (fix bug device : "1 min" lu comme 1 s).
 import XCTest
-@testable import CoachingSage
 
 final class SessionDurationParserTests: XCTestCase {
 

@@ -7,7 +7,6 @@
 import XCTest
 import TemplateModel
 import TemplateLoader
-@testable import CoachingSage
 
 @MainActor
 final class DensityCoverageDumpTests: XCTestCase {

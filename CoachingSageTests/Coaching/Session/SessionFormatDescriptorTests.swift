@@ -2,7 +2,6 @@
 // Story 3.32 (AC10) — la case "Format" caméléon : un cas par sport + fallback +
 // séance vide. Invariant : libellé non vide, jamais "—".
 import XCTest
-@testable import CoachingSage
 import TemplateModel
 
 final class SessionFormatDescriptorTests: XCTestCase {

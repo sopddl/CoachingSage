@@ -3,7 +3,6 @@
 // PAS de test live HealthKit (pas faisable simu/CI) : la validation de la
 // lecture lap-by-lap se fait via l'écran DEBUG sur iPhone réel.
 import XCTest
-@testable import CoachingSage
 
 final class HealthKitSwimWorkoutDetailTests: XCTestCase {
 

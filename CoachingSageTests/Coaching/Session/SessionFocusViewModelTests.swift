@@ -3,7 +3,6 @@
 // première/dernière position, cocher → complétion, « Passer » ne coche pas,
 // reprise = 1ʳᵉ non faite, tous faits → terminée, persistance/reprise après quit.
 import XCTest
-@testable import CoachingSage
 import TemplateModel
 
 @MainActor

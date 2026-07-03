@@ -2,7 +2,6 @@
 // Story 3.35b/c — suggestions musique : 2-5 ambiances/sport + liens vers l'app
 // CHOISIE (Apple Music / Spotify / Deezer / YouTube Music ; nil si « Aucune »).
 import XCTest
-@testable import CoachingSage
 
 final class SportMusicSuggestionsTests: XCTestCase {
 

@@ -3,7 +3,6 @@
 // sélection H/F, mapping langue→voix, override de prononciation appliqué.
 // (Synthèse mockée via `SpeechSpeaking`.)
 import XCTest
-@testable import CoachingSage
 
 @MainActor
 final class SessionVoiceGuideTests: XCTestCase {

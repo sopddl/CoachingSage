@@ -3,7 +3,6 @@
 // noté, câblé au repository (fetchById + update). Vérifie : enregistrement + persistance,
 // effacement quand ramené à 0 (jamais « 0 kg »), record absent = no-op.
 import XCTest
-@testable import CoachingSage
 
 @MainActor
 final class ExerciseWeightServiceTests: XCTestCase {

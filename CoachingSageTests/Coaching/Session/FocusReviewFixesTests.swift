@@ -3,7 +3,6 @@
 // #1 échauffement placeholder = écran vide ; #3 illustration band pull-down assis.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class FocusReviewFixesTests: XCTestCase {

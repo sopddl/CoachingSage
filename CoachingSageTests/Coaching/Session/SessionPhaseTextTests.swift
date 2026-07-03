@@ -2,7 +2,6 @@
 // Story 3.35f — mise en forme échauffement/récup : puces sur « + », durée totale
 // extraite, « / » assainis.
 import XCTest
-@testable import CoachingSage
 
 final class SessionPhaseTextTests: XCTestCase {
 

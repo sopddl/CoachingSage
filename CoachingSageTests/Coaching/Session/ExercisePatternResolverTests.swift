@@ -2,7 +2,6 @@
 // Story 3.19 — couverture cascade `ExercisePatternResolver.resolve` sur le
 // corpus 32 variantes templates v2 + keywords + sport fallback + .generic.
 import XCTest
-@testable import CoachingSage
 import TemplateModel
 
 final class ExercisePatternResolverTests: XCTestCase {

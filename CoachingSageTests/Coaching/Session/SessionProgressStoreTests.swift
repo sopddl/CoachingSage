@@ -2,7 +2,6 @@
 // Story 3.33 (AC9) — persistance JSON plat de la complétion FOCUS : écriture /
 // relecture, reprise après « quit », isolation par séance, clear.
 import XCTest
-@testable import CoachingSage
 
 final class SessionProgressStoreTests: XCTestCase {
 

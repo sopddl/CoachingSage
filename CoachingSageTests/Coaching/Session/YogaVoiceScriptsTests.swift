@@ -3,7 +3,6 @@
 // Verrouille : 5 postures témoins couvertes en FR, détection par mots-clés sanskrit
 // ET vulgarisés, FR seul (EN/ES → nil = silence), posture non couverte → nil.
 import XCTest
-@testable import CoachingSage
 
 final class YogaVoiceScriptsTests: XCTestCase {
 

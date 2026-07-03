@@ -6,7 +6,6 @@
 // Lit /tmp/per_sport_matchkeys.json (extrait des templates). Diagnostic only, ne « teste » rien.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class PerSportFigureMappingDumpTests: XCTestCase {

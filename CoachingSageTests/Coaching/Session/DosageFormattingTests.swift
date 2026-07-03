@@ -1,7 +1,6 @@
 // CoachingSageTests/Coaching/Session/DosageFormattingTests.swift
 // Chantier dosage caméléon (pilote muscu) — D1 (zéro jargon) + D4 (côté).
 import XCTest
-@testable import CoachingSage
 
 final class DosageFormattingTests: XCTestCase {
 

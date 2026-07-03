@@ -11,7 +11,6 @@ import XCTest
 import SwiftUI
 import SnapshotTesting
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class IllustrationGallerySnapshotTests: XCTestCase {

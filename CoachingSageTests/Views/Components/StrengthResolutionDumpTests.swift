@@ -5,7 +5,6 @@
 import XCTest
 import TemplateLoader
 import TemplateModel
-@testable import CoachingSage
 
 final class StrengthResolutionDumpTests: XCTestCase {
 

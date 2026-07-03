@@ -1,7 +1,6 @@
 // CoachingSageTests/Adapter/AlternativeNameTests.swift
 // Bug #8 — extraction de la durée embarquée dans le nom d'une alternative.
 import XCTest
-@testable import CoachingSage
 
 final class AlternativeNameTests: XCTestCase {
 

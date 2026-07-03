@@ -1,7 +1,6 @@
 // CoachingSageTests/Coaching/Regen/ExerciseLevelPlannerTests.swift
 // Chantier charge muscu V2 — TRANCHE 5. Table de transitions de l'apprentissage.
 import XCTest
-@testable import CoachingSage
 
 final class ExerciseLevelPlannerTests: XCTestCase {
 

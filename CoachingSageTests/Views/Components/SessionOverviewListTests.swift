@@ -3,7 +3,6 @@
 // (contrat de scroll vers la timeline) + métrique-clé. Plus libellés Intensité.
 import XCTest
 import SwiftUI
-@testable import CoachingSage
 import TemplateModel
 
 final class SessionOverviewListTests: XCTestCase {

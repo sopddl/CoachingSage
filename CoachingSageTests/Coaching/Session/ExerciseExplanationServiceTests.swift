@@ -5,7 +5,6 @@
 // Stratégie : `tmpCacheDirectory` isolé par test pour ne pas polluer
 // Application Support du simu. Fetcher remote stub (échec / succès / délai).
 import XCTest
-@testable import CoachingSage
 
 final class ExerciseExplanationServiceTests: XCTestCase {
 

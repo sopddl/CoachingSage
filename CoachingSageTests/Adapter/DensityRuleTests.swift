@@ -5,7 +5,6 @@
 // zones hautes), G8 (semaines décharge), invariant durée affichée, yoga L2/L3.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 final class DensityRuleTests: XCTestCase {
 

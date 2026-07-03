@@ -2,7 +2,6 @@
 // Story 3.18 Phase 2 — tests heuristique stats SessionDetail hero.
 import XCTest
 import SwiftUI
-@testable import CoachingSage
 import TemplateModel
 
 final class SessionStatsCalculatorTests: XCTestCase {

@@ -5,7 +5,6 @@
 // Sophie 2026-05-23). Lit /tmp/per_sport_matchkeys_10.json (10 sports). Diagnostic only.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class PerSportGenericGapsDumpTests: XCTestCase {

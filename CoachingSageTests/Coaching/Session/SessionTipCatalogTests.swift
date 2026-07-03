@@ -5,7 +5,6 @@
 // (c) `.generic` renvoie nil (la bubble ne s'affiche pas dans la card exo).
 import XCTest
 import SwiftUI
-@testable import CoachingSage
 
 final class SessionTipCatalogTests: XCTestCase {
 

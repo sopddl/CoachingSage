@@ -2,7 +2,6 @@
 // Chantier charge muscu V2 — TRANCHE 5b. Service apprentissage câblé au repository.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 @MainActor
 final class ExerciseLevelServiceTests: XCTestCase {

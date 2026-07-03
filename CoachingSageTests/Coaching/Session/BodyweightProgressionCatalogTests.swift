@@ -2,7 +2,6 @@
 // Chantier charge muscu V2 — TRANCHE 4. Sélection de variante poids du corps par niveau.
 import XCTest
 import TemplateModel
-@testable import CoachingSage
 
 final class BodyweightProgressionCatalogTests: XCTestCase {
 

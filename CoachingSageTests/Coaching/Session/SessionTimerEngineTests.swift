@@ -4,7 +4,6 @@
 // pause gèle le temps, passer saute l'étape, pré-annonce avant chaque étape
 // (1ʳᵉ incluse, anti-Decathlon).
 import XCTest
-@testable import CoachingSage
 import TemplateModel
 
 @MainActor
