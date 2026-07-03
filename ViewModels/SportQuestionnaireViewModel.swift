@@ -22,7 +22,7 @@ final class SportQuestionnaireViewModel {
 
     private static let logger = Logger(subsystem: "com.sopddl.coachingsage", category: "questionnaire")
 
-    let questionnaire: SportQuestionnaire
+    private(set) var questionnaire: SportQuestionnaire
     private let repository: any CoachingSportProfileRepository
     private let authService: any AuthServiceProtocol
     private let typingDelay: TypingDelayProvider
@@ -100,6 +100,20 @@ final class SportQuestionnaireViewModel {
     }
 
     // MARK: - Public API
+
+    /// Densité B (2026-07-02) — active la question de calibrage activité (QActivity,
+    /// posée après Q1 si niveau beginner/recreational). À appeler AVANT `start()` /
+    /// `startWithAutoProfile()`, dès que la View sait si le signal HK est disponible
+    /// (`fetchWorkoutSummary` du `.task` autoprofil). No-op si le flow n'utilise pas
+    /// `UniversalQuestionnaire` ou si le flag ne change pas.
+    func setAskActivityCalibration(_ ask: Bool) {
+        guard let universal = questionnaire as? UniversalQuestionnaire,
+              universal.askActivityCalibration != ask else { return }
+        questionnaire = UniversalQuestionnaire(
+            sportCode: universal.sportCode,
+            askActivityCalibration: ask
+        )
+    }
 
     /// Lance le flow ou propose recovery si un brouillon existe.
     /// `requiresMedicalClearance` = snapshot du flag coachingProfile au moment de l'ouverture (review P0-6).

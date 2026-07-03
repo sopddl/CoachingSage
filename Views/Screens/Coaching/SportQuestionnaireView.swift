@@ -92,6 +92,10 @@ struct SportQuestionnaireView: View {
                 guard autoProfileLoadState == .loading else { return }
                 let summary = await healthKitService.fetchWorkoutSummary()
                 let vo2 = await healthKitService.fetchVO2MaxRecent()
+                // Densité B — signal HK indisponible (refus/muet/0 workout) → activer la
+                // question de calibrage QActivity AVANT le démarrage du flow. Si HK a des
+                // workouts, `presentAdaptedProgram` lira le signal réel (4 sem) à l'adapt.
+                viewModel.setAskActivityCalibration(summary.totalCount == 0)
                 if let suggestion = inference.suggest(
                     vo2Max: vo2?.value,
                     workoutSummary: summary,

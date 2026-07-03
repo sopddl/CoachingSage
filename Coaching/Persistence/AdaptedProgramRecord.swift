@@ -138,6 +138,14 @@ final class AdaptedProgramRecord {
     var isActive: Bool                          // false = archivé (programme terminé/abandonné)
     var archivedAt: Date?                       // timestamp d'archivage, nil tant qu'`isActive`
 
+    /// **Densité B (2026-07-02)** — true si `DensityRule` a réellement densifié au moins
+    /// une séance à la création (signal activité régulière). Sert : phrase Léon
+    /// (bannière conditionnelle `AdaptedProgramView`, inc4), audit. Default `false` →
+    /// migration SwiftData lightweight sûre (records pré-feature + dormants
+    /// `AutoProgramFactory` jamais densifiés). Figé à la création (D5a : densité
+    /// vivante-sur-activité parkée).
+    var densityApplied: Bool = false
+
     /// Story 3.3a : émis par `ProgramAdapter` quand l'algo deterministic n'a pas trouvé
     /// d'alternative propre pour au moins un exercice. Story 3.3b auto-déclenche le
     /// hand-off Léon IA fallback à l'arrivée sur `AdaptedProgramView` si == true.
@@ -198,6 +206,7 @@ final class AdaptedProgramRecord {
         goalCode: String? = nil,
         secondaryGoalsCSV: String? = nil,
         isUserRenamed: Bool = false,
+        densityApplied: Bool = false,
         createdAt: Date = Date(),
         lastUpdatedAt: Date = Date()
     ) {
@@ -225,6 +234,7 @@ final class AdaptedProgramRecord {
         self.goalCode = goalCode
         self.secondaryGoalsCSV = secondaryGoalsCSV
         self.isUserRenamed = isUserRenamed
+        self.densityApplied = densityApplied
         self.createdAt = createdAt
         self.lastUpdatedAt = lastUpdatedAt
     }
@@ -298,7 +308,8 @@ extension AdaptedProgramRecord {
             customTitle: autoTitle,
             goalCode: goal,
             secondaryGoalsCSV: secondaryCSV,
-            isUserRenamed: false
+            isUserRenamed: false,
+            densityApplied: adapted.appliedRules.contains { $0.ruleType == .density }
         )
     }
 

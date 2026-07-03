@@ -956,10 +956,23 @@ struct SessionView: View {
             presentationError = String.localized("session.adapter.libraryUnavailable", locale: locale)
             return
         }
+        // Densité B (2026-07-02) — signal comportemental lu UNE fois à la création
+        // (calibration proactive, G6 : workouts réalisés, jamais santé). HK muet/refusé
+        // (totalCount == 0) → nil ; la réponse de calibrage QActivity (posée ssi signal
+        // absent) prend alors le relais via l'historique questionnaire. Les deux nil →
+        // DensityRule no-op strict.
+        let workoutSummary = await deps?.healthKitService.fetchWorkoutSummary(weeksBack: 4)
+        let weeklyAverage4w: Double? = (workoutSummary?.totalCount ?? 0) > 0
+            ? workoutSummary?.weeklyAverage
+            : nil
         let adapted = adapterService.adapt(
             template: template,
             sportProfile: sportProfile,
-            coachingProfile: coachingProfile
+            coachingProfile: coachingProfile,
+            weeklyWorkoutsAverage4w: weeklyAverage4w,
+            declaredRegularActivity: UniversalQuestionnaire.declaredRegularActivity(
+                from: sportProfile.conversationHistory
+            )
         )
         // **Story 3.15 v7.4 (Sophie 2026-05-21)** — récupérer le recordId pour
         // que `AdaptedProgramView` puisse fetch le record SwiftData et afficher

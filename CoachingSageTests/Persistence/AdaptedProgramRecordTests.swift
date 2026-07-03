@@ -231,6 +231,33 @@ final class AdaptedProgramRecordTests: XCTestCase {
         XCTAssertNil(record.aiPatchJSON)
     }
 
+    // MARK: - Densité B (2026-07-02) — densityApplied
+
+    func testBridgeSetsDensityAppliedWhenDensityRuleActed() {
+        let densified = makeAdaptedFixture(appliedRules: [
+            AppliedRule(
+                ruleType: .density, weekNumber: 1, day: 1,
+                originalExerciseName: "Footing", outcome: .densified,
+                detail: "+1 série (2 → 3)"
+            )
+        ])
+        XCTAssertTrue(AdaptedProgramRecord(from: densified, userId: UUID()).densityApplied)
+    }
+
+    func testBridgeDefaultsDensityAppliedFalseWithoutDensityRule() {
+        // Aucune règle, ou des règles NON-densité → false (dormants + programmes sans signal).
+        let clean = makeAdaptedFixture()
+        XCTAssertFalse(AdaptedProgramRecord(from: clean, userId: UUID()).densityApplied)
+
+        let otherRule = makeAdaptedFixture(appliedRules: [
+            AppliedRule(
+                ruleType: .volumeModulation, weekNumber: 1, day: 1,
+                originalExerciseName: "Footing", outcome: .noChange, detail: ""
+            )
+        ])
+        XCTAssertFalse(AdaptedProgramRecord(from: otherRule, userId: UUID()).densityApplied)
+    }
+
     func testBridgeFlattensWeeksAndSessions() {
         // 2 weeks × 3 sessions = 6 PersistedSession à plat.
         let adapted = makeAdaptedFixture(weeksCount: 2, sessionsPerWeek: 3)
@@ -454,7 +481,8 @@ final class AdaptedProgramRecordTests: XCTestCase {
         requiresAIAssist: Bool = false,
         aiAssistReason: String? = nil,
         durationMode: ProgramDurationMode = .routineCyclic,
-        targetDate: Date? = nil
+        targetDate: Date? = nil,
+        appliedRules: [AppliedRule] = []
     ) -> AdaptedProgram {
         let weeks = (1...weeksCount).map { wn in
             AdaptedWeek(
@@ -488,7 +516,7 @@ final class AdaptedProgramRecordTests: XCTestCase {
             level: .beginner,
             appliedAt: Date(timeIntervalSince1970: 1_700_000_000),
             weeks: weeks,
-            appliedRules: [],
+            appliedRules: appliedRules,
             requiresAIAssist: requiresAIAssist,
             aiAssistReason: aiAssistReason,
             durationMode: durationMode,

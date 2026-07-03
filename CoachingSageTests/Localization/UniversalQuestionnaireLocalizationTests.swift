@@ -50,6 +50,10 @@ struct UniversalQuestionnaireLocalizationTests {
         keys.insert(UniversalQuestionnaire.q3Frequency.textKey)
         for option in UniversalQuestionnaire.q3Frequency.options { keys.insert(option.labelKey) }
 
+        // QActivity calibrage densité (densité B, 2026-07-02) — conditionnelle cold-start.
+        keys.insert(UniversalQuestionnaire.qActivity.textKey)
+        for option in UniversalQuestionnaire.qActivity.options { keys.insert(option.labelKey) }
+
         // Q2 par sport — sport-specific.
         for code in allSportCodes {
             let q = UniversalQuestionnaire(sportCode: code).q2Goal
@@ -98,10 +102,12 @@ struct UniversalQuestionnaireLocalizationTests {
             "questionnaire.intro.medicalClearance",
             "questionnaire.title",
             UniversalQuestionnaire.q1Level.textKey,
-            UniversalQuestionnaire.q3Frequency.textKey
+            UniversalQuestionnaire.q3Frequency.textKey,
+            UniversalQuestionnaire.qActivity.textKey
         ]
         keys.append(contentsOf: UniversalQuestionnaire.q1Level.options.map { $0.labelKey })
         keys.append(contentsOf: UniversalQuestionnaire.q3Frequency.options.map { $0.labelKey })
+        keys.append(contentsOf: UniversalQuestionnaire.qActivity.options.map { $0.labelKey })
         for code in allSportCodes {
             let q = UniversalQuestionnaire(sportCode: code).q2Goal
             keys.append(q.textKey)

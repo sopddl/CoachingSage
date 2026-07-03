@@ -116,6 +116,13 @@ struct AdaptedProgramView: View {
                     leonNotesSection(notes)
                 }
 
+                // Densité B (2026-07-02) — phrase Léon VRAIE : affichée UNIQUEMENT si
+                // DensityRule a réellement agi (fork #3 Sophie). Hot path = appliedRules
+                // en mémoire ; réouverture dashboard = record.densityApplied persisté.
+                if densityWasApplied {
+                    densityBanner
+                }
+
                 ForEach(program.weeks, id: \.weekNumber) { week in
                     weekAccordion(week)
                 }
@@ -520,6 +527,39 @@ struct AdaptedProgramView: View {
         .padding()
         .background(Color.accentColor.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    // MARK: - Densité B — bannière phrase Léon (surface UNIQUE de la densité)
+
+    /// True si la densification a réellement eu lieu. Hot path post-création :
+    /// `program.appliedRules` en mémoire. Réouverture depuis le dashboard :
+    /// `toAdaptedProgram()` reconstitue `appliedRules = []` → on lit le flag
+    /// persisté `record.densityApplied`.
+    private var densityWasApplied: Bool {
+        record?.densityApplied == true
+            || program.appliedRules.contains { $0.ruleType == .density }
+    }
+
+    /// Registre G7/G7bis : purement comportemental (« tu t'entraînes déjà
+    /// régulièrement »), jamais capacité physique, jamais « pour ton objectif ».
+    /// Déterministe, locale, 3 clés i18n — aucun réglage exposé (pivot 23/06).
+    private var densityBanner: some View {
+        HStack(alignment: .top, spacing: 10) {
+            Image(systemName: "plus.circle.fill")
+                .foregroundStyle(.teal)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("coaching.adapter.density.banner.title")
+                    .font(.headline)
+                Text("coaching.adapter.density.banner.subtitle")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding()
+        .background(Color.accentColor.opacity(0.08))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("adapter.density.banner")
     }
 
     // MARK: - Story 3.3b — Léon overlay UI
