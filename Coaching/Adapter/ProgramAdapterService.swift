@@ -24,16 +24,26 @@ final class ProgramAdapterService {
     /// 0 token, 0 réseau. Si l'algo ne sait pas patcher proprement (contrainte
     /// sans alternative), `result.requiresAIAssist == true` et l'UI peut
     /// proposer Léon Story 3.3b.
+    ///
+    /// Densité B (2026-07-02) — signal comportemental optionnel consommé par
+    /// `DensityRule` (G6). Défauts `nil` = aucun signal = jamais de densification :
+    /// les call sites historiques (dont `AutoProgramFactory`, dormants) gardent
+    /// leur comportement à l'identique par construction.
     func adapt(
         template: ProgramTemplate,
         sportProfile: CoachingSportProfile,
-        coachingProfile: CoachingProfile
+        coachingProfile: CoachingProfile,
+        weeklyWorkoutsAverage4w: Double? = nil,
+        declaredRegularActivity: Bool? = nil
     ) -> AdaptedProgram {
         let facade = sportProfile.adapterFacade(merging: coachingProfile.equipment)
         let adapted = adapter.adapt(
             template: template,
             sportProfile: facade,
-            coachingProfile: coachingProfile.adapterFacade
+            coachingProfile: coachingProfile.adapterFacade(
+                weeklyWorkoutsAverage4w: weeklyWorkoutsAverage4w,
+                declaredRegularActivity: declaredRegularActivity
+            )
         )
 
         // Story 3.13 Phase C — Overlay secondary goals après l'adapter, avant
@@ -153,6 +163,20 @@ extension CoachingSportProfile {
 
 extension CoachingProfile {
     var adapterFacade: AdapterCoachingProfile {
-        AdapterCoachingProfile(requiresMedicalClearance: requiresMedicalClearance)
+        adapterFacade()
+    }
+
+    /// Densité B — variante avec signal comportemental (HK 4 sem OU réponse calibrage).
+    /// La réponse calibrage n'est PAS persistée sur `CoachingProfile` : elle transite
+    /// du `conversationHistory` du sport profile vers cette façade au moment de l'adapt.
+    func adapterFacade(
+        weeklyWorkoutsAverage4w: Double? = nil,
+        declaredRegularActivity: Bool? = nil
+    ) -> AdapterCoachingProfile {
+        AdapterCoachingProfile(
+            requiresMedicalClearance: requiresMedicalClearance,
+            weeklyWorkoutsAverage4w: weeklyWorkoutsAverage4w,
+            declaredRegularActivity: declaredRegularActivity
+        )
     }
 }

@@ -61,6 +61,22 @@ struct UIReviewScenarioContainer: View {
                 // la régression Bug #3 (la liste DOIT être collapsed par
                 // défaut, c'était l'objet du fix).
             }
+        case "ui_review_adapter_preview_densified":
+            // **Densité B (2026-07-03)** — programme densifié à la création : la
+            // bannière phrase Léon (surface UNIQUE de la densité) s'affiche en tête,
+            // avec les VRAIES clés localisées (contrairement au snapshot logic-test
+            // qui rend les clés brutes — dette bundle swizzle). Vérifier : wording
+            // FR/EN, wrap du sous-titre, icône teal, AUCUN marqueur swap orange sur
+            // les rows (les règles densité en sont exclues).
+            AdaptedProgramView(
+                program: AdaptedProgramPreviewFixtures.densified,
+                onConfirmStart: { /* noop pour la review */ }
+            )
+        case "ui_review_questionnaire_activity_calibration":
+            // **Densité B (2026-07-03)** — question de calibrage QActivity (cold-start
+            // HK muet) : fil Q1 répondu « débutant » puis bulle QActivity + options
+            // Oui/Non. Vérifier : wording FR/EN, longueur de la bulle, options.
+            QuestionnaireActivityCalibrationScenarioView()
         case "ui_review_progress_with_hk_history":
             // Bug #1 — Progrès affiche historique HK même sans programme actif.
             // Pas porté ici : ProgressionView dépend trop fortement de
@@ -903,6 +919,39 @@ private struct QuestionnaireThreadEditScenarioView: View {
             .padding(16)
         }
         .background(Color.coachingBackground.ignoresSafeArea())
+    }
+}
+
+// MARK: - Densité B — QuestionnaireActivityCalibrationScenarioView
+
+/// Densité B (2026-07-03) — reproduit l'état réel du questionnaire quand la question
+/// de calibrage QActivity vient d'être posée (cold-start HK muet, Q1 = débutant) :
+/// fil de bulles + zone options singleChoice, comme dans `SportQuestionnaireView`.
+private struct QuestionnaireActivityCalibrationScenarioView: View {
+    @State private var freeTextDraft: String = ""
+
+    var body: some View {
+        VStack(spacing: 0) {
+            ScrollView {
+                VStack(spacing: 12) {
+                    ChatBubbleView(sender: .leon, textRaw: "questionnaire.universal.intro", avatarStyle: .sport(code: "running"))
+                    ChatBubbleView(sender: .leon, textRaw: "questionnaire.universal.q1.text", avatarStyle: .sport(code: "running"))
+                    ChatBubbleView(sender: .user, textRaw: "questionnaire.universal.q1.option.beginner", onEdit: {})
+                    ChatBubbleView(sender: .leon, textRaw: UniversalQuestionnaire.qActivity.textKey, avatarStyle: .sport(code: "running"))
+                }
+                .padding(16)
+            }
+            Divider()
+            QuestionAnswerOptionsView(
+                question: UniversalQuestionnaire.qActivity,
+                onAnswer: { _ in },
+                freeTextDraft: $freeTextDraft,
+                isLocked: false,
+                sportCode: "running"
+            )
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+        .navigationTitle(Text("questionnaire.title"))
     }
 }
 

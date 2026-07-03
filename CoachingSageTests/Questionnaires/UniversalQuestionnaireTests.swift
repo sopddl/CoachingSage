@@ -534,4 +534,74 @@ struct UniversalQuestionnaireTests {
         #expect(UniversalQuestionnaire.environmentDefault(from: history("both")) == "both")
         #expect(UniversalQuestionnaire.environmentDefault(from: []) == nil)
     }
+
+    // MARK: - QActivity calibrage densité (densité B, 2026-07-02)
+
+    @Test("QActivity posée après Q1 ssi flag actif ET niveau beginner/recreational")
+    func qActivity_askedOnlyWhenFlagAndGatedLevel() {
+        let asking = UniversalQuestionnaire(sportCode: "running", askActivityCalibration: true)
+        let acc: [QuestionId: AnswerValue] = [:]
+        #expect(asking.nextQuestion(after: "q1_level", answer: .single("beginner"), accumulated: acc)?.id == "q_activity_calibration")
+        #expect(asking.nextQuestion(after: "q1_level", answer: .single("recreational"), accumulated: acc)?.id == "q_activity_calibration")
+        // Hors gating densité (regular/competitive) → la réponse serait ignorée → pas posée.
+        #expect(asking.nextQuestion(after: "q1_level", answer: .single("regular"), accumulated: acc)?.id == "q2_goal")
+        #expect(asking.nextQuestion(after: "q1_level", answer: .single("competitive"), accumulated: acc)?.id == "q2_goal")
+    }
+
+    @Test("QActivity jamais posée quand flag inactif (défaut = flux historique inchangé)")
+    func qActivity_neverAskedWithoutFlag() {
+        let silent = UniversalQuestionnaire(sportCode: "running")
+        let acc: [QuestionId: AnswerValue] = [:]
+        #expect(silent.askActivityCalibration == false)
+        #expect(silent.nextQuestion(after: "q1_level", answer: .single("beginner"), accumulated: acc)?.id == "q2_goal")
+    }
+
+    @Test("QActivity → Q2 : la chaîne nextQuestion reste intacte en aval")
+    func qActivity_chainsToQ2() {
+        let asking = UniversalQuestionnaire(sportCode: "yoga", askActivityCalibration: true)
+        let acc: [QuestionId: AnswerValue] = ["q1_level": .single("beginner")]
+        let next = asking.nextQuestion(after: "q_activity_calibration", answer: .single("yes"), accumulated: acc)
+        #expect(next?.id == "q2_goal")
+        // Q2 → Q3 inchangé (non-régression Q4/Q4Date : couverte par les tests existants).
+        #expect(asking.nextQuestion(after: "q2_goal", answer: .single("initiation"), accumulated: acc)?.id == "q3_frequency")
+    }
+
+    @Test("findQuestion résout QActivity (recovery draft)")
+    func qActivity_findQuestionResolves() {
+        let q = UniversalQuestionnaire(sportCode: "hiking")
+        #expect(q.findQuestion(byId: "q_activity_calibration")?.id == "q_activity_calibration")
+        #expect(q.findQuestion(byId: "q_activity_calibration")?.options.map { $0.code } == ["yes", "no"])
+    }
+
+    @Test("declaredRegularActivity extrait oui/non/absent de l'historique")
+    func declaredRegularActivity_extractsFromHistory() {
+        func history(_ code: String) -> [ConversationEntry] {
+            [ConversationEntry(questionId: "q_activity_calibration", questionTextKey: "questionnaire.universal.q_activity.text", answer: .single(code), askedAt: Date())]
+        }
+        #expect(UniversalQuestionnaire.declaredRegularActivity(from: history("yes")) == true)
+        #expect(UniversalQuestionnaire.declaredRegularActivity(from: history("no")) == false)
+        #expect(UniversalQuestionnaire.declaredRegularActivity(from: []) == nil)
+    }
+
+    @Test("buildProfile ignore la réponse QActivity (non persistée sur le profil)")
+    func qActivity_notPersistedOnProfile() {
+        let q = UniversalQuestionnaire(sportCode: "running", askActivityCalibration: true)
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: [
+                "q1_level": .single("beginner"),
+                "q_activity_calibration": .single("yes"),
+                "q2_goal": .multi(["wellness"]),
+                "q3_frequency": .single("2")
+            ],
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        // La réponse ne fuit dans aucun champ structuré du profil (elle ne vit que dans
+        // conversationHistory, consommée au moment de l'adapt).
+        #expect(profile.level == "beginner")
+        #expect(profile.goals.primary == "wellness")
+        #expect(profile.frequencyPerWeek == 2)
+    }
 }

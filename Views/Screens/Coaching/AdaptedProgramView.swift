@@ -116,6 +116,13 @@ struct AdaptedProgramView: View {
                     leonNotesSection(notes)
                 }
 
+                // Densité B (2026-07-02) — phrase Léon VRAIE : affichée UNIQUEMENT si
+                // DensityRule a réellement agi (fork #3 Sophie). Hot path = appliedRules
+                // en mémoire ; réouverture dashboard = record.densityApplied persisté.
+                if densityWasApplied {
+                    densityBanner
+                }
+
                 ForEach(program.weeks, id: \.weekNumber) { week in
                     weekAccordion(week)
                 }
@@ -522,6 +529,39 @@ struct AdaptedProgramView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
+    // MARK: - Densité B — bannière phrase Léon (surface UNIQUE de la densité)
+
+    /// True si la densification a réellement eu lieu. Hot path post-création :
+    /// `program.appliedRules` en mémoire. Réouverture depuis le dashboard :
+    /// `toAdaptedProgram()` reconstitue `appliedRules = []` → on lit le flag
+    /// persisté `record.densityApplied`.
+    private var densityWasApplied: Bool {
+        record?.densityApplied == true
+            || program.appliedRules.contains { $0.ruleType == .density }
+    }
+
+    /// Registre G7/G7bis : purement comportemental (« tu t'entraînes déjà
+    /// régulièrement »), jamais capacité physique, jamais « pour ton objectif ».
+    /// Déterministe, locale, 3 clés i18n — aucun réglage exposé (pivot 23/06).
+    private var densityBanner: some View {
+        HStack(alignment: .top, spacing: 10) {
+            Image(systemName: "plus.circle.fill")
+                .foregroundStyle(.teal)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("coaching.adapter.density.banner.title")
+                    .font(.headline)
+                Text("coaching.adapter.density.banner.subtitle")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding()
+        .background(Color.accentColor.opacity(0.08))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("adapter.density.banner")
+    }
+
     // MARK: - Story 3.3b — Léon overlay UI
 
     private var leonLoadingOverlay: some View {
@@ -903,8 +943,14 @@ struct AdaptedProgramView: View {
         return Self.sessionAnchor(week: undone.weekNumber, day: undone.day)
     }
 
+    /// Marqueur « adapté » (icône swap orange) d'une row séance. Les règles densité en
+    /// sont EXCLUES : leur sémantique n'est pas une substitution, et la surface unique
+    /// de la densité = la bannière Léon (pivot 23/06) — sinon un programme densifié
+    /// allumerait le marqueur sur quasi toutes ses séances.
     private func hasAdaptations(week: Int, day: Int) -> Bool {
-        program.appliedRules.contains { $0.weekNumber == week && $0.day == day }
+        program.appliedRules.contains {
+            $0.weekNumber == week && $0.day == day && $0.ruleType != .density
+        }
     }
 
     // MARK: - État de séance (Findings UX 2026-06-29 #2 — dérivé léger)
@@ -1035,6 +1081,7 @@ enum AdaptedProgramFormatting {
         case .downgraded: return "arrow.down.circle.fill"
         case .requiresAI: return "sparkles"
         case .noChange: return "circle"
+        case .densified: return "plus.circle.fill"
         }
     }
 
@@ -1045,6 +1092,7 @@ enum AdaptedProgramFormatting {
         case .downgraded: return .blue
         case .requiresAI: return .purple
         case .noChange: return .gray
+        case .densified: return .teal
         }
     }
 }
@@ -1061,6 +1109,12 @@ enum AdaptedProgramFormatting {
 #Preview("AdaptedProgram — knee-injury substitution") {
     NavigationStack {
         AdaptedProgramView(program: AdaptedProgramPreviewFixtures.kneeInjury) { }
+    }
+}
+
+#Preview("AdaptedProgram — densifié (bannière Léon)") {
+    NavigationStack {
+        AdaptedProgramView(program: AdaptedProgramPreviewFixtures.densified) { }
     }
 }
 
@@ -1150,6 +1204,31 @@ enum AdaptedProgramPreviewFixtures {
             ],
             requiresAIAssist: true,
             aiAssistReason: "Aucune alternative pour la contrainte « pregnancy »"
+        )
+    }
+
+    /// Densité B — programme densifié à la création (signal activité régulière) :
+    /// la règle `.density` déclenche la bannière phrase Léon en tête de programme.
+    static var densified: AdaptedProgram {
+        AdaptedProgram(
+            templateId: "running-fixture",
+            sport: .running,
+            level: .beginner,
+            appliedAt: Date(),
+            weeks: [
+                sampleWeek(1, theme: "Découverte"),
+                sampleWeek(2, theme: "Consolidation")
+            ],
+            appliedRules: [
+                AppliedRule(
+                    ruleType: .density,
+                    weekNumber: 1, day: 5,
+                    originalExerciseName: "Gainage planche",
+                    outcome: .densified,
+                    detail: "+1 série (3 → 4) — démarrage un cran au-dessus (activité régulière)"
+                )
+            ],
+            requiresAIAssist: false
         )
     }
 

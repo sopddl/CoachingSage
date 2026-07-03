@@ -258,6 +258,53 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
     }
 }
 
+public extension AdaptedExercise {
+    /// Densifie une tenue brève (chantier densité B, levier yoga L2 — port archive 42f996d) :
+    /// remplace le nombre de secondes dans `duration` (lu par le minuteur via
+    /// `SessionDurationParser`) ET dans un `dose` structuré en secondes (rendu `DoseFormatter`),
+    /// pour garder les deux cohérents. AUCUN texte neuf : seul le NOMBRE change → filets
+    /// i18n/dose verts par construction.
+    func bumpingHold(toSeconds seconds: Int) -> AdaptedExercise {
+        let newDuration = Self.replacingLeadingNumber(in: duration, with: seconds, fallbackUnit: "sec")
+        var newDose = dose
+        if case let .structured(d) = dose, d.unit == .seconds {
+            newDose = .structured(StructuredDose(
+                value: "\(seconds)", unit: .seconds,
+                qualifier: d.qualifier, style: d.style, modifier: d.modifier
+            ))
+        }
+        return AdaptedExercise(
+            name: name, originalName: originalName, sets: sets, reps: reps,
+            duration: newDuration, restSeconds: restSeconds, dose: newDose, notes: notes,
+            targetZone: targetZone, volumeAxis: volumeAxis, load: load, side: side,
+            wasSubstituted: wasSubstituted, substitutionReason: substitutionReason,
+            dryLand: dryLand
+        )
+    }
+
+    /// Densifie par le levier L1 « +1 set » (chantier densité B) : bump d'un ENTIER,
+    /// aucun texte touché (`reps`/`duration`/`dose` décrivent UN set → restent justes).
+    func addingOneSet() -> AdaptedExercise {
+        AdaptedExercise(
+            name: name, originalName: originalName, sets: (sets ?? 1) + 1, reps: reps,
+            duration: duration, restSeconds: restSeconds, dose: dose, notes: notes,
+            targetZone: targetZone, volumeAxis: volumeAxis, load: load, side: side,
+            wasSubstituted: wasSubstituted, substitutionReason: substitutionReason,
+            dryLand: dryLand
+        )
+    }
+
+    /// Remplace le nombre de tête d'une chaîne de durée (« 30 sec » → « 45 sec ») en
+    /// conservant l'unité d'origine. Repli « N sec » si la chaîne n'a pas de nombre de tête.
+    private static func replacingLeadingNumber(in text: String?, with value: Int, fallbackUnit: String) -> String? {
+        guard let text else { return "\(value) \(fallbackUnit)" }
+        if let r = text.range(of: #"^\s*\d+"#, options: .regularExpression) {
+            return text.replacingCharacters(in: r, with: "\(value)")
+        }
+        return "\(value) \(fallbackUnit)"
+    }
+}
+
 public struct AppliedRule: Codable, Equatable, Sendable {
     public let ruleType: RuleType
     public let weekNumber: Int
@@ -291,6 +338,8 @@ public struct AppliedRule: Codable, Equatable, Sendable {
         case volumeModulation
         case levelPacing
         case medicalClearance
+        /// Chantier densité B (2026-07-02) — DensityRule, règle 4 du pipeline.
+        case density
     }
 
     public enum Outcome: String, Codable, Sendable {
@@ -299,5 +348,7 @@ public struct AppliedRule: Codable, Equatable, Sendable {
         case downgraded
         case requiresAI
         case noChange
+        /// Chantier densité B — volume ajouté (+1 set / tenue allongée / +1 tour).
+        case densified
     }
 }

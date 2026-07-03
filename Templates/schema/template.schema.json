@@ -47,6 +47,11 @@
       "type": "array",
       "minItems": 1,
       "items": { "$ref": "#/$defs/templateWeek" }
+    },
+    "deload_weeks": {
+      "type": "array",
+      "items": { "type": "integer", "minimum": 1 },
+      "description": "Semaines de décharge/taper (week_number) — jamais densifiées (G8, chantier densité B 2026-07-02). Régénéré par scripts/densite_b/generate_deload_weeks.py, verrouillé par DeloadWeeksMarkerTests."
     }
   },
   "$defs": {

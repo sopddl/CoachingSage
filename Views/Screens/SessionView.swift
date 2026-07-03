@@ -956,10 +956,32 @@ struct SessionView: View {
             presentationError = String.localized("session.adapter.libraryUnavailable", locale: locale)
             return
         }
+        // Densité B (2026-07-02) — signal comportemental lu UNE fois à la création
+        // (calibration proactive, G6 : workouts réalisés, jamais santé). Le fetch HK
+        // n'est fait QUE si DensityRule peut agir (gating niveau + G1 clearance) — pas
+        // de requête HK morte sur le hot path (review 07-03). HK muet (totalCount == 0)
+        // → nil ; la réponse de calibrage QActivity ne prend le relais QUE dans ce cas
+        // (le HK frais fait autorité). Les deux nil → DensityRule no-op strict.
+        var weeklyAverage4w: Double?
+        var declaredRegularActivity: Bool?
+        let densityGated = Level(rawValue: sportProfile.level).map(DensityRule.gatedLevels.contains) ?? false
+        if densityGated, !coachingProfile.requiresMedicalClearance {
+            let workoutSummary = await deps?.healthKitService.fetchWorkoutSummary(weeksBack: 4)
+            weeklyAverage4w = (workoutSummary?.totalCount ?? 0) > 0
+                ? workoutSummary?.weeklyAverage
+                : nil
+            if weeklyAverage4w == nil {
+                declaredRegularActivity = UniversalQuestionnaire.declaredRegularActivity(
+                    from: sportProfile.conversationHistory
+                )
+            }
+        }
         let adapted = adapterService.adapt(
             template: template,
             sportProfile: sportProfile,
-            coachingProfile: coachingProfile
+            coachingProfile: coachingProfile,
+            weeklyWorkoutsAverage4w: weeklyAverage4w,
+            declaredRegularActivity: declaredRegularActivity
         )
         // **Story 3.15 v7.4 (Sophie 2026-05-21)** — récupérer le recordId pour
         // que `AdaptedProgramView` puisse fetch le record SwiftData et afficher

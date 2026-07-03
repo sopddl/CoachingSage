@@ -114,7 +114,26 @@ public struct AdapterSportProfile: Equatable, Sendable {
 public struct AdapterCoachingProfile: Equatable, Sendable {
     public let requiresMedicalClearance: Bool
 
-    public init(requiresMedicalClearance: Bool) {
+    /// Chantier densité B (2026-07-02) — signal comportemental CROSS-SPORT lu par
+    /// `DensityRule` (G6 : comportement, jamais santé). Moyenne de séances/sem sur les
+    /// workouts HealthKit des 4 dernières semaines, fetchée à la CRÉATION du programme
+    /// (`presentAdaptedProgram`, increment 3). `nil` = signal indisponible (HK refusé/muet,
+    /// dormants `AutoProgramFactory`, call sites historiques) → jamais de densification.
+    public let weeklyWorkoutsAverage4w: Double?
+
+    /// Réponse à la question de calibrage du questionnaire (« Tu fais déjà du sport
+    /// régulièrement ? »), posée UNIQUEMENT quand le signal HK est indisponible. Non
+    /// persistée sur les profils — alimente cette façade au moment de l'adapt. `nil` =
+    /// question non posée / sans réponse.
+    public let declaredRegularActivity: Bool?
+
+    public init(
+        requiresMedicalClearance: Bool,
+        weeklyWorkoutsAverage4w: Double? = nil,
+        declaredRegularActivity: Bool? = nil
+    ) {
         self.requiresMedicalClearance = requiresMedicalClearance
+        self.weeklyWorkoutsAverage4w = weeklyWorkoutsAverage4w
+        self.declaredRegularActivity = declaredRegularActivity
     }
 }
