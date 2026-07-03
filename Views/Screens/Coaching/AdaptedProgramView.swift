@@ -943,8 +943,14 @@ struct AdaptedProgramView: View {
         return Self.sessionAnchor(week: undone.weekNumber, day: undone.day)
     }
 
+    /// Marqueur « adapté » (icône swap orange) d'une row séance. Les règles densité en
+    /// sont EXCLUES : leur sémantique n'est pas une substitution, et la surface unique
+    /// de la densité = la bannière Léon (pivot 23/06) — sinon un programme densifié
+    /// allumerait le marqueur sur quasi toutes ses séances.
     private func hasAdaptations(week: Int, day: Int) -> Bool {
-        program.appliedRules.contains { $0.weekNumber == week && $0.day == day }
+        program.appliedRules.contains {
+            $0.weekNumber == week && $0.day == day && $0.ruleType != .density
+        }
     }
 
     // MARK: - État de séance (Findings UX 2026-06-29 #2 — dérivé léger)

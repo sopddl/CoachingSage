@@ -315,12 +315,13 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         switch questionId {
         case Self.q1LevelId:
             // Densité B — calibrage cold-start : posée ssi le signal HK est indisponible
-            // ET le niveau répondu est dans le gating densité (beginner/recreational).
-            // Sur regular/competitive la réponse serait ignorée par DensityRule → on
+            // ET le niveau répondu est dans le gating densité (`DensityRule.gatedLevels`,
+            // source unique). Hors gating la réponse serait ignorée par DensityRule → on
             // ne pose pas une question sans effet.
             if askActivityCalibration,
-               case .single(let level) = answer,
-               level == "beginner" || level == "recreational" {
+               case .single(let levelCode) = answer,
+               let level = Level(rawValue: levelCode),
+               DensityRule.gatedLevels.contains(level) {
                 return Self.qActivity
             }
             return q2Goal

@@ -92,10 +92,13 @@ struct SportQuestionnaireView: View {
                 guard autoProfileLoadState == .loading else { return }
                 let summary = await healthKitService.fetchWorkoutSummary()
                 let vo2 = await healthKitService.fetchVO2MaxRecent()
-                // Densité B — signal HK indisponible (refus/muet/0 workout) → activer la
-                // question de calibrage QActivity AVANT le démarrage du flow. Si HK a des
-                // workouts, `presentAdaptedProgram` lira le signal réel (4 sem) à l'adapt.
-                viewModel.setAskActivityCalibration(summary.totalCount == 0)
+                // Densité B — signal HK indisponible → activer la question de calibrage
+                // QActivity AVANT le démarrage du flow. La fenêtre du gate = 4 semaines,
+                // la MÊME que le signal lu à l'adapt (review 07-03 : gater sur le résumé
+                // 8 sem de l'autoprofil créait une zone morte 5-8 sem où ni le signal HK
+                // ni la question n'existaient → densification silencieusement impossible).
+                let densitySignal = await healthKitService.fetchWorkoutSummary(weeksBack: 4)
+                viewModel.setAskActivityCalibration(densitySignal.totalCount == 0)
                 if let suggestion = inference.suggest(
                     vo2Max: vo2?.value,
                     workoutSummary: summary,

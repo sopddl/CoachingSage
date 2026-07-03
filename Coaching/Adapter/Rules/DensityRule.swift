@@ -73,6 +73,12 @@ public struct DensityRule: AdaptationRule {
         self.bounds = bounds
     }
 
+    /// Niveaux éligibles densité (gating anti double-comptage avec l'autoprofil niveau).
+    /// SOURCE UNIQUE (review 07-03) — consommée par la règle, par le hot path
+    /// (`presentAdaptedProgram` skippe le fetch HK hors gating) et par la question de
+    /// calibrage (`UniversalQuestionnaire` ne la pose pas hors gating).
+    public static let gatedLevels: Set<Level> = [.beginner, .recreational]
+
     // MARK: - Whitelists G3 (revue doctrine 07-02 — gisement = renfo/gainage de support)
 
     /// Zones RPE faciles/modérées — éligibles UNIQUEMENT dans le contexte de séance
@@ -130,7 +136,7 @@ public struct DensityRule: AdaptationRule {
             return RuleResult(weeks: weeks, appliedRules: [])
         }
         // Gating niveau : beginner + recreational uniquement.
-        guard level == .beginner || level == .recreational else {
+        guard Self.gatedLevels.contains(level) else {
             return RuleResult(weeks: weeks, appliedRules: [])
         }
         // Signal (G6) : HK récent OU déclaration explicite. Absent → no-op strict.
@@ -167,10 +173,12 @@ public struct DensityRule: AdaptationRule {
         return RuleResult(weeks: newWeeks, appliedRules: applied)
     }
 
-    /// Signal comportemental : activité workouts HK 4 sem ≥ seuil, OU réponse « oui » à la
-    /// question de calibrage (posée seulement si HK muet — les deux ne coexistent pas).
+    /// Signal comportemental : activité workouts HK 4 sem ≥ seuil ; la réponse « oui » à la
+    /// question de calibrage ne sert QUE quand HK est muet (review 07-03 : le HK frais fait
+    /// autorité — une déclaration passée, persistée dans l'historique questionnaire, ne doit
+    /// pas surclasser une mesure réelle « inactif » si l'user a activé HK entre-temps).
     private func signalDensifies(_ profile: AdapterCoachingProfile) -> Bool {
-        if let avg = profile.weeklyWorkoutsAverage4w, avg >= bounds.activeThreshold { return true }
+        if let avg = profile.weeklyWorkoutsAverage4w { return avg >= bounds.activeThreshold }
         return profile.declaredRegularActivity == true
     }
 
@@ -216,40 +224,102 @@ public struct DensityRule: AdaptationRule {
     }
 
     /// Éligibilité L1 (G3) : zone dans la whitelist du sport (défaut = inéligible),
-    /// sets ≥ 2, pas d'exclusion par nom.
+    /// sets ≥ 2, pas d'exclusion par nom. Checks O(1) (sets/zone) AVANT la construction
+    /// de la chaîne de matching nom (review 07-03, perf hot path).
     private func isEligibleL1(_ exo: AdaptedExercise, sport: Sport, sessionType: SessionType) -> Bool {
         guard let sets = exo.sets, sets >= 2 else { return false }
         guard let zone = exo.targetZone else { return false }
 
-        let hay = "\(exo.originalName) \(exo.name.canonical)".lowercased()
-        guard !Self.nameExclusions.contains(where: { hay.contains($0) }) else { return false }
-
+        let zoneEligible: Bool
         if Self.anySessionZones[sport, default: []].contains(zone) {
             // Natation : le gisement RPE est « à sec » uniquement — mais technique/EN1/REC
             // (dans l'eau) sont éligibles sans condition (éducatifs +1×25 m = progression
             // classique, revue 07-02).
-            return true
+            zoneEligible = true
+        } else if Self.easyRPE.contains(zone) {
+            zoneEligible = sport == .swimming
+                ? exo.dryLand == true
+                : Self.easyRPESessionTypes[sport, default: []].contains(sessionType)
+        } else {
+            zoneEligible = false
         }
-        if Self.easyRPE.contains(zone) {
-            if sport == .swimming { return exo.dryLand == true }
-            return Self.easyRPESessionTypes[sport, default: []].contains(sessionType)
-        }
-        return false
+        guard zoneEligible else { return false }
+
+        let hay = "\(exo.originalName) \(exo.name.canonical)".lowercased()
+        return !Self.nameExclusions.contains(where: { hay.contains($0) })
     }
 
-    /// Secondes ajoutées par le set supplémentaire : durée d'un set (`duration` parseable)
-    /// + repos inter-série ; exo reps-only (muscu « 10 reps », pas de duration) → estimation
-    /// nominale ~40 s + repos (granularité minute de l'affichage → honnête à cette échelle).
-    /// nil = dose non estimable → exo inéligible (conservateur).
+    /// Secondes ajoutées par le set supplémentaire, ancrées sur le `dose` STRUCTURÉ quand il
+    /// existe (source fiable : le texte `duration` peut porter des unités non temporelles —
+    /// « 50 m » natation, « 5 respirations » — que `SessionDurationParser` lirait comme des
+    /// secondes, review 07-03) :
+    ///   - dose seconds/minutes → temps réel × multiplicateur bilatéral (perSide/perLeg…)
+    ///   - dose meters/reps → estimation nominale (~40 s, granularité minute = honnête)
+    ///   - autre unité ou qualificateur non temporisable → nil = inéligible (conservateur)
+    /// Sans dose structuré : repli texte STRICT (unité temporelle explicite exigée),
+    /// puis reps-only → nominale. nil = dose non estimable → exo inéligible.
     private func addedSecondsPerSet(_ exo: AdaptedExercise) -> Int? {
-        if let seconds = SessionDurationParser.seconds(exo.duration) {
-            return seconds + (exo.restSeconds ?? 0)
+        let rest = exo.restSeconds ?? 0
+        if case .structured(let d) = exo.dose {
+            switch d.unit {
+            case .seconds, .minutes:
+                guard let value = Int(d.value),
+                      let multiplier = Self.bilateralMultiplier(d.qualifier) else { return nil }
+                let seconds = d.unit == .minutes ? value * 60 : value
+                return seconds * multiplier + rest
+            case .meters, .reps:
+                return bounds.nominalSetSeconds + rest
+            default:
+                return nil
+            }
+        }
+        if exo.dose != nil { return nil }  // interval/freeText : pas de comptage honnête
+        if let seconds = Self.strictTimeSeconds(exo.duration) {
+            return seconds + rest
         }
         if exo.reps != nil {
-            return bounds.nominalSetSeconds + (exo.restSeconds ?? 0)
+            return bounds.nominalSetSeconds + rest
         }
         return nil
     }
+
+    /// Multiplicateur temporel d'un qualificateur de dose : nil (aucun) = ×1, bilatéral
+    /// (par côté/jambe/bras/pied/épaule) = ×2, tout autre qualificateur (par posture,
+    /// par série…) = non temporisable → nil (l'exo est écarté plutôt que sous-compté).
+    private static func bilateralMultiplier(_ q: DoseQualifier?) -> Int? {
+        switch q {
+        case nil: return 1
+        case .perSide, .perLeg, .perArm, .perFoot, .perShoulder: return 2
+        default: return nil
+        }
+    }
+
+    /// Lecture STRICTE d'une durée texte en secondes : chaque segment (« + ») doit être
+    /// soit un nombre nu (= secondes), soit un nombre suivi d'une unité TEMPORELLE
+    /// explicite (min/mn/sec/s/seconde(s)/minute(s)) — un éventuel libellé peut suivre
+    /// (« 1 min course lente »). Rejette « 50 m », « 5 respirations », « 1 cycle complet »
+    /// que le parser permissif lirait comme des secondes.
+    static func strictTimeSeconds(_ text: String?) -> Int? {
+        guard let text else { return nil }
+        let segments = text.split(separator: "+")
+        guard !segments.isEmpty else { return nil }
+        var total = 0
+        for segment in segments {
+            let s = String(segment)
+            guard Self.strictTimePattern.firstMatch(
+                in: s, range: NSRange(s.startIndex..., in: s)
+            ) != nil, let seconds = SessionDurationParser.seconds(s) else { return nil }
+            total += seconds
+        }
+        return total
+    }
+
+    /// nombre nu seul, OU nombre + unité temporelle (+ éventuel « 30 » des « 1 min 30 »
+    /// et/ou libellé). Insensible à la casse.
+    private static let strictTimePattern = try! NSRegularExpression(
+        pattern: #"^\s*\d+\s*$|^\s*\d+\s*(min|mn|minutes?|sec|s|secondes?)(\s|$)"#,
+        options: [.caseInsensitive]
+    )
 
     // MARK: - Yoga L2 + L3 (port branche archive 42f996d, doctrine 2026-06-21)
 
@@ -259,18 +329,31 @@ public struct DensityRule: AdaptationRule {
     ) -> (AdaptedSession, [AppliedRule]) {
         let budget = Int(Double(session.durationMinutes * 60) * bounds.maxAddedDurationFraction)
         var addedSeconds = 0
+        var densifiedCount = 0
         var rules: [AppliedRule] = []
 
-        // L2. extendHold — postures actives à tenue brève (secondes). Le minuteur lit
-        // `duration` (`SessionDurationParser`) ET le rendu lit `dose` → on bumpe les DEUX.
-        var exos: [AdaptedExercise] = session.exercises.map { exo in
-            let role = YogaPoseRole.classify(originalName: exo.originalName, displayName: exo.name.canonical)
-            guard role == .active,
-                  let base = SessionDurationParser.seconds(exo.duration),
-                  base < bounds.maxActiveHoldSeconds else { return exo }
+        // Rôles classifiés UNE fois (L2 préserve ordre et cardinal → réutilisable par L3).
+        let roles = session.exercises.map {
+            YogaPoseRole.classify(originalName: $0.originalName, displayName: $0.name.canonical)
+        }
+
+        // L2. extendHold — postures actives à tenue brève. Gate = dose STRUCTURÉ en
+        // SECONDES (review 07-03) : c'est la seule unité que `bumpingHold` sait resynchroniser
+        // duration + dose, et le seul comptage temps honnête (« 5 respirations »/« 1 cycle
+        // complet » seraient lus 5 s/1 s par le parser texte → bump absurde + budget faussé).
+        // Tenue « par côté » : coût réel = ×2 (les deux côtés s'allongent). Cap G4 N=2 exos
+        // par séance, tous leviers confondus avec L1 par construction (yoga = L2/L3 only).
+        var exos: [AdaptedExercise] = session.exercises.enumerated().map { index, exo in
+            guard densifiedCount < bounds.maxExercisesPerSession,
+                  roles[index] == .active,
+                  let (base, multiplier) = Self.holdBaseSeconds(exo),
+                  base < bounds.maxActiveHoldSeconds
+            else { return exo }
             let bumped = min(Int((Double(base) * bounds.holdMultiplier).rounded()), bounds.maxActiveHoldSeconds)
-            guard bumped > base, addedSeconds + (bumped - base) <= budget else { return exo }
-            addedSeconds += (bumped - base)
+            let charge = (bumped - base) * multiplier
+            guard bumped > base, addedSeconds + charge <= budget else { return exo }
+            addedSeconds += charge
+            densifiedCount += 1
             rules.append(AppliedRule(
                 ruleType: ruleType, weekNumber: weekNumber, day: session.day,
                 originalExerciseName: exo.originalName, outcome: .densified,
@@ -281,19 +364,24 @@ public struct DensityRule: AdaptationRule {
 
         // L3. repeatActiveBlock — +1 tour du bloc actif, contenu existant, repos intercalé.
         // `copy` est pris APRÈS extendHold → ses tenues reflètent déjà les valeurs allongées.
-        // Cap G4 : le tour n'est ajouté que s'il tient dans le budget restant (une séance
-        // yoga standard le refuse ; il ne passe que sur un bloc actif court).
-        if let block = activeBlock(in: exos) {
+        // Cap G4 : le tour n'est ajouté que s'il tient dans le budget restant. Le coût du
+        // bloc est compté HONNÊTEMENT via le dose structuré (`honestSeconds`) ; un bloc
+        // contenant une posture non temporisable (respirations, cycles…) est REFUSÉ en
+        // entier — on ne duplique pas ce qu'on ne sait pas compter (review 07-03).
+        if let block = activeBlock(roles: roles, count: exos.count) {
             let copy = Array(exos[block])
-            let blockSeconds = copy.reduce(0) { $0 + Self.exerciseSeconds($1) }
-            if blockSeconds > 0, addedSeconds + blockSeconds <= budget {
-                addedSeconds += blockSeconds
-                exos.insert(contentsOf: copy, at: block.upperBound)
-                rules.append(AppliedRule(
-                    ruleType: ruleType, weekNumber: weekNumber, day: session.day,
-                    originalExerciseName: session.name.canonical, outcome: .densified,
-                    detail: "+1 tour du bloc actif (\(copy.count) postures réutilisées, contenu existant)"
-                ))
+            let secondsPerExo = copy.map(Self.honestSeconds)
+            if !secondsPerExo.contains(nil) {
+                let blockSeconds = secondsPerExo.compactMap { $0 }.reduce(0, +)
+                if blockSeconds > 0, addedSeconds + blockSeconds <= budget {
+                    addedSeconds += blockSeconds
+                    exos.insert(contentsOf: copy, at: block.upperBound)
+                    rules.append(AppliedRule(
+                        ruleType: ruleType, weekNumber: weekNumber, day: session.day,
+                        originalExerciseName: session.name.canonical, outcome: .densified,
+                        detail: "+1 tour du bloc actif (\(copy.count) postures réutilisées, contenu existant)"
+                    ))
+                }
             }
         }
 
@@ -305,9 +393,38 @@ public struct DensityRule: AdaptationRule {
         ), rules)
     }
 
-    /// Contribution temporelle (secondes) d'un exo : tenue (`duration`) + repos inter-série.
-    private static func exerciseSeconds(_ e: AdaptedExercise) -> Int {
-        (SessionDurationParser.seconds(e.duration) ?? 0) + (e.restSeconds ?? 0)
+    /// Base de tenue L2 (secondes) + multiplicateur de coût : dose structuré en SECONDES
+    /// (seule unité que `bumpingHold` resynchronise duration + dose), ou repli texte strict
+    /// quand l'exo n'a AUCUN dose (fixtures/contenu futur) — refusé si le texte porte un
+    /// marqueur bilatéral qu'on ne saurait pas compter (« par côté »…). nil = inéligible.
+    private static func holdBaseSeconds(_ exo: AdaptedExercise) -> (base: Int, multiplier: Int)? {
+        if case .structured(let d) = exo.dose {
+            guard d.unit == .seconds, let value = Int(d.value),
+                  let multiplier = bilateralMultiplier(d.qualifier) else { return nil }
+            return (value, multiplier)
+        }
+        guard exo.dose == nil, let seconds = strictTimeSeconds(exo.duration) else { return nil }
+        let lower = (exo.duration ?? "").lowercased()
+        guard !lower.contains("côté"), !lower.contains("side"), !lower.contains("lado") else { return nil }
+        return (seconds, 1)
+    }
+
+    /// Contribution temporelle HONNÊTE (secondes) d'un exo yoga : dose structuré
+    /// seconds/minutes × multiplicateur bilatéral + repos ; sans dose structuré, repli
+    /// texte STRICT (`strictTimeSeconds`). nil = non temporisable (respirations, cycles,
+    /// qualificateur inconnu) → l'appelant refuse le bloc.
+    private static func honestSeconds(_ e: AdaptedExercise) -> Int? {
+        let rest = e.restSeconds ?? 0
+        if case .structured(let d) = e.dose {
+            guard d.unit == .seconds || d.unit == .minutes,
+                  let value = Int(d.value),
+                  let multiplier = bilateralMultiplier(d.qualifier) else { return nil }
+            let seconds = d.unit == .minutes ? value * 60 : value
+            return seconds * multiplier + rest
+        }
+        if e.dose != nil { return nil }  // interval/freeText
+        guard let seconds = strictTimeSeconds(e.duration) else { return nil }
+        return seconds + rest
     }
 
     /// Bloc actif RÉPÉTABLE = exercices entre l'ouverture (run de tête `openingBreath`) et
@@ -315,20 +432,17 @@ public struct DensityRule: AdaptationRule {
     /// BIEN FORMÉE : dernier exo = relaxation finale ET le bloc se termine par un repos
     /// (le repos intercalé entre les deux tours est ainsi garanti — doctrine). Sinon `nil`
     /// (conservateur : on ne densifie pas une structure non reconnue → zéro absurdité).
-    private func activeBlock(in exos: [AdaptedExercise]) -> Range<Int>? {
-        guard exos.count >= 3 else { return nil }
-        func role(_ e: AdaptedExercise) -> YogaPoseRole {
-            YogaPoseRole.classify(originalName: e.originalName, displayName: e.name.canonical)
-        }
-        let finalIndex = exos.count - 1
-        guard role(exos[finalIndex]) == .finalRelaxation else { return nil }
+    private func activeBlock(roles: [YogaPoseRole], count: Int) -> Range<Int>? {
+        guard count >= 3, roles.count == count else { return nil }
+        let finalIndex = count - 1
+        guard roles[finalIndex] == .finalRelaxation else { return nil }
 
         var start = 0
-        while start < finalIndex, role(exos[start]) == .openingBreath { start += 1 }
+        while start < finalIndex, roles[start] == .openingBreath { start += 1 }
         guard start < finalIndex else { return nil }
 
         // Repos intercalé obligatoire : le bloc doit se terminer par un repos (balasana).
-        guard role(exos[finalIndex - 1]) == .rest else { return nil }
+        guard roles[finalIndex - 1] == .rest else { return nil }
         return start..<finalIndex
     }
 }

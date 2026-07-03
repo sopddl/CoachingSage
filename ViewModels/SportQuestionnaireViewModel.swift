@@ -107,6 +107,10 @@ final class SportQuestionnaireViewModel {
     /// (`fetchWorkoutSummary` du `.task` autoprofil). No-op si le flow n'utilise pas
     /// `UniversalQuestionnaire` ou si le flag ne change pas.
     func setAskActivityCalibration(_ ask: Bool) {
+        // Garde structurelle (review 07-03) : jamais de swap du graphe de questions
+        // une fois le flow démarré — un futur call site tardif ne doit pas pouvoir
+        // insérer/retirer QActivity au milieu d'une conversation ou d'un draft.
+        guard messages.isEmpty, currentQuestion == nil else { return }
         guard let universal = questionnaire as? UniversalQuestionnaire,
               universal.askActivityCalibration != ask else { return }
         questionnaire = UniversalQuestionnaire(

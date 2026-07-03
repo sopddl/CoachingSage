@@ -345,6 +345,128 @@ final class DensityRuleTests: XCTestCase {
         XCTAssertEqual(result.weeks[0].sessions[0].exercises[1].sets, 3, "L1 OFF en yoga")
     }
 
+    // MARK: - Comptage temps honnête (review 07-03) — dose structuré prioritaire
+
+    func testStrictTimeSecondsRejectsNonTimeUnits() {
+        // Le parser permissif lirait « 50 m » = 50 s, « 5 respirations » = 5 s,
+        // « 1 cycle complet » = 1 s → le comptage densité exige une unité TEMPORELLE.
+        XCTAssertNil(DensityRule.strictTimeSeconds("50 m"))
+        XCTAssertNil(DensityRule.strictTimeSeconds("5 respirations"))
+        XCTAssertNil(DensityRule.strictTimeSeconds("1 cycle complet"))
+        XCTAssertNil(DensityRule.strictTimeSeconds("8 x 25 m"))
+        XCTAssertNil(DensityRule.strictTimeSeconds(nil))
+        XCTAssertEqual(DensityRule.strictTimeSeconds("40"), 40, "nombre nu = secondes (convention)")
+        XCTAssertEqual(DensityRule.strictTimeSeconds("30 sec"), 30)
+        XCTAssertEqual(DensityRule.strictTimeSeconds("1 min 30"), 90)
+        XCTAssertEqual(DensityRule.strictTimeSeconds("1 min course lente + 1 min 30 marche rapide"), 150)
+    }
+
+    func testYogaBreathAndCycleDosesNeverDensified() {
+        // Hatha réel : tenues en respirations/cycles (dose structuré non temporel).
+        // L2 ne bumpe pas (« 5 respirations » → « 8 respirations » serait un bump aveugle
+        // au coût réel), L3 refuse le bloc entier (coût induplicable honnêtement).
+        let breaths = TemplateExercise(
+            name: LocalizedText(fr: "Trikonasana (triangle)"),
+            duration: "5 respirations",
+            dose: .structured(StructuredDose(value: "5", unit: .breaths)),
+            targetZone: "maintien"
+        )
+        let cycles = TemplateExercise(
+            name: LocalizedText(fr: "Salutation au soleil A"),
+            duration: "1 cycle complet",
+            dose: .structured(StructuredDose(value: "1", unit: .cycles)),
+            targetZone: "enchaînement"
+        )
+        let template = yogaTemplate(durationMinutes: 60, actives: [breaths, cycles])
+        let result = apply(template)
+        XCTAssertTrue(result.appliedRules.isEmpty, "respirations/cycles = non temporisables → passthrough")
+        XCTAssertEqual(result.weeks, lift(template))
+    }
+
+    func testYogaPerSideHoldChargedBothSides() {
+        // « 20 sec par côté » : l'allongement 20 → 30 s coûte 2 × 10 s (les DEUX côtés).
+        // Budget 12 s (1 min) : la version par côté (coût 20 s) est REFUSÉE là où la
+        // version simple (coût 10 s) passe.
+        func hold(_ qualifier: DoseQualifier?) -> TemplateExercise {
+            TemplateExercise(
+                name: LocalizedText(fr: "Utthita parsvakonasana (angle étiré)"),
+                duration: qualifier == nil ? "20 sec" : "20 sec par côté",
+                dose: .structured(StructuredDose(value: "20", unit: .seconds, qualifier: qualifier)),
+                targetZone: "maintien"
+            )
+        }
+        let perSide = apply(yogaTemplate(durationMinutes: 1, actives: [hold(.perSide)]))
+        XCTAssertTrue(perSide.appliedRules.isEmpty, "coût ×2 (20 s) > budget 12 s → refusé")
+
+        let single = apply(yogaTemplate(durationMinutes: 1, actives: [hold(nil)]))
+        XCTAssertEqual(single.appliedRules.filter { $0.detail.contains("Tenue allongée") }.count, 1,
+                       "coût ×1 (10 s) ≤ budget 12 s → allongé")
+    }
+
+    func testYogaPerSideBumpSyncsDurationAndDose() {
+        let hold = TemplateExercise(
+            name: LocalizedText(fr: "Vrksasana (arbre)"),
+            duration: "20 sec par côté",
+            dose: .structured(StructuredDose(value: "20", unit: .seconds, qualifier: .perSide)),
+            targetZone: "équilibre"
+        )
+        let result = apply(yogaTemplate(durationMinutes: 30, actives: [hold]))
+        let exo = result.weeks[0].sessions[0].exercises[1]
+        XCTAssertEqual(exo.duration, "30 sec par côté", "texte : nombre de tête remplacé, libellé conservé")
+        guard case .structured(let d)? = exo.dose else { return XCTFail("dose structuré attendu") }
+        XCTAssertEqual(d.value, "30", "dose resynchronisé")
+        XCTAssertEqual(d.qualifier, .perSide, "qualificateur conservé")
+    }
+
+    func testYogaCapTwoHoldsPerSession() {
+        // G4 N=2 vaut aussi pour L2 : 3 tenues brèves éligibles → seules les 2 premières allongées.
+        let actives = (1...3).map { i in
+            TemplateExercise(name: LocalizedText(fr: "Posture active \(i)"),
+                             duration: "20 sec", targetZone: "maintien")
+        }
+        let result = apply(yogaTemplate(durationMinutes: 30, actives: actives))
+        let extended = result.appliedRules.filter { $0.detail.contains("Tenue allongée") }
+        XCTAssertEqual(extended.count, 2, "cap N=2 exos/séance, L2 compris")
+        let exos = result.weeks[0].sessions[0].exercises
+        XCTAssertEqual(SessionDurationParser.seconds(exos[3].duration), 20, "3ᵉ tenue intacte")
+    }
+
+    func testSwimmingMetersDoseChargedNominalNotAsSeconds() {
+        // Dose en mètres = temps inconnu → estimation nominale (~40 s). Et « 50 m » SANS
+        // dose n'est plus lu « 50 secondes » par le repli texte → inéligible.
+        let dosedDrill = TemplateExercise(
+            name: LocalizedText(fr: "Éducatif battements 50 m"), sets: 4,
+            duration: "50 m", restSeconds: 25,
+            dose: .structured(StructuredDose(value: "50", unit: .meters)),
+            targetZone: "technique", requiredEquipment: ["pool"]
+        )
+        let bareDrill = TemplateExercise(
+            name: LocalizedText(fr: "Éducatif rattrapé 25 m"), sets: 4,
+            duration: "25 m", restSeconds: 25, targetZone: "EN1",
+            requiredEquipment: ["pool"]
+        )
+        let template = makeTemplate(sport: .swimming, sessionType: .technique,
+                                    exercises: [dosedDrill, bareDrill])
+        let result = apply(template)
+        let exos = result.weeks[0].sessions[0].exercises
+        XCTAssertEqual(exos[0].sets, 5, "dose meters → nominale (40+25 s) → densifié")
+        XCTAssertEqual(exos[1].sets, 4, "texte « 25 m » sans dose : non temporisable → intact")
+        // Durée affichée : +round(65/60) = +1 min, pas +round((50+25)/60).
+        XCTAssertEqual(result.weeks[0].sessions[0].durationMinutes, 46)
+    }
+
+    func testStaleDeclarationDoesNotOverrideFreshLowHKSignal() {
+        // Le HK frais fait autorité : déclaration « oui » passée + mesure réelle 0,5/sem
+        // → PAS de densification (la déclaration ne sert que quand HK est muet).
+        let template = makeTemplate(exercises: [accessory("Curl")])
+        let stale = AdapterCoachingProfile(
+            requiresMedicalClearance: false,
+            weeklyWorkoutsAverage4w: 0.5,
+            declaredRegularActivity: true
+        )
+        XCTAssertTrue(apply(template, coachingProfile: stale).appliedRules.isEmpty)
+    }
+
     // MARK: - Pipeline complet : non-régression signal nil
 
     func testFullPipelineWithoutSignalIsUnchanged() {
