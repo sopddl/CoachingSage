@@ -1112,6 +1112,12 @@ enum AdaptedProgramFormatting {
     }
 }
 
+#Preview("AdaptedProgram — densifié (bannière Léon)") {
+    NavigationStack {
+        AdaptedProgramView(program: AdaptedProgramPreviewFixtures.densified) { }
+    }
+}
+
 #Preview("AdaptedProgram — requires AI assist") {
     NavigationStack {
         AdaptedProgramView(program: AdaptedProgramPreviewFixtures.requiresAI) { }
@@ -1198,6 +1204,31 @@ enum AdaptedProgramPreviewFixtures {
             ],
             requiresAIAssist: true,
             aiAssistReason: "Aucune alternative pour la contrainte « pregnancy »"
+        )
+    }
+
+    /// Densité B — programme densifié à la création (signal activité régulière) :
+    /// la règle `.density` déclenche la bannière phrase Léon en tête de programme.
+    static var densified: AdaptedProgram {
+        AdaptedProgram(
+            templateId: "running-fixture",
+            sport: .running,
+            level: .beginner,
+            appliedAt: Date(),
+            weeks: [
+                sampleWeek(1, theme: "Découverte"),
+                sampleWeek(2, theme: "Consolidation")
+            ],
+            appliedRules: [
+                AppliedRule(
+                    ruleType: .density,
+                    weekNumber: 1, day: 5,
+                    originalExerciseName: "Gainage planche",
+                    outcome: .densified,
+                    detail: "+1 série (3 → 4) — démarrage un cran au-dessus (activité régulière)"
+                )
+            ],
+            requiresAIAssist: false
         )
     }
 
