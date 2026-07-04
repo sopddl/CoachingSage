@@ -83,6 +83,14 @@ public struct TemplateSession: Codable, Equatable, Sendable {
     public let exercises: [TemplateExercise]
     public let cooldown: LocalizedText?
 
+    /// Minutes annotées du bloc `warmup` (chantier durée réglable, pilote cycling
+    /// 2026-07-04) — `nil` = sport non annoté. Intouchable par le moteur de scaling,
+    /// sert seulement au calcul de la fourchette plancher/plafond.
+    public let warmupMinutes: Int?
+
+    /// Minutes annotées du bloc `cooldown`. Cf `warmupMinutes`.
+    public let cooldownMinutes: Int?
+
     /// Lieu que représente le contenu RACINE de la séance (= variante native/défaut).
     /// `nil` = séance agnostique (pas de bascule lieu — tous les sports hors chantier
     /// indoor/outdoor). Chantier indoor/outdoor vélo 2026-06-10.
@@ -102,7 +110,9 @@ public struct TemplateSession: Codable, Equatable, Sendable {
         exercises: [TemplateExercise],
         cooldown: LocalizedText?,
         environment: SessionEnvironment? = nil,
-        variants: [SessionVariant]? = nil
+        variants: [SessionVariant]? = nil,
+        warmupMinutes: Int? = nil,
+        cooldownMinutes: Int? = nil
     ) {
         self.day = day
         self.name = name
@@ -113,6 +123,8 @@ public struct TemplateSession: Codable, Equatable, Sendable {
         self.cooldown = cooldown
         self.environment = environment
         self.variants = variants
+        self.warmupMinutes = warmupMinutes
+        self.cooldownMinutes = cooldownMinutes
     }
 
     /// Toutes les variantes de lieu (native incluse), si la séance est « à lieu ».
@@ -121,7 +133,8 @@ public struct TemplateSession: Codable, Equatable, Sendable {
         guard let environment else { return [] }
         let native = SessionVariant(
             environment: environment, name: name, durationMinutes: durationMinutes,
-            warmup: warmup, exercises: exercises, cooldown: cooldown
+            warmup: warmup, exercises: exercises, cooldown: cooldown,
+            warmupMinutes: warmupMinutes, cooldownMinutes: cooldownMinutes
         )
         return [native] + (variants ?? [])
     }
@@ -175,6 +188,22 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
     public let alternatives: [LocalizedText]
     public let volumeAxis: VolumeAxis?
 
+    /// Chantier durée réglable (pilote cycling, 2026-07-04) — `nil` = sport pas encore
+    /// annoté. `role` distingue core (jamais retiré) vs accessory (sacrifié en 1er, D5).
+    public let role: BlockRole?
+
+    /// Comment ce bloc se scale : `continuous` (minutes), `roundsReps` (`sets`), `fixed`.
+    public let scalingUnit: ScalingUnit?
+
+    /// Ordre de sacrifice parmi les blocs `accessory` d'une même séance (1 = en premier).
+    /// `nil` pour un bloc `core` ou un sport non annoté.
+    public let priority: Int?
+
+    /// Minutes réelles annotées pour CE bloc à sa cardinalité actuelle dans le template —
+    /// remplace le calcul impossible depuis `duration`/`sets` en texte libre (cf doctrine
+    /// durée réglable, section 2). Source de vérité pour le moteur de scaling.
+    public let estimatedMinutes: Int?
+
     public init(
         name: LocalizedText,
         matchKey: String? = nil,
@@ -188,7 +217,11 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
         requiredEquipment: [String] = [],
         incompatibleConstraints: [String] = [],
         alternatives: [LocalizedText] = [],
-        volumeAxis: VolumeAxis? = nil
+        volumeAxis: VolumeAxis? = nil,
+        role: BlockRole? = nil,
+        scalingUnit: ScalingUnit? = nil,
+        priority: Int? = nil,
+        estimatedMinutes: Int? = nil
     ) {
         self.name = name
         self.matchKey = matchKey
@@ -203,11 +236,16 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
         self.incompatibleConstraints = incompatibleConstraints
         self.alternatives = alternatives
         self.volumeAxis = volumeAxis
+        self.role = role
+        self.scalingUnit = scalingUnit
+        self.priority = priority
+        self.estimatedMinutes = estimatedMinutes
     }
 
     private enum CodingKeys: String, CodingKey {
         case name, matchKey, sets, reps, duration, restSeconds, dose, notes
         case targetZone, requiredEquipment, incompatibleConstraints, alternatives, volumeAxis
+        case role, scalingUnit, priority, estimatedMinutes
     }
 
     public init(from decoder: Decoder) throws {
@@ -225,5 +263,9 @@ public struct TemplateExercise: Codable, Equatable, Sendable {
         self.incompatibleConstraints = try c.decodeIfPresent([String].self, forKey: .incompatibleConstraints) ?? []
         self.alternatives = try c.decodeIfPresent([LocalizedText].self, forKey: .alternatives) ?? []
         self.volumeAxis = try c.decodeIfPresent(VolumeAxis.self, forKey: .volumeAxis)
+        self.role = try c.decodeIfPresent(BlockRole.self, forKey: .role)
+        self.scalingUnit = try c.decodeIfPresent(ScalingUnit.self, forKey: .scalingUnit)
+        self.priority = try c.decodeIfPresent(Int.self, forKey: .priority)
+        self.estimatedMinutes = try c.decodeIfPresent(Int.self, forKey: .estimatedMinutes)
     }
 }

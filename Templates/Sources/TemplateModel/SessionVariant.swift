@@ -21,13 +21,20 @@ public struct SessionVariant: Codable, Equatable, Sendable {
     public let exercises: [TemplateExercise]
     public let cooldown: LocalizedText?
 
+    /// Chantier durée réglable (pilote cycling, 2026-07-04) — cf `TemplateSession.warmupMinutes`.
+    /// Annoté séparément par variante (le warmup indoor/outdoor peut différer).
+    public let warmupMinutes: Int?
+    public let cooldownMinutes: Int?
+
     public init(
         environment: SessionEnvironment,
         name: LocalizedText,
         durationMinutes: Int,
         warmup: LocalizedText? = nil,
         exercises: [TemplateExercise] = [],
-        cooldown: LocalizedText? = nil
+        cooldown: LocalizedText? = nil,
+        warmupMinutes: Int? = nil,
+        cooldownMinutes: Int? = nil
     ) {
         self.environment = environment
         self.name = name
@@ -35,5 +42,7 @@ public struct SessionVariant: Codable, Equatable, Sendable {
         self.warmup = warmup
         self.exercises = exercises
         self.cooldown = cooldown
+        self.warmupMinutes = warmupMinutes
+        self.cooldownMinutes = cooldownMinutes
     }
 }
