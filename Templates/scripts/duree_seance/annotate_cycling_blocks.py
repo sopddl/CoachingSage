@@ -72,17 +72,41 @@ MOBILITY_CORE_RE = re.compile(r"mobilit|mobility", re.IGNORECASE)
 MIN_RE = re.compile(r"(\d+)(?:-(\d+))?\s*min")
 MULT_RE = re.compile(r"(\d+)\s*[×x]\s*(\d+)(?:-(\d+))?\s*(min|sec)")
 # Fenêtres de temps nutrition/hydratation ("dans les 30 min", "protéines 30 min après") —
-# ne sont PAS des composantes de durée warmup/cooldown, à exclure avant comptage.
-NUTRITION_WINDOW_RE = re.compile(
-    r"dans les \d+(?:-\d+)?\s*min|\d+(?:-\d+)?\s*min\s+apr[eè]s"
+# ne sont PAS des composantes de durée warmup/cooldown, à exclure avant comptage. Scopé au
+# vocabulaire nutrition/hydratation à proximité (± 40 car., cf `_is_nutrition_window`) pour
+# ne pas avaler une future instruction chronométrée sans rapport (ex. « étirements dans les
+# 5 min qui suivent »). Python `re` n'autorise pas les lookbehind à largeur variable, d'où
+# le filtrage manuel (`_strip_nutrition_windows`) plutôt qu'un unique gros pattern.
+NUTRITION_KEYWORDS_RE = re.compile(
+    r"collation|hydrat|glucide|prot[eé]ine|boi(?:s|re)|[eé]lectrolyte|\beau\b|nutrition",
+    re.IGNORECASE
 )
+NUTRITION_WINDOW_RE = re.compile(
+    r"dans les \d+(?:-\d+)?\s*min|\d+(?:-\d+)?\s*min\s+apr[eè]s", re.IGNORECASE
+)
+_CONTEXT_RADIUS = 40
+
+
+def _strip_nutrition_windows(text: str) -> str:
+    """Retire les fenêtres nutrition UNIQUEMENT si un mot-clé nutrition apparaît dans les
+    `_CONTEXT_RADIUS` caractères autour — sinon on garde la phrase (probablement une vraie
+    composante de durée, cf finding review « scope trop large sinon »)."""
+    out = []
+    last_end = 0
+    for m in NUTRITION_WINDOW_RE.finditer(text):
+        window = text[max(0, m.start() - _CONTEXT_RADIUS): m.end() + _CONTEXT_RADIUS]
+        if NUTRITION_KEYWORDS_RE.search(window):
+            out.append(text[last_end:m.start()])
+            last_end = m.end()
+    out.append(text[last_end:])
+    return "".join(out)
 
 
 def minutes_in_text(text: str) -> float:
     """Minutes réelles décrites par un texte FR warmup/cooldown : gère les répétitions
     ("2×1 min à 110% FTP" = 2 min) et exclut les fenêtres nutrition ("dans les 30 min",
     "protéines 30 min après") qui ne sont pas des composantes de durée."""
-    text = NUTRITION_WINDOW_RE.sub("", text or "")
+    text = _strip_nutrition_windows(text or "")
 
     total = 0.0
 
@@ -144,6 +168,17 @@ def exercise_raw_weight(ex: dict) -> tuple:
     return per_rep_minutes * sets + rest_min * sets, used_fallback
 
 
+def _exactly_one_core(roles: list, weights: list) -> list:
+    """Parmi les candidats 'core' détectés par mot-clé (ou, à défaut, parmi TOUS les
+    exercices si aucun n'a matché), celui au plus gros poids brut reste core — les autres
+    passent accessory. Garantit ≥1 core même si le classement par mot-clé échoue totalement
+    (ex. renommage futur d'un match_key qui ne matche plus aucun pattern)."""
+    n = len(roles)
+    candidates = [i for i, r in enumerate(roles) if r == "core"] or list(range(n))
+    dominant = max(candidates, key=lambda i: weights[i])
+    return [("core" if i == dominant else "accessory") for i in range(n)]
+
+
 def classify_roles(session_type: str, exercises: list, weights: list) -> list:
     """Retourne la liste des rôles ('core'/'accessory') alignée sur `exercises`."""
     n = len(exercises)
@@ -151,19 +186,16 @@ def classify_roles(session_type: str, exercises: list, weights: list) -> list:
         return ["core"]
 
     if session_type == "mobility":
-        return ["core" if MOBILITY_CORE_RE.search(e.get("match_key", "")) else "accessory"
-                for e in exercises]
+        # La routine mobilité est TOUJOURS core (doctrine section 4.3) ; même garde-fou
+        # ≥1 core que la branche générique si un futur renommage fait perdre le match
+        # MOBILITY_CORE_RE sur tous les exercices.
+        roles = ["core" if MOBILITY_CORE_RE.search(e.get("match_key", "")) else "accessory"
+                 for e in exercises]
+        return _exactly_one_core(roles, weights)
 
     roles = ["accessory" if ACCESSORY_RE.search(e.get("match_key", "")) else "core"
               for e in exercises]
-
-    # Exactement un core : parmi les candidats "core" détectés par mot-clé (ou, à défaut,
-    # parmi TOUS les exercices si aucun mot-clé n'a matché), celui au plus gros poids brut
-    # reste core — les autres (bloc secondaire/finisher, cf docstring module) passent
-    # accessory. Une seule règle couvre les deux cas (0 ou 2+ candidats "core").
-    candidates = [i for i, r in enumerate(roles) if r == "core"] or list(range(n))
-    dominant = max(candidates, key=lambda i: weights[i])
-    return [("core" if i == dominant else "accessory") for i in range(n)]
+    return _exactly_one_core(roles, weights)
 
 
 def annotate_exercises(session_type: str, exercises: list, remainder: float, log_prefix: str, warnings: list) -> None:
@@ -187,6 +219,14 @@ def annotate_exercises(session_type: str, exercises: list, remainder: float, log
         core_idxs = [i for i, r in enumerate(roles) if r == "core"]
         target = max(core_idxs, key=lambda i: weights[i]) if core_idxs else max(range(len(weights)), key=lambda i: weights[i])
         estimated[target] += drift
+        if estimated[target] < 0:
+            # Ne devrait pas arriver (drift borné par l'arrondi, ≪ allocation du bloc
+            # dominant) — si ça arrive quand même, on le dit au lieu de clamper en silence
+            # et de casser la fermeture exacte du budget sans que personne ne le sache.
+            warnings.append(
+                f"{log_prefix} | drift d'arrondi ({drift}) a rendu « {exercises[target].get('match_key')} » "
+                f"négatif ({estimated[target]}) — clampé à 0, budget ne ferme plus exactement"
+            )
 
     accessory_order = 1
     for e, role, est in zip(exercises, roles, estimated):

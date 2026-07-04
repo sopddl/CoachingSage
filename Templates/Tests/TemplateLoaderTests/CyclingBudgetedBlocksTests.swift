@@ -76,11 +76,19 @@ final class CyclingBudgetedBlocksTests: XCTestCase {
             failures.append("\(node.label) : warmupMinutes/cooldownMinutes absent")
             return
         }
-        let exercisesSum = node.exercises.reduce(0) { $0 + ($1.estimatedMinutes ?? -1_000_000) }
-        guard exercisesSum > -1_000_000 else {
-            failures.append("\(node.label) : au moins un exercice sans estimatedMinutes")
+        guard !node.exercises.isEmpty else {
+            failures.append("\(node.label) : aucun exercice (séance vide)")
             return
         }
+        let missing = node.exercises.filter { $0.estimatedMinutes == nil }
+        guard missing.isEmpty else {
+            failures.append(
+                "\(node.label) : \(missing.count) exercice(s) sans estimatedMinutes — "
+                + missing.map(\.stableMatchKey).joined(separator: ", ")
+            )
+            return
+        }
+        let exercisesSum = node.exercises.reduce(0) { $0 + ($1.estimatedMinutes ?? 0) }
         let total = warmup + cooldown + exercisesSum
         let tolerance = max(2, Int(Double(node.durationMinutes) * 0.10))
         if abs(total - node.durationMinutes) > tolerance {
