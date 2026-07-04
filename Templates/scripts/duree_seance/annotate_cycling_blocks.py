@@ -105,8 +105,10 @@ def minutes_in_text(text: str) -> float:
     return total
 
 
-def exercise_raw_weight(ex: dict) -> float:
-    """Poids brut en minutes-équivalent : dose structurée > texte libre, × sets, + repos."""
+def exercise_raw_weight(ex: dict) -> tuple:
+    """Poids brut en minutes-équivalent (dose structurée > texte libre, × sets, + repos)
+    + un flag explicite `used_fallback` (vrai ssi RIEN n'était parseable et qu'on est
+    retombé sur le placeholder 1.0/rep — le seul cas qui mérite un avertissement)."""
     sets = ex.get("sets") or 1
     rest_min = (ex.get("rest_seconds") or 0) / 60.0
 
@@ -135,10 +137,11 @@ def exercise_raw_weight(ex: dict) -> float:
             if sec_matches:
                 per_rep_minutes = sum(int(s) for s in sec_matches) / 60.0
 
-    if per_rep_minutes is None:
-        per_rep_minutes = 1.0  # fallback — loggé par l'appelant si retenu tel quel
+    used_fallback = per_rep_minutes is None
+    if used_fallback:
+        per_rep_minutes = 1.0
 
-    return per_rep_minutes * sets + rest_min * sets
+    return per_rep_minutes * sets + rest_min * sets, used_fallback
 
 
 def classify_roles(session_type: str, exercises: list, weights: list) -> list:
@@ -151,34 +154,26 @@ def classify_roles(session_type: str, exercises: list, weights: list) -> list:
         return ["core" if MOBILITY_CORE_RE.search(e.get("match_key", "")) else "accessory"
                 for e in exercises]
 
-    roles = []
-    for e in exercises:
-        mk = e.get("match_key", "")
-        roles.append("accessory" if ACCESSORY_RE.search(mk) else "core")
+    roles = ["accessory" if ACCESSORY_RE.search(e.get("match_key", "")) else "core"
+              for e in exercises]
 
-    core_idxs = [i for i, r in enumerate(roles) if r == "core"]
-    if len(core_idxs) > 1:
-        # Garde le poids le plus fort en core, le(s) reste passe(nt) accessory
-        # (bloc secondaire/finisher — cf docstring module).
-        dominant = max(core_idxs, key=lambda i: weights[i])
-        for i in core_idxs:
-            if i != dominant:
-                roles[i] = "accessory"
-    elif not core_idxs:
-        # Aucun match "core" évident (rare) : le plus gros poids devient core par défaut.
-        dominant = max(range(n), key=lambda i: weights[i])
-        roles[dominant] = "core"
-
-    return roles
+    # Exactement un core : parmi les candidats "core" détectés par mot-clé (ou, à défaut,
+    # parmi TOUS les exercices si aucun mot-clé n'a matché), celui au plus gros poids brut
+    # reste core — les autres (bloc secondaire/finisher, cf docstring module) passent
+    # accessory. Une seule règle couvre les deux cas (0 ou 2+ candidats "core").
+    candidates = [i for i, r in enumerate(roles) if r == "core"] or list(range(n))
+    dominant = max(candidates, key=lambda i: weights[i])
+    return [("core" if i == dominant else "accessory") for i in range(n)]
 
 
 def annotate_exercises(session_type: str, exercises: list, remainder: float, log_prefix: str, warnings: list) -> None:
     if not exercises:
         return
-    weights = [exercise_raw_weight(e) for e in exercises]
-    for e, w in zip(exercises, weights):
-        if w <= 1.0 and not (e.get("duration") or (isinstance(e.get("dose"), dict))):
-            warnings.append(f"{log_prefix} | poids fallback (1.0) pour « {e.get('match_key')} »")
+    raw = [exercise_raw_weight(e) for e in exercises]
+    weights = [w for w, _ in raw]
+    for e, (_, used_fallback) in zip(exercises, raw):
+        if used_fallback:
+            warnings.append(f"{log_prefix} | poids fallback (1.0/rep) pour « {e.get('match_key')} »")
 
     roles = classify_roles(session_type, exercises, weights)
 
