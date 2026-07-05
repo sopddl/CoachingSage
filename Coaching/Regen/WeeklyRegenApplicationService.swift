@@ -177,7 +177,9 @@ final class DefaultWeeklyRegenApplicationService: WeeklyRegenApplicationService 
                 type: original.type,
                 warmup: original.warmup,
                 exercises: original.exercises,
-                cooldown: original.cooldown
+                cooldown: original.cooldown,
+                warmupMinutes: original.warmupMinutes,
+                cooldownMinutes: original.cooldownMinutes
             )
             affected.append(original.id)
         }

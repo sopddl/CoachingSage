@@ -269,7 +269,9 @@ extension AdaptedProgramRecord {
                     type: session.type,
                     warmup: session.warmup,
                     exercises: session.exercises,
-                    cooldown: session.cooldown
+                    cooldown: session.cooldown,
+                    warmupMinutes: session.warmupMinutes,
+                    cooldownMinutes: session.cooldownMinutes
                 )
             }
         }
@@ -354,7 +356,9 @@ extension AdaptedProgramRecord {
                     type: ps.type,
                     warmup: ps.warmup,
                     exercises: ps.exercises,
-                    cooldown: ps.cooldown
+                    cooldown: ps.cooldown,
+                    warmupMinutes: ps.warmupMinutes,
+                    cooldownMinutes: ps.cooldownMinutes
                 )
             }
             return AdaptedWeek(

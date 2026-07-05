@@ -93,6 +93,12 @@ public struct AdaptedSession: Codable, Equatable, Sendable {
     public let exercises: [AdaptedExercise]
     public let cooldown: LocalizedText?
 
+    /// Minutes annotées du bloc `warmup`/`cooldown` (chantier durée réglable, pilote
+    /// cycling). Copié tel quel depuis `TemplateSession`/`SessionVariant`. `nil` = sport
+    /// pas encore annoté (hors V1) — consommé par `SessionDurationScaler` (Increment 2).
+    public let warmupMinutes: Int?
+    public let cooldownMinutes: Int?
+
     public init(
         day: Int,
         name: LocalizedText,
@@ -100,7 +106,9 @@ public struct AdaptedSession: Codable, Equatable, Sendable {
         type: SessionType,
         warmup: LocalizedText?,
         exercises: [AdaptedExercise],
-        cooldown: LocalizedText?
+        cooldown: LocalizedText?,
+        warmupMinutes: Int? = nil,
+        cooldownMinutes: Int? = nil
     ) {
         self.day = day
         self.name = name
@@ -109,6 +117,8 @@ public struct AdaptedSession: Codable, Equatable, Sendable {
         self.warmup = warmup
         self.exercises = exercises
         self.cooldown = cooldown
+        self.warmupMinutes = warmupMinutes
+        self.cooldownMinutes = cooldownMinutes
     }
 }
 
@@ -167,6 +177,16 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
     /// (clé absente → nil → traité comme « pas hors-eau »). nil/false = exo dans l'eau.
     public let dryLand: Bool?
 
+    /// Chantier durée réglable (pilote cycling) — copiés tel quel depuis
+    /// `TemplateExercise` (même pattern que `volumeAxis`/`dose`). `nil` = sport pas
+    /// encore annoté (hors V1). Source de vérité pour `SessionDurationScaler` (Inc2) :
+    /// `role` core/accessory, `scalingUnit` continuous/roundsReps/fixed, `priority`
+    /// ordre de sacrifice, `estimatedMinutes` budget minutes du bloc.
+    public let role: BlockRole?
+    public let scalingUnit: ScalingUnit?
+    public let priority: Int?
+    public let estimatedMinutes: Int?
+
     public init(
         name: LocalizedText,
         originalName: String,
@@ -182,7 +202,11 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
         side: ExerciseSide? = nil,
         wasSubstituted: Bool = false,
         substitutionReason: String? = nil,
-        dryLand: Bool? = nil
+        dryLand: Bool? = nil,
+        role: BlockRole? = nil,
+        scalingUnit: ScalingUnit? = nil,
+        priority: Int? = nil,
+        estimatedMinutes: Int? = nil
     ) {
         self.name = name
         self.originalName = originalName
@@ -199,6 +223,10 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
         self.wasSubstituted = wasSubstituted
         self.substitutionReason = substitutionReason
         self.dryLand = dryLand
+        self.role = role
+        self.scalingUnit = scalingUnit
+        self.priority = priority
+        self.estimatedMinutes = estimatedMinutes
     }
 
     /// Nom à afficher à l'user, résolu pour `locale` : retire le suffixe technique
@@ -243,7 +271,11 @@ public struct AdaptedExercise: Codable, Equatable, Sendable {
             volumeAxis: template.volumeAxis,
             wasSubstituted: false,
             substitutionReason: nil,
-            dryLand: Self.isDryLand(template, sport: sport)
+            dryLand: Self.isDryLand(template, sport: sport),
+            role: template.role,
+            scalingUnit: template.scalingUnit,
+            priority: template.priority,
+            estimatedMinutes: template.estimatedMinutes
         )
     }
 
@@ -273,24 +305,70 @@ public extension AdaptedExercise {
                 qualifier: d.qualifier, style: d.style, modifier: d.modifier
             ))
         }
+        // `estimatedMinutes` (chantier durée réglable) n'est peuplé qu'en cycling V1 (jamais
+        // en yoga aujourd'hui) — recalculé quand même si présent, pour ne pas laisser un
+        // budget minutes périmé si un futur sport yoga vient à l'annoter (même logique que
+        // `scaledToMinutes`).
+        let newEstimated = estimatedMinutes.map { _ in Int((Double(seconds) / 60.0).rounded(.toNearestOrEven)) }
         return AdaptedExercise(
             name: name, originalName: originalName, sets: sets, reps: reps,
             duration: newDuration, restSeconds: restSeconds, dose: newDose, notes: notes,
             targetZone: targetZone, volumeAxis: volumeAxis, load: load, side: side,
             wasSubstituted: wasSubstituted, substitutionReason: substitutionReason,
-            dryLand: dryLand
+            dryLand: dryLand, role: role, scalingUnit: scalingUnit, priority: priority,
+            estimatedMinutes: newEstimated
         )
     }
 
     /// Densifie par le levier L1 « +1 set » (chantier densité B) : bump d'un ENTIER,
     /// aucun texte touché (`reps`/`duration`/`dose` décrivent UN set → restent justes).
+    /// Recalcule `estimatedMinutes` proportionnellement (chantier durée réglable, même
+    /// formule que `scaledToSets`) pour que le budget cycling reste cohérent après densité.
     func addingOneSet() -> AdaptedExercise {
-        AdaptedExercise(
-            name: name, originalName: originalName, sets: (sets ?? 1) + 1, reps: reps,
+        scaledToSets((sets ?? 1) + 1)
+    }
+
+    /// Chantier durée réglable (Increment 2) — bloc `scalingUnit == .roundsReps` scalé à
+    /// `newSets` répétitions. La durée PAR rep ne bouge pas (doctrine section 2 : le
+    /// « goût » de l'effort reste fixe), seul `sets` change. `estimatedMinutes` recalculé
+    /// proportionnellement (doctrine section 6) : `(estimatedMinutes original / sets
+    /// original) × newSets`. `newSets <= 0` = bloc entièrement sacrifié (V1 : seuls des
+    /// blocs `accessory` peuvent tomber à 0, garanti par l'appelant).
+    func scaledToSets(_ newSets: Int) -> AdaptedExercise {
+        let originalSets = max(sets ?? 1, 1)
+        let newEstimated = estimatedMinutes.map { est in
+            Int((Double(est) / Double(originalSets) * Double(newSets)).rounded(.toNearestOrEven))
+        }
+        return AdaptedExercise(
+            name: name, originalName: originalName, sets: newSets, reps: reps,
             duration: duration, restSeconds: restSeconds, dose: dose, notes: notes,
             targetZone: targetZone, volumeAxis: volumeAxis, load: load, side: side,
             wasSubstituted: wasSubstituted, substitutionReason: substitutionReason,
-            dryLand: dryLand
+            dryLand: dryLand, role: role, scalingUnit: scalingUnit, priority: priority,
+            estimatedMinutes: newEstimated
+        )
+    }
+
+    /// Chantier durée réglable (Increment 2) — bloc `scalingUnit == .continuous` scalé à
+    /// `minutes` nouvelles minutes : reformate `duration`/`dose` (même pattern que
+    /// `bumpingHold`, mais en MINUTES et non en secondes) et pose `estimatedMinutes = minutes`
+    /// (source de vérité, cf doctrine section 2).
+    func scaledToMinutes(_ minutes: Int) -> AdaptedExercise {
+        let newDuration = Self.replacingLeadingNumber(in: duration, with: minutes, fallbackUnit: "min")
+        var newDose = dose
+        if case let .structured(d) = dose, d.unit == .minutes {
+            newDose = .structured(StructuredDose(
+                value: "\(minutes)", unit: .minutes,
+                qualifier: d.qualifier, style: d.style, modifier: d.modifier
+            ))
+        }
+        return AdaptedExercise(
+            name: name, originalName: originalName, sets: sets, reps: reps,
+            duration: newDuration, restSeconds: restSeconds, dose: newDose, notes: notes,
+            targetZone: targetZone, volumeAxis: volumeAxis, load: load, side: side,
+            wasSubstituted: wasSubstituted, substitutionReason: substitutionReason,
+            dryLand: dryLand, role: role, scalingUnit: scalingUnit, priority: priority,
+            estimatedMinutes: minutes
         )
     }
 

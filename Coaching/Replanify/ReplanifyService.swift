@@ -92,7 +92,9 @@ final class DefaultReplanifyService: ReplanifyService {
                 type: target.type,
                 warmup: target.warmup,
                 exercises: target.exercises,
-                cooldown: target.cooldown
+                cooldown: target.cooldown,
+                warmupMinutes: target.warmupMinutes,
+                cooldownMinutes: target.cooldownMinutes
             )
         } else {
             // Fallback S+1, day=1 (AC12 reco B).
@@ -107,7 +109,9 @@ final class DefaultReplanifyService: ReplanifyService {
                 type: target.type,
                 warmup: target.warmup,
                 exercises: target.exercises,
-                cooldown: target.cooldown
+                cooldown: target.cooldown,
+                warmupMinutes: target.warmupMinutes,
+                cooldownMinutes: target.cooldownMinutes
             )
         }
         record.sessions = newSessions

@@ -24,6 +24,11 @@ public struct PersistedSession: Codable, Equatable, Identifiable, Sendable {
     public let exercises: [AdaptedExercise]
     public let cooldown: LocalizedText?
 
+    /// Minutes annotées du bloc `warmup`/`cooldown` (chantier durée réglable, pilote
+    /// cycling). Cf `AdaptedSession.warmupMinutes`. `nil` = sport pas encore annoté.
+    public let warmupMinutes: Int?
+    public let cooldownMinutes: Int?
+
     public init(
         id: UUID = UUID(),
         weekNumber: Int,
@@ -35,7 +40,9 @@ public struct PersistedSession: Codable, Equatable, Identifiable, Sendable {
         type: SessionType,
         warmup: LocalizedText?,
         exercises: [AdaptedExercise],
-        cooldown: LocalizedText?
+        cooldown: LocalizedText?,
+        warmupMinutes: Int? = nil,
+        cooldownMinutes: Int? = nil
     ) {
         self.id = id
         self.weekNumber = weekNumber
@@ -48,6 +55,8 @@ public struct PersistedSession: Codable, Equatable, Identifiable, Sendable {
         self.warmup = warmup
         self.exercises = exercises
         self.cooldown = cooldown
+        self.warmupMinutes = warmupMinutes
+        self.cooldownMinutes = cooldownMinutes
     }
 }
 

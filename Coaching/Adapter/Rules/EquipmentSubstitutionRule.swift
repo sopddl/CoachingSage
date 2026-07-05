@@ -48,7 +48,9 @@ public struct EquipmentSubstitutionRule: AdaptationRule {
                                 aiReason: &aiReason
                             )
                         },
-                        cooldown: session.cooldown
+                        cooldown: session.cooldown,
+                        warmupMinutes: session.warmupMinutes,
+                        cooldownMinutes: session.cooldownMinutes
                     )
                 }
             )
@@ -108,7 +110,11 @@ public struct EquipmentSubstitutionRule: AdaptationRule {
                 targetZone: ex.targetZone,
                 volumeAxis: ex.volumeAxis,
                 wasSubstituted: true,
-                substitutionReason: "equipment:\(missingLabel)"
+                substitutionReason: "equipment:\(missingLabel)",
+                role: ex.role,
+                scalingUnit: ex.scalingUnit,
+                priority: ex.priority,
+                estimatedMinutes: ex.estimatedMinutes
             )
         } else {
             triggeredAI = true
