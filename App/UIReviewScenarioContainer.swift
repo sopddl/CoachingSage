@@ -369,8 +369,23 @@ struct UIReviewScenarioContainer: View {
             //   ui_review_session_hub_real_<Sport.rawValue>
             //   ex: ..._running, ..._cycling, ..._strength_training, ..._yoga
             RealTemplateHubScenarioView(
-                sportRawValue: String(s.dropFirst("ui_review_session_hub_real_".count))
+                sportRawValue: String(s.dropFirst("ui_review_session_hub_real_".count)),
+                level: .beginner
             )
+        case let s where s.hasPrefix("ui_review_persona_"):
+            // Batch retours personas (débutant/initié/expert) par sport — même
+            // pipeline réel TemplateLoader → ProgramAdapter que ci-dessus, mais
+            // niveau paramétrable. Suffixe : ui_review_persona_<Sport>_<Level>
+            //   ex: ui_review_persona_running_beginner, ..._strength_training_competitive
+            let rest = String(s.dropFirst("ui_review_persona_".count))
+            if let level = Level.allCases.first(where: { rest.hasSuffix("_" + $0.rawValue) }) {
+                RealTemplateHubScenarioView(
+                    sportRawValue: String(rest.dropLast(level.rawValue.count + 1)),
+                    level: level
+                )
+            } else {
+                UnsupportedScenarioView(scenario: scenario)
+            }
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -1367,6 +1382,7 @@ private struct SessionDetailHubYogaScenarioView: View {
 /// sans dépendre de la navigation (taps de bord non fiables au bridge).
 private struct RealTemplateHubScenarioView: View {
     let sportRawValue: String
+    let level: Level
 
     @State private var program: AdaptedProgram?
     @State private var session: AdaptedSession?
@@ -1399,8 +1415,8 @@ private struct RealTemplateHubScenarioView: View {
         do {
             let all = try await TemplateLoader.loadAll()
             let forSport = all.filter { $0.sport == sport }
-            guard let template = forSport.first(where: { $0.level == .beginner }) ?? forSport.first else {
-                status = "Aucun template bundlé pour \(sport.rawValue)"
+            guard let template = forSport.first(where: { $0.level == level }) ?? forSport.first else {
+                status = "Aucun template bundlé pour \(sport.rawValue) au niveau \(level.rawValue)"
                 return
             }
             let adapted = ProgramAdapter().adapt(
