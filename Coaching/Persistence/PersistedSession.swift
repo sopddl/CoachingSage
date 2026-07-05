@@ -58,6 +58,24 @@ public struct PersistedSession: Codable, Equatable, Identifiable, Sendable {
         self.warmupMinutes = warmupMinutes
         self.cooldownMinutes = cooldownMinutes
     }
+
+    /// Bridge vers la struct en mémoire consommée par les vues (`AdaptedSession` n'a pas
+    /// de notion d'`id` DB — cf `AdaptedProgramRecord.toAdaptedProgram()`). Utilisé aussi
+    /// par le chantier durée réglable (Increment 3) pour rafraîchir l'affichage d'une
+    /// séance juste après un ajustement persisté.
+    public func toAdaptedSession() -> AdaptedSession {
+        AdaptedSession(
+            day: day,
+            name: name,
+            durationMinutes: durationMinutes,
+            type: type,
+            warmup: warmup,
+            exercises: exercises,
+            cooldown: cooldown,
+            warmupMinutes: warmupMinutes,
+            cooldownMinutes: cooldownMinutes
+        )
+    }
 }
 
 /// État de complétion d'un programme adapté.

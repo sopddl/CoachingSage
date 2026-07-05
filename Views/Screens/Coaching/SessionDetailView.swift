@@ -64,6 +64,18 @@ struct SessionDetailView: View {
     @State private var adapterFacade: AdapterSportProfile?
     @State private var coachingFacade: AdapterCoachingProfile?
 
+    /// Chantier durée réglable, pilote cycling (Increment 3) — `PersistedSession`
+    /// correspondante (weekNumber, day), chargée pour savoir si l'entrée « Ajuster la
+    /// durée » est réglable (`SessionDurationScaler.isAdjustable`). `nil` hors cycling,
+    /// preview, ou programme sans recordId.
+    @State private var persistedDurationSession: PersistedSession?
+    /// Contenu réellement persisté après un ajustement réussi — prime sur `session`
+    /// (le paramètre reste figé à la valeur d'avant ajustement, cf `AdaptedProgramView`
+    /// qui ne recharge pas son `program` en continu). `nil` tant qu'aucun ajustement
+    /// n'a été fait dans cette session de navigation.
+    @State private var adjustedSession: AdaptedSession?
+    @State private var showDurationAdjustSheet: Bool = false
+
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
@@ -74,6 +86,13 @@ struct SessionDetailView: View {
                     // Démarrer (D3). 1 tap = bascule la VRAIE variante affichée.
                     if isLocationSession, let env = locationEnv {
                         SessionLocationChip(environment: env, onFlip: flipLocation)
+                    }
+
+                    // Chantier durée réglable, pilote cycling (Increment 3) — entrée
+                    // « Ajuster la durée ». Masquée (pas grisée) si la séance est déjà
+                    // complétée (doctrine section 9.3) ou non réglable.
+                    if canAdjustDuration {
+                        durationAdjustButton
                     }
 
                     // Story 3.35d — bouton Démarrer aussi EN HAUT (visible sans
@@ -123,7 +142,41 @@ struct SessionDetailView: View {
             await resolveLocationIfNeeded()
             await bootstrapCompletionVMIfNeeded()
             await presentDiscoveryTooltipIfNeeded()
+            await loadPersistedDurationSessionIfNeeded()
             reloadFocusProgress()
+        }
+        .sheet(isPresented: $showDurationAdjustSheet) {
+            SessionDurationAdjustSheet(
+                currentDurationMinutes: displaySession.durationMinutes,
+                adjust: { target in
+                    guard let recordId, let deps else {
+                        throw SessionDurationAdjustmentError.programNotFound
+                    }
+                    return try await deps.sessionDurationAdjustmentService.adjustDuration(
+                        programId: recordId, weekNumber: week.weekNumber, day: session.day, targetMinutes: target
+                    )
+                },
+                onAdjusted: { result in
+                    persistedDurationSession = result.session
+                    adjustedSession = result.session.toAdaptedSession()
+                    // Doctrine (Increment 2 reprise) : log backlog RGPD-safe (enum
+                    // fermé, aucun verbatim) quand la cible demandée dépassait la
+                    // fourchette réglable de la séance — signal produit « périodisation
+                    // temporelle non honorée », pas une erreur.
+                    if result.wasBounded {
+                        Task {
+                            await DefaultLeonUnmetRequestLogger().log(
+                                LeonUnmetRequest(
+                                    category: .periodisationTemporelle,
+                                    response: .notYet,
+                                    locale: Locale.current.identifier,
+                                    appVersion: (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "0"
+                                )
+                            )
+                        }
+                    }
+                }
+            )
         }
         .sheet(isPresented: $showCompleteSheet, onDismiss: {
             // **Finding UX 2026-07-01 (Sophie)** — séance terminée via le bouton direct
@@ -162,13 +215,21 @@ struct SessionDetailView: View {
         templateSession?.environment != nil && locationEnv != nil
     }
 
+    /// Base affichée : `session` (paramètre, figé à la valeur au push) sauf si un
+    /// ajustement de durée (Increment 3) a été fait dans cette session de navigation,
+    /// auquel cas le contenu réellement persisté prime — sinon l'utilisateur verrait la
+    /// séance revenir à son état pré-ajustement tant qu'il ne quitte pas cet écran.
+    private var durationAdjustedBase: AdaptedSession {
+        adjustedSession ?? session
+    }
+
     /// Séance effectivement affichée : variante native → contenu adapté inchangé ;
     /// variante alternate → adaptée via les règles par-exercice (L1) si profils chargés,
     /// sinon passthrough (cf `SessionEnvironmentResolver`).
     private var displaySession: AdaptedSession {
-        guard let ts = templateSession, let env = locationEnv else { return session }
+        guard let ts = templateSession, let env = locationEnv else { return durationAdjustedBase }
         let resolved = SessionEnvironmentResolver.displaySession(
-            adapted: session, templateSession: ts, effective: env, adaptVariant: variantAdapter
+            adapted: durationAdjustedBase, templateSession: ts, effective: env, adaptVariant: variantAdapter
         )
         // 2A — en sortie extérieure, le renfo hors-vélo est retiré (gardé en home-trainer).
         // Au niveau vue car le lieu natif court-circuite `displaySession` (return adapted).
@@ -244,6 +305,45 @@ struct SessionDetailView: View {
             let svc = SessionLocationService(repository: deps.adaptedProgramRepository)
             try? await svc.recordLocation(recordId: recordId, week: week.weekNumber, day: session.day, environment: target)
         }
+    }
+
+    // MARK: - Chantier durée réglable, pilote cycling (Increment 3)
+
+    /// Vrai si l'entrée « Ajuster la durée » doit être proposée : V1 cycling only (D2),
+    /// séance annotée en blocs budgétés (`SessionDurationScaler.isAdjustable`), programme
+    /// persisté (recordId non-nil, pas de preview), et **pas déjà complétée** (doctrine
+    /// section 9.3 — masquée plutôt que grisée, pas de tooltip à traduire pour un cas rare).
+    private var canAdjustDuration: Bool {
+        guard program.sport == .cycling, recordId != nil,
+              let persistedDurationSession, SessionDurationScaler.isAdjustable(persistedDurationSession)
+        else { return false }
+        return completionVM?.completion == nil
+    }
+
+    private var durationAdjustButton: some View {
+        Button {
+            showDurationAdjustSheet = true
+        } label: {
+            HStack(spacing: 6) {
+                Image(systemName: "slider.horizontal.3")
+                Text("coaching.session.durationAdjust.entry")
+            }
+            .font(.footnote.weight(.semibold))
+            .foregroundStyle(Color.coachingPrimary)
+        }
+        .accessibilityIdentifier("coaching.session.durationAdjust.entry")
+    }
+
+    /// Charge la `PersistedSession` (weekNumber, day) — sert uniquement à gater l'entrée
+    /// « Ajuster la durée » (`isAdjustable`) ; le service refait sa propre lecture au
+    /// moment de l'ajustement (source de vérité au moment du submit, pas ce cache d'UI).
+    private func loadPersistedDurationSessionIfNeeded() async {
+        guard program.sport == .cycling, persistedDurationSession == nil,
+              let recordId, let deps else { return }
+        let record = try? await deps.adaptedProgramRepository.fetchById(recordId: recordId)
+        persistedDurationSession = record?.sessions.first(where: {
+            $0.weekNumber == week.weekNumber && $0.day == session.day
+        })
     }
 
     // MARK: - FOCUS (Story 3.33)

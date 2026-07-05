@@ -21,35 +21,40 @@ public enum SessionDurationScaler {
         public let wasBounded: Bool
     }
 
+    /// Vrai si `session` porte l'annotation budgétée complète (doctrine section 2) et peut
+    /// donc être réglée par `scale(_:toTargetMinutes:level:)`. Sert de garde-fou côté UI
+    /// (Increment 3, entrée « Ajuster la durée ») pour n'afficher l'action que sur les
+    /// séances effectivement réglables — `rest` exclu, sports hors V1 exclus (annotation
+    /// absente), contenu synthétique non annoté exclu (ex. overlay secondary goal).
+    public static func isAdjustable(_ session: PersistedSession) -> Bool {
+        guard session.type != .rest else { return false }
+        let exercises = session.exercises
+        // `estimatedMinutes` est la source de vérité (doctrine section 2) : un bloc annoté
+        // role/scalingUnit mais SANS estimatedMinutes contribuerait silencieusement 0 aux
+        // sommes floor/ceiling/currentTotal. Idem pour warmup/cooldown au niveau séance —
+        // l'annotation script les pose toujours ensemble (`annotate_session_like`), donc une
+        // séance partiellement annotée est un signal d'incohérence, pas un cas à deviner.
+        guard !exercises.isEmpty, session.warmupMinutes != nil, session.cooldownMinutes != nil,
+              exercises.allSatisfy({ $0.role != nil && $0.scalingUnit != nil && $0.estimatedMinutes != nil })
+        else { return false }
+        return exercises.contains { $0.role == .core }
+    }
+
     /// Ajuste `session` vers `targetMinutes`. `level` pilote la table doctrine `endurance`
     /// (section 4.1) — vient du programme parent (`AdaptedProgramRecord.level`), pas de
     /// la séance elle-même (une `PersistedSession` seule ne porte pas le niveau).
     public static func scale(
         _ session: PersistedSession, toTargetMinutes targetMinutes: Int, level: Level
     ) -> Result {
-        // `rest` hors scope moteur (doctrine section 0) — placeholder jour off, jamais réglable.
-        guard session.type != .rest else {
+        // Sport/séance pas (encore) annoté en blocs budgétés (hors V1 cycling), contenu
+        // synthétique non annoté, ou `rest` (hors scope moteur, doctrine section 0) : pas
+        // de fourchette calculable → séance inchangée (garde-fou robustesse).
+        guard isAdjustable(session) else {
             return Result(session: session, wasBounded: targetMinutes != session.durationMinutes)
         }
 
         let exercises = session.exercises
         let coreIndices = exercises.indices.filter { exercises[$0].role == .core }
-        // `estimatedMinutes` est la source de vérité (doctrine section 2) : un bloc annoté
-        // role/scalingUnit mais SANS estimatedMinutes contribuerait silencieusement 0 aux
-        // sommes floor/ceiling/currentTotal. Idem pour warmup/cooldown au niveau séance —
-        // l'annotation script les pose toujours ensemble (`annotate_session_like`), donc une
-        // séance partiellement annotée est un signal d'incohérence, pas un cas à deviner.
-        let isFullyAnnotated = !exercises.isEmpty
-            && session.warmupMinutes != nil && session.cooldownMinutes != nil
-            && exercises.allSatisfy { $0.role != nil && $0.scalingUnit != nil && $0.estimatedMinutes != nil }
-
-        // Sport/séance pas (encore) annoté en blocs budgétés (hors V1 cycling), ou contenu
-        // synthétique injecté par un overlay non annoté (ex. secondary goal mix-in) : pas
-        // de fourchette calculable → séance inchangée (garde-fou robustesse).
-        guard isFullyAnnotated, !coreIndices.isEmpty else {
-            return Result(session: session, wasBounded: targetMinutes != session.durationMinutes)
-        }
-
         let warmup = session.warmupMinutes ?? 0
         let cooldown = session.cooldownMinutes ?? 0
         let allAccessoryIndices = exercises.indices.filter { exercises[$0].role == .accessory }

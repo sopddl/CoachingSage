@@ -326,6 +326,31 @@ final class SessionDurationScalerTests: XCTestCase {
         XCTAssertEqual(result.session, session)
     }
 
+    // MARK: - `isAdjustable` (Increment 3 — gate UI « Ajuster la durée »)
+
+    func testIsAdjustable_fullyAnnotatedSessionWithCore_isTrue() {
+        let core = makeExercise(estimatedMinutes: 45, role: .core, scalingUnit: .continuous)
+        let session = makeSession(exercises: [core], durationMinutes: 60)
+        XCTAssertTrue(SessionDurationScaler.isAdjustable(session))
+    }
+
+    func testIsAdjustable_restSession_isFalse() {
+        let session = makeSession(type: .rest, warmupMinutes: nil, cooldownMinutes: nil, exercises: [], durationMinutes: 0)
+        XCTAssertFalse(SessionDurationScaler.isAdjustable(session))
+    }
+
+    func testIsAdjustable_partiallyAnnotatedSession_isFalse() {
+        let core = makeExercise(estimatedMinutes: 45, role: .core, scalingUnit: .continuous)
+        let session = makeSession(warmupMinutes: nil, cooldownMinutes: nil, exercises: [core], durationMinutes: 60)
+        XCTAssertFalse(SessionDurationScaler.isAdjustable(session))
+    }
+
+    func testIsAdjustable_noCoreBlock_isFalse() {
+        let onlyAccessory = makeExercise(estimatedMinutes: 30, role: .accessory, scalingUnit: .continuous, priority: 1)
+        let session = makeSession(exercises: [onlyAccessory], durationMinutes: 45)
+        XCTAssertFalse(SessionDurationScaler.isAdjustable(session))
+    }
+
     func testIdIsPreservedAcrossAdjustment() {
         let core = makeExercise(estimatedMinutes: 45, role: .core, scalingUnit: .continuous)
         let session = makeSession(exercises: [core], durationMinutes: 60)

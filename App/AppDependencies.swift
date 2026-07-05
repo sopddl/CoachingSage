@@ -26,6 +26,10 @@ struct AppDependencies {
     /// Story 3.11 — re-planification d'un programme (reportSession + shiftWeek).
     /// Câblé sur live() à partir de l'`adaptedProgramRepository` uniquement.
     let replanifyService: any ReplanifyService
+    /// Chantier durée réglable, pilote cycling (Increment 3) — ajustement in-program
+    /// de la durée d'une séance. Câblé sur live() à partir de l'`adaptedProgramRepository`
+    /// uniquement (même pattern que `replanifyService`).
+    let sessionDurationAdjustmentService: any SessionDurationAdjustmentService
     /// Story 3.15 — bootstrap 3 dormants au 1er launch post-onboarding via
     /// `selectTopN`. Appelé UNIQUEMENT depuis `OnboardingViewModel.finalize()`.
     let dormantBootstrapService: DormantBootstrapService
@@ -55,6 +59,9 @@ struct AppDependencies {
             adaptedProgramRepository: adaptedProgramRepository
         )
         let replanifyService = DefaultReplanifyService(
+            adaptedProgramRepository: adaptedProgramRepository
+        )
+        let sessionDurationAdjustmentService = DefaultSessionDurationAdjustmentService(
             adaptedProgramRepository: adaptedProgramRepository
         )
         let autoProgramFactory = AutoProgramFactory(
@@ -87,6 +94,7 @@ struct AppDependencies {
             weeklyRegenApplicationService: weeklyRegenApplicationService,
             routineCycleService: routineCycleService,
             replanifyService: replanifyService,
+            sessionDurationAdjustmentService: sessionDurationAdjustmentService,
             dormantBootstrapService: dormantBootstrapService,
             notificationService: notificationService
         )
