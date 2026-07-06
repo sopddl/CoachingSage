@@ -60,7 +60,8 @@ struct SessionOverviewList: View {
             phaseTitle(for: row)
                 .font(.subheadline)
                 .foregroundStyle(.primary)
-                .lineLimit(1)
+                .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
             Spacer(minLength: 8)
             if let metric = row.metric {
                 Text(verbatim: metric)
