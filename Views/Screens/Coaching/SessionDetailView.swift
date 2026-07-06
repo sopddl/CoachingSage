@@ -129,8 +129,6 @@ struct SessionDetailView: View {
                     if !focusSteps.isEmpty {
                         SessionMusicSuggestions(sportCode: effectiveSessionSportCode)
                     }
-
-                    medicalReminderFooter
                 }
                 .padding()
             }
@@ -581,15 +579,6 @@ struct SessionDetailView: View {
         )
     }
 
-    // MARK: - Medical footer
-
-    private var medicalReminderFooter: some View {
-        Text("coaching.adapter.medicalReminder.footer")
-            .font(.caption2)
-            .foregroundStyle(.secondary)
-            .multilineTextAlignment(.leading)
-            .padding(.top, 4)
-    }
 }
 
 // MARK: - Preview
