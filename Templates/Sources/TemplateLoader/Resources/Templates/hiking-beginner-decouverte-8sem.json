@@ -38,11 +38,102 @@
       "sessions" : [
         {
           "cooldown" : {
+            "en" : "5 min very slow walk then stop. Standing stretches: calves against a tree/wall (30 sec/leg), standing quads (30 sec/leg), hip flexors in a low lunge (30 sec/side). Drink 300-500 ml of water within the next 30 min.",
+            "es" : "5 min de marcha muy lenta y luego para. Estiramientos de pie: gemelos contra un árbol o la pared (30 seg/pierna), cuádriceps de pie (30 seg/pierna), flexores de cadera en zancada baja (30 seg/lado). Bebe 300-500 ml de agua en los 30 min siguientes.",
+            "fr" : "5 min de marche très lente puis arrêt. Étirements debout : mollets contre arbre / mur (30 sec/jambe), quadriceps debout (30 sec/jambe), fléchisseurs de hanche en fente basse (30 sec/côté). Boire 300-500 ml d'eau dans les 30 min suivantes."
+          },
+          "day" : 2,
+          "duration_minutes" : 55,
+          "exercises" : [
+            {
+              "alternatives" : [
+                {
+                  "en" : "Indoor treadmill walk at 2-3% incline (duration -10%)",
+                  "es" : "Marcha en cinta inclinada al 2-3% en interior (duración -10%)",
+                  "fr" : "Marche tapis incliné 2-3% en intérieur (durée -10%)"
+                },
+                {
+                  "en" : "Urban walk in a park / marked promenade 40 min",
+                  "es" : "Marcha urbana en un parque / paseo balizado 40 min",
+                  "fr" : "Marche urbaine en parc / promenade balisée 40 min"
+                }
+              ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
+              "duration" : "40 min",
+              "incompatible_constraints" : [
+                "knee-injury",
+                "ankle-injury",
+                "lower-back-pain",
+                "cardiac-clearance-required",
+                "no-trail-access"
+              ],
+              "match_key" : "Marche continue Z2 sentier balisé plat",
+              "name" : {
+                "en" : "Continuous easy endurance walk on flat marked trail",
+                "es" : "Marcha continua resistencia fácil en sendero balizado llano",
+                "fr" : "Marche continue facile (zone 2) sentier balisé plat"
+              },
+              "notes" : {
+                "en" : "easy endurance / RPE 4-5 (65-75% HRmax), easy breathing (full sentences). 110-120 steps/min. Flat or gently rolling trail (grade < 3%). 2-3 kg pack (water, snacks, windbreaker, phone). Hydration 500 ml/h, 1 sip every 15-20 min. If > 22°C, head out early or in the evening.",
+                "es" : "resistencia fácil / RPE 4-5 (65-75% FCmax), respiración cómoda (frases completas). 110-120 pasos/min. Sendero llano o poco ondulado (pendiente < 3%). Mochila de 2-3 kg (agua, tentempiés, cortavientos, teléfono). Hidratación 500 ml/h, 1 trago cada 15-20 min. Si > 22°C, sal temprano o por la tarde.",
+                "fr" : "Endurance facile / RPE 4-5 (65-75% FCmax), respiration aisée (phrases complètes). 110-120 pas/min. Sentier plat ou peu vallonné (pente < 3%). Sac 2-3 kg (eau, en-cas, coupe-vent, téléphone). Hydratation 500 ml/h, 1 gorgée toutes les 15-20 min. Si > 22°C, sortir tôt ou en soirée."
+              },
+              "required_equipment" : [
+                "hiking-shoes",
+                "backpack",
+                "water-bottle"
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "target_zone" : "Z2",
+              "volume_axis" : "duration"
+            }
+          ],
+          "name" : {
+            "en" : "Flat easy endurance walk — 40 min marked trail",
+            "es" : "Marcha llana resistencia fácil — 40 min en sendero balizado",
+            "fr" : "Marche plate facile (allure facile) — 40 min sentier balisé"
+          },
+          "type" : "endurance",
+          "warmup" : {
+            "en" : "5-10 min very slow very easy walk (< 65% HRmax, RPE 1-2), nasal breathing possible. Steady, deliberate foot placement, eyes 3-5 m ahead (anticipated placement). Check hiking shoes are well laced and anti-friction socks are wrinkle-free.",
+            "es" : "5-10 min de marcha muy lenta muy fácil (< 65% FCmáx, RPE 1-2), con respiración nasal posible. Apoyo del pie firme y regular, mirada 3-5 m por delante (apoyo anticipado). Comprueba que las botas estén bien atadas y los calcetines antifricción sin pliegues.",
+            "fr" : "5-10 min de marche très lente très facile (< 65% FCmax, RPE 1-2), respiration nasale possible. Pose des pieds posée et régulière, regard 3-5 m en avant (pose anticipée). Vérification chaussures de randonnée bien lacées, chaussettes anti-friction sans plis."
+          }
+        },
+        {
+          "cooldown" : {
+            "en" : "Hydrate 1.5-2 L over the day. Prioritise 7-8 h of sleep for tendon recovery and cardiovascular adaptation.",
+            "es" : "Hidratación de 1,5-2 L a lo largo del día. Prioriza 7-8 h de sueño para la recuperación tendinosa y la adaptación cardiovascular.",
+            "fr" : "Hydratation 1.5-2 L sur la journée. Sommeil 7-8 h prioritaire pour récupération tendineuse et adaptation cardiovasculaire."
+          },
+          "day" : 3,
+          "duration_minutes" : 0,
+          "exercises" : [
+
+          ],
+          "name" : {
+            "en" : "Rest",
+            "es" : "Descanso",
+            "fr" : "Repos"
+          },
+          "type" : "rest",
+          "warmup" : {
+            "en" : "Full rest, or a very easy 15-20 min recovery walk on flat ground if you feel like it. Never a sustained effort on a rest day.",
+            "es" : "Descanso completo, o una marcha de recuperación muy suave de 15-20 min en llano si te apetece. Nunca un esfuerzo sostenido en un día de descanso.",
+            "fr" : "Repos complet ou marche très douce de récupération 15-20 min en plat si tu en ressens l'envie. Jamais d'effort soutenu un jour de repos."
+          }
+        },
+        {
+          "cooldown" : {
             "en" : "5 min gentle stretching: calves against a wall (30 sec/leg), standing quads (30 sec/leg), seated hamstrings (30 sec/leg), hip flexors in a low lunge (30 sec/side), slow neck rotations. Ankle balance work drill (from W3): single-leg balance 30 sec/leg eyes open then eyes closed (ankle stability, complementing the S&C).",
             "es" : "5 min de estiramientos suaves: gemelos contra la pared (30 seg/pierna), cuádriceps de pie (30 seg/pierna), isquiotibiales sentado (30 seg/pierna), flexores de cadera en zancada baja (30 seg/lado), rotaciones cervicales lentas. Ejercicio de propiocepción de tobillo (desde W3): equilibrio a una pierna 30 seg/pierna con los ojos abiertos y luego cerrados (estabilidad del tobillo, complemento de la fuerza y acondicionamiento).",
             "fr" : "5 min étirements doux : mollets contre mur (30 sec/jambe), quadriceps debout (30 sec/jambe), ischio-jambiers assis (30 sec/jambe), fléchisseurs de hanche en fente basse (30 sec/côté), rotations cervicales lentes. Exercice proprio cheville (dès W3) : sur une jambe balance 30 sec/jambe yeux ouverts puis yeux fermés (stabilité de la cheville, complément du renforcement physique)."
           },
-          "day" : 2,
+          "day" : 4,
           "duration_minutes" : 20,
           "exercises" : [
             {
@@ -300,97 +391,6 @@
             "en" : "5 min joint mobilisation: shoulder circles, hip rotations, knee bends, 10× heel raises, 10× pelvic tilts. Breathe freely.",
             "es" : "5 min de movilización articular: círculos de hombros, rotaciones de cadera, flexiones de rodilla, 10× elevaciones de puntillas, 10× basculaciones de pelvis. Respiración libre.",
             "fr" : "5 min mobilisation articulaire : cercles d'épaules, rotations de hanches, flexions genoux, montée sur pointes 10×, basculements bassin 10×. Respiration libre."
-          }
-        },
-        {
-          "cooldown" : {
-            "en" : "Hydrate 1.5-2 L over the day. Prioritise 7-8 h of sleep for tendon recovery and cardiovascular adaptation.",
-            "es" : "Hidratación de 1,5-2 L a lo largo del día. Prioriza 7-8 h de sueño para la recuperación tendinosa y la adaptación cardiovascular.",
-            "fr" : "Hydratation 1.5-2 L sur la journée. Sommeil 7-8 h prioritaire pour récupération tendineuse et adaptation cardiovasculaire."
-          },
-          "day" : 3,
-          "duration_minutes" : 0,
-          "exercises" : [
-
-          ],
-          "name" : {
-            "en" : "Rest",
-            "es" : "Descanso",
-            "fr" : "Repos"
-          },
-          "type" : "rest",
-          "warmup" : {
-            "en" : "Full rest, or a very easy 15-20 min recovery walk on flat ground if you feel like it. Never a sustained effort on a rest day.",
-            "es" : "Descanso completo, o una marcha de recuperación muy suave de 15-20 min en llano si te apetece. Nunca un esfuerzo sostenido en un día de descanso.",
-            "fr" : "Repos complet ou marche très douce de récupération 15-20 min en plat si tu en ressens l'envie. Jamais d'effort soutenu un jour de repos."
-          }
-        },
-        {
-          "cooldown" : {
-            "en" : "5 min very slow walk then stop. Standing stretches: calves against a tree/wall (30 sec/leg), standing quads (30 sec/leg), hip flexors in a low lunge (30 sec/side). Drink 300-500 ml of water within the next 30 min.",
-            "es" : "5 min de marcha muy lenta y luego para. Estiramientos de pie: gemelos contra un árbol o la pared (30 seg/pierna), cuádriceps de pie (30 seg/pierna), flexores de cadera en zancada baja (30 seg/lado). Bebe 300-500 ml de agua en los 30 min siguientes.",
-            "fr" : "5 min de marche très lente puis arrêt. Étirements debout : mollets contre arbre / mur (30 sec/jambe), quadriceps debout (30 sec/jambe), fléchisseurs de hanche en fente basse (30 sec/côté). Boire 300-500 ml d'eau dans les 30 min suivantes."
-          },
-          "day" : 4,
-          "duration_minutes" : 55,
-          "exercises" : [
-            {
-              "alternatives" : [
-                {
-                  "en" : "Indoor treadmill walk at 2-3% incline (duration -10%)",
-                  "es" : "Marcha en cinta inclinada al 2-3% en interior (duración -10%)",
-                  "fr" : "Marche tapis incliné 2-3% en intérieur (durée -10%)"
-                },
-                {
-                  "en" : "Urban walk in a park / marked promenade 40 min",
-                  "es" : "Marcha urbana en un parque / paseo balizado 40 min",
-                  "fr" : "Marche urbaine en parc / promenade balisée 40 min"
-                }
-              ],
-              "dose" : {
-                "unit" : "minutes",
-                "value" : "40"
-              },
-              "duration" : "40 min",
-              "incompatible_constraints" : [
-                "knee-injury",
-                "ankle-injury",
-                "lower-back-pain",
-                "cardiac-clearance-required",
-                "no-trail-access"
-              ],
-              "match_key" : "Marche continue Z2 sentier balisé plat",
-              "name" : {
-                "en" : "Continuous easy endurance walk on flat marked trail",
-                "es" : "Marcha continua resistencia fácil en sendero balizado llano",
-                "fr" : "Marche continue facile (zone 2) sentier balisé plat"
-              },
-              "notes" : {
-                "en" : "easy endurance / RPE 4-5 (65-75% HRmax), easy breathing (full sentences). 110-120 steps/min. Flat or gently rolling trail (grade < 3%). 2-3 kg pack (water, snacks, windbreaker, phone). Hydration 500 ml/h, 1 sip every 15-20 min. If > 22°C, head out early or in the evening.",
-                "es" : "resistencia fácil / RPE 4-5 (65-75% FCmax), respiración cómoda (frases completas). 110-120 pasos/min. Sendero llano o poco ondulado (pendiente < 3%). Mochila de 2-3 kg (agua, tentempiés, cortavientos, teléfono). Hidratación 500 ml/h, 1 trago cada 15-20 min. Si > 22°C, sal temprano o por la tarde.",
-                "fr" : "Endurance facile / RPE 4-5 (65-75% FCmax), respiration aisée (phrases complètes). 110-120 pas/min. Sentier plat ou peu vallonné (pente < 3%). Sac 2-3 kg (eau, en-cas, coupe-vent, téléphone). Hydratation 500 ml/h, 1 gorgée toutes les 15-20 min. Si > 22°C, sortir tôt ou en soirée."
-              },
-              "required_equipment" : [
-                "hiking-shoes",
-                "backpack",
-                "water-bottle"
-              ],
-              "rest_seconds" : 0,
-              "sets" : 1,
-              "target_zone" : "Z2",
-              "volume_axis" : "duration"
-            }
-          ],
-          "name" : {
-            "en" : "Flat easy endurance walk — 40 min marked trail",
-            "es" : "Marcha llana resistencia fácil — 40 min en sendero balizado",
-            "fr" : "Marche plate facile (allure facile) — 40 min sentier balisé"
-          },
-          "type" : "endurance",
-          "warmup" : {
-            "en" : "5-10 min very slow very easy walk (< 65% HRmax, RPE 1-2), nasal breathing possible. Steady, deliberate foot placement, eyes 3-5 m ahead (anticipated placement). Check hiking shoes are well laced and anti-friction socks are wrinkle-free.",
-            "es" : "5-10 min de marcha muy lenta muy fácil (< 65% FCmáx, RPE 1-2), con respiración nasal posible. Apoyo del pie firme y regular, mirada 3-5 m por delante (apoyo anticipado). Comprueba que las botas estén bien atadas y los calcetines antifricción sin pliegues.",
-            "fr" : "5-10 min de marche très lente très facile (< 65% FCmax, RPE 1-2), respiration nasale possible. Pose des pieds posée et régulière, regard 3-5 m en avant (pose anticipée). Vérification chaussures de randonnée bien lacées, chaussettes anti-friction sans plis."
           }
         },
         {
