@@ -170,7 +170,7 @@ struct SessionDetailView: View {
                                     category: .periodisationTemporelle,
                                     response: .notYet,
                                     locale: Locale.current.identifier,
-                                    appVersion: (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "0"
+                                    appVersion: Bundle.main.shortVersion
                                 )
                             )
                         }
@@ -311,13 +311,24 @@ struct SessionDetailView: View {
 
     /// Vrai si l'entrée « Ajuster la durée » doit être proposée : V1 cycling only (D2),
     /// séance annotée en blocs budgétés (`SessionDurationScaler.isAdjustable`), programme
-    /// persisté (recordId non-nil, pas de preview), et **pas déjà complétée** (doctrine
-    /// section 9.3 — masquée plutôt que grisée, pas de tooltip à traduire pour un cas rare).
+    /// persisté (recordId non-nil, pas de preview), **pas déjà complétée** (doctrine
+    /// section 9.3 — masquée plutôt que grisée, pas de tooltip à traduire pour un cas rare),
+    /// et **variante native affichée** (review Increment 3, angle C) — seule
+    /// `record.sessions` (la variante native) est réellement ajustable/persistée ;
+    /// proposer le bouton sur la variante alternate afficherait une durée qui n'est
+    /// PAS celle réellement scalée (mismatch silencieux entre ce que l'user voit et
+    /// ce que le service mute), cf doctrine D-T4 « scaling sur la variante active ».
     private var canAdjustDuration: Bool {
-        guard program.sport == .cycling, recordId != nil,
+        guard program.sport == .cycling, recordId != nil, isDisplayingNativeLocationVariant,
               let persistedDurationSession, SessionDurationScaler.isAdjustable(persistedDurationSession)
         else { return false }
         return completionVM?.completion == nil
+    }
+
+    /// Vrai si la séance n'a pas de variantes de lieu, OU si la variante actuellement
+    /// affichée est la variante native (par opposition à l'alternate indoor/outdoor).
+    private var isDisplayingNativeLocationVariant: Bool {
+        !isLocationSession || locationEnv == templateSession?.environment
     }
 
     private var durationAdjustButton: some View {
@@ -334,16 +345,24 @@ struct SessionDetailView: View {
         .accessibilityIdentifier("coaching.session.durationAdjust.entry")
     }
 
-    /// Charge la `PersistedSession` (weekNumber, day) — sert uniquement à gater l'entrée
-    /// « Ajuster la durée » (`isAdjustable`) ; le service refait sa propre lecture au
-    /// moment de l'ajustement (source de vérité au moment du submit, pas ce cache d'UI).
+    /// Charge la `PersistedSession` (weekNumber, day) — gate l'entrée « Ajuster la durée »
+    /// (`isAdjustable`) ; le service refait sa propre lecture au moment de l'ajustement
+    /// (source de vérité au moment du submit, pas ce cache d'UI). **Review Increment 3
+    /// (angle altitude)** — sert AUSSI à rafraîchir `adjustedSession` : si cette séance a
+    /// déjà été ajustée lors d'une session de navigation précédente, le contenu persisté
+    /// (durée + exercices) diffère du `session` figé passé en paramètre ; sans ce
+    /// rafraîchissement, rouvrir une séance déjà ajustée montrait encore l'ancien contenu.
     private func loadPersistedDurationSessionIfNeeded() async {
         guard program.sport == .cycling, persistedDurationSession == nil,
               let recordId, let deps else { return }
         let record = try? await deps.adaptedProgramRepository.fetchById(recordId: recordId)
-        persistedDurationSession = record?.sessions.first(where: {
+        guard let persisted = record?.sessions.first(where: {
             $0.weekNumber == week.weekNumber && $0.day == session.day
-        })
+        }) else { return }
+        persistedDurationSession = persisted
+        if persisted.durationMinutes != session.durationMinutes {
+            adjustedSession = persisted.toAdaptedSession()
+        }
     }
 
     // MARK: - FOCUS (Story 3.33)
