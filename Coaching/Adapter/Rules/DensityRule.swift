@@ -219,7 +219,8 @@ public struct DensityRule: AdaptationRule {
         let newDuration = session.durationMinutes + Int((Double(addedSeconds) / 60.0).rounded())
         return (AdaptedSession(
             day: session.day, name: session.name, durationMinutes: newDuration,
-            type: session.type, warmup: session.warmup, exercises: exercises, cooldown: session.cooldown
+            type: session.type, warmup: session.warmup, exercises: exercises, cooldown: session.cooldown,
+            warmupMinutes: session.warmupMinutes, cooldownMinutes: session.cooldownMinutes
         ), rules)
     }
 
@@ -389,7 +390,8 @@ public struct DensityRule: AdaptationRule {
         let newDuration = session.durationMinutes + Int((Double(addedSeconds) / 60.0).rounded())
         return (AdaptedSession(
             day: session.day, name: session.name, durationMinutes: newDuration,
-            type: session.type, warmup: session.warmup, exercises: exos, cooldown: session.cooldown
+            type: session.type, warmup: session.warmup, exercises: exos, cooldown: session.cooldown,
+            warmupMinutes: session.warmupMinutes, cooldownMinutes: session.cooldownMinutes
         ), rules)
     }
 

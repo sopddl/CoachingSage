@@ -197,6 +197,25 @@ struct UIReviewScenarioContainer: View {
             // fond uniforme propre derrière l'alerte (fix de la "barre au milieu"
             // photo 5 Sophie : avant, le VStack vide se rétractait → bande moche).
             QuestionnaireEmptyStateScenarioView()
+        case "ui_review_duration_adjust_pick":
+            // Chantier durée réglable, pilote cycling (Increment 3) — sheet étape 1,
+            // TextField+Stepper préréglé sur la durée actuelle (60 min). Rendue via une
+            // vraie présentation `.sheet` (pattern `QuestionnaireEmptyStateScenarioView`)
+            // — le `Form` de l'étape pick a besoin du contexte de présentation réel pour
+            // se layout correctement (rendu root direct = écran blanc, artefact harnais).
+            DurationAdjustSheetScenarioView(initialStep: .pick)
+        case "ui_review_duration_adjust_result_ok":
+            // Increment 3 — étape 2, résultat DANS la fourchette (pas de message de
+            // bornage). Vérif : icône verte, chiffre réel affiché.
+            DurationAdjustSheetScenarioView(initialStep: .result(newDuration: 50, wasBounded: false))
+        case "ui_review_duration_adjust_result_bounded":
+            // Increment 3 — étape 2, résultat BORNÉ (doctrine D7 « Léon borne honnête »).
+            // Vérif : icône orange, message doux, PAS de jargon "cible vs obtenu".
+            DurationAdjustSheetScenarioView(initialStep: .result(newDuration: 90, wasBounded: true))
+        case "ui_review_duration_adjust_error_completed":
+            // Increment 3 — garde-fou doctrine 9.3 (séance déjà complétée), au cas où
+            // le service serait appelé malgré le bouton masqué côté UI.
+            DurationAdjustSheetScenarioView(initialStep: .error(.sessionAlreadyCompleted))
         case "ui_review_replanify_sheet_pickdate":
             // **Story 3.11** — ReplanifySheet step `.pickDate` : DatePicker
             // graphical + bouton Valider + bouton Retour. Step initial forcé
@@ -979,6 +998,37 @@ private struct QuestionnaireEmptyStateScenarioView: View {
                         Button("questionnaire.recovery.restart", role: .destructive) {}
                     }
                 }
+            }
+    }
+}
+
+// MARK: - Chantier durée réglable, pilote cycling (Increment 3) — DurationAdjustSheetScenarioView
+
+/// Reproduit FIDÈLEMENT le contexte réel (pattern `QuestionnaireEmptyStateScenarioView`) :
+/// `SessionDurationAdjustSheet` présentée en vraie `.sheet`, pas en root direct — le `Form`
+/// de l'étape `.pick` a besoin du contexte de présentation modal pour se layout (rendu
+/// root direct = écran blanc, artefact du harnais scénario, pas un bug de l'écran réel).
+private struct DurationAdjustSheetScenarioView: View {
+    let initialStep: SessionDurationAdjustSheet.Step
+
+    var body: some View {
+        Color.coachingBackground.ignoresSafeArea()
+            .sheet(isPresented: .constant(true)) {
+                SessionDurationAdjustSheet(
+                    currentDurationMinutes: 60,
+                    adjust: { target in
+                        SessionDurationAdjustmentResult(
+                            session: PersistedSession(
+                                weekNumber: 1, weekTheme: "Test", weekGoal: "Test", day: 1,
+                                name: "Séance test", durationMinutes: target, type: .endurance,
+                                warmup: nil, exercises: [], cooldown: nil
+                            ),
+                            wasBounded: false
+                        )
+                    },
+                    onAdjusted: { _ in },
+                    initialStep: initialStep
+                )
             }
     }
 }

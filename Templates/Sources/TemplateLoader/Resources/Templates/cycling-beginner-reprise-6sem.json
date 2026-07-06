@@ -43,6 +43,7 @@
             "es" : "5 min de pedaleo libre muy lento y luego para. Baja de la bici y haz: estiramiento de cuádriceps de pie (30 s/pierna), estiramiento de gemelos con la mano en la pared (30 s/pierna), estiramiento de flexores de cadera en zancada baja (30 s/lado), movilización cervical lenta (5 rotaciones/sentido). Hidrátate 500 ml.",
             "fr" : "5 min de pédalage libre très lent puis arrêt. Descendre du vélo et faire : étirement quadriceps debout (30 sec/jambe), étirement mollets main contre mur (30 sec/jambe), étirement fléchisseurs de hanche en fente basse (30 sec/côté), mobilisation cervicale lente (5 rotations/sens). Hydratation 500 ml."
           },
+          "cooldown_minutes" : 5,
           "day" : 2,
           "duration_minutes" : 55,
           "environment" : "outdoor",
@@ -60,6 +61,7 @@
                 "value" : "40"
               },
               "duration" : "40 min",
+              "estimated_minutes" : 40,
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury",
@@ -83,6 +85,8 @@
                 "bidons"
               ],
               "rest_seconds" : 0,
+              "role" : "core",
+              "scaling_unit" : "continuous",
               "sets" : 1,
               "target_zone" : "FTP-Z1",
               "volume_axis" : "duration"
@@ -101,6 +105,7 @@
                 "es" : "5 min de pedaleo muy lento con resistencia mínima y luego para. Baja de la bici y haz: estiramiento de cuádriceps de pie (30 s/pierna), estiramiento de gemelos con la mano en la pared (30 s/pierna), estiramiento de flexores de cadera en zancada baja (30 s/lado), movilización cervical lenta (5 rotaciones/sentido). Hidrátate 500 ml, más si has sudado mucho.",
                 "fr" : "5 min de pédalage très lent sur résistance minimale, puis arrêt. Descends du vélo et fais : étirement quadriceps debout (30 sec/jambe), étirement mollets main contre mur (30 sec/jambe), étirement fléchisseurs de hanche en fente basse (30 sec/côté), mobilisation cervicale lente (5 rotations/sens). Hydratation 500 ml, davantage si tu as beaucoup transpiré."
               },
+              "cooldown_minutes" : 5,
               "duration_minutes" : 50,
               "environment" : "indoor",
               "exercises" : [
@@ -122,6 +127,7 @@
                     "value" : "35"
                   },
                   "duration" : "35 min",
+                  "estimated_minutes" : 35,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury",
@@ -144,6 +150,8 @@
                     "bidons"
                   ],
                   "rest_seconds" : 0,
+                  "role" : "core",
+                  "scaling_unit" : "continuous",
                   "sets" : 1,
                   "target_zone" : "FTP-Z1",
                   "volume_axis" : "duration"
@@ -158,14 +166,16 @@
                 "en" : "10 min of very slow pedaling at minimal resistance, cadence 80-85 rpm, almost no effort. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you. Check your position on the bike (saddle at the right height, hands relaxed, elbows slightly bent).",
                 "es" : "10 min de pedaleo muy lento con resistencia mínima, cadencia 80-85 rpm, esfuerzo casi nulo. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte. Comprueba tu posición sobre la bici (sillín a la altura correcta, manos relajadas, codos ligeramente flexionados).",
                 "fr" : "10 min de pédalage très lent sur résistance minimale, cadence 80-85 tr/min, effort quasi nul. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir. Vérifie ta position sur le vélo (selle à bonne hauteur, mains relâchées, coudes légèrement fléchis)."
-              }
+              },
+              "warmup_minutes" : 10
             }
           ],
           "warmup" : {
             "en" : "10 min of very slow pedaling on flat terrain, easy gear, cadence 80-85 rpm, almost no effort. Check your position: saddle at the right height (knee slightly bent at the bottom of the stroke), hands relaxed on the bars, elbows slightly bent. Adjust if you feel immediate lower-back or neck discomfort.",
             "es" : "10 min de pedaleo muy lento en terreno llano, desarrollo fácil, cadencia 80-85 rpm, esfuerzo casi nulo. Comprueba la posición: sillín a la altura correcta (rodilla ligeramente flexionada abajo del pedaleo), manos relajadas en el manillar, codos ligeramente flexionados. Ajusta si notas molestia lumbar o cervical inmediata.",
             "fr" : "10 min de pédalage très lent sur terrain plat, braquet facile, cadence 80-85 tr/min, effort quasi nul. Vérifier la position : selle à bonne hauteur (genou légèrement fléchi en bas de pédale), mains relâchées sur le cintre, coudes légèrement fléchis. Ajuster si inconfort lombo-cervical immédiat."
-          }
+          },
+          "warmup_minutes" : 10
         },
         {
           "cooldown" : {
@@ -173,6 +183,7 @@
             "es" : "5 min de pedaleo muy fácil + baja de la bici y haz estiramientos completos: cuádriceps, gemelos, flexores de cadera, isquiotibiales (30 s cada uno). Bebe 500 ml en los siguientes 30 min.",
             "fr" : "5 min pédalage très facile + descendre du vélo et étirements complets : quadriceps, mollets, fléchisseurs de hanche, ischio-jambiers (30 sec chaque). Boire 500 ml dans les 30 min suivantes."
           },
+          "cooldown_minutes" : 5,
           "day" : 5,
           "duration_minutes" : 58,
           "environment" : "outdoor",
@@ -190,6 +201,7 @@
                 "value" : "45"
               },
               "duration" : "45 min",
+              "estimated_minutes" : 45,
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury",
@@ -213,6 +225,8 @@
                 "bidons"
               ],
               "rest_seconds" : 0,
+              "role" : "core",
+              "scaling_unit" : "continuous",
               "sets" : 1,
               "target_zone" : "FTP-Z2",
               "volume_axis" : "duration"
@@ -231,6 +245,7 @@
                 "es" : "5 min de pedaleo muy fácil con resistencia mínima, luego baja de la bici y haz estiramientos completos: cuádriceps, gemelos, flexores de cadera, isquiotibiales (30 s cada uno). Bebe 500 ml en los siguientes 30 min, más si has sudado mucho.",
                 "fr" : "5 min de pédalage très facile sur résistance minimale, puis descends du vélo et étirements complets : quadriceps, mollets, fléchisseurs de hanche, ischio-jambiers (30 sec chacun). Bois 500 ml dans les 30 min, davantage si tu as beaucoup transpiré."
               },
+              "cooldown_minutes" : 5,
               "duration_minutes" : 65,
               "environment" : "indoor",
               "exercises" : [
@@ -252,6 +267,7 @@
                     "value" : "40"
                   },
                   "duration" : "40 min",
+                  "estimated_minutes" : 40,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury",
@@ -274,6 +290,8 @@
                     "bidons"
                   ],
                   "rest_seconds" : 0,
+                  "role" : "core",
+                  "scaling_unit" : "continuous",
                   "sets" : 1,
                   "target_zone" : "FTP-Z2",
                   "volume_axis" : "duration"
@@ -296,6 +314,7 @@
                     "value" : "20"
                   },
                   "duration" : "20 sec",
+                  "estimated_minutes" : 3,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "shoulder-injury"
@@ -311,10 +330,13 @@
                     "es" : "Refuerzo en el suelo. Codos bajo los hombros, cuerpo alineado, glúteos activados. Fortalece la zona lumbar, esencial para mantener la posición sobre la bici sin tensión dorsal. RPE 6-7.",
                     "fr" : "Renforcement au sol. Coudes sous les épaules, corps aligné, fessiers engagés. Renforce le gainage lombaire, essentiel pour tenir la position vélo sans tension dorsale. RPE 6-7."
                   },
+                  "priority" : 1,
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 40,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 6-7",
                   "volume_axis" : "duration"
@@ -336,6 +358,7 @@
                     "unit" : "reps",
                     "value" : "12"
                   },
+                  "estimated_minutes" : 5,
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -350,11 +373,14 @@
                     "es" : "Tumbado boca arriba, pies apoyados, empuja las caderas hacia arriba. Mantén 2 s arriba. Activa los glúteos, que compensan el trabajo excesivo de los cuádriceps sobre la bici. RPE 6-7.",
                     "fr" : "Allongé sur le dos, pieds à plat, pousse les hanches vers le haut. Tiens 2 sec en haut. Active les fessiers qui compensent le travail excessif des quadriceps sur le vélo. RPE 6-7."
                   },
+                  "priority" : 2,
                   "reps" : "12",
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 35,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 6-7",
                   "volume_axis" : "reps"
@@ -376,6 +402,7 @@
                     "unit" : "reps",
                     "value" : "15"
                   },
+                  "estimated_minutes" : 4,
                   "incompatible_constraints" : [
                     "ankle-injury"
                   ],
@@ -390,11 +417,14 @@
                     "es" : "De pie, elévate sobre las puntas de los pies. Previene calambres y fatiga de los gemelos al final de las salidas largas. RPE 6-7.",
                     "fr" : "Debout, montée sur les pointes de pieds. Prévention crampes et fatigue des mollets en fin d'effort long. RPE 6-7."
                   },
+                  "priority" : 3,
                   "reps" : "15",
                   "required_equipment" : [
 
                   ],
                   "rest_seconds" : 30,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 6-7",
                   "volume_axis" : "reps"
@@ -409,14 +439,16 @@
                 "en" : "8 min of easy pedaling in very easy at low resistance, cadence building from 75 to 90 rpm. Fan on and water bottle within reach.",
                 "es" : "8 min de pedaleo suave en muy fácil con resistencia baja, cadencia progresiva de 75 a 90 rpm. Ventilador encendido y bidón a mano.",
                 "fr" : "8 min de pédalage souple en très facile sur résistance faible, cadence progressive de 75 à 90 tr/min. Ventilateur allumé et bidon à portée de main."
-              }
+              },
+              "warmup_minutes" : 8
             }
           ],
           "warmup" : {
             "en" : "8 min of easy pedaling in very easy, cadence building from 75 to 90 rpm.",
             "es" : "8 min de pedaleo suave en muy fácil, cadencia progresiva de 75 a 90 rpm.",
             "fr" : "8 min de pédalage souple en très facile, cadence progressive de 75 à 90 tr/min."
-          }
+          },
+          "warmup_minutes" : 8
         }
       ],
       "theme" : {
@@ -439,6 +471,7 @@
             "es" : "5 min muy fácil + estiramientos de cuádriceps y gemelos (30 s/pierna).",
             "fr" : "5 min très facile + étirements quadriceps et mollets (30 sec/jambe)."
           },
+          "cooldown_minutes" : 5,
           "day" : 2,
           "duration_minutes" : 65,
           "environment" : "outdoor",
@@ -464,6 +497,7 @@
                 }
               },
               "duration" : "3 min à 95-100 rpm + 3 min à 85 rpm",
+              "estimated_minutes" : 52,
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury",
@@ -487,6 +521,8 @@
                 "bidons"
               ],
               "rest_seconds" : 0,
+              "role" : "core",
+              "scaling_unit" : "roundsReps",
               "sets" : 4,
               "target_zone" : "FTP-Z2",
               "volume_axis" : "sets"
@@ -505,6 +541,7 @@
                 "es" : "5 min de pedaleo muy fácil con resistencia mínima, luego baja de la bici y haz: estiramiento de cuádriceps de pie (30 s/pierna), estiramiento de gemelos con la mano en la pared (30 s/pierna). Hidrátate 500 ml, más si has sudado mucho.",
                 "fr" : "5 min de pédalage très facile sur résistance minimale, puis descends du vélo et fais : étirement quadriceps debout (30 sec/jambe), étirement mollets main contre mur (30 sec/jambe). Hydratation 500 ml, davantage si tu as beaucoup transpiré."
               },
+              "cooldown_minutes" : 5,
               "duration_minutes" : 55,
               "environment" : "indoor",
               "exercises" : [
@@ -529,6 +566,7 @@
                     }
                   },
                   "duration" : "3 min à 95-100 rpm + 3 min à 85 rpm",
+                  "estimated_minutes" : 42,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury",
@@ -551,6 +589,8 @@
                     "bidons"
                   ],
                   "rest_seconds" : 0,
+                  "role" : "core",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 4,
                   "target_zone" : "FTP-Z2",
                   "volume_axis" : "sets"
@@ -565,14 +605,16 @@
                 "en" : "8 min of easy very easy pedaling at low resistance, free cadence. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you. Check your position (saddle at the right height, hands relaxed, elbows slightly bent).",
                 "es" : "8 min de pedaleo suave en muy fácil con resistencia baja, cadencia libre. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte. Comprueba tu posición (sillín a la altura correcta, manos relajadas, codos ligeramente flexionados).",
                 "fr" : "8 min de pédalage souple en très facile sur résistance faible, cadence libre. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir. Vérifie ta position (selle à bonne hauteur, mains relâchées, coudes légèrement fléchis)."
-              }
+              },
+              "warmup_minutes" : 8
             }
           ],
           "warmup" : {
             "en" : "8 min of easy very easy pedaling, free cadence.",
             "es" : "8 min de pedaleo suave muy fácil, cadencia libre.",
             "fr" : "8 min pédalage très facile souple, cadence libre."
-          }
+          },
+          "warmup_minutes" : 8
         },
         {
           "cooldown" : {
@@ -580,6 +622,7 @@
             "es" : "5 min muy fácil + 8 min de estiramientos completos. Hidrátate 500 ml y toma un tentempié de hidratos en los siguientes 30 min (plátano, barrita de cereales).",
             "fr" : "5 min très facile + étirements complets 8 min. Hydratation 500 ml et collation glucidique dans les 30 min (banane, barre de céréales)."
           },
+          "cooldown_minutes" : 13,
           "day" : 5,
           "duration_minutes" : 75,
           "environment" : "outdoor",
@@ -602,6 +645,7 @@
                 "value" : "60"
               },
               "duration" : "60 min",
+              "estimated_minutes" : 52,
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury",
@@ -625,6 +669,8 @@
                 "bidons"
               ],
               "rest_seconds" : 0,
+              "role" : "core",
+              "scaling_unit" : "continuous",
               "sets" : 1,
               "target_zone" : "FTP-Z2",
               "volume_axis" : "duration"
@@ -643,6 +689,7 @@
                 "es" : "5 min de pedaleo muy fácil con resistencia mínima, luego baja de la bici y haz 8 min de estiramientos completos: cuádriceps, gemelos, flexores de cadera, isquiotibiales (30 s cada uno). Bebe 500 ml en los siguientes 30 min y toma un tentempié de hidratos (plátano, barrita), más agua si has sudado mucho.",
                 "fr" : "5 min de pédalage très facile sur résistance minimale, puis descends du vélo et étirements complets 8 min : quadriceps, mollets, fléchisseurs de hanche, ischio-jambiers (30 sec chacun). Bois 500 ml dans les 30 min et prends une collation glucidique (banane, barre de céréales), davantage d'eau si tu as beaucoup transpiré."
               },
+              "cooldown_minutes" : 13,
               "duration_minutes" : 80,
               "environment" : "indoor",
               "exercises" : [
@@ -664,6 +711,7 @@
                     "value" : "50"
                   },
                   "duration" : "50 min",
+                  "estimated_minutes" : 46,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury",
@@ -686,6 +734,8 @@
                     "bidons"
                   ],
                   "rest_seconds" : 0,
+                  "role" : "core",
+                  "scaling_unit" : "continuous",
                   "sets" : 1,
                   "target_zone" : "FTP-Z2",
                   "volume_axis" : "duration"
@@ -708,6 +758,7 @@
                     "value" : "25"
                   },
                   "duration" : "25 sec",
+                  "estimated_minutes" : 3,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "shoulder-injury"
@@ -723,10 +774,13 @@
                     "es" : "Refuerzo en el suelo. Codos bajo los hombros, cuerpo alineado, glúteos activados. Fortalece la zona lumbar, esencial para mantener la posición sobre la bici sin tensión dorsal. Progresión respecto a la S1 (20 → 25 s). RPE 6-7.",
                     "fr" : "Renforcement au sol. Coudes sous les épaules, corps aligné, fessiers engagés. Renforce le gainage lombaire, essentiel pour tenir la position vélo sans tension dorsale. Progression vs W1 (20 → 25 sec). RPE 6-7."
                   },
+                  "priority" : 1,
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 40,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 6-7",
                   "volume_axis" : "duration"
@@ -748,6 +802,7 @@
                     "unit" : "reps",
                     "value" : "15"
                   },
+                  "estimated_minutes" : 4,
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -762,11 +817,14 @@
                     "es" : "Tumbado boca arriba, pies apoyados, empuja las caderas hacia arriba. Mantén 2 s arriba. Activa los glúteos, que compensan el trabajo excesivo de los cuádriceps sobre la bici. RPE 6-7.",
                     "fr" : "Allongé sur le dos, pieds à plat, pousse les hanches vers le haut. Tiens 2 sec en haut. Active les fessiers qui compensent le travail excessif des quadriceps sur le vélo. RPE 6-7."
                   },
+                  "priority" : 2,
                   "reps" : "15",
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 35,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 6-7",
                   "volume_axis" : "reps"
@@ -789,6 +847,7 @@
                     "unit" : "reps",
                     "value" : "12"
                   },
+                  "estimated_minutes" : 4,
                   "incompatible_constraints" : [
                     "ankle-injury"
                   ],
@@ -803,11 +862,14 @@
                     "es" : "En el borde de un escalón, baja el talón por debajo del escalón. Recorrido completo. Mayor carga sobre los gemelos. Limita calambres y fatiga al final de las sesiones largas. RPE 7-8.",
                     "fr" : "Sur le bord d'une marche, descends le talon sous la marche. Amplitude complète. Charge accrue sur les mollets. Limite les crampes et la fatigue en fin de séance longue. RPE 7-8."
                   },
+                  "priority" : 3,
                   "reps" : "12 par côté",
                   "required_equipment" : [
 
                   ],
                   "rest_seconds" : 30,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 7-8",
                   "volume_axis" : "reps"
@@ -822,14 +884,16 @@
                 "en" : "10 min of progressive very easy pedaling at low resistance, cadence climbing 75 to 90 rpm. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
                 "es" : "10 min de pedaleo muy fácil progresivo con resistencia baja, cadencia subiendo de 75 a 90 rpm. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
                 "fr" : "10 min de pédalage très facile progressif sur résistance faible, cadence montante de 75 à 90 tr/min. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
-              }
+              },
+              "warmup_minutes" : 10
             }
           ],
           "warmup" : {
             "en" : "10 min progressive very easy, cadence climbing 75 → 90 rpm.",
             "es" : "10 min muy fácil progresivo, cadencia subiendo 75 → 90 rpm.",
             "fr" : "10 min très facile progressif, cadence montante 75 → 90 tr/min."
-          }
+          },
+          "warmup_minutes" : 10
         }
       ],
       "theme" : {
@@ -852,6 +916,7 @@
             "es" : "5 min de llano muy lento + estiramientos de flexores de cadera e isquiotibiales (a menudo tensos tras las cuestas).",
             "fr" : "5 min plat très lent + étirements fléchisseurs de hanche et ischio-jambiers (souvent tendus après côtes)."
           },
+          "cooldown_minutes" : 5,
           "day" : 2,
           "duration_minutes" : 70,
           "environment" : "outdoor",
@@ -874,6 +939,7 @@
                 "value" : "55"
               },
               "duration" : "55 min",
+              "estimated_minutes" : 55,
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury",
@@ -897,6 +963,8 @@
                 "bidons"
               ],
               "rest_seconds" : 0,
+              "role" : "core",
+              "scaling_unit" : "continuous",
               "sets" : 1,
               "target_zone" : "FTP-Z2",
               "volume_axis" : "duration"
@@ -915,6 +983,7 @@
                 "es" : "5 min de pedaleo muy lento con resistencia mínima, luego baja de la bici y estira flexores de cadera e isquiotibiales (a menudo tensos tras los bloques de resistencia), 30 s/lado. Hidrátate 500 ml, más si has sudado mucho.",
                 "fr" : "5 min de pédalage très lent sur résistance minimale, puis descends du vélo et étirements fléchisseurs de hanche et ischio-jambiers (souvent tendus après les blocs de résistance), 30 sec/côté. Hydratation 500 ml, davantage si tu as beaucoup transpiré."
               },
+              "cooldown_minutes" : 5,
               "duration_minutes" : 65,
               "environment" : "indoor",
               "exercises" : [
@@ -936,6 +1005,7 @@
                     "value" : "45"
                   },
                   "duration" : "45 min",
+                  "estimated_minutes" : 50,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury",
@@ -958,6 +1028,8 @@
                     "bidons"
                   ],
                   "rest_seconds" : 0,
+                  "role" : "core",
+                  "scaling_unit" : "continuous",
                   "sets" : 1,
                   "target_zone" : "FTP-Z2",
                   "volume_axis" : "duration"
@@ -972,14 +1044,16 @@
                 "en" : "10 min of easy very easy pedaling at low resistance, cadence climbing 75 to 90 rpm. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
                 "es" : "10 min de pedaleo muy fácil suave con resistencia baja, cadencia subiendo de 75 a 90 rpm. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
                 "fr" : "10 min de pédalage très facile souple sur résistance faible, cadence montante de 75 à 90 tr/min. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
-              }
+              },
+              "warmup_minutes" : 10
             }
           ],
           "warmup" : {
             "en" : "10 min very easy on the flat.",
             "es" : "10 min muy fácil en llano.",
             "fr" : "10 min très facile sur plat."
-          }
+          },
+          "warmup_minutes" : 10
         },
         {
           "cooldown" : {
@@ -987,6 +1061,7 @@
             "es" : "5 min muy fácil + 10 min de estiramientos completos. Hidrátate 500 ml tras el esfuerzo.",
             "fr" : "5 min très facile + étirements complets 10 min. Hydratation 500 ml après l'effort."
           },
+          "cooldown_minutes" : 15,
           "day" : 5,
           "duration_minutes" : 90,
           "environment" : "outdoor",
@@ -1009,6 +1084,7 @@
                 "value" : "75"
               },
               "duration" : "75 min",
+              "estimated_minutes" : 65,
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury",
@@ -1032,6 +1108,8 @@
                 "bidons"
               ],
               "rest_seconds" : 0,
+              "role" : "core",
+              "scaling_unit" : "continuous",
               "sets" : 1,
               "target_zone" : "FTP-Z2",
               "volume_axis" : "duration"
@@ -1050,6 +1128,7 @@
                 "es" : "5 min de pedaleo muy fácil con resistencia mínima, luego baja de la bici y haz 10 min de estiramientos completos: cuádriceps, gemelos, flexores de cadera, isquiotibiales. Hidrátate 500 ml, más si has sudado mucho.",
                 "fr" : "5 min de pédalage très facile sur résistance minimale, puis descends du vélo et étirements complets 10 min : quadriceps, mollets, fléchisseurs de hanche, ischio-jambiers. Hydratation 500 ml, davantage si tu as beaucoup transpiré."
               },
+              "cooldown_minutes" : 15,
               "duration_minutes" : 90,
               "environment" : "indoor",
               "exercises" : [
@@ -1071,6 +1150,7 @@
                     "value" : "60"
                   },
                   "duration" : "60 min",
+                  "estimated_minutes" : 50,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury",
@@ -1093,6 +1173,8 @@
                     "bidons"
                   ],
                   "rest_seconds" : 0,
+                  "role" : "core",
+                  "scaling_unit" : "continuous",
                   "sets" : 1,
                   "target_zone" : "FTP-Z2",
                   "volume_axis" : "duration"
@@ -1115,6 +1197,7 @@
                     "value" : "30"
                   },
                   "duration" : "30 sec",
+                  "estimated_minutes" : 3,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "shoulder-injury"
@@ -1130,10 +1213,13 @@
                     "es" : "Refuerzo en el suelo. Codos bajo los hombros, cuerpo alineado, glúteos activados. Progresión lineal (20 → 25 → 30 s en 3 semanas). RPE 6-7.",
                     "fr" : "Renforcement au sol. Coudes sous les épaules, corps aligné, fessiers engagés. Progression linéaire (20 → 25 → 30 sec en 3 semaines). RPE 6-7."
                   },
+                  "priority" : 1,
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 40,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 6-7",
                   "volume_axis" : "duration"
@@ -1156,6 +1242,7 @@
                     "unit" : "reps",
                     "value" : "10"
                   },
+                  "estimated_minutes" : 4,
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -1170,11 +1257,14 @@
                     "es" : "Progresión respecto al puente a dos piernas. Equilibrio izquierda/derecha, fortalece la cadena posterior de cada lado de forma independiente. RPE 7-8.",
                     "fr" : "Progression vs pont fessier bipodal. Équilibre gauche/droite, renforce la chaîne postérieure de chaque côté indépendamment. RPE 7-8."
                   },
+                  "priority" : 2,
                   "reps" : "10 par côté",
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 35,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 7-8",
                   "volume_axis" : "reps"
@@ -1197,6 +1287,7 @@
                     "unit" : "reps",
                     "value" : "15"
                   },
+                  "estimated_minutes" : 4,
                   "incompatible_constraints" : [
                     "ankle-injury"
                   ],
@@ -1211,11 +1302,14 @@
                     "es" : "En el borde de un escalón, baja el talón por debajo del escalón. Recorrido completo. Limita calambres y fatiga de los gemelos al final de las sesiones largas. RPE 7-8.",
                     "fr" : "Sur le bord d'une marche, descends le talon sous la marche. Amplitude complète. Limite les crampes et la fatigue des mollets en fin de séance longue. RPE 7-8."
                   },
+                  "priority" : 3,
                   "reps" : "15 par côté",
                   "required_equipment" : [
 
                   ],
                   "rest_seconds" : 30,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 7-8",
                   "volume_axis" : "reps"
@@ -1238,6 +1332,7 @@
                     "unit" : "reps",
                     "value" : "8"
                   },
+                  "estimated_minutes" : 4,
                   "incompatible_constraints" : [
                     "wrist-injury",
                     "lower-back-pain"
@@ -1253,11 +1348,14 @@
                     "es" : "A cuatro patas: extiende el brazo izquierdo y la pierna derecha, mantén 2 s. Fortalece el core profundo antirotación, para mantener la posición sobre la bici 1h+ sin tensión lumbar. RPE 6-7.",
                     "fr" : "À 4 pattes : tends bras gauche + jambe droite, tiens 2 sec. Renforce le gainage profond anti-rotation, pour tenir une position vélo 1h+ sans tension lombaire. RPE 6-7."
                   },
+                  "priority" : 4,
                   "reps" : "8 par côté",
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 30,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 6-7",
                   "volume_axis" : "reps"
@@ -1272,14 +1370,16 @@
                 "en" : "10 min of very easy pedaling at low resistance. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
                 "es" : "10 min de pedaleo muy fácil con resistencia baja. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
                 "fr" : "10 min de pédalage très facile sur résistance faible. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
-              }
+              },
+              "warmup_minutes" : 10
             }
           ],
           "warmup" : {
             "en" : "10 min very easy.",
             "es" : "10 min muy fácil.",
             "fr" : "10 min très facile."
-          }
+          },
+          "warmup_minutes" : 10
         }
       ],
       "theme" : {
@@ -1302,6 +1402,7 @@
             "es" : "5 min de movilidad suave: círculos de cadera, rotaciones de tobillo, movilidad de hombros. 5 min de estiramientos suaves.",
             "fr" : "5 min mobilisation douce : cercles de hanches, rotations des chevilles, mobilisation des épaules. Étirements doux 5 min."
           },
+          "cooldown_minutes" : 10,
           "day" : 2,
           "duration_minutes" : 55,
           "environment" : "outdoor",
@@ -1324,6 +1425,7 @@
                 "value" : "45"
               },
               "duration" : "45 min",
+              "estimated_minutes" : 40,
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury",
@@ -1347,6 +1449,8 @@
                 "bidons"
               ],
               "rest_seconds" : 0,
+              "role" : "core",
+              "scaling_unit" : "continuous",
               "sets" : 1,
               "target_zone" : "FTP-Z1",
               "volume_axis" : "duration"
@@ -1365,6 +1469,7 @@
                 "es" : "5 min de movilidad suave: círculos de cadera, rotaciones de tobillo, movilidad de hombros. 5 min de estiramientos suaves. Hidrátate, más si has sudado.",
                 "fr" : "5 min de mobilisation douce : cercles de hanches, rotations des chevilles, mobilisation des épaules. Étirements doux 5 min. Hydratation, davantage si tu as transpiré."
               },
+              "cooldown_minutes" : 10,
               "duration_minutes" : 50,
               "environment" : "indoor",
               "exercises" : [
@@ -1386,6 +1491,7 @@
                     "value" : "40"
                   },
                   "duration" : "40 min",
+                  "estimated_minutes" : 35,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury",
@@ -1408,6 +1514,8 @@
                     "bidons"
                   ],
                   "rest_seconds" : 0,
+                  "role" : "core",
+                  "scaling_unit" : "continuous",
                   "sets" : 1,
                   "target_zone" : "FTP-Z1",
                   "volume_axis" : "duration"
@@ -1422,14 +1530,16 @@
                 "en" : "5 min of ultra-light pedaling at minimal resistance. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
                 "es" : "5 min de pedaleo muy suave con resistencia mínima. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
                 "fr" : "5 min de pédalage ultra-léger sur résistance minimale. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
-              }
+              },
+              "warmup_minutes" : 5
             }
           ],
           "warmup" : {
             "en" : "5 min of ultra-light pedaling.",
             "es" : "5 min de pedaleo muy suave.",
             "fr" : "5 min pédalage ultra-léger."
-          }
+          },
+          "warmup_minutes" : 5
         },
         {
           "cooldown" : {
@@ -1437,6 +1547,7 @@
             "es" : "5 min muy fácil + 8 min de estiramientos completos. Hidrátate.",
             "fr" : "5 min très facile + étirements complets 8 min. Hydratation."
           },
+          "cooldown_minutes" : 13,
           "day" : 5,
           "duration_minutes" : 68,
           "environment" : "outdoor",
@@ -1459,6 +1570,7 @@
                 "value" : "55"
               },
               "duration" : "55 min",
+              "estimated_minutes" : 47,
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury",
@@ -1482,6 +1594,8 @@
                 "bidons"
               ],
               "rest_seconds" : 0,
+              "role" : "core",
+              "scaling_unit" : "continuous",
               "sets" : 1,
               "target_zone" : "FTP-Z2",
               "volume_axis" : "duration"
@@ -1500,6 +1614,7 @@
                 "es" : "5 min de pedaleo muy fácil con resistencia mínima, luego baja de la bici y haz 8 min de estiramientos completos: cuádriceps, gemelos, flexores de cadera, isquiotibiales. Hidrátate, más si has sudado mucho.",
                 "fr" : "5 min de pédalage très facile sur résistance minimale, puis descends du vélo et étirements complets 8 min : quadriceps, mollets, fléchisseurs de hanche, ischio-jambiers. Hydratation, davantage si tu as beaucoup transpiré."
               },
+              "cooldown_minutes" : 13,
               "duration_minutes" : 75,
               "environment" : "indoor",
               "exercises" : [
@@ -1521,6 +1636,7 @@
                     "value" : "50"
                   },
                   "duration" : "50 min",
+                  "estimated_minutes" : 42,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury",
@@ -1543,6 +1659,8 @@
                     "bidons"
                   ],
                   "rest_seconds" : 0,
+                  "role" : "core",
+                  "scaling_unit" : "continuous",
                   "sets" : 1,
                   "target_zone" : "FTP-Z2",
                   "volume_axis" : "duration"
@@ -1565,6 +1683,7 @@
                     "value" : "30"
                   },
                   "duration" : "30 sec",
+                  "estimated_minutes" : 3,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "shoulder-injury"
@@ -1580,10 +1699,13 @@
                     "es" : "Refuerzo en el suelo. Volumen mantenido al nivel de la S3 (sin descarga en el refuerzo corto — la descarga afecta al volumen de ciclismo). RPE 6-7.",
                     "fr" : "Renforcement au sol. Volume maintenu au niveau W3 (pas d'allègement sur le renforcement court — l'allègement porte sur le volume vélo). RPE 6-7."
                   },
+                  "priority" : 1,
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 40,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 6-7",
                   "volume_axis" : "duration"
@@ -1606,6 +1728,7 @@
                     "unit" : "reps",
                     "value" : "10"
                   },
+                  "estimated_minutes" : 4,
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -1620,11 +1743,14 @@
                     "es" : "Equilibrio izquierda/derecha, fortalece la cadena posterior de cada lado de forma independiente. RPE 7-8.",
                     "fr" : "Équilibre gauche/droite, renforce la chaîne postérieure de chaque côté indépendamment. RPE 7-8."
                   },
+                  "priority" : 2,
                   "reps" : "10 par côté",
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 35,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 7-8",
                   "volume_axis" : "reps"
@@ -1648,6 +1774,7 @@
                     "value" : "20"
                   },
                   "duration" : "20 sec par côté",
+                  "estimated_minutes" : 1,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "shoulder-injury",
@@ -1664,10 +1791,13 @@
                     "es" : "Plancha lateral. Trabaja los oblicuos y el glúteo medio — clave para la estabilidad de la pelvis en el sillín. Rodilla al suelo si es demasiado difícil. RPE 7-8.",
                     "fr" : "Planche latérale. Cible les obliques et le moyen fessier — clés pour la stabilité du bassin sur la selle. Genou au sol si trop dur. RPE 7-8."
                   },
+                  "priority" : 3,
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 30,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 2,
                   "target_zone" : "RPE 7-8",
                   "volume_axis" : "duration"
@@ -1690,6 +1820,7 @@
                     "unit" : "reps",
                     "value" : "8"
                   },
+                  "estimated_minutes" : 4,
                   "incompatible_constraints" : [
                     "wrist-injury",
                     "lower-back-pain"
@@ -1705,11 +1836,14 @@
                     "es" : "A cuatro patas: extiende el brazo izquierdo y la pierna derecha a la vez, mantén 2 s. Fortalece el core profundo antirotación. RPE 6-7.",
                     "fr" : "À 4 pattes : tendre bras gauche + jambe droite simultanément, tenir 2 sec. Renforce le gainage profond anti-rotation. RPE 6-7."
                   },
+                  "priority" : 4,
                   "reps" : "8 par côté",
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 30,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 6-7",
                   "volume_axis" : "reps"
@@ -1724,14 +1858,16 @@
                 "en" : "8 min of very easy pedaling at low resistance. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
                 "es" : "8 min de pedaleo muy fácil con resistencia baja. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
                 "fr" : "8 min de pédalage très facile sur résistance faible. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
-              }
+              },
+              "warmup_minutes" : 8
             }
           ],
           "warmup" : {
             "en" : "8 min very easy.",
             "es" : "8 min muy fácil.",
             "fr" : "8 min très facile."
-          }
+          },
+          "warmup_minutes" : 8
         }
       ],
       "theme" : {
@@ -1754,6 +1890,7 @@
             "es" : "8 min muy fácil de recuperación + estiramientos de cuádriceps y gemelos 5 min.",
             "fr" : "8 min très facile récupération + étirements quadriceps et mollets 5 min."
           },
+          "cooldown_minutes" : 13,
           "day" : 2,
           "duration_minutes" : 75,
           "environment" : "outdoor",
@@ -1779,6 +1916,7 @@
                 }
               },
               "duration" : "8 min tempo + 5 min endurance facile récupération",
+              "estimated_minutes" : 50,
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury",
@@ -1802,6 +1940,8 @@
                 "bidons"
               ],
               "rest_seconds" : 0,
+              "role" : "core",
+              "scaling_unit" : "roundsReps",
               "sets" : 3,
               "target_zone" : "FTP-Z3",
               "volume_axis" : "sets"
@@ -1820,6 +1960,7 @@
                 "es" : "8 min de pedaleo muy fácil con resistencia mínima (recuperación) + estiramientos de cuádriceps y gemelos 5 min. Hidrátate, más si has sudado mucho.",
                 "fr" : "8 min de pédalage très facile sur résistance minimale (récupération) + étirements quadriceps et mollets 5 min. Hydratation, davantage si tu as beaucoup transpiré."
               },
+              "cooldown_minutes" : 13,
               "duration_minutes" : 70,
               "environment" : "indoor",
               "exercises" : [
@@ -1844,6 +1985,7 @@
                     }
                   },
                   "duration" : "8 min tempo + 5 min endurance facile récupération",
+                  "estimated_minutes" : 45,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury",
@@ -1866,6 +2008,8 @@
                     "bidons"
                   ],
                   "rest_seconds" : 0,
+                  "role" : "core",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "FTP-Z3",
                   "volume_axis" : "sets"
@@ -1880,14 +2024,16 @@
                 "en" : "12 min of very easy then progressive easy endurance pedaling at low resistance, cadence climbing 75 to 90 rpm. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
                 "es" : "12 min de pedaleo muy fácil y luego resistencia fácil progresivo con resistencia baja, cadencia subiendo de 75 a 90 rpm. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
                 "fr" : "12 min de pédalage très facile puis endurance facile progressif sur résistance faible, cadence montant de 75 à 90 tr/min. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
-              }
+              },
+              "warmup_minutes" : 12
             }
           ],
           "warmup" : {
             "en" : "12 min very easy then progressive easy endurance, cadence climbing 75 → 90 rpm.",
             "es" : "12 min muy fácil y luego resistencia fácil progresivo, cadencia subiendo 75 → 90 rpm.",
             "fr" : "12 min très facile puis endurance facile progressif, cadence montant 75 → 90 tr/min."
-          }
+          },
+          "warmup_minutes" : 12
         },
         {
           "cooldown" : {
@@ -1895,6 +2041,7 @@
             "es" : "5 min muy fácil + 10 min de estiramientos completos (cuádriceps, isquiotibiales, flexores de cadera, gemelos, lumbares). Hidrátate 600 ml + un tentempié de hidratos y proteínas en los siguientes 30 min.",
             "fr" : "5 min très facile + étirements complets 10 min (quadriceps, ischio-jambiers, fléchisseurs hanche, mollets, lombaires). Hydratation 600 ml + collation glucido-protéinée dans les 30 min."
           },
+          "cooldown_minutes" : 15,
           "day" : 5,
           "duration_minutes" : 95,
           "environment" : "outdoor",
@@ -1917,6 +2064,7 @@
                 "value" : "80"
               },
               "duration" : "80 min",
+              "estimated_minutes" : 70,
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury",
@@ -1940,6 +2088,8 @@
                 "bidons"
               ],
               "rest_seconds" : 0,
+              "role" : "core",
+              "scaling_unit" : "continuous",
               "sets" : 1,
               "target_zone" : "FTP-Z2",
               "volume_axis" : "duration"
@@ -1958,6 +2108,7 @@
                 "es" : "5 min de pedaleo muy fácil con resistencia mínima, luego baja de la bici y haz 10 min de estiramientos completos (cuádriceps, isquiotibiales, flexores de cadera, gemelos, lumbares). Hidrátate 600 ml + un tentempié de hidratos y proteínas en los siguientes 30 min, más agua si has sudado mucho.",
                 "fr" : "5 min de pédalage très facile sur résistance minimale, puis descends du vélo et étirements complets 10 min (quadriceps, ischio-jambiers, fléchisseurs de hanche, mollets, lombaires). Hydratation 600 ml + collation glucido-protéinée dans les 30 min, davantage d'eau si tu as beaucoup transpiré."
               },
+              "cooldown_minutes" : 15,
               "duration_minutes" : 90,
               "environment" : "indoor",
               "exercises" : [
@@ -1979,6 +2130,7 @@
                     "value" : "65"
                   },
                   "duration" : "65 min",
+                  "estimated_minutes" : 50,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury",
@@ -2001,6 +2153,8 @@
                     "bidons"
                   ],
                   "rest_seconds" : 0,
+                  "role" : "core",
+                  "scaling_unit" : "continuous",
                   "sets" : 1,
                   "target_zone" : "FTP-Z2",
                   "volume_axis" : "duration"
@@ -2023,6 +2177,7 @@
                     "value" : "35"
                   },
                   "duration" : "35 sec",
+                  "estimated_minutes" : 3,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "shoulder-injury"
@@ -2038,10 +2193,13 @@
                     "es" : "Tras pedalear, baja de la bici y haz este refuerzo en el suelo. Progresión constante (20 → 25 → 30 → 30 → 35 s en 5 semanas). RPE 7-8.",
                     "fr" : "Renforcement au sol. Progression régulière (20 → 25 → 30 → 30 → 35 sec sur 5 semaines). RPE 7-8."
                   },
+                  "priority" : 1,
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 40,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 7-8",
                   "volume_axis" : "duration"
@@ -2064,6 +2222,7 @@
                     "unit" : "reps",
                     "value" : "12"
                   },
+                  "estimated_minutes" : 4,
                   "incompatible_constraints" : [
                     "lower-back-pain"
                   ],
@@ -2078,11 +2237,14 @@
                     "es" : "Equilibrio izquierda/derecha, fortalece la cadena posterior de cada lado de forma independiente. RPE 7-8.",
                     "fr" : "Équilibre gauche/droite, renforce la chaîne postérieure de chaque côté indépendamment. RPE 7-8."
                   },
+                  "priority" : 2,
                   "reps" : "12 par côté",
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 35,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 7-8",
                   "volume_axis" : "reps"
@@ -2106,6 +2268,7 @@
                     "value" : "25"
                   },
                   "duration" : "25 sec par côté",
+                  "estimated_minutes" : 2,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "shoulder-injury",
@@ -2122,10 +2285,13 @@
                     "es" : "Trabaja los oblicuos y el glúteo medio — clave para la estabilidad de la pelvis en el sillín. Progresión respecto a la S4 (2×20 s → 3×25 s). Rodilla al suelo si es demasiado difícil. RPE 7-8.",
                     "fr" : "Cible les obliques et le moyen fessier — clés pour la stabilité du bassin sur la selle. Progression vs W4 (2×20 sec → 3×25 sec). Genou au sol si trop dur. RPE 7-8."
                   },
+                  "priority" : 3,
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 30,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 7-8",
                   "volume_axis" : "duration"
@@ -2148,6 +2314,7 @@
                     "unit" : "reps",
                     "value" : "15"
                   },
+                  "estimated_minutes" : 3,
                   "incompatible_constraints" : [
                     "ankle-injury"
                   ],
@@ -2162,11 +2329,14 @@
                     "es" : "En el borde de un escalón, baja el talón por debajo del escalón. Recorrido completo. Previene calambres y fatiga de los gemelos. RPE 7-8.",
                     "fr" : "Sur le bord d'une marche, descendre le talon sous la marche. Amplitude complète. Prévention crampes et fatigue des mollets. RPE 7-8."
                   },
+                  "priority" : 4,
                   "reps" : "15 par côté",
                   "required_equipment" : [
 
                   ],
                   "rest_seconds" : 30,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 7-8",
                   "volume_axis" : "reps"
@@ -2189,6 +2359,7 @@
                     "unit" : "reps",
                     "value" : "10"
                   },
+                  "estimated_minutes" : 3,
                   "incompatible_constraints" : [
                     "wrist-injury",
                     "lower-back-pain"
@@ -2204,11 +2375,14 @@
                     "es" : "A cuatro patas: extiende el brazo izquierdo y la pierna derecha a la vez, mantén 2 s. Fortalece el core profundo antirotación. RPE 6-7.",
                     "fr" : "À 4 pattes : tendre bras gauche + jambe droite simultanément, tenir 2 sec. Renforce le gainage profond anti-rotation. RPE 6-7."
                   },
+                  "priority" : 5,
                   "reps" : "10 par côté",
                   "required_equipment" : [
                     "mat"
                   ],
                   "rest_seconds" : 30,
+                  "role" : "accessory",
+                  "scaling_unit" : "roundsReps",
                   "sets" : 3,
                   "target_zone" : "RPE 6-7",
                   "volume_axis" : "reps"
@@ -2223,14 +2397,16 @@
                 "en" : "10 min of very easy pedaling at low resistance. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
                 "es" : "10 min de pedaleo muy fácil con resistencia baja. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
                 "fr" : "10 min de pédalage très facile sur résistance faible. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
-              }
+              },
+              "warmup_minutes" : 10
             }
           ],
           "warmup" : {
             "en" : "10 min very easy.",
             "es" : "10 min muy fácil.",
             "fr" : "10 min très facile."
-          }
+          },
+          "warmup_minutes" : 10
         }
       ],
       "theme" : {
@@ -2253,6 +2429,7 @@
             "es" : "5 min muy fácil + 5 min de estiramientos. Descansa los dos días siguientes.",
             "fr" : "5 min très facile + étirements 5 min. Repos les deux jours suivants."
           },
+          "cooldown_minutes" : 10,
           "day" : 2,
           "duration_minutes" : 65,
           "environment" : "outdoor",
@@ -2275,6 +2452,7 @@
                 "value" : "50"
               },
               "duration" : "50 min",
+              "estimated_minutes" : 47,
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury",
@@ -2298,6 +2476,8 @@
                 "bidons"
               ],
               "rest_seconds" : 0,
+              "role" : "core",
+              "scaling_unit" : "continuous",
               "sets" : 1,
               "target_zone" : "FTP-Z2",
               "volume_axis" : "duration"
@@ -2316,6 +2496,7 @@
                 "es" : "5 min de pedaleo muy fácil con resistencia mínima + 5 min de estiramientos. Descansa los dos días siguientes. Hidrátate, más si has sudado.",
                 "fr" : "5 min de pédalage très facile sur résistance minimale + étirements 5 min. Repos les deux jours suivants. Hydratation, davantage si tu as transpiré."
               },
+              "cooldown_minutes" : 10,
               "duration_minutes" : 60,
               "environment" : "indoor",
               "exercises" : [
@@ -2337,6 +2518,7 @@
                     "value" : "45"
                   },
                   "duration" : "45 min",
+                  "estimated_minutes" : 42,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury",
@@ -2359,6 +2541,8 @@
                     "bidons"
                   ],
                   "rest_seconds" : 0,
+                  "role" : "core",
+                  "scaling_unit" : "continuous",
                   "sets" : 1,
                   "target_zone" : "FTP-Z2",
                   "volume_axis" : "duration"
@@ -2373,14 +2557,16 @@
                 "en" : "8 min of very easy pedaling at low resistance. Set up a fan in front of you and keep a water bottle within reach: indoors you sweat faster, with no wind to cool you.",
                 "es" : "8 min de pedaleo muy fácil con resistencia baja. Coloca un ventilador delante de ti y ten un bidón a mano: en interior sudas más rápido y sin viento para refrescarte.",
                 "fr" : "8 min de pédalage très facile sur résistance faible. Installe un ventilateur devant toi et garde un bidon à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
-              }
+              },
+              "warmup_minutes" : 8
             }
           ],
           "warmup" : {
             "en" : "8 min very easy.",
             "es" : "8 min muy fácil.",
             "fr" : "8 min très facile."
-          }
+          },
+          "warmup_minutes" : 8
         },
         {
           "cooldown" : {
@@ -2388,6 +2574,7 @@
             "es" : "8 min de pedaleo muy lento en muy fácil para evitar la bajada de tensión al parar. Baja de la bici poco a poco. Estiramientos completos 12 min: cuádriceps (30 s/pierna), isquiotibiales sentado (30 s/pierna), flexores de cadera en zancada baja (40 s/lado), gemelos en la pared (30 s/pierna), lumbares rodilla al pecho (30 s/lado), cervicales suaves (5 rotaciones/sentido). Hidrátate 600-700 ml + una comida de hidratos y proteínas en la siguiente hora. Felicítate: 1h30 de bici continua recuperada en 6 semanas.",
             "fr" : "8 min de pédalage très lent en très facile pour éviter la chute tensionnelle à l'arrêt. Descendre du vélo progressivement. Étirements complets 12 min : quadriceps (30 sec/jambe), ischio-jambiers assis (30 sec/jambe), fléchisseurs de hanche en fente basse (40 sec/côté), mollets contre mur (30 sec/jambe), lombaires genou à la poitrine (30 sec/côté), cervicales douces (5 rotations/sens). Hydratation 600-700 ml + repas glucido-protéiné dans l'heure suivante. Félicite-toi : 1h30 de vélo continu retrouvé en 6 semaines."
           },
+          "cooldown_minutes" : 20,
           "day" : 5,
           "duration_minutes" : 115,
           "environment" : "outdoor",
@@ -2410,6 +2597,7 @@
                 "value" : "90"
               },
               "duration" : "90 min",
+              "estimated_minutes" : 85,
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "knee-injury",
@@ -2433,6 +2621,8 @@
                 "bidons"
               ],
               "rest_seconds" : 0,
+              "role" : "core",
+              "scaling_unit" : "continuous",
               "sets" : 1,
               "target_zone" : "FTP-Z2",
               "volume_axis" : "duration"
@@ -2451,6 +2641,7 @@
                 "es" : "8 min de pedaleo muy lento en muy fácil con resistencia mínima para evitar la bajada de tensión al parar. Baja de la bici poco a poco. Estiramientos completos 12 min: cuádriceps (30 s/pierna), isquiotibiales sentado (30 s/pierna), flexores de cadera en zancada baja (40 s/lado), gemelos en la pared (30 s/pierna), lumbares rodilla al pecho (30 s/lado), cervicales suaves (5 rotaciones/sentido). Hidrátate 600-700 ml + una comida de hidratos y proteínas en la siguiente hora, más agua si has sudado mucho. Felicítate: 1h15 de pedaleo continuo recuperado en 6 semanas.",
                 "fr" : "8 min de pédalage très lent en très facile sur résistance minimale pour éviter la chute tensionnelle à l'arrêt. Descends du vélo progressivement. Étirements complets 12 min : quadriceps (30 sec/jambe), ischio-jambiers assis (30 sec/jambe), fléchisseurs de hanche en fente basse (40 sec/côté), mollets contre mur (30 sec/jambe), lombaires genou à la poitrine (30 sec/côté), cervicales douces (5 rotations/sens). Hydratation 600-700 ml + repas glucido-protéiné dans l'heure suivante, davantage d'eau si tu as beaucoup transpiré. Félicite-toi : 1h15 de pédalage continu retrouvé en 6 semaines."
               },
+              "cooldown_minutes" : 20,
               "duration_minutes" : 100,
               "environment" : "indoor",
               "exercises" : [
@@ -2472,6 +2663,7 @@
                     "value" : "75"
                   },
                   "duration" : "75 min",
+                  "estimated_minutes" : 70,
                   "incompatible_constraints" : [
                     "lower-back-pain",
                     "knee-injury",
@@ -2494,6 +2686,8 @@
                     "bidons"
                   ],
                   "rest_seconds" : 0,
+                  "role" : "core",
+                  "scaling_unit" : "continuous",
                   "sets" : 1,
                   "target_zone" : "FTP-Z2",
                   "volume_axis" : "duration"
@@ -2508,14 +2702,16 @@
                 "en" : "10 min of progressive very easy pedaling at low resistance, cadence climbing 75 to 90 rpm. Check your position, tighten your shoe straps, set up a fan in front of you and keep one or two water bottles within reach: indoors you sweat faster, with no wind to cool you.",
                 "es" : "10 min de pedaleo muy fácil progresivo con resistencia baja, cadencia subiendo de 75 a 90 rpm. Comprueba tu posición, ajusta las correas de las zapatillas, coloca un ventilador delante de ti y ten uno o dos bidones a mano: en interior sudas más rápido y sin viento para refrescarte.",
                 "fr" : "10 min de pédalage très facile progressif sur résistance faible, cadence montante de 75 à 90 tr/min. Vérifie ta position, serre les sangles de chaussures, installe un ventilateur devant toi et garde un ou deux bidons à portée : en intérieur tu transpires plus vite, sans vent pour te rafraîchir."
-              }
+              },
+              "warmup_minutes" : 10
             }
           ],
           "warmup" : {
             "en" : "10 min progressive very easy, cadence climbing 75 → 90 rpm. Check your position, tighten your shoe straps, adjust your helmet.",
             "es" : "10 min muy fácil progresivo, cadencia subiendo 75 → 90 rpm. Comprueba la posición, ajusta las correas de las zapatillas, ajusta el casco.",
             "fr" : "10 min très facile progressif, cadence montante 75 → 90 tr/min. Vérifier position, serrer les sangles de chaussures, ajuster le casque."
-          }
+          },
+          "warmup_minutes" : 10
         }
       ],
       "theme" : {

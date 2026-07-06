@@ -45,7 +45,11 @@ public enum PatchApplier {
                         targetZone: ex.targetZone,
                         volumeAxis: ex.volumeAxis,
                         wasSubstituted: true,
-                        substitutionReason: "leon-ia: \(sub.reason)"
+                        substitutionReason: "leon-ia: \(sub.reason)",
+                        role: ex.role,
+                        scalingUnit: ex.scalingUnit,
+                        priority: ex.priority,
+                        estimatedMinutes: ex.estimatedMinutes
                     )
                 }
                 return AdaptedSession(
@@ -55,7 +59,9 @@ public enum PatchApplier {
                     type: session.type,
                     warmup: session.warmup,
                     exercises: mutatedExercises,
-                    cooldown: session.cooldown
+                    cooldown: session.cooldown,
+                    warmupMinutes: session.warmupMinutes,
+                    cooldownMinutes: session.cooldownMinutes
                 )
             }
             return AdaptedWeek(

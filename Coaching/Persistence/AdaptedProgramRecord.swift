@@ -269,7 +269,9 @@ extension AdaptedProgramRecord {
                     type: session.type,
                     warmup: session.warmup,
                     exercises: session.exercises,
-                    cooldown: session.cooldown
+                    cooldown: session.cooldown,
+                    warmupMinutes: session.warmupMinutes,
+                    cooldownMinutes: session.cooldownMinutes
                 )
             }
         }
@@ -346,17 +348,7 @@ extension AdaptedProgramRecord {
         let weeks = grouped.keys.sorted().compactMap { wn -> AdaptedWeek? in
             let weekSessions = (grouped[wn] ?? []).sorted(by: { $0.day < $1.day })
             guard let first = weekSessions.first else { return nil }
-            let adapted = weekSessions.map { ps in
-                AdaptedSession(
-                    day: ps.day,
-                    name: ps.name,
-                    durationMinutes: ps.durationMinutes,
-                    type: ps.type,
-                    warmup: ps.warmup,
-                    exercises: ps.exercises,
-                    cooldown: ps.cooldown
-                )
-            }
+            let adapted = weekSessions.map { $0.toAdaptedSession() }
             return AdaptedWeek(
                 weekNumber: wn,
                 theme: first.weekTheme,

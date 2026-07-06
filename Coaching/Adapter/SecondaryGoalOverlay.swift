@@ -316,7 +316,9 @@ public enum SecondaryGoalOverlay {
                     type: session.type,
                     warmup: session.warmup,
                     exercises: [drillExercise] + session.exercises,
-                    cooldown: session.cooldown
+                    cooldown: session.cooldown,
+                    warmupMinutes: session.warmupMinutes,
+                    cooldownMinutes: session.cooldownMinutes
                 )
                 newSessions.append(augmented)
                 applied.append(OverlayAppliedRule(

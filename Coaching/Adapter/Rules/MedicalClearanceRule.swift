@@ -60,7 +60,9 @@ public struct MedicalClearanceRule: AdaptationRule {
                         exercises: session.exercises.map { ex in
                             downgrade(exercise: ex, weekNumber: week.weekNumber, day: session.day, appliedRules: &appliedRules)
                         },
-                        cooldown: session.cooldown
+                        cooldown: session.cooldown,
+                        warmupMinutes: session.warmupMinutes,
+                        cooldownMinutes: session.cooldownMinutes
                     )
                 }
             )
@@ -98,7 +100,11 @@ public struct MedicalClearanceRule: AdaptationRule {
             targetZone: downgradedZone,
             volumeAxis: ex.volumeAxis,
             wasSubstituted: ex.wasSubstituted,
-            substitutionReason: ex.substitutionReason
+            substitutionReason: ex.substitutionReason,
+            role: ex.role,
+            scalingUnit: ex.scalingUnit,
+            priority: ex.priority,
+            estimatedMinutes: ex.estimatedMinutes
         )
     }
 

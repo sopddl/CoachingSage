@@ -272,7 +272,7 @@ final class ProgrammeOnboardingViewModel {
     }
 }
 
-private extension Bundle {
+extension Bundle {
     var shortVersion: String {
         (infoDictionary?["CFBundleShortVersionString"] as? String) ?? "0"
     }

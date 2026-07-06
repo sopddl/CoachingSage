@@ -456,6 +456,15 @@ struct AdaptedProgramView: View {
         return weekSessionIds.filter { record.completionState.sessionRecords[$0] != nil }.count
     }
 
+    /// Chantier durée réglable, pilote cycling (Increment 3) — la durée AFFICHÉE dans la
+    /// liste doit refléter un ajustement fait depuis `SessionDetailView` dans la même
+    /// session de navigation (`program`, snapshot figé au push, ne le voit pas). `record`
+    /// est rechargé une fois au mount mais reste le même objet SwiftData mutable — un
+    /// ajustement persisté via `AdaptedProgramRepository.update` s'y reflète directement.
+    private func effectiveDurationMinutes(week: Int, day: Int, fallback: Int) -> Int {
+        record?.sessions.first(where: { $0.weekNumber == week && $0.day == day })?.durationMinutes ?? fallback
+    }
+
     private enum WeekState { case past, current, future }
 
     private func state(of week: AdaptedWeek) -> WeekState {
@@ -845,7 +854,7 @@ struct AdaptedProgramView: View {
                 .foregroundStyle(Color.coachingSport(forCode: sessionEffectiveSportCode(for: session)))
             VStack(alignment: .leading, spacing: 2) {
                 // Story 3.35k — petite ligne grise (Séance N · Sem · min) AU-DESSUS du libellé.
-                Text("coaching.adapter.session.numberedLine \(globalSessionNumber(week: week.weekNumber, day: session.day)) \(week.weekNumber) \(session.durationMinutes)")
+                Text("coaching.adapter.session.numberedLine \(globalSessionNumber(week: week.weekNumber, day: session.day)) \(week.weekNumber) \(effectiveDurationMinutes(week: week.weekNumber, day: session.day, fallback: session.durationMinutes))")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Text(verbatim: session.name.resolved(locale).sanitizedForDisplay)
@@ -895,7 +904,7 @@ struct AdaptedProgramView: View {
                     .foregroundStyle(Color.coachingOnPrimary)
                     .frame(width: 30)
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("coaching.adapter.session.numberedLine \(globalSessionNumber(week: week.weekNumber, day: session.day)) \(week.weekNumber) \(session.durationMinutes)")
+                    Text("coaching.adapter.session.numberedLine \(globalSessionNumber(week: week.weekNumber, day: session.day)) \(week.weekNumber) \(effectiveDurationMinutes(week: week.weekNumber, day: session.day, fallback: session.durationMinutes))")
                         .font(.caption)
                         .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
                     Text(verbatim: session.name.resolved(locale).sanitizedForDisplay)
