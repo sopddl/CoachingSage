@@ -127,8 +127,6 @@ struct AdaptedProgramView: View {
                     weekAccordion(week)
                 }
 
-                medicalReminderFooter
-
                 // **Story 3.15 v3 (Sophie 2026-05-21)** — bouton "Supprimer le
                 // programme" en bas, uniquement pour les programmes persistés
                 // (record != nil) et hors mode preview (onConfirmStart == nil).
@@ -1056,15 +1054,6 @@ struct AdaptedProgramView: View {
         )
     }
 
-    // MARK: - Medical reminder
-
-    private var medicalReminderFooter: some View {
-        Text("coaching.adapter.medicalReminder.footer")
-            .font(.caption2)
-            .foregroundStyle(.secondary)
-            .multilineTextAlignment(.leading)
-            .padding(.top, 8)
-    }
 }
 
 // MARK: - Formatting helpers (partagés avec SessionDetailView)
