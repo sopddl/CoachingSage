@@ -1,0 +1,924 @@
+{
+  "sport": "tennis",
+  "entries": [
+    {
+      "id": "mini_tennis_warmup",
+      "type": "block",
+      "matchers": ["mini-tennis", "mini tennis", "echauffement cross", "échauffement cross", "drill cross facile", "court drill", "réveil moteur", "mise en route", "feeling balle", "feeling rebond"],
+      "fr": {
+        "steps": [
+          "Place-toi en milieu de court, balles courtes et molles, raquette détendue dans la main.",
+          "Échange en cross sur un tiers du court, vise le centre du tamis (sweet spot) à chaque frappe.",
+          "Garde une allure conversationnelle où tu pourrais parler : c'est un réveil, pas un effort.",
+          "Compte les frappes consécutives sans rater pour calibrer ton feeling de balle.",
+          "Monte progressivement le rythme et la longueur des échanges sur les dernières minutes."
+        ],
+        "equipment": ["raquette", "balles", "court ou mur"],
+        "commonMistake": "Frapper fort dès la première balle au lieu de chercher le relâchement et le contact propre."
+      },
+      "en": {
+        "steps": [
+          "Set up in the mid-court with soft, slow balls and a relaxed grip on the racket.",
+          "Rally cross-court on a third of the court, aiming for the center of the strings (sweet spot) each time.",
+          "Keep a conversational pace where talking stays easy: this is a wake-up, not an effort.",
+          "Count consecutive clean contacts to calibrate your ball feel.",
+          "Gradually raise the pace and rally length over the final minutes."
+        ],
+        "equipment": ["racket", "balls", "court or wall"],
+        "commonMistake": "Hitting hard on the first ball instead of seeking relaxation and clean contact."
+      }
+    },
+    {
+      "id": "grip_eastern",
+      "type": "movement",
+      "matchers": ["grip eastern", "rappel grip", "eastern coup droit", "eastern backhand"],
+      "fr": {
+        "steps": [
+          "Pour l'eastern coup droit, pose la main à plat sur les cordes puis glisse-la vers le manche.",
+          "Cale le talon de la main sur le biseau inférieur du manche, doigts légèrement écartés.",
+          "Pour le revers à 2 mains, place la main dominante en continental et la main non-dominante en eastern coup droit au-dessus.",
+          "Vérifie que la prise reste souple : serre seulement au moment du contact."
+        ],
+        "equipment": ["raquette"],
+        "commonMistake": "Serrer le manche en permanence, ce qui bloque le poignet et raidit le geste."
+      },
+      "en": {
+        "steps": [
+          "For the eastern forehand, lay your palm flat on the strings then slide it down to the handle.",
+          "Rest the heel of your hand on the bottom bevel of the handle, fingers slightly spread.",
+          "For the two-handed backhand, set the dominant hand in continental and the non-dominant hand in eastern forehand above it.",
+          "Keep the grip loose: tighten only at the moment of contact."
+        ],
+        "equipment": ["racket"],
+        "commonMistake": "Squeezing the handle constantly, which locks the wrist and stiffens the swing."
+      }
+    },
+    {
+      "id": "ghost_stroking",
+      "type": "movement",
+      "matchers": ["ghost-stroking", "ghost stroking", "jonglage", "lancer-frappe", "lancé-frappe"],
+      "fr": {
+        "steps": [
+          "Sans balle, prends ta prise puis enchaîne le geste complet au ralenti : préparation, accompagnement, finition épaule.",
+          "Décompose la préparation latérale en tournant les épaules avant de lancer le bras.",
+          "Termine la finition au-dessus de l'épaule opposée, buste qui se déroule.",
+          "Répète à différents rythmes pour ancrer le schéma moteur, focus pur sur la fluidité."
+        ],
+        "equipment": ["raquette"],
+        "commonMistake": "Bouger seulement le bras sans tourner les épaules, ce qui casse l'enchaînement du geste."
+      },
+      "en": {
+        "steps": [
+          "Without a ball, take your grip then run through the full motion slowly: preparation, swing path, shoulder finish.",
+          "Break down the sideways preparation by turning the shoulders before launching the arm.",
+          "Finish above the opposite shoulder, with the torso unwinding through.",
+          "Repeat at varied tempos to ingrain the motor pattern, focusing purely on fluidity."
+        ],
+        "equipment": ["racket"],
+        "commonMistake": "Moving only the arm without turning the shoulders, which breaks the flow of the motion."
+      }
+    },
+    {
+      "id": "forehand_drill",
+      "type": "movement",
+      "matchers": ["coup droit", "forehand", "cross forehand", "drill cross forehand", "drill mur coup droit", "cross régulier coup droit"],
+      "fr": {
+        "steps": [
+          "Au signal de la balle, tourne hanches et épaules ensemble (unit turn) en armant la raquette d'un seul bloc.",
+          "Charge sur la jambe extérieure, genoux fléchis, regard sur la balle.",
+          "Frappe la balle devant toi entre genou et hauteur de hanche, contact bien en avant du corps.",
+          "Accompagne vers l'avant puis termine la raquette au-dessus de l'épaule opposée.",
+          "Pour la régularité, vise une zone large vers le centre et compte les frappes consécutives."
+        ],
+        "equipment": ["raquette", "balles", "court ou mur"],
+        "commonMistake": "Préparer la raquette avec le bras seul et frapper la balle trop tard, à côté du corps."
+      },
+      "en": {
+        "steps": [
+          "As the ball comes, turn hips and shoulders together (unit turn), taking the racket back as one block.",
+          "Load onto the outside leg, knees flexed, eyes on the ball.",
+          "Make contact in front of you between knee and hip height, well ahead of the body.",
+          "Swing forward then finish the racket over the opposite shoulder.",
+          "For consistency, aim a wide zone toward the center and count consecutive contacts."
+        ],
+        "equipment": ["racket", "balls", "court or wall"],
+        "commonMistake": "Taking the racket back with the arm alone and contacting the ball too late, beside the body."
+      }
+    },
+    {
+      "id": "backhand_drill",
+      "type": "movement",
+      "matchers": ["revers", "backhand", "cross backhand", "drill mur revers", "long de ligne"],
+      "fr": {
+        "steps": [
+          "Tourne les épaules tôt et arme la raquette des deux mains pour le revers 2 mains.",
+          "Plie les genoux et transfère le poids sur la jambe avant à l'amorce.",
+          "Frappe devant le corps, balle entre genou et hanche, en gardant les bras unis.",
+          "Déroule le buste vers l'avant et finis la raquette haut, vers l'épaule opposée.",
+          "En long de ligne, oriente les épaules vers la cible plus tôt et accompagne droit."
+        ],
+        "equipment": ["raquette", "balles", "court ou mur"],
+        "commonMistake": "Reculer en frappant la balle dans le dos au lieu d'avancer le contact devant soi."
+      },
+      "en": {
+        "steps": [
+          "Turn the shoulders early and take the racket back with both hands for the two-handed backhand.",
+          "Bend the knees and shift weight onto the front leg as you start the swing.",
+          "Contact in front of the body, ball between knee and hip, keeping the arms united.",
+          "Unwind the torso forward and finish the racket high, toward the opposite shoulder.",
+          "Down the line, orient the shoulders to the target earlier and swing straight through."
+        ],
+        "equipment": ["racket", "balls", "court or wall"],
+        "commonMistake": "Backing up and hitting the ball behind you instead of taking contact in front."
+      }
+    },
+    {
+      "id": "rally_baseline",
+      "type": "block",
+      "matchers": ["échanges fond de court", "echanges fond de court", "échanges réguliers", "echanges reguliers", "rallye contrôle", "rallye controle", "alternés fh/bh", "alterné fh/bh", "patterns 1-2 coups"],
+      "fr": {
+        "steps": [
+          "Place-toi en fond de court, prêt à enchaîner coup droit et revers selon la balle.",
+          "Replace-toi au centre après chaque frappe par de petits pas d'ajustement.",
+          "Vise la profondeur vers le fond de court et garde une marge au-dessus du filet.",
+          "Cherche la régularité : un nombre de frappes consécutives élevé, pas la vitesse.",
+          "Alterne les zones coup droit et revers en gardant une allure contrôlée."
+        ],
+        "equipment": ["raquette", "balles", "court", "partenaire ou mur"],
+        "commonMistake": "Chercher le coup gagnant trop tôt et casser le rythme de l'échange."
+      },
+      "en": {
+        "steps": [
+          "Set up at the baseline, ready to alternate forehand and backhand depending on the ball.",
+          "Recover to the center after each shot with small adjustment steps.",
+          "Aim for depth toward the back of the court and keep margin over the net.",
+          "Seek consistency: a high count of consecutive contacts, not speed.",
+          "Alternate forehand and backhand zones while keeping a controlled pace."
+        ],
+        "equipment": ["racket", "balls", "court", "partner or wall"],
+        "commonMistake": "Going for the winner too early and breaking the rhythm of the rally."
+      }
+    },
+    {
+      "id": "serve_toss_trophy",
+      "type": "movement",
+      "matchers": ["lancer + trophée", "lancer + trophee", "trophée statique", "trophee statique", "lancer de balle"],
+      "fr": {
+        "steps": [
+          "Tiens la balle sur le bout des doigts ouverts, bras de lancer tendu.",
+          "Lâche la balle haut et légèrement devant ton épaule de frappe, sans à-coup du poignet.",
+          "Dans le même temps, monte la raquette en position trophée : coude haut, poignet armé.",
+          "Vois la position trophée comme un point de passage fluide, pas une pose figée à tenir."
+        ],
+        "equipment": ["raquette", "balles"],
+        "commonMistake": "Lancer la balle trop bas ou trop loin derrière, ce qui décale tout le timing du service."
+      },
+      "en": {
+        "steps": [
+          "Hold the ball on open fingertips, tossing arm extended.",
+          "Release the ball high and slightly in front of your hitting shoulder, with no wrist flick.",
+          "At the same time, raise the racket into the trophy position: elbow high, wrist cocked.",
+          "Treat the trophy position as a smooth pass-through point, not a frozen pose to hold."
+        ],
+        "equipment": ["racket", "balls"],
+        "commonMistake": "Tossing the ball too low or too far back, which throws off the whole serve timing."
+      }
+    },
+    {
+      "id": "serve_full_motion",
+      "type": "movement",
+      "matchers": ["service", "service progressif", "élan complet", "elan complet", "service light", "service récup", "service recup", "service en place", "service maintien"],
+      "fr": {
+        "steps": [
+          "Lance la balle haut et devant, monte en position trophée coude haut.",
+          "Enchaîne la séquence du bas vers le haut : pousse des jambes, déroulé des hanches puis du buste.",
+          "Frappe la balle au point le plus haut, bras tendu, en laissant l'avant-bras tourner (pronation) après le contact.",
+          "Pense « monte et brosse » plutôt que « pousse avec le bras ».",
+          "Accompagne le geste et laisse le corps retomber en équilibre vers l'intérieur du court."
+        ],
+        "equipment": ["raquette", "balles"],
+        "commonMistake": "Frapper avec le bras seul sans utiliser les jambes ni le buste, ce qui prive le service de vitesse."
+      },
+      "en": {
+        "steps": [
+          "Toss the ball high and in front, rise into the trophy position with a high elbow.",
+          "Run the sequence from bottom up: leg drive, hip then torso unwinding.",
+          "Strike the ball at the highest point, arm extended, letting the forearm rotate (pronation) after contact.",
+          "Think 'jump and brush' rather than 'arm and push'.",
+          "Follow through and let the body land balanced toward the inside of the court."
+        ],
+        "equipment": ["racket", "balls"],
+        "commonMistake": "Hitting with the arm alone without using legs or torso, which robs the serve of speed."
+      }
+    },
+    {
+      "id": "serve_targeted",
+      "type": "movement",
+      "matchers": ["service ciblé", "service cible", "service en cible", "service variété", "service variete", "service en cible — précision", "service précision", "service precision", "placement t et extérieur"],
+      "fr": {
+        "steps": [
+          "Pose des cônes ou repères dans les zones visées (T, extérieur, corps) de chaque carré.",
+          "Garde le même rituel et le même lancer quelle que soit la cible pour ne pas te trahir.",
+          "Pour le slice, brosse le côté de la balle ; pour le kick, brosse de bas en haut et de gauche à droite.",
+          "Compte les services réussis en zone et note ton pourcentage par série pour suivre tes progrès."
+        ],
+        "equipment": ["raquette", "balles", "cônes ou repères"],
+        "commonMistake": "Changer son lancer selon la cible visée, ce qui annonce la direction à l'adversaire."
+      },
+      "en": {
+        "steps": [
+          "Place cones or markers in the target zones (T, wide, body) of each service box.",
+          "Keep the same ritual and the same toss whatever the target so you don't telegraph it.",
+          "For slice, brush the side of the ball; for kick, brush low to high and left to right.",
+          "Count serves landing in the zone and note your percentage per set to track progress."
+        ],
+        "equipment": ["racket", "balls", "cones or markers"],
+        "commonMistake": "Changing the toss depending on the target, which signals the direction to the opponent."
+      }
+    },
+    {
+      "id": "volley",
+      "type": "movement",
+      "matchers": ["volée", "volee", "ghost-volée", "ghost-volee", "ghost volée"],
+      "fr": {
+        "steps": [
+          "Prends la prise continentale, valable pour la volée coup droit comme revers.",
+          "Garde la raquette devant toi, coude souple, regard sur la balle.",
+          "Avance vers la balle et bloque le contact devant le corps, geste court sans grand armé.",
+          "Accompagne légèrement vers la cible avec de petits pas, centre de gravité bas et réactif."
+        ],
+        "equipment": ["raquette", "balles", "court"],
+        "commonMistake": "Armer la raquette comme un coup de fond de court au lieu d'un geste court et bloqué devant soi."
+      },
+      "en": {
+        "steps": [
+          "Take the continental grip, valid for both forehand and backhand volleys.",
+          "Keep the racket in front of you, elbow soft, eyes on the ball.",
+          "Move toward the ball and block contact in front of the body, a short stroke with little backswing.",
+          "Punch slightly toward the target with small steps, center of gravity low and reactive."
+        ],
+        "equipment": ["racket", "balls", "court"],
+        "commonMistake": "Taking a full groundstroke backswing instead of a short blocked stroke in front of you."
+      }
+    },
+    {
+      "id": "smash_overhead",
+      "type": "movement",
+      "matchers": ["smash"],
+      "fr": {
+        "steps": [
+          "Tourne de côté dès que le lob part, pointe la main libre vers la balle pour la suivre.",
+          "Arme la raquette derrière l'épaule, position proche du service.",
+          "Ajuste tes appuis par petits pas pour que la balle reste devant toi en l'air.",
+          "Frappe bras tendu au point le plus haut, avec pronation de l'avant-bras après contact."
+        ],
+        "equipment": ["raquette", "balles", "court"],
+        "commonMistake": "Laisser la balle passer derrière la tête au lieu de reculer pour la garder devant soi."
+      },
+      "en": {
+        "steps": [
+          "Turn sideways as soon as the lob goes up, point the free hand at the ball to track it.",
+          "Take the racket back behind the shoulder, close to the serve position.",
+          "Adjust your feet with small steps so the ball stays in front of you in the air.",
+          "Strike with arm extended at the highest point, with forearm pronation after contact."
+        ],
+        "equipment": ["racket", "balls", "court"],
+        "commonMistake": "Letting the ball drift behind the head instead of backing up to keep it in front."
+      }
+    },
+    {
+      "id": "serve_plus_one_pattern",
+      "type": "block",
+      "matchers": ["1er coup", "premier coup", "pattern 3 coups", "pattern service", "3-coups", "3 coups", "cross-cross-long", "service + 1er", "service-retour", "service + retour"],
+      "fr": {
+        "steps": [
+          "Sers vers une zone choisie (T ou extérieur) pour ouvrir le court.",
+          "Anticipe le retour probable et enchaîne le 1er coup décisif, souvent en coup droit, vers l'espace libre.",
+          "Replace-toi au centre entre chaque coup par un split-step à chaque frappe adverse.",
+          "Travaille la séquence comme un automatisme : même schéma répété jusqu'à ce qu'il devienne naturel.",
+          "Compte les séquences réussies sur le total pour mesurer ta régularité tactique."
+        ],
+        "equipment": ["raquette", "balles", "court", "partenaire ou panier"],
+        "commonMistake": "Rester planté après le service au lieu de se replacer et enchaîner le coup suivant."
+      },
+      "en": {
+        "steps": [
+          "Serve to a chosen zone (T or wide) to open up the court.",
+          "Anticipate the likely return and chain the decisive first shot, often a forehand, into the open space.",
+          "Recover to the center between shots with a split-step on each opponent contact.",
+          "Train the sequence as an automatism: the same pattern repeated until it feels natural.",
+          "Count successful sequences out of the total to measure tactical consistency."
+        ],
+        "equipment": ["racket", "balls", "court", "partner or basket"],
+        "commonMistake": "Standing still after the serve instead of recovering and chaining the next shot."
+      }
+    },
+    {
+      "id": "serve_volley_pattern",
+      "type": "block",
+      "matchers": ["service-volée", "service-volee", "service volée", "montée filet", "montee filet", "transition montée", "transition montee", "service + montée", "service + montee"],
+      "fr": {
+        "steps": [
+          "Sers puis avance immédiatement vers le filet en accélérant par petits pas.",
+          "Fais un split-step juste avant le retour adverse pour être stable et prêt à réagir.",
+          "Charge la jambe extérieure et joue la première volée bas devant le corps.",
+          "Continue d'avancer vers la cible pour finir près du filet en position dominante."
+        ],
+        "equipment": ["raquette", "balles", "court", "partenaire ou panier"],
+        "commonMistake": "Monter au filet sans split-step et se faire surprendre, raquette pas prête."
+      },
+      "en": {
+        "steps": [
+          "Serve then move forward toward the net immediately, accelerating with small steps.",
+          "Make a split-step just before the opponent's return to stay stable and ready to react.",
+          "Load the outside leg and play the first volley low in front of the body.",
+          "Keep moving toward the target to finish near the net in a dominant position."
+        ],
+        "equipment": ["racket", "balls", "court", "partner or basket"],
+        "commonMistake": "Approaching the net without a split-step and getting caught with the racket not ready."
+      }
+    },
+    {
+      "id": "return_neutralize",
+      "type": "block",
+      "matchers": ["retour", "retour neutre", "retour neutralisant", "neutralisation", "pattern retour"],
+      "fr": {
+        "steps": [
+          "Adopte une posture d'attente basse et active, raquette devant, juste avant le service adverse.",
+          "Fais un split-step au moment où l'adversaire frappe pour réagir dans toutes les directions.",
+          "Sur balle rapide, raccourcis l'armé et bloque le retour, contact devant le corps.",
+          "Vise un retour profond en cross pour neutraliser et te remettre dans l'échange.",
+          "Replace-toi vers le centre dès le retour joué."
+        ],
+        "equipment": ["raquette", "balles", "court", "partenaire ou panier"],
+        "commonMistake": "Garder un grand armé sur retour rapide, ce qui décale le timing du contact."
+      },
+      "en": {
+        "steps": [
+          "Adopt a low, active ready stance, racket in front, just before the opponent's serve.",
+          "Make a split-step as the opponent strikes so you can react in any direction.",
+          "On a fast ball, shorten the backswing and block the return, contact in front of the body.",
+          "Aim a deep cross-court return to neutralize and get back into the rally.",
+          "Recover toward the center as soon as the return is played."
+        ],
+        "equipment": ["racket", "balls", "court", "partner or basket"],
+        "commonMistake": "Keeping a full backswing on a fast serve, which throws off the contact timing."
+      }
+    },
+    {
+      "id": "split_step_footwork",
+      "type": "movement",
+      "matchers": ["split-step", "split step", "déplacement latéral", "deplacement lateral", "recovery step", "side shuffle", "pas chassé", "pas chasse", "cross-over step"],
+      "fr": {
+        "steps": [
+          "Sur la ligne de fond, fais un petit saut d'attente où les deux pieds atterrissent ensemble (split-step).",
+          "Atterris au moment où l'adversaire frappe, genoux fléchis, prêt à partir dans les deux sens.",
+          "Pousse sur la jambe extérieure et déplace-toi en pas chassés latéraux, sans croiser sur les courtes distances.",
+          "Ajoute le cross-over step pour couvrir les balles larges, puis enchaîne un recovery step pour revenir au centre."
+        ],
+        "equipment": [],
+        "commonMistake": "Rester immobile au lieu de réamorcer un split-step à chaque frappe adverse."
+      },
+      "en": {
+        "steps": [
+          "On the baseline, make a small ready hop where both feet land together (split-step).",
+          "Land as the opponent strikes, knees flexed, ready to push off either way.",
+          "Push off the outside leg and move with lateral shuffle steps, no crossover on short distances.",
+          "Add a crossover step to cover wide balls, then chain a recovery step back to the center."
+        ],
+        "equipment": [],
+        "commonMistake": "Standing still instead of re-triggering a split-step on every opponent contact."
+      }
+    },
+    {
+      "id": "agility_ladder",
+      "type": "movement",
+      "matchers": ["agility ladder", "échelle d'agilité", "echelle d'agilite", "in-out", "lateral icky", "icky shuffle", "carioca", "back-pedal", "hopscotch"],
+      "fr": {
+        "steps": [
+          "Pose l'échelle au sol, ou trace des repères à la craie ou avec des cônes si tu n'en as pas.",
+          "Démarre par le pattern in-out : deux pieds dedans, deux pieds dehors, en avançant case par case.",
+          "Garde les appuis bas et rapides, pointes de pieds, regard devant plutôt que sur tes pieds.",
+          "Enchaîne lateral icky shuffle, cross-over puis carioca pour varier les coordinations.",
+          "Privilégie la précision et la légèreté des appuis avant la vitesse pure."
+        ],
+        "equipment": ["échelle d'agilité ou repères au sol"],
+        "commonMistake": "Regarder ses pieds et taper lourdement les appuis au lieu de rester léger et de fixer l'horizon."
+      },
+      "en": {
+        "steps": [
+          "Lay the ladder on the ground, or mark out rungs with chalk or cones if you don't have one.",
+          "Start with the in-out pattern: two feet in, two feet out, advancing rung by rung.",
+          "Keep the steps low and fast, on the balls of the feet, eyes forward rather than on your feet.",
+          "Chain lateral icky shuffle, crossover then carioca to vary the coordination.",
+          "Favor precision and light footwork before pure speed."
+        ],
+        "equipment": ["agility ladder or floor markers"],
+        "commonMistake": "Looking at your feet and stamping heavily instead of staying light and fixing the horizon."
+      }
+    },
+    {
+      "id": "interval_sprint",
+      "type": "block",
+      "matchers": ["cardio intermittent", "sprint 15 m", "sprint 20 m", "sprint maximal", "30/30 footing", "sprints courts"],
+      "fr": {
+        "steps": [
+          "Repère une distance courte (15 à 20 m) en ligne droite, sol stable.",
+          "Pars en accélération franche, buste légèrement penché en avant sur les premiers appuis.",
+          "Cours à l'allure prévue (modérée à maximale selon le bloc) sur toute la distance.",
+          "Récupère en marchant le temps indiqué avant de relancer le sprint suivant.",
+          "Conserve une bonne posture sur les derniers sprints même quand la fatigue monte."
+        ],
+        "equipment": ["espace de course ou court"],
+        "commonMistake": "Démarrer trop fort sur les premiers sprints et s'effondrer en posture sur les derniers."
+      },
+      "en": {
+        "steps": [
+          "Mark a short straight distance (15 to 20 m) on stable ground.",
+          "Launch with a sharp acceleration, torso slightly forward on the first steps.",
+          "Run at the planned pace (moderate to maximal depending on the block) over the full distance.",
+          "Recover by walking for the set time before starting the next sprint.",
+          "Keep good posture on the final sprints even as fatigue rises."
+        ],
+        "equipment": ["running space or court"],
+        "commonMistake": "Going out too hard on the first sprints and losing posture on the last ones."
+      }
+    },
+    {
+      "id": "side_to_side_drill",
+      "type": "block",
+      "matchers": ["side-to-side", "side to side", "5-balle puissance", "5 balle puissance", "sprint filet", "sprint matchplay"],
+      "fr": {
+        "steps": [
+          "Place-toi en fond de court, prêt à couvrir l'espace par déplacements latéraux.",
+          "Sur balle envoyée à droite puis à gauche, pars en explosivité et joue la frappe en charge.",
+          "Replace-toi par pas chassés rapides après chaque coup, centre de gravité bas.",
+          "Enchaîne les frappes à intensité élevée sur la durée du sprint, puis récupère en marchant.",
+          "Garde la qualité technique malgré l'intensité : appuis et contact propres restent prioritaires."
+        ],
+        "equipment": ["raquette", "balles", "court", "partenaire ou panier"],
+        "commonMistake": "Négliger le replacement entre deux frappes et arriver en retard sur la balle suivante."
+      },
+      "en": {
+        "steps": [
+          "Set up at the baseline, ready to cover the court with lateral movement.",
+          "On balls sent right then left, push off explosively and hit the shot under load.",
+          "Recover with fast shuffle steps after each shot, center of gravity low.",
+          "Chain high-intensity strikes over the sprint duration, then recover by walking.",
+          "Keep technical quality despite the intensity: clean footwork and contact stay the priority."
+        ],
+        "equipment": ["racket", "balls", "court", "partner or basket"],
+        "commonMistake": "Skipping the recovery between shots and arriving late on the next ball."
+      }
+    },
+    {
+      "id": "match_play_set",
+      "type": "block",
+      "matchers": ["set partiel", "set d'entraînement", "set entraînement", "set entrainement", "set complet", "match-test", "match-simulation", "match tournoi", "tie-break", "tie break", "drill panier match-simulation", "11 points"],
+      "fr": {
+        "steps": [
+          "Joue les points en conditions réelles : score officiel, changements de côté, service alterné.",
+          "Mets en place un rituel pré-service court et un rituel entre les points de 16 à 20 secondes.",
+          "Sur chaque échange, applique tes patterns travaillés plutôt que d'improviser.",
+          "Reste focalisé point par point, sans te projeter sur le score global.",
+          "Note tes repères après coup : régularité, gestion des points sous pression, dérive technique."
+        ],
+        "equipment": ["raquette", "balles", "court", "partenaire"],
+        "commonMistake": "Enchaîner les points sans rituel ni replacement mental, ce qui fait perdre la concentration."
+      },
+      "en": {
+        "steps": [
+          "Play points in real conditions: official score, side changes, alternating serve.",
+          "Set up a short pre-serve ritual and a 16 to 20 second between-points ritual.",
+          "On each rally, apply your trained patterns rather than improvising.",
+          "Stay focused point by point, without projecting onto the overall score.",
+          "Note your markers afterward: consistency, handling pressure points, technical drift."
+        ],
+        "equipment": ["racket", "balls", "court", "partner"],
+        "commonMistake": "Rushing through points with no ritual or mental reset, which costs concentration."
+      }
+    },
+    {
+      "id": "external_rotation_band",
+      "type": "movement",
+      "matchers": ["external rotation", "rotation externe", "er à la bande", "er bande"],
+      "fr": {
+        "steps": [
+          "Fixe une bande élastique à hauteur de coude, place-toi de profil.",
+          "Colle le coude au flanc, fléchi à 90°, avant-bras devant le ventre.",
+          "Tire la bande vers l'extérieur en gardant le coude collé, environ 2 secondes à l'aller.",
+          "Reviens lentement, 2 secondes au retour, sans laisser le coude décoller du flanc.",
+          "Reste sur une charge légère : l'objectif est le contrôle de la coiffe des rotateurs, pas la force brute."
+        ],
+        "equipment": ["bande élastique"],
+        "commonMistake": "Décoller le coude du flanc et compenser avec l'épaule au lieu d'isoler la rotation."
+      },
+      "en": {
+        "steps": [
+          "Anchor an elastic band at elbow height and stand side-on.",
+          "Tuck the elbow against your side, bent at 90 degrees, forearm across the belly.",
+          "Pull the band outward keeping the elbow tucked, about 2 seconds out.",
+          "Return slowly, 2 seconds back, without letting the elbow drift off the side.",
+          "Stay on a light load: the goal is rotator cuff control, not raw strength."
+        ],
+        "equipment": ["elastic band"],
+        "commonMistake": "Letting the elbow drift off the side and compensating with the shoulder instead of isolating the rotation."
+      }
+    },
+    {
+      "id": "ytw_shoulder",
+      "type": "movement",
+      "matchers": ["y-t-w", "ytw", "shoulder"],
+      "fr": {
+        "steps": [
+          "Allonge-toi à plat ventre ou penche-toi en avant, bras tendus vers le sol, pouces vers le plafond.",
+          "Pour le Y, lève les bras à 45° au-dessus de la tête en serrant les omoplates.",
+          "Pour le T, écarte les bras à l'horizontale en gardant les épaules basses.",
+          "Pour le W, plie les coudes et tire-les vers le bas en serrant fort les omoplates.",
+          "Reste très léger en charge, mouvement lent et contrôlé, focus sur les stabilisateurs scapulaires."
+        ],
+        "equipment": ["petite charge légère optionnelle"],
+        "commonMistake": "Remonter les épaules vers les oreilles au lieu de garder les omoplates basses et serrées."
+      },
+      "en": {
+        "steps": [
+          "Lie face down or hinge forward, arms reaching toward the floor, thumbs up.",
+          "For the Y, raise the arms to 45 degrees overhead while squeezing the shoulder blades.",
+          "For the T, spread the arms to horizontal while keeping the shoulders down.",
+          "For the W, bend the elbows and pull them down, squeezing the shoulder blades firmly.",
+          "Stay very light, slow and controlled, focusing on the scapular stabilizers."
+        ],
+        "equipment": ["small light load optional"],
+        "commonMistake": "Shrugging the shoulders toward the ears instead of keeping the shoulder blades down and squeezed."
+      }
+    },
+    {
+      "id": "prone_scaption_row",
+      "type": "movement",
+      "matchers": ["prone scaption", "scaption", "prone row"],
+      "fr": {
+        "steps": [
+          "Allonge-toi à plat ventre, bras tendus à environ 30° en avant des épaules, en forme de V.",
+          "Pouces vers le plafond, lève les bras vers le plafond en contrôlant la montée.",
+          "Redescends lentement sans relâcher d'un coup, en gardant les omoplates engagées.",
+          "Pour le prone row, tire les coudes vers le ciel en serrant les omoplates l'une vers l'autre."
+        ],
+        "equipment": ["petite charge légère optionnelle"],
+        "commonMistake": "Lever les bras trop écartés ou trop haut, ce qui sollicite l'épaule plutôt que les stabilisateurs."
+      },
+      "en": {
+        "steps": [
+          "Lie face down, arms reaching about 30 degrees in front of the shoulders, in a V shape.",
+          "Thumbs up, raise the arms toward the ceiling with a controlled lift.",
+          "Lower slowly without dropping, keeping the shoulder blades engaged.",
+          "For the prone row, pull the elbows toward the ceiling, squeezing the shoulder blades together."
+        ],
+        "equipment": ["small light load optional"],
+        "commonMistake": "Raising the arms too wide or too high, which loads the shoulder rather than the stabilizers."
+      }
+    },
+    {
+      "id": "shoulder_mobility",
+      "type": "movement",
+      "matchers": ["sleeper stretch", "cross-body", "mobilité épaule", "mobilite epaule"],
+      "fr": {
+        "steps": [
+          "Pour le sleeper stretch, allonge-toi sur le côté travaillé, bras à 90° devant toi.",
+          "Avec l'autre main, descends doucement l'avant-bras vers le sol jusqu'à sentir un étirement léger derrière l'épaule.",
+          "Tiens environ 30 secondes de chaque côté, respiration calme.",
+          "Pour le cross-body, ramène le bras tendu en travers de la poitrine et maintiens-le avec l'autre bras."
+        ],
+        "equipment": ["tapis optionnel"],
+        "commonMistake": "Forcer l'amplitude jusqu'à l'inconfort : reste sur un étirement léger et progressif."
+      },
+      "en": {
+        "steps": [
+          "For the sleeper stretch, lie on the working side, arm at 90 degrees in front of you.",
+          "With the other hand, gently lower the forearm toward the floor until you feel a light stretch behind the shoulder.",
+          "Hold about 30 seconds each side, breathing calmly.",
+          "For the cross-body, bring the straight arm across the chest and hold it with the other arm."
+        ],
+        "equipment": ["mat optional"],
+        "commonMistake": "Forcing the range to discomfort: stay on a light, gradual stretch."
+      }
+    },
+    {
+      "id": "pallof_press",
+      "type": "movement",
+      "matchers": ["pallof press", "pallof", "anti-rotation"],
+      "fr": {
+        "steps": [
+          "Fixe une bande élastique à hauteur de poitrine sur le côté, place-toi de profil, jambes fléchies.",
+          "Tiens la poignée à deux mains contre le sternum, gainage engagé.",
+          "Pousse les bras droit devant la poitrine environ 2 secondes, sans laisser le buste tourner.",
+          "Reviens 2 secondes au sternum en résistant à la traction latérale de la bande.",
+          "Garde les hanches et les épaules face à l'avant pendant tout le mouvement."
+        ],
+        "equipment": ["bande élastique"],
+        "commonMistake": "Laisser le buste pivoter vers l'ancrage au lieu de résister à la rotation."
+      },
+      "en": {
+        "steps": [
+          "Anchor an elastic band at chest height to the side, stand side-on, knees flexed.",
+          "Hold the handle with both hands against the sternum, core engaged.",
+          "Press the arms straight out from the chest about 2 seconds, without letting the torso turn.",
+          "Return 2 seconds to the sternum while resisting the band's sideways pull.",
+          "Keep hips and shoulders facing forward throughout the movement."
+        ],
+        "equipment": ["elastic band"],
+        "commonMistake": "Letting the torso rotate toward the anchor instead of resisting the rotation."
+      }
+    },
+    {
+      "id": "plank",
+      "type": "movement",
+      "matchers": ["planche ventrale", "planche", "plank", "side plank", "plank latéral", "plank lateral"],
+      "fr": {
+        "steps": [
+          "Pour la planche ventrale, place les coudes sous les épaules, avant-bras au sol.",
+          "Aligne tête, dos et bassin, engage les fessiers et le ventre.",
+          "Tiens la position le temps prévu, respiration régulière, sans creuser le bas du dos.",
+          "Pour la planche latérale, appuie sur un avant-bras, corps aligné sur le côté, hanche haute.",
+          "Pour la version avec rotation, passe le bras libre sous le corps puis reviens, contrôlé."
+        ],
+        "equipment": ["tapis optionnel"],
+        "commonMistake": "Laisser le bassin s'affaisser ou les fesses monter au lieu de garder le corps aligné."
+      },
+      "en": {
+        "steps": [
+          "For the front plank, place the elbows under the shoulders, forearms on the floor.",
+          "Align head, back and pelvis, engage the glutes and abs.",
+          "Hold the position for the set time, breathing steadily, without sagging the lower back.",
+          "For the side plank, prop on one forearm, body aligned on its side, hip high.",
+          "For the rotation version, pass the free arm under the body then return, controlled."
+        ],
+        "equipment": ["mat optional"],
+        "commonMistake": "Letting the hips sag or the butt pike up instead of keeping the body aligned."
+      }
+    },
+    {
+      "id": "bird_dog",
+      "type": "movement",
+      "matchers": ["bird-dog", "bird dog"],
+      "fr": {
+        "steps": [
+          "Place-toi à quatre pattes, mains sous les épaules, genoux sous les hanches, dos neutre.",
+          "Tends en même temps le bras et la jambe opposés jusqu'à l'horizontale.",
+          "Tiens environ 2 secondes en gardant le bassin stable, sans tourner les hanches.",
+          "Reviens lentement et alterne les côtés, gainage engagé tout du long."
+        ],
+        "equipment": ["tapis optionnel"],
+        "commonMistake": "Laisser le bassin basculer sur le côté au lieu de garder le tronc bien stable."
+      },
+      "en": {
+        "steps": [
+          "Set up on all fours, hands under shoulders, knees under hips, neutral back.",
+          "Extend the opposite arm and leg at the same time to horizontal.",
+          "Hold about 2 seconds keeping the pelvis stable, without rotating the hips.",
+          "Return slowly and alternate sides, core engaged throughout."
+        ],
+        "equipment": ["mat optional"],
+        "commonMistake": "Letting the pelvis tilt to the side instead of keeping the trunk steady."
+      }
+    },
+    {
+      "id": "squat",
+      "type": "movement",
+      "matchers": ["squat", "goblet squat", "squat barbell"],
+      "fr": {
+        "steps": [
+          "Place les pieds à largeur d'épaules, pointes légèrement vers l'extérieur.",
+          "Descends en poussant les hanches vers l'arrière, poids réparti sur les talons.",
+          "Garde les genoux dans l'axe des orteils et le buste droit, regard devant.",
+          "Descends jusqu'à environ 70 à 80° puis remonte en poussant dans le sol.",
+          "Avec charge (goblet ou barbell), garde le dos gainé et le geste contrôlé."
+        ],
+        "equipment": ["charge optionnelle (haltère ou barre)"],
+        "commonMistake": "Laisser les genoux rentrer vers l'intérieur ou décoller les talons en descendant."
+      },
+      "en": {
+        "steps": [
+          "Place the feet shoulder-width apart, toes slightly turned out.",
+          "Lower by pushing the hips back, weight balanced over the heels.",
+          "Keep the knees tracking over the toes and the torso upright, eyes forward.",
+          "Descend to about 70 to 80 degrees then drive back up through the floor.",
+          "With load (goblet or barbell), keep the back braced and the movement controlled."
+        ],
+        "equipment": ["optional load (dumbbell or barbell)"],
+        "commonMistake": "Letting the knees cave inward or the heels lift while lowering."
+      }
+    },
+    {
+      "id": "lunge_split_squat",
+      "type": "movement",
+      "matchers": ["fente statique", "fente dynamique", "split squat", "single-leg squat", "bulgare"],
+      "fr": {
+        "steps": [
+          "Place un pied en avant à plat, l'autre en arrière (sur un banc pour la version bulgare).",
+          "Descends en pliant le genou avant, sans qu'il dépasse la pointe du pied, environ 2 à 3 secondes.",
+          "Garde le buste droit et le poids vertical au-dessus du pied avant.",
+          "Remonte en poussant dans le talon avant, puis alterne ou enchaîne les répétitions.",
+          "Ajoute des haltères en mains pour la version lestée si tu es à l'aise."
+        ],
+        "equipment": ["banc optionnel", "haltères optionnels"],
+        "commonMistake": "Pencher le buste en avant et laisser le genou avant partir vers l'intérieur."
+      },
+      "en": {
+        "steps": [
+          "Place one foot forward flat, the other behind (on a bench for the Bulgarian version).",
+          "Lower by bending the front knee, without it passing the toes, about 2 to 3 seconds.",
+          "Keep the torso upright and the weight vertical over the front foot.",
+          "Drive back up through the front heel, then alternate or chain reps.",
+          "Add dumbbells in hand for the loaded version if you are comfortable."
+        ],
+        "equipment": ["bench optional", "dumbbells optional"],
+        "commonMistake": "Leaning the torso forward and letting the front knee drift inward."
+      }
+    },
+    {
+      "id": "hip_thrust_bridge",
+      "type": "movement",
+      "matchers": ["hip thrust", "pont fessier", "deadlift roumain"],
+      "fr": {
+        "steps": [
+          "Pour le hip thrust, cale le haut du dos sur un banc, pieds à plat au sol.",
+          "Pousse le bassin vers le plafond en serrant les fessiers, sans cambrer le bas du dos.",
+          "Tiens environ 2 secondes en haut puis redescends sous contrôle.",
+          "Pour le pont fessier au sol, même principe allongé sur le dos, genoux fléchis.",
+          "Pour le deadlift roumain unilatéral, descends le buste en gardant le dos plat et une légère flexion de genou."
+        ],
+        "equipment": ["banc optionnel", "charge optionnelle"],
+        "commonMistake": "Cambrer le bas du dos en fin de poussée au lieu de garder le bassin gainé."
+      },
+      "en": {
+        "steps": [
+          "For the hip thrust, set the upper back on a bench, feet flat on the floor.",
+          "Drive the hips toward the ceiling by squeezing the glutes, without arching the lower back.",
+          "Hold about 2 seconds at the top then lower under control.",
+          "For the floor glute bridge, same idea lying on your back, knees bent.",
+          "For the single-leg Romanian deadlift, hinge the torso down keeping the back flat and a slight knee bend."
+        ],
+        "equipment": ["bench optional", "load optional"],
+        "commonMistake": "Arching the lower back at the top instead of keeping the pelvis braced."
+      }
+    },
+    {
+      "id": "calf_raises",
+      "type": "movement",
+      "matchers": ["calf raises", "calf raise", "montées sur la pointe", "montees sur la pointe"],
+      "fr": {
+        "steps": [
+          "Tiens-toi debout, pieds parallèles, en t'aidant d'un appui pour l'équilibre si besoin.",
+          "Monte sur la pointe des pieds en poussant fort sur l'avant du pied.",
+          "Marque une courte pause en haut, mollets contractés.",
+          "Redescends lentement les talons sous contrôle, sans rebondir."
+        ],
+        "equipment": ["appui optionnel pour l'équilibre"],
+        "commonMistake": "Rebondir en bas au lieu de contrôler la descente et de marquer la contraction en haut."
+      },
+      "en": {
+        "steps": [
+          "Stand tall, feet parallel, using a support for balance if needed.",
+          "Rise onto the balls of the feet by pushing strongly through the forefoot.",
+          "Pause briefly at the top with the calves contracted.",
+          "Lower the heels slowly under control, without bouncing."
+        ],
+        "equipment": ["support optional for balance"],
+        "commonMistake": "Bouncing at the bottom instead of controlling the descent and pausing the contraction at the top."
+      }
+    },
+    {
+      "id": "plyo_jumps",
+      "type": "movement",
+      "matchers": ["box jump", "lateral bound", "plyo"],
+      "fr": {
+        "steps": [
+          "Pour le box jump, place-toi face à la box, genoux fléchis, bras prêts à donner l'impulsion.",
+          "Saute en triple extension chevilles, genoux, hanches et atterris souplement, genoux alignés.",
+          "Redescends en marchant plutôt qu'en sautant pour préserver les appuis.",
+          "Pour le lateral bound, pousse latéralement sur une jambe et réceptionne en douceur sur l'autre, équilibre tenu.",
+          "Privilégie la qualité d'atterrissage et l'explosivité courte plutôt que le volume."
+        ],
+        "equipment": ["box ou banc"],
+        "commonMistake": "Atterrir genoux raides ou rentrés vers l'intérieur au lieu d'une réception souple et alignée."
+      },
+      "en": {
+        "steps": [
+          "For the box jump, face the box, knees flexed, arms ready to drive the takeoff.",
+          "Jump with triple extension of ankles, knees, hips and land softly, knees aligned.",
+          "Step down rather than jumping down to protect the joints.",
+          "For the lateral bound, push off sideways on one leg and land softly on the other, balance held.",
+          "Favor landing quality and short explosiveness over volume."
+        ],
+        "equipment": ["box or bench"],
+        "commonMistake": "Landing with stiff or inward-collapsing knees instead of a soft, aligned reception."
+      }
+    },
+    {
+      "id": "med_ball_throws",
+      "type": "movement",
+      "matchers": ["med ball", "rotational throw", "overhead slam"],
+      "fr": {
+        "steps": [
+          "Pour le lancer rotatif, place-toi de profil par rapport au mur, médecine-ball à deux mains.",
+          "Charge en tournant le buste vers l'arrière, puis déroule hanches puis épaules de façon explosive.",
+          "Lâche la balle contre le mur au moment où le buste fait face, comme un coup de fond de court.",
+          "Pour l'overhead slam, monte la balle au-dessus de la tête puis projette-la au sol en triple extension descendante.",
+          "Cherche l'explosivité du geste plus que le poids de la balle."
+        ],
+        "equipment": ["médecine-ball", "mur"],
+        "commonMistake": "Lancer avec les bras seuls au lieu d'enchaîner hanches puis épaules en rotation."
+      },
+      "en": {
+        "steps": [
+          "For the rotational throw, stand side-on to the wall, medicine ball in both hands.",
+          "Load by turning the torso back, then unwind hips then shoulders explosively.",
+          "Release the ball into the wall as the torso faces forward, like a groundstroke.",
+          "For the overhead slam, raise the ball overhead then drive it to the floor with a downward triple extension.",
+          "Seek explosiveness of the motion more than the weight of the ball."
+        ],
+        "equipment": ["medicine ball", "wall"],
+        "commonMistake": "Throwing with the arms alone instead of sequencing hips then shoulders in rotation."
+      }
+    },
+    {
+      "id": "conditioning_circuit",
+      "type": "block",
+      "matchers": ["conditioning circuit", "kovacs", "circuit 6 stations", "circuit kovacs"],
+      "fr": {
+        "steps": [
+          "Installe les 6 stations en cercle : sprint, échelle d'agilité, médecine-ball, pompe, fente, gainage.",
+          "Travaille chaque station environ 30 secondes, puis enchaîne avec une courte transition.",
+          "Garde une intensité soutenue mais régulière sur tout le tour.",
+          "Récupère le temps prévu entre les tours avant de repartir.",
+          "Adapte le nombre de répétitions à ta forme du jour si une station devient inconfortable."
+        ],
+        "equipment": ["médecine-ball", "échelle d'agilité optionnelle", "espace dégagé"],
+        "commonMistake": "Partir trop vite sur les premières stations et s'écrouler avant la fin du tour."
+      },
+      "en": {
+        "steps": [
+          "Set up the 6 stations in a circle: sprint, agility ladder, medicine ball, push-up, lunge, plank.",
+          "Work each station about 30 seconds, then move on with a short transition.",
+          "Keep a sustained but steady intensity through the whole round.",
+          "Recover for the set time between rounds before starting again.",
+          "Adjust the number of reps to your form of the day if a station becomes uncomfortable."
+        ],
+        "equipment": ["medicine ball", "agility ladder optional", "open space"],
+        "commonMistake": "Going out too fast on the first stations and fading before the round ends."
+      }
+    },
+    {
+      "id": "mobility_cooldown",
+      "type": "block",
+      "matchers": ["mobilité", "mobilite", "cool-down", "cool down", "foam roll", "foam rolling", "récup active", "recup active", "récupération active", "recuperation active", "90/90", "pigeon", "cat-cow", "étirements", "etirements"],
+      "fr": {
+        "steps": [
+          "Commence par quelques minutes de marche ou de mouvements lents pour faire redescendre le rythme.",
+          "Enchaîne les mobilités hanches et thoracique : cercles de hanches, posture 90-90, pigeon, cat-cow, rotation thoracique.",
+          "Tiens chaque position environ 30 secondes en respirant calmement, sans forcer l'amplitude.",
+          "Passe le foam roller sur mollets, quadriceps et fessiers une minute par zone si tu en as un.",
+          "Termine par le sleeper stretch et le cross-body pour relâcher l'épaule de frappe."
+        ],
+        "equipment": ["tapis optionnel", "foam roller optionnel"],
+        "commonMistake": "Étirer à froid ou chercher l'amplitude maximale au lieu d'un relâchement progressif."
+      },
+      "en": {
+        "steps": [
+          "Start with a few minutes of walking or slow movements to bring the heart rate down.",
+          "Move through hip and thoracic mobility: hip circles, the 90-90 position, pigeon, cat-cow, thoracic rotation.",
+          "Hold each position about 30 seconds breathing calmly, without forcing the range.",
+          "Roll the foam roller over calves, quads and glutes one minute per area if you have one.",
+          "Finish with the sleeper stretch and cross-body to release the hitting shoulder."
+        ],
+        "equipment": ["mat optional", "foam roller optional"],
+        "commonMistake": "Stretching cold or chasing maximal range instead of a gradual release."
+      }
+    },
+    {
+      "id": "core_activation",
+      "type": "block",
+      "matchers": ["activation core", "activation s&c", "activation core légère"],
+      "fr": {
+        "steps": [
+          "Enchaîne quelques ponts fessiers pour réveiller la chaîne postérieure.",
+          "Ajoute des bird-dogs lents de chaque côté pour activer le gainage profond.",
+          "Termine par une planche courte, corps aligné, sans charge additionnelle.",
+          "Reste sur de l'activation légère : l'objectif est de préparer, pas de fatiguer."
+        ],
+        "equipment": ["tapis optionnel"],
+        "commonMistake": "Transformer l'activation en séance lourde au lieu de simplement réveiller les muscles."
+      },
+      "en": {
+        "steps": [
+          "Chain a few glute bridges to wake up the posterior chain.",
+          "Add slow bird-dogs on each side to activate the deep core.",
+          "Finish with a short plank, body aligned, no added load.",
+          "Keep it light activation: the goal is to prepare, not to fatigue."
+        ],
+        "equipment": ["mat optional"],
+        "commonMistake": "Turning activation into a heavy session instead of simply waking up the muscles."
+      }
+    }
+  ]
+}

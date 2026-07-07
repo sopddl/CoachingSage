@@ -1,0 +1,1166 @@
+{
+  "summary": "Revue qualité séances 10 sports (Sally + user novice + arbitrage), catégorise bug-net vs décision-produit",
+  "agentCount": 40,
+  "logs": [],
+  "result": {
+    "perSport": [
+      {
+        "sport": "running",
+        "summary": "Qualité running = correcte sur le fond technique (zones Daniels justes, structure cohérente) mais 3 P0 sérieux côté UX/contenu user-facing. (1) Le dosage affiche les codes coach bruts (« Daniels-E », « @HMP », « RPE 6-7 ») — atténué par un vrai glossaire tappable localisé déjà en place (donc product_decision sur la politique de libellé, pas bug mort), SAUF « walking-recovery » qui est un vrai clear_bug (string machine anglaise non résolue par le matcher, fuit verbatim alors qu'une entrée glossaire 'recovery' existe non branchée). (2) Frontière EU MDR franchie : pathologies nommées (ITBS, shin splints, tendinopathie, RED-S, fracture de stress) + protocoles de soin (Alfredson, glace, kiné, appel au 15) hors glossaire → arbitrage produit + juridique. (3) i18n incomplet : tous les headers des 4 templates sont FR-only (blob à clé 'fr' unique) + duration FR libre → en EN/ES l'écran est bilingue cassé ; clear_bug car la cible {fr,en,es} est déjà actée. Côté nommage exercices (Bird-dog, Bulgarian split squat, miles, hard/easy) = product_decision (politique FR/EN à fixer). 2 faux positifs corrigés : « HIT » n'est PAS « HIIT » mal écrit (triade polarisée LIT/MP/HIT intentionnelle, mais reste à glosser), et match_key ne fuit nulle part en UI (garde-fou préventif seulement). Bilan : aucun bug fonctionnel bloquant, mais le contenu user-facing running n'est pas livrable en l'état pour un public débutant (P0 EU MDR + P0 i18n + P0 lisibilité dosage à arbitrer).",
+        "count": 11
+      },
+      {
+        "sport": "cycling",
+        "summary": "Qualite cycling : contenu sportif solide et conforme a la doctrine (modele Coggan 7 zones FTP intentionnel, beginner 100% Z1-Z2 avec equivalents RPE/%FCmax fournis), mais finition i18n et coherence de modele insuffisantes. Verifie en code+JSON : 18 findings personas reconcilies en 17 confirmes (1 quasi-resolu par la doctrine). Aucun P0 retenu : le 'P0 target_zone brut' des deux personas est descendu en P1 car la verif code montre que FTP/Sweet-Spot sont glossarises + tappables (GlossaryTermBadge dans SessionFocusView l.321-328) et que RPE est deja mappe en clair (DosageFormatting.plainEffort) ; le code brut reste neanmoins le libelle primaire, ce qui releve d'un arbitrage produit (referentiel dosage cameleon). clear_bugs nets a traiter avant commit : 'flush lactate' + anglicismes FR (Hot foot/Saddle sores/chamois pressure/shoulder strain), meta-champs FR-only sur LES 4 niveaux (et non 2 comme dit les personas), champ duration composite (rpm/km/zone empiles), convention jour 'J7' vs 'JOUR J', hip thrust vs pont fessier (3 noms = 1 concept, mistag deja connu), orthographe Sweet-Spot non figee, 'PR personnel' redondant. product_decisions transverses pour Sophie : politique nommage FR/EN exos renfort, garder/releguer 'Sweet-Spot', niveau de vulgarisation du jargon (myelinisation/gut training/ERG/derive cardiaque), exposition FTP en primaire pour beginner, terme EN canonique pour 'sprints d'activation'. A grouper dans le chantier dosage cameleon. Le modele Coggan 7 zones est valide par la doctrine = juste a verrouiller.",
+        "count": 16
+      },
+      {
+        "sport": "swimming",
+        "summary": "Qualité natation = la plus faible des sports audités côté lisibilité utilisateur : sport à plus forte densité de jargon (codes de zone CSS/EN1-3/SP1-3/REC affichés bruts, anglais de plan de nage omniprésent). 2 P0 confirmés : codes d'intensité illisibles affichés bruts (product_decision car exige une politique d'affichage), et 1 titre 100% jargon « BLOC LACTIQUE SP1 + sprint SP3 » (clear_bug, un meilleur pattern de titre existe déjà dans le même fichier). 7 P1 : i18n racine FR-only sur les 4 templates (bug net vérifié dans le JSON), champ duration contenant des distances + double-protocole « OU » (modélisation fausse — mais natation N'EST PAS routée timed via SessionFocusView, donc le « timer cassé » est surestimé par les reviewers), doublon « External rotation band » dont la valeur fr est elle-même en anglais, titres en MAJUSCULES incohérents + « checklist », warmup competitive saturé d'anglais + tag « (competitive) » qui fuit, redondance « test + introduction au seuil », « Comfortably hard » non traduit. 4 P2 (vulgarisation notes savantes, politique nommage FR/EN, périmètre glossaire, doublons blockName/exerciseName). Faux positif écarté : le « mismatch VO2max vs EN3 » — la doctrine du template définit elle-même EN3 comme « proche VO2max », le nom est donc cohérent ; ne reste que l'aspect jargon du terme, fondu dans la vulgarisation. Répartition : 6 clear_bug (i18n et duplicate sont les plus nets) et 7 product_decision (toutes les politiques FR/EN, glossaire et densité jargon, cohérentes avec le chantier dosage caméléon en cours). Fichiers : Templates/Sources/TemplateLoader/Resources/Templates/swimming-{beginner-initiation-6sem,regular-technique-8sem,recreational-endurance-8sem,competitive-perfectionnement-12sem}.json ; affichage zone/duration dans Views/Screens/Coaching/SessionFocusView.swift (chip duration ligne ~315, pas de routage timed natation).",
+        "count": 13
+      },
+      {
+        "sport": "triathlon",
+        "summary": "Triathlon est le corpus le plus chargé en jargon de tout l'app, et le plus risqué car le jargon touche le DOSAGE. Qualité moyenne avec un défaut systémique : superposition de 3 systèmes de zones (FTP/Daniels/CSS) affichés en codes bruts (P0, validé à l'unanimité des deux personas) — totalement opaque pour un débutant/intermédiaire et incohérent avec la décision \\\"charge=sensation sans jargon\\\" du chantier dosage caméléon en cours. À côté : forte densité d'anglicismes non systématisée (disciplines swim/bike/run trivialement traduisibles, S&C jamais explicité, jargon natation EVF/sculling/sighting, exos muscu EN), labels de niveau \\\"competitive/regular\\\" restés EN dans des titres sinon FR, un trou i18n sur le template beginner, et 2 artefacts objectifs (orthographe \\\"periodization\\\", annotation de brouillon \\\"[du seuil, sous-entendu]\\\"). 12 findings confirmés : 1 P0 + 5 P1 + 6 P2. Répartition 6 clear_bug (traductions directes, fautes, trous i18n, cohérence de convention déjà adoptée) / 6 product_decision (politique de zones, référentiel de nommage transverse aligné muscu, politique jargon natation+matériel, vocabulaire à enseigner T1/T2/70.3/danseuse, structure des titres). Aucun faux positif éliminé : les deux personas sont alignés, le novice n'a fait que confirmer et durcir la sévérité sur les zones et les abréviations. Recommandation : étape HTML décisions pour la politique de zones (P0) + le référentiel de nommage transverse (P1) AVANT de toucher au contenu, sinon risque de drift avec le chantier muscu.",
+        "count": 11
+      },
+      {
+        "sport": "strengthTraining",
+        "summary": "Qualité muscu nettement en dessous du reste de l'app : c'est le seul sport qui n'a pas reçu le nettoyage RPE→« effort N sur 10 » ni la passe de trad FR des notes/warmups. 2 P0 bloquants (grille RPE/RIR + jargon collés en note d'exo ; vocabulaire médical EU MDR « douleur/lombalgie/sciatique »), 3 P1 (anglais brut massif dans notes & étirements, tag technique `recreational` qui fuit, contradiction de doctrine competitive kg/%1RM vs référentiel v2) et 3 P2. Les deux personas convergent fortement ; aucun faux positif éliminé. Verdict : BUGS — ne pas merger tant que les 2 P0 ne sont pas corrigés (le P0 EU MDR doit repasser par le garde-fou existant). 6 clear_bug à corriger directement, 3 product_decision à porter en HTML décisions (politique nommage FR/EN, exception charge competitive, vulgarisation titres de méthode).",
+        "count": 8
+      },
+      {
+        "sport": "yoga",
+        "summary": "Qualité yoga : solide sur le FOND (contenu sourcé Iyengar/Pattabhi Jois, exercices déjà trilingues FR/EN/ES avec gloss sanskrit entre parenthèses sur les NOMS — pattern validé par les deux personas), mais entachée de fuites de langue/jargon en SURFACE. 3 bugs objectifs nets : (1) 'RPE 6-7' dans target_zone du regular (seule occurrence du set, vs doctrine dosage caméléon), (2) anglais non traduit incohérent (Cat-Cow vs chat-vache, Down Dog vs chien tête en bas, + 'Cutback' jargon surf parasite) alors que les équivalents FR existent dans les mêmes fichiers, (3) anglicismes 'hold/finishing/breath-led' dans duration. 4 décisions produit à arbitrer par Sophie : politique de glossaire sanskrit/technique du tier competitive, i18n top-level SYSTÉMIQUE (les 4 templates ont name/summary/safety_notes/progression_logic FR-only et 'objective' absent — pas juste le beginner), normalisation des unités de duration pour le FOCUS minuté, et nettoyage des titres de programme exposant les codes de tier 'regular'/'competitive' + 'inversions wall'. 10 findings confirmés (3 clear_bug, 7 product_decision), aucun P0, aucun faux positif majeur — j'ai requalifié l'i18n beginner en dette systémique et scindé les anglicismes de duration des unités hétérogènes.",
+        "count": 10
+      },
+      {
+        "sport": "hiit",
+        "summary": "Contenu HIIT riche et sérieux côté doctrine (4 templates débutant→competitive, périodisation/cutbacks/cibles HIIT cumulé crédibles, exercices + warmups correctement trilingues fr/en/es), MAIS plombé par 3 défauts objectifs très visibles et un gros chantier de vulgarisation. Clear bugs : « Format first-class » (mistranslation récurrente ~18+ occurrences sur les 4 templates pour dire « format principal »), faute « tu pose » → « tu poses » dans une consigne, typo « doce » → « douce » dans le summary débutant, calque « Dead bug (bug mort) » (3 occurrences), nom d'exo qui embarque une justif de programmation, et surtout les 6 champs top-level (name/summary/progression_logic/safety_notes/assumed_profile/default_objective) sont FR-only alors que tout le reste est trilingue → UI EN/ES affichera ces méta en français. À part ça, fort niveau de jargon HIIT/CrossFit non glossarié, benchmarks FRAN/Cindy bruts, safety_notes à la frontière EU MDR (pathologies nommées + protocoles RICE/prise de sang CK/rhabdomyolyse), citations scientifiques et recalculs HIIT cumulé verbeux dans les notes user-facing : autant de décisions produit pour Sophie. Faux positif écarté : le P0 de Maxime « noms et warmups en anglais » — vérifié, tous les noms d'exos ET warmups ont bien des blocs fr/en/es ; il a lu un dump brut, le resolver sert le FR. Seul l'i18n des champs top-level manque réellement.",
+        "count": 13
+      },
+      {
+        "sport": "hiking",
+        "summary": "Qualité médiocre / non shippable en l'état pour le sport hiking. Au moins 1 typo dure (HIT au lieu de HIIT, confirmée 3 occurrences) et plusieurs bugs de composition de titres (doublon « endurance endurance » FR-only, dénivelé répété, fragments collés dans le désordre avec minuscule en tête) qui trahissent un caméléon de format qui concatène libellé manuel + fragment généré sans dédup ni capitalisation. Surtout, fuite massive et systématique de jargon coach anglais (sustained climbing, gradient-moderate, pack-day, Uphill Athlete/House-Johnston, FKT, LIT, ME, polarized, S&C, core, Drills, Cooldown) dans titres, summary et notes user-facing — le contenu lu en premier (summary programme) est écrit pour un coach pro, pas pour un randonneur débutant. 5 bugs nets corrigeables sans Sophie, mais le gros du chantier (politique de vulgarisation FR/EN, gloses transverses S&C/core/zone 2, niveau de langue du summary) relève de décisions produit transverses à cadrer une fois pour tous les sports. Les deux personas convergent fortement ; Maxime (novice) a surclassé en P0 plusieurs items que Sally voyait P1 — j'ai tranché en gardant P0 sur ce qui casse la compréhension de base du débutant (HIT, jargon summary, anglais brut en pleine phrase).",
+        "count": 17
+      },
+      {
+        "sport": "tennis",
+        "summary": "Qualité tennis correcte sur le fond sportif mais entachée d'un défaut de finition de contenu transverse, surtout sur les niveaux avancés (recreational/regular/competitive) qui n'ont pas reçu le même soin de vulgarisation/traduction que le beginner. 1 P0 net : franglais non traduit (forehand/backhand/cross/feeling balle) alors que le beginner prouve qu'on sait traduire. Les clear_bugs restants sont objectifs et alignables sur le beginner : cooldown EN brut, nom propre Kovacs qui fuit, calque \\\"squat gobelet\\\", orthographe medecine-ball, et le risque EU MDR/ton anxiogène (épicondylite, \\\"non négociables\\\"). Le reste relève d'arbitrages produit déjà cadrés par des chantiers ouverts : politique de nommage/glossaire du jargon muscu-physio, harmonisation du dosage (RPE/Z2-Z3 vs effort 1-5), vulgarisation des titres (affûtage/tapering), parité i18n ES sur les templates avancés, gestion des champs reps verbeux, et découpage d'un exo composite à 3 mouvements. Aucun bug bloquant le fonctionnement ; chantier de fond de cohérence FR + EU MDR à mener avant ship.",
+        "count": 12
+      },
+      {
+        "sport": "football",
+        "summary": "Football: 4 templates (beginner 8sem, recreational 10sem, regular 12sem, competitive 16sem). Contenu sportif riche et bien sourcé (FIFA 11+, Bompa, Verheijen, NHE/CAE), mais qualité d'exposition utilisateur insuffisante. 12 findings confirmés (3 P0, 5 P1, 4 P2). 2 P0 bloquants nets : (1) bug d'encodage UTF-8 sur TOUT le bloc niveau-programme du fichier competitive (name/summary/objectif/progression_logic/safety_notes dé-accentés, corps du fichier sain) ; (2) jargon de conception « charge cognitive 3-4 » qui fuit dans les notes user (beginner, ~10x FR+EN). 3e P0 = codes de planif (W12, MD-1, J-3, « semaine N ») dans les titres affichés. Côté décisions produit : politique de nommage FR/EN des exos (jargon anglais inégal + acronymes nus RDL/NHE/CAE/RSA), vulgarisation des résumés (Bompa, R3-N3, tapering), mapping dosage caméléon (target_zone et reps hétérogènes, % FCmax/Z sans sensation), et un audit EU MDR sur les termes pathologiques + stats de réduction de blessure + impératifs « obligatoire/non négociable ». Correction de périmètre vs personas : le trou i18n program-level en/es concerne les 4 niveaux (pas seulement le beginner), alors que les exercices sont déjà trilingues — incohérence visible en EN/ES. À prioriser avant prod : les 3 P0, puis l'audit EU MDR (légal).",
+        "count": 11
+      }
+    ],
+    "clearBugs": [
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "target_zone == « walking-recovery » (3 occurrences dans running-beginner-5k-8sem.json, séances run/walk). Affiché verbatim via GlossaryTermBadge (non résolu → Text(verbatim:))",
+        "description": "Contrairement aux autres zones, « walking-recovery » n'est PAS résolu par Glossary.entry(forZone:) (vérifié : aucune règle de match, retombe sur return nil ligne 230) : il s'affiche donc en chaîne machine anglaise à tiret, brute, non tappable, en plein dosage d'un débutant. C'est une correction objective, sans choix produit : c'est de l'anglais machine non traduit qui fuit là où les autres zones ont au moins un glossaire.",
+        "suggestedFix": "Remplacer la valeur « walking-recovery » par une chaîne user-facing localisée « Récupération en marchant » (FR) / « Recovery walk » (EN) / « Recuperación caminando » (ES), OU ajouter une entrée glossaire « recovery » au matcher (l'entrée Glossary 'recovery' existe déjà ligne 155 mais le matcher forZone ne la branche pas) en mappant walking-recovery → byId[\"recovery\"]. Préférer la 2e voie pour rester cohérent avec le système glossaire.",
+        "note": "Sally et Maxime le signalent ; arbitre confirme objectivement : seule cette zone échoue au matcher et fuit en string machine brute, alors qu'une entrée glossaire 'recovery' existe déjà non branchée.",
+        "sport": "running"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Headers FR-only sur les 4 running-*.json : name, summary, default_objective, assumed_profile, progression_logic, safety_notes — tous des blobs à clé unique {\"fr\": …}. Vérifié : aucun en/es présent",
+        "description": "Régression i18n objective : les champs header sont des blobs MAIS ne contiennent que la clé 'fr', alors que le pattern produit acté est {fr,en,es} (LocalizedText, mémoire B1/B2). En locale EN/ES, le titre de programme/séance et tous les textes pédagogiques header s'affichent en français au milieu de contenu traduit. Pas de choix produit : la cible {fr,en,es} est déjà décidée, il manque juste les traductions.",
+        "suggestedFix": "Compléter les blobs {fr,en,es} sur name/summary/default_objective/assumed_profile/progression_logic/safety_notes des 4 templates running (chantier i18n B2 contenu, même pipeline IA+relecture agent que les 40 templates déjà traités).",
+        "note": "Sally et Maxime d'accord ; objectivement vérifié FR-only sur les 4 fichiers, et la cible {fr,en,es} est une décision déjà prise → simple complétion = clear_bug.",
+        "sport": "running"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "duration : chaîne FR libre non traduite (« 1 min course lente + 1 min 30 marche rapide », « 9 km », « 5 min course », « 20 sec par côté »…) dans running-*.json. Affichée via duration.sanitizedForDisplay (String+SessionDisplay.swift) qui ne traduit pas",
+        "description": "Le champ duration est une string FR libre (pas un blob), affichée telle quelle ; en locale EN/ES elle reste en français. Cohérent avec le finding header : aucune chaîne FR-only ne doit s'afficher en EN/ES. Vérifié : duration n'est pas un blob, et sanitizedForDisplay ne fait que du nettoyage typographique.",
+        "suggestedFix": "Fournir duration en blob {fr,en,es} (ou la structurer en données valeur+unité+type traduisibles). Minimum : garantir qu'aucune duration FR ne s'affiche en EN/ES.",
+        "note": "Les 2 personas le notent ; objectif et factuel (champ non-blob), même classe que les headers.",
+        "sport": "running"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "notes / progression_logic : acronymes « HIT » (utilisé comme part haute-intensité, ex. « 65% LIT + 21% MP + 14% HIT », « part HIT monte à ~30-35% »), + spm/HRmax/drop/TFL non glossés. Dans running-*.json",
+        "description": "VÉRIF ARBITRE — contredit partiellement Sally/Maxime : « HIT » n'est PAS « HIIT » mal orthographié. Le contexte montre une triade d'entraînement polarisé LIT/MP/HIT (Low/Moderate/High Intensity Training) ; c'est une abréviation coach intentionnelle, pas une typo. MAIS elle reste cryptique et non glossée au point d'usage, comme spm/HRmax/drop/TFL (TFL absent du glossaire, spm/HRmax/drop non branchés au matcher zones). Donc bug de jargon non encadré, pas bug typographique. Les autres sigles cités (RPE/VMA/VDOT/VO2max/FCmax) sont déjà dans le glossaire — pas un bug.",
+        "suggestedFix": "Ne PAS « corriger HIT→HIIT » (faux positif). À la place : expliciter la triade à sa 1re occurrence (« faible / modérée / haute intensité ») ou la glossariser. Glossariser/expliciter spm (cadence, déjà entrée 'cadence' au glossaire non branchée), HRmax, drop, TFL. Laisser RPE/VMA/VDOT/VO2max/FCmax tels quels (déjà glossés).",
+        "note": "Faux positif corrigé : Sally et Maxime supposaient « HIT = HIIT typo » ; le contexte LIT/MP/HIT prouve une abréviation polarisée intentionnelle. Reste clear_bug pour défaut de glossage de HIT/spm/HRmax/drop/TFL.",
+        "sport": "running"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "notes : expressions de coaching anglophones brutes « negative split » (7×), « cumulative fatigue » (2×), « moderate-intensity rut ». Dans running-*.json (champs notes, contexte FR)",
+        "description": "Expressions anglaises laissées brutes dans des notes au contexte FR, non glossées et non traduites. Bruit anglais objectif (différent des termes techniques glossés type fartlek).",
+        "suggestedFix": "Traduire dans les notes : « negative split » → « finir plus vite qu'au départ », « cumulative fatigue » → « fatigue accumulée », « moderate-intensity rut » → « ornière d'intensité moyenne / routine d'allure moyenne ». À intégrer au chantier i18n B2 contenu running.",
+        "note": "Sally P2 / Maxime (sous P1 sigles) d'accord ; objectif, pas de choix produit.",
+        "sport": "running"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "match_key : « Bloc run/walk 1 min / 1 min 30 », « Calf raises bipodal », « Single-leg calf raises excentriques » (running-*.json). Vérif fuite UI",
+        "description": "VÉRIF ARBITRE — quasi faux positif : match_key est un champ d'appariement INTERNE. Recherche Swift : aucune vue ne rend match_key à l'écran (seule occurrence Views = un commentaire dans SessionFocusView.swift sur originalName sanskrit, sans rapport). Le risque de fuite est donc théorique, non avéré dans le flow actuel. Je conserve en clear_bug à sévérité réduite (de P1 surveillance → P1 garde-fou) pour acter qu'aucun fallback d'affichage ne doit jamais retomber sur match_key.",
+        "suggestedFix": "Aucune correction de contenu requise (champ interne). Action préventive : ajouter/vérifier un test ou une assertion garantissant que tout affichage exercice utilise name/displayName et jamais match_key en fallback. Ne PAS investir à traduire match_key (interne).",
+        "note": "Sally/Maxime craignaient une fuite ; vérif code : match_key n'est rendu nulle part. Maintenu comme garde-fou objectif (clear_bug léger), pas comme correction de contenu.",
+        "sport": "running"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "cycling-recreational-endurance-10sem.json cooldown W1 (fr) : '8 min FTP-Z1 tres facile pour flush lactate'",
+        "description": "VERIFIE : anglicisme brut 'flush lactate' dans un texte FR utilisateur (et la version EN existe deja correctement). Traduction manquante, aucune decision produit.",
+        "suggestedFix": "Remplacer le segment FR par 'pour favoriser la recuperation' ou 'pour eliminer la fatigue des jambes'. Verifier coherence EN/ES.",
+        "note": "Doublon Sally P1 + Maxime P1, fusionne. Pur bug de traduction.",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "safety_notes / alternatives FR des 4 templates cycling : 'Hot foot', 'Saddle sores', 'chamois pressure', 'shoulder strain'",
+        "description": "VERIFIE dans les 4 JSON : termes anglais bruts dans des champs FR. 'Hot foot', 'Saddle sores', 'chamois pressure', 'shoulder strain' n'ont pas de raison d'etre en anglais et ne sont pas glossarises.",
+        "suggestedFix": "Traduire : Hot foot->'pieds qui chauffent', Saddle sores->'irritations de selle', chamois pressure->'pression du fond de cuissard', shoulder strain->'tension aux epaules'. Verifier EN/ES.",
+        "note": "Doublon Sally P1 + Maxime P1. 'home-trainer' et 'bike fit' EXCLUS de ce fix : termes acceptes en FR cycliste (les deux personas reconnaissent home-trainer comme acceptable), juste figer l'orthographe.",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Meta-champs racine (name, summary, default_objective, assumed_profile, progression_logic, safety_notes) - TOUS les 4 templates cycling FR-only",
+        "description": "VERIFIE en parsant les JSON : ces 6 meta-champs sont des dicts a cle 'fr' uniquement sur LES QUATRE niveaux (beginner, recreational, regular, competitive), alors que les sessions sont trilingues. En app EN/ES, titre+resume de programme apparaitront en FR, rupture de localisation des l'ecran de selection.",
+        "suggestedFix": "Completer les blocs EN/ES sur les 6 meta-champs des 4 templates, a l'identique du contenu des sessions.",
+        "note": "Doublon Sally P1 + Maxime P2 -> retenu P1 (visible des la selection). CORRECTION DES PERSONAS : ils disent 'beginner+recreational', la verif montre que c'est les 4 niveaux.",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Champ duration utilise comme consigne composite : '3 min a 95-100 rpm + 3 min a 85 rpm', '8 min Sweet-Spot', '45 km / ~95 min'",
+        "description": "VERIFIE : duration porte tantot une duree, tantot une distance ('45 km / ~95 min'), tantot une alternance cadence+zone. Incoherence de modele qui fragilise tout rendu s'appuyant sur duration (SessionStatsCalculator agrege deja targetZone et duration). Redondance Sweet-Spot present a la fois en target_zone ET dans le texte duration.",
+        "suggestedFix": "Normaliser : duration=duree pure, distance=champ dedie, zone=target_zone, cadence/alternance->notes ou champ structure. Retirer Sweet-Spot du texte duration quand deja en target_zone.",
+        "note": "Doublon Sally P1 + Maxime P1. Bug de modele objectif, pas un choix produit.",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "competitive : exos renfort 'Hip thrust au sol', 'Pont fessier leste (hip thrust)', 'Pont fessier (deux jambes)' - meme concept, 3 noms",
+        "description": "VERIFIE : hip thrust (43 occ) ET pont fessier (23 occ) coexistent dans le meme template. Pour l'usager, pont fessier = hip thrust nommes differemment, on ne sait pas si ce sont 3 exos ou le meme. La memoire projet note deja un mistag 'hip thrust sol -> hinge'.",
+        "suggestedFix": "Une seule terminologie de base (pont fessier) declinee : 'Pont fessier (2 jambes)', 'Pont fessier (1 jambe)', 'Pont fessier leste'. Ne pas faire coexister hip thrust et pont fessier comme deux notions.",
+        "note": "Doublon Maxime P1 (Sally l'evoque dans son finding nommage). Distinct du finding politique FR/EN : ici c'est une incoherence nom-vs-concept dans UN MEME sport -> clear_bug. Aligner avec correction mistag deja connue.",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Convention jour-de-course : 'CYCLOSPORTIVE J7' (competitive) coexiste avec 'JOUR J' / 'J-2' / 'J-1' ; EN melange RACE DAY / D-2 / D-1",
+        "description": "VERIFIE : 'CYCLOSPORTIVE J7' (3 occ) vs 'jour J/JOUR J' + J-2/J-1 ailleurs. 'J7' est ambigu (jour 7 ? J+7 ?) et diverge de la convention J-/JOUR J. Notation incoherente, pas un choix produit.",
+        "suggestedFix": "Uniformiser : JOUR J / J-1 / J-2 partout en FR, RACE DAY / D-1 / D-2 en EN. Bannir 'J7'.",
+        "note": "Doublon Sally P2 + Maxime P1 -> retenu P1 (Maxime montre que ca cree une vraie confusion 'quel jour est la course'). Le sous-point 'opener/priming/activation sprints = 3 trads EN' traite separement (product_decision nommage).",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "Orthographe Sweet-Spot non figee : 'Sweet-Spot', 'Sweet spot', 'sweet spot', 'SWEET-SPOT', 'Sweet-spot' dans les memes templates",
+        "description": "VERIFIE : 6+ variantes orthographiques du meme terme par template. Independamment de la decision de garder ou non le terme, l'orthographe doit etre figee (sinon le matcher glossaire et la coherence visuelle souffrent). GlossaryMatcher normalise mais l'affichage reste heterogene.",
+        "suggestedFix": "Figer une seule graphie ('Sweet-Spot') partout dans les 4 JSON.",
+        "note": "Extrait des findings Sweet-Spot des deux personas. La variance orthographique = clear_bug ; le choix DE GARDER le terme = product_decision separe ci-dessous.",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "Objectif competitive : 'PR personnel'",
+        "description": "VERIFIE conceptuellement (Sally) : 'PR' = Personal Record, donc 'PR personnel' = 'record personnel personnel', redondant + melange sigle EN/mot FR.",
+        "suggestedFix": "FR : 'record personnel'. EN : 'PR' ou 'personal best'.",
+        "note": "Finding Sally P2 seul, Maxime ne l'a pas vu mais c'est objectif. Retenu clear_bug.",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "Titre de séance (competitive) : « BLOC LACTIQUE SP1 dédié + sprint SP3 » / « DEDICATED SP1 LACTIC BLOCK + SP3 sprint »",
+        "description": "Vérifié littéralement. Titre 100% code/jargon (« LACTIQUE » physio + SP1/SP3 non décodés), unique outlier : les séances soeurs du même template font déjà l'effort français (« Allure de course SP1 — 8 × 50 m à allure 200 m », « Bloc lactique SP1 — 3 × (4 × 50 m à allure 200 m) »).",
+        "suggestedFix": "Réécrire sur le modèle des soeurs déjà présentes : « Allure de course soutenue + sprints courts ». Retirer « LACTIQUE »/SP1/SP3 du titre visible.",
+        "note": "Les deux le flaggent P0. clear_bug et non product_decision car un pattern de titre meilleur existe DÉJÀ dans le même fichier — aligner sur l'existant est objectif. (Vit dans competitive, pas la cible beginner affichée.)",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "dosageSamples — champ « duration » contenant des distances et le double-protocole « 3500 m continu OU 30 × 100 m @CSS récup 10 s (3000 m qualité) »",
+        "description": "Vérifié : duration = « 25 m », « 5 m », « 400 m continu », et un cas « 3500 m continu OU 30 × 100 m @CSS récup 10 s (3000 m qualité) ». L'axe réel est la distance. Le « OU » concatène deux protocoles + un code @CSS + un commentaire, illisible dans une carte.",
+        "suggestedFix": "Normaliser : champ distance dédié quand l'axe est la distance, scinder le double-protocole en option A / option B, décoder @CSS, sortir « (3000 m qualité) » du champ data.",
+        "note": "Les deux le flaggent. clear_bug (modélisation objectivement fausse + champ illisible). Nuance vérifiée : la natation N'EST PAS routée timed (SessionFocusView affiche duration comme chip via sanitizedForDisplay, pas comme timer) — le risque « chrono 25 min » est surestimé ; le bug réel est l'illisibilité et la modélisation.",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "exerciseNames — entrée « External rotation band — manchette rotateurs » (valeur fr ELLE-MÊME en anglais), doublon de « Rotation externe à l'élastique (coiffe des rotateurs) »",
+        "description": "Vérifié : dans swimming-beginner le champ « fr » vaut littéralement « External rotation band — manchette rotateurs » (anglais en tête) répété 3×, alors qu'une version propre « Rotation externe à l'élastique (coiffe des rotateurs) » existe dans swimming-regular.",
+        "suggestedFix": "Remplacer la valeur fr par « Rotation externe à l'élastique (coiffe des rotateurs) » partout, fusionner le doublon. Auditer les autres noms fr commençant par de l'anglais nu.",
+        "note": "Les deux le flaggent. clear_bug : un champ « fr » dont le texte est anglais est objectivement faux, et la bonne traduction existe déjà ailleurs.",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Titres en MAJUSCULES + anglicisme « checklist » : « SÉANCE PHARE — nage longue raccourcie + checklist autonomie », « RETEST de seuil 400+200 m », « CHECKLIST AUTONOMIE — 4 critères… »",
+        "description": "Vérifié : plusieurs titres crient en capitales tandis que la majorité du catalogue est en casse de phrase — ton typographique incohérent. « checklist » est un anglicisme dans un titre alors que « bilan » existe.",
+        "suggestedFix": "Uniformiser en capitale d'attaque seulement (« Séance phare — nage longue + bilan autonomie », « Retest de seuil 400+200 m »). Remplacer « checklist » → « bilan ».",
+        "note": "Les deux le flaggent (Sally P1 clear_bug, Maxime P1 product_decision). Je tranche clear_bug : casse cohérente = règle objective déjà appliquée au reste du catalogue.",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "i18n — racine FR-only : name / objective / summary / progression_logic / safety_notes sans bloc EN/ES sur les 4 templates natation",
+        "description": "Vérifié programmatiquement sur swimming-beginner : name/summary/progression_logic/safety_notes n'ont qu'une clé « fr » (objective = null), alors que goals/themes/exercices ont fr+en+es. En locale EN/ES l'utilisateur verra le titre/objectif en français au milieu de contenu traduit.",
+        "suggestedFix": "Compléter les blocs EN/ES de name/objective/summary/progression_logic/safety_notes sur les 4 templates natation. Ajouter un test de complétude i18n (tout champ FR → EN+ES) pour bloquer la régression.",
+        "note": "Les deux le flaggent. clear_bug le plus net du lot : couverture i18n objectivement incomplète, vérifiée dans le JSON.",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "sessionTitle — « Test de seuil + introduction au seuil + renforcement à sec scapulaire (CSS) »",
+        "description": "Vérifié littéralement. Le titre dit à la fois « Test de seuil » ET « introduction au seuil » — on teste et on introduit la même chose, redondance confuse, plus « (CSS) » non expliqué accolé.",
+        "suggestedFix": "Supprimer la redondance : « Test de seuil + renforcement à sec des épaules ». Traiter (CSS) via la politique de décodage zone.",
+        "note": "Seul Maxime l'a vu (Sally l'a manqué). Je confirme clear_bug : la redondance « test + introduction » est objectivement fautive et corrigeable sans choix produit. P1 car titre directement affiché.",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Notes — anglais non traduit gratuit : « 'Comfortably hard' — peux dire 4-5 mots mais pas phrase entière »",
+        "description": "Vérifié dans les notes : le repère d'effort « Comfortably hard » est laissé en anglais entre guillemets alors que l'explication qui suit est en FR. Anglicisme gratuit dans une consigne d'intensité.",
+        "suggestedFix": "Traduire : « Effort confortablement difficile — tu peux dire 4-5 mots mais pas une phrase entière. »",
+        "note": "Sally l'isole en P2/clear_bug ; je le remonte au lot anglicismes objectifs. clear_bug : traduction directe sans enjeu produit. Distinct de la vulgarisation des notes savantes (product_decision ci-dessous).",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "exerciseNames / blockNames — doublon de bloc « Bloc accélérations allure seuil 4×25 m (strides, CSS) » présent à la fois en blockName et exerciseName (cf aussi « Drills de catch + roulis du corps (body roll) »)",
+        "description": "Vérifié : certains libellés de bloc se retrouvent dupliqués en nom d'exercice, créant une redite dans l'arborescence séance. Signalé par les deux personas en marge du doublon External rotation.",
+        "suggestedFix": "Auditer les chevauchements blockName/exerciseName et dédupliquer (le nom de bloc ne doit pas réapparaître comme exercice).",
+        "note": "clear_bug : redite structurelle objective. P2 car cosmétique d'arborescence, pas bloquant.",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Titres de programmes : \"Triathlon competitive — Half Ironman 70.3\", \"Triathlon regular — Distance M (Olympique)\", \"Triathlon découverte\"",
+        "description": "\"competitive\" et \"regular\" sont des labels de NIVEAU en anglais restés dans le titre FR user-facing, alors que \"découverte\" est en FR — incohérence flagrante dans le même set de titres, le nom le plus visible de l'app. Les deux personas le relèvent.",
+        "suggestedFix": "Traduire les labels de niveau en cohérence avec \"découverte\" : \"competitive\"→\"confirmé\", \"regular\"→\"régulier\"/\"intermédiaire\".",
+        "note": "Sally et Maxime d'accord ; correction objective (les autres labels de niveau sont déjà en FR), donc clear_bug malgré le wording exact à choisir.",
+        "sport": "triathlon"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Goals hebdo / notes : disciplines en anglais brut \"swim\", \"bike\", \"run\", \"brick\", \"S&C\", \"S&C/mob\"",
+        "description": "Disciplines de base en anglais dans des champs FR user-facing. swim/bike/run ont des équivalents FR triviaux (natation/vélo/course). \"S&C\" et \"S&C/mob\" (Strength & Conditioning) ne sont jamais explicités — l'abréviation la plus opaque du set, jamais déchiffrable par un débutant.",
+        "suggestedFix": "swim→natation, bike→vélo, run→course (traductions directes). \"brick\"→\"enchaînement (brick)\" 1re occurrence puis glossarié. \"S&C\"→\"renforcement\", \"S&C/mob\"→\"renforcement + mobilité\".",
+        "note": "Les deux personas convergent. Pour swim/bike/run/S&C ce sont des traductions directes (clear_bug) ; \"brick\" relève d'un terme à enseigner traité dans le finding densité-titres/glossaire ci-dessous.",
+        "sport": "triathlon"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Template beginner (\"Triathlon découverte — 10 semaines\") : champs racine name/summary/objective/safety_notes/progression_logic en FR seul, sans en/es",
+        "description": "Couverture i18n incohérente : les goals hebdo de ce template SONT traduits en/es mais les champs racine restent fr-only, alors que les templates des autres niveaux sont traduits. En affichage EN/ES, l'utilisateur verra titre/objectif/consignes sécurité du programme débutant en français — régression de localisation sur le programme d'entrée de gamme, le plus exposé aux nouveaux users.",
+        "suggestedFix": "Compléter les traductions en/es des champs racine du template beginner (name, summary, objective, safety_notes, progression_logic) pour aligner sur les autres niveaux et sur ses propres goals hebdo déjà traduits.",
+        "note": "Findée seule par Sally (le novice teste en FR) ; trou i18n objectif et vérifiable, clear_bug.",
+        "sport": "triathlon"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "progression_logic / champs FR : \"periodization Joe Friel\", \"Friel periodization complète\"",
+        "description": "\"periodization\" (orthographe EN) dans des champs rédigés en français. Le terme FR est \"périodisation\".",
+        "suggestedFix": "Remplacer \"periodization\"→\"périodisation\" dans tous les champs FR.",
+        "note": "Findé par Sally seul ; faute objective (orthographe EN dans champ FR), clear_bug.",
+        "sport": "triathlon"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "dosageSamples : annotation de brouillon laissée dans le texte — \"Bloc tempo soutenu — 20 min (88-94 %) [du seuil, sous-entendu]\"",
+        "description": "Le fragment \"[du seuil, sous-entendu]\" ressemble à une note interne/annotation de rédaction laissée dans un champ user-facing. Ça fait brouillon et le \"%\" n'est pas explicité (88-94 % de quoi).",
+        "suggestedFix": "Retirer le \"[... sous-entendu]\". Expliciter \"88-94 % de ton allure seuil\" une fois.",
+        "note": "Findé par Maxime seul mais c'est un artefact de rédaction objectif qui fuit en prod, clear_bug net. La vulgarisation de \"seuil\"/\"tempo\"/\"Sweet-Spot\" relève du finding zones (P0) ci-dessus.",
+        "sport": "triathlon"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "Noms d'alternatives en franglais : \"Vélo trainer indoor Z2\", \"Bike trainer indoor\", \"Side-lying leg raise\", \"External rotation band\", \"Bridge isométrique\", \"step-ups bas\"",
+        "description": "Noms d'alternatives mélangeant FR et EN dans une même expression (\"Vélo trainer indoor\", \"Bridge isométrique\", \"step-ups bas\") — mélange FR/EN non systématisé à l'intérieur d'un même libellé.",
+        "suggestedFix": "Harmoniser sur la convention FR-en-tête + EN entre parenthèses : \"Vélo sur home-trainer (intérieur)\", \"Élévation latérale jambe (side-lying leg raise)\", \"Rotation externe à la bande (external rotation)\", \"Pont isométrique\", \"Montées sur step basse\".",
+        "note": "Findé par Sally ; cohérence d'application d'une convention déjà adoptée → clear_bug (le libellé FR exact des exos relève du référentiel transverse muscu, P1 ci-dessus).",
+        "sport": "triathlon"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "Notes d'exercice + dosageSamples — toutes séances muscu : « GRILLE RPE / RIR — À LIRE AVANT TA TOUTE PREMIÈRE SÉANCE » collée en intro de note, et RPE/RIR en clair dans les dosageSamples (« RPE 5-6 », « RPE 6-7 », « RPE 7-8 »)",
+        "description": "Le sport muscu n'a jamais reçu le nettoyage RPE→« effort N sur 10 » déjà appliqué aux autres sports de l'app. Une grille RPE/RIR entière est collée en intro de note d'exercice, et les sigles RPE/RIR apparaissent en clair dans les schémas de dosage vus par l'utilisateur. Jargon de coach illisible pour un débutant et incohérence flagrante avec le reste de l'app déjà nettoyé.",
+        "suggestedFix": "Appliquer la conversion RPE→« effort N sur 10 » aux templates muscu (dosageSamples, notes, warmups). Remplacer RIR par « reps en réserve » / sensation. Retirer la grille RPE/RIR de la note d'exo, la remplacer par la consigne d'effort vulgarisée du référentiel dosage v2.",
+        "note": "Les deux personas identiques sur ce P0 ; c'est exactement la dette « templates muscu pas nettoyés RPE→effort » déjà notée en mémoire — bug objectif, cohérence avec les 9 autres sports déjà nettoyés.",
+        "sport": "strengthTraining"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "safety_notes & notes RDL/Hip Thrust : « DRAPEAUX ROUGES → avis médical immédiat », « Lombalgie aiguë », « Sciatique (douleur irradiante) », « douleur lancinante au bas du dos », « ne pas pousser à travers la douleur »",
+        "description": "Mot « douleur » et vocabulaire médical (lombalgie, sciatique, douleur irradiante, avis médical immédiat) très présents dans des champs vus par l'utilisateur. Risque EU MDR / mots bannis déjà identifié comme dette, et formulations anxiogènes pour un débutant qui veut juste faire de la muscu chez lui.",
+        "suggestedFix": "Auditer ces notes contre la liste de mots bannis EU MDR (« douleur », « lombalgie », « sciatique ») et passer par le garde-fou EU MDR existant avant merge. Reformuler en sensation/inconfort non médical (« si une gêne inhabituelle au bas du dos apparaît, arrête et fais-toi accompagner par un professionnel ») sans nommer de pathologie ni poser de diagnostic.",
+        "note": "Convergence des deux personas. Conformité EU MDR = contrainte légale non négociable, donc clear_bug et non décision produit ; reformulation à valider contre le garde-fou existant.",
+        "sport": "strengthTraining"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Warmups, cooldowns et notes : « world's greatest stretch », « chest stretch doorway », « lat stretch », « hanging stretch », « PAUSED SQUAT/BENCH », « drive out of the hole », « Realization Block », « compound », « compound lombaire-loaded », « intent vitesse maximale », « box squat », « wall sit », « trap bar deadlift », « swap », « heavy », « rounding », « bracing », « ego lifting »",
+        "description": "Anglais brut laissé dans des champs FR, en contradiction directe avec la traduction FR/EN/ES propre des name/warmup/cooldown faite ailleurs. Le nom d'exercice est traduit mais les notes/warmups gardent du jargon anglais non expliqué — incohérence visible, et le novice ne sait littéralement pas quel geste faire.",
+        "suggestedFix": "Traduire/vulgariser ces termes dans les champs FR : « world's greatest stretch »→« étirement complet en fente », « chest stretch doorway »→« ouverture de poitrine dans l'embrasure de porte », « lat stretch »→« étirement grand dorsal », « PAUSED SQUAT »→« squat avec pause 1-2 s en bas », « drive out of the hole »→« relance depuis la position basse », « compound »→« exercice polyarticulaire », « Realization Block »→nom de phase en clair ou retiré, etc. Même rigueur de trad que sur les name.",
+        "note": "Sally et Maxime convergent ; j'ai fusionné leurs deux findings (notes/jargon + noms d'étirements warmup/cooldown) car même nature : anglais non traduit qui DOIT l'être par cohérence — bug objectif, pas de choix produit.",
+        "sport": "strengthTraining"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "notesSamples (« Séance bilan ») : « la suite naturelle est un programme `recreational` upper/lower 12 sem »",
+        "description": "Fuite d'un id technique de niveau machine (`recreational`) dans une note vue par l'utilisateur, écrit en anglais entre backticks. Incompréhensible et non-professionnel côté user.",
+        "suggestedFix": "Remplacer `recreational` par le libellé user FR du niveau (« un programme loisir/intermédiaire upper/lower 12 semaines ») ou retirer la référence au code interne.",
+        "note": "Convergence des deux personas ; tag technique qui fuit = bug objectif sans arbitrage.",
+        "sport": "strengthTraining"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "dosageSamples : « 1 x AMRAP 1 set | %1RM 85-90% | repos 300s », « 1 x 1 (3 attempts max)... (test 1RM) »",
+        "description": "Abréviations cryptiques et anglaises dans le schéma de dosage affiché : « AMRAP », « test 1RM », « 3 attempts max ». « 1 x AMRAP 1 set » est aussi redondant/maladroit. Le novice ne sait pas ce qu'il doit faire.",
+        "suggestedFix": "Remplacer « AMRAP »→« max de reps », « test 1RM »→« test de charge max (1 répétition) », « 3 attempts max »→« 3 essais max ». Reformuler « 1 x AMRAP 1 set »→« 1 série, max de reps ».",
+        "note": "Trad/vulgarisation d'abréviations cryptiques anglaises = bug objectif. NB : le sort des kg/%1RM eux-mêmes relève de la décision produit competitive ci-dessous ; ici on ne traite que les sigles à traduire sans débat.",
+        "sport": "strengthTraining"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "target_zone — yoga-regular-vinyasa-10sem.json (template regular / Vinyasa)",
+        "description": "La valeur target_zone 'RPE 6-7' fuit du jargon brut dans un champ dont toutes les autres valeurs sont vulgarisées ('maintien 30/45/60 s', 'respiration guidée', 'réparateur', 'méditation'). C'est la SEULE occurrence RPE de tout le set yoga (vérifié : grep RPE = uniquement ce template). Incompréhensible pour un pratiquant grand public, incohérent au sein du référentiel des valeurs, et contraire à la doctrine dosage caméléon V2 (effort = sensation/note sans jargon).",
+        "suggestedFix": "Remplacer 'RPE 6-7' par une valeur d'effort vulgarisée cohérente avec le reste du champ (ex. 'effort soutenu' ou 'effort 6-7/10' si l'échelle 1-10 est exposée ailleurs). Substitution ponctuelle, aucune autre occurrence à auditer.",
+        "note": "Sally et Maxime d'accord, et c'est factuellement la seule fuite RPE du set — correction objective sans choix produit.",
+        "sport": "yoga"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Titres de séance + notes + warmups, surtout yoga-beginner-initiation-6sem.json : 'Découverte au sol — Cat-Cow et Child's pose', 'Cutback', 'Cat-Cow' (≈144 occ.), 'Down Dog' (×27), 'restorative'/'hold'/'body scan'/'finishing'/'breath-led'",
+        "description": "Anglais brut mélangé au FR dans des titres/consignes pour débutants FR, alors que les équivalents FR EXISTENT déjà dans les mêmes fichiers (vérifié : 'Chat-vache (marjaryasana-bitilasana)' coexiste avec 'Cat-Cow' ; 'Chien tête en bas (adho mukha svanasana)' coexiste avec 'Down Dog'). Même geste = deux noms selon l'endroit → un débutant croit à deux postures différentes. Présence aussi de 'Cutback' (jargon surf/skate hors-sport) et anglicismes 'restorative'/'hold'/'body scan'/'finishing'.",
+        "suggestedFix": "Normaliser sur les termes FR déjà présents : Cat-Cow→chat-vache, Down Dog→chien tête en bas, Child's pose→posture de l'enfant, restorative→réparateur, hold→maintien/tenue, body scan→balayage corporel, finishing→clôture/retour au calme, breath-led→rythmé sur la respiration. Supprimer 'Cutback'. Passe de cohérence terminologique sur les 4 templates.",
+        "note": "Les deux personas d'accord ; bug objectif puisque la traduction de référence existe déjà dans le même fichier — uniformiser, pas trancher un nommage.",
+        "sport": "yoga"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Champ duration competitive/beginner : anglicismes 'hold', 'finishing', 'breath-led' ('30 sec hold', '3.5 min finishing', '17 respirations breath-led')",
+        "description": "Sous-cas distinct isolé car situé dans le champ duration (affiché tel quel). 'hold', 'finishing', 'breath-led' sont des anglicismes qui fuient dans un champ user-facing alors que des équivalents FR neutres existent.",
+        "suggestedFix": "Remplacer dans duration : 'hold'→'maintien', 'finishing'→'clôture', 'breath-led'→'au rythme de la respiration'. La question des UNITÉS hétérogènes est traitée séparément (product_decision).",
+        "note": "J'isole ce sous-cas en clear_bug car traduire les anglicismes ne demande aucun arbitrage ; la normalisation des unités en demande un (finding séparé).",
+        "sport": "yoga"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "Notes FR récurrentes (les 4 templates HIIT) — « Format first-class … » ; ex. hiit-beginner-6sem.json:107, hiit-recreational-8sem.json:24/107/522/1892/2385/2587/3181/4670, hiit-regular-10sem.json:24/107/182/527/839/1264/1345/3717, hiit-competitive-athletique-12sem.json:24/111/187 (+autres)",
+        "description": "« Format first-class » est une mistranslation systématique de « format de base/principal/socle ». L'expression ne veut rien dire en FR (ni en EN dans ce contexte) et apparaît dans ~18+ notes sur les 4 templates. Le user lit un terme creux dès la séance découverte/débutant et perd confiance dans le sérieux du contenu. Confirmé par Sally ET Maxime, vérifié dans les fichiers shippés.",
+        "suggestedFix": "Remplacer partout « Format first-class » par « Format principal » (ou « Format socle de la séance »). Audit grep sur les 4 templates HIIT (FR et EN, car la faute est récurrente) puis Edit ciblé.",
+        "note": "Doublon Sally+Maxime, fusionné. Vérifié dans les JSON shippés (Resources/Templates), faute purement mécanique, aucune décision produit.",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "hiit-beginner-6sem.json:183 — note step-jacks FR « tu pose un pied sur le côté »",
+        "description": "Faute de conjugaison « tu pose » → « tu poses » en plein milieu d'une consigne user-facing. Très visible, nuit à la crédibilité, surtout en séance débutant.",
+        "suggestedFix": "Corriger « tu pose » → « tu poses » et relire la phrase complète.",
+        "note": "Doublon Sally(P1)+Maxime(P0), retenu P0 car faute d'orthographe visible dans une consigne d'action ; correction mécanique.",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "hiit-beginner-6sem.json:24 — summary débutant « Progression doce des ratios »",
+        "description": "Typo « doce » → « douce » dans le résumé de programme (champ très visible, premier contact). Confirmé Sally+Maxime, vérifié dans le fichier.",
+        "suggestedFix": "Corriger « doce » → « douce ».",
+        "note": "Doublon Sally+Maxime, fusionné. Correction mécanique.",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "Top-level des 4 templates HIIT — name / summary / progression_logic / safety_notes / assumed_profile / default_objective",
+        "description": "Ces 6 champs sont des dicts FR-only (vérifié : keys=['fr']) alors que tous les exercises (name/notes/alternatives) ET les warmups/cooldowns sont trilingues fr/en/es. En app EN/ES, le titre du programme, le résumé, la logique de progression et les notes sécurité s'afficheront en français au milieu d'une UI EN/ES. Régression i18n immédiate et visible.",
+        "suggestedFix": "Compléter les blocs {fr,en,es} sur ces 6 champs top-level pour les 4 templates HIIT (même pipeline IA + relecture agent que la dette B2). Cohérent avec le chantier i18n B2 en cours.",
+        "note": "Sally P0 correcte et vérifiée. C'est aussi le SEUL vrai manque i18n : le P0 de Maxime « noms et warmups en anglais » est un FAUX POSITIF — vérifié que tous les noms d'exos ET warmups ont des blocs fr/en/es valides ; le resolver sert le FR. Classé clear_bug car la cible (trilingue) est déjà la règle établie dans ces mêmes fichiers, pas une décision produit.",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "hiit-beginner-6sem.json:381/820, hiit-recreational-8sem.json:455 — nom d'exo « Dead bug (bug mort, anti-cambrure) »",
+        "description": "Glose parenthétique en calque littéral absurde : « bug mort ». Le terme consacré FR est « dead bug » tel quel ; « bug » évoque un insecte ou un bug informatique. La parenthèse dessert au lieu d'aider. 3 occurrences vérifiées.",
+        "suggestedFix": "Remplacer par « Dead bug (gainage anti-cambrure) » : garder le terme consacré, expliquer la FONCTION, pas la traduction mot-à-mot du nom.",
+        "note": "Doublon Sally+Maxime, fusionné. Calque de traduction objectivement faux → clear_bug (pas un choix produit, le bon libellé fait consensus entre les deux personas).",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Nom d'exo « Soulevé de terre roumain haltères (RDL) — prépare le swing kettlebell de la semaine 5 »",
+        "description": "Le champ NOM embarque une justification de programmation (« prépare le swing kettlebell de la semaine 5 »). C'est du contenu de note qui pollue le nom et casse l'alignement avec les autres exos. Bon contenu, mauvais emplacement.",
+        "suggestedFix": "Nom = « Soulevé de terre roumain aux haltères (RDL) ». Déplacer « prépare le swing kettlebell de la semaine 5 » dans la note de l'exercice.",
+        "note": "Doublon Sally+Maxime. Mauvais champ = clear_bug structurel (déplacement, pas arbitrage produit). Note : « swing kettlebell » lui-même relève du chantier glossaire ci-dessous.",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "Summary programme fastpacking (default_objective competitive) + autres occurrences — « 15-25% HIT »",
+        "description": "« HIT » au lieu de « HIIT » dans un texte résumé user-facing. Vérifié dans les templates : 3 occurrences de « HIT », zéro « HIIT ». Bug récurrent déjà repéré sur d'autres sports (cf audit didactique 10 sports). Les deux personas le signalent.",
+        "suggestedFix": "Remplacer « HIT » par « HIIT » partout. La glose (« HIIT — entraînement fractionné de haute intensité ») relève de la politique de glossaire transverse (voir finding product_decision summary).",
+        "note": "Sally=P0, Maxime=P0. Typo objective confirmée par grep (3× HIT, 0× HIIT) — clear_bug indiscutable. Le remplacement HIT→HIIT est mécanique ; seule la glose est une décision produit séparée.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "sessionTitle « Marche endurance endurance facile (zone 2) — 75 min plat à rolling » (hiking-recreational-day-hikes-10sem)",
+        "description": "Deux bugs cumulés. (1) Doublon « endurance endurance » : confirmé 9 occurrences dans le template, et UNIQUEMENT en FR (la version ES « Caminata suave (zona 2) » est propre) → c'est bien la composition du titre FR qui colle un fragment caméléon (« endurance facile (zone 2) ») par-dessus un libellé manuel contenant déjà « endurance ». (2) « rolling » (anglais = terrain vallonné) non traduit dans un titre user-facing.",
+        "suggestedFix": "Dédupliquer le mot répété à la composition (« Marche d'endurance facile (zone 2) — 75 min, plat à vallonné ») et traduire « rolling » → « vallonné ». Comme le doublon est FR-only et généré, corriger la logique de composition de titre, pas seulement la chaîne.",
+        "note": "Sally=P1, Maxime=P0. Je tranche P0 : un mot répété deux fois + un mot anglais en plein titre = lecture cassée, ça « fait bug » pour l'utilisateur (Maxime) ; et c'est confirmé FR-only au grep, donc régression de composition, pas juste une coquille isolée.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "sessionTitle « Sortie en montée douce 200 m de dénivelé (D+) — 45 min, 200 m de dénivelé »",
+        "description": "Le dénivelé « 200 m » est répété deux fois dans le même titre (une fois en clair avec le sigle D+, une fois dans le segment de dosage). Redondance générée par la concaténation libellé manuel + fragment caméléon.",
+        "suggestedFix": "Ne garder qu'une occurrence : « Sortie en montée douce — 45 min, 200 m de dénivelé (D+) ».",
+        "note": "Sally=P1, Maxime=P0. Je tranche P0 : même nature de bug de composition que le doublon « endurance endurance » ci-dessus ; cohérence de sévérité avec un défaut qui se lit comme un bug pour le user.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "sessionTitle « endurance facile (zone 2) base — Marche plate technique pose pieds »",
+        "description": "Titre qui commence par une minuscule (« endurance »), inverse l'ordre attendu (fragment de dosage avant le libellé) et a une syntaxe télégraphique cassée (« technique pose pieds » sans mots de liaison). Trahit une composition auto non relue. Les deux personas le signalent.",
+        "suggestedFix": "Recomposer : « Marche plate — endurance facile (zone 2), technique de pose des pieds ». Majuscule en tête, libellé d'abord, dosage ensuite, ajouter les liaisons.",
+        "note": "Sally=P1, Maxime=P1. Bug de composition objectif (capitalisation + ordre cassés) → clear_bug. Reste P1 : moins illisible que le doublon pur, mais à corriger dans la même passe sur la logique de titre.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "note hill repeats (« Répétitions en côte (hill repeats) ») — « sustained climbing », « gradient-moderate », « pack-day » en pleine phrase FR",
+        "description": "Tags techniques anglais bruts collés dans une note FR user-facing. Confirmé au grep : « sustained climbing », « gradient-moderate », « pack-day » présents en masse sur tous les templates hiking. « gradient-moderate » avec tiret ressemble à un code technique qui a fui dans le texte. Un user FR ne comprend pas la consigne.",
+        "suggestedFix": "Traduire/nettoyer : « sustained climbing » → « montée soutenue », « gradient-moderate » → « pente modérée », « pack-day » → « sac de la journée ». Supprimer les tirets de tags techniques.",
+        "note": "Sally=P1, Maxime=P0. Je tranche P0 : ce ne sont pas des termes de jargon « optionnels » mais de l'anglais brut + des tags techniques qui fuient dans une consigne d'exécution → le novice ne peut PAS exécuter l'exercice. Traduction objective sans choix produit → clear_bug.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "note marche endurance Z2 — « Allure Z2-cardiac (Aerobic Threshold Uphill Athlete) = 65-78% FCmax », « Conversational soutenu »",
+        "description": "Jargon coach anglais brut dans une note lue par l'utilisateur : « Z2-cardiac », « Aerobic Threshold », « Conversational soutenu », et la référence de méthode « Uphill Athlete » (House-Johnston) incompréhensible et inutile dans une consigne d'exécution pour randonneur. Confirmé au grep (Uphill Athlete / House-Johnston présents sur les 4 templates).",
+        "suggestedFix": "Reformuler en clair : « Allure d'endurance fondamentale (seuil aérobie) = 65-78% de la FC max, RPE 3-5. Tu dois pouvoir tenir une conversation par phrases entières. » Supprimer la référence « Uphill Athlete ».",
+        "note": "Sally=P1, Maxime=P1. La traduction de l'anglais brut (« Conversational », « Aerobic Threshold ») et la suppression d'une référence méthodo non-user (Uphill Athlete/House-Johnston dans une note) sont objectives → clear_bug. Le choix global de niveau de vulgarisation reste, lui, dans le finding product_decision summary.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "Notes/warmup/cooldown divers — « single-leg balance », « foam roller », « leg swings », « box jumps », « Trekking poles », « clamshells », « cat-cow », « Drills », « Cooldown », « workout »",
+        "description": "Anglicismes bruts qui fuient dans les notes/échauffement/retour-au-calme alors que les NOMS d'exercices, eux, sont bien glossés. Incohérence de traitement : « box jumps » est traduit dans le nom d'exo (« Sauts sur boîte basse ») mais reste en anglais dans certaines notes ; « Cooldown » même pas traduit.",
+        "suggestedFix": "Harmoniser sur les notes : « foam roller » → « rouleau de massage », « leg swings » → « balanciers de jambe », « single-leg balance » → « équilibre sur une jambe », « Trekking poles » → « bâtons de marche », « Cooldown » → « retour au calme », « workout » → « séance », « Drills » → « exercices techniques ».",
+        "note": "Sally=P2, Maxime=P2. Traductions mécaniques d'anglicismes qui devraient l'être (les noms d'exos le sont déjà) → clear_bug. Reste P2 : nuit à la cohérence mais ne bloque pas la compréhension globale comme le summary ou les notes hill repeats.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "sessionTitle « Repos ou récup active » + summary",
+        "description": "« récup » est une abréviation familière non glossée dans un titre user-facing alors que le reste des titres est plutôt soigné. Registre incohérent.",
+        "suggestedFix": "Écrire en toutes lettres : « Repos ou récupération active ».",
+        "note": "Sally seule (P2). Maxime ne le relève pas. Abréviation familière à développer = correction objective de registre → clear_bug, P2 conservé.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "exerciseName « Bird-dog » (vs autres exos glossés type « Squat gobelet (goblet squat) »)",
+        "description": "« Bird-dog » est laissé en anglais brut sans glose ni traduction FR, alors que la quasi-totalité des autres noms d'exos suivent bien le pattern « nom FR (terme anglais) ». Incohérence isolée : le novice ne sait pas exécuter le mouvement rien qu'au nom.",
+        "suggestedFix": "Aligner sur le pattern existant : « Bird-dog (bras-jambe opposés à quatre pattes) ».",
+        "note": "Maxime seul (P2). Vrai trou de cohérence : Maxime confirme par ailleurs que les autres noms d'exos sont bien glossés → l'anomalie « Bird-dog » est un oubli, pas un choix → clear_bug, P2.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Champ name top-level du programme (FR-only) vs sessions/exos/notes en {fr,en,es}",
+        "description": "Vérifié dans les templates : le champ `name` est bien un blob mais ne contient QUE la clé `fr` (pas en/es), alors que sessions, exercices et notes ont {fr,en,es}. En locale EN/ES, le titre de programme s'affichera en français pendant que tout le reste est traduit. Incohérence de couverture i18n.",
+        "suggestedFix": "Étendre `name` au blob {fr,en,es} comme les autres champs (ou décider explicitement un fallback FR assumé). À cadrer avec le chantier i18n B2 en cours.",
+        "note": "Sally=P1, Maxime=P2. Je tranche P1 (côté Sally) : confirmé au grep que name={fr} only — c'est une incohérence de couverture i18n nette dans une appli qui se veut FR/EN/ES, pas une finition cosmétique. Catégorisé clear_bug car c'est une incohérence de structure, pas un choix ; reste à confirmer avec B2 si fallback FR assumé (auquel cas requalifier).",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "warmup vide (chaîne « ») dans hiking-regular-mountain-trek-12sem + cooldown « Aucun. »",
+        "description": "Présence d'un warmup à chaîne vide et de cooldown « Aucun. » (jours de repos). Risque que l'UI affiche un bloc Échauffement vide / titre orphelin → le user croit que c'est cassé. Bug warmup vide déjà tracké côté muscu.",
+        "suggestedFix": "Soit masquer la section quand le contenu est vide/« Aucun. », soit afficher un fallback explicite (« Pas d'échauffement spécifique, démarre tranquillement »). Vérifier device + locale FR/EN.",
+        "note": "Sally=P2, Maxime=P1. Je tranche P1 : régression déjà connue côté muscu (warmup vide), donc pattern à risque confirmé ; un bloc vide qui s'affiche fait croire à un bug. clear_bug (masquage/fallback), mais à valider device car dépend du rendu UI réel.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "Notes recreational/competitive FR — \"Forehand cross régulier fond de court\", \"Backhand long de ligne\", \"feeling balle\"",
+        "description": "Anglais brut non traduit injecté en plein milieu d'un texte FR user-facing (forehand, backhand, cross, feeling balle) alors que le corpus beginner traduit correctement les mêmes notions (coup droit/revers/croisé/toucher de balle). Incohérence de langue dans le même champ, le même corpus prouve qu'on SAIT traduire. C'est le finding le plus visible.",
+        "suggestedFix": "Traduire systématiquement dans les notes FR : forehand→coup droit, backhand→revers, cross→croisé, long de ligne→le long de la ligne, feeling balle→toucher de balle / sensation de balle. Aligner recreational/regular/competitive sur la politique de traduction déjà appliquée au beginner.",
+        "note": "Sally P0 et Maxime P2 voient le même problème ; je garde P0 (Sally) car c'est du franglais non traduit objectif, pas un choix produit — le beginner fixe déjà la politique de traduction.",
+        "sport": "tennis"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Cooldown competitive FR — \"sleeper stretch épaule (30 sec/côté)\", \"cross-body stretch (30 sec/côté)\"",
+        "description": "Le cooldown des niveaux avancés garde les noms d'étirement en anglais brut (sleeper stretch, cross-body stretch) alors que le cooldown beginner les traduit/décrit explicitement. Régression de vulgarisation : un cooldown doit être exécutable sans connaître l'anglais.",
+        "suggestedFix": "Reprendre les libellés du beginner : \"étirement de l'épaule allongé sur le côté (sleeper)\" et \"bras croisé devant la poitrine (cross-body)\". Décrire le geste, garder l'EN entre parenthèses au plus, jamais seul.",
+        "note": "Confirmé par Sally et Maxime ; clear_bug car la politique de traduction est déjà fixée par le beginner (alignement, pas arbitrage).",
+        "sport": "tennis"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Exercice — \"Cardio intermittent — circuit Kovacs 6 stations\"",
+        "description": "Nom propre d'auteur scientifique (Kovacs) qui fuit dans un nom d'exercice user-facing. N'apporte rien à l'utilisateur, ressemble à une référence de sourcing interne qui a échappé. Même registre que les tags techniques qui fuient.",
+        "suggestedFix": "Retirer le nom propre du libellé : \"Cardio intermittent — circuit 6 stations\". Conserver la source Kovacs en métadonnée/note de sourcing interne.",
+        "note": "Sally et Maxime alignés (P1) ; clear_bug évident — un nom propre de sourcing n'a rien à faire dans un titre d'exo.",
+        "sport": "tennis"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Exercice — \"Squat barre ou gobelet — force max\"",
+        "description": "\"Gobelet\" = calque littéral de goblet squat (jargon muscu). Dans un plan tennis, \"squat gobelet\" est incompréhensible — Maxime pense littéralement à un gobelet en plastique. Terme muscu non vulgarisé sans contexte.",
+        "suggestedFix": "Renommer en langage clair : \"Squat (barre, ou haltère tenu contre la poitrine)\". Si goblet/gobelet est conservé, l'expliciter (haltère/kettlebell tenu verticalement devant la poitrine).",
+        "note": "Les deux personas confirment l'incompréhension ; clear_bug — c'est une traduction fautive/calque, pas un choix de nommage à arbitrer (le geste a un nom FR clair).",
+        "sport": "tennis"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "Corpus — orthographe incohérente \"medecine-ball\" vs \"médecine-ball\"",
+        "description": "Le mot coexiste sous deux graphies dans le même corpus : \"medecine-ball\" (sans accent) et \"médecine-ball\". Petit défaut de soin visible.",
+        "suggestedFix": "Normaliser sur \"médecine-ball\" (accentué) partout.",
+        "note": "Sally et Maxime alignés ; clear_bug orthographe pur.",
+        "sport": "tennis"
+      },
+      {
+        "severity": "P2",
+        "category": "clear_bug",
+        "location": "Notes anatomie/médical — \"épicondylite (tennis elbow)\", \"prévention du tennis elbow\", \"ces étirements ne sont pas négociables\"",
+        "description": "Risque EU MDR + ton anxiogène. \"Épicondylite\" est un terme de diagnostic médical, \"prévention du tennis elbow\" frôle la claim thérapeutique, et \"ne sont pas négociables\" est un impératif anxiogène. Pour un produit non-médical c'est sensible.",
+        "suggestedFix": "Déclinicaliser : remplacer \"prévention du tennis elbow / épicondylite\" par \"confort de l'épaule et du poignet\" ; reformuler \"ne sont pas négociables\" en \"on te conseille vraiment de ne pas les sauter\". Passer toutes les notes au filtre mots-bannis EU MDR (cf garde-fous EU MDR du projet).",
+        "note": "Sally et Maxime alignés ; je classe clear_bug malgré la composante réglementaire — la conformité EU MDR est une contrainte non négociable du projet, pas un arbitrage produit ouvert.",
+        "sport": "tennis"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "football-competitive-saison-regional-16sem.json — bloc niveau-programme (name, summary, default_objective, progression_logic, safety_notes), clés fr",
+        "description": "Tout le bloc de tête du niveau competitive a perdu ses accents (« Preparer », « Saison regionale », « pre-saison », « structuree », « alignes », « PREPARATION », « medical »...), alors que le CORPS du même fichier (séances/exercices à partir de la ligne 31 : « Présaison », « Étirements », « dédié ») est correctement accentué. Le bug est donc scopé aux champs niveau-programme du seul fichier competitive, mais bien plus large que name/objectif : il touche aussi summary, progression_logic et safety_notes (des pavés entiers de texte exposé). Visible directement sur le titre/objectif/résumé du programme = impression d'amateurisme.",
+        "suggestedFix": "Re-générer ou patcher en UTF-8 correct l'intégralité des champs name/summary/default_objective/progression_logic/safety_notes du niveau competitive (« Saison régionale », « Préparer », « pré-saison », « structurée », etc.). Ajouter un contrôle d'encodage en sortie de génération (détection de mots-clés FR connus dé-accentués).",
+        "note": "Les deux personas l'ont vu et caté P0 ; vérif fichier confirme — j'élargis le périmètre (5 champs, pas 2) et précise que seul competitive est touché, le corps étant sain.",
+        "sport": "football"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "football-beginner-initiation-8sem.json — notes d'exercice (lignes 70, 144, 146, 537, 539, 1045, 1593, 1988, 2536...) : « Charge cognitive 3-4 » / « cognitive load 3-4 »",
+        "description": "Jargon de conception interne (« Charge cognitive 3-4 », « cognitive load 3-4 ») exposé dans les notes lues par l'utilisateur. Confirmé présent ~10 fois dans le beginner, en FR et EN. Aucun sens pour un joueur (sur quelle échelle ? pour quoi faire ?), brise l'illusion d'un coach. Équivalent d'un paramètre de design qui fuit.",
+        "suggestedFix": "Supprimer toute mention « charge cognitive » / « cognitive load X » des champs notes exposés (FR+EN+ES). Si l'algo a besoin de l'info, la déplacer dans un champ métadonnée non affiché.",
+        "note": "Doublon exact Sally+Maxime, tous deux P0 ; vérif fichier confirme présence répétée FR et EN.",
+        "sport": "football"
+      },
+      {
+        "severity": "P0",
+        "category": "clear_bug",
+        "location": "football-competitive-saison-regional-16sem.json — sessionTitles/blockNames/match_key : « W2 », « W12 », « MD-1 », « MD-3 », « J-3 », et exercise names « — semaine N » dans les 4 fichiers",
+        "description": "Codes de planification encodés dans des titres/noms affichés : « W2 » (semaine 2), « MD-1/MD-3 » (match day minus), « J-3 », « tapering match week », et « — semaine N (allégée) » collé dans les noms d'exercices (confirmé ~5-6 occurrences par numéro de semaine, sur les 4 fichiers). Cryptique pour le user (Maxime : « c'est quoi W12 ? »), redondant avec la structure week/theme qui porte déjà l'info, et casse la réutilisabilité de l'exo entre semaines.",
+        "suggestedFix": "Retirer « W{N} », « — semaine N », « MD-X », « J-X » des champs name/match_key/title affichés ; laisser la structure week/theme porter la phase. Si « allégée » est utile, la porter via attribut theme/intensité. Pour les libellés de jour exposés, écrire en clair (« 3 jours avant le match ») — voir aussi finding product_decision sur MD-X/tapering ci-dessous pour la partie nommage.",
+        "note": "Fusion Sally (semaine dans le name) + Maxime (W12/MD-1/J-3) ; le retrait des codes purs = clear_bug (bruit redondant) ; la reformulation en langage clair des libellés de jour = product_decision (voir finding dédié).",
+        "sport": "football"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "4 fichiers football — champ target_zone : « RPE 6-7 », « RPE 7-8 », « RPE 8-9 sprint », « RPE 7-8 intermittent », « Z2 », « Z3 », « technique », « tactique », « cool-down »",
+        "description": "Le champ target_zone mélange des typages hétérogènes exposés crus : échelle RPE (RPE 6-7/7-8/8-9, 1404+947+165 occurrences), zones cardio (Z2/Z3), labels FR (technique/tactique), et anglais (« cool-down », 121 occurrences). Pour un footballeur amateur c'est du jargon non glossarié et incohérent (parfois un effort, parfois une nature d'exo). « cool-down » non traduit = clair anglais qui devrait être FR.",
+        "suggestedFix": "Mapper target_zone vers le référentiel dosage caméléon (RPE/Z → libellé sensation : « effort très dur », « allure facile ») et traduire « cool-down » → « retour au calme ». Homogénéiser le typage avant affichage UI.",
+        "note": "Doublon Sally+Maxime, P1 ; vérif confirme l'hétérogénéité massive du champ. Le « cool-down » non traduit est un clear_bug net ; le mapping RPE→sensation relève du chantier dosage caméléon déjà cadré (référentiel v2), donc traité comme correction d'application du référentiel, pas nouvelle décision produit.",
+        "sport": "football"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "4 fichiers football — exercise names redondants avec le dosage : « Sprints répétés (RSA) — test autonomie (6 × 30 m départ arrêté à fond) », « Ischios excentriques nordiques — test autonomie (3 séries × 8-10) »",
+        "description": "Le dosage (6×30 m, 3 séries × 8-10) est dupliqué dans le name de l'exercice alors qu'il est déjà porté par le champ dosage/reps/volume_axis. Redondance qui alourdit le titre et risque la désynchronisation si l'un change.",
+        "suggestedFix": "Garder le dosage uniquement dans le champ structuré ; name = « Sprints répétés » / « Ischios nordiques excentriques ». Supprimer le schéma chiffré du name.",
+        "note": "Doublon Sally(P2)+Maxime(P2) ; je remonte à P1 : c'est une incohérence nom-vs-dosage objective (catégorie clear_bug listée dans la doctrine), risque de désync réel, pas un choix subjectif.",
+        "sport": "football"
+      },
+      {
+        "severity": "P1",
+        "category": "clear_bug",
+        "location": "Bloc niveau-programme (name, summary, default_objective, progression_logic, safety_notes) des 4 fichiers football — clés en/es absentes ; exercices eux traduits FR/EN/ES",
+        "description": "Vérif fichier : les EXERCICES sont bien trilingues (beginner 93 noms en+es+fr, recreational 133), mais le bloc niveau-programme (name/summary/objectif/progression_logic/safety_notes) n'a QUE la clé fr sur LES 4 NIVEAUX (pas seulement le beginner). Un utilisateur EN/ES verra donc des exercices traduits surmontés d'un titre/résumé/objectif en français brut — incohérence visible. Sally l'a restreint au beginner : c'est en réalité uniforme sur les 4 niveaux.",
+        "suggestedFix": "Compléter les clés en/es sur name/summary/default_objective/progression_logic/safety_notes des 4 niveaux football, par parité avec le contenu exercices déjà traduit.",
+        "note": "Sally P0/beginner-only, Maxime P2/beginner-only ; je tranche P1 et corrige le périmètre : le trou est sur les 4 niveaux (vérif fichier), pas le seul beginner. clear_bug = anglais/espagnol manquant qui devrait l'être (le reste du contenu est traduit, donc incohérence objective, pas choix produit).",
+        "sport": "football"
+      }
+    ],
+    "productDecisions": [
+      {
+        "severity": "P0",
+        "category": "product_decision",
+        "location": "target_zone (toutes séances course) : valeurs « Daniels-E/T/I/M/R », « @5K-pace », « @HMP », « RPE 6-7 », « RPE 7-8 » — affichées via GlossaryTermBadge dans Views/Components/ExerciseTimelineCard.swift:200-201 (label brut + popover tappable). Données : Templates/Sources/TemplateLoader/Resources/Templates/running-*.json",
+        "description": "Le champ d'allure le plus consulté pendant la séance affiche le CODE COACH brut comme libellé principal (« Daniels-E », « @HMP », « RPE 6-7 »). VÉRIF ARBITRE : ce n'est PAS un texte mort — il existe un vrai système de glossaire tappable (Coaching/Glossary/Glossary.swift : entrées daniels.e/m/t/i/r, hmp, race.pace via @5K-pace, rpe, vdot, vo2max, strides, fartlek… avec définitions localisées FR/EN/ES). Le débutant peut tapper pour comprendre. La question n'est donc pas « bug d'affichage » mais un choix produit : garder le code-coach comme libellé principal (stratégie glossaire-as-contexte, déjà retenue par Sophie) OU vulgariser le libellé principal et reléguer le code en sous-texte. Sally et Maxime convergent : pour un public Couch-to-5K, « Daniels-E » seul reste opaque même tappable (découvrabilité du tap non garantie). C'est exactement le type d'arbitrage politique de nommage / densité de vulgarisation que la doctrine réserve à Sophie.",
+        "suggestedFix": "Arbitrage Sophie : décider la politique d'affichage des zones d'allure dans le dosage. Option A (recommandée par les 2 personas) = libellé principal vulgarisé localisé (« allure facile — tu peux parler », « allure seuil », « allure 5 km », « allure semi », « allure vive ») + code Daniels en métadonnée/glossaire. Option B = garder le code + rendre le tap-glossaire beaucoup plus découvrable (tooltip d'amorçage déjà présent : GlossaryDiscoveryTooltip). Cohérence multisport requise (vélo FTP/Z, natation CSS suivent le même composant).",
+        "note": "Reclassé clear_bug→product_decision : le glossaire tappable localisé existe déjà (Daniels/RPE/HMP/@5K-pace résolus), donc choisir libellé-vulgarisé vs code-coach+glossaire est une politique de nommage = arbitrage Sophie, pas une correction objective.",
+        "sport": "running"
+      },
+      {
+        "severity": "P0",
+        "category": "product_decision",
+        "location": "safety_notes + notes : ITBS (26×), « shin splints » (9×), tendinopathie (9×), « syndrome de l'essuie-glace », PFPS (11×), RED-S (3×), « fracture de stress » (2×), protocole Alfredson (12×)/Mjolsnes (8×), « glace 15 min » (5×), « consulter un kinésithérapeute » (3×), « appel au 15 ». Présents dans les 4 running-*.json, NON couverts par le glossaire (vérifié absents de Coaching/Glossary)",
+        "description": "Frontière EU MDR : nommage de pathologies + protocoles de soin + orientation médicale dans du contenu user-facing. VÉRIF ARBITRE : ces termes ne sont PAS dans le système glossaire (donc pas encadrés), ils apparaissent en clair dans safety_notes/notes. Au-delà du juridique, Maxime confirme l'effet anxiogène pour un débutant. Décision produit + revue juridique, pas une réécriture mécanique.",
+        "suggestedFix": "Arbitrage Sophie + crible EU MDR sur la liste complète : bannir tout nom de pathologie et tout protocole de soin du contenu affiché. Reformuler en prévention non-médicale neutre (« renforce les mollets pour mieux encaisser les chocs »). Remplacer orientation médicale par formule neutre type « si une douleur persiste, arrête et demande l'avis d'un professionnel de santé ». Retirer « glace 15 min », « appel au 15 », noms de protocoles. Cohérent avec les garde-fous EU MDR déjà actés (mémoire epic3_leon_legal_constraints).",
+        "note": "Les 2 personas convergent ; reste product_decision car nommage pathologie/soin = arbitrage produit + juridique (jamais tranché solo), confirmé par doctrine EU MDR du projet.",
+        "sport": "running"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "exerciseNames / blockNames : « Bird-dog » (51×), « Bulgarian split squat » (27×), « Romanian deadlift » (14×), « Cruise intervals » (107×), « Fartlek » (125×), « strides »/« Accélérations (strides) », « 4×1 mi » (miles), « 90 sec hard / 90 sec easy ». Dans les 4 running-*.json",
+        "description": "Politique de nommage FR/EN incohérente : certains noms bilingues parenthésés, d'autres 100% anglais (« Bird-dog », « Bulgarian split squat »), d'autres FR avec résidu anglais (« hard/easy »), + unités miles (« 4×1 mi ») incohérentes avec un public qui raisonne en km. NUANCE ARBITRE : fartlek/strides/cruise intervals SONT dans le glossaire tappable, donc partiellement encadrés — mais l'absence de politique uniforme (quand traduire, quand parenthéser, miles vs km) est un choix produit subjectif, pas une correction unique. Le résidu « hard/easy » et la conversion miles→km sont eux objectifs, mais relèvent de la même décision de politique pour être traités d'un bloc.",
+        "suggestedFix": "Arbitrage Sophie : fixer LA politique de nommage exercices (ex : « nom FR + terme technique EN entre parenthèses si répandu », unités toujours en km). Appliquer uniformément : « Fente bulgare (Bulgarian split squat) », « Soulevé de terre jambes tendues (Romanian deadlift) », « 4×1,6 km à allure soutenue (cruise intervals) », traduire hard→dur / easy→facile. Conserver le rattachement glossaire des termes techniques.",
+        "note": "Sally P1 / Maxime P1 convergent ; classé product_decision car il faut d'abord trancher la politique de nommage FR/EN multisport (doute → product_decision par règle).",
+        "sport": "running"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "sessionTitles / blockNames : doublons bilingues « Course/marche découverte (Run/walk discovery) », « Renforcement fondation (Foundation strength) », « Bloc course/marche … (Run/walk block) », « (Ladder block) », « Renforcement + bird-dog ». Dans running-*.json",
+        "description": "Les titres FR embarquent leur traduction anglaise entre parenthèses (béquille i18n) : en FR l'anglais est du bruit, et ça ne scale pas pour l'ES. Lié au finding headers FR-only : la vraie solution est de sortir la trad dans le blob {fr,en,es}. NUANCE : le découpage exact (que garder dans le titre vs glossaire vs blob) touche la politique de nommage du finding P1 exercices.",
+        "suggestedFix": "Sortir la traduction du titre vers le blob {fr,en,es} ; titre FR affiché = « Course/marche découverte » seul. Retirer le doublon EN parenthésé et le résidu « bird-dog » du titre. À traiter avec la politique de nommage (finding P1) et l'i18n headers.",
+        "note": "Sally P2 / Maxime P2 convergent ; classé product_decision car couplé à la politique de nommage (P1) et au format de titre — cohérence à arbitrer, pas une réécriture isolée.",
+        "sport": "running"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Séance « Test 5K chronométré » + note « ce temps détermine toutes tes allures » (running-*.json). Aucun écran de saisie/restitution du résultat 5K trouvé côté UI (recherche Swift : pas de capture de temps test relié aux zones)",
+        "description": "La note promet que le test 5K « détermine toutes tes allures », mais rien dans le flow UX ne capte ni ne réutilise ce résultat (les zones restent des codes Daniels statiques dans le template, pas recalculées depuis un temps saisi). Promesse contenu non matérialisée dans le produit (note potentiellement contradictoire avec le réel). Décision produit : implémenter la captation/réutilisation OU retirer la promesse.",
+        "suggestedFix": "Arbitrage Sophie : soit prévoir une étape de saisie du temps 5K + rappel pédagogique simple (« ce test fixe tes allures pour les semaines suivantes »), soit retirer/atténuer la promesse « détermine toutes tes allures » du texte tant que l'app ne l'exploite pas.",
+        "note": "Findée par Sally seule ; arbitre confirme côté code l'absence de mécanisme de captation/réutilisation → vraie décision produit (build feature vs ajuster la promesse).",
+        "sport": "running"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "target_zone affiche dans SessionFocusView (l.321-328) : FTP-Z1..FTP-Z7, Sweet-Spot, RPE x-y",
+        "description": "VERIFIE EN CODE : SessionFocusView rend bien target_zone. DosageFormatting.plainEffort ne mappe QUE les RPE (-> 'effort N sur 10'). Pour FTP-Z1..Z7 et Sweet-Spot, fallback = GlossaryTermBadge(term: zone) qui affiche le CODE BRUT en texte primaire. C'est tappable et FTP/Sweet-Spot ONT une entree glossaire (Glossary.swift l.82/212, GlossaryMatcher), donc l'utilisateur PEUT decoder en tapant, mais le libelle primaire reste un code physiologique cryptique pour un debutant. Les deux personas l'ont classe P0 ; je tranche P1 product_decision car le filet glossaire+RPE existe deja (pas un cul-de-sac total), et le choix 'libelle lisible primaire vs code primaire' est un arbitrage produit a aligner avec le referentiel dosage cameleon (charge=sensation sans jargon).",
+        "suggestedFix": "Etendre DosageFormatting pour mapper FTP-Zx et Sweet-Spot vers un libelle lisible localise FR/EN/ES (ex. FTP-Z1->'tres facile, recup', FTP-Z2->'endurance, tu peux parler', Sweet-Spot->'allure soutenue', FTP-Z5+->'effort tres dur court'), code technique relegue en sous-texte tappable (GlossaryTermBadge conserve). Niveau beginner : remonter sensation/RPE/test de la parole en primaire.",
+        "note": "Personas disent P0, je descends a P1 : verif code montre que FTP/Sweet-Spot sont glossarises + tappables et que RPE est deja mappe, donc pas un cul-de-sac, mais le code brut reste le libelle primaire, ce qui releve d'un choix produit (referentiel dosage cameleon).",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Politique de nommage exos renfort FR/EN : 'Bird-dog', 'Dead bug', 'superman', 'Souleve de terre roumain leger (RDL)' (transverse multisport)",
+        "description": "VERIFIE : melange FR (Pont fessier, Planche) / EN brut (Bird-dog 60+ occ, Dead bug 70+ occ, superman) non tranche par une politique. Certains noms EN ne sont pas glossarises. C'est un arbitrage produit transverse deja identifie dans l'audit didactique 10 sports.",
+        "suggestedFix": "Decider UNE politique multisport : soit FR + terme EN consacre tappable entre parentheses (ex. 'Chien d'arret (bird-dog)'), soit terme EN consacre + glossaire systematique. Appliquer uniformement, garantir que tout nom EN expose est glossarise + dessin.",
+        "note": "Doublon Sally P1 + Maxime P1, tous deux en product_decision. Distinct du finding hip thrust/pont fessier (qui, lui, est une incoherence intra-sport = clear_bug).",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Coexistence 'Sweet-Spot' / 'allure soutenue' comme s'il s'agissait de deux notions",
+        "description": "VERIFIE : libelles type 'Allure soutenue - blocs de decouverte (Sweet-Spot)' et 'Allure soutenue (Sweet spot)'. Garder le terme coach 'Sweet-Spot' visible (reconnu en cyclisme) vs ne montrer que 'allure soutenue' est un arbitrage produit.",
+        "suggestedFix": "Trancher : libelle utilisateur = 'allure soutenue', 'Sweet-Spot' relegue au glossaire/sous-texte tappable. Supprimer le doublon dans un meme titre.",
+        "note": "Doublon Sally P1 + Maxime P2. La DECISION de garder/releguer le terme = product_decision (separe de la correction d'orthographe ci-dessus).",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Jargon scientifique/anglicismes dans notes : 'myelinisation du pattern moteur', 'gut training', 'ERG mode', 'negative split', 'derive cardiaque', 'PFPS'",
+        "description": "VERIFIE : 'gut training' (4 occ), 'ERG mode' (47 occ total), 'negative split' (11 occ), 'myelinisation du pattern moteur' present. Vocabulaire d'inities/neurophysiologie dans des notes utilisateur. Vulgariser ou glossariser est un choix de niveau de contenu (densite pedagogique) = arbitrage produit, sauf 'gut training'/'negative split' (anglicismes purs qui pourraient etre traduits).",
+        "suggestedFix": "Vulgariser : 'myelinisation du pattern moteur'->'pour rendre ton pedalage plus fluide et naturel' ; 'gut training'->'entrainer l'estomac a manger en roulant' ; 'negative split'->'finir plus vite que tu n'as commence' ; 'derive cardiaque >5%'->explication rassurante ; 'ERG mode' a expliquer ou retirer ; 'PFPS' retirer du texte visible (garder en interne).",
+        "note": "Doublon Sally P2 + Maxime P1 -> retenu P1 (Maxime 'je ne comprends rien du tout', impact debutant fort). Classe product_decision : melange anglicismes traduisibles + jargon dont le niveau de vulgarisation est un choix de contenu -> en cas de doute, Sophie tranche.",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Cadence/rpm exposes sans explication ni methode de comptage en avant (titres 'Travail de cadence', '95-100 rpm')",
+        "description": "VERIFIE indirectement (rpm dans duration/notes). Maxime : 'rpm' jamais defini, et la methode de comptage manuel (compter coups de pedale 15s x4) est releguee en fin de note. Pour un debutant sans capteur, l'info-cle arrive trop tard. Choix de hierarchie/contenu.",
+        "suggestedFix": "Glossariser 'cadence (rpm) = nombre de tours de pedale par minute' et remonter la methode de comptage manuel en premier pour le public sans capteur.",
+        "note": "Finding Maxime, Sally ne l'a pas isole. Product_decision (densite + hierarchie contenu pour debutant).",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Niveau beginner (6 sem) expose FTP-Z1/Z2 en primaire a un public sans capteur de puissance",
+        "description": "VERIFIE doctrine (cycling.md) : beginner = 100% Z1-Z2, equivalents %FCmax+RPE FOURNIS en notes. Mais l'exposition primaire reste le code FTP. Quelle metrique mettre en avant pour le debutant = arbitrage produit, a aligner avec referentiel dosage cameleon.",
+        "suggestedFix": "Pour beginner : sensation/RPE/test de la parole en metrique primaire, FTP-Z en reference secondaire. A trancher avec le referentiel dosage cameleon.",
+        "note": "Doublon Sally P1 + Maxime P2 -> P2 : reel mais attenue par la presence systematique des equivalents RPE/%FCmax dans les notes (verifie doctrine). Product_decision, recouvre partiellement le finding target_zone primaire.",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Terminologie EN non uniforme pour 'sprints d'activation' : 'opener' / 'priming' / 'activation sprints'",
+        "description": "VERIFIE : 'opener' (11 occ), 'priming' (10 occ), 'activation sprints' (4 occ) dans les templates EN. Trois traductions EN du meme concept -> en app EN, l'usager croirait a 3 exos differents. Choix d'un terme EN canonique = arbitrage produit (terminologie).",
+        "suggestedFix": "Choisir un seul terme EN ('activation sprints' recommande par Sally) et l'appliquer partout.",
+        "note": "Doublon Sally P2 (dans finding J/D) + Maxime P2. Frontiere clear_bug/product_decision : en cas de doute -> product_decision (choix du terme canonique EN).",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Modele de zones FTP-Z1..Z7 (Z6/Z7 pour sprints) - a confirmer vs doctrine",
+        "description": "VERIFIE : doctrine-fragments/cycling.md DEFINIT explicitement FTP-Z1 a FTP-Z7 (modele Coggan 7 zones : Z6 Anaerobic, Z7 Neuromuscular). Donc l'usage Z6/Z7 est INTENTIONNEL et conforme a la doctrine retenue, PAS une derive. Reste a verrouiller le set + le mapping de libelles cote app.",
+        "suggestedFix": "Aucun changement de contenu requis : le modele 7 zones est valide par la doctrine. Action = verrouiller le set FTP-Z1..Z7 dans le referentiel et garantir que le futur mapping libelle (cf finding P1 target_zone) couvre Z1 a Z7.",
+        "note": "Sally P2 + Maxime P2 doutaient ('depasse le modele classique'). Verif doctrine TRANCHE : c'est volontaire (Coggan 7 zones). Conserve comme product_decision a faible enjeu : juste verrouiller, pas corriger. PAS un faux positif mais quasi-resolu.",
+        "sport": "cycling"
+      },
+      {
+        "severity": "P0",
+        "category": "product_decision",
+        "location": "dosageSamples / target_zone — codes d'intensité affichés bruts (CSS, EN1/EN2/EN3, REC, SP1/SP2/SP3, « CSS+5s/100m », « CSS pace »)",
+        "description": "Vérifié dans les 4 templates shipés : le champ target_zone surface des codes techniques non décodés (beginner = EN1 + REC ; regular/competitive ajoutent CSS, EN3, SP1-3). Un nageur ne peut pas savoir à quelle allure nager. Incohérence de nature en plus : tantôt zone (EN1), tantôt allure (CSS+5s/100m), tantôt RPE, tantôt None.",
+        "suggestedFix": "Définir une politique d'affichage commune (cf glossaire B2 tappable déjà en place) : soit mapper chaque code vers un libellé + repère d'effort (EN1 → « endurance facile, tu peux parler » ; CSS → « allure de seuil ») soit rendre les codes tappables vers « comment l'exécuter ». Ne jamais sortir « zone=CSS+5s/100m » brut. Pour beginner, masquer SP/CSS (absents de toute façon).",
+        "note": "Sally=P0/clear_bug, Maxime=P0/product_decision. Je tranche product_decision : le fix exige une politique d'affichage multisport (relabel vs glossaire) sans réponse objective unique — c'est le coeur du chantier dosage caméléon. Mais bien P0, pire offenseur du sport.",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "warmupCooldownSamples (competitive) — jargon anglais brut + tag technique : « WARMUP (competitive): DRYLAND : 3 × 15 rowing + 10 Y-T-W + 10 external rotation + 10 serratus + 8 face pulls + 8 pull-up assistés… REC »",
+        "description": "Vérifié : échauffement saturé d'anglais non traduit (DRYLAND, rowing, Y-T-W, external rotation, serratus, face pulls, pull-up) mélangé au FR, plus le tag « (competitive) » et le code « REC » qui fuient dans le texte utilisateur.",
+        "suggestedFix": "Le retrait du tag « (competitive) » du texte affiché = correction objective à faire. La traduction/glossaire du vocabulaire renfo (dryland, serratus, face pulls…) et son périmètre = à arbitrer avec Sophie (volume + politique FR/EN/glossaire commune à tout le renfo).",
+        "note": "Sally P1/clear_bug, Maxime P1/product_decision. Je tranche product_decision (sauf le tag « (competitive) » qui est un leak objectif) : traduire vs glossarier le vocabulaire renfo est la même question de politique multisport non tranchée que le dosage.",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "notesSamples — densité de jargon savant pour débutant : EVF (early vertical forearm), SPL, FCmax / « FC 65-75% FCmax », « mitochondrial », « Total Immersion », EN1/EN2 dans le texte",
+        "description": "Vérifié : les notes empilent des acronymes et termes savants (EVF, SPL, FCmax, « c'est ici que se construit le mitochondrial », méthode « Total Immersion »). Suppose aussi un cardiofréquencemètre (FC%) non garanti chez un débutant.",
+        "suggestedFix": "Décider du niveau de vulgarisation par template/niveau : développer SPL (« coups de bras par longueur ») et FCmax à la 1re occurrence, retirer/glossarier « mitochondrial »/« Total Immersion », rendre les consignes FC% optionnelles pour beginner.",
+        "note": "Les deux le flaggent (Sally P1, Maxime P2). Je tranche product_decision et P2 : doser jargon vs fidélité doctrine, et supposer un cardio chez un débutant, sont des arbitrages produit/doctrine.",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Politique de nommage FR/EN sur exerciseNames — « Godille mains devant (sculling) », « Nage poing fermé (fist swim) », « Nage à un bras (single arm) », « Rattrapage (catch-up) », « Effleurement du bout des doigts (fingertip drag) »",
+        "description": "Vérifié : pattern systématique « terme FR (terme anglais) ». La natation est le sport le plus anglicisé du catalogue. Garder l'anglais double la longueur des cartes ; le retirer perd la langue universelle des plans de nage.",
+        "suggestedFix": "Trancher une règle multisport : (a) FR seul + anglais dans le glossaire « comment l'exécuter », ou (b) FR (anglais) seulement pour les termes universels (sculling, catch-up) et FR seul pour les évidents (single arm → « un bras »).",
+        "note": "Les deux d'accord, product_decision explicite. Cohérence multisport > exception natation — arbitrage Sophie.",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Couverture du glossaire « comment l'exécuter » natation — ~17 termes : CSS, EN1/2/3, SP1/2/3, REC, streamline, catch/EVF, sculling, fist swim, fingertip drag, side kick, catch-up, 6-3-6, body roll, taper, dryland, SPL, talk test",
+        "description": "La natation a la plus forte densité de jargon de tous les sports. Pour rester utilisable sans dénaturer la doctrine, le glossaire tappable B2 doit couvrir au minimum cette liste, en priorité les codes affichés dans titres/zones.",
+        "suggestedFix": "Prioriser la rédaction des entrées glossaire (CSS, EN1-3, SP1-3, streamline, catch d'abord), rendre les codes de zone tappables comme les autres glossaires B2.",
+        "note": "Les deux d'accord, product_decision (périmètre + effort de rédaction). Dépend de l'arbitrage zone P0.",
+        "sport": "swimming"
+      },
+      {
+        "severity": "P0",
+        "category": "product_decision",
+        "location": "target_zone exposé brut dans dosageSamples : FTP-Z1..Z5, Daniels-E/M/T/I/R, EN1/EN2/EN3, REC, SP1, Sweet-Spot, CSS pace, \"CSS+5s/100m\", \"Daniels-I (VO2max)\"",
+        "description": "Mélange de 3 systèmes de zones (Friel/cyclisme FTP-Z, Daniels/course E-M-T-I-R, CSS/natation) affichés en codes bruts. Sans glossaire ni vulgarisation, c'est opaque pour un utilisateur non-coach, y compris un triathlète débutant/intermédiaire. C'est le risque UX le plus grave du corpus car il touche le DOSAGE — l'info la plus actionnable d'une séance. Un débutant veut savoir \"facile ou dur ?\" et voit des codes secrets.",
+        "suggestedFix": "Décider une politique de zones : (a) chaque code target_zone tappable→glossaire avec équivalent sensation (FTP-Z2→\"endurance facile, tu peux parler\" ; Daniels-I→\"VO2max, dur, phrases courtes\" ; CSS→\"allure seuil natation\"), ou (b) n'afficher que le libellé vulgarisé et reléguer le code en détail secondaire tappable. À trancher en HTML décisions.",
+        "note": "Les deux personas convergent fortement (Sally P0, Maxime P0) ; le novice confirme que c'est inintelligible. Cohérent avec la décision chantier dosage caméléon (charge=sensation sans jargon) — à étendre aux zones triathlon.",
+        "sport": "triathlon"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Politique de nommage transverse des exos de renforcement EN : hip thrust, nordic curl, bulgarian split squat, dead bug, wall sit, bird-dog, clamshell, Y-T-W",
+        "description": "Le choix du libellé FR canonique pour les exos muscu/gainage est une décision produit transverse : ces exos existent dans le sport \"muscu\" (déjà refondu) et ailleurs. Adopter un libellé incohérent entre sports créerait un nouveau drift. \"Y-T-W\" n'a pas de traduction évidente. La convention \"FR en tête + (EN) entre parenthèses\" est amorcée mais pas systématisée, et le novice signale que répéter l'EN après le FR le bloque (\"Coquillage ... (clamshell)\").",
+        "suggestedFix": "Définir un référentiel de nommage transverse aligné sur le chantier muscu : libellé FR canonique en titre + EN entre parenthèses seulement à la 1re occurrence/tappable. Trancher si l'EN est répété ou non quand un FR clair existe. Y-T-W→\"Activation épaules en Y-T-W\".",
+        "note": "Fusion de Sally P1+P0 et Maxime P0 sur les noms d'exos ; je classe en product_decision unique car le débat porte sur la POLITIQUE de nommage (transverse muscu) — la simple cohérence sera mécaniquement réglée une fois la politique fixée.",
+        "sport": "triathlon"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Notes/consignes : abréviations physiologiques et anglicismes \"RPE\", \"talk test\", \"bike-computer\", \"powermeter\", \"FTP\", \"rpm\", \"EVF / early vertical forearm\", \"swim-smooth\", \"feel for the water\", \"sighting\", \"sculling\"",
+        "description": "Forte densité d'anglicismes/abréviations dans les notes. \"RPE\" est utilisé partout sans définition (le novice ne sait pas \"sur combien\"). \"talk test\" coexiste parfois avec \"test de la parole\" (doublon). \"EVF/early vertical forearm\", \"swim-smooth\", \"feel for the water\" = jargon natation de niche jamais explicité. powermeter/bike-computer supposent du matériel que le débutant n'a pas.",
+        "suggestedFix": "RPE→\"effort ressenti (1-10)\" (cohérent décision muscu), définir à la 1re occurrence. Supprimer doublons EN quand le FR existe (retirer \"talk test\", garder \"test de la parole\"). bike-computer→\"compteur vélo\", powermeter→\"capteur de puissance (si tu en as un, sinon va à la sensation)\". Politique pour le jargon natation (EVF/swim-smooth/feel for the water/sighting/sculling) : vulgariser, glossariser ou retirer.",
+        "note": "Fusion Sally P2/P3 + Maxime P1. Je remonte à P1 : le novice est bloqué par RPE omniprésent ET le jargon natation, qui touchent le dosage et la sécurité. RPE→effort est un simple report d'une décision déjà prise (clear_bug), mais la politique sur le jargon natation + matériel est subjective → product_decision pour l'ensemble.",
+        "sport": "triathlon"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Abréviations triathlon non explicitées 1re occurrence : T1/T2, \"70.3\", \"Distance M\", \"VMA (VO2max)\", \"danseuse\", \"rétrograder\", \"position contre-la-montre\", \"brick\", \"PIC\", \"S12\"",
+        "description": "Plusieurs abréviations/termes techniques apparaissent sans explication. T1/T2 (transitions) sont centraux au triathlon mais cryptiques pour un débutant. \"70.3\" et \"Distance M\" supposent une culture course (le novice ne sait pas 70,3 de quoi). \"danseuse\"/\"rétrograder\"/\"contre-la-montre\" = jargon cyclisme opaque pour un vélotafeur. \"PIC\" et \"S12\" sont des codes internes (phase pic / semaine 12) qui fuient dans les titres.",
+        "suggestedFix": "Définir une politique de vocabulaire à enseigner (glossaire tappable) vs vulgariser : T1→\"transition 1 (eau→vélo)\"/T2→\"transition 2 (vélo→course)\" 1re occurrence puis glossarié ; \"70.3\"→\"Half-Ironman (70,3 miles au total)\" ; \"Distance M\"→généraliser le \"(Olympique)\" déjà bien fait ; glossaire tappable pour danseuse/rétrograder/contre-la-montre ; expliciter ou retirer les codes internes PIC/S12 ; \"brick\"→\"enchaînement vélo→course sans pause\" 1re occurrence.",
+        "note": "Maxime P0 sur S&C/T1/T2/70.3, Sally P2. Je tranche en product_decision (pas P0) : la sévérité réelle est moindre que les zones car ce sont des termes à enseigner, pas du dosage actionnable. Englobe les codes internes PIC/S12 que Maxime a aussi relevés.",
+        "sport": "triathlon"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Titres très longs/peu scannables : \"Brick PIC — vélo facile 60 min + course facile 20 min avec T1+T2 réelles\", \"Simulation triathlon S12 — natation+T1+vélo+T2+course\", \"COURSE — Half-Ironman 70.3 (1,9 km natation + 90 km vélo + 21,1 km course)\"",
+        "description": "Titres riches mais peu scannables sur mobile (~80 caractères, chaînes \"+\", abréviations). Sur une liste de séances l'œil ne capte pas l'essentiel en 1 coup d'œil ; sur petit écran ça risque de déborder. Le novice ne sait pas en un coup d'œil ce qu'il va faire.",
+        "suggestedFix": "Restructurer titre court + sous-ligne détail (ex. titre \"Enchaînement vélo+course (60+20 min)\", sous-titre \"avec transitions T1/T2 réelles\"). Décision produit : politique de nommage + structure d'affichage de la liste (titre vs corps).",
+        "note": "Les deux personas le relèvent (P2). Restructuration de l'affichage + politique de nommage = subjectif → product_decision.",
+        "sport": "triathlon"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Warmups/notes niveau competitive : « barre x10, +20 kg x5, +40 kg x3 », « +1,25 kg », « plaques fractionnées 1,25 kg », « OHP : barre x10, +10 kg x5, +25 kg x3 », « Deadlift : 60% x5, 75% x2 », dosageSamples « %1RM 75-80% », « TM = 90% du 1RM testé »",
+        "description": "Le niveau competitive est piloté à 100% par la charge en kg en dur + %1RM + TM/1RM, en contradiction directe avec la décision référentiel dosage v2 « charge = sensation + note sans kg/jargon ». Le débutant est OK (charge nulle/légère), mais la doctrine force/competitive (5x5, 531) repose intrinsèquement sur le tonnage chiffré — il faut arbitrer jusqu'où vulgariser sans dénaturer la méthode.",
+        "suggestedFix": "Arbitrage produit en HTML décisions : soit assumer une exception competitive (le kg/%1RM/TM est intrinsèque à la force, garder mais glossariser ces termes), soit convertir le ramping en repères relatifs (« barre seule, puis charge légère/moyenne/lourde »). Ne pas trancher solo.",
+        "note": "Les deux personas le classent product_decision : c'est une contradiction de doctrine (référentiel dosage v2 vs méthode force), pas un simple bug — arbitrage Sophie requis.",
+        "sport": "strengthTraining"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "exerciseNames : « Squat barre nuque (back squat) », « Tirage poulie au visage (face pull) », « Soulevé de terre roumain barre (RDL) », « Pont fessier lesté haltère (hip thrust) », « Fente bulgare haltères (bulgarian split squat) », « Développé Arnold assis (arnold press) »",
+        "description": "Doublage systématique FR + terme EN entre parenthèses. Choix volontaire mais alourdit la lecture, et certaines parenthèses sont un sigle nu (RDL) non explicité. Politique de nommage à figer pour la cohérence multisport.",
+        "suggestedFix": "Décision produit : garder le terme EN entre parenthèses uniquement quand c'est le nom de recherche/vidéo courant (face pull, hip thrust) et le retirer quand le FR suffit ; ne jamais laisser un sigle nu (RDL) sans sa forme longue. Aligner sur la politique de nommage FR/EN décidée pour les autres sports.",
+        "note": "Politique de nommage = choix subjectif multisport → product_decision. SAUF le sigle nu « (RDL) » : son explicitation est objectivement requise, à traiter même si la politique globale reste ouverte.",
+        "sport": "strengthTraining"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Titres de séance : « Activation d'affûtage — Volume réduit », « Poussée A — Semaine allégée (-45 % de séries) », « Séance pic — Schéma 5,3,1 + max de reps (~95 % de la charge cible) »",
+        "description": "« Affûtage », « Schéma 5,3,1 », « ~95 % de la charge cible » sont du jargon de programmation non vulgarisé en titre de séance. Les autres titres (« Quadriceps », « Chaîne postérieure ») sont clairs ; ceux-ci perdent le débutant.",
+        "suggestedFix": "Vulgariser ou glossariser ces titres : « Affûtage »→expliquer (réduire le volume avant un pic), « 5,3,1 »→expliquer le schéma de répétitions, « 95 % de la charge cible »→en effort/sensation. Garder le style clair des autres titres.",
+        "note": "Remonté par Maxime seul (Sally ne l'a pas vu) ; je confirme — incohérence réelle avec les titres clairs. Classé product_decision car vulgariser un titre de méthode (5,3,1, affûtage) touche à la densité/doctrine et chevauche l'arbitrage competitive ci-dessus ; en cas de doute on laisse Sophie trancher.",
+        "sport": "strengthTraining"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Notes/duration/progression_logic — yoga-competitive-advanced-12sem.json : 'drishti', 'breath-led', 'Mysore', 'antar mauna', 'nadi shodhana', 'kumbhaka', 'Vinyasa Krama'",
+        "description": "Le template competitive empile du jargon sanskrit/technique avancé non glosé. Nuance vérifiée : ces termes apparaissent surtout dans la prose des notes/goal, déjà TRILINGUE FR/EN/ES au niveau exercice (drishti ~399 occ./langue), souvent contextualisée. Mais ils fuient AUSSI sans glose dans des endroits courts et exposés (duration '17 respirations breath-led', titres). Le novice 'décroche complètement' ; l'expert UX demande une politique de glossaire par tier (garder le sanskrit pour l'authenticité Ashtanga/Iyengar mais le rendre tappable/glosé, vs. simplifier).",
+        "suggestedFix": "Trancher une politique de glossaire pour le tier competitive (réutiliser le glossaire B2 tappable existant OU glose courte à la 1re occurrence : 'le regard (drishti)'). Au minimum 'breath-led' doit être traduit partout (couvert par le clear_bug ci-dessus). Le sanskrit reste un arbitrage produit.",
+        "note": "Les deux personas convergent sur 'à arbitrer' ; product_decision car garder/glosser/simplifier le sanskrit d'un tier avancé est un choix de positionnement, pas une correction objective.",
+        "sport": "yoga"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "i18n top-level — SYSTÉMIQUE sur les 4 templates yoga (name/summary/safety_notes/progression_logic = FR-only ; 'objective' MISSING partout)",
+        "description": "Sally/Maxime pointent le beginner, mais vérification : les 4 templates yoga ont leurs champs PROGRAMME en FR uniquement, alors que les EXERCICES sont déjà trilingues FR/EN/ES. Le beginner est juste le cas le plus visible (rupture de langue : exercices traduits mais titre + safety_notes en FR pour un user EN/ES — or ce sont les consignes de SÉCURITÉ poignets qui resteraient en FR). Le champ 'objective' est absent de tous les templates.",
+        "suggestedFix": "Compléter EN/ES sur name/summary/safety_notes/progression_logic des 4 templates (pas seulement beginner) et décider du statut de 'objective' (à ajouter ou volontairement absent). Vérifier le fallback FR (jamais de clé brute) en attendant.",
+        "note": "Requalifié en product_decision SYSTÉMIQUE plutôt que bug ponctuel beginner : l'ampleur (traduire ~16 champs longs dont la sécurité + statut de 'objective') est un chantier i18n à cadrer/prioriser, même dette que le chantier i18n B2 contenu.",
+        "sport": "yoga"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Champ duration — unités hétérogènes ('30 sec', '5 respirations Ujjayi par côté', '1 cycle = 17 respirations', '20 min lecture + réflexion', '30 expulsions actives + inspiration passive')",
+        "description": "Le champ duration mélange secondes, minutes, cycles respiratoires, respirations par côté, minutes de lecture, expulsions. Lisible en lecture libre mais impossible à dériver en chiffre 'héros' / compte à rebours fiable dans le FOCUS minuté ('17 respirations', '30 expulsions actives' ne sont pas minutables). Risque d'incohérence UI mode minuté yoga.",
+        "suggestedFix": "Décision produit : scinder duration en deux sous-champs (durée minutée affichable + libellé descriptif) avec équivalence temps ('5 respirations Ujjayi par côté (~45 s)'), soit acter que le FOCUS yoga reste manuel/respiration pour les postures non-minutables. À cadrer avec le chantier dosage caméléon yoga.",
+        "note": "Les deux personas d'accord ; choix de modèle de données + comportement FOCUS = arbitrage produit (lié au chantier dosage caméléon).",
+        "sport": "yoga"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Titres de programme — yoga-regular-vinyasa-10sem.json ('Yoga regular — Vinyasa flow + intro inversions wall, 10 semaines') et yoga-competitive-advanced-12sem.json ('Yoga competitive — Ashtanga primary series + Iyengar advanced, 12 semaines')",
+        "description": "Vérifié : ces 2 titres exposent les codes de tier internes 'regular'/'competitive' (les titres beginner et recreational n'ont PAS le code → incohérence interne au set) + anglicismes techniques bruts 'Vinyasa flow', 'inversions wall' (ni FR ni EN correct), 'primary series', 'advanced'.",
+        "suggestedFix": "Réécrire en FR naturel sans code de tier, ex. 'Vinyasa — flow dynamique + introduction aux inversions au mur (10 semaines)' et 'Ashtanga & Iyengar — série primaire et postures avancées (12 semaines)'. Aligner sur le style déjà propre des titres beginner/recreational.",
+        "note": "La suppression des codes 'regular'/'competitive' et de 'inversions wall' est objectivement fautive, mais la reformulation éditoriale (niveau de jargon Ashtanga/Iyengar à garder) reste un choix → product_decision par prudence.",
+        "sport": "yoga"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Titres de séance trop longs — yoga-competitive-advanced-12sem.json (ex. 'Série primaire 1re moitié — Salutations + Séquence debout + Gros orteil (padangusthasana) → Tête au genou A (janu sirsasana)')",
+        "description": "Maxime (novice) signale que les titres de séance competitive sont très longs et saturés de sanskrit, illisibles d'un coup d'œil. La gloss sanskrit sur les NOMS d'exercices ('Posture de l'aigle (garudasana)') est jugée OK par les deux — à conserver.",
+        "suggestedFix": "Garder le sanskrit entre parenthèses sur les noms d'exercices (OK), mais raccourcir les TITRES de séance (ex. 'Série primaire — 1re moitié : salutations, debout, flexions assises'). Décision produit sur le niveau de détail des titres.",
+        "note": "Relevé surtout par le novice ; retenu car la lisibilité d'un titre est un risque réel, mais la densité éditoriale d'un titre = choix produit.",
+        "sport": "yoga"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Anglicismes/formulations FR maladroites résiduelles — notes/titres competitive : 'bonus debout', 'lancers de jambe' (équilibre mains au mur)",
+        "description": "Polish rédactionnel FR : 'bonus debout' (anglicisme 'bonus'), 'lancers de jambe' peu clair pour un novice (montée de jambe contre le mur). Non bloquant.",
+        "suggestedFix": "Reformuler : 'bonus debout'→'postures debout complémentaires', 'lancers de jambe'→'montées de jambe contre le mur'. Passe de relecture FR finale sur le competitive.",
+        "note": "Relevé par Sally seule, plausible ; classé product_decision car reformulation rédactionnelle subjective (pas une faute objective de langue).",
+        "sport": "yoga"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Absence de regroupement en blocs (séance = liste plate, pas de blockNames) — comportement transverse yoga",
+        "description": "Maxime (novice) : une longue liste plate de 15-20 postures sans sections (échauffement / debout / au sol / retour au calme) est dure à suivre, alors que la muscu a des blocs nommés. Pas un bug.",
+        "suggestedFix": "Envisager un regroupement léger par phase pour le yoga (visuel dans l'app, sans forcément ajouter un champ template). Décision produit + cohérence multisport.",
+        "note": "Suggestion d'amélioration structurelle du novice ; pur arbitrage produit (UX/parité avec muscu).",
+        "sport": "yoga"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "FR ↔ EN incohérence de nommage step-jacks : hiit-beginner-6sem.json:176 (« Jumping jacks sans saut » FR) vs alternative recreational:156 (« Step-jacks (jumping jacks sans saut) » FR) vs EN « Step jacks »",
+        "description": "Le même mouvement porte des libellés FR différents selon le champ (« Jumping jacks sans saut » dans un block name, « Step-jacks (...) » dans une alternative), et le FR garde l'anglicisme « jumping jacks » non traduit. Côté EN c'est « Step jacks ». Incohérence intra-FR + politique de traduction des exos anglicisés à fixer.",
+        "suggestedFix": "Définir une règle de nommage : nom courant FR stable + terme technique entre parenthèses, structurellement identique FR/EN. Ex. FR « Pas latéraux bras levés (jumping jacks sans saut) » / EN « Step jacks (low-impact jumping jacks) », appliqué uniformément aux block names ET alternatives.",
+        "note": "Sally+Maxime convergent. Reclassé product_decision (pas le clear_bug P1 de Sally) : choisir un libellé FR canonique et une politique de traduction des exos anglicisés est un arbitrage de nommage, pas une correction objective. À traiter avec le chantier glossaire ci-dessous.",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Tous titres/blocs/exos/notes HIIT — densité de jargon HIIT/CrossFit non glossarié (EMOM, AMRAP, Tabata 20/10, 30/60, 40/20, RPE, ratio 1:2, KB swing, hip hinge, RDL, dead bug, bird-dog, hollow rocks, V-ups, double-unders, pistol squat, hang power clean/snatch, depth jump, etc.)",
+        "description": "Contenu saturé de jargon HIIT/CrossFit légitime mais brut, présent dès les séances découverte/débutant. Un débutant FR ne sait pas ce qu'est un EMOM, un AMRAP, un « 30/30 » (30 quoi ?). Chantier de politique de nommage : que garde-t-on en terme technique glossarié, que traduit-on. Sally et Maxime alignés.",
+        "suggestedFix": "Définir une doctrine de nommage HIIT en réutilisant le glossaire tappable B2 déjà en place (glutes/band/mobilité) : formats (EMOM/AMRAP/Tabata/RPE/ratios) glossariés au premier usage ; noms d'exos = nom courant FR + terme technique en parenthèse. Prioriser séances débutant/découverte.",
+        "note": "Doublon Sally+Maxime. Arbitrage produit (densité + politique glossaire) → Sophie. RPE en particulier : développer au 1er usage « effort ressenti de 1 à 10 ».",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "safety_notes des 4 templates — pathologies nommées + protocoles médicaux (tendinite Achille, patellar tendonitis, shin splints, lombalgie aiguë, rhabdomyolyse d'effort, coup de chaleur ; RICE, avis kiné, urgences, prise de sang CK)",
+        "description": "Vérifié : les safety_notes citent des pathologies nommées (rhabdomyolyse 4×, tendinite 10×, shin splints 25×, patellar tendonitis) et des protocoles médicaux (RICE, prise de sang CK). À la frontière du conseil médical au sens EU MDR : nommer une maladie + protocole de prise en charge peut être lu comme un claim diagnostique/thérapeutique.",
+        "suggestedFix": "Passer ces safety_notes par template-quality-reviewer (EU MDR) et réécrire en signaux génériques sans nom de pathologie ni protocole : « en cas de douleur articulaire persistante ou de malaise, arrête et consulte un professionnel de santé ». Décision produit sur le niveau de détail scientifique conservé.",
+        "note": "Doublon Sally+Maxime. Reste product_decision (niveau de détail à trancher) MAIS à traiter en priorité haute : risque réglementaire EU MDR réel et vérifié dans les fichiers.",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Notes — références scientifiques user-facing (ACSM 2014, Tabata 1996, Gibala PLOS One 2016, NSCA, Alfredson, NASM Rhabdo 2024, « 170% VO2max », « FCmax = 220 - âge »)",
+        "description": "Citations académiques denses dans des notes vues par l'utilisateur. Donne de la crédibilité mais lourd et illisible pour un user lambda, surtout en séance débutant. Sally+Maxime alignés.",
+        "suggestedFix": "Sortir les références scientifiques du contenu user-facing principal (section « sources » repliée / méta) et garder la consigne actionnable au premier plan.",
+        "note": "Doublon Sally+Maxime. Crédibilité vs charge cognitive = arbitrage produit Sophie.",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Notes — recalcul explicite « HIIT cumulé bloc/séance/hebdo » dans presque chaque note (ex. « 4 × 90 sec = 6 min … HIIT cumulé séance W1 J1 = 4 min »)",
+        "description": "Le volume HIIT cumulé est recalculé explicitement et de façon technique/répétitive dans la quasi-totalité des notes. Pertinent pour un coach, verbeux et décourageant pour l'utilisateur final.",
+        "suggestedFix": "Remplacer le détail de calcul par une formulation simple (« ~4 min d'effort intense aujourd'hui, on monte en douceur cette semaine ») et réserver le calcul détaillé au backstage/interne.",
+        "note": "Doublon Sally+Maxime. Restructuration de contenu = product_decision.",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Titres/blocs — benchmarks CrossFit bruts « FRAN-style », « FRAN ladder (21-15-9-15-9-21) », « Cindy classique bodyweight » (hiit-competitive-athletique-12sem.json, hiit-regular)",
+        "description": "Benchmarks CrossFit nommés (FRAN, Cindy) laissés bruts sans explication. Un user HIIT non-CrossFit ne sait pas ce que c'est ; ça ressemble à du code interne / des prénoms. Sally+Maxime alignés.",
+        "suggestedFix": "Expliquer au premier usage (« inspiré du WOD CrossFit \"Fran\" : thrusters + tractions ») ou retirer le nom du benchmark du titre si non pédagogique, surtout aux niveaux débutant/intermédiaire. Décision selon l'audience cible.",
+        "note": "Doublon Sally+Maxime. Garder/expliquer un nom de benchmark = arbitrage produit.",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Titres de séance — codes techniques bruts (« HIIT 30/60 — squat-air + step-jacks », « HIIT EMOM 20 min full-load — KB 24 kg + Box jump 60 cm + Double-unders », « Strength compound — Hang power snatch DB + Hip thrust »)",
+        "description": "Les titres empilent codes techniques (30/60, EMOM, full-load, KB, compound) et anglais. Lisibles pour initié, opaques pour débutant. Le titre est le 1er point de contact : il devrait situer l'effort, pas réciter le protocole.",
+        "suggestedFix": "Adopter un format orienté bénéfice/effort + sous-ligne technique (ex. titre « Cardio intense par intervalles » / sous-titre « 30 sec effort / 60 sec récup × 4 »). Arbitrage produit sur le niveau de jargon toléré dans les titres.",
+        "note": "Sally P2. Choix de format de titre = product_decision. Cohérent avec le chantier vulgarisation/glossaire ci-dessus.",
+        "sport": "hiit"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Summary programme (premier texte user-facing) — « polarized 'souple' 75-85% LIT/technique + 15-25% HIT », « structure Uphill Athlete (House-Johnston) », « introduction ME chargé », « FKT attempts », « rolling », « ME workout »",
+        "description": "Le résumé de programme — premier texte vu au niveau programme — est saturé de jargon coach non vulgarisé. LIT/ME/FKT/polarized jamais définis, référence d'auteurs (House-Johnston/Uphill Athlete) incompréhensible pour un randonneur lambda. Les deux personas décrochent. Niveau de langue calibré coach pro, pas grand public.",
+        "suggestedFix": "Réécrire le summary en langage grand public et définir/supprimer LIT (« endurance lente »), ME (« force-endurance musculaire »), FKT (« record de temps sur un itinéraire »), polarized, et la référence méthodo. À cadrer avec une politique de glossaire/vulgarisation transverse.",
+        "note": "Sally=P1, Maxime=P0. Je tranche product_decision P1 : la correction des typos/anglicismes isolés est captée par d'autres findings (clear_bug), mais LE NIVEAU DE VULGARISATION CIBLE du summary (que garder, que glosser, ton débutant vs pratiquant) est un choix produit transverse multisport qui doit être arbitré par Sophie, pas tranché en review. Je retiens P1 et non P0 car c'est un chantier de réécriture/politique, pas un fix mécanique.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "sessionTitles « S&C dédié — fondations force-endurance + core », « S&C dédié 2 — Plyo modérée + proprio + core », « Bloc force-endurance chargé »",
+        "description": "« S&C » (Strength & Conditioning), « core », « Plyo », « proprio », « ME » jamais explicités dans des titres user-facing. Le novice ne sait pas s'il doit faire la séance car il ne comprend pas le titre. Le sigle S&C apparaît probablement sur d'autres sports → cohérence multisport.",
+        "suggestedFix": "Politique de nommage transverse : remplacer « S&C » par « Renforcement & condition physique », « core » par « gainage », « Plyo » par « sauts (pliométrie) », « proprio » par « équilibre/proprioception », « ME » par « force-endurance ». À arbitrer comme règle de nommage transverse.",
+        "note": "Sally=P1 (product_decision), Maxime=P0. Je tranche product_decision P1 : choix de politique de nommage FR/EN multisport (garder un sigle coach vs vulgariser systématiquement) = arbitrage produit transverse réservé à Sophie. La sévérité P1 (et non P0) parce que c'est un chantier de politique, pas une typo. Doute → product_decision (consigne).",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Label/titre du sport « hiking » affiché en anglais",
+        "description": "Le sport s'affiche « hiking » alors que toute l'appli est en français ; le novice dit « rando »/« marche en montagne » et doute que ça corresponde à son besoin. Question de cohérence : faut-il afficher un libellé FR (« Randonnée ») et garder « hiking » seulement comme code interne ?",
+        "suggestedFix": "Afficher « Randonnée » (localisé FR/EN/ES) côté user, conserver « hiking » comme SportCode interne uniquement.",
+        "note": "Maxime seul (P1). Sally ne le relève pas. C'est un label de sport exposé : la décision d'afficher un nom localisé vs le code interne, et le wording exact, est un choix produit (et touche le mapping SportCode→label, transverse aux 10 sports). product_decision.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "sessionTitle « Drills technique + montée douce endurance facile à tempo (zones 2-3) »",
+        "description": "« Drills » anglais (exercices ?) + enchaînement « endurance facile à tempo (zones 2-3) » qui mélange « facile » ET « tempo » → le novice ne sait pas si la séance est facile ou intense. Question de clarté de progression d'intensité dans les titres.",
+        "suggestedFix": "« Exercices techniques + montée progressive (zones 2 à 3) ». Remplacer « Drills » (capté aussi par le finding anglicismes) et clarifier que c'est une progression d'intensité, pas deux intensités simultanées.",
+        "note": "Maxime seul (P2). « Drills »→« exercices » est mécanique (couvert par le finding anglicismes), mais la reformulation de la logique « facile à tempo » pour lever l'ambiguïté d'intensité touche la convention de nommage des titres → product_decision, P2.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "« zone 2 » / « FCmax » récurrents dans titres et notes, jamais expliqués",
+        "description": "« zone 2 » revient partout dans les titres mais n'est jamais défini ; lié à « % FCmax » dans les notes, que le débutant ne sait pas mesurer. Le novice ne sait pas à quelle allure marcher.",
+        "suggestedFix": "Glossariser « zone 2 » et « FCmax » au moins à la première occurrence : « zone 2 = allure facile, tu peux parler en marchant ».",
+        "note": "Maxime seul (P2). Décider si/où gloser « zone 2 » et « FCmax » relève de la politique de glossaire transverse (déjà en place sur l'app) → product_decision. P2 : utile mais non bloquant si la note FC est par ailleurs reformulée en clair (cf finding note Z2).",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "dosageSample « Mobilité d'épaules en Y-T-W | 2 séries × 8 par lettre »",
+        "description": "« 8 par lettre » oblige à relire 3 fois pour comprendre que « lettre » = Y, T, W. Et « Y-T-W » comme nom d'exo n'évoque rien sans illustration.",
+        "suggestedFix": "Reformuler : « 8 répétitions pour chaque position (Y, puis T, puis W) » + décrire/illustrer l'exo.",
+        "note": "Maxime seul (P2). La convention « X par lettre » dans le format de dosage et l'opportunité d'une illustration sont des choix de présentation produit → product_decision, P2.",
+        "sport": "hiking"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Champs target_zone / dosage — coexistence de Z2/Z3 (zones FC), RPE 6-7 / RPE 8-9, et labels texte (technique, cool-down)",
+        "description": "Trois systèmes de repère d'intensité coexistent sans légende : zones FC, RPE chiffré et labels texte. L'utilisateur (surtout novice) doit jongler entre des référentiels jamais expliqués. RPE et Z2/Z3 sont du jargon physio pur.",
+        "suggestedFix": "(a) harmoniser sur un seul système d'affichage user (idéalement l'échelle effort 1-5 déjà adoptée ailleurs dans l'app), OU (b) rendre RPE/Z2/Z3 tappables vers le glossaire B2 existant ; au minimum une légende effort persistante. À arbitrer dans le chantier dosage caméléon.",
+        "note": "Sally P1 + Maxime P2 ; product_decision car touche à la politique d'affichage du dosage (chantier caméléon en cours) — choix transverse de Sophie.",
+        "sport": "tennis"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Titres/exos — densité de jargon : split-step, bird-dog, Y-T-W, scaption, pallof press, ghost-stroking, drill, shadow, foam roller, pliométrie, tapering/affûtage, RPE, tie-break, sweet spot",
+        "description": "Forte densité de jargon technique/anglais en user-facing. Certains termes sont incontournables au tennis (tie-break, split-step), d'autres sont du jargon muscu/physio (bird-dog, Y-T-W, scaption, pallof press) ou prépa (tapering/affûtage). Les parenthèses explicatives sont incohérentes (présentes la 1ère occurrence puis absentes : \"split-step\" seul dans les warmups). Le novice décroche.",
+        "suggestedFix": "Arbitrer une politique de nommage par terme : (1) garder + glossaire tappable pour les termes du sport légitimes (tie-break, split-step, croisé) ; (2) vulgariser/décrire le geste pour les noms muscu (bird-dog→quadrupédie bras-jambe opposés, Y-T-W→bras au sol dessinant les lettres, scaption→élévation bras en V, pallof press→anti-rotation à la poulie, drill→exercice, shadow/ghost-stroking→gestes à vide). Réutiliser le glossaire B2 existant.",
+        "note": "Fusion de plusieurs findings Sally (jargon global, split-step, sleeper, bird-dog/scaption/Y-T-W via exos) et Maxime (split-step, Y-T-W/scaption, bird-dog/pallof, drill/shadow/ghost, tapering) ; product_decision car c'est une politique de nommage/glossaire transverse — choix subjectif réservé à Sophie.",
+        "sport": "tennis"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Titre de séance/bloc — \"Court d'affûtage (tapering)\"",
+        "description": "\"Affûtage\" (mot FR rare) et \"tapering\" (anglais) sont dans un TITRE de séance, donc très visible, et aucun des deux ne parle à un débutant. Idem observations \"race week\", \"periodization\".",
+        "suggestedFix": "Vulgariser le titre : \"Allègement avant compétition\" plutôt que \"affûtage (tapering)\". Le titre doit être compris sans glossaire.",
+        "note": "Remonté par Maxime (P2) ; je le sépare du jargon exos et le monte à P1 car c'est un titre de séance (haute visibilité) — product_decision (politique de nommage de titre, déjà identifiée comme chantier ouvert dans l'app).",
+        "sport": "tennis"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Champs reps/duration verbeux — \"10 services (5 1ère T + 5 2e kick)\", \"1 tie-break 4 points + 2 min récup\", \"match (60-150 min selon format)\", \"45 sec sprint + 90 sec récup\", \"10 par lettre\"",
+        "description": "Le champ reps/duration contient de longues chaînes descriptives plutôt qu'un nombre. Risque de débordement/troncature si l'UI suppose un format court (ex. 3×10). En plus, certaines chaînes sont cryptiques pour un novice (\"5 1ère T\", \"10 par lettre\").",
+        "suggestedFix": "Prévoir un champ détail multi-ligne tolérant le texte long, ou scinder dosage (sets×reps) et précision en deux sous-champs. Clarifier les libellés cryptiques (\"10 par lettre\"→\"10 répétitions pour chaque lettre Y, T, W\"; \"5 1ère T\"→\"5 services au T\"). Tester le rendu de la chaîne la plus longue sur petit écran.",
+        "note": "Sally et Maxime alignés ; product_decision (affichage) car l'arbitrage UI/structure de champ + la décision de vérifier le rendu sur device relèvent de Sophie.",
+        "sport": "tennis"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "Parité i18n — champs notes/match_key FR-only ou FR+EN sans ES sur recreational/regular/competitive (beginner a fr/en/es)",
+        "description": "Parité multilingue non garantie : le beginner a ES partout, mais certains champs des templates avancés sont FR-only ou FR+EN sans ES. Un utilisateur ES sur un template avancé verrait du contenu non traduit (fallback FR).",
+        "suggestedFix": "Auditer la couverture {fr,en,es} champ par champ sur les 4 niveaux (cf chantier i18n B2). Compléter ES manquant sur notes/cooldown des templates avancés ; à défaut documenter le fallback. Décision : seuil de parité exigé avant ship ES.",
+        "note": "Sally et Maxime alignés ; product_decision car le seuil de parité exigé avant ship ES est un arbitrage produit (chantier i18n B2).",
+        "sport": "tennis"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "Exercice — \"Anti-rotation à la poulie (pallof press) + bird-dog + planche latérale avec rotation\"",
+        "description": "Un seul nom d'exercice enchaîne 3 mouvements distincts (pallof press + bird-dog + planche latérale avec rotation) sur une ligne. Trop chargé : le novice est perdu, et le dosage associé devient ambigu (à quel mouvement s'applique-t-il ?).",
+        "suggestedFix": "Découper en exercices séparés avec dosage propre à chacun, plutôt qu'un libellé concaténé.",
+        "note": "Remonté par Maxime ; product_decision (restructuration de séance) distincte du simple jargon — le découpage d'un exo composite en plusieurs items est un choix de structure réservé à Sophie.",
+        "sport": "tennis"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "4 fichiers football — summary/default_objective : « R3-N3 / niveau 4+ », « AA + Hypertrophy », « Force Max + Conversion Power Bompa », « FFF BMF / FA Step 5-7 », « MD-3/MD-2/MD-1 », « NHE », « CAE », « RSA », « tapering »",
+        "description": "Jargon de périodisation (Bompa AA/Hypertrophy/Force Max/Conversion Power), niveaux fédéraux (R3-N3, FFF BMF, FA Step 5-7), acronymes (NHE, CAE, RSA, MD-X) exposés crus dans les résumés/objectifs de programme. Incompréhensible pour l'utilisateur final, décourageant pour un débutant. « AA + Hypertrophy » mélange même sigle FR + anglais.",
+        "suggestedFix": "Reformuler summary/objectif en langage utilisateur (« phase de développement de la force », « 3 jours avant le match »). Réserver les références de méthode (Bompa, FFF, RSA/NHE/CAE) à une note source optionnelle ou les expliciter à la première occurrence.",
+        "note": "Doublon Sally(P1)+Maxime(P1) ; product_decision car le niveau de vulgarisation des résumés et la politique « garder/expliciter/supprimer les références de méthode » sont un choix produit ouvert (cf audit didactique 10 sports).",
+        "sport": "football"
+      },
+      {
+        "severity": "P1",
+        "category": "product_decision",
+        "location": "4 fichiers football — exercise names à jargon anglais : « Bird-dog », « clamshell », « split-step », « box jumps », « lateral bounds », « ickey shuffle », « monster walks », « pallof press », « the bench », « sideways bench », et acronymes nus « RDL », « NHE », « CAE », « RSA »",
+        "description": "Mélange FR/EN inégal dans les noms d'exercices : certains ont la traduction entre parenthèses (« Pont fessier lesté (hip thrust) ») mais d'autres restent crus (« Bird-dog », « ickey shuffle », « clamshell », « monster walks »). Les acronymes (RDL, NHE, CAE, RSA) sont cryptiques sans explication. Maxime (novice foot) ne sait pas quoi faire de ces exos.",
+        "suggestedFix": "Décision produit : règle FR-first systématique avec terme EN entre parenthèses pour TOUS, bannir les acronymes nus côté user (« répétition de sprints (RSA) »). Auditer la liste exercices football pour parité avec la politique de nommage multisport. S'assurer qu'une consigne « comment l'exécuter » existe pour les exos exotiques.",
+        "note": "Doublon Sally(P1)+Maxime(P1) ; product_decision (politique de nommage FR/EN, chantier déjà ouvert dans l'audit didactique). Inclut le besoin de consigne d'exécution pour exos exotiques signalé par Maxime.",
+        "sport": "football"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "4 fichiers football — champ reps en texte libre : « 20 passes par pied (40 total) », « 5-6 min ON / 2 min OFF », « 5 box jumps + 5 lateral bounds/côté », « 45 sec plank + 10 reps/côté bird-dog », « 30 sec / jambe yeux ouverts »",
+        "description": "Le champ reps est souvent une chaîne libre non numérique (compte / durée / par côté / combo / interval ON-OFF), ce qui empêche un affichage reps-héros propre dans le FOCUS et complique le rendu du dosage caméléon. volume_axis est correct mais reps lui-même est hétérogène.",
+        "suggestedFix": "Normaliser reps en structure typée (count | duration | per_side | interval ON/OFF) ; le texte composite va en consigne secondaire, pas dans le champ reps-héros. À cadrer avec le référentiel dosage caméléon v2.",
+        "note": "Sally P2/Maxime P2 ; product_decision (touche la structure du modèle dosage caméléon, chantier en cours). Maintenu P2.",
+        "sport": "football"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "4 fichiers football — safety_notes/notes : « pubalgie », « tendinite d'Achille », « entorse LCA », « commotion cérébrale », « -51 % méta-analyse Petersen 2016 », « -33 % », « OBLIGATOIRE 2-3×/sem », « non négociables »",
+        "description": "Deux risques : (1) termes pathologiques nommés (pubalgie, tendinite, commotion, LCA, RED-S) + stats de réduction de blessure (« -51 % », « -33 % ») = potentiels claims médicaux au sens EU MDR ; (2) impératifs autoritaires (« OBLIGATOIRE », « non négociables ») anxiogènes. Le ton reste prudentiel (renvoi médecin/kiné présent) mais à valider contre la liste de mots bannis.",
+        "suggestedFix": "Vérifier chaque terme vs la liste EU MDR de mots bannis ; remplacer les diagnostics nommés par des formulations génériques (« inconfort à l'aine/au tendon »), retirer les stats chiffrées de réduction de blessure, adoucir « obligatoire/non négociable » → « recommandé/important ». Conserver le renvoi vers un professionnel de santé.",
+        "note": "Doublon Sally(P2)+Maxime(P2) ; product_decision/EU MDR — arbitrage légal qui revient à Sophie (liste mots bannis), pas une correction mécanique. À faire valider avant toute prod.",
+        "sport": "football"
+      },
+      {
+        "severity": "P2",
+        "category": "product_decision",
+        "location": "4 fichiers football — notes : « ~65-75 % FCmax », « ~75-85 % FCmax », « Z1/Z2/Z3/Z4 »",
+        "description": "Le % FCmax et les zones Z1-Z4 ne parlent pas à un débutant sans cardiofréquencemètre ni connaissance de sa FCmax. Une sensation concrète (« allure conversationnelle, tu peux parler ») est parfois présente mais pas systématique.",
+        "suggestedFix": "Doubler systématiquement le % FCmax / Z par une sensation concrète (test de la parole) et la mettre partout ; garder le % FCmax en information secondaire pour ceux équipés d'un cardio.",
+        "note": "Remonté par Maxime seul (P2) ; Sally l'a couvert indirectement via target_zone mais ici c'est dans les notes. product_decision : relève du même chantier dosage caméléon (politique sensation-first), choix de présentation produit.",
+        "sport": "football"
+      }
+    ],
+    "totals": {
+      "sports": 10,
+      "clearBugs": 65,
+      "productDecisions": 57
+    }
+  }
+}

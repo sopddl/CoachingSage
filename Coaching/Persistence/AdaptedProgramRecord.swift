@@ -98,8 +98,53 @@ final class AdaptedProgramRecord {
         set { completionStateJsonData = (try? JSONEncoder().encode(newValue)) ?? Data() }
     }
 
+    /// **Chantier charge muscu V2 (T2)** — `ExerciseLevelState` sérialisé : niveau
+    /// relatif CACHÉ par exo (clé = stableMatchKey). Default `Data()` (→ `.empty` au
+    /// décodage) pour migration SwiftData lightweight sans crash (records pré-feature).
+    /// PRÉSERVÉ au renouvellement de cycle (l'apprentissage survit, contrairement à
+    /// `completionState`). Jamais de kg.
+    private var exerciseLevelsJsonData: Data = Data()
+    var exerciseLevels: ExerciseLevelState {
+        get { (try? JSONDecoder().decode(ExerciseLevelState.self, from: exerciseLevelsJsonData)) ?? .empty }
+        set { exerciseLevelsJsonData = (try? JSONEncoder().encode(newValue)) ?? Data() }
+    }
+
+    /// **Chantier charge muscu V2 (increment 2, décision B)** — `ExerciseWeightState`
+    /// sérialisé : poids NOTÉ par l'user (kg réel) par exo (clé = stableMatchKey). Même
+    /// pattern lightweight que `exerciseLevels` (default `Data()` → `.empty`, migration
+    /// sans crash). PRÉSERVÉ au renouvellement de cycle (le rappel « dernière fois » doit
+    /// survivre). L'app ne prescrit jamais : ce champ ne contient que ce que l'user a saisi.
+    private var exerciseWeightsJsonData: Data = Data()
+    var exerciseWeights: ExerciseWeightState {
+        get { (try? JSONDecoder().decode(ExerciseWeightState.self, from: exerciseWeightsJsonData)) ?? .empty }
+        set { exerciseWeightsJsonData = (try? JSONEncoder().encode(newValue)) ?? Data() }
+    }
+
+    /// **Chantier indoor/outdoor vélo (2026-06-10)** — lieu choisi par séance (clé
+    /// `"week-day"` stable, valeur = `SessionEnvironment.rawValue`). Mirroir léger (même
+    /// pattern que `exerciseWeights` : default `Data()` → `.empty`, migration lightweight
+    /// sans crash). PRÉSERVÉ au renouvellement de cycle (le choix de lieu survit).
+    private var sessionLocationsJsonData: Data = Data()
+    var sessionLocations: SessionLocationState {
+        get { (try? JSONDecoder().decode(SessionLocationState.self, from: sessionLocationsJsonData)) ?? .empty }
+        set { sessionLocationsJsonData = (try? JSONEncoder().encode(newValue)) ?? Data() }
+    }
+
+    /// **Chantier indoor/outdoor vélo** — défaut de lieu du programme (réponse à la question
+    /// au lancement : `"indoor"` / `"outdoor"` / `"both"`). `nil` = pas demandé / sport sans
+    /// lieu. Optionnel → migration SwiftData lightweight sûre.
+    var environmentDefaultRaw: String?
+
     var isActive: Bool                          // false = archivé (programme terminé/abandonné)
     var archivedAt: Date?                       // timestamp d'archivage, nil tant qu'`isActive`
+
+    /// **Densité B (2026-07-02)** — true si `DensityRule` a réellement densifié au moins
+    /// une séance à la création (signal activité régulière). Sert : phrase Léon
+    /// (bannière conditionnelle `AdaptedProgramView`, inc4), audit. Default `false` →
+    /// migration SwiftData lightweight sûre (records pré-feature + dormants
+    /// `AutoProgramFactory` jamais densifiés). Figé à la création (D5a : densité
+    /// vivante-sur-activité parkée).
+    var densityApplied: Bool = false
 
     /// Story 3.3a : émis par `ProgramAdapter` quand l'algo deterministic n'a pas trouvé
     /// d'alternative propre pour au moins un exercice. Story 3.3b auto-déclenche le
@@ -161,6 +206,7 @@ final class AdaptedProgramRecord {
         goalCode: String? = nil,
         secondaryGoalsCSV: String? = nil,
         isUserRenamed: Bool = false,
+        densityApplied: Bool = false,
         createdAt: Date = Date(),
         lastUpdatedAt: Date = Date()
     ) {
@@ -188,6 +234,7 @@ final class AdaptedProgramRecord {
         self.goalCode = goalCode
         self.secondaryGoalsCSV = secondaryGoalsCSV
         self.isUserRenamed = isUserRenamed
+        self.densityApplied = densityApplied
         self.createdAt = createdAt
         self.lastUpdatedAt = lastUpdatedAt
     }
@@ -222,7 +269,9 @@ extension AdaptedProgramRecord {
                     type: session.type,
                     warmup: session.warmup,
                     exercises: session.exercises,
-                    cooldown: session.cooldown
+                    cooldown: session.cooldown,
+                    warmupMinutes: session.warmupMinutes,
+                    cooldownMinutes: session.cooldownMinutes
                 )
             }
         }
@@ -261,7 +310,8 @@ extension AdaptedProgramRecord {
             customTitle: autoTitle,
             goalCode: goal,
             secondaryGoalsCSV: secondaryCSV,
-            isUserRenamed: false
+            isUserRenamed: false,
+            densityApplied: adapted.appliedRules.contains { $0.ruleType == .density }
         )
     }
 
@@ -298,17 +348,7 @@ extension AdaptedProgramRecord {
         let weeks = grouped.keys.sorted().compactMap { wn -> AdaptedWeek? in
             let weekSessions = (grouped[wn] ?? []).sorted(by: { $0.day < $1.day })
             guard let first = weekSessions.first else { return nil }
-            let adapted = weekSessions.map { ps in
-                AdaptedSession(
-                    day: ps.day,
-                    name: ps.name,
-                    durationMinutes: ps.durationMinutes,
-                    type: ps.type,
-                    warmup: ps.warmup,
-                    exercises: ps.exercises,
-                    cooldown: ps.cooldown
-                )
-            }
+            let adapted = weekSessions.map { $0.toAdaptedSession() }
             return AdaptedWeek(
                 weekNumber: wn,
                 theme: first.weekTheme,

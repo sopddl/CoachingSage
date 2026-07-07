@@ -16,6 +16,9 @@ struct AdaptedProgramView: View {
     @Environment(\.appDependencies) private var deps
     @Environment(\.languageManager) private var languageManager
 
+    /// Locale in-app courante — résolution du contenu localisable des séances.
+    private var locale: Locale { languageManager.currentLocale }
+
     let program: AdaptedProgram
 
     /// Callback déclenché par le bouton "Demander à Léon". Câblé en Story 3.3b
@@ -98,6 +101,7 @@ struct AdaptedProgramView: View {
     @State private var expandedWeeks: Set<Int> = []
 
     var body: some View {
+        ScrollViewReader { proxy in
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 if program.requiresAIAssist {
@@ -112,15 +116,16 @@ struct AdaptedProgramView: View {
                     leonNotesSection(notes)
                 }
 
-                if record != nil {
-                    progressHeader
+                // Densité B (2026-07-02) — phrase Léon VRAIE : affichée UNIQUEMENT si
+                // DensityRule a réellement agi (fork #3 Sophie). Hot path = appliedRules
+                // en mémoire ; réouverture dashboard = record.densityApplied persisté.
+                if densityWasApplied {
+                    densityBanner
                 }
 
                 ForEach(program.weeks, id: \.weekNumber) { week in
                     weekAccordion(week)
                 }
-
-                medicalReminderFooter
 
                 // **Story 3.15 v3 (Sophie 2026-05-21)** — bouton "Supprimer le
                 // programme" en bas, uniquement pour les programmes persistés
@@ -129,6 +134,12 @@ struct AdaptedProgramView: View {
                 // seule porte de sortie pour archiver/supprimer.
                 if record != nil, onConfirmStart == nil, onDeleteProgram != nil {
                     deleteProgramFooter
+                    // Dégagement bas : le footer "Supprimer" est le dernier élément du
+                    // scroll, sous la tab bar custom (overlay ZStack, MainTabView). Le
+                    // `tabBarReservedHeight` (64) ne couvre pas le FAB Léon `offset -22`
+                    // qui déborde → sans ce spacer la zone de tap du bouton chevauche la
+                    // tab bar (visible mais intappable). Cf bug device-test Sophie.
+                    Color.clear.frame(height: 44)
                 }
             }
             .padding()
@@ -169,8 +180,37 @@ struct AdaptedProgramView: View {
                 leonLoadingOverlay
             }
         }
-        .navigationTitle(Text(verbatim: displayTitle))
+        // **Findings UX 2026-06-29 (#2)** — en mode actif/dormant (record chargé)
+        // le nom vit dans le bandeau sticky → on vide le titre nav pour ne pas
+        // l'afficher deux fois. En preview/hot-path (pas de sticky), il reste là.
+        .navigationTitle(Text(verbatim: record != nil ? "" : displayTitle))
         .navigationBarTitleDisplayMode(.inline)
+        // **Findings UX 2026-06-29 (#4)** — l'avancement (X/N + barre) reste
+        // visible pendant le scroll du contenu du programme : sorti du ScrollView
+        // vers un inset top sticky (le titre, lui, est déjà figé dans la nav bar
+        // `.inline`). Affiché uniquement en mode actif (record chargé), pas en
+        // preview/hot-path où il n'y a pas de progression à montrer.
+        .safeAreaInset(edge: .top, spacing: 0) {
+            if record != nil {
+                VStack(spacing: 8) {
+                    // **Findings UX 2026-06-29 (#2)** — nom du programme TOUJOURS
+                    // lisible (sticky), plus seulement la petite nav bar.
+                    stickyProgramTitle
+                    // **#4** — avancement (X/N + barre) qui ne défile plus.
+                    // **Finding UX 2026-07-01 (Sophie)** — masqué tant que le programme
+                    // est dormant (`weekStartDate == nil`) : « 0/N » sur un programme
+                    // pas lancé n'a pas de sens (rien de fait) et induit en erreur.
+                    if !isDormantRecord {
+                        progressHeader
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.top, 8)
+                .padding(.bottom, 10)
+                .background(.bar)
+                .overlay(alignment: .bottom) { Divider() }
+            }
+        }
         // **Story 3.16 (Sophie 2026-05-21)** — sticky bottom 2 boutons en mode
         // preview post-questionnaire. "Retour" (sans persistance) + "Démarrer"
         // (commit). Avant : seul un bouton toolbar trailing (nav "bizarre").
@@ -188,19 +228,23 @@ struct AdaptedProgramView: View {
                     startToolbarButton
                 }
             }
-            // Menu titre (rename) — disponible dans tous les modes où on a un
-            // record SwiftData persisté.
-            if record != nil {
-                ToolbarTitleMenu {
-                    Button {
-                        renameBuffer = displayTitle
-                    } label: {
-                        Label("coaching.adapter.rename.action", systemImage: "pencil")
-                    }
-                }
-            }
+            // **Findings UX 2026-06-29 (#2)** — le renommage passe désormais par
+            // le NOM dans le bandeau sticky (tap + crayon discret), plus par le
+            // chevron ⌄ de la nav bar jugé pas parlant (retour Sophie). Le
+            // `ToolbarTitleMenu` est donc retiré.
         }
-        .task(id: recordId) { await loadRecord() }
+        .task(id: recordId) { await loadRecord(); scrollToNextUndone(proxy) }
+        }
+    }
+
+    /// Story 3.35k — positionne le scroll sur la 1ʳᵉ séance non faite à l'ouverture
+    /// (toutes les semaines étant dépliées). Délai pour laisser la liste se layouter.
+    private func scrollToNextUndone(_ proxy: ScrollViewProxy) {
+        Task { @MainActor in
+            try? await Task.sleep(nanoseconds: 350_000_000)
+            guard let anchor = firstUndoneSessionAnchor else { return }
+            withAnimation(.easeInOut(duration: 0.3)) { proxy.scrollTo(anchor, anchor: .top) }
+        }
     }
 
 
@@ -236,6 +280,7 @@ struct AdaptedProgramView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
+                .contentShape(Rectangle()) // tout le rectangle tappable, pas que le glyphe
             }
             .buttonStyle(.plain)
             .foregroundStyle(Color.coachingError)
@@ -374,16 +419,12 @@ struct AdaptedProgramView: View {
     // MARK: - Story 3.12 — Fetch record + accordéon helpers
 
     private func loadRecord() async {
-        guard let recordId, let deps else {
-            // Preview mode (pas de record) → S1 dépliée par défaut.
-            if let firstWeek = program.weeks.first {
-                expandedWeeks = [firstWeek.weekNumber]
-            }
-            return
-        }
+        // Story 3.35k — toutes les semaines OUVERTES par défaut (Sophie). Le scroll
+        // se positionnera sur la prochaine séance non faite.
+        expandedWeeks = Set(program.weeks.map(\.weekNumber))
+        guard let recordId, let deps else { return }
         let fetched = try? await deps.adaptedProgramRepository.fetchById(recordId: recordId)
         record = fetched
-        expandedWeeks = [currentWeekNumber]
     }
 
     /// Semaine courante du programme (1-indexed). Calculée depuis `weekStartDate`
@@ -411,6 +452,15 @@ struct AdaptedProgramView: View {
             .filter { $0.weekNumber == weekNumber }
             .map(\.id)
         return weekSessionIds.filter { record.completionState.sessionRecords[$0] != nil }.count
+    }
+
+    /// Chantier durée réglable, pilote cycling (Increment 3) — la durée AFFICHÉE dans la
+    /// liste doit refléter un ajustement fait depuis `SessionDetailView` dans la même
+    /// session de navigation (`program`, snapshot figé au push, ne le voit pas). `record`
+    /// est rechargé une fois au mount mais reste le même objet SwiftData mutable — un
+    /// ajustement persisté via `AdaptedProgramRepository.update` s'y reflète directement.
+    private func effectiveDurationMinutes(week: Int, day: Int, fallback: Int) -> Int {
+        record?.sessions.first(where: { $0.weekNumber == week && $0.day == day })?.durationMinutes ?? fallback
     }
 
     private enum WeekState { case past, current, future }
@@ -449,19 +499,6 @@ struct AdaptedProgramView: View {
         }
     }
 
-    private func expansionBinding(for weekNumber: Int) -> Binding<Bool> {
-        Binding(
-            get: { expandedWeeks.contains(weekNumber) },
-            set: { expanded in
-                if expanded {
-                    expandedWeeks.insert(weekNumber)
-                } else {
-                    expandedWeeks.remove(weekNumber)
-                }
-            }
-        )
-    }
-
     // MARK: - AI assist banner
 
     private var aiAssistBanner: some View {
@@ -497,6 +534,39 @@ struct AdaptedProgramView: View {
         .padding()
         .background(Color.accentColor.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    // MARK: - Densité B — bannière phrase Léon (surface UNIQUE de la densité)
+
+    /// True si la densification a réellement eu lieu. Hot path post-création :
+    /// `program.appliedRules` en mémoire. Réouverture depuis le dashboard :
+    /// `toAdaptedProgram()` reconstitue `appliedRules = []` → on lit le flag
+    /// persisté `record.densityApplied`.
+    private var densityWasApplied: Bool {
+        record?.densityApplied == true
+            || program.appliedRules.contains { $0.ruleType == .density }
+    }
+
+    /// Registre G7/G7bis : purement comportemental (« tu t'entraînes déjà
+    /// régulièrement »), jamais capacité physique, jamais « pour ton objectif ».
+    /// Déterministe, locale, 3 clés i18n — aucun réglage exposé (pivot 23/06).
+    private var densityBanner: some View {
+        HStack(alignment: .top, spacing: 10) {
+            Image(systemName: "plus.circle.fill")
+                .foregroundStyle(.teal)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("coaching.adapter.density.banner.title")
+                    .font(.headline)
+                Text("coaching.adapter.density.banner.subtitle")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding()
+        .background(Color.accentColor.opacity(0.08))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("adapter.density.banner")
     }
 
     // MARK: - Story 3.3b — Léon overlay UI
@@ -547,13 +617,13 @@ struct AdaptedProgramView: View {
 
     private func leonErrorSubtitle(_ error: LeonError) -> String {
         switch error {
-        case .quotaExceeded: return String(localized: "coaching.adapter.leon.error.quota")
-        case .anthropicUnavailable: return String(localized: "coaching.adapter.leon.error.unavailable")
-        case .invalidPatch: return String(localized: "coaching.adapter.leon.error.invalidPatch")
-        case .unauthorized: return String(localized: "coaching.adapter.leon.error.unauthorized")
-        case .invalidRequest: return String(localized: "coaching.adapter.leon.error.invalidRequest")
-        case .network: return String(localized: "coaching.adapter.leon.error.network")
-        case .server: return String(localized: "coaching.adapter.leon.error.server")
+        case .quotaExceeded: return String.localized("coaching.adapter.leon.error.quota", locale: locale)
+        case .anthropicUnavailable: return String.localized("coaching.adapter.leon.error.unavailable", locale: locale)
+        case .invalidPatch: return String.localized("coaching.adapter.leon.error.invalidPatch", locale: locale)
+        case .unauthorized: return String.localized("coaching.adapter.leon.error.unauthorized", locale: locale)
+        case .invalidRequest: return String.localized("coaching.adapter.leon.error.invalidRequest", locale: locale)
+        case .network: return String.localized("coaching.adapter.leon.error.network", locale: locale)
+        case .server: return String.localized("coaching.adapter.leon.error.server", locale: locale)
         }
     }
 
@@ -600,6 +670,33 @@ struct AdaptedProgramView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
+    // MARK: - Sticky program title (Findings UX 2026-06-29 #2)
+
+    /// Nom du programme dans le bandeau sticky : toujours lisible (jusqu'à 2 lignes,
+    /// jamais tronqué en « … »). Tap = renommer (réutilise l'alert `renameBuffer`).
+    /// Le crayon est discret (caption/secondary) : sur iPhone il n'y a pas de survol,
+    /// donc l'édition se déclenche au tap du nom, le crayon ne fait que signaler.
+    private var stickyProgramTitle: some View {
+        Button {
+            renameBuffer = displayTitle
+        } label: {
+            HStack(spacing: 6) {
+                Text(verbatim: displayTitle)
+                    .font(.headline)
+                    .foregroundStyle(Color.coachingTextPrimary)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+                Image(systemName: "pencil")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                Spacer(minLength: 0)
+            }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("coaching.adapter.rename.action")
+    }
+
     // MARK: - Progress header (Story 3.12)
 
     /// Compteur global de séances faites sur le programme + barre de progression.
@@ -642,56 +739,89 @@ struct AdaptedProgramView: View {
 
     private func weekAccordion(_ week: AdaptedWeek) -> some View {
         let state = state(of: week)
-        return DisclosureGroup(isExpanded: expansionBinding(for: week.weekNumber)) {
-            VStack(alignment: .leading, spacing: 8) {
-                if !week.goal.isEmpty {
-                    Text(verbatim: week.goal)
-                        .font(.caption)
+        let isExpanded = expandedWeeks.contains(week.weekNumber)
+        return VStack(alignment: .leading, spacing: 8) {
+            // Header custom : le titre + le chevron togglent ; le « i » est un bouton
+            // SÉPARÉ (avant, dans un DisclosureGroup, taper « i » repliait la semaine
+            // et faisait « disparaître » les séances — bug Sophie 2026-06-03).
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                Button {
+                    withAnimation(.easeInOut(duration: 0.2)) { toggleWeek(week.weekNumber) }
+                } label: {
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
+                        weekTitleAndState(week: week, state: state)
+                        Spacer(minLength: 8)
+                    }
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                if !week.theme.canonical.isEmpty || !week.goal.canonical.isEmpty {
+                    WeekInfoButton(theme: week.theme.resolved(locale), goal: week.goal.resolved(locale))
+                }
+                Button {
+                    withAnimation(.easeInOut(duration: 0.2)) { toggleWeek(week.weekNumber) }
+                } label: {
+                    Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
+                        .font(.caption.bold())
                         .foregroundStyle(.secondary)
                 }
+                .buttonStyle(.plain)
+            }
+            weekDisciplineRecap(week)
+            if isExpanded {
                 VStack(spacing: 6) {
                     ForEach(week.sessions, id: \.day) { session in
                         sessionRow(session, week: week)
                     }
                 }
+                .padding(.top, 2)
             }
-            .padding(.top, 6)
-        } label: {
-            weekAccordionLabel(week: week, state: state)
         }
         .padding(.vertical, 4)
         .accessibilityIdentifier("coaching.adapter.week.\(week.weekNumber)")
     }
 
+    /// Chantier récap hebdo triathlon (2026-07-06/07) — retour persona 2026-07-05 :
+    /// aucun repère "plan multisport" visible en un coup d'œil. Toujours affiché
+    /// (semaines OUVERTES par défaut — Story 3.35k — donc un gating "replié
+    /// uniquement" ne s'afficherait quasiment jamais).
+    private func weekDisciplineRecap(_ week: AdaptedWeek) -> some View {
+        WeekDisciplineRecapView(
+            codes: SessionSportInference.disciplineCodes(
+                inWeek: week.sessions,
+                programSportCode: program.sport.appSportCode
+            )
+        )
+        .accessibilityIdentifier("coaching.adapter.week.disciplineRecap")
+    }
+
+    private func toggleWeek(_ weekNumber: Int) {
+        if expandedWeeks.contains(weekNumber) { expandedWeeks.remove(weekNumber) }
+        else { expandedWeeks.insert(weekNumber) }
+    }
+
     @ViewBuilder
-    private func weekAccordionLabel(week: AdaptedWeek, state: WeekState) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Text("coaching.adapter.week.label \(week.weekNumber)")
-                .font(.headline)
-                .foregroundStyle(Color.coachingTextPrimary)
-            switch state {
-            case .past:
-                Text("coaching.adapter.week.completed \(completedCount(inWeekNumber: week.weekNumber)) \(week.sessions.count)")
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(Color.coachingRecord)
-                    .monospacedDigit()
-            case .current:
-                Text("coaching.adapter.week.current")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(Color.coachingPrimary)
-                    .textCase(.uppercase)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 2)
-                    .background(Color.coachingPrimary.opacity(0.12))
-                    .clipShape(Capsule())
-            case .future:
-                EmptyView()
-            }
-            Spacer(minLength: 8)
-            Text(verbatim: week.theme)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .lineLimit(1)
+    private func weekTitleAndState(week: AdaptedWeek, state: WeekState) -> some View {
+        Text("coaching.adapter.week.label \(week.weekNumber)")
+            .font(.headline)
+            .foregroundStyle(Color.coachingTextPrimary)
+        switch state {
+        case .past:
+            Text("coaching.adapter.week.completed \(completedCount(inWeekNumber: week.weekNumber)) \(week.sessions.count)")
+                .font(.subheadline.weight(.medium))
+                .foregroundStyle(Color.coachingRecord)
+                .monospacedDigit()
+        case .current:
+            Text("coaching.adapter.week.current")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(Color.coachingPrimary)
+                .textCase(.uppercase)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(Color.coachingPrimary.opacity(0.12))
+                .clipShape(Capsule())
+        case .future:
+            EmptyView()
         }
     }
 
@@ -699,54 +829,208 @@ struct AdaptedProgramView: View {
         let isModifiedByRegen = modifiedSessionCoordinates.contains(
             SessionCoordinate(weekNumber: week.weekNumber, day: session.day)
         )
+        // Bug device-test Sophie 2026-06-08 : mettre la prochaine séance à lancer EN GROS
+        // (comme l'accueil) au lieu d'une ligne plate indifférenciée.
+        // **Findings UX 2026-06-29 (#1)** — MAIS pas sur un programme dormant : tant
+        // qu'il n'est pas démarré, aucune séance ne doit paraître « lançable » (carte
+        // verte + ▶). On la garde en ligne normale ; seul le ▶ « Démarrer le
+        // programme » (toolbar) agit. La carte focale revient une fois le prog lancé.
+        let isNext = !isDormantRecord
+            && Self.sessionAnchor(week: week.weekNumber, day: session.day) == firstUndoneSessionAnchor
         return NavigationLink {
             SessionDetailView(
                 session: session,
                 week: week,
                 program: program,
                 isModifiedByRegen: isModifiedByRegen,
-                recordId: recordId
+                recordId: recordId,
+                // **Findings UX 2026-06-29 (#1)** — gate le bouton « Démarrer »
+                // de la séance tant que le programme est dormant (jamais lancé).
+                programStarted: !isDormantRecord
             )
         } label: {
-            HStack(spacing: 12) {
-                Image(systemName: sessionSymbol(for: session))
-                    .frame(width: 24)
-                    .foregroundStyle(Color.coachingSport(forCode: sessionEffectiveSportCode(for: session)))
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(verbatim: session.name)
-                        .font(.subheadline.bold())
-                        .foregroundStyle(.primary)
-                    Text("coaching.adapter.session.shortLine \(week.weekNumber) \(session.day) \(session.durationMinutes)")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-                if isModifiedByRegen {
-                    Image(systemName: "sparkles")
-                        .foregroundStyle(.orange)
-                        .font(.caption.weight(.semibold))
-                        .accessibilityLabel(Text("coaching.adapter.session.regenAdjusted"))
-                        .accessibilityIdentifier("coaching.adapter.session.regenMarker")
-                }
-                if hasAdaptations(week: week.weekNumber, day: session.day) {
-                    Image(systemName: "arrow.left.arrow.right.circle.fill")
-                        .foregroundStyle(.orange)
-                        .font(.caption)
-                }
-                Image(systemName: "chevron.right")
-                    .font(.caption.bold())
-                    .foregroundStyle(.secondary)
+            if isNext {
+                featuredSessionLabel(session, week: week, isModifiedByRegen: isModifiedByRegen)
+            } else {
+                compactSessionLabel(session, week: week, isModifiedByRegen: isModifiedByRegen)
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 10)
-            .background(Color(uiColor: .secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .buttonStyle(.plain)
+        .id(Self.sessionAnchor(week: week.weekNumber, day: session.day))
     }
 
+    /// Ligne compacte standard (séances non-prochaines).
+    private func compactSessionLabel(_ session: AdaptedSession, week: AdaptedWeek, isModifiedByRegen: Bool) -> some View {
+        HStack(spacing: 12) {
+            Image(systemName: sessionSymbol(for: session))
+                .frame(width: 24)
+                .foregroundStyle(Color.coachingSport(forCode: sessionEffectiveSportCode(for: session)))
+            VStack(alignment: .leading, spacing: 2) {
+                // Story 3.35k — petite ligne grise (Séance N · Sem · min) AU-DESSUS du libellé.
+                Text("coaching.adapter.session.numberedLine \(globalSessionNumber(week: week.weekNumber, day: session.day)) \(week.weekNumber) \(effectiveDurationMinutes(week: week.weekNumber, day: session.day, fallback: session.durationMinutes))")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text(verbatim: session.name.resolved(locale).sanitizedForDisplay)
+                    .font(.subheadline.bold())
+                    .foregroundStyle(.primary)
+            }
+            Spacer()
+            // Findings UX 2026-06-29 (#2) — « En cours » / « Faite » dérivés.
+            sessionStatusBadge(week: week.weekNumber, day: session.day)
+            if isModifiedByRegen {
+                Image(systemName: "sparkles")
+                    .foregroundStyle(.orange)
+                    .font(.caption.weight(.semibold))
+                    .accessibilityLabel(Text("coaching.adapter.session.regenAdjusted"))
+                    .accessibilityIdentifier("coaching.adapter.session.regenMarker")
+            }
+            if hasAdaptations(week: week.weekNumber, day: session.day) {
+                Image(systemName: "arrow.left.arrow.right.circle.fill")
+                    .foregroundStyle(.orange)
+                    .font(.caption)
+            }
+            Image(systemName: "chevron.right")
+                .font(.caption.bold())
+                .foregroundStyle(.secondary)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
+        .background(Color(uiColor: .secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+
+    /// Carte « prochaine séance » mise en avant (bug device-test Sophie 2026-06-08) — gros
+    /// titre + gradient couleur du sport + CTA, à l'image de la carte focale de l'accueil.
+    private func featuredSessionLabel(_ session: AdaptedSession, week: AdaptedWeek, isModifiedByRegen: Bool) -> some View {
+        let sportColor = Color.coachingSport(forCode: sessionEffectiveSportCode(for: session))
+        // Findings UX 2026-06-29 (#2) — séance entamée : « REPRENDRE » plutôt que
+        // « PROCHAINE » (cohérent avec le bouton « Reprendre l'étape N » du détail).
+        let isInProgress = progressState(week: week.weekNumber, day: session.day) == .inProgress
+        return VStack(alignment: .leading, spacing: 8) {
+            Text(isInProgress ? "coaching.adapter.session.featured.resume" : "dashboard.active.next.title")
+                .font(.caption.bold())
+                .textCase(.uppercase)
+                .foregroundStyle(Color.coachingOnPrimary.opacity(0.9))
+            HStack(spacing: 12) {
+                Image(systemName: sessionSymbol(for: session))
+                    .font(.title2)
+                    .foregroundStyle(Color.coachingOnPrimary)
+                    .frame(width: 30)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("coaching.adapter.session.numberedLine \(globalSessionNumber(week: week.weekNumber, day: session.day)) \(week.weekNumber) \(effectiveDurationMinutes(week: week.weekNumber, day: session.day, fallback: session.durationMinutes))")
+                        .font(.caption)
+                        .foregroundStyle(Color.coachingOnPrimary.opacity(0.85))
+                    Text(verbatim: session.name.resolved(locale).sanitizedForDisplay)
+                        .font(.title3.bold())
+                        .foregroundStyle(Color.coachingOnPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                Spacer(minLength: 8)
+                Image(systemName: "play.circle.fill")
+                    .font(.title)
+                    .foregroundStyle(Color.coachingOnPrimary)
+            }
+            if isModifiedByRegen {
+                Label("coaching.adapter.session.regenAdjusted", systemImage: "sparkles")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(Color.coachingOnPrimary.opacity(0.9))
+            }
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            LinearGradient(colors: [sportColor, sportColor.opacity(0.82)],
+                           startPoint: .topLeading, endPoint: .bottomTrailing)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .accessibilityIdentifier("coaching.adapter.session.next")
+    }
+
+    /// Ancre de scroll d'une séance (Story 3.35k — scroll auto vers la 1ʳᵉ non faite).
+    static func sessionAnchor(week: Int, day: Int) -> String { "session-w\(week)-d\(day)" }
+
+    /// (week, day) de la 1ʳᵉ séance non faite (hors repos). nil si tout fait / pas de record.
+    private var firstUndoneSessionAnchor: String? {
+        guard let record else {
+            // Pas de record (preview) : 1ʳᵉ séance du programme.
+            guard let w = program.weeks.first, let s = w.sessions.first else { return nil }
+            return Self.sessionAnchor(week: w.weekNumber, day: s.day)
+        }
+        let done = record.completionState.sessionRecords
+        let undone = record.sessions
+            .filter { $0.type != .rest && done[$0.id] == nil }
+            .sorted { ($0.weekNumber, $0.day) < ($1.weekNumber, $1.day) }
+            .first
+        guard let undone else { return nil }
+        return Self.sessionAnchor(week: undone.weekNumber, day: undone.day)
+    }
+
+    /// Marqueur « adapté » (icône swap orange) d'une row séance. Les règles densité en
+    /// sont EXCLUES : leur sémantique n'est pas une substitution, et la surface unique
+    /// de la densité = la bannière Léon (pivot 23/06) — sinon un programme densifié
+    /// allumerait le marqueur sur quasi toutes ses séances.
     private func hasAdaptations(week: Int, day: Int) -> Bool {
-        program.appliedRules.contains { $0.weekNumber == week && $0.day == day }
+        program.appliedRules.contains {
+            $0.weekNumber == week && $0.day == day && $0.ruleType != .density
+        }
+    }
+
+    // MARK: - État de séance (Findings UX 2026-06-29 #2 — dérivé léger)
+
+    /// État d'avancement d'une séance, DÉRIVÉ (zéro nouveau champ persistant) :
+    /// `done` = une complétion enregistrée ; `inProgress` = de la progression
+    /// d'étapes existe (séance entamée puis quittée) mais pas de complétion ;
+    /// `notStarted` = rien. Une séance « lancée » n'est donc « Faite » qu'une fois
+    /// terminée — entre les deux elle est « En cours / Reprendre ».
+    private enum SessionProgressState { case notStarted, inProgress, done }
+
+    private func progressState(week: Int, day: Int) -> SessionProgressState {
+        guard let record,
+              let sid = record.sessions.first(where: { $0.weekNumber == week && $0.day == day })?.id
+        else { return .notStarted }
+        if record.completionState.sessionRecords[sid] != nil { return .done }
+        if let recordId,
+           !SessionProgressStore.documentsDefault()
+               .completedSteps(recordId: recordId, week: week, day: day).isEmpty {
+            return .inProgress
+        }
+        return .notStarted
+    }
+
+    @ViewBuilder
+    private func sessionStatusBadge(week: Int, day: Int) -> some View {
+        switch progressState(week: week, day: day) {
+        case .done:
+            Label("coaching.adapter.session.status.done", systemImage: "checkmark.circle.fill")
+                .labelStyle(.titleAndIcon)
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(Color.coachingRecord)
+                .accessibilityIdentifier("coaching.adapter.session.status.done")
+        case .inProgress:
+            Text("coaching.adapter.session.status.inProgress")
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(Color.coachingPrimary)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(Color.coachingPrimary.opacity(0.12))
+                .clipShape(Capsule())
+                .accessibilityIdentifier("coaching.adapter.session.status.inProgress")
+        case .notStarted:
+            EmptyView()
+        }
+    }
+
+    /// Story 3.35j — numéro de séance INCRÉMENTAL sur tout le programme (Sophie :
+    /// « presque plus important que le numéro de la semaine »). Ordre semaine puis jour.
+    private func globalSessionNumber(week: Int, day: Int) -> Int {
+        var n = 0
+        for w in program.weeks.sorted(by: { $0.weekNumber < $1.weekNumber }) {
+            for s in w.sessions.sorted(by: { $0.day < $1.day }) {
+                n += 1
+                if w.weekNumber == week && s.day == day { return n }
+            }
+        }
+        return n
     }
 
     /// Story 3.15 v7.2 (Sophie 2026-05-21) — symbole par session, sport-aware.
@@ -760,7 +1044,7 @@ struct AdaptedProgramView: View {
     private func sessionSymbol(for session: AdaptedSession) -> String {
         let parentCode = program.sport.appSportCode
         let effective = SessionSportInference.sportCode(
-            forSessionName: session.name,
+            forSessionName: session.name.canonical,
             programSportCode: parentCode
         )
         if effective != parentCode {
@@ -780,20 +1064,11 @@ struct AdaptedProgramView: View {
     private func sessionEffectiveSportCode(for session: AdaptedSession) -> String {
         let parentCode = program.sport.appSportCode
         return SessionSportInference.sportCode(
-            forSessionName: session.name,
+            forSessionName: session.name.canonical,
             programSportCode: parentCode
         )
     }
 
-    // MARK: - Medical reminder
-
-    private var medicalReminderFooter: some View {
-        Text("coaching.adapter.medicalReminder.footer")
-            .font(.caption2)
-            .foregroundStyle(.secondary)
-            .multilineTextAlignment(.leading)
-            .padding(.top, 8)
-    }
 }
 
 // MARK: - Formatting helpers (partagés avec SessionDetailView)
@@ -819,6 +1094,7 @@ enum AdaptedProgramFormatting {
         case .downgraded: return "arrow.down.circle.fill"
         case .requiresAI: return "sparkles"
         case .noChange: return "circle"
+        case .densified: return "plus.circle.fill"
         }
     }
 
@@ -829,6 +1105,7 @@ enum AdaptedProgramFormatting {
         case .downgraded: return .blue
         case .requiresAI: return .purple
         case .noChange: return .gray
+        case .densified: return .teal
         }
     }
 }
@@ -848,9 +1125,21 @@ enum AdaptedProgramFormatting {
     }
 }
 
+#Preview("AdaptedProgram — densifié (bannière Léon)") {
+    NavigationStack {
+        AdaptedProgramView(program: AdaptedProgramPreviewFixtures.densified) { }
+    }
+}
+
 #Preview("AdaptedProgram — requires AI assist") {
     NavigationStack {
         AdaptedProgramView(program: AdaptedProgramPreviewFixtures.requiresAI) { }
+    }
+}
+
+#Preview("AdaptedProgram — triathlon récap hebdo") {
+    NavigationStack {
+        AdaptedProgramView(program: AdaptedProgramPreviewFixtures.triathlonMultiDiscipline) { }
     }
 }
 
@@ -937,9 +1226,67 @@ enum AdaptedProgramPreviewFixtures {
         )
     }
 
+    /// Densité B — programme densifié à la création (signal activité régulière) :
+    /// la règle `.density` déclenche la bannière phrase Léon en tête de programme.
+    static var densified: AdaptedProgram {
+        AdaptedProgram(
+            templateId: "running-fixture",
+            sport: .running,
+            level: .beginner,
+            appliedAt: Date(),
+            weeks: [
+                sampleWeek(1, theme: "Découverte"),
+                sampleWeek(2, theme: "Consolidation")
+            ],
+            appliedRules: [
+                AppliedRule(
+                    ruleType: .density,
+                    weekNumber: 1, day: 5,
+                    originalExerciseName: "Gainage planche",
+                    outcome: .densified,
+                    detail: "+1 série (3 → 4) — démarrage un cran au-dessus (activité régulière)"
+                )
+            ],
+            requiresAIAssist: false
+        )
+    }
+
+    /// Chantier récap hebdo triathlon (2026-07-06) — fixture avec 2 semaines :
+    /// une multi-discipline (nage+vélo+course+renfo, pour vérifier le récap +
+    /// l'exclusion du jour renfo) et une mono-discipline (que du vélo, pour
+    /// vérifier le récap à un seul élément).
+    static var triathlonMultiDiscipline: AdaptedProgram {
+        AdaptedProgram(
+            templateId: "triathlon-fixture",
+            sport: .triathlon,
+            level: .beginner,
+            appliedAt: Date(),
+            weeks: [
+                AdaptedWeek(
+                    weekNumber: 1, theme: "Découverte", goal: "Poser les 3 disciplines",
+                    sessions: [
+                        sampleEnduranceSession(day: 1, name: "Natation — technique crawl"),
+                        sampleEnduranceSession(day: 2, name: "Vélo — sortie endurance"),
+                        sampleStrengthSession(day: 3),
+                        sampleEnduranceSession(day: 4, name: "Course — sortie facile")
+                    ]
+                ),
+                AdaptedWeek(
+                    weekNumber: 2, theme: "Bloc vélo", goal: "Semaine mono-discipline",
+                    sessions: [
+                        sampleEnduranceSession(day: 1, name: "Vélo — endurance"),
+                        sampleEnduranceSession(day: 3, name: "Vélo — sortie longue")
+                    ]
+                )
+            ],
+            appliedRules: [],
+            requiresAIAssist: false
+        )
+    }
+
     static func sampleWeek(_ wn: Int, theme: String) -> AdaptedWeek {
         AdaptedWeek(
-            weekNumber: wn, theme: theme,
+            weekNumber: wn, theme: LocalizedText(fr: theme),
             goal: "Construire l'endurance de base et installer une cadence régulière.",
             sessions: [
                 sampleEnduranceSession(day: 1, name: "Footing facile"),
@@ -951,12 +1298,12 @@ enum AdaptedProgramPreviewFixtures {
 
     static func sampleEnduranceSession(day: Int, name: String) -> AdaptedSession {
         AdaptedSession(
-            day: day, name: name, durationMinutes: 40,
+            day: day, name: LocalizedText(fr: name), durationMinutes: 40,
             type: .endurance,
             warmup: "5 min marche + 5 min footing très lent + 4 lignes droites",
             exercises: [
                 AdaptedExercise(
-                    name: "\(name) bloc principal",
+                    name: LocalizedText(fr: "\(name) bloc principal"),
                     originalName: "\(name) bloc principal",
                     duration: "30 min",
                     notes: "Reste en respiration nasale, allure conversation possible.",

@@ -16,6 +16,8 @@
 import SwiftUI
 
 struct NextSessionTeaser: View {
+    /// Locale in-app (injectée au root depuis `LanguageManager.currentLocale`).
+    @Environment(\.locale) private var locale
     /// Session N+1 résolue par `NextSessionResolver.nextTwoSessions(for:now:).teaser?.session`.
     /// `nil` = pas de N+1 disponible.
     let teaserSession: PersistedSession?
@@ -51,7 +53,7 @@ struct NextSessionTeaser: View {
                     .foregroundStyle(Color.coachingPrimary)
                 Spacer(minLength: 0)
             }
-            Text(verbatim: session.name)
+            Text(verbatim: session.name.resolved(locale))
                 .font(.coachingBody)
                 .foregroundStyle(Color.coachingTextPrimary)
                 .lineLimit(2)
@@ -66,7 +68,7 @@ struct NextSessionTeaser: View {
 
     private func coordinateLabel(session: PersistedSession) -> String {
         String(
-            format: NSLocalizedString("dashboard.active.next.coordinate.format", comment: ""),
+            format: String.localized("dashboard.active.next.coordinate.format", locale: locale),
             session.weekNumber,
             session.day
         )
@@ -95,17 +97,17 @@ struct NextSessionTeaser: View {
 /// « enleve le PUIS »). Badge sport déduit (heuristique pour Triathlon
 /// multi-sport sur le nom de session, sinon sport du programme parent).
 struct UpcomingSessionRow: View {
+    @Environment(\.locale) private var locale
     let session: PersistedSession
     /// Sport du programme parent (running / cycling / triathlon / etc).
     /// Pour Triathlon, on déduit le sport spécifique de la session via
     /// `sportCodeForSession(:in:)`.
     let sportCode: String
+    /// Story 3.35l — numéro de séance incrémental (affiché au-dessus du nom).
+    var number: Int? = nil
 
     var body: some View {
         let effectiveSport = SessionSportInference.sportCode(for: session, programSportCode: sportCode)
-        // **Story 3.15 v5 (Sophie 2026-05-21)** — row compact (padding réduit,
-        // font caption). Pill semaine retirée : la semaine est désormais
-        // portée par le séparateur `weekSeparatorHeader` au-dessus du groupe.
         HStack(spacing: 10) {
             ZStack {
                 RoundedRectangle(cornerRadius: 7, style: .continuous)
@@ -116,15 +118,22 @@ struct UpcomingSessionRow: View {
             }
             .frame(width: 28, height: 28)
 
-            Text(verbatim: session.name)
-                .font(.subheadline)
-                .foregroundStyle(Color.coachingTextPrimary)
-                .lineLimit(1)
+            VStack(alignment: .leading, spacing: 1) {
+                if let number {
+                    Text("coaching.adapter.session.number \(number)")
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(Color.coachingTextSecondary)
+                }
+                Text(verbatim: session.name.resolved(locale).sanitizedForDisplay)
+                    .font(.subheadline)
+                    .foregroundStyle(Color.coachingTextPrimary)
+                    .lineLimit(1)
+            }
 
             Spacer(minLength: 6)
 
             Text(verbatim: String(
-                format: NSLocalizedString("dashboard.active.next.duration.format", comment: ""),
+                format: String.localized("dashboard.active.next.duration.format", locale: locale),
                 session.durationMinutes
             ))
             .font(.caption)
@@ -151,7 +160,7 @@ struct UpcomingSessionRow: View {
 ///     le data model (story future, demande migration SwiftData).
 enum SessionSportInference {
     static func sportCode(for session: PersistedSession, programSportCode: String) -> String {
-        sportCode(forSessionName: session.name, programSportCode: programSportCode)
+        sportCode(forSessionName: session.name.canonical, programSportCode: programSportCode)
     }
 
     /// Variante name+parent — utilisée par `AdaptedProgramView` / `SessionDetailView`
@@ -174,6 +183,22 @@ enum SessionSportInference {
         if swimKeywords.contains(where: { lower.contains($0) }) { return "swimming" }
         if runKeywords.contains(where: { lower.contains($0) }) { return "running" }
         return programSportCode
+    }
+
+    /// Chantier récap hebdo triathlon (2026-07-06) — disciplines effectives
+    /// distinctes présentes dans une semaine, ordre nage→vélo→course. Réutilise
+    /// la même heuristique nom-de-session que les badges par séance (pas de
+    /// nouveau champ data model — voir doc header). Sessions qui retombent sur
+    /// le fallback `programSportCode` (S&C/mobilité, pas de keyword match) ne
+    /// comptent pas comme discipline. `[]` pour un programme mono-sport.
+    static func disciplineCodes(inWeek sessions: [AdaptedSession], programSportCode: String) -> [String] {
+        guard programSportCode == "triathlon" else { return [] }
+        let order = ["swimming", "cycling", "running"]
+        let present = Set(sessions.compactMap { session -> String? in
+            let code = sportCode(forSessionName: session.name.canonical, programSportCode: programSportCode)
+            return code != programSportCode ? code : nil
+        })
+        return order.filter { present.contains($0) }
     }
 }
 

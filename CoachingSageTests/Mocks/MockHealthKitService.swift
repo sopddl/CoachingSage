@@ -43,6 +43,17 @@ final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable 
         hasRequestedProgressAuthorization = true
     }
 
+    var requestWorkoutAndFitnessAuthorizationCallCount: Int = 0
+
+    func requestWorkoutAndFitnessAuthorization() async throws {
+        requestWorkoutAndFitnessAuthorizationCallCount += 1
+        if let error = requestAuthorizationShouldThrow {
+            throw error
+        }
+        hasRequestedAuthorization = true
+        hasRequestedProgressAuthorization = true
+    }
+
     func requestProgressAuthorizationIfNeeded() async throws {
         if hasRequestedProgressAuthorization { return }
         requestProgressAuthorizationCallCount += 1

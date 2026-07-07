@@ -23,7 +23,7 @@ struct ExerciseHowToDisclosure: View {
 
     @Environment(\.languageManager) private var languageManager
 
-    @State private var isExpanded: Bool = false
+    @State private var isExpanded: Bool
     @State private var explanation: ExerciseExplanation?
     @State private var loading: Bool = false
     @State private var failed: Bool = false
@@ -31,11 +31,16 @@ struct ExerciseHowToDisclosure: View {
     init(
         exercise: AdaptedExercise,
         fallbackTip: LocalizedStringKey?,
+        initiallyExpanded: Bool = false,
         service: any ExerciseExplanationServiceProtocol = DefaultExerciseExplanationService()
     ) {
         self.exercise = exercise
         self.fallbackTip = fallbackTip
         self.service = service
+        // POC yoga (Sophie 2026-06-06) : sur le yoga, la description « comment
+        // l'exécuter » est dépliée d'emblée (lire la posture = le cœur de la
+        // pratique sans coach). Les autres sports restent repliés (compacité).
+        _isExpanded = State(initialValue: initiallyExpanded)
     }
 
     var body: some View {
@@ -74,6 +79,12 @@ struct ExerciseHowToDisclosure: View {
             guard newValue, explanation == nil, !loading, !failed else { return }
             Task { await loadExplanation() }
         }
+        .task {
+            // Déplié d'emblée (yoga) : `onChange` ne se déclenche pas → on amorce
+            // le chargement de la description à l'apparition.
+            guard isExpanded, explanation == nil, !loading, !failed else { return }
+            await loadExplanation()
+        }
     }
 
     @ViewBuilder
@@ -107,9 +118,9 @@ struct ExerciseHowToDisclosure: View {
                             .font(.footnote.bold())
                             .foregroundStyle(Color.coachingPrimary)
                             .frame(width: 20, alignment: .leading)
-                        Text(verbatim: step)
-                            .font(.footnote)
-                            .foregroundStyle(.primary)
+                        // Pédagogie : le jargon des steps (FTP, Daniels-T, CSS,
+                        // EN1, Ujjayi…) devient tappable via glossaire.
+                        GlossaryRichText(text: step, font: .footnote, foreground: .primary)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                 }
@@ -134,9 +145,7 @@ struct ExerciseHowToDisclosure: View {
                         .font(.caption2.bold())
                         .foregroundStyle(.secondary)
                         .textCase(.uppercase)
-                    Text(verbatim: mistake)
-                        .font(.footnote)
-                        .foregroundStyle(.primary)
+                    GlossaryRichText(text: mistake, font: .footnote, foreground: .primary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.top, 2)

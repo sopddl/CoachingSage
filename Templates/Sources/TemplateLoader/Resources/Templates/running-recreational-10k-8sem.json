@@ -1,38 +1,88 @@
 {
-  "assumed_profile" : "Coureur régulier capable de courir 5 km en 30-35 min sans difficulté, pratique 2×/semaine depuis au moins 2 mois. Aucune blessure active. Équipé de chaussures de running en bon état (< 600 km). Accès à une route ou piste plate pour les séances tempo et intervalles. Montre GPS ou application de suivi de distance recommandée.",
-  "default_objective" : "Courir 10 km en continu (objectif de temps libre, typiquement 55-70 min selon allure individuelle)",
+  "assumed_profile" : {
+    "fr" : "Coureur régulier capable de courir 5 km en 30-35 min sans difficulté, pratique 2×/semaine depuis au moins 2 mois. Aucune blessure active. Équipé de chaussures de running en bon état (< 600 km). Accès à une route ou piste plate pour les séances tempo et intervalles. Montre GPS ou application de suivi de distance recommandée."
+  },
+  "default_objective" : {
+    "fr" : "Courir 10 km en continu (objectif de temps libre, typiquement 55-70 min selon allure individuelle)"
+  },
+  "deload_weeks" : [
+    5,
+    8
+  ],
   "duration_weeks" : 8,
   "id" : "running-recreational-10k-8sem",
   "level" : "recreational",
-  "name" : "10K — 8 semaines pour franchir la barre des 10 km",
-  "progression_logic" : "Progression sur 5 principes alignés Daniels' Running Formula, NSCA strength prevention, Hal Higdon Novice 2 et la revue systématique 2024 sur la distribution polarized (PMC NIH).\n\n(1) DISTRIBUTION POLARIZED : Distribution majoritairement aérobie (~70-80% Daniels-E selon les semaines), 20-30% au seuil et VO2max via fartlek selon la phase du plan, sans intervalles Daniels-I stricts. Sur le volume hebdo total, le Daniels-E couvre long run, footings easy, échauffements et cooldowns ; le Daniels-T (tempo seuil) et le fartlek/strides structurés couvrent la part qualitative. Aucune séance Daniels-I stricte sur ce plan recreational : la VO2max est stimulée par fartlek (W4, W6, W7) et strides (W1, W2) plutôt que par intervalles courts à allure 3-5K, plus traumatisants pour un coureur intermédiaire en montée de volume. C'est le 'no moderate-intensity rut' de Seiler : on évite le piège du tempo permanent à RPE 6-7.\n\n(2) PROGRESSION VOLUME ET LONG RUN : Volume course pure hebdo (footings >=10 min + tempo + cooldowns extended >=10 min + long run + strides) : ~19 → ~20 → ~21 → ~23 → ~15 (deload W5) → ~26 → ~30 (pic) → ~21 (W8 séance phare). Long run : 6 → 7 → 8 → 9 → 7.5 (cutback) → 11 → 12 (pic) → 10 (séance phare). Le long run pic 12 km (W7) respecte la règle >= 120% de la cible 10K (Hal Higdon Novice). Hausse hebdo plafonnée à environ 10-15% (règle ACSM des 10%, tolérance recreational), sauf retour post-deload où le rebond est explicitement plus marqué. Vol pic W7 ~30 km/sem cohérent avec la fenêtre 30-50 km/sem recommandée pour un coureur recreational visant 10K.\n\n(3) DELOAD W5 (cutback marqué) : volume course pure W5 ~15 km vs ~23 km en W4 = ~-34%. Tempo réduit (14 min vs 20 min), fartlek allégé (4 reps vs 6), long run cutback (7.5 km vs 9 km), suppression des cooldowns extended post-tempo. La force est aussi réduite (2 séries au lieu de 3). Cycle 3 build + 1 deload (doctrine running recreational). Les adaptations tendineuses (Achille, rotulien) et osseuses (remodelage tibial) se consolident pendant le deload — sauter cette semaine = risque de stagnation ou blessure de surcharge.\n\n(4) INTRODUCTION Daniels-T À PARTIR DE W3 : tempo continu seuil en Daniels-T (allure 5K + 30-45 s/km, RPE 7/10, lactate threshold 1) introduit progressivement à partir de W3 (15 min) puis W4 (20 min), W6 (22 min), W7 (25 min). Cette progression respecte la doctrine recreational : Daniels-T est la zone d'entraînement la plus rentable pour passer du 5K au 10K (économie de course, capacité à tolérer l'allure cible 10K = légèrement sous Daniels-T). Le tempo est toujours précédé d'un échauffement long (10 min Daniels-E) et suivi d'un cooldown extended Daniels-E (10-15 min) qui consolide le volume aérobie hebdo.\n\n(5) TAPER J-7 : la dernière semaine commence après le long run pic 12 km de W7 J5. Du J6 W7 au J5 W8 (la séance phare 10 km), on a 7 jours. Tapering 7 jours : volume W8 hors séance phare réduit ~25-30% vs W7 (footing court J1 + activation J3 + strides à allure 10K cible). Conforme à Mujika & Padilla (2003) qui recommandent une réduction volume 25-40% sur un taper court avec maintien de l'intensité (strides à allure cible). J1 footing easy 6 km (mémoire allure facile), J3 activation 3 km + 4×60 m strides à allure 10K (mémoire neuromusculaire allure cible), J5 séance phare 10 km à allure cible (allure 5K + 45-75 s/km).",
-  "safety_notes" : "DRAPEAUX ROUGES (arrêter la séance et consulter un professionnel de santé si symptômes persistent > 5 jours) :\n• Douleur face postérieure de cuisse pendant ou après fartlek/strides (tendinopathie ou microdéchirure ischio-jambière) : risque n°1 du coureur recreational qui intensifie. Arrêt immédiat de la qualité, ne jamais courir sur une douleur aiguë à l'ischio. Les nordic curls et single-leg squats du plan visent précisément cette prévention.\n• Douleur face interne du tibia (périostite tibiale) ou point précis tibial très sensible à la palpation (suspicion stress fracture précoce) : arrêt total de la course, glace 15 min, avis médical. La périostite évolue en fracture de fatigue si ignorée — ne pas 'pousser à travers'.\n• Douleur face externe du genou en descente ou km 4-7 d'un long run (ITBS / syndrome de l'essuie-glace) : les clamshells du plan sont préventifs. Si douleur installée : volume -40%, glace 15 min post-effort, avis kiné sous 1 semaine.\n• Douleur antérieure du genou lors des descentes ou après position assise prolongée (PFPS / genou du coureur) : single-leg squats préventifs intégrés. Si douleur > 3/10 : arrêter le tempo et le fartlek, consulter.\n• Douleur derrière le talon ou tendon raide au réveil (tendinopathie achilléenne) : les calf raises excentriques sont préventifs (protocole Alfredson 1998). Douleur aiguë = arrêt total de la course.\n• Douleur sous le talon ou arche plantaire au réveil (fasciite plantaire) : vérifier usure des chaussures (< 600 km), étirer mollets et fascia matin et soir.\n• Symptômes cardiaques (douleur thoracique, essoufflement disproportionné, palpitations irrégulières) : arrêt immédiat, avis médical avant reprise.\n\nRÈGLES GÉNÉRALES :\n• Chaussures de running en bon état (< 600 km, 800 km max). Pour un coureur recreational en montée de volume, un drop shift (ex : 12 mm → 8 mm) doit être progressif sur 4+ semaines, jamais abrupt.\n• 48h minimum entre deux séances de qualité (tempo, fartlek). Le plan respecte ce principe : easy/strength J1 / tempo J3 / long run J5.\n• Respecter les jours de repos (J2, J4, J6, J7). La surcompensation se produit pendant le repos, pas pendant l'effort.\n• Hydratation : 400-600 ml dans l'heure précédant toute séance > 40 min. Emporter eau sur long run > 8 km en conditions normales, > 6 km par temps chaud.\n• Nutrition long run : pour toute sortie > 60-70 min, planifier apport glucidique (30-60 g/h : gel, dattes, banane). Tester son ravitaillement à l'entraînement, jamais le jour J.\n• Ne jamais introduire deux nouveautés simultanément (nouveau terrain + nouveau volume OU nouvelles chaussures + nouvelle intensité).\n• Surfaces souples privilégiées (chemin terre, piste tartan, bitume lisse). Éviter dénivelé important sur les séances de qualité.\n\nINTENSITÉ :\n• Long run = allure conversationnelle complète (Daniels-E). Tu dois pouvoir parler en phrases longues. Erreur classique du recreational : courir le long run trop vite, ce qui compromet la récupération pour les séances de qualité. Allure cible long run = allure 5K + 90-120 s/km.\n• Tempo / Daniels-T = allure 5K + 30-45 s/km, RPE 7/10. Tu peux dire des phrases courtes (4-5 mots), pas une conversation. Pas plus intense : au-delà du seuil, le bénéfice du tempo disparaît.\n• Fartlek structuré = blocs 'on' à RPE 8/10 (proche allure 5K) entrecoupés de blocs 'off' à allure facile. Stimule la VO2max sans la rigueur d'une séance d'intervalles à 100% VO2max.\n• Strides = accélérations courtes (60-100 m) progressives, jamais sprint maximal. RPE 7-8 en pic, focus mécanique de foulée.\n• Cadence cible : 170-180 pas/min sur toutes les allures. Une cadence basse (< 160) augmente les forces d'impact et le risque shin splints/ITBS.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → réduire volume hebdo de 30% et prendre 2 jours de repos actif, ou refaire la semaine précédente) :\n• FC de repos +8-10 bpm au-dessus de la normale au réveil 3 matins consécutifs.\n• Courbatures persistantes > 72h après une séance habituelle.\n• Perte d'allure inexpliquée sur des séances pourtant bien dosées.\n• Sommeil dégradé (difficultés d'endormissement ou réveils nocturnes) > 3 nuits.\n• Humeur irritable, motivation effondrée ou anxiété inhabituelle.\n• Douleurs articulaires multiples simultanées.\n\nSI SÉANCE MANQUÉE :\n• < 4 jours de pause : reprendre la séance suivante prévue (ne pas rattraper la séance manquée).\n• 4-7 jours de pause : reprendre à la semaine en cours, en commençant par la séance la plus facile (J1 puis J3 puis J5).\n• 1-2 semaines de pause (maladie, voyage) : reprendre la semaine précédente complète.\n• > 2 semaines de pause : reprendre 2-3 semaines en arrière. Le déconditionnement VO2max commence à 10-14 jours d'inactivité totale.",
+  "name" : {
+    "en" : "10K — 8 weeks to break the 10 km mark",
+    "es" : "10K — 8 semanas para superar los 10 km",
+    "fr" : "10K — 8 semaines pour franchir la barre des 10 km"
+  },
+  "progression_logic" : {
+    "fr" : "Progression sur 5 principes alignés Daniels' Running Formula, NSCA strength prevention, Hal Higdon Novice 2 et la revue systématique 2024 sur la distribution polarized (PMC NIH).\n\n(1) DISTRIBUTION POLARIZED : Distribution majoritairement aérobie (~70-80% Daniels-E selon les semaines), 20-30% au seuil et VO2max via fartlek selon la phase du plan, sans intervalles Daniels-I stricts. Sur le volume hebdo total, le Daniels-E couvre long run, footings easy, échauffements et retour au calme ; le Daniels-T (tempo seuil) et le fartlek/strides structurés couvrent la part qualitative. Aucune séance Daniels-I stricte sur ce plan recreational : la VO2max est stimulée par fartlek (W4, W6, W7) et strides (W1, W2) plutôt que par intervalles courts à allure 3-5K, plus traumatisants pour un coureur intermédiaire en montée de volume. C'est le 'no moderate-intensity rut' de Seiler : on évite le piège du tempo permanent à RPE 6-7.\n\n(2) PROGRESSION VOLUME ET LONG RUN : Volume course pure hebdo (footings >=10 min + tempo + retour au calme extended >=10 min + long run + strides) : ~19 → ~20 → ~21 → ~23 → ~15 (deload W5) → ~26 → ~30 (pic) → ~21 (W8 séance phare). Long run : 6 → 7 → 8 → 9 → 7.5 (cutback) → 11 → 12 (pic) → 10 (séance phare). Le long run pic 12 km (W7) respecte la règle >= 120% de la cible 10K (Hal Higdon Novice). Hausse hebdo plafonnée à environ 10-15% (règle ACSM des 10%, tolérance recreational), sauf retour post-deload où le rebond est explicitement plus marqué. Vol pic W7 ~30 km/sem cohérent avec la fenêtre 30-50 km/sem recommandée pour un coureur recreational visant 10K.\n\n(3) DELOAD W5 (cutback marqué) : volume course pure W5 ~15 km vs ~23 km en W4 = ~-34%. Tempo réduit (14 min vs 20 min), fartlek allégé (4 répétitions vs 6), long run cutback (7.5 km vs 9 km), suppression des retour au calme extended post-tempo. La force est aussi réduite (2 séries au lieu de 3). Cycle 3 build + 1 deload (doctrine running recreational). Les adaptations tendineuses (Achille, rotulien) et osseuses (remodelage tibial) se consolident pendant le deload — sauter cette semaine = risque de stagnation ou blessure de surcharge.\n\n(4) INTRODUCTION Daniels-T À PARTIR DE W3 : tempo continu seuil en Daniels-T (allure 5K + 30-45 s/km, RPE 7/10, lactate threshold 1) introduit progressivement à partir de W3 (15 min) puis W4 (20 min), W6 (22 min), W7 (25 min). Cette progression respecte la doctrine recreational : Daniels-T est la zone d'entraînement la plus rentable pour passer du 5K au 10K (économie de course, capacité à tolérer l'allure cible 10K = légèrement sous Daniels-T). Le tempo est toujours précédé d'un échauffement long (10 min Daniels-E) et suivi d'un retour au calme extended Daniels-E (10-15 min) qui consolide le volume aérobie hebdo.\n\n(5) AFFÛTAGE J-7 : la dernière semaine commence après le long run pic 12 km de W7 J5. Du J6 W7 au J5 W8 (la séance phare 10 km), on a 7 jours. Affûtage 7 jours : volume W8 hors séance phare réduit ~25-30% vs W7 (footing court J1 + activation J3 + strides à allure 10K cible). Conforme à Mujika & Padilla (2003) qui recommandent une réduction volume 25-40% sur un affûtage court avec maintien de l'intensité (strides à allure cible). J1 footing easy 6 km (mémoire allure facile), J3 activation 3 km + 4×60 m strides à allure 10K (mémoire neuromusculaire allure cible), J5 séance phare 10 km à allure cible (allure 5K + 45-75 s/km)."
+  },
+  "safety_notes" : {
+    "fr" : "À SURVEILLER — si une gêne inhabituelle persiste, lève le pied et adapte :\n• Gêne à l'arrière de la cuisse pendant ou après fartlek/accélérations : zone n°1 à surveiller chez le coureur loisir qui intensifie. Lève le pied sur la qualité, ne jamais courir sur une gêne vive à l'arrière de la cuisse. Les nordic curls et squats unilatéraux du plan renforcent précisément cette chaîne.\n• Gêne sur la face interne du tibia, surtout si elle se concentre sur un point précis sensible à la palpation : lève complètement le pied sur la course, glace 15 min, adapte. Ne pas 'pousser à travers'.\n• Gêne sur la face externe du genou en descente ou km 4-7 d'une sortie longue : les clamshells du plan entretiennent la stabilité du genou et de la hanche. Si la gêne s'installe : volume -40%, glace 15 min post-effort, adapte sur 1 semaine.\n• Gêne à l'avant du genou lors des descentes ou après position assise prolongée : squats unilatéraux intégrés. Si la gêne > 3/10 : arrêter le tempo et le fartlek, adapte.\n• Gêne derrière le talon ou tendon raide au réveil : les montées sur pointes excentriques renforcent ce tendon. Gêne vive = lève complètement le pied sur la course.\n• Gêne sous le talon ou à l'arche plantaire au réveil : vérifier usure des chaussures (< 600 km), étirer mollets et fascia matin et soir.\n\nRÈGLES GÉNÉRALES :\n• Chaussures de running en bon état (< 600 km, 800 km max). Pour un coureur loisir en montée de volume, un changement de drop (ex : 12 mm → 8 mm) doit être progressif sur 4+ semaines, jamais abrupt.\n• 48h minimum entre deux séances de qualité (tempo, fartlek). Le plan respecte ce principe : facile/renforcement J1 / tempo J3 / sortie longue J5.\n• Respecter les jours de repos (J2, J4, J6, J7). La surcompensation se produit pendant le repos, pas pendant l'effort.\n• Hydratation : 400-600 ml dans l'heure précédant toute séance > 40 min. Emporter eau sur sortie longue > 8 km en conditions normales, > 6 km par temps chaud.\n• Nutrition sortie longue : pour toute sortie > 60-70 min, planifier apport glucidique (30-60 g/h : gel, dattes, banane). Tester son ravitaillement à l'entraînement, jamais le jour J.\n• Ne jamais introduire deux nouveautés simultanément (nouveau terrain + nouveau volume OU nouvelles chaussures + nouvelle intensité).\n• Surfaces souples privilégiées (chemin terre, piste tartan, bitume lisse). Éviter dénivelé important sur les séances de qualité.\n\nINTENSITÉ :\n• Sortie longue = allure conversationnelle complète (Daniels-E). Tu dois pouvoir parler en phrases longues. Erreur classique du coureur loisir : courir la sortie longue trop vite, ce qui compromet la récupération pour les séances de qualité. Allure cible sortie longue = allure 5K + 90-120 s/km.\n• Tempo / Daniels-T = allure 5K + 30-45 s/km, RPE 7/10. Tu peux dire des phrases courtes (4-5 mots), pas une conversation. Pas plus intense : au-delà du seuil, le bénéfice du tempo disparaît.\n• Fartlek structuré = blocs actifs à RPE 8/10 (proche allure 5K) entrecoupés de blocs de récup à allure facile. Stimule la VO2max sans la rigueur d'une séance d'intervalles à 100% VO2max.\n• Accélérations = courtes (60-100 m) progressives, jamais sprint maximal. RPE 7-8 en pic, focus mécanique de foulée.\n• Cadence cible : 170-180 pas/min sur toutes les allures. Une cadence basse (< 160) augmente les forces d'impact et la charge sur le tibia, le genou et la hanche.\n\nSIGNES DE SURCHARGE (3+ signes simultanés → réduire volume hebdo de 30% et prendre 2 jours de repos actif, ou refaire la semaine précédente) :\n• FC de repos +8-10 bpm au-dessus de la normale au réveil 3 matins consécutifs.\n• Courbatures persistantes > 72h après une séance habituelle.\n• Perte d'allure inexpliquée sur des séances pourtant bien dosées.\n• Sommeil dégradé (difficultés d'endormissement ou réveils nocturnes) > 3 nuits.\n• Humeur irritable, motivation effondrée ou anxiété inhabituelle.\n• Douleurs articulaires multiples simultanées.\n\nSI SÉANCE MANQUÉE :\n• < 4 jours de pause : reprendre la séance suivante prévue (ne pas rattraper la séance manquée).\n• 4-7 jours de pause : reprendre à la semaine en cours, en commençant par la séance la plus facile (J1 puis J3 puis J5).\n• 1-2 semaines de pause (maladie, voyage) : reprendre la semaine précédente complète.\n• > 2 semaines de pause : reprendre 2-3 semaines en arrière. Le déconditionnement VO2max commence à 10-14 jours d'inactivité totale."
+  },
   "schema_version" : 2,
   "sessions_per_week" : 3,
   "sport" : "running",
-  "summary" : "Plan 8 semaines pour coureur recreational visant à passer du 5K confortable au 10K en continu, structuré en 3 sessions/sem (easy/strength + tempo + long run) selon une distribution polarized (Seiler) et la doctrine Daniels VDOT. Volume hebdo de course pure (footings >=10 min + tempo + cooldowns extended >=10 min + long run + strides) : ~19 → ~20 → ~21 → ~23 → ~15 (deload W5) → ~26 → ~30 (pic) → ~21 (W8 incluant la séance phare 10 km). Long run progressif 6 → 7 → 8 → 9 → 7.5 (cutback) → 11 → 12 (pic, 120% de la cible 10K) → 10 (séance phare). Introduction Daniels-T en W3, fartlek structuré et strides pour stimuler la VO2max sans Daniels-I strict (préservation tendineuse pour public recreational), 1 séance strength/sem maintenue (single-leg squat, pont fessier unilatéral, calf raises excentriques, planche). Deload W5 (volume ~-34% vs W4 build, fonction de consolidation tendineuse/osseuse), taper J-7 (J1 6 km easy + J3 3 km activation + strides allure 10K), checklist d'autonomie 4 critères en W8.",
+  "summary" : {
+    "fr" : "Plan 8 semaines pour coureur recreational visant à passer du 5K confortable au 10K en continu, structuré en 3 sessions/sem (easy/strength + tempo + long run) selon une distribution polarized (Seiler) et la doctrine Daniels VDOT. Volume hebdo de course pure (footings >=10 min + tempo + retour au calme extended >=10 min + long run + strides) : ~19 → ~20 → ~21 → ~23 → ~15 (deload W5) → ~26 → ~30 (pic) → ~21 (W8 incluant la séance phare 10 km). Long run progressif 6 → 7 → 8 → 9 → 7.5 (cutback) → 11 → 12 (pic, 120% de la cible 10K) → 10 (séance phare). Introduction Daniels-T en W3, fartlek structuré et strides pour stimuler la VO2max sans Daniels-I strict (préservation tendineuse pour public recreational), 1 séance strength/sem maintenue (single-leg squat, pont fessier unilatéral, calf raises excentriques, planche). Deload W5 (volume ~-34% vs W4 build, fonction de consolidation tendineuse/osseuse), affûtage J-7 (J1 6 km easy + J3 3 km activation + strides allure 10K), checklist d'autonomie 4 critères en W8."
+  },
   "weeks" : [
     {
-      "goal" : "Poser les allures de travail individuelles via un test 5K en début de semaine. Long run 6 km easy. Introduire le renforcement préventif recreational. Volume hebdo de course pure : ~19 km.",
+      "goal" : {
+        "en" : "Set your individual training paces via a 5K test at the start of the week. Easy 6 km long run. Introduce recreational injury-prevention strength. Pure weekly running volume: ~19 km.",
+        "es" : "Fija tus ritmos de trabajo individuales con un test de 5K al inicio de la semana. Tirada larga suave de 6 km. Introduce el refuerzo preventivo recreativo. Volumen semanal de carrera pura: ~19 km.",
+        "fr" : "Poser les allures de travail individuelles via un test 5K en début de semaine. Sortie longue 6 km facile. Introduire le renforcement préventif intermédiaire. Volume hebdo de course pure : ~19 km."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min marche lente + étirements statiques : ischio-jambiers 40 sec/côté, mollets 40 sec/côté, fléchisseurs de hanche 30 sec/côté, pyramidaux 30 sec/côté. Hydratation obligatoire post-test.",
+          "cooldown" : {
+            "en" : "5 min slow walk + static stretches: hamstrings 40 sec/side, calves 40 sec/side, hip flexors 30 sec/side, piriformis 30 sec/side. Hydration is mandatory after the test.",
+            "es" : "5 min de caminata lenta + estiramientos estáticos: isquiotibiales 40 s/lado, gemelos 40 s/lado, flexores de cadera 30 s/lado, piriformes 30 s/lado. Hidratación obligatoria tras el test.",
+            "fr" : "5 min marche lente + étirements statiques : ischio-jambiers 40 sec/côté, mollets 40 sec/côté, fléchisseurs de hanche 30 sec/côté, pyramidaux 30 sec/côté. Hydratation obligatoire post-test."
+          },
           "day" : 1,
           "duration_minutes" : 55,
           "exercises" : [
             {
               "alternatives" : [
-                "Test 5K sur tapis",
-                "Test 20 min effort contrôlé sur piste"
+                {
+                  "en" : "5K test on the treadmill",
+                  "es" : "Test de 5K en cinta",
+                  "fr" : "Test 5K sur tapis"
+                },
+                {
+                  "en" : "20-min controlled-effort test on a track",
+                  "es" : "Test de 20 min a esfuerzo controlado en pista",
+                  "fr" : "Test 20 min effort contrôlé sur piste"
+                }
               ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "5 km at controlled effort (not an all-out sprint)",
+                  "es" : "5 km a esfuerzo controlado (no un sprint máximo)",
+                  "fr" : "5 km à effort contrôlé (pas un sprint maximal)"
+                }
+              },
               "duration" : "5 km à effort contrôlé (pas sprint maximal)",
               "incompatible_constraints" : [
                 "knee-injury",
                 "cardiac-clearance-required",
                 "shin-splints"
               ],
-              "name" : "Test 5K chronométré",
-              "notes" : "Effort 8/10 RPE, régulier du début à la fin. Note ton temps. Exemple : 30 min → allure 5K = 6:00 min/km. Ce temps détermine TOUTES tes allures du plan : Daniels-T (seuil) = allure 5K + 30-45 s/km (ex: 6:30-6:45 min/km) ; Daniels-E (easy/long run) = allure 5K + 90-120 s/km (ex: 7:30-8:00 min/km) ; allure 10K cible = allure 5K + 45-75 s/km (ex: 6:45-7:15 min/km). Adapter selon ton résultat réel.",
+              "match_key" : "Test 5K chronométré",
+              "name" : {
+                "en" : "Timed 5K test",
+                "es" : "Test cronometrado de 5K",
+                "fr" : "Test 5K chronométré"
+              },
+              "notes" : {
+                "en" : "RPE 8 effort, steady from start to finish. Note your time: it sets all your paces. Threshold = 5K pace + 30-45 s/km; easy = + 90-120 s/km; 10K = + 45-75 s/km. E.g. 5K 6:00 → threshold 6:30-6:45, easy 7:30-8:00, 10K 6:45-7:15.",
+                "es" : "Esfuerzo RPE 8, constante de principio a fin. Anota tu tiempo: fija todos tus ritmos. Umbral = ritmo de 5K + 30-45 s/km; fácil = + 90-120 s/km; 10K = + 45-75 s/km. P. ej. 5K 6:00 → umbral 6:30-6:45, fácil 7:30-8:00, 10K 6:45-7:15.",
+                "fr" : "Effort RPE 8, régulier du début à la fin. Note ton temps : il fixe toutes tes allures. Seuil = allure 5K + 30-45 s/km ; facile = + 90-120 s/km ; 10K = + 45-75 s/km. Ex : 5K 6:00 → seuil 6:30-6:45, facile 7:30-8:00, 10K 6:45-7:15."
+              },
               "required_equipment" : [
                 "gps-watch"
               ],
@@ -43,13 +93,26 @@
             },
             {
               "alternatives" : [
-                "Footing très lent 5 min"
+                {
+                  "en" : "Very slow jog 5 min",
+                  "es" : "Trote muy lento 5 min",
+                  "fr" : "Footing très lent 5 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Marche récupération post-test",
+              "match_key" : "Marche récupération post-test",
+              "name" : {
+                "en" : "Recovery walk after the test",
+                "es" : "Caminata de recuperación post-test",
+                "fr" : "Marche de récupération post-test"
+              },
               "required_equipment" : [
 
               ],
@@ -60,14 +123,36 @@
             },
             {
               "alternatives" : [
-                "Calf raises bipodal 25 reps",
-                "Calf raises assis sur chaise 20 reps"
+                {
+                  "en" : "Two-leg calf raises",
+                  "es" : "Elevaciones de gemelo a dos piernas",
+                  "fr" : "Mollets debout (deux pieds)"
+                },
+                {
+                  "en" : "Seated calf raises on a chair",
+                  "es" : "Elevaciones de gemelo sentado en una silla",
+                  "fr" : "Mollets assis sur chaise"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Single-leg calf raises excentriques",
-              "notes" : "Monter sur 2 pieds, descendre lentement sur 1 seul en 3-4 sec. Sur marche si possible pour amplitude complète. Protection tendon d'Achille (protocole Alfredson 1998). Obligatoire pour coureur recreational en montée de volume.",
+              "match_key" : "Single-leg calf raises excentriques",
+              "name" : {
+                "en" : "Single-leg eccentric calf raises",
+                "es" : "Elevaciones de gemelo excéntricas a una pierna",
+                "fr" : "Mollets excentriques sur une jambe"
+              },
+              "notes" : {
+                "en" : "Rise on 2 feet, lower slowly on 1 over 3-4 sec. On a step if possible for full range. Works the Achilles tendon. Useful when you're building volume.",
+                "es" : "Sube con los 2 pies, baja lentamente con 1 solo en 3-4 s. En un escalón si es posible para recorrido completo. Trabaja el tendón de Aquiles. Útil cuando subes volumen.",
+                "fr" : "Monte sur 2 pieds, descends lentement sur 1 seul en 3-4 sec. Sur une marche si possible pour l'amplitude complète. Sollicite le tendon d'Achille. Utile quand tu montes en volume."
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
 
@@ -79,14 +164,36 @@
             },
             {
               "alternatives" : [
-                "Pont fessier bipodal 15 reps",
-                "Pont fessier pieds sur box 12 reps/côté"
+                {
+                  "en" : "Two-leg glute bridge",
+                  "es" : "Puente de glúteos a dos piernas",
+                  "fr" : "Pont fessier à deux jambes"
+                },
+                {
+                  "en" : "Glute bridge with feet on a box",
+                  "es" : "Puente de glúteos con los pies en un cajón",
+                  "fr" : "Pont fessier pieds sur box"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier unilatéral",
-              "notes" : "Cible les fessiers (stabilisateurs clés de la foulée recreational). Tenir 2 sec en haut, contrôle excentrique.",
+              "match_key" : "Pont fessier unilatéral",
+              "name" : {
+                "en" : "Single-leg glute bridge",
+                "es" : "Puente de glúteos a una pierna",
+                "fr" : "Pont fessier sur une jambe"
+              },
+              "notes" : {
+                "en" : "Targets the glutes (key stabilizers of the recreational stride). Hold 2 sec at the top, controlled eccentric.",
+                "es" : "Trabaja los glúteos (estabilizadores clave de la zancada recreativa). Mantén 2 s arriba, control excéntrico.",
+                "fr" : "Cible les fessiers (stabilisateurs clés de la foulée). Tiens 2 sec en haut, contrôle excentrique."
+              },
               "reps" : "10 par côté",
               "required_equipment" : [
                 "mat"
@@ -98,16 +205,37 @@
             },
             {
               "alternatives" : [
-                "Planche genoux 50 sec",
-                "Dead bug 14 reps/côté"
+                {
+                  "en" : "Plank on knees 50 sec",
+                  "es" : "Plancha con rodillas 50 s",
+                  "fr" : "Planche sur les genoux 50 sec"
+                },
+                {
+                  "en" : "Dead bug",
+                  "es" : "Bicho muerto",
+                  "fr" : "Gainage croisé au sol"
+                }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "40"
+              },
               "duration" : "40 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
               ],
-              "name" : "Planche ventrale",
-              "notes" : "Corps rigide, fessiers engagés, ne pas laisser les hanches s'affaisser. Core stable = foulée stable.",
+              "match_key" : "Planche ventrale",
+              "name" : {
+                "en" : "Front plank",
+                "es" : "Plancha frontal",
+                "fr" : "Planche ventrale"
+              },
+              "notes" : {
+                "en" : "Rigid body, glutes engaged, don't let the hips sag. Stable core = stable stride.",
+                "es" : "Cuerpo rígido, glúteos activados, no dejes que caigan las caderas. Core estable = zancada estable.",
+                "fr" : "Corps rigide, fessiers engagés, ne pas laisser les hanches s'affaisser. Gainage stable = foulée stable."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -118,14 +246,36 @@
             },
             {
               "alternatives" : [
-                "Side-lying leg raise 15 reps/côté",
-                "Clamshell avec resistance-band"
+                {
+                  "en" : "Side-lying leg raise",
+                  "es" : "Elevación de pierna en decúbito lateral",
+                  "fr" : "Élévation de jambe en décubitus latéral"
+                },
+                {
+                  "en" : "Clamshell with resistance band",
+                  "es" : "Almeja con banda elástica",
+                  "fr" : "Ouverture de hanche avec bande élastique"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Clamshell",
-              "notes" : "Prévention ITBS (syndrome bandelette ilio-tibiale) — une des blessures les plus fréquentes du recreational en montée de volume. Maintenir 2 sec en haut.",
+              "match_key" : "Clamshell",
+              "name" : {
+                "en" : "Clamshell",
+                "es" : "Almeja (clamshell)",
+                "fr" : "Ouverture de hanche"
+              },
+              "notes" : {
+                "en" : "Knee and hip stability — a key focus for recreational runners building volume. Hold 2 sec at the top.",
+                "es" : "Estabilidad de la rodilla y la cadera — un punto clave para el recreativo que sube volumen. Mantén 2 s arriba.",
+                "fr" : "Stabilité du genou et de la hanche, clé en montée de volume. Maintiens 2 sec en haut."
+              },
               "reps" : "15 par côté",
               "required_equipment" : [
                 "mat"
@@ -136,28 +286,61 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "Test 5K + renforcement préventif",
+          "name" : {
+            "en" : "5K test + injury-prevention strength",
+            "es" : "Test de 5K + refuerzo preventivo",
+            "fr" : "Test 5K + renforcement préventif"
+          },
           "type" : "mixed",
-          "warmup" : "10 min footing très lent + 4×80 m accélérations progressives (jamais sprint). Montées de genoux 20 pas, talons-fesses 20 pas, cercles de hanches 10/sens. L'échauffement avant un test est non négociable."
+          "warmup" : {
+            "en" : "10 min very slow jog + 4×80 m progressive accelerations (never a sprint). High knees 20 steps, butt kicks 20 steps, hip circles 10/direction. Warming up before a test is non-negotiable.",
+            "es" : "10 min de trote muy lento + 4×80 m de aceleraciones progresivas (nunca sprint). Rodillas arriba 20 pasos, talones a los glúteos 20 pasos, círculos de cadera 10/sentido. Calentar antes de un test es innegociable.",
+            "fr" : "10 min footing très lent + 4×80 m accélérations progressives (jamais sprint). Montées de genoux 20 pas, talons-fesses 20 pas, cercles de hanches 10/sens. L'échauffement avant un test est non négociable."
+          }
         },
         {
-          "cooldown" : "10 min footing très lent (Daniels-E, cooldown extended) + étirements 5 min (mollets, quadriceps, ischio).",
+          "cooldown" : {
+            "en" : "10 min very slow jog (easy (you can talk), extended cooldown) + 5 min stretching (calves, quads, hamstrings).",
+            "es" : "10 min de trote muy lento (fácil (puedes hablar), vuelta a la calma prolongada) + 5 min de estiramientos (gemelos, cuádriceps, isquiotibiales).",
+            "fr" : "10 min footing très lent (facile (tu peux parler), retour au calme étendu) + étirements 5 min (mollets, quadriceps, ischio)."
+          },
           "day" : 3,
           "duration_minutes" : 55,
           "exercises" : [
             {
               "alternatives" : [
-                "Footing tapis 20 min Z1-Z2",
-                "Vélo Z2 25 min"
+                {
+                  "en" : "Treadmill jog 20 min very easy to easy endurance",
+                  "es" : "Trote en cinta 20 min muy fácil a resistencia fácil",
+                  "fr" : "Footing tapis 20 min très facile à endurance facile"
+                },
+                {
+                  "en" : "easy endurance cycling 25 min",
+                  "es" : "Bici resistencia fácil 25 min",
+                  "fr" : "Vélo endurance facile 25 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "35"
+              },
               "duration" : "35 min",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Footing easy",
-              "notes" : "Allure Daniels-E = allure 5K + 90-120 s/km. Allure conversationnelle complète, RPE 5-6/10. Cadence ~170-180 pas/min. C'est la zone où se construit l'endurance aérobie de base. 35 min = ~4.7 km de Daniels-E, base aérobie consolidée pour le recreational.",
+              "match_key" : "Footing easy",
+              "name" : {
+                "en" : "Easy jog",
+                "es" : "Trote suave",
+                "fr" : "Footing facile"
+              },
+              "notes" : {
+                "en" : "Easy pace = 5K pace + 90-120 s/km, fully conversational, RPE 5-6. Cadence ~170-180 steps/min. This is the zone where base aerobic endurance is built.",
+                "es" : "Ritmo fácil = ritmo de 5K + 90-120 s/km, totalmente conversacional, RPE 5-6. Cadencia ~170-180 pasos/min. Es la zona donde se construye la resistencia aeróbica de base.",
+                "fr" : "Allure facile = allure 5K + 90-120 s/km, conversationnelle complète, RPE 5-6. Cadence ~170-180 pas/min. C'est la zone où se construit l'endurance aérobie de base."
+              },
               "required_equipment" : [
 
               ],
@@ -168,17 +351,48 @@
             },
             {
               "alternatives" : [
-                "Strides 6×80 m sur herbe",
-                "Footing easy 5 min supplémentaires"
+                {
+                  "en" : "Strides 6×80 m on grass",
+                  "es" : "Progresiones 6×80 m sobre hierba",
+                  "fr" : "Lignes 6×80 m sur herbe"
+                },
+                {
+                  "en" : "5 extra min of easy jogging",
+                  "es" : "5 min más de trote suave",
+                  "fr" : "Footing facile 5 min supplémentaires"
+                }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "accelerationProgressive",
+                    "unit" : "meters",
+                    "value" : "100"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  }
+                ]
+              },
               "duration" : "100 m accélération progressive + 60 sec marche récupération",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Strides 6×100 m",
-              "notes" : "Accélérations progressives sur 100 m : 30 m doux, 40 m accélération, 30 m relâché. Pic d'effort RPE 7-8, jamais sprint maximal. Focus mécanique : pieds sous le bassin, cadence haute. Stimule la VO2max sans brutaliser. Si pas d'accès track : zone plate calibrée GPS suffit.",
+              "match_key" : "Strides 6×100 m",
+              "name" : {
+                "en" : "Strides 6×100 m",
+                "es" : "Progresiones 6×100 m",
+                "fr" : "Accélérations 6×100 m"
+              },
+              "notes" : {
+                "en" : "Progressive accelerations over 100 m: 30 m easy, 40 m accelerating, 30 m relaxed. Peak effort RPE 7-8, never a full sprint. Feet under the hips, high cadence. A flat GPS-measured stretch is enough.",
+                "es" : "Aceleraciones progresivas en 100 m: 30 m suave, 40 m acelerando, 30 m relajado. Pico de esfuerzo RPE 7-8, nunca sprint máximo. Pies bajo la pelvis, cadencia alta. Basta una recta plana medida con GPS.",
+                "fr" : "Accélérations progressives sur 100 m : 30 m doux, 40 m accélération, 30 m relâché. Pic d'effort RPE 7-8, jamais sprint maximal. Pieds sous le bassin, cadence haute. Un terrain plat repéré au GPS suffit."
+              },
               "required_equipment" : [
 
               ],
@@ -188,28 +402,61 @@
               "volume_axis" : "sets"
             }
           ],
-          "name" : "Footing easy + strides — découverte allure",
+          "name" : {
+            "en" : "Easy jog + strides — pace discovery",
+            "es" : "Trote suave + progresiones — descubrir el ritmo",
+            "fr" : "Footing facile + accélérations"
+          },
           "type" : "endurance",
-          "warmup" : "5 min marche rapide + 5 min footing très lent (Daniels-E). Mobilité dynamique : fentes marchées 10 pas, high knees 20 pas, talons-fesses 20 pas."
+          "warmup" : {
+            "en" : "5 min brisk walk + 5 min very slow jog (easy (you can talk)). Dynamic mobility: walking lunges 10 steps, high knees 20 steps, butt kicks 20 steps.",
+            "es" : "5 min de caminata rápida + 5 min de trote muy lento (fácil (puedes hablar)). Movilidad dinámica: zancadas caminando 10 pasos, rodillas arriba 20 pasos, talones a los glúteos 20 pasos.",
+            "fr" : "5 min marche rapide + 5 min footing très lent (facile (tu peux parler)). Mobilité dynamique : fentes marchées 10 pas, montées de genoux 20 pas, talons-fesses 20 pas."
+          }
         },
         {
-          "cooldown" : "5 min marche lente + étirements complets 8 min (mollets, quadriceps, ischio-jambiers, fessiers, adducteurs).",
+          "cooldown" : {
+            "en" : "5 min slow walk + 8 min full stretching (calves, quads, hamstrings, glutes, adductors).",
+            "es" : "5 min de caminata lenta + 8 min de estiramientos completos (gemelos, cuádriceps, isquiotibiales, glúteos, aductores).",
+            "fr" : "5 min marche lente + étirements complets 8 min (mollets, quadriceps, ischio-jambiers, fessiers, adducteurs)."
+          },
           "day" : 5,
           "duration_minutes" : 50,
           "exercises" : [
             {
               "alternatives" : [
-                "Long run tapis 6 km Z2",
-                "Vélo Z2 50 min"
+                {
+                  "en" : "Treadmill long run 6 km easy endurance",
+                  "es" : "Tirada larga en cinta 6 km resistencia fácil",
+                  "fr" : "Sortie longue tapis 6 km endurance facile"
+                },
+                {
+                  "en" : "easy endurance cycling 50 min",
+                  "es" : "Bici resistencia fácil 50 min",
+                  "fr" : "Vélo endurance facile 50 min"
+                }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "6"
+              },
               "duration" : "6 km",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Course continue Daniels-E",
-              "notes" : "Daniels-E = allure 5K + 90-120 s/km. Ex : si allure 5K = 6:00 min/km → long run = 7:30-8:00 min/km. Le long run construit l'endurance aérobie et l'économie de course. Il ne doit PAS être couru vite. Si l'allure te semble trop lente, c'est probablement la bonne. Erreur n°1 du recreational : trop vite sur les longs runs.",
+              "match_key" : "Course continue Daniels-E",
+              "name" : {
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
+                "fr" : "Course continue (allure facile)"
+              },
+              "notes" : {
+                "en" : "Long run at easy pace = 5K pace + 90-120 s/km (e.g. 5K 6:00 → 7:30-8:00). It builds endurance and running economy, it must NOT be run fast. If the pace feels too slow, it's probably right.",
+                "es" : "Tirada larga a ritmo fácil = ritmo de 5K + 90-120 s/km (p. ej. 5K 6:00 → 7:30-8:00). Construye la resistencia y la economía de carrera, NO debe correrse rápido. Si el ritmo te parece demasiado lento, probablemente sea el correcto.",
+                "fr" : "Sortie longue en allure facile = allure 5K + 90-120 s/km (ex : 5K 6:00 → 7:30-8:00). Elle construit l'endurance et l'économie de course, elle ne doit PAS être courue vite. Si l'allure te semble trop lente, c'est probablement la bonne."
+              },
               "required_equipment" : [
 
               ],
@@ -219,35 +466,76 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Long run 6 km — allure facile",
+          "name" : {
+            "en" : "6 km long run — easy pace",
+            "es" : "Tirada larga de 6 km — ritmo suave",
+            "fr" : "Sortie longue 6 km — allure facile"
+          },
           "type" : "endurance",
-          "warmup" : "5 min marche rapide + 5 min footing très lent. Mobilité chevilles et hanches 3 min."
+          "warmup" : {
+            "en" : "5 min brisk walk + 5 min very slow jog. Ankle and hip mobility 3 min.",
+            "es" : "5 min de caminata rápida + 5 min de trote muy lento. Movilidad de tobillos y caderas 3 min.",
+            "fr" : "5 min marche rapide + 5 min footing très lent. Mobilité chevilles et hanches 3 min."
+          }
         }
       ],
-      "theme" : "Fondations — calibrer les allures et activer le renforcement préventif",
+      "theme" : {
+        "en" : "Foundations — calibrate your paces and switch on injury-prevention strength",
+        "es" : "Fundamentos — calibrar los ritmos y activar el refuerzo preventivo",
+        "fr" : "Fondations — calibrer les allures et activer le renforcement préventif"
+      },
       "week_number" : 1
     },
     {
-      "goal" : "Augmenter le volume easy et introduire des strides plus longs (6×100 m). Long run porté à 7 km. Volume hebdo de course pure : ~20 km.",
+      "goal" : {
+        "en" : "Increase easy volume and introduce longer strides (6×100 m). Long run up to 7 km. Pure weekly running volume: ~20 km.",
+        "es" : "Aumentar el volumen suave e introducir progresiones más largas (6×100 m). Tirada larga subida a 7 km. Volumen semanal de carrera pura: ~20 km.",
+        "fr" : "Augmenter le volume facile et introduire des accélérations plus longs (6×100 m). Sortie longue porté à 7 km. Volume hebdo de course pure : ~20 km."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements 5 min.",
+          "cooldown" : {
+            "en" : "5 min walk + 5 min stretching.",
+            "es" : "5 min de caminata + 5 min de estiramientos.",
+            "fr" : "5 min marche + étirements 5 min."
+          },
           "day" : 1,
           "duration_minutes" : 70,
           "exercises" : [
             {
               "alternatives" : [
-                "Footing tapis 25 min Z2",
-                "Vélo Z2 30 min"
+                {
+                  "en" : "Treadmill jog 25 min easy endurance",
+                  "es" : "Trote en cinta 25 min resistencia fácil",
+                  "fr" : "Footing tapis 25 min endurance facile"
+                },
+                {
+                  "en" : "easy endurance cycling 30 min",
+                  "es" : "Bici resistencia fácil 30 min",
+                  "fr" : "Vélo endurance facile 30 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Footing easy",
-              "notes" : "Daniels-E pur, allure conversationnelle complète. ~5.3 km de Daniels-E continu. Volume +20 min vs W1 J3 pour consolider la base aérobie recreational (cible 30-50 km/sem au pic).",
+              "match_key" : "Footing easy",
+              "name" : {
+                "en" : "Easy jog",
+                "es" : "Trote suave",
+                "fr" : "Footing facile"
+              },
+              "notes" : {
+                "en" : "Pure easy pace, fully conversational. ~5.3 km continuous. Volume +20 min vs the previous one to consolidate the aerobic base.",
+                "es" : "Ritmo fácil puro, totalmente conversacional. ~5,3 km continuo. Volumen +20 min respecto a la anterior para consolidar la base aeróbica.",
+                "fr" : "Allure facile pure, conversationnelle complète. ~5.3 km continu. Volume +20 min vs la précédente pour consolider la base aérobie."
+              },
               "required_equipment" : [
 
               ],
@@ -258,14 +546,36 @@
             },
             {
               "alternatives" : [
-                "Step-ups bas 10 reps/jambe",
-                "Bulgarian split squat 8 reps/jambe"
+                {
+                  "en" : "Low step-ups",
+                  "es" : "Subidas a escalón bajo",
+                  "fr" : "Montées sur step bas"
+                },
+                {
+                  "en" : "Bulgarian split squat",
+                  "es" : "Sentadilla búlgara",
+                  "fr" : "Fente bulgare"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
-              "name" : "Single-leg squat (pistol assisté)",
-              "notes" : "Tenir une chaise pour équilibre si nécessaire. Descente sur 1 jambe jusqu'à 60-70°, genou dans l'axe du pied. Renforce le mécanisme d'absorption de choc à l'atterrissage et prévient le syndrome fémoro-patellaire (PFPS).",
+              "match_key" : "Single-leg squat (pistol assisté)",
+              "name" : {
+                "en" : "Single-leg squat (assisted pistol)",
+                "es" : "Sentadilla a una pierna (pistol asistida)",
+                "fr" : "Squat sur une jambe (pistol assisté)"
+              },
+              "notes" : {
+                "en" : "Hold a chair for balance if needed. Lower on 1 leg to 60-70°, knee tracking over the foot. Builds knee control and stride stability.",
+                "es" : "Sujétate a una silla para el equilibrio si hace falta. Baja con 1 pierna hasta 60-70°, rodilla en el eje del pie. Mejora el control de la rodilla y la estabilidad de la zancada.",
+                "fr" : "Tiens une chaise pour l'équilibre si besoin. Descente sur 1 jambe jusqu'à 60-70°, genou dans l'axe du pied. Renforce le contrôle du genou et la stabilité de la foulée."
+              },
               "reps" : "8 par côté",
               "required_equipment" : [
 
@@ -277,13 +587,31 @@
             },
             {
               "alternatives" : [
-                "Calf raises bipodal 25 reps",
-                "Calf raises assis sur chaise 20 reps"
+                {
+                  "en" : "Two-leg calf raises",
+                  "es" : "Elevaciones de gemelo a dos piernas",
+                  "fr" : "Mollets debout (deux pieds)"
+                },
+                {
+                  "en" : "Seated calf raises on a chair",
+                  "es" : "Elevaciones de gemelo sentado en una silla",
+                  "fr" : "Mollets assis sur chaise"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Single-leg calf raises excentriques",
+              "match_key" : "Single-leg calf raises excentriques",
+              "name" : {
+                "en" : "Single-leg eccentric calf raises",
+                "es" : "Elevaciones de gemelo excéntricas a una pierna",
+                "fr" : "Mollets excentriques sur une jambe"
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
 
@@ -291,49 +619,105 @@
               "rest_seconds" : 60,
               "sets" : 3,
               "target_zone" : "RPE 7-8",
-              "volume_axis" : "reps"
+              "volume_axis" : "reps",
+              "notes" : {
+                "fr" : "Monte sur la pointe à deux pieds, puis redescends en 3-4 sec sur une seule jambe, le plus lentement possible. Une main au mur pour l'équilibre.",
+                "en" : "Rise onto the balls of both feet, then lower over 3-4 sec on a single leg, as slowly as possible. One hand on the wall for balance.",
+                "es" : "Sube sobre la punta con ambos pies, luego baja en 3-4 seg sobre una sola pierna, lo más lento posible. Una mano en la pared para el equilibrio."
+              }
             },
             {
               "alternatives" : [
-                "Planche genoux 60 sec",
-                "Dead bug 14 reps/côté"
+                {
+                  "en" : "Plank on knees 60 sec",
+                  "es" : "Plancha con rodillas 60 s",
+                  "fr" : "Planche sur les genoux 60 sec"
+                },
+                {
+                  "en" : "Dead bug",
+                  "es" : "Bicho muerto",
+                  "fr" : "Gainage croisé au sol"
+                }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "45"
+              },
               "duration" : "45 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
               ],
-              "name" : "Planche ventrale",
+              "match_key" : "Planche ventrale",
+              "name" : {
+                "en" : "Front plank",
+                "es" : "Plancha frontal",
+                "fr" : "Planche ventrale"
+              },
               "required_equipment" : [
                 "mat"
               ],
               "rest_seconds" : 45,
               "sets" : 3,
               "target_zone" : "RPE 7-8",
-              "volume_axis" : "duration"
+              "volume_axis" : "duration",
+              "notes" : {
+                "fr" : "En appui sur les avant-bras (coudes sous les épaules) et la pointe des pieds, corps bien droit, ventre et fessiers gainés, sans creuser le dos. Respire normalement.",
+                "en" : "Propped on your forearms (elbows under the shoulders) and the balls of your feet, body straight, abs and glutes braced, without arching the back. Breathe normally.",
+                "es" : "Apoyado en los antebrazos (codos bajo los hombros) y la punta de los pies, cuerpo recto, abdomen y glúteos activados, sin arquear la espalda. Respira con normalidad."
+              }
             }
           ],
-          "name" : "Footing easy + strength",
+          "name" : {
+            "en" : "Easy jog + strength",
+            "es" : "Trote suave + refuerzo",
+            "fr" : "Footing facile + renforcement"
+          },
           "type" : "mixed",
-          "warmup" : "10 min footing très lent (Daniels-E) + mobilité dynamique 5 min."
+          "warmup" : {
+            "en" : "10 min very slow jog (easy (you can talk)) + 5 min dynamic mobility.",
+            "es" : "10 min de trote muy lento (fácil (puedes hablar)) + 5 min de movilidad dinámica.",
+            "fr" : "10 min footing très lent (facile (tu peux parler)) + mobilité dynamique 5 min."
+          }
         },
         {
-          "cooldown" : "15 min footing très lent (Daniels-E, cooldown extended ~2 km) + étirements 5 min.",
+          "cooldown" : {
+            "en" : "15 min very slow jog (easy (you can talk), extended cooldown ~2 km) + 5 min stretching.",
+            "es" : "15 min de trote muy lento (fácil (puedes hablar), vuelta a la calma prolongada ~2 km) + 5 min de estiramientos.",
+            "fr" : "15 min footing très lent (facile (tu peux parler), retour au calme étendu ~2 km) + étirements 5 min."
+          },
           "day" : 3,
           "duration_minutes" : 60,
           "exercises" : [
             {
               "alternatives" : [
-                "Footing tapis 15 min Z2"
+                {
+                  "en" : "Treadmill jog 15 min easy endurance",
+                  "es" : "Trote en cinta 15 min resistencia fácil",
+                  "fr" : "Footing tapis 15 min endurance facile"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Footing easy",
-              "notes" : "Footing préparatoire avant les strides, allure Daniels-E. ~2.7 km de Daniels-E.",
+              "match_key" : "Footing easy",
+              "name" : {
+                "en" : "Easy jog",
+                "es" : "Trote suave",
+                "fr" : "Footing facile"
+              },
+              "notes" : {
+                "en" : "Prep jog before the strides, easy (you can talk) pace. ~2.7 km of easy (you can talk).",
+                "es" : "Trote preparatorio antes de las progresiones, ritmo fácil (puedes hablar). ~2,7 km de fácil (puedes hablar).",
+                "fr" : "Footing préparatoire avant les accélérations, en allure facile. ~2.7 km."
+              },
               "required_equipment" : [
 
               ],
@@ -344,17 +728,48 @@
             },
             {
               "alternatives" : [
-                "Strides 6×80 m sur herbe",
-                "Fartlek 6×30 sec rapide / 60 sec lent"
+                {
+                  "en" : "Strides 6×80 m on grass",
+                  "es" : "Progresiones 6×80 m sobre hierba",
+                  "fr" : "Lignes 6×80 m sur herbe"
+                },
+                {
+                  "en" : "Speed play 6×30 sec fast / 60 sec slow",
+                  "es" : "Juego de ritmos 6×30 s rápido / 60 s lento",
+                  "fr" : "Jeu d'allures 6×30 sec rapide / 60 sec lent"
+                }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "accelerationProgressive",
+                    "unit" : "meters",
+                    "value" : "100"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  }
+                ]
+              },
               "duration" : "100 m accélération progressive + 60 sec marche récupération",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Strides 6×100 m",
-              "notes" : "Identique W1 mais maintenant avec 15 min de footing préparatoire. Pic d'effort RPE 7-8 (proche allure 5K). Focus mécanique : pieds sous le bassin, bras relâchés. Total 600 m d'effort qualitatif.",
+              "match_key" : "Strides 6×100 m",
+              "name" : {
+                "en" : "Strides 6×100 m",
+                "es" : "Progresiones 6×100 m",
+                "fr" : "Accélérations 6×100 m"
+              },
+              "notes" : {
+                "en" : "With 15 min of prep jogging. Peak effort RPE 7-8 (near 5K pace). Feet under the hips, arms relaxed. Total 600 m of quality work.",
+                "es" : "Con 15 min de trote preparatorio. Pico de esfuerzo RPE 7-8 (cerca del ritmo de 5K). Pies bajo la pelvis, brazos relajados. Total 600 m de trabajo de calidad.",
+                "fr" : "Avec 15 min de footing préparatoire. Pic d'effort RPE 7-8 (proche allure 5K). Pieds sous le bassin, bras relâchés. Total 600 m d'effort qualitatif."
+              },
               "required_equipment" : [
 
               ],
@@ -364,28 +779,61 @@
               "volume_axis" : "sets"
             }
           ],
-          "name" : "Footing + strides 6×100 m",
+          "name" : {
+            "en" : "Jog + strides 6×100 m",
+            "es" : "Trote + progresiones 6×100 m",
+            "fr" : "Footing + accélérations 6×100 m"
+          },
           "type" : "interval",
-          "warmup" : "10 min footing facile (Daniels-E) + mobilité dynamique 5 min."
+          "warmup" : {
+            "en" : "10 min easy jog (easy (you can talk)) + 5 min dynamic mobility.",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 5 min de movilidad dinámica.",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + mobilité dynamique 5 min."
+          }
         },
         {
-          "cooldown" : "5 min marche + étirements complets 8 min.",
+          "cooldown" : {
+            "en" : "5 min walk + 8 min full stretching.",
+            "es" : "5 min de caminata + 8 min de estiramientos completos.",
+            "fr" : "5 min marche + étirements complets 8 min."
+          },
           "day" : 5,
           "duration_minutes" : 60,
           "exercises" : [
             {
               "alternatives" : [
-                "Long run tapis 7 km Z2",
-                "Vélo Z2 60 min"
+                {
+                  "en" : "Treadmill long run 7 km easy endurance",
+                  "es" : "Tirada larga en cinta 7 km resistencia fácil",
+                  "fr" : "Sortie longue tapis 7 km endurance facile"
+                },
+                {
+                  "en" : "easy endurance cycling 60 min",
+                  "es" : "Bici resistencia fácil 60 min",
+                  "fr" : "Vélo endurance facile 60 min"
+                }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "7"
+              },
               "duration" : "7 km",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Course continue Daniels-E",
-              "notes" : "Daniels-E (RPE 5-6/10, allure 5K + 90-120 s/km). +1 km vs W1 long run (progression ~17%). Hydratation : emporter 500 ml si conditions chaudes. Penser à relâcher les épaules toutes les 5 min.",
+              "match_key" : "Course continue Daniels-E",
+              "name" : {
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
+                "fr" : "Course continue (allure facile)"
+              },
+              "notes" : {
+                "en" : "Easy pace (RPE 5-6, 5K pace + 90-120 s/km). +1 km vs the previous one. Hydration: carry 500 ml in hot conditions. Remember to relax your shoulders every 5 min.",
+                "es" : "Ritmo fácil (RPE 5-6, ritmo de 5K + 90-120 s/km). +1 km respecto a la anterior. Hidratación: lleva 500 ml si hace calor. Acuérdate de relajar los hombros cada 5 min.",
+                "fr" : "Allure facile (RPE 5-6, allure 5K + 90-120 s/km). +1 km vs la précédente. Hydratation : emporte 500 ml si chaleur. Pense à relâcher les épaules toutes les 5 min."
+              },
               "required_equipment" : [
 
               ],
@@ -395,35 +843,76 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Long run 7 km — allure facile",
+          "name" : {
+            "en" : "7 km long run — easy pace",
+            "es" : "Tirada larga de 7 km — ritmo suave",
+            "fr" : "Sortie longue 7 km — allure facile"
+          },
           "type" : "endurance",
-          "warmup" : "5 min marche + 5 min footing très lent."
+          "warmup" : {
+            "en" : "5 min walk + 5 min very slow jog.",
+            "es" : "5 min de caminata + 5 min de trote muy lento.",
+            "fr" : "5 min marche + 5 min footing très lent."
+          }
         }
       ],
-      "theme" : "Construction — premiers strides et long run 7 km",
+      "theme" : {
+        "en" : "Building — first strides and 7 km long run",
+        "es" : "Construcción — primeras progresiones y tirada larga de 7 km",
+        "fr" : "Construction — premières accélérations et sortie longue 7 km"
+      },
       "week_number" : 2
     },
     {
-      "goal" : "Premier tempo continu en Daniels-T (15 min). Long run 8 km. Volume hebdo de course pure : ~21 km.",
+      "goal" : {
+        "en" : "First continuous at threshold tempo (15 min). 8 km long run. Pure weekly running volume: ~21 km.",
+        "es" : "Primer tempo continuo en el umbral (15 min). Tirada larga de 8 km. Volumen semanal de carrera pura: ~21 km.",
+        "fr" : "Premier tempo continu en au seuil (15 min). Sortie longue 8 km. Volume hebdo de course pure : ~21 km."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements 5 min.",
+          "cooldown" : {
+            "en" : "5 min walk + 5 min stretching.",
+            "es" : "5 min de caminata + 5 min de estiramientos.",
+            "fr" : "5 min marche + étirements 5 min."
+          },
           "day" : 1,
           "duration_minutes" : 70,
           "exercises" : [
             {
               "alternatives" : [
-                "Footing tapis 25 min Z2",
-                "Vélo Z2 30 min"
+                {
+                  "en" : "Treadmill jog 25 min easy endurance",
+                  "es" : "Trote en cinta 25 min resistencia fácil",
+                  "fr" : "Footing tapis 25 min endurance facile"
+                },
+                {
+                  "en" : "easy endurance cycling 30 min",
+                  "es" : "Bici resistencia fácil 30 min",
+                  "fr" : "Vélo endurance facile 30 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "40"
+              },
               "duration" : "40 min",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Footing easy",
-              "notes" : "Daniels-E maintenu (~5.3 km). Volume stable vs W2 J1 sur cette séance, l'augmentation hebdo passe par le tempo de J3 et son cooldown extended.",
+              "match_key" : "Footing easy",
+              "name" : {
+                "en" : "Easy jog",
+                "es" : "Trote suave",
+                "fr" : "Footing facile"
+              },
+              "notes" : {
+                "en" : "Easy pace maintained (~5.3 km). Volume steady this session; the weekly increase comes from the tempo and its extended cooldown.",
+                "es" : "Ritmo fácil mantenido (~5,3 km). Volumen estable esta sesión; el aumento semanal viene del tempo y su vuelta a la calma prolongada.",
+                "fr" : "Allure facile maintenue (~5.3 km). Volume stable cette séance, l'augmentation hebdo passe par le tempo et son retour au calme étendu."
+              },
               "required_equipment" : [
 
               ],
@@ -434,13 +923,31 @@
             },
             {
               "alternatives" : [
-                "Step-ups 12 reps/jambe",
-                "Bulgarian split squat 8 reps/jambe"
+                {
+                  "en" : "Step-ups",
+                  "es" : "Subidas a escalón",
+                  "fr" : "Montées sur step"
+                },
+                {
+                  "en" : "Bulgarian split squat",
+                  "es" : "Sentadilla búlgara",
+                  "fr" : "Fente bulgare"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
-              "name" : "Single-leg squat",
+              "match_key" : "Single-leg squat",
+              "name" : {
+                "en" : "Single-leg squat",
+                "es" : "Sentadilla a una pierna",
+                "fr" : "Squat sur une jambe"
+              },
               "reps" : "10 par côté",
               "required_equipment" : [
 
@@ -448,17 +955,40 @@
               "rest_seconds" : 75,
               "sets" : 3,
               "target_zone" : "RPE 7-8",
-              "volume_axis" : "reps"
+              "volume_axis" : "reps",
+              "notes" : {
+                "fr" : "Sur une jambe, descends lentement comme pour t'asseoir (genou dans l'axe du pied), puis remonte. Appuie-toi à un mur ou une chaise.",
+                "en" : "On one leg, lower slowly as if sitting (knee in line with the foot), then come back up. Hold a wall or chair for balance.",
+                "es" : "Sobre una pierna, baja lentamente como para sentarte (rodilla en el eje del pie), luego sube. Apóyate en una pared o una silla para el equilibrio."
+              }
             },
             {
               "alternatives" : [
-                "Pont fessier bipodal 18 reps",
-                "Hip thrust pieds sur box 12 reps/côté"
+                {
+                  "en" : "Two-leg glute bridge",
+                  "es" : "Puente de glúteos a dos piernas",
+                  "fr" : "Pont fessier à deux jambes"
+                },
+                {
+                  "en" : "Hip thrust with feet on a box",
+                  "es" : "Empuje de cadera con los pies en un cajón",
+                  "fr" : "Pont de hanches pieds surélevés"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier unilatéral",
+              "match_key" : "Pont fessier unilatéral",
+              "name" : {
+                "en" : "Single-leg glute bridge",
+                "es" : "Puente de glúteos a una pierna",
+                "fr" : "Pont fessier sur une jambe"
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
                 "mat"
@@ -466,17 +996,40 @@
               "rest_seconds" : 45,
               "sets" : 3,
               "target_zone" : "RPE 7-8",
-              "volume_axis" : "reps"
+              "volume_axis" : "reps",
+              "notes" : {
+                "fr" : "En position de pont fessier, tends une jambe. Monte le bassin sur le seul pied d'appui en le gardant bien horizontal, serre la fesse, descends, puis change de jambe.",
+                "en" : "In the glute bridge position, extend one leg. Lift your pelvis on the single supporting foot, keeping it level, squeeze the glute, lower, then switch legs.",
+                "es" : "En posición de puente de glúteos, extiende una pierna. Sube la pelvis sobre el único pie de apoyo manteniéndola bien horizontal, aprieta el glúteo, baja, luego cambia de pierna."
+              }
             },
             {
               "alternatives" : [
-                "Calf raises bipodal 25 reps",
-                "Calf raises sur marche en double"
+                {
+                  "en" : "Two-leg calf raises",
+                  "es" : "Elevaciones de gemelo a dos piernas",
+                  "fr" : "Mollets debout (deux pieds)"
+                },
+                {
+                  "en" : "Two-leg calf raises on a step",
+                  "es" : "Elevaciones de gemelo a dos piernas en escalón",
+                  "fr" : "Mollets sur une marche (deux pieds)"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises excentriques",
+              "match_key" : "Calf raises excentriques",
+              "name" : {
+                "en" : "Eccentric calf raises",
+                "es" : "Elevaciones de gemelo excéntricas",
+                "fr" : "Mollets excentriques"
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
 
@@ -484,21 +1037,48 @@
               "rest_seconds" : 60,
               "sets" : 3,
               "target_zone" : "RPE 7-8",
-              "volume_axis" : "reps"
+              "volume_axis" : "reps",
+              "notes" : {
+                "fr" : "Monte sur la pointe à deux pieds, puis redescends lentement en 3 sec sur un seul pied. C'est la descente freinée qui renforce le tendon.",
+                "en" : "Rise onto the balls of both feet, then lower slowly over 3 sec on a single foot. The braked descent is what strengthens the tendon.",
+                "es" : "Sube sobre la punta con ambos pies, luego baja lentamente en 3 seg sobre un solo pie. Es el descenso frenado lo que fortalece el tendón."
+              }
             },
             {
               "alternatives" : [
-                "Side plank genoux pliés 40 sec/côté",
-                "Bird-dog 12 reps/côté"
+                {
+                  "en" : "Side plank with bent knees 40 sec/side",
+                  "es" : "Plancha lateral con rodillas flexionadas 40 s/lado",
+                  "fr" : "Planche latérale genoux pliés 40 sec/côté"
+                },
+                {
+                  "en" : "Bird-dog",
+                  "es" : "Perro-pájaro",
+                  "fr" : "Pointeur"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "30"
+              },
               "duration" : "30 sec par côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Side plank",
-              "notes" : "Obliques et moyen fessier. Alignement cheville-hanche-épaule. Anti-bascule du bassin pendant la foulée.",
+              "match_key" : "Side plank",
+              "name" : {
+                "en" : "Side plank",
+                "es" : "Plancha lateral",
+                "fr" : "Planche latérale"
+              },
+              "notes" : {
+                "en" : "Obliques and gluteus medius. Ankle-hip-shoulder alignment. Anti-tilt of the pelvis during the stride.",
+                "es" : "Oblicuos y glúteo medio. Alineación tobillo-cadera-hombro. Antibasculación de la pelvis durante la zancada.",
+                "fr" : "Obliques et moyen fessier. Alignement cheville-hanche-épaule. Anti-bascule du bassin pendant la foulée."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -508,28 +1088,61 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Footing easy + strength",
+          "name" : {
+            "en" : "Easy jog + strength",
+            "es" : "Trote suave + refuerzo",
+            "fr" : "Footing facile + renforcement"
+          },
           "type" : "mixed",
-          "warmup" : "10 min footing très lent + mobilité dynamique 5 min."
+          "warmup" : {
+            "en" : "10 min very slow jog + 5 min dynamic mobility.",
+            "es" : "10 min de trote muy lento + 5 min de movilidad dinámica.",
+            "fr" : "10 min footing très lent + mobilité dynamique 5 min."
+          }
         },
         {
-          "cooldown" : "12 min footing très lent (Daniels-E, cooldown extended ~1.6 km) + étirements 5 min (quadriceps, ischio, mollets).",
+          "cooldown" : {
+            "en" : "12 min very slow jog (easy (you can talk), extended cooldown ~1.6 km) + 5 min stretching (quads, hamstrings, calves).",
+            "es" : "12 min de trote muy lento (fácil (puedes hablar), vuelta a la calma prolongada ~1,6 km) + 5 min de estiramientos (cuádriceps, isquiotibiales, gemelos).",
+            "fr" : "12 min footing très lent (facile (tu peux parler), retour au calme étendu ~1.6 km) + étirements 5 min (quadriceps, ischio, mollets)."
+          },
           "day" : 3,
           "duration_minutes" : 62,
           "exercises" : [
             {
               "alternatives" : [
-                "Tempo continu sur tapis 15 min",
-                "Cruise intervals 3×5 min Daniels-T avec 2 min easy entre"
+                {
+                  "en" : "Continuous tempo on the treadmill 15 min",
+                  "es" : "Tempo continuo en cinta 15 min",
+                  "fr" : "Tempo continu sur tapis 15 min"
+                },
+                {
+                  "en" : "Cruise intervals 3×5 min at threshold with 2 min easy between",
+                  "es" : "Cruise intervals 3×5 min en el umbral con 2 min suave entre cada uno",
+                  "fr" : "Intervalles 3×5 min au seuil avec 2 min facile entre"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "knee-injury",
                 "cardiac-clearance-required",
                 "shin-splints"
               ],
-              "name" : "Bloc tempo Daniels-T",
-              "notes" : "PREMIER TEMPO du plan. Allure Daniels-T = allure 5K + 30-45 s/km (ex: 6:30-6:45 min/km si ton 5K est à 6:00). Test de la parole : tu peux dire une phrase courte (4-5 mots) mais pas tenir une conversation. RPE 7/10. Daniels-T correspond au lactate threshold 1 : efficacité métabolique maximale. Pas de variations d'allure : régularité = l'objectif. Si tu ne tiens pas l'allure pendant 15 min, ralentis à RPE 6-7 et note-le.",
+              "match_key" : "Bloc tempo Daniels-T",
+              "name" : {
+                "en" : "at threshold tempo block",
+                "es" : "Bloque tempo en el umbral",
+                "fr" : "Bloc tempo (au seuil)"
+              },
+              "notes" : {
+                "en" : "Threshold pace = 5K pace + 30-45 s/km (e.g. 6:30-6:45 if your 5K is 6:00). RPE 7: you can say 4-5 words but not hold a conversation. Steady pace, no swings. If you can't hold 15 min, ease to RPE 6-7 and note it.",
+                "es" : "Ritmo de umbral = ritmo de 5K + 30-45 s/km (p. ej. 6:30-6:45 si tu 5K es 6:00). RPE 7: puedes decir 4-5 palabras pero no mantener una conversación. Ritmo regular, sin variaciones. Si no aguantas 15 min, baja a RPE 6-7 y anótalo.",
+                "fr" : "Allure seuil = allure 5K + 30-45 s/km (ex : 6:30-6:45 si ton 5K est à 6:00). RPE 7 : tu peux dire 4-5 mots mais pas tenir une conversation. Allure régulière, pas de variation. Si tu ne tiens pas 15 min, ralentis à RPE 6-7 et note-le."
+              },
               "required_equipment" : [
                 "gps-watch"
               ],
@@ -540,16 +1153,37 @@
             },
             {
               "alternatives" : [
-                "Marche rapide 15 min",
-                "Vélo Z1 15 min"
+                {
+                  "en" : "Brisk walk 15 min",
+                  "es" : "Caminata rápida 15 min",
+                  "fr" : "Marche rapide 15 min"
+                },
+                {
+                  "en" : "very easy cycling 15 min",
+                  "es" : "Bici muy fácil 15 min",
+                  "fr" : "Vélo très facile 15 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury"
               ],
-              "name" : "Cooldown extended Daniels-E",
-              "notes" : "Bloc post-tempo Daniels-E (~1.6 km), allure très facile (RPE 4-5/10) au-dessus du cooldown standard. Consolide le volume aérobie et facilite l'élimination du lactate accumulé pendant le tempo.",
+              "match_key" : "Cooldown extended Daniels-E",
+              "name" : {
+                "en" : "Extended easy (you can talk) cooldown",
+                "es" : "Vuelta a la calma prolongada fácil (puedes hablar)",
+                "fr" : "Retour au calme prolongé (allure facile)"
+              },
+              "notes" : {
+                "en" : "Post-tempo easy block (~1.6 km), very easy (RPE 4-5). Consolidates aerobic volume and helps clear the lactate built up during the tempo.",
+                "es" : "Bloque post-tempo fácil (~1,6 km), muy suave (RPE 4-5). Consolida el volumen aeróbico y facilita la eliminación del lactato acumulado durante el tempo.",
+                "fr" : "Bloc post-tempo en allure facile (~1.6 km), très facile (RPE 4-5). Consolide le volume aérobie et facilite l'élimination du lactate accumulé pendant le tempo."
+              },
               "required_equipment" : [
 
               ],
@@ -559,28 +1193,61 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Tempo découverte — 15 min Daniels-T",
+          "name" : {
+            "en" : "First tempo — 15 min at threshold",
+            "es" : "Tempo de iniciación — 15 min en el umbral",
+            "fr" : "Tempo découverte — 15 min au seuil"
+          },
           "type" : "interval",
-          "warmup" : "10 min footing facile (Daniels-E) + 5 min accélérations progressives (4×30 sec graduels). Mobilité dynamique : fentes marchées 10 pas, high knees 20 pas."
+          "warmup" : {
+            "en" : "10 min easy jog (easy (you can talk)) + 5 min progressive accelerations (4×30 sec gradual). Dynamic mobility: walking lunges 10 steps, high knees 20 steps.",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 5 min de aceleraciones progresivas (4×30 s graduales). Movilidad dinámica: zancadas caminando 10 pasos, rodillas arriba 20 pasos.",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + 5 min accélérations progressives (4×30 sec graduels). Mobilité dynamique : fentes marchées 10 pas, montées de genoux 20 pas."
+          }
         },
         {
-          "cooldown" : "5 min marche + étirements complets 8 min.",
+          "cooldown" : {
+            "en" : "5 min walk + 8 min full stretching.",
+            "es" : "5 min de caminata + 8 min de estiramientos completos.",
+            "fr" : "5 min marche + étirements complets 8 min."
+          },
           "day" : 5,
           "duration_minutes" : 70,
           "exercises" : [
             {
               "alternatives" : [
-                "Long run tapis 8 km Z2",
-                "Vélo Z2 70 min"
+                {
+                  "en" : "Treadmill long run 8 km easy endurance",
+                  "es" : "Tirada larga en cinta 8 km resistencia fácil",
+                  "fr" : "Sortie longue tapis 8 km endurance facile"
+                },
+                {
+                  "en" : "easy endurance cycling 70 min",
+                  "es" : "Bici resistencia fácil 70 min",
+                  "fr" : "Vélo endurance facile 70 min"
+                }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "8"
+              },
               "duration" : "8 km",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Course continue Daniels-E",
-              "notes" : "Daniels-E (RPE 5-6/10). +1 km vs W2 long run (progression ~14%). À partir de ce volume, penser à la stratégie nutritive : si sortie > 60 min, envisager 1 gel ou quelques dattes à 40 min. Hydratation aux km 3-4.",
+              "match_key" : "Course continue Daniels-E",
+              "name" : {
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
+                "fr" : "Course continue (allure facile)"
+              },
+              "notes" : {
+                "en" : "Easy pace (RPE 5-6). +1 km vs the previous one. At this volume, think about nutrition: if > 60 min, 1 gel or a few dates at 40 min. Hydrate at km 3-4.",
+                "es" : "Ritmo fácil (RPE 5-6). +1 km respecto a la anterior. A este volumen, piensa en la nutrición: si > 60 min, 1 gel o unos dátiles a los 40 min. Hidrátate en los km 3-4.",
+                "fr" : "Allure facile (RPE 5-6). +1 km vs la précédente. À ce volume, pense à la nutrition : si > 60 min, 1 gel ou quelques dattes à 40 min. Hydratation aux km 3-4."
+              },
               "required_equipment" : [
 
               ],
@@ -590,35 +1257,86 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Long run 8 km — allure facile",
+          "name" : {
+            "en" : "8 km long run — easy pace",
+            "es" : "Tirada larga de 8 km — ritmo suave",
+            "fr" : "Sortie longue 8 km — allure facile"
+          },
           "type" : "endurance",
-          "warmup" : "5 min marche + 5 min footing très lent."
+          "warmup" : {
+            "en" : "5 min walk + 5 min very slow jog.",
+            "es" : "5 min de caminata + 5 min de trote muy lento.",
+            "fr" : "5 min marche + 5 min footing très lent."
+          }
         }
       ],
-      "theme" : "Introduction Daniels-T — premier tempo continu",
+      "theme" : {
+        "en" : "Introducing at threshold — first continuous tempo",
+        "es" : "Introducción a en el umbral — primer tempo continuo",
+        "fr" : "Introduction au seuil — premier tempo continu"
+      },
       "week_number" : 3
     },
     {
-      "goal" : "Allonger le tempo à 20 min. Introduire le fartlek structuré (6×1 min on / 1 min off). Long run 9 km. Volume hebdo de course pure : ~23 km. Pic du premier bloc avant deload.",
+      "goal" : {
+        "en" : "Extend the tempo to 20 min. Introduce structured speed play (6×1 min on / 1 min off). 9 km long run. Pure weekly running volume: ~23 km. Peak of the first block before the deload.",
+        "es" : "Alargar el tempo a 20 min. Introducir el juego de ritmos estructurado (6×1 min on / 1 min off). Tirada larga de 9 km. Volumen semanal de carrera pura: ~23 km. Pico del primer bloque antes de la semana ligera.",
+        "fr" : "Allonger le tempo à 20 min. Introduire le jeu d'allures structuré (6×1 min on / 1 min off). Sortie longue 9 km. Volume hebdo de course pure : ~23 km. Pic du premier bloc avant semaine allégée."
+      },
       "sessions" : [
         {
-          "cooldown" : "10 min footing très lent + étirements 5 min.",
+          "cooldown" : {
+            "en" : "10 min very slow jog + 5 min stretching.",
+            "es" : "10 min de trote muy lento + 5 min de estiramientos.",
+            "fr" : "10 min footing très lent + étirements 5 min."
+          },
           "day" : 1,
           "duration_minutes" : 72,
           "exercises" : [
             {
               "alternatives" : [
-                "Fartlek 6×1 min on / 1 min off sur tapis",
-                "Strides 8×100 m"
+                {
+                  "en" : "Speed play 6×1 min on / 1 min off on the treadmill",
+                  "es" : "Juego de ritmos 6×1 min on / 1 min off en cinta",
+                  "fr" : "Jeu d'allures 6×1 min on / 1 min off sur tapis"
+                },
+                {
+                  "en" : "Strides 8×100 m",
+                  "es" : "Progresiones 8×100 m",
+                  "fr" : "Lignes 8×100 m"
+                }
               ],
-              "duration" : "1 min à allure 5K (RPE 8) + 1 min footing easy (Daniels-E)",
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "pace5K",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  },
+                  {
+                    "activity" : "easyJog",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  }
+                ]
+              },
+              "duration" : "1 min à allure 5K (RPE 8) + 1 min footing easy (facile (tu peux parler))",
               "incompatible_constraints" : [
                 "knee-injury",
                 "shin-splints",
                 "cardiac-clearance-required"
               ],
-              "name" : "Fartlek 6×1 min on / 1 min off",
-              "notes" : "PREMIER FARTLEK du plan. Pas d'intervalles Daniels-I stricts à ce stade : le fartlek structuré stimule la VO2max sans la rigueur traumatique d'une séance piste. Les blocs 'on' à RPE 8 doivent rester réguliers (les 6 reps cohérents en effort), les blocs 'off' en Daniels-E pur. Total qualité : 6 min cumulées à allure 5K. Si le 5e ou 6e bloc dégrade fortement, s'arrêter à 5 reps.",
+              "match_key" : "Fartlek 6×1 min on / 1 min off",
+              "name" : {
+                "en" : "Speed play 6×1 min on / 1 min off",
+                "es" : "Juego de ritmos 6×1 min on / 1 min off",
+                "fr" : "Jeu d'allures 6×1 min vite / 1 min facile"
+              },
+              "notes" : {
+                "en" : "Speed play to stimulate VO2max. Steady 'on' blocks at RPE 8, 'off' blocks at easy pace. Total: 6 cumulative min at 5K pace. If the 5th or 6th block drops off sharply, stop at 5 reps.",
+                "es" : "Juego de ritmos para estimular la VO2máx. Bloques 'on' regulares a RPE 8, bloques 'off' a ritmo fácil. Total: 6 min acumulados a ritmo de 5K. Si el 5º o 6º bloque cae mucho, párate en 5 reps.",
+                "fr" : "Jeu d'allures pour stimuler la VO2max. Blocs 'on' réguliers à RPE 8, blocs 'off' en allure facile. Total : 6 min cumulées à allure 5K. Si le 5e ou 6e bloc dégrade fortement, arrête-toi à 5 répétitions."
+              },
               "required_equipment" : [
 
               ],
@@ -629,16 +1347,37 @@
             },
             {
               "alternatives" : [
-                "Marche rapide 12 min",
-                "Vélo Z1 12 min"
+                {
+                  "en" : "Brisk walk 12 min",
+                  "es" : "Caminata rápida 12 min",
+                  "fr" : "Marche rapide 12 min"
+                },
+                {
+                  "en" : "very easy cycling 12 min",
+                  "es" : "Bici muy fácil 12 min",
+                  "fr" : "Vélo très facile 12 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury"
               ],
-              "name" : "Footing recovery post-fartlek Daniels-E",
-              "notes" : "Bloc Daniels-E (~1.6 km) entre le fartlek et le strength. Consolide le volume aérobie hebdo et facilite l'élimination du lactate. RPE 4-5/10.",
+              "match_key" : "Footing recovery post-fartlek Daniels-E",
+              "name" : {
+                "en" : "easy (you can talk) recovery jog after speed play",
+                "es" : "Trote de recuperación post-juego de ritmos fácil (puedes hablar)",
+                "fr" : "Footing de récupération (allure facile)"
+              },
+              "notes" : {
+                "en" : "Easy block (~1.6 km) between the speed play and the strength work. Consolidates aerobic volume and helps clear lactate. RPE 4-5.",
+                "es" : "Bloque fácil (~1,6 km) entre el juego de ritmos y la fuerza. Consolida el volumen aeróbico y facilita la eliminación del lactato. RPE 4-5.",
+                "fr" : "Bloc en allure facile (~1.6 km) entre le jeu d'allures et le renforcement. Consolide le volume aérobie et facilite l'élimination du lactate. RPE 4-5."
+              },
               "required_equipment" : [
 
               ],
@@ -649,14 +1388,36 @@
             },
             {
               "alternatives" : [
-                "Step-ups 12 reps/jambe",
-                "Bulgarian split squat 8 reps/jambe"
+                {
+                  "en" : "Step-ups",
+                  "es" : "Subidas a escalón",
+                  "fr" : "Montées sur step"
+                },
+                {
+                  "en" : "Bulgarian split squat",
+                  "es" : "Sentadilla búlgara",
+                  "fr" : "Fente bulgare"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
-              "name" : "Single-leg squat",
-              "notes" : "Volume strength allégé après le fartlek (1 série de moins) — la qualité prime sur le volume cette séance.",
+              "match_key" : "Single-leg squat",
+              "name" : {
+                "en" : "Single-leg squat",
+                "es" : "Sentadilla a una pierna",
+                "fr" : "Squat sur une jambe"
+              },
+              "notes" : {
+                "en" : "Lighter strength volume after the speed play (1 fewer set) — quality over volume this session.",
+                "es" : "Volumen de fuerza reducido tras el juego de ritmos (1 serie menos) — la calidad prima sobre el volumen esta sesión.",
+                "fr" : "Volume renforcement allégé après le jeu d'allures (1 série de moins) — la qualité prime sur le volume cette séance."
+              },
               "reps" : "10 par côté",
               "required_equipment" : [
 
@@ -668,13 +1429,31 @@
             },
             {
               "alternatives" : [
-                "Calf raises bipodal 30 reps",
-                "Calf raises sur marche en double"
+                {
+                  "en" : "Two-leg calf raises",
+                  "es" : "Elevaciones de gemelo a dos piernas",
+                  "fr" : "Mollets debout (deux pieds)"
+                },
+                {
+                  "en" : "Two-leg calf raises on a step",
+                  "es" : "Elevaciones de gemelo a dos piernas en escalón",
+                  "fr" : "Mollets sur une marche (deux pieds)"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises excentriques",
+              "match_key" : "Calf raises excentriques",
+              "name" : {
+                "en" : "Eccentric calf raises",
+                "es" : "Elevaciones de gemelo excéntricas",
+                "fr" : "Mollets excentriques"
+              },
               "reps" : "15 par côté",
               "required_equipment" : [
 
@@ -682,50 +1461,110 @@
               "rest_seconds" : 60,
               "sets" : 2,
               "target_zone" : "RPE 7-8",
-              "volume_axis" : "reps"
+              "volume_axis" : "reps",
+              "notes" : {
+                "fr" : "Monte sur la pointe à deux pieds, puis redescends lentement en 3 sec sur un seul pied. C'est la descente freinée qui renforce le tendon.",
+                "en" : "Rise onto the balls of both feet, then lower slowly over 3 sec on a single foot. The braked descent is what strengthens the tendon.",
+                "es" : "Sube sobre la punta con ambos pies, luego baja lentamente en 3 seg sobre un solo pie. Es el descenso frenado lo que fortalece el tendón."
+              }
             },
             {
               "alternatives" : [
-                "Planche genoux 60 sec",
-                "Dead bug 14 reps/côté"
+                {
+                  "en" : "Plank on knees 60 sec",
+                  "es" : "Plancha con rodillas 60 s",
+                  "fr" : "Planche sur les genoux 60 sec"
+                },
+                {
+                  "en" : "Dead bug",
+                  "es" : "Bicho muerto",
+                  "fr" : "Gainage croisé au sol"
+                }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "50"
+              },
               "duration" : "50 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
               ],
-              "name" : "Planche ventrale",
+              "match_key" : "Planche ventrale",
+              "name" : {
+                "en" : "Front plank",
+                "es" : "Plancha frontal",
+                "fr" : "Planche ventrale"
+              },
               "required_equipment" : [
                 "mat"
               ],
               "rest_seconds" : 45,
               "sets" : 2,
               "target_zone" : "RPE 7-8",
-              "volume_axis" : "duration"
+              "volume_axis" : "duration",
+              "notes" : {
+                "fr" : "En appui sur les avant-bras (coudes sous les épaules) et la pointe des pieds, corps bien droit, ventre et fessiers gainés, sans creuser le dos. Respire normalement.",
+                "en" : "Propped on your forearms (elbows under the shoulders) and the balls of your feet, body straight, abs and glutes braced, without arching the back. Breathe normally.",
+                "es" : "Apoyado en los antebrazos (codos bajo los hombros) y la punta de los pies, cuerpo recto, abdomen y glúteos activados, sin arquear la espalda. Respira con normalidad."
+              }
             }
           ],
-          "name" : "Fartlek structuré + strength allégé",
+          "name" : {
+            "en" : "Structured speed play + light strength",
+            "es" : "Juego de ritmos estructurado + refuerzo ligero",
+            "fr" : "Jeu d'allures + renforcement léger"
+          },
           "type" : "mixed",
-          "warmup" : "12 min footing facile (Daniels-E) + 4×100 m strides progressifs (récupération 45 sec entre chaque). Mobilité dynamique 3 min."
+          "warmup" : {
+            "en" : "12 min easy jog (easy (you can talk)) + 4×100 m progressive strides (45 sec recovery between each). Dynamic mobility 3 min.",
+            "es" : "12 min de trote suave (fácil (puedes hablar)) + 4×100 m de progresiones (45 s de recuperación entre cada una). Movilidad dinámica 3 min.",
+            "fr" : "12 min footing facile (facile (tu peux parler)) + 4×100 m accélérations progressifs (récupération 45 sec entre chaque). Mobilité dynamique 3 min."
+          }
         },
         {
-          "cooldown" : "12 min footing très lent (Daniels-E, cooldown extended ~1.6 km) + étirements 5 min.",
+          "cooldown" : {
+            "en" : "12 min very slow jog (easy (you can talk), extended cooldown ~1.6 km) + 5 min stretching.",
+            "es" : "12 min de trote muy lento (fácil (puedes hablar), vuelta a la calma prolongada ~1,6 km) + 5 min de estiramientos.",
+            "fr" : "12 min footing très lent (facile (tu peux parler), retour au calme étendu ~1.6 km) + étirements 5 min."
+          },
           "day" : 3,
           "duration_minutes" : 62,
           "exercises" : [
             {
               "alternatives" : [
-                "Tempo tapis 20 min",
-                "Cruise intervals 4×5 min Daniels-T avec 2 min easy entre"
+                {
+                  "en" : "Treadmill tempo 20 min",
+                  "es" : "Tempo en cinta 20 min",
+                  "fr" : "Tempo tapis 20 min"
+                },
+                {
+                  "en" : "Cruise intervals 4×5 min at threshold with 2 min easy between",
+                  "es" : "Cruise intervals 4×5 min en el umbral con 2 min suave entre cada uno",
+                  "fr" : "Intervalles 4×5 min au seuil avec 2 min facile entre"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "20"
+              },
               "duration" : "20 min",
               "incompatible_constraints" : [
                 "knee-injury",
                 "cardiac-clearance-required",
                 "shin-splints"
               ],
-              "name" : "Bloc tempo Daniels-T",
-              "notes" : "+5 min vs W3. Allure Daniels-T (allure 5K + 30-45 s/km), RPE 7/10 du début à la fin. Si tu perds l'allure après 15 min, c'est normal : maintenir l'effort perçu (RPE 7) même si tu ralentis légèrement en fin de bloc. C'est la zone d'entraînement qui produit les plus grands gains d'endurance aérobie pour passer du 5K au 10K.",
+              "match_key" : "Bloc tempo Daniels-T",
+              "name" : {
+                "en" : "at threshold tempo block",
+                "es" : "Bloque tempo en el umbral",
+                "fr" : "Bloc tempo (au seuil)"
+              },
+              "notes" : {
+                "en" : "+5 min. Threshold pace (5K pace + 30-45 s/km), RPE 7 from start to finish. If you lose pace after 15 min, keep the perceived effort (RPE 7) even if you slow slightly at the end of the block.",
+                "es" : "+5 min. Ritmo de umbral (ritmo de 5K + 30-45 s/km), RPE 7 de principio a fin. Si pierdes ritmo a los 15 min, mantén el esfuerzo percibido (RPE 7) aunque bajes ligeramente al final del bloque.",
+                "fr" : "+5 min. Allure seuil (allure 5K + 30-45 s/km), RPE 7 du début à la fin. Si tu perds l'allure après 15 min, maintiens l'effort perçu (RPE 7) même en ralentissant un peu en fin de bloc."
+              },
               "required_equipment" : [
                 "gps-watch"
               ],
@@ -736,16 +1575,37 @@
             },
             {
               "alternatives" : [
-                "Marche rapide 15 min",
-                "Vélo Z1 15 min"
+                {
+                  "en" : "Brisk walk 15 min",
+                  "es" : "Caminata rápida 15 min",
+                  "fr" : "Marche rapide 15 min"
+                },
+                {
+                  "en" : "very easy cycling 15 min",
+                  "es" : "Bici muy fácil 15 min",
+                  "fr" : "Vélo très facile 15 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury"
               ],
-              "name" : "Cooldown extended Daniels-E",
-              "notes" : "Bloc post-tempo Daniels-E (~1.6 km), allure très facile (RPE 4-5/10). Consolide le volume aérobie hebdo recreational.",
+              "match_key" : "Cooldown extended Daniels-E",
+              "name" : {
+                "en" : "Extended easy (you can talk) cooldown",
+                "es" : "Vuelta a la calma prolongada fácil (puedes hablar)",
+                "fr" : "Retour au calme prolongé (allure facile)"
+              },
+              "notes" : {
+                "en" : "Post-tempo easy (you can talk) block (~1.6 km), very easy pace (RPE 4-5/10). Consolidates the recreational weekly aerobic volume.",
+                "es" : "Bloque post-tempo fácil (puedes hablar) (~1,6 km), ritmo muy suave (RPE 4-5/10). Consolida el volumen aeróbico semanal recreativo.",
+                "fr" : "Bloc post-tempo en allure facile (~1.6 km), très facile (RPE 4-5). Consolide le volume aérobie hebdo."
+              },
               "required_equipment" : [
 
               ],
@@ -755,28 +1615,61 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Tempo 20 min Daniels-T",
+          "name" : {
+            "en" : "20 min at threshold tempo",
+            "es" : "Tempo 20 min en el umbral",
+            "fr" : "Tempo 20 min (au seuil)"
+          },
           "type" : "interval",
-          "warmup" : "10 min footing facile (Daniels-E) + 4×30 sec accélérations progressives. Mobilité dynamique 3 min."
+          "warmup" : {
+            "en" : "10 min easy jog (easy (you can talk)) + 4×30 sec progressive accelerations. Dynamic mobility 3 min.",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 4×30 s de aceleraciones progresivas. Movilidad dinámica 3 min.",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + 4×30 sec accélérations progressives. Mobilité dynamique 3 min."
+          }
         },
         {
-          "cooldown" : "5 min marche + étirements complets 10 min (ajouter étirement piriformis : genoux croisés en décubitus dorsal, 40 sec/côté).",
+          "cooldown" : {
+            "en" : "5 min walk + 10 min full stretching (add a piriformis stretch: knees crossed lying on your back, 40 sec/side).",
+            "es" : "5 min de caminata + 10 min de estiramientos completos (añade un estiramiento de piriforme: rodillas cruzadas en decúbito supino, 40 s/lado).",
+            "fr" : "5 min marche + étirements complets 10 min (ajouter étirement piriformis : genoux croisés en décubitus dorsal, 40 sec/côté)."
+          },
           "day" : 5,
           "duration_minutes" : 80,
           "exercises" : [
             {
               "alternatives" : [
-                "Long run tapis 9 km Z2",
-                "Vélo Z2 80 min"
+                {
+                  "en" : "Treadmill long run 9 km easy endurance",
+                  "es" : "Tirada larga en cinta 9 km resistencia fácil",
+                  "fr" : "Sortie longue tapis 9 km endurance facile"
+                },
+                {
+                  "en" : "easy endurance cycling 80 min",
+                  "es" : "Bici resistencia fácil 80 min",
+                  "fr" : "Vélo endurance facile 80 min"
+                }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "9"
+              },
               "duration" : "9 km",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Course continue Daniels-E",
-              "notes" : "Daniels-E (RPE 5-6/10). +1 km vs W3 long run. Tu cours maintenant 9 km — tu es à 90% de la distance cible. Ne pas forcer l'allure pour 'tester' le 10K. La distance cible viendra en W6. Nutrition longue distance : si > 70 min, ravitaillement glucidique recommandé (1 gel ou dattes à 40-50 min).",
+              "match_key" : "Course continue Daniels-E",
+              "name" : {
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
+                "fr" : "Course continue (allure facile)"
+              },
+              "notes" : {
+                "en" : "Easy pace (RPE 5-6). +1 km vs the previous one: you run 9 km. Don't push the pace to 'test' the 10K. If > 70 min, carb refuel (1 gel or dates at 40-50 min).",
+                "es" : "Ritmo fácil (RPE 5-6). +1 km respecto a la anterior: corres 9 km. No fuerces el ritmo para 'probar' el 10K. Si > 70 min, recarga de carbohidratos (1 gel o dátiles a los 40-50 min).",
+                "fr" : "Allure facile (RPE 5-6). +1 km vs la précédente : tu cours 9 km. Ne force pas l'allure pour 'tester' le 10K. Si > 70 min, ravitaillement glucidique (1 gel ou dattes à 40-50 min)."
+              },
               "required_equipment" : [
 
               ],
@@ -786,35 +1679,79 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Long run 9 km — allure facile",
+          "name" : {
+            "en" : "9 km long run — easy pace",
+            "es" : "Tirada larga de 9 km — ritmo suave",
+            "fr" : "Sortie longue 9 km — allure facile"
+          },
           "type" : "endurance",
-          "warmup" : "5 min marche + 5 min footing très lent."
+          "warmup" : {
+            "en" : "5 min walk + 5 min very slow jog.",
+            "es" : "5 min de caminata + 5 min de trote muy lento.",
+            "fr" : "5 min marche + 5 min footing très lent."
+          }
         }
       ],
-      "theme" : "Pic build 1 — fartlek structuré et long run 9 km",
+      "theme" : {
+        "en" : "Build 1 peak — structured speed play and 9 km long run",
+        "es" : "Pico del bloque 1 — juego de ritmos estructurado y tirada larga de 9 km",
+        "fr" : "Pic de bloc — jeu d'allures et sortie longue 9 km"
+      },
       "week_number" : 4
     },
     {
-      "goal" : "Semaine deload : volume hebdo de course pure ~15 km vs ~23 km en W4 = ~-34%. Long run cutback à 7.5 km, tempo court 14 min, fartlek allégé 4 reps, cooldowns standards (suppression des extensions). Maintenir la qualité d'allure mais réduire le volume — l'adaptation tendineuse et osseuse se consolide pendant les phases de décharge. NE PAS sauter cette semaine.",
+      "goal" : {
+        "en" : "Deload week: pure weekly running volume ~15 km vs ~23 km in W4 = ~-34%. Long run cut back to 7.5 km, short 14-min tempo, lighter speed play 4 reps, standard cooldowns (extensions removed). Keep the pace quality but reduce the volume — tendon and bone adaptation consolidates during unloading phases. DO NOT skip this week.",
+        "es" : "Semana ligera: volumen semanal de carrera pura ~15 km vs ~23 km en la S4 = ~-34%. Tirada larga reducida a 7,5 km, tempo corto de 14 min, juego de ritmos ligero de 4 reps, vueltas a la calma estándar (sin prolongaciones). Mantén la calidad del ritmo pero reduce el volumen — la adaptación tendinosa y ósea se consolida durante las fases de descarga. NO te saltes esta semana.",
+        "fr" : "Semaine allégée : volume hebdo de course pure ~15 km vs ~23 km en W4 = ~-34%. Sortie longue allégée à 7.5 km, tempo court 14 min, jeu d'allures allégé 4 répétitions, retours au calme standards (suppression des extensions). Maintenir la qualité d'allure mais réduire le volume — l'adaptation tendineuse et osseuse se consolide pendant les phases de décharge. NE PAS sauter cette semaine."
+      },
       "sessions" : [
         {
-          "cooldown" : "8 min footing très lent + étirements 5 min.",
+          "cooldown" : {
+            "en" : "8 min very slow jog + 5 min stretching.",
+            "es" : "8 min de trote muy lento + 5 min de estiramientos.",
+            "fr" : "8 min footing très lent + étirements 5 min."
+          },
           "day" : 1,
           "duration_minutes" : 58,
           "exercises" : [
             {
               "alternatives" : [
-                "Fartlek 4×1 min on / 1 min 30 off sur tapis",
-                "Strides 5×100 m"
+                {
+                  "en" : "Speed play 4×1 min on / 1 min 30 off on the treadmill",
+                  "es" : "Juego de ritmos 4×1 min on / 1 min 30 off en cinta",
+                  "fr" : "Jeu d'allures 4×1 min on / 1 min 30 off sur tapis"
+                },
+                {
+                  "en" : "Strides 5×100 m",
+                  "es" : "Progresiones 5×100 m",
+                  "fr" : "Lignes 5×100 m"
+                }
               ],
-              "duration" : "1 min à allure 5K (RPE 8) + 1 min 30 footing easy (Daniels-E)",
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min at 5K pace + 1 min 30 easy jogging",
+                  "es" : "1 min a ritmo 5K + 1 min 30 de trote suave",
+                  "fr" : "1 min à allure 5K + 1 min 30 de footing tranquille"
+                }
+              },
+              "duration" : "1 min à allure 5K (RPE 8) + 1 min 30 footing easy (facile (tu peux parler))",
               "incompatible_constraints" : [
                 "knee-injury",
                 "shin-splints",
                 "cardiac-clearance-required"
               ],
-              "name" : "Fartlek 4×1 min on / 1 min 30 off",
-              "notes" : "Volume fartlek réduit (4 reps vs 6 en W4). Récupération allongée à 1 min 30 (vs 1 min). Maintien de la qualité d'allure : chaque bloc 'on' reste à RPE 8. Deload ne signifie pas effort au rabais, mais volume réduit. Total qualité : 4 min cumulées à allure 5K (vs 6 en W4).",
+              "match_key" : "Fartlek 4×1 min on / 1 min 30 off",
+              "name" : {
+                "en" : "Speed play 4×1 min on / 1 min 30 off",
+                "es" : "Juego de ritmos 4×1 min on / 1 min 30 off",
+                "fr" : "Jeu d'allures 4×1 min vite / 1 min 30 facile"
+              },
+              "notes" : {
+                "en" : "Reduced speed-play volume (4 reps vs 6). Recovery extended to 1 min 30. Each 'on' block stays at RPE 8: cutback week = reduced volume, not watered-down effort. Total: 4 cumulative min at 5K pace.",
+                "es" : "Volumen de juego de ritmos reducido (4 reps vs 6). Recuperación alargada a 1 min 30. Cada bloque 'on' se queda en RPE 8: semana ligera = volumen reducido, no esfuerzo rebajado. Total: 4 min acumulados a ritmo de 5K.",
+                "fr" : "Volume jeu d'allures réduit (4 répétitions vs 6). Récup allongée à 1 min 30. Chaque bloc 'on' reste à RPE 8 : semaine allégée = volume réduit, pas effort au rabais. Total : 4 min cumulées à allure 5K."
+              },
               "required_equipment" : [
 
               ],
@@ -825,16 +1762,37 @@
             },
             {
               "alternatives" : [
-                "Marche rapide 8 min",
-                "Vélo Z1 10 min"
+                {
+                  "en" : "Brisk walk 8 min",
+                  "es" : "Caminata rápida 8 min",
+                  "fr" : "Marche rapide 8 min"
+                },
+                {
+                  "en" : "very easy cycling 10 min",
+                  "es" : "Bici muy fácil 10 min",
+                  "fr" : "Vélo très facile 10 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "8"
+              },
               "duration" : "8 min",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury"
               ],
-              "name" : "Footing recovery post-fartlek Daniels-E",
-              "notes" : "Bloc Daniels-E court (~1 km) post-fartlek, deload week donc plus court qu'en W4. RPE 4-5/10.",
+              "match_key" : "Footing recovery post-fartlek Daniels-E",
+              "name" : {
+                "en" : "easy (you can talk) recovery jog after speed play",
+                "es" : "Trote de recuperación post-juego de ritmos fácil (puedes hablar)",
+                "fr" : "Footing de récupération (allure facile)"
+              },
+              "notes" : {
+                "en" : "Short easy (you can talk) block (~1 km) after the speed play; deload week so shorter than in W4. RPE 4-5/10.",
+                "es" : "Bloque fácil (puedes hablar) corto (~1 km) post-juego de ritmos; semana ligera, por eso más corto que en la S4. RPE 4-5/10.",
+                "fr" : "Bloc en allure facile court (~1 km) post-jeu d'allures, semaine allégée. RPE 4-5."
+              },
               "required_equipment" : [
 
               ],
@@ -845,14 +1803,36 @@
             },
             {
               "alternatives" : [
-                "Step-ups 10 reps/jambe",
-                "Bulgarian split squat 6 reps/jambe"
+                {
+                  "en" : "Step-ups",
+                  "es" : "Subidas a escalón",
+                  "fr" : "Montées sur step"
+                },
+                {
+                  "en" : "Bulgarian split squat",
+                  "es" : "Sentadilla búlgara",
+                  "fr" : "Fente bulgare"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "8"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
-              "name" : "Single-leg squat",
-              "notes" : "Volume et reps réduits (cutback strength). Maintien de l'amplitude et du contrôle.",
+              "match_key" : "Single-leg squat",
+              "name" : {
+                "en" : "Single-leg squat",
+                "es" : "Sentadilla a una pierna",
+                "fr" : "Squat sur une jambe"
+              },
+              "notes" : {
+                "en" : "Reduced volume and reps (strength cutback). Keep the range and the control.",
+                "es" : "Volumen y reps reducidos (descarga de fuerza). Mantén el recorrido y el control.",
+                "fr" : "Volume et répétitions réduits (semaine allégée renforcement). Maintien de l'amplitude et du contrôle."
+              },
               "reps" : "8 par côté",
               "required_equipment" : [
 
@@ -864,13 +1844,31 @@
             },
             {
               "alternatives" : [
-                "Pont fessier bipodal 15 reps",
-                "Hip thrust pieds sur box 10 reps/côté"
+                {
+                  "en" : "Two-leg glute bridge",
+                  "es" : "Puente de glúteos a dos piernas",
+                  "fr" : "Pont fessier à deux jambes"
+                },
+                {
+                  "en" : "Hip thrust with feet on a box",
+                  "es" : "Empuje de cadera con los pies en un cajón",
+                  "fr" : "Pont de hanches pieds surélevés"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "10"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier unilatéral",
+              "match_key" : "Pont fessier unilatéral",
+              "name" : {
+                "en" : "Single-leg glute bridge",
+                "es" : "Puente de glúteos a una pierna",
+                "fr" : "Pont fessier sur une jambe"
+              },
               "reps" : "10 par côté",
               "required_equipment" : [
                 "mat"
@@ -878,18 +1876,45 @@
               "rest_seconds" : 45,
               "sets" : 2,
               "target_zone" : "RPE 6-7",
-              "volume_axis" : "reps"
+              "volume_axis" : "reps",
+              "notes" : {
+                "fr" : "En position de pont fessier, tends une jambe. Monte le bassin sur le seul pied d'appui en le gardant bien horizontal, serre la fesse, descends, puis change de jambe.",
+                "en" : "In the glute bridge position, extend one leg. Lift your pelvis on the single supporting foot, keeping it level, squeeze the glute, lower, then switch legs.",
+                "es" : "En posición de puente de glúteos, extiende una pierna. Sube la pelvis sobre el único pie de apoyo manteniéndola bien horizontal, aprieta el glúteo, baja, luego cambia de pierna."
+              }
             },
             {
               "alternatives" : [
-                "Side-lying leg raise 15 reps/côté",
-                "Clamshell avec resistance-band"
+                {
+                  "en" : "Side-lying leg raise",
+                  "es" : "Elevación de pierna en decúbito lateral",
+                  "fr" : "Élévation de jambe en décubitus latéral"
+                },
+                {
+                  "en" : "Clamshell with resistance band",
+                  "es" : "Almeja con banda elástica",
+                  "fr" : "Ouverture de hanche avec bande élastique"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Clamshell",
-              "notes" : "Maintien de la prévention ITBS même en deload week (volume routine, pas charge).",
+              "match_key" : "Clamshell",
+              "name" : {
+                "en" : "Clamshell",
+                "es" : "Almeja (clamshell)",
+                "fr" : "Ouverture de hanche"
+              },
+              "notes" : {
+                "en" : "Keep up knee and hip stability work even in the deload week (routine volume, not loading).",
+                "es" : "Mantén el trabajo de estabilidad de rodilla y cadera incluso en la semana ligera (volumen de rutina, no de carga).",
+                "fr" : "Maintien de la stabilité du genou et de la hanche même en semaine allégée (volume routine, pas charge)."
+              },
               "reps" : "15 par côté",
               "required_equipment" : [
                 "mat"
@@ -900,28 +1925,61 @@
               "volume_axis" : "reps"
             }
           ],
-          "name" : "Fartlek allégé + strength deload",
+          "name" : {
+            "en" : "Lighter speed play + deload strength",
+            "es" : "Juego de ritmos ligero + refuerzo de descarga",
+            "fr" : "Jeu d'allures allégé + renforcement léger"
+          },
           "type" : "mixed",
-          "warmup" : "10 min footing facile (Daniels-E) + 3×80 m strides progressifs (récupération 60 sec)."
+          "warmup" : {
+            "en" : "10 min easy jog (easy (you can talk)) + 3×80 m progressive strides (60 sec recovery).",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 3×80 m de progresiones (60 s de recuperación).",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + 3×80 m accélérations progressifs (récupération 60 sec)."
+          }
         },
         {
-          "cooldown" : "8 min footing très lent + étirements 5 min.",
+          "cooldown" : {
+            "en" : "8 min very slow jog + 5 min stretching.",
+            "es" : "8 min de trote muy lento + 5 min de estiramientos.",
+            "fr" : "8 min footing très lent + étirements 5 min."
+          },
           "day" : 3,
           "duration_minutes" : 42,
           "exercises" : [
             {
               "alternatives" : [
-                "Tempo tapis 12 min",
-                "Cruise intervals 2×6 min Daniels-T avec 2 min easy entre"
+                {
+                  "en" : "Treadmill tempo 12 min",
+                  "es" : "Tempo en cinta 12 min",
+                  "fr" : "Tempo tapis 12 min"
+                },
+                {
+                  "en" : "Cruise intervals 2×6 min at threshold with 2 min easy between",
+                  "es" : "Cruise intervals 2×6 min en el umbral con 2 min suave entre cada uno",
+                  "fr" : "Intervalles 2×6 min au seuil avec 2 min facile entre"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "14"
+              },
               "duration" : "14 min",
               "incompatible_constraints" : [
                 "knee-injury",
                 "cardiac-clearance-required",
                 "shin-splints"
               ],
-              "name" : "Bloc tempo Daniels-T",
-              "notes" : "Tempo court (-6 min vs W4). Allure Daniels-T maintenue. Semaine de consolidation : le système cardiovasculaire et les tendons absorbent les 4 semaines précédentes. Ne pas allonger spontanément 'parce que tu te sens bien' — le deload est constitutif de l'adaptation.",
+              "match_key" : "Bloc tempo Daniels-T",
+              "name" : {
+                "en" : "at threshold tempo block",
+                "es" : "Bloque tempo en el umbral",
+                "fr" : "Bloc tempo (au seuil)"
+              },
+              "notes" : {
+                "en" : "Short tempo (-6 min). Threshold pace maintained. Consolidation week: the body absorbs the previous weeks. Don't extend it 'because you feel good'.",
+                "es" : "Tempo corto (-6 min). Ritmo de umbral mantenido. Semana de consolidación: el cuerpo absorbe las semanas previas. No lo alargues 'porque te sientes bien'.",
+                "fr" : "Tempo court (-6 min). Allure seuil maintenue. Semaine de consolidation : le corps absorbe les semaines précédentes. Ne l'allonge pas 'parce que tu te sens bien'."
+              },
               "required_equipment" : [
                 "gps-watch"
               ],
@@ -931,28 +1989,61 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Tempo court 14 min Daniels-T",
+          "name" : {
+            "en" : "Short 14 min at threshold tempo",
+            "es" : "Tempo corto 14 min en el umbral",
+            "fr" : "Tempo court 14 min (au seuil)"
+          },
           "type" : "interval",
-          "warmup" : "10 min footing facile (Daniels-E) + 3×30 sec accélérations progressives."
+          "warmup" : {
+            "en" : "10 min easy jog (easy (you can talk)) + 3×30 sec progressive accelerations.",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 3×30 s de aceleraciones progresivas.",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + 3×30 sec accélérations progressives."
+          }
         },
         {
-          "cooldown" : "5 min marche + étirements complets 8 min.",
+          "cooldown" : {
+            "en" : "5 min walk + 8 min full stretching.",
+            "es" : "5 min de caminata + 8 min de estiramientos completos.",
+            "fr" : "5 min marche + étirements complets 8 min."
+          },
           "day" : 5,
           "duration_minutes" : 65,
           "exercises" : [
             {
               "alternatives" : [
-                "Long run tapis 7 km Z2",
-                "Vélo Z2 60 min"
+                {
+                  "en" : "Treadmill long run 7 km easy endurance",
+                  "es" : "Tirada larga en cinta 7 km resistencia fácil",
+                  "fr" : "Sortie longue tapis 7 km endurance facile"
+                },
+                {
+                  "en" : "easy endurance cycling 60 min",
+                  "es" : "Bici resistencia fácil 60 min",
+                  "fr" : "Vélo endurance facile 60 min"
+                }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "7.5"
+              },
               "duration" : "7.5 km",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Course continue Daniels-E",
-              "notes" : "Daniels-E très conservateur (RPE 4-5/10), encore plus lente que d'habitude. -1.5 km vs W4 long run. Si tu te sens exceptionnellement en forme, c'est normal : c'est la semaine de cutback qui fonctionne. NE PAS aller chercher 9-10 km 'parce que tu te sens bien' : ce serait contre-productif. La W6 te demandera de l'énergie.",
+              "match_key" : "Course continue Daniels-E",
+              "name" : {
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
+                "fr" : "Course continue (allure facile)"
+              },
+              "notes" : {
+                "en" : "Very conservative easy pace (RPE 4-5), even slower than usual. -1.5 km vs the previous one. If you feel good, that's the cutback week working: don't go chasing 9-10 km. Next week will demand energy.",
+                "es" : "Ritmo fácil muy conservador (RPE 4-5), aún más lento de lo habitual. -1,5 km respecto a la anterior. Si te sientes bien, es la semana ligera funcionando: no vayas a por 9-10 km. La próxima semana exigirá energía.",
+                "fr" : "Allure facile très conservatrice (RPE 4-5), encore plus lente que d'habitude. -1.5 km vs la précédente. Si tu te sens en forme, c'est la semaine allégée qui marche : ne va pas chercher 9-10 km. La prochaine semaine demandera de l'énergie."
+              },
               "required_equipment" : [
 
               ],
@@ -962,35 +2053,86 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Long run cutback 7.5 km — allure très facile",
+          "name" : {
+            "en" : "Cutback long run 7.5 km — very easy pace",
+            "es" : "Tirada larga reducida de 7,5 km — ritmo muy suave",
+            "fr" : "Sortie longue allégée 7,5 km — allure très facile"
+          },
           "type" : "endurance",
-          "warmup" : "5 min marche + 5 min footing très lent."
+          "warmup" : {
+            "en" : "5 min walk + 5 min very slow jog.",
+            "es" : "5 min de caminata + 5 min de trote muy lento.",
+            "fr" : "5 min marche + 5 min footing très lent."
+          }
         }
       ],
-      "theme" : "Deload — consolidation et régénération",
+      "theme" : {
+        "en" : "Deload — consolidation and recovery",
+        "es" : "Descarga — consolidación y regeneración",
+        "fr" : "Semaine allégée — consolidation et régénération"
+      },
       "week_number" : 5
     },
     {
-      "goal" : "Premier long run de 11 km — au-delà de la distance cible, en condition d'entraînement. Tempo allongé à 22 min. Fartlek élargi à 8 reps. Volume hebdo de course pure : ~26 km.",
+      "goal" : {
+        "en" : "First 11 km long run — beyond the target distance, in training conditions. Tempo extended to 22 min. Speed play widened to 8 reps. Pure weekly running volume: ~26 km.",
+        "es" : "Primera tirada larga de 11 km — más allá de la distancia objetivo, en condiciones de entrenamiento. Tempo alargado a 22 min. Juego de ritmos ampliado a 8 reps. Volumen semanal de carrera pura: ~26 km.",
+        "fr" : "PREMIÈRE sortie longue de 11 km — au-delà de la distance cible, en condition d'entraînement. Tempo allongé à 22 min. Jeu d'allures élargi à 8 répétitions. Volume hebdo de course pure : ~26 km."
+      },
       "sessions" : [
         {
-          "cooldown" : "10 min footing très lent + étirements 5 min.",
+          "cooldown" : {
+            "en" : "10 min very slow jog + 5 min stretching.",
+            "es" : "10 min de trote muy lento + 5 min de estiramientos.",
+            "fr" : "10 min footing très lent + étirements 5 min."
+          },
           "day" : 1,
           "duration_minutes" : 77,
           "exercises" : [
             {
               "alternatives" : [
-                "Fartlek 8×1 min on / 1 min off sur tapis",
-                "Strides 10×100 m"
+                {
+                  "en" : "Speed play 8×1 min on / 1 min off on the treadmill",
+                  "es" : "Juego de ritmos 8×1 min on / 1 min off en cinta",
+                  "fr" : "Jeu d'allures 8×1 min on / 1 min off sur tapis"
+                },
+                {
+                  "en" : "Strides 10×100 m",
+                  "es" : "Progresiones 10×100 m",
+                  "fr" : "Lignes 10×100 m"
+                }
               ],
-              "duration" : "1 min à allure 5K (RPE 8) + 1 min footing easy (Daniels-E)",
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "pace5K",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  },
+                  {
+                    "activity" : "easyJog",
+                    "unit" : "minutes",
+                    "value" : "1"
+                  }
+                ]
+              },
+              "duration" : "1 min à allure 5K (RPE 8) + 1 min footing easy (facile (tu peux parler))",
               "incompatible_constraints" : [
                 "knee-injury",
                 "shin-splints",
                 "cardiac-clearance-required"
               ],
-              "name" : "Fartlek 8×1 min on / 1 min off",
-              "notes" : "+2 reps vs W4. RPE 8 sur chaque bloc 'on'. Récupération 1 min en Daniels-E. Si tu tiens bien les 8 répétitions à allure régulière, c'est le signe que ta VO2max a progressé depuis W4. Total qualité : 8 min à allure 5K.",
+              "match_key" : "Fartlek 8×1 min on / 1 min off",
+              "name" : {
+                "en" : "Speed play 8×1 min on / 1 min off",
+                "es" : "Juego de ritmos 8×1 min on / 1 min off",
+                "fr" : "Jeu d'allures 8×1 min vite / 1 min facile"
+              },
+              "notes" : {
+                "en" : "+2 reps. RPE 8 on each 'on' block, 1 min easy-pace recovery. If you hold all 8 reps at an even pace, your VO2max has improved. Total: 8 min at 5K pace.",
+                "es" : "+2 reps. RPE 8 en cada bloque 'on', recuperación de 1 min a ritmo fácil. Si aguantas las 8 reps a ritmo regular, tu VO2máx ha progresado. Total: 8 min a ritmo de 5K.",
+                "fr" : "+2 répétitions. RPE 8 sur chaque bloc 'on', récup 1 min en allure facile. Si tu tiens les 8 répétitions à allure régulière, ta VO2max a progressé. Total : 8 min à allure 5K."
+              },
               "required_equipment" : [
 
               ],
@@ -1001,16 +2143,37 @@
             },
             {
               "alternatives" : [
-                "Marche rapide 12 min",
-                "Vélo Z1 12 min"
+                {
+                  "en" : "Brisk walk 12 min",
+                  "es" : "Caminata rápida 12 min",
+                  "fr" : "Marche rapide 12 min"
+                },
+                {
+                  "en" : "very easy cycling 12 min",
+                  "es" : "Bici muy fácil 12 min",
+                  "fr" : "Vélo très facile 12 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury"
               ],
-              "name" : "Footing recovery post-fartlek Daniels-E",
-              "notes" : "Bloc Daniels-E (~1.6 km) post-fartlek, RPE 4-5/10. Consolide le volume aérobie hebdo recreational en montée vers le pic.",
+              "match_key" : "Footing recovery post-fartlek Daniels-E",
+              "name" : {
+                "en" : "easy (you can talk) recovery jog after speed play",
+                "es" : "Trote de recuperación post-juego de ritmos fácil (puedes hablar)",
+                "fr" : "Footing de récupération (allure facile)"
+              },
+              "notes" : {
+                "en" : "easy (you can talk) block (~1.6 km) after the speed play, RPE 4-5/10. Consolidates the recreational weekly aerobic volume on the way to the peak.",
+                "es" : "Bloque fácil (puedes hablar) (~1,6 km) post-juego de ritmos, RPE 4-5/10. Consolida el volumen aeróbico semanal recreativo de camino al pico.",
+                "fr" : "Bloc en allure facile (~1.6 km) post-jeu d'allures, RPE 4-5. Consolide le volume aérobie hebdo en montée vers le pic."
+              },
               "required_equipment" : [
 
               ],
@@ -1021,14 +2184,36 @@
             },
             {
               "alternatives" : [
-                "Step-ups 14 reps/jambe",
-                "Bulgarian split squat 10 reps/jambe"
+                {
+                  "en" : "Step-ups",
+                  "es" : "Subidas a escalón",
+                  "fr" : "Montées sur step"
+                },
+                {
+                  "en" : "Bulgarian split squat",
+                  "es" : "Sentadilla búlgara",
+                  "fr" : "Fente bulgare"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
-              "name" : "Single-leg squat",
-              "notes" : "+2 reps vs W4 : progression du renforcement.",
+              "match_key" : "Single-leg squat",
+              "name" : {
+                "en" : "Single-leg squat",
+                "es" : "Sentadilla a una pierna",
+                "fr" : "Squat sur une jambe"
+              },
+              "notes" : {
+                "en" : "+2 reps vs W4: strength progression.",
+                "es" : "+2 reps respecto a la S4: progresión del refuerzo.",
+                "fr" : "+2 répétitions vs W4 : progression du renforcement."
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
 
@@ -1040,14 +2225,36 @@
             },
             {
               "alternatives" : [
-                "Calf raises bipodal 30 reps",
-                "Calf raises sur marche en double"
+                {
+                  "en" : "Two-leg calf raises",
+                  "es" : "Elevaciones de gemelo a dos piernas",
+                  "fr" : "Mollets debout (deux pieds)"
+                },
+                {
+                  "en" : "Two-leg calf raises on a step",
+                  "es" : "Elevaciones de gemelo a dos piernas en escalón",
+                  "fr" : "Mollets sur une marche (deux pieds)"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "15"
+              },
               "incompatible_constraints" : [
                 "ankle-injury"
               ],
-              "name" : "Calf raises excentriques",
-              "notes" : "+3 reps vs W4 : progression du renforcement excentrique mollets.",
+              "match_key" : "Calf raises excentriques",
+              "name" : {
+                "en" : "Eccentric calf raises",
+                "es" : "Elevaciones de gemelo excéntricas",
+                "fr" : "Mollets excentriques"
+              },
+              "notes" : {
+                "en" : "+3 reps vs W4: progression of eccentric calf strength.",
+                "es" : "+3 reps respecto a la S4: progresión del refuerzo excéntrico de gemelos.",
+                "fr" : "+3 répétitions vs W4 : progression du renforcement excentrique mollets."
+              },
               "reps" : "15 par côté",
               "required_equipment" : [
 
@@ -1059,46 +2266,101 @@
             },
             {
               "alternatives" : [
-                "Planche genoux 70 sec",
-                "Dead bug 16 reps/côté"
+                {
+                  "en" : "Plank on knees 70 sec",
+                  "es" : "Plancha con rodillas 70 s",
+                  "fr" : "Planche sur les genoux 70 sec"
+                },
+                {
+                  "en" : "Dead bug",
+                  "es" : "Bicho muerto",
+                  "fr" : "Gainage croisé au sol"
+                }
               ],
+              "dose" : {
+                "unit" : "seconds",
+                "value" : "55"
+              },
               "duration" : "55 sec",
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury"
               ],
-              "name" : "Planche ventrale",
+              "match_key" : "Planche ventrale",
+              "name" : {
+                "en" : "Front plank",
+                "es" : "Plancha frontal",
+                "fr" : "Planche ventrale"
+              },
               "required_equipment" : [
                 "mat"
               ],
               "rest_seconds" : 45,
               "sets" : 3,
               "target_zone" : "RPE 7-8",
-              "volume_axis" : "duration"
+              "volume_axis" : "duration",
+              "notes" : {
+                "fr" : "En appui sur les avant-bras (coudes sous les épaules) et la pointe des pieds, corps bien droit, ventre et fessiers gainés, sans creuser le dos. Respire normalement.",
+                "en" : "Propped on your forearms (elbows under the shoulders) and the balls of your feet, body straight, abs and glutes braced, without arching the back. Breathe normally.",
+                "es" : "Apoyado en los antebrazos (codos bajo los hombros) y la punta de los pies, cuerpo recto, abdomen y glúteos activados, sin arquear la espalda. Respira con normalidad."
+              }
             }
           ],
-          "name" : "Fartlek 8×1 min + strength",
+          "name" : {
+            "en" : "Speed play 8×1 min + strength",
+            "es" : "Juego de ritmos 8×1 min + refuerzo",
+            "fr" : "Jeu d'allures 8×1 min + renforcement"
+          },
           "type" : "mixed",
-          "warmup" : "12 min footing facile (Daniels-E) + 4×100 m strides progressifs."
+          "warmup" : {
+            "en" : "12 min easy jog (easy (you can talk)) + 4×100 m progressive strides.",
+            "es" : "12 min de trote suave (fácil (puedes hablar)) + 4×100 m de progresiones.",
+            "fr" : "12 min footing facile (facile (tu peux parler)) + 4×100 m accélérations progressifs."
+          }
         },
         {
-          "cooldown" : "12 min footing très lent (Daniels-E, cooldown extended ~1.6 km) + étirements 5 min.",
+          "cooldown" : {
+            "en" : "12 min very slow jog (easy (you can talk), extended cooldown ~1.6 km) + 5 min stretching.",
+            "es" : "12 min de trote muy lento (fácil (puedes hablar), vuelta a la calma prolongada ~1,6 km) + 5 min de estiramientos.",
+            "fr" : "12 min footing très lent (facile (tu peux parler), retour au calme étendu ~1.6 km) + étirements 5 min."
+          },
           "day" : 3,
           "duration_minutes" : 67,
           "exercises" : [
             {
               "alternatives" : [
-                "Tempo tapis 22 min",
-                "Cruise intervals 4×5 min 30 Daniels-T avec 2 min easy entre"
+                {
+                  "en" : "Treadmill tempo 22 min",
+                  "es" : "Tempo en cinta 22 min",
+                  "fr" : "Tempo tapis 22 min"
+                },
+                {
+                  "en" : "Cruise intervals 4×5 min 30 at threshold with 2 min easy between",
+                  "es" : "Cruise intervals 4×5 min 30 en el umbral con 2 min suave entre cada uno",
+                  "fr" : "Intervalles 4×5 min 30 au seuil avec 2 min facile entre"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "22"
+              },
               "duration" : "22 min",
               "incompatible_constraints" : [
                 "knee-injury",
                 "cardiac-clearance-required",
                 "shin-splints"
               ],
-              "name" : "Bloc tempo Daniels-T",
-              "notes" : "+2 min vs W4 (continuité de progression après deload). Allure Daniels-T, RPE 7/10. Tu es maintenant dans le coeur de la zone d'entraînement seuil pour passer du 5K au 10K. Concentre-toi sur la régularité des foulées et la respiration (inspire 3 foulées, expire 2 foulées comme cadence de base).",
+              "match_key" : "Bloc tempo Daniels-T",
+              "name" : {
+                "en" : "at threshold tempo block",
+                "es" : "Bloque tempo en el umbral",
+                "fr" : "Bloc tempo (au seuil)"
+              },
+              "notes" : {
+                "en" : "+2 min. Threshold pace, RPE 7. You're in the heart of the threshold zone for going from 5K to 10K. Focus on even stride rhythm and breathing (inhale over 3 strides, exhale over 2).",
+                "es" : "+2 min. Ritmo de umbral, RPE 7. Estás en el corazón de la zona de umbral para pasar de 5K a 10K. Concéntrate en la regularidad de la zancada y la respiración (inspira en 3 zancadas, espira en 2).",
+                "fr" : "+2 min. Allure seuil, RPE 7. Tu es au coeur de la zone seuil pour passer du 5K au 10K. Concentre-toi sur la régularité des foulées et la respiration (inspire 3 foulées, expire 2)."
+              },
               "required_equipment" : [
                 "gps-watch"
               ],
@@ -1109,16 +2371,37 @@
             },
             {
               "alternatives" : [
-                "Marche rapide 15 min",
-                "Vélo Z1 15 min"
+                {
+                  "en" : "Brisk walk 15 min",
+                  "es" : "Caminata rápida 15 min",
+                  "fr" : "Marche rapide 15 min"
+                },
+                {
+                  "en" : "very easy cycling 15 min",
+                  "es" : "Bici muy fácil 15 min",
+                  "fr" : "Vélo très facile 15 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury"
               ],
-              "name" : "Cooldown extended Daniels-E",
-              "notes" : "Bloc post-tempo Daniels-E (~1.6 km), allure très facile (RPE 4-5/10). Consolide le volume aérobie hebdo recreational pendant la phase de spécificité.",
+              "match_key" : "Cooldown extended Daniels-E",
+              "name" : {
+                "en" : "Extended easy (you can talk) cooldown",
+                "es" : "Vuelta a la calma prolongada fácil (puedes hablar)",
+                "fr" : "Retour au calme prolongé (allure facile)"
+              },
+              "notes" : {
+                "en" : "Post-tempo easy block (~1.6 km), very easy (RPE 4-5). Consolidates the weekly aerobic volume during the specificity phase.",
+                "es" : "Bloque post-tempo fácil (~1,6 km), muy suave (RPE 4-5). Consolida el volumen aeróbico semanal durante la fase de especificidad.",
+                "fr" : "Bloc post-tempo en allure facile (~1.6 km), très facile (RPE 4-5). Consolide le volume aérobie hebdo pendant la phase de spécificité."
+              },
               "required_equipment" : [
 
               ],
@@ -1128,28 +2411,61 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Tempo 22 min Daniels-T",
+          "name" : {
+            "en" : "22 min at threshold tempo",
+            "es" : "Tempo 22 min en el umbral",
+            "fr" : "Tempo 22 min (au seuil)"
+          },
           "type" : "interval",
-          "warmup" : "10 min footing facile (Daniels-E) + 4×30 sec accélérations progressives."
+          "warmup" : {
+            "en" : "10 min easy jog (easy (you can talk)) + 4×30 sec progressive accelerations.",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 4×30 s de aceleraciones progresivas.",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + 4×30 sec accélérations progressives."
+          }
         },
         {
-          "cooldown" : "5 min marche + étirements complets 12 min. Rouleau de massage (foam roller) sur quadriceps, IT band, mollets si disponible. Alimentation de récupération dans les 30 min (glucides + protéines).",
+          "cooldown" : {
+            "en" : "5 min walk + 12 min full stretching. Foam roller on quads, IT band, calves if available. Recovery food within 30 min (carbs + protein).",
+            "es" : "5 min de caminata + 12 min de estiramientos completos. Rodillo de masaje (foam roller) sobre cuádriceps, cintilla iliotibial y gemelos si dispones de él. Alimentación de recuperación en los 30 min siguientes (carbohidratos + proteínas).",
+            "fr" : "5 min marche + étirements complets 12 min. Rouleau de massage sur quadriceps, bandelette ilio-tibiale, mollets si disponible. Alimentation de récupération dans les 30 min (glucides + protéines)."
+          },
           "day" : 5,
           "duration_minutes" : 95,
           "exercises" : [
             {
               "alternatives" : [
-                "Long run tapis 11 km Z2",
-                "Vélo Z2 95 min"
+                {
+                  "en" : "Treadmill long run 11 km easy endurance",
+                  "es" : "Tirada larga en cinta 11 km resistencia fácil",
+                  "fr" : "Sortie longue tapis 11 km endurance facile"
+                },
+                {
+                  "en" : "easy endurance cycling 95 min",
+                  "es" : "Bici resistencia fácil 95 min",
+                  "fr" : "Vélo endurance facile 95 min"
+                }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "11"
+              },
               "duration" : "11 km",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Course continue Daniels-E",
-              "notes" : "PREMIER LONG RUN AU-DELÀ DE LA CIBLE. Daniels-E (RPE 5-6/10) — le but est de TERMINER, pas de chrono. 11 km = 110% de la cible 10K, premier dépassement de la distance cible (le pic 12 km arrive en W7 = 120%). Si tu dois marcher 1-2 min entre le km 8 et 10, tu marches et tu reprends. L'objectif de W6 est d'habituer le corps à couvrir au-delà de la distance cible. Prise de gel ou glucides à km 5 (environ 45-50 min d'effort). Hydratation planifiée km 3 et km 7.",
+              "match_key" : "Course continue Daniels-E",
+              "name" : {
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
+                "fr" : "Course continue (allure facile)"
+              },
+              "notes" : {
+                "en" : "First long run beyond the target, at easy (you can talk) pace (RPE 5-6). The goal is to FINISH. If you need to walk 1-2 min between km 8 and 10, walk and start again. Gel or carbs at km 5, hydration at km 3 and km 7.",
+                "es" : "Primera tirada larga más allá del objetivo, a ritmo fácil (puedes hablar) (RPE 5-6). El objetivo es TERMINAR. Si tienes que caminar 1-2 min entre el km 8 y el 10, camina y retoma. Gel o carbohidratos en el km 5, hidratación en el km 3 y el km 7.",
+                "fr" : "Première sortie au-delà de la cible, en allure facile (RPE 5-6). Le but est de TERMINER. Si tu dois marcher 1-2 min entre le km 8 et 10, marche et reprends. Gel ou glucides à km 5, hydratation km 3 et km 7."
+              },
               "required_equipment" : [
 
               ],
@@ -1159,35 +2475,79 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Long run 11 km — au-delà de la cible",
+          "name" : {
+            "en" : "11 km long run — beyond the target",
+            "es" : "Tirada larga de 11 km — más allá del objetivo",
+            "fr" : "Sortie longue 11 km — au-delà de la cible"
+          },
           "type" : "endurance",
-          "warmup" : "5 min marche + 5 min footing très lent. Ne pas sauter : les tendons et muscles doivent être chauds avant de courir au-delà de 10 km."
+          "warmup" : {
+            "en" : "5 min walk + 5 min very slow jog. Don't skip it: your tendons and muscles must be warm before running beyond 10 km.",
+            "es" : "5 min de caminata + 5 min de trote muy lento. No te lo saltes: tendones y músculos deben estar calientes antes de correr más de 10 km.",
+            "fr" : "5 min marche + 5 min footing très lent. Ne pas sauter : les tendons et muscles doivent être chauds avant de courir au-delà de 10 km."
+          }
         }
       ],
-      "theme" : "Reprise post-deload — premier 10 km",
+      "theme" : {
+        "en" : "Post-deload resumption — first 10 km",
+        "es" : "Retoma post-descarga — primeros 10 km",
+        "fr" : "Reprise post-allègement — premier 10 km"
+      },
       "week_number" : 6
     },
     {
-      "goal" : "Pic réel du plan : long run 12 km (120% de la cible 10K, règle Hal Higdon Novice). Tempo allongé à 25 min. Fartlek 8×1 min 30. Volume hebdo de course pure : ~30 km (vol pic du plan, dans la fenêtre 30-50 km/sem recreational).",
+      "goal" : {
+        "en" : "True peak of the plan: 12 km long run (120% of the 10K target, Hal Higdon Novice rule). Tempo extended to 25 min. Speed play 8×1 min 30. Pure weekly running volume: ~30 km (plan's peak volume, within the recreational 30-50 km/week window).",
+        "es" : "Pico real del plan: tirada larga de 12 km (120% del objetivo de 10K, regla Hal Higdon Novice). Tempo alargado a 25 min. Juego de ritmos 8×1 min 30. Volumen semanal de carrera pura: ~30 km (volumen pico del plan, dentro de la ventana recreativa de 30-50 km/sem).",
+        "fr" : "Pic réel du plan : sortie longue 12 km (120% de la cible 10K, règle Hal Higdon Novice). Tempo allongé à 25 min. Jeu d'allures 8×1 min 30. Volume hebdo de course pure : ~30 km (vol pic du plan, dans la fenêtre 30-50 km/sem intermédiaire)."
+      },
       "sessions" : [
         {
-          "cooldown" : "10 min footing très lent + étirements 5 min.",
+          "cooldown" : {
+            "en" : "10 min very slow jog + 5 min stretching.",
+            "es" : "10 min de trote muy lento + 5 min de estiramientos.",
+            "fr" : "10 min footing très lent + étirements 5 min."
+          },
           "day" : 1,
           "duration_minutes" : 77,
           "exercises" : [
             {
               "alternatives" : [
-                "Fartlek 8×1 min 30 sur tapis",
-                "Cruise intervals 4×3 min Daniels-T"
+                {
+                  "en" : "Speed play 8×1 min 30 on the treadmill",
+                  "es" : "Juego de ritmos 8×1 min 30 en cinta",
+                  "fr" : "Jeu d'allures 8×1 min 30 sur tapis"
+                },
+                {
+                  "en" : "Cruise intervals 4×3 min en el umbral",
+                  "es" : "Intervalos a ritmo crucero 4×3 min en el umbral",
+                  "fr" : "Intervalles 4×3 min au seuil"
+                }
               ],
-              "duration" : "1 min 30 à allure 5K (RPE 8) + 1 min 30 footing easy (Daniels-E)",
+              "dose" : {
+                "free_text" : {
+                  "en" : "1 min 30 at 5K pace + 1 min 30 easy jogging",
+                  "es" : "1 min 30 a ritmo 5K + 1 min 30 de trote suave",
+                  "fr" : "1 min 30 à allure 5K + 1 min 30 de footing tranquille"
+                }
+              },
+              "duration" : "1 min 30 à allure 5K (RPE 8) + 1 min 30 footing easy (facile (tu peux parler))",
               "incompatible_constraints" : [
                 "knee-injury",
                 "shin-splints",
                 "cardiac-clearance-required"
               ],
-              "name" : "Fartlek 8×1 min 30 on / 1 min 30 off",
-              "notes" : "Bloc 'on' allongé à 1 min 30 (vs 1 min en W6) — c'est l'évolution principale. Total qualité : 12 min à allure 5K (vs 8 en W6, +50%). C'est la charge VO2max maximale du plan. Si le 7e ou 8e bloc dégrade fortement (> +30 sec/km vs les premiers), s'arrêter à 7 reps et noter.",
+              "match_key" : "Fartlek 8×1 min 30 on / 1 min 30 off",
+              "name" : {
+                "en" : "Speed play 8×1 min 30 on / 1 min 30 off",
+                "es" : "Juego de ritmos 8×1 min 30 on / 1 min 30 off",
+                "fr" : "Jeu d'allures 8×1 min 30 vite / 1 min 30 facile"
+              },
+              "notes" : {
+                "en" : "'On' block extended to 1 min 30 (vs 1 min). Total: 12 min at 5K pace, the plan's max VO2max load. If the 7th or 8th block drops off sharply (> +30 s/km), stop at 7 reps.",
+                "es" : "Bloque 'on' alargado a 1 min 30 (vs 1 min). Total: 12 min a ritmo de 5K, la carga máxima de VO2máx del plan. Si el 7º u 8º bloque cae mucho (> +30 s/km), párate en 7 reps.",
+                "fr" : "Bloc 'on' allongé à 1 min 30 (vs 1 min). Total : 12 min à allure 5K, la charge VO2max maximale du plan. Si le 7e ou 8e bloc dégrade fortement (> +30 s/km), arrête-toi à 7 répétitions."
+              },
               "required_equipment" : [
 
               ],
@@ -1198,16 +2558,37 @@
             },
             {
               "alternatives" : [
-                "Marche rapide 12 min",
-                "Vélo Z1 12 min"
+                {
+                  "en" : "Brisk walk 12 min",
+                  "es" : "Caminata rápida 12 min",
+                  "fr" : "Marche rapide 12 min"
+                },
+                {
+                  "en" : "very easy cycling 12 min",
+                  "es" : "Bici muy fácil 12 min",
+                  "fr" : "Vélo très facile 12 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "12"
+              },
               "duration" : "12 min",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury"
               ],
-              "name" : "Footing recovery post-fartlek Daniels-E",
-              "notes" : "Bloc Daniels-E (~1.6 km) post-fartlek, RPE 4-5/10. Consolide le volume aérobie hebdo recreational au pic du plan.",
+              "match_key" : "Footing recovery post-fartlek Daniels-E",
+              "name" : {
+                "en" : "easy (you can talk) recovery jog after speed play",
+                "es" : "Trote de recuperación post-juego de ritmos fácil (puedes hablar)",
+                "fr" : "Footing de récupération (allure facile)"
+              },
+              "notes" : {
+                "en" : "easy (you can talk) block (~1.6 km) after the speed play, RPE 4-5/10. Consolidates the recreational weekly aerobic volume at the plan's peak.",
+                "es" : "Bloque fácil (puedes hablar) (~1,6 km) post-juego de ritmos, RPE 4-5/10. Consolida el volumen aeróbico semanal recreativo en el pico del plan.",
+                "fr" : "Bloc en allure facile (~1.6 km) post-jeu d'allures, RPE 4-5. Consolide le volume aérobie hebdo au pic du plan."
+              },
               "required_equipment" : [
 
               ],
@@ -1218,13 +2599,31 @@
             },
             {
               "alternatives" : [
-                "Step-ups 14 reps/jambe",
-                "Bulgarian split squat 10 reps/jambe"
+                {
+                  "en" : "Step-ups",
+                  "es" : "Subidas a escalón",
+                  "fr" : "Montées sur step"
+                },
+                {
+                  "en" : "Bulgarian split squat",
+                  "es" : "Sentadilla búlgara",
+                  "fr" : "Fente bulgare"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "knee-injury"
               ],
-              "name" : "Single-leg squat",
+              "match_key" : "Single-leg squat",
+              "name" : {
+                "en" : "Single-leg squat",
+                "es" : "Sentadilla a una pierna",
+                "fr" : "Squat sur une jambe"
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
 
@@ -1232,17 +2631,40 @@
               "rest_seconds" : 75,
               "sets" : 3,
               "target_zone" : "RPE 7-8",
-              "volume_axis" : "reps"
+              "volume_axis" : "reps",
+              "notes" : {
+                "fr" : "Sur une jambe, descends lentement comme pour t'asseoir (genou dans l'axe du pied), puis remonte. Appuie-toi à un mur ou une chaise.",
+                "en" : "On one leg, lower slowly as if sitting (knee in line with the foot), then come back up. Hold a wall or chair for balance.",
+                "es" : "Sobre una pierna, baja lentamente como para sentarte (rodilla en el eje del pie), luego sube. Apóyate en una pared o una silla para el equilibrio."
+              }
             },
             {
               "alternatives" : [
-                "Pont fessier bipodal 18 reps",
-                "Hip thrust pieds sur box 12 reps/côté"
+                {
+                  "en" : "Two-leg glute bridge",
+                  "es" : "Puente de glúteos a dos piernas",
+                  "fr" : "Pont fessier à deux jambes"
+                },
+                {
+                  "en" : "Hip thrust with feet on a box",
+                  "es" : "Empuje de cadera con los pies en un cajón",
+                  "fr" : "Pont de hanches pieds surélevés"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "reps",
+                "value" : "12"
+              },
               "incompatible_constraints" : [
                 "lower-back-pain"
               ],
-              "name" : "Pont fessier unilatéral",
+              "match_key" : "Pont fessier unilatéral",
+              "name" : {
+                "en" : "Single-leg glute bridge",
+                "es" : "Puente de glúteos a una pierna",
+                "fr" : "Pont fessier sur une jambe"
+              },
               "reps" : "12 par côté",
               "required_equipment" : [
                 "mat"
@@ -1250,51 +2672,112 @@
               "rest_seconds" : 45,
               "sets" : 3,
               "target_zone" : "RPE 7-8",
-              "volume_axis" : "reps"
+              "volume_axis" : "reps",
+              "notes" : {
+                "fr" : "En position de pont fessier, tends une jambe. Monte le bassin sur le seul pied d'appui en le gardant bien horizontal, serre la fesse, descends, puis change de jambe.",
+                "en" : "In the glute bridge position, extend one leg. Lift your pelvis on the single supporting foot, keeping it level, squeeze the glute, lower, then switch legs.",
+                "es" : "En posición de puente de glúteos, extiende una pierna. Sube la pelvis sobre el único pie de apoyo manteniéndola bien horizontal, aprieta el glúteo, baja, luego cambia de pierna."
+              }
             },
             {
               "alternatives" : [
-                "Side plank genoux pliés 50 sec/côté",
-                "Bird-dog 12 reps/côté"
+                {
+                  "en" : "Side plank with bent knees 50 sec/side",
+                  "es" : "Plancha lateral con rodillas flexionadas 50 s/lado",
+                  "fr" : "Planche latérale genoux pliés 50 sec/côté"
+                },
+                {
+                  "en" : "Bird-dog",
+                  "es" : "Perro-pájaro",
+                  "fr" : "Pointeur"
+                }
               ],
+              "dose" : {
+                "qualifier" : "perSide",
+                "unit" : "seconds",
+                "value" : "35"
+              },
               "duration" : "35 sec par côté",
               "incompatible_constraints" : [
                 "lower-back-pain",
                 "shoulder-injury",
                 "wrist-pain"
               ],
-              "name" : "Side plank",
+              "match_key" : "Side plank",
+              "name" : {
+                "en" : "Side plank",
+                "es" : "Plancha lateral",
+                "fr" : "Planche latérale"
+              },
               "required_equipment" : [
                 "mat"
               ],
               "rest_seconds" : 40,
               "sets" : 3,
               "target_zone" : "RPE 7-8",
-              "volume_axis" : "duration"
+              "volume_axis" : "duration",
+              "notes" : {
+                "fr" : "Sur le côté, en appui sur l'avant-bras (coude sous l'épaule), corps aligné de la tête aux pieds. Décolle le bassin et tiens-le haut sans t'affaisser. Genoux au sol pour alléger.",
+                "en" : "On your side, propped on your forearm (elbow under the shoulder), body aligned from head to feet. Lift the pelvis and hold it high without sagging. Knees on the floor to ease it.",
+                "es" : "De lado, apoyado en el antebrazo (codo bajo el hombro), cuerpo alineado de la cabeza a los pies. Despega la pelvis y mantenla alta sin hundirte. Rodillas en el suelo para aliviar."
+              }
             }
           ],
-          "name" : "Fartlek 8×1 min 30 + strength maintien",
+          "name" : {
+            "en" : "Speed play 8×1 min 30 + maintenance strength",
+            "es" : "Juego de ritmos 8×1 min 30 + refuerzo de mantenimiento",
+            "fr" : "Jeu d'allures 8×1 min 30 + renforcement maintien"
+          },
           "type" : "mixed",
-          "warmup" : "12 min footing facile (Daniels-E) + 4×100 m strides progressifs."
+          "warmup" : {
+            "en" : "12 min easy jog (easy (you can talk)) + 4×100 m progressive strides.",
+            "es" : "12 min de trote suave (fácil (puedes hablar)) + 4×100 m de progresiones.",
+            "fr" : "12 min footing facile (facile (tu peux parler)) + 4×100 m accélérations progressifs."
+          }
         },
         {
-          "cooldown" : "15 min footing très lent (Daniels-E, cooldown extended ~2 km) + étirements 5 min.",
+          "cooldown" : {
+            "en" : "15 min very slow jog (easy (you can talk), extended cooldown ~2 km) + 5 min stretching.",
+            "es" : "15 min de trote muy lento (fácil (puedes hablar), vuelta a la calma prolongada ~2 km) + 5 min de estiramientos.",
+            "fr" : "15 min footing très lent (facile (tu peux parler), retour au calme étendu ~2 km) + étirements 5 min."
+          },
           "day" : 3,
           "duration_minutes" : 75,
           "exercises" : [
             {
               "alternatives" : [
-                "Tempo tapis 25 min",
-                "Cruise intervals 5×5 min Daniels-T avec 2 min easy entre"
+                {
+                  "en" : "Treadmill tempo 25 min",
+                  "es" : "Tempo en cinta 25 min",
+                  "fr" : "Tempo tapis 25 min"
+                },
+                {
+                  "en" : "Cruise intervals 5×5 min at threshold with 2 min easy between",
+                  "es" : "Cruise intervals 5×5 min en el umbral con 2 min suave entre cada uno",
+                  "fr" : "Intervalles 5×5 min au seuil avec 2 min facile entre"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "25"
+              },
               "duration" : "25 min",
               "incompatible_constraints" : [
                 "knee-injury",
                 "cardiac-clearance-required",
                 "shin-splints"
               ],
-              "name" : "Bloc tempo Daniels-T",
-              "notes" : "Tempo le plus long du plan. Allure Daniels-T (allure 5K + 30-45 s/km), RPE 7/10. Concentre-toi sur la régularité des foulées et la respiration (inspire 3 foulées, expire 2 foulées). C'est exactement la durée d'un 10K à allure cible (un 10K à 7:00 min/km = 70 min, mais à allure seuil tu cours plus vite que ton allure 10K).",
+              "match_key" : "Bloc tempo Daniels-T",
+              "name" : {
+                "en" : "at threshold tempo block",
+                "es" : "Bloque tempo en el umbral",
+                "fr" : "Bloc tempo (au seuil)"
+              },
+              "notes" : {
+                "en" : "Longest tempo of the plan. Threshold pace (5K pace + 30-45 s/km), RPE 7. Focus on even stride rhythm and breathing (inhale over 3 strides, exhale over 2).",
+                "es" : "El tempo más largo del plan. Ritmo de umbral (ritmo de 5K + 30-45 s/km), RPE 7. Concéntrate en la regularidad de la zancada y la respiración (inspira en 3 zancadas, espira en 2).",
+                "fr" : "Tempo le plus long du plan. Allure seuil (allure 5K + 30-45 s/km), RPE 7. Concentre-toi sur la régularité des foulées et la respiration (inspire 3 foulées, expire 2)."
+              },
               "required_equipment" : [
                 "gps-watch"
               ],
@@ -1305,16 +2788,37 @@
             },
             {
               "alternatives" : [
-                "Marche rapide 18 min",
-                "Vélo Z1 18 min"
+                {
+                  "en" : "Brisk walk 18 min",
+                  "es" : "Caminata rápida 18 min",
+                  "fr" : "Marche rapide 18 min"
+                },
+                {
+                  "en" : "very easy cycling 18 min",
+                  "es" : "Bici muy fácil 18 min",
+                  "fr" : "Vélo très facile 18 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "15"
+              },
               "duration" : "15 min",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury"
               ],
-              "name" : "Cooldown extended Daniels-E",
-              "notes" : "Bloc post-tempo Daniels-E (~2 km), allure très facile (RPE 4-5/10). Au pic du plan, ce cooldown extended ajoute du volume aérobie sans charge supplémentaire.",
+              "match_key" : "Cooldown extended Daniels-E",
+              "name" : {
+                "en" : "Extended easy (you can talk) cooldown",
+                "es" : "Vuelta a la calma prolongada fácil (puedes hablar)",
+                "fr" : "Retour au calme prolongé (allure facile)"
+              },
+              "notes" : {
+                "en" : "Post-tempo easy block (~2 km), very easy (RPE 4-5). This extended cooldown adds aerobic volume without extra load.",
+                "es" : "Bloque post-tempo fácil (~2 km), muy suave (RPE 4-5). Esta vuelta a la calma prolongada añade volumen aeróbico sin carga adicional.",
+                "fr" : "Bloc post-tempo en allure facile (~2 km), très facile (RPE 4-5). Ce retour au calme étendu ajoute du volume aérobie sans charge supplémentaire."
+              },
               "required_equipment" : [
 
               ],
@@ -1324,28 +2828,61 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Tempo 25 min Daniels-T",
+          "name" : {
+            "en" : "25 min at threshold tempo",
+            "es" : "Tempo 25 min en el umbral",
+            "fr" : "Tempo 25 min (au seuil)"
+          },
           "type" : "interval",
-          "warmup" : "10 min footing facile (Daniels-E) + 4×30 sec accélérations progressives."
+          "warmup" : {
+            "en" : "10 min easy jog (easy (you can talk)) + 4×30 sec progressive accelerations.",
+            "es" : "10 min de trote suave (fácil (puedes hablar)) + 4×30 s de aceleraciones progresivas.",
+            "fr" : "10 min footing facile (facile (tu peux parler)) + 4×30 sec accélérations progressives."
+          }
         },
         {
-          "cooldown" : "5 min marche + étirements complets 12 min + mobilisation douce des chevilles.",
+          "cooldown" : {
+            "en" : "5 min walk + 12 min full stretching + gentle ankle mobilization.",
+            "es" : "5 min de caminata + 12 min de estiramientos completos + movilización suave de tobillos.",
+            "fr" : "5 min marche + étirements complets 12 min + mobilisation douce des chevilles."
+          },
           "day" : 5,
           "duration_minutes" : 105,
           "exercises" : [
             {
               "alternatives" : [
-                "Long run tapis 12 km Z2",
-                "Vélo Z2 105 min"
+                {
+                  "en" : "Treadmill long run 12 km easy endurance",
+                  "es" : "Tirada larga en cinta 12 km resistencia fácil",
+                  "fr" : "Sortie longue tapis 12 km endurance facile"
+                },
+                {
+                  "en" : "easy endurance cycling 105 min",
+                  "es" : "Bici resistencia fácil 105 min",
+                  "fr" : "Vélo endurance facile 105 min"
+                }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "12"
+              },
               "duration" : "12 km",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Course continue Daniels-E",
-              "notes" : "LONG RUN PIC du plan. Daniels-E (RPE 5-6/10). +2 km vs W6 long run. La règle 'long run pic = 120% de la distance cible' est respectée : 12 km = 10 km × 1.2. Ce long run rend la séance phare de W8 psychologiquement et physiologiquement plus accessible — tu sauras que ton corps tient 12 km avant d'aller chercher 10 km à allure cible. Nutrition : gel ou glucides à km 5 et km 9. Hydratation planifiée km 4 et km 8.",
+              "match_key" : "Course continue Daniels-E",
+              "name" : {
+                "en" : "easy (you can talk) continuous run",
+                "es" : "Carrera continua fácil (puedes hablar)",
+                "fr" : "Course continue (allure facile)"
+              },
+              "notes" : {
+                "en" : "Peak long run of the plan, easy (you can talk) pace (RPE 5-6). +2 km vs the previous one. Knowing your body holds 12 km makes the key session more accessible. Gel at km 5 and km 9, hydration at km 4 and km 8.",
+                "es" : "Tirada larga pico del plan, ritmo fácil (puedes hablar) (RPE 5-6). +2 km respecto a la anterior. Saber que tu cuerpo aguanta 12 km hará la sesión estrella más accesible. Gel en el km 5 y el km 9, hidratación en el km 4 y el km 8.",
+                "fr" : "Sortie longue pic du plan, allure facile (RPE 5-6). +2 km vs la précédente. Savoir que ton corps tient 12 km rendra la séance phare plus accessible. Gel à km 5 et km 9, hydratation km 4 et km 8."
+              },
               "required_equipment" : [
 
               ],
@@ -1355,35 +2892,76 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Long run pic 12 km",
+          "name" : {
+            "en" : "Peak 12 km long run",
+            "es" : "Tirada larga pico de 12 km",
+            "fr" : "Sortie longue pic 12 km"
+          },
           "type" : "endurance",
-          "warmup" : "5 min marche + 5 min footing très lent."
+          "warmup" : {
+            "en" : "5 min walk + 5 min very slow jog.",
+            "es" : "5 min de caminata + 5 min de trote muy lento.",
+            "fr" : "5 min marche + 5 min footing très lent."
+          }
         }
       ],
-      "theme" : "Pic du plan — long run 12 km et tempo 25 min",
+      "theme" : {
+        "en" : "Plan peak — 12 km long run and 25 min tempo",
+        "es" : "Pico del plan — tirada larga de 12 km y tempo de 25 min",
+        "fr" : "Pic du plan — sortie longue 12 km et tempo 25 min"
+      },
       "week_number" : 7
     },
     {
-      "goal" : "Taper J-7 strict : volume hebdo de course pure ~21 km vs ~30 km en W7 = ~-30% global, dont 10 km de séance phare J5. J1 footing facile 6 km (mémoire allure facile, jambes légères), J3 activation 3 km + strides à allure 10K (mémoire neuromusculaire allure cible), J5 séance phare 10 km à allure cible 10K (allure 5K + 45-75 s/km, typiquement 55-70 min). Checklist d'autonomie 4 critères mesurables.",
+      "goal" : {
+        "en" : "Strict 7-day taper: pure weekly running volume ~21 km vs ~30 km in W7 = ~-30% overall, including the 10 km key session on D5. D1 easy 6 km jog (easy-pace memory, fresh legs), D3 activation 3 km + strides at 10K pace (neuromuscular memory of target pace), D5 key session 10 km at target 10K pace (5K pace + 45-75 s/km, typically 55-70 min). 4-criterion measurable self-sufficiency checklist.",
+        "es" : "Afinamiento estricto de 7 días: volumen semanal de carrera pura ~21 km vs ~30 km en la S7 = ~-30% global, incluyendo los 10 km de la sesión estrella del D5. D1 trote suave de 6 km (memoria de ritmo suave, piernas ligeras), D3 activación de 3 km + progresiones a ritmo de 10K (memoria neuromuscular del ritmo objetivo), D5 sesión estrella de 10 km a ritmo objetivo de 10K (ritmo de 5K + 45-75 s/km, típicamente 55-70 min). Lista de autonomía de 4 criterios medibles.",
+        "fr" : "Affûtage J-7 strict : volume hebdo de course pure ~21 km vs ~30 km en W7 = ~-30% global, dont 10 km de séance phare J5. J1 footing facile 6 km (mémoire allure facile, jambes légères), J3 activation 3 km + accélérations à allure 10K (mémoire neuromusculaire allure cible), J5 séance phare 10 km à allure cible 10K (allure 5K + 45-75 s/km, typiquement 55-70 min). Checklist d'autonomie 4 critères mesurables."
+      },
       "sessions" : [
         {
-          "cooldown" : "5 min marche + étirements 8 min.",
+          "cooldown" : {
+            "en" : "5 min walk + 8 min stretching.",
+            "es" : "5 min de caminata + 8 min de estiramientos.",
+            "fr" : "5 min marche + étirements 8 min."
+          },
           "day" : 1,
           "duration_minutes" : 45,
           "exercises" : [
             {
               "alternatives" : [
-                "Footing tapis 6 km Z2 très lent",
-                "Vélo Z1 45 min"
+                {
+                  "en" : "Treadmill jog 6 km easy endurance very slow",
+                  "es" : "Trote en cinta 6 km resistencia fácil muy lento",
+                  "fr" : "Footing tapis 6 km endurance facile très lent"
+                },
+                {
+                  "en" : "very easy cycling 45 min",
+                  "es" : "Bici muy fácil 45 min",
+                  "fr" : "Vélo très facile 45 min"
+                }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "6"
+              },
               "duration" : "6 km",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Footing easy taper",
-              "notes" : "Footing TRÈS facile (RPE 4-5/10). Plus lent que d'habitude. Le but du taper J-7 : conserver la mémoire de l'allure facile, garder les jambes en mouvement, ne créer AUCUNE fatigue résiduelle pour la séance phare J5. Si tu te sens en forme, ralentis — ce n'est pas le jour de la performance.",
+              "match_key" : "Footing easy taper",
+              "name" : {
+                "en" : "Easy taper jog",
+                "es" : "Trote suave de afinamiento",
+                "fr" : "Footing facile d'affûtage"
+              },
+              "notes" : {
+                "en" : "Very easy jog (RPE 4-5), slower than usual. Goal of the D-7 taper: keep the memory of easy pace and the legs moving, without creating fatigue. If you feel good, slow down.",
+                "es" : "Trote muy suave (RPE 4-5), más lento de lo habitual. Objetivo del afinamiento D-7: conservar la memoria del ritmo suave y las piernas en movimiento, sin generar fatiga. Si te sientes en forma, baja el ritmo.",
+                "fr" : "Footing très facile (RPE 4-5), plus lent que d'habitude. But de l'affûtage J-7 : garder la mémoire de l'allure facile et les jambes en mouvement, sans créer de fatigue. Si tu te sens en forme, ralentis."
+              },
               "required_equipment" : [
 
               ],
@@ -1393,28 +2971,61 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Footing taper 6 km — jambes légères",
+          "name" : {
+            "en" : "Taper jog 6 km — fresh legs",
+            "es" : "Trote de afinamiento 6 km — piernas ligeras",
+            "fr" : "Footing d'affûtage 6 km — jambes légères"
+          },
           "type" : "endurance",
-          "warmup" : "5 min marche + 5 min footing très lent."
+          "warmup" : {
+            "en" : "5 min walk + 5 min very slow jog.",
+            "es" : "5 min de caminata + 5 min de trote muy lento.",
+            "fr" : "5 min marche + 5 min footing très lent."
+          }
         },
         {
-          "cooldown" : "3 min marche + visualisation mentale de la séance phare J5 : imagine les 10 km, le départ contrôlé, les km 5-7 qui seront les plus durs, l'arrivée. Repos total J4.",
+          "cooldown" : {
+            "en" : "3 min walk + mental visualization of the D5 key session: picture the 10 km, the controlled start, km 5-7 which will be the hardest, the finish. Full rest on D4.",
+            "es" : "3 min de caminata + visualización mental de la sesión estrella del D5: imagina los 10 km, la salida controlada, los km 5-7 que serán los más duros, la llegada. Descanso total el D4.",
+            "fr" : "3 min marche + visualisation mentale de la séance phare J5 : imagine les 10 km, le départ contrôlé, les km 5-7 qui seront les plus durs, l'arrivée. Repos total J4."
+          },
           "day" : 3,
           "duration_minutes" : 35,
           "exercises" : [
             {
               "alternatives" : [
-                "Footing tapis 3 km Z2 très lent",
-                "Vélo Z1 25 min"
+                {
+                  "en" : "Treadmill jog 3 km easy endurance very slow",
+                  "es" : "Trote en cinta 3 km resistencia fácil muy lento",
+                  "fr" : "Footing tapis 3 km endurance facile très lent"
+                },
+                {
+                  "en" : "very easy cycling 25 min",
+                  "es" : "Bici muy fácil 25 min",
+                  "fr" : "Vélo très facile 25 min"
+                }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "3"
+              },
               "duration" : "3 km",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "Footing d'activation",
-              "notes" : "Footing très facile (RPE 4/10). Pas de tempo, pas de fartlek. Objectif : garder les jambes en mouvement, activer la circulation sans créer de fatigue. Comme un 'réveil musculaire' avant le grand jour.",
+              "match_key" : "Footing d'activation",
+              "name" : {
+                "en" : "Activation jog",
+                "es" : "Trote de activación",
+                "fr" : "Footing d'activation"
+              },
+              "notes" : {
+                "en" : "Very easy jog (RPE 4). No tempo, no speed play. Keep the legs moving and the circulation going without creating fatigue. A 'muscle wake-up' before the big day.",
+                "es" : "Trote muy suave (RPE 4). Sin tempo, sin juego de ritmos. Mantén las piernas en movimiento y activa la circulación sin generar fatiga. Un 'despertar muscular' antes del gran día.",
+                "fr" : "Footing très facile (RPE 4). Pas de tempo, pas de jeu d'allures. Garde les jambes en mouvement et active la circulation sans créer de fatigue. Un 'réveil musculaire' avant le grand jour."
+              },
               "required_equipment" : [
 
               ],
@@ -1425,17 +3036,48 @@
             },
             {
               "alternatives" : [
-                "Strides 4×60 m allure 10K sur herbe",
-                "Strides 4×80 m allure facile"
+                {
+                  "en" : "Strides 4×60 m at 10K pace on grass",
+                  "es" : "Progresiones 4×60 m a ritmo de 10K sobre hierba",
+                  "fr" : "Lignes 4×60 m allure 10K sur herbe"
+                },
+                {
+                  "en" : "Strides 4×80 m at easy pace",
+                  "es" : "Progresiones 4×80 m a ritmo suave",
+                  "fr" : "Lignes 4×80 m allure facile"
+                }
               ],
+              "dose" : {
+                "segments" : [
+                  {
+                    "activity" : "pace10K",
+                    "unit" : "meters",
+                    "value" : "60"
+                  },
+                  {
+                    "activity" : "walkingRecovery",
+                    "unit" : "seconds",
+                    "value" : "60"
+                  }
+                ]
+              },
               "duration" : "60 m à allure cible 10K + 60 sec marche récupération",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "ankle-injury"
               ],
-              "name" : "Strides à allure 10K cible",
-              "notes" : "4 courtes accélérations à allure cible 10K (RPE 7/10) sur 60 m avec 60 sec de marche entre chaque. Rappeler au corps l'allure cible sans le fatiguer. Volume total minime mais essentiel à la mémoire neuromusculaire (Mujika & Padilla : maintien intensité pendant le taper).",
+              "match_key" : "Strides à allure 10K cible",
+              "name" : {
+                "en" : "Strides at target 10K pace",
+                "es" : "Progresiones a ritmo objetivo de 10K",
+                "fr" : "Accélérations à allure 10K cible"
+              },
+              "notes" : {
+                "en" : "4 short accelerations at 10K pace (RPE 7) over 60 m, 60 sec walking between each. Reminds the body of the target pace without fatiguing it. Minimal volume but essential for neuromuscular memory.",
+                "es" : "4 aceleraciones cortas a ritmo de 10K (RPE 7) en 60 m, 60 s de caminata entre cada una. Recuerda al cuerpo el ritmo objetivo sin fatigarlo. Volumen mínimo pero esencial para la memoria neuromuscular.",
+                "fr" : "4 courtes accélérations à allure 10K (RPE 7) sur 60 m, 60 sec de marche entre chaque. Rappelle l'allure cible sans fatiguer. Volume minime mais essentiel à la mémoire neuromusculaire."
+              },
               "required_equipment" : [
 
               ],
@@ -1446,15 +3088,36 @@
             },
             {
               "alternatives" : [
-                "Routine yoga doux 8 min",
-                "Étirements statiques globaux 8 min"
+                {
+                  "en" : "Gentle yoga routine 8 min",
+                  "es" : "Rutina de yoga suave 8 min",
+                  "fr" : "Routine yoga doux 8 min"
+                },
+                {
+                  "en" : "Full-body static stretching 8 min",
+                  "es" : "Estiramientos estáticos globales 8 min",
+                  "fr" : "Étirements statiques globaux 8 min"
+                }
               ],
+              "dose" : {
+                "unit" : "minutes",
+                "value" : "5"
+              },
               "duration" : "5 min",
               "incompatible_constraints" : [
 
               ],
-              "name" : "Mobilité hanches et chevilles",
-              "notes" : "Rotations lentes, fentes statiques tenues 20 sec/côté, cercles de pieds. Préparer les articulations pour J5.",
+              "match_key" : "Mobilité hanches et chevilles",
+              "name" : {
+                "en" : "Hip and ankle mobility",
+                "es" : "Movilidad de caderas y tobillos",
+                "fr" : "Mobilité hanches et chevilles"
+              },
+              "notes" : {
+                "en" : "Slow rotations, static lunges held 20 sec/side, foot circles. Prepare the joints for D5.",
+                "es" : "Rotaciones lentas, zancadas estáticas mantenidas 20 s/lado, círculos de pies. Prepara las articulaciones para el D5.",
+                "fr" : "Rotations lentes, fentes statiques tenues 20 sec/côté, cercles de pieds. Préparer les articulations pour J5."
+              },
               "required_equipment" : [
                 "mat"
               ],
@@ -1463,28 +3126,61 @@
               "volume_axis" : "duration"
             }
           ],
-          "name" : "Activation pré-séance phare",
+          "name" : {
+            "en" : "Pre-key-session activation",
+            "es" : "Activación previa a la sesión estrella",
+            "fr" : "Activation pré-séance phare"
+          },
           "type" : "mixed",
-          "warmup" : "5 min marche rapide + mobilité dynamique 5 min (cercles hanches, chevilles, fentes marchées douces, high knees lents)."
+          "warmup" : {
+            "en" : "5 min brisk walk + 5 min dynamic mobility (hip circles, ankles, gentle walking lunges, slow high knees).",
+            "es" : "5 min de caminata rápida + 5 min de movilidad dinámica (círculos de cadera, tobillos, zancadas caminando suaves, rodillas arriba lentas).",
+            "fr" : "5 min marche rapide + mobilité dynamique 5 min (cercles hanches, chevilles, fentes marchées douces, montées de genoux lents)."
+          }
         },
         {
-          "cooldown" : "8 min marche lente progressive + étirements complets 12 min (mollets 45 sec/côté, quadriceps 45 sec/côté, ischio-jambiers 45 sec/côté, fessiers piriformis 40 sec/côté, fléchisseurs de hanche 40 sec/côté, adducteurs 30 sec). Alimentation de récupération dans les 30 min. Félicitations : tu es coureur 10K.",
+          "cooldown" : {
+            "en" : "8 min progressive slow walk + 12 min full stretching (calves 45 sec/side, quads 45 sec/side, hamstrings 45 sec/side, glutes/piriformis 40 sec/side, hip flexors 40 sec/side, adductors 30 sec). Recovery food within 30 min. Congratulations: you're a 10K runner.",
+            "es" : "8 min de caminata lenta progresiva + 12 min de estiramientos completos (gemelos 45 s/lado, cuádriceps 45 s/lado, isquiotibiales 45 s/lado, glúteos/piriforme 40 s/lado, flexores de cadera 40 s/lado, aductores 30 s). Alimentación de recuperación en los 30 min siguientes. Enhorabuena: eres corredor de 10K.",
+            "fr" : "8 min marche lente progressive + étirements complets 12 min (mollets 45 sec/côté, quadriceps 45 sec/côté, ischio-jambiers 45 sec/côté, fessiers piriformis 40 sec/côté, fléchisseurs de hanche 40 sec/côté, adducteurs 30 sec). Alimentation de récupération dans les 30 min. Félicitations : tu es coureur 10K."
+          },
           "day" : 5,
           "duration_minutes" : 90,
           "exercises" : [
             {
               "alternatives" : [
-                "10 km tapis allure cible",
-                "Long run libre 10 km Daniels-E si fatigue résiduelle"
+                {
+                  "en" : "10 km on the treadmill at target pace",
+                  "es" : "10 km en cinta a ritmo objetivo",
+                  "fr" : "10 km tapis allure cible"
+                },
+                {
+                  "en" : "Free 10 km long run at easy (you can talk) if residual fatigue",
+                  "es" : "Tirada larga libre de 10 km en fácil (puedes hablar) si hay fatiga residual",
+                  "fr" : "Sortie longue libre 10 km facile (tu peux parler) si fatigue résiduelle"
+                }
               ],
+              "dose" : {
+                "unit" : "kilometers",
+                "value" : "10"
+              },
               "duration" : "10 km",
               "incompatible_constraints" : [
                 "shin-splints",
                 "knee-injury",
                 "cardiac-clearance-required"
               ],
-              "name" : "10 km à allure cible 10K",
-              "notes" : "Allure cible 10K = allure 5K test W1 + 45-75 s/km (ex : allure 5K 6:00 min/km → allure 10K cible = 6:45-7:15 min/km, soit 10K en 67-72 min).\n\nSTRATÉGIE DE COURSE : km 1-2 légèrement plus lents que l'allure cible (RPE 6/10), ne pas partir trop vite ; km 3-7 à allure cible (RPE 7/10) ; km 8-10 maintien ou légère accélération si réserves disponibles (RPE 7-8/10). Km 5-7 sont typiquement les plus difficiles — tenir le cap. Si tu dois ralentir de 15-20 sec/km sur les 2 derniers km, c'est acceptable : tu finiras quand même.\n\nCHECKLIST D'AUTONOMIE (à valider mentalement à l'arrivée) :\n1. J'ai tenu une allure régulière sur au moins 80% des 10 km (variations < 30 sec/km entre km 2 et km 8).\n2. J'ai respiré de façon continue sans panique respiratoire — je pouvais dire 4-5 mots à mi-course (test de la parole maintenu en Daniels-T proche).\n3. J'ai géré le creux km 5-7 sans marcher (ou avec moins de 1 min de marche cumulée).\n4. Je sais distinguer une douleur articulaire (à surveiller, à signaler) d'une fatigue musculaire (normale et attendue à cette distance).\n\nSi tu coches 3+ critères, tu es autonome pour enchaîner sur un programme `regular` semi-marathon ou 10K perf. Si 2 critères ou moins, refais W6 et W7 (cycle 2 sem) avant de progresser.",
+              "match_key" : "10 km à allure cible 10K",
+              "name" : {
+                "en" : "10 km at target 10K pace",
+                "es" : "10 km a ritmo objetivo de 10K",
+                "fr" : "10 km à allure cible 10K"
+              },
+              "notes" : {
+                "en" : "10K pace = 5K pace + 45-75 s/km (e.g. 5K 6:00 → 10K 6:45-7:15).\nkm 1-2 slightly slower (RPE 6), km 3-7 at target pace (RPE 7), km 8-10 hold or slight acceleration (RPE 7-8). The low is km 5-7, hold the line.\nCheck:\n• even pace over 80% (variation < 30 s/km (km 2-8))\n• steady breathing, 4-5 words possible mid-race\n• km 5-7 low managed without walking\n• joint discomfort told apart from muscular fatigue",
+                "es" : "Ritmo de 10K = ritmo de 5K + 45-75 s/km (p. ej. 5K 6:00 → 10K 6:45-7:15).\nkm 1-2 algo más lentos (RPE 6), km 3-7 a ritmo objetivo (RPE 7), km 8-10 mantén o acelera ligeramente (RPE 7-8). El bache es km 5-7, aguanta.\nBalance:\n• ritmo regular en el 80% (variación < 30 s/km (km 2-8))\n• respiración continua, 4-5 palabras posibles a media carrera\n• bache km 5-7 gestionado sin caminar\n• molestia articular distinguida de la fatiga muscular",
+                "fr" : "Allure 10K = allure 5K + 45-75 s/km (ex : 5K 6:00 → 10K 6:45-7:15).\nkm 1-2 un peu plus lents (RPE 6), km 3-7 à l'allure cible (RPE 7), km 8-10 maintien ou légère accélération (RPE 7-8). Le creux est km 5-7, tiens le cap.\nBilan :\n• allure régulière sur 80% (écart < 30 s/km (km 2-8))\n• respiration continue, 4-5 mots possibles à mi-course\n• creux km 5-7 géré sans marcher\n• gêne articulaire distinguée de la fatigue musculaire"
+              },
               "required_equipment" : [
                 "gps-watch"
               ],
@@ -1494,12 +3190,24 @@
               "volume_axis" : "distance"
             }
           ],
-          "name" : "Séance phare — 10 km à allure cible",
+          "name" : {
+            "en" : "Key session — 10 km at target pace",
+            "es" : "Sesión estrella — 10 km a ritmo objetivo",
+            "fr" : "Séance phare — 10 km à allure cible"
+          },
           "type" : "endurance",
-          "warmup" : "5 min marche progressive + 10 min footing très lent + 3 strides à allure 10K cible (60 m chacun, récup 45 sec). Total : 17 min d'échauffement. Échauffement complet NON négociable pour une séance de cette importance."
+          "warmup" : {
+            "en" : "5 min progressive walk + 10 min very slow jog + 3 strides at target 10K pace (60 m each, 45 sec recovery). Total: 17 min of warm-up. A full warm-up is NON-negotiable for a session this important.",
+            "es" : "5 min de caminata progresiva + 10 min de trote muy lento + 3 progresiones a ritmo objetivo de 10K (60 m cada una, 45 s de recuperación). Total: 17 min de calentamiento. Un calentamiento completo es INNEGOCIABLE para una sesión de esta importancia.",
+            "fr" : "5 min marche progressive + 10 min footing très lent + 3 accélérations à allure 10K cible (60 m chacun, récup 45 sec). Total : 17 min d'échauffement. Échauffement complet NON négociable pour une séance de cette importance."
+          }
         }
       ],
-      "theme" : "Taper et séance phare — 10 km à allure cible",
+      "theme" : {
+        "en" : "Taper and key session — 10 km at target pace",
+        "es" : "Afinamiento y sesión estrella — 10 km a ritmo objetivo",
+        "fr" : "Affûtage et séance phare — 10 km à allure cible"
+      },
       "week_number" : 8
     }
   ]

@@ -66,6 +66,13 @@ final class SessionDashboardViewModel {
     private(set) var loading: Bool = true
     private(set) var error: String?
 
+    /// **Findings UX 2026-06-29 (#3)** — vrai dès la 1ʳᵉ `refresh` complète. Sert
+    /// à ne PLUS basculer `loading` (donc à ne plus invalider le body) sur les
+    /// refresh silencieux d'`onAppear` (chaque retour sur l'onglet). Combiné aux
+    /// gardes par égalité ci-dessous, supprime le clignotement « sapin de Noël »
+    /// du dashboard quand rien n'a changé.
+    private var hasCompletedInitialLoad = false
+
     /// **Story 3.10** — map interne `record.id → AdaptedProgramRecord` mise à jour
     /// à chaque `refresh`. Sert aux helpers (`modifiedSessionCoordinates`,
     /// `pushAdaptedProgram` côté View) qui ont besoin du `record` complet alors
@@ -77,7 +84,7 @@ final class SessionDashboardViewModel {
     /// **Story 3.15** : déprécié — Phase 3 supprime cette propriété et le call-site
     /// `SessionView.swift:242`. Les "suggestions" deviennent des dormants persistés
     /// via `DormantBootstrapService` au post-onboarding.
-    private(set) var emptyModeSuggestions: [ProgramTemplate] = []
+    private(set) var emptyModeSuggestions: [TemplateSummary] = []
 
     /// Sports actifs déclarés à l'onboarding (passé au questionnaire universel
     /// quand l'utilisateur tape « Voir → » sur une suggestion). Cache de
@@ -188,8 +195,11 @@ final class SessionDashboardViewModel {
     /// mutation est faite EN PLACE sur les records, donc le `fetchActive` qui
     /// suit voit déjà les bonnes durées. Best-effort : un throw est silencé.
     func refresh(userId: UUID) async {
-        loading = true
-        error = nil
+        // **Findings UX 2026-06-29 (#3)** — `loading` ne bascule qu'au tout 1ᵉʳ
+        // chargement (spinner initial). Les refresh d'`onAppear` (retours onglet)
+        // sont silencieux : aucune bascule `loading` → pas d'invalidation de body.
+        if !hasCompletedInitialLoad { loading = true }
+        if error != nil { error = nil }
         // **Story 3.15 v7** — bootstrap idempotent. Si flag déjà true ou si
         // l'user a déjà des programmes, no-op. Sinon, génère jusqu'à 3 dormants
         // via selectTopN. Appelé AVANT fetchActive pour que les dormants frais
@@ -205,54 +215,69 @@ final class SessionDashboardViewModel {
             let programs = try await programsTask
             let profile = await profileTask
             coachingProfileSnapshot = profile
-            declaredSportCodes = profile?.activeSports ?? []
+            // **Findings UX #3** — toutes les assignations sont GARDÉES par égalité :
+            // un refresh d'`onAppear` sans changement réel ne produit aucune mutation
+            // Observation → le body de SessionView n'est pas invalidé → zéro flicker.
+            let newDeclared = profile?.activeSports ?? []
+            if declaredSportCodes != newDeclared { declaredSportCodes = newDeclared }
 
             // Map records pour les helpers internes (regen, push detail view).
-            recordsByID = Dictionary(uniqueKeysWithValues: programs.map { ($0.id, $0) })
+            // `AdaptedProgramRecord` est une classe @Model (référence) : tant que le
+            // jeu de clés est inchangé, le dict pointe déjà sur les MÊMES instances
+            // vivantes (mutées en place) → on ne réassigne que sur ajout/retrait.
+            let newKeys = Set(programs.map(\.id))
+            if Set(recordsByID.keys) != newKeys {
+                recordsByID = Dictionary(uniqueKeysWithValues: programs.map { ($0.id, $0) })
+            }
 
             let now = nowProvider()
             // **Story 3.31** — états de renouvellement de cycle des routines.
-            routineRenewalStatesByRecord = computeRoutineRenewalStates(programs: programs, now: now)
+            let newRenewal = computeRoutineRenewalStates(programs: programs, now: now)
+            if routineRenewalStatesByRecord != newRenewal { routineRenewalStatesByRecord = newRenewal }
             if programs.isEmpty {
-                mode = .empty
-                startedSummaries = []
-                dormantSummaries = []
-                emptyModeSuggestions = []
+                if mode != .empty { mode = .empty }
+                if !startedSummaries.isEmpty { startedSummaries = [] }
+                if !dormantSummaries.isEmpty { dormantSummaries = [] }
+                if !emptyModeSuggestions.isEmpty { emptyModeSuggestions = [] }
             } else {
-                emptyModeSuggestions = []
+                if !emptyModeSuggestions.isEmpty { emptyModeSuggestions = [] }
                 await ensureLibraryCached()
                 // **Story 3.15 AC1** — split started/dormant à la racine.
                 let split = makeProgramSummaries(programs: programs, now: now)
-                startedSummaries = split.started
-                dormantSummaries = split.dormant
+                if startedSummaries != split.started { startedSummaries = split.started }
+                if dormantSummaries != split.dormant { dormantSummaries = split.dormant }
                 // **Story 3.15 AC3** — bascule sur 3 modes :
                 //   - 0 started + N dormants → `.dormantOnly`
                 //   - ≥ 1 started → `.active`, selectedId ne référence QUE des started
-                if startedSummaries.isEmpty {
-                    mode = .dormantOnly(dormants: dormantSummaries)
+                let newMode: Mode
+                if split.started.isEmpty {
+                    newMode = .dormantOnly(dormants: split.dormant)
                 } else {
-                    let defaultSelection = startedSummaries.first?.id
+                    let defaultSelection = split.started.first?.id
+                    // Préserve la sélection courante si elle existe encore.
                     let previousSelection = currentSelectedId
                     let selectedId = previousSelection.flatMap { id in
-                        startedSummaries.contains(where: { $0.id == id }) ? id : nil
+                        split.started.contains(where: { $0.id == id }) ? id : nil
                     } ?? defaultSelection
-                    mode = .active(
-                        started: startedSummaries,
-                        dormants: dormantSummaries,
+                    newMode = .active(
+                        started: split.started,
+                        dormants: split.dormant,
                         selectedId: selectedId
                     )
                 }
+                if mode != newMode { mode = newMode }
             }
         } catch {
             self.error = error.localizedDescription
-            mode = .empty
-            startedSummaries = []
-            dormantSummaries = []
-            emptyModeSuggestions = []
-            recordsByID = [:]
-            routineRenewalStatesByRecord = [:]
+            if mode != .empty { mode = .empty }
+            if !startedSummaries.isEmpty { startedSummaries = [] }
+            if !dormantSummaries.isEmpty { dormantSummaries = [] }
+            if !emptyModeSuggestions.isEmpty { emptyModeSuggestions = [] }
+            if !recordsByID.isEmpty { recordsByID = [:] }
+            if !routineRenewalStatesByRecord.isEmpty { routineRenewalStatesByRecord = [:] }
         }
-        loading = false
+        if loading { loading = false }
+        hasCompletedInitialLoad = true
     }
 
     /// **Story 3.31** — calcule l'état de renouvellement de chaque routine
@@ -401,7 +426,7 @@ final class SessionDashboardViewModel {
     /// calendrier), on garde la plus récente (`appliedAt` desc).
     private func loadRegenBadges(userId: UUID) async {
         guard let repo = weeklyRegenRepository else {
-            regenBadgesByRecord = [:]
+            if !regenBadgesByRecord.isEmpty { regenBadgesByRecord = [:] }
             return
         }
         let now = nowProvider()
@@ -417,10 +442,11 @@ final class SessionDashboardViewModel {
             for entry in entries where map[entry.recordId] == nil {
                 map[entry.recordId] = RegenBadge.from(entry: entry)
             }
-            regenBadgesByRecord = map
+            // Garde par égalité (#3) — pas de mutation Observation si identique.
+            if regenBadgesByRecord != map { regenBadgesByRecord = map }
         } catch {
             Self.logger.debug("weeklyRegen.fetchJournalForCurrentWeek failed: \(error.localizedDescription)")
-            regenBadgesByRecord = [:]
+            if !regenBadgesByRecord.isEmpty { regenBadgesByRecord = [:] }
         }
     }
 
@@ -479,8 +505,12 @@ final class SessionDashboardViewModel {
     ) -> (started: [ProgramSummary], dormant: [ProgramSummary]) {
         let summaries = programs.map { record -> ProgramSummary in
             let nextResult = resolver.nextSession(for: record, now: now)
-            let resolvedName = cachedLibrary?.templates
-                .first { $0.id == record.templateId }?.name ?? record.templateId
+            // Fallback `templateName` (records pré-3.28 sans goalCode) : nom canonique
+            // FR. Le titre des records modernes est localisé via `displayTitle(locale:)`
+            // (AutoTitleBuilder, Story 3.28) — la localisation du titre programme est
+            // hors scope B1 (= contenu des séances).
+            let resolvedName = cachedLibrary?.summaries
+                .first { $0.id == record.templateId }?.name.canonical ?? record.templateId
             let sport = Sport(sportCode: record.sportCode) ?? .running
             // **Story 3.31 follow-up** — comptage active-only (hors `.rest`).
             // Les jours de repos ne sont ni « à faire » ni complétables : les
@@ -492,11 +522,17 @@ final class SessionDashboardViewModel {
             let total = record.sessions.filter { $0.type != .rest }.count
             let completed = record.completionState.completedCount
             let currentWeek = currentWeekNumber(for: record, now: now)
+            // Story 3.35m — la semaine AFFICHÉE (bandeau + ratio) = celle de la
+            // prochaine séance (là où l'user en est dans le programme), pas la
+            // semaine calendaire. Évite « SEMAINE 2 » au-dessus de séances de
+            // semaine 1 quand on est en retard (retour Sophie). La semaine
+            // calendaire reste utilisée pour le badge « En retard » plus bas.
+            let contextWeek = nextResult?.session.weekNumber ?? currentWeek
             let weekTotalSessions = record.sessions
-                .filter { $0.weekNumber == currentWeek && $0.type != .rest }
+                .filter { $0.weekNumber == contextWeek && $0.type != .rest }
                 .count
             let weekCompletedSessions = record.sessions
-                .filter { $0.weekNumber == currentWeek }
+                .filter { $0.weekNumber == contextWeek }
                 .filter { record.completionState.sessionRecords[$0.id] != nil }
                 .count
             // **Story 3.11 AC6** — late = blocage doux actif ET prochaine
@@ -532,7 +568,7 @@ final class SessionDashboardViewModel {
                 durationMode: record.durationMode,
                 mode: record.mode,
                 nextSession: nextResult?.session,
-                currentWeekNumber: currentWeek,
+                currentWeekNumber: contextWeek,
                 weekCompletedSessions: weekCompletedSessions,
                 weekTotalSessions: weekTotalSessions,
                 totalSessionsCompleted: completed,

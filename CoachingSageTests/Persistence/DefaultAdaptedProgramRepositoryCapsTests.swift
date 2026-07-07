@@ -66,7 +66,7 @@ final class DefaultAdaptedProgramRepositoryCapsTests: XCTestCase {
 
     func testSaveThrowsWhenStartedCapReached() async throws {
         let userId = UUID()
-        // Saturer le cap started à 5.
+        // Saturer le cap started (8).
         for _ in 0..<DefaultAdaptedProgramRepository.startedCap {
             try await repo.save(makeStarted(userId: userId))
         }

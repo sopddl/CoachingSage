@@ -155,7 +155,9 @@ final class DefaultRoutineCycleService: RoutineCycleService {
                     type: original.type,
                     warmup: original.warmup,
                     exercises: original.exercises,
-                    cooldown: original.cooldown
+                    cooldown: original.cooldown,
+                    warmupMinutes: original.warmupMinutes,
+                    cooldownMinutes: original.cooldownMinutes
                 )
             }
             record.sessions = sessions

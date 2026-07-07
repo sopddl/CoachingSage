@@ -2,7 +2,6 @@
 // Story 3.19 — couverture cascade `ExercisePatternResolver.resolve` sur le
 // corpus 32 variantes templates v2 + keywords + sport fallback + .generic.
 import XCTest
-@testable import CoachingSage
 import TemplateModel
 
 final class ExercisePatternResolverTests: XCTestCase {
@@ -10,7 +9,7 @@ final class ExercisePatternResolverTests: XCTestCase {
     // MARK: - Helpers
 
     private func ex(_ name: String) -> AdaptedExercise {
-        AdaptedExercise(name: name, originalName: name)
+        AdaptedExercise(name: LocalizedText(fr: name), originalName: name)
     }
 
     private func resolve(_ name: String, sport: String = "strengthTraining") -> ExercisePattern {
@@ -40,7 +39,10 @@ final class ExercisePatternResolverTests: XCTestCase {
     }
 
     func test_pattern_hinge_hyp() {
-        XCTAssertEqual(resolve("Hip thrust (pattern hinge hyp)"), .hinge)
+        // Token « hinge hyp » → hinge. NB : exemple changé en RDL — « Hip thrust » est
+        // désormais reclassé hipThrust (revue 2026-06-08, mistag template corrigé),
+        // couvert par FocusReviewFixesTests.test_resolver_hipThrust_mistaggedHinge.
+        XCTAssertEqual(resolve("Romanian deadlift barre (pattern hinge hyp)"), .hinge)
     }
 
     func test_pattern_moteur_asymetrique_maps_to_core() {

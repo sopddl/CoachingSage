@@ -46,9 +46,9 @@ public struct MedicalClearanceRule: AdaptationRule {
                             ruleType: ruleType,
                             weekNumber: week.weekNumber,
                             day: session.day,
-                            originalExerciseName: session.name,
+                            originalExerciseName: session.name.canonical,
                             outcome: .downgraded,
-                            detail: "Session « \(session.name) » : type interval → endurance (PARQ medical clearance)"
+                            detail: "Session « \(session.name.canonical) » : type interval → endurance (PARQ medical clearance)"
                         ))
                     }
                     return AdaptedSession(
@@ -60,7 +60,9 @@ public struct MedicalClearanceRule: AdaptationRule {
                         exercises: session.exercises.map { ex in
                             downgrade(exercise: ex, weekNumber: week.weekNumber, day: session.day, appliedRules: &appliedRules)
                         },
-                        cooldown: session.cooldown
+                        cooldown: session.cooldown,
+                        warmupMinutes: session.warmupMinutes,
+                        cooldownMinutes: session.cooldownMinutes
                     )
                 }
             )
@@ -93,11 +95,16 @@ public struct MedicalClearanceRule: AdaptationRule {
             reps: ex.reps,
             duration: ex.duration,
             restSeconds: ex.restSeconds,
+            dose: ex.dose,
             notes: ex.notes,
             targetZone: downgradedZone,
             volumeAxis: ex.volumeAxis,
             wasSubstituted: ex.wasSubstituted,
-            substitutionReason: ex.substitutionReason
+            substitutionReason: ex.substitutionReason,
+            role: ex.role,
+            scalingUnit: ex.scalingUnit,
+            priority: ex.priority,
+            estimatedMinutes: ex.estimatedMinutes
         )
     }
 

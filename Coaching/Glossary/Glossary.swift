@@ -73,16 +73,32 @@ public enum Glossary {
                       sportCodes: [Sport.running]),
         GlossaryEntry(id: "vdot",       titleKey: "glossary.vdot.title",       definitionKey: "glossary.vdot.definition",
                       sportCodes: [Sport.running]),
+        // Chantier compréhensibilité running (2026-06-25) — jargon orphelin glosé
+        // (décision Sophie : VMA/seuil gardés comme vocabulaire coureur, rendus tappables).
+        GlossaryEntry(id: "vma",        titleKey: "glossary.vma.title",        definitionKey: "glossary.vma.definition",
+                      sportCodes: [Sport.running, Sport.cycling]),
+        GlossaryEntry(id: "seuil",      titleKey: "glossary.seuil.title",      definitionKey: "glossary.seuil.definition",
+                      sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.triathlon]),
+        GlossaryEntry(id: "affutage",   titleKey: "glossary.affutage.title",   definitionKey: "glossary.affutage.definition",
+                      sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.triathlon]),
+        GlossaryEntry(id: "aerobie",    titleKey: "glossary.aerobie.title",    definitionKey: "glossary.aerobie.definition",
+                      sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.triathlon, Sport.hiking]),
+        GlossaryEntry(id: "excentrique",titleKey: "glossary.excentrique.title",definitionKey: "glossary.excentrique.definition",
+                      sportCodes: [Sport.running, Sport.strengthTraining]),
         // Swimming
         GlossaryEntry(id: "en",         titleKey: "glossary.en.title",         definitionKey: "glossary.en.definition",
                       sportCodes: [Sport.swimming]),
         GlossaryEntry(id: "css",        titleKey: "glossary.css.title",        definitionKey: "glossary.css.definition",
-                      sportCodes: [Sport.swimming]),
+                      sportCodes: [Sport.swimming, Sport.triathlon]),
         // Cycling
         GlossaryEntry(id: "ftp",        titleKey: "glossary.ftp.title",        definitionKey: "glossary.ftp.definition",
-                      sportCodes: [Sport.cycling]),
+                      sportCodes: [Sport.cycling, Sport.triathlon]),
         GlossaryEntry(id: "sweetspot",  titleKey: "glossary.sweetspot.title",  definitionKey: "glossary.sweetspot.definition",
                       sportCodes: [Sport.cycling]),
+        // Chantier compréhensibilité cycling (2026-06-25) — FCmax gardée comme repère cardio
+        // (décision Sophie : FTP/FCmax/VO2max gardés, rendus tappables ; FTP/VO2max déjà glosés).
+        GlossaryEntry(id: "fcmax",      titleKey: "glossary.fcmax.title",      definitionKey: "glossary.fcmax.definition",
+                      sportCodes: [Sport.cycling, Sport.running, Sport.swimming, Sport.triathlon, Sport.hiit, Sport.hiking]),
         // Protocoles HIIT / strength
         GlossaryEntry(id: "amrap",      titleKey: "glossary.amrap.title",      definitionKey: "glossary.amrap.definition",
                       sportCodes: [Sport.hiit, Sport.strengthTraining]),
@@ -103,7 +119,7 @@ public enum Glossary {
         GlossaryEntry(id: "threshold",  titleKey: "glossary.threshold.title",  definitionKey: "glossary.threshold.definition",
                       sportCodes: [Sport.running, Sport.cycling, Sport.swimming]),
         GlossaryEntry(id: "vo2max",     titleKey: "glossary.vo2max.title",     definitionKey: "glossary.vo2max.definition",
-                      sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.hiit]),
+                      sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.hiit, Sport.triathlon]),
         GlossaryEntry(id: "intervals",  titleKey: "glossary.intervals.title",  definitionKey: "glossary.intervals.definition",
                       sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.hiit]),
         GlossaryEntry(id: "strides",    titleKey: "glossary.strides.title",    definitionKey: "glossary.strides.definition",
@@ -145,6 +161,15 @@ public enum Glossary {
                       sportCodes: [Sport.strengthTraining]),
         GlossaryEntry(id: "reps",           titleKey: "glossary.reps.title",           definitionKey: "glossary.reps.definition",
                       sportCodes: [Sport.strengthTraining, Sport.hiit]),
+        // Revue comité 2026-06-06 — jargon échauffement non glossarié (P0 challenger).
+        GlossaryEntry(id: "glutes",         titleKey: "glossary.glutes.title",         definitionKey: "glossary.glutes.definition",
+                      sportCodes: [Sport.strengthTraining, Sport.running, Sport.hiit]),
+        GlossaryEntry(id: "band",           titleKey: "glossary.band.title",           definitionKey: "glossary.band.definition",
+                      sportCodes: [Sport.strengthTraining, Sport.running, Sport.hiit]),
+        GlossaryEntry(id: "mobility",       titleKey: "glossary.mobility.title",       definitionKey: "glossary.mobility.definition",
+                      sportCodes: [Sport.strengthTraining, Sport.running, Sport.cycling, Sport.yoga, Sport.hiit]),
+        GlossaryEntry(id: "recovery",       titleKey: "glossary.recovery.title",       definitionKey: "glossary.recovery.definition",
+                      sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.hiit, Sport.strengthTraining]),
         // Story 3.26 Phase A — 27 termes sport-spécifiques.
         // Yoga (8)
         GlossaryEntry(id: "yoga.asana",         titleKey: "glossary.yoga.asana.title",         definitionKey: "glossary.yoga.asana.definition",        sportCodes: [Sport.yoga]),
@@ -166,6 +191,7 @@ public enum Glossary {
         GlossaryEntry(id: "football.unetouche",    titleKey: "glossary.football.unetouche.title",    definitionKey: "glossary.football.unetouche.definition",    sportCodes: [Sport.football]),
         GlossaryEntry(id: "football.transition",   titleKey: "glossary.football.transition.title",   definitionKey: "glossary.football.transition.definition",   sportCodes: [Sport.football]),
         GlossaryEntry(id: "football.rsa",          titleKey: "glossary.football.rsa.title",          definitionKey: "glossary.football.rsa.definition",          sportCodes: [Sport.football]),
+        GlossaryEntry(id: "football.fifa11plus",   titleKey: "glossary.football.fifa11plus.title",   definitionKey: "glossary.football.fifa11plus.definition",   sportCodes: [Sport.football]),
         // Hiking (4)
         GlossaryEntry(id: "hiking.denivele",    titleKey: "glossary.hiking.denivele.title",    definitionKey: "glossary.hiking.denivele.definition",   sportCodes: [Sport.hiking]),
         GlossaryEntry(id: "hiking.elevation",   titleKey: "glossary.hiking.elevation.title",   definitionKey: "glossary.hiking.elevation.definition",  sportCodes: [Sport.hiking]),

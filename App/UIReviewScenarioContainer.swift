@@ -17,6 +17,7 @@
 //   3. Screenshot avec `xcrun simctl io booted screenshot /tmp/X.png`
 import SwiftUI
 import TemplateModel
+import TemplateLoader
 
 #if DEBUG
 struct UIReviewScenarioContainer: View {
@@ -43,6 +44,21 @@ struct UIReviewScenarioContainer: View {
                 program: AdaptedProgramPreviewFixtures.kneeInjury,
                 onConfirmStart: { /* noop pour la review */ }
             )
+        case "ui_review_adapter_triathlon_recap":
+            // Chantier récap hebdo triathlon (2026-07-06) — semaine 1 multi-discipline
+            // (nage+vélo+course+renfo) collapsed par défaut : vérifier le récap
+            // d'icônes sous le titre + qu'il disparaît une fois dépliée. Semaine 2 =
+            // mono-discipline (vélo seul) pour vérifier le récap à un seul élément.
+            AdaptedProgramView(
+                program: AdaptedProgramPreviewFixtures.triathlonMultiDiscipline,
+                onConfirmStart: { /* noop pour la review */ }
+            )
+        case "ui_review_session_detail_triathlon_recap":
+            // Chantier récap hebdo triathlon (2026-07-06/07) — écran de DÉTAIL d'une
+            // séance (Natation) au sein d'une semaine multi-discipline (nage+vélo+
+            // course+renfo). Vérifier la ligne "Cette semaine :" sous le hero header —
+            // doit lister nage/vélo/course, PAS le jour renfo (fallback triathlon).
+            SessionDetailTriathlonRecapScenarioView()
         case "ui_review_adapter_preview_rules_expanded":
             // Variante Bug #3 — même vue, mais avec le DisclosureGroup déployé
             // au launch (.task qui flip @State). Permet de screenshot la liste
@@ -60,6 +76,22 @@ struct UIReviewScenarioContainer: View {
                 // la régression Bug #3 (la liste DOIT être collapsed par
                 // défaut, c'était l'objet du fix).
             }
+        case "ui_review_adapter_preview_densified":
+            // **Densité B (2026-07-03)** — programme densifié à la création : la
+            // bannière phrase Léon (surface UNIQUE de la densité) s'affiche en tête,
+            // avec les VRAIES clés localisées (contrairement au snapshot logic-test
+            // qui rend les clés brutes — dette bundle swizzle). Vérifier : wording
+            // FR/EN, wrap du sous-titre, icône teal, AUCUN marqueur swap orange sur
+            // les rows (les règles densité en sont exclues).
+            AdaptedProgramView(
+                program: AdaptedProgramPreviewFixtures.densified,
+                onConfirmStart: { /* noop pour la review */ }
+            )
+        case "ui_review_questionnaire_activity_calibration":
+            // **Densité B (2026-07-03)** — question de calibrage QActivity (cold-start
+            // HK muet) : fil Q1 répondu « débutant » puis bulle QActivity + options
+            // Oui/Non. Vérifier : wording FR/EN, longueur de la bulle, options.
+            QuestionnaireActivityCalibrationScenarioView()
         case "ui_review_progress_with_hk_history":
             // Bug #1 — Progrès affiche historique HK même sans programme actif.
             // Pas porté ici : ProgressionView dépend trop fortement de
@@ -180,6 +212,25 @@ struct UIReviewScenarioContainer: View {
             // fond uniforme propre derrière l'alerte (fix de la "barre au milieu"
             // photo 5 Sophie : avant, le VStack vide se rétractait → bande moche).
             QuestionnaireEmptyStateScenarioView()
+        case "ui_review_duration_adjust_pick":
+            // Chantier durée réglable, pilote cycling (Increment 3) — sheet étape 1,
+            // TextField+Stepper préréglé sur la durée actuelle (60 min). Rendue via une
+            // vraie présentation `.sheet` (pattern `QuestionnaireEmptyStateScenarioView`)
+            // — le `Form` de l'étape pick a besoin du contexte de présentation réel pour
+            // se layout correctement (rendu root direct = écran blanc, artefact harnais).
+            DurationAdjustSheetScenarioView(initialStep: .pick)
+        case "ui_review_duration_adjust_result_ok":
+            // Increment 3 — étape 2, résultat DANS la fourchette (pas de message de
+            // bornage). Vérif : icône verte, chiffre réel affiché.
+            DurationAdjustSheetScenarioView(initialStep: .result(newDuration: 50, wasBounded: false))
+        case "ui_review_duration_adjust_result_bounded":
+            // Increment 3 — étape 2, résultat BORNÉ (doctrine D7 « Léon borne honnête »).
+            // Vérif : icône orange, message doux, PAS de jargon "cible vs obtenu".
+            DurationAdjustSheetScenarioView(initialStep: .result(newDuration: 90, wasBounded: true))
+        case "ui_review_duration_adjust_error_completed":
+            // Increment 3 — garde-fou doctrine 9.3 (séance déjà complétée), au cas où
+            // le service serait appelé malgré le bouton masqué côté UI.
+            DurationAdjustSheetScenarioView(initialStep: .error(.sessionAlreadyCompleted))
         case "ui_review_replanify_sheet_pickdate":
             // **Story 3.11** — ReplanifySheet step `.pickDate` : DatePicker
             // graphical + bouton Valider + bouton Retour. Step initial forcé
@@ -213,6 +264,77 @@ struct UIReviewScenarioContainer: View {
             // **Story 3.19 Jalon 2a** — SessionDetailView running pour valider
             // les illus running endurance + interval.
             SessionDetailRunningScenarioView()
+        case "ui_review_session_detail_hub_yoga":
+            // **Story 3.32 (HUB)** — SessionDetailView yoga : valide la grille 3
+            // cellules AGNOSTIQUE sans case vide (pas de "Zone —") + Format
+            // "N postures" + aperçu scannable. Cas AC11 "aucune cellule vide yoga".
+            SessionDetailHubYogaScenarioView()
+        case "ui_review_session_focus_strength":
+            // **Story 3.33 (FOCUS)** — mode exécution plein écran strength : barre
+            // top (fermer + "1/4" + points), warmup en 1ʳᵉ étape, card exo riche
+            // (illustration + métriques + notes + "Comment l'exécuter ?"), bouton
+            // "✓ Fait", nav bas Précédent/Passer/Suivant.
+            SessionFocusView(
+                session: SessionFocusStrengthFixture.session,
+                week: SessionFocusStrengthFixture.week,
+                program: SessionFocusStrengthFixture.program
+            )
+        case "ui_review_session_focus_strength_exo":
+            // POC muscu 2026-06-06 (Sophie « dessins trop petits ») — fixture SANS
+            // échauffement → atterrit direct sur la 1ʳᵉ série (Goblet squat) pour
+            // voir l'illustration en contexte FOCUS sans devoir skipper l'échauffement.
+            SessionFocusView(
+                session: SessionFocusStrengthExoFixture.session,
+                week: SessionFocusStrengthExoFixture.week,
+                program: SessionFocusStrengthExoFixture.program
+            )
+        case "ui_review_session_focus_single":
+            // **Story 3.33 (AC11)** — cas séance à 1 seul exo : points/compteur/nav
+            // se comportent bien (nav désactivée aux extrémités, pas de crash).
+            SessionFocusView(
+                session: SessionFocusSingleFixture.session,
+                week: SessionFocusSingleFixture.week,
+                program: SessionFocusSingleFixture.program
+            )
+        case "ui_review_session_focus_hiit":
+            // **Story 3.34 (FOCUS Minuté)** — HIIT : gros compte à rebours, pré-annonce
+            // « Prochain : … » (anti-Decathlon), progression « Tour T/R », Pause/Passer.
+            SessionFocusView(
+                session: SessionFocusHIITFixture.session,
+                week: SessionFocusHIITFixture.week,
+                program: SessionFocusHIITFixture.program
+            )
+        case "ui_review_session_focus_yoga":
+            // **Story 3.34 (FOCUS Minuté)** — yoga : tenue par posture (avance auto),
+            // progression « Posture p/P ».
+            SessionFocusView(
+                session: SessionFocusYogaFixture.session,
+                week: SessionFocusYogaFixture.week,
+                program: SessionFocusYogaFixture.program
+            )
+        case "ui_review_session_focus_runwalk":
+            // **Story 3.35d** — run/walk décomposé : segments « Course 1 » / « Marche 1 »
+            // alternés, gros temps mm:ss, toggle son haut-droite. Reproduit le cas
+            // device de Sophie (Bloc run/walk sets=8).
+            SessionFocusView(
+                session: SessionFocusRunWalkFixture.session,
+                week: SessionFocusRunWalkFixture.week,
+                program: SessionFocusRunWalkFixture.program
+            )
+        case "ui_review_session_focus_audio":
+            // **Story 3.35 (FOCUS Audio)** — running : écran glançable (gros compte à
+            // rebours + bloc courant) + toggle son haut-droite (voix H/F = profil).
+            // La voix/ducking sont validés sur device (hand-off).
+            SessionFocusView(
+                session: SessionFocusAudioFixture.session,
+                week: SessionFocusAudioFixture.week,
+                program: SessionFocusAudioFixture.program
+            )
+        case "ui_review_music_app_picker":
+            // **Story 3.35c** — sélecteur d'appli musique (onboarding/profil) + la
+            // section musique de la séance qui n'ouvre QUE l'app choisie. Préréglée
+            // sur Deezer pour valider l'ajout Deezer + le rendu mono-app.
+            MusicAppPickerScenarioView()
         case "ui_review_illustrations_showcase":
             // **Story 3.19 Jalon 2b** — showcase TOUTES les illustrations
             // (15 patterns) en grille pour screenshot HTML overview Sophie.
@@ -251,6 +373,42 @@ struct UIReviewScenarioContainer: View {
             // dépend de Supabase). `SportProfileView` ne lit QUE le
             // HealthKitService → rendu propre et isolé pour review FR/EN.
             SportProfileView()
+        case "ui_review_yoga_poc":
+            // **POC yoga 2026-06-05 (party D1+D4)** — showcase statique : 3 postures
+            // NON cataloguées (doivent prendre la bonne ORIENTATION fallback, plus
+            // Warrior I debout systématique) + une posture connue à la taille FOCUS
+            // (grossie + centrée). Pour review Sally/Inès sans souci de timing timer.
+            YogaPOCScenarioView()
+        case "ui_review_2a_cycling_j5":
+            // **2A indoor/outdoor (2026-06-12)** — rend la séance J5 « mixte » réelle de
+            // cycling-beginner-reprise dans SessionDetailView. En outdoor (natif) le renfo
+            // hors-vélo doit avoir DISPARU (pédalage seul + titre sans « + renforcement »).
+            // Vérif sans tap (taps simu bloqués).
+            RealCyclingJ5ScenarioView()
+        case let s where s.hasPrefix("ui_review_session_hub_real_"):
+            // Tour didactique multi-sports — charge le VRAI template bundlé du
+            // sport (pipeline réel TemplateLoader → ProgramAdapter) et rend la
+            // 1re séance dans SessionDetailView. Le sport est encodé en suffixe :
+            //   ui_review_session_hub_real_<Sport.rawValue>
+            //   ex: ..._running, ..._cycling, ..._strength_training, ..._yoga
+            RealTemplateHubScenarioView(
+                sportRawValue: String(s.dropFirst("ui_review_session_hub_real_".count)),
+                level: .beginner
+            )
+        case let s where s.hasPrefix("ui_review_persona_"):
+            // Batch retours personas (débutant/initié/expert) par sport — même
+            // pipeline réel TemplateLoader → ProgramAdapter que ci-dessus, mais
+            // niveau paramétrable. Suffixe : ui_review_persona_<Sport>_<Level>
+            //   ex: ui_review_persona_running_beginner, ..._strength_training_competitive
+            let rest = String(s.dropFirst("ui_review_persona_".count))
+            if let level = Level.allCases.first(where: { rest.hasSuffix("_" + $0.rawValue) }) {
+                RealTemplateHubScenarioView(
+                    sportRawValue: String(rest.dropLast(level.rawValue.count + 1)),
+                    level: level
+                )
+            } else {
+                UnsupportedScenarioView(scenario: scenario)
+            }
         default:
             UnsupportedScenarioView(scenario: scenario)
         }
@@ -639,8 +797,8 @@ private struct DashboardActiveScenarioView: View {
     private func makeSession(name: String, week: Int, day: Int, dur: Int) -> PersistedSession {
         PersistedSession(
             id: UUID(),
-            weekNumber: week, weekTheme: "Sem \(week)", weekGoal: "Endurance",
-            day: day, name: name, durationMinutes: dur, type: .endurance,
+            weekNumber: week, weekTheme: LocalizedText(fr: "Sem \(week)"), weekGoal: "Endurance",
+            day: day, name: LocalizedText(fr: name), durationMinutes: dur, type: .endurance,
             warmup: "10 min échauffement", exercises: [], cooldown: "5 min retour au calme"
         )
     }
@@ -821,6 +979,39 @@ private struct QuestionnaireThreadEditScenarioView: View {
     }
 }
 
+// MARK: - Densité B — QuestionnaireActivityCalibrationScenarioView
+
+/// Densité B (2026-07-03) — reproduit l'état réel du questionnaire quand la question
+/// de calibrage QActivity vient d'être posée (cold-start HK muet, Q1 = débutant) :
+/// fil de bulles + zone options singleChoice, comme dans `SportQuestionnaireView`.
+private struct QuestionnaireActivityCalibrationScenarioView: View {
+    @State private var freeTextDraft: String = ""
+
+    var body: some View {
+        VStack(spacing: 0) {
+            ScrollView {
+                VStack(spacing: 12) {
+                    ChatBubbleView(sender: .leon, textRaw: "questionnaire.universal.intro", avatarStyle: .sport(code: "running"))
+                    ChatBubbleView(sender: .leon, textRaw: "questionnaire.universal.q1.text", avatarStyle: .sport(code: "running"))
+                    ChatBubbleView(sender: .user, textRaw: "questionnaire.universal.q1.option.beginner", onEdit: {})
+                    ChatBubbleView(sender: .leon, textRaw: UniversalQuestionnaire.qActivity.textKey, avatarStyle: .sport(code: "running"))
+                }
+                .padding(16)
+            }
+            Divider()
+            QuestionAnswerOptionsView(
+                question: UniversalQuestionnaire.qActivity,
+                onAnswer: { _ in },
+                freeTextDraft: $freeTextDraft,
+                isLocked: false,
+                sportCode: "running"
+            )
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
+        .navigationTitle(Text("questionnaire.title"))
+    }
+}
+
 // MARK: - Story 3.30 polish #3 — QuestionnaireEmptyStateScenarioView
 
 /// Reproduit FIDÈLEMENT le contexte réel : questionnaire présenté en `.sheet`
@@ -845,6 +1036,37 @@ private struct QuestionnaireEmptyStateScenarioView: View {
                         Button("questionnaire.recovery.restart", role: .destructive) {}
                     }
                 }
+            }
+    }
+}
+
+// MARK: - Chantier durée réglable, pilote cycling (Increment 3) — DurationAdjustSheetScenarioView
+
+/// Reproduit FIDÈLEMENT le contexte réel (pattern `QuestionnaireEmptyStateScenarioView`) :
+/// `SessionDurationAdjustSheet` présentée en vraie `.sheet`, pas en root direct — le `Form`
+/// de l'étape `.pick` a besoin du contexte de présentation modal pour se layout (rendu
+/// root direct = écran blanc, artefact du harnais scénario, pas un bug de l'écran réel).
+private struct DurationAdjustSheetScenarioView: View {
+    let initialStep: SessionDurationAdjustSheet.Step
+
+    var body: some View {
+        Color.coachingBackground.ignoresSafeArea()
+            .sheet(isPresented: .constant(true)) {
+                SessionDurationAdjustSheet(
+                    currentDurationMinutes: 60,
+                    adjust: { target in
+                        SessionDurationAdjustmentResult(
+                            session: PersistedSession(
+                                weekNumber: 1, weekTheme: "Test", weekGoal: "Test", day: 1,
+                                name: "Séance test", durationMinutes: target, type: .endurance,
+                                warmup: nil, exercises: [], cooldown: nil
+                            ),
+                            wasBounded: false
+                        )
+                    },
+                    onAdjusted: { _ in },
+                    initialStep: initialStep
+                )
             }
     }
 }
@@ -931,6 +1153,25 @@ private struct SessionDetailGlossaryScenarioView: View {
             ],
             cooldown: "10 min footing très lent + étirements doux. Idéal pour évacuer le lactate accumulé pendant les intervals et préparer la récupération."
         )
+    }
+}
+
+// MARK: - Chantier récap hebdo triathlon — SessionDetailTriathlonRecapScenarioView
+
+/// Container récap hebdo triathlon (2026-07-06/07) — affiche `SessionDetailView`
+/// sur la séance Natation de la semaine 1 du fixture
+/// `AdaptedProgramPreviewFixtures.triathlonMultiDiscipline` (nage+vélo+renfo+course).
+private struct SessionDetailTriathlonRecapScenarioView: View {
+    var body: some View {
+        SessionDetailView(
+            session: week.sessions[0],
+            week: week,
+            program: AdaptedProgramPreviewFixtures.triathlonMultiDiscipline
+        )
+    }
+
+    private var week: AdaptedWeek {
+        AdaptedProgramPreviewFixtures.triathlonMultiDiscipline.weeks[0]
     }
 }
 
@@ -1134,6 +1375,379 @@ private struct SessionDetailRunningScenarioView: View {
             ],
             cooldown: "10 min footing très lent + étirements"
         )
+    }
+}
+
+// MARK: - Story 3.32 (HUB) — SessionDetailHubYogaScenarioView
+
+/// SessionDetailView yoga pour valider le HUB 3.32 : grille 3 cellules sans case
+/// vide (le yoga n'a pas de zone d'intensité → l'ancienne grille affichait
+/// "Zone —"), Format "N postures", aperçu scannable + phrase d'intention.
+private struct SessionDetailHubYogaScenarioView: View {
+    var body: some View {
+        SessionDetailView(session: yogaSession, week: yogaWeek, program: yogaProgram)
+    }
+
+    private var yogaWeek: AdaptedWeek {
+        AdaptedWeek(weekNumber: 1, theme: "Mobilité & respiration", goal: "Ancrage du souffle", sessions: [])
+    }
+
+    private var yogaProgram: AdaptedProgram {
+        AdaptedProgram(
+            templateId: "yoga-hub-fixture",
+            sport: .yoga, level: .beginner, appliedAt: Date(),
+            weeks: [yogaWeek], appliedRules: [], requiresAIAssist: false
+        )
+    }
+
+    private var yogaSession: AdaptedSession {
+        AdaptedSession(
+            day: 1, name: "Flow doux du matin", durationMinutes: 45, type: .mobility,
+            warmup: "5 min respiration Dirgha assise",
+            exercises: [
+                AdaptedExercise(name: "Chien tête en bas", originalName: "Chien tête en bas", duration: "1 min"),
+                AdaptedExercise(name: "Guerrier I", originalName: "Guerrier I", duration: "45 s"),
+                AdaptedExercise(name: "Arbre", originalName: "Arbre", duration: "30 s"),
+                AdaptedExercise(name: "Posture de l'enfant", originalName: "Posture de l'enfant", duration: "2 min")
+            ],
+            cooldown: "5 min Savasana"
+        )
+    }
+}
+
+// MARK: - Tour didactique multi-sports — vrai template bundlé
+
+/// Charge le VRAI template bundlé du sport demandé via le pipeline réel
+/// (`TemplateLoader.loadAll` → `ProgramAdapter.adapt`) et rend la 1re séance
+/// réelle dans `SessionDetailView`. Permet de tester le contenu didactique
+/// authentique (titres, exercices, échauffement/récup, jargon) des 10 sports
+/// sans dépendre de la navigation (taps de bord non fiables au bridge).
+private struct RealTemplateHubScenarioView: View {
+    let sportRawValue: String
+    let level: Level
+
+    @State private var program: AdaptedProgram?
+    @State private var session: AdaptedSession?
+    @State private var week: AdaptedWeek?
+    @State private var status: String = "Chargement…"
+
+    var body: some View {
+        Group {
+            if let program, let session, let week {
+                SessionDetailView(session: session, week: week, program: program)
+            } else {
+                VStack(spacing: 12) {
+                    ProgressView()
+                    Text(verbatim: status)
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                }
+            }
+        }
+        .task { await load() }
+    }
+
+    private func load() async {
+        guard let sport = Sport(rawValue: sportRawValue) else {
+            status = "Sport inconnu : \(sportRawValue)\nValides : \(Sport.allCases.map(\.rawValue).joined(separator: ", "))"
+            return
+        }
+        do {
+            let all = try await TemplateLoader.loadAll()
+            let forSport = all.filter { $0.sport == sport }
+            guard let template = forSport.first(where: { $0.level == level }) ?? forSport.first else {
+                status = "Aucun template bundlé pour \(sport.rawValue) au niveau \(level.rawValue)"
+                return
+            }
+            let adapted = ProgramAdapter().adapt(
+                template: template,
+                sportProfile: AdapterSportProfile(
+                    constraints: [],
+                    equipment: [],
+                    frequencyPerWeek: 3,
+                    sportCode: sport.rawValue,
+                    durationMode: .routineCyclic
+                ),
+                coachingProfile: AdapterCoachingProfile(requiresMedicalClearance: false)
+            )
+            guard let w = adapted.weeks.first, let s = w.sessions.first else {
+                status = "Template \(template.id) : aucune séance générée"
+                return
+            }
+            self.program = adapted
+            self.week = w
+            self.session = s
+        } catch {
+            status = "Erreur chargement/adaptation \(sport.rawValue) : \(error)"
+        }
+    }
+}
+
+// MARK: - 2A indoor/outdoor — séance vélo J5 réelle (vérif sans tap)
+
+/// Charge le vrai template cycling débutant (reprise) et rend sa séance J5 « mixte »
+/// dans SessionDetailView. En outdoor (natif), le filtre/template 2A doit avoir retiré
+/// le renfo hors-vélo → pédalage seul, titre sans « + renforcement », durée recalée.
+private struct RealCyclingJ5ScenarioView: View {
+    @State private var program: AdaptedProgram?
+    @State private var session: AdaptedSession?
+    @State private var week: AdaptedWeek?
+    @State private var status: String = "Chargement…"
+
+    var body: some View {
+        Group {
+            if let program, let session, let week {
+                SessionDetailView(session: session, week: week, program: program)
+            } else {
+                VStack(spacing: 12) {
+                    ProgressView()
+                    Text(verbatim: status).font(.footnote).foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center).padding(.horizontal, 32)
+                }
+            }
+        }
+        .task { await load() }
+    }
+
+    private func load() async {
+        do {
+            let all = try await TemplateLoader.loadAll()
+            guard let template = all.first(where: { $0.sport == .cycling && $0.level == .beginner }) else {
+                status = "Template cycling beginner introuvable"; return
+            }
+            let adapted = ProgramAdapter().adapt(
+                template: template,
+                sportProfile: AdapterSportProfile(
+                    constraints: [], equipment: ["road-bike", "helmet", "bidons", "indoor-trainer"],
+                    frequencyPerWeek: 3, sportCode: "cycling", durationMode: .routineCyclic
+                ),
+                coachingProfile: AdapterCoachingProfile(requiresMedicalClearance: false)
+            )
+            guard let w = adapted.weeks.first,
+                  let s = w.sessions.first(where: { $0.day == 5 }) ?? w.sessions.last else {
+                status = "Séance J5 W1 introuvable (\(template.id))"; return
+            }
+            self.program = adapted; self.week = w; self.session = s
+        } catch {
+            status = "Erreur chargement : \(error)"
+        }
+    }
+}
+
+// MARK: - Story 3.33 (FOCUS) — fixtures mode exécution
+
+enum SessionFocusStrengthFixture {
+    static let week = AdaptedWeek(weekNumber: 2, theme: "Force générale", goal: "Patterns fondamentaux", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-strength-fixture", sport: .strengthTraining, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 1, name: "Full body fondamentaux", durationMinutes: 50, type: .strength,
+        warmup: "5 min vélo facile + mobilité épaules + activation glutes (band)",
+        exercises: [
+            AdaptedExercise(name: "Goblet squat (pattern squat)", originalName: "Goblet squat",
+                            sets: 4, reps: "8", restSeconds: 90,
+                            notes: "Descente contrôlée 3 secondes, poussée par les talons. Genoux dans l'axe des pieds."),
+            AdaptedExercise(name: "Romanian Deadlift haltères (pattern hinge)", originalName: "Romanian Deadlift",
+                            sets: 3, reps: "10", restSeconds: 90,
+                            notes: "Le mouvement vient de la hanche, pas du dos. Bassin recule."),
+            AdaptedExercise(name: "Plank latéral", originalName: "Plank latéral",
+                            sets: 3, duration: "30s", restSeconds: 60,
+                            notes: "Ligne droite épaules-bassin-talons. Pas de bassin qui tombe.")
+        ],
+        cooldown: "5 min étirements doux du bas du corps"
+    )
+}
+
+enum SessionFocusStrengthExoFixture {
+    static let week = AdaptedWeek(weekNumber: 2, theme: "Force générale", goal: "Patterns", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-strength-exo-fixture", sport: .strengthTraining, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 1, name: "Full body fondamentaux", durationMinutes: 50, type: .strength,
+        warmup: nil,
+        exercises: [
+            AdaptedExercise(name: "Goblet squat (pattern squat)", originalName: "Goblet squat",
+                            sets: 4, reps: "8", restSeconds: 90,
+                            notes: "Descente contrôlée 3 secondes, poussée par les talons."),
+            AdaptedExercise(name: "Romanian Deadlift haltères (pattern hinge)", originalName: "Romanian Deadlift",
+                            sets: 3, reps: "10", restSeconds: 90,
+                            notes: "Le mouvement vient de la hanche, pas du dos.")
+        ],
+        cooldown: nil
+    )
+}
+
+enum SessionFocusSingleFixture {
+    static let week = AdaptedWeek(weekNumber: 1, theme: "Découverte", goal: "—", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-single-fixture", sport: .running, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 3, name: "Footing récup", durationMinutes: 30, type: .endurance,
+        warmup: nil,
+        exercises: [
+            AdaptedExercise(name: "Footing facile", originalName: "Footing facile",
+                            duration: "30 min", notes: "Allure de conversation, respiration nasale.",
+                            targetZone: "Daniels-E")
+        ],
+        cooldown: nil
+    )
+}
+
+// MARK: - Story 3.35c — sélecteur appli musique + section séance
+
+private struct MusicAppPickerScenarioView: View {
+    init() {
+        // Préréglage Deezer pour valider le nouvel ajout + le rendu mono-app.
+        UserDefaults.standard.set(MusicStreamingApp.deezer.rawValue, forKey: MusicStreamingApp.storageKey)
+    }
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(verbatim: "Sélecteur (onboarding + profil)")
+                        .font(.caption).foregroundStyle(.secondary)
+                    MusicStreamingSelectorView()
+                }
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(verbatim: "Section séance (ouvre l'app choisie)")
+                        .font(.caption).foregroundStyle(.secondary)
+                    SessionMusicSuggestions(sportCode: "running")
+                }
+            }
+            .padding()
+        }
+    }
+}
+
+// MARK: - Story 3.35d — fixture run/walk (cas device Sophie)
+
+enum SessionFocusRunWalkFixture {
+    static let week = AdaptedWeek(weekNumber: 1, theme: "Découverte run/walk", goal: "Couch to 5K", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "running-debutant-5k-8sem", sport: .running, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    // Reproduit la VRAIE séance (nom condensé du template bundlé + échauffement + récup).
+    static let session = AdaptedSession(
+        day: 1, name: "Run/walk découverte", durationMinutes: 35, type: .mixed,
+        warmup: "5 min de marche progressive + 10 cercles de chevilles/côté + 10 balancements de jambe avant-arrière/côté + 10 demi-squats lents. Total : 8 min. Ne jamais sauter cette étape.",
+        exercises: [
+            AdaptedExercise(name: "Bloc run/walk 1 min / 1 min 30", originalName: "Bloc run/walk",
+                            sets: 8, duration: "1 min course lente + 1 min 30 marche rapide", restSeconds: 0,
+                            notes: "Allure de course TRÈS lente, test de la parole.")
+        ],
+        cooldown: "3 min marche lente. Étirements statiques : mollets 30 sec/jambe, quadriceps 30 sec/jambe. Hydratation."
+    )
+}
+
+// MARK: - Story 3.35 (FOCUS Audio) — fixture
+
+enum SessionFocusAudioFixture {
+    static let week = AdaptedWeek(weekNumber: 3, theme: "Endurance + tempo", goal: "Allure soutenue", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-audio-fixture", sport: .running, level: .regular,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 2, name: "Sortie tempo", durationMinutes: 35, type: .endurance,
+        warmup: nil,
+        exercises: [
+            AdaptedExercise(name: "Échauffement footing", originalName: "Échauffement footing",
+                            duration: "10 min", notes: "Allure très facile, Z2.", targetZone: "Z2"),
+            AdaptedExercise(name: "Bloc tempo", originalName: "Bloc tempo",
+                            duration: "15 min", notes: "Allure seuil, soutenue mais maîtrisée.", targetZone: "Daniels-T"),
+            AdaptedExercise(name: "Retour au calme", originalName: "Retour au calme",
+                            duration: "10 min", notes: "Footing très lent.", targetZone: "Z1")
+        ],
+        cooldown: nil
+    )
+}
+
+// MARK: - Story 3.34 (FOCUS Minuté) — fixtures
+
+enum SessionFocusHIITFixture {
+    static let week = AdaptedWeek(weekNumber: 2, theme: "HIIT métabolique", goal: "VO2", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-hiit-fixture", sport: .hiit, level: .recreational,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 1, name: "Tabata corps entier", durationMinutes: 20, type: .interval,
+        warmup: nil,
+        exercises: [
+            AdaptedExercise(name: "Burpees", originalName: "Burpees", sets: 4, duration: "40/20",
+                            notes: "Explosif, gainage serré.")
+        ],
+        cooldown: nil
+    )
+}
+
+enum SessionFocusYogaFixture {
+    static let week = AdaptedWeek(weekNumber: 1, theme: "Mobilité", goal: "Souffle", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-yoga-fixture", sport: .yoga, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 1, name: "Flow doux", durationMinutes: 30, type: .mobility,
+        warmup: nil,
+        exercises: [
+            AdaptedExercise(name: "Guerrier I", originalName: "Guerrier I", duration: "45 s"),
+            AdaptedExercise(name: "Chien tête en bas", originalName: "Chien tête en bas", duration: "1 min"),
+            AdaptedExercise(name: "Arbre", originalName: "Arbre", duration: "30 s")
+        ],
+        cooldown: nil
+    )
+}
+
+// MARK: - POC yoga 2026-06-05 — fallback orientation (D1) + taille FOCUS (D4)
+
+/// Showcase statique du POC yoga : valide que les postures NON cataloguées prennent
+/// la bonne orientation (couché/assis/debout) au lieu de Warrior I debout, et que le
+/// dessin grossit à la taille FOCUS. Voix (D3) = non visible (audio, device Sophie).
+private struct YogaPOCScenarioView: View {
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 14) {
+                Text(verbatim: "POC yoga — D1 fallback orientation (postures NON cataloguées)")
+                    .font(.caption.bold()).foregroundStyle(.secondary)
+                ForEach([
+                    ("Jathara Parivartanasana", "torsion COUCHÉE → silhouette couchée"),
+                    ("Gomukhasana", "tête de vache ASSISE → silhouette assise"),
+                    ("Natarajasana", "danseur DEBOUT → silhouette debout")
+                ], id: \.0) { name, expect in
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(verbatim: "\(name)").font(.caption2.bold())
+                        Text(verbatim: expect).font(.caption2).foregroundStyle(.secondary)
+                        ExercisePatternIllustration(pattern: .yoga, sportCode: "yoga", exerciseName: name, size: 110)
+                            .frame(maxWidth: .infinity)
+                            .padding(8)
+                            .background(Color(uiColor: .secondarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                }
+
+                Divider().padding(.vertical, 4)
+
+                Text(verbatim: "POC yoga — D4 taille FOCUS (avant : figé 80×48 « riquiqui »)")
+                    .font(.caption.bold()).foregroundStyle(.secondary)
+                ExercisePatternIllustration(pattern: .yoga, sportCode: "yoga", exerciseName: "Savasana", size: 200)
+                    .frame(maxWidth: .infinity)
+                    .padding(12)
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            .padding(16)
+        }
+        .background(Color.coachingBackground.ignoresSafeArea())
     }
 }
 

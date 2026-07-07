@@ -1,119 +1,48 @@
 // Views/Components/Illustrations/BicepsCurlIllustration.swift
-// Story 3.23 Lot 5 — Biceps curl 3 frames, viewbox 48×48.
-// Source : https://en.wikipedia.org/wiki/Biceps_curl
-// Signature : debout profil + haltères (barre + 2 disques) + flexion coude pure
-// (épaule fixe, coude collé corps) → haltère à hauteur épaule.
+// Chantier refonte dessins muscu — lot 2 (2026-06-07) — biceps curl REFONDU (profil).
+// Coude FIXE au corps, l'avant-bras remonte la charge (flexion pure).
+// Variantes : haltères (défaut) · barre.
 import SwiftUI
 
 struct BicepsCurlIllustration: View {
     let sportCode: String
     let frame: Int
+    var exerciseName: String? = nil
+
+    enum Variant { case dumbbell, barbell }
+    var variant: Variant { Self.resolveVariant(from: exerciseName) }
+
+    static func resolveVariant(from name: String?) -> Variant {
+        guard let lower = name?.lowercased() else { return .dumbbell }
+        if lower.contains("barre") || lower.contains("barbell") { return .barbell }
+        return .dumbbell
+    }
 
     var body: some View {
         Canvas { ctx, size in
             let s = size.width / IllustrationStyle.frameSize
-            let stroke = StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s, lineCap: .round, lineJoin: .round)
-            let silhouette = IllustrationStyle.silhouette(sportCode: sportCode)
-            let equipment = IllustrationStyle.equipment
+            let body = IllustrationStyle.silhouette(sportCode: sportCode)
+            func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+            func L(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat { StrengthFigureKit.lerp(a, b, t) }
 
-            // Sol pointillé
-            var ground = Path()
-            ground.move(to: CGPoint(x: 4 * s, y: 44 * s))
-            ground.addLine(to: CGPoint(x: 44 * s, y: 44 * s))
-            ctx.stroke(ground, with: .color(IllustrationStyle.groundLine),
-                       style: StrokeStyle(lineWidth: 1 * s, dash: [2 * s, 2 * s]))
+            StrengthFigureKit.ground(ctx, s: s)
+            let c: CGFloat = frame == 0 ? 0 : (frame == 1 ? 0.5 : 1) // 0 bras bas, 1 bras fléchi
 
-            // Silhouette debout invariante (épaule + coude FIXES — signature curl strict)
-            let cx: CGFloat = 16 * s
-            let headSize: CGFloat = 6 * s
-            ctx.stroke(
-                Path(ellipseIn: CGRect(x: cx - headSize / 2, y: 9 * s,
-                                        width: headSize, height: headSize)),
-                with: .color(silhouette), style: stroke
-            )
+            let ankle = p(22, 44), knee = p(22, 33), hip = p(22, 23), shldr = p(22, 13), headC = p(22, 8)
+            StrengthFigureKit.limb(ctx, [p(18, 44), p(27, 44)], color: body, s: s)
+            StrengthFigureKit.limb(ctx, [ankle, knee, hip, shldr], color: body, s: s)
+            StrengthFigureKit.headNeck(ctx, head: headC, shoulder: shldr, color: body, s: s)
 
-            // Tronc vertical
-            var trunk = Path()
-            trunk.move(to: CGPoint(x: cx, y: 15 * s))
-            trunk.addLine(to: CGPoint(x: cx, y: 30 * s))
-            ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+            // Coude fixe contre le corps, l'avant-bras monte (la main décrit un arc vers l'avant-haut)
+            let elbow = p(24, 24)
+            let hand = p(L(27, 28, c), L(31, 16, c))
+            StrengthFigureKit.limb(ctx, [shldr, elbow, hand], color: body, s: s)
 
-            // Bassin
-            var pelvis = Path()
-            pelvis.move(to: CGPoint(x: cx - 2 * s, y: 30 * s))
-            pelvis.addLine(to: CGPoint(x: cx + 2 * s, y: 30 * s))
-            ctx.stroke(pelvis, with: .color(silhouette), style: stroke)
-
-            // Jambes verticales
-            var legs = Path()
-            legs.move(to: CGPoint(x: cx, y: 30 * s))
-            legs.addLine(to: CGPoint(x: cx, y: 44 * s))
-            ctx.stroke(legs, with: .color(silhouette), style: stroke)
-
-            // Pieds
-            var feet = Path()
-            feet.move(to: CGPoint(x: cx - 4 * s, y: 44 * s))
-            feet.addLine(to: CGPoint(x: cx + 4 * s, y: 44 * s))
-            ctx.stroke(feet, with: .color(silhouette), style: stroke)
-
-            // Épaule + coude FIXES
-            let shoulderY: CGFloat = 16 * s
-            let elbowY: CGFloat = 26 * s
-
-            // Position poignet/haltère selon frame
-            let wristX: CGFloat
-            let wristY: CGFloat
-            switch frame {
-            case 0:
-                // Bras tendu vers le bas
-                wristX = cx; wristY = 36 * s
-            case 1:
-                // Mi-curl avant-bras horizontal
-                wristX = 26 * s; wristY = 26 * s
-            default:
-                // Haut — haltère à hauteur épaule
-                wristX = 20 * s; wristY = 18 * s
-            }
-
-            // Bras = épaule → coude FIXE → poignet variable (signature flexion pure)
-            var arm = Path()
-            arm.move(to: CGPoint(x: cx, y: shoulderY))
-            arm.addLine(to: CGPoint(x: cx, y: elbowY))    // coude fixe
-            arm.addLine(to: CGPoint(x: wristX, y: wristY))
-            ctx.stroke(arm, with: .color(silhouette), style: stroke)
-
-            // Haltère (barre + 2 disques)
-            // Si frame 0/2 → disques verticaux (haltère orientation verticale)
-            // Si frame 1 → disques horizontaux (avant-bras horizontal, haltère horizontal)
-            let discSize: CGFloat = 3 * s
-            if frame == 1 {
-                // Disques verticaux à gauche et droite du poignet
-                ctx.stroke(
-                    Path(ellipseIn: CGRect(x: wristX - 1 * s - discSize / 2, y: wristY - discSize / 2,
-                                            width: discSize, height: discSize)),
-                    with: .color(equipment),
-                    style: StrokeStyle(lineWidth: IllustrationStyle.strokeWidthHeavy * s, lineCap: .round)
-                )
-                ctx.stroke(
-                    Path(ellipseIn: CGRect(x: wristX + 1 * s - discSize / 2, y: wristY - discSize / 2,
-                                            width: discSize, height: discSize)),
-                    with: .color(equipment),
-                    style: StrokeStyle(lineWidth: IllustrationStyle.strokeWidthHeavy * s, lineCap: .round)
-                )
-            } else {
-                // Disques au-dessus et au-dessous du poignet
-                ctx.stroke(
-                    Path(ellipseIn: CGRect(x: wristX - discSize / 2, y: wristY - 1 * s - discSize / 2,
-                                            width: discSize, height: discSize)),
-                    with: .color(equipment),
-                    style: StrokeStyle(lineWidth: IllustrationStyle.strokeWidthHeavy * s, lineCap: .round)
-                )
-                ctx.stroke(
-                    Path(ellipseIn: CGRect(x: wristX - discSize / 2, y: wristY + 1 * s - discSize / 2,
-                                            width: discSize, height: discSize)),
-                    with: .color(equipment),
-                    style: StrokeStyle(lineWidth: IllustrationStyle.strokeWidthHeavy * s, lineCap: .round)
-                )
+            switch variant {
+            case .dumbbell:
+                StrengthFigureKit.dumbbell(ctx, center: hand, s: s)
+            case .barbell:
+                StrengthFigureKit.barbellEndOn(ctx, center: hand, s: s, plateR: 2.8, stub: 3)
             }
         }
         .frame(width: IllustrationStyle.frameSize, height: IllustrationStyle.frameSize)
@@ -121,15 +50,26 @@ struct BicepsCurlIllustration: View {
 }
 
 #if DEBUG
-#Preview("Biceps curl") {
-    HStack(spacing: 4) {
-        BicepsCurlIllustration(sportCode: "strengthTraining", frame: 0)
-        Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
-        BicepsCurlIllustration(sportCode: "strengthTraining", frame: 1)
-        Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
-        BicepsCurlIllustration(sportCode: "strengthTraining", frame: 2)
+private struct BicepsRow: View {
+    let title: String; let name: String?
+    var body: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(title).font(.caption2).foregroundStyle(.secondary)
+            HStack(spacing: 4) {
+                BicepsCurlIllustration(sportCode: "strengthTraining", frame: 0, exerciseName: name)
+                Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
+                BicepsCurlIllustration(sportCode: "strengthTraining", frame: 1, exerciseName: name)
+                Image(systemName: "arrow.right").foregroundStyle(IllustrationStyle.movementArrow)
+                BicepsCurlIllustration(sportCode: "strengthTraining", frame: 2, exerciseName: name)
+            }
+        }
     }
-    .padding()
-    .background(Color.coachingBackground)
+}
+#Preview("Biceps curl — 2 variantes") {
+    VStack(alignment: .leading, spacing: 14) {
+        BicepsRow(title: "Curl haltères", name: "Curl biceps haltères")
+        BicepsRow(title: "Curl barre", name: "Curl biceps barre")
+    }
+    .padding().background(Color.coachingBackground)
 }
 #endif

@@ -7,6 +7,7 @@ import SwiftUI
 
 struct BirdDogIllustration: View {
     let sportCode: String
+    var size: CGFloat = IllustrationStyle.staticFrameSize.height // revue 2026-06-08 : scale (cf yoga)
 
     var body: some View {
         Canvas { ctx, size in
@@ -23,80 +24,70 @@ struct BirdDogIllustration: View {
             ctx.stroke(ground, with: .color(IllustrationStyle.groundLine),
                        style: StrokeStyle(lineWidth: 1 * s, dash: [2 * s, 2 * s]))
 
-            // Tête (devant les épaules, regard vers le sol-avant)
-            let headSize: CGFloat = 6 * s
-            ctx.stroke(
-                Path(ellipseIn: CGRect(x: 50 * s - headSize / 2, y: 23 * s,
-                                        width: headSize, height: headSize)),
-                with: .color(silhouette), style: stroke
-            )
+            // Revue experte pictos 2026-06-08 : VUE 3/4 (pas profil). Signature qui débloque =
+            // les 2 APPUIS qui pendent au sol (main avant + genou arrière) → « à 4 pattes »,
+            // puis bras-avant + jambe-arrière étendus en DIAGONALE, décalés côtés opposés (≠ étoile).
+            let shoulder = CGPoint(x: 30 * s, y: 22 * s)
+            let hip = CGPoint(x: 50 * s, y: 24 * s)
 
-            // Tronc horizontal parallèle au sol (épaule → bassin)
+            // Tronc court (raccourci par la perspective 3/4), dos plat
             var trunk = Path()
-            trunk.move(to: CGPoint(x: 28 * s, y: 28 * s))     // bassin
-            trunk.addLine(to: CGPoint(x: 44 * s, y: 28 * s))  // épaule
+            trunk.move(to: shoulder)
+            trunk.addLine(to: hip)
             ctx.stroke(trunk, with: .color(silhouette), style: stroke)
 
-            // Bras d'appui (épaule → coude → paume au sol)
+            // Tête à l'AVANT du tronc (gauche), regard sol
+            let headSize: CGFloat = 6 * s
+            let headC = CGPoint(x: 24 * s, y: 19 * s)
+            ctx.stroke(Path(ellipseIn: CGRect(x: headC.x - headSize / 2, y: headC.y - headSize / 2,
+                                              width: headSize, height: headSize)),
+                       with: .color(silhouette), style: stroke)
+
+            // APPUI 1 — bras d'appui (sous l'épaule) descend VERTICAL au sol + main
             var supportArm = Path()
-            supportArm.move(to: CGPoint(x: 45 * s, y: 28 * s))
-            supportArm.addLine(to: CGPoint(x: 45 * s, y: 44 * s))
+            supportArm.move(to: shoulder)
+            supportArm.addLine(to: CGPoint(x: 30 * s, y: 42 * s))
             ctx.stroke(supportArm, with: .color(silhouette), style: stroke)
-            // Main au sol (petit segment horizontal)
             var supportHand = Path()
-            supportHand.move(to: CGPoint(x: 43 * s, y: 44 * s))
-            supportHand.addLine(to: CGPoint(x: 47 * s, y: 44 * s))
+            supportHand.move(to: CGPoint(x: 27 * s, y: 42 * s)); supportHand.addLine(to: CGPoint(x: 33 * s, y: 42 * s))
             ctx.stroke(supportHand, with: .color(silhouette), style: stroke)
 
-            // Bras TENDU avant droit (signature — horizontal vers la droite)
+            // APPUI 2 — genou d'appui (sous la hanche) descend VERTICAL au sol + tibia
+            var supportLeg = Path()
+            supportLeg.move(to: hip)
+            supportLeg.addLine(to: CGPoint(x: 51 * s, y: 42 * s))
+            ctx.stroke(supportLeg, with: .color(silhouette), style: stroke)
+            var supportShin = Path()
+            supportShin.move(to: CGPoint(x: 48 * s, y: 42 * s)); supportShin.addLine(to: CGPoint(x: 54 * s, y: 42 * s))
+            ctx.stroke(supportShin, with: .color(silhouette), style: stroke)
+
+            // EXTENSION — bras AVANT (depuis l'épaule, vers l'avant-haut, aligné dos→bras) ;
+            // léger décalage bas = côté opposé à la jambe (3/4).
             var frontArm = Path()
-            frontArm.move(to: CGPoint(x: 43 * s, y: 28 * s))
-            frontArm.addLine(to: CGPoint(x: 66 * s, y: 28 * s))
+            frontArm.move(to: shoulder)
+            frontArm.addLine(to: CGPoint(x: 8 * s, y: 20 * s))
             ctx.stroke(frontArm, with: .color(silhouette), style: stroke)
 
-            // Genou d'appui (bassin → genou → tibia au sol)
-            var supportLeg = Path()
-            supportLeg.move(to: CGPoint(x: 29 * s, y: 28 * s))
-            supportLeg.addLine(to: CGPoint(x: 29 * s, y: 44 * s))
-            ctx.stroke(supportLeg, with: .color(silhouette), style: stroke)
-            // Pied/tibia replié au sol (petit segment horizontal)
-            var supportFoot = Path()
-            supportFoot.move(to: CGPoint(x: 27 * s, y: 44 * s))
-            supportFoot.addLine(to: CGPoint(x: 33 * s, y: 44 * s))
-            ctx.stroke(supportFoot, with: .color(silhouette), style: stroke)
-
-            // Jambe TENDUE arrière gauche (signature — horizontal vers la gauche)
+            // EXTENSION — jambe ARRIÈRE (depuis la hanche, vers l'arrière-haut) ; léger décalage haut.
             var backLeg = Path()
-            backLeg.move(to: CGPoint(x: 27 * s, y: 28 * s))
-            backLeg.addLine(to: CGPoint(x: 8 * s, y: 28 * s))
+            backLeg.move(to: hip)
+            backLeg.addLine(to: CGPoint(x: 73 * s, y: 16 * s))
             ctx.stroke(backLeg, with: .color(silhouette), style: stroke)
-            // Pied flexion plantaire arrière
-            var backFoot = Path()
-            backFoot.move(to: CGPoint(x: 8 * s, y: 28 * s))
-            backFoot.addLine(to: CGPoint(x: 6 * s, y: 26 * s))
-            ctx.stroke(backFoot, with: .color(silhouette), style: stroke)
 
-            // Annotations flèches orange aux extrémités (extension active)
+            // Flèches d'extension (avant-bas-gauche, arrière-haut-droite)
             var arrowFront = Path()
-            arrowFront.move(to: CGPoint(x: 60 * s, y: 24 * s))
-            arrowFront.addLine(to: CGPoint(x: 66 * s, y: 24 * s))
-            arrowFront.move(to: CGPoint(x: 64 * s, y: 22 * s))
-            arrowFront.addLine(to: CGPoint(x: 66 * s, y: 24 * s))
-            arrowFront.addLine(to: CGPoint(x: 64 * s, y: 26 * s))
+            arrowFront.move(to: CGPoint(x: 5 * s, y: 19 * s)); arrowFront.addLine(to: CGPoint(x: 9 * s, y: 19 * s))
+            arrowFront.move(to: CGPoint(x: 5 * s, y: 19 * s)); arrowFront.addLine(to: CGPoint(x: 5 * s, y: 23 * s))
             ctx.stroke(arrowFront, with: .color(IllustrationStyle.movementArrow),
-                       style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round))
-
+                       style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
             var arrowBack = Path()
-            arrowBack.move(to: CGPoint(x: 14 * s, y: 24 * s))
-            arrowBack.addLine(to: CGPoint(x: 8 * s, y: 24 * s))
-            arrowBack.move(to: CGPoint(x: 10 * s, y: 22 * s))
-            arrowBack.addLine(to: CGPoint(x: 8 * s, y: 24 * s))
-            arrowBack.addLine(to: CGPoint(x: 10 * s, y: 26 * s))
+            arrowBack.move(to: CGPoint(x: 75 * s, y: 15 * s)); arrowBack.addLine(to: CGPoint(x: 71 * s, y: 15 * s))
+            arrowBack.move(to: CGPoint(x: 75 * s, y: 15 * s)); arrowBack.addLine(to: CGPoint(x: 75 * s, y: 19 * s))
             ctx.stroke(arrowBack, with: .color(IllustrationStyle.movementArrow),
-                       style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round))
+                       style: StrokeStyle(lineWidth: 1.2 * s, lineCap: .round, lineJoin: .round))
         }
-        .frame(width: IllustrationStyle.staticFrameSize.width,
-               height: IllustrationStyle.staticFrameSize.height)
+        .frame(width: size * (IllustrationStyle.staticFrameSize.width / IllustrationStyle.staticFrameSize.height),
+               height: size)
     }
 }
 

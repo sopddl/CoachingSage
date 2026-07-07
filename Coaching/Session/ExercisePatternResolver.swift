@@ -17,7 +17,46 @@ public enum ExercisePatternResolver {
 
     /// Point d'entrée unique. Pure, deterministic.
     public static func resolve(_ exercise: AdaptedExercise, sportCode: String) -> ExercisePattern {
-        let name = exercise.name
+        // Résolution de pattern = matching sur la clé stable (nom FR technique + suffixe
+        // `(pattern xxx)` propre au FR). `originalName` (= stableMatchKey) reste figé même
+        // quand `name.fr` est vulgarisé/traduit (i18n B2), pour ne pas casser les regex.
+        let name = exercise.originalName
+
+        // Étape 0 — overrides haute-confiance (revue images muscu 2026-06-08). Corrigent des
+        // MISTAGS template « (pattern xxx) » qui contredisent le geste réel, SANS toucher au
+        // match_key stable (fix aussi les programmes en cours) :
+        //   • une « fente » / « lunge » est toujours un lunge (taggée à tort « squat unilatéral »)
+        //   • un « hip thrust » est toujours un hip thrust (taggé à tort « hinge » sur les séances débutant)
+        let lowerName = name.lowercased()
+        if lowerName.contains("fente") || lowerName.contains("lunge") { return .lunge }
+        if lowerName.contains("hip thrust") || lowerName.contains("pont fessier") { return .hipThrust }
+        // Y-raise = mouvement de la famille Y-T-W (épaules), taggé à tort « pull vertical »
+        // → ne doit PAS rendre le dessin de traction.
+        if lowerName.contains("y-raise") || lowerName.contains("y raise") { return .ytwActivation }
+        // Revue dessins 2026-06-08 : 4 dessins dédiés CRÉÉS → on route vers eux (avant : générique).
+        if lowerName.contains("pullover") { return .pullover }
+        if lowerName.contains("overhead") && lowerName.contains("triceps") { return .tricepsOverhead }
+        if lowerName.contains("woodchopper") || lowerName.contains("wood chopper") { return .woodchopper }
+        if lowerName.contains("hanging leg raise") || lowerName.contains("leg raise")
+            || lowerName.contains("relevé de jambe") || lowerName.contains("releve de jambe") { return .hangingLegRaise }
+
+        // Revue dessins TOUS SPORTS 2026-06-08 (dump mapping par sport) — faux-amis :
+        //   • « Sauterelle »/Salabhasana : le mot « saut » déclenchait plyo (box jump) à tort.
+        //   • Bakasana (Crow, équilibre sur les bras) tombait sur pull horizontal.
+        //   → ce sont des postures yoga, elles rendent la figure yoga.
+        if lowerName.contains("salabhasana") || lowerName.contains("sauterelle")
+            || lowerName.contains("bakasana") { return .yoga }
+        // Party illustrations 2026-06-08 — asanas avancées dont le NOM contient un mot
+        // strength/mobility (plank, étirement…) qui les détournerait vers .core/.mobility
+        // avant le fallback sport yoga. Noms yoga-exclusifs → force .yoga (zéro risque autres sports).
+        if lowerName.contains("phalakasana") || lowerName.contains("uttana padasana")
+            || lowerName.contains("purvottanasana") || lowerName.contains("utthita hasta") { return .yoga }
+        // FIFA 11+ « The Bench » = GAINAGE (planche), PAS un développé couché ; « Sideways
+        // Bench » = side plank. On exclut le vrai « bench press »/« développé » (→ pushHorizontal).
+        if lowerName.contains("bench") && !lowerName.contains("press") && !lowerName.contains("développé") {
+            if lowerName.contains("sideways") { return .core }       // side plank (variante .lateral via le nom)
+            if lowerName.contains("fifa") { return .forearmPlank }
+        }
 
         // Étape 1 : capture regex multi-mots
         if let captured = capturedPatternToken(in: name) {
@@ -165,6 +204,52 @@ public enum ExercisePatternResolver {
     static func patternFromKeyword(in name: String) -> ExercisePattern? {
         let lower = name.lowercased()
 
+        // Party illustrations 2026-06-08 — lot muscu machines (placé EN TÊTE = noms d'exos
+        // très spécifiques « machine », pas de collision avec les keywords génériques en dessous).
+        if matchesAny(lower, ["cable fly", "chest fly", "cable chest fly", "pec deck", "écarté poulie", "ecarte poulie"]) {
+            return .cableFly
+        }
+        if matchesAny(lower, ["leg extension", "leg-extension"]) {
+            return .legExtension
+        }
+        if matchesAny(lower, ["leg curl", "leg-curl"]) {
+            return .legCurl
+        }
+        if matchesAny(lower, ["leg press", "leg-press", "presse à cuisses", "presse a cuisses"]) {
+            return .legPress
+        }
+        if matchesAny(lower, ["reverse hyper", "reverse hyperextension", "hyperextension inversée", "hyperextension inversee"]) {
+            return .reverseHyper
+        }
+
+        // Party illustrations 2026-06-08 — lot HIIT (placé EN TÊTE : « jumping jack » contient
+        // « jump » qui matcherait .plyo plus bas, donc à intercepter avant).
+        if matchesAny(lower, ["mountain climber", "mountain-climber", "climber alterné", "climber alterne"]) {
+            return .mountainClimber
+        }
+        if matchesAny(lower, ["jumping jack", "jumping-jack", "step-jack", "step jack", "stepjack", "jumping-jacks"]) {
+            return .jumpingJack
+        }
+        if matchesAny(lower, ["tibialis", "tibial antérieur", "tibial anterieur"]) {
+            return .tibialisRaise
+        }
+        if matchesAny(lower, ["turkish get-up", "turkish getup", "turkish get up", "tgu", "get-up turc", "relevé turc", "releve turc"]) {
+            return .turkishGetUp
+        }
+        if matchesAny(lower, ["power clean", "hang clean", "hang power clean", "power snatch", "hang snatch",
+                              "hang power snatch", "clean barbell", "clean db", "clean & jerk", "épaulé", "epaule-jete", "arraché", "arrache", "snatch"]) {
+            return .powerClean
+        }
+        if matchesAny(lower, ["sled push", "sled-push", "sled", "traîneau", "traineau", "prowler"]) {
+            return .sledPush
+        }
+        if matchesAny(lower, ["farmer carry", "farmer's carry", "farmers carry", "farmer walk", "farmers walk", "port de charge", "loaded carry"]) {
+            return .farmerCarry
+        }
+        if matchesAny(lower, ["double-under", "double under", "doubleunder", "double-unders", "double unders"]) {
+            return .doubleUnders
+        }
+
         // Strength keywords (ordre = du plus spécifique au plus générique)
         // Story 3.23 Tier 1 Jalon 2 — pattern dédié `.hipThrust` (créé Jalon 2).
         // Mapping initial Jalon 1 vers `.hinge` annulé.
@@ -179,16 +264,21 @@ public enum ExercisePatternResolver {
         if matchesAny(lower, ["deadlift", "rdl", "soulevé de terre", "souleve de terre"]) {
             return .hinge
         }
-        if matchesAny(lower, ["pull-up", "pullup", "chin-up", "chinup", "tirage vertical", "tirage nuque", "traction"]) {
+        if matchesAny(lower, ["pull-up", "pullup", "chin-up", "chinup", "tirage vertical", "tirage nuque", "traction",
+                              "lat pulldown", "pulldown", "pull-down", "lat pull"]) {
             return .pullVertical
         }
         if matchesAny(lower, ["row", "rameur", "tirage horizontal", "tirage bûcheron", "tirage bucheron"]) {
             return .pullHorizontal
         }
-        if matchesAny(lower, ["overhead", "développé militaire", "developpe militaire", "développé épaule", "developpe epaule", "shoulder press"]) {
+        // Revue images muscu 2026-06-08 : « triceps » exclu ici sinon « Overhead DB
+        // triceps extension » tombe sur le dessin OHP (développé épaules) au lieu du
+        // triceps (cf keyword triceps plus bas).
+        if matchesAny(lower, ["overhead", "développé militaire", "developpe militaire", "développé épaule", "developpe epaule", "shoulder press"])
+            && !lower.contains("triceps") {
             return .pushVertical
         }
-        if matchesAny(lower, ["push-up", "pushup", "pompe", "bench", "développé couché", "developpe couche"]) {
+        if matchesAny(lower, ["push-up", "pushup", "pompe", "bench", "développé couché", "developpe couche", "dips", "dip lesté", "dip leste"]) {
             return .pushHorizontal
         }
         if matchesAny(lower, ["lunge", "fente"]) {
@@ -204,12 +294,13 @@ public enum ExercisePatternResolver {
                               "planche avant-bras", "planche avant bras", "low plank"]) {
             return .forearmPlank
         }
-        if matchesAny(lower, ["plank", "gainage", "crunch", "abs", "hollow"]) {
+        if matchesAny(lower, ["plank", "planche", "gainage", "crunch", "abs", "hollow"]) {
             return .core
         }
         // Story 3.23 Lot 3 — Y-T-W shoulder activation (rotator cuff prone)
         if matchesAny(lower, ["y-t-w", "ytw", "y t w", "yt w", "shoulder activation",
-                              "activation épaule", "activation epaule", "rotator cuff"]) {
+                              "activation épaule", "activation epaule", "rotator cuff",
+                              "external rotation", "rotation externe"]) {
             return .ytwActivation
         }
         // Story 3.23 Lot 3 — Pallof press câble (anti-rotation)
@@ -221,7 +312,8 @@ public enum ExercisePatternResolver {
                               "ischio nordique", "ischio nordic"]) {
             return .nordicCurl
         }
-        if matchesAny(lower, ["jump", "burpee", "bondiss", "saut", "box jump"]) {
+        if matchesAny(lower, ["jump", "burpee", "bondiss", "saut", "box jump", "lateral bound", "bound latéral",
+                              "depth drop", "depth jump", "drop jump", "atterrissage", "depth landing"]) {
             return .plyo
         }
         // Story 3.23 Lot 5 — Foam rolling AVANT mobility générique
@@ -231,7 +323,8 @@ public enum ExercisePatternResolver {
         }
         // Story 3.23 — fix bug "Foam rolling tombe .generic" : ajout des keywords
         // "foam" / "rolling" / "rouleau" pour mapper sur `.mobility`.
-        if matchesAny(lower, ["étirement", "etirement", "stretch", "mobility", "mobilité", "mobilite", "foam", "rolling", "rouleau"]) {
+        if matchesAny(lower, ["étirement", "etirement", "stretch", "mobility", "mobilité", "mobilite", "foam", "rolling", "rouleau",
+                              "controlled articular", "shoulder cars", "scapular cars"]) {
             return .mobility
         }
         // Story 3.23 Lot 5 — patterns moyenne fréquence
@@ -247,12 +340,16 @@ public enum ExercisePatternResolver {
         if matchesAny(lower, ["face pull", "face-pull", "facepull"]) {
             return .facePull
         }
-        if matchesAny(lower, ["biceps curl", "curl biceps", "curl haltères", "curl halteres", "biceps haltère", "biceps haltere"]) {
+        if matchesAny(lower, ["biceps curl", "curl biceps", "curl haltères", "curl halteres", "biceps haltère", "biceps haltere",
+                              "db curl", "dumbbell curl", "hammer curl"]) {
             return .bicepsCurl
         }
-        // Story 3.23 Lot 7 — Triceps pushdown câble
+        // Story 3.23 Lot 7 — Triceps pushdown câble. Revue 2026-06-08 : capter aussi
+        // « overhead triceps » / « triceps extension » (sinon → OHP), faute de pattern
+        // d'extension dédié — le dessin triceps reste le plus proche.
         if matchesAny(lower, ["triceps pushdown", "triceps push-down", "pushdown triceps",
-                              "extension triceps", "triceps câble", "triceps cable"]) {
+                              "extension triceps", "triceps extension", "overhead triceps", "triceps overhead",
+                              "db triceps", "triceps câble", "triceps cable", "triceps"]) {
             return .tricepsPushdown
         }
         // Story 3.23 Lot 7 — Lateral raises haltères
@@ -260,6 +357,10 @@ public enum ExercisePatternResolver {
                               "élévation latérale", "elevation laterale",
                               "écarté épaule", "ecarte epaule"]) {
             return .lateralRaises
+        }
+        // Wall sit = squat isométrique dos au mur (running/triathlon/hiking S&C).
+        if matchesAny(lower, ["wall sit", "wall-sit", "chaise isométrique", "chaise isometrique"]) {
+            return .squat
         }
         // Squat en dernier (mot court qui pourrait matcher accidentellement)
         if matchesAny(lower, ["squat", "goblet"]) {

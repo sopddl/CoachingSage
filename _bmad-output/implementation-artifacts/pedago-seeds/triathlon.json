@@ -1,0 +1,975 @@
+{
+  "sport": "triathlon",
+  "entries": [
+    {
+      "id": "run_easy_daniels_e",
+      "type": "block",
+      "matchers": ["daniels-e", "course continue", "course daniels", "run daniels-e", "run z2", "course z2", "run easy", "simulation run", "course activation"],
+      "fr": {
+        "steps": [
+          "Garde une allure conversationnelle : tu peux dire une phrase entière sans haleter, autour de RPE 3-4.",
+          "Vise une cadence de 170-180 pas par minute, foulée souple et relâchée.",
+          "Pose le pied sous le centre de gravité, regard à l'horizon, épaules basses.",
+          "Sur les sorties longues, prévois de quoi boire et installe-toi dans un rythme régulier que tu pourrais tenir bien au-delà de la durée prévue.",
+          "Si le souffle s'emballe, ralentis : cette allure construit le moteur aérobie, elle reste facile."
+        ],
+        "equipment": ["chaussures de running", "montre GPS"],
+        "commonMistake": "Courir trop vite : l'allure facile doit rester vraiment confortable, sinon elle perd son intérêt."
+      },
+      "en": {
+        "steps": [
+          "Hold a conversational pace: you can speak a full sentence without gasping, around RPE 3-4.",
+          "Aim for a cadence of 170-180 steps per minute with a relaxed, springy stride.",
+          "Land under your center of gravity, eyes on the horizon, shoulders loose.",
+          "On long runs, carry fluids and settle into a steady rhythm you could hold well past the planned duration.",
+          "If your breathing climbs, ease off: this pace builds the aerobic engine and is meant to stay easy."
+        ],
+        "equipment": ["running shoes", "GPS watch"],
+        "commonMistake": "Running too fast: the easy pace should feel genuinely comfortable, otherwise it loses its purpose."
+      }
+    },
+    {
+      "id": "run_tempo_threshold",
+      "type": "block",
+      "matchers": ["daniels-t", "tempo", "seuil", "threshold run", "cruise interval"],
+      "fr": {
+        "steps": [
+          "Installe une allure « confortablement difficile », celle que tu tiendrais environ une heure en course (autour du 10 km plus 15 à 30 secondes par km).",
+          "Repère parole : 4 à 5 mots d'affilée passent, une phrase entière non.",
+          "Garde la cadence haute, 180 pas par minute, et un effort régulier du début à la fin.",
+          "Sur les versions en intervalles, trotte doucement pendant les récupérations puis relance à la même allure.",
+          "Vise un effort constant plutôt que partir vite : c'est la régularité qui fait progresser le seuil."
+        ],
+        "equipment": ["chaussures de running", "montre GPS"],
+        "commonMistake": "Partir trop fort et finir en sur-régime : le tempo se court à allure maîtrisée et stable."
+      },
+      "en": {
+        "steps": [
+          "Settle into a comfortably hard pace, one you could hold for about an hour racing (roughly 10K pace plus 15 to 30 seconds per km).",
+          "Speech check: 4 to 5 words in a row come out, a full sentence does not.",
+          "Keep cadence high, around 180 steps per minute, with an even effort start to finish.",
+          "On interval versions, jog gently during recoveries then pick the same pace back up.",
+          "Aim for a constant effort rather than a fast start: steadiness is what lifts your threshold."
+        ],
+        "equipment": ["running shoes", "GPS watch"],
+        "commonMistake": "Going out too hard and overcooking it: tempo is run at a controlled, steady pace."
+      }
+    },
+    {
+      "id": "run_intervals_vo2",
+      "type": "block",
+      "matchers": ["daniels-i", "intervalles", "5 × 1000", "6 × 1000", "vo2max 5 × 1000", "5 km pace"],
+      "fr": {
+        "steps": [
+          "Vise une allure proche de ton 3 à 5 km, un effort fort mais soutenable, autour de RPE 8-9.",
+          "Cadence haute et foulée dynamique, le buste reste droit et le regard à l'horizon.",
+          "Pendant la récupération, trotte ou marche activement pour faire redescendre le souffle.",
+          "Cherche une allure identique sur chaque répétition plutôt qu'un sprint sur la première.",
+          "Si l'allure se dégrade nettement sur la dernière, mieux vaut écourter en gardant la qualité."
+        ],
+        "equipment": ["chaussures de running", "montre GPS"],
+        "commonMistake": "Démarrer trop vite la première répétition et s'écrouler sur les suivantes."
+      },
+      "en": {
+        "steps": [
+          "Target a pace close to your 3 to 5K, a strong but sustainable effort around RPE 8-9.",
+          "Keep cadence high and the stride dynamic, torso tall, eyes on the horizon.",
+          "During recovery, jog or walk briskly to let your breathing come back down.",
+          "Look for the same pace on every rep rather than sprinting the first one.",
+          "If the pace clearly fades on the last rep, it is better to cut it short and keep the quality."
+        ],
+        "equipment": ["running shoes", "GPS watch"],
+        "commonMistake": "Starting the first rep too fast and falling apart on the ones that follow."
+      }
+    },
+    {
+      "id": "run_strides",
+      "type": "block",
+      "matchers": ["strides", "accélérations", "daniels-r", "4 × 100 m", "100 m progressif"],
+      "fr": {
+        "steps": [
+          "Accélère progressivement sur 80 à 100 m, du trot vers une allure rapide et fluide, sans jamais sprinter à fond.",
+          "Cherche une cadence très haute, 185 pas par minute et plus, avec une attaque médio-pied.",
+          "Garde les épaules relâchées et les bras qui rythment, le geste reste tonique mais léger.",
+          "Décélère en douceur puis récupère en marchant ou en trottant avant la suivante.",
+          "Le but est de réveiller les fibres rapides et la raideur tendineuse, pas de te fatiguer."
+        ],
+        "equipment": ["chaussures de running"],
+        "commonMistake": "Sprinter à fond et se crisper : une stride reste rapide mais relâchée."
+      },
+      "en": {
+        "steps": [
+          "Build up gradually over 80 to 100 m, from a jog to a fast fluid pace, never a full sprint.",
+          "Find a very high cadence, 185 steps per minute and up, with a midfoot landing.",
+          "Keep shoulders loose and arms driving the rhythm, the motion stays crisp but light.",
+          "Decelerate smoothly then recover by walking or jogging before the next one.",
+          "The aim is to wake up fast-twitch fibers and tendon stiffness, not to tire yourself out."
+        ],
+        "equipment": ["running shoes"],
+        "commonMistake": "Sprinting flat out and tensing up: a stride stays fast but relaxed."
+      }
+    },
+    {
+      "id": "run_long",
+      "type": "block",
+      "matchers": ["long run", "course continue daniels-e long", "long run daniels", "finition daniels-m"],
+      "fr": {
+        "steps": [
+          "Pars sur une allure facile et tenable, puis maintiens-la sur toute la durée prévue.",
+          "Privilégie une surface souple quand c'est possible pour un appui plus confortable.",
+          "Bois régulièrement et apporte un peu de glucides sur les sorties longues pour habituer le ventre.",
+          "Si une finition à allure course (Daniels-M) est prévue, relance les dernières minutes sans casser la cadence.",
+          "Garde une cadence autour de 175-185 pas par minute et un effort régulier jusqu'au bout."
+        ],
+        "equipment": ["chaussures de running", "flasque ou ceinture d'hydratation", "ravitaillement glucidique"],
+        "commonMistake": "Négliger l'hydratation et le ravitaillement sur les longues durées."
+      },
+      "en": {
+        "steps": [
+          "Start at an easy, sustainable pace, then hold it across the whole planned duration.",
+          "Favor a softer surface when possible for a more comfortable footing.",
+          "Drink regularly and take in some carbohydrate on long runs to train your gut.",
+          "If a race-pace finish (Daniels-M) is planned, lift the last minutes without breaking cadence.",
+          "Keep cadence around 175-185 steps per minute and an even effort to the end."
+        ],
+        "equipment": ["running shoes", "handheld or hydration belt", "carbohydrate fuel"],
+        "commonMistake": "Neglecting hydration and fueling on long-duration efforts."
+      }
+    },
+    {
+      "id": "brick_run_post_bike",
+      "type": "block",
+      "matchers": ["post-bike", "brick", "post-t2", "premier brick", "post bike"],
+      "fr": {
+        "steps": [
+          "Sur les 5 à 10 premières minutes, attends-toi aux jambes en coton : c'est physiologique, le corps réorganise le geste vélo vers la course.",
+          "Démarre prudemment avec une foulée raccourcie et une cadence élevée, autour de 180 pas par minute.",
+          "Laisse le rythme se mettre en place naturellement, sans chercher à accélérer trop tôt.",
+          "Vers la 10e minute, la sensation s'estompe et l'allure cible devient plus fluide.",
+          "Garde le buste droit et le regard loin pour stabiliser la coordination dès la descente du vélo."
+        ],
+        "equipment": ["chaussures de running", "lacets élastiques"],
+        "commonMistake": "Partir trop vite à la descente du vélo : raccourcis la foulée et laisse les jambes se réorganiser."
+      },
+      "en": {
+        "steps": [
+          "For the first 5 to 10 minutes, expect heavy legs: it is physiological, your body is rewiring the cycling motion into running.",
+          "Start cautiously with a shortened stride and a high cadence, around 180 steps per minute.",
+          "Let the rhythm settle naturally without trying to speed up too soon.",
+          "By around minute 10 the feeling fades and your target pace flows more easily.",
+          "Keep your torso tall and gaze far to steady your coordination right off the bike."
+        ],
+        "equipment": ["running shoes", "elastic laces"],
+        "commonMistake": "Going out too fast off the bike: shorten the stride and let your legs reorganize."
+      }
+    },
+    {
+      "id": "bike_endurance_z2",
+      "type": "block",
+      "matchers": ["ftp-z2", "sortie route", "bike z2", "pédalage ftp-z2", "long ride", "endurance ftp", "bike ftp-z2", "sortie route z2", "bike easy"],
+      "fr": {
+        "steps": [
+          "Roule à allure conversationnelle, autour de 56 à 75 % de ta FTP (RPE 3-4), tu peux discuter sans t'essouffler.",
+          "Garde une cadence souple de 85 à 95 tours par minute plutôt que de tirer de gros braquets.",
+          "Sur le plat reste fluide, en bosse passe en danseuse une demi-minute ou rétrograde pour ne pas surcharger.",
+          "Sur les dernières minutes, monte la cadence vers 95-100 tours par minute pour préparer une transition fluide.",
+          "Bois et ravitaille régulièrement sur les longues sorties pour entraîner l'estomac."
+        ],
+        "equipment": ["vélo", "casque", "bidons", "ravitaillement glucidique"],
+        "commonMistake": "Pédaler trop gros et trop lent : privilégie une cadence ronde et une allure que tu peux tenir des heures."
+      },
+      "en": {
+        "steps": [
+          "Ride at a conversational effort, around 56 to 75 % of FTP (RPE 3-4), able to chat without getting winded.",
+          "Keep a smooth cadence of 85 to 95 rpm rather than grinding big gears.",
+          "Stay fluid on the flat; on climbs stand for half a minute or shift down to avoid overloading.",
+          "In the last minutes, lift cadence toward 95-100 rpm to set up a smooth transition.",
+          "Drink and fuel regularly on long rides to train your stomach."
+        ],
+        "equipment": ["bike", "helmet", "bottles", "carbohydrate fuel"],
+        "commonMistake": "Pushing a big gear too slowly: favor a round cadence and a pace you can hold for hours."
+      }
+    },
+    {
+      "id": "bike_sweet_spot",
+      "type": "block",
+      "matchers": ["sweet spot", "sweet-spot", "bloc sweet spot", "bike sweet-spot", "race-pace pré-brick"],
+      "fr": {
+        "steps": [
+          "Cale-toi entre 84 et 97 % de ta FTP : un effort soutenu mais gérable, RPE 6-7, où la conversation se réduit à des mots isolés.",
+          "Sans capteur de puissance, repère la sensation : exigeant mais répétable, sans la brûlure du seuil.",
+          "Maintiens une cadence ronde de 90 à 95 tours par minute pour limiter la fatigue musculaire.",
+          "Tiens l'allure régulière sur tout le bloc plutôt que d'attaquer fort puis de t'éteindre.",
+          "Récupère vraiment en Z1 entre les blocs si la séance est en intervalles."
+        ],
+        "equipment": ["vélo", "casque", "bidons", "capteur de puissance ou cardio"],
+        "commonMistake": "Monter dans le rouge du seuil : le sweet spot reste juste sous, répétable et contrôlé."
+      },
+      "en": {
+        "steps": [
+          "Settle between 84 and 97 % of FTP: a sustained but manageable effort, RPE 6-7, where talking drops to single words.",
+          "Without a power meter, use feel: demanding yet repeatable, without the burn of threshold.",
+          "Hold a round cadence of 90 to 95 rpm to limit muscular fatigue.",
+          "Keep the effort steady across the whole block rather than attacking hard then fading.",
+          "Recover genuinely in Z1 between blocks if the session is interval-based."
+        ],
+        "equipment": ["bike", "helmet", "bottles", "power meter or HR monitor"],
+        "commonMistake": "Drifting up into threshold red zone: sweet spot stays just below, repeatable and controlled."
+      }
+    },
+    {
+      "id": "bike_vo2_ftp_intervals",
+      "type": "block",
+      "matchers": ["vo2max", "ftp-z5", "ftp-z4", "threshold 3 ×", "5 × 4 min ftp", "4 × 12 min ftp"],
+      "fr": {
+        "steps": [
+          "Sur les blocs FTP-Z4, vise un effort très exigeant et soutenu (RPE 7-8), mots isolés seulement.",
+          "Sur les blocs VO2max (FTP-Z5), monte plus haut encore (RPE 8-9) avec une cadence vive de 95 à 105 tours par minute.",
+          "Dose la première répétition : pacing régulier plutôt que d'exploser d'entrée.",
+          "Récupère activement en Z1 entre les efforts pour pouvoir relancer proprement.",
+          "Sans capteur de puissance, fie-toi au RPE strict et à ta respiration."
+        ],
+        "equipment": ["vélo", "casque", "capteur de puissance ou cardio"],
+        "commonMistake": "Exploser sur la première répétition et ne plus tenir l'allure ensuite."
+      },
+      "en": {
+        "steps": [
+          "On FTP-Z4 blocks, target a very demanding sustained effort (RPE 7-8), single words only.",
+          "On VO2max blocks (FTP-Z5), go higher still (RPE 8-9) with a brisk cadence of 95 to 105 rpm.",
+          "Meter the first rep: even pacing rather than blowing up from the start.",
+          "Recover actively in Z1 between efforts so you can relaunch cleanly.",
+          "Without a power meter, rely on strict RPE and your breathing."
+        ],
+        "equipment": ["bike", "helmet", "power meter or HR monitor"],
+        "commonMistake": "Blowing up on the first rep and being unable to hold the pace afterward."
+      }
+    },
+    {
+      "id": "bike_tt_position",
+      "type": "block",
+      "matchers": ["position tt", "tt-bike", "cruise ftp-z2 tt", "validation confort lombaire", "tt cruise"],
+      "fr": {
+        "steps": [
+          "Installe-toi sur les prolongateurs en gardant le dos plat et la nuque relâchée.",
+          "Vérifie sur la durée que la position reste tenable au niveau bas du dos et cervicales.",
+          "Garde une cadence ronde de 88 à 95 tours par minute et un regard porté loin sur la route.",
+          "Si une tension s'installe, redresse-toi quelques instants puis reviens en aéro progressivement.",
+          "L'objectif est d'habituer le corps à produire de la puissance en position basse, durablement."
+        ],
+        "equipment": ["vélo de contre-la-montre ou prolongateurs", "casque"],
+        "commonMistake": "Crisper la nuque et les épaules en position aéro : relâche le haut du corps et garde le dos long."
+      },
+      "en": {
+        "steps": [
+          "Settle onto the aerobars keeping your back flat and neck relaxed.",
+          "Check over time that the position stays sustainable for your low back and neck.",
+          "Keep a round cadence of 88 to 95 rpm with your gaze far down the road.",
+          "If tension builds, sit up for a moment then ease back into the aero position.",
+          "The goal is to teach the body to produce power in a low position, sustainably."
+        ],
+        "equipment": ["time-trial bike or clip-on aerobars", "helmet"],
+        "commonMistake": "Tensing the neck and shoulders in the aero position: relax the upper body and keep the back long."
+      }
+    },
+    {
+      "id": "bike_recovery_z1",
+      "type": "block",
+      "matchers": ["ftp-z1", "recovery ftp-z1", "spinning z1", "pédalage très lent post-test"],
+      "fr": {
+        "steps": [
+          "Pédale très souple, RPE 2-3, pour évacuer en douceur après un effort intense.",
+          "Laisse la cadence libre et concentre-toi sur une respiration calme.",
+          "Reste léger sur la pédale, aucune intention de pousser.",
+          "Bois pour réamorcer la récupération."
+        ],
+        "equipment": ["vélo", "bidon"],
+        "commonMistake": "Transformer la récupération en séance : reste vraiment très léger."
+      },
+      "en": {
+        "steps": [
+          "Spin very lightly, RPE 2-3, to flush out gently after an intense effort.",
+          "Let the cadence stay free and focus on calm breathing.",
+          "Stay light on the pedals with no intent to push.",
+          "Drink to kickstart recovery."
+        ],
+        "equipment": ["bike", "bottle"],
+        "commonMistake": "Turning recovery into a workout: keep it genuinely very light."
+      }
+    },
+    {
+      "id": "swim_endurance_en1",
+      "type": "block",
+      "matchers": ["en1", "long swim", "crawl en1", "long swim continu", "crawl en1 long"],
+      "fr": {
+        "steps": [
+          "Nage à une allure régulière et confortable, autour de CSS plus 8 à 12 secondes au 100 m, sans dérive de vitesse.",
+          "Respire de façon régulière et alterne les côtés (1 sur 3) dès que c'est confortable, pour la symétrie.",
+          "Compte tes coups de bras par 25 m pour garder une nage longue et efficace.",
+          "Garde un corps gainé et aligné, le regard vers le fond, la rotation venant des hanches.",
+          "Sur le long, place un repère de sighting de temps en temps pour préparer l'eau libre."
+        ],
+        "equipment": ["lunettes", "bonnet"],
+        "commonMistake": "Accélérer puis ralentir sans cesse : vise une allure stable que tu pourrais tenir longtemps."
+      },
+      "en": {
+        "steps": [
+          "Swim at a steady, comfortable pace, around CSS plus 8 to 12 seconds per 100 m, without speed drift.",
+          "Breathe rhythmically and alternate sides (1 in 3) as soon as it feels comfortable, for symmetry.",
+          "Count your strokes per 25 m to keep a long, efficient stroke.",
+          "Keep the body braced and aligned, gaze toward the bottom, rotation coming from the hips.",
+          "On long sets, add a sighting cue now and then to prepare for open water."
+        ],
+        "equipment": ["goggles", "swim cap"],
+        "commonMistake": "Constantly speeding up then slowing down: aim for a stable pace you could hold for a long time."
+      }
+    },
+    {
+      "id": "swim_css_threshold",
+      "type": "block",
+      "matchers": ["css", "css pace", "en2", "en3", "css+5s", "css-5s", "set css", "seuil aérobie"],
+      "fr": {
+        "steps": [
+          "Nage à ton allure CSS, le rythme seuil que tu peux tenir de façon soutenue, RPE 7-8 selon le set.",
+          "Respecte la récupération courte indiquée pour maintenir l'intensité d'une répétition à l'autre.",
+          "Vise une dérive minimale : le dernier 100 m doit ressembler au premier en temps.",
+          "Garde un coup de bras stable et compte-les pour vérifier que la technique tient sous fatigue.",
+          "Si tu décroches nettement vers la fin du set, mieux vaut écourter en gardant le pacing propre."
+        ],
+        "equipment": ["lunettes", "bonnet", "pace-clock ou montre"],
+        "commonMistake": "Partir trop vite sur les premières répétitions et craquer sur les dernières."
+      },
+      "en": {
+        "steps": [
+          "Swim at your CSS pace, the threshold rhythm you can sustain, RPE 7-8 depending on the set.",
+          "Respect the short recovery shown to hold the intensity from one rep to the next.",
+          "Aim for minimal drift: the last 100 m should match the first in time.",
+          "Keep a stable stroke count to check that technique holds under fatigue.",
+          "If you clearly fade near the end of the set, it is better to cut it short and keep the pacing clean."
+        ],
+        "equipment": ["goggles", "swim cap", "pace clock or watch"],
+        "commonMistake": "Going out too fast on the first reps and cracking on the last ones."
+      }
+    },
+    {
+      "id": "swim_sprint_sp1",
+      "type": "block",
+      "matchers": ["sp1", "sprint 4 × 25", "allure 200 m race", "sprint race-pace"],
+      "fr": {
+        "steps": [
+          "Nage court et vif à allure proche de ta vitesse de course sur 200 m, RPE 9.",
+          "Cherche un coup de bras puissant et un appui propre plutôt qu'une fréquence désordonnée.",
+          "Garde la récupération indiquée pour relancer chaque répétition avec de la qualité.",
+          "Reste gainé et aligné même à haute vitesse pour ne pas perdre la glisse.",
+          "En semaine d'affûtage, ces accélérations courtes réveillent le système nerveux sans fatiguer."
+        ],
+        "equipment": ["lunettes", "bonnet"],
+        "commonMistake": "Battre des bras dans le désordre : la vitesse vient d'un appui propre, pas de la précipitation."
+      },
+      "en": {
+        "steps": [
+          "Swim short and sharp at a pace close to your 200 m race speed, RPE 9.",
+          "Look for a powerful stroke and a clean catch rather than a frantic turnover.",
+          "Keep the prescribed recovery so each rep relaunches with quality.",
+          "Stay braced and aligned even at high speed so you keep your glide.",
+          "During taper, these short accelerations wake up the nervous system without tiring you."
+        ],
+        "equipment": ["goggles", "swim cap"],
+        "commonMistake": "Thrashing the arms: speed comes from a clean catch, not from rushing."
+      }
+    },
+    {
+      "id": "swim_drill_catch_evf",
+      "type": "block",
+      "matchers": ["drill catch", "sculling", "evf", "fingertip drag", "single-arm catch", "paddles", "pull-buoy catch", "catch single-arm", "drill single-arm"],
+      "fr": {
+        "steps": [
+          "Cherche à orienter l'avant-bras tôt et verticalement (coude haut) pour accrocher plus d'eau vers l'arrière.",
+          "Sur le sculling, fais de petits mouvements en huit pour sentir la pression de l'eau sur la main et l'avant-bras.",
+          "Sur le fingertip drag, laisse les doigts effleurer la surface au retour pour garder le coude haut.",
+          "Nage à effort modéré (autour de 60 %) : l'objectif est la sensation, pas la vitesse.",
+          "Si tu utilises des plaquettes, limite leur volume à une petite part de la séance pour préserver l'épaule."
+        ],
+        "equipment": ["lunettes", "bonnet", "pull-buoy", "plaquettes"],
+        "commonMistake": "Tirer avec le coude qui tombe : garde le coude haut pour orienter l'avant-bras vers l'arrière."
+      },
+      "en": {
+        "steps": [
+          "Aim to set the forearm early and vertical (high elbow) to catch more water and push it back.",
+          "On sculling, make small figure-eight motions to feel pressure on the hand and forearm.",
+          "On fingertip drag, let the fingers skim the surface on recovery to keep the elbow high.",
+          "Swim at moderate effort (around 60 %): the goal is feel, not speed.",
+          "If you use paddles, keep their volume to a small share of the session to protect the shoulder."
+        ],
+        "equipment": ["goggles", "swim cap", "pull-buoy", "paddles"],
+        "commonMistake": "Pulling with a dropping elbow: keep the elbow high to angle the forearm backward."
+      }
+    },
+    {
+      "id": "swim_drill_balance_kick",
+      "type": "block",
+      "matchers": ["6-3-6", "drill équilibre", "battements", "battements planche", "battement", "drill 6-3-6", "respiration bilatérale", "étoile sur le dos"],
+      "fr": {
+        "steps": [
+          "Sur les battements avec planche, génère le mouvement depuis la hanche, jambes longues, pas depuis le genou.",
+          "Garde le corps allongé et la position hydrodynamique, tête dans l'alignement.",
+          "Sur le 6-3-6, enchaîne 6 battements sur un côté, 3 coups de bras de transition, puis 6 battements de l'autre côté pour travailler la rotation.",
+          "Sur la respiration bilatérale, inspire toutes les 3 brassées en alternant les côtés pour gagner en symétrie.",
+          "Respire calmement et cherche l'équilibre et la décontraction plutôt que la vitesse."
+        ],
+        "equipment": ["lunettes", "bonnet", "planche"],
+        "commonMistake": "Battre depuis le genou : le mouvement part de la hanche, jambes quasi tendues."
+      },
+      "en": {
+        "steps": [
+          "On kick with a board, drive from the hip with long legs, not from the knee.",
+          "Keep the body extended and hydrodynamic, head in line with the spine.",
+          "On 6-3-6, link 6 kicks on one side, 3 transition strokes, then 6 kicks on the other side to train rotation.",
+          "On bilateral breathing, inhale every 3 strokes alternating sides to build symmetry.",
+          "Breathe calmly and chase balance and relaxation rather than speed."
+        ],
+        "equipment": ["goggles", "swim cap", "kickboard"],
+        "commonMistake": "Kicking from the knee: the motion comes from the hip with nearly straight legs."
+      }
+    },
+    {
+      "id": "swim_sighting",
+      "type": "block",
+      "matchers": ["sighting", "drill sighting", "eau libre", "combinaison"],
+      "fr": {
+        "steps": [
+          "Lève juste les yeux au-dessus de la surface, comme un crocodile, en gardant le menton bas, puis repose la tête pour respirer sur le côté.",
+          "Repère un point fixe devant toi, puis reprends une nage longue et alignée.",
+          "Sur le long, place un sighting toutes les 50 m environ pour t'habituer sans casser le rythme.",
+          "Avec combinaison, vérifie le confort et entraîne-toi à la sortir rapidement au sec après la sortie d'eau.",
+          "Garde les jambes actives pendant le repère pour ne pas couler à l'avant."
+        ],
+        "equipment": ["lunettes", "bonnet", "combinaison néoprène"],
+        "commonMistake": "Sortir toute la tête : seuls les yeux passent au-dessus de l'eau, le geste reste fluide."
+      },
+      "en": {
+        "steps": [
+          "Lift just your eyes above the surface, like a crocodile, chin low, then drop your head to breathe to the side.",
+          "Spot a fixed point ahead, then resume a long, aligned stroke.",
+          "On long swims, sight roughly every 50 m to get used to it without breaking rhythm.",
+          "With a wetsuit, check the comfort and practice peeling it off quickly on dry land after the water exit.",
+          "Keep your legs active while you sight so your front end does not sink."
+        ],
+        "equipment": ["goggles", "swim cap", "wetsuit"],
+        "commonMistake": "Lifting the whole head: only the eyes clear the water, the stroke stays fluid."
+      }
+    },
+    {
+      "id": "swim_continuous_beginner",
+      "type": "block",
+      "matchers": ["crawl continu", "crawl 25 m", "crawl conversational", "crawl 4 × 100", "simulation swim", "crawl pull-buoy en1", "crawl récupération"],
+      "fr": {
+        "steps": [
+          "Nage à une allure très facile où tu peux dire une phrase courte au bord du bassin sans haleter.",
+          "Respire sur ton côté favori toutes les 3 brassées et trouve un rythme régulier.",
+          "Touche le mur en virant sans t'arrêter pour construire la nage continue, longueur après longueur.",
+          "Cherche une nage longue et glissée plutôt que de multiplier les coups de bras.",
+          "L'objectif est l'aisance et la confiance dans l'eau, pas la performance chronométrée."
+        ],
+        "equipment": ["lunettes", "bonnet"],
+        "commonMistake": "Vouloir aller vite : à ce stade, c'est la régularité et l'aisance qui priment."
+      },
+      "en": {
+        "steps": [
+          "Swim at a very easy pace where you can say a short sentence poolside without gasping.",
+          "Breathe to your favorite side every 3 strokes and find a steady rhythm.",
+          "Touch and turn at the wall without stopping to build continuous swimming, length after length.",
+          "Look for a long, gliding stroke rather than piling up arm strokes.",
+          "The goal is ease and confidence in the water, not a timed performance."
+        ],
+        "equipment": ["goggles", "swim cap"],
+        "commonMistake": "Trying to go fast: at this stage steadiness and ease matter most."
+      }
+    },
+    {
+      "id": "transition_t1_t2",
+      "type": "block",
+      "matchers": ["transition", "t1", "t2", "transitions t1", "transition t2", "simulation transition", "transition rapide"],
+      "fr": {
+        "steps": [
+          "Pose ton matériel toujours dans le même ordre pour automatiser les gestes : casque, lunettes, chaussures, race-belt.",
+          "Sur T1, sors de l'eau, enfile casque et chaussures vélo, et démarre en posant le vélo en main, casque clipsé avant d'enfourcher.",
+          "Sur T2, pose le vélo, retire le casque, change de chaussures (lacets élastiques) et boucle ton race-belt.",
+          "Cherche un enchaînement fluide plutôt qu'un chrono : la régularité du geste fait gagner du temps.",
+          "Répète plusieurs fois à sec pour mémoriser l'ordre et fluidifier l'enchaînement."
+        ],
+        "equipment": ["casque", "chaussures vélo", "chaussures de running", "race-belt", "lunettes"],
+        "commonMistake": "Changer l'ordre des gestes à chaque essai : fige une routine et répète-la jusqu'à l'automatisme."
+      },
+      "en": {
+        "steps": [
+          "Lay out your gear in the same order every time to automate the steps: helmet, goggles, shoes, race belt.",
+          "On T1, exit the water, put on helmet and bike shoes, and start by running with the bike in hand, helmet clipped before mounting.",
+          "On T2, rack the bike, remove the helmet, switch to run shoes (elastic laces) and clip your race belt.",
+          "Aim for a smooth sequence rather than a stopwatch: consistent movement is what saves time.",
+          "Rehearse several times on dry land to lock in the order and smooth the flow."
+        ],
+        "equipment": ["helmet", "bike shoes", "running shoes", "race belt", "goggles"],
+        "commonMistake": "Changing the order of steps every attempt: lock in a routine and repeat it until it is automatic."
+      }
+    },
+    {
+      "id": "test_css_swim",
+      "type": "block",
+      "matchers": ["test css", "400 m all-out", "200 m all-out", "css 400", "css 200"],
+      "fr": {
+        "steps": [
+          "Échauffe-toi bien, puis nage le 400 m en tout-pour-tout régulier, sans sprinter le départ, et note ton temps.",
+          "Récupère complètement une dizaine de minutes au bord du bassin (marche, hydratation, relâchement des épaules).",
+          "Enchaîne le 200 m tout-pour-tout sur la même logique de pacing régulier, et note ton temps.",
+          "Calcule ta CSS : la différence de distance divisée par la différence de temps donne ton allure seuil au 100 m.",
+          "Cette CSS sert ensuite de repère pour caler toutes tes allures de natation."
+        ],
+        "equipment": ["lunettes", "bonnet", "chronomètre"],
+        "commonMistake": "Sprinter le départ du 400 m : un test fiable se nage à allure régulière du début à la fin."
+      },
+      "en": {
+        "steps": [
+          "Warm up well, then swim the 400 m as a steady all-out effort, no sprint start, and note your time.",
+          "Recover fully for about ten minutes poolside (walk, hydrate, loosen the shoulders).",
+          "Follow with the 200 m all-out using the same even pacing, and note your time.",
+          "Compute your CSS: the distance difference divided by the time difference gives your threshold pace per 100 m.",
+          "This CSS then serves as the reference to set all your swim paces."
+        ],
+        "equipment": ["goggles", "swim cap", "stopwatch"],
+        "commonMistake": "Sprinting the start of the 400 m: a reliable test is swum at an even pace start to finish."
+      }
+    },
+    {
+      "id": "test_ftp_bike",
+      "type": "block",
+      "matchers": ["test ftp", "ftp 20 min all-out", "20 min all-out"],
+      "fr": {
+        "steps": [
+          "Échauffe-toi progressivement, puis roule 20 minutes au maximum soutenable et régulier, sans partir trop fort.",
+          "Note ta puissance moyenne sur les 20 minutes.",
+          "Estime ta FTP en prenant environ 95 % de cette puissance moyenne.",
+          "Cette FTP devient la référence pour caler tes zones de travail vélo.",
+          "Termine par un retour au calme très léger pour récupérer."
+        ],
+        "equipment": ["vélo", "capteur de puissance", "casque"],
+        "commonMistake": "Partir trop fort sur les premières minutes : un test régulier donne une FTP fiable."
+      },
+      "en": {
+        "steps": [
+          "Warm up progressively, then ride 20 minutes at your sustainable maximum, evenly, without going out too hard.",
+          "Note your average power over the 20 minutes.",
+          "Estimate your FTP as about 95 % of that average power.",
+          "This FTP becomes the reference to set your cycling work zones.",
+          "Finish with a very light cooldown to recover."
+        ],
+        "equipment": ["bike", "power meter", "helmet"],
+        "commonMistake": "Going out too hard in the first minutes: an even test gives a reliable FTP."
+      }
+    },
+    {
+      "id": "mobility_routine",
+      "type": "block",
+      "matchers": ["mobilité", "routine mobilité", "cat-cow", "foam roller", "mobilité globale", "mobilité 3 disciplines", "mobilité hanches"],
+      "fr": {
+        "steps": [
+          "Enchaîne des cercles lents de hanches, chevilles et épaules, une dizaine dans chaque sens.",
+          "Ajoute quelques cat-cow lents et des fentes basses tenues une trentaine de secondes par côté.",
+          "Termine par un squat profond tenu pour relâcher hanches et chevilles.",
+          "Reste sans intensité, l'objectif est le relâchement et la mobilité, pas l'effort.",
+          "Respire amplement et bouge dans une amplitude confortable."
+        ],
+        "equipment": ["tapis", "foam roller"],
+        "commonMistake": "Forcer l'amplitude : reste dans une zone confortable et bouge lentement."
+      },
+      "en": {
+        "steps": [
+          "Flow through slow circles of hips, ankles and shoulders, about ten in each direction.",
+          "Add a few slow cat-cows and low lunges held for about thirty seconds per side.",
+          "Finish with a deep squat hold to release hips and ankles.",
+          "Stay easy: the goal is relaxation and mobility, not effort.",
+          "Breathe fully and move within a comfortable range."
+        ],
+        "equipment": ["mat", "foam roller"],
+        "commonMistake": "Forcing the range: stay in a comfortable zone and move slowly."
+      }
+    },
+    {
+      "id": "plank",
+      "type": "movement",
+      "matchers": ["planche ventrale", "planche", "plank", "side plank", "dead bug"],
+      "fr": {
+        "steps": [
+          "Place les coudes directement sous les épaules, avant-bras au sol.",
+          "Aligne le corps en une ligne droite de la tête aux talons.",
+          "Engage les abdominaux et les fessiers pour éviter de creuser ou de relever le bassin.",
+          "Respire calmement et tiens la position le temps indiqué.",
+          "Sur la planche latérale, empile les épaules et garde le bassin haut et stable."
+        ],
+        "equipment": ["tapis"],
+        "commonMistake": "Laisser le bassin s'affaisser : garde la ligne tête-talons en gainant le ventre et les fessiers."
+      },
+      "en": {
+        "steps": [
+          "Place your elbows directly under your shoulders, forearms on the floor.",
+          "Align your body in a straight line from head to heels.",
+          "Engage your abs and glutes to avoid sagging or piking the hips.",
+          "Breathe calmly and hold the position for the prescribed time.",
+          "On the side plank, stack the shoulders and keep the hips high and stable."
+        ],
+        "equipment": ["mat"],
+        "commonMistake": "Letting the hips sag: keep the head-to-heels line by bracing the abs and glutes."
+      }
+    },
+    {
+      "id": "bird_dog",
+      "type": "movement",
+      "matchers": ["bird-dog", "bird dog"],
+      "fr": {
+        "steps": [
+          "Place-toi à quatre pattes, mains sous les épaules et genoux sous les hanches.",
+          "Tends simultanément un bras et la jambe opposée, dans le prolongement du corps.",
+          "Garde le bassin et les épaules parallèles au sol, sans rotation ni bascule.",
+          "Tiens une à deux secondes en gainant le ventre, puis reviens lentement contrôlé.",
+          "Alterne les côtés en gardant la colonne neutre du début à la fin."
+        ],
+        "equipment": ["tapis"],
+        "commonMistake": "Laisser le bassin tourner : garde les hanches bien à plat et le mouvement lent."
+      },
+      "en": {
+        "steps": [
+          "Get on all fours, hands under shoulders and knees under hips.",
+          "Extend one arm and the opposite leg at the same time, in line with the body.",
+          "Keep your hips and shoulders parallel to the floor, no rotation or tilt.",
+          "Hold one to two seconds bracing the core, then return slowly and controlled.",
+          "Alternate sides keeping the spine neutral throughout."
+        ],
+        "equipment": ["mat"],
+        "commonMistake": "Letting the hips rotate: keep the pelvis flat and the movement slow."
+      }
+    },
+    {
+      "id": "clamshell",
+      "type": "movement",
+      "matchers": ["clamshell", "clam ", "clam+"],
+      "fr": {
+        "steps": [
+          "Allonge-toi sur le côté, genoux pliés et talons alignés avec le bassin.",
+          "Si tu en as une, place une mini-bande élastique juste au-dessus des genoux.",
+          "Ouvre le genou supérieur en gardant les pieds joints, sans bouger le bassin.",
+          "Contrôle la remontée et la descente, l'effort vient des muscles de la hanche.",
+          "Garde le buste stable, le mouvement reste isolé sur la hanche."
+        ],
+        "equipment": ["tapis", "mini-bande élastique"],
+        "commonMistake": "Faire rouler le bassin en arrière : seul le genou du dessus s'ouvre, le bassin reste fixe."
+      },
+      "en": {
+        "steps": [
+          "Lie on your side, knees bent and heels in line with your hips.",
+          "If you have one, place a mini-band just above the knees.",
+          "Open the top knee while keeping the feet together, without moving the pelvis.",
+          "Control the lift and the return, the effort comes from the hip muscles.",
+          "Keep the torso stable, the motion stays isolated at the hip."
+        ],
+        "equipment": ["mat", "mini-band"],
+        "commonMistake": "Rolling the pelvis backward: only the top knee opens, the pelvis stays fixed."
+      }
+    },
+    {
+      "id": "glute_bridge",
+      "type": "movement",
+      "matchers": ["pont fessier", "glute bridge"],
+      "fr": {
+        "steps": [
+          "Allonge-toi sur le dos, genoux pliés, pieds à plat largeur de hanches.",
+          "Pousse dans les talons pour monter le bassin jusqu'à aligner épaules, hanches et genoux.",
+          "Serre les fessiers une à deux secondes en haut sans creuser le bas du dos.",
+          "Redescends lentement et contrôle le mouvement.",
+          "Sur la version unilatérale, garde le bassin bien horizontal sans qu'un côté s'affaisse."
+        ],
+        "equipment": ["tapis"],
+        "commonMistake": "Cambrer le bas du dos en haut : la poussée vient des fessiers, pas des lombaires."
+      },
+      "en": {
+        "steps": [
+          "Lie on your back, knees bent, feet flat hip-width apart.",
+          "Drive through your heels to lift the hips until shoulders, hips and knees align.",
+          "Squeeze the glutes one to two seconds at the top without arching the low back.",
+          "Lower slowly and control the movement.",
+          "On the single-leg version, keep the pelvis level so neither side drops."
+        ],
+        "equipment": ["mat"],
+        "commonMistake": "Arching the low back at the top: the drive comes from the glutes, not the lumbar spine."
+      }
+    },
+    {
+      "id": "hip_thrust",
+      "type": "movement",
+      "matchers": ["hip thrust"],
+      "fr": {
+        "steps": [
+          "Cale le haut du dos sur un banc, pieds à plat largeur de hanches.",
+          "Place une charge sur le pli des hanches (haltère ou kettlebell) en la maintenant.",
+          "Pousse dans les talons pour monter le bassin jusqu'à l'horizontale, tibias verticaux.",
+          "Serre les fessiers une à deux secondes en haut, menton légèrement rentré.",
+          "Redescends en contrôle sans laisser le bassin tomber d'un coup."
+        ],
+        "equipment": ["banc", "haltère ou kettlebell"],
+        "commonMistake": "Pousser le bassin trop haut en cambrant : monte jusqu'à l'horizontale en serrant les fessiers."
+      },
+      "en": {
+        "steps": [
+          "Rest your upper back on a bench, feet flat hip-width apart.",
+          "Place a load across the hip crease (dumbbell or kettlebell) and hold it.",
+          "Drive through your heels to lift the hips to horizontal, shins vertical.",
+          "Squeeze the glutes one to two seconds at the top, chin slightly tucked.",
+          "Lower under control without letting the hips drop suddenly."
+        ],
+        "equipment": ["bench", "dumbbell or kettlebell"],
+        "commonMistake": "Over-arching at the top: rise to horizontal by squeezing the glutes."
+      }
+    },
+    {
+      "id": "nordic_curl",
+      "type": "movement",
+      "matchers": ["nordic curl", "nordic"],
+      "fr": {
+        "steps": [
+          "Place-toi à genoux, chevilles bien bloquées sous un appui stable, corps gréé de la tête aux genoux.",
+          "Garde les fessiers serrés et le bassin dans l'alignement, sans plier au niveau des hanches.",
+          "Descends le buste vers l'avant le plus lentement possible, en freinant (3 à 5 secondes).",
+          "Pose les mains au sol pour amortir en bas, puis aide-toi des bras pour remonter.",
+          "Réduis l'amplitude de descente tant que le freinage n'est pas maîtrisé."
+        ],
+        "equipment": ["tapis", "appui pour bloquer les chevilles"],
+        "commonMistake": "Plier au niveau des hanches : le corps reste gainé en planche, le mouvement vient des cuisses."
+      },
+      "en": {
+        "steps": [
+          "Kneel with ankles firmly anchored under a stable hold, body rigid from head to knees.",
+          "Keep the glutes squeezed and the pelvis aligned, without folding at the hips.",
+          "Lower your torso forward as slowly as possible, braking the descent (3 to 5 seconds).",
+          "Place your hands on the floor to cushion the bottom, then use your arms to come back up.",
+          "Reduce the range of descent until the braking is well controlled."
+        ],
+        "equipment": ["mat", "anchor to hold the ankles"],
+        "commonMistake": "Folding at the hips: the body stays rigid like a plank, the motion comes from the thighs."
+      }
+    },
+    {
+      "id": "calf_raises",
+      "type": "movement",
+      "matchers": ["calf raises", "calf", "calf raise"],
+      "fr": {
+        "steps": [
+          "Tiens-toi debout, idéalement le bord du pied sur une marche, talons libres dans le vide.",
+          "Monte sur la pointe en une seconde, en cherchant l'amplitude complète vers le haut.",
+          "Sur les versions excentriques, descends lentement (3 à 4 secondes) sous le niveau de la marche.",
+          "Sur les versions unipodales, monte sur deux pieds et descends sur un seul pour augmenter la charge.",
+          "Garde l'équilibre avec une main en appui léger si besoin."
+        ],
+        "equipment": ["marche ou step"],
+        "commonMistake": "Descendre trop vite : c'est la descente lente et contrôlée qui renforce le mollet et le tendon."
+      },
+      "en": {
+        "steps": [
+          "Stand tall, ideally with the ball of your foot on a step, heels free in the air.",
+          "Rise onto the balls of your feet in one second, reaching full range at the top.",
+          "On eccentric versions, lower slowly (3 to 4 seconds) below the level of the step.",
+          "On single-leg versions, rise on two feet and lower on one to add load.",
+          "Keep your balance with a light hand support if needed."
+        ],
+        "equipment": ["step"],
+        "commonMistake": "Lowering too fast: it is the slow, controlled descent that strengthens the calf and tendon."
+      }
+    },
+    {
+      "id": "step_up",
+      "type": "movement",
+      "matchers": ["step-up", "step up"],
+      "fr": {
+        "steps": [
+          "Place un pied entier sur une boîte stable d'environ 40 cm.",
+          "Monte en poussant dans la jambe d'appui, sans t'aider de l'élan de l'autre jambe.",
+          "Garde le buste droit et le genou aligné au-dessus du pied.",
+          "Redescends lentement en contrôlant la pose du pied au sol.",
+          "Termine toutes les répétitions d'un côté avant de changer de jambe."
+        ],
+        "equipment": ["boîte ou step stable"],
+        "commonMistake": "S'aider de l'élan de la jambe libre : la poussée vient de la jambe posée sur la boîte."
+      },
+      "en": {
+        "steps": [
+          "Place your whole foot on a stable box of about 40 cm.",
+          "Step up by driving through the supporting leg, without using momentum from the other leg.",
+          "Keep your torso tall and the knee tracking over the foot.",
+          "Lower slowly, controlling how the foot meets the floor.",
+          "Finish all reps on one side before switching legs."
+        ],
+        "equipment": ["stable box or step"],
+        "commonMistake": "Using momentum from the free leg: the drive comes from the leg on the box."
+      }
+    },
+    {
+      "id": "single_leg_deadlift",
+      "type": "movement",
+      "matchers": ["single-leg deadlift", "single leg deadlift", "rdl"],
+      "fr": {
+        "steps": [
+          "Tiens une charge légère dans la main opposée à la jambe d'appui, genou légèrement fléchi.",
+          "Bascule le buste vers l'avant en gardant le dos plat, la jambe libre partant vers l'arrière.",
+          "Descends jusqu'à sentir l'étirement de la chaîne postérieure, sans arrondir le dos.",
+          "Reviens en contrôle en poussant la hanche vers l'avant et en serrant le fessier.",
+          "Va lentement à la descente pour stabiliser hanche et chaîne postérieure et repérer les asymétries."
+        ],
+        "equipment": ["haltère ou kettlebell"],
+        "commonMistake": "Arrondir le dos : garde-le plat et la bascule vient de la hanche, pas des lombaires."
+      },
+      "en": {
+        "steps": [
+          "Hold a light load in the hand opposite the supporting leg, knee slightly bent.",
+          "Hinge your torso forward keeping a flat back, the free leg reaching behind.",
+          "Lower until you feel the posterior chain stretch, without rounding the back.",
+          "Return under control by driving the hip forward and squeezing the glute.",
+          "Go slowly on the descent to stabilize the hip and posterior chain and spot asymmetries."
+        ],
+        "equipment": ["dumbbell or kettlebell"],
+        "commonMistake": "Rounding the back: keep it flat and hinge from the hip, not the lumbar spine."
+      }
+    },
+    {
+      "id": "single_leg_squat",
+      "type": "movement",
+      "matchers": ["bulgarian split squat", "single-leg squat", "single leg squat", "split squat"],
+      "fr": {
+        "steps": [
+          "Sur le split squat, place le pied arrière sur un banc, le poids sur la jambe avant.",
+          "Descends en contrôle en gardant le buste droit et le genou avant aligné sur le pied.",
+          "Sur le single-leg squat, descends t'asseoir doucement sur une boîte sur une jambe puis remonte.",
+          "Garde une charge légère ou le poids du corps, l'objectif est l'équilibre et la force unilatérale.",
+          "Si l'équilibre manque, garde deux doigts en appui léger sur un support."
+        ],
+        "equipment": ["banc ou boîte", "haltères (optionnel)"],
+        "commonMistake": "Laisser le genou avant partir vers l'intérieur : garde-le aligné au-dessus du pied."
+      },
+      "en": {
+        "steps": [
+          "On the split squat, place the rear foot on a bench, weight on the front leg.",
+          "Lower under control keeping the torso tall and the front knee tracking over the foot.",
+          "On the single-leg squat, lower gently to sit on a box on one leg then stand back up.",
+          "Keep a light load or bodyweight, the aim is balance and single-leg strength.",
+          "If balance is lacking, keep two fingers lightly on a support."
+        ],
+        "equipment": ["bench or box", "dumbbells (optional)"],
+        "commonMistake": "Letting the front knee cave inward: keep it tracking over the foot."
+      }
+    },
+    {
+      "id": "ytw_shoulder",
+      "type": "movement",
+      "matchers": ["y-t-w", "shoulder activation", "external rotation band", "ytw"],
+      "fr": {
+        "steps": [
+          "Allonge-toi à plat ventre, front au sol, ou debout penché si tu préfères.",
+          "Forme la lettre Y bras tendus en diagonale haute, soulève légèrement les bras du sol en serrant les omoplates.",
+          "Enchaîne avec le T bras à l'horizontale, puis le W coudes pliés ramenés vers le bas.",
+          "Garde un soulevé léger et contrôlé, l'effort vient du haut du dos et des épaules.",
+          "Si tu as une bande élastique, ajoute des rotations externes coude au corps pour compléter."
+        ],
+        "equipment": ["tapis", "bande élastique (optionnel)"],
+        "commonMistake": "Forcer avec le cou : le mouvement vient des omoplates et du haut du dos, nuque relâchée."
+      },
+      "en": {
+        "steps": [
+          "Lie face down, forehead on the floor, or stand hinged forward if you prefer.",
+          "Form the letter Y with arms extended high in a diagonal, lifting them slightly off the floor by squeezing the shoulder blades.",
+          "Move into the T with arms horizontal, then the W with elbows bent drawn downward.",
+          "Keep the lift light and controlled, the effort comes from the upper back and shoulders.",
+          "If you have a band, add external rotations with the elbow at your side to round it out."
+        ],
+        "equipment": ["mat", "resistance band (optional)"],
+        "commonMistake": "Straining with the neck: the movement comes from the shoulder blades and upper back, neck relaxed."
+      }
+    },
+    {
+      "id": "wall_sit",
+      "type": "movement",
+      "matchers": ["wall sit"],
+      "fr": {
+        "steps": [
+          "Place le dos plat contre un mur, pieds avancés et écartés largeur de hanches.",
+          "Glisse vers le bas jusqu'à un angle confortable des genoux (autour de 60 à 70 degrés).",
+          "Garde les genoux alignés au-dessus des pieds et le dos en contact avec le mur.",
+          "Respire calmement et tiens la position le temps prévu.",
+          "Si l'effort devient trop intense, remonte un peu pour réduire l'angle."
+        ],
+        "equipment": ["mur"],
+        "commonMistake": "Descendre trop bas d'emblée : garde un angle confortable et le dos plaqué au mur."
+      },
+      "en": {
+        "steps": [
+          "Place your back flat against a wall, feet forward and hip-width apart.",
+          "Slide down to a comfortable knee angle (around 60 to 70 degrees).",
+          "Keep the knees tracking over the feet and the back in contact with the wall.",
+          "Breathe calmly and hold for the planned time.",
+          "If the effort gets too intense, rise a little to reduce the angle."
+        ],
+        "equipment": ["wall"],
+        "commonMistake": "Dropping too low right away: keep a comfortable angle with the back against the wall."
+      }
+    },
+    {
+      "id": "core_circuit",
+      "type": "movement",
+      "matchers": ["circuit", "clam + calf + y-t-w + plank", "planche + bird-dog"],
+      "fr": {
+        "steps": [
+          "Enchaîne les exercices du circuit avec une récupération courte entre chaque.",
+          "Sur chaque mouvement, garde la technique propre plutôt que de viser le nombre.",
+          "Gaine le ventre et stabilise le bassin sur les exercices de core.",
+          "Respire régulièrement, sans bloquer, tout au long du circuit.",
+          "Adapte le volume si la qualité du geste se dégrade en fin de série."
+        ],
+        "equipment": ["tapis", "mini-bande élastique"],
+        "commonMistake": "Privilégier le nombre à la qualité : mieux vaut moins de répétitions bien exécutées."
+      },
+      "en": {
+        "steps": [
+          "Move through the circuit exercises with a short recovery between each.",
+          "On every movement, keep clean technique rather than chasing the count.",
+          "Brace the core and stabilize the pelvis on the core exercises.",
+          "Breathe steadily, without holding your breath, throughout the circuit.",
+          "Adjust the volume if movement quality drops late in the set."
+        ],
+        "equipment": ["mat", "mini-band"],
+        "commonMistake": "Prioritizing reps over quality: fewer well-executed reps are better."
+      }
+    },
+    {
+      "id": "race_day_rest_checklist",
+      "type": "block",
+      "matchers": ["repos complet", "check liste matériel", "race-pace 70.3", "swim race", "bike race", "run race", "repos"],
+      "fr": {
+        "steps": [
+          "Prépare et vérifie tout ton matériel la veille : combinaison, lunettes, bonnet, casque, chaussures vélo et course, race-belt, dossard, appareils chargés.",
+          "Le jour de course, gère le pacing : départ conservateur sur chaque discipline puis montée progressive vers l'allure cible.",
+          "Sur le vélo, garde une cadence ronde et ravitaille régulièrement comme à l'entraînement.",
+          "Sur la course, attends-toi aux jambes lourdes les premières minutes, puis installe ton allure.",
+          "Le jour de repos, reste tranquille et laisse le corps récupérer pour arriver frais."
+        ],
+        "equipment": ["combinaison", "casque", "chaussures vélo", "chaussures de running", "race-belt", "appareils GPS"],
+        "commonMistake": "Partir trop vite dès le départ : un pacing conservateur en début d'épreuve protège la fin de course."
+      },
+      "en": {
+        "steps": [
+          "Prepare and check all your gear the day before: wetsuit, goggles, cap, helmet, bike and run shoes, race belt, bib, charged devices.",
+          "On race day, manage your pacing: a conservative start on each discipline then a gradual build toward target pace.",
+          "On the bike, keep a round cadence and fuel regularly as you did in training.",
+          "On the run, expect heavy legs for the first minutes, then settle into your pace.",
+          "On the rest day, stay quiet and let your body recover so you arrive fresh."
+        ],
+        "equipment": ["wetsuit", "helmet", "bike shoes", "running shoes", "race belt", "GPS devices"],
+        "commonMistake": "Going out too fast from the start: conservative early pacing protects the end of your race."
+      }
+    }
+  ]
+}

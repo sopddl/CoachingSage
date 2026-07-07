@@ -200,7 +200,7 @@ public enum SecondaryGoalOverlay {
             applied.append(OverlayAppliedRule(
                 weekNumber: week.weekNumber,
                 day: originalSession.day,
-                originalSessionName: originalSession.name,
+                originalSessionName: originalSession.name.canonical,
                 secondaryGoal: secondaryGoal,
                 strategy: .dedicatedSession
             ))
@@ -232,14 +232,16 @@ public enum SecondaryGoalOverlay {
     ) -> AdaptedSession {
         let drills = SecondaryDrillsCatalog.drills(forGoal: secondaryGoal, sportCode: sportCode)
         let exercises = drills.map { drill in
+            // Catalogue drills FR-only (contenu synthétique) → wrap LocalizedText(fr:),
+            // fallback FR jusqu'à traduction éventuelle du catalogue (B2).
             AdaptedExercise(
-                name: drill.name,
+                name: LocalizedText(fr: drill.name),
                 originalName: drill.name,
                 sets: drill.sets,
                 reps: drill.reps,
                 duration: drill.duration,
                 restSeconds: drill.restSeconds,
-                notes: drill.notes,
+                notes: drill.notes.map { LocalizedText(fr: $0) },
                 targetZone: drill.targetZone,
                 volumeAxis: nil,
                 wasSubstituted: false,
@@ -248,10 +250,10 @@ public enum SecondaryGoalOverlay {
         }
         return AdaptedSession(
             day: day,
-            name: SecondaryDrillsCatalog.sessionName(forGoal: secondaryGoal, sportCode: sportCode),
+            name: LocalizedText(fr: SecondaryDrillsCatalog.sessionName(forGoal: secondaryGoal, sportCode: sportCode)),
             durationMinutes: durationMinutes,
             type: SecondaryDrillsCatalog.sessionType(forGoal: secondaryGoal, sportCode: sportCode),
-            warmup: drills.first?.warmupHint,
+            warmup: drills.first?.warmupHint.map { LocalizedText(fr: $0) },
             exercises: exercises,
             cooldown: nil
         )
@@ -295,13 +297,13 @@ public enum SecondaryGoalOverlay {
                     durationMinutes: drillMinutes
                 )
                 let drillExercise = AdaptedExercise(
-                    name: drill.name,
+                    name: LocalizedText(fr: drill.name),
                     originalName: drill.name,
                     sets: drill.sets,
                     reps: drill.reps,
                     duration: drill.duration,
                     restSeconds: drill.restSeconds,
-                    notes: drill.notes,
+                    notes: drill.notes.map { LocalizedText(fr: $0) },
                     targetZone: drill.targetZone,
                     volumeAxis: nil,
                     wasSubstituted: false,
@@ -314,13 +316,15 @@ public enum SecondaryGoalOverlay {
                     type: session.type,
                     warmup: session.warmup,
                     exercises: [drillExercise] + session.exercises,
-                    cooldown: session.cooldown
+                    cooldown: session.cooldown,
+                    warmupMinutes: session.warmupMinutes,
+                    cooldownMinutes: session.cooldownMinutes
                 )
                 newSessions.append(augmented)
                 applied.append(OverlayAppliedRule(
                     weekNumber: week.weekNumber,
                     day: session.day,
-                    originalSessionName: session.name,
+                    originalSessionName: session.name.canonical,
                     secondaryGoal: secondaryGoal,
                     strategy: .mixInSession
                 ))

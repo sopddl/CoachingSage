@@ -225,7 +225,7 @@ final class DormantBootstrapServiceTests: XCTestCase {
     ) -> ProgramTemplate {
         ProgramTemplate(
             id: id, schemaVersion: 1, sport: sport, level: level,
-            name: id, durationWeeks: 4, sessionsPerWeek: 3,
+            name: LocalizedText(fr: id), durationWeeks: 4, sessionsPerWeek: 3,
             defaultObjective: "obj", assumedProfile: "ap", summary: "sum",
             weeks: [],
             safetyNotes: "n/a", progressionLogic: "n/a"

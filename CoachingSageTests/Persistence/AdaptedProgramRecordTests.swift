@@ -72,6 +72,38 @@ final class AdaptedProgramRecordTests: XCTestCase {
         XCTAssertEqual(record.sessions.first?.durationMinutes, 35)
     }
 
+    /// **B1 non-régression** : un `sessionsJsonData` persisté AVANT la migration
+    /// LocalizedText (champs texte = String nues) doit décoder en `{ fr: … }` via
+    /// le decoder tolérant, et résoudre en fallback FR pour une langue absente.
+    func testLegacySessionsJsonDecodesBareStringsAsFR() throws {
+        let id = UUID().uuidString
+        let legacyJSON = """
+        [{"id":"\(id)","weekNumber":1,"weekTheme":"Découverte","weekGoal":"Reprendre",\
+        "day":1,"name":"Footing 30 min","durationMinutes":30,"type":"endurance",\
+        "warmup":"5 min marche","cooldown":"5 min étirements",\
+        "exercises":[{"name":"Footing 30 min","originalName":"Footing 30 min","wasSubstituted":false}]}]
+        """
+        let sessions = try JSONDecoder().decode([PersistedSession].self, from: Data(legacyJSON.utf8))
+        XCTAssertEqual(sessions.count, 1)
+        let s = sessions[0]
+        // String nue → valeur canonique FR.
+        XCTAssertEqual(s.name.fr, "Footing 30 min")
+        XCTAssertEqual(s.weekTheme.fr, "Découverte")
+        XCTAssertEqual(s.weekGoal.fr, "Reprendre")
+        XCTAssertEqual(s.warmup?.fr, "5 min marche")
+        XCTAssertEqual(s.cooldown?.fr, "5 min étirements")
+        XCTAssertEqual(s.exercises.first?.name.fr, "Footing 30 min")
+        XCTAssertEqual(s.exercises.first?.originalName, "Footing 30 min")
+        // Fallback FR pour une langue non traduite (pré-B2).
+        let en = Locale(identifier: "en")
+        XCTAssertEqual(s.name.resolved(en), "Footing 30 min")
+        XCTAssertEqual(s.warmup?.resolved(en), "5 min marche")
+        // Ré-encodage → format objet (migration paresseuse au prochain set).
+        let reEncoded = try JSONEncoder().encode(sessions)
+        let json = String(decoding: reEncoded, as: UTF8.self)
+        XCTAssertTrue(json.contains("\"fr\""), "doit ré-encoder en objet {fr:…}")
+    }
+
     func testCompletionStateJsonRoundTrip() throws {
         let sessionId = UUID()
         let record = AdaptedProgramRecord(
@@ -199,6 +231,33 @@ final class AdaptedProgramRecordTests: XCTestCase {
         XCTAssertNil(record.aiPatchJSON)
     }
 
+    // MARK: - Densité B (2026-07-02) — densityApplied
+
+    func testBridgeSetsDensityAppliedWhenDensityRuleActed() {
+        let densified = makeAdaptedFixture(appliedRules: [
+            AppliedRule(
+                ruleType: .density, weekNumber: 1, day: 1,
+                originalExerciseName: "Footing", outcome: .densified,
+                detail: "+1 série (2 → 3)"
+            )
+        ])
+        XCTAssertTrue(AdaptedProgramRecord(from: densified, userId: UUID()).densityApplied)
+    }
+
+    func testBridgeDefaultsDensityAppliedFalseWithoutDensityRule() {
+        // Aucune règle, ou des règles NON-densité → false (dormants + programmes sans signal).
+        let clean = makeAdaptedFixture()
+        XCTAssertFalse(AdaptedProgramRecord(from: clean, userId: UUID()).densityApplied)
+
+        let otherRule = makeAdaptedFixture(appliedRules: [
+            AppliedRule(
+                ruleType: .volumeModulation, weekNumber: 1, day: 1,
+                originalExerciseName: "Footing", outcome: .noChange, detail: ""
+            )
+        ])
+        XCTAssertFalse(AdaptedProgramRecord(from: otherRule, userId: UUID()).densityApplied)
+    }
+
     func testBridgeFlattensWeeksAndSessions() {
         // 2 weeks × 3 sessions = 6 PersistedSession à plat.
         let adapted = makeAdaptedFixture(weeksCount: 2, sessionsPerWeek: 3)
@@ -285,6 +344,34 @@ final class AdaptedProgramRecordTests: XCTestCase {
         let fetched = try ctx.fetch(FetchDescriptor<AdaptedProgramRecord>())
         XCTAssertEqual(fetched.count, 1)
         XCTAssertEqual(fetched.first?.id, record.id)
+    }
+
+    // MARK: - Chantier indoor/outdoor vélo — sessionLocations + environmentDefault
+
+    func testSessionLocationStateSetGetAndRemove() {
+        var s = SessionLocationState.empty
+        XCTAssertNil(s.environment(week: 3, day: 5))
+        s.set(.indoor, week: 3, day: 5)
+        XCTAssertEqual(s.environment(week: 3, day: 5), .indoor)
+        XCTAssertEqual(SessionLocationState.key(week: 3, day: 5), "3-5")
+        s.set(nil, week: 3, day: 5) // retrait override
+        XCTAssertNil(s.environment(week: 3, day: 5))
+    }
+
+    func testSessionLocationsAndEnvironmentDefaultRoundTripThroughSwiftData() throws {
+        let (container, ctx) = try Self.makeProgramContext()
+        _ = container
+        let record = AdaptedProgramRecord(from: makeAdaptedFixture(), userId: UUID())
+        var state = record.sessionLocations
+        state.set(.indoor, week: 1, day: 5)
+        record.sessionLocations = state
+        record.environmentDefaultRaw = "both"
+        ctx.insert(record)
+        try ctx.save()
+
+        let fetched = try ctx.fetch(FetchDescriptor<AdaptedProgramRecord>()).first
+        XCTAssertEqual(fetched?.sessionLocations.environment(week: 1, day: 5), .indoor)
+        XCTAssertEqual(fetched?.environmentDefaultRaw, "both")
     }
 
     func testArchivingFlipsIsActiveAndSetsArchivedAt() throws {
@@ -394,7 +481,8 @@ final class AdaptedProgramRecordTests: XCTestCase {
         requiresAIAssist: Bool = false,
         aiAssistReason: String? = nil,
         durationMode: ProgramDurationMode = .routineCyclic,
-        targetDate: Date? = nil
+        targetDate: Date? = nil,
+        appliedRules: [AppliedRule] = []
     ) -> AdaptedProgram {
         let weeks = (1...weeksCount).map { wn in
             AdaptedWeek(
@@ -428,7 +516,7 @@ final class AdaptedProgramRecordTests: XCTestCase {
             level: .beginner,
             appliedAt: Date(timeIntervalSince1970: 1_700_000_000),
             weeks: weeks,
-            appliedRules: [],
+            appliedRules: appliedRules,
             requiresAIAssist: requiresAIAssist,
             aiAssistReason: aiAssistReason,
             durationMode: durationMode,

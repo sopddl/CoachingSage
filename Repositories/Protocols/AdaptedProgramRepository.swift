@@ -12,7 +12,7 @@ protocol AdaptedProgramRepository {
     func fetchActive(for userId: UUID) async throws -> [AdaptedProgramRecord]
 
     /// **Story 3.10** — Programmes actifs démarrés (`weekStartDate != nil`)
-    /// du user. Sert au check du cap `ProgramCapReached.started(limit: 5)`.
+    /// du user. Sert au check du cap `ProgramCapReached.started(limit: 8)`.
     func fetchStartedCount(for userId: UUID) async throws -> Int
 
     /// **Story 3.10** — Programmes actifs dormants (`weekStartDate == nil`)
@@ -23,7 +23,7 @@ protocol AdaptedProgramRepository {
     /// **Story 3.10** — Si le record est dormant (`weekStartDate == nil`),
     /// throw `ProgramCapReached.dormant(limit: 10)` quand le cap est atteint
     /// pour le user. Si le record est démarré (édition manuelle, peu probable
-    /// hors tests), throw `ProgramCapReached.started(limit: 5)` au-delà.
+    /// hors tests), throw `ProgramCapReached.started(limit: 8)` au-delà.
     func save(_ record: AdaptedProgramRecord) async throws
 
     /// Persiste les mutations d'un record déjà tracké (drag&drop hebdo Story 3.8 :
@@ -32,7 +32,7 @@ protocol AdaptedProgramRepository {
 
     /// **Story 3.10** — Bascule un programme dormant en démarré (pose
     /// `weekStartDate` sur lundi de la semaine courante). Idempotent : no-op
-    /// si déjà démarré. Throw `ProgramCapReached.started(limit: 5)` quand le
+    /// si déjà démarré. Throw `ProgramCapReached.started(limit: 8)` quand le
     /// cap de programmes démarrés est atteint pour le user.
     func markStarted(recordId: UUID) async throws
 

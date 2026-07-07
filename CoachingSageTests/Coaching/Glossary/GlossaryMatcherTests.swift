@@ -32,6 +32,53 @@ final class GlossaryMatcherTests: XCTestCase {
         XCTAssertEqual(matches.first?.entry.id, "tempo")
     }
 
+    // MARK: - Revue comité 2026-06-06 — jargon échauffement (glutes / band / mobilité / récup)
+
+    func testGlutesMatch() {
+        XCTAssertEqual(Glossary.matches(in: "activation glutes").first?.entry.id, "glutes")
+        XCTAssertEqual(Glossary.matches(in: "activation des fessiers").first?.entry.id, "glutes")
+    }
+
+    // Chantier compréhensibilité running 2026-06-25 — jargon orphelin rendu tappable.
+    func testRunningJargonNowMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Séries de 600 m (allure VMA)").first?.entry.id, "vma")
+        XCTAssertTrue(Glossary.matches(in: "Bloc tempo au seuil 20 min").contains { $0.entry.id == "seuil" })
+        XCTAssertEqual(Glossary.matches(in: "Plusieurs seuils dans la semaine").first?.entry.id, "seuil")
+        XCTAssertEqual(Glossary.matches(in: "Phase d'affûtage avant la course").first?.entry.id, "affutage")
+        XCTAssertEqual(Glossary.matches(in: "construit ta base aérobie").first?.entry.id, "aerobie")
+        XCTAssertEqual(Glossary.matches(in: "Mollets excentriques sur une marche").first?.entry.id, "excentrique")
+    }
+
+    // Chantier compréhensibilité cycling 2026-06-25 — FCmax rendue tappable (FTP/VO2max déjà glosés).
+    func testCyclingFCmaxNowMatches() {
+        XCTAssertTrue(Glossary.matches(in: "Allure soutenue (88-94 % FTP, 92-97 % FCmax, RPE 3-4)")
+            .contains { $0.entry.id == "fcmax" })
+        XCTAssertEqual(Glossary.matches(in: "reste sous 75 % FC max").first?.entry.id, "fcmax")
+        XCTAssertEqual(Glossary.matches(in: "stay under 90-95% max HR").first?.entry.id, "fcmax")
+    }
+
+    func testBandMatch() {
+        XCTAssertEqual(Glossary.matches(in: "activation glutes (band)").last?.entry.id, "band")
+        XCTAssertEqual(Glossary.matches(in: "avec un élastique").first?.entry.id, "band")
+    }
+
+    func testMobiliteMatch() {
+        XCTAssertEqual(Glossary.matches(in: "mobilité épaules").first?.entry.id, "mobility")
+    }
+
+    func testRecupMatch() {
+        XCTAssertEqual(Glossary.matches(in: "récup active 90s").first?.entry.id, "recovery")
+    }
+
+    // Longest-first : les patterns spécifiques existants gardent la priorité.
+    func testMobiliteThoraciqueStillThoracic() {
+        XCTAssertEqual(Glossary.matches(in: "mobilité thoracique").first?.entry.id, "thoracic")
+    }
+
+    func testBandPullApartStillWins() {
+        XCTAssertEqual(Glossary.matches(in: "band pull apart x15").first?.entry.id, "bandpullapart")
+    }
+
     // MARK: - Matches multiples ordonnés
 
     func testMultipleMatchesOrderedByPosition() {

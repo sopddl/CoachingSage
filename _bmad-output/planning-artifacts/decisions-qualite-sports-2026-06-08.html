@@ -1,0 +1,302 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Décisions qualité sports — 2026-06-08</title>
+<style>
+body{font-family:-apple-system,sans-serif;background:#f4f4f7;margin:0;padding:28px;color:#1c1c1e;line-height:1.4}
+h1{font-size:23px} .intro{color:#555;max-width:780px;margin-bottom:24px}
+section{background:#fff;border-radius:14px;padding:18px 20px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+h2{font-size:18px;margin:0 0 14px;border-bottom:1px solid #eee;padding-bottom:8px}
+.cnt{font-size:13px;color:#888;font-weight:400}
+.dec{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #f2f2f5}
+.dec:last-child{border:0}
+.sev{font-size:11px;font-weight:700;padding:2px 7px;border-radius:6px;height:fit-content;white-space:nowrap}
+.sev-P0{background:#ffe5e5;color:#c00} .sev-P1{background:#fff2dd;color:#b35e00} .sev-P2{background:#eef;color:#558}
+.desc{font-weight:500} .fix{color:#333;font-size:14px;margin-top:3px} .note{color:#999;font-size:12.5px;margin-top:3px;font-style:italic}
+</style></head><body>
+<h1>Décisions produit qualité — 10 sports</h1>
+<div class="intro">57 décisions produit remontées par la passe Sally + user (arbitrées). Ce sont des choix que je ne tranche pas seul (politique d'affichage des zones/jargon, nommage FR/EN des exos, niveau de vulgarisation, exceptions doctrine). Les <b>thèmes transverses dominants</b> : (1) <b>affichage des codes de zone/intensité</b> (Daniels/FTP/CSS/RPE bruts) — lié au chantier dosage caméléon ; (2) <b>politique de nommage FR/EN</b> des exercices ; (3) <b>niveau de vulgarisation</b> du jargon. Tranche-les ici, j'implémente ensuite.</div>
+<section><h2>Running <span class="cnt">5 décisions</span></h2><div class="dec">
+  <span class="sev sev-P0">P0</span>
+  <div class="body"><div class="desc">Le champ d&#x27;allure le plus consulté pendant la séance affiche le CODE COACH brut comme libellé principal (« Daniels-E », « @HMP », « RPE 6-7 »). VÉRIF ARBITRE : ce n&#x27;est PAS un texte mort — il existe un vrai système de glossaire tappable (Coaching/Glossary/Glossary.swift : entrées daniels.e/m/t/i/r, hmp, race.pace via @5K-pace, rpe, vdot, vo2max, strides, fartlek… avec définitions localisées FR/EN/ES). Le débutant peut tapper pour comprendre. La question n&#x27;est donc pas « bug d&#x27;affichage » mais un choix produit : garder le code-coach comme libellé principal (stratégie glossaire-as-contexte, déjà retenue par Sophie) OU vulgariser le libellé principal et reléguer le code en sous-texte. Sally et Maxime convergent : pour un public Couch-to-5K, « Daniels-E » seul reste opaque même tappable (découvrabilité du tap non garantie). C&#x27;est exactement le type d&#x27;arbitrage politique de nommage / densité de vulgarisation que la doctrine réserve à Sophie.</div>
+  <div class="fix"><b>Piste :</b> Arbitrage Sophie : décider la politique d&#x27;affichage des zones d&#x27;allure dans le dosage. Option A (recommandée par les 2 personas) = libellé principal vulgarisé localisé (« allure facile — tu peux parler », « allure seuil », « allure 5 km », « allure semi », « allure vive ») + code Daniels en métadonnée/glossaire. Option B = garder le code + rendre le tap-glossaire beaucoup plus découvrable (tooltip d&#x27;amorçage déjà présent : GlossaryDiscoveryTooltip). Cohérence multisport requise (vélo FTP/Z, natation CSS suivent le même composant).</div>
+  <div class="note">Reclassé clear_bug→product_decision : le glossaire tappable localisé existe déjà (Daniels/RPE/HMP/@5K-pace résolus), donc choisir libellé-vulgarisé vs code-coach+glossaire est une politique de nommage = arbitrage Sophie, pas une correction objective.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P0">P0</span>
+  <div class="body"><div class="desc">Frontière EU MDR : nommage de pathologies + protocoles de soin + orientation médicale dans du contenu user-facing. VÉRIF ARBITRE : ces termes ne sont PAS dans le système glossaire (donc pas encadrés), ils apparaissent en clair dans safety_notes/notes. Au-delà du juridique, Maxime confirme l&#x27;effet anxiogène pour un débutant. Décision produit + revue juridique, pas une réécriture mécanique.</div>
+  <div class="fix"><b>Piste :</b> Arbitrage Sophie + crible EU MDR sur la liste complète : bannir tout nom de pathologie et tout protocole de soin du contenu affiché. Reformuler en prévention non-médicale neutre (« renforce les mollets pour mieux encaisser les chocs »). Remplacer orientation médicale par formule neutre type « si une douleur persiste, arrête et demande l&#x27;avis d&#x27;un professionnel de santé ». Retirer « glace 15 min », « appel au 15 », noms de protocoles. Cohérent avec les garde-fous EU MDR déjà actés (mémoire epic3_leon_legal_constraints).</div>
+  <div class="note">Les 2 personas convergent ; reste product_decision car nommage pathologie/soin = arbitrage produit + juridique (jamais tranché solo), confirmé par doctrine EU MDR du projet.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Politique de nommage FR/EN incohérente : certains noms bilingues parenthésés, d&#x27;autres 100% anglais (« Bird-dog », « Bulgarian split squat »), d&#x27;autres FR avec résidu anglais (« hard/easy »), + unités miles (« 4×1 mi ») incohérentes avec un public qui raisonne en km. NUANCE ARBITRE : fartlek/strides/cruise intervals SONT dans le glossaire tappable, donc partiellement encadrés — mais l&#x27;absence de politique uniforme (quand traduire, quand parenthéser, miles vs km) est un choix produit subjectif, pas une correction unique. Le résidu « hard/easy » et la conversion miles→km sont eux objectifs, mais relèvent de la même décision de politique pour être traités d&#x27;un bloc.</div>
+  <div class="fix"><b>Piste :</b> Arbitrage Sophie : fixer LA politique de nommage exercices (ex : « nom FR + terme technique EN entre parenthèses si répandu », unités toujours en km). Appliquer uniformément : « Fente bulgare (Bulgarian split squat) », « Soulevé de terre jambes tendues (Romanian deadlift) », « 4×1,6 km à allure soutenue (cruise intervals) », traduire hard→dur / easy→facile. Conserver le rattachement glossaire des termes techniques.</div>
+  <div class="note">Sally P1 / Maxime P1 convergent ; classé product_decision car il faut d&#x27;abord trancher la politique de nommage FR/EN multisport (doute → product_decision par règle).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Les titres FR embarquent leur traduction anglaise entre parenthèses (béquille i18n) : en FR l&#x27;anglais est du bruit, et ça ne scale pas pour l&#x27;ES. Lié au finding headers FR-only : la vraie solution est de sortir la trad dans le blob {fr,en,es}. NUANCE : le découpage exact (que garder dans le titre vs glossaire vs blob) touche la politique de nommage du finding P1 exercices.</div>
+  <div class="fix"><b>Piste :</b> Sortir la traduction du titre vers le blob {fr,en,es} ; titre FR affiché = « Course/marche découverte » seul. Retirer le doublon EN parenthésé et le résidu « bird-dog » du titre. À traiter avec la politique de nommage (finding P1) et l&#x27;i18n headers.</div>
+  <div class="note">Sally P2 / Maxime P2 convergent ; classé product_decision car couplé à la politique de nommage (P1) et au format de titre — cohérence à arbitrer, pas une réécriture isolée.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">La note promet que le test 5K « détermine toutes tes allures », mais rien dans le flow UX ne capte ni ne réutilise ce résultat (les zones restent des codes Daniels statiques dans le template, pas recalculées depuis un temps saisi). Promesse contenu non matérialisée dans le produit (note potentiellement contradictoire avec le réel). Décision produit : implémenter la captation/réutilisation OU retirer la promesse.</div>
+  <div class="fix"><b>Piste :</b> Arbitrage Sophie : soit prévoir une étape de saisie du temps 5K + rappel pédagogique simple (« ce test fixe tes allures pour les semaines suivantes »), soit retirer/atténuer la promesse « détermine toutes tes allures » du texte tant que l&#x27;app ne l&#x27;exploite pas.</div>
+  <div class="note">Findée par Sally seule ; arbitre confirme côté code l&#x27;absence de mécanisme de captation/réutilisation → vraie décision produit (build feature vs ajuster la promesse).</div></div>
+</div></section><section><h2>Cycling <span class="cnt">8 décisions</span></h2><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">VERIFIE EN CODE : SessionFocusView rend bien target_zone. DosageFormatting.plainEffort ne mappe QUE les RPE (-&gt; &#x27;effort N sur 10&#x27;). Pour FTP-Z1..Z7 et Sweet-Spot, fallback = GlossaryTermBadge(term: zone) qui affiche le CODE BRUT en texte primaire. C&#x27;est tappable et FTP/Sweet-Spot ONT une entree glossaire (Glossary.swift l.82/212, GlossaryMatcher), donc l&#x27;utilisateur PEUT decoder en tapant, mais le libelle primaire reste un code physiologique cryptique pour un debutant. Les deux personas l&#x27;ont classe P0 ; je tranche P1 product_decision car le filet glossaire+RPE existe deja (pas un cul-de-sac total), et le choix &#x27;libelle lisible primaire vs code primaire&#x27; est un arbitrage produit a aligner avec le referentiel dosage cameleon (charge=sensation sans jargon).</div>
+  <div class="fix"><b>Piste :</b> Etendre DosageFormatting pour mapper FTP-Zx et Sweet-Spot vers un libelle lisible localise FR/EN/ES (ex. FTP-Z1-&gt;&#x27;tres facile, recup&#x27;, FTP-Z2-&gt;&#x27;endurance, tu peux parler&#x27;, Sweet-Spot-&gt;&#x27;allure soutenue&#x27;, FTP-Z5+-&gt;&#x27;effort tres dur court&#x27;), code technique relegue en sous-texte tappable (GlossaryTermBadge conserve). Niveau beginner : remonter sensation/RPE/test de la parole en primaire.</div>
+  <div class="note">Personas disent P0, je descends a P1 : verif code montre que FTP/Sweet-Spot sont glossarises + tappables et que RPE est deja mappe, donc pas un cul-de-sac, mais le code brut reste le libelle primaire, ce qui releve d&#x27;un choix produit (referentiel dosage cameleon).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">VERIFIE : melange FR (Pont fessier, Planche) / EN brut (Bird-dog 60+ occ, Dead bug 70+ occ, superman) non tranche par une politique. Certains noms EN ne sont pas glossarises. C&#x27;est un arbitrage produit transverse deja identifie dans l&#x27;audit didactique 10 sports.</div>
+  <div class="fix"><b>Piste :</b> Decider UNE politique multisport : soit FR + terme EN consacre tappable entre parentheses (ex. &#x27;Chien d&#x27;arret (bird-dog)&#x27;), soit terme EN consacre + glossaire systematique. Appliquer uniformement, garantir que tout nom EN expose est glossarise + dessin.</div>
+  <div class="note">Doublon Sally P1 + Maxime P1, tous deux en product_decision. Distinct du finding hip thrust/pont fessier (qui, lui, est une incoherence intra-sport = clear_bug).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">VERIFIE : libelles type &#x27;Allure soutenue - blocs de decouverte (Sweet-Spot)&#x27; et &#x27;Allure soutenue (Sweet spot)&#x27;. Garder le terme coach &#x27;Sweet-Spot&#x27; visible (reconnu en cyclisme) vs ne montrer que &#x27;allure soutenue&#x27; est un arbitrage produit.</div>
+  <div class="fix"><b>Piste :</b> Trancher : libelle utilisateur = &#x27;allure soutenue&#x27;, &#x27;Sweet-Spot&#x27; relegue au glossaire/sous-texte tappable. Supprimer le doublon dans un meme titre.</div>
+  <div class="note">Doublon Sally P1 + Maxime P2. La DECISION de garder/releguer le terme = product_decision (separe de la correction d&#x27;orthographe ci-dessus).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">VERIFIE : &#x27;gut training&#x27; (4 occ), &#x27;ERG mode&#x27; (47 occ total), &#x27;negative split&#x27; (11 occ), &#x27;myelinisation du pattern moteur&#x27; present. Vocabulaire d&#x27;inities/neurophysiologie dans des notes utilisateur. Vulgariser ou glossariser est un choix de niveau de contenu (densite pedagogique) = arbitrage produit, sauf &#x27;gut training&#x27;/&#x27;negative split&#x27; (anglicismes purs qui pourraient etre traduits).</div>
+  <div class="fix"><b>Piste :</b> Vulgariser : &#x27;myelinisation du pattern moteur&#x27;-&gt;&#x27;pour rendre ton pedalage plus fluide et naturel&#x27; ; &#x27;gut training&#x27;-&gt;&#x27;entrainer l&#x27;estomac a manger en roulant&#x27; ; &#x27;negative split&#x27;-&gt;&#x27;finir plus vite que tu n&#x27;as commence&#x27; ; &#x27;derive cardiaque &gt;5%&#x27;-&gt;explication rassurante ; &#x27;ERG mode&#x27; a expliquer ou retirer ; &#x27;PFPS&#x27; retirer du texte visible (garder en interne).</div>
+  <div class="note">Doublon Sally P2 + Maxime P1 -&gt; retenu P1 (Maxime &#x27;je ne comprends rien du tout&#x27;, impact debutant fort). Classe product_decision : melange anglicismes traduisibles + jargon dont le niveau de vulgarisation est un choix de contenu -&gt; en cas de doute, Sophie tranche.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">VERIFIE indirectement (rpm dans duration/notes). Maxime : &#x27;rpm&#x27; jamais defini, et la methode de comptage manuel (compter coups de pedale 15s x4) est releguee en fin de note. Pour un debutant sans capteur, l&#x27;info-cle arrive trop tard. Choix de hierarchie/contenu.</div>
+  <div class="fix"><b>Piste :</b> Glossariser &#x27;cadence (rpm) = nombre de tours de pedale par minute&#x27; et remonter la methode de comptage manuel en premier pour le public sans capteur.</div>
+  <div class="note">Finding Maxime, Sally ne l&#x27;a pas isole. Product_decision (densite + hierarchie contenu pour debutant).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">VERIFIE doctrine (cycling.md) : beginner = 100% Z1-Z2, equivalents %FCmax+RPE FOURNIS en notes. Mais l&#x27;exposition primaire reste le code FTP. Quelle metrique mettre en avant pour le debutant = arbitrage produit, a aligner avec referentiel dosage cameleon.</div>
+  <div class="fix"><b>Piste :</b> Pour beginner : sensation/RPE/test de la parole en metrique primaire, FTP-Z en reference secondaire. A trancher avec le referentiel dosage cameleon.</div>
+  <div class="note">Doublon Sally P1 + Maxime P2 -&gt; P2 : reel mais attenue par la presence systematique des equivalents RPE/%FCmax dans les notes (verifie doctrine). Product_decision, recouvre partiellement le finding target_zone primaire.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">VERIFIE : &#x27;opener&#x27; (11 occ), &#x27;priming&#x27; (10 occ), &#x27;activation sprints&#x27; (4 occ) dans les templates EN. Trois traductions EN du meme concept -&gt; en app EN, l&#x27;usager croirait a 3 exos differents. Choix d&#x27;un terme EN canonique = arbitrage produit (terminologie).</div>
+  <div class="fix"><b>Piste :</b> Choisir un seul terme EN (&#x27;activation sprints&#x27; recommande par Sally) et l&#x27;appliquer partout.</div>
+  <div class="note">Doublon Sally P2 (dans finding J/D) + Maxime P2. Frontiere clear_bug/product_decision : en cas de doute -&gt; product_decision (choix du terme canonique EN).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">VERIFIE : doctrine-fragments/cycling.md DEFINIT explicitement FTP-Z1 a FTP-Z7 (modele Coggan 7 zones : Z6 Anaerobic, Z7 Neuromuscular). Donc l&#x27;usage Z6/Z7 est INTENTIONNEL et conforme a la doctrine retenue, PAS une derive. Reste a verrouiller le set + le mapping de libelles cote app.</div>
+  <div class="fix"><b>Piste :</b> Aucun changement de contenu requis : le modele 7 zones est valide par la doctrine. Action = verrouiller le set FTP-Z1..Z7 dans le referentiel et garantir que le futur mapping libelle (cf finding P1 target_zone) couvre Z1 a Z7.</div>
+  <div class="note">Sally P2 + Maxime P2 doutaient (&#x27;depasse le modele classique&#x27;). Verif doctrine TRANCHE : c&#x27;est volontaire (Coggan 7 zones). Conserve comme product_decision a faible enjeu : juste verrouiller, pas corriger. PAS un faux positif mais quasi-resolu.</div></div>
+</div></section><section><h2>Swimming <span class="cnt">5 décisions</span></h2><div class="dec">
+  <span class="sev sev-P0">P0</span>
+  <div class="body"><div class="desc">Vérifié dans les 4 templates shipés : le champ target_zone surface des codes techniques non décodés (beginner = EN1 + REC ; regular/competitive ajoutent CSS, EN3, SP1-3). Un nageur ne peut pas savoir à quelle allure nager. Incohérence de nature en plus : tantôt zone (EN1), tantôt allure (CSS+5s/100m), tantôt RPE, tantôt None.</div>
+  <div class="fix"><b>Piste :</b> Définir une politique d&#x27;affichage commune (cf glossaire B2 tappable déjà en place) : soit mapper chaque code vers un libellé + repère d&#x27;effort (EN1 → « endurance facile, tu peux parler » ; CSS → « allure de seuil ») soit rendre les codes tappables vers « comment l&#x27;exécuter ». Ne jamais sortir « zone=CSS+5s/100m » brut. Pour beginner, masquer SP/CSS (absents de toute façon).</div>
+  <div class="note">Sally=P0/clear_bug, Maxime=P0/product_decision. Je tranche product_decision : le fix exige une politique d&#x27;affichage multisport (relabel vs glossaire) sans réponse objective unique — c&#x27;est le coeur du chantier dosage caméléon. Mais bien P0, pire offenseur du sport.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Vérifié : échauffement saturé d&#x27;anglais non traduit (DRYLAND, rowing, Y-T-W, external rotation, serratus, face pulls, pull-up) mélangé au FR, plus le tag « (competitive) » et le code « REC » qui fuient dans le texte utilisateur.</div>
+  <div class="fix"><b>Piste :</b> Le retrait du tag « (competitive) » du texte affiché = correction objective à faire. La traduction/glossaire du vocabulaire renfo (dryland, serratus, face pulls…) et son périmètre = à arbitrer avec Sophie (volume + politique FR/EN/glossaire commune à tout le renfo).</div>
+  <div class="note">Sally P1/clear_bug, Maxime P1/product_decision. Je tranche product_decision (sauf le tag « (competitive) » qui est un leak objectif) : traduire vs glossarier le vocabulaire renfo est la même question de politique multisport non tranchée que le dosage.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Vérifié : les notes empilent des acronymes et termes savants (EVF, SPL, FCmax, « c&#x27;est ici que se construit le mitochondrial », méthode « Total Immersion »). Suppose aussi un cardiofréquencemètre (FC%) non garanti chez un débutant.</div>
+  <div class="fix"><b>Piste :</b> Décider du niveau de vulgarisation par template/niveau : développer SPL (« coups de bras par longueur ») et FCmax à la 1re occurrence, retirer/glossarier « mitochondrial »/« Total Immersion », rendre les consignes FC% optionnelles pour beginner.</div>
+  <div class="note">Les deux le flaggent (Sally P1, Maxime P2). Je tranche product_decision et P2 : doser jargon vs fidélité doctrine, et supposer un cardio chez un débutant, sont des arbitrages produit/doctrine.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Vérifié : pattern systématique « terme FR (terme anglais) ». La natation est le sport le plus anglicisé du catalogue. Garder l&#x27;anglais double la longueur des cartes ; le retirer perd la langue universelle des plans de nage.</div>
+  <div class="fix"><b>Piste :</b> Trancher une règle multisport : (a) FR seul + anglais dans le glossaire « comment l&#x27;exécuter », ou (b) FR (anglais) seulement pour les termes universels (sculling, catch-up) et FR seul pour les évidents (single arm → « un bras »).</div>
+  <div class="note">Les deux d&#x27;accord, product_decision explicite. Cohérence multisport &gt; exception natation — arbitrage Sophie.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">La natation a la plus forte densité de jargon de tous les sports. Pour rester utilisable sans dénaturer la doctrine, le glossaire tappable B2 doit couvrir au minimum cette liste, en priorité les codes affichés dans titres/zones.</div>
+  <div class="fix"><b>Piste :</b> Prioriser la rédaction des entrées glossaire (CSS, EN1-3, SP1-3, streamline, catch d&#x27;abord), rendre les codes de zone tappables comme les autres glossaires B2.</div>
+  <div class="note">Les deux d&#x27;accord, product_decision (périmètre + effort de rédaction). Dépend de l&#x27;arbitrage zone P0.</div></div>
+</div></section><section><h2>Triathlon <span class="cnt">5 décisions</span></h2><div class="dec">
+  <span class="sev sev-P0">P0</span>
+  <div class="body"><div class="desc">Mélange de 3 systèmes de zones (Friel/cyclisme FTP-Z, Daniels/course E-M-T-I-R, CSS/natation) affichés en codes bruts. Sans glossaire ni vulgarisation, c&#x27;est opaque pour un utilisateur non-coach, y compris un triathlète débutant/intermédiaire. C&#x27;est le risque UX le plus grave du corpus car il touche le DOSAGE — l&#x27;info la plus actionnable d&#x27;une séance. Un débutant veut savoir &quot;facile ou dur ?&quot; et voit des codes secrets.</div>
+  <div class="fix"><b>Piste :</b> Décider une politique de zones : (a) chaque code target_zone tappable→glossaire avec équivalent sensation (FTP-Z2→&quot;endurance facile, tu peux parler&quot; ; Daniels-I→&quot;VO2max, dur, phrases courtes&quot; ; CSS→&quot;allure seuil natation&quot;), ou (b) n&#x27;afficher que le libellé vulgarisé et reléguer le code en détail secondaire tappable. À trancher en HTML décisions.</div>
+  <div class="note">Les deux personas convergent fortement (Sally P0, Maxime P0) ; le novice confirme que c&#x27;est inintelligible. Cohérent avec la décision chantier dosage caméléon (charge=sensation sans jargon) — à étendre aux zones triathlon.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Le choix du libellé FR canonique pour les exos muscu/gainage est une décision produit transverse : ces exos existent dans le sport &quot;muscu&quot; (déjà refondu) et ailleurs. Adopter un libellé incohérent entre sports créerait un nouveau drift. &quot;Y-T-W&quot; n&#x27;a pas de traduction évidente. La convention &quot;FR en tête + (EN) entre parenthèses&quot; est amorcée mais pas systématisée, et le novice signale que répéter l&#x27;EN après le FR le bloque (&quot;Coquillage ... (clamshell)&quot;).</div>
+  <div class="fix"><b>Piste :</b> Définir un référentiel de nommage transverse aligné sur le chantier muscu : libellé FR canonique en titre + EN entre parenthèses seulement à la 1re occurrence/tappable. Trancher si l&#x27;EN est répété ou non quand un FR clair existe. Y-T-W→&quot;Activation épaules en Y-T-W&quot;.</div>
+  <div class="note">Fusion de Sally P1+P0 et Maxime P0 sur les noms d&#x27;exos ; je classe en product_decision unique car le débat porte sur la POLITIQUE de nommage (transverse muscu) — la simple cohérence sera mécaniquement réglée une fois la politique fixée.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Forte densité d&#x27;anglicismes/abréviations dans les notes. &quot;RPE&quot; est utilisé partout sans définition (le novice ne sait pas &quot;sur combien&quot;). &quot;talk test&quot; coexiste parfois avec &quot;test de la parole&quot; (doublon). &quot;EVF/early vertical forearm&quot;, &quot;swim-smooth&quot;, &quot;feel for the water&quot; = jargon natation de niche jamais explicité. powermeter/bike-computer supposent du matériel que le débutant n&#x27;a pas.</div>
+  <div class="fix"><b>Piste :</b> RPE→&quot;effort ressenti (1-10)&quot; (cohérent décision muscu), définir à la 1re occurrence. Supprimer doublons EN quand le FR existe (retirer &quot;talk test&quot;, garder &quot;test de la parole&quot;). bike-computer→&quot;compteur vélo&quot;, powermeter→&quot;capteur de puissance (si tu en as un, sinon va à la sensation)&quot;. Politique pour le jargon natation (EVF/swim-smooth/feel for the water/sighting/sculling) : vulgariser, glossariser ou retirer.</div>
+  <div class="note">Fusion Sally P2/P3 + Maxime P1. Je remonte à P1 : le novice est bloqué par RPE omniprésent ET le jargon natation, qui touchent le dosage et la sécurité. RPE→effort est un simple report d&#x27;une décision déjà prise (clear_bug), mais la politique sur le jargon natation + matériel est subjective → product_decision pour l&#x27;ensemble.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Plusieurs abréviations/termes techniques apparaissent sans explication. T1/T2 (transitions) sont centraux au triathlon mais cryptiques pour un débutant. &quot;70.3&quot; et &quot;Distance M&quot; supposent une culture course (le novice ne sait pas 70,3 de quoi). &quot;danseuse&quot;/&quot;rétrograder&quot;/&quot;contre-la-montre&quot; = jargon cyclisme opaque pour un vélotafeur. &quot;PIC&quot; et &quot;S12&quot; sont des codes internes (phase pic / semaine 12) qui fuient dans les titres.</div>
+  <div class="fix"><b>Piste :</b> Définir une politique de vocabulaire à enseigner (glossaire tappable) vs vulgariser : T1→&quot;transition 1 (eau→vélo)&quot;/T2→&quot;transition 2 (vélo→course)&quot; 1re occurrence puis glossarié ; &quot;70.3&quot;→&quot;Half-Ironman (70,3 miles au total)&quot; ; &quot;Distance M&quot;→généraliser le &quot;(Olympique)&quot; déjà bien fait ; glossaire tappable pour danseuse/rétrograder/contre-la-montre ; expliciter ou retirer les codes internes PIC/S12 ; &quot;brick&quot;→&quot;enchaînement vélo→course sans pause&quot; 1re occurrence.</div>
+  <div class="note">Maxime P0 sur S&amp;C/T1/T2/70.3, Sally P2. Je tranche en product_decision (pas P0) : la sévérité réelle est moindre que les zones car ce sont des termes à enseigner, pas du dosage actionnable. Englobe les codes internes PIC/S12 que Maxime a aussi relevés.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Titres riches mais peu scannables sur mobile (~80 caractères, chaînes &quot;+&quot;, abréviations). Sur une liste de séances l&#x27;œil ne capte pas l&#x27;essentiel en 1 coup d&#x27;œil ; sur petit écran ça risque de déborder. Le novice ne sait pas en un coup d&#x27;œil ce qu&#x27;il va faire.</div>
+  <div class="fix"><b>Piste :</b> Restructurer titre court + sous-ligne détail (ex. titre &quot;Enchaînement vélo+course (60+20 min)&quot;, sous-titre &quot;avec transitions T1/T2 réelles&quot;). Décision produit : politique de nommage + structure d&#x27;affichage de la liste (titre vs corps).</div>
+  <div class="note">Les deux personas le relèvent (P2). Restructuration de l&#x27;affichage + politique de nommage = subjectif → product_decision.</div></div>
+</div></section><section><h2>Musculation <span class="cnt">3 décisions</span></h2><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Le niveau competitive est piloté à 100% par la charge en kg en dur + %1RM + TM/1RM, en contradiction directe avec la décision référentiel dosage v2 « charge = sensation + note sans kg/jargon ». Le débutant est OK (charge nulle/légère), mais la doctrine force/competitive (5x5, 531) repose intrinsèquement sur le tonnage chiffré — il faut arbitrer jusqu&#x27;où vulgariser sans dénaturer la méthode.</div>
+  <div class="fix"><b>Piste :</b> Arbitrage produit en HTML décisions : soit assumer une exception competitive (le kg/%1RM/TM est intrinsèque à la force, garder mais glossariser ces termes), soit convertir le ramping en repères relatifs (« barre seule, puis charge légère/moyenne/lourde »). Ne pas trancher solo.</div>
+  <div class="note">Les deux personas le classent product_decision : c&#x27;est une contradiction de doctrine (référentiel dosage v2 vs méthode force), pas un simple bug — arbitrage Sophie requis.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Doublage systématique FR + terme EN entre parenthèses. Choix volontaire mais alourdit la lecture, et certaines parenthèses sont un sigle nu (RDL) non explicité. Politique de nommage à figer pour la cohérence multisport.</div>
+  <div class="fix"><b>Piste :</b> Décision produit : garder le terme EN entre parenthèses uniquement quand c&#x27;est le nom de recherche/vidéo courant (face pull, hip thrust) et le retirer quand le FR suffit ; ne jamais laisser un sigle nu (RDL) sans sa forme longue. Aligner sur la politique de nommage FR/EN décidée pour les autres sports.</div>
+  <div class="note">Politique de nommage = choix subjectif multisport → product_decision. SAUF le sigle nu « (RDL) » : son explicitation est objectivement requise, à traiter même si la politique globale reste ouverte.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">« Affûtage », « Schéma 5,3,1 », « ~95 % de la charge cible » sont du jargon de programmation non vulgarisé en titre de séance. Les autres titres (« Quadriceps », « Chaîne postérieure ») sont clairs ; ceux-ci perdent le débutant.</div>
+  <div class="fix"><b>Piste :</b> Vulgariser ou glossariser ces titres : « Affûtage »→expliquer (réduire le volume avant un pic), « 5,3,1 »→expliquer le schéma de répétitions, « 95 % de la charge cible »→en effort/sensation. Garder le style clair des autres titres.</div>
+  <div class="note">Remonté par Maxime seul (Sally ne l&#x27;a pas vu) ; je confirme — incohérence réelle avec les titres clairs. Classé product_decision car vulgariser un titre de méthode (5,3,1, affûtage) touche à la densité/doctrine et chevauche l&#x27;arbitrage competitive ci-dessus ; en cas de doute on laisse Sophie trancher.</div></div>
+</div></section><section><h2>Yoga <span class="cnt">7 décisions</span></h2><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Le template competitive empile du jargon sanskrit/technique avancé non glosé. Nuance vérifiée : ces termes apparaissent surtout dans la prose des notes/goal, déjà TRILINGUE FR/EN/ES au niveau exercice (drishti ~399 occ./langue), souvent contextualisée. Mais ils fuient AUSSI sans glose dans des endroits courts et exposés (duration &#x27;17 respirations breath-led&#x27;, titres). Le novice &#x27;décroche complètement&#x27; ; l&#x27;expert UX demande une politique de glossaire par tier (garder le sanskrit pour l&#x27;authenticité Ashtanga/Iyengar mais le rendre tappable/glosé, vs. simplifier).</div>
+  <div class="fix"><b>Piste :</b> Trancher une politique de glossaire pour le tier competitive (réutiliser le glossaire B2 tappable existant OU glose courte à la 1re occurrence : &#x27;le regard (drishti)&#x27;). Au minimum &#x27;breath-led&#x27; doit être traduit partout (couvert par le clear_bug ci-dessus). Le sanskrit reste un arbitrage produit.</div>
+  <div class="note">Les deux personas convergent sur &#x27;à arbitrer&#x27; ; product_decision car garder/glosser/simplifier le sanskrit d&#x27;un tier avancé est un choix de positionnement, pas une correction objective.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Sally/Maxime pointent le beginner, mais vérification : les 4 templates yoga ont leurs champs PROGRAMME en FR uniquement, alors que les EXERCICES sont déjà trilingues FR/EN/ES. Le beginner est juste le cas le plus visible (rupture de langue : exercices traduits mais titre + safety_notes en FR pour un user EN/ES — or ce sont les consignes de SÉCURITÉ poignets qui resteraient en FR). Le champ &#x27;objective&#x27; est absent de tous les templates.</div>
+  <div class="fix"><b>Piste :</b> Compléter EN/ES sur name/summary/safety_notes/progression_logic des 4 templates (pas seulement beginner) et décider du statut de &#x27;objective&#x27; (à ajouter ou volontairement absent). Vérifier le fallback FR (jamais de clé brute) en attendant.</div>
+  <div class="note">Requalifié en product_decision SYSTÉMIQUE plutôt que bug ponctuel beginner : l&#x27;ampleur (traduire ~16 champs longs dont la sécurité + statut de &#x27;objective&#x27;) est un chantier i18n à cadrer/prioriser, même dette que le chantier i18n B2 contenu.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Le champ duration mélange secondes, minutes, cycles respiratoires, respirations par côté, minutes de lecture, expulsions. Lisible en lecture libre mais impossible à dériver en chiffre &#x27;héros&#x27; / compte à rebours fiable dans le FOCUS minuté (&#x27;17 respirations&#x27;, &#x27;30 expulsions actives&#x27; ne sont pas minutables). Risque d&#x27;incohérence UI mode minuté yoga.</div>
+  <div class="fix"><b>Piste :</b> Décision produit : scinder duration en deux sous-champs (durée minutée affichable + libellé descriptif) avec équivalence temps (&#x27;5 respirations Ujjayi par côté (~45 s)&#x27;), soit acter que le FOCUS yoga reste manuel/respiration pour les postures non-minutables. À cadrer avec le chantier dosage caméléon yoga.</div>
+  <div class="note">Les deux personas d&#x27;accord ; choix de modèle de données + comportement FOCUS = arbitrage produit (lié au chantier dosage caméléon).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Vérifié : ces 2 titres exposent les codes de tier internes &#x27;regular&#x27;/&#x27;competitive&#x27; (les titres beginner et recreational n&#x27;ont PAS le code → incohérence interne au set) + anglicismes techniques bruts &#x27;Vinyasa flow&#x27;, &#x27;inversions wall&#x27; (ni FR ni EN correct), &#x27;primary series&#x27;, &#x27;advanced&#x27;.</div>
+  <div class="fix"><b>Piste :</b> Réécrire en FR naturel sans code de tier, ex. &#x27;Vinyasa — flow dynamique + introduction aux inversions au mur (10 semaines)&#x27; et &#x27;Ashtanga &amp; Iyengar — série primaire et postures avancées (12 semaines)&#x27;. Aligner sur le style déjà propre des titres beginner/recreational.</div>
+  <div class="note">La suppression des codes &#x27;regular&#x27;/&#x27;competitive&#x27; et de &#x27;inversions wall&#x27; est objectivement fautive, mais la reformulation éditoriale (niveau de jargon Ashtanga/Iyengar à garder) reste un choix → product_decision par prudence.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Maxime (novice) signale que les titres de séance competitive sont très longs et saturés de sanskrit, illisibles d&#x27;un coup d&#x27;œil. La gloss sanskrit sur les NOMS d&#x27;exercices (&#x27;Posture de l&#x27;aigle (garudasana)&#x27;) est jugée OK par les deux — à conserver.</div>
+  <div class="fix"><b>Piste :</b> Garder le sanskrit entre parenthèses sur les noms d&#x27;exercices (OK), mais raccourcir les TITRES de séance (ex. &#x27;Série primaire — 1re moitié : salutations, debout, flexions assises&#x27;). Décision produit sur le niveau de détail des titres.</div>
+  <div class="note">Relevé surtout par le novice ; retenu car la lisibilité d&#x27;un titre est un risque réel, mais la densité éditoriale d&#x27;un titre = choix produit.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Polish rédactionnel FR : &#x27;bonus debout&#x27; (anglicisme &#x27;bonus&#x27;), &#x27;lancers de jambe&#x27; peu clair pour un novice (montée de jambe contre le mur). Non bloquant.</div>
+  <div class="fix"><b>Piste :</b> Reformuler : &#x27;bonus debout&#x27;→&#x27;postures debout complémentaires&#x27;, &#x27;lancers de jambe&#x27;→&#x27;montées de jambe contre le mur&#x27;. Passe de relecture FR finale sur le competitive.</div>
+  <div class="note">Relevé par Sally seule, plausible ; classé product_decision car reformulation rédactionnelle subjective (pas une faute objective de langue).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Maxime (novice) : une longue liste plate de 15-20 postures sans sections (échauffement / debout / au sol / retour au calme) est dure à suivre, alors que la muscu a des blocs nommés. Pas un bug.</div>
+  <div class="fix"><b>Piste :</b> Envisager un regroupement léger par phase pour le yoga (visuel dans l&#x27;app, sans forcément ajouter un champ template). Décision produit + cohérence multisport.</div>
+  <div class="note">Suggestion d&#x27;amélioration structurelle du novice ; pur arbitrage produit (UX/parité avec muscu).</div></div>
+</div></section><section><h2>Hiit <span class="cnt">7 décisions</span></h2><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Le même mouvement porte des libellés FR différents selon le champ (« Jumping jacks sans saut » dans un block name, « Step-jacks (...) » dans une alternative), et le FR garde l&#x27;anglicisme « jumping jacks » non traduit. Côté EN c&#x27;est « Step jacks ». Incohérence intra-FR + politique de traduction des exos anglicisés à fixer.</div>
+  <div class="fix"><b>Piste :</b> Définir une règle de nommage : nom courant FR stable + terme technique entre parenthèses, structurellement identique FR/EN. Ex. FR « Pas latéraux bras levés (jumping jacks sans saut) » / EN « Step jacks (low-impact jumping jacks) », appliqué uniformément aux block names ET alternatives.</div>
+  <div class="note">Sally+Maxime convergent. Reclassé product_decision (pas le clear_bug P1 de Sally) : choisir un libellé FR canonique et une politique de traduction des exos anglicisés est un arbitrage de nommage, pas une correction objective. À traiter avec le chantier glossaire ci-dessous.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Contenu saturé de jargon HIIT/CrossFit légitime mais brut, présent dès les séances découverte/débutant. Un débutant FR ne sait pas ce qu&#x27;est un EMOM, un AMRAP, un « 30/30 » (30 quoi ?). Chantier de politique de nommage : que garde-t-on en terme technique glossarié, que traduit-on. Sally et Maxime alignés.</div>
+  <div class="fix"><b>Piste :</b> Définir une doctrine de nommage HIIT en réutilisant le glossaire tappable B2 déjà en place (glutes/band/mobilité) : formats (EMOM/AMRAP/Tabata/RPE/ratios) glossariés au premier usage ; noms d&#x27;exos = nom courant FR + terme technique en parenthèse. Prioriser séances débutant/découverte.</div>
+  <div class="note">Doublon Sally+Maxime. Arbitrage produit (densité + politique glossaire) → Sophie. RPE en particulier : développer au 1er usage « effort ressenti de 1 à 10 ».</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Vérifié : les safety_notes citent des pathologies nommées (rhabdomyolyse 4×, tendinite 10×, shin splints 25×, patellar tendonitis) et des protocoles médicaux (RICE, prise de sang CK). À la frontière du conseil médical au sens EU MDR : nommer une maladie + protocole de prise en charge peut être lu comme un claim diagnostique/thérapeutique.</div>
+  <div class="fix"><b>Piste :</b> Passer ces safety_notes par template-quality-reviewer (EU MDR) et réécrire en signaux génériques sans nom de pathologie ni protocole : « en cas de douleur articulaire persistante ou de malaise, arrête et consulte un professionnel de santé ». Décision produit sur le niveau de détail scientifique conservé.</div>
+  <div class="note">Doublon Sally+Maxime. Reste product_decision (niveau de détail à trancher) MAIS à traiter en priorité haute : risque réglementaire EU MDR réel et vérifié dans les fichiers.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Citations académiques denses dans des notes vues par l&#x27;utilisateur. Donne de la crédibilité mais lourd et illisible pour un user lambda, surtout en séance débutant. Sally+Maxime alignés.</div>
+  <div class="fix"><b>Piste :</b> Sortir les références scientifiques du contenu user-facing principal (section « sources » repliée / méta) et garder la consigne actionnable au premier plan.</div>
+  <div class="note">Doublon Sally+Maxime. Crédibilité vs charge cognitive = arbitrage produit Sophie.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Le volume HIIT cumulé est recalculé explicitement et de façon technique/répétitive dans la quasi-totalité des notes. Pertinent pour un coach, verbeux et décourageant pour l&#x27;utilisateur final.</div>
+  <div class="fix"><b>Piste :</b> Remplacer le détail de calcul par une formulation simple (« ~4 min d&#x27;effort intense aujourd&#x27;hui, on monte en douceur cette semaine ») et réserver le calcul détaillé au backstage/interne.</div>
+  <div class="note">Doublon Sally+Maxime. Restructuration de contenu = product_decision.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Benchmarks CrossFit nommés (FRAN, Cindy) laissés bruts sans explication. Un user HIIT non-CrossFit ne sait pas ce que c&#x27;est ; ça ressemble à du code interne / des prénoms. Sally+Maxime alignés.</div>
+  <div class="fix"><b>Piste :</b> Expliquer au premier usage (« inspiré du WOD CrossFit &quot;Fran&quot; : thrusters + tractions ») ou retirer le nom du benchmark du titre si non pédagogique, surtout aux niveaux débutant/intermédiaire. Décision selon l&#x27;audience cible.</div>
+  <div class="note">Doublon Sally+Maxime. Garder/expliquer un nom de benchmark = arbitrage produit.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Les titres empilent codes techniques (30/60, EMOM, full-load, KB, compound) et anglais. Lisibles pour initié, opaques pour débutant. Le titre est le 1er point de contact : il devrait situer l&#x27;effort, pas réciter le protocole.</div>
+  <div class="fix"><b>Piste :</b> Adopter un format orienté bénéfice/effort + sous-ligne technique (ex. titre « Cardio intense par intervalles » / sous-titre « 30 sec effort / 60 sec récup × 4 »). Arbitrage produit sur le niveau de jargon toléré dans les titres.</div>
+  <div class="note">Sally P2. Choix de format de titre = product_decision. Cohérent avec le chantier vulgarisation/glossaire ci-dessus.</div></div>
+</div></section><section><h2>Hiking <span class="cnt">6 décisions</span></h2><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Le résumé de programme — premier texte vu au niveau programme — est saturé de jargon coach non vulgarisé. LIT/ME/FKT/polarized jamais définis, référence d&#x27;auteurs (House-Johnston/Uphill Athlete) incompréhensible pour un randonneur lambda. Les deux personas décrochent. Niveau de langue calibré coach pro, pas grand public.</div>
+  <div class="fix"><b>Piste :</b> Réécrire le summary en langage grand public et définir/supprimer LIT (« endurance lente »), ME (« force-endurance musculaire »), FKT (« record de temps sur un itinéraire »), polarized, et la référence méthodo. À cadrer avec une politique de glossaire/vulgarisation transverse.</div>
+  <div class="note">Sally=P1, Maxime=P0. Je tranche product_decision P1 : la correction des typos/anglicismes isolés est captée par d&#x27;autres findings (clear_bug), mais LE NIVEAU DE VULGARISATION CIBLE du summary (que garder, que glosser, ton débutant vs pratiquant) est un choix produit transverse multisport qui doit être arbitré par Sophie, pas tranché en review. Je retiens P1 et non P0 car c&#x27;est un chantier de réécriture/politique, pas un fix mécanique.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">« S&amp;C » (Strength &amp; Conditioning), « core », « Plyo », « proprio », « ME » jamais explicités dans des titres user-facing. Le novice ne sait pas s&#x27;il doit faire la séance car il ne comprend pas le titre. Le sigle S&amp;C apparaît probablement sur d&#x27;autres sports → cohérence multisport.</div>
+  <div class="fix"><b>Piste :</b> Politique de nommage transverse : remplacer « S&amp;C » par « Renforcement &amp; condition physique », « core » par « gainage », « Plyo » par « sauts (pliométrie) », « proprio » par « équilibre/proprioception », « ME » par « force-endurance ». À arbitrer comme règle de nommage transverse.</div>
+  <div class="note">Sally=P1 (product_decision), Maxime=P0. Je tranche product_decision P1 : choix de politique de nommage FR/EN multisport (garder un sigle coach vs vulgariser systématiquement) = arbitrage produit transverse réservé à Sophie. La sévérité P1 (et non P0) parce que c&#x27;est un chantier de politique, pas une typo. Doute → product_decision (consigne).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Le sport s&#x27;affiche « hiking » alors que toute l&#x27;appli est en français ; le novice dit « rando »/« marche en montagne » et doute que ça corresponde à son besoin. Question de cohérence : faut-il afficher un libellé FR (« Randonnée ») et garder « hiking » seulement comme code interne ?</div>
+  <div class="fix"><b>Piste :</b> Afficher « Randonnée » (localisé FR/EN/ES) côté user, conserver « hiking » comme SportCode interne uniquement.</div>
+  <div class="note">Maxime seul (P1). Sally ne le relève pas. C&#x27;est un label de sport exposé : la décision d&#x27;afficher un nom localisé vs le code interne, et le wording exact, est un choix produit (et touche le mapping SportCode→label, transverse aux 10 sports). product_decision.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">« Drills » anglais (exercices ?) + enchaînement « endurance facile à tempo (zones 2-3) » qui mélange « facile » ET « tempo » → le novice ne sait pas si la séance est facile ou intense. Question de clarté de progression d&#x27;intensité dans les titres.</div>
+  <div class="fix"><b>Piste :</b> « Exercices techniques + montée progressive (zones 2 à 3) ». Remplacer « Drills » (capté aussi par le finding anglicismes) et clarifier que c&#x27;est une progression d&#x27;intensité, pas deux intensités simultanées.</div>
+  <div class="note">Maxime seul (P2). « Drills »→« exercices » est mécanique (couvert par le finding anglicismes), mais la reformulation de la logique « facile à tempo » pour lever l&#x27;ambiguïté d&#x27;intensité touche la convention de nommage des titres → product_decision, P2.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">« zone 2 » revient partout dans les titres mais n&#x27;est jamais défini ; lié à « % FCmax » dans les notes, que le débutant ne sait pas mesurer. Le novice ne sait pas à quelle allure marcher.</div>
+  <div class="fix"><b>Piste :</b> Glossariser « zone 2 » et « FCmax » au moins à la première occurrence : « zone 2 = allure facile, tu peux parler en marchant ».</div>
+  <div class="note">Maxime seul (P2). Décider si/où gloser « zone 2 » et « FCmax » relève de la politique de glossaire transverse (déjà en place sur l&#x27;app) → product_decision. P2 : utile mais non bloquant si la note FC est par ailleurs reformulée en clair (cf finding note Z2).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">« 8 par lettre » oblige à relire 3 fois pour comprendre que « lettre » = Y, T, W. Et « Y-T-W » comme nom d&#x27;exo n&#x27;évoque rien sans illustration.</div>
+  <div class="fix"><b>Piste :</b> Reformuler : « 8 répétitions pour chaque position (Y, puis T, puis W) » + décrire/illustrer l&#x27;exo.</div>
+  <div class="note">Maxime seul (P2). La convention « X par lettre » dans le format de dosage et l&#x27;opportunité d&#x27;une illustration sont des choix de présentation produit → product_decision, P2.</div></div>
+</div></section><section><h2>Tennis <span class="cnt">6 décisions</span></h2><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Trois systèmes de repère d&#x27;intensité coexistent sans légende : zones FC, RPE chiffré et labels texte. L&#x27;utilisateur (surtout novice) doit jongler entre des référentiels jamais expliqués. RPE et Z2/Z3 sont du jargon physio pur.</div>
+  <div class="fix"><b>Piste :</b> (a) harmoniser sur un seul système d&#x27;affichage user (idéalement l&#x27;échelle effort 1-5 déjà adoptée ailleurs dans l&#x27;app), OU (b) rendre RPE/Z2/Z3 tappables vers le glossaire B2 existant ; au minimum une légende effort persistante. À arbitrer dans le chantier dosage caméléon.</div>
+  <div class="note">Sally P1 + Maxime P2 ; product_decision car touche à la politique d&#x27;affichage du dosage (chantier caméléon en cours) — choix transverse de Sophie.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Forte densité de jargon technique/anglais en user-facing. Certains termes sont incontournables au tennis (tie-break, split-step), d&#x27;autres sont du jargon muscu/physio (bird-dog, Y-T-W, scaption, pallof press) ou prépa (tapering/affûtage). Les parenthèses explicatives sont incohérentes (présentes la 1ère occurrence puis absentes : &quot;split-step&quot; seul dans les warmups). Le novice décroche.</div>
+  <div class="fix"><b>Piste :</b> Arbitrer une politique de nommage par terme : (1) garder + glossaire tappable pour les termes du sport légitimes (tie-break, split-step, croisé) ; (2) vulgariser/décrire le geste pour les noms muscu (bird-dog→quadrupédie bras-jambe opposés, Y-T-W→bras au sol dessinant les lettres, scaption→élévation bras en V, pallof press→anti-rotation à la poulie, drill→exercice, shadow/ghost-stroking→gestes à vide). Réutiliser le glossaire B2 existant.</div>
+  <div class="note">Fusion de plusieurs findings Sally (jargon global, split-step, sleeper, bird-dog/scaption/Y-T-W via exos) et Maxime (split-step, Y-T-W/scaption, bird-dog/pallof, drill/shadow/ghost, tapering) ; product_decision car c&#x27;est une politique de nommage/glossaire transverse — choix subjectif réservé à Sophie.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">&quot;Affûtage&quot; (mot FR rare) et &quot;tapering&quot; (anglais) sont dans un TITRE de séance, donc très visible, et aucun des deux ne parle à un débutant. Idem observations &quot;race week&quot;, &quot;periodization&quot;.</div>
+  <div class="fix"><b>Piste :</b> Vulgariser le titre : &quot;Allègement avant compétition&quot; plutôt que &quot;affûtage (tapering)&quot;. Le titre doit être compris sans glossaire.</div>
+  <div class="note">Remonté par Maxime (P2) ; je le sépare du jargon exos et le monte à P1 car c&#x27;est un titre de séance (haute visibilité) — product_decision (politique de nommage de titre, déjà identifiée comme chantier ouvert dans l&#x27;app).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Le champ reps/duration contient de longues chaînes descriptives plutôt qu&#x27;un nombre. Risque de débordement/troncature si l&#x27;UI suppose un format court (ex. 3×10). En plus, certaines chaînes sont cryptiques pour un novice (&quot;5 1ère T&quot;, &quot;10 par lettre&quot;).</div>
+  <div class="fix"><b>Piste :</b> Prévoir un champ détail multi-ligne tolérant le texte long, ou scinder dosage (sets×reps) et précision en deux sous-champs. Clarifier les libellés cryptiques (&quot;10 par lettre&quot;→&quot;10 répétitions pour chaque lettre Y, T, W&quot;; &quot;5 1ère T&quot;→&quot;5 services au T&quot;). Tester le rendu de la chaîne la plus longue sur petit écran.</div>
+  <div class="note">Sally et Maxime alignés ; product_decision (affichage) car l&#x27;arbitrage UI/structure de champ + la décision de vérifier le rendu sur device relèvent de Sophie.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Parité multilingue non garantie : le beginner a ES partout, mais certains champs des templates avancés sont FR-only ou FR+EN sans ES. Un utilisateur ES sur un template avancé verrait du contenu non traduit (fallback FR).</div>
+  <div class="fix"><b>Piste :</b> Auditer la couverture {fr,en,es} champ par champ sur les 4 niveaux (cf chantier i18n B2). Compléter ES manquant sur notes/cooldown des templates avancés ; à défaut documenter le fallback. Décision : seuil de parité exigé avant ship ES.</div>
+  <div class="note">Sally et Maxime alignés ; product_decision car le seuil de parité exigé avant ship ES est un arbitrage produit (chantier i18n B2).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Un seul nom d&#x27;exercice enchaîne 3 mouvements distincts (pallof press + bird-dog + planche latérale avec rotation) sur une ligne. Trop chargé : le novice est perdu, et le dosage associé devient ambigu (à quel mouvement s&#x27;applique-t-il ?).</div>
+  <div class="fix"><b>Piste :</b> Découper en exercices séparés avec dosage propre à chacun, plutôt qu&#x27;un libellé concaténé.</div>
+  <div class="note">Remonté par Maxime ; product_decision (restructuration de séance) distincte du simple jargon — le découpage d&#x27;un exo composite en plusieurs items est un choix de structure réservé à Sophie.</div></div>
+</div></section><section><h2>Football <span class="cnt">5 décisions</span></h2><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Jargon de périodisation (Bompa AA/Hypertrophy/Force Max/Conversion Power), niveaux fédéraux (R3-N3, FFF BMF, FA Step 5-7), acronymes (NHE, CAE, RSA, MD-X) exposés crus dans les résumés/objectifs de programme. Incompréhensible pour l&#x27;utilisateur final, décourageant pour un débutant. « AA + Hypertrophy » mélange même sigle FR + anglais.</div>
+  <div class="fix"><b>Piste :</b> Reformuler summary/objectif en langage utilisateur (« phase de développement de la force », « 3 jours avant le match »). Réserver les références de méthode (Bompa, FFF, RSA/NHE/CAE) à une note source optionnelle ou les expliciter à la première occurrence.</div>
+  <div class="note">Doublon Sally(P1)+Maxime(P1) ; product_decision car le niveau de vulgarisation des résumés et la politique « garder/expliciter/supprimer les références de méthode » sont un choix produit ouvert (cf audit didactique 10 sports).</div></div>
+</div><div class="dec">
+  <span class="sev sev-P1">P1</span>
+  <div class="body"><div class="desc">Mélange FR/EN inégal dans les noms d&#x27;exercices : certains ont la traduction entre parenthèses (« Pont fessier lesté (hip thrust) ») mais d&#x27;autres restent crus (« Bird-dog », « ickey shuffle », « clamshell », « monster walks »). Les acronymes (RDL, NHE, CAE, RSA) sont cryptiques sans explication. Maxime (novice foot) ne sait pas quoi faire de ces exos.</div>
+  <div class="fix"><b>Piste :</b> Décision produit : règle FR-first systématique avec terme EN entre parenthèses pour TOUS, bannir les acronymes nus côté user (« répétition de sprints (RSA) »). Auditer la liste exercices football pour parité avec la politique de nommage multisport. S&#x27;assurer qu&#x27;une consigne « comment l&#x27;exécuter » existe pour les exos exotiques.</div>
+  <div class="note">Doublon Sally(P1)+Maxime(P1) ; product_decision (politique de nommage FR/EN, chantier déjà ouvert dans l&#x27;audit didactique). Inclut le besoin de consigne d&#x27;exécution pour exos exotiques signalé par Maxime.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Le champ reps est souvent une chaîne libre non numérique (compte / durée / par côté / combo / interval ON-OFF), ce qui empêche un affichage reps-héros propre dans le FOCUS et complique le rendu du dosage caméléon. volume_axis est correct mais reps lui-même est hétérogène.</div>
+  <div class="fix"><b>Piste :</b> Normaliser reps en structure typée (count | duration | per_side | interval ON/OFF) ; le texte composite va en consigne secondaire, pas dans le champ reps-héros. À cadrer avec le référentiel dosage caméléon v2.</div>
+  <div class="note">Sally P2/Maxime P2 ; product_decision (touche la structure du modèle dosage caméléon, chantier en cours). Maintenu P2.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Deux risques : (1) termes pathologiques nommés (pubalgie, tendinite, commotion, LCA, RED-S) + stats de réduction de blessure (« -51 % », « -33 % ») = potentiels claims médicaux au sens EU MDR ; (2) impératifs autoritaires (« OBLIGATOIRE », « non négociables ») anxiogènes. Le ton reste prudentiel (renvoi médecin/kiné présent) mais à valider contre la liste de mots bannis.</div>
+  <div class="fix"><b>Piste :</b> Vérifier chaque terme vs la liste EU MDR de mots bannis ; remplacer les diagnostics nommés par des formulations génériques (« inconfort à l&#x27;aine/au tendon »), retirer les stats chiffrées de réduction de blessure, adoucir « obligatoire/non négociable » → « recommandé/important ». Conserver le renvoi vers un professionnel de santé.</div>
+  <div class="note">Doublon Sally(P2)+Maxime(P2) ; product_decision/EU MDR — arbitrage légal qui revient à Sophie (liste mots bannis), pas une correction mécanique. À faire valider avant toute prod.</div></div>
+</div><div class="dec">
+  <span class="sev sev-P2">P2</span>
+  <div class="body"><div class="desc">Le % FCmax et les zones Z1-Z4 ne parlent pas à un débutant sans cardiofréquencemètre ni connaissance de sa FCmax. Une sensation concrète (« allure conversationnelle, tu peux parler ») est parfois présente mais pas systématique.</div>
+  <div class="fix"><b>Piste :</b> Doubler systématiquement le % FCmax / Z par une sensation concrète (test de la parole) et la mettre partout ; garder le % FCmax en information secondaire pour ceux équipés d&#x27;un cardio.</div>
+  <div class="note">Remonté par Maxime seul (P2) ; Sally l&#x27;a couvert indirectement via target_zone mais ici c&#x27;est dans les notes. product_decision : relève du même chantier dosage caméléon (politique sensation-first), choix de présentation produit.</div></div>
+</div></section>
+</body></html>

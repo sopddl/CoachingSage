@@ -65,20 +65,20 @@ public struct VolumeModulationRule: AdaptationRule {
                 if lp != rp { return lp < rp }
                 return lhs.day > rhs.day
             }
-            let toRemoveIds = Set(droppable.prefix(weekDrop).map { "\($0.day)-\($0.name)" })
+            let toRemoveIds = Set(droppable.prefix(weekDrop).map { "\($0.day)-\($0.name.canonical)" })
 
             let kept = week.sessions.filter { session in
-                !toRemoveIds.contains("\(session.day)-\(session.name)")
+                !toRemoveIds.contains("\(session.day)-\(session.name.canonical)")
             }
 
-            for s in week.sessions where toRemoveIds.contains("\(s.day)-\(s.name)") {
+            for s in week.sessions where toRemoveIds.contains("\(s.day)-\(s.name.canonical)") {
                 appliedRules.append(AppliedRule(
                     ruleType: ruleType,
                     weekNumber: week.weekNumber,
                     day: s.day,
-                    originalExerciseName: s.name,
+                    originalExerciseName: s.name.canonical,
                     outcome: .removed,
-                    detail: "Session « \(s.name) » (\(s.type.rawValue)) supprimée — cadence cible \(target)/sem (template \(declared)/sem)"
+                    detail: "Session « \(s.name.canonical) » (\(s.type.rawValue)) supprimée — cadence cible \(target)/sem (template \(declared)/sem)"
                 ))
             }
 

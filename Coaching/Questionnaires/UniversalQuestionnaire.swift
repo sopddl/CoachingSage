@@ -31,8 +31,17 @@ struct UniversalQuestionnaire: SportQuestionnaire {
     let sportCode: String
     let version: String = "universal_v1"
 
-    init(sportCode: String) {
+    /// Chantier densité B (2026-07-02) — question de calibrage cold-start. `true` UNIQUEMENT
+    /// quand le signal HK est indisponible (refus, muet, 0 workout) : QActivity est alors
+    /// posée après Q1, et seulement si le niveau répondu est beginner/recreational (le
+    /// gating de `DensityRule` ignore la réponse sur les autres niveaux → question inutile).
+    /// La réponse n'est PAS persistée sur les profils : elle vit dans `conversationHistory`
+    /// et alimente `AdapterCoachingProfile.declaredRegularActivity` au moment de l'adapt.
+    let askActivityCalibration: Bool
+
+    init(sportCode: String, askActivityCalibration: Bool = false) {
         self.sportCode = sportCode
+        self.askActivityCalibration = askActivityCalibration
     }
 
     // MARK: - Question IDs (statiques, identifiants stables)
@@ -42,6 +51,11 @@ struct UniversalQuestionnaire: SportQuestionnaire {
     static let q3FrequencyId: QuestionId = "q3_frequency"
     static let q4DurationId: QuestionId = "q4_duration"
     static let q4DateId: QuestionId = "q4_date"
+    /// Indoor/outdoor vélo (2026-06-11) — lieu de pratique par défaut, posé en DERNIER
+    /// pour le cycling uniquement. Pose `environmentDefaultRaw` du record au commit.
+    static let q5LocationId: QuestionId = "q5_location"
+    /// Densité B — calibrage activité cold-start (conditionnelle, cf `askActivityCalibration`).
+    static let qActivityId: QuestionId = "q_activity_calibration"
 
     // MARK: - Q3 frequency option codes (refs partagés)
 
@@ -104,6 +118,59 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         answerType: .freeText,
         options: []
     )
+
+    // MARK: - Q5 lieu (indoor/outdoor vélo — cycling uniquement, posée en dernier)
+
+    /// Question lieu de pratique vélo. Le code choisi ("outdoor"/"indoor"/"both")
+    /// pose le défaut de lieu du programme (`AdaptedProgramRecord.environmentDefaultRaw`).
+    /// "outdoor"/"indoor" → toutes les séances à variante s'affichent dans ce lieu ;
+    /// "both" → chaque séance garde sa variante native, flip libre via la puce.
+    static let q5Location = QuestionnaireQuestion(
+        id: q5LocationId,
+        textKey: "questionnaire.cycling.q5.text",
+        answerType: .singleChoice,
+        options: [
+            QuestionOption(code: "outdoor", labelKey: "questionnaire.cycling.q5.option.outdoor"),
+            QuestionOption(code: "indoor",  labelKey: "questionnaire.cycling.q5.option.indoor"),
+            QuestionOption(code: "both",    labelKey: "questionnaire.cycling.q5.option.both")
+        ]
+    )
+
+    /// Lieu par défaut extrait de l'historique questionnaire (réponse Q5). Retourne le
+    /// code brut ("outdoor"/"indoor"/"both") ou nil si non posée (sports non-vélo).
+    /// Consommé au commit du programme pour poser `environmentDefaultRaw`.
+    static func environmentDefault(from history: [ConversationEntry]) -> String? {
+        guard let entry = history.first(where: { $0.questionId == q5LocationId }),
+              case .single(let code)? = entry.answer else { return nil }
+        return code
+    }
+
+    // MARK: - QActivity calibrage densité (densité B, conditionnelle cold-start)
+
+    static let qActivityYesCode = "yes"
+    static let qActivityNoCode = "no"
+
+    /// Question de calibrage activité. Wording purement COMPORTEMENTAL (G6/G7bis MDR :
+    /// fréquence de pratique observée, jamais capacité physique ni état de forme).
+    static let qActivity = QuestionnaireQuestion(
+        id: qActivityId,
+        textKey: "questionnaire.universal.q_activity.text",
+        answerType: .singleChoice,
+        options: [
+            QuestionOption(code: qActivityYesCode, labelKey: "questionnaire.universal.q_activity.option.yes"),
+            QuestionOption(code: qActivityNoCode,  labelKey: "questionnaire.universal.q_activity.option.no")
+        ]
+    )
+
+    /// Réponse calibrage extraite de l'historique questionnaire (pattern Q5
+    /// `environmentDefault`). `true`/`false` si posée et répondue, `nil` sinon (question
+    /// non posée — signal HK disponible, ou flux historique). Consommée par
+    /// `presentAdaptedProgram` pour alimenter `AdapterCoachingProfile.declaredRegularActivity`.
+    static func declaredRegularActivity(from history: [ConversationEntry]) -> Bool? {
+        guard let entry = history.first(where: { $0.questionId == qActivityId }),
+              case .single(let code)? = entry.answer else { return nil }
+        return code == qActivityYesCode
+    }
 
     // MARK: - Deadline-eligible goals (= goals avec date cible possible)
 
@@ -247,22 +314,43 @@ struct UniversalQuestionnaire: SportQuestionnaire {
     ) -> QuestionnaireQuestion? {
         switch questionId {
         case Self.q1LevelId:
+            // Densité B — calibrage cold-start : posée ssi le signal HK est indisponible
+            // ET le niveau répondu est dans le gating densité (`DensityRule.gatedLevels`,
+            // source unique). Hors gating la réponse serait ignorée par DensityRule → on
+            // ne pose pas une question sans effet.
+            if askActivityCalibration,
+               case .single(let levelCode) = answer,
+               let level = Level(rawValue: levelCode),
+               DensityRule.gatedLevels.contains(level) {
+                return Self.qActivity
+            }
+            return q2Goal
+        case Self.qActivityId:
             return q2Goal
         case Self.q2GoalId:
             return Self.q3Frequency
         case Self.q3FrequencyId:
-            return nextAfterFrequency(answer: answer, accumulated: accumulated)
+            return nextAfterFrequency(answer: answer, accumulated: accumulated) ?? locationGate(accumulated)
         case Self.q4DurationId:
             // Si target_date → poser le date picker. Sinon fin (mode = estimated ou routine).
             if case .single(let code) = answer, code == Self.q4TargetDateCode {
                 return Self.q4Date
             }
-            return nil
+            return locationGate(accumulated)
         case Self.q4DateId:
+            return locationGate(accumulated)
+        case Self.q5LocationId:
             return nil
         default:
             return nil
         }
+    }
+
+    /// Indoor/outdoor vélo — Q5 lieu posée en DERNIER, cycling uniquement, si pas déjà
+    /// répondue. Branchée sur tous les points terminaux du flux (`?? locationGate`).
+    private func locationGate(_ accumulated: [QuestionId: AnswerValue]) -> QuestionnaireQuestion? {
+        guard sportCode == "cycling", accumulated[Self.q5LocationId] == nil else { return nil }
+        return Self.q5Location
     }
 
     /// Logique conditionnelle après Q3 :
@@ -294,6 +382,8 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         case Self.q3FrequencyId: return Self.q3Frequency
         case Self.q4DurationId:  return Self.q4Duration
         case Self.q4DateId:      return Self.q4Date
+        case Self.q5LocationId:  return Self.q5Location
+        case Self.qActivityId:   return Self.qActivity
         default:                 return nil
         }
     }

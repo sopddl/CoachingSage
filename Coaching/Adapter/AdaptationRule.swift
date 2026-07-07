@@ -24,11 +24,12 @@ public protocol AdaptationRule: Sendable {
 }
 
 public extension ProgramTemplate {
-    /// Lookup d'un `TemplateExercise` par (week, day, name). Renvoie nil si non trouvé.
+    /// Lookup d'un `TemplateExercise` par (week, day, clé de matching stable).
+    /// `name` = `stableMatchKey` (cf `AdaptedExercise.originalName`), pas le nom affichable.
     func findExercise(weekNumber: Int, day: Int, name: String) -> TemplateExercise? {
         guard let week = weeks.first(where: { $0.weekNumber == weekNumber }) else { return nil }
         guard let session = week.sessions.first(where: { $0.day == day }) else { return nil }
-        return session.exercises.first(where: { $0.name == name })
+        return session.exercises.first(where: { $0.stableMatchKey == name })
     }
 }
 
@@ -113,7 +114,26 @@ public struct AdapterSportProfile: Equatable, Sendable {
 public struct AdapterCoachingProfile: Equatable, Sendable {
     public let requiresMedicalClearance: Bool
 
-    public init(requiresMedicalClearance: Bool) {
+    /// Chantier densité B (2026-07-02) — signal comportemental CROSS-SPORT lu par
+    /// `DensityRule` (G6 : comportement, jamais santé). Moyenne de séances/sem sur les
+    /// workouts HealthKit des 4 dernières semaines, fetchée à la CRÉATION du programme
+    /// (`presentAdaptedProgram`, increment 3). `nil` = signal indisponible (HK refusé/muet,
+    /// dormants `AutoProgramFactory`, call sites historiques) → jamais de densification.
+    public let weeklyWorkoutsAverage4w: Double?
+
+    /// Réponse à la question de calibrage du questionnaire (« Tu fais déjà du sport
+    /// régulièrement ? »), posée UNIQUEMENT quand le signal HK est indisponible. Non
+    /// persistée sur les profils — alimente cette façade au moment de l'adapt. `nil` =
+    /// question non posée / sans réponse.
+    public let declaredRegularActivity: Bool?
+
+    public init(
+        requiresMedicalClearance: Bool,
+        weeklyWorkoutsAverage4w: Double? = nil,
+        declaredRegularActivity: Bool? = nil
+    ) {
         self.requiresMedicalClearance = requiresMedicalClearance
+        self.weeklyWorkoutsAverage4w = weeklyWorkoutsAverage4w
+        self.declaredRegularActivity = declaredRegularActivity
     }
 }

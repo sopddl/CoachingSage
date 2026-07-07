@@ -9,10 +9,10 @@ let package = Package(
         .library(name: "TemplateLoader", targets: ["TemplateLoader"]),
         .executable(name: "TemplateValidator", targets: ["TemplateValidator"]),
         .executable(name: "GenerateTemplates", targets: ["GenerateTemplates"]),
+        .executable(name: "GenerateSummaries", targets: ["GenerateSummaries"]),
         .executable(name: "ChallengeTemplates", targets: ["ChallengeTemplates"]),
         .executable(name: "ReviseTemplates", targets: ["ReviseTemplates"]),
         .executable(name: "TestAdaptability", targets: ["TestAdaptability"]),
-        .executable(name: "GenerateManifest", targets: ["GenerateManifest"]),
     ],
     targets: [
         .target(
@@ -24,6 +24,10 @@ let package = Package(
         ),
         .executableTarget(
             name: "GenerateTemplates",
+            dependencies: ["TemplateModel"]
+        ),
+        .executableTarget(
+            name: "GenerateSummaries",
             dependencies: ["TemplateModel"]
         ),
         .executableTarget(
@@ -41,11 +45,10 @@ let package = Package(
         .target(
             name: "TemplateLoader",
             dependencies: ["TemplateModel"],
-            resources: [.copy("Resources/Templates"), .copy("Resources/templates-manifest.json")]
-        ),
-        .executableTarget(
-            name: "GenerateManifest",
-            dependencies: ["TemplateModel", "TemplateLoader"]
+            resources: [
+                .copy("Resources/Templates"),
+                .copy("Resources/template-summaries.json"),
+            ]
         ),
         .testTarget(
             name: "TemplateModelTests",

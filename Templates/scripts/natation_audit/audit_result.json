@@ -1,0 +1,3270 @@
+{
+  "summary": {
+    "analysed": 319,
+    "to_fix": 300,
+    "dry_land": 22,
+    "counts": {
+      "cryptic_name": 64,
+      "title_detail_mismatch": 13,
+      "glossary_collision": 7,
+      "jargon": 214,
+      "other": 4
+    }
+  },
+  "dry_land_exos": [
+    "Chat-vache (mobilité dorsale)",
+    "Chat-vache — mobilité thoracique",
+    "Planche ventrale",
+    "Pompe du grand dentelé (serratus pompe plus)",
+    "Rotation externe avec bande élastique",
+    "Rotation externe à l'élastique",
+    "Rotation externe à l'élastique (coiffe des rotateurs)",
+    "Rotation externe à l'élastique — manchette rotateurs",
+    "Rétraction des omoplates",
+    "Rétraction des omoplates à l'élastique (omoplate)",
+    "Rétraction des omoplates élastique",
+    "Seuil allégé — 8 × 100 m + renforcement à sec court (allure seuil)",
+    "Seuil — 12 × 100 m + renforcement à sec (allure seuil)",
+    "Seuil — variante 6 × 200 m + renforcement à sec (allure seuil)",
+    "Soulevé de terre léger",
+    "Soulevé de terre léger — barre ou kettlebell",
+    "Test de seuil + introduction au seuil + renforcement à sec scapulaire (allure seuil)",
+    "Tirage visage à l'élastique",
+    "VO2max pic (endurance soutenue) — 6 × 150 m + gainage à sec",
+    "Y-T-W activation des épaules",
+    "Y-T-W activation des épaules (allégé)",
+    "Y-T-W activation des épaules — renfo à sec sortie de bassin"
+  ],
+  "to_fix": [
+    {
+      "name_fr": "Découverte équilibre et position flèche",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Découverte de l'équilibre et de la position fuselée (flèche)",
+      "proposed_consigne_fr": "Apprends à te laisser porter par l'eau et à te placer bien droit, bras tendus devant, pour glisser sans effort.",
+      "user_blocker": "Rien à part le titre (dose et notes vides). C'est quoi une position flèche ? On ne m'explique pas, et il n'y a aucun mouvement décrit."
+    },
+    {
+      "name_fr": "Rattrapage — timing des bras",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "glossary_collision",
+        "jargon"
+      ],
+      "proposed_name_fr": "Crawl rattrapé — un bras attend l'autre",
+      "proposed_consigne_fr": "Garde un bras tendu devant pendant que l'autre tire et revient le toucher, pour ne jamais tirer les deux bras en même temps.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "25 m crawl complet — application rattrapé",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "glossary_collision",
+        "jargon"
+      ],
+      "proposed_name_fr": "25 m crawl complet — un bras attend l'autre (rattrapé)",
+      "proposed_consigne_fr": "Nage 25 m de crawl en gardant le timing rattrapé ralenti : un bras patiente devant avant que l'autre reparte.",
+      "user_blocker": "« le rattrapé éducatif ralenti » : on suppose que je sais déjà ce qu'est le « rattrapé », mais le mot me bloque, je ne suis pas sûre que ce soit l'exo « Rattrapage » d'avant."
+    },
+    {
+      "name_fr": "Propulsion — poing fermé et effleurement des doigts (nage poing fermé, effleurement des doigts)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "title_detail_mismatch"
+      ],
+      "proposed_name_fr": "Sentir l'appui sur l'eau — poings fermés puis doigts effleurés",
+      "proposed_consigne_fr": "Travaille la prise d'eau en nageant poings fermés, puis en laissant traîner le bout des doigts au retour du bras.",
+      "user_blocker": "Titre seul, dose et notes vides. « effleurement des doigts » et « poing fermé » : je devine vaguement mais aucune consigne ne me dit comment faire."
+    },
+    {
+      "name_fr": "Godille + allongement de la glisse (godille)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Godille (mains qui dessinent des 8) + glisse allongée",
+      "proposed_consigne_fr": "Avance grâce à de petits mouvements des mains en forme de 8, puis allonge ta glisse pour sentir l'appui sur l'eau.",
+      "user_blocker": "Titre seul, dose et notes vides. C'est quoi une « godille » ? Aucune idée, et rien ne l'explique ici."
+    },
+    {
+      "name_fr": "Godille mains devant (godille)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Godille bras tendus devant",
+      "proposed_consigne_fr": "Bras tendus devant, paumes vers le bas, fais de petits mouvements en 8 avec les mains pour avancer lentement et sentir la pression de l'eau.",
+      "user_blocker": "« mouvements en 8 rapides des mains » je n'arrive pas à visualiser le « 8 », et « prise d'eau » revient sans explication. La comparaison essuie-glace aide un peu mais je ne suis pas sûre du geste."
+    },
+    {
+      "name_fr": "Éducatif 6-3-6 — timing et rotation",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Exercice 6 battements / 3 bras / 6 battements (rotation du corps)",
+      "proposed_consigne_fr": "Sur le côté, fais 6 battements de jambes, puis 3 coups de bras de crawl, puis 6 battements de l'autre côté, pour sentir la rotation du tronc.",
+      "user_blocker": "« 6 battements de jambes en position latérale, bras inférieur tendu devant » : je ne comprends pas « position latérale » (sur le côté ?) ni « bras inférieur ». Le code « 6-3-6 » me perd."
+    },
+    {
+      "name_fr": "Y-T-W activation des épaules — renfo à sec sortie de bassin",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Y-T-W : renforcement des épaules au sol (hors de l'eau)",
+      "proposed_consigne_fr": "Allongé sur le ventre, lève les bras tendus en Y, puis en T (croix), puis en W (coudes pliés) en serrant les omoplates — renforce les épaules pour les protéger.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Rotation externe à l'élastique — manchette rotateurs",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Rotation de l'épaule à l'élastique (hors de l'eau)",
+      "proposed_consigne_fr": "Coude collé au corps et plié à 90°, tire l'élastique en tournant doucement la main vers l'extérieur, puis reviens lentement — protège l'épaule du nageur.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Bilatérale par éducatif isolé + 100 m confirmé",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Respiration des deux côtés par exercices, puis 100 m",
+      "proposed_consigne_fr": "Travaille la respiration alternée gauche/droite avec des exercices ciblés, puis confirme sur 100 m de crawl.",
+      "user_blocker": "Il n'y a AUCUNE explication (dose et notes vides). « éducatif isolé » je ne sais pas ce que c'est, et « bilatérale » non plus — je ne sais pas du tout quoi faire dans l'eau."
+    },
+    {
+      "name_fr": "Éducatif 6-3-6 — rappel rotation du tronc",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Exercice 6-3-6 (glisse 6 battements, 3 coups de bras, glisse 6) — rotation du tronc",
+      "proposed_consigne_fr": "Sur le côté, fais 6 battements en glissant, 3 coups de bras pour passer sur l'autre côté, puis 6 battements — sens ton tronc qui pivote.",
+      "user_blocker": "« Éducatif 6-3-6 » : je n'ai aucune idée de ce que veulent dire les chiffres 6-3-6 ni du mouvement. Et « placement latéral » je ne vois pas. Rien n'explique le geste."
+    },
+    {
+      "name_fr": "Éducatif de consolidation — rattrapage + effleurement des doigts",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Exercices de consolidation — rattrapé + main qui frôle l'eau",
+      "proposed_consigne_fr": "2 × 25 m rattrapé (un bras attend l'autre devant), puis 2 × 25 m en frôlant la surface de l'eau du bout des doigts au retour du bras.",
+      "user_blocker": "« rattrapé éducatif (timing bras/bras) » et « effleurement des doigts » : aucun des deux mouvements n'est décrit. C'est quoi l'effleurement des doigts, je touche quoi avec mes doigts ?"
+    },
+    {
+      "name_fr": "Aérobie long (endurance fondamentale à active) + éducatif d'équilibre",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Séance endurance longue + éducatif d'équilibre",
+      "proposed_consigne_fr": "Long crawl à allure facile à modérée, puis exercices techniques pour stabiliser ta position dans l'eau.",
+      "user_blocker": "Aucune consigne (rien à faire de concret). « Aérobie long », « endurance fondamentale à active » et « éducatif d'équilibre » sont des mots de coach, je ne sais pas ce que c'est ni combien de longueurs nager."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — crawl long",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "title_detail_mismatch"
+      ],
+      "proposed_name_fr": "Crawl long en endurance facile — 1500 m",
+      "proposed_consigne_fr": "Nage 1500 m de crawl en continu à allure facile, respiration des deux côtés (1 respiration tous les 3 mouvements).",
+      "user_blocker": "« allure endurance facile = allure seuil + 8-12 s/100m » je ne comprends pas du tout : c'est quoi mon « allure seuil » ? Et « respiration bilatérale 1/3 », « SPL », « coup de bras ±1 », « le mitochondrial » : tout ça est du chinois pour moi. Et nager 1500 m d'affilée alors que je fais à peine une longueur, impossible."
+    },
+    {
+      "name_fr": "Éducatif techniques — prise d'eau + roulis du corps",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Éducatif technique — appui de la main + rotation du corps",
+      "proposed_consigne_fr": "25 m doigts effleurant la surface au retour du bras (coude haut) puis 25 m en 6-3-6 (6 battements sur un côté, 3 mouvements de bras, 6 battements de l'autre côté).",
+      "user_blocker": "« prise d'eau coude haut », « 6-3-6 (6 battements latéraux → 3 coups de bras) », « roulis du corps 45° », « effleurement des doigts » : je ne sais pas faire aucun de ces gestes, on ne m'a jamais montré. C'est quoi des « battements latéraux côté favori » ?"
+    },
+    {
+      "name_fr": "Bras seuls au pull-buoy — traction",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "glossary_collision"
+      ],
+      "proposed_name_fr": "Bras seuls avec pull-buoy — 100 m",
+      "proposed_consigne_fr": "Crawl bras seuls, pull-buoy (flotteur) coincé entre les cuisses et jambes immobiles, à allure facile en sentant l'appui sur l'avant-bras.",
+      "user_blocker": "C'est quoi un « pull-buoy » et comment on le met « entre les cuisses » ? « focus 100% traction bras », « jambes inertes », « plaquettes » : je ne sais pas nager avec les jambes immobiles, j'ai peur de couler. C'est quoi des « plaquettes » ?"
+    },
+    {
+      "name_fr": "Test de seuil + introduction au seuil + renforcement à sec scapulaire (allure seuil)",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Test d'allure de référence + renforcement des épaules au sol",
+      "proposed_consigne_fr": "Séance test pour mesurer ton allure de référence, puis renforcement des épaules (scapulaire) hors de l'eau.",
+      "user_blocker": "Aucune consigne concrète. « seuil », « renforcement à sec scapulaire » : je ne sais pas ce qu'est un seuil ni un exercice « à sec scapulaire »."
+    },
+    {
+      "name_fr": "Test de seuil — 400 m chronométré (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "title_detail_mismatch"
+      ],
+      "proposed_name_fr": "Test 400 m chronométré",
+      "proposed_consigne_fr": "Nage 400 m de crawl le plus vite possible mais à allure régulière (ne pars pas trop vite), et note ton temps exact.",
+      "user_blocker": "Nager 400 m « maximal » alors que je tiens à peine une longueur, c'est infaisable pour moi. « récupération active 250-300 m récup très lent + flotter » : je ne sais pas flotter ni nager lentement longtemps."
+    },
+    {
+      "name_fr": "Test de seuil — 200 m chronométré (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "title_detail_mismatch"
+      ],
+      "proposed_name_fr": "Test 200 m chronométré",
+      "proposed_consigne_fr": "Après 5 min de récupération, nage 200 m de crawl le plus vite possible à allure régulière et note ton temps.",
+      "user_blocker": "Le calcul « allure seuil = (400 - 200) / (T400 - T200) en m/s » avec des formules me perd complètement, et de toute façon je ne peux pas nager 200 m « maximal »."
+    },
+    {
+      "name_fr": "Récup active — éducatif d'équilibre",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "glossary_collision"
+      ],
+      "proposed_name_fr": "Récupération active — éducatif d'équilibre",
+      "proposed_consigne_fr": "25 m battements sur le côté (palmes courtes au choix) puis 25 m en 6-3-6, à allure très facile pour relâcher les épaules.",
+      "user_blocker": "« battements sur le côté favori », « palmes courtes », « 6-3-6 », « roulis du corps » : je ne connais aucun de ces éducatifs, on ne m'a jamais appris à nager sur le côté."
+    },
+    {
+      "name_fr": "VO2max (endurance soutenue) + éducatif de prise d'eau + gainage à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Séance allure rapide + éducatif d'appui + gainage au sol",
+      "proposed_consigne_fr": "Nage des fractions à allure rapide, puis éducatif d'appui de la main, et gainage du tronc hors de l'eau.",
+      "user_blocker": "Aucune consigne concrète. « VO2max », « éducatif de prise d'eau », « gainage à sec » : ce sont des termes que je ne comprends pas et je ne sais pas quoi faire dans l'eau."
+    },
+    {
+      "name_fr": "Éducatif de prise d'eau — coude haut ",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Éducatif d'appui — coude haut",
+      "proposed_consigne_fr": "25 m godille avant-bras vertical (coude haut, avant-bras face à l'arrière avant de tirer) puis 25 m poings fermés, lentement, pour sentir l'appui sur l'avant-bras.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Aérobie long (endurance fondamentale à active) + éducatif de timing",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Séance endurance longue + éducatif de synchronisation des bras",
+      "proposed_consigne_fr": "Long crawl à allure facile à modérée, puis éducatif pour synchroniser les bras et allonger le temps de glisse.",
+      "user_blocker": "Aucune consigne concrète, et « éducatif de timing » ne me dit rien : c'est quoi le timing en natation ?"
+    },
+    {
+      "name_fr": "Éducatif de timing — 6-3-6 + rattrapage",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Éducatif de synchronisation — 6-3-6 + rattrapé",
+      "proposed_consigne_fr": "25 m en 6-3-6 puis 25 m rattrapé (le bras avant attend que l'autre bras le rejoigne avant de tirer), pour allonger la glisse.",
+      "user_blocker": "« 6-3-6 », « rattrapé (bras avant attend que bras arrière arrive) », « phase glisse », « allongement » : je ne sais pas coordonner mes bras comme ça, je ne comprends pas ce qu'on me demande."
+    },
+    {
+      "name_fr": "Récup — éducatif de roulis du corps",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Récupération — éducatif de rotation du corps",
+      "proposed_consigne_fr": "25 m en tournant épaule et hanche à 45° de chaque côté + 25 m à un bras (côté faible) + 25 m crawl complet, lentement pour relâcher les épaules.",
+      "user_blocker": "« roulis du corps (rotation épaule + hanche 45°) », « à un bras — bras non-dominant côté faible » : nager à un seul bras ou faire tourner mon corps de façon contrôlée, je ne sais pas faire, on ne me l'a jamais montré."
+    },
+    {
+      "name_fr": "Aérobie long (endurance fondamentale à active) + éducatif + premières plaquettes légères",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Séance endurance longue + éducatif + premières plaquettes légères",
+      "proposed_consigne_fr": "Long crawl à allure facile à modérée, éducatif technique, puis première utilisation de petites plaquettes pour amplifier la sensation d'appui.",
+      "user_blocker": "Aucune consigne concrète, et « plaquettes légères » : je ne sais pas ce qu'est une plaquette ni comment on s'en sert."
+    },
+    {
+      "name_fr": "Éducatif de prise d'eau + plaquettes légères — introduction",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Éducatif d'appui + introduction des plaquettes légères",
+      "proposed_consigne_fr": "25 m rattrapé + 25 m crawl avec petites plaquettes + 25 m crawl sans plaquettes ; retire les plaquettes si tu sens une gêne à l'épaule.",
+      "user_blocker": "C'est quoi des « plaquettes » et comment on les met ? « rattrapé », « sensation prise eau amplifiée » : je ne sais pas faire le rattrapé et je ne comprends pas la « prise d'eau »."
+    },
+    {
+      "name_fr": "Récup — éducatif de timing",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "glossary_collision"
+      ],
+      "proposed_name_fr": "Récupération — exercices de coordination du crawl",
+      "proposed_consigne_fr": "75 m doux : 25 m avec 6 battements/3 cycles de bras/6 battements, 25 m bras en rattrapé (une main attend l'autre), 25 m crawl complet.",
+      "user_blocker": "« 6-3-6 » et « rattrapé » : aucune idée de ce que sont ces éducatifs, je n'en ai jamais fait. Je ne sais pas quoi faire avec mes bras."
+    },
+    {
+      "name_fr": "Test d'allure de course mi-cycle — rapide+très rapide",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Test d'allure de course (mi-parcours) — efforts rapide puis très rapide",
+      "proposed_consigne_fr": "Séance test : tu nages des séries rapides puis très rapides pour mesurer tes allures de référence du moment.",
+      "user_blocker": "dose_fr et notes_fr vides. « test d'allure de course mi-cycle », « rapide+très rapide » : aucune distance, aucune consigne, je ne sais pas du tout quoi faire dans la piscine."
+    },
+    {
+      "name_fr": "Test rapide — 8 × 50 m à allure 200 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Test rapide — 8 × 50 m à allure de ton 200 m",
+      "proposed_consigne_fr": "Crawl, 8 × 50 m à l'allure que tu tiendrais sur un 200 m, 90 s de repos entre chaque ; note ton temps à chaque 50 m.",
+      "user_blocker": "« à allure 200 m » je ne comprends pas : je n'ai jamais nagé 200 m, je ne connais pas mon allure. « test de dérive lactique », « récup 90 s active flotte », « allure rapide référence Bloc 3 » : tout ça c'est du chinois pour moi."
+    },
+    {
+      "name_fr": "Test très rapide — 6 × 25 m à allure 100 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Test très rapide — 6 × 25 m à allure de ton 100 m",
+      "proposed_consigne_fr": "Crawl, 6 × 25 m à l'allure que tu tiendrais sur un 100 m, 90 s de repos entre chaque ; note ton temps.",
+      "user_blocker": "« allure 100 m course max », « production lactique max », « RPE 9-10 » : je ne sais pas ce qu'est mon allure 100 m ni ce que veut dire RPE 9-10, et nager 25 m très vite 6 fois je ne suis pas sûre d'en être capable."
+    },
+    {
+      "name_fr": "Seuil — 6 × 100 m post-test (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "title_detail_mismatch",
+        "jargon"
+      ],
+      "proposed_name_fr": "Seuil — 6 × 100 m juste en dessous du seuil",
+      "proposed_consigne_fr": "Crawl, 6 × 100 m à ton allure de seuil + 5 s (un peu en dessous, prudent après le test), 20 s de repos, sans plaquettes.",
+      "user_blocker": "« à allure seuil + 5 s/100 m », « allure conservatrice post-test », « Pas de plaquettes » : c'est quoi des plaquettes ? et « allure seuil + 5 s » je ne sais pas comment doser ça quand je nage."
+    },
+    {
+      "name_fr": "Éducatif de timing + pull-buoy",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Exercices de coordination + pull-buoy (flotteur entre les jambes)",
+      "proposed_consigne_fr": "75 m : 25 m bras en rattrapé (une main attend l'autre devant) + 25 m respiration tous les 3 temps + 25 m avec pull-buoy en crawl facile.",
+      "user_blocker": "« 25 m rattrapé + 25 m 6-3-6 + 25 m pull-buoy » : je ne connais aucun de ces mots. C'est quoi « rattrapé » ? c'est quoi « 6-3-6 » ? c'est quoi un « pull-buoy » ? Je n'ai jamais fait d'éducatif, je suis totalement perdue."
+    },
+    {
+      "name_fr": "Bloc éducatif avec plaquettes",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Exercices de technique avec plaquettes",
+      "proposed_consigne_fr": "75 m : 25 m godille (petits mouvements de mains, coude haut) + 25 m crawl avec plaquettes + 25 m crawl poing fermé. Retire les plaquettes si l'épaule gêne.",
+      "user_blocker": "« godille appui coude haut plaquettes », « nage poing fermé », « Plafond 600 m respecté » : je ne sais pas ce qu'est la « godille », ni des « plaquettes », ni l'« appui coude haut ». La « nage poing fermé » je devine un peu mais le reste me bloque."
+    },
+    {
+      "name_fr": "BLOC LACTIQUE rapide dédié + sprint",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Séance efforts rapides intenses + sprints",
+      "proposed_consigne_fr": "Séance d'efforts courts très intenses (production d'acide lactique) suivie de sprints à vitesse maximale.",
+      "user_blocker": "dose_fr et notes_fr vides. « bloc lactique » ne me dit rien du tout, et aucune consigne concrète n'est donnée."
+    },
+    {
+      "name_fr": "Bloc lactique rapide — 3 × (4 × 50 m à allure 200 m)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Efforts rapides — 3 séries de (4 × 50 m à allure de ton 200 m)",
+      "proposed_consigne_fr": "Crawl, 3 séries de 4 × 50 m à l'allure de ton 200 m, 90 s de repos entre les 50 m et 4 min entre les séries ; arrête à 2 séries si tu craques.",
+      "user_blocker": "« allure 200 m », « récup active flotte/jogging-eau », « PCr 95% restaurée », « bloc lactique » : énormément de jargon. Je ne connais pas mon allure 200 m et tout ce vocabulaire physiologique me dépasse complètement."
+    },
+    {
+      "name_fr": "Aérobie long + bloc plaquettes + éducatif",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Nage longue facile + plaquettes + exercices de technique",
+      "proposed_consigne_fr": "Nage longue en endurance facile, avec un passage plaquettes et quelques exercices de technique.",
+      "user_blocker": "dose_fr et notes_fr vides. « aérobie long », « bloc plaquettes », « éducatif » : je ne connais aucun de ces termes et il n'y a aucune consigne."
+    },
+    {
+      "name_fr": "Allure de course très rapide — 16 × 25 m à allure 100 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Très rapide — 16 × 25 m à allure de ton 100 m",
+      "proposed_consigne_fr": "Crawl, 16 × 25 m à l'allure de ton 100 m, 45 s de repos entre chaque ; arrête à 12 × 25 m si tu craques.",
+      "user_blocker": "« allure 100 m course calibrée test W7 », « production lactique max », « récup 45 s active » : je ne connais pas mon « allure 100 m » et le « test W7 » ne me parle pas. 16 fois 25 m vite c'est aussi très dur pour moi."
+    },
+    {
+      "name_fr": "Nage longue PIC — 3500 m continu OU fractionné 30 × 100 m allure seuil",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Nage longue (pic) — 3500 m d'affilée OU 30 × 100 m à allure de seuil",
+      "proposed_consigne_fr": "Au choix : 3500 m d'affilée en endurance, ou 30 × 100 m à ton allure de seuil avec 10 s de repos.",
+      "user_blocker": "dose_fr et notes_fr vides. « PIC », « 3500 m continu OU fractionné 30 × 100 m allure seuil » : je ne comprends pas le choix proposé, et 3500 m comme 30 × 100 m sont totalement hors de ma portée."
+    },
+    {
+      "name_fr": "Nage longue PIC ABSOLU — option A continu OU option B fractionné",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Nage longue (pic) — option A d'affilée OU option B fractionnée",
+      "proposed_consigne_fr": "Option A : 3500 m d'affilée en endurance. Option B : 30 × 100 m à ton allure de seuil, 10 s de repos (choisis B si tu vises l'eau libre ou le triathlon). Pas de plaquettes.",
+      "user_blocker": "« Broken allure 30 × 100 m à allure seuil », « SPL stable », « bilatérale 1/3 », « test endurance seuil + tolérance lactique », « eau libre / triathlon long » : c'est quoi « SPL » ? c'est quoi « broken » ? Tout est en jargon et les distances (3500 m / 3000 m) sont impossibles pour une débutante."
+    },
+    {
+      "name_fr": "Seuil affûtage — 6 × 100 m (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "title_detail_mismatch"
+      ],
+      "proposed_name_fr": "6 × 100 m allure soutenue — semaine d'allègement",
+      "proposed_consigne_fr": "6 × 100 m de crawl à allure soutenue (environ 3 s/100 m plus lent que ton allure max tenable), 15 s de repos entre chaque.",
+      "user_blocker": "« allure seuil + 3 s/100 m » : je ne connais pas mon allure seuil, donc je ne peux pas calculer +3s. Et « Mujika & Padilla » dans les notes, ça ne m'aide pas du tout."
+    },
+    {
+      "name_fr": "Éducatif de timing — affûtage",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Exercice de coordination — semaine d'allègement",
+      "proposed_consigne_fr": "75 m : 25 m bras en rattrapé (une main attend l'autre devant) + 25 m respiration tous les 3 (6-3-6) + 25 m crawl complet.",
+      "user_blocker": "« 25 m rattrapé », « 25 m 6-3-6 » : je ne sais pas du tout ce que sont ces éducatifs. C'est quoi nager en « rattrapé » ? Et « 6-3-6 » ça veut dire quoi ?"
+    },
+    {
+      "name_fr": "Éducatif de sensations + activation",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Exercices de sensations + réveil de la vitesse",
+      "proposed_consigne_fr": "75 m : 25 m godille (coude haut, on sent l'appui sur l'eau) + 25 m respiration tous les 3 (6-3-6) + 25 m crawl rapide court ; pas de plaquettes.",
+      "user_blocker": "« godille appui coude haut », « 6-3-6 », « allure seuil » : trois éducatifs/notions que je ne connais pas. C'est quoi la godille ? C'est quoi 6-3-6 ?"
+    },
+    {
+      "name_fr": "Éducatif de timing courts",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Exercices de coordination courts",
+      "proposed_consigne_fr": "75 m : 25 m bras en rattrapé (une main attend l'autre devant) + 25 m respiration tous les 3 (6-3-6) + 25 m crawl complet ; sensations et équilibre.",
+      "user_blocker": "« 25 m rattrapé » et « 25 m 6-3-6 » : je ne sais pas ce que sont ces éducatifs ni comment les nager."
+    },
+    {
+      "name_fr": "Éducatif de sensations + endurance fondamentale décharge",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Exercices de sensations + endurance facile allégée",
+      "proposed_consigne_fr": "75 m : 25 m godille (coude haut, on sent l'appui sur l'eau) + 25 m bras en rattrapé (une main attend l'autre devant) + 25 m crawl complet.",
+      "user_blocker": "« godille appui coude haut » et « 25 m rattrapé » : je ne sais pas ce que sont la godille ni le rattrapé."
+    },
+    {
+      "name_fr": "Effleurement du bout des doigts — prise d'eau, introduction",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "glossary_collision"
+      ],
+      "proposed_name_fr": "Doigts qui effleurent l'eau (retour du bras) — introduction à l'appui",
+      "proposed_consigne_fr": "Pendant le retour du bras hors de l'eau, fais glisser le bout des doigts à la surface de la hanche jusqu'à l'entrée devant ; corrige l'entrée trop haute de la main.",
+      "user_blocker": "« prise d'eau » et « avant-bras vertical tôt » : je ne comprends pas ce qu'est la « prise d'eau » ni comment avoir l'avant-bras vertical. Le geste de faire glisser les doigts je le visualise, mais le but technique me dépasse."
+    },
+    {
+      "name_fr": "Effleurement des doigts + nage 25 m alternés",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Crawl doigts qui frôlent l'eau + nage normale (25 m + 25 m)",
+      "proposed_consigne_fr": "25 m en frôlant l'eau du bout des doigts au retour du bras (coude haut), puis 25 m crawl facile.",
+      "user_blocker": "« Effleurement des doigts » je ne sais pas du tout quel geste c'est, et « éducatif », « prise d'eau », « coude haut à l'initiation de la traction » : ce sont des mots que je ne comprends pas, on ne m'explique pas le mouvement à faire."
+    },
+    {
+      "name_fr": "Y-T-W activation des épaules",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Y-T-W au sol (réveil des épaules)",
+      "proposed_consigne_fr": "Allongé sur le ventre, dessine avec les bras un Y, un T puis un W en serrant les omoplates, lentement.",
+      "user_blocker": "« bras formant successivement Y, T, W avec rétraction des omoplates » : je ne vois pas comment placer mes bras pour faire les lettres, et « rétraction des omoplates » + « coiffe des rotateurs » ce sont des termes que je ne connais pas."
+    },
+    {
+      "name_fr": "Éducatif 6-3-6 — timing + rotation",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Exercice 6-3-6 (battements sur le côté + crawl)",
+      "proposed_consigne_fr": "6 battements sur le côté gauche bras tendu devant, puis 3 mouvements de crawl, puis 6 battements sur le côté droit ; coordonne hanches et entrée du bras.",
+      "user_blocker": "« 6 battements sur le côté », « 3 cycles complets de crawl », « rotation des hanches avec l'entrée du bras » : je n'ai jamais nagé sur le côté avec un bras le long du corps, ça me paraît acrobatique et je ne saurais pas faire."
+    },
+    {
+      "name_fr": "Rattrapage + bilatérale intégrée",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Crawl rattrapé + respiration des 2 côtés",
+      "proposed_consigne_fr": "Attends que la main avant touche l'autre bras avant de tirer, en respirant alternativement à droite et à gauche.",
+      "user_blocker": "Tout est vide sauf le titre. « Rattrapage » et « bilatérale » ne me disent rien sans explication."
+    },
+    {
+      "name_fr": "Rattrapage — timing complet",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Crawl rattrapé (glisse longue)",
+      "proposed_consigne_fr": "Attends que ta main avant touche l'autre bras tendu devant avant de commencer la traction, pour allonger le temps de glisse.",
+      "user_blocker": "« Attendre que la main avant touche l'autre bras avant d'initier la traction », « rallonger le temps de glissé », « Total Immersion » : je ne connais pas ce mouvement de nage ni ce vocabulaire."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale à active 8×100 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "other"
+      ],
+      "proposed_name_fr": "8 × 100 m crawl (facile puis un peu plus rapide)",
+      "proposed_consigne_fr": "8 × 100 m, 20 s de repos : allure facile sur les 4 premiers, un peu plus rapide sur les 4 derniers ; respire des 2 côtés sur au moins 4 longueurs.",
+      "user_blocker": "Les distances je comprends mais « RPE 3-4 / 4-5 », « endurance facile+ » et « bilatérale 1/3 sur au moins 4 répétitions » me bloquent : je ne sais ni lire le RPE ni faire la respiration bilatérale."
+    },
+    {
+      "name_fr": "Rattrapage",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Crawl rattrapé (glisse longue)",
+      "proposed_consigne_fr": "Attends que ta main avant rejoigne l'autre bras tendu devant avant de tirer, pour ancrer la glisse longue.",
+      "user_blocker": "« glisse longue avant traction » et le mot « Rattrapage » : je ne sais pas exécuter cet éducatif, le mouvement n'est pas décrit ici."
+    },
+    {
+      "name_fr": "Éducatif ciblés — bras seuls au pull-buoy",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "title_detail_mismatch"
+      ],
+      "proposed_name_fr": "Bras seuls avec le pull-buoy (flotteur entre les cuisses)",
+      "proposed_consigne_fr": "Coince le pull-buoy entre les cuisses et nage avec les bras seuls, jambes immobiles, pour travailler la traction.",
+      "user_blocker": "Dose et notes vides, et « éducatif », « pull-buoy » : je ne sais pas ce qu'est un pull-buoy ni quoi faire."
+    },
+    {
+      "name_fr": "Y-T-W activation des épaules (allégé)",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Y-T-W au sol (réveil des épaules, version allégée)",
+      "proposed_consigne_fr": "Allongé sur le ventre, dessine un Y, un T puis un W avec les bras en serrant les omoplates : 2 séries cette semaine.",
+      "user_blocker": "« Y-T-W » : je ne sais pas faire les positions des bras en lettres Y, T, W, ce n'est pas décrit ici."
+    },
+    {
+      "name_fr": "Éducatif de propulsion mixtes + endurance active — pose des fondamentaux du prise d'eau",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "other"
+      ],
+      "proposed_name_fr": "Éducatifs de propulsion + endurance active (sentir l'appui de l'eau)",
+      "proposed_consigne_fr": "Série d'éducatifs pour apprendre à bien accrocher l'eau avec la main, suivie d'un bloc d'endurance.",
+      "user_blocker": "Titre seul, pas de dose ni note. « éducatif de propulsion » et « prise d'eau » sans aucune explication d'exercice. Rien à exécuter."
+    },
+    {
+      "name_fr": "Effleurement du bout des doigts — récupération coude haut",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "glossary_collision"
+      ],
+      "proposed_name_fr": "Doigts qui frôlent l'eau (bras de retour coude haut)",
+      "proposed_consigne_fr": "Pendant que ton bras revient hors de l'eau, fais glisser le bout des doigts sur la surface, de la hanche jusqu'à l'entrée devant : ça force un coude haut.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Godille vers l'avant — prise d'eau (godille)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Godille avant (accrocher l'eau avec la main)",
+      "proposed_consigne_fr": "Pull-buoy entre les jambes, bras tendus devant, mains en cuillère : avance uniquement avec un mouvement d'essuie-glace lent pour sentir la paume accrocher l'eau.",
+      "user_blocker": "« godille », « pull-buoy », « mains en cuillère », « prise d'eau », « coude haut sous l'eau » : trop de mots inconnus. « Mouvement essuie-glace lent » m'aide un peu mais je ne comprends pas ce que je dois vraiment faire."
+    },
+    {
+      "name_fr": "Bloc endurance active crawl — appui avant-bras",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "other"
+      ],
+      "proposed_name_fr": "Crawl à allure soutenue — appui sur l'avant-bras",
+      "proposed_consigne_fr": "Nage le crawl à effort soutenu mais maîtrisé : coude haut sous l'eau, la main entre dans l'axe de l'épaule ; 100 m puis 20 s de repos.",
+      "user_blocker": "« allure seuil ± 0-3 s/100 m », « RPE 5-6 », « prise d'eau consciente », « coude haut sous l'eau », « main entre dans l'axe épaule » : je ne sais pas c'est quoi mon allure seuil ni RPE, et l'appui avant-bras / prise d'eau je ne comprends pas le geste."
+    },
+    {
+      "name_fr": "Rétraction des omoplates à l'élastique (omoplate)",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Serrage des omoplates à l'élastique",
+      "proposed_consigne_fr": "Élastique tendu devant la poitrine, bras tendus : écarte les mains en serrant les omoplates, tiens 2 s puis reviens en 3 s.",
+      "user_blocker": "« rétraction des omoplates », « serrant les omoplates », « trapèze moyen et rhomboïdes — antagonistes du grand dorsal » : je n'ai jamais fait de renfo, je ne sais pas serrer mes omoplates volontairement et je ne connais aucun de ces muscles."
+    },
+    {
+      "name_fr": "Pompe du grand dentelé (serratus pompe plus)",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Pompe plus — gainage du grand dentelé",
+      "proposed_consigne_fr": "En position de planche bras tendus, pousse le sol pour arrondir le haut du dos sans plier les coudes, puis relâche.",
+      "user_blocker": "« planche haute », « protraction scapulaire », « arrondir le haut du dos sans bouger les coudes », « serratus antérieur », « phase de prise d'eau » : je ne sais pas ce qu'est une planche haute ni comment arrondir le dos en poussant le sol, et tous les mots de muscles me perdent."
+    },
+    {
+      "name_fr": "Éducatif 6-3-6 avec rotation de hanche accentuée",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Exercice 6-3-6 — rotation des hanches sur le côté",
+      "proposed_consigne_fr": "6 battements sur le côté droit (bras droit devant, oreille dans l'eau), 3 coups de bras crawl, puis 6 battements côté gauche ; la hanche lance la rotation.",
+      "user_blocker": "« éducatif 6-3-6 », « 6 battements côté D, 3 coups de bras de transition, 6 battements côté G », « hanche initie, épaule suit » : c'est un exercice de coordination très précis que je ne saurais pas du tout réaliser en débutante."
+    },
+    {
+      "name_fr": "Tirage visage à l'élastique",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Tirage de l'élastique vers le visage",
+      "proposed_consigne_fr": "Élastique fixé à hauteur du visage : tire vers toi en écartant les coudes au-dessus des épaules, en serrant les omoplates.",
+      "user_blocker": "« tirer vers le visage en écartant les coudes au-dessus des épaules (rotation externe + rétraction des omoplates) », « antidote rotation interne chronique » : jamais fait de renfo élastique, je ne comprends pas ce geste ni les termes."
+    },
+    {
+      "name_fr": "Éducatif 6-3-6 + roulis du corps accentué",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Éducatif 6-3-6 (rotation des hanches accentuée)",
+      "proposed_consigne_fr": "6 battements sur un côté, 3 coups de bras pour tourner, 6 battements de l'autre côté ; accentue la rotation des hanches à chaque passage.",
+      "user_blocker": "« 6-3-6 », « roulis du corps », « rotation de hanche 45° accentuée dans la phase côté », « ancrage rotation hanche dans le cycle complet » : je ne sais pas du tout ce qu'est un éducatif 6-3-6 ni ce qu'est la « phase côté ». Aucune idée de ce que je dois faire avec mes bras et mon corps."
+    },
+    {
+      "name_fr": "Seuil — 6×200 m allure seuil+2s récup 25 s",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "6×200 m à allure soutenue (récup 25 s)",
+      "proposed_consigne_fr": "Nage 6 fois 200 m à une allure soutenue mais tenable, avec 25 s de repos entre chaque.",
+      "user_blocker": "« allure seuil » et « seuil+2s » : je ne sais pas à quelle vitesse nager. C'est quoi mon « allure seuil » ? Et 6×200 m = 1200 m, c'est énorme, je n'arrive même pas à faire 200 m de crawl d'affilée."
+    },
+    {
+      "name_fr": "Effleurement du bout des doigts sous fatigue",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Éducatif doigts qui frôlent l'eau (retour de bras)",
+      "proposed_consigne_fr": "Au retour aérien, fais glisser le bout de tes doigts juste au-dessus de l'eau pour garder le coude haut, même quand tu es fatigué.",
+      "user_blocker": "« Effleurement du bout des doigts », « ancrer le schéma coude haut », « sous fatigue » : je ne vois pas du tout le geste. Effleurer quoi avec les doigts ? L'eau ? Ma jambe ? C'est quoi un coude haut ?"
+    },
+    {
+      "name_fr": "Rattrapage — consolidation",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Éducatif rattrapé (un bras attend l'autre)",
+      "proposed_consigne_fr": "Un bras reste tendu devant toi jusqu'à ce que l'autre bras vienne le rejoindre ; cherche la glisse maximale entre chaque cycle.",
+      "user_blocker": "« Rattrapage », « Glisse maximale entre cycles », « timing entrée parfait » : je ne sais pas ce qu'est l'éducatif « rattrapage » en natation, ni ce qu'est un « cycle » ou une « entrée ». Rien à exécuter."
+    },
+    {
+      "name_fr": "Seuil resserré — 12×100 m allure seuil récup 10 s",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "12×100 m à allure soutenue (repos court 10 s)",
+      "proposed_consigne_fr": "Nage 12 fois 100 m à allure soutenue tenable, avec seulement 10 s de repos entre chaque.",
+      "user_blocker": "« allure seuil » encore inconnue, et 12×100 m = 1200 m avec seulement 10 s de récup : impossible pour une débutante qui peine à enchaîner les longueurs."
+    },
+    {
+      "name_fr": "Éducatif 6-3-6 + roulis du corps",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Éducatif 6-3-6 (rotation du corps)",
+      "proposed_consigne_fr": "6 battements sur le côté, 3 coups de bras pour tourner, 6 battements de l'autre côté ; cherche à bien faire tourner les hanches.",
+      "user_blocker": "« éducatif 6-3-6 », « roulis du corps », « rotation hanche sous distance » : je ne sais toujours pas ce qu'est le 6-3-6 ni comment faire « rouler » mon corps en nageant."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — nage longue crawl PIC",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Longue nage crawl 2500 m (la plus longue du plan)",
+      "proposed_consigne_fr": "Crawl continu en endurance facile sur 2500 m, respiration des deux côtés (tous les 3 mouvements) ; bois au bord toutes les 800 m.",
+      "user_blocker": "2500 m d'affilée c'est impossible pour moi. Et « respiration bilatérale 1/3 », « allure seuil + 8-12 s/100 m », « comptage coups de bras », « si dérive > 3 coups de bras, ralentir » : je ne sais pas faire la respiration bilatérale ni ce qu'est l'allure seuil."
+    },
+    {
+      "name_fr": "Seuil pic — 8×200 m allure seuil+2s récup 20 s",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "8×200 m à allure soutenue (récup 20 s)",
+      "proposed_consigne_fr": "Nage 8 fois 200 m à allure soutenue tenable, avec 20 s de repos entre chaque.",
+      "user_blocker": "« allure seuil+2s » inconnue, et 8×200 m = 1600 m : volume totalement hors de portée pour une débutante."
+    },
+    {
+      "name_fr": "Éducatif de rappel — effleurement des doigts + godille alternés",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Éducatifs alternés — doigts qui frôlent l'eau + godille",
+      "proposed_consigne_fr": "Alterne 50 m doigts qui frôlent l'eau au retour de bras, puis 50 m de godille (mouvements latéraux des mains pour sentir l'appui) avec pull-buoy.",
+      "user_blocker": "« effleurement des doigts », « godille avant avec pull-buoy » : je ne connais ni l'effleurement des doigts, ni la godille, ni le pull-buoy. Aucun de ces gestes ne m'évoque quelque chose."
+    },
+    {
+      "name_fr": "Rattrapage — pré-test",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name",
+        "jargon"
+      ],
+      "proposed_name_fr": "Éducatif rattrapé (un bras attend l'autre)",
+      "proposed_consigne_fr": "Un bras reste tendu devant jusqu'à ce que l'autre vienne le rejoindre ; cherche une glisse parfaite pour préparer le test.",
+      "user_blocker": "« Rattrapage », « Glisse maximale », « timing entrée parfait », « test 400+200 m » : l'éducatif rattrapage m'est inconnu, et le test de 400+200 m est de toute façon hors de ma portée."
+    },
+    {
+      "name_fr": "Bloc accélérations allure seuil 4×25 m (accélérations, allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon",
+        "title_detail_mismatch"
+      ],
+      "proposed_name_fr": "4×25 m à allure soutenue cible",
+      "proposed_consigne_fr": "Nage 4 fois 25 m à ton allure soutenue cible pour la mémoriser avant le retest, 60 s de repos complet entre chaque.",
+      "user_blocker": "« allure seuil exact », « mémoire neuromusculaire allure cible », « retest » : je ne sais pas trouver mon allure seuil ni ce que veut dire « mémoire neuromusculaire »."
+    },
+    {
+      "name_fr": "Position flèche — poussée mur + glisse 5 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Position fuselée (flèche) — poussée au mur + glisse 5 m",
+      "proposed_consigne_fr": "Mains jointes au-dessus de la tête, bras collés aux oreilles, pousse du mur et glisse droit comme une flèche sur 5 m en soufflant par le nez.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Flottaison ventrale en apnée",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Flottaison sur le ventre, souffle bloqué",
+      "proposed_consigne_fr": "Allonge-toi sur le ventre, bras tendus devant et tête entre les bras, et laisse l'eau te porter une dizaine de secondes.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "25 m jambes seules avec planche (ou sans matériel)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "25 m jambes seules avec une planche (ou bras tendus devant)",
+      "proposed_consigne_fr": "Tiens la planche bras tendus, visage dans l'eau, et avance 25 m à la seule force des battements de jambes.",
+      "user_blocker": "C'est quoi un « kickboard » ? On dit « avec planche » dans le titre mais « kickboard » dans les notes, je ne suis pas sûre que ce soit pareil. Et « position flèche » revient sans être expliquée ici."
+    },
+    {
+      "name_fr": "Position flèche — poussée + glisse 8 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Position fuselée (flèche) — poussée au mur + glisse 8 m",
+      "proposed_consigne_fr": "Pousse du mur en position fuselée et tiens la glisse jusqu'à 8 m, en soufflant lentement sous l'eau.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Pull-buoy bras seuls (ou jambes croisées sans matériel)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Bras seuls avec pull-buoy (ou jambes croisées)",
+      "proposed_consigne_fr": "Cale le pull-buoy entre les cuisses pour bloquer les jambes et nage avec les bras seuls, en sentant la traction de chaque main.",
+      "user_blocker": "C'est quoi un « pull-buoy » ? Je n'en ai jamais utilisé et on ne me dit pas à quoi ça ressemble ni où le trouver. « coude haut au retour aérien » je ne visualise pas non plus."
+    },
+    {
+      "name_fr": "Position flèche — glisse 8 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Position fuselée (flèche) — glisse 8 m",
+      "proposed_consigne_fr": "Reprends la position fuselée parfaite et glisse 8 m avant chaque longueur du jour.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Nage poing fermé",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Crawl poings fermés",
+      "proposed_consigne_fr": "Nage le crawl les poings fermés : sans la main, tu apprends à pousser l'eau avec tout l'avant-bras.",
+      "user_blocker": "« chercher la prise d'eau avec l'avant-bras » et « la prise amplifiée » : je ne comprends pas ce qu'est « la prise d'eau ». Nager poings fermés je vois, mais le but m'échappe."
+    },
+    {
+      "name_fr": "Effleurement du bout des doigts",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Doigts effleurant l'eau au retour du bras",
+      "proposed_consigne_fr": "Au retour du bras hors de l'eau, laisse traîner le bout des doigts à la surface pour garder le coude haut.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Expiration sous l'eau — exercice statique au mur",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Souffler sous l'eau, accroché au mur",
+      "proposed_consigne_fr": "Accroché au bord, visage dans l'eau, souffle longuement et sans à-coup par le nez et la bouche pendant 10 secondes.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "25 m crawl avec expiration active — série principale",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "25 m crawl en soufflant sous l'eau",
+      "proposed_consigne_fr": "Nage 25 m en soufflant en continu sous l'eau, puis une inspiration rapide sur le côté tous les 2 coups de bras.",
+      "user_blocker": "« Respire côté favori toutes les 2 coups de bras » : je ne sais pas comment compter mes coups de bras ni ce que veut dire « toutes les 2 coups de bras » concrètement (à chaque 2 mouvements ?)."
+    },
+    {
+      "name_fr": "Respiration latérale statique au mur",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Respirer sur le côté, accroché au mur",
+      "proposed_consigne_fr": "Accroché au bord, visage dans l'eau, tourne la tête sur le côté pour inspirer sans lever la tête, puis souffle dans l'eau.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Consolidation respiration + 100 m premier essai + renfo à sec épaule",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Consolider la respiration + 100 m + renforcement des épaules hors de l'eau",
+      "proposed_consigne_fr": "Consolide ta respiration, tente un 100 m continu, puis renforce tes épaules par quelques exercices hors de l'eau.",
+      "user_blocker": "Titre seul, dose et notes vides. « renfo à sec épaule » : « renfo » et « à sec » je ne comprends pas, et aucun mouvement n'est décrit."
+    },
+    {
+      "name_fr": "Chat-vache — mobilité thoracique",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Chat-vache : mobilité du dos (hors de l'eau)",
+      "proposed_consigne_fr": "À quatre pattes, inspire en creusant le dos puis expire en l'arrondissant, lentement — assouplit le haut du dos pour protéger les épaules.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Nage sur le côté bilatérale — respiration alternée",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage sur le côté des deux côtés — respiration alternée",
+      "proposed_consigne_fr": "Nage 2 × 25 m sur ton côté préféré, puis 2 × 25 m sur l'autre côté, pour préparer la respiration des deux côtés.",
+      "user_blocker": "« Nage sur le côté », c'est quoi concrètement, je nage allongée sur le flanc ? Et « éducatif isolé » + « Total Immersion » je ne connais pas. Je ne vois pas comment me positionner ni quoi faire des bras."
+    },
+    {
+      "name_fr": "Rattrapage avec respiration alternée toutes les 3 brassées",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Rattrapé (un bras attend l'autre) avec respiration tous les 3 coups de bras",
+      "proposed_consigne_fr": "Garde un bras tendu devant qui attend l'autre, et respire un coup à gauche un coup à droite, tous les 3 coups de bras — arrête si tu paniques.",
+      "user_blocker": "« le rattrapé éducatif (bras qui attend devant) » : je ne comprends pas le mouvement, lequel des bras attend, quand est-ce que je bouge l'autre ? « gérer la bilatérale en cognitif » me perd complètement."
+    },
+    {
+      "name_fr": "Volume 150 m + qualité technique + renfo à sec épaule",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "150 m + technique + renforcement épaule hors de l'eau",
+      "proposed_consigne_fr": "Nage 150 m en soignant la technique, puis termine par du renforcement d'épaule au sol.",
+      "user_blocker": "Dose et notes vides — c'est juste un titre. « renfo à sec » je devine vaguement (au bord, pas dans l'eau ?) mais je ne sais pas quels exercices faire ni dans quel ordre."
+    },
+    {
+      "name_fr": "100 m crawl continu — respiration bilatérale tentée",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "100 m crawl continu — essai de respiration des deux côtés",
+      "proposed_consigne_fr": "Nage 2 × 100 m : alterne respiration des deux côtés si tu peux, sinon reste sur ton côté préféré — ne force jamais.",
+      "user_blocker": "« respiration bilatérale » vs « unilatérale » : je ne sais pas ce que c'est. Je devine que c'est respirer des deux côtés, mais ce n'est jamais expliqué clairement, donc je ne suis pas sûre."
+    },
+    {
+      "name_fr": "100 m crawl allure facile — volume pic W4 consolidé",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "100 m crawl allure facile — volume de la semaine",
+      "proposed_consigne_fr": "Nage 2 × 100 m très lentement, en soufflant sous l'eau et en glissant long, pour compléter le volume de la semaine.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Rétraction des omoplates",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Serrage des omoplates à l'élastique (hors de l'eau)",
+      "proposed_consigne_fr": "Tire l'élastique en ramenant les omoplates l'une vers l'autre, sans hausser les épaules, 2 sec serré / 2 sec relâché.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Semaine allégée — rappel de tous les éducatif clés",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Semaine allégée — révision des exercices techniques clés",
+      "proposed_consigne_fr": "Semaine plus légère : refais les exercices techniques principaux en soignant la qualité plutôt que le volume.",
+      "user_blocker": "Dose et notes vides. « rappel de tous les éducatif clés » : je ne sais pas quels sont ces éducatifs ni ce que je dois refaire. Pas d'instruction concrète."
+    },
+    {
+      "name_fr": "Position flèche — poussée longue 10 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Glisse bras tendus après poussée au mur — 10 m",
+      "proposed_consigne_fr": "Pousse fort sur le mur, bras tendus serrés au-dessus de la tête, et glisse le plus loin possible (vise 10-12 m), hanches hautes et tête neutre.",
+      "user_blocker": "« Position flèche » — c'est quoi une position flèche ? On me dit « hanches hautes, tête neutre » mais pas où mettre les bras ni la forme du corps. Je devine qu'on glisse après avoir poussé le mur, mais la position de départ exacte n'est pas claire."
+    },
+    {
+      "name_fr": "Battements sur le côté bilatéral — rappel respiration",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Battements sur le côté, des deux côtés — rappel respiration",
+      "proposed_consigne_fr": "Battements de jambes allongé sur le côté : 2 × 25 m côté préféré, 2 × 25 m de l'autre côté, en travaillant la respiration.",
+      "user_blocker": "« Battements sur le côté bilatéral » : comment je me mets sur le côté, je fais quoi avec les bras et la respiration ? « éducatif point ciblé » ne m'aide pas. Aucune description du geste."
+    },
+    {
+      "name_fr": "Semaine allégée — 150 m confirmé + prépa mentale 200 m + renfo à sec épaule",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Semaine allégée — 150 m + préparation mentale 200 m + renforcement épaule hors de l'eau",
+      "proposed_consigne_fr": "Confirme 150 m, visualise le futur 200 m, puis termine par du renforcement d'épaule au sol.",
+      "user_blocker": "Dose et notes vides, juste un titre qui empile plusieurs choses (150 m + prépa mentale + renfo épaule). Je ne sais pas quels exercices de renfo faire ni ce qu'est la « prépa mentale »."
+    },
+    {
+      "name_fr": "Activation pré-performance — 175 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Mise en route avant séance phare — 175 m",
+      "proposed_consigne_fr": "Séance de mise en route avant la grosse séance : nage jusqu'à 175 m à allure tranquille.",
+      "user_blocker": "Dose et notes vides. « Activation pré-performance » ne me dit pas quoi faire concrètement avant les 175 m."
+    },
+    {
+      "name_fr": "Rappel des éducatif — poing fermé + nage sur le côté bilatérale",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Rappel des exercices — poing fermé + nage sur le côté des deux côtés",
+      "proposed_consigne_fr": "2 × 25 m crawl poings fermés, puis 2 × 25 m battements sur le côté des deux côtés, juste pour réveiller les sensations.",
+      "user_blocker": "« propulsion avant-bras vertical précoce » est très technique et incompréhensible pour moi, et « battements sur le côté bilatéral » n'est jamais expliqué — je ne sais pas comment me mettre sur le côté."
+    },
+    {
+      "name_fr": "100 m crawl allure facile — volume technique consolidé W6",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "100 m crawl allure facile — volume de la semaine",
+      "proposed_consigne_fr": "Nage 100 m de crawl très lentement, en respirant sur le côté et en soufflant sous l'eau, pour compléter le volume de la semaine.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "175 m crawl continu — calibration finale",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "175 m crawl continu — dernier test avant l'objectif",
+      "proposed_consigne_fr": "Nage 7 longueurs (175 m) très lentement ; ne va pas jusqu'à 200 m aujourd'hui, garde de l'énergie pour la séance phare.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Bloc endurance active 200 m progressifs",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "200 m crawl en endurance soutenue",
+      "proposed_consigne_fr": "Nage des 200 m de crawl à allure soutenue mais maîtrisée (tu peux dire 4-5 mots, pas une phrase entière), en gardant un temps régulier.",
+      "user_blocker": "« allure endurance soutenue = allure seuil ± 0-3 s/100m, FC 75-82% FCmax » : je ne connais ni mon allure seuil ni ma FCmax, et je ne peux pas chronométrer une allure que je ne connais pas. « peux dire 4-5 mots » en nageant ? je n'arrive pas à parler en nageant."
+    },
+    {
+      "name_fr": "Seuil — introduction 8 × 100 m (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "8 × 100 m à allure soutenue (allure de référence + 5 s)",
+      "proposed_consigne_fr": "Nage 8 fois 100 m de crawl à ton allure de référence + 5 s/100 m, avec 15 s de repos entre chaque, en gardant un temps constant.",
+      "user_blocker": "« allure seuil+5s/100m » : je n'ai pas d'allure seuil, donc je ne sais pas à quelle vitesse nager. Et faire 8 fois 100 m alors que je fais à peine une longueur, c'est trop. C'est quoi « compter les coups de bras » et viser leur stabilité ?"
+    },
+    {
+      "name_fr": "Bloc VO2max — endurance soutenue 8 × 100 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "8 × 100 m à allure rapide",
+      "proposed_consigne_fr": "Nage 8 fois 100 m de crawl à allure rapide (effort 7-8/10, respiration courte), 30 s de repos entre chaque ; passe à 6 × 100 m si tu n'arrives plus à tenir l'allure.",
+      "user_blocker": "« allure endurance haute = allure seuil - 5 à -10 s/100m, FC 85-92%, RPE 7-8, Lactatémie ~6-8 mmol/L » : je ne comprends rien à ces chiffres et je ne sais pas ce qu'est mon allure seuil, ma FC ni le RPE. 8 × 100 m est largement au-dessus de ce que je peux nager."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — récupération + bilatérale",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "400 m récupération en endurance facile",
+      "proposed_consigne_fr": "Nage 400 m de crawl en continu à allure facile, respiration des deux côtés (1 respiration tous les 3 mouvements).",
+      "user_blocker": "« respiration bilatérale 1/3 stricte » : je ne sais pas respirer des deux côtés, j'ai déjà du mal à respirer d'un seul. Et nager 400 m continu m'est impossible."
+    },
+    {
+      "name_fr": "Nage longue continue (endurance fondamentale à active)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue continue — 2500 m",
+      "proposed_consigne_fr": "2500 m de crawl en alternant 500 m allure facile / 200 m allure soutenue (3 fois) + 100 m facile retour, respiration des deux côtés sur le facile.",
+      "user_blocker": "2500 m continu impossible pour moi, et « 500 m endurance facile / 200 m endurance soutenue », « respiration bilatérale 1/2 côté favori », « compter coups de bras ±1 » : trop de jargon et de distance pour une débutante."
+    },
+    {
+      "name_fr": "Bloc endurance active 250 m progressifs",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "250 m crawl en endurance soutenue",
+      "proposed_consigne_fr": "Nage des 250 m de crawl à allure soutenue (effort 5-6/10), en gardant un temps régulier d'une répétition à l'autre.",
+      "user_blocker": "« endurance soutenue = allure seuil ± 0-3 s/100m, FC 75-82%, RPE 5-6 » : je ne connais pas mon allure seuil, et nager 250 m d'affilée est au-dessus de mes capacités."
+    },
+    {
+      "name_fr": "Seuil — 10 × 100 m allure seuil+3s + renforcement à sec scapulaire",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "10 × 100 m à allure soutenue + renforcement des épaules au sol",
+      "proposed_consigne_fr": "Nage 10 fois 100 m de crawl à ton allure de référence + 3 s/100 m, puis renforcement des épaules hors de l'eau.",
+      "user_blocker": "Aucune consigne concrète, et « 10 × 100 m allure seuil », « renforcement à sec scapulaire » : je ne sais pas ce qu'est l'allure seuil ni faire des exos scapulaires hors de l'eau."
+    },
+    {
+      "name_fr": "Seuil — 10 × 100 m (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "10 × 100 m à allure soutenue (allure de référence + 3 s)",
+      "proposed_consigne_fr": "Nage 10 fois 100 m de crawl à ton allure de référence + 3 s/100 m, 15 s de repos entre chaque ; arrête-toi à 8 si tu n'arrives plus à tenir l'allure.",
+      "user_blocker": "« allure seuil+3s/100m » : pas d'allure seuil connue. 10 × 100 m est très loin de ce que je peux faire. « écart < 2 s », « valide stop à 8 × 100 m » : je ne saurais pas gérer ces consignes."
+    },
+    {
+      "name_fr": "VO2max (endurance soutenue) — 4 × 200 m + gainage à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "4 × 200 m à allure rapide + gainage au sol",
+      "proposed_consigne_fr": "Nage 4 fois 200 m de crawl à allure rapide (effort 7-8/10), puis gainage du tronc hors de l'eau.",
+      "user_blocker": "Aucune consigne concrète, et « VO2max », « 4 × 200 m », « gainage à sec » : 200 m d'affilée est impossible pour moi et je ne comprends pas ces termes."
+    },
+    {
+      "name_fr": "VO2max — endurance soutenue 4 × 200 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "4 × 200 m à allure rapide",
+      "proposed_consigne_fr": "Nage 4 fois 200 m de crawl à allure rapide (effort 7-8/10), 45 s de repos entre chaque, en gardant un temps régulier.",
+      "user_blocker": "« allure seuil-5 à -10 s/100m, FC 85-92%, RPE 7-8, Lactatémie ~6-8 mmol/L » : tous ces chiffres ne veulent rien dire pour moi, et 4 × 200 m est très au-dessus de mon niveau."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — récupération",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "500 m récupération en endurance facile",
+      "proposed_consigne_fr": "Nage 500 m de crawl en continu à allure facile, respiration des deux côtés, pour récupérer.",
+      "user_blocker": "« endurance facile, bilatérale 1/3 stricte » : je ne sais pas respirer des deux côtés, et nager 500 m continu m'est impossible."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale long",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Crawl long en endurance facile — 2000 m",
+      "proposed_consigne_fr": "Nage 2000 m de crawl en continu à allure facile, respiration des deux côtés (1 respiration tous les 3 mouvements).",
+      "user_blocker": "« endurance facile bilatérale 1/3 », « SPL stable » : je ne sais pas respirer bilatéral ni ce qu'est le SPL, et 2000 m continu est impossible pour moi."
+    },
+    {
+      "name_fr": "Bloc endurance active 300 m progressifs",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "300 m crawl en endurance soutenue",
+      "proposed_consigne_fr": "Nage des 300 m de crawl à allure soutenue (effort 5-6/10), en gardant un temps régulier d'une répétition à l'autre.",
+      "user_blocker": "« endurance soutenue = allure seuil ± 0-3 s/100m, RPE 5-6 » : pas d'allure seuil connue, et 300 m d'affilée est trop pour moi."
+    },
+    {
+      "name_fr": "Seuil pic Bloc 1 — 12 × 100 m + renforcement à sec (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "12 × 100 m à allure soutenue + renforcement au sol",
+      "proposed_consigne_fr": "Nage 12 fois 100 m de crawl à ton allure de référence, puis renforcement musculaire hors de l'eau.",
+      "user_blocker": "Aucune consigne concrète, et « seuil pic », « 12 × 100 m allure seuil », « renforcement à sec » : 12 × 100 m est énorme pour une débutante et je ne sais pas ce qu'est l'allure seuil."
+    },
+    {
+      "name_fr": "Seuil — 12 × 100 m (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "12 × 100 m à allure seuil (effort soutenu mais tenable)",
+      "proposed_consigne_fr": "Nage 12 fois 100 m en crawl à une allure soutenue que tu peux tenir, 12 s de repos entre chaque ; vise un écart de moins de 3 s entre le 1er et le 12e.",
+      "user_blocker": "« allure seuil » et « seuil+3s/100m » : je ne sais pas du tout à quelle vitesse nager, c'est quoi mon allure seuil ? Et « écart < 3 s » entre mes 100 m, je ne saurais pas le mesurer en nageant."
+    },
+    {
+      "name_fr": "VO2max pic (endurance soutenue) — 6 × 150 m + gainage à sec",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Séance haute intensité — 6 × 150 m + gainage au sol",
+      "proposed_consigne_fr": "6 × 150 m crawl rapide en bassin, puis gainage au sol (hors de l'eau) pour renforcer le tronc.",
+      "user_blocker": "Le titre dit « gainage à sec » mais il n'y a aucune dose ni aucune note, je ne sais pas quels exercices faire ni combien. Et « VO2max » je ne comprends pas."
+    },
+    {
+      "name_fr": "VO2max — endurance soutenue 6 × 150 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "6 × 150 m allure rapide (souffle court, RPE 7-8)",
+      "proposed_consigne_fr": "Nage 6 fois 150 m en crawl à une allure rapide où parler devient difficile, 40 s de repos ; vise un écart de moins de 3 s entre le 1er et le 6e.",
+      "user_blocker": "« allure seuil-5 à -10 s », « RPE 7-8 », « VO2 » : je ne sais ni ce qu'est mon allure seuil ni ce qu'est un RPE, donc impossible de doser l'effort."
+    },
+    {
+      "name_fr": "Éducatif de prise d'eau + pull-buoy",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Exercices d'appui dans l'eau + pull-buoy",
+      "proposed_consigne_fr": "75 m : 25 m godille (petits mouvements de main pour sentir l'appui, coude haut), 25 m poings fermés, 25 m crawl complet avec pull-buoy entre les cuisses.",
+      "user_blocker": "« godille appui coude haut », « nage poing fermé », « pull-buoy » : je ne connais aucun de ces termes, je ne sais pas faire la godille ni ce qu'est un pull-buoy."
+    },
+    {
+      "name_fr": "Nage longue pic Bloc 1 — 3000 m continu",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue — 3000 m sans arrêt",
+      "proposed_consigne_fr": "Nage 3000 m en crawl sans t'arrêter, en gardant une allure régulière confortable.",
+      "user_blocker": "Pas de note ni de dose, juste un titre. Et 3000 m d'affilée alors que je sais à peine nager le crawl, ça me paraît impossible mais surtout rien ne m'explique quoi faire."
+    },
+    {
+      "name_fr": "Nage longue continue",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue continue — 3000 m",
+      "proposed_consigne_fr": "Nage 3000 m d'affilée : alterne 700 m allure facile et 300 m un peu plus soutenue, 3 fois ; respire des deux côtés sur les portions faciles.",
+      "user_blocker": "« endurance facile / endurance soutenue », « Bilatérale 1/3 », « SPL » : je ne sais pas ce qu'est la respiration bilatérale ni le SPL, et je ne distingue pas mes allures."
+    },
+    {
+      "name_fr": "Endurance fondamentale + éducatif de prise d'eau (semaine allégée)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance facile + exercices d'appui (semaine allégée)",
+      "proposed_consigne_fr": "Bloc d'endurance facile suivi d'exercices d'appui dans l'eau, volume réduit pour récupérer.",
+      "user_blocker": "Titre seul, aucune note ni dose : je ne sais pas quoi faire."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — semaine allégée",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance facile continue — 1500 m (semaine allégée)",
+      "proposed_consigne_fr": "Nage 1500 m en crawl à allure facile et régulière, en respirant des deux côtés ; reste sur des sensations légères.",
+      "user_blocker": "« endurance facile bilatérale 1/3 » : la respiration bilatérale 1/3 et le réglage d'allure « facile » ne me parlent pas, je nage juste comme je peux."
+    },
+    {
+      "name_fr": "Éducatif de prise d'eau + roulis du corps renforcés",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Exercices d'appui + roulis du corps",
+      "proposed_consigne_fr": "75 m : 25 m godille (coude haut), 25 m 6 battements/3 bras/6 battements, 25 m crawl complet ; cherche le roulis des épaules et du bassin.",
+      "user_blocker": "« godille appui coude haut », « 6-3-6 », « roulis du corps » : je ne connais aucun de ces éducatifs, je ne sais pas quoi faire avec mon corps."
+    },
+    {
+      "name_fr": "Seuil allégé — 8 × 100 m + renforcement à sec court (allure seuil)",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "8 × 100 m allure soutenue + renforcement au sol court",
+      "proposed_consigne_fr": "8 × 100 m crawl à allure soutenue tenable, puis un court renforcement musculaire hors de l'eau.",
+      "user_blocker": "Titre seul, pas de note ni dose. Et « renforcement à sec » + « allure seuil » je ne sais pas en quoi ça consiste."
+    },
+    {
+      "name_fr": "Seuil allégé — 8 × 100 m (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "8 × 100 m allure soutenue (semaine allégée)",
+      "proposed_consigne_fr": "Nage 8 fois 100 m en crawl à allure soutenue mais confortable, 20 s de repos ; vise un écart de moins de 2 s entre les répétitions.",
+      "user_blocker": "« allure seuil+5s », « écart < 2 s » et la référence « Mujika & Padilla » : je ne connais pas mon allure seuil, donc je ne peux pas calculer +5s, et la citation scientifique ne m'aide pas à nager."
+    },
+    {
+      "name_fr": "Éducatif de timing + pull-buoy léger",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Exercices de coordination + pull-buoy",
+      "proposed_consigne_fr": "75 m : 25 m bras en rattrapé (une main attend l'autre), 25 m 6 battements/3 bras/6 battements, 25 m crawl facile avec pull-buoy.",
+      "user_blocker": "« rattrapé », « 6-3-6 », « pull-buoy » : ce sont des mots que je n'ai jamais entendus, je ne sais pas les exécuter."
+    },
+    {
+      "name_fr": "Endurance soutenue court + éducatif (semaine allégée)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance soutenue courte + exercices (semaine allégée)",
+      "proposed_consigne_fr": "Bloc court d'endurance soutenue suivi d'exercices techniques, volume réduit.",
+      "user_blocker": "Titre seul, aucune indication concrète sur quoi faire."
+    },
+    {
+      "name_fr": "VO2max allégé — endurance soutenue 4 × 150 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "4 × 150 m allure rapide (semaine allégée)",
+      "proposed_consigne_fr": "Nage 4 fois 150 m en crawl à allure rapide (souffle court), 50 s de repos pour bien récupérer entre chaque.",
+      "user_blocker": "« VO2max », « endurance haute -5 à -10 s/100m » : je ne sais pas régler ces allures, je ne connais pas mon temps de référence."
+    },
+    {
+      "name_fr": "Nage longue allégée — 2300 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue réduite — 2300 m",
+      "proposed_consigne_fr": "Nage 2300 m en crawl sans arrêt, en cherchant le confort et de bonnes sensations.",
+      "user_blocker": "Titre seul, pas de note détaillée. 2300 m me semble énorme et rien ne m'explique comment m'y prendre."
+    },
+    {
+      "name_fr": "Nage longue allégée",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue réduite — 2300 m",
+      "proposed_consigne_fr": "Nage 2300 m d'affilée : 600 m facile + 200 m soutenu, 2 fois, puis 300 m facile pour finir ; respire des deux côtés.",
+      "user_blocker": "« endurance facile / soutenue », « Bilatérale 1/3 » : les notions d'allures et la respiration bilatérale ne me parlent pas."
+    },
+    {
+      "name_fr": "Aérobie long (endurance fondamentale à active) + éducatif",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue facile à modérée + exercices techniques",
+      "proposed_consigne_fr": "Long bloc de nage allant de facile à modéré, suivi d'exercices techniques.",
+      "user_blocker": "Titre seul, aucune note ni dose. « aérobie », « endurance fondamentale à active » : trop de jargon, rien de concret."
+    },
+    {
+      "name_fr": "Éducatif de prise d'eau + plaquettes légères",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Exercices d'appui + plaquettes légères",
+      "proposed_consigne_fr": "75 m : 25 m godille (coude haut), 25 m crawl avec plaquettes, 25 m poings fermés ; retire les plaquettes si l'épaule tire.",
+      "user_blocker": "« godille appui coude haut », « plaquettes », « nage poing fermé » : je ne sais pas ce que sont les plaquettes ni comment faire la godille."
+    },
+    {
+      "name_fr": "Seuil — 12 × 100 m + renforcement à sec (allure seuil)",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "12 × 100 m allure soutenue + renforcement au sol",
+      "proposed_consigne_fr": "12 × 100 m crawl à allure soutenue tenable, puis renforcement musculaire hors de l'eau.",
+      "user_blocker": "Titre seul, pas de note. « renforcement à sec » + « allure seuil » : ni l'allure ni les exercices à sec ne sont expliqués."
+    },
+    {
+      "name_fr": "Allure de course rapide — introduction 8 × 50 m + endurance soutenue court",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Initiation à l'allure de course — 8 × 50 m + bloc soutenu court",
+      "proposed_consigne_fr": "8 × 50 m crawl à ton allure de course rapide, suivis d'un bloc court d'endurance soutenue.",
+      "user_blocker": "Titre seul, aucune note ni dose pour ce groupe."
+    },
+    {
+      "name_fr": "Allure de course rapide — 8 × 50 m à allure 200 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "8 × 50 m à allure de course rapide (RPE 8-9)",
+      "proposed_consigne_fr": "Nage 8 fois 50 m en crawl à l'allure que tu tiendrais sur un 200 m de course, 60 s de repos doux ; pars contrôlé, monte régulièrement, arrête-toi à 6 si la vitesse chute.",
+      "user_blocker": "« allure 200 m course », « RPE 8-9 », « sentir lactate », « flotte/jogging-eau » : je ne sais pas ce qu'est mon allure 200 m, ni un RPE, ni à quoi ressemble « sentir le lactate »."
+    },
+    {
+      "name_fr": "Endurance soutenue court — 4 × 100 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "4 × 100 m allure rapide",
+      "proposed_consigne_fr": "Nage 4 fois 100 m en crawl à allure rapide (souffle court), 35 s de repos entre chaque.",
+      "user_blocker": "« endurance haute = allure seuil-5 à -10 s », « VO2max » : impossible de fixer l'allure sans connaître mon allure seuil."
+    },
+    {
+      "name_fr": "Nage longue — 3000 m continu",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue — 3000 m sans arrêt",
+      "proposed_consigne_fr": "Nage 3000 m en crawl sans t'arrêter, à une allure régulière confortable.",
+      "user_blocker": "Titre seul, pas de note. 3000 m d'un coup sans aucune explication, je ne saurais pas faire."
+    },
+    {
+      "name_fr": "Aérobie long + éducatif avec plaquettes",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue facile + exercices avec plaquettes",
+      "proposed_consigne_fr": "Long bloc de nage facile suivi d'exercices techniques avec plaquettes.",
+      "user_blocker": "Titre seul, aucune note ni dose."
+    },
+    {
+      "name_fr": "Éducatif + bloc plaquettes",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Exercices techniques + bloc plaquettes",
+      "proposed_consigne_fr": "75 m : 25 m godille (coude haut), 25 m crawl avec plaquettes, 25 m poings fermés.",
+      "user_blocker": "« godille appui coude haut », « crawl plaquettes », « nage poing fermé » : termes inconnus, et je ne sais pas ce que sont les plaquettes."
+    },
+    {
+      "name_fr": "Seuil — variante 6 × 200 m + renforcement à sec (allure seuil)",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "6 × 200 m allure soutenue + renforcement au sol",
+      "proposed_consigne_fr": "6 × 200 m crawl à allure soutenue tenable, puis renforcement musculaire hors de l'eau.",
+      "user_blocker": "Titre seul, pas de note pour ce groupe."
+    },
+    {
+      "name_fr": "Seuil — 6 × 200 m (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "6 × 200 m allure soutenue",
+      "proposed_consigne_fr": "Nage 6 fois 200 m en crawl à allure soutenue tenable, 20 s de repos ; vise un écart de moins de 4 s entre les répétitions.",
+      "user_blocker": "« allure seuil+2s/100m », « intervalles (Maglischo) » : l'allure seuil m'est inconnue et la référence au nom propre ne m'aide pas à nager."
+    },
+    {
+      "name_fr": "Récup — éducatif",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Récupération — exercices techniques",
+      "proposed_consigne_fr": "75 m doux : 6 battements/3 bras/6 battements, puis bras en rattrapé, puis crawl complet.",
+      "user_blocker": "« 6-3-6 + rattrapé + crawl complet » : je ne connais ni le 6-3-6 ni le rattrapé."
+    },
+    {
+      "name_fr": "Allure de course rapide consolidée + endurance soutenue",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Allure de course rapide confirmée + endurance soutenue",
+      "proposed_consigne_fr": "Bloc d'allure de course rapide suivi d'un bloc d'endurance soutenue.",
+      "user_blocker": "Titre seul, aucune note ni dose."
+    },
+    {
+      "name_fr": "Allure de course rapide — 12 × 50 m à allure 200 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "12 × 50 m à allure de course rapide",
+      "proposed_consigne_fr": "Nage 12 fois 50 m en crawl à l'allure d'un 200 m de course, 60 s de repos ; vise un écart de moins de 1 s, arrête-toi à 10 si la vitesse chute.",
+      "user_blocker": "« allure 200 m course », « écart < 1 s » : je ne connais pas mon allure 200 m et je ne saurais pas mesurer un écart d'une seconde en nageant."
+    },
+    {
+      "name_fr": "Endurance soutenue — 8 × 100 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "8 × 100 m allure rapide",
+      "proposed_consigne_fr": "Nage 8 fois 100 m en crawl à allure rapide (souffle court), 30 s de repos entre chaque.",
+      "user_blocker": "« endurance haute -5 à -10 s/100m allure seuil », « VO2max » : sans connaître mon allure seuil je ne peux pas régler la vitesse."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — décharge",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance facile — récupération",
+      "proposed_consigne_fr": "Crawl, 1500 m en continu à allure facile, respiration des deux côtés, pour récupérer après le test.",
+      "user_blocker": "« crawl continu endurance facile bilatérale 1/3 » : c'est quoi « bilatérale 1/3 » ? Et « décharge active post-test », « fatigue lactique » je ne comprends pas. 1500 m d'affilée c'est aussi beaucoup trop pour moi."
+    },
+    {
+      "name_fr": "Recalibrage du test de seuil — 400 + 200 m (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nouveau test de seuil — 400 m puis 200 m chronométrés",
+      "proposed_consigne_fr": "Crawl, un 400 m puis un 200 m chronométrés pour recalculer ton allure de seuil.",
+      "user_blocker": "dose_fr et notes_fr vides. « recalibrage du test de seuil », « allure seuil » : je ne sais pas ce qu'est un seuil ni comment nager à cette allure."
+    },
+    {
+      "name_fr": "Recalibrage du seuil — 400 m chronométré (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nouveau test de seuil — 400 m chronométré",
+      "proposed_consigne_fr": "Crawl, 400 m le plus rapide possible mais régulier, note ton temps puis récupère 5 min avant le 200 m.",
+      "user_blocker": "« allure seuil », « max contrôlé », « valider gain 3-5 s/100m », « signe surcharge → semaine allégée W8 » : trop de jargon. Et nager 400 m à fond chronométré, je ne sais même pas si j'arrive à faire 400 m."
+    },
+    {
+      "name_fr": "Recalibrage du seuil — 200 m chronométré (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nouveau test de seuil — 200 m chronométré",
+      "proposed_consigne_fr": "Crawl, 200 m rapide et régulier après 5 min de repos, note ton temps : il sert à recalculer ton allure de seuil.",
+      "user_blocker": "« CALCUL nouveau allure seuil = (400-200)/(T400-T200) » : une formule mathématique pour calculer une allure, je ne comprends absolument pas ce que je dois faire avec ça."
+    },
+    {
+      "name_fr": "Endurance soutenue + éducatif + gainage à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance soutenue + exercices technique + gainage au sol",
+      "proposed_consigne_fr": "Séance mixte : nage en endurance soutenue, exercices de technique dans l'eau, et gainage au sol (une partie hors de l'eau).",
+      "user_blocker": "dose_fr et notes_fr vides. « éducatif » je ne sais pas du tout ce que c'est (je n'en ai jamais fait), et « gainage à sec » je devine vaguement mais aucune consigne n'est donnée."
+    },
+    {
+      "name_fr": "VO2max — endurance soutenue 6 × 200 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance haute — 6 × 200 m soutenus",
+      "proposed_consigne_fr": "Crawl, 6 × 200 m à ton allure de seuil moins 5 à 10 s/100 m (effort soutenu), 50 s de repos entre chaque.",
+      "user_blocker": "« VO2max », « endurance haute allures NOUVEAU allure seuil - 5 à -10 s/100m » : je ne sais pas ce qu'est VO2max ni mon allure seuil, donc impossible de nager « -5 à -10 s » de quelque chose que je ne connais pas. Et 200 m je n'y arrive pas."
+    },
+    {
+      "name_fr": "Endurance fondamentale à active + éducatif (semaine allégée)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance facile + exercices de technique (semaine allégée)",
+      "proposed_consigne_fr": "Crawl en endurance facile avec quelques exercices de technique, semaine de récupération allégée.",
+      "user_blocker": "dose_fr et notes_fr vides. « endurance fondamentale à active », « éducatif » : aucune consigne concrète, je ne saurais pas quoi faire."
+    },
+    {
+      "name_fr": "VO2max allégé — endurance soutenue 6 × 100 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance haute allégée — 6 × 100 m soutenus",
+      "proposed_consigne_fr": "Crawl, 6 × 100 m à ton allure de seuil moins 5 à 10 s/100 m, 40 s de repos entre chaque.",
+      "user_blocker": "« VO2max », « nouveau allure seuil -5 à -10 s/100m » : même problème, je ne connais ni VO2max ni mon allure seuil, donc je ne peux pas régler ma vitesse."
+    },
+    {
+      "name_fr": "Seuil — 6 × 200 m + renforcement à sec (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Seuil — 6 × 200 m + renforcement au sol",
+      "proposed_consigne_fr": "Crawl, 6 × 200 m à ton allure de seuil dans l'eau, suivi d'un renforcement musculaire au sol (hors de l'eau).",
+      "user_blocker": "dose_fr et notes_fr vides. « seuil », « allure seuil », « renforcement à sec » : je ne sais pas à quelle allure nager, et le « renforcement à sec » n'a aucune consigne (je n'en ai jamais fait)."
+    },
+    {
+      "name_fr": "Éducatif + bloc plaquettes en endurance fondamentale",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Exercices de technique + plaquettes en endurance facile",
+      "proposed_consigne_fr": "100 m : 50 m crawl avec plaquettes en allure facile + 50 m crawl sans plaquettes. Retire les plaquettes si l'épaule gêne.",
+      "user_blocker": "« crawl plaquettes allure endurance facile », « Plafond 600 m respecté » : c'est quoi des « plaquettes » et pourquoi un « plafond 600 m » ? Je ne comprends pas l'éducatif."
+    },
+    {
+      "name_fr": "Seuil fractionné + allure de course rapide (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Seuil fractionné + allure de course rapide",
+      "proposed_consigne_fr": "Séance mixte : un travail de seuil fractionné suivi d'efforts à ton allure de course rapide.",
+      "user_blocker": "dose_fr et notes_fr vides. « seuil fractionné », « allure de course rapide », « allure seuil » : je ne sais pas à quelle vitesse nager ni ce que veut dire « fractionné »."
+    },
+    {
+      "name_fr": "Seuil fractionné — 1500 m (3 × 500 m récup 30 s) (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Seuil fractionné — 3 × 500 m (1500 m au total)",
+      "proposed_consigne_fr": "Crawl, 3 × 500 m à ton allure de seuil, 30 s de repos entre chaque ; vise un écart de moins de 8 s entre les trois 500 m.",
+      "user_blocker": "« à la nouvelle allure seuil recalculée », « simule TT 1500 m fractionné », « tenir 3 × 500 m écart < 8 s » : c'est quoi « TT » ? c'est quoi « allure seuil recalculée » ? Et 3 × 500 m est largement au-dessus de mes capacités."
+    },
+    {
+      "name_fr": "Allure de course très rapide + endurance soutenue court + gainage à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Allure très rapide + endurance soutenue courte + gainage au sol",
+      "proposed_consigne_fr": "Séance mixte : efforts à allure très rapide, un peu d'endurance soutenue, puis gainage au sol (hors de l'eau).",
+      "user_blocker": "dose_fr et notes_fr vides. « allure de course très rapide », « endurance soutenue court », « gainage à sec » : aucune consigne, je ne saurais pas quoi faire."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — décharge longue",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance facile — récupération longue",
+      "proposed_consigne_fr": "Crawl, 600 m en continu à allure facile, respiration des deux côtés, pour bien récupérer.",
+      "user_blocker": "« crawl endurance facile bilatérale 1/3 décharge active longue », « Vidange lactique » : c'est quoi « bilatérale 1/3 » et « vidange lactique » ? Et 600 m d'affilée reste beaucoup pour moi."
+    },
+    {
+      "name_fr": "Endurance fondamentale + éducatif de sensations",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance facile + exercices de sensations dans l'eau",
+      "proposed_consigne_fr": "Crawl en endurance facile avec quelques exercices pour travailler tes sensations et ton appui dans l'eau.",
+      "user_blocker": "dose_fr et notes_fr vides. « endurance fondamentale », « éducatif de sensations » : aucune consigne concrète, et je n'ai jamais fait d'éducatif donc je ne saurais pas quoi faire."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — affûtage",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Bloc endurance facile — semaine d'allègement",
+      "proposed_consigne_fr": "1500 m de crawl en endurance facile, respiration des 2 côtés (1 fois sur 3), allure tranquille — volume réduit avant la compétition.",
+      "user_blocker": "Je ne comprends pas « bilatérale 1/3 », ni « affûtage », ni « -42% vs W10 ». C'est quoi respirer bilatérale 1/3 ? Et je ne saurais pas tenir 1500 m, mais surtout les mots me bloquent."
+    },
+    {
+      "name_fr": "Bloc endurance active court",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Bloc court endurance soutenue",
+      "proposed_consigne_fr": "200 m de crawl à allure soutenue (un peu plus rapide que ton allure facile), respiration confortable.",
+      "user_blocker": "« endurance soutenue ± 0-3 s/100m nouveau allure seuil » : je ne sais pas du tout c'est quoi mon « allure seuil » ni comment nager « +0-3 s/100m ». Trop technique pour moi."
+    },
+    {
+      "name_fr": "Seuil court — 6 × 100 m + renforcement à sec court (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Bloc qualité court — 6 × 100 m allure soutenue + renforcement à sec",
+      "proposed_consigne_fr": "Enchaîne 6 × 100 m à allure soutenue (rapide mais tenable), puis quelques exercices de renforcement hors de l'eau.",
+      "user_blocker": "Il n'y a aucune explication (dose et notes vides) et « allure seuil » + « renforcement à sec » je ne sais pas ce que c'est ni comment le faire."
+    },
+    {
+      "name_fr": "Allure de course rapide court + endurance soutenue court + mini renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Vitesse de course + endurance soutenue + mini renforcement à sec",
+      "proposed_consigne_fr": "Travail court à ta vitesse de course, suivi d'un bloc d'endurance soutenue, puis quelques exercices de renforcement hors de l'eau.",
+      "user_blocker": "Aucune explication (notes vides) et le titre empile « allure de course », « endurance soutenue », « renforcement à sec » que je ne sais pas exécuter."
+    },
+    {
+      "name_fr": "Allure de course rapide court — 6 × 50 m à allure 200 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "6 × 50 m à ta vitesse de course (référence 200 m)",
+      "proposed_consigne_fr": "6 × 50 m de crawl rapide à ta vitesse de course sur 200 m, 90 s de repos complet entre chaque ; vise un écart de moins d'1 s entre les 50 m.",
+      "user_blocker": "« allure 200 m course calibrée test W7 » : je n'ai jamais fait de test W7, je ne connais pas mon allure 200 m. « écart < 1 s » entre les 50 m, je ne saurais pas mesurer ça."
+    },
+    {
+      "name_fr": "Endurance soutenue court — 3 × 100 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "3 × 100 m endurance soutenue (allure haute)",
+      "proposed_consigne_fr": "3 × 100 m de crawl à allure soutenue haute (5 à 10 s/100 m plus rapide que ton allure soutenue habituelle), 40 s de repos entre chaque.",
+      "user_blocker": "« endurance haute -5 à -10 s/100m nouveau allure seuil » et « stimulus VO2max » : je ne sais pas c'est quoi mon allure seuil, ni VO2max, ni comment nager « -10 s/100m »."
+    },
+    {
+      "name_fr": "Nage longue d'affûtage — 2200 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue d'allègement — 2200 m",
+      "proposed_consigne_fr": "Nage longue continue de 2200 m à allure tranquille pendant la semaine de réduction de charge.",
+      "user_blocker": "Notes vides et « affûtage » m'est inconnu. Et 2200 m c'est énorme, mais surtout je ne comprends pas le mot."
+    },
+    {
+      "name_fr": "Nage longue d'affûtage",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue d'allègement",
+      "proposed_consigne_fr": "2200 m en continu : 600 m facile / 200 m soutenu (à répéter 2 fois) + 200 m facile pour finir ; respiration des 2 côtés (1 fois sur 3).",
+      "user_blocker": "« endurance facile / endurance soutenue / Bilatérale 1/3 / affûtage » : plein de mots que je ne connais pas, je ne saurais pas doser ces allures différentes."
+    },
+    {
+      "name_fr": "Endurance fondamentale + éducatif de sensations + activation neuromusculaire",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance facile + exercices de sensations + réveil de la vitesse",
+      "proposed_consigne_fr": "Bloc d'endurance facile, suivi d'exercices de sensations dans l'eau, puis quelques accélérations courtes pour réveiller la vitesse.",
+      "user_blocker": "Notes vides et « éducatif de sensations » + « activation neuromusculaire » : aucune idée de ce que ça veut dire concrètement dans l'eau."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale court",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Bloc court endurance facile",
+      "proposed_consigne_fr": "1200 m de crawl en endurance facile, respiration des 2 côtés (1 fois sur 3), sensations très légères.",
+      "user_blocker": "« bilatérale 1/3 » et « -54% vs pic W10 » : je ne comprends pas la respiration bilatérale 1/3 ni la référence W10."
+    },
+    {
+      "name_fr": "Activation 4 × 25 m vitesse libre",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Réveil de la vitesse — 4 × 25 m crawl rapide",
+      "proposed_consigne_fr": "4 × 25 m de crawl rapide mais pas à fond (80-90 % de ta vitesse max), 60 s de repos entre chaque ; cherche la sensation de jambes vives.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Mini séance qualité — seuil très court (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Mini séance qualité — bloc court allure soutenue",
+      "proposed_consigne_fr": "Petite séance de qualité : un bloc très court à allure soutenue (rapide mais tenable).",
+      "user_blocker": "Notes vides et « allure seuil » que je ne connais pas."
+    },
+    {
+      "name_fr": "Seuil semaine de course — 4 × 100 m (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "4 × 100 m allure soutenue — semaine de course",
+      "proposed_consigne_fr": "4 × 100 m de crawl à allure soutenue (environ 3 s/100 m plus lent que ton allure max tenable), 20 s de repos entre chaque ; reste léger, pas de surcharge.",
+      "user_blocker": "« allure seuil + 3 s/100 m » : je ne connais pas mon allure seuil donc impossible de calculer. « préserver capacité aérobie » ne m'aide pas."
+    },
+    {
+      "name_fr": "Semaine de course J-3 — sensations de vitesse + éducatif",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Semaine de course (J-3) — sensations de vitesse + exercices",
+      "proposed_consigne_fr": "À 3 jours de la compétition : quelques accélérations courtes pour les sensations de vitesse, plus des exercices de technique.",
+      "user_blocker": "Notes vides et « J-3 » + « éducatif » sans détail : je ne sais pas quoi faire."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale court J-3",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Bloc court endurance facile (J-3)",
+      "proposed_consigne_fr": "800 m de crawl en endurance facile, respiration des 2 côtés (1 fois sur 3) ; séance totale courte de 1500-2000 m à 3 jours de la course.",
+      "user_blocker": "« bilatérale 1/3 » et « master prompt §2.6 » : la respiration bilatérale 1/3 m'est inconnue et « master prompt §2.6 » ne veut rien dire pour moi."
+    },
+    {
+      "name_fr": "6 × 25 m vitesse libre",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "6 × 25 m crawl rapide — réveil de la vitesse",
+      "proposed_consigne_fr": "6 × 25 m de crawl rapide mais pas à fond (80-90 % de ta vitesse max), 60 s de repos entre chaque ; sensations de jambes vives avant la compétition.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "SÉANCE PHARE — nage longue raccourcie + checklist autonomie",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Séance clé — nage longue raccourcie + bilan d'autonomie",
+      "proposed_consigne_fr": "Séance importante : une nage longue raccourcie suivie d'un bilan personnel pour vérifier tes progrès.",
+      "user_blocker": "Notes vides ; le titre « nage longue raccourcie + checklist autonomie » ne me dit pas concrètement quoi nager."
+    },
+    {
+      "name_fr": "Nage longue raccourcie (endurance fondamentale à active)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue raccourcie (endurance facile à soutenue)",
+      "proposed_consigne_fr": "1500 m en continu : 500 m facile / 200 m soutenu (à répéter 2 fois) + 100 m facile pour finir ; respiration des 2 côtés (1 fois sur 3).",
+      "user_blocker": "« endurance facile / endurance soutenue / Bilatérale 1/3 » : je ne saurais pas faire la différence entre ces allures, et « bilatérale 1/3 » m'est inconnu."
+    },
+    {
+      "name_fr": "CHECKLIST AUTONOMIE — 4 critères semaine de course",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Bilan d'autonomie — 4 critères à valider",
+      "proposed_consigne_fr": "Auto-évaluation après la séance : vérifie les 4 critères du plan (régularité d'allure, vitesse tenue, récupération en 24-36 h, volume tenu sans douleur d'épaule).",
+      "user_blocker": "« allure seuil », « SPL », « SPL stable ±1 coup de bras », « allure 200 m course », « VO2max » implicite, « OPTION A/B W10 J7 » : c'est rempli de jargon et de références à des semaines que je n'ai jamais faites. C'est quoi SPL ?"
+    },
+    {
+      "name_fr": "Test 400 m + éducatif équilibre",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Test 400 m + exercice d'équilibre",
+      "proposed_consigne_fr": "Nage un 400 m chronométré comme référence, puis un exercice d'équilibre dans l'eau.",
+      "user_blocker": "Notes vides et « éducatif équilibre » sans détail : je ne sais pas quel éducatif faire."
+    },
+    {
+      "name_fr": "Nage sur le côté bilatérale",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage sur le côté des deux côtés",
+      "proposed_consigne_fr": "25 m en alternant le côté facile (longueurs 1 et 3) et le côté faible (longueurs 2 et 4) ; ne saute pas le côté faible, il révèle tes défauts.",
+      "user_blocker": "« côté favori » / « côté faible » je comprends, mais c'est la position « nage sur le côté » (sans schéma de la position flèche vue avant) et « compensations habituelles » qui restent floues. Je ne sais pas si je le fais bien."
+    },
+    {
+      "name_fr": "Respiration bilatérale 1/3 + éducatif de timing",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Respiration des 2 côtés (tous les 3 mouvements) + exercice de coordination",
+      "proposed_consigne_fr": "Inspire une fois sur 3 mouvements de bras, en alternant gauche et droite, en synchronisant respiration et rotation du corps.",
+      "user_blocker": "Il n'y a AUCUNE explication (dose et notes vides) et « respiration bilatérale 1/3 », « éducatif de timing » ne me disent rien : je ne sais pas quoi faire du tout."
+    },
+    {
+      "name_fr": "Crawl respiration bilatérale 1 sur 3 — introduction",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Crawl avec respiration des 2 côtés (tous les 3 mouvements)",
+      "proposed_consigne_fr": "Inspire tous les 3 mouvements de bras en alternant les côtés ; si tu manques d'air, repasse au côté favori puis réessaie. Souffle longuement sous l'eau.",
+      "user_blocker": "« inspirer tous les 3 cycles de bras » je dois compter en nageant ce qui est dur, et « passer à 1/2 », « expiration longue sous l'eau » : je respire à peine en crawl, je ne sais pas alterner les côtés."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale 200 m × 2",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "2 × 200 m crawl allure facile",
+      "proposed_consigne_fr": "200 m crawl à allure facile, 60 s de repos, puis un 2e 200 m ; essaie la respiration des 2 côtés sur la moitié des longueurs.",
+      "user_blocker": "Le « côté favori » et le nombre de mètres je comprends, mais « essayer la bilatérale 1/3 sur 50% des longueurs » me bloque car je ne sais pas faire la respiration bilatérale."
+    },
+    {
+      "name_fr": "Nage récupération",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "title_detail_mismatch"
+      ],
+      "proposed_name_fr": "Récupération 100 m dos très lent",
+      "proposed_consigne_fr": "100 m sur le dos (ou brasse) très lent pour récupérer après l'effort long.",
+      "user_blocker": "« 100 m dos crawl très lent » : je ne sais pas nager le dos, et la note dit « Dos ou brasse lente » donc je peux faire brasse, mais le titre « dos crawl » me perd."
+    },
+    {
+      "name_fr": "Effleurement du bout des doigts — rappel",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Crawl doigts qui frôlent l'eau (rappel)",
+      "proposed_consigne_fr": "Au retour du bras, frôle la surface de l'eau du bout des doigts en gardant le coude haut.",
+      "user_blocker": "« Maintien du prise d'eau acquis. Focus coude haut » : je n'ai jamais appris l'effleurement des doigts ni ce qu'est la « prise d'eau », donc le rappel ne m'aide pas."
+    },
+    {
+      "name_fr": "Nage technique consolidation",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "title_detail_mismatch"
+      ],
+      "proposed_name_fr": "100 m crawl lent — comptage des mouvements",
+      "proposed_consigne_fr": "100 m crawl lent en comptant tes mouvements de bras sur chaque 25 m ; compare au comptage de la semaine 2.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Rétraction des omoplates élastique",
+      "is_dry_land": true,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Serrage des omoplates à l'élastique",
+      "proposed_consigne_fr": "Élastique fixé devant à hauteur de poitrine, tire en serrant les omoplates l'une vers l'autre, coudes près du corps.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Bras seuls au pull-buoy — traction pure",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Bras seuls avec le pull-buoy (traction pure)",
+      "proposed_consigne_fr": "Pull-buoy (flotteur) entre les cuisses, nage 50 m bras seuls jambes immobiles : coude haut, traction longue, 20 s de repos.",
+      "user_blocker": "« pull-buoy entre les cuisses » : je ne sais pas ce qu'est un pull-buoy ni comment ça flotte, et « coude haut, prise d'eau précoce » me bloquent aussi."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale 4×100 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "4 × 100 m crawl respiration des 2 côtés",
+      "proposed_consigne_fr": "4 × 100 m crawl à allure facile en respirant des 2 côtés (tous les 3 mouvements), 25 s de repos.",
+      "user_blocker": "« respiration bilatérale 1/3 » : je ne sais pas faire cette respiration alternée."
+    },
+    {
+      "name_fr": "Nage technique récupération",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "title_detail_mismatch"
+      ],
+      "proposed_name_fr": "150 m crawl lent — comptage des mouvements",
+      "proposed_consigne_fr": "150 m crawl très lent en comptant tes mouvements de bras sur chaque 25 m ; compare aux semaines 2 et 3.",
+      "user_blocker": ""
+    },
+    {
+      "name_fr": "Godille + endurance soutenue 4×100 m (godille)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Godille (sentir l'appui sur l'eau) + 4 × 100 m crawl",
+      "proposed_consigne_fr": "Fais des petits mouvements de mains en S pour sentir l'appui sur l'eau, puis enchaîne 4 × 100 m crawl à allure soutenue.",
+      "user_blocker": "« Godille » : je ne sais pas du tout ce que c'est ni quel mouvement faire, et dose/notes sont vides."
+    },
+    {
+      "name_fr": "Godille vers l'avant (godille)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Godille avant (sentir l'appui de l'eau)",
+      "proposed_consigne_fr": "Pull-buoy entre les jambes, bras tendus devant : dessine des 8 lents et larges avec les mains, paume vers l'arrière, pour avancer sans tirer.",
+      "user_blocker": "C'est quoi une « godille » ? Et « figures en 8 lentes » avec les mains, « prise d'eau précoce », « pull-buoy entre les jambes » — je ne connais aucun de ces mots, je ne vois pas du tout le geste à faire."
+    },
+    {
+      "name_fr": "Godille vers l'avant — rappel (godille)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "cryptic_name"
+      ],
+      "proposed_name_fr": "Godille avant — rappel (sentir l'appui)",
+      "proposed_consigne_fr": "Pull-buoy entre les jambes, bras tendus devant : refais les 8 lents avec les mains pour retrouver l'appui de l'eau.",
+      "user_blocker": "Juste « 25 m » et le mot « godille » que je ne connais pas. Aucune explication du geste."
+    },
+    {
+      "name_fr": "Bloc endurance active 10×100 m (charge max)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "title_detail_mismatch"
+      ],
+      "proposed_name_fr": "Bloc endurance active 10×100 m (volume max du plan)",
+      "proposed_consigne_fr": "10 fois 100 m crawl à allure soutenue mais maîtrisée, 20 s de repos entre chaque ; respiration 1 côté sur 2 (bilatérale) sur la majorité.",
+      "user_blocker": "« endurance soutenue », « allure 400 m de test », « Bilatérale 1/3 sur 60% », « longue nage continu en mode fragmenté » : trop de jargon, je ne connais pas le test ni la bilatérale."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale 200 m respiration 1/3",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Bloc d'activation 200 m, respiration 1 côté sur 2",
+      "proposed_consigne_fr": "200 m crawl tranquille à l'allure de ta séance test, en respirant alternativement à droite et à gauche (1 fois sur 2).",
+      "user_blocker": "« 200 m crawl » je comprends, mais « respiration 1/3 » / « Bilatérale 1/3 stricte » : je ne sais pas respirer en bilatérale, c'est quoi respirer 1/3 ?"
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — nage longue crawl",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue crawl 1000 m (endurance facile)",
+      "proposed_consigne_fr": "1000 m crawl en aisance respiratoire, respiration 1 côté sur 2 ; compte tes coups de bras tous les 200 m et ralentis si tu en ajoutes plus de 2 par longueur.",
+      "user_blocker": "« allure seuil + 8-12 s/100 m » et « RPE 3-4 » : je n'ai pas d'allure seuil. « Respiration bilatérale 1/3 » : je ne sais pas faire. Compter les coups de bras je veux bien mais le reste me bloque."
+    },
+    {
+      "name_fr": "Test de seuil 400+200 m — calibration des allures du plan (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Test d'allure 400 m + 200 m (pour caler tes allures)",
+      "proposed_consigne_fr": "Deux nages chronométrées (400 m puis 200 m) qui servent à calculer ton allure de référence pour tout le plan.",
+      "user_blocker": "Titre seul, pas de dose ni note. « calibration des allures » / « allure seuil » : je ne sais pas ce que je dois faire concrètement ici."
+    },
+    {
+      "name_fr": "Endurance fondamentale, nage longue 1500 m + éducatif de propulsion",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue facile 1500 m + exercices de propulsion",
+      "proposed_consigne_fr": "Nage 1500 m en continu à allure facile, en y glissant des exercices techniques de propulsion.",
+      "user_blocker": "Il n'y a aucune explication (notes vides) et « éducatif de propulsion » : je ne sais pas ce qu'est un éducatif, et nager 1500 m d'affilée est énorme pour moi qui sais à peine faire le crawl."
+    },
+    {
+      "name_fr": "Mixte endurance soutenue + éducatif de propulsion + dos crawlé intro",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Séance mixte : endurance soutenue + exercices de propulsion + découverte du dos crawlé",
+      "proposed_consigne_fr": "Alterne nage soutenue, exercices techniques de propulsion et premières longueurs de dos crawlé.",
+      "user_blocker": "Notes vides, et « éducatif de propulsion », « dos crawlé » : je ne sais pas nager sur le dos ni ce qu'est un éducatif, et il n'y a aucune consigne concrète."
+    },
+    {
+      "name_fr": "Endurance fondamentale, nage longue 1700 m + brasse intro + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue facile 1700 m + découverte de la brasse + renforcement à sec",
+      "proposed_consigne_fr": "Nage 1700 m à allure facile, ajoute des longueurs de brasse découverte et termine par un renforcement hors de l'eau.",
+      "user_blocker": "Notes vides, « renforcement à sec », et 1700 m : aucune consigne concrète, je ne sais pas faire le renfo à sec et la distance est énorme."
+    },
+    {
+      "name_fr": "Coordination brasse — 1 bras / 1 jambe",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "title_detail_mismatch"
+      ],
+      "proposed_name_fr": "Coordination brasse — bras puis jambes décomposés",
+      "proposed_consigne_fr": "Enchaîne 1 mouvement de bras de brasse + glisse, puis 1 coup de pied + glisse : les bras agissent AVANT les jambes.",
+      "user_blocker": "« coordination brasse », « bras AVANT jambes », « chevilles s'ouvrent vers l'extérieur » : je ne sais pas nager la brasse, donc décomposer son timing est impossible pour moi."
+    },
+    {
+      "name_fr": "Mixte endurance soutenue + éducatif + dos crawlé consolidation + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Séance mixte : endurance soutenue + exercices + dos crawlé + renforcement à sec",
+      "proposed_consigne_fr": "Alterne nage soutenue, exercices techniques et dos crawlé, puis finis par un renforcement hors de l'eau.",
+      "user_blocker": "Notes vides, « éducatif », « dos crawlé », « renforcement à sec » : aucune consigne concrète et plein de choses que je ne sais pas faire."
+    },
+    {
+      "name_fr": "Endurance fondamentale, nage longue 1300 m + nage à un bras intro + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue facile 1300 m + découverte de la nage à un bras + renforcement à sec",
+      "proposed_consigne_fr": "Nage 1300 m à allure facile, ajoute des longueurs en nage à un bras et termine par un renforcement hors de l'eau.",
+      "user_blocker": "Notes vides, « nage à un bras », « renforcement à sec », 1300 m : aucune consigne et des exercices que je ne maîtrise pas."
+    },
+    {
+      "name_fr": "Nage à un bras — bras non dominant (un bras)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "other"
+      ],
+      "proposed_name_fr": "Nage à un bras — bras le plus faible",
+      "proposed_consigne_fr": "Crawl avec un seul bras actif (ton bras le plus faible), l'autre tendu devant ; respire du côté du bras au repos.",
+      "user_blocker": "« nage à un bras », « respirer côté du bras inactif », « schéma moteur asymétrique » : nager avec un seul bras en respirant du bon côté me paraît très dur quand je sais à peine faire le crawl normal."
+    },
+    {
+      "name_fr": "Éducatif ciblés mixtes + endurance active + dos crawlé + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Exercices techniques variés + endurance active + dos crawlé + renforcement à sec",
+      "proposed_consigne_fr": "Enchaîne des exercices techniques variés, de l'endurance active et du dos crawlé, puis un renforcement hors de l'eau.",
+      "user_blocker": "Notes vides, « éducatif », « dos crawlé », « renforcement à sec » : aucune consigne concrète et trop de choses que je ne sais pas faire."
+    },
+    {
+      "name_fr": "Nage à un bras — dominant + non dominant (un bras)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage à un bras — bras fort puis bras faible",
+      "proposed_consigne_fr": "Alterne 50 m avec ton bras fort puis 50 m avec ton bras faible ; cherche à reproduire les mêmes sensations des deux côtés.",
+      "user_blocker": "« nage à un bras », « prise d'eau haut, poussée finale » : nager avec un seul bras et comparer la prise d'eau, je ne sais pas faire ni ce que veut dire prise d'eau."
+    },
+    {
+      "name_fr": "Endurance fondamentale, nage longue 2200 m + éducatif + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Nage longue facile 2200 m + exercices techniques + renforcement à sec",
+      "proposed_consigne_fr": "Nage 2200 m à allure facile, glisse des exercices techniques et termine par un renforcement hors de l'eau.",
+      "user_blocker": "Notes vides, « éducatif », « renforcement à sec », 2200 m : aucune consigne et une distance énorme, impossible pour une débutante."
+    },
+    {
+      "name_fr": "Série principale au seuil 6×200 m (allure seuil+2s)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Série principale — 6×200 m à allure soutenue",
+      "proposed_consigne_fr": "Nage 6 fois 200 m à une allure rapide mais que tu peux tenir sur toute la distance, 25 s de repos entre chaque.",
+      "user_blocker": "« allure seuil+2s/100 m », « légèrement sous le seuil critique », « variation du stimulus seuil » : je ne comprends pas la notion d'allure seuil ni comment je suis censée la trouver. 1200 m soutenu est hors de ma portée."
+    },
+    {
+      "name_fr": "Mixte endurance soutenue + éducatif sous fatigue + brasse + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Séance mixte — endurance, éducatifs, brasse et renfo à sec",
+      "proposed_consigne_fr": "Séance combinée : endurance soutenue, éducatifs de technique, brasse et renforcement musculaire hors de l'eau.",
+      "user_blocker": "« éducatif sous fatigue » et « renforcement à sec » : je ne sais pas ce qu'est un éducatif, ni ce que veut dire « à sec ». C'est juste un titre, aucune instruction concrète de ce que je dois faire."
+    },
+    {
+      "name_fr": "Endurance fondamentale, nage longue 2500 m + éducatif + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance — longue nage 2500 m + éducatifs + renfo à sec",
+      "proposed_consigne_fr": "Longue nage tranquille de 2500 m suivie d'éducatifs et de renforcement hors de l'eau.",
+      "user_blocker": "2500 m c'est totalement impossible pour moi qui sais à peine nager. Et « endurance fondamentale », « éducatif », « renforcement à sec » ne me disent rien de concret à faire."
+    },
+    {
+      "name_fr": "Série principale au seuil 12×100 m récup 10 s (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Série principale — 12×100 m à allure soutenue (repos 10 s)",
+      "proposed_consigne_fr": "Nage 12 fois 100 m à allure rapide tenable, 10 s de repos ; garde un écart de moins de 3 s entre ton premier et ton dernier 100 m.",
+      "user_blocker": "« allure seuil exact », « stimulus seuil intensifié », « densité plus haute », « maintenir l'écart < 3 s entre répétition 1 et 12 » : c'est du chinois. Je ne sais pas trouver mon allure seuil ni chronométrer des écarts."
+    },
+    {
+      "name_fr": "Mixte endurance soutenue répétitions longues + éducatif sous fatigue + dos + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Séance mixte — endurance longue, éducatifs, dos et renfo à sec",
+      "proposed_consigne_fr": "Séance combinée : longues répétitions d'endurance, éducatifs, dos crawlé et renforcement hors de l'eau.",
+      "user_blocker": "Juste une enfilade de termes (« éducatif », « renforcement à sec », « répétitions longues ») sans aucune instruction. Je ne sais pas ce que je dois faire dans l'eau."
+    },
+    {
+      "name_fr": "Nage poing fermé sous fatigue",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Éducatif poing fermé (sentir l'appui de l'avant-bras)",
+      "proposed_consigne_fr": "Nage le crawl en gardant les poings fermés pour apprendre à pousser l'eau avec tout l'avant-bras et garder le coude haut.",
+      "user_blocker": "« Nage poing fermé », « ancrer appui coude haut » : je devine vaguement qu'il faut nager avec les poings fermés, mais je ne comprends pas pourquoi ni ce qu'est « l'appui coude haut » que ça doit m'apprendre."
+    },
+    {
+      "name_fr": "Bloc endurance soutenue — répétitions longues 4×200 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance soutenue — 4×200 m",
+      "proposed_consigne_fr": "Nage 4 fois 200 m à allure haute mais régulière (essoufflé mais sous contrôle), 45 s de repos entre chaque.",
+      "user_blocker": "« allure endurance haute (allure seuil - 5 à -10 s/100 m, RPE 7-8) », « stimulus VO2max » : allure seuil inconnue, RPE inconnu, VO2max inconnu. Et 4×200 m = 800 m soutenu impossible pour moi."
+    },
+    {
+      "name_fr": "Endurance fondamentale, nage longue 2800 m + éducatif + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance — longue nage 2800 m + éducatifs + renfo à sec",
+      "proposed_consigne_fr": "Longue nage tranquille de 2800 m suivie d'éducatifs et de renforcement hors de l'eau.",
+      "user_blocker": "2800 m est inconcevable quand on sait à peine nager. Et les termes « endurance fondamentale », « éducatif », « renforcement à sec » ne me disent rien de précis à faire."
+    },
+    {
+      "name_fr": "Série principale au seuil 8×200 m (allure seuil+2s)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Série principale — 8×200 m à allure soutenue (récup 20 s)",
+      "proposed_consigne_fr": "Nage 8 fois 200 m à allure rapide tenable, 20 s de repos ; si tu ralentis de plus de 8 s, arrête à la 7e plutôt que de mal finir.",
+      "user_blocker": "« allure seuil+2s/100 m », « volume seuil pic », « maintenir l'écart < 5 s », « dérive > 8 s », « Maglischo principle » : je ne comprends rien à ce vocabulaire et 1600 m m'est impossible."
+    },
+    {
+      "name_fr": "Mixte allure de course rapide + endurance soutenue + éducatif + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Séance mixte — sprints, endurance, éducatifs et renfo à sec",
+      "proposed_consigne_fr": "Séance combinée : nages rapides allure course, endurance soutenue, éducatifs et renforcement hors de l'eau.",
+      "user_blocker": "« allure de course rapide », « endurance soutenue », « éducatif », « renforcement à sec » : suite de termes sans aucune explication concrète. Je ne sais pas ce que je dois faire."
+    },
+    {
+      "name_fr": "Bloc allure de course rapide 8×50 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "8×50 m rapides (allure de course)",
+      "proposed_consigne_fr": "Nage 8 fois 50 m vite, à ton allure de course sur 200 m (très intense), 30 s de repos entre chaque.",
+      "user_blocker": "« allure 200 m course », « RPE 8-9 », « tolérance lactique », « écart < 1 s entre rép 1 et 8 » : RPE et tolérance lactique me sont inconnus, et je ne sais pas à quelle vitesse correspond « l'allure 200 m course »."
+    },
+    {
+      "name_fr": "Bloc dos crawlé — récup active",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Dos crawlé tranquille (récupération)",
+      "proposed_consigne_fr": "Nage 400 m de dos crawlé en endurance facile pour récupérer après l'effort intense.",
+      "user_blocker": "« dos crawlé » : je sais à peine faire le crawl, je n'ai jamais nagé sur le dos, donc « dos crawlé endurance facile sur 400 m » je ne sais pas le faire."
+    },
+    {
+      "name_fr": "Endurance fondamentale court + éducatif de rappel + activation",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Séance courte — endurance, éducatifs et réveil musculaire",
+      "proposed_consigne_fr": "Séance courte : endurance facile, éducatifs de rappel technique et accélérations pour réveiller le corps.",
+      "user_blocker": "« éducatif de rappel », « activation », « endurance fondamentale » : que des étiquettes, aucune instruction de geste ou de nage concrète à réaliser."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale court — crawl",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Crawl endurance facile — 800 m",
+      "proposed_consigne_fr": "Crawl continu tranquille sur 800 m, respiration des deux côtés (tous les 3 mouvements) ; compte tes coups de bras tous les 200 m.",
+      "user_blocker": "« respiration bilatérale 1/3 », « allure seuil + 8-12 s/100 m », « compter coups de bras » : respiration bilatérale inconnue, allure seuil inconnue. Et 800 m de crawl continu m'est impossible."
+    },
+    {
+      "name_fr": "Bloc d'activation — accélérations 4×50 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Réveil musculaire — 4×50 m progressifs",
+      "proposed_consigne_fr": "Nage 4 fois 50 m en accélérant : départ facile, accélère à mi-bassin, finis vite sur les 15 derniers mètres, 45 s de repos.",
+      "user_blocker": "« 50 m progressifs », « allure endurance haute », « réveiller les fibres rapides », « affûtage Mujika & Padilla » : je ne sais pas doser une accélération sur 50 m ni à quelles allures, et le jargon (fibres rapides, affûtage) ne me dit rien."
+    },
+    {
+      "name_fr": "Activation pré-test — éducatif et accélérations courtes",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Échauffement avant test — éducatifs et accélérations courtes",
+      "proposed_consigne_fr": "Avant le test : quelques éducatifs de technique puis de courtes accélérations pour te préparer.",
+      "user_blocker": "« activation pré-test », « éducatif », « accélérations courtes » : titre seul, sans rien de concret à exécuter. Et c'est quoi le « test » dont on parle ?"
+    },
+    {
+      "name_fr": "Bloc endurance active court 4×100 m",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Endurance active — 4×100 m",
+      "proposed_consigne_fr": "Nage 4 fois 100 m à allure soutenue mais confortable (tu peux encore parler par bribes), 25 s de repos entre chaque.",
+      "user_blocker": "« allure endurance soutenue (allure seuil ± 0-3 s/100 m, RPE 5-6) » : allure seuil et RPE inconnus, je ne sais pas à quelle vitesse nager. Et 4×100 m enchaînés est dur pour moi."
+    },
+    {
+      "name_fr": "RETEST de seuil 400+200 m + bilan coups de bras (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Retest chronométré 400 m + 200 m + comptage coups de bras",
+      "proposed_consigne_fr": "Nage un 400 m puis un 200 m le plus régulièrement et vite possible (allure tenable), en te chronométrant et en comptant tes coups de bras.",
+      "user_blocker": "« RETEST de seuil », « allure seuil », « bilan coups de bras » : je ne sais pas faire un test de seuil, et nager 400 m puis 200 m chronométrés est impossible quand on débute le crawl."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — récup active post-test",
+      "is_dry_land": false,
+      "coach_verdict": "reformulate",
+      "problem_types": [
+        "jargon"
+      ],
+      "proposed_name_fr": "Récupération tranquille après le test — 400 m",
+      "proposed_consigne_fr": "Nage 400 m très lentement en dos crawlé ou crawl pour récupérer après les deux tests chronométrés.",
+      "user_blocker": "« endurance facile dos crawlé ou crawl très lent », « dissipation lactate post double test » : je ne sais pas nager sur le dos (dos crawlé), et « dissipation lactate » ne m'évoque rien de concret à faire."
+    },
+    {
+      "name_fr": "Natation initiation — Nager 200 m en 6 semaines",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Il n'y a aucune consigne (dose et notes vides). Je vois juste un titre de programme. Je ne sais pas du tout quoi faire dans la piscine, là, maintenant."
+    },
+    {
+      "name_fr": "25 m crawl simplifié libre",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« pas de bilatérale W1 » : je ne comprends pas « bilatérale » ni « W1 ». Sinon le reste (terminer 25 m, toucher le couloir) je le comprends."
+    },
+    {
+      "name_fr": "Consolidation glisse + introduction bras",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Titre seul, dose et notes vides. « Consolidation glisse » et « introduction bras » ne me disent pas un seul geste concret à faire."
+    },
+    {
+      "name_fr": "50 m crawl continu — consolidation",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« rattrapé ralenti » et « prêt pour 75 m en W3 » : « W3 » me bloque (semaine 3 ?), et « rattrapé » est toujours un mot que je ne maîtrise pas."
+    },
+    {
+      "name_fr": "Respiration latérale au mur + battements sur le côté",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Titre seul, dose et notes vides. « battements sur le côté » : je ne sais pas comment me mettre sur le côté dans l'eau ni quoi faire."
+    },
+    {
+      "name_fr": "Nage sur le côté avec respiration",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« position latérale côté favori, un bras tendu devant, l'autre le long du corps » je vois à peu près, mais nager VRAIMENT sur le côté en avançant me semble impossible/pas expliqué pour une débutante (comment j'avance ?)."
+    },
+    {
+      "name_fr": "Contrôle du rythme respiratoire",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« NE FORCE PAS le cycle de 3 (bilatérale) cette semaine — c'est pour W4 » : « bilatérale », « cycle de 3 » et « W4 » me bloquent tous les trois."
+    },
+    {
+      "name_fr": "Nage sur le côté avec respiration — côté favori",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« bilatérale W4 » me bloque, et « timing respiration en position latérale » suppose que je sais déjà nager sur le côté, ce qui n'est pas mon cas."
+    },
+    {
+      "name_fr": "100 m crawl continu — 3 répétitions",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« respiration unilatérale / bilatérale » et « éducatif isolé bilatéral W4 D1 ex#1-2 » : je ne sais pas ce que veulent dire unilatérale/bilatérale, et la référence W4 D1 ex#1-2 ne me dit rien du tout."
+    },
+    {
+      "name_fr": "100 m crawl continu — allure confortable",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« Respiration bilatérale toutes les 3 coups de bras » : le mot bilatérale n'est toujours pas expliqué, je ne sais pas concrètement de quel côté respirer ni comment alterner."
+    },
+    {
+      "name_fr": "Séance phare — 200 m crawl continu",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Dose et notes vides, c'est seulement un titre. « Séance phare » me dit que c'est important mais pas ce que je dois faire (heureusement l'exo suivant le détaille, mais pas celui-ci)."
+    },
+    {
+      "name_fr": "Natation perfectionnement — 12 semaines haute intensité",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Il n'y a aucune indication de ce que je dois faire (pas de dose, pas de notes). « perfectionnement » et « haute intensité » me font peur quand je sais à peine nager le crawl, je ne saurais pas par où commencer."
+    },
+    {
+      "name_fr": "Nage longue — 2500 m continu",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Aucune consigne, et juste « 2500 m continu » : nager 2,5 km sans m'arrêter alors que je fais à peine une longueur, c'est totalement hors de portée et ça me terrifie."
+    },
+    {
+      "name_fr": "Nage longue — 2700 m continu",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Aucune consigne, et nager 2700 m continu est totalement hors de ma portée quand je fais à peine une longueur de crawl."
+    },
+    {
+      "name_fr": "Nage longue — 3200 m continu",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "name_fr seul, dose_fr et notes_fr sont vides. Je sais que je dois nager 3200 m d'affilée mais c'est énorme pour une débutante et on ne me dit RIEN : quelle nage ? quel rythme ? je sais à peine faire le crawl, je serais incapable d'enchaîner 3200 m."
+    },
+    {
+      "name_fr": "Nage longue — 3200 m",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "dose_fr et notes_fr vides. Juste « 3200 m » : aucune indication, et c'est une distance impossible pour moi qui sais à peine nager le crawl."
+    },
+    {
+      "name_fr": "Nage longue allégée — 2700 m",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "dose_fr et notes_fr vides. « 2700 m » seul, sans aucune consigne, et bien trop loin pour mon niveau."
+    },
+    {
+      "name_fr": "Sprint — 4 × 25 m vitesse max",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Le « 4 × 25 m vitesse max » je le comprends presque, mais « anaérobie alactique », « PCr restoration », « fibres rapides max » : c'est incompréhensible, et je ne suis pas sûre de tenir un sprint correct en crawl débutante."
+    },
+    {
+      "name_fr": "Nage longue — 3300 m",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "dose_fr et notes_fr vides. « 3300 m » seul, aucune consigne, distance impossible pour moi."
+    },
+    {
+      "name_fr": "Natation endurance — 1000 m continu en 8 semaines",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Notes vides : c'est juste un titre de plan, je ne sais pas ce que je dois faire dans la piscine aujourd'hui."
+    },
+    {
+      "name_fr": "Nage sur le côté — équilibre",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« bras bas tendu devant en flèche » : c'est quoi la position « en flèche » ? Et « Total Immersion » je ne sais pas ce que c'est. Le reste je le visualise à peu près mais « en flèche » me bloque."
+    },
+    {
+      "name_fr": "Nage continue de consolidation",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« allure conversationnelle » et « RPE 3-4/10 » : le mot RPE et l'échelle /10 ne me parlent pas. « glissé entre les cycles » non plus."
+    },
+    {
+      "name_fr": "Nage longue 400 m + renforcement à sec préventif",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Notes vides et « renforcement à sec préventif » : je n'ai jamais fait de renforcement, je ne sais pas quels exercices faire."
+    },
+    {
+      "name_fr": "Rotation externe avec bande élastique",
+      "is_dry_land": true,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« rotation externe », « infraspinatus / teres minor », « antagonistes des grands pectoraux » : trop de mots médicaux, je ne comprends pas quel mouvement faire concrètement même si « coude collé au flanc » je vois à peu près."
+    },
+    {
+      "name_fr": "Chat-vache (mobilité dorsale)",
+      "is_dry_land": true,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« rachis dorsal et lombaire » me bloque, mais surtout je ne suis pas sûre du geste : « flexion (cat) / extension (cow) » sans qu'on me dise concrètement arrondir/creuser le dos."
+    },
+    {
+      "name_fr": "Nage longue 500 m + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Tout est vide (dose et notes), juste un titre. « renforcement à sec » je ne sais pas quels exercices faire, on ne me dit rien."
+    },
+    {
+      "name_fr": "Nage longue 500 m crawl (endurance fondamentale)",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Le 500 m lent je comprends, mais « essayer la bilatérale 1/3 », « basculer en 1/2 » me bloquent : je ne sais pas faire cette respiration."
+    },
+    {
+      "name_fr": "Rotation externe à l'élastique",
+      "is_dry_land": true,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Aucune explication (dose et notes vides), et « rotation externe » seul ne me dit pas quel mouvement faire."
+    },
+    {
+      "name_fr": "Nage longue 700 m + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Dose et notes vides : juste un titre, on ne me dit pas quel renforcement à sec faire."
+    },
+    {
+      "name_fr": "Nage longue 700 m crawl (endurance fondamentale)",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« RPE 3-4 », « Bilatérale 1/3 sur au moins 50% des longueurs », « 5-10 s/100 m plus lent que ton allure de test » : le RPE et la bilatérale me bloquent."
+    },
+    {
+      "name_fr": "Nage longue allégée 600 m + renforcement à sec allégé",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Dose et notes vides, juste un titre : on ne me dit pas quels exercices de renforcement faire."
+    },
+    {
+      "name_fr": "Nage longue 600 m crawl — semaine allégée (endurance fondamentale)",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« Bilatérale 1/3 dominante », et « consolide les adaptations tendineuses de la coiffe » : la respiration bilatérale me bloque, le reste je comprends à peu près."
+    },
+    {
+      "name_fr": "Bloc endurance soutenue 4×100 m (introduction)",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Je comprends « nager 100 m de crawl puis 45 s de repos, 4 fois ». Mais « RPE 7-8/10 », « allure 400 m de test » et surtout « JAMAIS de SP » me bloquent : c'est quoi SP ? Et je n'ai jamais fait de test 400 m donc je ne sais pas à quelle vitesse aller."
+    },
+    {
+      "name_fr": "Nage de récupération (endurance fondamentale)",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« 200 m crawl lent » je comprends. Mais « Bilatérale 1/3 » je ne sais pas du tout ce que ça veut dire — respirer d'un côté seulement ? tous les 3 ? je ne sais pas."
+    },
+    {
+      "name_fr": "Nage longue 800 m + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Il n'y a aucune dose ni note, juste un titre. « renforcement à sec » : je ne sais pas quels exercices faire ni combien. Rien à exécuter."
+    },
+    {
+      "name_fr": "Nage longue 800 m crawl (endurance fondamentale)",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« 800 m continu » je comprends. Mais « allure endurance facile stricte », « Bilatérale 1/3 dominante » et « 5-10 s/100 m plus lent que ton allure 400 m de test » me bloquent : je n'ai pas d'allure de test et je ne sais pas ce qu'est la bilatérale."
+    },
+    {
+      "name_fr": "Éducatif de consolidation + endurance active 8×100 m",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Titre seul, pas de dose ni de note. « Éducatif de consolidation » : je ne sais pas quels éducatifs faire. Rien à exécuter."
+    },
+    {
+      "name_fr": "Bras seuls au pull-buoy",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« pull-buoy » c'est quoi ? « Coude haut, prise d'eau précoce » je ne visualise pas. Je ne sais pas comment nager « bras seuls »."
+    },
+    {
+      "name_fr": "Bloc endurance active 8×100 m",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« RPE 5-6/10 », « allure 400 m de test », « Bilatérale 1/3 sur 50% minimum » : je ne connais ni le test, ni l'allure, ni la respiration bilatérale."
+    },
+    {
+      "name_fr": "Nage longue 1000 m + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Titre seul, pas de dose ni de note. « renforcement à sec » sans aucun exercice indiqué — je ne sais pas quoi faire hors de l'eau."
+    },
+    {
+      "name_fr": "Nage longue 1000 m crawl (endurance fondamentale)",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« 1000 m continu » ok. Mais « RPE 3-4 », « bilatérale 1/3 dominante », « 10-15 s/100 m plus lent que ton allure 400 m de test » me bloquent (pas de test, pas de notion de bilatérale)."
+    },
+    {
+      "name_fr": "Bloc endurance active 10×100 m + éducatif",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Titre seul, pas de dose ni de note. Et « + éducatif » sans dire lequel — je ne sais pas quoi faire."
+    },
+    {
+      "name_fr": "Nage longue pic 1300 m + renforcement à sec",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Titre seul, pas de dose ni de note. « renforcement à sec » sans exercices. Rien à exécuter."
+    },
+    {
+      "name_fr": "Nage longue 1300 m crawl (endurance fondamentale)",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« 1300 m continu » ok. Mais « allure endurance facile stricte », « Bilatérale 1/3 dominante », « ≥ 130% de la cible » : je ne sais pas ce qu'est la bilatérale ni quelle est mon allure de référence."
+    },
+    {
+      "name_fr": "Activation technique pré-séance phare",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Titre seul, aucune dose ni note. « Activation technique » : je ne sais pas quels exercices faire ni combien de mètres."
+    },
+    {
+      "name_fr": "Séance phare — 1000 m continu chronométré",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Titre seul, pas de dose ni note ici. (Le détail est dans l'exo suivant mais celui-ci tout seul ne dit rien à exécuter.)"
+    },
+    {
+      "name_fr": "1000 m continu crawl chronométré",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Beaucoup trop de jargon pour moi : « allure 400 m de test + 0-5 s/100 m », « RPE 5-6/10 », « bilatérale 1/3 vs 1/2 », « allure seuil », « antéro-latéral », « programme regular ». Je n'ai pas de test d'allure et je ne sais pas respirer en bilatérale."
+    },
+    {
+      "name_fr": "Natation technique — Perfectionnement sur 8 semaines",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Titre seul, aucune dose ni note. C'est un nom de programme, rien à exécuter concrètement."
+    },
+    {
+      "name_fr": "Endurance fondamentale, nage longue — bilan coups de bras + renforcement épaule",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "Titre seul, pas de dose ni note. « bilan coups de bras » et « renforcement épaule » sans aucune indication d'exercice ni de mètres."
+    },
+    {
+      "name_fr": "Rotation externe à l'élastique (coiffe des rotateurs)",
+      "is_dry_land": true,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« coiffe des rotateurs », « infraspinatus + petit rond » : mots médicaux que je ne connais pas. Mais surtout, aucune dose : combien de répétitions ? combien de séries ? Je ne sais pas combien en faire."
+    },
+    {
+      "name_fr": "Test chronométré 400 m crawl",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« nager 400 m de crawl en me chronométrant » je peux essayer, mais « RPE 8-9 », « bilatérale 1/3 » me bloquent — et honnêtement 400 m de crawl sans m'arrêter c'est déjà au-delà de ce que je sais faire en débutante."
+    },
+    {
+      "name_fr": "Récupération active entre les tests",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« 200 m endurance facile très lent » et « repos au bord » : la partie repos est claire. Mais « dos crawlé » (je ne sais pas nager sur le dos) et « protocole Swim Smooth » me bloquent, et « endurance facile » reste flou comme vitesse."
+    },
+    {
+      "name_fr": "Test chronométré 200 m crawl",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "La formule « allure seuil = (400 - 200) / (T400 - T200) » est incompréhensible pour moi, et « RPE 9 » aussi. Nager 200 m de crawl à fond, je peux essayer, mais tout le calcul derrière me perd totalement."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — consolidation crawl",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« 600 m crawl continu » ok, mais « allure seuil + 8-12 s/100 m », « respiration bilatérale 1/3 », « focus glisse » : je n'ai pas d'allure seuil et je ne sais pas respirer en bilatérale."
+    },
+    {
+      "name_fr": "Rattrapage en crawl — timing d'entrée des bras",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« Rattrapage », « ne lancer la traction d'un bras que lorsque l'autre vient toucher le bras tendu », « nage moulin à vent », « sub-endurance facile » : je ne sais pas du tout ce que c'est un rattrapage ni comment coordonner mes deux bras comme ça, c'est trop technique pour moi."
+    },
+    {
+      "name_fr": "Soulevé de terre léger — barre ou kettlebell",
+      "is_dry_land": true,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« soulevé de terre », « 40-50% 1RM », « kettlebell », « dos neutre, hanches en arrière », « chaîne postérieure (érecteurs, ischio, fessiers) » : je n'ai jamais touché à de la muscu, je ne sais pas faire le mouvement ni ce qu'est 1RM ou un kettlebell."
+    },
+    {
+      "name_fr": "Seuil — 10×100 m allure seuil récup 15 s",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« allure seuil » : je ne sais pas c'est quoi mon allure seuil ni comment la trouver, et enchaîner 10×100 m est hors de ma portée de débutante."
+    },
+    {
+      "name_fr": "Série principale au seuil 10×100 m (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« allure seuil exact (calculé W1 J3) », « dérive > 5 s sur répétition 7-8 », « Maglischo + Swim Smooth principle » : je ne sais pas ce qu'est une allure seuil, ni où ce serait calculé, et les références de bouquins ne me parlent pas."
+    },
+    {
+      "name_fr": "Bloc endurance soutenue crawl",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« allure seuil - 5 à -10 s/100 m », « RPE 7-8 », « mots isolés en récup », « stimulation VO2max » : je ne comprends ni l'allure demandée ni le RPE ni VO2max."
+    },
+    {
+      "name_fr": "Bloc dos crawlé technique",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« dos crawlé », « bassin haut (ne pas s'asseoir dans l'eau) », « rotation épaule-hanche initiée par hanche », « endurance facile à soutenue » : je ne sais pas nager sur le dos du tout, donc je ne peux pas faire ce bloc."
+    },
+    {
+      "name_fr": "Bloc brasse continu",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« brasse complète », « position flèche », « 1-1.5 s glisse » : je ne sais pas nager la brasse et je ne sais pas ce qu'est une position flèche."
+    },
+    {
+      "name_fr": "Soulevé de terre léger",
+      "is_dry_land": true,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« soulevé de terre », « charge légère, dos neutre », « chaîne postérieure (érecteurs, ischio, fessiers) » : jamais fait de muscu, je ne connais pas ce mouvement ni ces muscles."
+    },
+    {
+      "name_fr": "Seuil — 12×100 m allure seuil récup 15 s",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« allure seuil » : je ne sais pas trouver mon allure seuil, et 12×100 m est hors de portée pour une débutante."
+    },
+    {
+      "name_fr": "Série principale au seuil 12×100 m (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« allure seuil exact », « écart < 3 s entre répétition 1 et répétition 12 », « volume +20% vs W2 » : je ne comprends pas l'allure seuil ni les références W2."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — retour au calme",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« endurance facile dos crawlé ou crawl très lent », « dissipation lactate » : je ne sais pas nager le dos crawlé, et « dissipation lactate » ne me parle pas (mais le crawl très lent, ça oui)."
+    },
+    {
+      "name_fr": "Rattrapage en crawl",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« rattrapage », « glisse maximale entre cycles bras », « éviter moulin à vent » : je ne sais pas ce qu'est l'exercice de rattrapage ni comment coordonner mes bras."
+    },
+    {
+      "name_fr": "Bloc dos crawlé continu",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« dos crawlé continu » 400 m, « bassin haut », « rotation épaule-hanche initiée par hanche » : je ne sais pas nager sur le dos du tout."
+    },
+    {
+      "name_fr": "Bloc endurance fondamentale — récup active",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« crawl ou dos très lent endurance facile », « dissipation fatigue » : le crawl très lent je vois, mais le dos je ne sais pas le nager, et 300 m d'affilée c'est beaucoup pour moi."
+    },
+    {
+      "name_fr": "Seuil allégé — 8×100 m allure seuil récup 20 s",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« allure seuil » : je ne sais pas trouver mon allure seuil, et 8×100 m reste trop pour moi."
+    },
+    {
+      "name_fr": "Série principale au seuil 8×100 m (allure seuil)",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« allure seuil », « semaine allégée: volume -33% sur série qualité (8 répétitions vs 12 en W3) » : l'allure seuil et les comparaisons de volume entre semaines ne me parlent pas."
+    },
+    {
+      "name_fr": "Bloc endurance active crawl",
+      "is_dry_land": false,
+      "coach_verdict": "ok",
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« allure endurance soutenue (allure seuil ± 0-3 s/100 m, RPE 5-6) », « appui coude haut + poussée finale » : je ne comprends ni l'allure seuil ni le RPE ni ces gestes techniques."
+    },
+    {
+      "name_fr": "Éducatif de prise d'eau — coude haut",
+      "is_dry_land": null,
+      "coach_verdict": null,
+      "problem_types": [],
+      "proposed_name_fr": "",
+      "proposed_consigne_fr": "",
+      "user_blocker": "« godille avant-bras vertical », « appui coude haut », « flexion coude 90-100° », « nage poing fermé » : je ne sais pas faire de godille ni nager le poing fermé, et « prise d'eau coude haut » ne me parle pas du tout."
+    }
+  ]
+}

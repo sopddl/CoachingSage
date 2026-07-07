@@ -11,6 +11,7 @@ final class AutoTitleBuilderTests: XCTestCase {
 
     private let frLocale = Locale(identifier: "fr_FR")
     private let enLocale = Locale(identifier: "en_US")
+    private let esLocale = Locale(identifier: "es_ES")
 
     // MARK: - Story 3.12 — Format simple (rétrocompat)
 
@@ -106,6 +107,27 @@ final class AutoTitleBuilderTests: XCTestCase {
         if title.count > AutoTitleBuilder.compositeMaxLength {
             XCTFail("Titre dépasse seuil sans troncature : '\(title)' (\(title.count) chars)")
         }
+    }
+
+    // MARK: - Story A — titres localisés ES (sport + goal)
+
+    /// Locale ES → sport + goal résolus en espagnol (clés `onboarding.sport.*`
+    /// + `questionnaire.*.q2.option.*` ajoutées en ES). Valide données + bundle es.lproj.
+    func testBuildSpanishSportPlusGoal() {
+        XCTAssertEqual(AutoTitleBuilder.build(sportCode: "cycling", goal: "endurance", locale: esLocale),
+                       "Ciclismo — Resistencia")
+        XCTAssertEqual(AutoTitleBuilder.build(sportCode: "running", goal: "marathon", locale: esLocale),
+                       "Carrera — Maratón")
+        XCTAssertEqual(AutoTitleBuilder.build(sportCode: "swimming", goal: "technique", locale: esLocale),
+                       "Natación — Técnica")
+        XCTAssertEqual(AutoTitleBuilder.build(sportCode: "yoga", goal: "vinyasa", locale: esLocale),
+                       "Yoga — Vinyasa")
+    }
+
+    /// Sport ES seul (sans goal) → nom du sport en espagnol.
+    func testBuildSpanishSportOnly() {
+        XCTAssertEqual(AutoTitleBuilder.build(sportCode: "hiking", goal: nil, locale: esLocale),
+                       "Senderismo")
     }
 
     /// EN locale → suffix "+N more" et non "+N autre(s)".

@@ -23,10 +23,27 @@ struct SportQuestionnaireViewModelTests {
         func handleSessionFromURL(_ url: URL) async throws {}
     }
 
+    /// Gate à continuation : `wait()` suspend jusqu'à `release()`. Nécessaire au test
+    /// double-tap — `NoTypingDelay.wait()` (async vide) ne garantit AUCUNE suspension,
+    /// donc le 1er `answer()` peut se terminer d'une traite avant le 2e tap.
+    private actor TypingGate: TypingDelayProvider {
+        private var waiters: [CheckedContinuation<Void, Never>] = []
+        private(set) var waiterCount = 0
+        func wait() async {
+            waiterCount += 1
+            await withCheckedContinuation { waiters.append($0) }
+        }
+        func release() {
+            waiters.forEach { $0.resume() }
+            waiters.removeAll()
+        }
+    }
+
     private func makeViewModel(
         sportCode: String = "running",
         authService: MutableMockAuthService = MutableMockAuthService(),
-        repo: MockCoachingSportProfileRepository = MockCoachingSportProfileRepository()
+        repo: MockCoachingSportProfileRepository = MockCoachingSportProfileRepository(),
+        typingDelay: TypingDelayProvider = NoTypingDelay()
     ) -> (SportQuestionnaireViewModel, MutableMockAuthService, MockCoachingSportProfileRepository) {
         // Purge tout brouillon UserDefaults résiduel pour ce (user × sport) — sinon recovery prompt
         // s'enclenche et `startFreshFlow` n'est jamais appelé (tests pollués entre runs).
@@ -37,7 +54,7 @@ struct SportQuestionnaireViewModelTests {
             questionnaire: UniversalQuestionnaire(sportCode: sportCode),
             repository: repo,
             authService: authService,
-            typingDelay: NoTypingDelay()
+            typingDelay: typingDelay
         )
         return (vm, authService, repo)
     }
@@ -98,12 +115,17 @@ struct SportQuestionnaireViewModelTests {
 
     @Test("Double-tap rapide sur même option ne saute pas de question")
     func answer_isIdempotentDoubleTap() async {
-        let (vm, _, _) = makeViewModel()
+        let gate = TypingGate()
+        let (vm, _, _) = makeViewModel(typingDelay: gate)
         vm.start(requiresMedicalClearance: false)
-        // Lancer 2 answers en parallèle (ce que fait un double-tap rapide)
+        // 1er tap : part et se suspend sur le typing delay (isAdvancing reste true).
         async let a1: () = vm.answer(.single("regular"))
-        async let a2: () = vm.answer(.single("regular"))
-        _ = await (a1, a2)
+        // La gate tient a1 en vol → waiterCount finit forcément par passer à 1.
+        while await gate.waiterCount == 0 { await Task.yield() }
+        // 2e tap PENDANT que le 1er est en vol → doit être ignoré par la garde isAdvancing.
+        await vm.answer(.single("regular"))
+        await gate.release()
+        _ = await a1
         // Une seule question doit avoir été enregistrée pour q1_level
         #expect(vm.accumulatedAnswers.count == 1)
         #expect(vm.currentQuestion?.id == "q2_goal")
@@ -147,7 +169,8 @@ struct SportQuestionnaireViewModelTests {
         await vm.answer(.single("competitive"))
         await vm.answer(.single("cyclosportive"))    // deadline-eligible
         await vm.answer(.single("4_or_more"))         // Q3 → poses Q4
-        await vm.answer(.single(UniversalQuestionnaire.q4LetMeEstimateCode))  // Q4 → submit
+        await vm.answer(.single(UniversalQuestionnaire.q4LetMeEstimateCode))  // Q4 → poses Q5 (cycling)
+        await vm.answer(.single("outdoor"))           // Q5 lieu (cycling only) → submit
 
         #expect(repo.saveCallCount == 1)
         #expect(repo.stored["cycling"]?.level == "competitive")
@@ -156,6 +179,9 @@ struct SportQuestionnaireViewModelTests {
         #expect(repo.stored["cycling"]?.frequencyLabel == "4_or_more")
         #expect(repo.stored["cycling"]?.questionnaireVersion == "universal_v1")
         #expect(repo.stored["cycling"]?.durationMode == .deadlineEstimated)
+        // Indoor/outdoor vélo (2026-06-11) — Q5 lieu capturée dans l'historique →
+        // consommée au commit pour poser environmentDefaultRaw.
+        #expect(UniversalQuestionnaire.environmentDefault(from: repo.stored["cycling"]?.conversationHistory ?? []) == "outdoor")
     }
 
     // MARK: - Recovery UserDefaults (review P1-6)

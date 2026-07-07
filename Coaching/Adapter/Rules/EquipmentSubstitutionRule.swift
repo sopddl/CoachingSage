@@ -48,7 +48,9 @@ public struct EquipmentSubstitutionRule: AdaptationRule {
                                 aiReason: &aiReason
                             )
                         },
-                        cooldown: session.cooldown
+                        cooldown: session.cooldown,
+                        warmupMinutes: session.warmupMinutes,
+                        cooldownMinutes: session.cooldownMinutes
                     )
                 }
             )
@@ -91,20 +93,28 @@ public struct EquipmentSubstitutionRule: AdaptationRule {
                 day: day,
                 originalExerciseName: ex.originalName,
                 outcome: .substituted,
-                detail: "« \(ex.originalName) » → « \(alternativeName) » (équipement absent: \(missingLabel))"
+                detail: "« \(ex.originalName) » → « \(alternativeName.canonical) » (équipement absent: \(missingLabel))"
             ))
+            // Bug #8 — si l'alternative embarque sa propre durée dans son nom,
+            // elle fait foi (sinon la pastille/minuteur gardent celle du parent).
+            // La durée est extraite du nom canonique FR (chiffres language-agnostic).
             return AdaptedExercise(
                 name: alternativeName,
                 originalName: ex.originalName,
                 sets: ex.sets,
                 reps: ex.reps,
-                duration: ex.duration,
+                duration: AlternativeName.embeddedDuration(in: alternativeName.canonical) ?? ex.duration,
                 restSeconds: ex.restSeconds,
+                dose: ex.dose,
                 notes: ex.notes,
                 targetZone: ex.targetZone,
                 volumeAxis: ex.volumeAxis,
                 wasSubstituted: true,
-                substitutionReason: "equipment:\(missingLabel)"
+                substitutionReason: "equipment:\(missingLabel)",
+                role: ex.role,
+                scalingUnit: ex.scalingUnit,
+                priority: ex.priority,
+                estimatedMinutes: ex.estimatedMinutes
             )
         } else {
             triggeredAI = true

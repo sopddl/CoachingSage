@@ -2,7 +2,6 @@
 // Story 3.18 Phase 2 — tests light SessionTimelineView (label substitution).
 import XCTest
 import SwiftUI
-@testable import CoachingSage
 import TemplateModel
 
 final class SessionTimelineViewTests: XCTestCase {

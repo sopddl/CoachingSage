@@ -8,31 +8,41 @@ import TemplateModel
 public struct PersistedSession: Codable, Equatable, Identifiable, Sendable {
     public let id: UUID
     public let weekNumber: Int
-    public let weekTheme: String
-    public let weekGoal: String
+    /// Contenu localisable (fr/en/es). Décodage tolérant : les records persistés
+    /// AVANT B1 portent des String nues → décodées en `{ fr: … }` (fallback FR).
+    /// Au prochain `set` du blob sessions, ré-encodé en objet (migration paresseuse).
+    public let weekTheme: LocalizedText
+    public let weekGoal: LocalizedText
     /// Index d'ordre dans la semaine (1..N). N'a plus de sémantique de jour calendaire
     /// depuis la refonte vue semaine — l'utilisateur fait les séances dans l'ordre qu'il
     /// veut au cours de la semaine. Conservé pour le tri déterministe.
     public let day: Int
-    public let name: String
+    public let name: LocalizedText
     public let durationMinutes: Int
     public let type: SessionType
-    public let warmup: String?
+    public let warmup: LocalizedText?
     public let exercises: [AdaptedExercise]
-    public let cooldown: String?
+    public let cooldown: LocalizedText?
+
+    /// Minutes annotées du bloc `warmup`/`cooldown` (chantier durée réglable, pilote
+    /// cycling). Cf `AdaptedSession.warmupMinutes`. `nil` = sport pas encore annoté.
+    public let warmupMinutes: Int?
+    public let cooldownMinutes: Int?
 
     public init(
         id: UUID = UUID(),
         weekNumber: Int,
-        weekTheme: String,
-        weekGoal: String,
+        weekTheme: LocalizedText,
+        weekGoal: LocalizedText,
         day: Int,
-        name: String,
+        name: LocalizedText,
         durationMinutes: Int,
         type: SessionType,
-        warmup: String?,
+        warmup: LocalizedText?,
         exercises: [AdaptedExercise],
-        cooldown: String?
+        cooldown: LocalizedText?,
+        warmupMinutes: Int? = nil,
+        cooldownMinutes: Int? = nil
     ) {
         self.id = id
         self.weekNumber = weekNumber
@@ -45,6 +55,26 @@ public struct PersistedSession: Codable, Equatable, Identifiable, Sendable {
         self.warmup = warmup
         self.exercises = exercises
         self.cooldown = cooldown
+        self.warmupMinutes = warmupMinutes
+        self.cooldownMinutes = cooldownMinutes
+    }
+
+    /// Bridge vers la struct en mémoire consommée par les vues (`AdaptedSession` n'a pas
+    /// de notion d'`id` DB — cf `AdaptedProgramRecord.toAdaptedProgram()`). Utilisé aussi
+    /// par le chantier durée réglable (Increment 3) pour rafraîchir l'affichage d'une
+    /// séance juste après un ajustement persisté.
+    public func toAdaptedSession() -> AdaptedSession {
+        AdaptedSession(
+            day: day,
+            name: name,
+            durationMinutes: durationMinutes,
+            type: type,
+            warmup: warmup,
+            exercises: exercises,
+            cooldown: cooldown,
+            warmupMinutes: warmupMinutes,
+            cooldownMinutes: cooldownMinutes
+        )
     }
 }
 

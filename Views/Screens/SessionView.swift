@@ -16,6 +16,8 @@ import TemplateModel
 struct SessionView: View {
     @Environment(\.appDependencies) private var deps
     @Environment(\.languageManager) private var languageManager
+    // i18n (chantier ES) : bundle de la locale in-app pour les messages d'erreur.
+    @Environment(\.locale) private var locale
     /// **Hotfix Story 3.27 2026-05-31** — broadcast `MainTabView` quand l'user
     /// tape sur l'onglet Séances alors qu'il est déjà sur cette tab. Reset
     /// `adaptedRoute = nil` pour pop le push `AdaptedProgramView`. Custom tab
@@ -29,6 +31,9 @@ struct SessionView: View {
     @State private var libraryLoadFailed: Bool = false
     @State private var sheetSelection: SheetSelection?
     @State private var adaptedRoute: AdaptedProgramRoute?
+    /// Story 3.35e — « Démarrer ma prochaine séance » mène directement à la FICHE
+    /// SÉANCE (et plus au programme).
+    @State private var sessionRoute: SessionDetailRoute?
     @State private var presentationError: String?
     @State private var nowTick: Date = Date()
     /// V2 #6 — loader overlay pendant la génération auto déclenchée par tap
@@ -47,6 +52,8 @@ struct SessionView: View {
     /// pushed hors écran par la liste séances scrollable Zone 2. Trigger
     /// désormais en `.safeAreaInset(.bottom)` du content SessionView.
     @State private var showPreparedSheet: Bool = false
+    /// Indoor/outdoor vélo (2026-06-10) — non-nil = sheet « tu roules plutôt où ? »
+    /// présentée au lancement d'un programme vélo (D2). Au choix → `commitProgram`.
 
     /// **Story 3.10** — Contexte de l'alerte cap pour résoudre titre/message
     /// i18n côté View. `Identifiable` pour `.alert(item:)` SwiftUI.
@@ -68,11 +75,14 @@ struct SessionView: View {
     enum SheetSelection: Identifiable {
         case questionnaire(sportCode: String)
         case sportPicker
+        /// Onboarding programme « fil de Léon » (inc1) — chemin de création principal.
+        case programmeFil
 
         var id: String {
             switch self {
             case .questionnaire(let s): return "questionnaire_\(s)"
             case .sportPicker:          return "sport_picker"
+            case .programmeFil:         return "programme_fil"
             }
         }
     }
@@ -128,6 +138,15 @@ struct SessionView: View {
                             modifiedSessionCoordinates: route.modifiedSessionCoordinates
                         )
                     }
+                }
+                .navigationDestination(item: $sessionRoute) { route in
+                    SessionDetailView(
+                        session: route.session,
+                        week: route.week,
+                        program: route.program,
+                        isModifiedByRegen: route.isModifiedByRegen,
+                        recordId: route.recordId
+                    )
                 }
                 .task {
                     await bootstrapVMIfNeeded()
@@ -240,7 +259,7 @@ struct SessionView: View {
         if dashboardViewModel != nil {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    sheetSelection = .sportPicker
+                    sheetSelection = .programmeFil
                 } label: {
                     Image(systemName: "plus.circle.fill")
                         .foregroundStyle(Color.coachingPrimary)
@@ -301,7 +320,7 @@ struct SessionView: View {
             EmptyDashboardView(
                 state: vm.emptyState,
                 onTapCustom: {
-                    sheetSelection = .sportPicker
+                    sheetSelection = .programmeFil
                 }
             )
         case let .dormantOnly(dormants):
@@ -348,6 +367,12 @@ struct SessionView: View {
                 onTapProgram: { summary in
                     pushAdaptedProgramSummary(summary)
                 },
+                onTapUpcomingSession: { summary, persisted in
+                    openUpcomingSession(summary: summary, persisted: persisted)
+                },
+                sessionNumber: { summary, persisted in
+                    dashboardSessionNumber(summary: summary, session: persisted)
+                },
                 onDeleteProgram: { summary in
                     Task { await deleteProgramSummary(summary) }
                 },
@@ -355,7 +380,7 @@ struct SessionView: View {
                     replanifyTarget = summary
                 },
                 onTapStartNewProgram: {
-                    sheetSelection = .sportPicker
+                    sheetSelection = .programmeFil
                 },
                 onRenewRoutine: { summary in
                     Task { await handleRenewRoutine(summary) }
@@ -369,7 +394,7 @@ struct SessionView: View {
     /// V1), on flag l'erreur visible plutôt que de silencer la nav.
     private func pushAdaptedProgram(record: AdaptedProgramRecord) {
         guard let applied = record.toAppliedAdaptedProgram() else {
-            presentationError = String(localized: "session.adapter.profileMissing")
+            presentationError = String.localized("session.adapter.profileMissing", locale: locale)
             return
         }
         let modified = dashboardViewModel?.modifiedSessionCoordinates(forRecordId: record.id) ?? []
@@ -488,11 +513,60 @@ struct SessionView: View {
             await refreshDashboard()
         }
         // Re-fetch après markStarted (record peut être stale).
-        if let refreshed = vm.recordsByID[summary.id] {
-            pushAdaptedProgram(record: refreshed)
+        let effective = vm.recordsByID[summary.id] ?? record
+        // Story 3.35e — on va DIRECTEMENT sur la fiche séance (et plus sur le
+        // programme). Si on ne sait pas résoudre la prochaine séance, repli sur
+        // le programme (jamais de cul-de-sac).
+        if let route = sessionRoute(for: effective, summary: summary) {
+            sessionRoute = route
         } else {
-            pushAdaptedProgram(record: record)
+            pushAdaptedProgram(record: effective)
         }
+    }
+
+    /// Story 3.35l — numéro de séance incrémental (toutes séances, ordre semaine/jour)
+    /// pour l'affichage dashboard. Cohérent avec `AdaptedProgramView.globalSessionNumber`.
+    @MainActor
+    private func dashboardSessionNumber(summary: ProgramSummary, session: PersistedSession) -> Int {
+        guard let record = dashboardViewModel?.recordsByID[summary.id] else { return 0 }
+        let ordered = record.sessions.sorted { ($0.weekNumber, $0.day) < ($1.weekNumber, $1.day) }
+        return (ordered.firstIndex { $0.id == session.id }.map { $0 + 1 }) ?? 0
+    }
+
+    /// Story 3.35j — ouvre la fiche d'une séance QUELCONQUE tapée dans la liste du
+    /// dashboard (mappe weekNumber/day → AdaptedSession/Week).
+    @MainActor
+    private func openUpcomingSession(summary: ProgramSummary, persisted: PersistedSession) {
+        guard let record = dashboardViewModel?.recordsByID[summary.id],
+              let applied = record.toAppliedAdaptedProgram(),
+              let week = applied.program.weeks.first(where: { $0.weekNumber == persisted.weekNumber }),
+              let session = week.sessions.first(where: { $0.day == persisted.day })
+        else { return }
+        let modified = dashboardViewModel?.modifiedSessionCoordinates(forRecordId: record.id) ?? []
+        sessionRoute = SessionDetailRoute(
+            session: session, week: week, program: applied.program, recordId: record.id,
+            isModifiedByRegen: modified.contains(SessionCoordinate(weekNumber: week.weekNumber, day: session.day))
+        )
+    }
+
+    /// Résout la fiche de la prochaine séance d'un record : mappe la
+    /// `summary.nextSession` (PersistedSession : weekNumber/day) vers la
+    /// `AdaptedSession`/`AdaptedWeek` du programme adapté.
+    @MainActor
+    private func sessionRoute(for record: AdaptedProgramRecord, summary: ProgramSummary) -> SessionDetailRoute? {
+        guard let applied = record.toAppliedAdaptedProgram(),
+              let next = summary.nextSession,
+              let week = applied.program.weeks.first(where: { $0.weekNumber == next.weekNumber }),
+              let session = week.sessions.first(where: { $0.day == next.day })
+        else { return nil }
+        let modified = dashboardViewModel?.modifiedSessionCoordinates(forRecordId: record.id) ?? []
+        return SessionDetailRoute(
+            session: session,
+            week: week,
+            program: applied.program,
+            recordId: record.id,
+            isModifiedByRegen: modified.contains(SessionCoordinate(weekNumber: week.weekNumber, day: session.day))
+        )
     }
 
     // MARK: - Bootstrap VM
@@ -517,6 +591,19 @@ struct SessionView: View {
               let userId = SupabaseService.shared.client.auth.currentSession?.user.id
         else { return }
         await vm.refresh(userId: userId)
+
+        // Epic 8 — point de convergence (création / démarrage / complétion reviennent
+        // tous au dashboard). On demande la permission notifs UNE seule fois, quand
+        // l'utilisateur a au moins un programme démarré (≠ dormants d'onboarding), puis
+        // on (re)planifie. `requestAuthorizationIfNeeded` est auto-gaté ; `reschedule`
+        // est idempotent et best-effort.
+        if let deps {
+            let started = (try? await deps.adaptedProgramRepository.fetchStartedCount(for: userId)) ?? 0
+            if started >= 1 {
+                await deps.notificationService.requestAuthorizationIfNeeded()
+            }
+            await deps.notificationService.reschedule()
+        }
     }
 
     /// Story 3.16 AC13 — hook best-effort silencieux pour demander l'autorisation HK
@@ -619,46 +706,65 @@ struct SessionView: View {
         for route: AdaptedProgramRoute,
         deps: AppDependencies
     ) -> (() async -> Void)? {
-        guard let previewProfile = route.previewSportProfile else { return nil }
-        return {
-            guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else { return }
-            do {
-                let factory = AutoProgramFactory(
-                    sportProfileRepository: deps.coachingSportProfileRepository,
-                    adaptedProgramRepository: deps.adaptedProgramRepository,
-                    coachingProfileRepository: deps.coachingProfileRepository
-                )
-                let preview = AutoProgramPreview(program: route.program, sportProfile: previewProfile)
-                let recordId = try await factory.commit(
-                    preview: preview,
-                    userId: userId,
-                    locale: languageManager.currentLocale
-                )
-                // **Story 3.12** : commit + markStarted dans la foulée → programme
-                // ACTIF directement après tap "Démarrer" (preview). Évite l'étape
-                // intermédiaire "dormant" qui obligeait l'user à re-tap "Démarrer"
-                // depuis le carrousel pour vraiment activer.
-                // Si cap démarré atteint, on garde le programme dormant et on
-                // affiche l'alerte cap.
-                do {
-                    try await deps.adaptedProgramRepository.markStarted(recordId: recordId)
-                } catch ProgramCapReached.started(let limit) {
-                    capAlertContext = .started(limit: limit)
-                    // Le programme reste persisté en dormant. User peut archiver
-                    // un programme démarré puis re-démarrer celui-ci depuis le carrousel.
-                }
-                await refreshDashboard()
-                // Pop vers Séances : dashboard refresh montre maintenant le programme
-                // démarré en mode active.
-                adaptedRoute = nil
-            } catch ProgramCapReached.dormant(let limit) {
-                // **Story 3.10 AC12** — cap dormant atteint : on garde l'écran
-                // preview ouvert, on affiche l'alerte. L'user peut choisir
-                // d'archiver un dormant existant puis retenter.
-                capAlertContext = .dormant(limit: limit)
-            } catch {
-                presentationError = error.localizedDescription
+        guard let profile = route.previewSportProfile else { return nil }
+        // Indoor/outdoor vélo (2026-06-11) — le défaut de lieu est posé DANS le
+        // questionnaire de création (Q5, cycling only) ; on l'extrait de l'historique
+        // et on le persiste juste après le commit. nil pour les sports sans lieu.
+        let environmentDefault = UniversalQuestionnaire.environmentDefault(from: profile.conversationHistory)
+        return { await commitProgram(route: route, deps: deps, environmentDefault: environmentDefault) }
+    }
+
+    /// Commit + activation d'un programme depuis la preview. `environmentDefault`
+    /// (indoor/outdoor vélo) = défaut de lieu choisi au lancement, persisté juste
+    /// après le commit. nil pour les sports sans variante de lieu.
+    private func commitProgram(
+        route: AdaptedProgramRoute,
+        deps: AppDependencies,
+        environmentDefault: String?
+    ) async {
+        guard let previewProfile = route.previewSportProfile else { return }
+        guard let userId = SupabaseService.shared.client.auth.currentSession?.user.id else { return }
+        do {
+            let factory = AutoProgramFactory(
+                sportProfileRepository: deps.coachingSportProfileRepository,
+                adaptedProgramRepository: deps.adaptedProgramRepository,
+                coachingProfileRepository: deps.coachingProfileRepository
+            )
+            let preview = AutoProgramPreview(program: route.program, sportProfile: previewProfile)
+            let recordId = try await factory.commit(
+                preview: preview,
+                userId: userId,
+                locale: languageManager.currentLocale
+            )
+            // Indoor/outdoor vélo (D2) — pose le défaut de lieu choisi au lancement.
+            if let environmentDefault {
+                let svc = SessionLocationService(repository: deps.adaptedProgramRepository)
+                try? await svc.recordDefault(recordId: recordId, value: environmentDefault)
             }
+            // **Story 3.12** : commit + markStarted dans la foulée → programme
+            // ACTIF directement après tap "Démarrer" (preview). Évite l'étape
+            // intermédiaire "dormant" qui obligeait l'user à re-tap "Démarrer"
+            // depuis le carrousel pour vraiment activer.
+            // Si cap démarré atteint, on garde le programme dormant et on
+            // affiche l'alerte cap.
+            do {
+                try await deps.adaptedProgramRepository.markStarted(recordId: recordId)
+            } catch ProgramCapReached.started(let limit) {
+                capAlertContext = .started(limit: limit)
+                // Le programme reste persisté en dormant. User peut archiver
+                // un programme démarré puis re-démarrer celui-ci depuis le carrousel.
+            }
+            await refreshDashboard()
+            // Pop vers Séances : dashboard refresh montre maintenant le programme
+            // démarré en mode active.
+            adaptedRoute = nil
+        } catch ProgramCapReached.dormant(let limit) {
+            // **Story 3.10 AC12** — cap dormant atteint : on garde l'écran
+            // preview ouvert, on affiche l'alerte. L'user peut choisir
+            // d'archiver un dormant existant puis retenter.
+            capAlertContext = .dormant(limit: limit)
+        } catch {
+            presentationError = error.localizedDescription
         }
     }
 
@@ -676,8 +782,14 @@ struct SessionView: View {
     /// démarré). Sinon, EmptyView = pas d'inset → pas de réservation d'espace.
     @ViewBuilder
     private var preparedSheetTrigger: some View {
-        if case .active = dashboardViewModel?.mode {
-            let dormantsCount = currentDormantsCount
+        // Story 3.35f — masqué quand on a poussé une fiche séance / un programme
+        // (la barre « Programmes préparés » ne doit vivre que sur le dashboard).
+        // Bug #9 (2026-06-04) — quand il n'y a AUCUN programme préparé, ce bouton
+        // affichait « Démarrer un nouveau programme », strictement redondant avec
+        // le « + » de la barre de nav (même action `.sportPicker`). On ne garde la
+        // barre du bas que pour révéler les programmes PRÉPARÉS (dormantsCount > 0).
+        let dormantsCount = currentDormantsCount
+        if case .active = dashboardViewModel?.mode, adaptedRoute == nil, sessionRoute == nil, dormantsCount > 0 {
             Button(action: handlePreparedTriggerTap) {
                 preparedSheetTriggerLabel(dormantsCount: dormantsCount)
             }
@@ -764,6 +876,51 @@ struct SessionView: View {
             SportPickerSheet { code in
                 sheetSelection = .questionnaire(sportCode: code)
             }
+        case .programmeFil:
+            programmeFilSheet()
+        }
+    }
+
+    /// Onboarding programme « fil de Léon » (inc1) — chemin de création principal.
+    /// Le fil ne fait que la PREVIEW ; `onCompleted` rend le `CoachingSportProfile`
+    /// finalisé → on réutilise `presentAdaptedProgram(for:)` (= chemin questionnaire,
+    /// commit + push) → zéro logique de commit dupliquée.
+    @ViewBuilder
+    private func programmeFilSheet() -> some View {
+        if let deps,
+           let userId = SupabaseService.shared.client.auth.currentSession?.user.id {
+            let sports = (coachingProfile?.activeSports ?? []).compactMap { SportCode(rawValue: $0) }
+            let factory = AutoProgramFactory(
+                sportProfileRepository: deps.coachingSportProfileRepository,
+                adaptedProgramRepository: deps.adaptedProgramRepository,
+                coachingProfileRepository: deps.coachingProfileRepository
+            )
+            let vm = ProgrammeOnboardingViewModel(
+                userId: userId,
+                activeSports: sports,
+                requiresMedicalClearance: coachingProfile?.requiresMedicalClearance ?? false,
+                autoprofileLevel: nil,
+                generatePreview: { profile in
+                    let preview = try await factory.previewGenerate(sportProfile: profile, userId: userId)
+                    return preview.program.weeks.count
+                },
+                // Inc2 : moteur NL réel (edge function) + backlog Supabase gated consentement.
+                intentService: DefaultLeonIntentService(),
+                unmetLogger: DefaultLeonUnmetRequestLogger(),
+                localeIdentifier: languageManager.currentLocale.identifier
+            )
+            ProgrammeOnboardingView(
+                viewModel: vm,
+                onCompleted: { sportProfile in
+                    sheetSelection = nil
+                    Task {
+                        await reloadProfile(silent: true)
+                        await presentAdaptedProgram(for: sportProfile)
+                    }
+                }
+            )
+        } else {
+            Text("session.requestProgram.noProfile")
         }
     }
 
@@ -798,21 +955,50 @@ struct SessionView: View {
     private func presentAdaptedProgram(for sportProfile: CoachingSportProfile) async {
         await loadLibraryIfNeeded()
         guard let library else {
-            presentationError = String(localized: "session.adapter.libraryUnavailable")
+            presentationError = String.localized("session.adapter.libraryUnavailable", locale: locale)
             return
         }
         guard let coachingProfile else {
-            presentationError = String(localized: "session.adapter.profileMissing")
+            presentationError = String.localized("session.adapter.profileMissing", locale: locale)
             return
         }
         presentationError = nil
 
         let selector = ProgramTemplateSelector(library: library)
-        let template = selector.select(profile: sportProfile)
+        let summary = selector.select(profile: sportProfile)
+        let template: ProgramTemplate
+        do {
+            template = try await library.fullTemplate(id: summary.id)
+        } catch {
+            presentationError = String.localized("session.adapter.libraryUnavailable", locale: locale)
+            return
+        }
+        // Densité B (2026-07-02) — signal comportemental lu UNE fois à la création
+        // (calibration proactive, G6 : workouts réalisés, jamais santé). Le fetch HK
+        // n'est fait QUE si DensityRule peut agir (gating niveau + G1 clearance) — pas
+        // de requête HK morte sur le hot path (review 07-03). HK muet (totalCount == 0)
+        // → nil ; la réponse de calibrage QActivity ne prend le relais QUE dans ce cas
+        // (le HK frais fait autorité). Les deux nil → DensityRule no-op strict.
+        var weeklyAverage4w: Double?
+        var declaredRegularActivity: Bool?
+        let densityGated = Level(rawValue: sportProfile.level).map(DensityRule.gatedLevels.contains) ?? false
+        if densityGated, !coachingProfile.requiresMedicalClearance {
+            let workoutSummary = await deps?.healthKitService.fetchWorkoutSummary(weeksBack: 4)
+            weeklyAverage4w = (workoutSummary?.totalCount ?? 0) > 0
+                ? workoutSummary?.weeklyAverage
+                : nil
+            if weeklyAverage4w == nil {
+                declaredRegularActivity = UniversalQuestionnaire.declaredRegularActivity(
+                    from: sportProfile.conversationHistory
+                )
+            }
+        }
         let adapted = adapterService.adapt(
             template: template,
             sportProfile: sportProfile,
-            coachingProfile: coachingProfile
+            coachingProfile: coachingProfile,
+            weeklyWorkoutsAverage4w: weeklyAverage4w,
+            declaredRegularActivity: declaredRegularActivity
         )
         // **Story 3.15 v7.4 (Sophie 2026-05-21)** — récupérer le recordId pour
         // que `AdaptedProgramView` puisse fetch le record SwiftData et afficher
@@ -871,7 +1057,7 @@ struct SessionView: View {
             library = try await ProgramTemplateLibrary.bundled()
         } catch {
             libraryLoadFailed = true
-            presentationError = String(localized: "session.adapter.libraryUnavailable")
+            presentationError = String.localized("session.adapter.libraryUnavailable", locale: locale)
         }
     }
 
@@ -897,7 +1083,7 @@ struct SessionView: View {
 
 // MARK: - AdaptedProgramRoute (wrapper Hashable pour navigationDestination)
 
-private struct AdaptedProgramRoute: Hashable {
+private struct AdaptedProgramRoute: Hashable, Identifiable {
     let id: UUID = UUID()
     let program: AdaptedProgram
     /// Id de l'`AdaptedProgramRecord` persisté ; alimente le fetch progress +
@@ -940,6 +1126,20 @@ private struct AdaptedProgramRoute: Hashable {
 
     func hash(into hasher: inout Hasher) { hasher.combine(id) }
     static func == (lhs: AdaptedProgramRoute, rhs: AdaptedProgramRoute) -> Bool { lhs.id == rhs.id }
+}
+
+// MARK: - SessionDetailRoute (Story 3.35e — fiche séance depuis le dashboard)
+
+private struct SessionDetailRoute: Hashable {
+    let id = UUID()
+    let session: AdaptedSession
+    let week: AdaptedWeek
+    let program: AdaptedProgram
+    let recordId: UUID?
+    let isModifiedByRegen: Bool
+
+    func hash(into hasher: inout Hasher) { hasher.combine(id) }
+    static func == (lhs: SessionDetailRoute, rhs: SessionDetailRoute) -> Bool { lhs.id == rhs.id }
 }
 
 #Preview {

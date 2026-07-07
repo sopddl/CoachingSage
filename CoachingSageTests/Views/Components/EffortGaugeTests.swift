@@ -5,7 +5,6 @@
 // puisque le rendu animé n'est pas observable hors SwiftUI hosting.
 import XCTest
 import SwiftUI
-@testable import CoachingSage
 
 final class EffortGaugeTests: XCTestCase {
 

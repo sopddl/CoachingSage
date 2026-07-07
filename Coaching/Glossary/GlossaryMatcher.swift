@@ -77,6 +77,24 @@ extension Glossary {
         ("ftp", "ftp"),
         ("hmp", "hmp"),
         ("vdot", "vdot"),
+        // Chantier compréhensibilité cycling (2026-06-25) — FCmax rendue tappable (FR/EN/ES).
+        ("fréquence cardiaque maximale", "fcmax"),
+        ("fréquence cardiaque max", "fcmax"),
+        ("frecuencia cardíaca máxima", "fcmax"),
+        ("max hr", "fcmax"),
+        ("fcmáx", "fcmax"),
+        ("fcmax", "fcmax"),
+        ("fc max", "fcmax"),
+        // Chantier compréhensibilité running (2026-06-25) — jargon orphelin rendu tappable.
+        ("vma", "vma"),
+        ("seuils", "seuil"),
+        ("seuil", "seuil"),
+        ("affûtage", "affutage"),
+        ("affutage", "affutage"),
+        ("aérobie", "aerobie"),
+        ("aerobie", "aerobie"),
+        ("excentriques", "excentrique"),
+        ("excentrique", "excentrique"),
         // Multi-sport génériques (plus courts)
         ("threshold", "threshold"),
         ("intervals", "intervals"),
@@ -116,6 +134,25 @@ extension Glossary {
         ("reps", "reps"),
         ("cars", "cars"),
         ("rir", "rir"),
+        // Revue comité 2026-06-06 — jargon échauffement (glutes / band / mobilité / récup).
+        // Multi-mots / longs d'abord (le tri global longest-first gère l'ordre réel).
+        ("resistance band", "band"),
+        ("récupération", "recovery"),
+        ("recuperation", "recovery"),
+        ("élastique", "band"),
+        ("elastique", "band"),
+        ("mini-band", "band"),
+        ("mini band", "band"),
+        ("recovery", "recovery"),
+        ("fessiers", "glutes"),
+        ("mobilité", "mobility"),
+        ("mobilite", "mobility"),
+        ("mobility", "mobility"),
+        ("glutes", "glutes"),
+        ("glute", "glutes"),
+        ("récup", "recovery"),
+        ("recup", "recovery"),
+        ("band", "band"),
         // Story 3.26 Phase A — 27 termes sport-spécifiques (yoga / tennis / football / hiking / triathlon / HIIT).
         // Multi-mots d'abord (longest-first via sortedPatterns).
         // Yoga
@@ -127,6 +164,7 @@ extension Glossary {
         ("savasana", "yoga.savasana"),
         ("pranayama", "yoga.pranayama"),
         ("prânâyâma", "yoga.pranayama"),
+        ("ujjayi", "yoga.pranayama"),
         ("vinyasa", "yoga.vinyasa"),
         ("drishti", "yoga.drishti"),
         ("bandhas", "yoga.bandha"),
@@ -157,6 +195,8 @@ extension Glossary {
         ("une touche", "football.unetouche"),
         ("transition", "football.transition"),
         ("rsa", "football.rsa"),
+        ("fifa 11+", "football.fifa11plus"),
+        ("fifa 11", "football.fifa11plus"),
         // Hiking
         ("dénivelé positif", "hiking.denivele"),
         ("dénivelé", "hiking.denivele"),

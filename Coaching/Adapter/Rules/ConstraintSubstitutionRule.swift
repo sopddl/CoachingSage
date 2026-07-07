@@ -53,7 +53,9 @@ public struct ConstraintSubstitutionRule: AdaptationRule {
                                 aiReason: &aiReason
                             )
                         },
-                        cooldown: session.cooldown
+                        cooldown: session.cooldown,
+                        warmupMinutes: session.warmupMinutes,
+                        cooldownMinutes: session.cooldownMinutes
                     )
                 }
             )
@@ -93,20 +95,27 @@ public struct ConstraintSubstitutionRule: AdaptationRule {
                 day: day,
                 originalExerciseName: ex.originalName,
                 outcome: .substituted,
-                detail: "« \(ex.originalName) » → « \(alternativeName) » (\(blockerLabel))"
+                detail: "« \(ex.originalName) » → « \(alternativeName.canonical) » (\(blockerLabel))"
             ))
+            // Bug #8 — la durée embarquée dans le nom de l'alternative fait foi
+            // (extraite du nom canonique FR, chiffres language-agnostic).
             return AdaptedExercise(
                 name: alternativeName,
                 originalName: ex.originalName,
                 sets: ex.sets,
                 reps: ex.reps,
-                duration: ex.duration,
+                duration: AlternativeName.embeddedDuration(in: alternativeName.canonical) ?? ex.duration,
                 restSeconds: ex.restSeconds,
+                dose: ex.dose,
                 notes: ex.notes,
                 targetZone: ex.targetZone,
                 volumeAxis: ex.volumeAxis,
                 wasSubstituted: true,
-                substitutionReason: "constraint:\(blockerLabel)"
+                substitutionReason: "constraint:\(blockerLabel)",
+                role: ex.role,
+                scalingUnit: ex.scalingUnit,
+                priority: ex.priority,
+                estimatedMinutes: ex.estimatedMinutes
             )
         } else {
             triggeredAI = true

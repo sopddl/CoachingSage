@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Référentiel Dosage Caméléon — décisions à valider</title>
+<style>
+  :root{
+    --bg:#0f1115; --card:#181b22; --card2:#1f232c; --line:#2c313c;
+    --txt:#e7e9ee; --mut:#9aa3b2; --accent:#4f8cff; --ok:#3fb950;
+    --warn:#d29922; --no:#6e7681; --reco:#1c2b1c; --recoline:#2ea043;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+  .wrap{max-width:1100px;margin:0 auto;padding:32px 22px 80px}
+  h1{font-size:25px;margin:0 0 4px}
+  h2{font-size:19px;margin:38px 0 10px;border-bottom:1px solid var(--line);padding-bottom:7px}
+  h3{font-size:16px;margin:22px 0 6px}
+  .sub{color:var(--mut);margin:0 0 6px}
+  .pill{display:inline-block;font-size:12px;padding:2px 9px;border-radius:20px;
+    background:var(--card2);color:var(--mut);border:1px solid var(--line);margin-right:6px}
+  table{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:var(--card2);color:var(--txt);font-weight:600}
+  td.dim{font-weight:600;white-space:nowrap}
+  .A{color:#7ee0a0;font-weight:600}   /* Affiché */
+  .V{color:#7fb4ff;font-weight:600}   /* Vocalisé */
+  .M{color:var(--no)}                 /* Masqué */
+  .yes{color:var(--ok);font-weight:700}
+  .no{color:var(--no)}
+  .maybe{color:var(--warn)}
+  .legend span{margin-right:16px;font-size:13px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;margin:14px 0}
+  .opt{background:var(--card2);border:1px solid var(--line);border-radius:9px;
+    padding:11px 13px;margin:9px 0}
+  .opt.reco{background:var(--reco);border-color:var(--recoline)}
+  .opt b{color:#fff}
+  .tag{font-size:11px;padding:1px 8px;border-radius:12px;border:1px solid var(--line);
+    margin-left:8px;color:var(--mut)}
+  .tag.reco{background:var(--recoline);color:#04140a;border-color:var(--recoline);font-weight:700}
+  .tag.heavy{color:#f0c674;border-color:#5a4a1a}
+  .tag.light{color:#7ee0a0;border-color:#1e5631}
+  .why{color:var(--mut);font-size:13px;margin-top:5px}
+  .q{font-weight:600;color:#fff;margin-bottom:2px}
+  .num{display:inline-block;min-width:30px;color:var(--accent);font-weight:700}
+  code{background:#0c0e12;padding:1px 5px;border-radius:4px;font-size:12.5px;color:#c9d3e0}
+  .note{font-size:13px;color:var(--mut);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Référentiel Dosage Caméléon — à valider avant le pilote</h1>
+<p class="sub">Chantier dosage · méthode « Passe Sport » · 2026-06-07 · <b>pilote = Muscu</b></p>
+<p class="sub">Objet : figer <b>ce que l'écran FOCUS doit montrer/dire</b>, par mode et par sport,
+avant de toucher au code. Coche/annote les décisions <span class="num">D1→D7</span> en bas.</p>
+
+<h2>Constat (carte du code 2026-06-07)</h2>
+<div class="card">
+<p>Aujourd'hui FOCUS dit toujours <b>QUOI</b> + <b>COMBIEN DE TEMPS</b>, presque jamais le
+<b>dosage</b> qui rend la consigne exécutable sans coach.</p>
+<p><b>Déjà dans le modèle</b> (<code>AdaptedProgram.swift</code>) et donc surfaçables sans refonte :
+<code>sets</code>, <code>reps</code>, <code>duration</code>, <code>restSeconds</code> (récup),
+<code>targetZone</code> (allure/zone). <code>volumeAxis</code> existe mais n'est jamais rendu (orphelin).</p>
+<p><b>Absents du modèle</b> (à décider si on les ajoute) :
+<b>charge</b> (muscu), <b>côté G/D</b> structuré, <b>respiration/souffles</b>, <b>RPE</b>, <b>tempo/cadence</b>.
+Ils vivent aujourd'hui en texte libre dans <code>notes</code>, donc invisibles au chrono.</p>
+</div>
+
+<h2>Matrice A — dimension × mode (le « caméléon par mode »)</h2>
+<p class="legend">
+  <span class="A">A = Affiché écran</span>
+  <span class="V">V = Vocalisé</span>
+  <span class="M">— = Masqué / N/A</span>
+  <span style="color:var(--warn)">⚑ = dépend d'une décision ci-dessous</span>
+</p>
+<table>
+<tr><th>Dimension</th><th>Manuel</th><th>Minuté</th><th>Audio</th><th>Réf.</th></tr>
+<tr><td class="dim">Séries (sets)</td><td class="A">A — chip</td><td class="A">A — « Série N/Y » haut</td><td class="A">A + <span class="V">V</span></td><td></td></tr>
+<tr><td class="dim">Reps</td><td class="A">A — chip</td><td class="A">A — « Objectif N reps »</td><td class="A">A + <span class="V">V</span> à l'entrée</td><td></td></tr>
+<tr><td class="dim">Charge</td><td class="A">A ⚑</td><td class="A">A — bandeau au-dessus chrono ⚑</td><td class="A">A + <span class="V">V</span> ⚑</td><td>D1</td></tr>
+<tr><td class="dim">Récup (rest)</td><td class="A">A — chip</td><td class="A">A — phase récup chronométrée</td><td class="A">A + <span class="V">V</span> « récup 30s »</td><td></td></tr>
+<tr><td class="dim">Allure / Zone</td><td class="A">A — badge</td><td class="A">A — bandeau permanent (filet voix) ⚑</td><td class="A">A + <span class="V">V</span> à l'entrée ⚑</td><td>D5</td></tr>
+<tr><td class="dim">RPE / Effort</td><td class="A">A — note</td><td class="A">A — bandeau</td><td class="V">V à l'entrée</td><td></td></tr>
+<tr><td class="dim">Respiration</td><td class="A">A — note</td><td class="A">A — « ≈ 5 souffles » (yoga) ⚑</td><td class="V">V (yoga)</td><td>D3</td></tr>
+<tr><td class="dim">Côté G/D</td><td class="A">A ⚑</td><td class="A">A — alterné ⚑</td><td class="V">V ⚑</td><td>D4</td></tr>
+<tr><td class="dim">Durée</td><td class="M">— (via reps)</td><td class="A">A — chrono (source)</td><td class="A">chrono</td><td></td></tr>
+<tr><td class="dim">Distance</td><td class="A">A</td><td class="A">A</td><td class="V">V</td><td></td></tr>
+<tr><td class="dim">Dénivelé</td><td class="A">A (rando)</td><td class="A">A (rando)</td><td class="V">V (rando)</td><td></td></tr>
+<tr><td class="dim">Tempo / cadence</td><td class="A">A — note</td><td class="A">A — bandeau</td><td class="V">V</td><td></td></tr>
+</table>
+<p class="note">Principe de densité (décision <b>D7</b>) : en mode <b>effort chiffré</b> (muscu / HIIT / cardio)
+le bandeau de métriques est <b>dense, au-dessus du chrono</b> ; en <b>yoga</b> on <b>allège</b>
+(souffle + côté, pas de chiffres).</p>
+
+<h2>Matrice B — sport × dimensions pertinentes (le « caméléon par sport »)</h2>
+<p class="legend"><span class="yes">●</span> central &nbsp; <span class="maybe">○</span> secondaire/optionnel &nbsp; <span class="no">·</span> non pertinent</p>
+<table>
+<tr><th>Sport</th><th>Charge</th><th>Séries</th><th>Reps</th><th>Récup</th><th>Allure/Zone</th><th>Distance</th><th>Dénivelé</th><th>RPE</th><th>Respir.</th><th>Côté</th><th>Tempo</th></tr>
+<tr><td class="dim">Muscu ★</td><td class="yes">●</td><td class="yes">●</td><td class="yes">●</td><td class="yes">●</td><td class="no">·</td><td class="no">·</td><td class="no">·</td><td class="maybe">○</td><td class="no">·</td><td class="maybe">○</td><td class="maybe">○</td></tr>
+<tr><td class="dim">HIIT</td><td class="maybe">○</td><td class="yes">●</td><td class="yes">●</td><td class="yes">●</td><td class="no">·</td><td class="no">·</td><td class="no">·</td><td class="yes">●</td><td class="no">·</td><td class="no">·</td><td class="no">·</td></tr>
+<tr><td class="dim">Running</td><td class="no">·</td><td class="maybe">○</td><td class="no">·</td><td class="yes">●</td><td class="yes">●</td><td class="yes">●</td><td class="no">·</td><td class="yes">●</td><td class="no">·</td><td class="no">·</td><td class="maybe">○</td></tr>
+<tr><td class="dim">Cycling</td><td class="no">·</td><td class="maybe">○</td><td class="no">·</td><td class="yes">●</td><td class="yes">●</td><td class="maybe">○</td><td class="no">·</td><td class="yes">●</td><td class="no">·</td><td class="no">·</td><td class="yes">●</td></tr>
+<tr><td class="dim">Swimming</td><td class="no">·</td><td class="yes">●</td><td class="no">·</td><td class="yes">●</td><td class="yes">●</td><td class="yes">●</td><td class="no">·</td><td class="maybe">○</td><td class="no">·</td><td class="no">·</td><td class="no">·</td></tr>
+<tr><td class="dim">Triathlon</td><td class="no">·</td><td class="maybe">○</td><td class="no">·</td><td class="yes">●</td><td class="yes">●</td><td class="yes">●</td><td class="no">·</td><td class="yes">●</td><td class="no">·</td><td class="no">·</td><td class="maybe">○</td></tr>
+<tr><td class="dim">Hiking</td><td class="no">·</td><td class="no">·</td><td class="no">·</td><td class="maybe">○</td><td class="maybe">○</td><td class="yes">●</td><td class="yes">●</td><td class="yes">●</td><td class="no">·</td><td class="no">·</td><td class="no">·</td></tr>
+<tr><td class="dim">Yoga</td><td class="no">·</td><td class="no">·</td><td class="no">·</td><td class="no">·</td><td class="no">·</td><td class="no">·</td><td class="no">·</td><td class="maybe">○</td><td class="yes">●</td><td class="yes">●</td><td class="no">·</td></tr>
+<tr><td class="dim">Tennis</td><td class="no">·</td><td class="yes">●</td><td class="maybe">○</td><td class="yes">●</td><td class="no">·</td><td class="no">·</td><td class="no">·</td><td class="maybe">○</td><td class="no">·</td><td class="yes">●</td><td class="no">·</td></tr>
+<tr><td class="dim">Football</td><td class="no">·</td><td class="yes">●</td><td class="maybe">○</td><td class="yes">●</td><td class="no">·</td><td class="maybe">○</td><td class="no">·</td><td class="yes">●</td><td class="no">·</td><td class="no">·</td><td class="no">·</td></tr>
+</table>
+<p class="note">★ = pilote. « Côté » tennis = coup droit / revers ; « Séries » tennis/foot = répétitions d'ateliers/drills.</p>
+
+<h2>Décisions à arbitrer <span class="tag light">light = surface l'existant</span> <span class="tag heavy">heavy = champ modèle + 40 templates</span></h2>
+
+<div class="card">
+<p class="q"><span class="num">D1</span> Charge muscu — comment la donner ? <span class="pill">le gros sujet · modèle n'a pas de champ charge</span></p>
+<div class="opt"><b>A — Saisie utilisateur</b> par exo, repris « comme la dernière fois ». <span class="tag heavy">heavy</span>
+  <div class="why">Le plus utile (progression visible). Demande persistance + UI saisie + historique par exo.</div></div>
+<div class="opt reco"><b>C — Hybride</b> : consigne dans le template (« charge pour N reps, 2 en réserve ») <i>+</i> champ optionnel à noter qui s'auto-suggère ensuite. <span class="tag reco">recommandé</span> <span class="tag heavy">heavy</span>
+  <div class="why">Guide le débutant (consigne) ET sert l'habitué (note + rappel). Compromis valeur/effort.</div></div>
+<div class="opt"><b>B — Lecture seule</b> : seulement la consigne dans le template, aucun champ ni tracking. <span class="tag light">light</span>
+  <div class="why">Rapide à livrer, mais pas de mémoire de charge → l'utilisateur retient de tête.</div></div>
+</div>
+
+<div class="card">
+<p class="q"><span class="num">D2</span> HIIT — reps cible vs AMRAP ?</p>
+<div class="opt reco"><b>C — Les deux selon le template</b> (un champ distingue « reps fixes » de « AMRAP / max en X »). <span class="tag reco">recommandé</span>
+  <div class="why">Les WOD réels mélangent les deux ; un seul mode trahit la moitié des séances.</div></div>
+<div class="opt"><b>A — Reps cible fixe</b> uniquement (« 12 burpees »). <span class="tag light">light</span></div>
+<div class="opt"><b>B — AMRAP</b> uniquement (« max en 40s »).</div>
+</div>
+
+<div class="card">
+<p class="q"><span class="num">D3</span> Yoga — tenue en souffles ou en secondes ?</p>
+<div class="opt reco"><b>C — Les deux</b> : chrono + « ≈ 5 respirations » en sous-texte. <span class="tag reco">recommandé</span> <span class="tag heavy">heavy</span>
+  <div class="why">Garde le filet chrono (mode minuté intact) et ajoute le repère yoga. Demande un champ « souffles » ou une conversion.</div></div>
+<div class="opt"><b>A — Secondes seules</b> (statu quo, rien à faire). <span class="tag light">light</span></div>
+<div class="opt"><b>B — Souffles à la place du chrono</b> (compteur de respirations, pas de secondes). <span class="tag heavy">heavy</span></div>
+</div>
+
+<div class="card">
+<p class="q"><span class="num">D4</span> Côté G/D — structuré ou texte ?</p>
+<div class="opt reco"><b>B — Champ structuré</b> + guidage « Côté droit / Côté gauche » (affiché + vocalisé, alternance). <span class="tag reco">recommandé</span> <span class="tag heavy">heavy</span>
+  <div class="why">Cohérent avec D1/D3 (même upgrade modèle). Le coach « change de côté » devient explicite. Concerne yoga + tennis.</div></div>
+<div class="opt"><b>A — Rester en texte</b> (« 12/côté » dans reps/notes, comme aujourd'hui). <span class="tag light">light</span></div>
+</div>
+
+<div class="card">
+<p class="q"><span class="num">D5</span> Allure / zone running à l'écran (minuté/audio) ? <span class="pill">la donnée <code>targetZone</code> existe déjà</span></p>
+<div class="opt reco"><b>C — Bandeau permanent + vocalisation à l'entrée</b> (« en zone 2 »). <span class="tag reco">recommandé</span> <span class="tag light">light</span>
+  <div class="why">Filet quand la voix coupe (écran verrouillé, écouteurs retirés). Faible coût : la donnée est déjà là.</div></div>
+<div class="opt"><b>A — Bandeau écran seul</b> (pas de voix). <span class="tag light">light</span></div>
+<div class="opt"><b>B — Vocalisation seule</b> à l'entrée.</div>
+</div>
+
+<div class="card">
+<p class="q"><span class="num">D6</span> Échauffement running affiché en bleu (devrait être orange) ?</p>
+<div class="opt reco"><b>B — Normaliser la structure template</b> : échauffement = phase <code>.warmup</code>, pas un exercice <code>.work</code>. <span class="tag reco">recommandé</span> <span class="tag heavy">heavy</span>
+  <div class="why">Cause racine (la teinte est déterministe par <code>phase.kind</code>). Conforme « jamais de quick fix ». Touche les templates running.</div></div>
+<div class="opt"><b>A — Teinter par le label</b> (détecter « échauffement » → orange). <span class="tag light">light</span>
+  <div class="why">Rapide mais fragile (dépend du texte, casse en EN/ES).</div></div>
+</div>
+
+<div class="card">
+<p class="q"><span class="num">D7</span> Principe de densité caméléon — on confirme ?</p>
+<div class="opt reco"><b>Oui</b> : effort chiffré (muscu/HIIT/cardio) = bandeau métriques dense au-dessus du chrono ; yoga = allégé (souffle/côté, pas de chiffres). <span class="tag reco">recommandé</span>
+  <div class="why">Tranche la tension Maxime (+chiffres) ⟷ Inès (−texte). C'est l'ossature du caméléon dosage.</div></div>
+</div>
+
+<h2>Ce que ça implique</h2>
+<div class="card">
+<p>Si tu valides les recommandations (C/C/C/B/C/B/Oui), le pilote muscu nécessite un
+<b>upgrade modèle</b> (<code>AdaptedExercise</code> : <code>load</code>, <code>side</code>, <code>breaths</code>)
++ enrichissement des templates concernés. C'est le scénario « dosage complet ».</p>
+<p>Si tu préfères <b>livrer vite d'abord</b>, on peut prendre les options <span class="tag light">light</span>
+(A/A/A/A/C/A) = « surfacer l'existant » (zone, récup, reps, séries déjà dans le modèle) sans
+nouveau champ ni refonte templates, et garder les champs structurés pour une V2.</p>
+<p class="note">→ Dis-moi par décision (D1=C, D2=…), ou « tout en recommandé » / « tout en light pour V1 ».
+Je fige la grille, puis je lance la passe pilote muscu (party Sally + prépa physique + Maxime/Inès).</p>
+</div>
+
+</div>
+</body>
+</html>

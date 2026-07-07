@@ -36,7 +36,9 @@ struct ProgramTemplateSelector {
     }
 
     /// Sélectionne le template le plus adapté au profil. Non-optionnel par contrat.
-    func select(profile: CoachingSportProfile) -> ProgramTemplate {
+    /// Retourne un `TemplateSummary` (métadonnées) — le caller charge le template
+    /// COMPLET via `library.fullTemplate(id:)` au moment d'adapter la séance.
+    func select(profile: CoachingSportProfile) -> TemplateSummary {
         let sport = Sport(sportCode: profile.sportCode)
         let level = Level(profileLevel: profile.level) ?? .beginner
         let goal = profile.goals.primary
@@ -50,13 +52,13 @@ struct ProgramTemplateSelector {
             }
         }
 
-        if let anyLevelMatch = library.templates.filter({ $0.level == level })
+        if let anyLevelMatch = library.summaries.filter({ $0.level == level })
             .min(by: idAscending) {
             return anyLevelMatch
         }
 
         // Library non vide (precondition init), tri deterministic par id.
-        return library.templates.min(by: idAscending)!
+        return library.summaries.min(by: idAscending)!
     }
 
     /// Sélectionne jusqu'à `n` templates calibrés sur (level autoprofil ∩ sports onboarding).
@@ -69,16 +71,16 @@ struct ProgramTemplateSelector {
     ///   3. Tous sports × level exact
     ///   4. Tout le reste (precondition library non vide pour CoachingSage v2)
     /// À chaque tier : tri `id` ascendant, dédup par `id`, on s'arrête dès `n` atteint.
-    func selectTopN(profile: TopNSelectionProfile, n: Int) -> [ProgramTemplate] {
+    func selectTopN(profile: TopNSelectionProfile, n: Int) -> [TemplateSummary] {
         guard n > 0 else { return [] }
 
         let level = Level(profileLevel: profile.level) ?? .beginner
         let declaredSports = Set(profile.sportCodes.compactMap { Sport(sportCode: $0) })
 
-        var picked: [ProgramTemplate] = []
+        var picked: [TemplateSummary] = []
         var pickedIds = Set<String>()
 
-        func append(_ candidates: [ProgramTemplate]) {
+        func append(_ candidates: [TemplateSummary]) {
             for tpl in candidates {
                 guard picked.count < n, !pickedIds.contains(tpl.id) else { continue }
                 picked.append(tpl)
@@ -87,7 +89,7 @@ struct ProgramTemplateSelector {
         }
 
         // Tier 1 — sports déclarés × level exact, tri id ascendant.
-        let tier1 = library.templates
+        let tier1 = library.summaries
             .filter { declaredSports.contains($0.sport) && $0.level == level }
             .sorted(by: idAscending)
         append(tier1)
@@ -95,7 +97,7 @@ struct ProgramTemplateSelector {
 
         // Tier 2 — sports déclarés × level proche (distance asc, level inférieur préféré, puis id).
         let targetRank = level.rank
-        let tier2 = library.templates
+        let tier2 = library.summaries
             .filter { declaredSports.contains($0.sport) && $0.level != level }
             .sorted { lhs, rhs in
                 let dl = abs(lhs.level.rank - targetRank)
@@ -108,27 +110,27 @@ struct ProgramTemplateSelector {
         if picked.count >= n { return picked }
 
         // Tier 3 — n'importe quel sport, level exact, tri id ascendant.
-        let tier3 = library.templates
+        let tier3 = library.summaries
             .filter { $0.level == level }
             .sorted(by: idAscending)
         append(tier3)
         if picked.count >= n { return picked }
 
         // Tier 4 — tout le reste, tri id ascendant.
-        let tier4 = library.templates.sorted(by: idAscending)
+        let tier4 = library.summaries.sorted(by: idAscending)
         append(tier4)
         return picked
     }
 
     // MARK: - Internal
 
-    private func pickExact(sport: Sport, level: Level, goal: String) -> ProgramTemplate? {
+    private func pickExact(sport: Sport, level: Level, goal: String) -> TemplateSummary? {
         let candidates = library.templates(for: sport, level: level)
         guard !candidates.isEmpty else { return nil }
         return tieBreak(candidates, goal: goal)
     }
 
-    private func pickNearestLevel(sport: Sport, target: Level, goal: String) -> ProgramTemplate? {
+    private func pickNearestLevel(sport: Sport, target: Level, goal: String) -> TemplateSummary? {
         let sameSport = library.templates(for: sport)
         guard !sameSport.isEmpty else { return nil }
         // Distance entre Level rangs (beginner=0, recreational=1, regular=2, competitive=3).
@@ -150,7 +152,7 @@ struct ProgramTemplateSelector {
     /// Si plusieurs candidats partagent (sport, level) à terme, on choisit le plus
     /// proche du goal en cherchant un substring du goal normalisé dans l'id ;
     /// fallback tri ascendant par id pour garantir le déterminisme.
-    private func tieBreak(_ candidates: [ProgramTemplate], goal: String) -> ProgramTemplate? {
+    private func tieBreak(_ candidates: [TemplateSummary], goal: String) -> TemplateSummary? {
         guard !candidates.isEmpty else { return nil }
         if candidates.count == 1 { return candidates.first }
         let normalizedGoal = goal.lowercased()
@@ -161,7 +163,7 @@ struct ProgramTemplateSelector {
         return candidates.min(by: idAscending)
     }
 
-    private func idAscending(_ lhs: ProgramTemplate, _ rhs: ProgramTemplate) -> Bool {
+    private func idAscending(_ lhs: TemplateSummary, _ rhs: TemplateSummary) -> Bool {
         lhs.id < rhs.id
     }
 }

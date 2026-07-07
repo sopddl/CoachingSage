@@ -5,6 +5,7 @@ import os
 import SwiftUI
 import SwiftData
 import SageCore
+import UserNotifications
 
 @main
 struct CoachingSageApp: App {
@@ -44,14 +45,20 @@ struct CoachingSageApp: App {
         } catch {
             fatalError("Impossible d'initialiser le ModelContainer SwiftData : \(error)")
         }
-        self.languageManager = LanguageManager()
+        let lm = LanguageManager()
+        self.languageManager = lm
 
         // **Story 3.11 UI review** — `UI_TEST_LANG=fr|en` permet à l'agent ui-reviewer
         // de forcer la langue au launch (sans devoir passer par le selecteur in-app
         // ni les leviers OS qui sont mal interceptés en mode `UI_TEST_SCENARIO`).
-        if let testLang = env["UI_TEST_LANG"], let lang = SupportedLanguage(rawValue: testLang) {
-            self.languageManager.switchLanguage(to: lang)
+        if let testLang = env["UI_TEST_LANG"], let lang = AppLanguage(rawValue: testLang) {
+            lm.switchLanguage(to: lang)
         }
+
+        // Epic 8 — le contenu des notifications suit la langue in-app (bon bundle).
+        deps.notificationService.localeProvider = { lm.currentLocale }
+        // Epic 8 — présenter les notifs même app au premier plan (sinon iOS les supprime).
+        UNUserNotificationCenter.current().delegate = NotificationForegroundPresenter.shared
 
         if isUITesting {
             // Mode UI testing : pré-authentifié + onboarding bypass (cohérent flow existant).
@@ -77,29 +84,20 @@ struct CoachingSageApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
+                // Le container de scénarios UI review n'existe qu'en DEBUG
+                // (`UIReviewScenarioContainer` est sous `#if DEBUG`). En Release
+                // (archive TestFlight/App Store) il n'y a jamais de scénario → on
+                // rend directement le contenu prod. Sans cette garde, l'archive
+                // Release ne compilait pas (symbole introuvable).
+                #if DEBUG
                 if let scenario = Self.resolveUITestScenario() {
                     UIReviewScenarioContainer(scenario: scenario)
-                } else if !isAuthenticated {
-                    AuthView(
-                        authService: deps.authService,
-                        coreProfileRepository: deps.coreProfileRepository
-                    )
-                } else if isLoadingOnboardingState {
-                    ZStack {
-                        Color.coachingBackground.ignoresSafeArea()
-                        ProgressView()
-                            .controlSize(.large)
-                            .tint(Color.coachingPrimary)
-                    }
-                    .accessibilityIdentifier("onboarding.loading.splash")
-                } else if !hasCompletedOnboarding, let vm = onboardingViewModel {
-                    OnboardingView(viewModel: vm, onCompleted: {
-                        hasCompletedOnboarding = true
-                        onboardingViewModel = nil
-                    })
                 } else {
-                    MainTabView()
+                    rootContent
                 }
+                #else
+                rootContent
+                #endif
             }
             .environment(\.appDependencies, deps)
             .environment(\.languageManager, languageManager)
@@ -120,6 +118,12 @@ struct CoachingSageApp: App {
             }
             .task(id: isAuthenticated) {
                 await refreshOnboardingState()
+            }
+            .task(id: isAuthenticated) {
+                // Epic 8 — (re)planifie les notifications locales d'engagement au
+                // lancement (best-effort, idempotent ; no-op si non autorisé/désactivé).
+                guard isAuthenticated else { return }
+                await deps.notificationService.reschedule()
             }
             .task {
                 // En UI testing OU unit tests Cmd+U, ne pas écouter authStateChanges
@@ -149,6 +153,34 @@ struct CoachingSageApp: App {
         .modelContainer(container)
     }
 
+    /// Contenu racine « production » (hors scénario UI review DEBUG) : auth →
+    /// hydratation onboarding → onboarding → app. Extrait pour pouvoir compiler
+    /// la branche scénario sous `#if DEBUG` sans dupliquer cette chaîne.
+    @ViewBuilder
+    private var rootContent: some View {
+        if !isAuthenticated {
+            AuthView(
+                authService: deps.authService,
+                coreProfileRepository: deps.coreProfileRepository
+            )
+        } else if isLoadingOnboardingState {
+            ZStack {
+                Color.coachingBackground.ignoresSafeArea()
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(Color.coachingPrimary)
+            }
+            .accessibilityIdentifier("onboarding.loading.splash")
+        } else if !hasCompletedOnboarding, let vm = onboardingViewModel {
+            OnboardingView(viewModel: vm, onCompleted: {
+                hasCompletedOnboarding = true
+                onboardingViewModel = nil
+            })
+        } else {
+            MainTabView()
+        }
+    }
+
     /// Résout le scenario `ui_review_*` au launch en lisant 3 sources successives :
     ///   1. env var `UI_TEST_SCENARIO` (préférée, set via `SIMCTL_CHILD_UI_TEST_SCENARIO` ou `xcrun simctl launch --env`)
     ///   2. launch arg flag `-UI_TEST_SCENARIO <value>` (`xcrun simctl launch ... -UI_TEST_SCENARIO ...`)
@@ -157,6 +189,7 @@ struct CoachingSageApp: App {
     /// Le fallback launch args est nécessaire pour les agents (sandbox Bash + MCP `app_launch`)
     /// qui ne peuvent pas injecter d'env var sur `xcrun simctl`. Cf finding ui-reviewer
     /// 2026-05-19 + mémoire `epic3_ui_review_pattern_ported_cs`. À propager TS/GS.
+    #if DEBUG
     private static func resolveUITestScenario() -> String? {
         if let envScenario = ProcessInfo.processInfo.environment["UI_TEST_SCENARIO"],
            !envScenario.isEmpty {
@@ -173,6 +206,7 @@ struct CoachingSageApp: App {
         }
         return nil
     }
+    #endif
 
     @MainActor
     private func refreshOnboardingState() async {

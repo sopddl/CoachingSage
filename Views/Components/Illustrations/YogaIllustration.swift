@@ -31,13 +31,33 @@ import SwiftUI
 struct YogaIllustration: View {
     let sportCode: String
     var exerciseName: String? = nil
+    /// Hauteur de rendu. POC yoga (D4) : avant, la frame était figée à 80×48 et le
+    /// `size:` passé par le parent était ignoré → dessin « riquiqui ». Désormais le
+    /// dessin grossit avec `size` (largeur = hauteur × ratio viewbox, ancrage conservé).
+    var size: CGFloat = IllustrationStyle.staticFrameSize.height
 
     var body: some View {
-        Canvas { ctx, size in
-            let sx = size.width / IllustrationStyle.staticFrameSize.width
-            let sy = size.height / IllustrationStyle.staticFrameSize.height
+        Canvas { ctx, canvasSize in
+            let sx = canvasSize.width / IllustrationStyle.staticFrameSize.width
+            let sy = canvasSize.height / IllustrationStyle.staticFrameSize.height
             let s = min(sx, sy)
-            let stroke = StrokeStyle(lineWidth: IllustrationStyle.strokeWidth * s, lineCap: .round, lineJoin: .round)
+            // Centrage du dessin dans la frame (D4 « recentrer ») — sans effet quand
+            // la frame respecte déjà le ratio du viewbox, robuste sinon.
+            ctx.translateBy(x: (canvasSize.width - IllustrationStyle.staticFrameSize.width * s) / 2,
+                            y: (canvasSize.height - IllustrationStyle.staticFrameSize.height * s) / 2)
+            // Passe design systémique (revue panel 2026-06-16) : les poses REPLIÉES / inversées /
+            // équilibres bras entassent les segments ; à trait épais (2.5) ils fusionnent en aplat
+            // « forme-objet » illisible. On rend ces poses avec un trait plus FIN pour rouvrir les
+            // membres (les poses debout/profil gardent le trait épais qui marche bien).
+            let compactPoses: Set<YogaPose> = [
+                .salabhasana, .dhanurasana, .bakasana, .bhujapidasana, .garbhaPindasana,
+                .karnapidasana, .kapotasana, .prasaritaPadottanasana, .upavisthaKonasana,
+                .ardhaBaddhaPadmottanasana, .phalakasana, .utthitaHastaPadangusthasana,
+                .marichyasanaA, .kurmasana, .halasana,
+            ]
+            let lw = compactPoses.contains(poseKind)
+                ? IllustrationStyle.strokeWidth * 0.7 : IllustrationStyle.strokeWidth
+            let stroke = StrokeStyle(lineWidth: lw * s, lineCap: .round, lineJoin: .round)
 
             // Sol pointillé fixe (référentiel ancrage)
             var ground = Path()
@@ -92,11 +112,39 @@ struct YogaIllustration: View {
             case .ardhaChandrasana:  drawArdhaChandrasana(ctx, s: s, stroke: stroke)
             case .sukhasana:         drawSukhasana(ctx, s: s, stroke: stroke)
             case .sirsasana:         drawSirsasana(ctx, s: s, stroke: stroke)
-            case .unknown:         drawWarrior1(ctx, s: s, stroke: stroke) // fallback safe
+            // Party illustrations 2026-06-08 — asanas avancées
+            case .salabhasana:                  drawSalabhasana(ctx, s: s, stroke: stroke)
+            case .ustrasana:                    drawUstrasana(ctx, s: s, stroke: stroke)
+            case .dhanurasana:                  drawDhanurasana(ctx, s: s, stroke: stroke)
+            case .phalakasana:                  drawPhalakasana(ctx, s: s, stroke: stroke)
+            case .upavisthaKonasana:            drawUpavisthaKonasana(ctx, s: s, stroke: stroke)
+            case .bakasana:                     drawBakasana(ctx, s: s, stroke: stroke)
+            case .purvottanasana:               drawPurvottanasana(ctx, s: s, stroke: stroke)
+            case .uttanaPadasana:               drawUttanaPadasana(ctx, s: s, stroke: stroke)
+            case .prasaritaPadottanasana:       drawPrasaritaPadottanasana(ctx, s: s, stroke: stroke)
+            case .padahastasana:                drawPadahastasana(ctx, s: s, stroke: stroke)
+            case .ardhaMatsyendrasana:          drawArdhaMatsyendrasana(ctx, s: s, stroke: stroke)
+            case .kapotasana:                   drawKapotasana(ctx, s: s, stroke: stroke)
+            case .bhujapidasana:                drawBhujapidasana(ctx, s: s, stroke: stroke)
+            case .garbhaPindasana:              drawGarbhaPindasana(ctx, s: s, stroke: stroke)
+            case .karnapidasana:                drawKarnapidasana(ctx, s: s, stroke: stroke)
+            case .utthitaHastaPadangusthasana:  drawUtthitaHastaPadangusthasana(ctx, s: s, stroke: stroke)
+            case .ardhaBaddhaPadmottanasana:    drawArdhaBaddhaPadmottanasana(ctx, s: s, stroke: stroke)
+            // POC yoga (D1) — fallback ORIENTATION-AWARE : une posture non reconnue
+            // ne s'affiche plus systématiquement debout (Warrior I). On infère
+            // couché/assis/debout par mots-clés sanskrit et on dessine une
+            // silhouette générique de la BONNE orientation. Plus jamais d'absurde
+            // (couché → debout). Couverture 1-dessin-par-posture = V2.
+            case .unknown:
+                switch fallbackOrientation {
+                case .lying:    drawGenericLying(ctx, s: s, stroke: stroke)
+                case .seated:   drawGenericSeated(ctx, s: s, stroke: stroke)
+                case .standing: drawGenericStanding(ctx, s: s, stroke: stroke)
+                }
             }
         }
-        .frame(width: IllustrationStyle.staticFrameSize.width,
-               height: IllustrationStyle.staticFrameSize.height)
+        .frame(width: size * IllustrationStyle.staticFrameSize.width / IllustrationStyle.staticFrameSize.height,
+               height: size)
     }
 
     // MARK: - Pose detection
@@ -116,6 +164,11 @@ struct YogaIllustration: View {
         // Story 3.23 Lot 6 (reste yoga)
         case anjaneyasana, urdhvaDhanurasana, dolphinPose, garudasana, utkatasana
         case warrior3, nadiShodhana, ardhaChandrasana, sukhasana, sirsasana
+        // Party illustrations 2026-06-08 — asanas avancées (longue traîne, comp/advanced)
+        case salabhasana, ustrasana, dhanurasana, phalakasana, upavisthaKonasana
+        case bakasana, purvottanasana, uttanaPadasana, prasaritaPadottanasana, padahastasana
+        case ardhaMatsyendrasana, kapotasana, bhujapidasana, garbhaPindasana, karnapidasana
+        case utthitaHastaPadangusthasana, ardhaBaddhaPadmottanasana
         case unknown
     }
 
@@ -298,6 +351,31 @@ struct YogaIllustration: View {
             || lower.contains("equilibre tete") {
             return .sirsasana
         }
+        // Party illustrations 2026-06-08 — asanas avancées (placées AVANT les catch génériques).
+        if lower.contains("salabhasana") || lower.contains("sauterelle") || lower.contains("locust") { return .salabhasana }
+        if lower.contains("ustrasana") || lower.contains("chameau") || lower.contains("camel") { return .ustrasana }
+        // Dhanurasana (arc) — APRÈS urdhva dhanurasana (roue, déjà capté plus haut).
+        if lower.contains("dhanurasana") || lower.contains("posture de l'arc") || lower.contains("bow pose") { return .dhanurasana }
+        if lower.contains("phalakasana") || lower.contains("kumbhakasana") { return .phalakasana }
+        if lower.contains("upavistha") { return .upavisthaKonasana }
+        if lower.contains("bakasana") || lower.contains("crow") || lower.contains("corbeau") || lower.contains("corneille") { return .bakasana }
+        if lower.contains("purvottanasana") || lower.contains("planche inversée") || lower.contains("planche inversee")
+            || lower.contains("upward plank") || lower.contains("reverse plank") { return .purvottanasana }
+        if lower.contains("uttana padasana") { return .uttanaPadasana }
+        if lower.contains("prasarita") { return .prasaritaPadottanasana }
+        if lower.contains("padahastasana") || lower.contains("mains sous") { return .padahastasana }
+        // Ardha Matsyendrasana (torsion assise) — distinct de Matsyasana (poisson) et Ardha Chandrasana.
+        if lower.contains("matsyendrasana") || lower.contains("demi-torsion") || lower.contains("seated twist")
+            || lower.contains("torsion assise") { return .ardhaMatsyendrasana }
+        if lower.contains("kapotasana") || lower.contains("pigeon royal") || lower.contains("king pigeon") { return .kapotasana }
+        if lower.contains("bhujapidasana") || lower.contains("pression épaule") || lower.contains("pression epaule")
+            || lower.contains("pression bras") || lower.contains("arm pressure") { return .bhujapidasana }
+        if lower.contains("garbha") || lower.contains("kukkutasana") || lower.contains("embryon")
+            || lower.contains("rooster") || lower.contains("coq") { return .garbhaPindasana }
+        if lower.contains("karnapidasana") || lower.contains("genoux aux oreilles") || lower.contains("knees to ears") { return .karnapidasana }
+        if lower.contains("utthita hasta") || lower.contains("hand to big toe") || lower.contains("main au gros orteil") { return .utthitaHastaPadangusthasana }
+        if lower.contains("ardha baddha padmottanasana") || lower.contains("demi-lotus debout") { return .ardhaBaddhaPadmottanasana }
+
         if lower.contains("chien") || lower.contains("downward") || lower.contains("adho") { return .downwardDog }
         if lower.contains("guerrier 2") || lower.contains("guerrier ii") || lower.contains("warrior 2") || lower.contains("warrior ii") || lower.contains("virabhadrasana ii") { return .warrior2 }
         if lower.contains("guerrier") || lower.contains("warrior") || lower.contains("virabhadrasana") { return .warrior1 }
@@ -309,6 +387,139 @@ struct YogaIllustration: View {
         if lower.contains("bateau") || lower.contains("boat") || lower.contains("navasana") { return .boat }
         if lower.contains("savasana") || lower.contains("cadavre") || lower.contains("relaxation") { return .savasana }
         return .unknown
+    }
+
+    // MARK: - POC yoga (D1) — fallback orientation-aware
+
+    /// Orientation générale d'une posture, pour choisir une silhouette générique
+    /// quand la pose précise n'est pas reconnue (au lieu d'afficher Warrior I debout
+    /// sur une posture couchée). Mots-clés SANSKRIT + FR + EN. Défaut = debout.
+    private enum YogaOrientation { case lying, seated, standing }
+
+    private var fallbackOrientation: YogaOrientation {
+        guard let lower = exerciseName?.lowercased() else { return .standing }
+        // Couché (sur le dos / le ventre, inversions au sol, backbends couchés).
+        let lyingKeys = ["savasana", "supta", "jathara", "setu", "sarvangasana", "halasana",
+                         "viparita", "matsyasana", "dhanurasana", "salabhasana", "bhujangasana",
+                         "ananda balasana", "allongé", "allonge", "couché", "couche",
+                         "sur le dos", "sur le ventre", "lying", "reclining", "supine", "prone"]
+        // Assis / à genoux (postures au sol jambes pliées).
+        let seatedKeys = ["sukhasana", "padmasana", "vajrasana", "dandasana", "paschimottanasana",
+                          "konasana", "marichyasana", "navasana", "gomukhasana", "siddhasana",
+                          "upavistha", "virasana", "agnistambhasana", "assis", "assise", "seated",
+                          "tailleur", "lotus", "à genoux", "a genoux", "genoux", "kneeling"]
+        if lyingKeys.contains(where: lower.contains) { return .lying }
+        if seatedKeys.contains(where: lower.contains) { return .seated }
+        return .standing
+    }
+
+    /// Silhouette générique COUCHÉE (sur le dos), vue de profil — neutre. Dessine
+    /// une vraie personne allongée (tête, tronc, bras posé, jambe avec genou
+    /// légèrement relevé, pied) pour NE PAS ressembler à une flèche.
+    private func drawGenericLying(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        let groundY: CGFloat = 42 * s
+        let headX: CGFloat = 16 * s
+        let headSize: CGFloat = 6 * s
+        let hipX: CGFloat = 44 * s
+        let kneeX: CGFloat = 54 * s
+        let footX: CGFloat = 62 * s
+
+        // Tête (à gauche, posée au sol)
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: headX - headSize / 2, y: groundY - headSize / 2,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+        // Tronc (nuque → hanche, posé au sol)
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: headX + headSize / 2 + 1 * s, y: groundY))
+        trunk.addLine(to: CGPoint(x: hipX, y: groundY))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+        // Jambe avec genou LÉGÈREMENT relevé puis pied au sol (signale une personne,
+        // pas une simple barre/flèche).
+        var leg = Path()
+        leg.move(to: CGPoint(x: hipX, y: groundY))
+        leg.addLine(to: CGPoint(x: kneeX, y: groundY - 6 * s))
+        leg.addLine(to: CGPoint(x: footX, y: groundY))
+        ctx.stroke(leg, with: .color(silhouette), style: stroke)
+        // Bras posé le long du corps, NETTEMENT décalé sous le tronc (pas collé).
+        var arm = Path()
+        arm.move(to: CGPoint(x: headX + 6 * s, y: groundY + 3 * s))
+        arm.addLine(to: CGPoint(x: hipX - 4 * s, y: groundY + 3 * s))
+        ctx.stroke(arm, with: .color(silhouette), style: stroke)
+    }
+
+    /// Silhouette générique ASSISE (jambes croisées) — neutre.
+    private func drawGenericSeated(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        let cx: CGFloat = 40 * s
+        let headSize: CGFloat = 6 * s
+        let hipY: CGFloat = 38 * s
+
+        // Tête
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: cx - headSize / 2, y: 14 * s,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+        // Tronc droit vertical (épaules → hanche)
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: cx, y: 20 * s))
+        trunk.addLine(to: CGPoint(x: cx, y: hipY))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+        // Jambes croisées : triangle bas posé au sol (genoux écartés vers le sol)
+        var legs = Path()
+        legs.move(to: CGPoint(x: cx, y: hipY))
+        legs.addLine(to: CGPoint(x: cx - 14 * s, y: 46 * s))
+        legs.addLine(to: CGPoint(x: cx + 14 * s, y: 46 * s))
+        legs.addLine(to: CGPoint(x: cx, y: hipY))
+        ctx.stroke(legs, with: .color(silhouette), style: stroke)
+        // Bras posés sur les genoux
+        var armL = Path()
+        armL.move(to: CGPoint(x: cx, y: 24 * s))
+        armL.addLine(to: CGPoint(x: cx - 11 * s, y: 44 * s))
+        ctx.stroke(armL, with: .color(silhouette), style: stroke)
+        var armR = Path()
+        armR.move(to: CGPoint(x: cx, y: 24 * s))
+        armR.addLine(to: CGPoint(x: cx + 11 * s, y: 44 * s))
+        ctx.stroke(armR, with: .color(silhouette), style: stroke)
+    }
+
+    /// Silhouette générique DEBOUT (montagne) — neutre, bras le long du corps.
+    private func drawGenericStanding(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        let cx: CGFloat = 40 * s
+        let headSize: CGFloat = 6 * s
+        let shoulderY: CGFloat = 14 * s
+        let hipY: CGFloat = 30 * s
+
+        // Tête
+        ctx.stroke(
+            Path(ellipseIn: CGRect(x: cx - headSize / 2, y: 6 * s,
+                                    width: headSize, height: headSize)),
+            with: .color(silhouette), style: stroke
+        )
+        // Tronc
+        var trunk = Path()
+        trunk.move(to: CGPoint(x: cx, y: shoulderY))
+        trunk.addLine(to: CGPoint(x: cx, y: hipY))
+        ctx.stroke(trunk, with: .color(silhouette), style: stroke)
+        // Bras le long du corps
+        var armL = Path()
+        armL.move(to: CGPoint(x: cx, y: shoulderY + 1 * s))
+        armL.addLine(to: CGPoint(x: cx - 6 * s, y: 28 * s))
+        ctx.stroke(armL, with: .color(silhouette), style: stroke)
+        var armR = Path()
+        armR.move(to: CGPoint(x: cx, y: shoulderY + 1 * s))
+        armR.addLine(to: CGPoint(x: cx + 6 * s, y: 28 * s))
+        ctx.stroke(armR, with: .color(silhouette), style: stroke)
+        // Jambes (debout, légère séparation)
+        var legL = Path()
+        legL.move(to: CGPoint(x: cx, y: hipY))
+        legL.addLine(to: CGPoint(x: cx - 4 * s, y: 46 * s))
+        ctx.stroke(legL, with: .color(silhouette), style: stroke)
+        var legR = Path()
+        legR.move(to: CGPoint(x: cx, y: hipY))
+        legR.addLine(to: CGPoint(x: cx + 4 * s, y: 46 * s))
+        ctx.stroke(legR, with: .color(silhouette), style: stroke)
     }
 
     private var silhouette: Color { IllustrationStyle.silhouette(sportCode: sportCode) }
@@ -3047,6 +3258,237 @@ struct YogaIllustration: View {
         feet.addLine(to: CGPoint(x: cx + 4 * s, y: 4 * s))
         ctx.stroke(feet, with: .color(silhouette), style: stroke)
     }
+
+    // MARK: - Party illustrations 2026-06-08 — asanas avancées (helpers + 17 poses)
+
+    /// Polyligne silhouette (points déjà en coordonnées écran).
+    private func yLimb(_ ctx: GraphicsContext, _ pts: [CGPoint], _ stroke: StrokeStyle) {
+        guard let f = pts.first else { return }
+        var path = Path(); path.move(to: f)
+        for q in pts.dropFirst() { path.addLine(to: q) }
+        ctx.stroke(path, with: .color(silhouette), style: stroke)
+    }
+    /// Courbe quadratique silhouette.
+    private func yCurve(_ ctx: GraphicsContext, _ a: CGPoint, _ b: CGPoint, _ ctrl: CGPoint, _ stroke: StrokeStyle) {
+        var path = Path(); path.move(to: a); path.addQuadCurve(to: b, control: ctrl)
+        ctx.stroke(path, with: .color(silhouette), style: stroke)
+    }
+    /// Tête (cercle r≈3).
+    private func yHead(_ ctx: GraphicsContext, _ c: CGPoint, _ s: CGFloat, _ stroke: StrokeStyle) {
+        let r = 3 * s
+        ctx.stroke(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r)),
+                   with: .color(silhouette), style: stroke)
+    }
+
+    /// Salabhasana (Sauterelle) — couché sur le ventre, tête/buste ET jambes décollés (banane).
+    private func drawSalabhasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        yLimb(ctx, [p(38, 44), p(50, 44)], stroke)         // bassin/ventre au sol (zone de contact)
+        yCurve(ctx, p(38, 44), p(18, 29), p(26, 35), stroke) // buste + tête bien hauts (gauche)
+        yHead(ctx, p(15, 27), s, stroke)
+        yLimb(ctx, [p(26, 36), p(38, 42)], stroke)         // bras le long du corps vers l'arrière
+        yCurve(ctx, p(50, 44), p(66, 29), p(58, 35), stroke) // jambes bien hautes (droite)
+    }
+
+    /// Ustrasana (Chameau) — à genoux, cambrure arrière, mains aux talons.
+    private func drawUstrasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        yLimb(ctx, [p(34, 46), p(48, 46)], stroke)       // tibias/pieds au sol
+        yLimb(ctx, [p(41, 46), p(40, 32)], stroke)       // cuisse verticale
+        yCurve(ctx, p(40, 32), p(48, 27), p(46, 28), stroke) // buste cambré en arrière
+        yHead(ctx, p(50, 28), s, stroke)
+        yLimb(ctx, [p(45, 28), p(47, 44)], stroke)       // bras vers le talon
+    }
+
+    /// Dhanurasana (Arc) — couché ventre, mains attrapent les chevilles, corps en arc.
+    private func drawDhanurasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        yLimb(ctx, [p(30, 44), p(42, 44)], stroke)       // ventre au sol
+        yCurve(ctx, p(34, 44), p(25, 37), p(28, 40), stroke) // buste relevé
+        yHead(ctx, p(21, 35), s, stroke)
+        yCurve(ctx, p(42, 44), p(52, 31), p(51, 40), stroke) // cuisse → tibia relevés
+        yLimb(ctx, [p(26, 38), p(51, 31)], stroke)       // bras tendu (la « corde » de l'arc)
+    }
+
+    /// Phalakasana (Planche yoga) — gainage bras tendus, corps en ligne.
+    private func drawPhalakasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        yLimb(ctx, [p(20, 46), p(20, 33)], stroke)       // bras tendu vertical
+        yLimb(ctx, [p(20, 33), p(60, 44)], stroke)       // corps gainé épaule→talons
+        yHead(ctx, p(16, 32), s, stroke)
+        yLimb(ctx, [p(58, 44), p(62, 46)], stroke)       // pied
+    }
+
+    /// Upavistha Konasana — assise jambes écartées, flexion avant.
+    private func drawUpavisthaKonasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        // Vue de FACE, assis : DEUX jambes nettement écartées en grand V (hanche surélevée),
+        // buste qui plonge vers l'avant entre les jambes, bras tendus vers les pieds.
+        yLimb(ctx, [p(12, 46), p(40, 34)], stroke)            // jambe gauche écartée
+        yLimb(ctx, [p(68, 46), p(40, 34)], stroke)            // jambe droite écartée
+        yLimb(ctx, [p(8, 47), p(16, 47)], stroke)             // pied gauche
+        yLimb(ctx, [p(64, 47), p(72, 47)], stroke)            // pied droit
+        yCurve(ctx, p(40, 34), p(40, 46), p(34, 41), stroke)  // buste plonge en avant
+        yHead(ctx, p(40, 45), s, stroke)                      // tête basse (vers le sol)
+        yLimb(ctx, [p(40, 37), p(20, 45)], stroke)            // bras vers le pied gauche
+        yLimb(ctx, [p(40, 37), p(60, 45)], stroke)            // bras vers le pied droit
+    }
+
+    /// Bakasana (Corbeau) — équilibre sur les bras, genoux posés sur les triceps, pieds décollés.
+    private func drawBakasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        // Réf : squat compact, mains au sol sous les épaules, COUDES FLÉCHIS, genoux calés sur
+        // l'arrière des bras, bassin haut et en avant (torse ~ parallèle au sol), pieds décollés
+        // tuckés derrière, tête en avant basse. Silhouette ronde compacte penchée sur les mains.
+        yLimb(ctx, [p(33, 47), p(39, 47)], stroke)       // mains au sol rapprochées (appui)
+        yLimb(ctx, [p(36, 46), p(40, 38), p(37, 31)], stroke) // bras : main → coude FLÉCHI → épaule
+        yCurve(ctx, p(37, 31), p(51, 29), p(46, 22), stroke)  // dos/bassin ARRONDI haut et en avant
+        yLimb(ctx, [p(40, 33), p(38, 38)], stroke)       // genou calé sur l'arrière du bras
+        yCurve(ctx, p(51, 29), p(49, 20), p(56, 24), stroke)  // tibias + pieds tuckés EN L'AIR derrière
+        yHead(ctx, p(29, 34), s, stroke)                 // tête en avant, basse (regard au sol)
+    }
+
+    /// Purvottanasana (Planche inversée) — face au ciel, corps gainé en ligne montante.
+    private func drawPurvottanasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        yLimb(ctx, [p(16, 44), p(26, 32)], stroke)        // bras : main au sol → épaule
+        yLimb(ctx, [p(26, 32), p(44, 32)], stroke)        // bord SUPÉRIEUR PLAT (tronc face au ciel)
+        yLimb(ctx, [p(44, 32), p(60, 44)], stroke)        // jambes descendent vers les pieds au sol
+        yHead(ctx, p(22, 30), s, stroke)                  // tête basculée en arrière
+    }
+
+    /// Uttana Padasana — couché sur le dos, jambes ET bras levés en diagonale.
+    private func drawUttanaPadasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        yHead(ctx, p(14, 43), s, stroke)
+        yLimb(ctx, [p(18, 44), p(40, 44)], stroke)       // tronc au sol
+        yLimb(ctx, [p(40, 44), p(60, 30)], stroke)       // jambes levées ~45°
+        yLimb(ctx, [p(24, 44), p(42, 33)], stroke)       // bras parallèles aux jambes
+    }
+
+    /// Prasarita Padottanasana — debout jambes très écartées, flexion avant tête au sol.
+    private func drawPrasaritaPadottanasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        // Debout jambes très écartées, flexion avant tête vers le sol. Pieds marqués + tête nette
+        // en bas + bras vers le sol → lit « personne pliée » et pas juste un triangle géométrique.
+        yLimb(ctx, [p(16, 46), p(40, 28)], stroke)       // jambe G
+        yLimb(ctx, [p(64, 46), p(40, 28)], stroke)       // jambe D
+        yLimb(ctx, [p(12, 47), p(20, 47)], stroke)       // pied G
+        yLimb(ctx, [p(60, 47), p(68, 47)], stroke)       // pied D
+        yCurve(ctx, p(40, 28), p(40, 44), p(34, 37), stroke) // buste plonge entre les jambes
+        yHead(ctx, p(40, 44), s, stroke)                 // tête basse près du sol
+        yLimb(ctx, [p(40, 34), p(30, 46)], stroke)       // bras vers le sol
+    }
+
+    /// Padahastasana — debout, flexion avant complète, mains sous les pieds. Vue de PROFIL
+    /// (face à gauche) : jambe verticale nette à droite, buste plié vers l'avant-bas distinct
+    /// de la jambe, tête basse près des pieds, bras qui plongent vers les mains SOUS les pieds.
+    private func drawPadahastasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        yLimb(ctx, [p(48, 46), p(48, 22)], stroke)       // jambes verticales (poussées à droite)
+        yLimb(ctx, [p(42, 46), p(54, 46)], stroke)       // pieds au sol
+        // buste qui bombe NETTEMENT à gauche (gros espace négatif vs jambe) puis tête qui revient
+        // vers les pieds en bas → lit « personne pliée en deux », pas un aplat collé à la jambe.
+        yCurve(ctx, p(48, 23), p(46, 44), p(30, 30), stroke) // dos bombé large à gauche → tête près des pieds
+        yHead(ctx, p(45, 43), s, stroke)                 // tête basse entre/près des pieds
+        yLimb(ctx, [p(36, 33), p(47, 45)], stroke)       // bras qui descend vers les mains sous les pieds
+    }
+
+    /// Ardha Matsyendrasana — torsion vertébrale assise.
+    private func drawArdhaMatsyendrasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        yLimb(ctx, [p(22, 46), p(34, 45), p(40, 44)], stroke) // jambe du bas à plat au sol (gauche)
+        yLimb(ctx, [p(40, 44), p(43, 36), p(40, 46)], stroke) // genou levé + pied planté (droite)
+        yLimb(ctx, [p(40, 44), p(39, 28)], stroke)        // buste vertical
+        yHead(ctx, p(42, 25), s, stroke)                  // tête TOURNÉE (décalée droite) = torsion
+        yLimb(ctx, [p(39, 30), p(45, 39)], stroke)        // bras avant en appui contre le genou
+        yLimb(ctx, [p(39, 33), p(31, 38)], stroke)        // bras arrière qui enveloppe (côté opposé)
+    }
+
+    /// Kapotasana (Pigeon royal) — à genoux, cambrure arrière profonde, mains vers les pieds.
+    private func drawKapotasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        // Base à genoux DISTINCTE (tibia au sol + cuisse verticale) séparée de la grande cambrure
+        // arrière, pour éviter la lecture « lettre D ». Chest qui monte puis tête qui bascule en arrière.
+        yLimb(ctx, [p(26, 46), p(38, 46)], stroke)       // tibias/pieds au sol (à genoux)
+        yLimb(ctx, [p(32, 46), p(32, 31)], stroke)       // cuisse VERTICALE (à genoux, bassin haut)
+        yCurve(ctx, p(32, 31), p(50, 41), p(43, 23), stroke) // torse monte puis grande cambrure arrière
+        yHead(ctx, p(50, 42), s, stroke)                 // tête renversée bas-arrière (vers les pieds)
+        yCurve(ctx, p(33, 32), p(45, 45), p(38, 26), stroke) // bras par-dessus la tête vers les pieds
+    }
+
+    /// Bhujapidasana (Pression épaule) — équilibre bras, jambes en appui sur les bras, pieds devant.
+    private func drawBhujapidasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        // Réf : assis en équilibre sur les mains, jambes enroulées À L'EXTÉRIEUR des bras, CHEVILLES
+        // CROISÉES DEVANT, corps bas près du sol. Vue de FACE : mains au centre, deux jambes partent
+        // largement de chaque côté (par-dessus les bras) puis reviennent croiser les chevilles devant.
+        yLimb(ctx, [p(36, 44), p(44, 44)], stroke)       // mains au sol (appui central)
+        yCurve(ctx, p(40, 44), p(40, 34), p(35, 39), stroke) // buste compact bas, légèrement relevé
+        yHead(ctx, p(40, 31), s, stroke)                 // tête au-dessus de l'appui
+        yLimb(ctx, [p(40, 37), p(20, 39), p(36, 45)], stroke) // jambe G : par-dessus le bras → cheville croisée devant
+        yLimb(ctx, [p(40, 37), p(60, 39), p(44, 45)], stroke) // jambe D : par-dessus le bras → cheville croisée devant
+        yLimb(ctx, [p(36, 45), p(44, 45)], stroke)       // chevilles croisées au centre devant (signature)
+    }
+
+    /// Garbha Pindasana (Embryon) — boule compacte en équilibre sur le sacrum.
+    private func drawGarbhaPindasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        // Embryon : en équilibre sur le sacrum (point d'appui bas), corps roulé en boule compacte.
+        // Vue de profil. Jambes croisées (lotus) ramenées haut contre le buste, BRAS qui sortent
+        // d'entre les cuisses et remontent vers le VISAGE (signature : « bras passés dans les jambes »).
+        // Lecture « personne roulée en boule, genoux serrés contre la poitrine » : tête nette en
+        // haut, dos rond, genoux remontés haut devant, tibias repliés, bras qui enlace les jambes.
+        // Membres DISTINCTS avec espace négatif (vs blob).
+        yLimb(ctx, [p(38, 46), p(46, 46)], stroke)            // fesses/sacrum : point d'appui au sol
+        yHead(ctx, p(35, 28), s, stroke)                      // tête nette en haut
+        yCurve(ctx, p(40, 45), p(36, 31), p(31, 40), stroke)  // dos arrondi (bombe gauche) → vers la tête
+        yLimb(ctx, [p(43, 45), p(50, 33)], stroke)            // cuisses remontées haut vers la poitrine (genou)
+        yLimb(ctx, [p(50, 33), p(42, 33)], stroke)            // tibias repliés (genou → pied) vers le corps
+        yLimb(ctx, [p(38, 33), p(48, 37)], stroke)            // bras qui enlace les tibias
+    }
+
+    /// Karnapidasana (Genoux aux oreilles) — charrue COMPRESSÉE : épaules au sol, bassin renversé
+    /// très haut (apex), puis les genoux redescendent jusqu'au SOL de part et d'autre de la tête.
+    /// Construit comme Halasana mais les jambes se replient au lieu de s'étendre loin.
+    private func drawKarnapidasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        // Réf : silhouette de CHANDELLE (épaules au sol, bassin empilé haut à la verticale) mais
+        // les genoux REDESCENDENT jusqu'au sol près de la tête. Tronc VERTICAL (droite) vs cuisse
+        // DIAGONALE vers le sol-gauche : deux directions nettes (ne fusionnent plus en bâton).
+        yHead(ctx, p(30, 42), s, stroke)                  // tête au sol (gauche)
+        yLimb(ctx, [p(46, 43), p(56, 44)], stroke)        // épaules + bras le long du sol (droite)
+        yLimb(ctx, [p(46, 42), p(46, 16)], stroke)        // tronc VERTICAL : bassin empilé haut (chandelle)
+        yLimb(ctx, [p(46, 16), p(36, 42)], stroke)        // cuisses DIAGONALES qui redescendent vers la tête
+        yLimb(ctx, [p(36, 42), p(41, 34)], stroke)        // tibias repliés (genou au sol → pied remonte)
+        yLimb(ctx, [p(33, 44), p(41, 44)], stroke)        // genoux posés au sol près de l'oreille (signature)
+    }
+
+    /// Utthita Hasta Padangusthasana — debout sur une jambe, l'autre tendue tenue par la main.
+    private func drawUtthitaHastaPadangusthasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        yLimb(ctx, [p(36, 46), p(38, 30)], stroke)       // jambe d'appui
+        yLimb(ctx, [p(38, 30), p(38, 18)], stroke)       // buste
+        yHead(ctx, p(38, 14), s, stroke)
+        yLimb(ctx, [p(38, 30), p(60, 30)], stroke)       // jambe levée tendue devant
+        yLimb(ctx, [p(38, 19), p(58, 30)], stroke)       // bras qui tient l'orteil
+        yLimb(ctx, [p(38, 20), p(33, 25)], stroke)       // autre bras sur la hanche
+    }
+
+    /// Ardha Baddha Padmottanasana — debout demi-lotus, flexion avant, bras lié dans le dos.
+    private func drawArdhaBaddhaPadmottanasana(_ ctx: GraphicsContext, s: CGFloat, stroke: StrokeStyle) {
+        func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * s, y: y * s) }
+        // Approche revue : figure DEBOUT nette (verticale) en équilibre sur une jambe, l'autre
+        // genou plié vers l'extérieur avec le pied posé sur la cuisse (demi-lotus), léger penché
+        // avant + bras qui descend. Privilégie une silhouette humaine debout lisible (vs l'aplat « 7 »).
+        yLimb(ctx, [p(44, 46), p(43, 26)], stroke)        // jambe d'appui verticale
+        yLimb(ctx, [p(40, 47), p(48, 47)], stroke)        // pied d'appui au sol
+        yLimb(ctx, [p(43, 26), p(41, 18)], stroke)        // buste droit, léger penché avant
+        yHead(ctx, p(40, 15), s, stroke)                  // tête en haut (debout)
+        yLimb(ctx, [p(43, 33), p(33, 35), p(42, 30)], stroke) // genou plié dehors + pied demi-lotus sur la cuisse
+        yLimb(ctx, [p(42, 20), p(35, 33)], stroke)        // bras qui descend attraper le pied du lotus
+        yLimb(ctx, [p(42, 19), p(48, 28)], stroke)        // autre bras le long
+    }
 }
 
 #if DEBUG
@@ -3067,6 +3509,41 @@ struct YogaIllustration: View {
                     Text(verbatim: name).font(.caption)
                     YogaIllustration(sportCode: "yoga", exerciseName: name)
                 }
+            }
+        }
+        .padding()
+        .background(Color.coachingBackground)
+    }
+}
+
+#Preview("Yoga POC — fallback orientation + taille") {
+    ScrollView {
+        VStack(spacing: 16) {
+            // D1 — postures NON cataloguées : doivent prendre la bonne orientation
+            // (et non plus Warrior I debout systématique).
+            Group {
+                Text(verbatim: "D1 — fallback orientation (non catalogué)").font(.caption.bold())
+                ForEach([
+                    ("Jathara Parivartanasana (couché)", "lying attendu"),
+                    ("Gomukhasana (assis)", "seated attendu"),
+                    ("Utthita Hasta Padangusthasana (debout)", "standing attendu")
+                ], id: \.0) { name, expect in
+                    VStack(alignment: .leading) {
+                        Text(verbatim: "\(name) — \(expect)").font(.caption2).foregroundStyle(.secondary)
+                        YogaIllustration(sportCode: "yoga", exerciseName: name, size: 110)
+                            .frame(maxWidth: .infinity)
+                            .background(Color(uiColor: .secondarySystemBackground))
+                    }
+                }
+            }
+            // D4 — une posture connue rendue à la taille FOCUS (176) : grossie + centrée.
+            Group {
+                Text(verbatim: "D4 — taille FOCUS (176 pt)").font(.caption.bold())
+                YogaIllustration(sportCode: "yoga", exerciseName: "Savasana", size: 176)
+                    .frame(maxWidth: .infinity)
+                    .padding(12)
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
             }
         }
         .padding()

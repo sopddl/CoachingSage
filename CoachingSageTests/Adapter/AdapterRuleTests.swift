@@ -45,7 +45,7 @@ final class AdapterRuleTests: XCTestCase {
         )
 
         // Plyo (knee-injury incompatible, alternative = Marche nordique 20 min) substitué.
-        let plyoSession = result.weeks[0].sessions.first(where: { $0.name == "Plyo intervals" })!
+        let plyoSession = result.weeks[0].sessions.first(where: { $0.name.fr == "Plyo intervals" })!
         XCTAssertEqual(plyoSession.exercises.first?.name, "Marche nordique 20 min")
         XCTAssertTrue(plyoSession.exercises.first?.wasSubstituted == true)
         XCTAssertEqual(plyoSession.exercises.first?.substitutionReason, "constraint:knee-injury")
@@ -120,7 +120,7 @@ final class AdapterRuleTests: XCTestCase {
         )
 
         // Plyo a required_equipment = ["track"] → manquant → substitution.
-        let plyoSession = result.weeks[0].sessions.first(where: { $0.name == "Plyo intervals" })!
+        let plyoSession = result.weeks[0].sessions.first(where: { $0.name.fr == "Plyo intervals" })!
         XCTAssertEqual(plyoSession.exercises.first?.name, "Marche nordique 20 min")
         XCTAssertEqual(plyoSession.exercises.first?.substitutionReason, "equipment:track")
     }
@@ -221,18 +221,18 @@ final class AdapterRuleTests: XCTestCase {
         )
 
         // SessionType interval → endurance pour la session "Plyo intervals".
-        let plyoSession = result.weeks[0].sessions.first(where: { $0.name == "Plyo intervals" })!
+        let plyoSession = result.weeks[0].sessions.first(where: { $0.name.fr == "Plyo intervals" })!
         XCTAssertEqual(plyoSession.type, .endurance)
 
         // target_zone Daniels-R → Daniels-E pour l'exercice plyo.
         XCTAssertEqual(plyoSession.exercises.first?.targetZone, "Daniels-E")
 
         // target_zone Daniels-T → Daniels-E pour la session tempo.
-        let tempoSession = result.weeks[0].sessions.first(where: { $0.name == "Tempo continu" })!
+        let tempoSession = result.weeks[0].sessions.first(where: { $0.name.fr == "Tempo continu" })!
         XCTAssertEqual(tempoSession.exercises.first?.targetZone, "Daniels-E")
 
         // Sortie longue (Daniels-E) inchangée.
-        let longSession = result.weeks[0].sessions.first(where: { $0.name == "Sortie longue" })!
+        let longSession = result.weeks[0].sessions.first(where: { $0.name.fr == "Sortie longue" })!
         XCTAssertEqual(longSession.exercises.first?.targetZone, "Daniels-E")
 
         // Au moins 1 log d'outcome=downgraded.
