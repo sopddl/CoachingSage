@@ -82,3 +82,30 @@ dose (non rendu, le dose localisé prime) → exclu des filets langue.
 ## Commits
 
 - Ne jamais mélanger CoachingSage et GardenSage (ou TailorSage) dans un même commit.
+
+## Simulateur attitré (règle 2026-07-06 — anti-collision entre sessions)
+
+Ce projet utilise EXCLUSIVEMENT son simulateur dédié pour builds/tests/screenshots simu :
+- **CoachingSage-iPhone** — UDID `CF1378C2-D933-4E5C-BDE2-471CF724DA88` (iPhone 17 Pro, iOS 26.5)
+- xcodebuild : `-destination 'platform=iOS Simulator,id=CF1378C2-D933-4E5C-BDE2-471CF724DA88'`
+- Ne JAMAIS utiliser le simulateur d'un autre projet (état pollué, installations concurrentes).
+- iPads partagés (tests layout uniquement) : iPad Pro 11 M5 / iPad mini (26.5) ; « iPad Pro 11 snapshot 26.4 » réservé aux snapshot tests.
+- S'il est cassé : `xcrun simctl erase CF1378C2-D933-4E5C-BDE2-471CF724DA88` (reset), ou le recréer avec le même nom et mettre à jour l'UDID ici.
+
+## ⚖️ Barème de vérification par risque (2026-07-06 — PRIME sur les process ci-dessus)
+
+Constat Sophie : « on code 5 min, on fait 2h de test ». Les process lourds de ce fichier datent
+d'AVANT les filets automatiques (CI nightly, snapshots, golden files, verrous). Ils restent
+valables mais ne s'appliquent plus systématiquement — ils suivent ce barème :
+
+| Classe | Exemples | Vérification requise | On saute |
+|---|---|---|---|
+| **S** — wording, layout, one-liner UI, i18n | polish UX, libellés, centrage | review inline rapide + snapshot test si la vue en a un + build | ui-reviewer complet, qa-flow, passe simu dédiée → **le nightly attrape** |
+| **M** — fix de logique ciblé | bug filtre, compteur | review agent + **test de verrou (non négociable)** + tests unit ciblés | qa-flow complet (sauf zone sync/data) |
+| **L** — sync, migrations, data, achats, onboarding, auth | tout ce qui a causé les vrais incidents | pipeline complet (ui-reviewer + qa-flow + verrou + non-régression) | rien |
+
+Règles d'efficacité :
+1. **Batcher les gates** : un lot de N fixes S/M = UNE seule passe ui-reviewer/qa pour le lot, jamais N passes.
+2. **Batcher les validations device de Sophie** : une séance pour N stories.
+3. En cas de doute sur la classe → prendre la classe au-dessus, pas en dessous.
+4. Le ratio cible : S ≈ 10 min de garde, M ≈ le temps du code, L = ce qu'il faut.
