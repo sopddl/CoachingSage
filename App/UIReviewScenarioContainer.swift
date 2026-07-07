@@ -44,6 +44,21 @@ struct UIReviewScenarioContainer: View {
                 program: AdaptedProgramPreviewFixtures.kneeInjury,
                 onConfirmStart: { /* noop pour la review */ }
             )
+        case "ui_review_adapter_triathlon_recap":
+            // Chantier récap hebdo triathlon (2026-07-06) — semaine 1 multi-discipline
+            // (nage+vélo+course+renfo) collapsed par défaut : vérifier le récap
+            // d'icônes sous le titre + qu'il disparaît une fois dépliée. Semaine 2 =
+            // mono-discipline (vélo seul) pour vérifier le récap à un seul élément.
+            AdaptedProgramView(
+                program: AdaptedProgramPreviewFixtures.triathlonMultiDiscipline,
+                onConfirmStart: { /* noop pour la review */ }
+            )
+        case "ui_review_session_detail_triathlon_recap":
+            // Chantier récap hebdo triathlon (2026-07-06/07) — écran de DÉTAIL d'une
+            // séance (Natation) au sein d'une semaine multi-discipline (nage+vélo+
+            // course+renfo). Vérifier la ligne "Cette semaine :" sous le hero header —
+            // doit lister nage/vélo/course, PAS le jour renfo (fallback triathlon).
+            SessionDetailTriathlonRecapScenarioView()
         case "ui_review_adapter_preview_rules_expanded":
             // Variante Bug #3 — même vue, mais avec le DisclosureGroup déployé
             // au launch (.task qui flip @State). Permet de screenshot la liste
@@ -1130,6 +1145,25 @@ private struct SessionDetailGlossaryScenarioView: View {
             ],
             cooldown: "10 min footing très lent + étirements doux. Idéal pour évacuer le lactate accumulé pendant les intervals et préparer la récupération."
         )
+    }
+}
+
+// MARK: - Chantier récap hebdo triathlon — SessionDetailTriathlonRecapScenarioView
+
+/// Container récap hebdo triathlon (2026-07-06/07) — affiche `SessionDetailView`
+/// sur la séance Natation de la semaine 1 du fixture
+/// `AdaptedProgramPreviewFixtures.triathlonMultiDiscipline` (nage+vélo+renfo+course).
+private struct SessionDetailTriathlonRecapScenarioView: View {
+    var body: some View {
+        SessionDetailView(
+            session: week.sessions[0],
+            week: week,
+            program: AdaptedProgramPreviewFixtures.triathlonMultiDiscipline
+        )
+    }
+
+    private var week: AdaptedWeek {
+        AdaptedProgramPreviewFixtures.triathlonMultiDiscipline.weeks[0]
     }
 }
 

@@ -767,6 +767,7 @@ struct AdaptedProgramView: View {
                 }
                 .buttonStyle(.plain)
             }
+            weekDisciplineRecap(week)
             if isExpanded {
                 VStack(spacing: 6) {
                     ForEach(week.sessions, id: \.day) { session in
@@ -778,6 +779,20 @@ struct AdaptedProgramView: View {
         }
         .padding(.vertical, 4)
         .accessibilityIdentifier("coaching.adapter.week.\(week.weekNumber)")
+    }
+
+    /// Chantier récap hebdo triathlon (2026-07-06/07) — retour persona 2026-07-05 :
+    /// aucun repère "plan multisport" visible en un coup d'œil. Toujours affiché
+    /// (semaines OUVERTES par défaut — Story 3.35k — donc un gating "replié
+    /// uniquement" ne s'afficherait quasiment jamais).
+    private func weekDisciplineRecap(_ week: AdaptedWeek) -> some View {
+        WeekDisciplineRecapView(
+            codes: SessionSportInference.disciplineCodes(
+                inWeek: week.sessions,
+                programSportCode: program.sport.appSportCode
+            )
+        )
+        .accessibilityIdentifier("coaching.adapter.week.disciplineRecap")
     }
 
     private func toggleWeek(_ weekNumber: Int) {
@@ -1122,6 +1137,12 @@ enum AdaptedProgramFormatting {
     }
 }
 
+#Preview("AdaptedProgram — triathlon récap hebdo") {
+    NavigationStack {
+        AdaptedProgramView(program: AdaptedProgramPreviewFixtures.triathlonMultiDiscipline) { }
+    }
+}
+
 enum AdaptedProgramPreviewFixtures {
     static var happyPath: AdaptedProgram {
         AdaptedProgram(
@@ -1226,6 +1247,39 @@ enum AdaptedProgramPreviewFixtures {
                     detail: "+1 série (3 → 4) — démarrage un cran au-dessus (activité régulière)"
                 )
             ],
+            requiresAIAssist: false
+        )
+    }
+
+    /// Chantier récap hebdo triathlon (2026-07-06) — fixture avec 2 semaines :
+    /// une multi-discipline (nage+vélo+course+renfo, pour vérifier le récap +
+    /// l'exclusion du jour renfo) et une mono-discipline (que du vélo, pour
+    /// vérifier le récap à un seul élément).
+    static var triathlonMultiDiscipline: AdaptedProgram {
+        AdaptedProgram(
+            templateId: "triathlon-fixture",
+            sport: .triathlon,
+            level: .beginner,
+            appliedAt: Date(),
+            weeks: [
+                AdaptedWeek(
+                    weekNumber: 1, theme: "Découverte", goal: "Poser les 3 disciplines",
+                    sessions: [
+                        sampleEnduranceSession(day: 1, name: "Natation — technique crawl"),
+                        sampleEnduranceSession(day: 2, name: "Vélo — sortie endurance"),
+                        sampleStrengthSession(day: 3),
+                        sampleEnduranceSession(day: 4, name: "Course — sortie facile")
+                    ]
+                ),
+                AdaptedWeek(
+                    weekNumber: 2, theme: "Bloc vélo", goal: "Semaine mono-discipline",
+                    sessions: [
+                        sampleEnduranceSession(day: 1, name: "Vélo — endurance"),
+                        sampleEnduranceSession(day: 3, name: "Vélo — sortie longue")
+                    ]
+                )
+            ],
+            appliedRules: [],
             requiresAIAssist: false
         )
     }

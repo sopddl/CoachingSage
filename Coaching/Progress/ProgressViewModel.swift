@@ -125,11 +125,17 @@ final class ProgressViewModel {
     /// BlockState par cohérence d'UI.
     private(set) var personalRecords: BlockState<[PRRecord]> = .idle
 
+    /// Bloc 5 (chantier récap hebdo triathlon 2026-07-06/07) — répartition
+    /// nage/vélo/course des séances complétées, programme triathlon uniquement.
+    /// Sync (comme bloc 1/4) — pas de dépendance HK.
+    private(set) var triathlonDisciplines: BlockState<[TriathlonDisciplineRow]> = .idle
+
     // MARK: Dependencies
 
     private let healthKit: HealthKitServiceProtocol
     private let statsService: WeeklyStatsService
     private let prEngine: PersonalRecordsEngine
+    private let triathlonDisciplineStatsService: TriathlonDisciplineStatsService
     private let nowProvider: () -> Date
     private let userDefaults: UserDefaults
 
@@ -137,12 +143,14 @@ final class ProgressViewModel {
         healthKit: HealthKitServiceProtocol,
         statsService: WeeklyStatsService = WeeklyStatsService(),
         prEngine: PersonalRecordsEngine = PersonalRecordsEngine(),
+        triathlonDisciplineStatsService: TriathlonDisciplineStatsService = TriathlonDisciplineStatsService(),
         nowProvider: @escaping () -> Date = { Date() },
         userDefaults: UserDefaults = .standard
     ) {
         self.healthKit = healthKit
         self.statsService = statsService
         self.prEngine = prEngine
+        self.triathlonDisciplineStatsService = triathlonDisciplineStatsService
         self.nowProvider = nowProvider
         self.userDefaults = userDefaults
         let hasSeenFirstLaunch = userDefaults.bool(forKey: Self.firstLaunchSeenKey)
@@ -190,9 +198,13 @@ final class ProgressViewModel {
                 now: now
             )
             personalRecords = .loaded(prs)
+            triathlonDisciplines = .loaded(
+                triathlonDisciplineStatsService.compute(programs: activePrograms, now: now, period: period)
+            )
         } else {
             stats = .empty
             personalRecords = .loaded([])
+            triathlonDisciplines = .loaded([])
         }
 
         // Blocs 2 et 3 — async HK en parallèle. Toujours chargés : permet à un

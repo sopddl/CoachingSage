@@ -184,6 +184,22 @@ enum SessionSportInference {
         if runKeywords.contains(where: { lower.contains($0) }) { return "running" }
         return programSportCode
     }
+
+    /// Chantier récap hebdo triathlon (2026-07-06) — disciplines effectives
+    /// distinctes présentes dans une semaine, ordre nage→vélo→course. Réutilise
+    /// la même heuristique nom-de-session que les badges par séance (pas de
+    /// nouveau champ data model — voir doc header). Sessions qui retombent sur
+    /// le fallback `programSportCode` (S&C/mobilité, pas de keyword match) ne
+    /// comptent pas comme discipline. `[]` pour un programme mono-sport.
+    static func disciplineCodes(inWeek sessions: [AdaptedSession], programSportCode: String) -> [String] {
+        guard programSportCode == "triathlon" else { return [] }
+        let order = ["swimming", "cycling", "running"]
+        let present = Set(sessions.compactMap { session -> String? in
+            let code = sportCode(forSessionName: session.name.canonical, programSportCode: programSportCode)
+            return code != programSportCode ? code : nil
+        })
+        return order.filter { present.contains($0) }
+    }
 }
 
 /// **Story 3.15 v4** — central mapping sport code → SF Symbol. Évite la

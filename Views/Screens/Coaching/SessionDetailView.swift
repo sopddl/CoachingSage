@@ -82,6 +82,18 @@ struct SessionDetailView: View {
                 VStack(alignment: .leading, spacing: 18) {
                     SessionHeroHeader(session: displaySession, week: week, program: program)
 
+                    // Chantier récap hebdo triathlon (2026-07-06/07) — retour persona
+                    // 2026-07-05 : sur l'écran d'une séance, aucun repère "je suis dans
+                    // un plan multisport" (juste la discipline de CETTE séance). Ligne
+                    // "Cette semaine :" listant toutes les disciplines de la semaine.
+                    WeekDisciplineRecapView(
+                        codes: SessionSportInference.disciplineCodes(
+                            inWeek: week.sessions,
+                            programSportCode: program.sport.appSportCode
+                        ),
+                        label: "coaching.session.detail.weekDisciplines.label"
+                    )
+
                     // Indoor/outdoor vélo (2026-06-10) — puce lieu flippable AVANT
                     // Démarrer (D3). 1 tap = bascule la VRAIE variante affichée.
                     if isLocationSession, let env = locationEnv {
