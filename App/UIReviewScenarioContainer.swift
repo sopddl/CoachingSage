@@ -365,6 +365,14 @@ struct UIReviewScenarioContainer: View {
         case "ui_review_illustrations_story_323_lot7":
             // **Story 3.23 Lot 7** — Triceps pushdown + Lateral raises (finition).
             IllustrationsStory323Lot7ScenarioView()
+        case "ui_review_swim_profile":
+            // **Story 3.16 Phase 2.D2** — SportProfileView (records + tendances +
+            // répartition styles + séances) alimentée par le seed natation
+            // (`SWIM_SEED=1`) via `deps.healthKitService`. Bypass total
+            // Auth/Onboarding/Progrès (ce dernier hang en IS_UI_TESTING car il
+            // dépend de Supabase). `SportProfileView` ne lit QUE le
+            // HealthKitService → rendu propre et isolé pour review FR/EN.
+            SportProfileView()
         case "ui_review_yoga_poc":
             // **POC yoga 2026-06-05 (party D1+D4)** — showcase statique : 3 postures
             // NON cataloguées (doivent prendre la bonne ORIENTATION fallback, plus

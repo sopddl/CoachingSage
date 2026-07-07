@@ -1,0 +1,254 @@
+// Coaching/Swim/SwimSummaryBuilder.swift
+// Story 3.16 Phase 2.A — transforme les `HealthKitSwimWorkoutDetail` bruts en
+// agrégats exploitables (`SwimSummary`). Logique pure et déterministe : pas
+// d'accès HealthKit ni SwiftData → testable avec des fixtures.
+import Foundation
+
+enum SwimSummaryBuilder {
+
+    /// Repos au mur (s) >= ce seuil = frontière de série. En-deçà (virages,
+    /// micro-pauses) = même série. 10 s : sur données réelles, les longueurs
+    /// continues ont 0-5 s d'écart, les vraies coupures de série 15-35 s.
+    static let restBreakThresholdSeconds: TimeInterval = 10
+
+    /// Fenêtre d'historique pour les écrans "portrait" (records / tendances /
+    /// autoprofil) : 1 an. On regarde loin pour des records stables, et les
+    /// moyennes se calent sur les semaines ACTIVES (cf `activeWeeks`) pour ne
+    /// pas se faire diluer par les périodes d'arrêt (Sophie 2026-06-02).
+    /// Les écrans à période choisie (onglet Progrès) gardent leur propre fenêtre.
+    static let profileLookbackWeeks = 52
+
+    // MARK: - Agrégat fenêtre
+
+    static func build(from details: [HealthKitSwimWorkoutDetail], windowWeeks: Int) -> SwimSummary {
+        guard !details.isEmpty, windowWeeks > 0 else { return .empty }
+
+        let sessions = details
+            .map(summarizeSession)
+            // Tri stable : à date égale, départage par id pour un ordre déterministe.
+            .sorted { a, b in a.date != b.date ? a.date > b.date : a.id.uuidString > b.id.uuidString }
+
+        let totalDistance = sessions.compactMap { $0.totalDistanceMeters }.reduce(0, +)
+
+        // Pace moyenne pondérée par distance (longueurs nagées).
+        var weightedPaceNumerator = 0.0
+        var weightedPaceDenominator = 0.0
+        for s in sessions {
+            guard let pace = s.avgPaceSecondsPer100m, let dist = s.totalDistanceMeters, dist > 0 else { continue }
+            weightedPaceNumerator += pace * dist
+            weightedPaceDenominator += dist
+        }
+        let avgPace = weightedPaceDenominator > 0 ? weightedPaceNumerator / weightedPaceDenominator : nil
+
+        let bestPace = sessions.compactMap { $0.bestLapPaceSecondsPer100m }.min()
+
+        var distribution: [SwimStrokeStyle: Int] = [:]
+        for s in sessions {
+            for (style, count) in s.strokeDistribution {
+                distribution[style, default: 0] += count
+            }
+        }
+
+        // Dénominateur des moyennes = semaines ACTIVES (≥1 séance), pas la
+        // fenêtre brute : une pause de plusieurs mois ne doit pas effondrer la
+        // moyenne hebdo (Sophie 2026-06-02). `max(1, …)` garde-fou anti /0.
+        let active = activeWeeks(for: sessions)
+
+        return SwimSummary(
+            sessionCount: sessions.count,
+            windowWeeks: windowWeeks,
+            activeWeeks: active,
+            totalDistanceMeters: totalDistance,
+            weeklyAverageDistanceMeters: totalDistance / Double(active),
+            weeklyAverageSessions: Double(sessions.count) / Double(active),
+            avgPaceSecondsPer100m: avgPace,
+            bestPaceSecondsPer100m: bestPace,
+            strokeDistribution: distribution,
+            longestSessionDistanceMeters: sessions.compactMap { $0.totalDistanceMeters }.max(),
+            sessions: sessions
+        )
+    }
+
+    // MARK: - Résumé d'une séance
+
+    static func summarizeSession(_ d: HealthKitSwimWorkoutDetail) -> SwimSessionSummary {
+        let laps = d.laps
+
+        let avgPace = weightedSwumPace(laps)
+        let bestPace = bestSwumPace(laps, poolLength: d.poolLengthMeters)
+
+        var distribution: [SwimStrokeStyle: Int] = [:]
+        for lap in laps {
+            guard let style = lap.strokeStyle else { continue }
+            distribution[style, default: 0] += 1
+        }
+        let dominant = dominantStroke(distribution)
+
+        let swolfs = laps.compactMap { $0.swolfScore }
+        let avgSwolf = swolfs.isEmpty ? nil : Int((Double(swolfs.reduce(0, +)) / Double(swolfs.count)).rounded())
+
+        return SwimSessionSummary(
+            id: d.id,
+            date: d.startDate,
+            durationSeconds: d.durationSeconds,
+            totalDistanceMeters: d.totalDistanceMeters,
+            lapCount: laps.count,
+            avgPaceSecondsPer100m: avgPace,
+            bestLapPaceSecondsPer100m: bestPace,
+            dominantStroke: dominant,
+            strokeDistribution: distribution,
+            avgSwolf: avgSwolf,
+            averageHeartRateBpm: d.averageHeartRateBpm,
+            activeEnergyKcal: d.activeEnergyKcal,
+            sets: detectSets(laps: laps, restThreshold: restBreakThresholdSeconds),
+            poolLengthMeters: d.poolLengthMeters
+        )
+    }
+
+    // MARK: - Détection de séries (repos au mur)
+
+    /// Regroupe les longueurs consécutives en séries. Une série se ferme quand
+    /// `restAfterSeconds >= restThreshold` (repos au mur) ou en fin de séance.
+    static func detectSets(laps: [HealthKitSwimLap], restThreshold: TimeInterval) -> [SwimSet] {
+        guard !laps.isEmpty else { return [] }
+
+        var sets: [SwimSet] = []
+        var current: [HealthKitSwimLap] = []
+
+        func closeSet(restAfter: TimeInterval?) {
+            guard !current.isEmpty else { return }
+            sets.append(makeSet(id: sets.count + 1, laps: current, restAfter: restAfter))
+            current.removeAll(keepingCapacity: true)
+        }
+
+        for lap in laps {
+            current.append(lap)
+            if let rest = lap.restAfterSeconds, rest >= restThreshold {
+                closeSet(restAfter: rest)
+            }
+        }
+        // Dernière série (pas de repos de fermeture).
+        closeSet(restAfter: nil)
+        return sets
+    }
+
+    private static func makeSet(id: Int, laps: [HealthKitSwimLap], restAfter: TimeInterval?) -> SwimSet {
+        let distances = laps.compactMap { $0.distanceMeters }
+        let distance = distances.isEmpty ? nil : distances.reduce(0, +)
+
+        var distribution: [SwimStrokeStyle: Int] = [:]
+        for lap in laps {
+            guard let style = lap.strokeStyle else { continue }
+            distribution[style, default: 0] += 1
+        }
+
+        let swolfs = laps.compactMap { $0.swolfScore }
+        let avgSwolf = swolfs.isEmpty ? nil : Int((Double(swolfs.reduce(0, +)) / Double(swolfs.count)).rounded())
+
+        return SwimSet(
+            id: id,
+            lapCount: laps.count,
+            distanceMeters: distance,
+            dominantStroke: dominantStroke(distribution),
+            avgPaceSecondsPer100m: weightedSwumPace(laps),
+            avgSwolf: avgSwolf,
+            restAfterSeconds: restAfter
+        )
+    }
+
+    // MARK: - Semaines actives (dénominateur des moyennes)
+
+    /// Nombre de semaines calendaires DISTINCTES contenant au moins une séance.
+    /// Sert de dénominateur aux moyennes hebdo : sur une fenêtre d'1 an, un user
+    /// qui a nagé 20 semaines puis stoppé 6 mois doit voir sa moyenne calculée
+    /// sur 20 semaines, pas sur 52 (sinon le volume s'effondre artificiellement).
+    /// Calendrier ISO 8601 (semaine lundi→dimanche) pour un découpage stable.
+    /// Retourne 0 si aucune séance, sinon >= 1.
+    static func activeWeeks(
+        for sessions: [SwimSessionSummary],
+        calendar: Calendar = Calendar(identifier: .iso8601)
+    ) -> Int {
+        guard !sessions.isEmpty else { return 0 }
+        var buckets: Set<Int> = []
+        for s in sessions {
+            let comps = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: s.date)
+            guard let year = comps.yearForWeekOfYear, let week = comps.weekOfYear else { continue }
+            buckets.insert(year * 100 + week)
+        }
+        return max(1, buckets.count)
+    }
+
+    // MARK: - Tendance (récent vs ancien)
+
+    /// Compare la moitié récente vs la moitié ancienne des séances (qui doivent
+    /// être triées antéchrono : plus récente en premier). Delta = récent − ancien
+    /// (négatif = amélioration, pour pace comme pour SWOLF). `nil` si < minSessions.
+    static func computeTrend(sessions: [SwimSessionSummary], minSessions: Int = 4) -> SwimTrend? {
+        guard sessions.count >= minSessions else { return nil }
+        let half = sessions.count / 2
+        let recent = Array(sessions.prefix(half))
+        let older = Array(sessions.suffix(sessions.count - half))
+
+        func mean(_ values: [Double]) -> Double? {
+            values.isEmpty ? nil : values.reduce(0, +) / Double(values.count)
+        }
+        let paceDelta: Double? = {
+            guard let r = mean(recent.compactMap { $0.avgPaceSecondsPer100m }),
+                  let o = mean(older.compactMap { $0.avgPaceSecondsPer100m }) else { return nil }
+            return r - o
+        }()
+        let swolfDelta: Double? = {
+            guard let r = mean(recent.compactMap { $0.avgSwolf }.map(Double.init)),
+                  let o = mean(older.compactMap { $0.avgSwolf }.map(Double.init)) else { return nil }
+            return r - o
+        }()
+        return SwimTrend(
+            paceDeltaSecondsPer100m: paceDelta,
+            swolfDelta: swolfDelta,
+            comparedSessions: sessions.count
+        )
+    }
+
+    // MARK: - Helpers pace / stroke
+
+    /// Pace agrégée pondérée par la distance des longueurs NAGÉES (hors kick/unknown).
+    /// Équivaut à (temps nagé total / distance nagée totale × 100) — la vraie pace
+    /// d'ensemble, cohérente entre niveau lap / série / séance / fenêtre. nil si aucune.
+    private static func weightedSwumPace(_ laps: [HealthKitSwimLap]) -> Double? {
+        var numerator = 0.0
+        var denominator = 0.0
+        for lap in laps where (lap.strokeStyle ?? .unknown).isSwumStroke {
+            guard let pace = lap.paceSecondsPer100m, let dist = lap.distanceMeters, dist > 0 else { continue }
+            numerator += pace * dist
+            denominator += dist
+        }
+        return denominator > 0 ? numerator / denominator : nil
+    }
+
+    /// Meilleure (plus rapide) pace de longueur nagée, en écartant les longueurs
+    /// partielles (push-off compté seul, lap tronqué) via un plancher de distance
+    /// = 90 % de la longueur de bassin. Sans pool length connu, pas de filtre.
+    private static func bestSwumPace(_ laps: [HealthKitSwimLap], poolLength: Double?) -> Double? {
+        let minValidDistance = poolLength.map { $0 * 0.9 }
+        return laps
+            .filter { ($0.strokeStyle ?? .unknown).isSwumStroke }
+            .filter { lap in
+                guard let floor = minValidDistance else { return true }
+                guard let dist = lap.distanceMeters else { return false }
+                return dist >= floor
+            }
+            .compactMap { $0.paceSecondsPer100m }
+            .min()
+    }
+
+    /// Style dominant : le plus fréquent en EXCLUANT `.unknown` (bruit). À count
+    /// égal, départage par rawValue croissant pour un résultat déterministe.
+    private static func dominantStroke(_ distribution: [SwimStrokeStyle: Int]) -> SwimStrokeStyle? {
+        distribution
+            .filter { $0.key != .unknown }
+            .max { a, b in
+                a.value != b.value ? a.value < b.value : a.key.rawValue > b.key.rawValue
+            }?
+            .key
+    }
+}

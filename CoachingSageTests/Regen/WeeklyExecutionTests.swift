@@ -195,6 +195,68 @@ final class WeeklyExecutionTests: XCTestCase {
         XCTAssertEqual(score.overallScore, 100.0, accuracy: 0.5)
     }
 
+    // MARK: - Story 3.16 Phase 2.C — natation volume-seul
+
+    func testExecutionScore_intensityFromHRFalse_ignoresHR() {
+        // Même setup qu'endurance Z3 @ HR pile dans la zone, MAIS intensityFromHR=false
+        // → intensity nil, overall = volume seul (pas de composante HR).
+        let session = makeSession(durationMinutes: 30, type: .endurance, targetZones: ["Z3"])
+        let workout = HealthSummary.WorkoutSnapshot(
+            sportCode: "swimming", durationMinutes: 30, averageHeartRateBpm: 150,
+            maxHeartRateBpm: 160, daysAgo: 1
+        )
+        let score = ExecutionScore.compute(
+            session: session, workout: workout, hrMax: 200, intensityFromHR: false
+        )
+        XCTAssertNil(score.intensityPercent, "HR ignoré pour la natation")
+        XCTAssertEqual(score.volumePercent, 100.0)
+        XCTAssertEqual(score.overallScore, 100.0, accuracy: 0.5) // volume seul
+    }
+
+    func testMatch_swimming_scoresVolumeOnly() {
+        // Une séance natation avec une zone HR-mappable + un workout avec HR :
+        // le match doit produire un score SANS intensité (régulation volume-seul).
+        let weekStart = makeWeekStart()
+        let session = makeSession(weekNumber: 1, day: 1, durationMinutes: 40,
+                                  type: .endurance, targetZones: ["Z3"])
+        let now = Calendar.current.date(byAdding: .day, value: 6, to: weekStart)!
+        let workouts = [
+            HealthSummary.WorkoutSnapshot(sportCode: "swimming", durationMinutes: 40,
+                                          averageHeartRateBpm: 150, maxHeartRateBpm: 165, daysAgo: 6)
+        ]
+        let matches = WorkoutMatcher.match(
+            sessions: [session], sportCode: "swimming",
+            workouts: workouts, weekStartDate: weekStart, hrMax: 200, now: now
+        )
+        XCTAssertTrue(matches[0].isDone)
+        XCTAssertNil(matches[0].executionScore?.intensityPercent)
+        XCTAssertEqual(matches[0].executionScore?.volumePercent ?? 0, 100.0, accuracy: 0.5)
+    }
+
+    func testMatch_running_stillUsesHRIntensity() {
+        // Régression : la course garde bien la composante intensité HR.
+        let weekStart = makeWeekStart()
+        let session = makeSession(weekNumber: 1, day: 1, durationMinutes: 40,
+                                  type: .endurance, targetZones: ["Z3"])
+        let now = Calendar.current.date(byAdding: .day, value: 6, to: weekStart)!
+        let workouts = [
+            HealthSummary.WorkoutSnapshot(sportCode: "running", durationMinutes: 40,
+                                          averageHeartRateBpm: 150, maxHeartRateBpm: 165, daysAgo: 6)
+        ]
+        let matches = WorkoutMatcher.match(
+            sessions: [session], sportCode: "running",
+            workouts: workouts, weekStartDate: weekStart, hrMax: 200, now: now
+        )
+        XCTAssertNotNil(matches[0].executionScore?.intensityPercent, "course garde le HR")
+    }
+
+    func testIsVolumeOnlySport() {
+        XCTAssertTrue(WorkoutMatcher.isVolumeOnlySport("swimming"))
+        XCTAssertTrue(WorkoutMatcher.isVolumeOnlySport("Swimming"))
+        XCTAssertFalse(WorkoutMatcher.isVolumeOnlySport("running"))
+        XCTAssertFalse(WorkoutMatcher.isVolumeOnlySport("cycling"))
+    }
+
     func testExecutionScoreIntervalIntensityWeighsMore() {
         // Session .interval Daniels-T (86-92%). HRmax 200 → zone 172-184.
         // Workout HR avg 130 → distance 172-130=42, maxDist 30 → proximity 0.
