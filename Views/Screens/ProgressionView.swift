@@ -132,6 +132,7 @@ struct ProgressionView: View {
                 hkFitnessBlock(state: viewModel.hkFitness)
                 volumeBySportBlock(state: viewModel.volumeRows)
                 if viewModel.hasActivePrograms {
+                    triathlonDisciplinesBlock(state: viewModel.triathlonDisciplines)
                     personalRecordsBlock(state: viewModel.personalRecords)
                 }
             }
@@ -376,6 +377,73 @@ struct ProgressionView: View {
             }
             Spacer()
             Text(formattedDuration(minutes: row.totalMinutes))
+                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .foregroundStyle(Color.coachingTextPrimary)
+        }
+        .overlay(alignment: .bottom) {
+            GeometryReader { proxy in
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 3)
+                        .fill(Color.coachingTextSecondary.opacity(0.1))
+                        .frame(height: 6)
+                    RoundedRectangle(cornerRadius: 3)
+                        .fill(
+                            LinearGradient(
+                                colors: [Color.coachingRecord, Color.coachingRecord.opacity(0.6)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .frame(width: max(6, proxy.size.width * row.ratio), height: 6)
+                }
+                .offset(y: 24)
+            }
+            .frame(height: 6)
+        }
+        .padding(.bottom, 22)
+    }
+
+    // MARK: - Bloc 5 (chantier récap hebdo triathlon 2026-07-06/07) — Répartition triathlon
+
+    /// Séances complétées par discipline (nage/vélo/course) pour un programme
+    /// triathlon actif, sur la fenêtre sélectionnée. Source app (completionState),
+    /// PAS HealthKit — contrairement au bloc 3 "Volume par sport" (tous sports HK).
+    /// Bloc entièrement masqué si pas de programme triathlon actif ou aucune
+    /// séance complétée sur la fenêtre (pas de "0 séance" polluant, cf bloc 3).
+    private func triathlonDisciplinesBlock(state: ProgressViewModel.BlockState<[TriathlonDisciplineRow]>) -> some View {
+        Group {
+            if case .loaded(let rows) = state, !rows.isEmpty {
+                VStack(alignment: .leading, spacing: 12) {
+                    blockTitle("progress.triathlonDisciplines.title")
+                    VStack(spacing: 10) {
+                        ForEach(rows) { row in
+                            triathlonDisciplineRow(row: row)
+                        }
+                    }
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 14)
+                    .background(
+                        RoundedRectangle(cornerRadius: 14)
+                            .fill(Color(.systemBackground))
+                            .shadow(color: Color.coachingEarth.opacity(0.06), radius: 6, x: 0, y: 2)
+                    )
+                }
+            }
+        }
+    }
+
+    private func triathlonDisciplineRow(row: TriathlonDisciplineRow) -> some View {
+        let sportCode = SportCode(rawValue: row.sportCode)
+        return HStack(spacing: 12) {
+            Image(systemName: sportCode?.sfSymbol ?? "figure.mixed.cardio")
+                .font(.system(size: 16))
+                .foregroundStyle(Color.coachingSport(forCode: row.sportCode))
+                .frame(width: 26)
+            Text(LocalizedStringKey(sportCode?.localizationKey ?? row.sportCode))
+                .font(.subheadline)
+                .foregroundStyle(Color.coachingTextPrimary)
+            Spacer()
+            Text("progress.triathlonDisciplines.sessionsCount \(row.completedCount)")
                 .font(.system(size: 14, weight: .semibold, design: .rounded))
                 .foregroundStyle(Color.coachingTextPrimary)
         }
