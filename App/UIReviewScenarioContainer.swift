@@ -34,6 +34,11 @@ struct UIReviewScenarioContainer: View {
     @ViewBuilder
     private var targetView: some View {
         switch scenario {
+        case "ui_review_video_illustration_poc":
+            // POC intégration app (2026-07-14 soir) — vérifie que la lecture vidéo
+            // bouclée fonctionne réellement dans l'app (pas juste que ça compile).
+            ExerciseVideoIllustration(resourceName: "lunge-dumbbell", size: 300)
+                .padding()
         case "ui_review_adapter_preview":
             // Story sœur 3.z Bug #2 + Bug #3 — rend AdaptedProgramView en mode
             // "preview" : `onConfirmStart` non-nil force le badge "Aperçu" haut
