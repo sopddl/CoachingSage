@@ -37,6 +37,48 @@ struct YogaIllustration: View {
     var size: CGFloat = IllustrationStyle.staticFrameSize.height
 
     var body: some View {
+        // Intégration app 2026-07-14 (Sophie « tout remplacer ») — 22 poses ont un
+        // asset pictos-rig validé : on les bascule AVANT le Canvas, qui reste le
+        // rendu par défaut pour toutes les poses sans asset (grande majorité du
+        // catalogue yoga, ~40 poses restantes).
+        if let assetName = Self.assetResourceName(for: poseKind) {
+            ExerciseAssetIllustration(resourceName: assetName, size: size)
+        } else {
+            canvasBody
+        }
+    }
+
+    /// Mapping pose → nom de ressource bundlée (`Resources/Illustrations/<name>.png|mp4`).
+    /// `nil` = pas d'asset validé, reste sur le dessin Canvas.
+    private static func assetResourceName(for pose: YogaPose) -> String? {
+        switch pose {
+        case .catCow: return "cat-cow"
+        case .downwardDog: return "downward-dog"
+        case .sukhasana: return "easy-pose"
+        case .garbhaPindasana: return "embryo"
+        case .forwardFold: return "forward-fold"
+        case .ardhaChandrasana: return "half-moon"
+        case .padahastasana: return "hands-under-feet"
+        case .marichyasanaA: return "marichyasana-a"
+        case .parsvottanasana: return "pyramid"
+        case .paschimottanasana: return "seated-forward-fold"
+        case .ardhaMatsyendrasana: return "seated-twist"
+        case .parsvakonasana: return "side-angle"
+        case .dandasana: return "staff-pose"
+        case .suryaNamaskarA: return "sun-salutation-a"
+        case .suryaNamaskarB: return "sun-salutation-b"
+        case .tadasana: return "tadasana"
+        case .tree: return "tree"
+        case .triangle: return "triangle"
+        case .warrior1: return "warrior1"
+        case .utkatasana: return "chair"
+        case .padangusthasana: return "big-toe-fold"
+        case .baddhaKonasana: return "butterfly"
+        default: return nil
+        }
+    }
+
+    private var canvasBody: some View {
         Canvas { ctx, canvasSize in
             let sx = canvasSize.width / IllustrationStyle.staticFrameSize.width
             let sy = canvasSize.height / IllustrationStyle.staticFrameSize.height

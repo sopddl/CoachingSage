@@ -38,7 +38,15 @@ struct ExercisePatternIllustration: View {
     private var staticIllustration: some View {
         switch pattern {
         case .core:
-            CoreIllustration(sportCode: sportCode, variant: coreVariant, size: min(size, 176))
+            // Intégration app 2026-07-14 (Sophie « tout remplacer ») — le variant
+            // .frontal EST canoniquement le plank (cf doc CoreIllustration) : asset
+            // couvre tout .core/.frontal. .lateral (side plank) reste Canvas (pas
+            // d'asset validé).
+            if coreVariant == .frontal {
+                ExerciseAssetIllustration(resourceName: "plank", size: min(size, 176))
+            } else {
+                CoreIllustration(sportCode: sportCode, variant: coreVariant, size: min(size, 176))
+            }
         case .mobility:
             MobilityIllustration(sportCode: sportCode)
         case .yoga:
@@ -47,11 +55,11 @@ struct ExercisePatternIllustration: View {
             // tous les iPhone (≥ 320 pt). Timeline (size 48 par défaut) → inchangée.
             YogaIllustration(sportCode: sportCode, exerciseName: exerciseName, size: min(size, 176))
         case .forearmPlank:
-            ForearmPlankIllustration(sportCode: sportCode, size: min(size, 176))
+            ExerciseAssetIllustration(resourceName: "forearm-plank", size: min(size, 176))
         case .birdDog:
             BirdDogIllustration(sportCode: sportCode, size: min(size, 176))
         case .foamRolling:
-            FoamRollingIllustration(sportCode: sportCode, size: min(size, 176))
+            ExerciseAssetIllustration(resourceName: "foam-rolling-legs", size: min(size, 176))
         default:
             // Décision produit Sophie 2026-05-23 : pas de dessin pour les
             // gestes universels connus (running, cycling, swim continu).
@@ -72,24 +80,78 @@ struct ExercisePatternIllustration: View {
     private var dynamicStrip: some View {
         switch pattern {
         case .squat:
-            // Chantier refonte muscu — propager exerciseName pour la variante équipement
-            // (goblet / barre nuque / bulgare / poids du corps).
-            tripletStrip { SquatIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
+            // Intégration app 2026-07-14 (Sophie « tout remplacer ») — wall-sit
+            // (dos au mur, isométrique) résolvait vers .squat/.bodyweight par
+            // défaut (doctrine différente d'un squat dynamique) : asset dédié
+            // AVANT le dispatch par variante équipement.
+            if let lower = exerciseName?.lowercased(),
+               lower.contains("wall sit") || lower.contains("wall-sit")
+                || lower.contains("chaise isométrique") || lower.contains("chaise isometrique") {
+                ExerciseAssetIllustration(resourceName: "wall-sit", size: size)
+            } else {
+                switch SquatIllustration.resolveVariant(from: exerciseName) {
+                case .bodyweight:
+                    ExerciseAssetIllustration(resourceName: "squat-bodyweight", size: size)
+                case .backBarbell:
+                    ExerciseAssetIllustration(resourceName: "back-squat", size: size)
+                case .goblet:
+                    ExerciseAssetIllustration(resourceName: "goblet-squat", size: size)
+                case .bulgarianSplit:
+                    ExerciseAssetIllustration(resourceName: "bulgarian-split-squat", size: size)
+                }
+            }
         case .hinge:
-            tripletStrip { HingeIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
+            // Variantes couvertes : deadlift (barre) + RDL haltères. RDL barre
+            // (.barbellRDL) n'a pas d'asset validé → reste Canvas.
+            switch HingeIllustration.resolveVariant(from: exerciseName) {
+            case .deadlift:
+                ExerciseAssetIllustration(resourceName: "deadlift-conventional", size: size)
+            case .dumbbellRDL:
+                ExerciseAssetIllustration(resourceName: "rdl-dumbbell", size: size)
+            case .barbellRDL:
+                tripletStrip { HingeIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
+            }
         case .pullVertical:
             tripletStrip { PullVerticalIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .pushHorizontal:
-            // Story 3.23 — propager exerciseName pour variante DB bench press
-            tripletStrip { PushHorizontalIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
+            // Variantes couvertes : pompe + pompe inclinée + développé couché barre.
+            // Développé haltères + dips n'ont pas d'asset validé → Canvas.
+            switch PushHorizontalIllustration.resolveVariant(from: exerciseName) {
+            case .pushup:
+                ExerciseAssetIllustration(resourceName: "pushup", size: size)
+            case .inclinePushup:
+                ExerciseAssetIllustration(resourceName: "pushup-incline-chair", size: size)
+            case .benchBarbell:
+                ExerciseAssetIllustration(resourceName: "bench-press", size: size)
+            case .benchDumbbell, .dips:
+                tripletStrip { PushHorizontalIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
+            }
         case .pushVertical:
-            tripletStrip { PushVerticalIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
+            // Les 2 variantes existantes sont couvertes (barre OHP + haltères Arnold).
+            switch PushVerticalIllustration.resolveVariant(from: exerciseName) {
+            case .barbell:
+                ExerciseAssetIllustration(resourceName: "ohp-barbell", size: size)
+            case .dumbbell:
+                ExerciseAssetIllustration(resourceName: "arnold-press-seated", size: size)
+            }
         case .pullHorizontal:
             tripletStrip { PullHorizontalIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
         case .lunge:
-            tripletStrip { LungeIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
+            // Seule la variante haltères a un asset validé ; poids du corps reste Canvas.
+            switch LungeIllustration.resolveVariant(from: exerciseName) {
+            case .dumbbell:
+                ExerciseAssetIllustration(resourceName: "lunge-dumbbell", size: size)
+            case .bodyweight:
+                tripletStrip { LungeIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
+            }
         case .plyo:
-            tripletStrip { PlyoIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
+            // Seul box jump a un asset validé ; burpee/jump squat restent Canvas.
+            switch PlyoIllustration.resolveVariant(from: exerciseName) {
+            case .boxJump:
+                ExerciseAssetIllustration(resourceName: "box-jump", size: size)
+            case .burpee, .jumpSquat:
+                tripletStrip { PlyoIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
+            }
         case .hipThrust:
             // Story 3.23 Tier 1 Jalon 2 — 246 occ × 33 tpl ; chantier muscu : variante banc/sol
             tripletStrip { HipThrustIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
@@ -112,24 +174,31 @@ struct ExercisePatternIllustration: View {
             // Story 3.23 Lot 5 — Clamshell glute med
             tripletStrip { ClamshellIllustration(sportCode: sportCode, frame: $0) }
         case .kbSwing:
-            // Story 3.23 Lot 5 — KB Swing Russian
-            tripletStrip { KBSwingIllustration(sportCode: sportCode, frame: $0) }
+            ExerciseAssetIllustration(resourceName: "kb-swing", size: size)
         case .facePull:
-            // Story 3.23 Lot 5 — Face pull câble rear-delt
+            // Story 3.23 Lot 5 — Face pull câble rear-delt (pas d'asset validé,
+            // famille câble bloquée — cf mémoire exploration_cat_cow_facepull_triceps).
             tripletStrip { FacePullIllustration(sportCode: sportCode, frame: $0) }
         case .bicepsCurl:
-            // Story 3.23 Lot 5 → chantier lot 2 : variante haltères/barre
-            tripletStrip { BicepsCurlIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
+            // Seule la variante haltères a un asset validé ; barre reste Canvas.
+            switch BicepsCurlIllustration.resolveVariant(from: exerciseName) {
+            case .dumbbell:
+                ExerciseAssetIllustration(resourceName: "biceps-curl", size: size)
+            case .barbell:
+                tripletStrip { BicepsCurlIllustration(sportCode: sportCode, frame: $0, exerciseName: exerciseName) }
+            }
         case .tricepsPushdown:
-            // Story 3.23 Lot 7 — Triceps pushdown câble
+            // Story 3.23 Lot 7 — Triceps pushdown câble (pas d'asset, famille câble bloquée)
             tripletStrip { TricepsPushdownIllustration(sportCode: sportCode, frame: $0) }
         case .lateralRaises:
-            // Story 3.23 Lot 7 — Lateral raises haltères deltoïdes
-            tripletStrip { LateralRaisesIllustration(sportCode: sportCode, frame: $0) }
+            ExerciseAssetIllustration(resourceName: "lateral-raise", size: size)
         case .hangingLegRaise:
             tripletStrip { HangingLegRaiseIllustration(sportCode: sportCode, frame: $0) }
         case .tricepsOverhead:
-            tripletStrip { TricepsOverheadIllustration(sportCode: sportCode, frame: $0) }
+            // Image validée sans animation (marionette stoppée après 2 essais,
+            // cf mémoire exploration_cat_cow_facepull_triceps) — ExerciseAssetIllustration
+            // bascule automatiquement sur l'image statique (pas de .mp4 bundlé).
+            ExerciseAssetIllustration(resourceName: "triceps-overhead", size: size)
         case .woodchopper:
             tripletStrip { WoodchopperIllustration(sportCode: sportCode, frame: $0) }
         case .pullover:
@@ -138,7 +207,7 @@ struct ExercisePatternIllustration: View {
         case .cableFly:
             tripletStrip { CableFlyIllustration(sportCode: sportCode, frame: $0) }
         case .legExtension:
-            tripletStrip { LegExtensionIllustration(sportCode: sportCode, frame: $0) }
+            ExerciseAssetIllustration(resourceName: "leg-extension", size: size)
         case .legCurl:
             tripletStrip { LegCurlIllustration(sportCode: sportCode, frame: $0) }
         case .legPress:
