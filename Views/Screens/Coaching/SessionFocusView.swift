@@ -327,7 +327,7 @@ struct SessionFocusView: View {
             ExercisePatternIllustration(pattern: pattern, sportCode: effectiveSportCode, exerciseName: ex.originalName, size: 200)
                 .frame(maxWidth: .infinity)
                 .padding(12)
-                .background(Color(uiColor: .secondarySystemBackground))
+                .background(IllustrationStyle.cardBackground(forCode: effectiveSportCode))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
         }
 
@@ -1070,7 +1070,7 @@ struct SessionFocusView: View {
                 ExercisePatternIllustration(pattern: pattern, sportCode: resolvedSportCode, exerciseName: ex.originalName, size: 180)
                     .frame(maxWidth: .infinity)
                     .padding(12)
-                    .background(Color(uiColor: .secondarySystemBackground))
+                    .background(IllustrationStyle.cardBackground(forCode: resolvedSportCode))
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.originalName)
