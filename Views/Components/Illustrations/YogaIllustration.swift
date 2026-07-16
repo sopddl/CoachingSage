@@ -65,7 +65,12 @@ struct YogaIllustration: View {
         case .forwardFold: return "forward-fold"
         case .ardhaChandrasana: return "half-moon"
         case .padahastasana: return "hands-under-feet"
-        case .marichyasanaA: return "marichyasana-a"
+        // .marichyasanaA : asset retiré 2026-07-16 — le PNG prod n'avait pas la
+        // jambe tendue (élément définitoire, gate sourcé) et TOUTES les
+        // regénérations (5 versions, 3 KO Sophie « 3 jambes ») butent sur la même
+        // limite : en profil, cette pose empile 4 masses allongées parallèles
+        // (jambe tendue, tibia, cuisse+assise, bras) qui se lisent comme des
+        // jambes surnuméraires à taille app. Retour au Canvas drawMarichyasanaA.
         case .parsvottanasana: return "pyramid"
         case .paschimottanasana: return "seated-forward-fold"
         case .ardhaMatsyendrasana: return "seated-twist"
