@@ -55,7 +55,13 @@ struct YogaIllustration: View {
         case .catCow: return "cat-cow"
         case .downwardDog: return "downward-dog"
         case .sukhasana: return "easy-pose"
-        case .garbhaPindasana: return "embryo"
+        // .garbhaPindasana : asset retiré 2026-07-16 (décision Sophie) — le PNG
+        // « embryo » montrait un genoux-poitrine assis alors que le template avancé
+        // enseigne la vraie Garbha Pindasana (lotus, bras passés entre cuisses et
+        // mollets) juste à côté. 3 tentatives de regénération IA épuisées (le modèle
+        // lit « embryo/womb » comme une grossesse ; le lotus bras-passés dépasse le
+        // guidage canny) → retour au Canvas drawGarbhaPindasana, qui dessine la
+        // vraie posture. Réversible si un dessin manuel arrive un jour.
         case .forwardFold: return "forward-fold"
         case .ardhaChandrasana: return "half-moon"
         case .padahastasana: return "hands-under-feet"
