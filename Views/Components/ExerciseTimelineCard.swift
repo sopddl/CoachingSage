@@ -98,7 +98,7 @@ struct ExerciseTimelineCard: View {
                 ExercisePatternIllustration(pattern: pattern, sportCode: code, exerciseName: exercise.originalName)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(8)
-                    .background(Color(uiColor: .tertiarySystemBackground))
+                    .background(IllustrationStyle.cardBackground(forCode: code))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
             if let notes = exercise.notes?.resolved(locale), !notes.isEmpty {

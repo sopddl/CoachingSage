@@ -23,10 +23,28 @@ enum IllustrationStyle {
     /// Taille de la flèche entre 2 frames du storyboard.
     static let arrowSize: CGFloat = 10
 
-    /// Silhouette / corps : couleur signature du sport (`coachingSport(forCode:)`).
-    /// Fallback `coachingTextSecondary` géré par l'helper existant.
+    /// Silhouette / corps : encre unique pour toute la famille « schéma didactique »
+    /// (harmonisation 2026-07-16, décision Sophie « deux familles cohérentes ») —
+    /// l'ancienne couleur signature du sport (violet yoga, marron muscu…) faisait
+    /// patchwork à côté des assets pictos-rig. `coachingEarth` = le même bleu nuit
+    /// que l'équipement et que les pantalons/cheveux du perso des assets.
     static func silhouette(sportCode: String) -> Color {
-        Color.coachingSport(forCode: sportCode)
+        _ = sportCode  // signature conservée (16 vues appelantes), teinte désormais unique
+        return .coachingEarth
+    }
+
+    /// Fond de la carte illustration, aligné sur le fond EMBARQUÉ dans les PNG
+    /// pictos-rig (mesuré : beige ~(216,204,191) côté yoga, gris-mauve
+    /// ~(180,169,175) côté muscu) — les assets fusionnent avec la carte au lieu
+    /// de flotter en carré beige sur du gris système, et les dessins Canvas
+    /// héritent du même fond → une seule famille visuelle.
+    static func cardBackground(forCode code: String) -> Color {
+        switch code.lowercased() {
+        case "yoga", "mobility", "stretching":
+            return Color(red: 216 / 255, green: 204 / 255, blue: 191 / 255)
+        default:
+            return Color(red: 180 / 255, green: 169 / 255, blue: 175 / 255)
+        }
     }
 
     /// Barre / équipement fixe (barre de squat, barre de traction).
