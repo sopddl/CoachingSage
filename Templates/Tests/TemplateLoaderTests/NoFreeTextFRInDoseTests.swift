@@ -5,9 +5,14 @@ import TemplateModel
 /// Filet de régression — chantier structuration i18n du dosage (party 2026-06-14, Lot 1 yoga).
 ///
 /// Invariants verrouillés :
-///  1. **Couverture** : tout exercice yoga porteur d'un dosage (`duration` ou `reps`) a un
+///  1. **Couverture** : tout exercice porteur d'un dosage (`duration` ou `reps`) a un
 ///     `dose` structuré → l'affichage (3 vues + label minuteur) ne retombe JAMAIS sur le texte
 ///     legacy FR (cause du bug déclencheur « 3 min (~10 cycles respiratoires) » en EN/ES).
+///     Vérifié via `Sport.allCases` (pas de sport codé en dur) : un sport ajouté à l'enum
+///     est automatiquement couvert sans qu'un nouveau test doive être écrit — durcissement
+///     2026-07-24 suite au constat que le fallback brut (`SessionFocusView`,
+///     `ExerciseTimelineCard`, `SessionOverviewList`) réaffiche `duration` FR tel quel dès
+///     qu'un exercice n'a pas de `dose`, et que rien ne forçait la couverture d'un futur sport.
 ///  2. **Zéro fuite FR** : chaque `dose` (tous sports) résolu en EN et en ES via `DoseFormatter`
 ///     ne contient aucun marqueur français — ni mot FR du corpus, ni diacritique FR-exclusif.
 ///
@@ -102,90 +107,44 @@ final class NoFreeTextFRInDoseTests: XCTestCase {
         return out
     }
 
-    // MARK: Invariant 1 — couverture yoga
+    // MARK: Invariant 1 — couverture dose, tous sports (sport-agnostique via Sport.allCases)
 
-    func testEveryYogaExerciseHasDose() async throws {
+    /// Boucle sur `Sport.allCases` plutôt que sur une liste de sports codée en dur : un sport
+    /// ajouté à l'enum est automatiquement vérifié ici sans qu'il faille se souvenir d'ajouter
+    /// un nouveau test — c'est le garde-fou contre un futur template livré sans passer par
+    /// `inject_dose.py`.
+    func testEveryExerciseHasDose() async throws {
         let templates = try await TemplateLoader.loadAll()
         guard templates.count >= 30 else { throw XCTSkip("bundle non peuplé (\(templates.count))") }
-        let yoga = templates.filter { $0.sport == .yoga }
-        XCTAssertFalse(yoga.isEmpty, "aucun template yoga chargé")
 
-        var missing: [String] = []
-        for t in yoga {
-            for w in t.weeks {
-                for s in w.sessions {
-                    let all = s.exercises + (s.variants ?? []).flatMap { $0.exercises }
-                    for e in all where (e.duration != nil || e.reps != nil) && e.dose == nil {
-                        missing.append("[\(t.id)] S\(w.weekNumber)D\(s.day) « \(e.stableMatchKey) » : duration/reps sans dose")
+        var missingBySport: [String] = []
+        for sport in Sport.allCases {
+            let scoped = templates.filter { $0.sport == sport }
+            guard !scoped.isEmpty else {
+                missingBySport.append("[\(sport.rawValue)] aucun template chargé")
+                continue
+            }
+
+            var missing: [String] = []
+            for t in scoped {
+                for w in t.weeks {
+                    for s in w.sessions {
+                        let all = s.exercises + (s.variants ?? []).flatMap { $0.exercises }
+                        for e in all where (e.duration != nil || e.reps != nil) && e.dose == nil {
+                            missing.append("[\(t.id)] S\(w.weekNumber)D\(s.day) « \(e.stableMatchKey) » : duration/reps sans dose")
+                        }
                     }
                 }
             }
-        }
-        XCTAssertTrue(
-            missing.isEmpty,
-            "Exercices yoga avec dosage legacy mais sans `dose` structuré (\(missing.count)) — fuite FR à l'affichage :\n"
-                + missing.prefix(30).joined(separator: "\n")
-        )
-    }
-
-    func testEveryRunningExerciseHasDose() async throws {
-        try await assertEverySportExerciseHasDose(.running, name: "running")
-    }
-
-    func testEveryCyclingExerciseHasDose() async throws {
-        try await assertEverySportExerciseHasDose(.cycling, name: "cycling")
-    }
-
-    func testEverySwimmingExerciseHasDose() async throws {
-        try await assertEverySportExerciseHasDose(.swimming, name: "swimming")
-    }
-
-    func testEveryHikingExerciseHasDose() async throws {
-        try await assertEverySportExerciseHasDose(.hiking, name: "hiking")
-    }
-
-    func testEveryHiitExerciseHasDose() async throws {
-        try await assertEverySportExerciseHasDose(.hiit, name: "hiit")
-    }
-
-    func testEveryStrengthExerciseHasDose() async throws {
-        try await assertEverySportExerciseHasDose(.strengthTraining, name: "strength")
-    }
-
-    func testEveryTennisExerciseHasDose() async throws {
-        try await assertEverySportExerciseHasDose(.tennis, name: "tennis")
-    }
-
-    func testEveryFootballExerciseHasDose() async throws {
-        try await assertEverySportExerciseHasDose(.football, name: "football")
-    }
-
-    func testEveryTriathlonExerciseHasDose() async throws {
-        try await assertEverySportExerciseHasDose(.triathlon, name: "triathlon")
-    }
-
-    private func assertEverySportExerciseHasDose(_ sport: Sport, name: String, file: StaticString = #filePath, line: UInt = #line) async throws {
-        let templates = try await TemplateLoader.loadAll()
-        guard templates.count >= 30 else { throw XCTSkip("bundle non peuplé (\(templates.count))") }
-        let scoped = templates.filter { $0.sport == sport }
-        XCTAssertFalse(scoped.isEmpty, "aucun template \(name) chargé", file: file, line: line)
-
-        var missing: [String] = []
-        for t in scoped {
-            for w in t.weeks {
-                for s in w.sessions {
-                    let all = s.exercises + (s.variants ?? []).flatMap { $0.exercises }
-                    for e in all where (e.duration != nil || e.reps != nil) && e.dose == nil {
-                        missing.append("[\(t.id)] S\(w.weekNumber)D\(s.day) « \(e.stableMatchKey) » : duration/reps sans dose")
-                    }
-                }
+            if !missing.isEmpty {
+                missingBySport.append("[\(sport.rawValue)] \(missing.count) exercice(s) avec dosage legacy mais sans `dose` structuré :\n"
+                    + missing.prefix(30).joined(separator: "\n"))
             }
         }
+
         XCTAssertTrue(
-            missing.isEmpty,
-            "Exercices \(name) avec dosage legacy mais sans `dose` structuré (\(missing.count)) — fuite FR à l'affichage :\n"
-                + missing.prefix(30).joined(separator: "\n"),
-            file: file, line: line
+            missingBySport.isEmpty,
+            "Couverture dose incomplète — fuite FR à l'affichage :\n" + missingBySport.joined(separator: "\n\n")
         )
     }
 
