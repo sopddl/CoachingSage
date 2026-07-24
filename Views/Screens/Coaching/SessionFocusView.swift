@@ -309,7 +309,10 @@ struct SessionFocusView: View {
 
     @ViewBuilder
     private func exerciseContent(_ ex: AdaptedExercise, number: Int) -> some View {
-        let pattern = ExercisePatternResolver.resolve(ex, sportCode: effectiveSportCode)
+        let exerciseSportCode = SessionSportInference.sportCode(
+            forExercise: ex.originalName, targetZone: ex.targetZone, fallback: effectiveSportCode
+        )
+        let pattern = ExercisePatternResolver.resolve(ex, sportCode: exerciseSportCode)
 
         HStack(spacing: 8) {
             Text(verbatim: "\(number)")
@@ -324,10 +327,10 @@ struct SessionFocusView: View {
         }
 
         if pattern != .generic {
-            ExercisePatternIllustration(pattern: pattern, sportCode: effectiveSportCode, exerciseName: ex.originalName, size: 200)
+            ExercisePatternIllustration(pattern: pattern, sportCode: exerciseSportCode, exerciseName: ex.originalName, size: 200)
                 .frame(maxWidth: .infinity)
                 .padding(12)
-                .background(IllustrationStyle.cardBackground(forCode: effectiveSportCode))
+                .background(IllustrationStyle.cardBackground(forCode: exerciseSportCode))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
         }
 
@@ -355,7 +358,10 @@ struct SessionFocusView: View {
                 HStack(spacing: 6) {
                     // Chantier dose i18n : dosage structuré localisé (FR/EN/ES) prioritaire
                     // sur le legacy verbatim `reps`/`duration` (sports migrés).
-                    let doseLabel = ex.localizedDoseLabel(sportCode: resolvedSportCode, locale: locale)?.sanitizedForDisplay
+                    let exerciseSportCode = SessionSportInference.sportCode(
+                        forExercise: ex.originalName, targetZone: ex.targetZone, fallback: resolvedSportCode
+                    )
+                    let doseLabel = ex.localizedDoseLabel(sportCode: exerciseSportCode, locale: locale)?.sanitizedForDisplay
                     if let doseLabel, !doseLabel.isEmpty {
                         chip { Text(verbatim: doseLabel) }
                     } else if let sets = ex.sets, let reps = ex.reps, !reps.isEmpty {
@@ -876,8 +882,14 @@ struct SessionFocusView: View {
                             // dose STRUCTURÉ (plus de strip-string `repsHero(from:)` qui laissait
                             // fuir « par jambe »/« par épaule » en EN/ES). Fallback legacy si pas
                             // de dose (sport non migré). L'unité « reps » reste minimale (party).
-                            let heroDose = (phase.kind == .work ? exercise(at: phase.stepIndex) : nil)?
-                                .repsHeroDose(sportCode: resolvedSportCode, locale: locale)
+                            let heroExercise = phase.kind == .work ? exercise(at: phase.stepIndex) : nil
+                            let heroDose = heroExercise?.repsHeroDose(
+                                sportCode: SessionSportInference.sportCode(
+                                    forExercise: heroExercise?.originalName ?? "", targetZone: heroExercise?.targetZone,
+                                    fallback: resolvedSportCode
+                                ),
+                                locale: locale
+                            )
                             let heroValue = heroDose?.value ?? DosageFormatting.repsHero(from: reps)
                             let heroIsLateral = heroDose?.isLateral ?? DosageFormatting.isUnilateral(reps: reps)
                             VStack(spacing: 6) {
@@ -1065,12 +1077,15 @@ struct SessionFocusView: View {
     @ViewBuilder
     private func exerciseVisual(for phase: SessionTimerPhase) -> some View {
         if let ex = exercise(at: phase.stepIndex) {
-            let pattern = ExercisePatternResolver.resolve(ex, sportCode: resolvedSportCode)
+            let exerciseSportCode = SessionSportInference.sportCode(
+                forExercise: ex.originalName, targetZone: ex.targetZone, fallback: resolvedSportCode
+            )
+            let pattern = ExercisePatternResolver.resolve(ex, sportCode: exerciseSportCode)
             if pattern != .generic {
-                ExercisePatternIllustration(pattern: pattern, sportCode: resolvedSportCode, exerciseName: ex.originalName, size: 180)
+                ExercisePatternIllustration(pattern: pattern, sportCode: exerciseSportCode, exerciseName: ex.originalName, size: 180)
                     .frame(maxWidth: .infinity)
                     .padding(12)
-                    .background(IllustrationStyle.cardBackground(forCode: resolvedSportCode))
+                    .background(IllustrationStyle.cardBackground(forCode: exerciseSportCode))
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             let tipKey = SessionTipCatalog.tip(for: pattern, exerciseName: ex.originalName)
