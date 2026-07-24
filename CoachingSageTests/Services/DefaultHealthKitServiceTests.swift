@@ -73,6 +73,17 @@ final class DefaultHealthKitServiceTests: XCTestCase {
     }
 }
 
+/// Verrou weeksBack défaut `fetchWorkoutSummary()` (backlog pédagogie 05-11, item HK swim/onboarding).
+final class HealthKitServiceProtocolDefaultsTests: XCTestCase {
+
+    func testFetchWorkoutSummaryDefaultUsesTwelveWeeks() async {
+        let mock = MockHealthKitService()
+        _ = await mock.fetchWorkoutSummary()
+        XCTAssertEqual(mock.receivedWorkoutSummaryWeeksBack, 12,
+                       "le défaut protocole doit rester à 12 semaines (bump 8→12, chantier onboarding non-sync)")
+    }
+}
+
 /// Story 3.9.0 — tests sur le mock pour vérifier la sémantique « ne re-prompte pas en boucle ».
 final class MockHealthKitServiceProgressAuthorizationTests: XCTestCase {
 

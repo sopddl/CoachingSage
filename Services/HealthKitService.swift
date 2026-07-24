@@ -150,7 +150,7 @@ protocol HealthKitServiceProtocol: Sendable {
     /// Sample VO2max le plus récent dans la fenêtre `monthsBack` (défaut 6 mois). nil si refus/absence.
     func fetchVO2MaxRecent(monthsBack: Int) async -> HealthKitVO2MaxSample?
 
-    /// Résumé des workouts sur la fenêtre `weeksBack` (défaut 8 semaines). Struct vide si refus/absence.
+    /// Résumé des workouts sur la fenêtre `weeksBack` (défaut 12 semaines). Struct vide si refus/absence.
     func fetchWorkoutSummary(weeksBack: Int) async -> HealthKitWorkoutSummary
 
     /// Story 3.3b — moyenne du resting heart rate sur la fenêtre [endingAt - daysBack, endingAt].
@@ -195,7 +195,7 @@ extension HealthKitServiceProtocol {
     }
 
     func fetchWorkoutSummary() async -> HealthKitWorkoutSummary {
-        await fetchWorkoutSummary(weeksBack: 8)
+        await fetchWorkoutSummary(weeksBack: 12)
     }
 
     func fetchRestingHeartRateAverage() async -> Double? {
