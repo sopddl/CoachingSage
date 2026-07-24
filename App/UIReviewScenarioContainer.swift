@@ -378,6 +378,10 @@ struct UIReviewScenarioContainer: View {
             // dépend de Supabase). `SportProfileView` ne lit QUE le
             // HealthKitService → rendu propre et isolé pour review FR/EN.
             SportProfileView()
+        case "ui_review_glossary_index":
+            // **Dette validation visuelle Story 3.26** — GlossaryIndexView direct
+            // (chips filtre sport, search, liste alpha). FR/EN via UI_TEST_LANG.
+            GlossaryIndexView()
         case "ui_review_yoga_poc":
             // **POC yoga 2026-06-05 (party D1+D4)** — showcase statique : 3 postures
             // NON cataloguées (doivent prendre la bonne ORIENTATION fallback, plus
