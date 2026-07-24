@@ -185,6 +185,32 @@ enum SessionSportInference {
         return programSportCode
     }
 
+    /// Fix "brick leak" (2026-07-24) — `sportCode(forSessionName:)` résout au niveau SÉANCE :
+    /// un nom "Enchaîné vélo-course" matche `bikeKeywords` en premier et renvoie "cycling" pour
+    /// TOUTE la séance, y compris son segment course (pictogramme/illustration/minuteur faux).
+    /// Cette variante résout au niveau EXERCICE — priorité au `targetZone` de l'exo (le plus
+    /// fiable : `FTP-*`/sweet-spot = cycling, `daniels-*`/hmp/Nk = running, `en[1-3]`/css/sp*
+    /// = swimming), puis au nom de l'exercice lui-même, avant de retomber sur le sportCode de
+    /// la séance. À utiliser à tous les points d'affichage PAR EXERCICE (pattern/illustration/
+    /// dose) ; le sportCode de séance reste correct pour les usages réellement séance-level
+    /// (badge liste, executionMode, timer — non couvert par ce fix, cf limitation V1 ci-dessus).
+    static func sportCode(forExercise exerciseName: String, targetZone: String?, fallback sessionSportCode: String) -> String {
+        if let zone = targetZone?.lowercased(), !zone.isEmpty {
+            if zone.contains("ftp") || zone.contains("sweet") { return "cycling" }
+            if zone.contains("daniels") || zone.contains("hmp") || zone.contains("10k") || zone.contains("5k") { return "running" }
+            if zone.contains("css") || zone.range(of: #"\ben\s?[1-3]\b"#, options: .regularExpression) != nil
+                || zone.range(of: #"\bsp\s?[1-3]\b"#, options: .regularExpression) != nil || zone == "rec" { return "swimming" }
+        }
+        let lower = exerciseName.lowercased()
+        let bikeKeywords = ["bike", "vélo", "velo", "cycling", "cycle", "ftp", "rouleau"]
+        let swimKeywords = ["swim", "natation", "nage", "crawl", "brasse"]
+        let runKeywords = ["run", "running", "course", "footing", "jelly-legs"]
+        if bikeKeywords.contains(where: { lower.contains($0) }) { return "cycling" }
+        if swimKeywords.contains(where: { lower.contains($0) }) { return "swimming" }
+        if runKeywords.contains(where: { lower.contains($0) }) { return "running" }
+        return sessionSportCode
+    }
+
     /// Chantier récap hebdo triathlon (2026-07-06) — disciplines effectives
     /// distinctes présentes dans une semaine, ordre nage→vélo→course. Réutilise
     /// la même heuristique nom-de-session que les badges par séance (pas de

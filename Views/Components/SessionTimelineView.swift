@@ -168,7 +168,12 @@ struct SessionTimelineView: View {
         case .exercise(let ex):
             ExerciseTimelineCard(
                 exercise: ex,
-                sportCode: sportCode,
+                // Fix "brick leak" (2026-07-24) — `sportCode` séance-level peut être faux pour
+                // un segment d'une séance mixte (ex. triathlon "Enchaîné vélo-course"). Résolution
+                // par exercice (targetZone/nom) avant repli sur le sportCode de la séance.
+                sportCode: sportCode.map {
+                    SessionSportInference.sportCode(forExercise: ex.originalName, targetZone: ex.targetZone, fallback: $0)
+                },
                 isFirstExercise: isFirstExercise
             )
         case .dryLandBanner:
