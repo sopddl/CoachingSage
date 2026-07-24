@@ -90,8 +90,11 @@ final class MockHealthKitService: HealthKitServiceProtocol, @unchecked Sendable 
         stubbedVO2MaxSample
     }
 
+    var receivedWorkoutSummaryWeeksBack: Int?
+
     func fetchWorkoutSummary(weeksBack: Int) async -> HealthKitWorkoutSummary {
-        stubbedWorkoutSummary
+        receivedWorkoutSummaryWeeksBack = weeksBack
+        return stubbedWorkoutSummary
     }
 
     func fetchRestingHeartRateAverage(daysBack: Int, endingAt: Date) async -> Double? {
