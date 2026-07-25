@@ -1,6 +1,37 @@
 # Template Schema v2 — Draft Story 0.5.10
 
-**Status** : DRAFT (validation pendante via pilote running Story 0.5.10).
+**Status** : CLÔTURÉ 2026-07-26 (partiellement livré, cf note ci-dessous) — ne plus reprendre ce
+draft comme référence active. Voir `template-schema.md` pour l'état réel du schéma en prod.
+
+## ⚠️ Bilan de clôture (2026-07-26)
+
+Ce draft proposait 2 catégories de hooks « v2 » : **exercise-level** (§ `TemplateExercise`) et
+**template-level** (§ `ProgramTemplate` : `week_structure` + `deload_weeks`). Sort différent des
+deux :
+
+- **Hooks exercise-level** (`target_zone`, `required_equipment`, `incompatible_constraints`,
+  `alternatives`, `volume_axis`) : ✅ **livrés** dans `f1fae57` (2026-05-02), consommés par
+  `Coaching/Adapter/Rules/{ConstraintSubstitutionRule,EquipmentSubstitutionRule}.swift` et
+  d'autres. C'est le scope réel de `schema_version: 2` aujourd'hui.
+- **`deload_weeks`** : livré, mais pas par ce chantier — perdu au même moment que
+  `week_structure` (voir plus bas), puis régénéré 2 mois plus tard par un chantier indépendant
+  (« densité B », `Templates/scripts/densite_b/generate_deload_weeks.py`) qui ignorait que l'IA
+  avait déjà produit une version de ce champ ici.
+- **`week_structure`** (`type`/`micro_pattern`/`recovery_cadence`) : **abandonné, jamais livré**.
+  Généré par l'IA sur les 40 templates en 0.5.10 (`raw-v2/*.json`), mais le bundling prod
+  (`f1fae57`) a scopé le modèle Swift aux seuls hooks exercise-level sans reprendre ce champ —
+  le round-trip JSON→Swift→JSON l'a donc fait disparaître silencieusement (Codable ignore les
+  clés JSON sans propriété correspondante). Aucun code consommateur n'a jamais été construit
+  (pas de « règle de périodisation » dans l'Adapter) — absence 100% inerte, aucun bug actif.
+  **Décision Sophie 2026-07-26 : ne pas ressusciter.** Rien ne le consomme, aucune règle
+  d'adaptation par périodisation n'a été reprise dans les AC réelles qui ont guidé
+  l'implémentation de l'Adapter (Story 3.3a) — le faire revivre sans consommateur serait de la
+  dette (donnée sans usage). Si le besoin réapparaît un jour, les données sources existent
+  toujours dans l'historique git (`git show e0ad6ec:Templates/References/raw-v2/<id>.json`)
+  pour les 40 templates, pas besoin de les regénérer.
+
+---
+
 **Cible** : `schema_version: 2` après validation pilote ; rétrocompatibilité `v1` maintenue tant que tous les templates ne sont pas regenérés.
 
 ## Pourquoi v2
