@@ -8445,6 +8445,52 @@
               "sets" : 1,
               "target_zone" : "FTP-Z3",
               "volume_axis" : "distance"
+            },
+            {
+              "alternatives" : [
+                {
+                  "en" : "Written self-assessment in your training log",
+                  "es" : "Autoevaluación escrita en tu cuaderno de entrenamiento",
+                  "fr" : "Auto-évaluation écrite dans ton carnet"
+                },
+                {
+                  "en" : "Spoken self-assessment recorded on your phone",
+                  "es" : "Autoevaluación oral grabada en tu teléfono",
+                  "fr" : "Auto-évaluation orale enregistrée sur ton téléphone"
+                }
+              ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "Post-session self-assessment",
+                  "es" : "Autoevaluación post-sesión",
+                  "fr" : "Auto-évaluation post-séance"
+                }
+              },
+              "duration" : "Auto-évaluation post-séance",
+              "estimated_minutes" : 0,
+              "incompatible_constraints" : [
+
+              ],
+              "match_key" : "Bilan d'autonomie — 5 critères",
+              "name" : {
+                "en" : "Autonomy assessment — 5 criteria",
+                "es" : "Balance de autonomía — 5 criterios",
+                "fr" : "Bilan d'autonomie — 5 critères"
+              },
+              "notes" : {
+                "en" : "Autonomy assessment — 5 criteria:\n• 100-150 km managed in 3 phases (cautious 1st hour, tempo race pace, climbs at tempo/threshold).\n• Nutrition managed on your own (80-90 g carbs/h, 1 bottle/h, solid food at half-distance).\n• Hydration adapted in heat (> 25°C).\n• Taper/activation weeks kept, not skipped.\n• Warning sign recognized, eased off instead of pushing through.\n5/5: ready solo. 3-4/5: spot the weak criterion. ≤2/5: redo a supervised block.",
+                "es" : "Balance de autonomía — 5 criterios:\n• 100-150 km en 3 tiempos (1ª hora prudente, cuerpo de carrera en tempo, puertos en tempo/umbral).\n• Nutrición gestionada sola (80-90 g de hidratos/h, 1 bidón/h, sólido a mitad de recorrido).\n• Hidratación adaptada con calor (> 25°C).\n• Semanas de puesta a punto/activación cumplidas sin saltárselas.\n• Señal de alerta reconocida, ritmo bajado en vez de forzar.\n5/5: lista de forma autónoma. 3-4/5: identifica el criterio débil. ≤2/5: repite un ciclo guiado.",
+                "fr" : "Bilan d'autonomie — 5 critères :\n• 100-150 km gérés en 3 temps (1re heure prudente, corps de course en tempo, côtes en tempo/seuil).\n• Nutrition gérée seul·e (80-90 g glucides/h, 1 bidon/h, solide à mi-parcours).\n• Hydratation adaptée si chaleur (> 25°C).\n• Semaines d'affûtage/activation tenues sans les sauter.\n• Signal d'alerte reconnu, pied levé plutôt que forcer.\n5/5 : prêt·e en autonomie. 3-4/5 : repère le critère faible. ≤2/5 : refais un cycle encadré."
+              },
+              "priority" : 1,
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 0,
+              "role" : "accessory",
+              "scaling_unit" : "continuous",
+              "sets" : 1,
+              "volume_axis" : "sets"
             }
           ],
           "name" : {

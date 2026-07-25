@@ -2626,6 +2626,52 @@
               "sets" : 1,
               "target_zone" : "FTP-Z2",
               "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                {
+                  "en" : "Written self-assessment in your training log",
+                  "es" : "Autoevaluación escrita en tu cuaderno de entrenamiento",
+                  "fr" : "Auto-évaluation écrite dans ton carnet"
+                },
+                {
+                  "en" : "Spoken self-assessment recorded on your phone",
+                  "es" : "Autoevaluación oral grabada en tu teléfono",
+                  "fr" : "Auto-évaluation orale enregistrée sur ton téléphone"
+                }
+              ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "Post-session self-assessment",
+                  "es" : "Autoevaluación post-sesión",
+                  "fr" : "Auto-évaluation post-séance"
+                }
+              },
+              "duration" : "Auto-évaluation post-séance",
+              "estimated_minutes" : 0,
+              "incompatible_constraints" : [
+
+              ],
+              "match_key" : "Checklist autonomie — 4 critères",
+              "name" : {
+                "en" : "Autonomy checklist — 4 criteria",
+                "es" : "Checklist de autonomía — 4 criterios",
+                "fr" : "Checklist autonomie — 4 critères"
+              },
+              "notes" : {
+                "en" : "Autonomy checklist — 4 criteria:\n• You pedal 1h30 continuously in easy endurance (RPE 2-3), full sentences most of the time.\n• You manage fatigue at 60-90 min by shifting to an easier gear instead of pushing through.\n• You manage your own hydration/nutrition without being reminded.\n• You check your bike (tires, brakes, derailleur) before heading out alone.\n4/4: ready to cycle solo. 2-3/4: spot the weak criterion. 0-1/4: redo a supervised session.",
+                "es" : "Checklist de autonomía — 4 criterios:\n• Ruedas 1h30 continuas en resistencia fácil (RPE 2-3), frases completas la mayor parte del tiempo.\n• Gestionas la fatiga a los 60-90 min bajando el desarrollo en vez de forzar.\n• Gestionas tu hidratación/nutrición sola sin que te lo recuerden.\n• Revisas tu bici (neumáticos, frenos, cambio) antes de salir sola.\n4/4: lista para rodar sola. 2-3/4: identifica el criterio débil. 0-1/4: repite una sesión guiada.",
+                "fr" : "Checklist autonomie — 4 critères :\n• Tu roules 1h30 en continu en endurance facile (RPE 2-3), phrases complètes la plupart du temps.\n• Tu gères la fatigue 60-90 min en baissant le braquet plutôt qu'en forçant.\n• Tu gères ton hydratation/nutrition seul·e sans qu'on te le rappelle.\n• Tu vérifies ton vélo (pneus, freins, dérailleur) avant de partir seul·e.\n4/4 : prêt·e à rouler seul·e. 2-3/4 : repère le critère faible. 0-1/4 : reprends une séance encadrée."
+              },
+              "priority" : 1,
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 0,
+              "role" : "accessory",
+              "scaling_unit" : "continuous",
+              "sets" : 1,
+              "volume_axis" : "sets"
             }
           ],
           "name" : {
