@@ -32,6 +32,13 @@ final class GlossaryTests: XCTestCase {
         XCTAssertEqual(Glossary.entry(forZone: "CSS+5s/100m")?.id, "css")
     }
 
+    // Audit contenu swimming 2026-07-26 — zones SP1-3 non tappables (contrairement à EN1-3/CSS).
+    func testSwimSpeedZonesMatch() {
+        XCTAssertEqual(Glossary.entry(forZone: "SP1")?.id, "sp")
+        XCTAssertEqual(Glossary.entry(forZone: "SP2")?.id, "sp")
+        XCTAssertEqual(Glossary.entry(forZone: "SP3")?.id, "sp")
+    }
+
     func testFTPVariantsMatch() {
         XCTAssertEqual(Glossary.entry(forZone: "FTP-Z1")?.id, "ftp")
         XCTAssertEqual(Glossary.entry(forZone: "FTP-Z5")?.id, "ftp")

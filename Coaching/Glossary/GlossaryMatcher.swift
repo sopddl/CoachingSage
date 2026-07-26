@@ -77,6 +77,9 @@ extension Glossary {
         ("ftp", "ftp"),
         ("hmp", "hmp"),
         ("vdot", "vdot"),
+        // Audit contenu swimming (2026-07-26) — "EVF" jamais traduit ni glossé en EN/ES.
+        ("early vertical forearm", "evf"),
+        ("evf", "evf"),
         // Chantier compréhensibilité cycling (2026-06-25) — FCmax rendue tappable (FR/EN/ES).
         ("fréquence cardiaque maximale", "fcmax"),
         ("fréquence cardiaque max", "fcmax"),
@@ -100,6 +103,9 @@ extension Glossary {
         ("intervals", "intervals"),
         ("interval", "intervals"),
         ("cadence", "cadence"),
+        // Audit contenu cycling (2026-07-26) — "braquet" jamais glossé.
+        ("braquets", "braquet"),
+        ("braquet", "braquet"),
         ("strides", "strides"),
         ("stride", "strides"),
         // Chantier compréhensibilité running (2026-07-26) — "lignes droites" jamais

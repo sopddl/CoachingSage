@@ -537,6 +537,19 @@ final class GlossaryMatcherTests: XCTestCase {
         XCTAssertEqual(Glossary.matches(in: "Micro-interval 20s/40s").first?.entry.id, "hiit.microinterval")
     }
 
+    // Audit contenu swimming 2026-07-26 — "EVF" jamais traduit ni glossé en EN/ES.
+    func testSwimmingEVFNowMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Travailler l'EVF sur chaque traction").first?.entry.id, "evf")
+        XCTAssertEqual(Glossary.matches(in: "Early vertical forearm dès l'entrée main").first?.entry.id, "evf")
+    }
+
+    // Audit contenu cycling 2026-07-26 — "braquet" jamais glossé (9 occurrences, 4 niveaux).
+    func testCyclingBraquetNowMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Ne jamais tomber sous 65 rpm sur gros braquet").first?.entry.id, "braquet")
+        XCTAssertEqual(Glossary.matches(in: "passer à un braquet plus facile").first?.entry.id, "braquet")
+        XCTAssertTrue(Glossary.matches(in: "cadence trop basse sur gros braquets").contains { $0.entry.id == "braquet" })
+    }
+
     // MARK: - Non-overlap multi-sport
 
     func testMultiTermsAcrossSportsInSameText() {
