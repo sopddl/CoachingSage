@@ -17,6 +17,19 @@ public struct ProgramTemplate: Codable, Equatable, Sendable {
     public let validatedAt: Date?
     public let validatedBy: String?
 
+    /// Extrait ACTIONNABLE de `safetyNotes` (jamais affiché — cf commentaire ci-dessus) :
+    /// signes concrets de surcharge/blessure à surveiller, formulés courts et à l'impératif.
+    /// Décision Sophie 2026-07-26 (audit transverse P0) : `safetyNotes`/`progressionLogic`
+    /// restent une doctrine interne dense (génération/review), jamais montrée telle quelle ;
+    /// CES 2 champs sont le sous-ensemble court et affichable. `nil` = template pas encore
+    /// passé par l'extraction (rétrocompat, aucun template bundlé ne devrait l'être après
+    /// la passe 2026-07-26).
+    public let overloadSigns: LocalizedText?
+
+    /// Politique concrète « séance manquée » (ex. combien de jours avant de redémarrer où).
+    /// Même statut que `overloadSigns` ci-dessus.
+    public let missedSessionPolicy: LocalizedText?
+
     /// Semaines de décharge/taper (`week_number`) — JAMAIS densifiées (garde-fou G8,
     /// chantier densité B 2026-07-02). Généré build-time depuis les thèmes/goals EN
     /// (`scripts/densite_b/generate_deload_weeks.py`), verrouillé par
@@ -39,7 +52,9 @@ public struct ProgramTemplate: Codable, Equatable, Sendable {
         progressionLogic: LocalizedText,
         validatedAt: Date? = nil,
         validatedBy: String? = nil,
-        deloadWeeks: [Int]? = nil
+        deloadWeeks: [Int]? = nil,
+        overloadSigns: LocalizedText? = nil,
+        missedSessionPolicy: LocalizedText? = nil
     ) {
         self.id = id
         self.schemaVersion = schemaVersion
@@ -57,6 +72,8 @@ public struct ProgramTemplate: Codable, Equatable, Sendable {
         self.validatedAt = validatedAt
         self.validatedBy = validatedBy
         self.deloadWeeks = deloadWeeks
+        self.overloadSigns = overloadSigns
+        self.missedSessionPolicy = missedSessionPolicy
     }
 }
 

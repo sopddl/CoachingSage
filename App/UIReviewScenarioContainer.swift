@@ -92,6 +92,46 @@ struct UIReviewScenarioContainer: View {
                 program: AdaptedProgramPreviewFixtures.densified,
                 onConfirmStart: { /* noop pour la review */ }
             )
+        case "ui_review_adapter_safety_running":
+            // Audit transverse 2026-07-26 — section "Sécurité" (overloadSigns +
+            // missedSessionPolicy) sur un templateId RÉEL bundlé (running-beginner-5k-8sem),
+            // condition nécessaire pour que `loadSafetyContent()` trouve un match (le fixture
+            // `happyPath` générique utilise templateId="running-fixture", qui ne matche AUCUN
+            // template bundlé → section jamais visible, cf `ui_review_adapter_preview`).
+            AdaptedProgramView(
+                program: AdaptedProgram(
+                    templateId: "running-beginner-5k-8sem",
+                    sport: .running,
+                    level: .beginner,
+                    appliedAt: Date(),
+                    weeks: [
+                        AdaptedProgramPreviewFixtures.sampleWeek(1, theme: "Découverte"),
+                        AdaptedProgramPreviewFixtures.sampleWeek(2, theme: "Consolidation")
+                    ],
+                    appliedRules: [],
+                    requiresAIAssist: false
+                ),
+                onConfirmStart: { /* noop pour la review */ }
+            )
+        case "ui_review_adapter_safety_yoga":
+            // Même vérif que ci-dessus, 2e sport pour confirmer que le contenu chargé
+            // change bien avec le template (pas un texte figé partagé) — templateId réel
+            // yoga-beginner-initiation-6sem.
+            AdaptedProgramView(
+                program: AdaptedProgram(
+                    templateId: "yoga-beginner-initiation-6sem",
+                    sport: .yoga,
+                    level: .beginner,
+                    appliedAt: Date(),
+                    weeks: [
+                        AdaptedProgramPreviewFixtures.sampleWeek(1, theme: "Découverte"),
+                        AdaptedProgramPreviewFixtures.sampleWeek(2, theme: "Consolidation")
+                    ],
+                    appliedRules: [],
+                    requiresAIAssist: false
+                ),
+                onConfirmStart: { /* noop pour la review */ }
+            )
         case "ui_review_questionnaire_activity_calibration":
             // **Densité B (2026-07-03)** — question de calibrage QActivity (cold-start
             // HK muet) : fil Q1 répondu « débutant » puis bulle QActivity + options
