@@ -48,6 +48,11 @@ final class ProgramTemplateSelectorTests: XCTestCase {
 
         for code in sportCodes {
             for level in levels {
+                // triathlon+competitive exclu : garde-fou Half-Ironman (2026-07-26) retombe
+                // sur `regular` sans confirmation des prérequis — couvert par les tests dédiés
+                // `testTriathlonCompetitiveFallsBackToRegular...` / `...WhenPrereqConfirmed`.
+                if code == "triathlon", level == "competitive" { continue }
+
                 let profile = makeProfile(sportCode: code, level: level)
                 let template = selector.select(profile: profile)
 
@@ -63,6 +68,52 @@ final class ProgramTemplateSelectorTests: XCTestCase {
                 )
             }
         }
+    }
+
+    // MARK: - Garde-fou Half-Ironman (décision Sophie 2026-07-26, audit triathlon)
+
+    /// Verrou : triathlon n'a qu'1 template par level → sans confirmation explicite des
+    /// prérequis Half-Ironman (Olympique bouclé + vélo TT/capteur + 8-10h/sem), le
+    /// selector NE DOIT JAMAIS assigner le plan competitive 20 sem. Il retombe sur
+    /// `regular` (distance-m 16 sem.).
+    func testTriathlonCompetitiveFallsBackToRegularWithoutPrereqConfirmation() async throws {
+        let library = try await bundledLibrary()
+        let selector = ProgramTemplateSelector(library: library)
+
+        let profile = makeProfile(sportCode: "triathlon", level: "competitive")
+        let template = selector.select(profile: profile)
+
+        XCTAssertEqual(template.level, .regular, "Half-Ironman assigné sans garde-fou → \(template.id)")
+    }
+
+    /// Verrou symétrique : une fois les prérequis confirmés (réponse "yes" à
+    /// `q_half_ironman_prereq` dans l'historique), le plan competitive doit être assigné.
+    func testTriathlonCompetitiveAssignsHalfIronmanWhenPrereqConfirmed() async throws {
+        let library = try await bundledLibrary()
+        let selector = ProgramTemplateSelector(library: library)
+
+        let confirmedEntry = ConversationEntry(
+            questionId: "q_half_ironman_prereq",
+            questionTextKey: "questionnaire.triathlon.q_half_ironman_prereq.text",
+            answer: .single("yes"),
+            askedAt: Date()
+        )
+        let profile = CoachingSportProfile(
+            userId: UUID(),
+            sportCode: "triathlon",
+            level: "competitive",
+            goals: GoalsPayload(primary: "half-ironman"),
+            equipment: [],
+            constraints: [],
+            frequencyPerWeek: 3,
+            frequencyLabel: "3",
+            conversationHistory: [confirmedEntry],
+            medicalClearanceAcknowledged: false,
+            questionnaireVersion: "v1"
+        )
+        let template = selector.select(profile: profile)
+
+        XCTAssertEqual(template.level, .competitive, "Half-Ironman non assigné malgré prérequis confirmés → \(template.id)")
     }
 
     // MARK: - Mapping strengthTraining ↔ strength_training

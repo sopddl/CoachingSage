@@ -56,6 +56,8 @@ struct UniversalQuestionnaire: SportQuestionnaire {
     static let q5LocationId: QuestionId = "q5_location"
     /// Densité B — calibrage activité cold-start (conditionnelle, cf `askActivityCalibration`).
     static let qActivityId: QuestionId = "q_activity_calibration"
+    /// Garde-fou Half-Ironman (2026-07-26) — conditionnelle, triathlon + level competitive uniquement.
+    static let qHalfIronmanPrereqId: QuestionId = "q_half_ironman_prereq"
 
     // MARK: - Q3 frequency option codes (refs partagés)
 
@@ -170,6 +172,38 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         guard let entry = history.first(where: { $0.questionId == qActivityId }),
               case .single(let code)? = entry.answer else { return nil }
         return code == qActivityYesCode
+    }
+
+    // MARK: - Q Half-Ironman prereq (garde-fou triathlon competitive uniquement)
+
+    static let qHalfIronmanPrereqYesCode = "yes"
+    static let qHalfIronmanPrereqNoCode = "no"
+
+    /// Garde-fou avant assignation du plan Half-Ironman 20 sem. (décision Sophie
+    /// 2026-07-26, audit triathlon) : pour triathlon, `ProgramTemplateSelector` matche
+    /// uniquement (sport, level) — il n'y a qu'1 template par level, donc le goal Q2
+    /// n'est JAMAIS utilisé en tie-break. Q1=competitive assigne donc TOUJOURS ce
+    /// template, même si l'user a coché un goal "découverte"/"sprint" à Q2. Cette
+    /// question confirme les 3 prérequis du template (`assumed_profile` : Olympique
+    /// bouclé, vélo TT/capteur de puissance, 8-10h/sem) avant assignation ; si déclinée,
+    /// `ProgramTemplateSelector` retombe sur le level `regular` (distance-m 16 sem.).
+    static let qHalfIronmanPrereq = QuestionnaireQuestion(
+        id: qHalfIronmanPrereqId,
+        textKey: "questionnaire.triathlon.q_half_ironman_prereq.text",
+        answerType: .singleChoice,
+        options: [
+            QuestionOption(code: qHalfIronmanPrereqYesCode, labelKey: "questionnaire.triathlon.q_half_ironman_prereq.option.yes"),
+            QuestionOption(code: qHalfIronmanPrereqNoCode,  labelKey: "questionnaire.triathlon.q_half_ironman_prereq.option.no")
+        ]
+    )
+
+    /// `true` si confirmé, `false` si explicitement décliné, `nil` si la question n'a pas
+    /// été posée (profil non triathlon-competitive, ou historique antérieur au fix).
+    /// Consommée par `ProgramTemplateSelector.select(profile:)`.
+    static func halfIronmanPrereqConfirmed(from history: [ConversationEntry]) -> Bool? {
+        guard let entry = history.first(where: { $0.questionId == qHalfIronmanPrereqId }),
+              case .single(let code)? = entry.answer else { return nil }
+        return code == qHalfIronmanPrereqYesCode
     }
 
     // MARK: - Deadline-eligible goals (= goals avec date cible possible)
@@ -314,6 +348,13 @@ struct UniversalQuestionnaire: SportQuestionnaire {
     ) -> QuestionnaireQuestion? {
         switch questionId {
         case Self.q1LevelId:
+            // Garde-fou Half-Ironman (2026-07-26) : triathlon + competitive assigne
+            // TOUJOURS le plan 20 sem. (cf `qHalfIronmanPrereq` doc) — priorité sur le
+            // calibrage densité ci-dessous (competitive n'est de toute façon jamais dans
+            // `DensityRule.gatedLevels`, donc pas de conflit réel entre les deux branches).
+            if sportCode == "triathlon", case .single(let levelCode) = answer, levelCode == "competitive" {
+                return Self.qHalfIronmanPrereq
+            }
             // Densité B — calibrage cold-start : posée ssi le signal HK est indisponible
             // ET le niveau répondu est dans le gating densité (`DensityRule.gatedLevels`,
             // source unique). Hors gating la réponse serait ignorée par DensityRule → on
@@ -324,6 +365,8 @@ struct UniversalQuestionnaire: SportQuestionnaire {
                DensityRule.gatedLevels.contains(level) {
                 return Self.qActivity
             }
+            return q2Goal
+        case Self.qHalfIronmanPrereqId:
             return q2Goal
         case Self.qActivityId:
             return q2Goal
@@ -384,6 +427,7 @@ struct UniversalQuestionnaire: SportQuestionnaire {
         case Self.q4DateId:      return Self.q4Date
         case Self.q5LocationId:  return Self.q5Location
         case Self.qActivityId:   return Self.qActivity
+        case Self.qHalfIronmanPrereqId: return Self.qHalfIronmanPrereq
         default:                 return nil
         }
     }

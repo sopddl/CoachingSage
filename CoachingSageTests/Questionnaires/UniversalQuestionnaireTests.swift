@@ -604,4 +604,63 @@ struct UniversalQuestionnaireTests {
         #expect(profile.goals.primary == "wellness")
         #expect(profile.frequencyPerWeek == 2)
     }
+
+    // MARK: - Garde-fou Half-Ironman (décision Sophie 2026-07-26, audit triathlon)
+
+    @Test("Q1 competitive + triathlon → qHalfIronmanPrereq ; tout autre sport/level → Q2 direct")
+    func halfIronmanPrereq_askedOnlyForTriathlonCompetitive() {
+        let triathlon = UniversalQuestionnaire(sportCode: "triathlon")
+        let acc: [QuestionId: AnswerValue] = [:]
+        #expect(triathlon.nextQuestion(after: "q1_level", answer: .single("competitive"), accumulated: acc)?.id == "q_half_ironman_prereq")
+        #expect(triathlon.nextQuestion(after: "q1_level", answer: .single("regular"), accumulated: acc)?.id == "q2_goal")
+
+        let running = UniversalQuestionnaire(sportCode: "running")
+        #expect(running.nextQuestion(after: "q1_level", answer: .single("competitive"), accumulated: acc)?.id == "q2_goal")
+    }
+
+    @Test("qHalfIronmanPrereq → Q2 : la chaîne nextQuestion reste intacte en aval")
+    func halfIronmanPrereq_chainsToQ2() {
+        let q = UniversalQuestionnaire(sportCode: "triathlon")
+        let acc: [QuestionId: AnswerValue] = ["q1_level": .single("competitive")]
+        #expect(q.nextQuestion(after: "q_half_ironman_prereq", answer: .single("yes"), accumulated: acc)?.id == "q2_goal")
+        #expect(q.nextQuestion(after: "q_half_ironman_prereq", answer: .single("no"), accumulated: acc)?.id == "q2_goal")
+    }
+
+    @Test("findQuestion résout qHalfIronmanPrereq (recovery draft)")
+    func halfIronmanPrereq_findQuestionResolves() {
+        let q = UniversalQuestionnaire(sportCode: "triathlon")
+        #expect(q.findQuestion(byId: "q_half_ironman_prereq")?.id == "q_half_ironman_prereq")
+        #expect(q.findQuestion(byId: "q_half_ironman_prereq")?.options.map { $0.code } == ["yes", "no"])
+    }
+
+    @Test("halfIronmanPrereqConfirmed extrait oui/non/absent de l'historique")
+    func halfIronmanPrereqConfirmed_extractsFromHistory() {
+        func history(_ code: String) -> [ConversationEntry] {
+            [ConversationEntry(questionId: "q_half_ironman_prereq", questionTextKey: "questionnaire.triathlon.q_half_ironman_prereq.text", answer: .single(code), askedAt: Date())]
+        }
+        #expect(UniversalQuestionnaire.halfIronmanPrereqConfirmed(from: history("yes")) == true)
+        #expect(UniversalQuestionnaire.halfIronmanPrereqConfirmed(from: history("no")) == false)
+        #expect(UniversalQuestionnaire.halfIronmanPrereqConfirmed(from: []) == nil)
+    }
+
+    @Test("buildProfile ignore la réponse qHalfIronmanPrereq (non persistée sur le profil)")
+    func halfIronmanPrereq_notPersistedOnProfile() {
+        let q = UniversalQuestionnaire(sportCode: "triathlon")
+        let profile = q.buildProfile(
+            userId: UUID(),
+            answers: [
+                "q1_level": .single("competitive"),
+                "q_half_ironman_prereq": .single("no"),
+                "q2_goal": .single("half-ironman"),
+                "q3_frequency": .single("4_or_more")
+            ],
+            freeTextNotes: nil,
+            history: [],
+            medicalClearanceAcknowledged: false
+        )
+        // Même pattern que QActivity : la réponse ne vit que dans conversationHistory,
+        // consommée par ProgramTemplateSelector au moment du select().
+        #expect(profile.level == "competitive")
+        #expect(profile.goals.primary == "half-ironman")
+    }
 }

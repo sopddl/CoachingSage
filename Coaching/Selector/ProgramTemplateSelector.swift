@@ -40,8 +40,21 @@ struct ProgramTemplateSelector {
     /// COMPLET via `library.fullTemplate(id:)` au moment d'adapter la séance.
     func select(profile: CoachingSportProfile) -> TemplateSummary {
         let sport = Sport(sportCode: profile.sportCode)
-        let level = Level(profileLevel: profile.level) ?? .beginner
+        var level = Level(profileLevel: profile.level) ?? .beginner
         let goal = profile.goals.primary
+
+        // Garde-fou Half-Ironman (décision Sophie 2026-07-26, audit triathlon) : triathlon
+        // n'a qu'1 template par level (`pickExact` ne déclenche jamais son tie-break par
+        // goal), donc level=competitive assigne TOUJOURS le plan 20 sem. sans que le goal
+        // Q2 n'entre en jeu. Sans confirmation explicite des prérequis du template
+        // (`assumed_profile` : Olympique bouclé, vélo TT/capteur, 8-10h/sem — posée par
+        // `UniversalQuestionnaire.qHalfIronmanPrereq`), on retombe sur `regular`
+        // (distance-m 16 sem.).
+        if sport == .triathlon,
+           level == .competitive,
+           UniversalQuestionnaire.halfIronmanPrereqConfirmed(from: profile.conversationHistory) != true {
+            level = .regular
+        }
 
         if let sport {
             if let exact = pickExact(sport: sport, level: level, goal: goal) {
