@@ -8113,217 +8113,21 @@
         },
         {
           "cooldown" : {
-            "en" : "8 min stretching.",
-            "es" : "Estiramientos 8 min.",
-            "fr" : "Étirements 8 min."
+            "fr" : ""
           },
           "day" : 4,
-          "duration_minutes" : 50,
+          "duration_minutes" : 0,
           "exercises" : [
-            {
-              "alternatives" : [
-                {
-                  "en" : "Light single-leg Romanian deadlift (W1-W2 progression)",
-                  "es" : "Peso muerto rumano a una pierna ligero (progresión W1-W2)",
-                  "fr" : "Soulevé de terre roumain sur une jambe léger (progression W1-W2)"
-                },
-                {
-                  "en" : "Glute-ham raise machine if available",
-                  "es" : "Glute-ham raise en máquina si hay",
-                  "fr" : "Extension ischio-fessiers à la machine si dispo"
-                },
-                {
-                  "en" : "Sliding leg curl with a towel on a slippery floor",
-                  "es" : "Curl femoral deslizante con una toalla sobre suelo resbaladizo",
-                  "fr" : "Leg curl glissé avec une serviette sur sol glissant"
-                }
-              ],
-              "dose" : {
-                "unit" : "reps",
-                "value" : "8"
-              },
-              "incompatible_constraints" : [
-                "hamstring-injury",
-                "lower-back-pain",
-                "knee-injury"
-              ],
-              "match_key" : "Nordic Hamstring Exercise (NHE)",
-              "name" : {
-                "en" : "Nordic Hamstring Exercise",
-                "es" : "Ejercicio nórdico de isquiotibiales",
-                "fr" : "Ischios excentriques nordiques"
-              },
-              "notes" : {
-                "en" : "Kneeling on a mat, a partner or a bar holds the ankles. Controlled eccentric descent over 3-4 sec, hands to the floor to push back up. Hamstrings. If no partner: low-anchored strap + feet locked. Very hard effort. 2-3×/wk in pre-season, 1×/wk in season.",
-                "es" : "De rodillas sobre una colchoneta, un compañero o una barra sujeta los tobillos. Descenso excéntrico controlado en 3-4 s, manos al suelo para subir. Isquios. Si no hay compañero: cincha anclada baja + pies bloqueados. Esfuerzo muy duro. 2-3×/sem en pretemporada, 1×/sem en temporada.",
-                "fr" : "Genoux au sol (tapis), un partenaire ou une barre bloque les chevilles. Descente excentrique contrôlée 3-4 s, mains au sol pour remonter. Ischios. Sans partenaire : sangle ancrée bas + pieds bloqués. Effort très dur. 2-3×/sem en présaison, 1×/sem en saison."
-              },
-              "reps" : "8",
-              "required_equipment" : [
-                "mat",
-                "partner"
-              ],
-              "rest_seconds" : 90,
-              "sets" : 3,
-              "target_zone" : "RPE 8-9 sprint",
-              "volume_axis" : "reps"
-            },
-            {
-              "alternatives" : [
-                {
-                  "en" : "Static hold adductor squeeze with a ball 3 × 30 sec",
-                  "es" : "Apretón isométrico de aductores con balón 3 × 30 s",
-                  "fr" : "Serrage tenu sans bouger des adducteurs avec ballon 3 × 30 sec"
-                },
-                {
-                  "en" : "Side-lying hip adduction without support",
-                  "es" : "Aducción de cadera tumbado de lado sin apoyo",
-                  "fr" : "Adduction de hanche allongé sur le côté, sans appui"
-                },
-                {
-                  "en" : "Cossack squat",
-                  "es" : "Sentadilla cosaca",
-                  "fr" : "Squat cosaque"
-                }
-              ],
-              "dose" : {
-                "qualifier" : "perLeg",
-                "unit" : "reps",
-                "value" : "10"
-              },
-              "incompatible_constraints" : [
-                "groin-injury",
-                "lower-back-pain"
-              ],
-              "match_key" : "Copenhagen Adduction Exercise (CAE)",
-              "name" : {
-                "en" : "Copenhagen Adduction Exercise",
-                "es" : "Ejercicio de aducción Copenhague",
-                "fr" : "Renforcement des adducteurs Copenhague (Copenhagen adduction)"
-              },
-              "notes" : {
-                "en" : "Lie on your side, top leg supported on a bench/chair by the ankle. Raise and lower the hips keeping alignment. Adductors. Hard effort. 2×/wk in pre-season, 1×/wk in season. If groin discomfort appears: stop and flag it.",
-                "es" : "Tumbado de lado, pierna superior apoyada en un banco/silla por el tobillo. Subir y bajar las caderas manteniendo la alineación. Aductores. Esfuerzo duro. 2×/sem en pretemporada, 1×/sem en temporada. Si aparece molestia en la ingle: para y avisa.",
-                "fr" : "Allongé sur le côté, jambe haute en appui sur un banc/chaise par la cheville. Lever-baisser les hanches en gardant l'alignement. Adducteurs. Effort dur. 2×/sem en présaison, 1×/sem en saison. Si une gêne à l'aine apparaît : on arrête et on le signale."
-              },
-              "reps" : "10 par jambe",
-              "required_equipment" : [
-                "mat",
-                "bench"
-              ],
-              "rest_seconds" : 75,
-              "sets" : 3,
-              "target_zone" : "RPE 7-8 intermittent",
-              "volume_axis" : "reps"
-            },
-            {
-              "alternatives" : [
-                {
-                  "en" : "Jump squat 4 × 8 without a box",
-                  "es" : "Sentadilla con salto 4 × 8 sin cajón",
-                  "fr" : "Squat sauté 4 × 8 sans boîte"
-                },
-                {
-                  "en" : "Broad jump 4 × 5",
-                  "es" : "Salto horizontal 4 × 5",
-                  "fr" : "Saut horizontal 4 × 5"
-                },
-                {
-                  "en" : "Low skater jump 4 × 5/side (substitute if knee is sensitive)",
-                  "es" : "Salto de patinador bajo 4 × 5/lado (sustituto si la rodilla está sensible)",
-                  "fr" : "Saut patineur bas 4 × 5/côté (à la place si genou sensible)"
-                }
-              ],
-              "dose" : {
-                "free_text" : {
-                  "en" : "5 box jumps + 5 lateral bounds per side",
-                  "es" : "5 box jumps + 5 lateral bounds por lado",
-                  "fr" : "5 box jump + 5 lateral bound par côté"
-                }
-              },
-              "incompatible_constraints" : [
-                "acl-history",
-                "ankle-injury",
-                "knee-injury"
-              ],
-              "match_key" : "Plyometrie box jump + lateral bound",
-              "name" : {
-                "en" : "Jump training — box jump + lateral bound",
-                "es" : "Pliometría — salto al cajón + salto lateral",
-                "fr" : "Sauts dynamiques — saut sur boîte + bond latéral"
-              },
-              "notes" : {
-                "en" : "Low box jump (40-50 cm): explosive jump, landing knees bent, step down. Lateral bound: single-leg lateral jump, 1 sec stabilization on landing. Hard effort. After a full warm-up only (never cold).",
-                "es" : "Salto al cajón bajo (box jump, 40-50 cm): salto explosivo, aterrizaje con rodillas flexionadas, bajada caminando. Salto lateral: salto lateral a una pierna, estabilización 1 s en el aterrizaje. Esfuerzo duro. Solo tras un calentamiento completo (nunca en frío).",
-                "fr" : "Saut sur boîte basse (saut sur box, 40-50 cm) : saut explosif, atterrissage genoux fléchis, descente en marchant. Bond latéral : saut latéral sur une jambe, stabilisation 1 sec à l'atterrissage. Effort dur. Après un échauffement complet uniquement (jamais à froid)."
-              },
-              "reps" : "5 box jumps + 5 lateral bounds/cote",
-              "required_equipment" : [
-                "box",
-                "field"
-              ],
-              "rest_seconds" : 90,
-              "sets" : 4,
-              "target_zone" : "RPE 8-9 sprint",
-              "volume_axis" : "reps"
-            },
-            {
-              "alternatives" : [
-                {
-                  "en" : "Walk 5 min + quick static stretches",
-                  "es" : "Caminata 5 min + estiramientos estáticos rápidos",
-                  "fr" : "Marche 5 min + étirements statiques rapides"
-                },
-                {
-                  "en" : "Mobility yoga 10 min (rest day)",
-                  "es" : "Yoga de movilidad 10 min (día de descanso)",
-                  "fr" : "Yoga mobilité 10 min (jour de repos)"
-                },
-                {
-                  "en" : "8 min cold bath post-match (advanced recovery)",
-                  "es" : "Baño frío 8 min tras partido (recuperación avanzada)",
-                  "fr" : "Bain froid 8 min après match (récupération avancée)"
-                }
-              ],
-              "dose" : {
-                "unit" : "minutes",
-                "value" : "8"
-              },
-              "duration" : "8 min",
-              "incompatible_constraints" : [
 
-              ],
-              "match_key" : "Cool-down etirements + mobilite",
-              "name" : {
-                "en" : "Cool-down — stretching + mobility",
-                "es" : "Vuelta a la calma — estiramientos + movilidad",
-                "fr" : "Retour au calme — étirements + mobilité"
-              },
-              "notes" : {
-                "en" : "Very slow 3 min jog + static stretches quads, hamstrings, adductors, calves, hips (30 sec/side). Foam roller hamstrings + calves 1 min/area. Very easy effort.",
-                "es" : "Trote muy lento 3 min + estiramientos estáticos cuádriceps, isquios, aductores, gemelos, caderas (30 s/lado). Rodillo isquios + gemelos 1 min/zona. Esfuerzo muy fácil.",
-                "fr" : "Footing très lent 3 min + étirements statiques quadriceps, ischios, adducteurs, mollets, hanches (30 s/côté). Rouleau ischios + mollets 1 min/zone. Effort très facile."
-              },
-              "required_equipment" : [
-                "mat",
-                "foam-roller"
-              ],
-              "rest_seconds" : 0,
-              "sets" : 1,
-              "target_zone" : "cool-down",
-              "volume_axis" : "duration"
-            }
           ],
           "name" : {
-            "en" : "Off-pitch strength — maintenance + mobility",
-            "es" : "Fuerza fuera del campo — mantenimiento + movilidad",
-            "fr" : "Renforcement hors terrain — maintien + mobilité"
+            "en" : "Full rest",
+            "es" : "Descanso total",
+            "fr" : "Repos complet"
           },
-          "type" : "strength",
+          "type" : "rest",
           "warmup" : {
-            "en" : "5 min very easy bike + 5 min mobility.",
-            "es" : "Bicicleta 5 min muy fácil + movilidad 5 min.",
-            "fr" : "Vélo 5 min très facile + mobilité 5 min."
+            "fr" : ""
           }
         },
         {
@@ -11520,9 +11324,9 @@
     },
     {
       "goal" : {
-        "en" : "Season W1 (plan W9) — season block 1: 8-10 h on the pitch + 1.5-2 h maintenance strength. Stable 4-day Verheijen micro-cycle (MD-3 strength / MD-2 repeated sprints / MD-1 activation / matchday / MD+1 recovery). Weekly league match.",
-        "es" : "Temporada W1 (W9 del plan) — bloque 1 de temporada: 8-10 h en campo + 1,5-2 h de fuerza de mantenimiento. Microciclo Verheijen de 4 días estable (MD-3 fuerza / MD-2 esprints repetidos / MD-1 activación / día de partido / MD+1 recuperación). Partido de liga semanal.",
-        "fr" : "Saison W1 (W9 du plan) — bloc 1 de saison : 8-10 h terrain + 1,5-2 h renforcement de maintien. Micro-cycle Verheijen 4 jours stable (J-3 force / J-2 sprints répétés / J-1 activation / jour de match / lendemain récup). Match de championnat chaque semaine."
+        "en" : "Season W1 (plan W9) — season block 1: 8-10 h on the pitch + 1.5-2 h maintenance strength. Stable 4-day micro-cycle (MD-3 strength / MD-2 repeated sprints / MD-1 activation / matchday / MD+1 recovery). Weekly league match.",
+        "es" : "Temporada W1 (W9 del plan) — bloque 1 de temporada: 8-10 h en campo + 1,5-2 h de fuerza de mantenimiento. Microciclo de 4 días estable (MD-3 fuerza / MD-2 esprints repetidos / MD-1 activación / día de partido / MD+1 recuperación). Partido de liga semanal.",
+        "fr" : "Saison W1 (W9 du plan) — bloc 1 de saison : 8-10 h terrain + 1,5-2 h renforcement de maintien. Micro-cycle 4 jours stable (J-3 force / J-2 sprints répétés / J-1 activation / jour de match / lendemain récup). Match de championnat chaque semaine."
       },
       "sessions" : [
         {
@@ -12899,9 +12703,9 @@
         }
       ],
       "theme" : {
-        "en" : "Season block 1 — Verheijen micro-cycle, wk 1 (W9)",
-        "es" : "Bloque temporada 1 — microciclo Verheijen, S1 (W9)",
-        "fr" : "Bloc saison 1 — micro-cycle Verheijen, S1 (W9)"
+        "en" : "Season block 1 — 4-day micro-cycle, wk 1 (W9)",
+        "es" : "Bloque temporada 1 — microciclo de 4 días, S1 (W9)",
+        "fr" : "Bloc saison 1 — micro-cycle 4 jours, S1 (W9)"
       },
       "week_number" : 9
     },
@@ -13591,70 +13395,21 @@
         },
         {
           "cooldown" : {
-            "en" : "5 min stretching.",
-            "es" : "Estiramientos 5 min.",
-            "fr" : "Étirements 5 min."
+            "fr" : ""
           },
           "day" : 4,
-          "duration_minutes" : 30,
+          "duration_minutes" : 0,
           "exercises" : [
-            {
-              "alternatives" : [
-                {
-                  "en" : "Very easy bike 30 min (impact-free substitute)",
-                  "es" : "Bicicleta muy fácil 30 min (sustituto sin impactos)",
-                  "fr" : "Vélo très facile 30 min (à la place pour éviter les chocs)"
-                },
-                {
-                  "en" : "Walk 45 min + stretching (passive recovery)",
-                  "es" : "Caminata 45 min + estiramientos (recuperación pasiva)",
-                  "fr" : "Marche 45 min + étirements (récupération passive)"
-                },
-                {
-                  "en" : "10 min cold bath + nap (advanced recovery)",
-                  "es" : "Baño frío 10 min + siesta (recuperación avanzada)",
-                  "fr" : "Bain froid 10 min + sieste (récupération avancée)"
-                }
-              ],
-              "dose" : {
-                "unit" : "minutes",
-                "value" : "30"
-              },
-              "duration" : "30 min",
-              "incompatible_constraints" : [
 
-              ],
-              "match_key" : "MD+1 recuperation active",
-              "name" : {
-                "en" : "Matchday+1 — active recovery",
-                "es" : "Día después del partido — recuperación activa",
-                "fr" : "Lendemain de match — récupération active"
-              },
-              "notes" : {
-                "en" : "Post-match recovery: 15 min very slow jog + 10 min mobility + 5 min foam roller. OR very easy bike 30 min (impact-free). If marked fatigue: rest + 30 min walk.",
-                "es" : "Recuperación tras partido: 15 min trote muy lento + 10 min movilidad + 5 min rodillo. O bicicleta muy fácil 30 min (sin impactos). Si fatiga marcada: descanso + caminata 30 min.",
-                "fr" : "Récup après match : 15 min footing très lent + 10 min mobilité + 5 min rouleau. OU vélo très facile 30 min (sans chocs). Si fatigue marquée : repos + marche 30 min."
-              },
-              "required_equipment" : [
-                "foam-roller",
-                "mat"
-              ],
-              "rest_seconds" : 0,
-              "sets" : 1,
-              "target_zone" : "Z1",
-              "volume_axis" : "duration"
-            }
           ],
           "name" : {
-            "en" : "Matchday+1 — post-cup recovery",
-            "es" : "Día después del partido — recuperación tras la copa",
-            "fr" : "Lendemain de match — récupération après la coupe"
+            "en" : "Full rest",
+            "es" : "Descanso total",
+            "fr" : "Repos complet"
           },
-          "type" : "mobility",
+          "type" : "rest",
           "warmup" : {
-            "en" : "5 min walk.",
-            "es" : "Caminata 5 min.",
-            "fr" : "Marche 5 min."
+            "fr" : ""
           }
         },
         {
