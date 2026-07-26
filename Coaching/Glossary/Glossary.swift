@@ -154,8 +154,10 @@ public enum Glossary {
                       sportCodes: [Sport.strengthTraining]),
         GlossaryEntry(id: "cars",           titleKey: "glossary.cars.title",           definitionKey: "glossary.cars.definition",
                       sportCodes: [Sport.strengthTraining, Sport.yoga]),
+        // Audit contenu yoga (2026-07-26) — "scapulaire"/"scapular" utilisé dans
+        // 3/4 templates yoga (beginner/regular/competitive), pas seulement muscu.
         GlossaryEntry(id: "scapular",       titleKey: "glossary.scapular.title",       definitionKey: "glossary.scapular.definition",
-                      sportCodes: [Sport.strengthTraining]),
+                      sportCodes: [Sport.strengthTraining, Sport.yoga]),
         GlossaryEntry(id: "thoracic",       titleKey: "glossary.thoracic.title",       definitionKey: "glossary.thoracic.definition",
                       sportCodes: [Sport.strengthTraining, Sport.yoga]),
         GlossaryEntry(id: "bandpullapart",  titleKey: "glossary.bandpullapart.title",  definitionKey: "glossary.bandpullapart.definition",

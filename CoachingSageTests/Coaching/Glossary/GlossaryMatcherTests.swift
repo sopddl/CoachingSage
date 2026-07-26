@@ -296,6 +296,12 @@ final class GlossaryMatcherTests: XCTestCase {
         XCTAssertTrue(ids.contains("reps"), "reps doit matcher aussi")
     }
 
+    // Audit contenu yoga (2026-07-26) — variante FR jamais reconnue (seul l'EN l'était).
+    func testScapulaireFRMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Rotation scapulaire douce").first?.entry.id, "scapular")
+        XCTAssertTrue(Glossary.matches(in: "stabilité scapulaire").contains { $0.entry.id == "scapular" })
+    }
+
     func testThoracicMobilityMatches() {
         XCTAssertEqual(Glossary.matches(in: "Mobilité thoracique 1 min").first?.entry.id, "thoracic")
         XCTAssertEqual(Glossary.matches(in: "Thoracic mobility drill").first(where: { $0.entry.id == "thoracic" })?.entry.id, "thoracic")

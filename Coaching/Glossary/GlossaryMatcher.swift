@@ -142,6 +142,9 @@ extension Glossary {
         ("barre vide", "barrevide"),
         ("empty bar", "barrevide"),
         ("scapular", "scapular"),
+        // Audit contenu yoga (2026-07-26) — variante FR "scapulaire" jamais reconnue
+        // (seul l'EN "scapular" matchait), y compris sur le plan beginner.
+        ("scapulaire", "scapular"),
         ("ramp-up", "rampup"),
         ("ramp up", "rampup"),
         ("rampup", "rampup"),
