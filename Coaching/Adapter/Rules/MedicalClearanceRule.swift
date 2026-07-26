@@ -109,6 +109,12 @@ public struct MedicalClearanceRule: AdaptationRule {
     }
 
     /// Renvoie la zone "safe" équivalente, ou nil si la zone est déjà acceptable.
+    ///
+    /// Extension 2026-07-26 (audit yoga, décision Sophie "étendre à tous les
+    /// vocabulaires de zone") : la couverture initiale (Story 3.3a) ne reconnaissait
+    /// que Daniels-*/FTP-Z*/RPE (running + cycling) — silencieusement inerte pour
+    /// tout template utilisant un autre vocabulaire (hiking/tennis/football en
+    /// Z1-Z5 génériques, natation en CSS/EN1-3/SP1-3, yoga en texte libre).
     private func downgradedZone(for zone: String?) -> String? {
         guard let zone else { return nil }
 
@@ -121,12 +127,34 @@ public struct MedicalClearanceRule: AdaptationRule {
         if zone == "FTP-Z4" || zone == "FTP-Z5" || zone == "FTP-Z6" || zone == "FTP-Z7" { return "FTP-Z2" }
         if zone == "Sweet-Spot" { return "FTP-Z2" }
 
-        // RPE — toute valeur ≥ 7 (matchera "RPE 7-8", "RPE 8-9").
+        // RPE — toute valeur ≥ 7 (matchera "RPE 7-8", "RPE 8-9", "RPE 7-8 intermittent"...).
         if zone.hasPrefix("RPE") {
             for digit in ["7", "8", "9", "10"] where zone.contains(digit) {
                 return "RPE 4-5"
             }
         }
+
+        // Zones FC génériques Z1-Z5 (hiking/tennis/football) — glossaire "zones" :
+        // Z1-Z2 easy, Z3 tempo, Z4 threshold, Z5 maximal. "Z2-cardiac" déjà une
+        // variante prudente, non concernée.
+        if zone == "Z3" || zone == "Z4" || zone == "Z5" { return "Z1" }
+
+        // Natation — CSS/EN/SP (glossaire "css"/"en"/"sp") : SP1-3 = allures de
+        // course (lactate→sprint max, toutes hautes), EN3 = haut aérobie proche
+        // seuil, CSS pace = allure seuil elle-même. "CSS+Ns/100m" est déjà PLUS
+        // lent que le seuil (sûr), pas concerné.
+        if zone.hasPrefix("SP") { return "EN1" }
+        if zone == "EN3" { return "EN1" }
+        if zone == "CSS pace" { return "EN1" }
+
+        // Yoga — vocabulaire texte (pas de code), cf audit 2026-07-26 : les tenues
+        // longues et l'enchaînement dynamique sont l'équivalent yoga d'une zone
+        // haute intensité. "respiration guidée" n'est PAS descendue ici : elle
+        // recouvre aussi bien la respiration douce que le pranayama avancé
+        // (rétention) sans tag distinct — limite connue, cf item séparé
+        // contre-indications pranayama (safety_notes).
+        if zone == "maintien 90 s" || zone == "maintien 60 s" || zone == "maintien 45 s" { return "maintien 30 s" }
+        if zone == "enchaînement" { return "réparateur" }
 
         return zone
     }

@@ -68,6 +68,11 @@ extension Glossary {
         ("tabata", "tabata"),
         ("amrap", "amrap"),
         ("emom", "emom"),
+        // Audit contenu HIIT (2026-07-26) — "Cindy"/"FRAN" jamais glossés (benchmarks
+        // CrossFit nommés). "fran" (4 chars) protégé par la boundary stricte : ne matche
+        // pas à l'intérieur de "français"/"France" (lettre adjacente non-boundary).
+        ("cindy", "cindy"),
+        ("fran", "fran"),
         // Race pace patterns
         ("5k-pace", "race.pace"),
         ("10k-pace", "race.pace"),
@@ -77,6 +82,9 @@ extension Glossary {
         ("ftp", "ftp"),
         ("hmp", "hmp"),
         ("vdot", "vdot"),
+        // Audit contenu swimming (2026-07-26) — "EVF" jamais traduit ni glossé en EN/ES.
+        ("early vertical forearm", "evf"),
+        ("evf", "evf"),
         // Chantier compréhensibilité cycling (2026-06-25) — FCmax rendue tappable (FR/EN/ES).
         ("fréquence cardiaque maximale", "fcmax"),
         ("fréquence cardiaque max", "fcmax"),
@@ -100,14 +108,33 @@ extension Glossary {
         ("intervals", "intervals"),
         ("interval", "intervals"),
         ("cadence", "cadence"),
+        // Audit contenu cycling (2026-07-26) — "braquet" jamais glossé.
+        ("braquets", "braquet"),
+        ("braquet", "braquet"),
         ("strides", "strides"),
         ("stride", "strides"),
+        // Chantier compréhensibilité running (2026-07-26) — "lignes droites" jamais
+        // tappable malgré une définition FR déjà en place (glossary.strides.title).
+        // PAS de singulier "ligne droite" : 25 faux positifs football (conduite de
+        // balle / course technique "très lente", sans rapport avec le stride
+        // athlétique) — vérifié par review, cf commentaire clôture 2026-07-26.
+        ("lignes droites", "strides"),
+        ("lignes", "strides"),
         ("lactate", "lactate"),
         ("lactic", "lactate"),
         ("tempo", "tempo"),
         // Effort (3 chars — risqué : need strict word boundary)
         ("rpe", "rpe"),
         ("1rm", "1rm"),
+        // Audit contenu strengthTraining (2026-07-26) — "TM" (Training Max) jamais glossé
+        // (2 chars, risqué : boundary stricte requise, cf "atm"/"team" non concernés car
+        // la lettre adjacente est alphanumérique de part et d'autre).
+        ("tm", "tm"),
+        // Audit contenu strengthTraining (2026-07-26) — "5/3/1" (protocole Wendler, gardé
+        // tel quel dans les 3 langues) jamais glossé. Les "/" internes ne comptent pas pour
+        // la boundary (seuls les caractères avant "5" et après le dernier "1" comptent) ;
+        // matche aussi "5/3/1+" (le "+" est une boundary valide).
+        ("5/3/1", "531"),
         // Story 3.24a — strength + mobilité (test simu Sophie 2026-05-24)
         // Multi-mots d'abord (longest-first via sortedPatterns)
         ("shoulder dislocations", "dislocation"),
@@ -126,6 +153,9 @@ extension Glossary {
         ("barre vide", "barrevide"),
         ("empty bar", "barrevide"),
         ("scapular", "scapular"),
+        // Audit contenu yoga (2026-07-26) — variante FR "scapulaire" jamais reconnue
+        // (seul l'EN "scapular" matchait), y compris sur le plan beginner.
+        ("scapulaire", "scapular"),
         ("ramp-up", "rampup"),
         ("ramp up", "rampup"),
         ("rampup", "rampup"),

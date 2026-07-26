@@ -239,6 +239,71 @@ final class AdapterRuleTests: XCTestCase {
         XCTAssertTrue(result.appliedRules.contains { $0.outcome == .downgraded })
     }
 
+    /// Extension 2026-07-26 (audit yoga, décision Sophie) : la couverture initiale
+    /// ne reconnaissait que Daniels-*/FTP-Z*/RPE — inerte pour hiking/tennis/football
+    /// (Z1-Z5 génériques), natation (CSS/EN/SP), yoga (texte libre).
+    func testMedicalClearanceDowngradesAllZoneVocabularies() {
+        func template(zone: String) -> ProgramTemplate {
+            ProgramTemplate(
+                id: "zone-fixture", schemaVersion: 2, sport: .yoga, level: .regular,
+                name: "Zone fixture", durationWeeks: 1, sessionsPerWeek: 1,
+                defaultObjective: "test", assumedProfile: "test", summary: "test",
+                weeks: [
+                    TemplateWeek(
+                        weekNumber: 1, theme: "S1", goal: "Goal",
+                        sessions: [
+                            TemplateSession(
+                                day: 1, name: "Séance", durationMinutes: 30, type: .mixed,
+                                warmup: nil,
+                                exercises: [
+                                    TemplateExercise(name: "Exo", targetZone: zone, volumeAxis: .duration)
+                                ],
+                                cooldown: nil
+                            )
+                        ]
+                    )
+                ],
+                safetyNotes: "test", progressionLogic: "test"
+            )
+        }
+
+        func downgraded(_ zone: String) -> String? {
+            let t = template(zone: zone)
+            let result = MedicalClearanceRule().apply(
+                weeks: liftToAdapted(t), template: t,
+                sport: .yoga, level: .regular,
+                sportProfile: AdapterTestFixtures.sportProfile(),
+                coachingProfile: AdapterTestFixtures.coachingProfile(requiresMedicalClearance: true)
+            )
+            return result.weeks[0].sessions[0].exercises[0].targetZone
+        }
+
+        // Z1-Z5 génériques (hiking/tennis/football).
+        XCTAssertEqual(downgraded("Z3"), "Z1")
+        XCTAssertEqual(downgraded("Z4"), "Z1")
+        XCTAssertEqual(downgraded("Z5"), "Z1")
+        XCTAssertEqual(downgraded("Z1"), "Z1", "déjà safe, inchangé")
+        XCTAssertEqual(downgraded("Z2-cardiac"), "Z2-cardiac", "déjà une variante prudente, inchangé")
+
+        // Natation CSS/EN/SP.
+        XCTAssertEqual(downgraded("SP1"), "EN1")
+        XCTAssertEqual(downgraded("SP2"), "EN1")
+        XCTAssertEqual(downgraded("SP3"), "EN1")
+        XCTAssertEqual(downgraded("EN3"), "EN1")
+        XCTAssertEqual(downgraded("CSS pace"), "EN1")
+        XCTAssertEqual(downgraded("EN1"), "EN1", "déjà safe, inchangé")
+        XCTAssertEqual(downgraded("CSS+5s/100m"), "CSS+5s/100m", "déjà plus lent que le seuil, inchangé")
+
+        // Yoga — vocabulaire texte.
+        XCTAssertEqual(downgraded("maintien 90 s"), "maintien 30 s")
+        XCTAssertEqual(downgraded("maintien 60 s"), "maintien 30 s")
+        XCTAssertEqual(downgraded("maintien 45 s"), "maintien 30 s")
+        XCTAssertEqual(downgraded("maintien 30 s"), "maintien 30 s", "déjà la tenue la plus courte, inchangé")
+        XCTAssertEqual(downgraded("enchaînement"), "réparateur")
+        XCTAssertEqual(downgraded("méditation"), "méditation", "déjà doux, inchangé")
+        XCTAssertEqual(downgraded("réparateur"), "réparateur", "déjà doux, inchangé")
+    }
+
     func testMedicalClearanceNoOpWhenFlagFalse() {
         let template = AdapterTestFixtures.makeRunningTemplate()
         let weeks = liftToAdapted(template)

@@ -100,6 +100,21 @@ struct AdaptedProgramView: View {
     /// déplier/replier toutes les semaines manuellement.
     @State private var expandedWeeks: Set<Int> = []
 
+    /// Audit transverse 2026-07-26 — `safety_notes`/`progression_logic` restent une
+    /// doctrine interne dense (jamais montrée telle quelle) ; `overloadSigns`/
+    /// `missedSessionPolicy` sont le sous-ensemble court destiné à l'affichage, lu
+    /// directement depuis le template bundlé (contenu statique, pas besoin de
+    /// passer par l'adapter ni la persistance). `nil` tant que non chargé.
+    @State private var safetyContentTemplate: ProgramTemplate? = nil
+
+    private var overloadSigns: String? {
+        safetyContentTemplate?.overloadSigns.resolved(locale)
+    }
+
+    private var missedSessionPolicy: String? {
+        safetyContentTemplate?.missedSessionPolicy.resolved(locale)
+    }
+
     var body: some View {
         ScrollViewReader { proxy in
         ScrollView {
@@ -121,6 +136,10 @@ struct AdaptedProgramView: View {
                 // en mémoire ; réouverture dashboard = record.densityApplied persisté.
                 if densityWasApplied {
                     densityBanner
+                }
+
+                if overloadSigns != nil || missedSessionPolicy != nil {
+                    safetySection
                 }
 
                 ForEach(program.weeks, id: \.weekNumber) { week in
@@ -234,7 +253,50 @@ struct AdaptedProgramView: View {
             // `ToolbarTitleMenu` est donc retiré.
         }
         .task(id: recordId) { await loadRecord(); scrollToNextUndone(proxy) }
+        .task(id: program.templateId) { await loadSafetyContent() }
         }
+    }
+
+    /// Charge le template bundlé pour en extraire `overloadSigns`/`missedSessionPolicy`
+    /// (contenu statique, identique quelle que soit l'adaptation). Échec silencieux
+    /// (offline/erreur) : la section reste simplement masquée, pas de banner d'erreur
+    /// pour un contenu non-bloquant.
+    private func loadSafetyContent() async {
+        guard let library = try? await ProgramTemplateLibrary.bundled(),
+              let template = try? await library.fullTemplate(id: program.templateId) else { return }
+        safetyContentTemplate = template
+    }
+
+    /// Section "Sécurité" repliée par défaut — signes de surcharge concrets +
+    /// politique séance manquée. Extrait court de `safety_notes` (jamais affiché
+    /// tel quel, cf commentaire `ProgramTemplate.overloadSigns`).
+    private var safetySection: some View {
+        DisclosureGroup {
+            VStack(alignment: .leading, spacing: 12) {
+                if let overloadSigns {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("coaching.adapter.safety.overloadSigns.title")
+                            .font(.subheadline.weight(.semibold))
+                        GlossaryRichText(text: overloadSigns, font: .subheadline, foreground: .secondary)
+                    }
+                }
+                if let missedSessionPolicy {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("coaching.adapter.safety.missedSessionPolicy.title")
+                            .font(.subheadline.weight(.semibold))
+                        GlossaryRichText(text: missedSessionPolicy, font: .subheadline, foreground: .secondary)
+                    }
+                }
+            }
+            .padding(.top, 8)
+        } label: {
+            Label("coaching.adapter.safety.section.title", systemImage: "shield.lefthalf.filled")
+                .font(.subheadline.weight(.semibold))
+        }
+        .padding()
+        .background(Color(uiColor: .secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .accessibilityIdentifier("coaching.adapter.safety.section")
     }
 
     /// Story 3.35k — positionne le scroll sur la 1ʳᵉ séance non faite à l'ouverture

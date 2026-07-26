@@ -12,10 +12,20 @@
   "duration_weeks" : 10,
   "id" : "cycling-recreational-endurance-10sem",
   "level" : "recreational",
+  "missed_session_policy" : {
+    "en" : "Under 4 days off: just pick up at the next planned session, no need to make up the one you missed. 4 to 7 days off: restart the current week beginning with the easiest session. 1 to 2 weeks off: repeat the previous week in full. More than 2 weeks off: go back 2 weeks in the plan.",
+    "es" : "Menos de 4 días de parón: retoma en la siguiente sesión prevista, sin intentar recuperar la que te saltaste. De 4 a 7 días: retoma la semana en curso empezando por la sesión más fácil. De 1 a 2 semanas: repite la semana anterior entera. Más de 2 semanas: retrocede 2 semanas en el plan.",
+    "fr" : "Moins de 4 jours d'arrêt : reprends à la séance suivante prévue, sans chercher à rattraper celle ratée. 4 à 7 jours : reprends la semaine en cours en commençant par la séance la plus facile. 1 à 2 semaines : refais la semaine précédente en entier. Plus de 2 semaines : recule de 2 semaines dans le plan."
+  },
   "name" : {
     "en" : "Cycling endurance — 80 km in 10 weeks",
     "es" : "Ciclismo resistencia — 80 km en 10 semanas",
     "fr" : "Vélo endurance — 80 km en 10 semaines"
+  },
+  "overload_signs" : {
+    "en" : "A resting heart rate 8-10 beats higher than usual for 3 mornings in a row, heavy legs that don't ease off after warm-up, performance stalling or dropping on your calibrated intensity blocks, several nights of poor sleep, appetite swinging (none or overeating), or catching colds more often — these all point to accumulated fatigue. If 3 or more show up together, cut your weekly volume by about 30% and take 2 days of active rest, or repeat the previous week.",
+    "es" : "Pulso en reposo 8-10 pulsaciones más alto de lo normal durante 3 mañanas seguidas, piernas pesadas que no mejoran tras el calentamiento, rendimiento que se estanca o baja en tus bloques de intensidad calibrados, sueño de mala calidad varias noches, apetito descontrolado (sin hambre o con atracones) o resfriados frecuentes: son señales de fatiga acumulada. Si aparecen 3 o más a la vez, reduce tu volumen semanal en torno a un 30% y tómate 2 días de descanso activo, o repite la semana anterior.",
+    "fr" : "Pouls au réveil élevé de 8-10 battements pendant 3 matins d'affilée, jambes lourdes qui persistent après l'échauffement, performances qui stagnent ou reculent sur tes blocs d'intensité calibrés, sommeil dégradé plusieurs nuits, appétit qui déraille (coupé ou fringales) ou rhumes à répétition : autant de signaux de fatigue accumulée. Trois signes ou plus en même temps → réduis ton volume hebdo d'environ 30% et prends 2 jours de repos actif, ou refais la semaine précédente."
   },
   "progression_logic" : {
     "fr" : "Progression sur 5 principes alignés Coggan & Allen (Training and Racing with a Power Meter), FasCat Sweet Spot Basic (Frank Overton), British Cycling Sportive Beginner et la revue 2024 distribution polarized (PMC NIH).\n\n(1) DISTRIBUTION SWEET-SPOT DOMINANT recreational : 50-60% du volume en FTP-Z2 (endurance fondamentale, base aérobie, long ride), 35-45% en Sweet-Spot (88-94% FTP) et FTP-Z3 (tempo) sur les sessions intensité, < 10% en FTP-Z4 (côtes courtes W7) et FTP-Z1 (récupération active). Pas de polarized strict 80/20 : à 4-6 h/sem de pédalage pur, le volume LIT est insuffisant pour absorber 80% d'easy + 20% d'intervalles courts à allure VO2max. Le sweet-spot est l'optimum charge/temps validé pour le recreational (FasCat / TrainerRoad). Aucun FTP-Z5 strict sur ce plan — la VO2max est stimulée par les côtes Z4 courtes (W7) et la durabilité par les blocs sweet spot longs.\n\n(2) PROGRESSION VOLUME ET LONG RIDE : Convention de mesure : volume hebdo de pédalage pur (somme des durations exercises cycling, hors warmup/retour au calme < 10 min). Séquence hebdo : ~3.4 → ~3.7 → ~4.1 → ~3.1 (cutback W4) → ~4.3 → ~4.8 → ~5.2 (pic W7) → ~3.9 (cutback W8) → ~4.8 → ~5.3 (W10 incluant séance phare). Long ride : 45 → 52 → 60 → 50 (cutback W4) → 65 → 72 → 78 → 62 (cutback W8) → 82 (pic distance, 102% de la cible 80 km) → 80 (séance phare W10 J5). Le long ride pic 82 km respecte la règle ≥ 100% de la cible. Hausse hebdo plafonnée ~10-15% par semaine de charge (règle ACSM des 10%, tolérance recreational), exception sur les retours post-deload où le rebond est explicitement plus marqué. Vol pic W7 ~5.2 h/sem dans la fenêtre 4-8 h/sem doctrine FasCat Sweet Spot Basic.\n\n(3) DEUX CUTBACKS W4 ET W8 (-20 à -25%) : volume hebdo W4 ~3.1 h vs ~4.1 h en W3 = ~-24%. Volume hebdo W8 ~3.9 h vs ~5.2 h en W7 = ~-25%. Cycle 3 build + 1 deload doctrine recreational (Coggan / FasCat). Sur les semaines de deload, le sweet spot est conservé en quantité réduite (2 blocs au lieu de 3) pour maintenir la qualité neuromusculaire, mais les durées de bloc et le long ride sont nettement raccourcis. Les adaptations cardiovasculaires, vasculaires et tendineuses se consolident pendant ces semaines — les sauter = stagnation ou douleur de surcharge genou/lombaire (40-60% des cyclistes touchés par une gêne lombaire selon source ROUVY/MyVeloFit).\n\n(4) PROGRESSION SWEET-SPOT : sweet spot continu (88-94% FTP, 92-97% FCmax, RPE 3-4). Sweet spot découvert dès W1 (3×5 min, calibration sensation), structuration progressive W2-W3 (4×8 min puis 3×10 min), pic W6 (3×15 min = 45 min total) et W7 (2×20 min = 40 min total). Cette progression respecte la doctrine FasCat : le sweet spot est la zone d'entraînement la plus rentable pour passer d'une sortie 40 km confortable à une sortie 80 km tenue en Z2. Il améliore le seuil aérobie (FTP), la tolérance lactate et la durabilité musculaire à effort modéré-élevé. Les blocs sweet spot sont toujours précédés d'un échauffement long (10-15 min FTP-Z1-Z2) et suivis d'un retour au calme FTP-Z1 (5-10 min) qui consolide le volume aérobie. Tempo FTP-Z3 (76-90% FTP, 84-94% FCmax) en alternative ou complément, plus tolérable mentalement sur 12-15 min continus.\n\n(5) AFFÛTAGE W10 (J-7 séance phare J5) : affûtage 7 jours, volume W10 (hors séance phare) réduit ~50% vs W9. J1 sortie activation 40 km Z1-Z2 (~85 min, vs 82 km en W9 J1), J3 sortie très courte 25 km Z1 + routine mobilité 10 min (~55 min pédalage). Conforme Mujika & Padilla (2003) appliqué cycling : réduction volume 40-50% sur affûtage court avec maintien fréquence (3 sessions) et activation neuromusculaire (3 accélérations courtes 30 sec en Z3 J1, 2 sprints 10-15 sec J3). La séance phare 80 km Z2 le J5 vise une cadence 85-95 rpm et un gestion de l'allure stricte 65-75% FCmax, avec checklist d'autoévaluation 4 critères mesurables."
@@ -39,8 +49,8 @@
       "sessions" : [
         {
           "cooldown" : {
-            "en" : "5 min of very easy very easy to flush lactate. Off the bike: 2 min walk, static stretches quads 30 sec/leg, iliopsoas 30 sec/leg, calves 30 sec/leg.",
-            "es" : "5 min de muy fácil muy fácil para limpiar el lactato. Baja de la bici: 2 min de caminata, estiramientos estáticos de cuádriceps 30 s/pierna, iliopsoas 30 s/pierna, gemelos 30 s/pierna.",
+            "en" : "5 min of very easy to flush lactate. Off the bike: 2 min walk, static stretches quads 30 sec/leg, iliopsoas 30 sec/leg, calves 30 sec/leg.",
+            "es" : "5 min de muy fácil para limpiar el lactato. Baja de la bici: 2 min de caminata, estiramientos estáticos de cuádriceps 30 s/pierna, iliopsoas 30 s/pierna, gemelos 30 s/pierna.",
             "fr" : "5 min très facile pour évacuer le lactate. Descente du vélo : 2 min marche, étirements statiques quadriceps 30 sec/jambe, ilio-psoas 30 sec/jambe, mollets 30 sec/jambe."
           },
           "cooldown_minutes" : 7,
@@ -110,8 +120,8 @@
           "variants" : [
             {
               "cooldown" : {
-                "en" : "5 min of very easy very easy pedaling at minimal resistance to flush lactate. Get off the bike: 2 min walk, static stretches quads 30 sec/leg, iliopsoas 30 sec/leg, calves 30 sec/leg. Drink 500 ml within 30 min, more if you sweated a lot.",
-                "es" : "5 min de pedaleo muy fácil muy fácil con resistencia mínima para limpiar el lactato. Baja de la bici: 2 min de caminata, estiramientos estáticos de cuádriceps 30 s/pierna, iliopsoas 30 s/pierna, gemelos 30 s/pierna. Bebe 500 ml en los siguientes 30 min, más si has sudado mucho.",
+                "en" : "5 min of very easy pedaling at minimal resistance to flush lactate. Get off the bike: 2 min walk, static stretches quads 30 sec/leg, iliopsoas 30 sec/leg, calves 30 sec/leg. Drink 500 ml within 30 min, more if you sweated a lot.",
+                "es" : "5 min de pedaleo muy fácil con resistencia mínima para limpiar el lactato. Baja de la bici: 2 min de caminata, estiramientos estáticos de cuádriceps 30 s/pierna, iliopsoas 30 s/pierna, gemelos 30 s/pierna. Bebe 500 ml en los siguientes 30 min, más si has sudado mucho.",
                 "fr" : "5 min de pédalage très facile sur résistance minimale pour évacuer le lactate. Descends du vélo : 2 min marche sur place, étirements statiques quadriceps 30 sec/jambe, ilio-psoas 30 sec/jambe, mollets 30 sec/jambe. Bois 500 ml dans les 30 min, davantage si tu as beaucoup transpiré."
               },
               "cooldown_minutes" : 7,
@@ -189,8 +199,8 @@
         },
         {
           "cooldown" : {
-            "en" : "8 min of very easy very easy. Static stretches: glutes 30 sec/side, quads 30 sec/leg, standing forward-fold lower-back stretch 30 sec.",
-            "es" : "8 min de muy fácil muy fácil. Estiramientos estáticos: glúteos 30 s/lado, cuádriceps 30 s/pierna, estiramiento lumbar en flexión de pie 30 s.",
+            "en" : "8 min of very easy. Static stretches: glutes 30 sec/side, quads 30 sec/leg, standing forward-fold lower-back stretch 30 sec.",
+            "es" : "8 min de muy fácil. Estiramientos estáticos: glúteos 30 s/lado, cuádriceps 30 s/pierna, estiramiento lumbar en flexión de pie 30 s.",
             "fr" : "8 min très facile. Étirements statiques : fessiers 30 sec/côté, quadriceps 30 sec/jambe, étirement lombaire en flexion debout 30 sec."
           },
           "cooldown_minutes" : 8,
@@ -442,8 +452,8 @@
           "variants" : [
             {
               "cooldown" : {
-                "en" : "8 min of very easy very easy pedaling at minimal resistance. Get off the bike: static stretches glutes 30 sec/side, quads 30 sec/leg, standing forward-fold lower-back stretch 30 sec. Drink 500 ml within 30 min.",
-                "es" : "8 min de muy fácil muy fácil con resistencia mínima. Baja de la bici: estiramientos estáticos de glúteos 30 s/lado, cuádriceps 30 s/pierna, estiramiento lumbar en flexión de pie 30 s. Bebe 500 ml en los siguientes 30 min.",
+                "en" : "8 min of very easy pedaling at minimal resistance. Get off the bike: static stretches glutes 30 sec/side, quads 30 sec/leg, standing forward-fold lower-back stretch 30 sec. Drink 500 ml within 30 min.",
+                "es" : "8 min de muy fácil con resistencia mínima. Baja de la bici: estiramientos estáticos de glúteos 30 s/lado, cuádriceps 30 s/pierna, estiramiento lumbar en flexión de pie 30 s. Bebe 500 ml en los siguientes 30 min.",
                 "fr" : "8 min de pédalage très facile sur résistance minimale. Descends du vélo : étirements statiques fessiers 30 sec/côté, quadriceps 30 sec/jambe, étirement lombaire en flexion debout 30 sec. Bois 500 ml dans les 30 min."
               },
               "cooldown_minutes" : 8,
@@ -774,8 +784,8 @@
           "variants" : [
             {
               "cooldown" : {
-                "en" : "5 min of very easy very easy pedaling at minimal resistance. Get off the bike: 5 min walk, hamstring stretches 30 sec/leg, psoas 30 sec/side. Drink 500 ml and have a carb snack within 30 min.",
-                "es" : "5 min de pedaleo muy fácil muy fácil con resistencia mínima. Baja de la bici: 5 min de caminata, estiramientos de isquiotibiales 30 s/pierna, psoas 30 s/lado. Bebe 500 ml y toma un tentempié de hidratos en los siguientes 30 min.",
+                "en" : "5 min of very easy pedaling at minimal resistance. Get off the bike: 5 min walk, hamstring stretches 30 sec/leg, psoas 30 sec/side. Drink 500 ml and have a carb snack within 30 min.",
+                "es" : "5 min de pedaleo muy fácil con resistencia mínima. Baja de la bici: 5 min de caminata, estiramientos de isquiotibiales 30 s/pierna, psoas 30 s/lado. Bebe 500 ml y toma un tentempié de hidratos en los siguientes 30 min.",
                 "fr" : "5 min de pédalage très facile sur résistance minimale. Descends du vélo : 5 min marche sur place, étirements ischio-jambiers 30 sec/jambe, psoas 30 sec/côté. Bois 500 ml et prends une collation glucidique dans les 30 min."
               },
               "cooldown_minutes" : 10,
@@ -5670,8 +5680,8 @@
         },
         {
           "cooldown" : {
-            "en" : "10-15 min of very easy very easy pedaling after the finish (don't stop abruptly). Off the bike: walk 5 min. Full stretches 12 min (quads, hamstrings, iliopsoas, calves, lower back, glutes). Immediate hydration: 500 ml water + electrolytes. Snack within 30 min (protein + carbs, 3:1 ratio). Self-massage if available.",
-            "es" : "10-15 min de pedaleo muy fácil muy fácil tras la llegada (no pares de golpe). Baja de la bici: camina 5 min. Estiramientos completos 12 min (cuádriceps, isquiotibiales, iliopsoas, gemelos, lumbares, glúteos). Hidratación inmediata: 500 ml de agua + electrolitos. Tentempié en los siguientes 30 min (proteínas + hidratos, ratio 3:1). Automasaje si está disponible.",
+            "en" : "10-15 min of very easy pedaling after the finish (don't stop abruptly). Off the bike: walk 5 min. Full stretches 12 min (quads, hamstrings, iliopsoas, calves, lower back, glutes). Immediate hydration: 500 ml water + electrolytes. Snack within 30 min (protein + carbs, 3:1 ratio). Self-massage if available.",
+            "es" : "10-15 min de pedaleo muy fácil tras la llegada (no pares de golpe). Baja de la bici: camina 5 min. Estiramientos completos 12 min (cuádriceps, isquiotibiales, iliopsoas, gemelos, lumbares, glúteos). Hidratación inmediata: 500 ml de agua + electrolitos. Tentempié en los siguientes 30 min (proteínas + hidratos, ratio 3:1). Automasaje si está disponible.",
             "fr" : "10-15 min de pédalage très facile après l'arrivée (ne pas s'arrêter brutalement). Descente du vélo : marcher 5 min. Étirements complets 12 min (quadriceps, ischio-jambiers, ilio-psoas, mollets, lombaires, fessiers). Hydratation immédiate : 500 ml eau + électrolytes. Collation dans les 30 min (protéines + glucides, ratio 3:1). Auto-massage si disponible."
           },
           "cooldown_minutes" : 30,
@@ -5787,8 +5797,8 @@
           "variants" : [
             {
               "cooldown" : {
-                "en" : "10-15 min of very easy very easy pedaling at minimal resistance after the finish (don't stop abruptly). Off the bike: walk 5 min. Full stretches 12 min (quads, hamstrings, iliopsoas, calves, lower back, glutes). Immediate hydration: 500 ml water + electrolytes. Snack within 30 min (protein + carbs, 3:1 ratio). Self-massage if available.",
-                "es" : "10-15 min de pedaleo muy fácil muy fácil con resistencia mínima tras terminar (no pares de golpe). Baja de la bici: camina 5 min. Estiramientos completos 12 min (cuádriceps, isquiotibiales, iliopsoas, gemelos, lumbares, glúteos). Hidratación inmediata: 500 ml de agua + electrolitos. Tentempié en los siguientes 30 min (proteínas + hidratos, ratio 3:1). Automasaje si está disponible.",
+                "en" : "10-15 min of very easy pedaling at minimal resistance after the finish (don't stop abruptly). Off the bike: walk 5 min. Full stretches 12 min (quads, hamstrings, iliopsoas, calves, lower back, glutes). Immediate hydration: 500 ml water + electrolytes. Snack within 30 min (protein + carbs, 3:1 ratio). Self-massage if available.",
+                "es" : "10-15 min de pedaleo muy fácil con resistencia mínima tras terminar (no pares de golpe). Baja de la bici: camina 5 min. Estiramientos completos 12 min (cuádriceps, isquiotibiales, iliopsoas, gemelos, lumbares, glúteos). Hidratación inmediata: 500 ml de agua + electrolitos. Tentempié en los siguientes 30 min (proteínas + hidratos, ratio 3:1). Automasaje si está disponible.",
                 "fr" : "10-15 min de pédalage très facile sur résistance minimale après la fin (ne pas s'arrêter brutalement). Descente du vélo : marcher 5 min. Étirements complets 12 min (quadriceps, ischio-jambiers, ilio-psoas, mollets, lombaires, fessiers). Hydratation immédiate : 500 ml eau + électrolytes. Collation dans les 30 min (protéines + glucides, ratio 3:1). Auto-massage si disponible."
               },
               "cooldown_minutes" : 30,

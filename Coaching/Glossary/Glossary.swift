@@ -57,6 +57,15 @@ public enum Glossary {
         // Strength
         GlossaryEntry(id: "1rm",        titleKey: "glossary.1rm.title",        definitionKey: "glossary.1rm.definition",
                       sportCodes: [Sport.strengthTraining]),
+        // Audit contenu strengthTraining (2026-07-26) — "TM" (Training Max) jamais glossé,
+        // ~50 occurrences plan competitive 5x5/5-3-1 ; confusion classique TM ≠ 1RM.
+        GlossaryEntry(id: "tm",         titleKey: "glossary.tm.title",         definitionKey: "glossary.tm.definition",
+                      sportCodes: [Sport.strengthTraining]),
+        // Audit contenu strengthTraining (2026-07-26) — "5/3/1" (protocole Wendler, gardé
+        // tel quel dans les 3 langues comme Tabata/AMRAP/EMOM) jamais glossé, 36 occurrences
+        // rendues (goal/notes/exercise name), non vulgarisé.
+        GlossaryEntry(id: "531",        titleKey: "glossary.531.title",        definitionKey: "glossary.531.definition",
+                      sportCodes: [Sport.strengthTraining]),
         // Zones FC multi-sport
         GlossaryEntry(id: "zones",      titleKey: "glossary.zones.title",      definitionKey: "glossary.zones.definition",
                       sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.triathlon, Sport.hiit]),
@@ -90,10 +99,19 @@ public enum Glossary {
                       sportCodes: [Sport.swimming]),
         GlossaryEntry(id: "css",        titleKey: "glossary.css.title",        definitionKey: "glossary.css.definition",
                       sportCodes: [Sport.swimming, Sport.triathlon]),
+        // Audit contenu swimming (2026-07-26) — "EVF" jamais traduit ni glossé en EN/ES.
+        GlossaryEntry(id: "evf",        titleKey: "glossary.evf.title",        definitionKey: "glossary.evf.definition",
+                      sportCodes: [Sport.swimming, Sport.triathlon]),
+        // Audit contenu swimming (2026-07-26) — zones SP1-3 non tappables (contrairement à EN1-3/CSS).
+        GlossaryEntry(id: "sp",         titleKey: "glossary.sp.title",         definitionKey: "glossary.sp.definition",
+                      sportCodes: [Sport.swimming, Sport.triathlon]),
         // Cycling
         GlossaryEntry(id: "ftp",        titleKey: "glossary.ftp.title",        definitionKey: "glossary.ftp.definition",
                       sportCodes: [Sport.cycling, Sport.triathlon]),
         GlossaryEntry(id: "sweetspot",  titleKey: "glossary.sweetspot.title",  definitionKey: "glossary.sweetspot.definition",
+                      sportCodes: [Sport.cycling]),
+        // Audit contenu cycling (2026-07-26) — "braquet" jamais glossé (9 occurrences, 4 niveaux).
+        GlossaryEntry(id: "braquet",    titleKey: "glossary.braquet.title",    definitionKey: "glossary.braquet.definition",
                       sportCodes: [Sport.cycling]),
         // Chantier compréhensibilité cycling (2026-06-25) — FCmax gardée comme repère cardio
         // (décision Sophie : FTP/FCmax/VO2max gardés, rendus tappables ; FTP/VO2max déjà glosés).
@@ -105,6 +123,13 @@ public enum Glossary {
         GlossaryEntry(id: "emom",       titleKey: "glossary.emom.title",       definitionKey: "glossary.emom.definition",
                       sportCodes: [Sport.hiit, Sport.strengthTraining]),
         GlossaryEntry(id: "tabata",     titleKey: "glossary.tabata.title",     definitionKey: "glossary.tabata.definition",
+                      sportCodes: [Sport.hiit]),
+        // Audit contenu HIIT (2026-07-26) — "Cindy"/"FRAN" jamais glossés (benchmarks
+        // CrossFit nommés, gardés tels quels dans les 3 langues comme Tabata/AMRAP/EMOM,
+        // doctrine nommage 2026-06-17).
+        GlossaryEntry(id: "cindy",      titleKey: "glossary.cindy.title",      definitionKey: "glossary.cindy.definition",
+                      sportCodes: [Sport.hiit]),
+        GlossaryEntry(id: "fran",       titleKey: "glossary.fran.title",       definitionKey: "glossary.fran.definition",
                       sportCodes: [Sport.hiit]),
         // Race pace running
         GlossaryEntry(id: "hmp",        titleKey: "glossary.hmp.title",        definitionKey: "glossary.hmp.definition",
@@ -145,8 +170,10 @@ public enum Glossary {
                       sportCodes: [Sport.strengthTraining]),
         GlossaryEntry(id: "cars",           titleKey: "glossary.cars.title",           definitionKey: "glossary.cars.definition",
                       sportCodes: [Sport.strengthTraining, Sport.yoga]),
+        // Audit contenu yoga (2026-07-26) — "scapulaire"/"scapular" utilisé dans
+        // 3/4 templates yoga (beginner/regular/competitive), pas seulement muscu.
         GlossaryEntry(id: "scapular",       titleKey: "glossary.scapular.title",       definitionKey: "glossary.scapular.definition",
-                      sportCodes: [Sport.strengthTraining]),
+                      sportCodes: [Sport.strengthTraining, Sport.yoga]),
         GlossaryEntry(id: "thoracic",       titleKey: "glossary.thoracic.title",       definitionKey: "glossary.thoracic.definition",
                       sportCodes: [Sport.strengthTraining, Sport.yoga]),
         GlossaryEntry(id: "bandpullapart",  titleKey: "glossary.bandpullapart.title",  definitionKey: "glossary.bandpullapart.definition",
@@ -236,6 +263,12 @@ public enum Glossary {
         if lower.contains("1rm")       { return byId["1rm"] }
         if lower.hasPrefix("en")       { return byId["en"] }
         if lower.contains("5k-pace") || lower.contains("10k-pace") { return byId["race.pace"] }
+
+        // Audit contenu swimming (2026-07-26) — zones SP1-3 (matche "SP1", "SP2", "SP3").
+        if lower.hasPrefix("sp"), lower.count >= 3,
+           lower[lower.index(lower.startIndex, offsetBy: 2)].isNumber {
+            return byId["sp"]
+        }
 
         // Zones FC génériques Z1-Z5 (matche "Z1", "Z2-cardiac", "Z3 haute", etc.)
         if let first = lower.first, first == "z",
