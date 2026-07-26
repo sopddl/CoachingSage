@@ -102,6 +102,13 @@ extension Glossary {
         ("cadence", "cadence"),
         ("strides", "strides"),
         ("stride", "strides"),
+        // Chantier compréhensibilité running (2026-07-26) — "lignes droites" jamais
+        // tappable malgré une définition FR déjà en place (glossary.strides.title).
+        // PAS de singulier "ligne droite" : 25 faux positifs football (conduite de
+        // balle / course technique "très lente", sans rapport avec le stride
+        // athlétique) — vérifié par review, cf commentaire clôture 2026-07-26.
+        ("lignes droites", "strides"),
+        ("lignes", "strides"),
         ("lactate", "lactate"),
         ("lactic", "lactate"),
         ("tempo", "tempo"),

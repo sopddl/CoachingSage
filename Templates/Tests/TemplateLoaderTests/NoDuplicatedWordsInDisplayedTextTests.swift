@@ -17,6 +17,11 @@ import TemplateModel
 /// Le détecteur exclut nativement les faux positifs « composé composé » à trait
 /// d'union ou flèche (`Low-step step-up`, `Single-leg leg`, `swim→bike bike-to-run`,
 /// `MULTI-DAY DAY`, `one one-sided`) via les lookarounds `(?<![\w-])…(?![\w-])`.
+///
+/// Durci 2026-07-26 (audit running) : un second motif attrape les doublons de GROUPE
+/// de 2 mots (« allure marathon allure marathon »), invisibles au motif mot-unique
+/// (la backreference `\1` ne portait que sur un seul token) — même origine mécanique
+/// (find-replace de vulgarisation appliqué sur un texte où la cible était déjà là).
 final class NoDuplicatedWordsInDisplayedTextTests: XCTestCase {
 
     /// `mot mot` consécutif (≥2 lettres), anti-mots-composés (trait d'union/flèche).
@@ -25,14 +30,26 @@ final class NoDuplicatedWordsInDisplayedTextTests: XCTestCase {
         pattern: #"(?<![\w\-])(\w{2,})\s+\1(?![\w\-])"#,
         options: [.caseInsensitive])
 
-    /// Mots dont la répétition consécutive est tolérée (rare, légitime).
+    /// `mot1 mot2 mot1 mot2` consécutif (chaque mot ≥2 lettres) — doublon de groupe de
+    /// 2 mots, ex. « allure marathon allure marathon ».
+    private static let duplicatePhrase = try! NSRegularExpression(
+        pattern: #"(?<![\w\-])(\w{2,}\s+\w{2,})\s+\1(?![\w\-])"#,
+        options: [.caseInsensitive])
+
+    /// Mots dont la répétition consécutive est tolérée (rare, légitime) — s'applique
+    /// UNIQUEMENT au détecteur mot-unique (`duplicate`). Bug trouvé 2026-07-26 (review) :
+    /// appliqué aussi à `duplicatePhrase`, il blanchissait à tort tout doublon de groupe
+    /// commençant par un mot whitelisté (« très facile très facile » raté car « très »
+    /// est whitelisté comme intensificateur mot-unique légitime « très très »).
     private static let whitelist: Set<String> = ["non", "oui", "tres", "plus"]
 
-    private func hits(_ re: NSRegularExpression, _ text: String) -> [String] {
+    private func hits(_ re: NSRegularExpression, _ text: String, applyWhitelist: Bool = false) -> [String] {
         let r = NSRange(text.startIndex..., in: text)
-        return re.matches(in: text, range: r).compactMap {
+        let matches = re.matches(in: text, range: r).compactMap {
             Range($0.range, in: text).map { String(text[$0]) }
-        }.filter { m in
+        }
+        guard applyWhitelist else { return matches }
+        return matches.filter { m in
             let first = m.split(whereSeparator: { $0.isWhitespace }).first.map(String.init) ?? m
             return !Self.whitelist.contains(first.folding(options: .diacriticInsensitive, locale: nil).lowercased())
         }
@@ -75,7 +92,7 @@ final class NoDuplicatedWordsInDisplayedTextTests: XCTestCase {
             for (field, lt) in displayedTexts(t) {
                 for (lang, value) in [("fr", lt.fr as String?), ("en", lt.en), ("es", lt.es)] {
                     guard let value else { continue }
-                    let h = hits(Self.duplicate, value)
+                    let h = hits(Self.duplicate, value, applyWhitelist: true) + hits(Self.duplicatePhrase, value)
                     if !h.isEmpty {
                         failures.append("[\(t.id)] \(field).\(lang): \(Set(h).sorted()) — « …\(value.prefix(70))… »")
                     }
