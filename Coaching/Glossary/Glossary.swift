@@ -57,6 +57,15 @@ public enum Glossary {
         // Strength
         GlossaryEntry(id: "1rm",        titleKey: "glossary.1rm.title",        definitionKey: "glossary.1rm.definition",
                       sportCodes: [Sport.strengthTraining]),
+        // Audit contenu strengthTraining (2026-07-26) — "TM" (Training Max) jamais glossé,
+        // ~50 occurrences plan competitive 5x5/5-3-1 ; confusion classique TM ≠ 1RM.
+        GlossaryEntry(id: "tm",         titleKey: "glossary.tm.title",         definitionKey: "glossary.tm.definition",
+                      sportCodes: [Sport.strengthTraining]),
+        // Audit contenu strengthTraining (2026-07-26) — "5/3/1" (protocole Wendler, gardé
+        // tel quel dans les 3 langues comme Tabata/AMRAP/EMOM) jamais glossé, 36 occurrences
+        // rendues (goal/notes/exercise name), non vulgarisé.
+        GlossaryEntry(id: "531",        titleKey: "glossary.531.title",        definitionKey: "glossary.531.definition",
+                      sportCodes: [Sport.strengthTraining]),
         // Zones FC multi-sport
         GlossaryEntry(id: "zones",      titleKey: "glossary.zones.title",      definitionKey: "glossary.zones.definition",
                       sportCodes: [Sport.running, Sport.cycling, Sport.swimming, Sport.triathlon, Sport.hiit]),

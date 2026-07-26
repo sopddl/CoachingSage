@@ -115,6 +115,15 @@ extension Glossary {
         // Effort (3 chars — risqué : need strict word boundary)
         ("rpe", "rpe"),
         ("1rm", "1rm"),
+        // Audit contenu strengthTraining (2026-07-26) — "TM" (Training Max) jamais glossé
+        // (2 chars, risqué : boundary stricte requise, cf "atm"/"team" non concernés car
+        // la lettre adjacente est alphanumérique de part et d'autre).
+        ("tm", "tm"),
+        // Audit contenu strengthTraining (2026-07-26) — "5/3/1" (protocole Wendler, gardé
+        // tel quel dans les 3 langues) jamais glossé. Les "/" internes ne comptent pas pour
+        // la boundary (seuls les caractères avant "5" et après le dernier "1" comptent) ;
+        // matche aussi "5/3/1+" (le "+" est une boundary valide).
+        ("5/3/1", "531"),
         // Story 3.24a — strength + mobilité (test simu Sophie 2026-05-24)
         // Multi-mots d'abord (longest-first via sortedPatterns)
         ("shoulder dislocations", "dislocation"),
