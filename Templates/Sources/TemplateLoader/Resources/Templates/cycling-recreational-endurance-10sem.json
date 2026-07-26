@@ -5731,6 +5731,52 @@
               "sets" : 1,
               "target_zone" : "FTP-Z2",
               "volume_axis" : "distance"
+            },
+            {
+              "alternatives" : [
+                {
+                  "en" : "Written self-assessment in your training log",
+                  "es" : "Autoevaluación escrita en tu cuaderno de entrenamiento",
+                  "fr" : "Auto-évaluation écrite dans ton carnet"
+                },
+                {
+                  "en" : "Spoken self-assessment recorded on your phone",
+                  "es" : "Autoevaluación oral grabada en tu teléfono",
+                  "fr" : "Auto-évaluation orale enregistrée sur ton téléphone"
+                }
+              ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "Post-session self-assessment",
+                  "es" : "Autoevaluación post-sesión",
+                  "fr" : "Auto-évaluation post-séance"
+                }
+              },
+              "duration" : "Auto-évaluation post-séance",
+              "estimated_minutes" : 0,
+              "incompatible_constraints" : [
+
+              ],
+              "match_key" : "Checklist autonomie — 4 critères",
+              "name" : {
+                "en" : "Autonomy checklist — 4 criteria",
+                "es" : "Checklist de autonomía — 4 criterios",
+                "fr" : "Checklist autonomie — 4 critères"
+              },
+              "notes" : {
+                "en" : "Autonomy checklist — 4 criteria:\n• You pedal 80 km managing 3 pace stages yourself (very easy → settled → hold/ease off if needed).\n• You monitor your heart rate and ease off on your own if it drifts past target (~78% max HR).\n• You check your gear before heading out (tire pressure, brakes, derailleur).\n• Your post-cycling mobility routine is done without being reminded.\n4/4: ready for 80 km solo. 2-3/4: spot the weak criterion. 0-1/4: redo a supervised block.",
+                "es" : "Checklist de autonomía — 4 criterios:\n• 80 km gestionados en 3 tramos de ritmo (muy fácil → estable → aguantar/bajar).\n• FC vigilada, bajas tú sola si se dispara sobre el objetivo (~78 % FCmáx).\n• Material revisado antes de salir (presión neumáticos, frenos, cambio).\n• Rutina de movilidad post-bici cumplida sin recordatorio.\n4/4: lista para 80 km de forma autónoma. 2-3/4: identifica el criterio débil. 0-1/4: repite un ciclo guiado.",
+                "fr" : "Checklist autonomie — 4 critères :\n• 80 km gérés en 3 paliers d'allure (très facile → établi → tenir/ralentir).\n• FC surveillée, ralenti seul·e si dérive au-delà de la cible (~78 % FCmax).\n• Matériel vérifié avant de partir (pression pneus, freins, dérailleur).\n• Routine de mobilité post-vélo tenue sans rappel.\n4/4 : prêt·e pour 80 km en autonomie. 2-3/4 : repère le critère faible. 0-1/4 : reprends un cycle encadré."
+              },
+              "priority" : 1,
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 0,
+              "role" : "accessory",
+              "scaling_unit" : "continuous",
+              "sets" : 1,
+              "volume_axis" : "sets"
             }
           ],
           "name" : {

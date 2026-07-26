@@ -16063,6 +16063,52 @@
               "sets" : 1,
               "target_zone" : "FTP-Z2",
               "volume_axis" : "elevation"
+            },
+            {
+              "alternatives" : [
+                {
+                  "en" : "Written self-assessment in your training log",
+                  "es" : "Autoevaluación escrita en tu cuaderno de entrenamiento",
+                  "fr" : "Auto-évaluation écrite dans ton carnet"
+                },
+                {
+                  "en" : "Spoken self-assessment recorded on your phone",
+                  "es" : "Autoevaluación oral grabada en tu teléfono",
+                  "fr" : "Auto-évaluation orale enregistrée sur ton téléphone"
+                }
+              ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "Post-session self-assessment",
+                  "es" : "Autoevaluación post-sesión",
+                  "fr" : "Auto-évaluation post-séance"
+                }
+              },
+              "duration" : "Auto-évaluation post-séance",
+              "estimated_minutes" : 0,
+              "incompatible_constraints" : [
+
+              ],
+              "match_key" : "Bilan d'autonomie — 5 critères",
+              "name" : {
+                "en" : "Autonomy assessment — 5 criteria",
+                "es" : "Balance de autonomía — 5 criterios",
+                "fr" : "Bilan d'autonomie — 5 critères"
+              },
+              "notes" : {
+                "en" : "Autonomy assessment — 5 criteria:\n• 200 km / 3000+ m elevation, in stages (first 30 km below threshold, then tempo, climbs < 95% FTP).\n• Nutrition managed alone from hour 1 (80-90 g carbs/h).\n• Day-before protocol followed (full rest, 8-9h sleep, carb loading).\n• Gear checked before the race (tires, brakes, derailleur, power meter).\n• Strategy adjusted if legs don't respond.\n5/5: ready for your target race. 3-4/5: spot the weak criterion. ≤2/5: build on an intermediate race.",
+                "es" : "Balance de autonomía — 5 criterios:\n• 200 km / 3000+ m desnivel por tramos (30 primeros km bajo umbral, luego tempo, puertos < 95 % FTP).\n• Nutrición gestionada sola desde el inicio (80-90 g hidratos/h).\n• Protocolo del día antes cumplido (descanso, 8-9h sueño, hidratos).\n• Material revisado antes de carrera (neumáticos, frenos, cambio).\n• Estrategia ajustada si las piernas no responden.\n5/5: lista objetivo. 3-4/5: criterio débil a identificar. ≤2/5: consolida en carrera intermedia.",
+                "fr" : "Bilan d'autonomie — 5 critères :\n• 200 km / 3000+ m D+ en paliers (30 premiers km sous le seuil, puis tempo, cols < 95 % FTP).\n• Nutrition gérée seul·e dès la 1re heure (80-90 g glucides/h).\n• Protocole J-1 respecté (repos complet, sommeil 8-9h, glucides).\n• Matériel vérifié avant course (pneus, freins, dérailleur, capteur).\n• Stratégie ajustée si les jambes ne répondent pas.\n5/5 : prêt·e pour la course cible. 3-4/5 : repère le critère faible. ≤2/5 : consolide sur course intermédiaire."
+              },
+              "priority" : 1,
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 0,
+              "role" : "accessory",
+              "scaling_unit" : "continuous",
+              "sets" : 1,
+              "volume_axis" : "sets"
             }
           ],
           "name" : {

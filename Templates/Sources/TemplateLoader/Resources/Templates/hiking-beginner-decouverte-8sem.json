@@ -4071,6 +4071,48 @@
               "sets" : 1,
               "target_zone" : "Z2",
               "volume_axis" : "duration"
+            },
+            {
+              "alternatives" : [
+                {
+                  "en" : "Written self-assessment in your training log",
+                  "es" : "Autoevaluación escrita en tu cuaderno de entrenamiento",
+                  "fr" : "Auto-évaluation écrite dans ton carnet"
+                },
+                {
+                  "en" : "Spoken self-assessment recorded on your phone",
+                  "es" : "Autoevaluación oral grabada en tu teléfono",
+                  "fr" : "Auto-évaluation orale enregistrée sur ton téléphone"
+                }
+              ],
+              "dose" : {
+                "free_text" : {
+                  "en" : "Post-session self-assessment",
+                  "es" : "Autoevaluación post-sesión",
+                  "fr" : "Auto-évaluation post-séance"
+                }
+              },
+              "duration" : "Auto-évaluation post-séance",
+              "incompatible_constraints" : [
+
+              ],
+              "match_key" : "Bilan d'autonomie avant de partir seul·e",
+              "name" : {
+                "en" : "Autonomy assessment before heading out alone",
+                "es" : "Balance de autonomía antes de salir sola",
+                "fr" : "Bilan d'autonomie avant de partir seul·e"
+              },
+              "notes" : {
+                "en" : "Autonomy (check):\n• 2 h of walking, 500 m elevation gain, 5 kg pack, no excessive breathlessness or pain.\n• you adjust your own pace (very easy start then steady rhythm, slow down on climbs).\n• you manage hydration/snacks without being reminded (1 L water, regular breaks).\n• your weekly preventive strength work is done with no joint discomfort.",
+                "es" : "Autonomía (marcar):\n• 2 h de marcha, 500 m de desnivel, mochila 5 kg, sin ahogo excesivo ni dolor.\n• ajustas tu propio ritmo (salida muy fácil, luego ritmo estable, más lento en subida).\n• gestionas hidratación/tentempiés sin que te lo recuerden (1 L de agua, pausas regulares).\n• tu refuerzo preventivo semanal se cumple sin molestias articulares.",
+                "fr" : "Autonomie (cocher) :\n• 2 h de marche, D+ 500 m, sac 5 kg, sans essoufflement excessif ni douleur.\n• tu adaptes ton allure seul·e (départ très facile puis rythme stable, ralenti en montée).\n• tu gères ton hydratation/en-cas sans qu'on te le rappelle (1 L d'eau, pauses régulières).\n• ton renforcement préventif hebdo est tenu sans gêne articulaire."
+              },
+              "required_equipment" : [
+
+              ],
+              "rest_seconds" : 0,
+              "sets" : 1,
+              "volume_axis" : "sets"
             }
           ],
           "name" : {
