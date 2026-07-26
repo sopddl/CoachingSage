@@ -35,6 +35,22 @@ final class DeloadWeeksMarkerTests: XCTestCase {
         ].map { try! NSRegularExpression(pattern: $0, options: [.caseInsensitive]) }
     }()
 
+    /// Faux positifs connus (trouvés 2026-07-25, audit "des semaines deload sont en
+    /// fait des pics de charge") : le mot-clé taper/deload matché ne qualifie qu'UNE
+    /// séance de la semaine (souvent J1, allégée en prépa d'un pic J5), pas le volume
+    /// hebdo réel — qui est en fait au maximum ou proche du maximum du plan. Vérifié
+    /// à la main sur le contenu FR (theme/goal + volumes chiffrés). Miroir de
+    /// `OVERRIDES["remove"]` dans `scripts/densite_b/generate_deload_weeks.py` —
+    /// garder les deux synchrones.
+    private static let knownFalsePositives: [String: Set<Int>] = [
+        "cycling-beginner-reprise-6sem": [6],
+        "football-competitive-saison-regional-16sem": [14],
+        "hiit-competitive-athletique-12sem": [11],
+        "strength-training-competitive-strength-5x5-cycle": [11],
+        "cycling-recreational-endurance-10sem": [10],
+        "running-beginner-5k-8sem": [8],
+    ]
+
     /// Le texte contient-il un mot-clé décharge NON couvert par un contexte d'exclusion ?
     private func hasDeloadMarker(_ text: String) -> Bool {
         let range = NSRange(text.startIndex..., in: text)
@@ -61,7 +77,9 @@ final class DeloadWeeksMarkerTests: XCTestCase {
             XCTAssertTrue(deload.allSatisfy { (1...t.durationWeeks).contains($0) },
                           "[\(t.id)] deload_weeks hors bornes 1...\(t.durationWeeks) : \(deload)")
 
+            let falsePositives = Self.knownFalsePositives[t.id] ?? []
             for w in t.weeks {
+                guard !falsePositives.contains(w.weekNumber) else { continue }
                 let text = "\(w.theme.en ?? "") | \(w.goal.en ?? "")"
                 if hasDeloadMarker(text), !deload.contains(w.weekNumber) {
                     failures.append("[\(t.id)] W\(w.weekNumber) thème décharge non marqué : « \(text.prefix(90)) »")

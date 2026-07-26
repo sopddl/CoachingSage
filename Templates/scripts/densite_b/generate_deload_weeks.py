@@ -58,6 +58,17 @@ def detect(theme_en: str, goal_en: str) -> tuple[bool, str]:
 # Revue manuelle (2026-07-02) des 40 tables générées — ajustements explicites.
 # add : semaines allégées/compétition que l'heuristique rate (pas de keyword net).
 # remove : faux positifs restants malgré les contextes d'exclusion.
+#
+# Les 6 "remove" ci-dessous (trouvés 2026-07-25, finding audit "des semaines deload
+# sont en fait des pics de charge", complété par une review template-quality-reviewer
+# qui a débusqué 2 cas supplémentaires par le même balayage) partagent la même cause :
+# un mot-clé taper/deload qualifie UNE SEULE séance de la semaine (souvent J1, allégée
+# en prépa d'un pic J5), pas le volume hebdo réel — qui est en fait au maximum ou
+# proche du maximum du plan. Un simple élargissement des EXCLUSIONS règle certains cas
+# mais en casserait d'autres (ex. tennis-beginner W8 a la même tournure EN et EST un
+# vrai taper, vérifié par les chiffres) : la distinction n'est pas lexicale, elle
+# nécessite de lire le volume réel de la semaine. D'où override manuel plutôt que
+# regex plus agressive.
 OVERRIDES: dict[str, dict[str, list[int]]] = {
     # W16 = semaine de tournoi (matchs) : jamais densifier une semaine de compétition.
     "tennis-competitive-tournoi-prep-16sem": {"add": [16]},
@@ -67,6 +78,35 @@ OVERRIDES: dict[str, dict[str, list[int]]] = {
     "cycling-competitive-cyclosportive-16sem": {"add": [16]},
     # W12 check-in -24 % (goal : « no competitive taper » mais volume réduit de bilan).
     "yoga-competitive-advanced-12sem": {"add": [12]},
+    # W6 = séance phare 1h30, volume hebdo MAX du plan (2h20, > W5 2h15). Le "taper"
+    # matché ne qualifie que la 1re des 2 séances de la semaine (goal.en : "Light taper
+    # on the first session, then the hero session...").
+    "cycling-beginner-reprise-6sem": {"remove": [6]},
+    # W14 = construction avant affûtage, volume terrain 8-9h comparable à W13 (build,
+    # non-deload). Seul le renforcement accessoire est réduit -30%. Le "taper" matché
+    # annonce le DÉBUT futur de l'affûtage (goal.en : "Taper starts with strength cut
+    # by 30%"), pas une réduction de la semaine courante.
+    "football-competitive-saison-regional-16sem": {"remove": [14]},
+    # W11 = "dégressive maintien", intensité maintenue (RPE 9-10), volume 19 min à peine
+    # sous les pics réels (W7/W10 = 20 min) et au-dessus de builds normales (W5=17,
+    # W9=18) — pas une vraie décharge. theme.en : "taper maintenance: intensity kept".
+    "hiit-competitive-athletique-12sem": {"remove": [11]},
+    # W11 = "semaine pic" du bloc réalisation (théme.fr explicite), ~95% charge cible en
+    # J5 — le volume/intensité le plus haut du cycle. Seul J1 est un "affûtage allégée"
+    # (3x3 @85%) pour arriver frais au pic J5. theme.en : "Peak week, taper D1-D3...".
+    "strength-training-competitive-strength-5x5-cycle": {"remove": [11]},
+    # W10 = séance phare 80 km, volume hebdo ~5.3h (le TEXTE du template le dit,
+    # goal.en : "Weekly pedaling volume: ~5.3 h") vs ~4.8h en W9 (goal W9 : "Distance-
+    # peak... Weekly pedaling volume: ~4.8 h") — +10%, pas une baisse. Le "Taper" ne
+    # qualifie que les 2 premières séances (goal.en : "Taper over the first 2 sessions
+    # to arrive fresh for the 80 km hero session").
+    "cycling-recreational-endurance-10sem": {"remove": [10]},
+    # W8 = séance phare 30 min continu, explicitement appelée "pic W8 J5" dans son
+    # propre goal.fr (et "peak" en goal.en) — volume course pure 30min, le plus haut du
+    # plan (progression donnée par summary.fr : 16→18→18→22→18(W5 deload)→22→30). Le
+    # "Tapering" ne qualifie que les 2 premières séances (goal.en : "Tapering on the
+    # first two sessions, W8 D5 peak at 30 min continuous").
+    "running-beginner-5k-8sem": {"remove": [8]},
 }
 
 
