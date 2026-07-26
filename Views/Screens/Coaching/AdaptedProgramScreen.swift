@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AdaptedProgramScreen: View {
     @StateObject private var viewModel: AdaptedProgramViewModel
+    @State private var showLeonUpsell = false
     /// Phase B.6 — coordonnées sessions S+1 mutées par la regen cette semaine
     /// (résolu côté `SessionView.pushAdaptedProgram` via
     /// `SessionDashboardViewModel.modifiedSessionCoordinates`).
@@ -65,8 +66,17 @@ struct AdaptedProgramScreen: View {
             await viewModel.triggerLeonIfNeeded()
         }
         .sheet(isPresented: $viewModel.showQuotaSheet) {
-            QuotaExceededSheet()
-                .presentationDetents([.medium])
+            QuotaExceededSheet(onUpgrade: {
+                // Fermer ce sheet avant d'ouvrir le paywall — présenter les deux
+                // d'un coup empêche le second de s'afficher correctement (bug
+                // SwiftUI classique double-sheet).
+                viewModel.showQuotaSheet = false
+                showLeonUpsell = true
+            })
+            .presentationDetents([.medium])
+        }
+        .sheet(isPresented: $showLeonUpsell) {
+            LeonUpsellView(storeKitService: .shared)
         }
     }
 }
@@ -75,6 +85,7 @@ struct AdaptedProgramScreen: View {
 
 private struct QuotaExceededSheet: View {
     @Environment(\.dismiss) private var dismiss
+    let onUpgrade: () -> Void
 
     var body: some View {
         VStack(spacing: 16) {
@@ -92,8 +103,7 @@ private struct QuotaExceededSheet: View {
                 .padding(.horizontal)
             Spacer()
             Button {
-                // Léon+ paywall pas encore livré — Story 3.3.1 / Story 3.7
-                dismiss()
+                onUpgrade()
             } label: {
                 Text("coaching.adapter.leon.quotaExceeded.cta")
                     .font(.headline)

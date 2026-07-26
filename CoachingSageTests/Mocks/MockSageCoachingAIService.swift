@@ -1,6 +1,7 @@
 // CoachingSageTests/Mocks/MockSageCoachingAIService.swift
 // Story 3.3b — mock pour tests AdaptedProgramViewModel.
 import Foundation
+import StoreKit
 
 final class MockSageCoachingAIService: SageCoachingAIServiceProtocol, @unchecked Sendable {
     var stubbedResponse: AdaptRareResponse?
@@ -35,5 +36,31 @@ final class MockHealthSummaryBuilder: HealthSummaryBuilding, @unchecked Sendable
     func buildSummary() async -> HealthSummary {
         callCount += 1
         return stubbedSummary
+    }
+}
+
+/// Léon+ — mock pour vérifier que `AdaptedProgramViewModel` synchronise bien le
+/// tier reçu dans `AdaptRareResponse.quota` après chaque appel Léon réussi.
+@MainActor
+final class MockStoreKitService: StoreKitServiceProtocol {
+    var products: [Product] = []
+    var currentTier: String = "free"
+    var subscriptionExpiresAt: Date?
+    var appliedTiers: [String] = []
+
+    func loadProducts() async {}
+    func purchase(_ product: Product) async throws -> LeonPurchaseResult { .userCancelled }
+    func restorePurchases() async throws {}
+    func refreshSubscriptionStatus() async {}
+
+    func applyQuotaTier(_ tier: String) {
+        appliedTiers.append(tier)
+        currentTier = tier
+    }
+
+    func resetForSignOut() {
+        currentTier = "free"
+        subscriptionExpiresAt = nil
+        appliedTiers.removeAll()
     }
 }

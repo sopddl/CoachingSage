@@ -44,6 +44,23 @@ final class AdaptedProgramViewModelTests: XCTestCase {
         XCTAssertEqual(vm.leonNotes?.personalizationNote, "Bien joué Sarah")
     }
 
+    // Léon+ — le tier reçu dans la réponse doit synchroniser StoreKitService,
+    // pas seulement après un achat (sinon une expiration/remboursement côté
+    // serveur ne se refléterait qu'au prochain boot de l'app).
+    func testSuccessfulResponseSyncsTierToStoreKit() async {
+        let vm = makeVM(requiresAIAssist: true, aiAssistReason: "Cas atypique")
+        vm.aiService.stubbedResponse = AdaptRareResponse(
+            patch: AdaptationPatch(),
+            quota: .init(used: 3, limit: -1, resetsAt: Date(), tier: "plus"),
+            meta: nil
+        )
+
+        await vm.triggerLeonIfNeeded()
+
+        XCTAssertEqual(vm.requestState, .success)
+        XCTAssertEqual(vm.storeKitService.appliedTiers, ["plus"])
+    }
+
     func testTriggerOnlyOnceEvenIfCalledMultipleTimes() async {
         let vm = makeVM(requiresAIAssist: true)
         await vm.triggerLeonIfNeeded()
@@ -173,6 +190,7 @@ final class AdaptedProgramViewModelTests: XCTestCase {
         let coreRepo = MockCoreProfileRepository()
         let coachingRepo = MockCoachingProfileRepository()
         let adaptedRepo = MockAdaptedProgramRepository()
+        let storeKitService = MockStoreKitService()
 
         let program = AdaptedProgram(
             templateId: "running-beginner-c25k",
@@ -202,7 +220,8 @@ final class AdaptedProgramViewModelTests: XCTestCase {
             healthSummaryBuilder: healthBuilder,
             coreRepo: coreRepo,
             coachingRepo: coachingRepo,
-            adaptedRepo: adaptedRepo
+            adaptedRepo: adaptedRepo,
+            storeKitService: storeKitService
         )
 
         return TestableViewModel(
@@ -211,7 +230,8 @@ final class AdaptedProgramViewModelTests: XCTestCase {
             healthBuilder: healthBuilder,
             coreRepo: coreRepo,
             coachingRepo: coachingRepo,
-            adaptedRepo: adaptedRepo
+            adaptedRepo: adaptedRepo,
+            storeKitService: storeKitService
         )
     }
 }
@@ -226,16 +246,19 @@ private final class TestableViewModel {
     let coreRepo: MockCoreProfileRepository
     let coachingRepo: MockCoachingProfileRepository
     let adaptedRepo: MockAdaptedProgramRepository
+    let storeKitService: MockStoreKitService
 
     init(vm: AdaptedProgramViewModel, aiService: MockSageCoachingAIService,
          healthBuilder: MockHealthSummaryBuilder, coreRepo: MockCoreProfileRepository,
-         coachingRepo: MockCoachingProfileRepository, adaptedRepo: MockAdaptedProgramRepository) {
+         coachingRepo: MockCoachingProfileRepository, adaptedRepo: MockAdaptedProgramRepository,
+         storeKitService: MockStoreKitService) {
         self.vm = vm
         self.aiService = aiService
         self.healthBuilder = healthBuilder
         self.coreRepo = coreRepo
         self.coachingRepo = coachingRepo
         self.adaptedRepo = adaptedRepo
+        self.storeKitService = storeKitService
     }
 
     subscript<T>(dynamicMember keyPath: KeyPath<AdaptedProgramViewModel, T>) -> T {

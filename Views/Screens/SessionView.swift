@@ -108,7 +108,8 @@ struct SessionView: View {
                                 healthSummaryBuilder: DefaultHealthSummaryBuilder(healthKit: deps.healthKitService),
                                 coreRepo: deps.coreProfileRepository,
                                 coachingRepo: deps.coachingProfileRepository,
-                                adaptedRepo: deps.adaptedProgramRepository
+                                adaptedRepo: deps.adaptedProgramRepository,
+                                storeKitService: StoreKitService.shared
                             ),
                             modifiedSessionCoordinates: route.modifiedSessionCoordinates,
                             onConfirmStart: confirmStartClosure(for: route, deps: deps),

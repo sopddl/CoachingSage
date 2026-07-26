@@ -8,6 +8,11 @@ struct ProfileView: View {
     @Environment(\.appDependencies) private var deps
     @Environment(\.languageManager) private var languageManager
     @State private var viewModel: ProfileViewModel?
+    // Léon+ — le singleton @Observable doit être stocké en @State pour que la
+    // View se re-render sur changement de tier (sinon lecture directe du
+    // singleton dans le body ne déclenche pas d'update SwiftUI).
+    @State private var storeKit = StoreKitService.shared
+    @State private var showLeonUpsell = false
 
     var body: some View {
         Group {
@@ -95,6 +100,7 @@ struct ProfileView: View {
                 notificationsSection(vm: vm)
                 privacySection(vm: vm)
                 aboutSection(coaching: profiles.coaching)
+                subscriptionSection
                 accountSection
                 #if DEBUG
                 debugSection
@@ -400,6 +406,38 @@ struct ProfileView: View {
                 Text("profile.glossary.title")
             }
             .accessibilityIdentifier("profile.about.glossary.link")
+        }
+    }
+
+    // MARK: - Léon+
+
+    @ViewBuilder
+    private var subscriptionSection: some View {
+        Section("profile.section.subscription") {
+            if storeKit.currentTier == "free" {
+                Button {
+                    showLeonUpsell = true
+                } label: {
+                    HStack {
+                        Text("profile.subscription.discover")
+                        Spacer()
+                        Text("profile.subscription.free")
+                            .foregroundStyle(Color.coachingTextSecondary)
+                    }
+                }
+                .accessibilityIdentifier("profile.subscription.discover")
+            } else {
+                HStack {
+                    Text("profile.subscription.leonPlus")
+                    Spacer()
+                    Text("profile.subscription.active")
+                        .foregroundStyle(Color.coachingPrimary)
+                }
+                .accessibilityIdentifier("profile.subscription.status")
+            }
+        }
+        .sheet(isPresented: $showLeonUpsell) {
+            LeonUpsellView(storeKitService: storeKit)
         }
     }
 

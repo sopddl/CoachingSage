@@ -128,6 +128,8 @@ final class AuthViewModel {
         }
         isAuthenticated = false
         authState = .idle
+        // Léon+ — évite une fuite de tier abonnement entre comptes sur le même device.
+        StoreKitService.shared.resetForSignOut()
     }
 
     // MARK: - Private

@@ -125,6 +125,16 @@ struct CoachingSageApp: App {
                 guard isAuthenticated else { return }
                 await deps.notificationService.reschedule()
             }
+            .task(id: isAuthenticated) {
+                // Léon+ — rafraîchit le statut d'abonnement + catalogue StoreKit au
+                // lancement. Détaché du chemin de boot critique (GardenSage a eu un
+                // bug de catalogue vide 2026-06-22 en bloquant le boot dessus).
+                guard isAuthenticated else { return }
+                let env = ProcessInfo.processInfo.environment
+                guard env["IS_UI_TESTING"] == nil, env["XCTestConfigurationFilePath"] == nil else { return }
+                await StoreKitService.shared.refreshSubscriptionStatus()
+                await StoreKitService.shared.loadProducts()
+            }
             .task {
                 // En UI testing OU unit tests Cmd+U, ne pas écouter authStateChanges
                 // (placeholder client → .signedOut parasite qui bascule vers AuthView
