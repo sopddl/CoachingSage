@@ -124,6 +124,13 @@ public enum Glossary {
                       sportCodes: [Sport.hiit, Sport.strengthTraining]),
         GlossaryEntry(id: "tabata",     titleKey: "glossary.tabata.title",     definitionKey: "glossary.tabata.definition",
                       sportCodes: [Sport.hiit]),
+        // Audit contenu HIIT (2026-07-26) — "Cindy"/"FRAN" jamais glossés (benchmarks
+        // CrossFit nommés, gardés tels quels dans les 3 langues comme Tabata/AMRAP/EMOM,
+        // doctrine nommage 2026-06-17).
+        GlossaryEntry(id: "cindy",      titleKey: "glossary.cindy.title",      definitionKey: "glossary.cindy.definition",
+                      sportCodes: [Sport.hiit]),
+        GlossaryEntry(id: "fran",       titleKey: "glossary.fran.title",       definitionKey: "glossary.fran.definition",
+                      sportCodes: [Sport.hiit]),
         // Race pace running
         GlossaryEntry(id: "hmp",        titleKey: "glossary.hmp.title",        definitionKey: "glossary.hmp.definition",
                       sportCodes: [Sport.running]),

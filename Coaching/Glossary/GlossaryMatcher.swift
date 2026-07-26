@@ -68,6 +68,11 @@ extension Glossary {
         ("tabata", "tabata"),
         ("amrap", "amrap"),
         ("emom", "emom"),
+        // Audit contenu HIIT (2026-07-26) — "Cindy"/"FRAN" jamais glossés (benchmarks
+        // CrossFit nommés). "fran" (4 chars) protégé par la boundary stricte : ne matche
+        // pas à l'intérieur de "français"/"France" (lettre adjacente non-boundary).
+        ("cindy", "cindy"),
+        ("fran", "fran"),
         // Race pace patterns
         ("5k-pace", "race.pace"),
         ("10k-pace", "race.pace"),

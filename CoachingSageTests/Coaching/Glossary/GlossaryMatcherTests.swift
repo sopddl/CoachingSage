@@ -537,6 +537,15 @@ final class GlossaryMatcherTests: XCTestCase {
         XCTAssertEqual(Glossary.matches(in: "Micro-interval 20s/40s").first?.entry.id, "hiit.microinterval")
     }
 
+    // Audit contenu HIIT 2026-07-26 — "Cindy"/"FRAN" (benchmarks CrossFit nommés) jamais glossés.
+    func testHiitCindyAndFranNowMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Max de tours 18 min — Cindy classique").first?.entry.id, "cindy")
+        XCTAssertEqual(Glossary.matches(in: "Max de tours 18 min — style FRAN").first?.entry.id, "fran")
+        // Boundary stricte : "fran" ne doit pas matcher à l'intérieur de "français"/"France".
+        XCTAssertTrue(Glossary.matches(in: "Explication en français").isEmpty)
+        XCTAssertTrue(Glossary.matches(in: "Championnat de France").isEmpty)
+    }
+
     // Audit contenu swimming 2026-07-26 — "EVF" jamais traduit ni glossé en EN/ES.
     func testSwimmingEVFNowMatches() {
         XCTAssertEqual(Glossary.matches(in: "Travailler l'EVF sur chaque traction").first?.entry.id, "evf")
