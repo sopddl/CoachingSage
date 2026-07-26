@@ -8,6 +8,9 @@ options:
   groupSortPosition: top
   generateEmptyDirectories: true
   minimumXcodeGenVersion: "2.45.0"
+
+fileGroups:
+  - LeonProducts.storekit
   # XcodeGen usage : bootstrap initial uniquement. Après génération,
   # le .xcodeproj est édité via Xcode comme GardenSage/TailorSage.
   # Si project.yml doit évoluer, rerun `xcodegen generate`.
@@ -237,6 +240,7 @@ schemes:
         CoachingSageUITests: [test]
     run:
       config: Debug
+      storeKitConfiguration: LeonProducts.storekit
     test:
       config: Debug
       gatherCoverageData: true
