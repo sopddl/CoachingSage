@@ -393,9 +393,9 @@ final class GlossaryMatcherTests: XCTestCase {
             // Football (4)
             "football.sprintrepete", "football.unetouche",
             "football.transition", "football.rsa",
-            // Hiking (4)
-            "hiking.denivele", "hiking.elevation",
-            "hiking.switchback", "hiking.terrainpace",
+            // Hiking (6) — +D- et fastpacking, audit contenu 2026-07-26
+            "hiking.denivele", "hiking.denivele.negatif", "hiking.elevation",
+            "hiking.switchback", "hiking.terrainpace", "hiking.fastpacking",
             // Triathlon (3)
             "triathlon.t1", "triathlon.t2", "triathlon.brick",
             // HIIT (3)
@@ -504,6 +504,27 @@ final class GlossaryMatcherTests: XCTestCase {
     func testHikingTerrainPaceMatch() {
         XCTAssertEqual(Glossary.matches(in: "Allure terrain souple").first?.entry.id, "hiking.terrainpace")
         XCTAssertEqual(Glossary.matches(in: "Terrain pace adaptée").first?.entry.id, "hiking.terrainpace")
+    }
+
+    // Audit contenu hiking (2026-07-26) — P1 : "D-" jamais glosé contrairement à "D+".
+    func testHikingDeniveleNegatifVariantsMatch() {
+        XCTAssertEqual(Glossary.matches(in: "Descente > 800 m D- (réduction 12-25%)").first?.entry.id, "hiking.denivele.negatif")
+        XCTAssertEqual(Glossary.matches(in: "Dénivelé négatif 500m").first?.entry.id, "hiking.denivele.negatif")
+        XCTAssertEqual(Glossary.matches(in: "Total descent 1000m").first?.entry.id, "hiking.denivele.negatif")
+        XCTAssertEqual(Glossary.matches(in: "200 m de desnivel negativo").first?.entry.id, "hiking.denivele.negatif")
+    }
+
+    func testHikingDeniveleNegatifDoesNotFalsePositiveOnHyphenatedWords() {
+        // "d-" doit avoir des boundaries strictes : pas de match dans un mot composé
+        // où la lettre adjacente au tiret n'est pas une boundary (ex: "sud-ouest").
+        XCTAssertNil(Glossary.matches(in: "Direction sud-ouest sur le plateau").first { $0.entry.id == "hiking.denivele.negatif" })
+    }
+
+    // Audit contenu hiking (2026-07-26) — P1 : "fastpacking" jamais glosé alors
+    // qu'il est dans le nom même du template compétiteur.
+    func testHikingFastpackingMatches() {
+        XCTAssertEqual(Glossary.matches(in: "Préparer le fastpacking multi-jours").first?.entry.id, "hiking.fastpacking")
+        XCTAssertEqual(Glossary.matches(in: "Simulated fastpacking session").first(where: { $0.entry.id == "hiking.fastpacking" })?.entry.id, "hiking.fastpacking")
     }
 
     // MARK: - Triathlon

@@ -82,6 +82,15 @@ public struct AdaptedWeek: Codable, Equatable, Sendable {
         self.goal = goal
         self.sessions = sessions
     }
+
+    /// Bug rouvert 2026-07-26 (hiking beginner) : `sessions` garde l'ordre brut du
+    /// tableau JSON du template, qui n'est pas forcément day ascendant. Tout
+    /// affichage numéroté doit itérer sur cet ordre chronologique, pas sur `sessions`
+    /// directement — sinon la numérotation (calculée en triant par day) ne correspond
+    /// plus à la position visuelle des cartes.
+    public var sessionsSortedByDay: [AdaptedSession] {
+        sessions.sorted { $0.day < $1.day }
+    }
 }
 
 public struct AdaptedSession: Codable, Equatable, Sendable {
