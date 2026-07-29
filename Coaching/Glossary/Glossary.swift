@@ -219,11 +219,20 @@ public enum Glossary {
         GlossaryEntry(id: "football.transition",   titleKey: "glossary.football.transition.title",   definitionKey: "glossary.football.transition.definition",   sportCodes: [Sport.football]),
         GlossaryEntry(id: "football.rsa",          titleKey: "glossary.football.rsa.title",          definitionKey: "glossary.football.rsa.definition",          sportCodes: [Sport.football]),
         GlossaryEntry(id: "football.fifa11plus",   titleKey: "glossary.football.fifa11plus.title",   definitionKey: "glossary.football.fifa11plus.definition",   sportCodes: [Sport.football]),
-        // Hiking (4)
+        // Hiking (6)
         GlossaryEntry(id: "hiking.denivele",    titleKey: "glossary.hiking.denivele.title",    definitionKey: "glossary.hiking.denivele.definition",   sportCodes: [Sport.hiking]),
+        // Audit contenu hiking (2026-07-26) — "D-" (dénivelé négatif) jamais glosé
+        // contrairement à "D+" (glossary.hiking.denivele), alors qu'il est aussi
+        // fréquent dans les templates (recreational/regular/competitive).
+        GlossaryEntry(id: "hiking.denivele.negatif", titleKey: "glossary.hiking.denivele.negatif.title", definitionKey: "glossary.hiking.denivele.negatif.definition", sportCodes: [Sport.hiking]),
         GlossaryEntry(id: "hiking.elevation",   titleKey: "glossary.hiking.elevation.title",   definitionKey: "glossary.hiking.elevation.definition",  sportCodes: [Sport.hiking]),
         GlossaryEntry(id: "hiking.switchback",  titleKey: "glossary.hiking.switchback.title",  definitionKey: "glossary.hiking.switchback.definition", sportCodes: [Sport.hiking]),
         GlossaryEntry(id: "hiking.terrainpace", titleKey: "glossary.hiking.terrainpace.title", definitionKey: "glossary.hiking.terrainpace.definition", sportCodes: [Sport.hiking]),
+        // Audit contenu hiking (2026-07-26) — "fastpacking" jamais glosé alors qu'il
+        // est dans le nom même du template compétiteur (hiking-competitive-fastpacking).
+        // Anglicisme dominant gardé tel quel dans les 3 langues (doctrine nommage
+        // 2026-06-17, cf Tabata/AMRAP/EMOM).
+        GlossaryEntry(id: "hiking.fastpacking", titleKey: "glossary.hiking.fastpacking.title", definitionKey: "glossary.hiking.fastpacking.definition", sportCodes: [Sport.hiking]),
         // Triathlon (3)
         GlossaryEntry(id: "triathlon.t1",       titleKey: "glossary.triathlon.t1.title",       definitionKey: "glossary.triathlon.t1.definition",      sportCodes: [Sport.triathlon]),
         GlossaryEntry(id: "triathlon.t2",       titleKey: "glossary.triathlon.t2.title",       definitionKey: "glossary.triathlon.t2.definition",      sportCodes: [Sport.triathlon]),

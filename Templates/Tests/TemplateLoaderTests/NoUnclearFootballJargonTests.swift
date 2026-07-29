@@ -14,10 +14,17 @@ import TemplateModel
 ///       noms de pathologie. Reformulés en bénéfice d'entraînement neutre (« renforcement »,
 ///       « stabilité »).
 ///
-/// EXCLUS : `progression_logic` / `safety_notes` (coach/LLM, non affichés) ; les % de DOSE
-/// (volume -20/-25/-30 %, % FCmax) ; vocabulaire gardé (FIFA 11+, RSA, ischios nordiques,
-/// sprints répétés). EN/ES : seules les citations (noms propres) sont verrouillées ; la
-/// reformulation MDR EN/ES reste un suivi (hors périmètre FR de ce chantier).
+/// EXCLUS : `progression_logic` / `safety_notes` / `summary` (coach/LLM, non affichés) ;
+/// les % de DOSE (volume -20/-25/-30 %, % FCmax) ; vocabulaire gardé (FIFA 11+, RSA,
+/// ischios nordiques, sprints répétés). EN/ES : seules les citations (noms propres) sont
+/// verrouillées ; la reformulation MDR EN/ES reste un suivi (hors périmètre FR de ce
+/// chantier).
+///
+/// Audit contenu football (2026-07-26) — « Verheijen » (nom propre expert) traînait dans
+/// `week.theme`/`week.goal` de football-regular/competitive (bruit pur pour un joueur
+/// amateur, contrairement au concept "micro-cycle 4 jours" qui lui est gardé). Retiré +
+/// pattern étendu à Verheijen + scan étendu à theme/goal (angle mort : le scan précédent
+/// ne couvrait que session/exo, pas les champs de semaine où vivent citations et concepts).
 final class NoUnclearFootballJargonTests: XCTestCase {
 
     // Citations (noms propres) + cadrages MDR EN/ES — interdits dans les 3 langues
@@ -25,7 +32,7 @@ final class NoUnclearFootballJargonTests: XCTestCase {
     // prevención », « mobility-prevention/movilidad-prevención » reformulés en renforcement).
     private static let citationPattern = try! NSRegularExpression(
         pattern: [#"\bBompa\b"#, #"\bBuchheit\b"#, #"\bF-MARC\b"#, #"Petersen 201"#, #"Thorborg 202"#,
-                  #"\bMujika\b"#, #"prévent"#, #"prevent"#, #"prevenc"#, #"preventi"#,
+                  #"\bMujika\b"#, #"\bVerheijen\b"#, #"prévent"#, #"prevent"#, #"prevenc"#, #"preventi"#,
                   #"mobilité-prévention"#, #"movilidad-prevención"#].joined(separator: "|"),
         options: [.caseInsensitive])
     // Allégations MDR — vérifiées en FR.
@@ -61,6 +68,8 @@ final class NoUnclearFootballJargonTests: XCTestCase {
 
         for t in football {
             for w in t.weeks {
+                scan("week.theme", w.theme, t.id)
+                scan("week.goal", w.goal, t.id)
                 for s in w.sessions {
                     scan("session.name", s.name, t.id)
                     scan("session.warmup", s.warmup, t.id)

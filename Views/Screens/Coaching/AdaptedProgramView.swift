@@ -832,7 +832,12 @@ struct AdaptedProgramView: View {
             weekDisciplineRecap(week)
             if isExpanded {
                 VStack(spacing: 6) {
-                    ForEach(week.sessions, id: \.day) { session in
+                    // Bug rouvert 2026-07-26 : week.sessions garde l'ordre brut du
+                    // tableau JSON du template (pas forcément day ascendant), alors
+                    // que globalSessionNumber() numérote en triant par day — sans ce
+                    // tri ici, la 1ère carte affichée pouvait porter un numéro de
+                    // séance plus grand que la dernière. Cf AdaptedWeek.sessionsSortedByDay.
+                    ForEach(week.sessionsSortedByDay, id: \.day) { session in
                         sessionRow(session, week: week)
                     }
                 }
