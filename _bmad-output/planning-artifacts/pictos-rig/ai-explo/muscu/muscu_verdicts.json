@@ -1,0 +1,296 @@
+{
+ "goblet-squat": {
+  "file": "B_goblet-squat_fix2.png",
+  "gate1": "OK",
+  "note": "paire validée planche v2 (Sophie), copie directe · haltères redessinés (retour Sophie 07-11 : poings fermés sur manche gris, 2 têtes égales, gobelet vertical)",
+  "verdict": "OK",
+  "expert": "conforme (haltère contre poitrine, cuisses parallèles)",
+  "ux": "clair, paire cohérente"
+ },
+ "plank": {
+  "file": "B_plank_v2.png",
+  "gate1": "OK",
+  "note": "hérité de A_m_plank ; piste : FLUX + contrôle rig lot10",
+  "verdict": "A_REVOIR",
+  "expert": "mains en avant des épaules, v1=v2 (2 essais) — l'aplomb épaules/poignets ne prend pas"
+ },
+ "lunge-dumbbell": {
+  "file": "B_lunge-dumbbell_fix.png",
+  "gate1": "OK",
+  "note": "v2 après correction itérative · haltères redessinés (retour Sophie 07-11 : poings fermés sur manche gris, 2 têtes égales, gobelet vertical)",
+  "verdict": "OK",
+  "expert": "v2 : flexion 90° réelle, buste vertical — OK (nit : jambe arrière tendue, lecture sans ambiguïté)",
+  "ux": "clair"
+ },
+ "rdl-dumbbell": {
+  "file": "B_rdl-dumbbell_v2.png",
+  "gate1": "OK",
+  "note": "charnière dos-plat = angle mort kontext",
+  "verdict": "A_REVOIR",
+  "expert": "🚨 SÉCURITÉ : dos rond en charge (2 essais) — jamais publiable"
+ },
+ "biceps-curl": {
+  "file": "B_biceps-curl_fix2.png",
+  "gate1": "OK",
+  "note": "curl alterné, coude au corps · haltères redessinés (retour Sophie 07-11 : poings fermés sur manche gris, 2 têtes égales, gobelet vertical)",
+  "verdict": "OK",
+  "expert": "curl alterné conforme",
+  "ux": "limpide"
+ },
+ "rdl-barbell": {
+  "file": "B_rdl-barbell.png",
+  "gate1": "PRESQUE",
+  "note": "même angle mort",
+  "verdict": "A_REVOIR",
+  "expert": "🚨 SÉCURITÉ : dos rond + stance décalée (2 essais)"
+ },
+ "ohp-barbell": {
+  "file": "B_ohp-barbell_v2.png",
+  "gate1": "OK",
+  "note": "v2 : profil conservé, barre à l'aplomb",
+  "verdict": "OK",
+  "expert": "lockout dans l'axe conforme",
+  "ux": "clair"
+ },
+ "back-squat": {
+  "file": "B_back-squat_v2.png",
+  "gate1": "PRESQUE",
+  "note": "v2 : barre sur trapèzes, profondeur correcte ; vue de FACE (A profil)",
+  "verdict": "OK",
+  "expert": "conforme en vue de face (barre trapèzes, genoux dans l'axe)",
+  "ux": "⚠️ bascule 3/4-face vs A profil — rupture d'angle catalogue, à trancher au rendu"
+ },
+ "squat-bodyweight": {
+  "file": "B_squat-bodyweight_v2.png",
+  "gate1": "PRESQUE",
+  "note": "v2 : vue de FACE, bras en T au lieu de devant (2 essais)",
+  "verdict": "OK",
+  "expert": "bras en T ACCEPTÉS (seul rendu lisible de face), squat correct",
+  "ux": "⚠️ même rupture d'angle ; bras écartés non expliqués"
+ },
+ "triceps-overhead": {
+  "file": "B_triceps-overhead_fix.png",
+  "gate1": "PRESQUE",
+  "note": "v2 : profil, haltère nuque ; coude pointe un peu vers l'avant · haltères redessinés (retour Sophie 07-11 : poings fermés sur manche gris, 2 têtes égales, gobelet vertical)",
+  "verdict": "OK",
+  "expert": "extension nuque lisible et conforme",
+  "ux": "mouvement compris (cible triceps devinée par le nom)"
+ },
+ "deadlift-conventional": {
+  "file": "B_deadlift-conventional_v2.png",
+  "gate1": "PRESQUE",
+  "note": "v2 : disques AU SOL (exception départ validée doctrine 07-11) ; vue de face",
+  "verdict": "OK",
+  "expert": "départ conforme, disques AU SOL, mains hors genoux",
+  "ux": "clair ; vue de face assumée"
+ },
+ "arnold-press-seated": {
+  "file": "B_arnold-press-seated_fix.png",
+  "gate1": "PRESQUE",
+  "note": "banc + presse haltères assis lisibles ; vue de face, visage sans traits · haltères redessinés (retour Sophie 07-11 : poings fermés sur manche gris, 2 têtes égales, gobelet vertical)",
+  "verdict": "OK",
+  "expert": "développé assis lisible (rotation Arnold non représentable en statique)",
+  "ux": "clair ; visage sans traits à trancher"
+ },
+ "lat-pulldown": {
+  "file": "B_lat-pulldown_v2.png",
+  "gate1": "OK",
+  "note": "v2 : machine cadre+câble+assise, tirage poitrine coudes bas",
+  "verdict": "A_REVOIR",
+  "expert": "barre à disques sans câble → lit développé en cage",
+  "ux": "P0 : ni câble ni poulie visibles"
+ },
+ "pullup": {
+  "file": "B_pullup_v2.png",
+  "gate1": "PRESQUE",
+  "note": "v2 : portique, pieds décollés ; coudes peu fléchis, menton sous la barre",
+  "verdict": "A_REVOIR",
+  "expert": "coudes tendus + pied au sol : illisible comme traction",
+  "ux": "lit « accroché » pas « tirer »"
+ },
+ "box-jump": {
+  "file": "B_box-jump_v2.png",
+  "gate1": "PRESQUE",
+  "note": "debout sur la box, genoux fléchis ; lit plutôt « step-up/réception »",
+  "verdict": "A_REVOIR",
+  "expert": "🚨 réception pied au bord, posture de marche (2 essais)",
+  "ux": "lit step-up, pas saut"
+ },
+ "bulgarian-split-squat": {
+  "file": "B_bulgarian-split-squat_fix.png",
+  "gate1": "PRESQUE",
+  "note": "v2 après correction itérative · haltères redessinés (retour Sophie 07-11 : poings fermés sur manche gris, 2 têtes égales, gobelet vertical)",
+  "verdict": "OK",
+  "expert": "v2 : curl trompeur disparu, pattern correct — OK (bras droit semi-fléchi, imperfection mineure)",
+  "ux": "clair"
+ },
+ "pushup-incline-chair": {
+  "file": "B_pushup-incline-chair.png",
+  "gate1": "OK",
+  "note": "mains sur chaise, corps aligné incliné",
+  "verdict": "OK",
+  "expert": "pompe inclinée conforme",
+  "ux": "lisible"
+ },
+ "lateral-raise": {
+  "file": "B_lateral-raise_fix3.png",
+  "gate1": "OK",
+  "note": "paire dédiée VUE DE FACE (A_m_stand_db_front) — plan frontal obligatoire ; visage sans traits · haltères redessinés (retour Sophie 07-11 : poings fermés sur manche gris, 2 têtes égales, gobelet vertical)",
+  "verdict": "OK",
+  "expert": "plan frontal conforme, bras à hauteur d'épaules",
+  "ux": "clair ; visage sans traits à trancher"
+ },
+ "forearm-plank": {
+  "file": "B_forearm-plank_v3.png",
+  "gate1": "PRESQUE",
+  "note": "v3 restyle homme du FLUX validé ; corps légèrement piqué",
+  "verdict": "A_REVOIR",
+  "expert": "gainage en pique (alignement = cœur pédagogique)",
+  "ux": "P0 catalogue : perso/tapis/fond d'un autre lot (3 essais/3 recettes)"
+ },
+ "calf-raise": {
+  "file": null,
+  "gate1": "A_REVOIR",
+  "note": "2 essais : « monter sur pointes » rendu comme un pas de marche"
+ },
+ "kb-swing": {
+  "file": null,
+  "gate1": "A_REVOIR",
+  "note": "2 essais : haltère résiduel, aucune charnière/swing"
+ },
+ "bentover-row-barbell": {
+  "file": null,
+  "gate1": "A_REVOIR",
+  "note": "2 essais : coudes pliés → curl debout, la combinaison charnière+coudes échoue"
+ },
+ "pushup": {
+  "file": null,
+  "gate1": "A_REVOIR",
+  "note": "2 essais : coudes jamais fléchis depuis la planche (position basse impossible)"
+ },
+ "side-plank": {
+  "file": null,
+  "gate1": "A_REVOIR",
+  "note": "2 essais : rotation/empilement des pieds jamais rendu (homme)"
+ },
+ "bird-dog": {
+  "file": null,
+  "gate1": "A_REVOIR",
+  "note": "2 essais : bras levé à contresens, jambe jamais tendue"
+ },
+ "wall-sit": {
+  "file": null,
+  "gate1": "A_REVOIR",
+  "note": "2 essais : mur rendu comme poteau, angle genoux non tenu"
+ },
+ "hanging-leg-raise": {
+  "file": null,
+  "gate1": "A_REVOIR",
+  "note": "2 essais : reste debout sous la barre, jamais suspendu jambes levées"
+ },
+ "pallof-press": {
+  "file": null,
+  "gate1": "A_REVOIR",
+  "note": "2 essais : câble+prise 2 mains jamais rendus (famille câble réfractaire)"
+ },
+ "triceps-pushdown": {
+  "file": null,
+  "gate1": "A_REVOIR",
+  "note": "2 essais : mains jamais sur la barre du câble (famille câble réfractaire)"
+ },
+ "nordic-curl": {
+  "file": null,
+  "gate1": "A_REVOIR",
+  "note": "2 essais : aucune inclinaison, lit « prière à genoux » ; chevilles jamais ancrées"
+ },
+ "dips": {
+  "file": null,
+  "gate1": "A_REVOIR",
+  "note": "2 essais : barres parallèles jamais rendues, reste suspendu/debout"
+ },
+ "glute-bridge": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "famille allongé-dos (supine 2 kontext + 2 FLUX KO)"
+ },
+ "dead-bug": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "famille allongé-dos"
+ },
+ "hollow-hold": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "famille allongé-dos"
+ },
+ "clamshell": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "allongé côté (famille au-sol réfractaire)"
+ },
+ "bench-press-barbell": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "couché banc = famille allongé-dos + banc"
+ },
+ "bench-press-dumbbell": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "couché banc"
+ },
+ "pullover": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "couché banc"
+ },
+ "hip-thrust": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "dos sur banc + bassin = combinaison réfractaire"
+ },
+ "leg-press": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "machine assise complexe"
+ },
+ "leg-extension": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "machine assise"
+ },
+ "leg-curl": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "machine couchée"
+ },
+ "reverse-hyper": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "machine + ventral"
+ },
+ "cable-fly": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "famille câble"
+ },
+ "cable-row": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "famille câble"
+ },
+ "facepull": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "famille câble"
+ },
+ "ytw": {
+  "file": null,
+  "gate1": "GELE",
+  "note": "ventral (famille KO yoga)"
+ },
+ "walking-lunge": {
+  "file": null,
+  "gate1": "DEDUP",
+  "note": "réutilise le picto lunge (pose-mère, reco expert yoga)"
+ }
+}

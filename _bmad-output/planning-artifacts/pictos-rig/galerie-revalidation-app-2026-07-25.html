@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Revalidation illustrations app — 98 assets (07-25)</title>
+<style>
+  :root { --bg:#f4f2ee; --card:#fff; --border:#ddd; --ko:#e05353; --yoga:#87AAB2; --muscu:#B3A8AE; --mobilite:#c9a86a; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; background: var(--bg); margin:0; padding:20px 24px 80px; color:#222; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sub { color:#666; font-size:13px; margin-bottom:16px; }
+  .toolbar { position: sticky; top:0; background: var(--bg); padding:10px 0; z-index:10; display:flex; gap:12px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--border); margin-bottom:16px; }
+  .toolbar button { padding:6px 12px; border-radius:6px; border:1px solid #ccc; background:#fff; cursor:pointer; font-size:13px; }
+  .filter-btn.active { background:#222; color:#fff; }
+  #count { font-weight:600; font-size:14px; }
+  #kolist { width:100%; min-height:70px; font-family:ui-monospace,monospace; font-size:12px; padding:8px; border-radius:6px; border:1px solid var(--border); margin-top:8px; background:#fffbe6; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap:16px; }
+  .card { background:var(--card); border:2px solid var(--border); border-radius:10px; overflow:hidden; display:flex; flex-direction:column; transition: border-color .15s, opacity .15s; }
+  .card img, .card video { width:100%; aspect-ratio:1/1; object-fit:cover; background:#eee; }
+  .card .meta { padding:8px 10px; flex:1; }
+  .tag { display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; padding:2px 6px; border-radius:4px; color:#fff; margin-bottom:4px; }
+  .tag-Yoga { background: var(--yoga); }
+  .tag-Muscu { background: var(--muscu); }
+  .tag-Mobilité { background: var(--mobilite); }
+  .label { font-size:13px; font-weight:600; color:#222; margin-top:2px; }
+  .slug { font-family:ui-monospace,monospace; font-size:11px; color:#777; margin-top:2px; }
+  .ko-btn { border:none; background:#f0f0f0; padding:8px; font-size:12px; cursor:pointer; font-weight:600; color:#a33; }
+  .ko-btn:hover { background:#fbe0e0; }
+  .card.ko { border-color: var(--ko); opacity:.6; }
+  .card.ko img, .card.ko video { filter: grayscale(1); }
+  .card.ko .ko-btn { background: var(--ko); color:#fff; }
+  .card.hidden { display:none; }
+  .comment-box { width:100%; box-sizing:border-box; min-height:40px; font-size:12px; padding:6px; border:1px solid var(--border); border-top:none; resize:vertical; font-family:inherit; }
+</style>
+</head>
+<body>
+<h1>Revalidation illustrations app — 98 assets</h1>
+<div class="sub">Catalogue actuel bundlé (<code>Resources/Illustrations/</code>), état 2026-07-25. Déjà validé par le passé — repasse de contrôle. Par défaut tout est OK ; clique « Marquer KO » + commentaire sur ce qui ne va plus. Vidéo = clic pour pause/lecture.</div>
+<div class="toolbar">
+  <button class="filter-btn active" onclick="filterCat('all', this)">Tous (98)</button>
+  <button class="filter-btn" onclick="filterCat('Muscu', this)">Muscu</button>
+  <button class="filter-btn" onclick="filterCat('Yoga', this)">Yoga</button>
+  <button class="filter-btn" onclick="filterCat('Mobilité', this)">Mobilité</button>
+  <span id="count"></span>
+  <button onclick="resetAll()">Tout remettre OK</button>
+  <button onclick="copyReport()">Copier le rapport</button>
+</div>
+<textarea id="kolist" readonly placeholder="Les KO + commentaires s'affichent ici au fur et à mesure — bouton « Copier le rapport » pour le coller dans le chat."></textarea>
+<div class="grid">
+<div class="card" id="card-ardhaBaddhaPadmottanasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/ardhaBaddhaPadmottanasana.png" loading="lazy" alt="ardhaBaddhaPadmottanasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Ardha Baddha Padmottanasana</div>
+        <div class="slug">ardhaBaddhaPadmottanasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('ardhaBaddhaPadmottanasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('ardhaBaddhaPadmottanasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-arnold-press-seated" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/arnold-press-seated.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Arnold press assis</div>
+        <div class="slug">arnold-press-seated</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('arnold-press-seated')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('arnold-press-seated', this.value)"></textarea>
+    </div>
+<div class="card" id="card-back-squat" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/back-squat.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Squat barre (back squat)</div>
+        <div class="slug">back-squat</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('back-squat')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('back-squat', this.value)"></textarea>
+    </div>
+<div class="card" id="card-bench-press" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/bench-press.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Développé couché</div>
+        <div class="slug">bench-press</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('bench-press')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('bench-press', this.value)"></textarea>
+    </div>
+<div class="card" id="card-biceps-curl" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/biceps-curl.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Curl biceps (haltères)</div>
+        <div class="slug">biceps-curl</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('biceps-curl')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('biceps-curl', this.value)"></textarea>
+    </div>
+<div class="card" id="card-biceps-curl-barbell" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/biceps-curl-barbell.png" loading="lazy" alt="biceps-curl-barbell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Curl biceps (barre)</div>
+        <div class="slug">biceps-curl-barbell</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('biceps-curl-barbell')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('biceps-curl-barbell', this.value)"></textarea>
+    </div>
+<div class="card" id="card-big-toe-fold" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/big-toe-fold.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Big toe fold</div>
+        <div class="slug">big-toe-fold</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('big-toe-fold')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('big-toe-fold', this.value)"></textarea>
+    </div>
+<div class="card" id="card-bird-dog" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/bird-dog.png" loading="lazy" alt="bird-dog">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Bird-dog (gainage)</div>
+        <div class="slug">bird-dog</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('bird-dog')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('bird-dog', this.value)"></textarea>
+    </div>
+<div class="card" id="card-boat" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/boat.png" loading="lazy" alt="boat">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Navasana (bateau)</div>
+        <div class="slug">boat</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('boat')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('boat', this.value)"></textarea>
+    </div>
+<div class="card" id="card-boat-synth" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/boat-synth.png" loading="lazy" alt="boat-synth">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Navasana (bateau) — variante</div>
+        <div class="slug">boat-synth</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('boat-synth')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('boat-synth', this.value)"></textarea>
+    </div>
+<div class="card" id="card-box-jump" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/box-jump.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Box jump</div>
+        <div class="slug">box-jump</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('box-jump')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('box-jump', this.value)"></textarea>
+    </div>
+<div class="card" id="card-bulgarian-split-squat" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/bulgarian-split-squat.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Fente bulgare</div>
+        <div class="slug">bulgarian-split-squat</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('bulgarian-split-squat')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('bulgarian-split-squat', this.value)"></textarea>
+    </div>
+<div class="card" id="card-butterfly" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/butterfly.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Baddha Konasana (papillon)</div>
+        <div class="slug">butterfly</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('butterfly')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('butterfly', this.value)"></textarea>
+    </div>
+<div class="card" id="card-cable-fly" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/cable-fly.png" loading="lazy" alt="cable-fly">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Écarté câble (cable fly)</div>
+        <div class="slug">cable-fly</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('cable-fly')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('cable-fly', this.value)"></textarea>
+    </div>
+<div class="card" id="card-cat-cow" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/cat-cow.png" loading="lazy" alt="cat-cow">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Chat-vache</div>
+        <div class="slug">cat-cow</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('cat-cow')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('cat-cow', this.value)"></textarea>
+    </div>
+<div class="card" id="card-catCowForearms" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/catCowForearms.png" loading="lazy" alt="catCowForearms">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Chat-vache (avant-bras)</div>
+        <div class="slug">catCowForearms</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('catCowForearms')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('catCowForearms', this.value)"></textarea>
+    </div>
+<div class="card" id="card-chair" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/chair.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Utkatasana (chaise)</div>
+        <div class="slug">chair</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('chair')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('chair', this.value)"></textarea>
+    </div>
+<div class="card" id="card-child" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/child.png" loading="lazy" alt="child">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Balasana (enfant)</div>
+        <div class="slug">child</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('child')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('child', this.value)"></textarea>
+    </div>
+<div class="card" id="card-clamshell" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/clamshell.png" loading="lazy" alt="clamshell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Clamshell (activation fessiers)</div>
+        <div class="slug">clamshell</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('clamshell')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('clamshell', this.value)"></textarea>
+    </div>
+<div class="card" id="card-dead-bug" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/dead-bug.png" loading="lazy" alt="dead-bug">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Dead bug (gainage)</div>
+        <div class="slug">dead-bug</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('dead-bug')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('dead-bug', this.value)"></textarea>
+    </div>
+<div class="card" id="card-deadlift-conventional" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/deadlift-conventional.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Soulevé de terre conventionnel</div>
+        <div class="slug">deadlift-conventional</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('deadlift-conventional')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('deadlift-conventional', this.value)"></textarea>
+    </div>
+<div class="card" id="card-dhanurasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/dhanurasana.png" loading="lazy" alt="dhanurasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Dhanurasana (arc)</div>
+        <div class="slug">dhanurasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('dhanurasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('dhanurasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-dirgha" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/dirgha.png" loading="lazy" alt="dirgha">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Dirgha (respiration 3 temps)</div>
+        <div class="slug">dirgha</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('dirgha')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('dirgha', this.value)"></textarea>
+    </div>
+<div class="card" id="card-dolphinPose" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/dolphinPose.png" loading="lazy" alt="dolphinPose">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Posture du dauphin</div>
+        <div class="slug">dolphinPose</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('dolphinPose')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('dolphinPose', this.value)"></textarea>
+    </div>
+<div class="card" id="card-downward-dog" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/downward-dog.png" loading="lazy" alt="downward-dog">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Adho Mukha Svanasana (chien tête en bas)</div>
+        <div class="slug">downward-dog</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('downward-dog')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('downward-dog', this.value)"></textarea>
+    </div>
+<div class="card" id="card-easy-pose" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/easy-pose.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Sukhasana (posture facile)</div>
+        <div class="slug">easy-pose</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('easy-pose')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('easy-pose', this.value)"></textarea>
+    </div>
+<div class="card" id="card-face-pull" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/face-pull.png" loading="lazy" alt="face-pull">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Face pull</div>
+        <div class="slug">face-pull</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('face-pull')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('face-pull', this.value)"></textarea>
+    </div>
+<div class="card" id="card-farmer-carry" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/farmer-carry.png" loading="lazy" alt="farmer-carry">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Farmer carry</div>
+        <div class="slug">farmer-carry</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('farmer-carry')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('farmer-carry', this.value)"></textarea>
+    </div>
+<div class="card" id="card-foam-rolling-legs" data-cat="Mobilité">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/foam-rolling-legs.png" loading="lazy" alt="foam-rolling-legs">
+      <div class="meta">
+        <div class="tag tag-Mobilité">Mobilité</div>
+        <div class="label">Foam rolling jambes</div>
+        <div class="slug">foam-rolling-legs</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('foam-rolling-legs')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('foam-rolling-legs', this.value)"></textarea>
+    </div>
+<div class="card" id="card-forearm-plank" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/forearm-plank.png" loading="lazy" alt="forearm-plank">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Gainage avant-bras (planche)</div>
+        <div class="slug">forearm-plank</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('forearm-plank')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('forearm-plank', this.value)"></textarea>
+    </div>
+<div class="card" id="card-forward-fold" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/forward-fold.png" loading="lazy" alt="forward-fold">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Uttanasana (flexion avant debout)</div>
+        <div class="slug">forward-fold</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('forward-fold')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('forward-fold', this.value)"></textarea>
+    </div>
+<div class="card" id="card-goblet-squat" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/goblet-squat.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Squat gobelet</div>
+        <div class="slug">goblet-squat</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('goblet-squat')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('goblet-squat', this.value)"></textarea>
+    </div>
+<div class="card" id="card-halasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/halasana.png" loading="lazy" alt="halasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Halasana (charrue)</div>
+        <div class="slug">halasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('halasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('halasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-half-moon" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/half-moon.png" loading="lazy" alt="half-moon">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Ardha Chandrasana (demi-lune)</div>
+        <div class="slug">half-moon</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('half-moon')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('half-moon', this.value)"></textarea>
+    </div>
+<div class="card" id="card-hands-under-feet" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/hands-under-feet.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Hands under feet</div>
+        <div class="slug">hands-under-feet</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('hands-under-feet')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('hands-under-feet', this.value)"></textarea>
+    </div>
+<div class="card" id="card-hanging-leg-raise" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/hanging-leg-raise.png" loading="lazy" alt="hanging-leg-raise">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Relevé de jambes suspendu</div>
+        <div class="slug">hanging-leg-raise</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('hanging-leg-raise')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('hanging-leg-raise', this.value)"></textarea>
+    </div>
+<div class="card" id="card-hinge-rdl-barbell" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/hinge-rdl-barbell.png" loading="lazy" alt="hinge-rdl-barbell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Hip hinge / RDL barre</div>
+        <div class="slug">hinge-rdl-barbell</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('hinge-rdl-barbell')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('hinge-rdl-barbell', this.value)"></textarea>
+    </div>
+<div class="card" id="card-januSirsasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/januSirsasana.png" loading="lazy" alt="januSirsasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Janu Sirsasana</div>
+        <div class="slug">januSirsasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('januSirsasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('januSirsasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-kapotasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/kapotasana.png" loading="lazy" alt="kapotasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Kapotasana (pigeon roi)</div>
+        <div class="slug">kapotasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('kapotasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('kapotasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-karnapidasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/karnapidasana.png" loading="lazy" alt="karnapidasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Karnapidasana</div>
+        <div class="slug">karnapidasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('karnapidasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('karnapidasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-kb-swing" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/kb-swing.png" loading="lazy" alt="kb-swing">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Kettlebell swing</div>
+        <div class="slug">kb-swing</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('kb-swing')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('kb-swing', this.value)"></textarea>
+    </div>
+<div class="card" id="card-kurmasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/kurmasana.png" loading="lazy" alt="kurmasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Kurmasana (tortue)</div>
+        <div class="slug">kurmasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('kurmasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('kurmasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-lateral-raise" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/lateral-raise.png" loading="lazy" alt="lateral-raise">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Élévation latérale</div>
+        <div class="slug">lateral-raise</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('lateral-raise')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('lateral-raise', this.value)"></textarea>
+    </div>
+<div class="card" id="card-leg-extension" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/leg-extension.png" loading="lazy" alt="leg-extension">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Leg extension</div>
+        <div class="slug">leg-extension</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('leg-extension')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('leg-extension', this.value)"></textarea>
+    </div>
+<div class="card" id="card-leg-press" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/leg-press.png" loading="lazy" alt="leg-press">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Leg press</div>
+        <div class="slug">leg-press</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('leg-press')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('leg-press', this.value)"></textarea>
+    </div>
+<div class="card" id="card-lunge-bodyweight" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/lunge-bodyweight.png" loading="lazy" alt="lunge-bodyweight">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Fente (poids du corps)</div>
+        <div class="slug">lunge-bodyweight</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('lunge-bodyweight')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('lunge-bodyweight', this.value)"></textarea>
+    </div>
+<div class="card" id="card-lunge-dumbbell" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/lunge-dumbbell.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Fente haltères</div>
+        <div class="slug">lunge-dumbbell</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('lunge-dumbbell')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('lunge-dumbbell', this.value)"></textarea>
+    </div>
+<div class="card" id="card-matsyasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/matsyasana.png" loading="lazy" alt="matsyasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Matsyasana (poisson)</div>
+        <div class="slug">matsyasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('matsyasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('matsyasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-mountain-climber" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/mountain-climber.png" loading="lazy" alt="mountain-climber">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Mountain climber</div>
+        <div class="slug">mountain-climber</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('mountain-climber')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('mountain-climber', this.value)"></textarea>
+    </div>
+<div class="card" id="card-nadiShodhana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/nadiShodhana.png" loading="lazy" alt="nadiShodhana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Nadi Shodhana (respiration alternée)</div>
+        <div class="slug">nadiShodhana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('nadiShodhana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('nadiShodhana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-nordic-curl" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/nordic-curl.png" loading="lazy" alt="nordic-curl">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Nordic curl</div>
+        <div class="slug">nordic-curl</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('nordic-curl')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('nordic-curl', this.value)"></textarea>
+    </div>
+<div class="card" id="card-ohp-barbell" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/ohp-barbell.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Développé militaire (barre)</div>
+        <div class="slug">ohp-barbell</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('ohp-barbell')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('ohp-barbell', this.value)"></textarea>
+    </div>
+<div class="card" id="card-pallof-press" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/pallof-press.png" loading="lazy" alt="pallof-press">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Pallof press</div>
+        <div class="slug">pallof-press</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('pallof-press')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('pallof-press', this.value)"></textarea>
+    </div>
+<div class="card" id="card-phalakasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/phalakasana.png" loading="lazy" alt="phalakasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Phalakasana (planche)</div>
+        <div class="slug">phalakasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('phalakasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('phalakasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-plank" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/plank.png" loading="lazy" alt="plank">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Planche (gainage)</div>
+        <div class="slug">plank</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('plank')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('plank', this.value)"></textarea>
+    </div>
+<div class="card" id="card-plyo-jumpsquat" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/plyo-jumpsquat.png" loading="lazy" alt="plyo-jumpsquat">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Squat sauté (plyo)</div>
+        <div class="slug">plyo-jumpsquat</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('plyo-jumpsquat')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('plyo-jumpsquat', this.value)"></textarea>
+    </div>
+<div class="card" id="card-power-clean" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/power-clean.png" loading="lazy" alt="power-clean">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Power clean</div>
+        <div class="slug">power-clean</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('power-clean')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('power-clean', this.value)"></textarea>
+    </div>
+<div class="card" id="card-prasaritaPadottanasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/prasaritaPadottanasana.png" loading="lazy" alt="prasaritaPadottanasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Prasarita Padottanasana</div>
+        <div class="slug">prasaritaPadottanasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('prasaritaPadottanasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('prasaritaPadottanasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-pull-horizontal-row" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/pull-horizontal-row.png" loading="lazy" alt="pull-horizontal-row">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Rowing horizontal</div>
+        <div class="slug">pull-horizontal-row</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('pull-horizontal-row')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('pull-horizontal-row', this.value)"></textarea>
+    </div>
+<div class="card" id="card-purvottanasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/purvottanasana.png" loading="lazy" alt="purvottanasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Purvottanasana (planche inversée)</div>
+        <div class="slug">purvottanasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('purvottanasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('purvottanasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-push-horizontal-dumbbell" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/push-horizontal-dumbbell.png" loading="lazy" alt="push-horizontal-dumbbell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Développé horizontal haltères</div>
+        <div class="slug">push-horizontal-dumbbell</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('push-horizontal-dumbbell')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('push-horizontal-dumbbell', this.value)"></textarea>
+    </div>
+<div class="card" id="card-pushup" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/pushup.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Pompes</div>
+        <div class="slug">pushup</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('pushup')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('pushup', this.value)"></textarea>
+    </div>
+<div class="card" id="card-pushup-incline-chair" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/pushup-incline-chair.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Pompes inclinées (chaise)</div>
+        <div class="slug">pushup-incline-chair</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('pushup-incline-chair')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('pushup-incline-chair', this.value)"></textarea>
+    </div>
+<div class="card" id="card-pyramid" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/pyramid.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Parsvottanasana (pyramide)</div>
+        <div class="slug">pyramid</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('pyramid')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('pyramid', this.value)"></textarea>
+    </div>
+<div class="card" id="card-rdl-dumbbell" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/rdl-dumbbell.png" loading="lazy" alt="rdl-dumbbell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">RDL haltères</div>
+        <div class="slug">rdl-dumbbell</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('rdl-dumbbell')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('rdl-dumbbell', this.value)"></textarea>
+    </div>
+<div class="card" id="card-reverse-hyper" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/reverse-hyper.png" loading="lazy" alt="reverse-hyper">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Reverse hyper</div>
+        <div class="slug">reverse-hyper</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('reverse-hyper')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('reverse-hyper', this.value)"></textarea>
+    </div>
+<div class="card" id="card-salabhasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/salabhasana.png" loading="lazy" alt="salabhasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Salabhasana (sauterelle)</div>
+        <div class="slug">salabhasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('salabhasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('salabhasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-sarvangasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/sarvangasana.png" loading="lazy" alt="sarvangasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Sarvangasana (chandelle)</div>
+        <div class="slug">sarvangasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('sarvangasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('sarvangasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-savasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/savasana.png" loading="lazy" alt="savasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Savasana (relaxation finale)</div>
+        <div class="slug">savasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('savasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('savasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-seated-forward-fold" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/seated-forward-fold.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Paschimottanasana (flexion avant assise)</div>
+        <div class="slug">seated-forward-fold</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('seated-forward-fold')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('seated-forward-fold', this.value)"></textarea>
+    </div>
+<div class="card" id="card-seated-twist" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/seated-twist.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Torsion assise</div>
+        <div class="slug">seated-twist</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('seated-twist')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('seated-twist', this.value)"></textarea>
+    </div>
+<div class="card" id="card-setuBandha" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/setuBandha.png" loading="lazy" alt="setuBandha">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Setu Bandha (pont)</div>
+        <div class="slug">setuBandha</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('setuBandha')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('setuBandha', this.value)"></textarea>
+    </div>
+<div class="card" id="card-side-angle" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/side-angle.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Utthita Parsvakonasana (angle latéral)</div>
+        <div class="slug">side-angle</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('side-angle')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('side-angle', this.value)"></textarea>
+    </div>
+<div class="card" id="card-side-plank" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/side-plank.png" loading="lazy" alt="side-plank">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Planche latérale</div>
+        <div class="slug">side-plank</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('side-plank')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('side-plank', this.value)"></textarea>
+    </div>
+<div class="card" id="card-sirsasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/sirsasana.png" loading="lazy" alt="sirsasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Sirsasana (poirier tête)</div>
+        <div class="slug">sirsasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('sirsasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('sirsasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-sled-push" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/sled-push.png" loading="lazy" alt="sled-push">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Sled push (poussée traîneau)</div>
+        <div class="slug">sled-push</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('sled-push')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('sled-push', this.value)"></textarea>
+    </div>
+<div class="card" id="card-squat-bodyweight" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/squat-bodyweight.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Squat poids du corps</div>
+        <div class="slug">squat-bodyweight</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('squat-bodyweight')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('squat-bodyweight', this.value)"></textarea>
+    </div>
+<div class="card" id="card-staff-pose" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/staff-pose.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Dandasana (bâton)</div>
+        <div class="slug">staff-pose</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('staff-pose')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('staff-pose', this.value)"></textarea>
+    </div>
+<div class="card" id="card-sun-salutation-a" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/sun-salutation-a.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Salutation au soleil A</div>
+        <div class="slug">sun-salutation-a</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('sun-salutation-a')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('sun-salutation-a', this.value)"></textarea>
+    </div>
+<div class="card" id="card-sun-salutation-b" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/sun-salutation-b.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Salutation au soleil B</div>
+        <div class="slug">sun-salutation-b</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('sun-salutation-b')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('sun-salutation-b', this.value)"></textarea>
+    </div>
+<div class="card" id="card-tadasana" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/tadasana.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Tadasana (montagne)</div>
+        <div class="slug">tadasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('tadasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('tadasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-tibialis-raise" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/tibialis-raise.png" loading="lazy" alt="tibialis-raise">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Élévation tibiale</div>
+        <div class="slug">tibialis-raise</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('tibialis-raise')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('tibialis-raise', this.value)"></textarea>
+    </div>
+<div class="card" id="card-tree" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/tree.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Vrksasana (arbre)</div>
+        <div class="slug">tree</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('tree')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('tree', this.value)"></textarea>
+    </div>
+<div class="card" id="card-triangle" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/triangle.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Trikonasana (triangle)</div>
+        <div class="slug">triangle</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('triangle')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('triangle', this.value)"></textarea>
+    </div>
+<div class="card" id="card-triceps-overhead" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/triceps-overhead.png" loading="lazy" alt="triceps-overhead">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Triceps au-dessus de la tête</div>
+        <div class="slug">triceps-overhead</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('triceps-overhead')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('triceps-overhead', this.value)"></textarea>
+    </div>
+<div class="card" id="card-triceps-pushdown" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/triceps-pushdown.png" loading="lazy" alt="triceps-pushdown">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Triceps pushdown</div>
+        <div class="slug">triceps-pushdown</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('triceps-pushdown')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('triceps-pushdown', this.value)"></textarea>
+    </div>
+<div class="card" id="card-turkish-getup" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/turkish-getup.png" loading="lazy" alt="turkish-getup">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Turkish get-up</div>
+        <div class="slug">turkish-getup</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('turkish-getup')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('turkish-getup', this.value)"></textarea>
+    </div>
+<div class="card" id="card-ujjayi" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/ujjayi.png" loading="lazy" alt="ujjayi">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Ujjayi (respiration océan)</div>
+        <div class="slug">ujjayi</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('ujjayi')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('ujjayi', this.value)"></textarea>
+    </div>
+<div class="card" id="card-upavisthaKonasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/upavisthaKonasana.png" loading="lazy" alt="upavisthaKonasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Upavistha Konasana</div>
+        <div class="slug">upavisthaKonasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('upavisthaKonasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('upavisthaKonasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-urdhvaDhanurasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/urdhvaDhanurasana.png" loading="lazy" alt="urdhvaDhanurasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Urdhva Dhanurasana (roue)</div>
+        <div class="slug">urdhvaDhanurasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('urdhvaDhanurasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('urdhvaDhanurasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-ustrasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/ustrasana.png" loading="lazy" alt="ustrasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Ustrasana (chameau)</div>
+        <div class="slug">ustrasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('ustrasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('ustrasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-utthitaHastaPadangusthasana" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/utthitaHastaPadangusthasana.png" loading="lazy" alt="utthitaHastaPadangusthasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Utthita Hasta Padangusthasana</div>
+        <div class="slug">utthitaHastaPadangusthasana</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('utthitaHastaPadangusthasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('utthitaHastaPadangusthasana', this.value)"></textarea>
+    </div>
+<div class="card" id="card-viparitaKarani" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/viparitaKarani.png" loading="lazy" alt="viparitaKarani">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Viparita Karani (jambes au mur)</div>
+        <div class="slug">viparitaKarani</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('viparitaKarani')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('viparitaKarani', this.value)"></textarea>
+    </div>
+<div class="card" id="card-wall-sit" data-cat="Muscu">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/wall-sit.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Chaise au mur (wall-sit)</div>
+        <div class="slug">wall-sit</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('wall-sit')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('wall-sit', this.value)"></textarea>
+    </div>
+<div class="card" id="card-warrior1" data-cat="Yoga">
+      <video src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/warrior1.mp4" autoplay loop muted playsinline onclick="this.paused?this.play():this.pause()"></video>
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Virabhadrasana I (guerrier 1)</div>
+        <div class="slug">warrior1</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('warrior1')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('warrior1', this.value)"></textarea>
+    </div>
+<div class="card" id="card-warrior2" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/warrior2.png" loading="lazy" alt="warrior2">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Virabhadrasana II (guerrier 2)</div>
+        <div class="slug">warrior2</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('warrior2')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('warrior2', this.value)"></textarea>
+    </div>
+<div class="card" id="card-warrior3" data-cat="Yoga">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/warrior3.png" loading="lazy" alt="warrior3">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="label">Virabhadrasana III (guerrier 3)</div>
+        <div class="slug">warrior3</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('warrior3')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('warrior3', this.value)"></textarea>
+    </div>
+<div class="card" id="card-woodchopper" data-cat="Muscu">
+      <img src="file:///Users/sophieslama/CL3/CoachingSage/Resources/Illustrations/woodchopper.png" loading="lazy" alt="woodchopper">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="label">Woodchopper (rotation câble)</div>
+        <div class="slug">woodchopper</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('woodchopper')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('woodchopper', this.value)"></textarea>
+    </div>
+</div>
+<script>
+const total = 98;
+function getKO() { return JSON.parse(localStorage.getItem('app_revalidation_0725_ko') || '[]'); }
+function setKO(list) { localStorage.setItem('app_revalidation_0725_ko', JSON.stringify(list)); }
+
+function toggleKO(slug) {
+  let list = getKO();
+  const card = document.getElementById('card-'+slug);
+  if (list.includes(slug)) {
+    list = list.filter(s => s !== slug);
+    card.classList.remove('ko');
+    card.querySelector('.ko-btn').textContent = 'Marquer KO';
+  } else {
+    list.push(slug);
+    card.classList.add('ko');
+    card.querySelector('.ko-btn').textContent = 'Annuler KO';
+  }
+  setKO(list);
+  refresh();
+}
+
+function resetAll() {
+  setKO([]);
+  document.querySelectorAll('.card').forEach(c => {
+    c.classList.remove('ko');
+    c.querySelector('.ko-btn').textContent = 'Marquer KO';
+  });
+  refresh();
+}
+
+function filterCat(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.card').forEach(c => {
+    c.classList.toggle('hidden', cat !== 'all' && c.dataset.cat !== cat);
+  });
+}
+
+function getComments() { return JSON.parse(localStorage.getItem('app_revalidation_0725_comments') || '{}'); }
+function saveComment(slug, value) {
+  const all = getComments();
+  if (value) { all[slug] = value; } else { delete all[slug]; }
+  localStorage.setItem('app_revalidation_0725_comments', JSON.stringify(all));
+  refresh();
+}
+
+function refresh() {
+  const list = getKO();
+  const comments = getComments();
+  document.getElementById('count').textContent = list.length + ' KO / ' + total;
+  const lines = list.map(slug => 'KO ' + slug + (comments[slug] ? ' — ' + comments[slug] : ''));
+  const commentOnly = Object.keys(comments).filter(s => !list.includes(s));
+  commentOnly.forEach(slug => lines.push('note ' + slug + ' — ' + comments[slug]));
+  document.getElementById('kolist').value = lines.join('\n');
+}
+
+function copyReport() {
+  const text = document.getElementById('kolist').value || 'Rien à signaler — tout OK.';
+  navigator.clipboard.writeText(text).then(() => alert('Rapport copié — colle-le dans le chat.')).catch(() => {
+    const ta = document.getElementById('kolist');
+    ta.select();
+    document.execCommand('copy');
+    alert('Rapport copié (fallback) — colle-le dans le chat.');
+  });
+}
+
+// restore state on load
+const initial = getKO();
+initial.forEach(slug => {
+  const card = document.getElementById('card-'+slug);
+  if (card) {
+    card.classList.add('ko');
+    card.querySelector('.ko-btn').textContent = 'Annuler KO';
+  }
+});
+const initialComments = getComments();
+Object.keys(initialComments).forEach(slug => {
+  const card = document.getElementById('card-'+slug);
+  if (card) { card.querySelector('.comment-box').value = initialComments[slug]; }
+});
+refresh();
+</script>
+</body>
+</html>

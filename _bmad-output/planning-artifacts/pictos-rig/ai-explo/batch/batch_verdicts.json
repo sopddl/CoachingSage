@@ -1,0 +1,475 @@
+{
+ "tadasana": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok — doublon exact de l'image A debout (tadasana = le départ), à dédupliquer à l'intégration",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)"
+  ]
+ },
+ "warrior1": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok — fente dans le sens du regard, talon arrière au sol, bras levés",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)"
+  ]
+ },
+ "warrior2": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable ok — un seul bras visible (profil), à confirmer par l'expert",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "expert : faux OK gate 1 — buste penché, un seul bras, genou tendu",
+   "v4 dérivée de warrior1 validée par kontext (bras baissés) — voie « dériver une pose validée » — re-gate expert en cours",
+   "flash expert KO (buste penché, bras non horizontaux) — 4 essais épuisés, à-revoir"
+  ]
+ },
+ "tree": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok — vue de face (vs profil ailleurs), lisible",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "⚠️ SÉCURITÉ (expert) : pied plaqué sur le GENOU d'appui — placement interdit par la doctrine, retry prioritaire",
+   "vague 3 ✓ : pied contre la CUISSE au-dessus du genou — finding sécurité RÉGLÉ — re-gate expert en cours",
+   "✓ gate finale expert : pied contre la cuisse AU-DESSUS du genou, sûr et lisible",
+   "07-12 : pied remonté FRANCHEMENT mi-cuisse (B_tree_fix kontext, validé expert au re-gate animations) — remplace B_tree.png (ancienne = B_tree_avant_fix_0712.png). Leçon : une marge trop fine au-dessus du genou re-dérive à l'animation.",
+   "07-13 harmonisation style (option b Sophie) : contours retirés, pied mi-cuisse préservé."
+  ],
+  "note": "⚠️ 07-12 : P1 doctrine découvert via l'animation (genou pointé DEVANT + pied à hauteur du genou = erreur à proscrire, raté par le gate expert images de l'époque) ; correction kontext B_tree_fix.png en validation, remplacera B_tree si OK",
+  "file": "B_tree_soft.png"
+ },
+ "chair": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable : pieds décalés en fente au lieu de joints/parallèles — retry prévu",
+   "retry v2 nettement meilleur — validation expert au cycle vague 3",
+   "✓ gate finale expert",
+   "07-13 balayage final : B_chair lisait comme une fente (pieds décalés) → bascule sur B_chair_deep (utkatasana profonde, déjà source de l'anim chair_v4 validée)."
+  ],
+  "file": "B_chair_deep.png"
+ },
+ "easy-pose": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok — quasi doublon de l'image A assise (easy pose = le départ)",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)"
+  ]
+ },
+ "staff-pose": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable : jambes restées croisées (copie de A) au lieu de tendues devant — re-queue prompt renforcé",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "vague 3 : nettement mieux (penchée/dos droit) mais jambes pas tendues — expert tranchera",
+   "gate finale expert KO : jambes repliées mains arrière = assise détendue, pas dandasana — 3 essais, à-revoir",
+   "✓ RÉCUPÉRÉE 07-11 par FLUX-canny-pro (pilote) — expert OK (Dandasana propre ; orteils pointés = déviation mineure non bloquante)",
+   "07-13 harmonisation style (option b Sophie) : line-art adouci en 2 passes kontext — trait fin résiduel, à juger."
+  ],
+  "file": "B_staff-pose_soft2.png"
+ },
+ "butterfly": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : pas de plantes de pieds jointes, copie de A — re-queue",
+   "retry v2 nettement meilleur — validation expert au cycle vague 3",
+   "gate finale expert KO : chevilles croisées (lit tailleur), plantes jamais jointes — 3 essais, à-revoir"
+  ]
+ },
+ "seated-forward-fold": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable : rendue à genoux penchée, pas une pince assise jambes tendues — re-queue",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "vague 3 : nettement mieux (penchée/dos droit) mais jambes pas tendues — expert tranchera",
+   "✓ gate finale expert : variante débutant genoux fléchis dos long, sûre"
+  ]
+ },
+ "wide-angle-seated-fold": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : pas de jambes écartées tendues, copie de A — re-queue",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "3 échecs (kontext ×2 + SDXL-structure) → hors pipeline génératif"
+  ]
+ },
+ "downward-dog": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok — V inversé enfin réussi depuis la quadrupède ; fond hérité du départ quadrupède plus foncé (cohérence fond à lisser)",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)",
+   "✓ gate finale expert : forme débutant légitime (genoux souples, talons levés)"
+  ]
+ },
+ "cat-cow": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)"
+  ]
+ },
+ "plank": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable ok — alignement épaules-chevilles correct",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)",
+   "07-13 balayage final : B_plank est en réalité un QUATRE-PATTES (pas une planche) — explique tous les échecs d'anim plank-f. Slot planche femme → À-REVOIR (utiliser plank-m homme ou redessiner)."
+  ]
+ },
+ "forward-fold": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok",
+   "DÉCISION PRODUIT (reco expert) : réutiliser le picto de « sun-salutation-a » — le discriminant fin (préhension/détail) échoue systématiquement en génération",
+   "✓ picto réutilisé : « sun-salutation-a » (décision produit, gate expert d'accord)"
+  ]
+ },
+ "dolphin": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : hanches pas hautes, rendu table basse au lieu de V inversé sur avant-bras — re-queue",
+   "retry v2 nettement meilleur — validation expert au cycle vague 3",
+   "3 échecs (kontext ×2 + SDXL-structure) → hors pipeline génératif"
+  ]
+ },
+ "headstand": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable ok — trépied lisible, tête+avant-bras au sol, jambes verticales",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)",
+   "flash expert KO SÉCURITÉ (base bras tendus, risque cervical) — à-revoir, ne JAMAIS publier une inversion non validée"
+  ]
+ },
+ "warrior3": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : appui au sol pas franc (lecture saut) — re-queue",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "3 échecs (kontext ×2 + SDXL-structure) → hors pipeline génératif"
+  ]
+ },
+ "half-moon": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable : rendu étirement quadriceps debout, pas de main au sol ni jambe horizontale — re-queue",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "vague 3 SDXL-structure ✓ : main au sol, jambe horizontale, bras levé — re-gate expert en cours",
+   "✓ gate finale expert (réserve : main basse flotte à qq cm — lisible « vers la brique »)"
+  ]
+ },
+ "crow": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : restée à 4 pattes — équilibre sur bras = haut risque génératif (déjà noté au manifeste), 1 retry puis à-revoir",
+   "hors pipeline génératif après 2 échecs (équilibres sur bras / face-up / préhensions fines)"
+  ]
+ },
+ "child": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : fesses pas posées sur les talons — re-queue",
+   "retry v2 nettement meilleur — validation expert au cycle vague 3",
+   "gate finale expert KO : jamais balasana en 3 versions (hanches hautes) — à-revoir"
+  ]
+ },
+ "triangle": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok — cohérent avec la version validée de la planche",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)"
+  ]
+ },
+ "boat": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : pose pensive assise, aucune jambe levée — re-queue (pattern assis)",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "3 échecs (kontext ×2 + SDXL-structure) → hors pipeline génératif"
+  ]
+ },
+ "sun-salutation-a": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok — quasi identique à forward-fold (déjà noté au manifeste) : réutiliser le même picto",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)"
+  ]
+ },
+ "sun-salutation-b": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok — quasi identique à warrior1 : réutiliser",
+   "DÉCISION PRODUIT (reco expert) : réutiliser le picto de « warrior1 » — le discriminant fin (préhension/détail) échoue systématiquement en génération",
+   "✓ picto réutilisé : « warrior1 » (décision produit, gate expert d'accord)"
+  ]
+ },
+ "reverse-plank": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : rendue penchée avant, pas de planche inversée face au plafond — parent des poses 'sur le dos' (échec systématique), 1 retry puis à-revoir",
+   "hors pipeline génératif après 2 échecs (équilibres sur bras / face-up / préhensions fines)"
+  ]
+ },
+ "king-pigeon": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : copie de la A quadrupède — pose très complexe, 1 retry puis à-revoir",
+   "hors pipeline génératif après 2 échecs (équilibres sur bras / face-up / préhensions fines)"
+  ]
+ },
+ "camel": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : copie de la A — nécessite un départ 'à genoux redressée' (manquant, noté au manifeste) — re-queue via A_genoux",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "3 échecs (kontext ×2 + SDXL-structure) → hors pipeline génératif"
+  ]
+ },
+ "low-lunge": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : genou arrière PAS au sol (critère discriminant vs warrior1) — re-queue",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)",
+   "gate finale expert KO + micro-fix v3 raté (genou arrière jamais au sol) — à-revoir"
+  ]
+ },
+ "eagle": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : pas d'entrelacement bras/jambes lisible — expert tranchera si lisibilité suffisante",
+   "gate 2 expert KO (aucun entrelacement, seul discriminant de garudasana) — à-revoir"
+  ]
+ },
+ "wide-legged-forward-fold": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable ok",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "3 échecs (kontext ×2 + SDXL-structure) → hors pipeline génératif"
+  ]
+ },
+ "hands-under-feet": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable : mains devant les pieds, pas dessous — expert tranchera",
+   "DÉCISION PRODUIT (reco expert) : réutiliser le picto de « sun-salutation-a » — le discriminant fin (préhension/détail) échoue systématiquement en génération",
+   "✓ picto réutilisé : « sun-salutation-a » (décision produit, gate expert d'accord)"
+  ]
+ },
+ "head-to-knee": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : pas de flexion vers la jambe tendue (pattern assis) — re-queue",
+   "retry v2 nettement meilleur — validation expert au cycle vague 3",
+   "gate finale expert KO : genou dressé (lit marichyasana), signature janu absente — à-revoir",
+   "Retenté 07-13 en lignée (2 essais depuis seated-forward-fold) : dérive quatre-pattes puis fente à genou — à-revoir confirmé."
+  ]
+ },
+ "marichyasana-a": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable : pas de torsion lisible (pattern assis) — re-queue, sinon à-revoir",
+   "retry v2 nettement meilleur — validation expert au cycle vague 3",
+   "✓ gate finale expert : variante haute sans flexion = prep débutant valide",
+   "07-13 balayage final : MAIN PARASITE au genou (les « 3 mains » de Sophie) supprimée au kontext — vérifiée."
+  ],
+  "file": "B_marichyasana-a_fix.png"
+ },
+ "side-angle": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable : bras pas au-dessus de la tête, pose illisible — re-queue",
+   "retry v2 nettement meilleur — validation expert au cycle vague 3",
+   "✓ gate finale expert : variante main-sur-cuisse valide"
+  ]
+ },
+ "pyramid": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)",
+   "07-13 balayage final : fragment de doigts orphelin entre les jambes supprimé au kontext — vérifié."
+  ],
+  "file": "B_pyramid_fix.png"
+ },
+ "tortoise": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : le modèle a dessiné une TORTUE (animal) devant elle 🐢 — kurmasana très avancée, direct à-revoir",
+   "hors pipeline génératif après 2 échecs (équilibres sur bras / face-up / préhensions fines)"
+  ]
+ },
+ "shoulder-pressing": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : copie A — équilibre sur bras, direct à-revoir (comme crow)",
+   "hors pipeline génératif après 2 échecs (équilibres sur bras / face-up / préhensions fines)"
+  ]
+ },
+ "embryo": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok — version SIMPLIFIÉE assumée (genoux au buste, pas le lotus complet — fallback prévu au manifeste)",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)",
+   "07-13 : pied arrière corrigé (pointait à l'envers — attrapé par Sophie sur l'ANIMATION, défaut baké dans l'image d'origine)."
+  ],
+  "file": "B_embryo_v2.png"
+ },
+ "hand-to-big-toe": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : genou plié main sur hanche, pas de jambe tendue tenue — re-queue",
+   "hors pipeline génératif après 2 échecs (équilibres sur bras / face-up / préhensions fines)"
+  ]
+ },
+ "half-bound-lotus-fold": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : demi-lotus pas net — expert tranchera",
+   "hors pipeline génératif après 2 échecs (équilibres sur bras / face-up / préhensions fines)"
+  ]
+ },
+ "seated-twist": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable : torsion pas nette (pas de regard par-dessus l'épaule) — re-queue léger",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)",
+   "✓ gate finale expert : variante douce jambes non croisées, sûre",
+   "07-13 retouche qualité (arbitrage Sophie) : vraie torsion (épaules pivotées, bras hors genou, regard arrière) — vérifiée."
+  ],
+  "file": "B_seated-twist_fix.png"
+ },
+ "big-toe-fold": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok",
+   "DÉCISION PRODUIT (reco expert) : réutiliser le picto de « sun-salutation-a » — le discriminant fin (préhension/détail) échoue systématiquement en génération",
+   "✓ picto réutilisé : « sun-salutation-a » (décision produit, gate expert d'accord)",
+   "07-13 retouche qualité : doigts aux gros orteils (base hands-under-feet, 3e essai) — vérifiée."
+  ],
+  "file": "B_big-toe-fold_fix3.png"
+ },
+ "forearm-tabletop": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable ok",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "3 échecs (kontext ×2 + SDXL-structure) → hors pipeline génératif"
+  ]
+ },
+ "side-plank": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : planche normale au lieu de latérale — re-queue",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "vague 3 ✓ : appui latéral bras tendu, corps aligné, pieds empilés — re-gate expert en cours",
+   "gate finale expert KO : pieds flottants, physiquement impossible — à-revoir"
+  ]
+ },
+ "forearm-plank": {
+  "verdict": "OK",
+  "notes": [
+   "gate1 Fable ok — hanches un peu hautes, expert tranchera",
+   "VAGUE 3 : régénération par SDXL structure (pose du rig) + restyle kontext — kontext seul échoue 2×",
+   "3 échecs (kontext ×2 + SDXL-structure) → hors pipeline génératif",
+   "✓ RÉCUPÉRÉE 07-11 par FLUX-canny-pro r3 (bassin aligné) — expert OK (coudes un poil avancés, non bloquant)"
+  ]
+ },
+ "bird-dog": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : bras pas levé — re-queue",
+   "✓ 3 gates passés (anti-bug + expert doctrine + UX)",
+   "gate finale expert KO + micro-fix v3 raté (bras toujours vers l'arrière) — à-revoir"
+  ]
+ },
+ "standing-quad-stretch": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "gate1 Fable : genou levé DEVANT au lieu du pied ramené DERRIÈRE vers la fesse — re-queue",
+   "hors pipeline génératif après 2 échecs (équilibres sur bras / face-up / préhensions fines)"
+  ]
+ },
+ "foam-rolling-legs": {
+  "verdict": "OK",
+  "notes": [
+   "✅ Lignée perso validé (dérivé staff-pose) — PASS validateur calibré 07-13 (adjudicateur : style conforme réfs femme). Nit : rouleau proche cheville.",
+   "07-13 : 3 essais de repositionnement du rouleau KO (fesses/pieds) — ORIGINALE conservée, nit rouleau-cheville assumé ou dessin manuel."
+  ]
+ },
+ "savasana": {
+  "verdict": "PRESQUE",
+  "notes": [
+   "Allongée-dos DÉBLOQUÉE en lignée (dérivé staff-pose) — tout est bon SAUF bras au-dessus de la tête au lieu du long du corps (P1 expert : marqueur du savasana). 4 refus kontext (attracteur bras-overhead sur figures allongées) → Sophie tranche : accepter tel quel, ou retouche manuelle des bras."
+  ]
+ },
+ "legs-up-the-wall": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "Lignée 2 essais : jambes en ciseaux puis anatomie 3 jambes autour du mur. Géométrie refusée."
+  ]
+ },
+ "reclined-butterfly": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "Lignée 2 essais : genoux jamais pliés/ouverts (et pose quasi illisible en profil de toute façon)."
+  ]
+ },
+ "uttana-padasana": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "Lignée 2 essais : jambes restent à 90° et bras overhead — angles refusés."
+  ]
+ },
+ "bridge": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "Lignée 2 essais : appui sur les MAINS tête pendante au lieu des épaules (famille pont/hanches-hautes déjà morte côté muscu)."
+  ]
+ },
+ "fish": {
+  "verdict": "A_REVOIR",
+  "notes": [
+   "Lignée 2 essais : dérive en happy-baby puis en cambrure à genoux — famille cambrure confirmée morte."
+  ]
+ },
+ "wheel": {
+  "verdict": "GELE",
+  "notes": [
+   "Gel d'office : cambrure extrême (famille camel morte) + inversion partielle."
+  ]
+ },
+ "shoulderstand": {
+  "verdict": "GELE",
+  "notes": [
+   "Gel d'office : inversion — règle sécurité « jamais publier une inversion non validée expert », famille headstand 2× KO sécurité."
+  ]
+ },
+ "plow": {
+  "verdict": "GELE",
+  "notes": [
+   "Gel d'office : inversion (même règle sécurité que shoulderstand)."
+  ]
+ },
+ "ear-pressure": {
+  "verdict": "GELE",
+  "notes": [
+   "Gel d'office : inversion (variante charrue)."
+  ]
+ },
+ "cobra": {
+  "verdict": "GELE",
+  "notes": [
+   "Gel d'office : ventral — mode d'échec systématique (bassin jamais au sol, KO 4×), reco expert : hors pipeline génératif."
+  ]
+ },
+ "locust": {
+  "verdict": "GELE",
+  "notes": [
+   "Gel d'office : ventral (même reco expert que cobra)."
+  ]
+ },
+ "bow": {
+  "verdict": "GELE",
+  "notes": [
+   "Gel d'office : ventral (même reco expert que cobra)."
+  ]
+ }
+}

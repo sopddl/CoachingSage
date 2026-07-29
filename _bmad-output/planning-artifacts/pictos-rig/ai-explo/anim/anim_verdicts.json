@@ -1,0 +1,840 @@
+{
+  "goblet-squat": {
+    "verdict": "KO",
+    "note": "v1 : il se lève à peine (retour Sophie) — remplacé par v3"
+  },
+  "goblet-squat_v2": {
+    "verdict": "KO",
+    "note": "re-roll prompt seul insuffisant : Kling ancre sur l'image de départ (squat profond) et ne remonte jamais. Cause racine → v3 part d'une image DEBOUT."
+  },
+  "biceps-curl": {
+    "verdict": "KO",
+    "note": "v1 : un seul bras bouge (retour Sophie) — remplacé par v2"
+  },
+  "biceps-curl_v2": {
+    "verdict": "KO",
+    "note": "❌ Sophie 07-12 : le bras gauche plie À L'ENVERS sur l'articulation du coude → re-roll v3 coude naturel — remplacée par biceps-curl_v3"
+  },
+  "ohp-barbell": {
+    "verdict": "OK",
+    "note": "✅ validé Sophie 07-11 + 07-12 (question jambes raides : oui, presse stricte = jambes gainées sans élan) — ✅ expert OK ✅ Sophie r4 OK avec question « les jambes doivent être si raides ? » — nit non bloquant. — Sophie r9 : « les jambes doivent etre si raides ? » — Sophie r10 : « les jambes doivent etre si raides ? » ✅ validé Sophie r12 (07-16) — remarque : « les jambes doivent etre si raides ? ».",
+    "notes": [
+      "✅ OK Sophie 07-13 (widget)."
+    ]
+  },
+  "pushup-incline-chair": {
+    "verdict": "OK",
+    "note": "✅ validé Sophie 07-11 + 07-12 — ✅ expert OK ✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16).",
+    "notes": [
+      "✅ OK Sophie 07-13 (widget)."
+    ]
+  },
+  "lunge-dumbbell": {
+    "verdict": "KO",
+    "note": "v1 : ne revient pas debout (retour Sophie) — remplacé par v3"
+  },
+  "lunge-dumbbell_v2": {
+    "verdict": "KO",
+    "note": "même échec que goblet v2 : ancré sur la fente profonde de départ, jamais de retour debout → v3 part de A_m_stand_db (debout)."
+  },
+  "warrior1": {
+    "verdict": "KO",
+    "note": "v1 : genou avant qui se redresse (expert) — remplacée par warrior1_v2"
+  },
+  "tree": {
+    "verdict": "KO",
+    "note": "v1/v2 : pied contre le genou + genou devant — défaut dans l'IMAGE SOURCE B_tree (raté au gate images de l'époque), corrigé par B_tree_fix"
+  },
+  "chair": {
+    "verdict": "KO",
+    "note": "elle s'effondre à genoux au milieu de la vidéo — re-roll v2 avec maintien martelé — remplacée par chair_v2"
+  },
+  "cat-cow": {
+    "verdict": "KO",
+    "note": "❌ Sophie 07-12 : dos rond pas assez visible — remplacée par cat-cow_v2"
+  },
+  "staff-pose": {
+    "verdict": "KO",
+    "note": "la tête part en arrière regarder le plafond — re-roll v2 tête neutre regard devant — remplacée par staff-pose_v2"
+  },
+  "goblet-squat_v3": {
+    "verdict": "KO",
+    "note": "✅ Sophie 07-12 — remarque : les deux mains devraient tenir l'haltère (la gauche le touche à peine) → v4 en bonus avec départ corrigé — remplacée par goblet-squat_v4 (deux mains)"
+  },
+  "lunge-dumbbell_v3": {
+    "verdict": "KO",
+    "note": "✅ validé Sophie 07-12 — ⚠️ expert P1 (malgré OK Sophie au rendu) : haltère balancé bras tendu, tronc penché, genou arrière jamais fléchi → re-roll v4 — v4 : tronc/haltère corrigés mais genou arrière toujours tendu (P1), v5 en cours"
+  },
+  "chair_v2": {
+    "verdict": "KO",
+    "note": "❌ Sophie 07-12 : pas assez assise (+ question bras en haut — utkatasana = bras levés, doctrine OK) → re-roll v3 assise plus profonde — remplacée par chair_v4"
+  },
+  "staff-pose_v2": {
+    "verdict": "KO",
+    "note": "✅ validé Sophie 07-12 — ✅ expert OK",
+    "notes": [
+      "KO Sophie « pas le même graphisme » — cause racine : image source ligne-art (canny) vs sous-style aplat doux du reste. Fix = harmoniser l'IMAGE d'abord.",
+      "Remplacée (graphisme KO Sophie)."
+    ],
+    "file": "anim_staff-pose_v2.mp4"
+  },
+  "chair_v3": {
+    "verdict": "KO",
+    "note": "re-roll « plus profond » : elle finit à genoux (l'instruction a écrasé l'interdiction) — remplacée par chair_v4 (départ corrigé)"
+  },
+  "biceps-curl_v4": {
+    "verdict": "KO",
+    "note": "séquencement raté : le bras occulté ne bouge toujours pas — LEÇON : Kling n'anime pas ce qu'il ne voit pas sur l'image de départ. v3 conservée. ⚠️ 07-13 : la vague tutoriel a réutilisé le slug _v4 par erreur → kling a skippé (mp4 existant) ; le re-roll tutoriel est biceps-curl_v5."
+  },
+  "goblet-squat_v4": {
+    "verdict": "OK",
+    "note": "départ corrigé kontext (2 mains sur l'haltère) : 2 répétitions complètes debout↔squat profond, remarque Sophie adressée — gate expert en cours — ✅ expert OK — ✅ validé Sophie 07-12 (r2) ✅ validé Sophie r4 (07-13). ✅ re-validé Sophie r5. ✅ validé Sophie r12 (07-16).",
+    "notes": [
+      "✅ OK Sophie 07-13 (widget)."
+    ]
+  },
+  "biceps-curl_v3": {
+    "verdict": "OK",
+    "note": "coudes naturels ✓ (fix du coude à l'envers) mais un seul bras bouge — 4 essais, cause racine : bras occulté en profil. Proposition : garder en « curl un bras », alternance portée par le texte de dose — ✅ expert OK (curl un bras, coudes naturels) — ✅ validé Sophie 07-12 (r2) ✅ validé Sophie r4 (07-13). ✅ re-validé Sophie r5. ✅ validé Sophie r12 (07-16).",
+    "notes": [
+      "✅ OK Sophie 07-13 (widget)."
+    ]
+  },
+  "cat-cow_v2": {
+    "verdict": "KO",
+    "note": "❌ Sophie (r2) : fin d'animation brusque, ne pas publier — 4 essais Kling épuisés (vache impossible, dérive chien-tête-en-bas). BACKLOG : tester un autre modèle vidéo (kling-v2 / minimax / luma) sur cet exo. L'image fixe B_cat-cow reste validée. ❌ Sophie r4 : fin brusque, ne pas publier — confirme le gel génératif (4 essais Kling + 2 minimax) → voie manuelle/Lottie.",
+    "notes": [
+      "KO Sophie (fin brusque) → essai NOUVEAU MODÈLE minimax/video-01 en cours (sa suggestion).",
+      "GEL GÉNÉRATIF définitif : Kling 4× + minimax 2× KO. Reste : dessin manuel / Lottie."
+    ],
+    "file": "anim_cat-cow_v2.mp4"
+  },
+  "chair_v4": {
+    "verdict": "OK",
+    "note": "assise profonde tenue tout du long, jamais à genoux (départ corrigé via kontext B_chair_deep) — gate expert en cours — ✅ expert OK — ✅ validé Sophie 07-12 (r2) ✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16).",
+    "notes": [
+      "✅ OK Sophie 07-13 (widget)."
+    ]
+  },
+  "warrior1_v2": {
+    "verdict": "OK",
+    "note": "✅ expert OK au re-gate : flexion stable ~90-100° tout du long, micro-oscillation de respiration seulement"
+  },
+  "tree_v2": {
+    "verdict": "KO",
+    "note": "tenue stable mais reproduisait fidèlement le défaut de l'image source — remplacée par tree_v3"
+  },
+  "tree_v3": {
+    "verdict": "KO",
+    "note": "✅ expert OK : pied au-dessus du genou, tenue stable (image source corrigée B_tree_fix, elle aussi validée expert ; vue de face recommandée en V2, non bloquant)",
+    "notes": [
+      "KO Sophie « graphiquement différent » — même cause racine que staff-pose.",
+      "Remplacée (graphisme KO Sophie)."
+    ],
+    "file": "anim_tree_v3.mp4"
+  },
+  "lunge-dumbbell_v4": {
+    "verdict": "KO",
+    "note": "⚠️ expert P1 au re-gate : haltères ✓ tronc ✓ mais genou arrière tendu talon au sol = étirement de psoas, pas une fente → v5 (dernier essai)"
+  },
+  "cat-cow_v3": {
+    "verdict": "KO",
+    "note": "seule la phase chat visible, tête jamais relevée — remplacée par v5_loop"
+  },
+  "cat-cow_v4": {
+    "verdict": "KO",
+    "note": "alternance neutre↔chat mais tête jamais relevée (ancrage image de départ) — remplacée par v5_loop"
+  },
+  "lunge-dumbbell_v5": {
+    "verdict": "KO",
+    "note": "✅ expert OK : genou arrière qui descend + talon décollé, tronc vertical, haltères le long du corps, genou avant 90° au-dessus de la cheville. Swing de transition à 50 % jugé tolérable (frame unique, positions enseignantes correctes). — ❓ Sophie (r2) : KO en attente de réponse doctrine (se relever entre 2 reps ?) — réponse : OUI pour la fente classique, c'est ce que montre v5 ; la « fente statique » = exo distinct",
+    "notes": [
+      "KO Sophie « faire 2 mouvements » (doctrine déjà tranchée : oui on se relève) → reroll v6 : 2 répétitions complètes avec retour debout, en cours.",
+      "Remplacée par v7 (Sophie voulait le retour debout visible)."
+    ],
+    "file": "anim_lunge-dumbbell_v5.mp4"
+  },
+  "back-squat": {
+    "verdict": "KO",
+    "file": "anim_back-squat.mp4",
+    "notes": [
+      "PASS gate expert 07-13 (l'adjudicateur a confirmé barre sur trapèzes, lecture vue de face). Nit : visage estompé en mouvement.",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "recalée adjudicateur (frame de boucle) — remplacée par back-squat_v2 trimée (vague tutoriel 07-13)."
+  },
+  "squat-bodyweight": {
+    "verdict": "OK",
+    "file": "anim_squat-bodyweight.mp4",
+    "notes": [
+      "PASS gate expert 07-13 — départ debout, descente complète. Nit : remontée backloadée en fin de boucle."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "deadlift-conventional": {
+    "verdict": "OK",
+    "file": "anim_deadlift-conventional.mp4",
+    "notes": [
+      "PASS gate expert 07-13 — extension complète debout, dos plat.",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "arnold-press-seated": {
+    "verdict": "OK",
+    "file": "anim_arnold-press-seated.mp4",
+    "notes": [
+      "PASS gate expert 07-13 — amplitude complète assise.",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "lateral-raise": {
+    "verdict": "KO",
+    "note": "BODYCHECK FAIL 07-16 : haltères-blobs mains absorbées (f1), haltères pliés ~50° (f4), 3 disques (f7), main manquante + poignet fissuré (f5), design haltère instable inter-frames."
+  },
+  "plank-m": {
+    "verdict": "KO",
+    "note": "BODYCHECK FAIL 07-16 : cheville avant cassée à 90° sur les 8 frames (chaussure à plat pointant vers l'avant — impossible en planche). Défaut STATIQUE présent aussi dans le PNG shippé (plank.png prod)."
+  },
+  "pushup": {
+    "verdict": "OK",
+    "file": "anim_pushup.mp4",
+    "notes": [
+      "PASS gate expert 07-13 — reps complètes. ⚠️ dérive style anime du visage en mouvement, à juger au rendu."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "wall-sit": {
+    "verdict": "KO",
+    "file": "anim_wall-sit.mp4",
+    "notes": [
+      "PASS gate expert 07-13 — tenue stable.",
+      "KO Sophie « pas le même graphiquement » — anime l'image _ath2 (calibre différent assumé côté image) ; ré-animer ne changera rien sans nouvelle image.",
+      "Remplacée (graphisme KO Sophie — animait l'image _ath2)."
+    ]
+  },
+  "bench-press": {
+    "verdict": "OK",
+    "file": "anim_bench-press.mp4",
+    "notes": [
+      "PASS gate expert 07-13 — trajectoire au-dessus de la poitrine.",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "leg-extension": {
+    "verdict": "CANDIDAT",
+    "file": "anim_leg-extension.mp4",
+    "notes": [
+      "PASS gate expert 07-13 — seul le bas de jambe bouge."
+    ]
+  },
+  "kb-swing": {
+    "verdict": "CANDIDAT",
+    "file": "anim_kb-swing.mp4",
+    "notes": [
+      "PASS gate expert 07-13 — swing complet avec extension de hanche. Nit : KB un peu haute à 25%."
+    ]
+  },
+  "tadasana": {
+    "verdict": "OK",
+    "file": "anim_tadasana.mp4",
+    "notes": [
+      "PASS gate expert 07-13 — tenue respirée.",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "easy-pose": {
+    "verdict": "OK",
+    "file": "anim_easy-pose.mp4",
+    "notes": [
+      "PASS gate expert 07-13 — tenue respirée.",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "seated-forward-fold": {
+    "verdict": "OK",
+    "file": "anim_seated-forward-fold.mp4",
+    "notes": [
+      "PASS gate expert 07-13 — reste pliée. Note expert : genoux fléchis, lecture proche papillon (à juger)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "triceps-overhead": {
+    "verdict": "KO",
+    "file": "anim_triceps-overhead.mp4",
+    "notes": [
+      "KO gate 1 : Kling a morphé l'exo en développé épaules 2 haltères. Reroll dès crédit : 'only his forearms move, elbows stay fixed pointing up, ONE dumbbell'.",
+      "Remplacée par la _v2/_v3 PASS."
+    ]
+  },
+  "box-jump": {
+    "verdict": "KO",
+    "file": "anim_box-jump.mp4",
+    "notes": [
+      "KO gate 1 : il descend de la box et se tourne face caméra. Reroll : 'he remains ON TOP of the box, PROFILE view maintained'.",
+      "Remplacée par la _v2/_v3 PASS."
+    ]
+  },
+  "rdl-dumbbell": {
+    "verdict": "KO",
+    "file": "anim_rdl-dumbbell.mp4",
+    "notes": [
+      "KO gate 1 : jamais debout + haltère qui flotte détaché des mains. Reroll : 'the dumbbell STAYS IN HIS HANDS, he stands FULLY upright'.",
+      "Remplacée par la _v2/_v3 PASS."
+    ]
+  },
+  "bulgarian-split-squat": {
+    "verdict": "KO",
+    "file": "anim_bulgarian-split-squat.mp4",
+    "notes": [
+      "KO gate expert (P1) : pied arrière quitte le banc au sommet (kick arabesque). Reroll : 'rear foot stays in PERMANENT contact with the bench, only the knees bend'.",
+      "Remplacée par la _v2/_v3 PASS."
+    ]
+  },
+  "facepull": {
+    "verdict": "KO",
+    "file": "anim_facepull.mp4",
+    "notes": [
+      "À-REVOIR définitif : Kling n'anime pas le tirage depuis une image bras tendus (ancrage), 2 essais + cause racine (pas d'image mi-tirage possible, kontext refuse coudes hauts). L'IMAGE reste OK."
+    ],
+    "note": "❌ Sophie r4 : « coudes et bras ne se plient pas » — gel anim facepull confirmé."
+  },
+  "_meta_batch_0713": "Élargissement Sophie « je veux tous les exos » : 19/36 générées avant épuisement crédit (402). 14 PASS gate expert · 5 KO reroll (consignes prêtes) · 17 yoga non générées (savasana exclue: image PRESQUE). Relance dès recharge : python3 kling_batch_all.py puis rerolls.",
+  "triceps-overhead_v2": {
+    "verdict": "KO",
+    "file": "anim_triceps-overhead_v2.mp4",
+    "notes": [
+      "PASS gate expert 07-13 (reroll : un seul haltère, seuls les avant-bras bougent)."
+    ],
+    "note": "❌ Sophie r4 : « la position des bras devant est pas claire » → dernier essai avec image de départ clarifiée. GEL ANIM 07-13 : kontext ne déplace pas l'haltère derrière la tête (2 essais v3/v4 KO — mur objet-à-travers-le-corps) ; pas de rig triceps-overhead existant. Voie si on veut l'anim : créer le rig SVG (levier documenté pose) → canny → kontext calibrage → kling. En attendant : image seule."
+  },
+  "box-jump_v3": {
+    "verdict": "OK",
+    "file": "anim_box-jump_v3.mp4",
+    "notes": [
+      "PASS gate expert 07-13 (reroll coupé à 2,6 s : réception + amorti, pieds sur la box tout du long).",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ re-validé Sophie r5. ✅ validé Sophie r12 (07-16)."
+  },
+  "rdl-dumbbell_v2": {
+    "verdict": "KO",
+    "file": "anim_rdl-dumbbell_v2.mp4",
+    "notes": [
+      "PASS gate expert 07-13 (adjudiqué : haltère bien en mains, dos plat ; amplitude partielle tolérée, amélioration optionnelle notée)."
+    ],
+    "note": "recalée adjudicateur (monotone) — remplacée par rdl-dumbbell_v3 (vague tutoriel 07-13). retiré 07-16 : ancienne variante non jugée, remplacée par le chantier rdl (KO Sophie r12 sur v11, à refaire)."
+  },
+  "bulgarian-split-squat_v2": {
+    "verdict": "OK",
+    "file": "anim_bulgarian-split-squat_v2.mp4",
+    "notes": [
+      "PASS gate expert 07-13 (reroll : pied arrière vérifié en contact avec le banc sur les 5 frames).",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "downward-dog": {
+    "verdict": "KO",
+    "file": "anim_downward-dog.mp4",
+    "notes": [
+      "PASS gate expert 07-13 (tenue stable).",
+      "KO Sophie « elle ne bouge pas » → reroll v2 avec respiration VISIBLE en cours.",
+      "Remplacée par v2 (immobile)."
+    ]
+  },
+  "forward-fold": {
+    "verdict": "KO",
+    "note": "BODYCHECK PASS 07-16 : 2 bras/2 mains/2 jambes/2 pieds continus et stables. Nit invisible à 340px : pied éloigné sans orteils marqués. — EXPERT SOURCÉ 07-16 PASS (Yoga International, Yoga Collective, EverydayYoga, WebMD) : variante genoux-fléchis = exactement celle recommandée débutant, aucune des 4 erreurs communes sourcées. Nits : mains devant les pieds, hanches un peu en arrière. PIPELINE COMPLET PASS. ❌ KO Sophie r13 : « on a du mal à comprendre le geste, elle bouge ou pas ? » — amplitude imperceptible (le gate UX l'avait noté). Reroll v2 : oscillation demi-redressement (ardha uttanasana, dos plat) ↔ pli profond — mouvement documenté et lisible, même segment que sun-salutation-a validée."
+  },
+  "half-moon": {
+    "verdict": "KO",
+    "note": "BODYCHECK FAIL 07-16 : pied de la jambe levée difforme (« moufle » sans talon ni orteils, 8/8 frames) + main haute sans doigts. Défaut statique, vient de l'image source. + palette légèrement hors set (persos)."
+  },
+  "triangle": {
+    "verdict": "OK",
+    "file": "anim_triangle.mp4",
+    "notes": [
+      "PASS gate expert 07-13 (tenue maintenue — mon gate 1 était trop sévère).",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "sun-salutation-a": {
+    "verdict": "KO",
+    "file": "anim_sun-salutation-a.mp4",
+    "notes": [
+      "PASS gate expert 07-13.",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "recalée adjudicateur (mouvement partiel, pas tutoriel) — remplacée par sun-salutation-a_v2 (vague tutoriel 07-13)."
+  },
+  "sun-salutation-b": {
+    "verdict": "KO",
+    "file": "anim_sun-salutation-b.mp4",
+    "notes": [
+      "PASS gate expert 07-13.",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "recalée adjudicateur — remplacée par sun-salutation-b_v3 (vague tutoriel 07-13, chaise visible)."
+  },
+  "hands-under-feet": {
+    "verdict": "KO",
+    "file": "anim_hands-under-feet.mp4",
+    "notes": [
+      "PASS gate expert 07-13 (mains près des pieds, lisible)."
+    ],
+    "note": "recalée adjudicateur (mains posées devant, pas dessous) — remplacée par hands-under-feet_v2 (vague tutoriel 07-13)."
+  },
+  "side-angle": {
+    "verdict": "OK",
+    "file": "anim_side-angle.mp4",
+    "notes": [
+      "PASS gate expert 07-13 (variante main sur genou)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "pyramid": {
+    "verdict": "OK",
+    "file": "anim_pyramid.mp4",
+    "notes": [
+      "PASS gate expert 07-13."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "embryo": {
+    "verdict": "KO",
+    "file": "anim_embryo.mp4",
+    "notes": [
+      "PASS gate expert 07-13.",
+      "KO Sophie « pieds à l'envers » — CONFIRMÉ au zoom (2 pieds en sens opposés, raté par les 2 gates) → reroll v2 avec verrou pieds en cours.",
+      "Pieds opposés — défaut baké dans l'image source, corrigé dans B_embryo_v2."
+    ]
+  },
+  "seated-twist": {
+    "verdict": "OK",
+    "file": "anim_seated-twist.mp4",
+    "notes": [
+      "PASS gate expert 07-13."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "big-toe-fold": {
+    "verdict": "OK",
+    "file": "anim_big-toe-fold.mp4",
+    "notes": [
+      "PASS gate expert 07-13 (entrée + tenue).",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "forearm-plank": {
+    "verdict": "KO",
+    "note": "BODYCHECK FAIL 07-16 : l'avant-bras d'appui ne touche pas le sol (flotte à ~30°) + masse orpheline détachée au sol sous le poignet. Défaut statique, vient de l'image source."
+  },
+  "butterfly": {
+    "verdict": "OK",
+    "file": "anim_butterfly.mp4",
+    "notes": [
+      "PASS gate expert 07-13.",
+      "✅ OK Sophie 07-13 (widget)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "foam-rolling-legs": {
+    "verdict": "CANDIDAT",
+    "file": "anim_foam-rolling-legs.mp4",
+    "notes": [
+      "PASS gate expert 07-13."
+    ]
+  },
+  "marichyasana-a": {
+    "verdict": "KO",
+    "file": "anim_marichyasana-a.mp4",
+    "notes": [
+      "À-REVOIR : rouge à lèvres apparaît en cours d'animation malgré verrou prompt (2 essais) — règle cohérence perso. L'IMAGE reste OK."
+    ],
+    "note": " retiré 07-16 : ancienne version A_REVOIR, remplacée par le chantier v5 (en cours)."
+  },
+  "plank-f": {
+    "verdict": "KO",
+    "file": "anim_plank-f.mp4",
+    "notes": [
+      "À-REVOIR : Kling la met à genoux malgré 'never kneels' (2 essais). L'anim planche HOMME (plank-m) couvre l'exo."
+    ],
+    "note": " retiré 07-16 : ancienne version A_REVOIR, non câblée dans l'app."
+  },
+  "_meta_final_0713": "CHANTIER ANIMATIONS COMPLET 07-13 : 42 candidates (9 déjà OK Sophie + 33 PASS gate expert) sur 46 tentées ; 4 à-revoir définitifs (facepull, marichyasana, plank-f, cat-cow). Reste : jugement rendu Sophie sur les 33 nouvelles.",
+  "facepull_v2": {
+    "verdict": "KO",
+    "notes": [
+      "KO Sophie (confirme le parcage) : Kling n'anime pas le tirage depuis bras tendus."
+    ],
+    "note": "❌ Sophie r4 : « le buste bouge au lieu des bras » — gel anim facepull confirmé (3+ essais)."
+  },
+  "downward-dog_v2": {
+    "verdict": "KO",
+    "file": "anim_downward-dog_v2.mp4",
+    "notes": [
+      "PASS gate expert 07-13 : respiration VISIBLE (fix du KO Sophie « elle ne bouge pas »)."
+    ],
+    "note": " retiré 07-16 : animation de l'ANCIENNE pose condamnée par le gate sourcé (pas un chien tête en bas) — la nouvelle image s303 remplace, anim à refaire depuis elle si souhaité."
+  },
+  "lunge-dumbbell_v7": {
+    "verdict": "KO",
+    "file": "anim_lunge-dumbbell_v7.mp4",
+    "notes": [
+      "PASS gate expert 07-13 : cycle complet debout→fente→debout coupé à 2,6 s — en boucle = les 2 mouvements demandés par Sophie."
+    ],
+    "note": "remplacée par lunge-dumbbell_v8 palindrome (vague tutoriel 07-13). retiré 07-16 : ancienne variante non jugée — v16 validée Sophie r12."
+  },
+  "embryo_v3": {
+    "verdict": "KO",
+    "note": "OBSOLÈTE 07-16 : décision Sophie « repartir de zéro dans notre palette » → 3 tentatives IA épuisées (texte-seul = biais grossesse 2/3 seeds ; squelette+canny ×2 = jamais le lotus bras-passés). Sortie actée : asset retiré du code (`0a97845`), retour au Canvas drawGarbhaPindasana qui dessine la vraie posture. L'anim genoux-poitrine (PASS forme mais mauvaise asana) ne sera pas utilisée."
+  },
+  "cat-cow_mm1": {
+    "verdict": "KO",
+    "file": "anim_cat-cow_mm1.mp4",
+    "notes": [
+      "Minimax essai 1 : bras qui décollent (dérive bird-dog)."
+    ]
+  },
+  "cat-cow_mm2": {
+    "verdict": "KO",
+    "file": "anim_cat-cow_mm2.mp4",
+    "notes": [
+      "Minimax essai 2 : jambes à la verticale + legging qui change de couleur."
+    ]
+  },
+  "lunge-dumbbell_v6": {
+    "verdict": "KO",
+    "file": "anim_lunge-dumbbell_v6.mp4",
+    "notes": [
+      "Fin en foulée — source du trim v7."
+    ]
+  },
+  "embryo_v2": {
+    "verdict": "KO",
+    "file": "anim_embryo_v2.mp4",
+    "notes": [
+      "Pieds toujours opposés (défaut d'image, pas d'animation)."
+    ]
+  },
+  "staff-pose_v4": {
+    "verdict": "OK",
+    "file": "anim_staff-pose_v4.mp4",
+    "notes": [
+      "Harmonisation (b) : image adoucie (soft2) + ré-animée — PASS gate expert (torse vertical tenu)."
+    ],
+    "note": "✅ validé Sophie r4 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "tree_v4": {
+    "verdict": "OK",
+    "note": "BODYCHECK PASS 07-16 : comptage et continuité OK 8/8, occlusion bras (mains jointes, profil) justifiable et stable. Remarque doctrine à trancher : genou plié pointé vers l'avant (figure-4) vs ouverture latérale canonique. — EXPERT SOURCÉ 07-16 PASS (Yoga Journal, Yoga International, Peloton) : pied au-dessus du genou ✓ (seul vrai interdit sourcé), genou vers l'avant = variante DOCUMENTÉE acceptable (YJ la nomme explicitement, YI déconseille même le plein latéral). PIPELINE COMPLET PASS (bodycheck + expert sourcé + UX). ✅ validé Sophie r13 (07-16) — 1er clip à passer pipeline complet + jugement."
+  },
+  "wall-sit_v2": {
+    "verdict": "KO",
+    "file": "anim_wall-sit_v2.mp4",
+    "notes": [
+      "Harmonisation (b) : ré-animée depuis M_wall-sit_pilote2 (perso lignée) — PASS gate expert. Nuance : chaise ~100-110°."
+    ],
+    "note": "❌ Sophie r4 : « les pieds ne devraient pas être parallèles ? » — à vérifier sur l'image source d'abord."
+  },
+  "staff-pose_v3": {
+    "verdict": "KO",
+    "file": "anim_staff-pose_v3.mp4",
+    "notes": [
+      "Partait en flexion avant."
+    ]
+  },
+  "box-jump_v4": {
+    "verdict": "KO",
+    "note": "vague tutoriel 07-13 : saut complet depuis le sol (image kontext M_box-jump_floor) mais le vol est un « superman » une jambe (réception monopodale, tronc horizontal, frames 2.2-2.8s) + il finit face caméra — mauvaise forme à imiter. 3e essai sur le concept saut → gel, box-jump_v3 (réception+redressement sur la box) conservée."
+  },
+  "sun-salutation-a_v2": {
+    "verdict": "KO",
+    "note": "vague tutoriel 07-13 (arbitrage Sophie « on vise le tutoriel ») — gate expert 8/8 PASS : flow complet debout→bras levés→flexion profonde→retour, tempo 3.8. Nit expert : la demi-levée dos plat n'est pas explicite dans les 5 frames échantillonnées. ❌ Sophie r4 : « les bras ne peuvent pas pivoter » (trajectoire de montée des bras anatomiquement fausse) → v3 = dernier essai, montée sagittale stricte."
+  },
+  "sun-salutation-b_v3": {
+    "verdict": "OK",
+    "note": "vague tutoriel 07-13 (arbitrage Sophie « on vise le tutoriel ») — gate expert 8/8 PASS : la chaise y est (genoux nettement pliés, bras levés) — c'était le KO de la v2. Nits : regard vers le bas, buste penché ~45° (style flow, pas dangereux). ✅ validé Sophie r4 (07-13). ✅ re-validé Sophie r5. ✅ validé Sophie r12 (07-16)."
+  },
+  "sun-salutation-b_v2": {
+    "verdict": "KO",
+    "note": "vague tutoriel 07-13 : genoux jamais pliés — pas de chaise, doublon de la salutation A → re-roll v3."
+  },
+  "rdl-dumbbell_v3": {
+    "verdict": "KO",
+    "note": "vague tutoriel 07-13 (arbitrage Sophie « on vise le tutoriel ») — gate expert 8/8 PASS : 2 reps charnière dos plat→mi-tibia→retour complet debout, boucle debout=debout, haltères en mains. Remplace rdl-dumbbell_v2 (monotone, recalée adjudicateur). ❌ Sophie r4 : « on comprend pas l'haltère dans la main gauche » (haltère arrière semi-occulté illisible) → v4 = dernier essai, lisibilité des 2 haltères."
+  },
+  "back-squat_v2": {
+    "verdict": "OK",
+    "note": "vague tutoriel 07-13 (arbitrage Sophie « on vise le tutoriel ») — gate expert 8/8 PASS : trim ffmpeg à 4.5s (boucle squat profond→squat profond) + ralenti 1.25×. Nit style : barre posée haute (proche clavicules) — simplification tolérée. ✅ validé Sophie r6 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "goblet-squat_v5": {
+    "verdict": "OK",
+    "note": "vague tutoriel 07-13 (arbitrage Sophie « on vise le tutoriel ») — gate expert 8/8 PASS : 1 rep lente + pause en bas, trim 3.45s + ralenti 1.25× — fin debout identique au départ (vérifiée frame à frame). Alternative tutoriel à goblet-squat_v4 (2 reps, validée Sophie) : les 2 restent en galerie, Sophie tranche. ✅ validé Sophie r6 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "lunge-dumbbell_v8": {
+    "verdict": "KO",
+    "note": "❌ Sophie r5 : le départ devrait être au bout du tapis (il ne se remet pas au milieu entre 2 reps) → image A_m_stand_db_matend (perso à l'arrière du tapis) + v9."
+  },
+  "hands-under-feet_v2": {
+    "verdict": "OK",
+    "note": "vague tutoriel 07-13 (arbitrage Sophie « on vise le tutoriel ») — gate expert 8/8 PASS : entrée dans la posture lisible, doigts qui glissent sous les orteils. Nit expert : prise simplifiée (doigts sous orteils plutôt que paumes sous plantes) — polish optionnel. ✅ validé Sophie r6 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "biceps-curl_v5": {
+    "verdict": "KO",
+    "note": "❌ Sophie r5 07-13 : « pourquoi un seul bras + haltère dans l'autre main, geste pas complet » — KO définitif (ROM partielle + question sur la convention un-bras). biceps-curl_v3 re-validée par Sophie aux r4 ET r5 reste LA référence (curl un bras = limite Kling documentée : le bras occulté ne s'anime pas ; l'haltère dans l'autre main = il tient les deux, alternance portée par le texte de dose)."
+  },
+  "back-squat_slow": {
+    "verdict": "KO",
+    "note": "variante _slow obsolète — remplacée par back-squat_v2 (vague tutoriel 07-13)."
+  },
+  "rdl-dumbbell_v2_slow": {
+    "verdict": "KO",
+    "note": "variante _slow obsolète — remplacée par rdl-dumbbell_v3 (vague tutoriel 07-13)."
+  },
+  "lunge-dumbbell_v7_slow": {
+    "verdict": "KO",
+    "note": "variante _slow obsolète — remplacée par lunge-dumbbell_v8 (vague tutoriel 07-13)."
+  },
+  "goblet-squat_v4_slow": {
+    "verdict": "KO",
+    "note": "variante _slow obsolète — goblet-squat_v4 (validée) et v5 (tutoriel) en galerie."
+  },
+  "box-jump_v2": {
+    "verdict": "OK",
+    "note": "✅ validé Sophie r4 (07-13). ✅ re-validé Sophie r5. ✅ validé Sophie r12 (07-16)."
+  },
+  "pushup_slow": {
+    "verdict": "OK",
+    "note": "✅ validé Sophie r4 (07-13). ✅ re-validé Sophie r5. ✅ validé Sophie r12 (07-16)."
+  },
+  "wall-sit_v3": {
+    "verdict": "KO",
+    "note": "❌ Sophie r5 : pieds décalés (un devant l'autre) — l'alignement profil exige UNE seule chaussure visible → image feetfix3 (suppression 2e chaussure) + v4."
+  },
+  "rdl-dumbbell_v4": {
+    "verdict": "KO",
+    "note": "❌ Sophie r5 : « on ne voit pas s'il a une haltère » — l'haltère caché contre la cuisse ne se lit pas → v5 : variante RDL 1 haltère tenu devant les cuisses (lisible en profil)."
+  },
+  "sun-salutation-a_v3": {
+    "verdict": "KO",
+    "note": "❌ Sophie r5 : « personne ne peut faire un mouvement avec les bras horizontaux » — les bras restaient tendus à l'horizontale pendant le fold → v4 : les bras suivent le torse vers le sol."
+  },
+  "wall-sit_v4": {
+    "verdict": "KO",
+    "note": "❌ Sophie r6 : « il manque un pied ; le pb est la jambe gauche vers l'avant » — diagnostic racine : les 2 jambes doivent être au même angle, 2 pieds visibles côte à côte alignés → image realign + v5."
+  },
+  "rdl-dumbbell_v5": {
+    "verdict": "KO",
+    "note": "❌ Sophie r6 : « il n'y a qu'une haltère » — synthèse r4+r6 : elle veut LES DEUX haltères clairement dessinées (pas un blob, pas une cachée) → image 2 haltères décalées lisiblement + v6."
+  },
+  "sun-salutation-a_v4": {
+    "verdict": "OK",
+    "note": "fix r5 Sophie (« bras horizontaux impossibles ») : les bras suivent le torse vers le sol pendant la flexion + PALINDROME ffmpeg → cycle complet debout→flexion→debout, frames 0 et 98% identiques — gate PASS. Nit : demi-pli (ardha uttanasana) plutôt que pli complet. ✅ validé Sophie r7 (07-13). ✅ validé Sophie r12 (07-16)."
+  },
+  "lunge-dumbbell_v9": {
+    "verdict": "KO",
+    "note": "❌ Sophie r6 : « le vrai geste = seul le pied avant recule, le pied arrière ne doit pas avancer à la fin » — le retour Kling ramenait le pied arrière → v10 = palindrome ffmpeg de la SEULE descente de v9 (pied arrière immobile par construction)."
+  },
+  "wall-sit_v5": {
+    "verdict": "KO",
+    "note": "❌ Sophie r7 : « les deux jambes doivent être à 45°, la jambe gauche est trop tendue » → image kneefix (les 2 genoux pliés pareil) + v6."
+  },
+  "rdl-dumbbell_v6": {
+    "verdict": "KO",
+    "note": "❌ Sophie r7 : « l'haltère de la main gauche passe devant la jambe droite » — superposition fausse pendant la charnière → v7 avec règle de layering (haltère arrière toujours derrière la jambe proche)."
+  },
+  "lunge-dumbbell_v10": {
+    "verdict": "KO",
+    "note": "❌ Sophie r7 : « le geste c'est le pied droit qui avance, pas le pied gauche qui recule » — VÉRIFIÉ frames denses : Kling faisait bien une fente ARRIÈRE (pied gauche recule, départ centre tapis) ; l'adjudicateur du gate s'était trompé en dédouanant v10, Sophie avait raison → v11 : départ bout du tapis, 2 haltères, consigne pied droit SEUL mobile."
+  },
+  "wall-sit_v6": {
+    "verdict": "KO",
+    "note": "❌ Sophie r8 : « la jambe gauche n'a pas changée » (exact — kontext n'a jamais vraiment replié la jambe arrière, 3 essais + 3 chirurgies pixel artefactées). GEL ANIM GÉNÉRATIVE — voie : rig SVG pose + calibrage kontext perso validé, puis respiration en marionnette 2D (décision Sophie r8 : même personnage partout)."
+  },
+  "rdl-dumbbell_v7": {
+    "verdict": "KO",
+    "note": "❌ Sophie r8 : « l'haltère traverse la jambe gauche » — le layering EN MOUVEMENT (haltère arrière derrière les 2 jambes) n'est pas contrôlable par prompt Kling (7 versions : conventions 1-haltère et 2-haltères toutes épuisées). GEL ANIM GÉNÉRATIVE — voie MARIONNETTE 2D du perso validé (décision Sophie r8 : même personnage partout, pas de Canvas SwiftUI)."
+  },
+  "lunge-dumbbell_v11": {
+    "verdict": "KO",
+    "note": "P1 gate expert : les 2 haltères de l'image A_m_lunge_start étaient reliées par une barre traversant le bassin (artefact kontext du déplacement) — mouvement pourtant enfin correct (talon arrière stable x=242 vérifié pixel). → v12 : image refaite par TRANSLATION PIXEL (PIL) depuis la base rdl validée, même mouvement re-généré et re-vérifié (x195-207 stable)."
+  },
+  "lunge-dumbbell_v12": {
+    "verdict": "KO",
+    "note": "❌ Sophie r8 : « juste sur la première image l'haltère traverse la jambe gauche » — même défaut de layering que rdl, sur les bookends du palindrome (image de départ). 13 versions, kontext fusionne les haltères, la chirurgie pixel corrige l'image mais Kling re-rend le layering à sa guise en mouvement. GEL ANIM GÉNÉRATIVE — voie MARIONNETTE 2D du perso validé (décision Sophie r8 : même personnage partout, pas de Canvas SwiftUI). Le MOUVEMENT conquis (pied arrière planté, palindrome) est documenté pour la version SwiftUI."
+  },
+  "lunge-dumbbell_v13": {
+    "verdict": "KO",
+    "note": "tentative de fix équipement (haltères séparées par chirurgie pixel sur l'image ✓) mais Kling balance les DEUX bras tendus devant au plus profond (défaut « bras horizontaux » déjà tué par Sophie) — 13e et DERNIER essai fente."
+  },
+  "wall-sit_v9": {
+    "verdict": "KO",
+    "note": "❌ Sophie r11 : main droite perdue, bras gauche perdu, impression de 3 genoux — la chirurgie pixel incrémentale (r9-r10) a dégradé le perso à chaque fix. STOP. Refonte propre de jour : calques alpha découpés une fois (torse/bras/jambes/chaussures depuis pilote2 vierge), pose assemblée par composition — pas de retouches en cascade."
+  },
+  "wall-sit_v10": {
+    "verdict": "OK",
+    "file": "anim_wall-sit_v10.mp4",
+    "note": "Marionnette 2D refaite PROPREMENT (calques alpha découpés une fois depuis pilote2 vierge, composition z-order — plus de chirurgie pixel en cascade). Jambes = position validée r9 (2 jambes même angle, jambe arrière sombre derrière + chaussure silhouette), respiration torse 5px. Checklist 7 points OK : comptage anatomique frames vidéo, pieds immobiles au pixel-tracking, boucle fermée, gate expert 2 valideurs PASS (zone chaussure arrière refaite après 1er FAIL). ✅ validé Sophie r12 (07-16)."
+  },
+  "rdl-dumbbell_v8": {
+    "verdict": "KO",
+    "file": "anim_rdl-dumbbell_v8.mp4",
+    "note": "Marionnette 2D (calques depuis rdl_pilote2 validée) : charnière de hanche — torse+tête pivotent autour de la hanche (55°→15° du vertical), bras+haltère restent à l'aplomb, jambes/pieds immobiles (0px), 1 rep en boucle 4s. Gate expert 2 valideurs PASS (fond reconstruit vérifié au pixel, boucle symétrique à 1px). Layering maîtrisé par construction. — Sophie r9 : « son bras casse » → v9 : rotation du bras interpolée vers l'aplomb autour de l'épaule (le bras gardait son angle source pendant que la manche tournait = cassure)."
+  },
+  "lunge-dumbbell_v14": {
+    "verdict": "KO",
+    "file": "anim_lunge-dumbbell_v14.mp4",
+    "note": "Marionnette 2D (calques depuis B_lunge-dumbbell_fix catalogue) : PULSE en bas de fente (torse+bras+2 haltères descendent 14px, jambes/bassin/pieds immobiles) — le pas complet articulé = risque Frankenstein, parti pris pulse à trancher. Haltère arrière DERRIÈRE la jambe par calque d'occlusion (règle r7 enfin par construction). Gate : anatomie/doctrine PASS ; visuel : 2 FAIL sur la zone grip avant ≈ couleur mur, résolus par fixes prescrits du valideur, critère numérique final sous la référence de l'étalon (93 vs 109 px). — Sophie r9 : « je ne comprends pas le geste, il ne bouge pas » → v15 : amplitude 30px + rotation cuisse avant autour du genou (flexion visible)."
+  },
+  "rdl-dumbbell_v9": {
+    "verdict": "KO",
+    "file": "anim_rdl-dumbbell_v9.mp4",
+    "note": "v9 = fix « son bras casse » (Sophie r9) : le bras tourne progressivement vers l'aplomb autour de l'épaule (0° en bas = image validée, vertical en haut, haltère au ras des cuisses). Gate ciblé PASS (jonction continue 4 phases, aucun défaut introduit). — Sophie r10 : « le corps de désolidarise des jambes et des bras »"
+  },
+  "lunge-dumbbell_v15": {
+    "verdict": "KO",
+    "file": "anim_lunge-dumbbell_v15.mp4",
+    "note": "v15 = réponse au r9 « je ne comprends pas le geste » : vraie descente-remontée de 30px en fente (split squat) avec rotation de la cuisse avant autour du genou (flexion visible), jambe arrière/pieds immobiles, haltère arrière derrière la hanche. Gate : lisibilité validée, P0 trou de taille corrigé (fenêtre crotch toujours navy), 0 px fond au critère du gate sur 4 frames. — Sophie r10 : « juste perso je ne comprends pas comment tu fait pour bouger le haut du coprs tout seul sans bouger les fesses et les jambes »"
+  },
+  "rdl-dumbbell_v11": {
+    "verdict": "KO",
+    "file": "anim_rdl-dumbbell_v11.mp4",
+    "note": "v11 = fix « le corps se désolidarise » (Sophie r10, cause racine cette fois) : le pivot de rotation déplacé à la vraie articulation hanche/fémur (mesurée au crotch) + le bassin fait maintenant partie du bloc torse qui tourne, au lieu de rester figé avec les jambes. Gate final PASS à taille app réelle (340px) — bassin+torse lisent comme un seul bloc rigide sur les 4 phases, pieds immobiles, bras fluide. Nit : liseré pointillé bassin/cuisse invisible à 340px mais présent en zoom fort natif (compromis technique acté après 5 tentatives). ❌ KO Sophie r12 (07-16) : « les jambes cassées ».",
+    "note_final": "Accepté sur gates PASS (2 agents indépendants) — Sophie a délégué la confiance 07-14 tard, pas de re-jugement visuel personnel demandé."
+  },
+  "lunge-dumbbell_v16": {
+    "verdict": "OK",
+    "file": "anim_lunge-dumbbell_v16.mp4",
+    "note": "v16 = fix « je ne comprends pas comment tu bouges le haut sans bouger les fesses et les jambes » (Sophie r10, même cause racine que RDL) : le bassin descend maintenant AVEC le torse (translation identique), au lieu de rester figé. Gate final PASS à 340px, mesuré pixel : bassin et ourlet descendent en lockstep exact sur les 4 phases. Cuisse avant tourne toujours autour du genou. ✅ validé Sophie r12 (07-16).",
+    "note_final": "Accepté sur gates PASS (2 agents indépendants) — Sophie a délégué la confiance 07-14 tard, pas de re-jugement visuel personnel demandé."
+  },
+  "rdl-dumbbell_v10": {
+    "verdict": "KO",
+    "file": "anim_rdl-dumbbell_v10.mp4",
+    "note": "Gate visuel FAIL (liseré pointillé + encoche à la jonction bassin/cuisse). Remplacée par v11 (zone de fond retravaillée, résidu réduit et confirmé invisible à 340px)."
+  },
+  "triceps-overhead_v3": {
+    "verdict": "KO",
+    "note": "rig marionnette 2 pivots indépendants (épaule proche + épaule loin, mesurés) au lieu du bloc rigide unique v1 qui cassait la forme. Gap au pivot (épaule) rebouturé avec une plate kontext «vierge» (bras au repos, sans haltère, même perso/style/fond, alignée) au lieu d’un fill couleur mur — gap invisible à 340px, nit natif résiduel accepté (même compromis que wall-sit). Boucle fermée vérifiée (diff f0/dernier frame quasi nul), pieds/bas du corps intacts (diff=0). Pas encore gate expert / Sophie. MAJ 07-15 : tentative amplitude 32° (fix critique expert ROM) — casse le rig (segments qui se désolidarisent), reverti à 10°. La critique expert (ROM pas assez visible) reste non résolue avec cette technique (bloc rigide 2D) ; nécessite la vraie double-rotation IK par coude (chantier dédié). ❌ KO Sophie r12 (07-16) : « bras cassés »."
+  },
+  "kb-swing_v2": {
+    "verdict": "KO",
+    "note": "BODYCHECK FAIL 07-16 : mains/kettlebell cassés frames intermédiaires (f6 poignée côté opposé aux mains + masse fantôme sous les poignets ; f1 mains fusionnées floues) + visage flicker. Pattern Kling « mains+équipement en transition ». RETIRÉ de l'app (jamais commité)."
+  },
+  "leg-extension_v2": {
+    "verdict": "KO",
+    "note": "BODYCHECK FAIL 07-16 : f7 tibia courbé sans articulation + cheville 90° absorbée par le rouleau ; f4 halo orange + pied fusionné ; levier de machine qui apparaît/disparaît (f0/f3). RETIRÉ de l'app (jamais commité)."
+  },
+  "cat-cow_v5_loop": {
+    "verdict": "KO",
+    "note": "pieds qui morphent entre frames (attrapé par Sophie 07-15, mes gates étaient passés à côté) — remplacée par v6 (zone pieds gelée pixel)"
+  },
+  "triceps-overhead_v4": {
+    "verdict": "KO",
+    "note": "cycle complet enfin présent (derrière tête→tendu→derrière tête, positions extrêmes nickel) MAIS l’haltère se dédouble en 2 pendant les transitions. Reroll v5 avec contrainte ONE dumbbell stoppé net : crédit Replicate épuisé (HTTP 402). Nouvelle image de départ non-ambiguë prête (_triceps-canny_s42, squelette de contrôle canny) — relancer le reroll dès crédit rechargé."
+  },
+  "marichyasana-a_v3": {
+    "verdict": "KO",
+    "note": "FAIL gate 2/2 : rouge à lèvres apparaissait encore (3e occurrence, lèvres neutres t0 → corail dès t20, mesuré pixel) — remplacée par v4 (fix pixel déterministe)."
+  },
+  "triceps-overhead_v5_loop": {
+    "verdict": "KO",
+    "note": "BODYCHECK FAIL 07-16 : f1 avant-bras arrière désolidarisé (main dans les cheveux, coude partagé) ; haltère qui pivote de 90° entre f2 et f3 (nature de la prise change)."
+  },
+  "triceps-overhead_v5": {
+    "verdict": "KO",
+    "note": "version brute non bouclée (finit bras tendus) — remplacée par v5_loop (trim 1 rep)"
+  },
+  "marichyasana-a_v4": {
+    "verdict": "KO",
+    "note": "jambe tendue absente (défaut hérité de l'image source) — remplacée par v5 (image régénérée squelette de contrôle)"
+  },
+  "cat-cow_v6": {
+    "verdict": "KO",
+    "note": "BODYCHECK FAIL 07-16 : MON fix gel-pieds a dissous le tibia (ruban translucide f2-f5, « jambe cassée ») + front rosé f3/f4. Le gel à masque adouci mélange jambe mobile et jambe figée — refaire avec frontière au genou (tibia légitimement statique : genoux et chevilles ancrés)."
+  },
+  "marichyasana-a_v5": {
+    "verdict": "KO",
+    "note": "BODYCHECK FAIL 07-16 : 3e PIED orphelin entre le pied à plat et la fesse, rattaché à aucune jambe, 8/8 frames (c'est le « 3 jambes » vu par Sophie). Défaut de MON image source — corrigé au pixel (_mari_final_v3.png, 0 px résiduel), re-Kling à relancer."
+  },
+  "cat-cow_v5": {
+    "note": " ❌ KO Sophie r12 (07-16) : « les pieds ko pas ds le meme sens ».",
+    "verdict": "KO"
+  },
+  "marichyasana-a_v2": {
+    "note": " retiré 07-16 : anim de l'ancienne source condamnée (jambe tendue absente).",
+    "verdict": "KO"
+  },
+  "plank-f_v2": {
+    "note": " retiré 07-16 : pose quadrupède ≠ plank (gate 13-candidats) + jamais bodychecké.",
+    "verdict": "KO"
+  },
+  "bulgarian-split-squat_v2_slow": {
+    "note": " retiré 07-16 : variante lente redondante avec la v2 validée, jamais bodycheckée — on garde la v2.",
+    "verdict": "KO"
+  },
+  "forward-fold_v2": {
+    "verdict": "KO",
+    "note": "bodycheck FAIL : amplitude nulle (3%), œil cassé frames intermédiaires — ancrage Kling sur le pli profond."
+  },
+  "forward-fold_v3": {
+    "verdict": "KO",
+    "note": "bodycheck FAIL : amplitude corrigée (75°) mais visage détruit (œil-glyphe 6/8 frames, rouge à lèvres réapparu, blob croissant) + 1 seule descente figée."
+  },
+  "forward-fold_v4_loop": {
+    "verdict": "KO",
+    "note": "pipeline PASS mais KO Sophie r14 : perso trop maigre (squelette de contrôle trop fin) + barre vidéo qui cachait les pieds — remplacée par v6."
+  },
+  "forward-fold_v5": {
+    "verdict": "KO",
+    "note": "brut non bouclé."
+  },
+  "forward-fold_v5_loop": {
+    "verdict": "KO",
+    "note": "build corrigé mais mains posées DERRIÈRE les talons doigts vers l'arrière en pli profond (z-order impossible) — remplacée par v6."
+  },
+  "forward-fold_v6": {
+    "verdict": "KO",
+    "note": "brut non bouclé — version retenue = v6_loop."
+  },
+  "forward-fold_v6_loop": {
+    "verdict": "KO",
+    "note": "❌ KO Sophie r15 (07-16) : « proportions du corps ko ». 3e KO Sophie sur cet exo (r13 mouvement invisible, r14 trop maigre, r15 proportions) après 6 versions — RÈGLE STOP : gel de l'animation forward-fold, l'exo reste sur son image statique validée (en prod). Le mouvement et la recette (départ demi-redressé + descente seule + palindrome) sont acquis, mais flux-canny ne tient pas les proportions du perso d'un roll à l'autre. Voie future si priorisé : dessin manuel/Lottie ou marionnette depuis la statique validée (chantier dédié)."
+  },
+  "rdl-dumbbell_v12": {
+    "verdict": "KO",
+    "note": "brut non boucle."
+  },
+  "rdl-dumbbell_v12_loop": {
+    "verdict": "KO",
+    "note": "Retry Kling décidé par Sophie (plan clôture 07-16) — bodycheck FAIL profond : haltère dédoublé en 2 haltères au milieu de la boucle, prise à une main, pieds qui voyagent hors du tapis, et le PERSONNAGE PIVOTE de profil à face pendant la montée. GEL STATIQUE ACTÉ : rdl reste sur son image validée (déjà en prod). Même profil d'échec que kb-swing."
+  },
+  "ohp-barbell_v2": {
+    "verdict": "KO",
+    "note": "Polish micro-flexion décidé par Sophie — bodycheck FAIL mesuré : la flexion est un quart de squat (bassin -17% de la hauteur du perso au point bas, vs ±0.3% sur la v1 validée) → lit comme un push press, plus une presse stricte. Barre/pieds/visage propres. Kling n'a aucun contrôle fin d'amplitude (constaté ×3). LA V1 VALIDÉE RESTE EN PROD, polish abandonné, remarque « jambes raides » documentée comme compromis assumé."
+  },
+  "cat-cow_v7": {
+    "verdict": "KO",
+    "note": "Fix gel peau-seule — bodycheck FAIL : tibia redevenu solide ✓ et pied gelé ✓ MAIS talon dupliqué sur 4 frames (la jambe animée rend sa propre cheville au-dessus du pied gelé) + genou qui décolle en transition + front rosé f3/f4. 2 tentatives de gel (boîte v6, peau v7) = STOP. GEL STATIQUE ACTÉ pour cat-cow (image validée en prod, pas d'anim). Voie future : marionnette avec coupe à la vraie articulation, chantier dédié."
+  },
+  "marichyasana-a_v6": {
+    "verdict": "KO",
+    "note": "❌ KO Sophie r16 : « 3 jambes » — main orpheline posée derrière le talon (dessinée sans bras par le générateur), que le bodycheck avait excusée comme « la main au sol » en contradiction avec l'expert UX (« main invisible ») — contradiction non réconciliée = trou de méthode, corrigé (règle : toute masse de peau doit être TRACÉE jusqu'au tronc)."
+  },
+  "marichyasana-a_v7": {
+    "verdict": "KO",
+    "note": "❌ KO Sophie r17 : toujours « 3 jambes » — cette fois ce n'était PAS de la peau : la masse assise (legging bleu) était isolée de la cuisse par un canal de fond beige, ce qui la faisait lire comme une 3e jambe repliée. Mes bodychecks comptaient les membres en traçant les masses de PEAU → une jambe habillée passait entre les mailles. Règle ajoutée : comptage de membres par lecture de SILHOUETTE à taille app (toute masse allongée type membre, habillée ou nue), pas seulement par la peau."
+  },
+  "marichyasana-a_v8": {
+    "verdict": "KO",
+    "note": "❌ KO Sophie r18 : « 3 jambes, même 4 » — GEL GÉNÉRATIF DÉFINITIF. Limite perceptuelle structurelle : en profil, la pose empile 4 masses allongées parallèles (jambe tendue, tibia, cuisse+assise, bras) qui se lisent comme des jambes surnuméraires à taille app, quelle que soit la retouche (5 versions, 3 KO Sophie). Sortie actée : asset retiré du code, retour au Canvas drawMarichyasanaA (`2cbea82` poussé) — même sortie que garbha pindasana."
+  }
+}

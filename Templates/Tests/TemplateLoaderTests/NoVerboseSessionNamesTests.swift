@@ -9,9 +9,10 @@ import TemplateModel
 /// passe : 80 car.) — ce test verrouille l'invariant contre la régression
 /// future (nouveau template, édition) plutôt qu'un check ponctuel jetable.
 ///
-/// SCOPE = yoga uniquement (les 4 templates audités aujourd'hui) : un scan
+/// SCOPE = yoga + tennis (audit tennis 2026-07-26 : titres 90-101 car. sur
+/// recreational/regular/competitive, condensés à ≤85 car. depuis). Un scan
 /// large a révélé le même problème sur `hiit-competitive-athletique` (jusqu'à
-/// 137 car.) — dette pré-existante, hors périmètre de cet audit, non touchée
+/// 137 car.) — dette pré-existante, hors périmètre de ces audits, non touchée
 /// ici. Ne pas élargir ce test à tout le catalogue sans traiter ce cas d'abord.
 ///
 /// EXCLUS : seul `session.name` est plafonné (c'est LUI qui s'affiche sur la
@@ -24,7 +25,7 @@ final class NoVerboseSessionNamesTests: XCTestCase {
     /// la passe 2026-07-26 : jusqu'à 159 car. sur yoga-competitive-advanced.
     private static let cap = 100
 
-    func testNoVerboseYogaSessionNames() async throws {
+    func testNoVerboseYogaOrTennisSessionNames() async throws {
         let templates = try await TemplateLoader.loadAll()
         guard templates.count >= 30 else { throw XCTSkip("bundle non peuplé (\(templates.count))") }
 
@@ -34,7 +35,7 @@ final class NoVerboseSessionNamesTests: XCTestCase {
             failures.append("[\(id)] S\(week) J\(day) name.\(lang): \(value.count) car. (> \(Self.cap)) — « \(value.prefix(80))… »")
         }
 
-        for t in templates where t.sport == .yoga {
+        for t in templates where t.sport == .yoga || t.sport == .tennis {
             for w in t.weeks {
                 for s in w.sessions {
                     check("fr", s.name.fr, t.id, w.weekNumber, s.day)
@@ -45,7 +46,7 @@ final class NoVerboseSessionNamesTests: XCTestCase {
         }
         XCTAssertTrue(
             failures.isEmpty,
-            "Titre(s) de séance yoga trop long(s) (> \(Self.cap) car., risque de troncature NextSessionTeaser) dans \(failures.count) champ(s) :\n"
+            "Titre(s) de séance yoga/tennis trop long(s) (> \(Self.cap) car., risque de troncature NextSessionTeaser) dans \(failures.count) champ(s) :\n"
                 + failures.prefix(50).joined(separator: "\n")
         )
     }

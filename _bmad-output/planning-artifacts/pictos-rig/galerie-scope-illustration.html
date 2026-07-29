@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Scope illustration — auto-explicite ou pas</title>
+<style>
+  :root { --bg:#f4f2ee; --card:#fff; --border:#ddd; --skip:#3a7d44; --yoga:#87AAB2; --muscu:#B3A8AE; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; background: var(--bg); margin:0; padding:20px 24px 80px; color:#222; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sub { color:#666; font-size:13px; margin-bottom:16px; max-width:760px; }
+  .toolbar { position: sticky; top:0; background: var(--bg); padding:10px 0; z-index:10; display:flex; gap:12px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--border); margin-bottom:16px; }
+  .toolbar button { padding:6px 12px; border-radius:6px; border:1px solid #ccc; background:#fff; cursor:pointer; font-size:13px; }
+  .filter-btn.active { background:#222; color:#fff; }
+  #count { font-weight:600; font-size:14px; }
+  #skiplist { width:100%; min-height:60px; font-family:ui-monospace,monospace; font-size:12px; padding:8px; border-radius:6px; border:1px solid var(--border); margin-top:8px; background:#eafbe9; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap:16px; }
+  .card { background:var(--card); border:2px solid var(--border); border-radius:10px; overflow:hidden; display:flex; flex-direction:column; transition: border-color .15s, opacity .15s; }
+  .card img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#eee; }
+  .card .meta { padding:8px 10px; flex:1; }
+  .tag { display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; padding:2px 6px; border-radius:4px; color:#fff; margin-bottom:4px; }
+  .tag-Yoga { background: var(--yoga); }
+  .tag-Muscu { background: var(--muscu); }
+  .slug { font-family:ui-monospace,monospace; font-size:12px; color:#333; font-weight:600; }
+  .desc { font-size:12px; color:#555; margin-top:3px; line-height:1.35; }
+  .skip-btn { border:none; background:#f0f0f0; padding:8px; font-size:12px; cursor:pointer; font-weight:600; color:#333; }
+  .skip-btn:hover { background:#e2f5e4; }
+  .card.skip { border-color: var(--skip); background:#f3fbf3; }
+  .card.skip .skip-btn { background: var(--skip); color:#fff; }
+  .card.hidden { display:none; }
+</style>
+</head>
+<body>
+<h1>Scope illustration — 66 exos</h1>
+<div class="sub">Vert = proposition Claude « auto-explicite, pas besoin d'illustration » (nom/machine suffisamment clair). Clique pour changer d'avis sur n'importe quelle carte. Sauvegarde auto (localStorage).</div>
+<div class="toolbar">
+  <span id="count"></span>
+  <button class="filter-btn active" data-f="all" onclick="filterCat('all',this)">Tout</button>
+  <button class="filter-btn" data-f="Yoga" onclick="filterCat('Yoga',this)">Yoga</button>
+  <button class="filter-btn" data-f="Muscu" onclick="filterCat('Muscu',this)">Muscu</button>
+  <button onclick="resetProposal()">Revenir à la proposition initiale</button>
+</div>
+<div class="grid">
+
+    <div class="card" id="card-ardhaBaddhaPadmottanasana" data-cat="Yoga">
+      <img src="reliquat_final/ardhaBaddhaPadmottanasana.png" loading="lazy" alt="ardhaBaddhaPadmottanasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">ardhaBaddhaPadmottanasana</div>
+        <div class="desc">Demi-lotus en flexion avant debout — jambe repliée en demi-lotus dans le dos, main opposée au sol.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('ardhaBaddhaPadmottanasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-bakasana" data-cat="Yoga">
+      <img src="reliquat_final/bakasana.png" loading="lazy" alt="bakasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">bakasana</div>
+        <div class="desc">Posture du corbeau — équilibre sur les mains, genoux calés sur les triceps.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('bakasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-bhujapidasana" data-cat="Yoga">
+      <img src="reliquat_final/bhujapidasana.png" loading="lazy" alt="bhujapidasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">bhujapidasana</div>
+        <div class="desc">Pression des bras — équilibre sur les mains, jambes croisées devant les épaules.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('bhujapidasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card skip" id="card-biceps-curl-barbell" data-cat="Muscu">
+      <img src="reliquat_final/biceps-curl-barbell.png" loading="lazy" alt="biceps-curl-barbell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">biceps-curl-barbell</div>
+        <div class="desc">Curl biceps à la barre.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('biceps-curl-barbell')">Pas d'illustration</button>
+    </div>
+    <div class="card" id="card-bird-dog" data-cat="Muscu">
+      <img src="reliquat_final/bird-dog.png" loading="lazy" alt="bird-dog">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">bird-dog</div>
+        <div class="desc">Bird-dog — quadrupédie, bras et jambe opposée tendus.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('bird-dog')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-boat" data-cat="Yoga">
+      <img src="reliquat_final/boat.png" loading="lazy" alt="boat">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">boat</div>
+        <div class="desc">Posture du bateau (navasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('boat')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-cable-fly" data-cat="Muscu">
+      <img src="reliquat_final/cable-fly.png" loading="lazy" alt="cable-fly">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">cable-fly</div>
+        <div class="desc">Écarté à la poulie vis-à-vis (cable fly).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('cable-fly')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-catCowForearms" data-cat="Yoga">
+      <img src="reliquat_final/catCowForearms.png" loading="lazy" alt="catCowForearms">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">catCowForearms</div>
+        <div class="desc">Chat-vache sur les avant-bras.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('catCowForearms')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-child" data-cat="Yoga">
+      <img src="reliquat_final/child.png" loading="lazy" alt="child">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">child</div>
+        <div class="desc">Posture de l'enfant (balasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('child')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-clamshell" data-cat="Muscu">
+      <img src="reliquat_final/clamshell.png" loading="lazy" alt="clamshell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">clamshell</div>
+        <div class="desc">Clamshell — fessiers moyens, allongé sur le côté.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('clamshell')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-cobra_test" data-cat="Yoga">
+      <img src="reliquat_final/cobra_test.png" loading="lazy" alt="cobra_test">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">cobra_test</div>
+        <div class="desc">Posture du cobra (bhujangasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('cobra_test')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-dead-bug" data-cat="Muscu">
+      <img src="reliquat_final/dead-bug.png" loading="lazy" alt="dead-bug">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">dead-bug</div>
+        <div class="desc">Dead bug — gainage, bras et jambe opposés en extension.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('dead-bug')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-dhanurasana" data-cat="Yoga">
+      <img src="reliquat_final/dhanurasana.png" loading="lazy" alt="dhanurasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">dhanurasana</div>
+        <div class="desc">Posture de l'arc.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('dhanurasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-dirgha" data-cat="Yoga">
+      <img src="reliquat_final/dirgha.png" loading="lazy" alt="dirgha">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">dirgha</div>
+        <div class="desc">Respiration complète en 3 temps (dirgha pranayama).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('dirgha')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-dolphinPose" data-cat="Yoga">
+      <img src="reliquat_final/dolphinPose.png" loading="lazy" alt="dolphinPose">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">dolphinPose</div>
+        <div class="desc">Posture du dauphin — avant-bras au sol, hanches hautes.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('dolphinPose')">Auto-explicite ?</button>
+    </div>
+    <div class="card skip" id="card-double-unders" data-cat="Muscu">
+      <img src="reliquat_final/double-unders.png" loading="lazy" alt="double-unders">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">double-unders</div>
+        <div class="desc">Double-unders — corde à sauter, double rotation par saut.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('double-unders')">Pas d'illustration</button>
+    </div>
+    <div class="card" id="card-eagle" data-cat="Yoga">
+      <img src="reliquat_final/eagle.png" loading="lazy" alt="eagle">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">eagle</div>
+        <div class="desc">Posture de l'aigle (garudasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('eagle')">Auto-explicite ?</button>
+    </div>
+    <div class="card skip" id="card-face-pull" data-cat="Muscu">
+      <img src="reliquat_final/face-pull.png" loading="lazy" alt="face-pull">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">face-pull</div>
+        <div class="desc">Face pull — tirage à la poulie vers le visage.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('face-pull')">Pas d'illustration</button>
+    </div>
+    <div class="card skip" id="card-farmer-carry" data-cat="Muscu">
+      <img src="reliquat_final/farmer-carry.png" loading="lazy" alt="farmer-carry">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">farmer-carry</div>
+        <div class="desc">Farmer carry — marche chargée, un poids dans chaque main.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('farmer-carry')">Pas d'illustration</button>
+    </div>
+    <div class="card" id="card-halasana" data-cat="Yoga">
+      <img src="reliquat_final/halasana.png" loading="lazy" alt="halasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">halasana</div>
+        <div class="desc">Posture de la charrue — jambes tendues au-dessus de la tête, orteils au sol.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('halasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card skip" id="card-hanging-leg-raise" data-cat="Muscu">
+      <img src="reliquat_final/hanging-leg-raise.png" loading="lazy" alt="hanging-leg-raise">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">hanging-leg-raise</div>
+        <div class="desc">Relevé de jambes suspendu à la barre.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('hanging-leg-raise')">Pas d'illustration</button>
+    </div>
+    <div class="card" id="card-hinge-rdl-barbell" data-cat="Muscu">
+      <img src="reliquat_final/hinge-rdl-barbell.png" loading="lazy" alt="hinge-rdl-barbell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">hinge-rdl-barbell</div>
+        <div class="desc">Soulevé de terre jambes tendues (RDL) à la barre.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('hinge-rdl-barbell')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-hip-thrust" data-cat="Muscu">
+      <img src="reliquat_final/hip-thrust.png" loading="lazy" alt="hip-thrust">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">hip-thrust</div>
+        <div class="desc">Hip thrust — poussée de hanches à la barre, épaules sur banc.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('hip-thrust')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-januSirsasana" data-cat="Yoga">
+      <img src="reliquat_final/januSirsasana.png" loading="lazy" alt="januSirsasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">januSirsasana</div>
+        <div class="desc">Tête au genou (janu sirsasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('januSirsasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-kapotasana" data-cat="Yoga">
+      <img src="reliquat_final/kapotasana.png" loading="lazy" alt="kapotasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">kapotasana</div>
+        <div class="desc">Posture du pigeon roi (kapotasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('kapotasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-karnapidasana" data-cat="Yoga">
+      <img src="reliquat_final/karnapidasana.png" loading="lazy" alt="karnapidasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">karnapidasana</div>
+        <div class="desc">Pression des oreilles — variante genoux pliés de la charrue.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('karnapidasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-kurmasana" data-cat="Yoga">
+      <img src="reliquat_final/kurmasana.png" loading="lazy" alt="kurmasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">kurmasana</div>
+        <div class="desc">Posture de la tortue.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('kurmasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card skip" id="card-leg-curl" data-cat="Muscu">
+      <img src="reliquat_final/leg-curl.png" loading="lazy" alt="leg-curl">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">leg-curl</div>
+        <div class="desc">Leg curl — flexion des jambes, ischio-jambiers.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('leg-curl')">Pas d'illustration</button>
+    </div>
+    <div class="card skip" id="card-leg-press" data-cat="Muscu">
+      <img src="reliquat_final/leg-press.png" loading="lazy" alt="leg-press">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">leg-press</div>
+        <div class="desc">Presse à cuisses.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('leg-press')">Pas d'illustration</button>
+    </div>
+    <div class="card" id="card-lunge-bodyweight" data-cat="Muscu">
+      <img src="reliquat_final/lunge-bodyweight.png" loading="lazy" alt="lunge-bodyweight">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">lunge-bodyweight</div>
+        <div class="desc">Fente au poids du corps.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('lunge-bodyweight')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-matsyasana" data-cat="Yoga">
+      <img src="reliquat_final/matsyasana.png" loading="lazy" alt="matsyasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">matsyasana</div>
+        <div class="desc">Posture du poisson.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('matsyasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card skip" id="card-mountain-climber" data-cat="Muscu">
+      <img src="reliquat_final/mountain-climber.png" loading="lazy" alt="mountain-climber">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">mountain-climber</div>
+        <div class="desc">Mountain climber — genoux ramenés en gainage.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('mountain-climber')">Pas d'illustration</button>
+    </div>
+    <div class="card" id="card-nadiShodhana" data-cat="Yoga">
+      <img src="reliquat_final/nadiShodhana.png" loading="lazy" alt="nadiShodhana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">nadiShodhana</div>
+        <div class="desc">Respiration alternée (nadi shodhana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('nadiShodhana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-nordic-curl" data-cat="Muscu">
+      <img src="reliquat_final/nordic-curl.png" loading="lazy" alt="nordic-curl">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">nordic-curl</div>
+        <div class="desc">Nordic curl — ischio-jambiers en excentrique, genoux calés.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('nordic-curl')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-pallof-press" data-cat="Muscu">
+      <img src="reliquat_final/pallof-press.png" loading="lazy" alt="pallof-press">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">pallof-press</div>
+        <div class="desc">Pallof press — anti-rotation à la poulie.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('pallof-press')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-phalakasana" data-cat="Yoga">
+      <img src="reliquat_final/phalakasana.png" loading="lazy" alt="phalakasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">phalakasana</div>
+        <div class="desc">Posture de la planche (phalakasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('phalakasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-plyo-jumpsquat" data-cat="Muscu">
+      <img src="reliquat_final/plyo-jumpsquat.png" loading="lazy" alt="plyo-jumpsquat">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">plyo-jumpsquat</div>
+        <div class="desc">Squat sauté pliométrique.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('plyo-jumpsquat')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-power-clean" data-cat="Muscu">
+      <img src="reliquat_final/power-clean.png" loading="lazy" alt="power-clean">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">power-clean</div>
+        <div class="desc">Power clean — arraché-épaulé à la barre.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('power-clean')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-prasaritaPadottanasana" data-cat="Yoga">
+      <img src="reliquat_final/prasaritaPadottanasana.png" loading="lazy" alt="prasaritaPadottanasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">prasaritaPadottanasana</div>
+        <div class="desc">Flexion avant jambes écartées.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('prasaritaPadottanasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card skip" id="card-pull-horizontal-row" data-cat="Muscu">
+      <img src="reliquat_final/pull-horizontal-row.png" loading="lazy" alt="pull-horizontal-row">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">pull-horizontal-row</div>
+        <div class="desc">Rowing horizontal (tirage).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('pull-horizontal-row')">Pas d'illustration</button>
+    </div>
+    <div class="card" id="card-purvottanasana" data-cat="Yoga">
+      <img src="reliquat_final/purvottanasana.png" loading="lazy" alt="purvottanasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">purvottanasana</div>
+        <div class="desc">Planche inversée (purvottanasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('purvottanasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card skip" id="card-push-horizontal-dips" data-cat="Muscu">
+      <img src="reliquat_final/push-horizontal-dips.png" loading="lazy" alt="push-horizontal-dips">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">push-horizontal-dips</div>
+        <div class="desc">Dips — pectoraux/triceps.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('push-horizontal-dips')">Pas d'illustration</button>
+    </div>
+    <div class="card skip" id="card-push-horizontal-dumbbell" data-cat="Muscu">
+      <img src="reliquat_final/push-horizontal-dumbbell.png" loading="lazy" alt="push-horizontal-dumbbell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">push-horizontal-dumbbell</div>
+        <div class="desc">Développé couché haltères.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('push-horizontal-dumbbell')">Pas d'illustration</button>
+    </div>
+    <div class="card" id="card-reverse-hyper" data-cat="Muscu">
+      <img src="reliquat_final/reverse-hyper.png" loading="lazy" alt="reverse-hyper">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">reverse-hyper</div>
+        <div class="desc">Reverse hyper — extension lombaire inversée.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('reverse-hyper')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-salabhasana" data-cat="Yoga">
+      <img src="reliquat_final/salabhasana.png" loading="lazy" alt="salabhasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">salabhasana</div>
+        <div class="desc">Posture de la sauterelle (salabhasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('salabhasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-sarvangasana" data-cat="Yoga">
+      <img src="reliquat_final/sarvangasana.png" loading="lazy" alt="sarvangasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">sarvangasana</div>
+        <div class="desc">Chandelle (sarvangasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('sarvangasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-savasana" data-cat="Yoga">
+      <img src="reliquat_final/savasana.png" loading="lazy" alt="savasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">savasana</div>
+        <div class="desc">Posture du cadavre — relaxation finale.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('savasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-setuBandha" data-cat="Yoga">
+      <img src="reliquat_final/setuBandha.png" loading="lazy" alt="setuBandha">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">setuBandha</div>
+        <div class="desc">Pont (setu bandhasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('setuBandha')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-side-plank" data-cat="Muscu">
+      <img src="reliquat_final/side-plank.png" loading="lazy" alt="side-plank">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">side-plank</div>
+        <div class="desc">Planche latérale (side plank).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('side-plank')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-sirsasana" data-cat="Yoga">
+      <img src="reliquat_final/sirsasana.png" loading="lazy" alt="sirsasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">sirsasana</div>
+        <div class="desc">Posture sur la tête (sirsasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('sirsasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-sled-push" data-cat="Muscu">
+      <img src="reliquat_final/sled-push.png" loading="lazy" alt="sled-push">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">sled-push</div>
+        <div class="desc">Poussée de traîneau (sled push).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('sled-push')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-suptaBaddhaKonasana" data-cat="Yoga">
+      <img src="reliquat_final/suptaBaddhaKonasana.png" loading="lazy" alt="suptaBaddhaKonasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">suptaBaddhaKonasana</div>
+        <div class="desc">Papillon allongé (supta baddha konasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('suptaBaddhaKonasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-tibialis-raise" data-cat="Muscu">
+      <img src="reliquat_final/tibialis-raise.png" loading="lazy" alt="tibialis-raise">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">tibialis-raise</div>
+        <div class="desc">Relevé du tibial antérieur.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('tibialis-raise')">Auto-explicite ?</button>
+    </div>
+    <div class="card skip" id="card-triceps-pushdown" data-cat="Muscu">
+      <img src="reliquat_final/triceps-pushdown.png" loading="lazy" alt="triceps-pushdown">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">triceps-pushdown</div>
+        <div class="desc">Extension triceps à la poulie.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('triceps-pushdown')">Pas d'illustration</button>
+    </div>
+    <div class="card" id="card-turkish-getup" data-cat="Muscu">
+      <img src="reliquat_final/turkish-getup.png" loading="lazy" alt="turkish-getup">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">turkish-getup</div>
+        <div class="desc">Turkish get-up — lever turc.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('turkish-getup')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-ujjayi" data-cat="Yoga">
+      <img src="reliquat_final/ujjayi.png" loading="lazy" alt="ujjayi">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">ujjayi</div>
+        <div class="desc">Respiration ujjayi.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('ujjayi')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-upavisthaKonasana" data-cat="Yoga">
+      <img src="reliquat_final/upavisthaKonasana.png" loading="lazy" alt="upavisthaKonasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">upavisthaKonasana</div>
+        <div class="desc">Grand écart assis (upavistha konasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('upavisthaKonasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-urdhvaDhanurasana" data-cat="Yoga">
+      <img src="reliquat_final/urdhvaDhanurasana.png" loading="lazy" alt="urdhvaDhanurasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">urdhvaDhanurasana</div>
+        <div class="desc">Pont complet / roue (urdhva dhanurasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('urdhvaDhanurasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-ustrasana" data-cat="Yoga">
+      <img src="reliquat_final/ustrasana.png" loading="lazy" alt="ustrasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">ustrasana</div>
+        <div class="desc">Posture du chameau (ustrasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('ustrasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-uttanaPadasana" data-cat="Yoga">
+      <img src="reliquat_final/uttanaPadasana.png" loading="lazy" alt="uttanaPadasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">uttanaPadasana</div>
+        <div class="desc">Jambes tendues levées (uttana padasana).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('uttanaPadasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-utthitaHastaPadangusthasana" data-cat="Yoga">
+      <img src="reliquat_final/utthitaHastaPadangusthasana.png" loading="lazy" alt="utthitaHastaPadangusthasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">utthitaHastaPadangusthasana</div>
+        <div class="desc">Main à l'orteil, équilibre debout jambe tendue.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('utthitaHastaPadangusthasana')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-viparitaKarani" data-cat="Yoga">
+      <img src="reliquat_final/viparitaKarani.png" loading="lazy" alt="viparitaKarani">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">viparitaKarani</div>
+        <div class="desc">Jambes au mur (viparita karani).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('viparitaKarani')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-warrior2" data-cat="Yoga">
+      <img src="reliquat_final/warrior2.png" loading="lazy" alt="warrior2">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">warrior2</div>
+        <div class="desc">Guerrier II (virabhadrasana II).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('warrior2')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-warrior3" data-cat="Yoga">
+      <img src="reliquat_final/warrior3.png" loading="lazy" alt="warrior3">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">warrior3</div>
+        <div class="desc">Guerrier III (virabhadrasana III).</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('warrior3')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-woodchopper" data-cat="Muscu">
+      <img src="reliquat_final/woodchopper.png" loading="lazy" alt="woodchopper">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">woodchopper</div>
+        <div class="desc">Woodchopper — rotation type bûcheron à la poulie.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('woodchopper')">Auto-explicite ?</button>
+    </div>
+    <div class="card" id="card-ytw-activation" data-cat="Muscu">
+      <img src="reliquat_final/ytw-activation.png" loading="lazy" alt="ytw-activation">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">ytw-activation</div>
+        <div class="desc">Activation Y-T-W — coiffe des rotateurs / omoplates.</div>
+      </div>
+      <button class="skip-btn" onclick="toggleSkip('ytw-activation')">Auto-explicite ?</button>
+    </div>
+</div>
+<textarea id="skiplist" readonly placeholder="Aucun exo marqué auto-explicite."></textarea>
+
+<script>
+const total = 66;
+const proposed = ['biceps-curl-barbell', 'double-unders', 'face-pull', 'farmer-carry', 'hanging-leg-raise', 'leg-curl', 'leg-press', 'mountain-climber', 'pull-horizontal-row', 'push-horizontal-dips', 'push-horizontal-dumbbell', 'triceps-pushdown'];
+
+function getSkip() {
+  const stored = localStorage.getItem('scope_skip');
+  return stored !== null ? JSON.parse(stored) : proposed.slice();
+}
+function setSkip(list) { localStorage.setItem('scope_skip', JSON.stringify(list)); }
+
+function toggleSkip(slug) {
+  let list = getSkip();
+  const card = document.getElementById('card-'+slug);
+  if (list.includes(slug)) {
+    list = list.filter(s => s !== slug);
+    card.classList.remove('skip');
+    card.querySelector('.skip-btn').textContent = 'Auto-explicite ?';
+  } else {
+    list.push(slug);
+    card.classList.add('skip');
+    card.querySelector('.skip-btn').textContent = "Pas d'illustration";
+  }
+  setSkip(list);
+  refresh();
+}
+
+function resetProposal() {
+  setSkip(proposed.slice());
+  document.querySelectorAll('.card').forEach(c => {
+    const slug = c.id.replace('card-','');
+    const isSkip = proposed.includes(slug);
+    c.classList.toggle('skip', isSkip);
+    c.querySelector('.skip-btn').textContent = isSkip ? "Pas d'illustration" : 'Auto-explicite ?';
+  });
+  refresh();
+}
+
+function filterCat(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.card').forEach(c => {
+    c.classList.toggle('hidden', cat !== 'all' && c.dataset.cat !== cat);
+  });
+}
+
+function refresh() {
+  const list = getSkip();
+  document.getElementById('count').textContent = list.length + ' auto-explicite / ' + total;
+  document.getElementById('skiplist').value = list.length ? list.join('\n') : '';
+}
+
+refresh();
+</script>
+</body>
+</html>

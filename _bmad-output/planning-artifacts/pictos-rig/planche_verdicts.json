@@ -1,0 +1,42 @@
+{
+  "Guerrier 1": {
+    "verdict": "OK",
+    "expert": [
+      "Virabhadrasana I conforme : bras tendus au-dessus de la tête paumes jointes, buste vertical, genou avant à l'aplomb de la cheville, fente dans le sens du regard.",
+      "Talon arrière ancré à plat après re-review (le critère qui distingue Guerrier 1 d'une fente haute)."
+    ],
+    "ux": [
+      "Départ → arrivée limpide, même personnage/tenue/tapis. Rien à redire."
+    ]
+  },
+  "Cobra": {
+    "verdict": "KO",
+    "expert": [
+      "2 essais SDXL + 2 essais kontext : le modèle n'arrive JAMAIS à garder le bassin au sol (il produit l'inverse : hanches hautes, poitrine basse).",
+      "Recommandation : sortir les poses ventrales (cobra, sphinx, sauterelle) du pipeline génératif — dessin manuel ou autre conditionnement."
+    ],
+    "ux": [
+      "Cohérence de paire réglée, mais une novice qui suit ce dessin se trompe complètement de mouvement. P0."
+    ]
+  },
+  "Squat gobelet": {
+    "verdict": "OK",
+    "expert": [
+      "Mécanique de squat très bonne : hanches en arrière, cuisses proches de la parallèle, talons au sol.",
+      "Haltère passée en prise verticale à deux mains contre la poitrine après review (version affichée = corrigée)."
+    ],
+    "ux": [
+      "Même personnage, même tapis, descente compréhensible d'un coup d'œil. La paire la plus propre."
+    ]
+  },
+  "Soulevé de terre roumain": {
+    "verdict": "OK",
+    "expert": [
+      "Vraie barre avec disques ronds, hinge bien lu (hanches en arrière, dos plat, épaules au-dessus de la barre), départ et position basse au même angle de vue.",
+      "Décision doctrine : la séquence debout → penché barre mi-tibia = soulevé ROUMAIN (assumé, cohérent avec la règle « départ debout »). Le soulevé conventionnel (départ barre au sol) aura sa propre séquence au batch."
+    ],
+    "ux": [
+      "Plus de personnage qui change entre A et B (barbe, tenue) — réglé par le pipeline kontext."
+    ]
+  }
+}

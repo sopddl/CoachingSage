@@ -233,6 +233,15 @@ extension Glossary {
         ("denivelé", "hiking.denivele"),
         ("denivele", "hiking.denivele"),
         ("total ascent", "hiking.denivele"),
+        // Audit contenu hiking (2026-07-26) — "D-" (dénivelé négatif), jamais glosé
+        // jusqu'ici. Multi-mots d'abord (longest-first). "d-" (2 chars) protégé par
+        // la boundary stricte : "sud-ouest" ne matche pas (lettre adjacente avant "d").
+        ("dénivelé négatif", "hiking.denivele.negatif"),
+        ("denivelé négatif", "hiking.denivele.negatif"),
+        ("denivele negatif", "hiking.denivele.negatif"),
+        ("desnivel negativo", "hiking.denivele.negatif"),
+        ("total descent", "hiking.denivele.negatif"),
+        ("d-", "hiking.denivele.negatif"),
         ("elevation gain", "hiking.elevation"),
         ("élévation", "hiking.elevation"),
         ("elevation", "hiking.elevation"),
@@ -242,6 +251,8 @@ extension Glossary {
         ("lacet", "hiking.switchback"),
         ("allure terrain", "hiking.terrainpace"),
         ("terrain pace", "hiking.terrainpace"),
+        // Audit contenu hiking (2026-07-26) — "fastpacking" jamais glosé.
+        ("fastpacking", "hiking.fastpacking"),
         // Triathlon (T1/T2 patterns littéraux avec boundary check — pas besoin de regex spéciale)
         ("brick session", "triathlon.brick"),
         ("brick workout", "triathlon.brick"),
