@@ -1,0 +1,20 @@
+<svg viewBox="0 0 80 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- ground -->
+  <line x1="4" y1="46" x2="76" y2="46" stroke="#8E8E93" stroke-opacity="0.5" stroke-width="1" stroke-dasharray="2,2"/>
+
+  <!-- legs: hip(root) -> knee -> ankle -> toe -->
+  <polyline points="36.00,44.00 25.00,44.00 14.00,44.00" fill="none" stroke="#9B6BB3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="14.00,44.00 9.42,46.00" fill="none" stroke="#9B6BB3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- trunk: hip(root) -> shoulder -->
+  <polyline points="36.00,44.00 43.78,36.22" fill="none" stroke="#9B6BB3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- neck: shoulder -> neck_end -->
+  <polyline points="43.78,36.22 44.21,33.76" fill="none" stroke="#9B6BB3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- head -->
+  <circle cx="44.73" cy="30.81" r="3" fill="none" stroke="#9B6BB3" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- arm: shoulder -> elbow -> wrist -> fingertip -->
+  <polyline points="43.78,36.22 48.33,42.80 41.00,46.00" fill="none" stroke="#9B6BB3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="41.00,46.00 43.00,46.00" fill="none" stroke="#9B6BB3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

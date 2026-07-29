@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Fixes post-gate 07-15</title><style>
+body{margin:0;padding:28px;background:#fafafa;font-family:-apple-system,sans-serif;color:#222;}
+h1{font-size:22px;margin:0 0 4px;} h2{font-size:15px;margin:28px 0 10px;color:#333;}
+.sub{color:#666;font-size:13px;margin-bottom:16px;max-width:860px;}
+.row{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:8px;}
+.card{background:#fff;border-radius:10px;padding:10px;box-shadow:0 1px 3px rgba(0,0,0,.08);width:260px;}
+img{width:240px;border-radius:6px;background:#eee;display:block;}
+.t{font-weight:600;font-size:13px;margin:8px 0 2px;}
+.badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:#3f8f5c;border-radius:99px;padding:1px 8px;margin-left:6px;}
+.n{font-size:11.5px;color:#555;line-height:1.4;}
+</style></head><body>
+<h1>Fixes post-gate expert/persona/UX — 07-15</h1>
+<div class="sub">3 blocages resolus via generation fraiche (texte seul, ou texte+controle structurel pour foam-rolling-legs). Candidats FINAUX verifies aux extremites (mains 5 doigts, pieds en dorsiflexion/orteils) apres correction de 2 defauts trouves par Sophie (pieds a plat sur plank-f, main a la place du pied sur foam-rolling-legs).</div>
+
+<h2>1. downward-dog — bug prod (mauvaise pose deja shippee)</h2>
+<div class="row">
+  <div class="card"><img src="puppet_triceps/_downdog_fresh_s303.png"><div class="t">s303<span class="badge">FINAL</span></div><div class="n">V inverse net, bras/jambes tendus, tete qui pend. Mains et pieds verifies au zoom.</div></div>
+</div>
+
+<h2>2. plank-f — aucune source feminine correcte n'existait</h2>
+<div class="row">
+  <div class="card"><img src="puppet_triceps/_plank-f_feet_s703.png"><div class="t">s703<span class="badge">FINAL</span></div><div class="n">Ligne droite epaule-hanche-cheville, mains 5 doigts sous les epaules. Fix : pieds en dorsiflexion (talon leve, orteils recroquevilles) — s101/s202 avaient les pieds a plat (retour Sophie).</div></div>
+</div>
+
+<h2>3. foam-rolling-legs — style casse (contours) + mauvais objet (boule) + mixup main/pied</h2>
+<div class="row">
+  <div class="card"><img src="puppet_triceps/_foam-rolling-legs_canny4_s321.png"><div class="t">s321 (canny+controle, round 4)<span class="badge">FINAL</span></div><div class="n">Assise droite, jambe tendue, rouleau cylindrique isole sous la cheville avec un vrai PIED (5 orteils) dessus, main d'appui 5 doigts pres de la hanche. Fix : s34/round1-3 avaient soit une boule au lieu d'un cylindre, soit une main a la place du pied (retour Sophie).</div></div>
+</div>
+
+</body></html>

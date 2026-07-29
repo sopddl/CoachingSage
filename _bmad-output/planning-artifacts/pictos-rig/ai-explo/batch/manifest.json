@@ -1,0 +1,490 @@
+[
+ {
+  "slug": "tadasana",
+  "title_fr": "Montagne (tadasana)",
+  "lot": "lot1_debout.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now stands in mountain pose — perfectly upright, both feet flat on the floor and together, legs straight, arms relaxed straight down along her sides with palms facing her thighs, chin level and gaze forward.",
+  "notes": "Quasi identique à l'image de départ debout — changement minimal, vérifier que l'édition ne dégrade pas l'image."
+ },
+ {
+  "slug": "warrior1",
+  "title_fr": "Guerrier 1 (virabhadrasana I)",
+  "lot": "lot1_debout.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now does a warrior one yoga lunge IN THE DIRECTION SHE IS FACING — her front leg steps forward with the knee bent above the ankle, her back leg stretches straight behind her, BOTH feet flat on the floor, the back foot angled at 45 degrees with the heel down, torso upright, both arms fully extended straight up overhead.",
+  "notes": "Prompt validé (exemple de référence). Critère doctrine : talon arrière ancré."
+ },
+ {
+  "slug": "warrior2",
+  "title_fr": "Guerrier 2 (virabhadrasana II)",
+  "lot": "lot1_debout.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now holds a warrior two stance — legs wide apart, her front knee bent directly above the ankle in the direction she is facing, her back leg straight, BOTH feet flat on the floor with the back heel down, torso upright, both arms extended straight out horizontally at shoulder height, one forward and one backward, her gaze over the front hand.",
+  "notes": ""
+ },
+ {
+  "slug": "tree",
+  "title_fr": "Arbre (vrksasana)",
+  "lot": "lot1_debout.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now balances in tree pose — standing on one straight leg with that foot flat on the floor, the sole of her other foot pressed against the inner thigh of the standing leg WELL ABOVE THE KNEE with that bent knee opened out to the side, both hands pressed together in front of her chest.",
+  "notes": "Doctrine : pied contre la cuisse, jamais sur le genou — mis explicitement dans le prompt."
+ },
+ {
+  "slug": "chair",
+  "title_fr": "Chaise (utkatasana)",
+  "lot": "lot1_debout.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now holds chair pose — both knees bent as if sitting back into an invisible chair, hips pushed back and down, BOTH feet flat on the floor with the heels firmly down, torso leaning slightly forward with the chest lifted, both arms extended straight up overhead.",
+  "notes": "Doctrine : talons ancrés au sol."
+ },
+ {
+  "slug": "easy-pose",
+  "title_fr": "Assise en tailleur (sukhasana)",
+  "lot": "lot2_assis.py",
+  "start_type": "assis_sol",
+  "kontext_prompt_en": "Change her pose: she now sits cross-legged on the floor in easy pose — both legs folded and crossed close to her body, each foot tucked under the opposite knee, spine tall and upright, both hands resting relaxed on her knees.",
+  "notes": "Distinction rig : croisement en X étroit, vs papillon (genoux ouverts, pieds joints)."
+ },
+ {
+  "slug": "staff-pose",
+  "title_fr": "Bâton (dandasana)",
+  "lot": "lot2_assis.py",
+  "start_type": "assis_sol",
+  "kontext_prompt_en": "Change her pose: she now sits in staff pose — both legs extended straight forward together along the floor, feet flexed with toes pointing up, torso perfectly vertical with the spine tall, both arms straight down with the palms pressing flat on the floor beside her hips.",
+  "notes": ""
+ },
+ {
+  "slug": "butterfly",
+  "title_fr": "Papillon (baddha konasana)",
+  "lot": "lot2_assis.py",
+  "start_type": "assis_sol",
+  "kontext_prompt_en": "Change her pose: she now sits in butterfly pose — the soles of her feet pressed together in front of her pelvis, both knees bent and dropped open wide out to the sides toward the floor, spine tall and upright, both hands holding her joined feet.",
+  "notes": ""
+ },
+ {
+  "slug": "seated-forward-fold",
+  "title_fr": "Pince assise (paschimottanasana)",
+  "lot": "lot2_assis.py",
+  "start_type": "assis_sol",
+  "kontext_prompt_en": "Change her pose: she now performs a seated forward fold — both legs extended straight forward together along the floor, torso hinging at the hips and folding forward over her legs with a long flat back, both arms reaching straight toward her feet.",
+  "notes": "Doctrine : pliage depuis les hanches, dos long — explicité dans le prompt."
+ },
+ {
+  "slug": "wide-angle-seated-fold",
+  "title_fr": "Grand écart assis (upavistha konasana)",
+  "lot": "lot2_assis.py",
+  "start_type": "assis_sol",
+  "kontext_prompt_en": "Change her pose: she now sits with both legs extended straight and spread very wide apart on the floor, torso hinging at the hips and folding forward and down between the legs, both arms reaching straight forward on the floor between her legs, back long.",
+  "notes": ""
+ },
+ {
+  "slug": "savasana",
+  "title_fr": "Relaxation allongée (savasana)",
+  "lot": "lot3_allonge.py",
+  "start_type": "allonge_dos",
+  "kontext_prompt_en": "Change her pose: she now lies completely relaxed flat on her back — legs straight and slightly apart, both arms resting on the floor along her sides slightly away from the body with palms facing up, head resting on the floor, face toward the ceiling.",
+  "notes": "Quasi identique à l'image de départ allongée dos — changement minimal."
+ },
+ {
+  "slug": "bridge",
+  "title_fr": "Pont (setu bandha)",
+  "lot": "lot3_allonge.py",
+  "start_type": "allonge_dos",
+  "kontext_prompt_en": "Change her pose: she now lifts into bridge pose — head, shoulders and upper back staying on the floor, both knees bent with BOTH feet flat on the floor close to her hips, pelvis and hips lifted high toward the ceiling, both arms straight on the floor along her sides.",
+  "notes": "Doctrine : pieds à plat au sol, hanches levées — les deux explicités."
+ },
+ {
+  "slug": "fish",
+  "title_fr": "Poisson (matsyasana)",
+  "lot": "lot3_allonge.py",
+  "start_type": "allonge_dos",
+  "kontext_prompt_en": "Change her pose: she now lifts into fish pose — pelvis and both straight legs staying flat on the floor, chest arched high toward the ceiling, the crown of her head tilted back and resting lightly on the floor, forearms and palms pressing on the floor beside her body.",
+  "notes": "Doctrine : bassin qui reste au sol (trait plein dans le rig) — explicité. Allongée FACE VERS LE HAUT, pas ventral."
+ },
+ {
+  "slug": "bow",
+  "title_fr": "Arc (dhanurasana)",
+  "lot": "lot3_allonge.py",
+  "start_type": "VENTRAL_EXCLU",
+  "kontext_prompt_en": "",
+  "notes": "À plat ventre, mains qui attrapent les chevilles — mode d'échec systématique du modèle, exclue du batch."
+ },
+ {
+  "slug": "wheel",
+  "title_fr": "Roue (urdhva dhanurasana)",
+  "lot": "lot3_allonge.py",
+  "start_type": "allonge_dos",
+  "kontext_prompt_en": "Change her pose: she now pushes up into a full wheel backbend — both hands pressing flat on the floor beside her head with the fingers pointing toward her feet, BOTH feet flat on the floor hip-width apart, arms and legs pushing straight to lift her hips and chest high, back deeply arched, head hanging relaxed between the arms.",
+  "notes": "Doctrine rig : dos VRAIMENT cambré. Backbend profond = à surveiller au rendu."
+ },
+ {
+  "slug": "downward-dog",
+  "title_fr": "Chien tête en bas (adho mukha svanasana)",
+  "lot": "lot4_quadru.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now moves into downward-facing dog — hips lifted high toward the ceiling so her body forms an inverted V, both hands pressing flat on the mat with the arms straight, both legs straight with the heels reaching down toward the floor, head relaxed between the arms looking back toward her feet.",
+  "notes": ""
+ },
+ {
+  "slug": "cat-cow",
+  "title_fr": "Chat-vache (table neutre)",
+  "lot": "lot4_quadru.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now holds a neutral tabletop on all fours — both hands pressing flat on the mat directly under her shoulders, both knees on the floor directly under her hips, shins and tops of the feet resting on the mat, back flat and level, gaze down at the mat.",
+  "notes": "Frame-clé du rig = table NEUTRE (pas la phase dos rond / dos creux) — quasi identique à l'image de départ quadrupède, changement minimal."
+ },
+ {
+  "slug": "plank",
+  "title_fr": "Planche (phalakasana)",
+  "lot": "lot4_quadru.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now holds a full high plank — both feet stepped straight back with the legs fully extended and toes tucked on the floor, body in one straight line from head to heels, arms straight and vertical with both hands pressing flat on the mat directly under her shoulders.",
+  "notes": "FUSION : CoreFrontal (lot10_core.py) est explicitement la même position (commentaire du lot) — une seule entrée pour les deux titres."
+ },
+ {
+  "slug": "forward-fold",
+  "title_fr": "Flexion avant debout (uttanasana)",
+  "lot": "lot4_quadru.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now folds into a standing forward fold — hinging at the hips, torso folding forward and down over her straight legs, BOTH feet flat on the floor hip-width apart, hands reaching down toward the floor beside her feet, head relaxed down.",
+  "notes": "Présente dans lot4_quadru mais s'aborde depuis la station debout. Frame-clé visuellement identique à SuryaNamaskarA — doublon visuel possible."
+ },
+ {
+  "slug": "dolphin",
+  "title_fr": "Dauphin",
+  "lot": "lot4_quadru.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now moves into dolphin pose — both forearms flat on the mat with the elbows under her shoulders, hips lifted high toward the ceiling forming an inverted V, both legs straight with both feet flat on the floor and heels down, head relaxed between the arms.",
+  "notes": "Doctrine rig : avant-bras ET pieds en contact sol — explicité."
+ },
+ {
+  "slug": "headstand",
+  "title_fr": "Poirier (sirsasana)",
+  "lot": "lot5_equilibre.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now holds a supported headstand — the crown of her head and both forearms resting on the mat with the fingers interlaced behind her head, her whole body inverted and vertical, hips stacked above the shoulders, both legs extended straight up toward the ceiling with the feet together.",
+  "notes": "Départ réel = à genoux, avant-bras et tête au sol → classée quadrupede. Inversion complète = risque génératif élevé, à surveiller."
+ },
+ {
+  "slug": "warrior3",
+  "title_fr": "Guerrier 3 (virabhadrasana III)",
+  "lot": "lot5_equilibre.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now balances in warrior three — standing on one straight leg with that foot flat on the floor, torso hinged forward to horizontal in the direction she is facing, her other leg extended straight behind her at hip height so the torso and back leg form one horizontal line, both arms extended straight forward in line with the body.",
+  "notes": "Bug historique du rig = pied d'appui flottant ; l'appui au sol est explicité dans le prompt."
+ },
+ {
+  "slug": "half-moon",
+  "title_fr": "Demi-lune (ardha chandrasana)",
+  "lot": "lot5_equilibre.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now balances in half moon pose — standing on one straight leg with that foot flat on the floor, the fingertips of the hand on the same side touching the floor in front of that foot, her other leg lifted straight behind her to horizontal at hip height, her other arm extended straight up toward the ceiling, chest opened sideways.",
+  "notes": ""
+ },
+ {
+  "slug": "crow",
+  "title_fr": "Corbeau (bakasana)",
+  "lot": "lot5_equilibre.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now balances in crow pose — crouched low with both hands pressing flat on the mat shoulder-width apart, arms slightly bent, both knees bent and perched on the backs of her upper arms, both feet lifted off the floor behind her, gaze forward at the mat.",
+  "notes": "Départ réel = squat profond mains au sol ; classée quadrupede (mains déjà sur le tapis dans l'image de départ). Équilibre sur bras = risque génératif élevé."
+ },
+ {
+  "slug": "shoulderstand",
+  "title_fr": "Chandelle (sarvangasana)",
+  "lot": "lot5_equilibre.py",
+  "start_type": "allonge_dos",
+  "kontext_prompt_en": "Change her pose: she now lifts into a shoulderstand — shoulders, upper back and the back of her head staying on the floor, hips and both legs extended straight up vertically toward the ceiling with the feet together, both elbows resting on the floor and the hands pressing against her lower back to support it.",
+  "notes": "Doctrine rig : coudes VRAIMENT au sol (bug historique corrigé) — explicité."
+ },
+ {
+  "slug": "cobra",
+  "title_fr": "Cobra (bhujangasana)",
+  "lot": "lot6.py",
+  "start_type": "VENTRAL_EXCLU",
+  "kontext_prompt_en": "",
+  "notes": "Ventre au sol, buste relevé sur les bras — exclue du batch (mode d'échec systématique)."
+ },
+ {
+  "slug": "child",
+  "title_fr": "Posture de l'enfant (balasana)",
+  "lot": "lot6.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now settles into child's pose — kneeling with her hips sitting back onto her heels, torso folded forward over her thighs, forehead resting on the mat, both arms extended straight forward on the mat with the palms down.",
+  "notes": "S'aborde classiquement depuis 4 pattes (hanches vers les talons) ; départ assis-sur-talons aussi défendable."
+ },
+ {
+  "slug": "triangle",
+  "title_fr": "Triangle (trikonasana)",
+  "lot": "lot6.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now holds triangle pose — both legs straight and spread very wide apart, BOTH feet flat on the floor, torso tilting sideways over the front leg with the lower hand reaching straight down to her shin, her other arm extended straight up toward the ceiling so both arms form one vertical line, chest open facing forward.",
+  "notes": "Le rig imposait une vue de FACE — vérifier l'orientation au rendu. Doctrine : les deux jambes restent tendues."
+ },
+ {
+  "slug": "boat",
+  "title_fr": "Bateau (navasana)",
+  "lot": "lot6.py",
+  "start_type": "assis_sol",
+  "kontext_prompt_en": "Change her pose: she now balances in boat pose — sitting on the floor with her straight torso leaning slightly back, both legs lifted off the floor and extended straight so her body forms a V shape, both arms extended straight forward parallel to the floor beside her knees, only her seat touching the floor.",
+  "notes": ""
+ },
+ {
+  "slug": "locust",
+  "title_fr": "Sauterelle (salabhasana)",
+  "lot": "lot6.py",
+  "start_type": "VENTRAL_EXCLU",
+  "kontext_prompt_en": "",
+  "notes": "À plat ventre, jambes et buste décollés — exclue du batch."
+ },
+ {
+  "slug": "sun-salutation-a",
+  "title_fr": "Salutation au soleil A",
+  "lot": "lot7.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now folds into the standing forward fold of sun salutation A — hinging at the hips, torso folding forward and down over her straight legs, BOTH feet flat on the floor together, hands reaching down toward the floor beside her feet, head relaxed down.",
+  "notes": "AMBIGU : la frame-clé retenue est visuellement identique à Uttanasana (forward-fold) — envisager de réutiliser le même picto plutôt que de générer deux images."
+ },
+ {
+  "slug": "sun-salutation-b",
+  "title_fr": "Salutation au soleil B",
+  "lot": "lot7.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now holds the lunge of sun salutation B IN THE DIRECTION SHE IS FACING — her front knee bent above the ankle with that foot flat on the floor, her back leg extended behind her with the ball of the back foot on the floor and the heel lifted, torso upright, both arms extended straight up overhead.",
+  "notes": "AMBIGU : « fente basse, bras levés » chevauche visuellement Guerrier 1 (talon arrière au sol) et Anjaneyasana (genou arrière au sol) — différenciée ici par le talon arrière LEVÉ, à surveiller au rendu."
+ },
+ {
+  "slug": "plow",
+  "title_fr": "Charrue (halasana)",
+  "lot": "lot8.py",
+  "start_type": "allonge_dos",
+  "kontext_prompt_en": "Change her pose: she now folds into plow pose — shoulders, upper back and both straight arms staying on the floor, hips and legs swung up and over her head so both straight legs continue past her face until the toes touch the floor behind her head.",
+  "notes": "Inversion repliée = risque génératif ; le geste-clé du rig est la trajectoire des jambes au-dessus de la tête."
+ },
+ {
+  "slug": "ear-pressure",
+  "title_fr": "Genoux aux oreilles (karnapidasana)",
+  "lot": "lot8.py",
+  "start_type": "allonge_dos",
+  "kontext_prompt_en": "Change her pose: she now folds into ear-pressure pose — hips rolled up and over her head from her upper back, both knees fully bent and lowered to the floor beside her ears, the knees touching the sides of her head, both arms flat on the floor along her back.",
+  "notes": "AMBIGU/RISQUE : pose extrêmement repliée (genoux qui touchent la tête) = candidat n°1 à l'échec génératif ; prévoir un fallback (rester sur Halasana ?)."
+ },
+ {
+  "slug": "legs-up-the-wall",
+  "title_fr": "Jambes au mur (viparita karani)",
+  "lot": "lot8.py",
+  "start_type": "allonge_dos",
+  "kontext_prompt_en": "Change her pose: she now rests with her legs up a wall — lying flat on her back with her hips close to the base of a plain vertical wall, both legs extended straight up vertically resting against the wall, both arms relaxed on the floor along her sides.",
+  "notes": "AMBIGU : la pose exige un MUR alors que le décor est ajouté automatiquement — le mur est mentionné dans le prompt comme accessoire minimal, à valider avec la recette décor."
+ },
+ {
+  "slug": "reclined-butterfly",
+  "title_fr": "Papillon allongé (supta baddha konasana)",
+  "lot": "lot8.py",
+  "start_type": "allonge_dos",
+  "kontext_prompt_en": "Change her pose: she now lies on her back in reclined butterfly — the soles of her feet pressed together, both knees bent and dropped open wide toward the floor on each side, torso and head flat on the floor, both arms relaxed on the floor away from her sides with palms up.",
+  "notes": ""
+ },
+ {
+  "slug": "uttana-padasana",
+  "title_fr": "Jambes et bras levés (uttana padasana)",
+  "lot": "lot8.py",
+  "start_type": "allonge_dos",
+  "kontext_prompt_en": "Change her pose: she now lies on her back and lifts both straight legs together off the floor to about 45 degrees, while both straight arms lift to the same 45-degree angle reaching toward her feet with the palms together, torso and head staying flat on the floor.",
+  "notes": "Variante rig simplifiée : buste et tête restent AU SOL (pas la cambrure classique sur la tête) — explicité."
+ },
+ {
+  "slug": "reverse-plank",
+  "title_fr": "Planche inversée (purvottanasana)",
+  "lot": "lot8.py",
+  "start_type": "assis_sol",
+  "kontext_prompt_en": "Change her pose: she now lifts into reverse plank — both hands pressing flat on the floor behind her hips with the fingers pointing toward her feet, arms straight, hips lifted high so her body forms one straight line facing upward, both legs straight with the soles of the feet pressing down toward the floor, head in line with the spine.",
+  "notes": "Doctrine rig : mains ET pieds en contact sol, hanches levées."
+ },
+ {
+  "slug": "king-pigeon",
+  "title_fr": "Pigeon roi (kapotasana)",
+  "lot": "lot8.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now kneels upright in a deep kneeling backbend — knees and shins resting on the floor, hips pushed forward above the knees, back deeply arched backward, both arms reaching back overhead toward the floor behind her, chest lifted high toward the ceiling.",
+  "notes": "AMBIGU : départ réel = à genoux redressée, pas de catégorie dédiée → quadrupede par défaut. Backbend avancé = risque génératif."
+ },
+ {
+  "slug": "camel",
+  "title_fr": "Chameau (ustrasana)",
+  "lot": "lot8.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now kneels upright in camel pose — knees and shins resting on the floor hip-width apart, hips pushed forward so the thighs stay vertical above the knees, back arched backward, both hands reaching back to hold her heels, chest lifted toward the ceiling.",
+  "notes": "Départ réel = à genoux redressée → quadrupede par défaut. Doctrine : hanches au-dessus des genoux, explicité."
+ },
+ {
+  "slug": "low-lunge",
+  "title_fr": "Fente basse (anjaneyasana)",
+  "lot": "lot8.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now sinks into a low lunge IN THE DIRECTION SHE IS FACING — her front knee bent above the ankle with that foot flat on the floor, her back knee lowered ALL THE WAY DOWN onto the mat with the back shin resting on the floor, torso upright, both arms extended straight up overhead.",
+  "notes": "Doctrine rig : genou arrière VRAIMENT au sol — explicité. Différenciant vs Guerrier 1 et SuryaNamaskarB."
+ },
+ {
+  "slug": "eagle",
+  "title_fr": "Aigle (garudasana)",
+  "lot": "lot8.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now stands in eagle pose — balancing on one slightly bent leg with that foot flat on the floor, her other leg wrapped over and around the standing thigh, both arms wrapped and entwined in front of her chest with the elbows bent and the palms coming together, torso upright.",
+  "notes": "Membres entrelacés = mode d'échec génératif fréquent, à surveiller au rendu."
+ },
+ {
+  "slug": "wide-legged-forward-fold",
+  "title_fr": "Flexion avant jambes écartées (prasarita padottanasana)",
+  "lot": "lot8.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now folds into a wide-legged standing forward fold — both legs straight and spread very wide apart, BOTH feet flat on the floor, torso hinging at the hips and folding straight down between the legs with the crown of the head toward the floor, both hands pressing flat on the floor between her feet.",
+  "notes": "Le rig imposait une vue de FACE — vérifier l'orientation au rendu."
+ },
+ {
+  "slug": "hands-under-feet",
+  "title_fr": "Mains sous les pieds (padahastasana)",
+  "lot": "lot8.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now folds into a deep standing forward fold with her hands under her feet — both legs straight, both feet flat standing on top of her upturned palms with the toes reaching the wrists, torso folded fully over the legs, head relaxed down.",
+  "notes": "Geste-clé fin (mains SOUS les pieds) — risque que le modèle rende une simple flexion avant."
+ },
+ {
+  "slug": "head-to-knee",
+  "title_fr": "Tête au genou (janu sirsasana)",
+  "lot": "lot9.py",
+  "start_type": "assis_sol",
+  "kontext_prompt_en": "Change her pose: she now sits in head-to-knee pose — one leg extended straight forward on the floor, her other knee bent open to the side with the sole of that foot against the inner thigh of the straight leg, torso folding forward over the straight leg, both arms reaching toward that foot.",
+  "notes": ""
+ },
+ {
+  "slug": "marichyasana-a",
+  "title_fr": "Posture de Marichi A (marichyasana A)",
+  "lot": "lot9.py",
+  "start_type": "assis_sol",
+  "kontext_prompt_en": "Change her pose: she now sits in Marichyasana A — one leg extended straight forward on the floor, her other knee bent upright with that foot flat on the floor close to her hip, the arm on the bent-knee side wrapping forward around that upright shin, torso folding forward over the straight leg.",
+  "notes": "Version simplifiée sans le bind complet des mains dans le dos (fidèle au rig : « bras enroulé autour »)."
+ },
+ {
+  "slug": "side-angle",
+  "title_fr": "Angle latéral étendu (parsvakonasana)",
+  "lot": "lot9.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now holds extended side angle pose — legs wide apart with the front knee bent above the ankle and the back leg straight, BOTH feet flat on the floor, torso tilting over the front thigh with the lower hand reaching down to the floor beside the front foot, her other arm extended overhead in one straight diagonal line from the back heel to the fingertips.",
+  "notes": "Doctrine rig : ligne diagonale unique talon arrière → main — explicité."
+ },
+ {
+  "slug": "pyramid",
+  "title_fr": "Pyramide (parsvottanasana)",
+  "lot": "lot9.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now folds into pyramid pose — one foot stepped forward, both legs straight, BOTH feet flat on the floor with the back heel down, hips square, torso hinging at the hips and folding forward over the front leg, hands reaching down toward the front foot.",
+  "notes": "Doctrine : jambes tendues + talon arrière ancré, explicités."
+ },
+ {
+  "slug": "tortoise",
+  "title_fr": "Tortue (kurmasana)",
+  "lot": "lot9.py",
+  "start_type": "assis_sol",
+  "kontext_prompt_en": "Change her pose: she now folds into tortoise pose — sitting with both legs spread wide and almost straight, torso folded deeply forward and down between the legs with the chest close to the floor, both arms extended out to the sides along the floor UNDERNEATH her knees with the palms down.",
+  "notes": "Bras sous les jambes = risque génératif, à surveiller."
+ },
+ {
+  "slug": "shoulder-pressing",
+  "title_fr": "Pression des épaules (bhujapidasana)",
+  "lot": "lot9.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now balances in shoulder-pressing pose — both hands pressing flat on the mat with the arms slightly bent, both thighs wrapped around and resting on her upper arms, ankles crossed in front, both feet lifted off the floor, her whole body compact and balanced only on her hands.",
+  "notes": "AMBIGU : départ réel = squat/flexion mains au sol → classée quadrupede comme le corbeau. Jambes enroulées autour des bras = risque génératif très élevé."
+ },
+ {
+  "slug": "embryo",
+  "title_fr": "Embryon (garbha pindasana)",
+  "lot": "lot9.py",
+  "start_type": "assis_sol",
+  "kontext_prompt_en": "Change her pose: she now curls into embryo pose — balanced on her seat, legs folded up in lotus and hugged against her chest, both arms threaded through the gaps behind the bent knees with the elbows bent and the hands rising toward her face, body curled into a tight compact ball.",
+  "notes": "RISQUE MAX : lotus + bras enfilés derrière les genoux = candidat échec génératif ; prévoir variante simplifiée (boule serrée, bras autour des genoux) si le rendu échoue."
+ },
+ {
+  "slug": "hand-to-big-toe",
+  "title_fr": "Main au gros orteil debout (utthita hasta padangusthasana)",
+  "lot": "lot9.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now balances standing on one straight leg with that foot flat on the floor, her other leg lifted and extended straight forward at hip height in the direction she is facing, the hand on the same side holding the big toe of the lifted foot, torso upright, her other hand on her hip.",
+  "notes": ""
+ },
+ {
+  "slug": "half-bound-lotus-fold",
+  "title_fr": "Demi-lotus debout plié (ardha baddha padmottanasana)",
+  "lot": "lot9.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now balances in half-bound lotus forward fold — standing on one straight leg with that foot flat on the floor, her other foot folded into half lotus against the top of the standing thigh, torso folding forward over the standing leg, one hand reaching down to the floor beside the standing foot.",
+  "notes": "Version simplifiée sans le bind du bras dans le dos (rig : « demi-lotus derrière, tronc plié devant »). Équilibre + demi-lotus = à surveiller."
+ },
+ {
+  "slug": "seated-twist",
+  "title_fr": "Torsion assise (ardha matsyendrasana)",
+  "lot": "lot9.py",
+  "start_type": "assis_sol",
+  "kontext_prompt_en": "Change her pose: she now sits in a seated spinal twist — one knee bent upright with that foot flat on the floor crossed over her other leg which is folded flat on the floor, torso twisting toward the upright knee, the opposite arm pressing against the outside of that knee, her other hand on the floor behind her hips, gaze over the back shoulder.",
+  "notes": ""
+ },
+ {
+  "slug": "big-toe-fold",
+  "title_fr": "Mains aux gros orteils (padangusthasana)",
+  "lot": "lot9.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now folds into big toe pose — a standing forward fold with both legs straight, BOTH feet flat on the floor hip-width apart, torso folded fully over the legs, each hand gripping the big toe of the same-side foot, elbows bending out to the sides, head relaxed down.",
+  "notes": "Différenciant fin vs autres flexions avant debout (prise des gros orteils) — à surveiller au rendu."
+ },
+ {
+  "slug": "forearm-tabletop",
+  "title_fr": "Table sur avant-bras",
+  "lot": "lot9.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now rests in a forearm tabletop — both forearms flat on the mat with the elbows directly under her shoulders, both knees on the floor directly under her hips, shins and tops of the feet resting on the mat, back flat and level, gaze down at the mat.",
+  "notes": "Variante proche de l'image de départ quadrupède (seuls les avant-bras descendent) — changement minimal."
+ },
+ {
+  "slug": "side-plank",
+  "title_fr": "Planche latérale",
+  "lot": "lot10_core.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now holds a side plank — supported on one straight arm with that hand pressing flat on the mat directly under her shoulder, her whole body turned sideways in one straight line, both legs extended and stacked with the edge of the bottom foot on the floor, her other arm extended straight up toward the ceiling.",
+  "notes": ""
+ },
+ {
+  "slug": "forearm-plank",
+  "title_fr": "Planche sur avant-bras",
+  "lot": "lot10_core.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now holds a forearm plank — both forearms flat on the mat with the elbows directly under her shoulders and the hands forward, both legs fully extended behind her with the toes tucked on the floor, body in one straight line from head to heels, hips neither sagging nor lifted.",
+  "notes": ""
+ },
+ {
+  "slug": "bird-dog",
+  "title_fr": "Bird-dog",
+  "lot": "lot10_core.py",
+  "start_type": "quadrupede",
+  "kontext_prompt_en": "Change her pose: she now performs a bird-dog from all fours — one arm extended fully straight forward at shoulder height in the direction she is facing, and the OPPOSITE leg extended fully straight behind her at hip height, while her other hand keeps pressing flat on the mat and her other knee stays on the floor, back flat and level.",
+  "notes": "Doctrine : bras et jambe OPPOSÉS — explicité en majuscules."
+ },
+ {
+  "slug": "foam-rolling-legs",
+  "title_fr": "Automassage au rouleau (jambes)",
+  "lot": "lot10_core.py",
+  "start_type": "allonge_dos",
+  "kontext_prompt_en": "Change her pose: she now lies on her back with a foam roller placed under her calves — both legs straight and resting on top of the roller, torso and head flat on the floor, both arms relaxed on the floor along her sides.",
+  "notes": "Accessoire requis (rouleau) alors que le décor/équipement est ajouté automatiquement — vérifier que la recette accepte un prop dans le prompt."
+ },
+ {
+  "slug": "standing-quad-stretch",
+  "title_fr": "Étirement des quadriceps debout",
+  "lot": "lot10_core.py",
+  "start_type": "debout",
+  "kontext_prompt_en": "Change her pose: she now performs a standing quadriceps stretch — balancing on one straight leg with that foot flat on the floor, her other knee fully bent so the heel comes up behind her hip, the hand on the same side reaching back and holding that foot, torso upright with the knees close together.",
+  "notes": "Doctrine : genoux serrés, buste droit — explicités."
+ }
+]

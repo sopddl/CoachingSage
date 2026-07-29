@@ -1,0 +1,71 @@
+{
+  "identifier" : "LeonProducts",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "coachingsage",
+    "_developerTeamID" : "QLSTX2JJPF",
+    "_lastSynchronizedDate" : 1753488000
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "leon_subscriptions",
+      "localizations" : [
+        {
+          "description" : "Abonnements Léon",
+          "displayName" : "Léon",
+          "locale" : "fr"
+        },
+        {
+          "description" : "Léon Subscriptions",
+          "displayName" : "Léon",
+          "locale" : "en"
+        }
+      ],
+      "name" : "Léon",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "4.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "leon.plus.monthly",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Questions Leon illimitees + regen hebdomadaire",
+              "displayName" : "Leon+",
+              "locale" : "fr"
+            },
+            {
+              "description" : "Unlimited Leon questions + weekly regen",
+              "displayName" : "Leon+",
+              "locale" : "en"
+            }
+          ],
+          "productID" : "leon.plus.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Leon+ Mensuel",
+          "subscriptionGroupID" : "leon_subscriptions",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

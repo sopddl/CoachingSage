@@ -1,0 +1,150 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Pilote kontext-incrémental — 07-16 soir</title><style>
+body{margin:0;padding:28px;background:#fafafa;font-family:-apple-system,sans-serif;color:#222;}
+h1{font-size:22px;margin:0 0 4px;} h2{font-size:15px;margin:28px 0 10px;color:#333;}
+.sub{color:#666;font-size:13px;margin-bottom:16px;max-width:900px;}
+.row{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:8px;align-items:flex-start;}
+.card{background:#fff;border-radius:10px;padding:10px;box-shadow:0 1px 3px rgba(0,0,0,.08);width:220px;}
+img{width:200px;border-radius:6px;background:#eee;display:block;}
+.t{font-weight:600;font-size:13px;margin:8px 0 2px;}
+.badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;border-radius:99px;padding:1px 8px;margin-left:6px;}
+.b-ok{background:#3f8f5c;} .b-block{background:#c0392b;} .b-drift{background:#c9891a;}
+.n{font-size:11.5px;color:#555;line-height:1.4;}
+.arrow{align-self:center;font-size:22px;color:#999;padding-top:70px;}
+</style></head><body>
+<h1>Pilote kontext-incrémental — bateau &amp; guerrier III (round 2)</h1>
+<div class="sub">Rebond 07-16 : au lieu de générer la pose cible en 1 coup (0/24 texte-seul, 1/24 canny), on part d'un personnage déjà validé en prod proche de la cible et on le fait glisser en petits pas kontext successifs. Round 1 : bloqué (filtre sécurité sur bateau, dérive sur guerrier III). Round 2 (retours Sophie) : contexte "yoga pose" ajouté aux prompts (comme le faisait déjà FEMALE dans pilot_flux.py) + buste/jambe couplés au lieu d'isolés. Résultat : le blocage sécurité est levé, mais un nouveau plafond apparaît — le modèle refuse de faire décoller un appui du sol.</div>
+
+<h2>1. Bateau ← staff-pose — filtre sécurité levé (contexte yoga), mais plafond sur le décollage des pieds</h2>
+<div class="row">
+  <div class="card"><img src="../../../Resources/Illustrations/staff-pose.png"><div class="t">source<span class="badge b-ok">prod</span></div><div class="n">Assise, jambes tendues, dos droit, mains au sol.</div></div>
+  <div class="arrow">→</div>
+  <div class="card"><img src="pilot_incremental/boat_step1.png"><div class="t">step 1<span class="badge b-ok">OK</span></div><div class="n">Genoux pliés, pieds décollés un peu, buste légèrement reculé, mains au sol.</div></div>
+  <div class="arrow">→</div>
+  <div class="card"><img src="pilot_incremental/boat_step2c.png"><div class="t">step 2<span class="badge b-ok">OK</span></div><div class="n">Buste un peu plus reculé, pieds un peu plus hauts.</div></div>
+  <div class="arrow">→</div>
+  <div class="card"><img src="pilot_incremental/boat_step3_yogactx.png"><div class="t">step 3 + contexte yoga<span class="badge b-ok">OK (filtre levé)</span></div><div class="n">Prompt "yoga pose transition... boat pose (navasana)" ajouté → le filtre sécurité ne bloque plus. Mais delta quasi nul vs step 2, le modèle n'a presque rien bougé.</div></div>
+  <div class="arrow">→</div>
+  <div class="card" style="border:2px dashed #c0392b;"><img src="pilot_incremental/boat_step4_yogactx.png"><div class="t">step 4, poussé fort<span class="badge b-drift">DÉRIVE</span></div><div class="n">Consigne "V-shape, legs raised" plus appuyée → le modèle a complètement changé d'angle de caméra et de pose : grand écart de face, plus du tout du profil/bateau.</div></div>
+  <div class="arrow">→</div>
+  <div class="card" style="border:2px dashed #c9891a;"><img src="pilot_incremental/boat_step4b_yogactx.png"><div class="t">step 4bis, ancrages caméra/orientation renforcés<span class="badge b-drift">PLAFOND</span></div><div class="n">Profil et orientation préservés cette fois, mais quasi aucun mouvement de jambes malgré l'insistance — le modèle refuse de décoller les pieds du tapis, quelle que soit la formulation.</div></div>
+</div>
+
+<h2>2. Guerrier III ← warrior1 — couplage buste+jambe testé (hypothèse Sophie), même plafond</h2>
+<div class="row">
+  <div class="card"><img src="../../../Resources/Illustrations/warrior1.png"><div class="t">source<span class="badge b-ok">prod</span></div><div class="n">Fente debout, genou avant plié, jambe arrière tendue, bras levés au-dessus de la tête.</div></div>
+  <div class="arrow">→</div>
+  <div class="card"><img src="pilot_incremental/warrior3_step1b.png"><div class="t">bras seuls<span class="badge b-ok">OK</span></div><div class="n">Bras baissés de au-dessus de la tête à tendus devant.</div></div>
+  <div class="arrow">→</div>
+  <div class="card"><img src="pilot_incremental/warrior3_step2_tiltonly.png"><div class="t">+ buste incliné<span class="badge b-ok">OK</span></div><div class="n">Buste penché en avant depuis les hanches, bras qui suivent. Pose de transition crédible.</div></div>
+  <div class="arrow">→</div>
+  <div class="card" style="border:2px dashed #c0392b;"><img src="pilot_incremental/warrior3_step3_leglift.png"><div class="t">round 1 : "garde tout pareil, lève juste la jambe"<span class="badge b-drift">DÉRIVE</span></div><div class="n">Consigne physiquement incohérente (relevé par Sophie) : buste penché + jambe arrière encore au sol + poids non transféré = intenable. Le modèle a "corrigé" en repartant sur une pose debout stable différente.</div></div>
+  <div class="arrow">→</div>
+  <div class="card" style="border:2px dashed #c9891a;"><img src="pilot_incremental/warrior3_step3_coupled.png"><div class="t">round 2 : buste+jambe+poids couplés, contexte yoga<span class="badge b-drift">PLAFOND</span></div><div class="n">Consigne physiquement cohérente cette fois (bascule buste/jambe/poids ensemble) — mais quasi aucun mouvement : jambe arrière toujours au sol, quasi identique au step précédent.</div></div>
+</div>
+
+<h2>3. Round 3 — décrire la pose finale complète (déclaratif) au lieu d'un mouvement relatif</h2>
+<div class="row">
+  <div class="card"><img src="pilot_incremental/boat_declarative.png"><div class="t">bateau, déclaratif depuis step 2<span class="badge b-drift">DÉRIVE</span></div><div class="n">Prompt = description complète du bateau (comme FEMALE dans pilot_flux.py), sans langage de mouvement. Résultat : mauvaise interprétation totale — devient une pose à plat ventre mains au sol (façon cobra), pas du tout assise.</div></div>
+  <div class="arrow">→</div>
+  <div class="card"><img src="pilot_incremental/boat_declarative_fromsrc.png"><div class="t">bateau, déclaratif depuis staff-pose brut<span class="badge b-block">AUCUN CHANGEMENT</span></div><div class="n">Même prompt déclaratif appliqué à l'image source vierge. Résultat quasi identique à l'entrée — le modèle ignore la description texte et recopie l'image.</div></div>
+  <div class="arrow">→</div>
+  <div class="card"><img src="pilot_incremental/warrior3_declarative_fromsrc.png"><div class="t">guerrier III, déclaratif depuis warrior1 brut<span class="badge b-block">AUCUN CHANGEMENT</span></div><div class="n">Même chose côté guerrier III : description complète de la pose cible appliquée à l'image source vierge → sortie quasi identique à l'entrée.</div></div>
+</div>
+
+<h2>Constat round 2</h2>
+<div class="sub">
+Les 2 pistes de Sophie ont chacune corrigé leur cause identifiée : le contexte "yoga pose (nom sanskrit)" lève bien le filtre sécurité sur le bateau (hypothèse confirmée — c'est la convention déjà utilisée partout ailleurs dans le pipeline, FEMALE prompt de pilot_flux.py, qu'on avait oubliée dans ces prompts custom) ; coupler buste+jambe au lieu de les isoler rend la consigne physiquement cohérente sur guerrier III (diagnostic Sophie confirmé). Mais un 3e plafond apparaît, commun aux 2 poses : <b>kontext refuse de faire décoller un point d'appui du sol</b> (pied ou main) — soit il ignore la consigne et ne bouge presque rien (petits pas), soit il change complètement de pose/angle pour "résoudre" autrement plutôt que de dessiner un membre en l'air (gros pas). Testé avec formulations variées (V-shape, hovering, couplage physique), même résultat. Hypothèse : le anchoring visuel de kontext sur les points de contact au sol de l'image source est très fort et il n'a pas dans son espace de sortie une transition fluide vers "en l'air" à partir de cette silhouette précise.
+</div>
+
+<h2>Constat round 3 (final)</h2>
+<div class="sub">
+Le phrasing déclaratif (décrire la pose finale complète plutôt qu'un mouvement) ne règle pas le plafond — il l'illustre différemment : soit le modèle réinterprète la description à sa façon en ignorant la silhouette d'entrée (bateau → cobra), soit il ignore la description et recopie l'image d'entrée quasi telle quelle (2/3 essais). Sur <b>3 approches de phrasing testées</b> (mouvement isolé, mouvement couplé physiquement cohérent, description déclarative complète) et <b>2 points de départ</b> (image source vierge, image intermédiaire déjà modifiée), aucune ne fait franchir à kontext le seuil "pied/main qui décolle du sol" sur bateau ou guerrier III sans soit dériver vers une pose non-apparentée, soit ne rien changer. Ce n'est plus un problème de wording — c'est une limite du modèle flux-kontext-pro lui-même sur ce type de delta (rupture de contact au sol) depuis ces 2 images de départ. Verdict pilote : <b>kontext-incrémental n'est pas une voie fiable pour bateau/guerrier III</b>. Reliquat pour ces 2 poses = geler, voie manuelle/Lottie ou squelette+canny (contrôle structurel explicite au lieu de laisser kontext halluciner la nouvelle silhouette).
+</div>
+
+<h2>4. Round 4 (17-07) — pivot : squelette de contrôle trop faible, remplacé par un contour riche</h2>
+<div class="sub">Diagnostic : les squelettes <code>lot*.html</code> (2-3 traits fins) suffisent pour une pose simple (staff-pose) mais sont un signal trop ambigu pour flux-canny-pro sur une pose complexe — testé avec les squelettes originaux "corrigés" (même résultat cassé que le round précédent, donc ce n'était pas un bug de recadrage : le signal lui-même est trop faible). Pivot : au lieu d'un squelette abstrait, extraire un contour (Canny edge, structure uniquement — pas les couleurs/pixels) depuis une image de pose anatomiquement correcte trouvée en référence, pour donner un signal riche à flux-canny-pro.</div>
+<div class="row">
+  <div class="card"><img src="pilot_incremental/warrior3_canny_fromref.png"><div class="t">contour de référence (Canny)<span class="badge b-ok">structure only</span></div><div class="n">Silhouette complète extraite d'une image de référence pose-correcte (pas de couleurs/style repris, juste les contours du corps).</div></div>
+  <div class="arrow">→</div>
+  <div class="card"><img src="pilot_incremental/warrior3_cannypro_fromref.png"><div class="t">flux-canny-pro + prompt maison<span class="badge b-ok">POSE CORRECTE</span></div><div class="n">Vrai personnage, bonne famille de style, POSE ENFIN JUSTE (T horizontal, jambe d'appui tendue, bras devant). Reste à corriger : cadre noir, contours façon coloriage, tapis ovale au lieu du rectangle blanc.</div></div>
+  <div class="arrow">→</div>
+  <div class="card" style="border:2px dashed #c0392b;"><img src="pilot_incremental/warrior3_restyled.png"><div class="t">tentative restyle via kontext<span class="badge b-drift">ÉCHEC</span></div><div class="n">Kontext a encore reposé la jambe levée au sol pour "résoudre" la demande de restylage — même plafond que precedemment. Abandonné, ne pas insister sur cette voie pour le nettoyage de style.</div></div>
+  <div class="arrow">→</div>
+  <div class="card"><img src="pilot_incremental/warrior3_cannypro_lowguidance.png"><div class="t">re-passe canny, guidance réduite<span class="badge b-ok">pose stable</span></div><div class="n">Pose identique et correcte (bon signe de robustesse), mais le style coloriage ne bouge quasi pas avec ce seul levier. Nettoyage de style = chantier séparé à creuser (post-traitement ciblé plutôt que kontext).</div></div>
+</div>
+<div class="sub">
+<b>Verdict round 4</b> : le vrai blocage n'était pas "impossible de faire décoller un membre du sol" en général — c'était un signal de contrôle trop faible (squelette abstrait 2-3 traits) pour une pose complexe. Avec un contour riche en référence, la pose sort juste et de façon reproductible (2/2). Reste un chantier de nettoyage de style (cadre, contours, tapis) à traiter par post-traitement ciblé plutôt que par kontext (qui casse la pose dès qu'on lui demande un gros changement pendant qu'un membre est en l'air). Bateau non retesté avec cette méthode faute de référence riche sous la main — prochaine étape si on continue sur cette voie.
+</div>
+
+<h2>5. Round 5 (17-07) — bateau, même méthode : 2/2</h2>
+<div class="sub">Même site (asanas.fr a aussi une page bateau), même illustration stock flat-vector en référence, même recette. Confirme la reproductibilité de la méthode "contour riche depuis référence pose-correcte" sur la 2e pose testée.</div>
+<div class="row">
+  <div class="card"><img src="pilot_incremental/boat_canny_fromref.png"><div class="t">contour de référence (Canny)<span class="badge b-ok">structure only</span></div><div class="n">Silhouette bateau correcte : V net, jambes tendues, bras parallèles aux jambes.</div></div>
+  <div class="arrow">→</div>
+  <div class="card"><img src="pilot_incremental/boat_cannypro_fromref.png"><div class="t">flux-canny-pro + prompt maison<span class="badge b-ok">POSE CORRECTE</span></div><div class="n">Vrai personnage, pose juste du premier coup. Mêmes artefacts de style que guerrier III (cadre, contours, tapis ovale) — même chantier de nettoyage à faire pour les 2 poses.</div></div>
+</div>
+
+<h2>Bilan global pilote (17-07)</h2>
+<div class="sub">
+<b>2/2 poses réussies en pose</b> avec la méthode "contour Canny riche depuis une référence pose-correcte trouvée en ligne (structure uniquement, pas de reprise de pixels/couleurs/style) → recette de production existante (FEMALE prompt + flux-canny-pro)". Kontext-incrémental (rounds 1-3) est abandonné pour ces 2 poses — signal de contrôle trop faible et anchoring au sol trop fort. Reste un chantier de nettoyage de style commun aux 2 images (cadre noir, contours type coloriage, tapis ovale → rectangle blanc) : à traiter en post-traitement ciblé, pas via kontext (qui casse la pose à chaque tentative de restylage testée). Prochaine étape proposée : régler le nettoyage de style sur ces 2 images, puis industrialiser la méthode sur le reste du reliquat.
+</div>
+
+<h2>6. Round 6 (17-07) — nettoyage de style, comparaison avec la prod</h2>
+<div class="sub">Fix appliqué SUR LE CONTOUR (pas via kontext) : retrait du cadre parasite (flood-fill depuis les bords), lissage léger avant seuillage, marge blanche généreuse. Puis prompt renforcé "no outlines, no black strokes, background filling the entire image". Guidance abaissée 30→22 pour laisser un peu plus de liberté de restylage.</div>
+<div class="row">
+  <div class="card"><img src="../../../Resources/Illustrations/warrior1.png"><div class="t">warrior1<span class="badge b-ok">RÉFÉRENCE PROD</span></div><div class="n">Style cible à matcher.</div></div>
+  <div class="arrow">→</div>
+  <div class="card"><img src="pilot_incremental/warrior3_canny_soft2.png"><div class="t">contrôle nettoyé<span class="badge b-ok">sans cadre</span></div></div>
+  <div class="arrow">→</div>
+  <div class="card" style="border:2px solid #3f8f5c;"><img src="pilot_incremental/warrior3_final_v1.png"><div class="t">guerrier III v1<span class="badge b-ok">CANDIDAT</span></div><div class="n">Pose juste, style très proche de la prod. Écart résiduel : le tapis a une forme ovale posée sur un rectangle blanc au lieu d'un simple rectangle — à vérifier si ça te gêne.</div></div>
+</div>
+<div class="row">
+  <div class="card"><img src="../../../Resources/Illustrations/staff-pose.png"><div class="t">staff-pose<span class="badge b-ok">RÉFÉRENCE PROD</span></div><div class="n">Style cible à matcher.</div></div>
+  <div class="arrow">→</div>
+  <div class="card"><img src="pilot_incremental/boat_canny_soft2.png"><div class="t">contrôle nettoyé<span class="badge b-ok">sans cadre</span></div></div>
+  <div class="arrow">→</div>
+  <div class="card" style="border:2px solid #3f8f5c;"><img src="pilot_incremental/boat_final_v1.png"><div class="t">bateau v1<span class="badge b-ok">CANDIDAT</span></div><div class="n">Pose juste, style proche de la prod. Écart résiduel : un anneau ovale clair reste visible autour du bassin (reliquat de l'ombre de l'image de référence) — à vérifier si ça te gêne.</div></div>
+</div>
+<div class="sub"><b>Verdict round 6</b> : les 2 candidats sont proches d'un niveau présentable — pose correcte, personnage cohérent avec la prod, plus de cadre ni d'effet coloriage. 2 écarts mineurs résiduels notés ci-dessus (forme du tapis, anneau ombre) à trancher ou reprendre selon ton avis. Comptage anatomique fait à l'oeil (mains/pieds/doigts) sur les 2 candidats : rien d'anormal repéré, mais pas de check zoom poussé à ce stade pilote.</div>
+
+<h2>7. Round 7 (17-07) — lot test 4 poses de plus, cohérence ENTRE elles (pas juste vs prod)</h2>
+<div class="sub">Demande Sophie : vérifier que tout le yoga reste dans le même style avant d'industrialiser. Même recette exacte (même prompt FEMALE, même seed 777, mêmes réglages canny) appliquée à 4 nouvelles poses du reliquat : cobra, enfant, aigle, savasana.</div>
+<div class="row">
+  <div class="card"><img src="pilot_incremental/cobra_final_v1.png"><div class="t">cobra<span class="badge b-ok">pose OK</span></div></div>
+  <div class="card"><img src="pilot_incremental/child_final_v1.png"><div class="t">enfant<span class="badge b-ok">pose OK</span></div></div>
+  <div class="card"><img src="pilot_incremental/eagle_final_v1.png"><div class="t">aigle<span class="badge b-drift">pose approx.</span></div><div class="n">Réf. source déjà approximative (pas de vrais bras/jambes croisés typiques de garudasana) — à reprendre avec une meilleure référence si on garde cette pose.</div></div>
+  <div class="card"><img src="pilot_incremental/savasana2_final_v1.png"><div class="t">savasana<span class="badge b-ok">pose OK</span></div></div>
+</div>
+<div class="sub"><b>Incohérences repérées EN COMPARANT les 6 candidats du pilote entre eux</b> (pas visibles en comparant chacun isolément à la prod) :
+<ul>
+<li><b>Couleur du legging</b> : bleu-gris terne sur bateau/guerrier III vs bleu plus soutenu sur cobra/enfant/aigle/savasana.</li>
+<li><b>Épaisseur du contour noir</b> : varie sensiblement d'une image à l'autre (aigle et savasana plus marqués que cobra).</li>
+<li><b>Forme du tapis</b> : rectangle simple sur certaines (cobra, savasana), ovale posé sur un rectangle sur d'autres (enfant, aigle) — pas stable.</li>
+</ul>
+Confirme exactement le risque que tu avais signalé : chaque image prise seule est correcte, mais la cohérence globale du catalogue ne tient pas encore automatiquement. Il faut verrouiller plus fort ces 3 paramètres (couleur exacte du legging en hex, épaisseur de trait, forme de tapis figée) dans le prompt/pipeline avant industrialisation — sinon on répète l'erreur qui a motivé le chantier d'harmonisation Canvas.
+</div>
+
+<h2>8. Round 8 (17-07) — verrouillage + fix signalé par Sophie (tapis aigle "KO par terre")</h2>
+<div class="sub">Sophie a repéré en plus : sur l'aigle, le tapis ressemblait à une plateforme 3D flottante au lieu d'être à plat au sol. Prompt verrouillé : couleur legging fixée en hex exact de la prod (#87AAB2, mesuré sur warrior1.png), consigne explicite "trait fin uniforme, pas style coloriage", et "tapis unique en 2D à plat au sol, pas de perspective 3D, pas de plateforme flottante". Même lot de 6 régénéré.</div>
+<div class="row">
+  <div class="card"><img src="pilot_incremental/boat_final_v2.png"><div class="t">bateau v2</div></div>
+  <div class="card"><img src="pilot_incremental/warrior3_final_v2.png"><div class="t">guerrier III v2</div></div>
+  <div class="card"><img src="pilot_incremental/cobra_final_v2.png"><div class="t">cobra v2</div></div>
+  <div class="card"><img src="pilot_incremental/child_final_v2.png"><div class="t">enfant v2</div></div>
+  <div class="card"><img src="pilot_incremental/eagle_final_v2.png"><div class="t">aigle v2<span class="badge b-ok">tapis fixé</span></div><div class="n">Tapis à plat, plus de plateforme flottante.</div></div>
+  <div class="card"><img src="pilot_incremental/savasana2_final_v2.png"><div class="t">savasana v2</div></div>
+</div>
+<div class="sub">
+<b>Bilan round 8</b> : couleur du legging désormais identique sur les 6 (bleu-gris teal cohérent) ✅. Tapis de l'aigle réparé (à plat, plus de flottement) ✅. Épaisseur de trait plus homogène entre les 6 qu'au round 7 ✅. <b>Écart restant vs la prod</b> : la prod (staff-pose/warrior1) n'a quasi pas de contour noir visible, alors que les 6 candidats gardent un trait noir fin mais présent partout — pas encore un match parfait au pixel, mais cohérent en interne sur le lot. À trancher : ce niveau de proximité suffit, ou on pousse encore le matching du contour ?
+</div>
+
+<h2>9. Round 9 (17-07) — cause racine du tapis : l'ovale était gravé dans le squelette de contrôle</h2>
+<div class="sub">Sophie a repéré un reste de rectangle sur l'aigle ET que le tapis du bateau n'est pas blanc. Cause racine trouvée : la référence photo source avait une ombre ovale sous le personnage, capturée telle quelle dans le contour Canny — flux-canny-pro est donc <i>obligé</i> de respecter cette ellipse comme structure, quel que soit le prompt. Fix : détection de composants connexes pour retirer l'ellipse du contour AVANT génération (bateau, guerrier III, aigle), puis prompt renforcé "fine bande blanche plate, pas d'ovale" (mesuré sur staff-pose.png : le tapis prod est une simple fine bande, pas une grande forme).</div>
+<div class="row">
+  <div class="card"><img src="pilot_incremental/eagle_final_v4.png"><div class="t">aigle v4<span class="badge b-ok">PARFAIT</span></div><div class="n">Fine bande blanche, identique au tapis prod. Plus aucun résidu.</div></div>
+  <div class="card"><img src="pilot_incremental/warrior3_final_v4.png"><div class="t">guerrier III v4<span class="badge b-drift">mieux, pas parfait</span></div><div class="n">Rectangle plein blanc mais un peu épais/plaque (façon plateforme) plutôt que la fine ligne de la prod.</div></div>
+  <div class="card"><img src="pilot_incremental/boat_final_v4.png"><div class="t">bateau v4<span class="badge b-drift">mieux, pas parfait</span></div><div class="n">Rectangle blanc présent mais un léger halo ovale rosé reste visible juste derrière.</div></div>
+</div>
+<div class="sub"><b>Bilan round 9</b> : aigle résolu à 100%. Guerrier III et bateau améliorés mais pas encore un match parfait du tapis fin de la prod. Ça devient un réglage fin de dernière ligne droite plutôt qu'un problème de fond.</div>
+
+</body></html>

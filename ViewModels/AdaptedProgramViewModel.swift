@@ -30,6 +30,7 @@ final class AdaptedProgramViewModel: ObservableObject {
     private let coreRepo: any CoreProfileRepository
     private let coachingRepo: any CoachingProfileRepository
     private let adaptedRepo: any AdaptedProgramRepository
+    private let storeKitService: any StoreKitServiceProtocol
 
     /// Empêche le déclenchement automatique multiple si la View se réabonne
     /// (.task peut être appelé plusieurs fois sur re-render).
@@ -43,7 +44,8 @@ final class AdaptedProgramViewModel: ObservableObject {
         healthSummaryBuilder: any HealthSummaryBuilding,
         coreRepo: any CoreProfileRepository,
         coachingRepo: any CoachingProfileRepository,
-        adaptedRepo: any AdaptedProgramRepository
+        adaptedRepo: any AdaptedProgramRepository,
+        storeKitService: any StoreKitServiceProtocol
     ) {
         self.program = program
         self.leonNotes = initialLeonNotes
@@ -53,6 +55,7 @@ final class AdaptedProgramViewModel: ObservableObject {
         self.coreRepo = coreRepo
         self.coachingRepo = coachingRepo
         self.adaptedRepo = adaptedRepo
+        self.storeKitService = storeKitService
     }
 
     /// Appelé par AdaptedProgramView.task. Trigger le call Léon UNIQUEMENT si :
@@ -93,6 +96,11 @@ final class AdaptedProgramViewModel: ObservableObject {
             if let recordId, response.patch.hasContent {
                 try? await adaptedRepo.applyLeonPatch(recordId: recordId, patch: response.patch)
             }
+
+            // Source de vérité serveur pour le tier : à synchroniser après CHAQUE
+            // réponse Léon réussie (pas seulement après achat), sinon une
+            // expiration/remboursement ne se refléterait qu'au prochain boot.
+            storeKitService.applyQuotaTier(response.quota.tier)
 
             requestState = .success
         } catch let leonError as LeonError {

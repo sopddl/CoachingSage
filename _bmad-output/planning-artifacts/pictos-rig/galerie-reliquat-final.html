@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Gate reliquat illustrations — 66 assets</title>
+<style>
+  :root { --bg:#f4f2ee; --card:#fff; --border:#ddd; --ko:#e05353; --yoga:#87AAB2; --muscu:#B3A8AE; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; background: var(--bg); margin:0; padding:20px 24px 80px; color:#222; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sub { color:#666; font-size:13px; margin-bottom:16px; }
+  .toolbar { position: sticky; top:0; background: var(--bg); padding:10px 0; z-index:10; display:flex; gap:12px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--border); margin-bottom:16px; }
+  .toolbar button { padding:6px 12px; border-radius:6px; border:1px solid #ccc; background:#fff; cursor:pointer; font-size:13px; }
+  .filter-btn.active { background:#222; color:#fff; }
+  #count { font-weight:600; font-size:14px; }
+  #kolist { width:100%; min-height:50px; font-family:ui-monospace,monospace; font-size:12px; padding:8px; border-radius:6px; border:1px solid var(--border); margin-top:8px; background:#fffbe6; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap:16px; }
+  .card { background:var(--card); border:2px solid var(--border); border-radius:10px; overflow:hidden; display:flex; flex-direction:column; transition: border-color .15s, opacity .15s; }
+  .card img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#eee; }
+  .card .meta { padding:8px 10px; flex:1; }
+  .tag { display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; padding:2px 6px; border-radius:4px; color:#fff; margin-bottom:4px; }
+  .tag-Yoga { background: var(--yoga); }
+  .tag-Muscu { background: var(--muscu); }
+  .slug { font-family:ui-monospace,monospace; font-size:12px; color:#333; font-weight:600; }
+  .desc { font-size:12px; color:#555; margin-top:3px; line-height:1.35; }
+  .ko-btn { border:none; background:#f0f0f0; padding:8px; font-size:12px; cursor:pointer; font-weight:600; color:#a33; }
+  .ko-btn:hover { background:#fbe0e0; }
+  .card.ko { border-color: var(--ko); opacity:.6; }
+  .card.ko img { filter: grayscale(1); }
+  .card.ko .ko-btn { background: var(--ko); color:#fff; }
+  .card.hidden { display:none; }
+  .comment-box { width:100%; box-sizing:border-box; min-height:40px; font-size:12px; padding:6px; border:1px solid var(--border); border-top:none; resize:vertical; font-family:inherit; }
+</style>
+</head>
+<body>
+<h1>Gate reliquat illustrations — 66 assets</h1>
+<div class="sub">Clique « Marquer KO » sur les assets à refaire. L'état est sauvegardé automatiquement (localStorage) — tu peux fermer/rouvrir la page.</div>
+<div class="toolbar">
+  <span id="count"></span>
+  <button class="filter-btn active" data-f="all" onclick="filterCat('all',this)">Tout</button>
+  <button class="filter-btn" data-f="Yoga" onclick="filterCat('Yoga',this)">Yoga</button>
+  <button class="filter-btn" data-f="Muscu" onclick="filterCat('Muscu',this)">Muscu</button>
+  <button onclick="resetAll()">Tout réinitialiser</button>
+</div>
+<div class="grid">
+
+    <div class="card" id="card-ardhaBaddhaPadmottanasana" data-cat="Yoga">
+      <img src="reliquat_final/ardhaBaddhaPadmottanasana.png" loading="lazy" alt="ardhaBaddhaPadmottanasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">ardhaBaddhaPadmottanasana</div>
+        <div class="desc">Demi-lotus en flexion avant debout — jambe repliée en demi-lotus dans le dos, main opposée au sol.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('ardhaBaddhaPadmottanasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('ardhaBaddhaPadmottanasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-bakasana" data-cat="Yoga">
+      <img src="reliquat_final/bakasana.png" loading="lazy" alt="bakasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">bakasana</div>
+        <div class="desc">Posture du corbeau — équilibre sur les mains, genoux calés sur les triceps.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('bakasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('bakasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-bhujapidasana" data-cat="Yoga">
+      <img src="reliquat_final/bhujapidasana.png" loading="lazy" alt="bhujapidasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">bhujapidasana</div>
+        <div class="desc">Pression des bras — équilibre sur les mains, jambes croisées devant les épaules.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('bhujapidasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('bhujapidasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-biceps-curl-barbell" data-cat="Muscu">
+      <img src="reliquat_final/biceps-curl-barbell.png" loading="lazy" alt="biceps-curl-barbell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">biceps-curl-barbell</div>
+        <div class="desc">Curl biceps à la barre.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('biceps-curl-barbell')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('biceps-curl-barbell', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-bird-dog" data-cat="Muscu">
+      <img src="reliquat_final/bird-dog.png" loading="lazy" alt="bird-dog">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">bird-dog</div>
+        <div class="desc">Bird-dog — quadrupédie, bras et jambe opposée tendus.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('bird-dog')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('bird-dog', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-boat" data-cat="Yoga">
+      <img src="reliquat_final/boat.png" loading="lazy" alt="boat">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">boat</div>
+        <div class="desc">Posture du bateau (navasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('boat')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('boat', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-cable-fly" data-cat="Muscu">
+      <img src="reliquat_final/cable-fly.png" loading="lazy" alt="cable-fly">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">cable-fly</div>
+        <div class="desc">Écarté à la poulie vis-à-vis (cable fly).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('cable-fly')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('cable-fly', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-catCowForearms" data-cat="Yoga">
+      <img src="reliquat_final/catCowForearms.png" loading="lazy" alt="catCowForearms">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">catCowForearms</div>
+        <div class="desc">Chat-vache sur les avant-bras.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('catCowForearms')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('catCowForearms', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-child" data-cat="Yoga">
+      <img src="reliquat_final/child.png" loading="lazy" alt="child">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">child</div>
+        <div class="desc">Posture de l'enfant (balasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('child')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('child', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-clamshell" data-cat="Muscu">
+      <img src="reliquat_final/clamshell.png" loading="lazy" alt="clamshell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">clamshell</div>
+        <div class="desc">Clamshell — fessiers moyens, allongé sur le côté.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('clamshell')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('clamshell', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-cobra_test" data-cat="Yoga">
+      <img src="reliquat_final/cobra_test.png" loading="lazy" alt="cobra_test">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">cobra_test</div>
+        <div class="desc">Posture du cobra (bhujangasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('cobra_test')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('cobra_test', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-dead-bug" data-cat="Muscu">
+      <img src="reliquat_final/dead-bug.png" loading="lazy" alt="dead-bug">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">dead-bug</div>
+        <div class="desc">Dead bug — gainage, bras et jambe opposés en extension.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('dead-bug')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('dead-bug', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-dhanurasana" data-cat="Yoga">
+      <img src="reliquat_final/dhanurasana.png" loading="lazy" alt="dhanurasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">dhanurasana</div>
+        <div class="desc">Posture de l'arc.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('dhanurasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('dhanurasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-dirgha" data-cat="Yoga">
+      <img src="reliquat_final/dirgha.png" loading="lazy" alt="dirgha">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">dirgha</div>
+        <div class="desc">Respiration complète en 3 temps (dirgha pranayama).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('dirgha')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('dirgha', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-dolphinPose" data-cat="Yoga">
+      <img src="reliquat_final/dolphinPose.png" loading="lazy" alt="dolphinPose">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">dolphinPose</div>
+        <div class="desc">Posture du dauphin — avant-bras au sol, hanches hautes.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('dolphinPose')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('dolphinPose', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-double-unders" data-cat="Muscu">
+      <img src="reliquat_final/double-unders.png" loading="lazy" alt="double-unders">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">double-unders</div>
+        <div class="desc">Double-unders — corde à sauter, double rotation par saut.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('double-unders')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('double-unders', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-eagle" data-cat="Yoga">
+      <img src="reliquat_final/eagle.png" loading="lazy" alt="eagle">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">eagle</div>
+        <div class="desc">Posture de l'aigle (garudasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('eagle')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('eagle', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-face-pull" data-cat="Muscu">
+      <img src="reliquat_final/face-pull.png" loading="lazy" alt="face-pull">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">face-pull</div>
+        <div class="desc">Face pull — tirage à la poulie vers le visage.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('face-pull')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('face-pull', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-farmer-carry" data-cat="Muscu">
+      <img src="reliquat_final/farmer-carry.png" loading="lazy" alt="farmer-carry">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">farmer-carry</div>
+        <div class="desc">Farmer carry — marche chargée, un poids dans chaque main.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('farmer-carry')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('farmer-carry', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-halasana" data-cat="Yoga">
+      <img src="reliquat_final/halasana.png" loading="lazy" alt="halasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">halasana</div>
+        <div class="desc">Posture de la charrue — jambes tendues au-dessus de la tête, orteils au sol.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('halasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('halasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-hanging-leg-raise" data-cat="Muscu">
+      <img src="reliquat_final/hanging-leg-raise.png" loading="lazy" alt="hanging-leg-raise">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">hanging-leg-raise</div>
+        <div class="desc">Relevé de jambes suspendu à la barre.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('hanging-leg-raise')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('hanging-leg-raise', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-hinge-rdl-barbell" data-cat="Muscu">
+      <img src="reliquat_final/hinge-rdl-barbell.png" loading="lazy" alt="hinge-rdl-barbell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">hinge-rdl-barbell</div>
+        <div class="desc">Soulevé de terre jambes tendues (RDL) à la barre.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('hinge-rdl-barbell')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('hinge-rdl-barbell', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-hip-thrust" data-cat="Muscu">
+      <img src="reliquat_final/hip-thrust.png" loading="lazy" alt="hip-thrust">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">hip-thrust</div>
+        <div class="desc">Hip thrust — poussée de hanches à la barre, épaules sur banc.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('hip-thrust')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('hip-thrust', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-januSirsasana" data-cat="Yoga">
+      <img src="reliquat_final/januSirsasana.png" loading="lazy" alt="januSirsasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">januSirsasana</div>
+        <div class="desc">Tête au genou (janu sirsasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('januSirsasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('januSirsasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-kapotasana" data-cat="Yoga">
+      <img src="reliquat_final/kapotasana.png" loading="lazy" alt="kapotasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">kapotasana</div>
+        <div class="desc">Posture du pigeon roi (kapotasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('kapotasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('kapotasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-karnapidasana" data-cat="Yoga">
+      <img src="reliquat_final/karnapidasana.png" loading="lazy" alt="karnapidasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">karnapidasana</div>
+        <div class="desc">Pression des oreilles — variante genoux pliés de la charrue.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('karnapidasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('karnapidasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-kurmasana" data-cat="Yoga">
+      <img src="reliquat_final/kurmasana.png" loading="lazy" alt="kurmasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">kurmasana</div>
+        <div class="desc">Posture de la tortue.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('kurmasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('kurmasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-leg-curl" data-cat="Muscu">
+      <img src="reliquat_final/leg-curl.png" loading="lazy" alt="leg-curl">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">leg-curl</div>
+        <div class="desc">Leg curl — flexion des jambes, ischio-jambiers.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('leg-curl')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('leg-curl', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-leg-press" data-cat="Muscu">
+      <img src="reliquat_final/leg-press.png" loading="lazy" alt="leg-press">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">leg-press</div>
+        <div class="desc">Presse à cuisses.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('leg-press')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('leg-press', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-lunge-bodyweight" data-cat="Muscu">
+      <img src="reliquat_final/lunge-bodyweight.png" loading="lazy" alt="lunge-bodyweight">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">lunge-bodyweight</div>
+        <div class="desc">Fente au poids du corps.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('lunge-bodyweight')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('lunge-bodyweight', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-matsyasana" data-cat="Yoga">
+      <img src="reliquat_final/matsyasana.png" loading="lazy" alt="matsyasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">matsyasana</div>
+        <div class="desc">Posture du poisson.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('matsyasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('matsyasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-mountain-climber" data-cat="Muscu">
+      <img src="reliquat_final/mountain-climber.png" loading="lazy" alt="mountain-climber">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">mountain-climber</div>
+        <div class="desc">Mountain climber — genoux ramenés en gainage.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('mountain-climber')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('mountain-climber', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-nadiShodhana" data-cat="Yoga">
+      <img src="reliquat_final/nadiShodhana.png" loading="lazy" alt="nadiShodhana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">nadiShodhana</div>
+        <div class="desc">Respiration alternée (nadi shodhana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('nadiShodhana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('nadiShodhana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-nordic-curl" data-cat="Muscu">
+      <img src="reliquat_final/nordic-curl.png" loading="lazy" alt="nordic-curl">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">nordic-curl</div>
+        <div class="desc">Nordic curl — ischio-jambiers en excentrique, genoux calés.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('nordic-curl')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('nordic-curl', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-pallof-press" data-cat="Muscu">
+      <img src="reliquat_final/pallof-press.png" loading="lazy" alt="pallof-press">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">pallof-press</div>
+        <div class="desc">Pallof press — anti-rotation à la poulie.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('pallof-press')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('pallof-press', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-phalakasana" data-cat="Yoga">
+      <img src="reliquat_final/phalakasana.png" loading="lazy" alt="phalakasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">phalakasana</div>
+        <div class="desc">Posture de la planche (phalakasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('phalakasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('phalakasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-plyo-jumpsquat" data-cat="Muscu">
+      <img src="reliquat_final/plyo-jumpsquat.png" loading="lazy" alt="plyo-jumpsquat">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">plyo-jumpsquat</div>
+        <div class="desc">Squat sauté pliométrique.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('plyo-jumpsquat')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('plyo-jumpsquat', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-power-clean" data-cat="Muscu">
+      <img src="reliquat_final/power-clean.png" loading="lazy" alt="power-clean">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">power-clean</div>
+        <div class="desc">Power clean — arraché-épaulé à la barre.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('power-clean')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('power-clean', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-prasaritaPadottanasana" data-cat="Yoga">
+      <img src="reliquat_final/prasaritaPadottanasana.png" loading="lazy" alt="prasaritaPadottanasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">prasaritaPadottanasana</div>
+        <div class="desc">Flexion avant jambes écartées.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('prasaritaPadottanasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('prasaritaPadottanasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-pull-horizontal-row" data-cat="Muscu">
+      <img src="reliquat_final/pull-horizontal-row.png" loading="lazy" alt="pull-horizontal-row">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">pull-horizontal-row</div>
+        <div class="desc">Rowing horizontal (tirage).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('pull-horizontal-row')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('pull-horizontal-row', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-purvottanasana" data-cat="Yoga">
+      <img src="reliquat_final/purvottanasana.png" loading="lazy" alt="purvottanasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">purvottanasana</div>
+        <div class="desc">Planche inversée (purvottanasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('purvottanasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('purvottanasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-push-horizontal-dips" data-cat="Muscu">
+      <img src="reliquat_final/push-horizontal-dips.png" loading="lazy" alt="push-horizontal-dips">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">push-horizontal-dips</div>
+        <div class="desc">Dips — pectoraux/triceps.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('push-horizontal-dips')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('push-horizontal-dips', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-push-horizontal-dumbbell" data-cat="Muscu">
+      <img src="reliquat_final/push-horizontal-dumbbell.png" loading="lazy" alt="push-horizontal-dumbbell">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">push-horizontal-dumbbell</div>
+        <div class="desc">Développé couché haltères.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('push-horizontal-dumbbell')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('push-horizontal-dumbbell', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-reverse-hyper" data-cat="Muscu">
+      <img src="reliquat_final/reverse-hyper.png" loading="lazy" alt="reverse-hyper">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">reverse-hyper</div>
+        <div class="desc">Reverse hyper — extension lombaire inversée.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('reverse-hyper')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('reverse-hyper', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-salabhasana" data-cat="Yoga">
+      <img src="reliquat_final/salabhasana.png" loading="lazy" alt="salabhasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">salabhasana</div>
+        <div class="desc">Posture de la sauterelle (salabhasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('salabhasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('salabhasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-sarvangasana" data-cat="Yoga">
+      <img src="reliquat_final/sarvangasana.png" loading="lazy" alt="sarvangasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">sarvangasana</div>
+        <div class="desc">Chandelle (sarvangasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('sarvangasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('sarvangasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-savasana" data-cat="Yoga">
+      <img src="reliquat_final/savasana.png" loading="lazy" alt="savasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">savasana</div>
+        <div class="desc">Posture du cadavre — relaxation finale.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('savasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('savasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-setuBandha" data-cat="Yoga">
+      <img src="reliquat_final/setuBandha.png" loading="lazy" alt="setuBandha">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">setuBandha</div>
+        <div class="desc">Pont (setu bandhasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('setuBandha')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('setuBandha', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-side-plank" data-cat="Muscu">
+      <img src="reliquat_final/side-plank.png" loading="lazy" alt="side-plank">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">side-plank</div>
+        <div class="desc">Planche latérale (side plank).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('side-plank')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('side-plank', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-sirsasana" data-cat="Yoga">
+      <img src="reliquat_final/sirsasana.png" loading="lazy" alt="sirsasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">sirsasana</div>
+        <div class="desc">Posture sur la tête (sirsasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('sirsasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('sirsasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-sled-push" data-cat="Muscu">
+      <img src="reliquat_final/sled-push.png" loading="lazy" alt="sled-push">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">sled-push</div>
+        <div class="desc">Poussée de traîneau (sled push).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('sled-push')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('sled-push', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-suptaBaddhaKonasana" data-cat="Yoga">
+      <img src="reliquat_final/suptaBaddhaKonasana.png" loading="lazy" alt="suptaBaddhaKonasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">suptaBaddhaKonasana</div>
+        <div class="desc">Papillon allongé (supta baddha konasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('suptaBaddhaKonasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('suptaBaddhaKonasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-tibialis-raise" data-cat="Muscu">
+      <img src="reliquat_final/tibialis-raise.png" loading="lazy" alt="tibialis-raise">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">tibialis-raise</div>
+        <div class="desc">Relevé du tibial antérieur.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('tibialis-raise')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('tibialis-raise', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-triceps-pushdown" data-cat="Muscu">
+      <img src="reliquat_final/triceps-pushdown.png" loading="lazy" alt="triceps-pushdown">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">triceps-pushdown</div>
+        <div class="desc">Extension triceps à la poulie.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('triceps-pushdown')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('triceps-pushdown', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-turkish-getup" data-cat="Muscu">
+      <img src="reliquat_final/turkish-getup.png" loading="lazy" alt="turkish-getup">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">turkish-getup</div>
+        <div class="desc">Turkish get-up — lever turc.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('turkish-getup')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('turkish-getup', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-ujjayi" data-cat="Yoga">
+      <img src="reliquat_final/ujjayi.png" loading="lazy" alt="ujjayi">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">ujjayi</div>
+        <div class="desc">Respiration ujjayi.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('ujjayi')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('ujjayi', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-upavisthaKonasana" data-cat="Yoga">
+      <img src="reliquat_final/upavisthaKonasana.png" loading="lazy" alt="upavisthaKonasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">upavisthaKonasana</div>
+        <div class="desc">Grand écart assis (upavistha konasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('upavisthaKonasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('upavisthaKonasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-urdhvaDhanurasana" data-cat="Yoga">
+      <img src="reliquat_final/urdhvaDhanurasana.png" loading="lazy" alt="urdhvaDhanurasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">urdhvaDhanurasana</div>
+        <div class="desc">Pont complet / roue (urdhva dhanurasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('urdhvaDhanurasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('urdhvaDhanurasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-ustrasana" data-cat="Yoga">
+      <img src="reliquat_final/ustrasana.png" loading="lazy" alt="ustrasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">ustrasana</div>
+        <div class="desc">Posture du chameau (ustrasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('ustrasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('ustrasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-uttanaPadasana" data-cat="Yoga">
+      <img src="reliquat_final/uttanaPadasana.png" loading="lazy" alt="uttanaPadasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">uttanaPadasana</div>
+        <div class="desc">Jambes tendues levées (uttana padasana).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('uttanaPadasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('uttanaPadasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-utthitaHastaPadangusthasana" data-cat="Yoga">
+      <img src="reliquat_final/utthitaHastaPadangusthasana.png" loading="lazy" alt="utthitaHastaPadangusthasana">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">utthitaHastaPadangusthasana</div>
+        <div class="desc">Main à l'orteil, équilibre debout jambe tendue.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('utthitaHastaPadangusthasana')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('utthitaHastaPadangusthasana', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-viparitaKarani" data-cat="Yoga">
+      <img src="reliquat_final/viparitaKarani.png" loading="lazy" alt="viparitaKarani">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">viparitaKarani</div>
+        <div class="desc">Jambes au mur (viparita karani).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('viparitaKarani')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('viparitaKarani', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-warrior2" data-cat="Yoga">
+      <img src="reliquat_final/warrior2.png" loading="lazy" alt="warrior2">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">warrior2</div>
+        <div class="desc">Guerrier II (virabhadrasana II).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('warrior2')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('warrior2', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-warrior3" data-cat="Yoga">
+      <img src="reliquat_final/warrior3.png" loading="lazy" alt="warrior3">
+      <div class="meta">
+        <div class="tag tag-Yoga">Yoga</div>
+        <div class="slug">warrior3</div>
+        <div class="desc">Guerrier III (virabhadrasana III).</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('warrior3')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('warrior3', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-woodchopper" data-cat="Muscu">
+      <img src="reliquat_final/woodchopper.png" loading="lazy" alt="woodchopper">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">woodchopper</div>
+        <div class="desc">Woodchopper — rotation type bûcheron à la poulie.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('woodchopper')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('woodchopper', this.value)"></textarea>
+    </div>
+    <div class="card" id="card-ytw-activation" data-cat="Muscu">
+      <img src="reliquat_final/ytw-activation.png" loading="lazy" alt="ytw-activation">
+      <div class="meta">
+        <div class="tag tag-Muscu">Muscu</div>
+        <div class="slug">ytw-activation</div>
+        <div class="desc">Activation Y-T-W — coiffe des rotateurs / omoplates.</div>
+      </div>
+      <button class="ko-btn" onclick="toggleKO('ytw-activation')">Marquer KO</button>
+      <textarea class="comment-box" placeholder="Commentaire..." oninput="saveComment('ytw-activation', this.value)"></textarea>
+    </div>
+</div>
+<textarea id="kolist" readonly placeholder="Aucun KO pour l'instant."></textarea>
+
+<script>
+const total = 66;
+function getKO() { return JSON.parse(localStorage.getItem('reliquat_ko') || '[]'); }
+function setKO(list) { localStorage.setItem('reliquat_ko', JSON.stringify(list)); }
+
+function toggleKO(slug) {
+  let list = getKO();
+  const card = document.getElementById('card-'+slug);
+  if (list.includes(slug)) {
+    list = list.filter(s => s !== slug);
+    card.classList.remove('ko');
+    card.querySelector('.ko-btn').textContent = 'Marquer KO';
+  } else {
+    list.push(slug);
+    card.classList.add('ko');
+    card.querySelector('.ko-btn').textContent = 'Annuler KO';
+  }
+  setKO(list);
+  refresh();
+}
+
+function resetAll() {
+  setKO([]);
+  document.querySelectorAll('.card').forEach(c => {
+    c.classList.remove('ko');
+    c.querySelector('.ko-btn').textContent = 'Marquer KO';
+  });
+  refresh();
+}
+
+function filterCat(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.card').forEach(c => {
+    c.classList.toggle('hidden', cat !== 'all' && c.dataset.cat !== cat);
+  });
+}
+
+function refresh() {
+  const list = getKO();
+  document.getElementById('count').textContent = list.length + ' KO / ' + total;
+  document.getElementById('kolist').value = list.length ? list.join('\n') : '';
+}
+
+function getComments() { return JSON.parse(localStorage.getItem('reliquat_comments') || '{}'); }
+function saveComment(slug, value) {
+  const all = getComments();
+  if (value) { all[slug] = value; } else { delete all[slug]; }
+  localStorage.setItem('reliquat_comments', JSON.stringify(all));
+}
+
+// restore state on load
+const initial = getKO();
+initial.forEach(slug => {
+  const card = document.getElementById('card-'+slug);
+  if (card) {
+    card.classList.add('ko');
+    card.querySelector('.ko-btn').textContent = 'Annuler KO';
+  }
+});
+const initialComments = getComments();
+Object.keys(initialComments).forEach(slug => {
+  const card = document.getElementById('card-'+slug);
+  if (card) { card.querySelector('.comment-box').value = initialComments[slug]; }
+});
+refresh();
+</script>
+</body>
+</html>
