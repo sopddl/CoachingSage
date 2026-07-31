@@ -88,7 +88,10 @@ struct AppDependencies {
             weeklyRegenRepository: weeklyRegenRepository,
             authService: authService,
             syncService: SyncService(modelContext: modelContext),
-            accountService: AccountService(coreProfileRepository: coreProfileRepository),
+            accountService: AccountService(
+                coreProfileRepository: coreProfileRepository,
+                dataPurger: AccountDataPurgeService(modelContext: modelContext)
+            ),
             healthKitService: healthKitService,
             sageCoachingAIService: DefaultSageCoachingAIService(),
             weeklyRegenApplicationService: weeklyRegenApplicationService,

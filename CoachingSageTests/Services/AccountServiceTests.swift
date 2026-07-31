@@ -11,10 +11,12 @@ final class AccountServiceTests: XCTestCase {
 
     private func makeService(
         coreRepo: MockCoreProfileRepository,
+        purger: MockAccountDataPurger = MockAccountDataPurger(),
         deleteAuthUser: (@Sendable () async throws -> Void)? = nil
     ) -> AccountService {
         AccountService(
             coreProfileRepository: coreRepo,
+            dataPurger: purger,
             deleteAuthUser: deleteAuthUser
         )
     }
@@ -145,5 +147,68 @@ final class AccountServiceTests: XCTestCase {
         try await service.deleteAccount()
         XCTAssertEqual(coreRepo.deletedProfiles.count, 1, "Pas de nouveau softDelete (profil déjà supprimé)")
         XCTAssertEqual(deleteAuthCallCount, 2, "deleteAuthUser rejoué côté serveur (idempotent)")
+    }
+
+    // MARK: - Purge locale (verrou 2026-07-31 — bug retour direct accueil post-suppression)
+
+    func testDeleteAccountPurgesLocalDataAfterFullSuccess() async throws {
+        let coreRepo = MockCoreProfileRepository()
+        let profileId = UUID()
+        coreRepo.stubbedProfile = SageCoreProfile(id: profileId)
+        let purger = MockAccountDataPurger()
+
+        let service = makeService(
+            coreRepo: coreRepo,
+            purger: purger,
+            deleteAuthUser: { }
+        )
+        try await service.deleteAccount()
+
+        XCTAssertEqual(
+            purger.purgedUserIds, [profileId],
+            "La purge locale doit être appelée exactement une fois, avec l'id du profil supprimé"
+        )
+    }
+
+    func testDeleteAccountDoesNotPurgeLocalDataWhenEdgeFunctionFails() async {
+        let coreRepo = MockCoreProfileRepository()
+        coreRepo.stubbedProfile = SageCoreProfile(id: UUID())
+        let purger = MockAccountDataPurger()
+
+        let service = makeService(
+            coreRepo: coreRepo,
+            purger: purger,
+            deleteAuthUser: { throw AppError.sync("delete-account HTTP 500") }
+        )
+
+        do {
+            try await service.deleteAccount()
+            XCTFail("deleteAccount should throw on HTTP 500")
+        } catch {
+            // Attendu — voir testDeleteAccountThrowsOnEdgeFunctionHTTP500 pour le detail du type.
+        }
+
+        XCTAssertTrue(
+            purger.purgedUserIds.isEmpty,
+            "Aucune purge locale si la suppression serveur n'a pas complètement réussi"
+        )
+    }
+
+    func testDeleteAccountDoesNotPurgeLocalDataWhenSoftDeleteFails() async {
+        let coreRepo = MockCoreProfileRepository()
+        coreRepo.stubbedProfile = SageCoreProfile(id: UUID())
+        coreRepo.softDeleteShouldThrow = true
+        let purger = MockAccountDataPurger()
+
+        let service = makeService(coreRepo: coreRepo, purger: purger, deleteAuthUser: { })
+
+        do {
+            try await service.deleteAccount()
+            XCTFail("deleteAccount should throw on softDelete failure")
+        } catch {
+            // Attendu.
+        }
+
+        XCTAssertTrue(purger.purgedUserIds.isEmpty)
     }
 }
