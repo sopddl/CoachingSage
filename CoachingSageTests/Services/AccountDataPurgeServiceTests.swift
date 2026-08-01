@@ -18,7 +18,7 @@ final class AccountDataPurgeServiceTests: XCTestCase {
         let container = try ModelContainer(
             for: CoachingProfile.self, CoachingSportProfile.self,
                  AdaptedProgramRecord.self, WeeklyExecutionReportRecord.self,
-                 SageCoreProfile.self,
+                 SageCoreProfile.self, PendingOperation.self,
             configurations: config
         )
         return (container, container.mainContext)
@@ -27,6 +27,11 @@ final class AccountDataPurgeServiceTests: XCTestCase {
     private func makeJournalStore() -> JournalFileStore {
         JournalFileStore(fileURL: FileManager.default.temporaryDirectory
             .appendingPathComponent("regen_journal_test_\(UUID()).json"))
+    }
+
+    private func makeSessionProgressStore() -> SessionProgressStore {
+        SessionProgressStore(fileURL: FileManager.default.temporaryDirectory
+            .appendingPathComponent("session_progress_test_\(UUID()).json"))
     }
 
     private func makeSportProfile(userId: UUID) -> CoachingSportProfile {
@@ -86,11 +91,14 @@ final class AccountDataPurgeServiceTests: XCTestCase {
         coachingProfile.onboardingCompletedAt = Date() // reproduit le bug : profil "onboardé"
         context.insert(coachingProfile)
         context.insert(makeSportProfile(userId: deletedUserId))
-        context.insert(makeProgramRecord(userId: deletedUserId))
+        let programRecord = makeProgramRecord(userId: deletedUserId)
+        context.insert(programRecord)
         context.insert(makeReportRecord(userId: deletedUserId))
         let coreProfile = SageCoreProfile(id: deletedUserId)
         coreProfile.isSoftDeleted = true // état post softDelete() avant purge
         context.insert(coreProfile)
+        // Queue offline générique (pas de userId) — doit être vidée entièrement (device mono-compte).
+        context.insert(PendingOperation(operationType: "update_core_profile", payload: Data()))
         try context.save()
 
         let journalStore = makeJournalStore()
@@ -102,13 +110,21 @@ final class AccountDataPurgeServiceTests: XCTestCase {
             )
         ])
 
+        let sessionProgressStore = makeSessionProgressStore()
+        sessionProgressStore.setStep(0, done: true, recordId: programRecord.id, week: 1, day: 1)
+
         let defaults = UserDefaults(suiteName: "AccountDataPurgeServiceTests-\(UUID())")!
         defaults.set(true, forKey: "progress_first_launch_seen")
-        defaults.set("plus", forKey: "leon_subscription_tier")
         defaults.set(true, forKey: "pending_questionnaire_\(deletedUserId.uuidString)_running")
 
+        let mockStoreKit = MockStoreKitService()
+
         let service = AccountDataPurgeService(
-            modelContext: context, journalStore: journalStore, userDefaults: defaults
+            modelContext: context,
+            journalStore: journalStore,
+            sessionProgressStore: sessionProgressStore,
+            userDefaults: defaults,
+            storeKitService: mockStoreKit
         )
         service.purgeLocalData(for: deletedUserId)
 
@@ -118,10 +134,15 @@ final class AccountDataPurgeServiceTests: XCTestCase {
         XCTAssertTrue(try context.fetch(FetchDescriptor<AdaptedProgramRecord>()).isEmpty)
         XCTAssertTrue(try context.fetch(FetchDescriptor<WeeklyExecutionReportRecord>()).isEmpty)
         XCTAssertTrue(try context.fetch(FetchDescriptor<SageCoreProfile>()).isEmpty)
+        XCTAssertTrue(try context.fetch(FetchDescriptor<PendingOperation>()).isEmpty,
+                      "La queue offline doit être vidée : sinon SyncService rejoue une opération d'un compte supprimé")
         XCTAssertTrue(try journalStore.loadAll().isEmpty)
+        XCTAssertTrue(try sessionProgressStore.loadAll().isEmpty,
+                      "session_progress.json doit être purgé pour les séances du programme supprimé")
         XCTAssertNil(defaults.object(forKey: "progress_first_launch_seen"))
-        XCTAssertNil(defaults.object(forKey: "leon_subscription_tier"))
         XCTAssertNil(defaults.object(forKey: "pending_questionnaire_\(deletedUserId.uuidString)_running"))
+        XCTAssertEqual(mockStoreKit.resetForSignOutCallCount, 1,
+                       "resetForSignOut doit être appelé pour éviter une fuite de tier d'abonnement entre comptes")
     }
 
     // MARK: - Scoping : un autre profil local (autre user) ne doit pas être touché

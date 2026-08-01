@@ -47,6 +47,7 @@ final class MockStoreKitService: StoreKitServiceProtocol {
     var currentTier: String = "free"
     var subscriptionExpiresAt: Date?
     var appliedTiers: [String] = []
+    private(set) var resetForSignOutCallCount = 0
 
     func loadProducts() async {}
     func purchase(_ product: Product) async throws -> LeonPurchaseResult { .userCancelled }
@@ -59,6 +60,7 @@ final class MockStoreKitService: StoreKitServiceProtocol {
     }
 
     func resetForSignOut() {
+        resetForSignOutCallCount += 1
         currentTier = "free"
         subscriptionExpiresAt = nil
         appliedTiers.removeAll()
