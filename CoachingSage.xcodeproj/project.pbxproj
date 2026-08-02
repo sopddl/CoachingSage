@@ -1929,9 +1929,9 @@
 		FE6A16CCE00FDF5BB7EFFFEC /* big-toe-fold.mp4 */ = {isa = PBXFileReference; path = "big-toe-fold.mp4"; sourceTree = "<group>"; };
 		FF38933C323452428FE22669 /* SwimSummaryBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimSummaryBuilderTests.swift; sourceTree = "<group>"; };
 		FFF6DAEE1A1EB4E15B60F13B /* testStrengthDose_fr.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testStrengthDose_fr.1.png; sourceTree = "<group>"; };
-		"TEMP_05535C65-C199-4EC7-8CA4-BE5466A6F72B" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_66DD15BF-BDE2-4B99-BB6C-524CC60AE4D9" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
-		"TEMP_F28AF104-D77D-4425-ABF0-CBA175550C3B" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_524DC42F-DE74-4CA2-A81F-04CBC7204F6B" /* Config-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Release.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_7045500A-CE89-47E7-9964-418DCEB2A3EF" /* Config-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Debug.xcconfig"; sourceTree = "<group>"; };
+		"TEMP_DEB2604F-A791-4E34-B51C-9AF97252EA1D" /* Config-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Staging.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3438,12 +3438,12 @@
 			path = SpanishExerciseNameSnapshotTests;
 			sourceTree = "<group>";
 		};
-		"TEMP_A92B6409-C41A-425C-9D5E-B6F9B9FD6D77" /* CoachingSage */ = {
+		"TEMP_7026E9B7-D59A-4AD0-A3C5-09F803773ED6" /* CoachingSage */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_05535C65-C199-4EC7-8CA4-BE5466A6F72B" /* Config-Debug.xcconfig */,
-				"TEMP_66DD15BF-BDE2-4B99-BB6C-524CC60AE4D9" /* Config-Release.xcconfig */,
-				"TEMP_F28AF104-D77D-4425-ABF0-CBA175550C3B" /* Config-Staging.xcconfig */,
+				"TEMP_7045500A-CE89-47E7-9964-418DCEB2A3EF" /* Config-Debug.xcconfig */,
+				"TEMP_524DC42F-DE74-4CA2-A81F-04CBC7204F6B" /* Config-Release.xcconfig */,
+				"TEMP_DEB2604F-A791-4E34-B51C-9AF97252EA1D" /* Config-Staging.xcconfig */,
 			);
 			path = CoachingSage;
 			sourceTree = "<group>";
@@ -4832,7 +4832,7 @@
 		};
 		61B5E17E96E19C8E098AA3DC /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_F28AF104-D77D-4425-ABF0-CBA175550C3B" /* Config-Staging.xcconfig */;
+			baseConfigurationReference = "TEMP_DEB2604F-A791-4E34-B51C-9AF97252EA1D" /* Config-Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4865,7 +4865,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = QLSTX2JJPF;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -4879,6 +4879,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -4893,7 +4894,7 @@
 		};
 		6444A73E993A0AE7B8936309 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_66DD15BF-BDE2-4B99-BB6C-524CC60AE4D9" /* Config-Release.xcconfig */;
+			baseConfigurationReference = "TEMP_524DC42F-DE74-4CA2-A81F-04CBC7204F6B" /* Config-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4926,7 +4927,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = QLSTX2JJPF;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -4940,6 +4941,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -5044,7 +5046,7 @@
 		};
 		E103FFBD6D87D5F977B573D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_05535C65-C199-4EC7-8CA4-BE5466A6F72B" /* Config-Debug.xcconfig */;
+			baseConfigurationReference = "TEMP_7045500A-CE89-47E7-9964-418DCEB2A3EF" /* Config-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5077,7 +5079,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = QLSTX2JJPF;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5097,6 +5099,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
