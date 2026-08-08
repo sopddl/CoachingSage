@@ -1017,10 +1017,15 @@ struct AdaptedProgramView: View {
     static func sessionAnchor(week: Int, day: Int) -> String { "session-w\(week)-d\(day)" }
 
     /// (week, day) de la 1ʳᵉ séance non faite (hors repos). nil si tout fait / pas de record.
-    private var firstUndoneSessionAnchor: String? {
+    /// Accès `internal` (pas `private`) pour verrou de test — cf `AdaptedProgramViewSessionAnchorTests`.
+    var firstUndoneSessionAnchor: String? {
         guard let record else {
-            // Pas de record (preview) : 1ʳᵉ séance du programme.
-            guard let w = program.weeks.first, let s = w.sessions.first else { return nil }
+            // Pas de record (preview) : 1ʳᵉ séance du programme dans l'ordre AFFICHÉ
+            // (sessionsSortedByDay, cf weekAccordion ForEach ligne ~840) — pas l'ordre
+            // brut du tableau JSON du template, qui n'est pas garanti trié par day
+            // (même bug que celui corrigé le 26/07 pour l'affichage des cartes,
+            // jamais répliqué ici : régression résiduelle repérée par Sophie 08-08).
+            guard let w = program.weeks.first, let s = w.sessionsSortedByDay.first else { return nil }
             return Self.sessionAnchor(week: w.weekNumber, day: s.day)
         }
         let done = record.completionState.sessionRecords
