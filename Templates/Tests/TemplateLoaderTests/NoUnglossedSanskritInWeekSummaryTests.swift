@@ -14,6 +14,12 @@ import TemplateModel
 /// (« Découvrir 5 postures de base (Tadasana, Sukhasana...) ») alors que EN/ES utilisaient
 /// déjà des noms traduits — trou spécifique au FR, comblé passe par passe (mémoire cs
 /// `backlog_vulgarisation_par_niveau`).
+///
+/// Étendu (2026-08-09, chantier yoga débutant pas assez didactique) à `session.warmup`/
+/// `session.cooldown` (FR) : même trou constaté sur le résumé compact d'échauffement/retour
+/// au calme (« Sukhasana 2 min + Marjaryasana-Bitilasana 1 min... » jamais glosé à cet
+/// endroit, alors que l'exercice dédié qui suit l'est). Cf mémoire cs
+/// `chantier_yoga_beginner_didactique_2026_08_08`.
 final class NoUnglossedSanskritInWeekSummaryTests: XCTestCase {
 
     /// Termes sanskrit connus (noms de postures/pranayama) susceptibles d'apparaître dans
@@ -125,6 +131,36 @@ final class NoUnglossedSanskritInWeekSummaryTests: XCTestCase {
         }
         XCTAssertTrue(failures.isEmpty,
             "Terme sanskrit non glosé dans \(failures.count) champ(s) week.goal/theme :\n"
+                + failures.prefix(40).joined(separator: "\n"))
+    }
+
+    func testAllSanskritTermsGlossedInSessionWarmupAndCooldown() async throws {
+        let templates = try await TemplateLoader.loadAll()
+        guard templates.count >= 30 else { throw XCTSkip("bundle non peuplé (\(templates.count))") }
+        let yoga = templates.filter { $0.sport == .yoga }
+        XCTAssertFalse(yoga.isEmpty, "aucun template yoga chargé")
+
+        var failures: [String] = []
+        for t in yoga {
+            for w in t.weeks {
+                for s in w.sessions {
+                    if let warmup = s.warmup {
+                        let offendersFound = offenders(in: warmup.fr)
+                        if !offendersFound.isEmpty {
+                            failures.append("[\(t.id)] W\(w.weekNumber)J\(s.day).warmup: \(offendersFound) — « \(warmup.fr.prefix(100))… »")
+                        }
+                    }
+                    if let cooldown = s.cooldown {
+                        let offendersFound = offenders(in: cooldown.fr)
+                        if !offendersFound.isEmpty {
+                            failures.append("[\(t.id)] W\(w.weekNumber)J\(s.day).cooldown: \(offendersFound) — « \(cooldown.fr.prefix(100))… »")
+                        }
+                    }
+                }
+            }
+        }
+        XCTAssertTrue(failures.isEmpty,
+            "Terme sanskrit non glosé dans \(failures.count) champ(s) session.warmup/cooldown :\n"
                 + failures.prefix(40).joined(separator: "\n"))
     }
 }
