@@ -341,6 +341,23 @@ struct UIReviewScenarioContainer: View {
                 week: SessionFocusSingleFixture.week,
                 program: SessionFocusSingleFixture.program
             )
+        case "ui_review_session_focus_manual_bulleted_warmup":
+            // **Chantier yoga débutant pas assez didactique (retour device Sophie 08-08,
+            // ui-reviewer 08-09)** — vérifie le fix `stepContent(_:)` .warmup/.cooldown
+            // (`GlossaryRichText` texte brut → `BulletedNotes`) en mode FOCUS MANUEL réel.
+            // NOTE ROUTING : le yoga (sportCode == "yoga") route TOUJOURS en FOCUS Minuté
+            // (`SessionExecutionMode.target`), donc une vraie séance yoga n'atteint JAMAIS
+            // ce code path manuel. On reproduit ici le texte EXACT du bug rapporté
+            // ("Sukhasana... + cercles poignets... + chat-vache...") sur un sport non
+            // spécifiquement routé (tennis, session.type = .technique) pour forcer le
+            // fallback FOCUS Manuel (cf `SessionExecutionMode.target` branche default) —
+            // seul chemin réel qui exerce encore ce code.
+            SessionFocusManualBulletedWarmupFixture.build()
+        case "ui_review_session_focus_manual_bulleted_cooldown":
+            // Même chantier — variante COOLDOWN seul (aucun warmup/exo) pour que
+            // `resumeIndex` atterrisse directement sur l'étape cooldown (step 0),
+            // sans avoir à naviguer (taps simu bloqués).
+            SessionFocusManualBulletedCooldownFixture.build()
         case "ui_review_session_focus_hiit":
             // **Story 3.34 (FOCUS Minuté)** — HIIT : gros compte à rebours, pré-annonce
             // « Prochain : … » (anti-Decathlon), progression « Tour T/R », Pause/Passer.
@@ -356,6 +373,34 @@ struct UIReviewScenarioContainer: View {
                 session: SessionFocusYogaFixture.session,
                 week: SessionFocusYogaFixture.week,
                 program: SessionFocusYogaFixture.program
+            )
+        case "ui_review_session_focus_yoga_cooldown_only":
+            // Cooldown seul (pas de warmup/exo) pour atterrir directement dessus
+            // sans attendre le warmup 7 min + les postures (auto-avance, pas de tap).
+            SessionFocusView(
+                session: SessionFocusYogaCooldownOnlyFixture.session,
+                week: SessionFocusYogaCooldownOnlyFixture.week,
+                program: SessionFocusYogaCooldownOnlyFixture.program
+            )
+        case "ui_review_session_focus_yoga_nested_paren":
+            // **Chantier yoga didactique (ui-reviewer 08-10)** — isole le segment à
+            // parenthèse imbriquée pour vérifier RAPIDEMENT (20s, pas 7 min) le rendu
+            // du sous-écran 2 sans attendre le sous-pas 1 (durée aberrante, cf finding
+            // séparé). Même texte piège que le fixture multistep.
+            SessionFocusView(
+                session: SessionFocusYogaNestedParenFixture.session,
+                week: SessionFocusYogaNestedParenFixture.week,
+                program: SessionFocusYogaNestedParenFixture.program
+            )
+        case "ui_review_session_focus_yoga_multistep":
+            // **Chantier yoga débutant pas assez didactique (retour device Sophie 08-08,
+            // ui-reviewer 08-10)** — warmup/cooldown RÉELS (texte exact `yoga-beginner-
+            // initiation-6sem.json`, semaine 3 jour 1 + semaine 6 jour 5) pour valider le
+            // découpage 1 écran/sous-pas en conditions réelles (pas un fixture simplifié).
+            SessionFocusView(
+                session: SessionFocusYogaMultistepFixture.session,
+                week: SessionFocusYogaMultistepFixture.week,
+                program: SessionFocusYogaMultistepFixture.program
             )
         case "ui_review_session_focus_runwalk":
             // **Story 3.35d** — run/walk décomposé : segments « Course 1 » / « Marche 1 »
@@ -1650,6 +1695,52 @@ enum SessionFocusSingleFixture {
     )
 }
 
+// MARK: - Chantier yoga débutant pas assez didactique — manual FOCUS bulleted warmup/cooldown
+
+/// Reproduit le texte EXACT du bug device-test Sophie 08-08 (échauffement en pavé dense)
+/// sur un sport non spécifiquement routé (tennis, `.technique`) afin de forcer le fallback
+/// FOCUS Manuel réel (`SessionExecutionMode.target` défaut) et exercer le code changé dans
+/// `stepContent(_:)` (.warmup/.cooldown → `BulletedNotes`). Termes glossaire (Sukhasana,
+/// chat-vache) doivent rester tappables dans les puces.
+enum SessionFocusManualBulletedWarmupFixture {
+    static func build() -> some View {
+        let week = AdaptedWeek(weekNumber: 1, theme: "Découverte", goal: "—", sessions: [])
+        let program = AdaptedProgram(
+            templateId: "focus-manual-bulleted-warmup-fixture", sport: .tennis, level: .beginner,
+            appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+        )
+        let session = AdaptedSession(
+            day: 1, name: "Mobilité douce", durationMinutes: 20, type: .technique,
+            warmup: "5 min : Sukhasana 2 min respiration naturelle + cercles poignets 10/sens + chat-vache 1 min activation douce.",
+            exercises: [
+                AdaptedExercise(name: "Étirement épaules", originalName: "Étirement épaules",
+                                duration: "3 min", notes: "Relâche les trapèzes, respiration lente.")
+            ],
+            cooldown: "5 min : posture de l'enfant (balasana) 2 min + torsion douce 1 min/côté + respiration profonde 1 min."
+        )
+        return SessionFocusView(session: session, week: week, program: program)
+    }
+}
+
+/// Variante COOLDOWN seul (aucun warmup, aucun exo) — le step 0 = cooldown
+/// directement, permet de screenshot sans navigation tactile.
+enum SessionFocusManualBulletedCooldownFixture {
+    static func build() -> some View {
+        let week = AdaptedWeek(weekNumber: 1, theme: "Découverte", goal: "—", sessions: [])
+        let program = AdaptedProgram(
+            templateId: "focus-manual-bulleted-cooldown-fixture", sport: .tennis, level: .beginner,
+            appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+        )
+        let session = AdaptedSession(
+            day: 1, name: "Mobilité douce", durationMinutes: 20, type: .technique,
+            warmup: nil,
+            exercises: [],
+            cooldown: "5 min : posture de l'enfant (balasana) 2 min + torsion douce 1 min/côté + respiration profonde 1 min."
+        )
+        return SessionFocusView(session: session, week: week, program: program)
+    }
+}
+
 // MARK: - Story 3.35c — sélecteur appli musique + section séance
 
 private struct MusicAppPickerScenarioView: View {
@@ -1754,6 +1845,59 @@ enum SessionFocusYogaFixture {
             AdaptedExercise(name: "Arbre", originalName: "Arbre", duration: "30 s")
         ],
         cooldown: nil
+    )
+}
+
+/// Chantier yoga débutant pas assez didactique (2026-08-10) — texte warmup/cooldown
+/// COPIÉ TEL QUEL depuis `yoga-beginner-initiation-6sem.json` (S3J1 warmup, S6J5
+/// cooldown), qui contient un cas piège : un « + » À L'INTÉRIEUR d'une parenthèse
+/// (« échauffement poignets complet (cercles + paumes mur 30s × 2) »). Le split
+/// `SessionPhaseText.bulletLines` ne respecte pas l'imbrication → à vérifier si ça
+/// casse un sous-écran en 2 fragments de phrase incomplets.
+enum SessionFocusYogaCooldownOnlyFixture {
+    static let week = AdaptedWeek(weekNumber: 6, theme: "Clôture", goal: "Intégration", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-yoga-cooldown-only-fixture", sport: .yoga, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 5, name: "Flow doux", durationMinutes: 8, type: .mobility,
+        warmup: nil,
+        exercises: [],
+        cooldown: "Savasana (posture du cadavre) 7 min en intégration profonde + 1 min retour assis lent + intention de fin de programme."
+    )
+}
+
+enum SessionFocusYogaNestedParenFixture {
+    static let week = AdaptedWeek(weekNumber: 3, theme: "Postures debout", goal: "Ujjayi", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-yoga-nested-paren-fixture", sport: .yoga, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 1, name: "Flow doux", durationMinutes: 20, type: .mobility,
+        warmup: "échauffement poignets complet (cercles + paumes mur 30s × 2).",
+        exercises: [
+            AdaptedExercise(name: "Guerrier I (virabhadrasana I)", originalName: "Guerrier I (virabhadrasana I)", duration: "30 sec")
+        ],
+        cooldown: "Savasana (posture du cadavre) 3 min."
+    )
+}
+
+enum SessionFocusYogaMultistepFixture {
+    static let week = AdaptedWeek(weekNumber: 3, theme: "Postures debout", goal: "Ujjayi", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-yoga-multistep-fixture", sport: .yoga, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 1, name: "Flow doux", durationMinutes: 42, type: .mobility,
+        warmup: "7 min : Sukhasana (posture facile assise) 2 min Dirgha (respiration en 3 temps) + échauffement poignets complet (cercles + paumes mur 30s × 2) + chat-vache 2 min + cercles hanches debout 10/sens.",
+        exercises: [
+            AdaptedExercise(name: "Guerrier I (virabhadrasana I)", originalName: "Guerrier I (virabhadrasana I)", duration: "30 sec"),
+            AdaptedExercise(name: "Guerrier II (virabhadrasana II)", originalName: "Guerrier II (virabhadrasana II)", duration: "30 sec par côté")
+        ],
+        cooldown: "Savasana (posture du cadavre) 7 min en intégration profonde + 1 min retour assis lent + intention de fin de programme."
     )
 }
 
