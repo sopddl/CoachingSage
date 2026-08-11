@@ -751,13 +751,17 @@ struct SessionFocusView: View {
 
     /// POC yoga (D3) : annonce le script de placement de la posture dont la phase
     /// vient de démarrer. Remonte de la phase (`stepIndex`) à l'exo pour récupérer
-    /// son `originalName` (= nom SANSKRIT / match_key) et chercher le script. No-op
-    /// si voix OFF, posture non couverte (POC) ou langue ≠ FR.
+    /// son `originalName` (= nom SANSKRIT / match_key) et chercher le script.
+    /// Chantier yoga débutant (2026-08-11) : si la posture n'a pas de script dédié,
+    /// fallback sur une instruction générique d'orientation corporelle
+    /// (`genericPlacement`) plutôt que le silence total d'avant — sauf posture
+    /// exclue (équilibre/inversion avancés) ou langue ≠ FR, qui restent silencieuses.
     private func announceYogaPlacement(forStepIndex stepIndex: Int) {
         guard let guide = voiceGuide,
               let step = steps.first(where: { $0.index == stepIndex }),
               case .exercise(let ex) = step.kind,
               let script = YogaVoiceScripts.script(forName: ex.originalName, language: currentLanguage)
+                ?? YogaVoiceScripts.genericPlacement(forName: ex.originalName, language: currentLanguage)
         else { return }
         guide.announce(script)
     }

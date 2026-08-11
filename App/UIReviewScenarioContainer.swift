@@ -402,6 +402,21 @@ struct UIReviewScenarioContainer: View {
                 week: SessionFocusYogaMultistepFixture.week,
                 program: SessionFocusYogaMultistepFixture.program
             )
+        case "ui_review_session_focus_yoga_voice_coverage":
+            // **Chantier yoga débutant — voix générique (ui-reviewer 2026-08-11)** —
+            // enchaîne, comme EXOS distincts (donc réellement annoncés par
+            // `announceYogaPlacement`, contrairement au chat-vache texte-brut du
+            // fixture multistep ci-dessus, qui vit dans le warmup et n'est jamais
+            // per-posture) : dédiée assise (Sukhasana) → dédiée dynamique
+            // (Chat-vache) → générique debout par défaut (Trikonasana) → générique
+            // assise (Paschimottanasana) → exclue silencieuse (Sirsasana, poirier)
+            // → dédiée finale (Savasana). Durées volontairement courtes (5 s) pour
+            // dérouler l'enchaînement complet sans attendre.
+            SessionFocusView(
+                session: SessionFocusYogaVoiceCoverageFixture.session,
+                week: SessionFocusYogaVoiceCoverageFixture.week,
+                program: SessionFocusYogaVoiceCoverageFixture.program
+            )
         case "ui_review_session_focus_runwalk":
             // **Story 3.35d** — run/walk décomposé : segments « Course 1 » / « Marche 1 »
             // alternés, gros temps mm:ss, toggle son haut-droite. Reproduit le cas
@@ -1898,6 +1913,32 @@ enum SessionFocusYogaMultistepFixture {
             AdaptedExercise(name: "Guerrier II (virabhadrasana II)", originalName: "Guerrier II (virabhadrasana II)", duration: "30 sec par côté")
         ],
         cooldown: "Savasana (posture du cadavre) 7 min en intégration profonde + 1 min retour assis lent + intention de fin de programme."
+    )
+}
+
+/// **Chantier yoga débutant — voix générique (ui-reviewer 2026-08-11)**. Chaque
+/// posture est un EXO distinct (`.exercise` step) — seul ce chemin déclenche
+/// `announceYogaPlacement` (le warmup/cooldown texte-brut n'est jamais découpé
+/// par posture individuelle, cf `SessionStep.steps(for:)`). Durées 5 s = auto-
+/// avance rapide sur tout l'enchaînement dédiée/générique/exclue.
+enum SessionFocusYogaVoiceCoverageFixture {
+    static let week = AdaptedWeek(weekNumber: 1, theme: "Voix", goal: "Couverture", sessions: [])
+    static let program = AdaptedProgram(
+        templateId: "focus-yoga-voice-coverage-fixture", sport: .yoga, level: .beginner,
+        appliedAt: Date(), weeks: [week], appliedRules: [], requiresAIAssist: false
+    )
+    static let session = AdaptedSession(
+        day: 1, name: "Voix couverture", durationMinutes: 1, type: .mobility,
+        warmup: nil,
+        exercises: [
+            AdaptedExercise(name: "Sukhasana", originalName: "Sukhasana", duration: "5 s"),
+            AdaptedExercise(name: "Chat-vache", originalName: "Chat-vache", duration: "5 s"),
+            AdaptedExercise(name: "Trikonasana", originalName: "Trikonasana", duration: "5 s"),
+            AdaptedExercise(name: "Paschimottanasana", originalName: "Paschimottanasana", duration: "5 s"),
+            AdaptedExercise(name: "Sirsasana", originalName: "Sirsasana", duration: "5 s"),
+            AdaptedExercise(name: "Savasana", originalName: "Savasana", duration: "5 s")
+        ],
+        cooldown: nil
     )
 }
 
