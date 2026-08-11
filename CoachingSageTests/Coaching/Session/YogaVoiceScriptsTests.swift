@@ -61,4 +61,106 @@ final class YogaVoiceScriptsTests: XCTestCase {
     func test_nomNil_renvoieNil() {
         XCTAssertNil(YogaVoiceScripts.script(forName: nil, language: "fr"))
     }
+
+    // MARK: - Chantier yoga débutant (2026-08-11) — chat-vache dédié (retour Sophie 08-08)
+
+    func test_chatVache_couvert() {
+        XCTAssertNotNil(YogaVoiceScripts.script(forName: "Marjaryasana-Bitilasana", language: "fr"))
+        XCTAssertNotNil(YogaVoiceScripts.script(forName: "Chat-vache", language: "fr"))
+    }
+
+    func test_chatVache_decritLeMouvementDynamique() {
+        let script = YogaVoiceScripts.script(forName: "Chat-vache", language: "fr")
+        XCTAssertEqual(script?.contains("quatre pattes"), true)
+    }
+
+    // MARK: - Fallback générique par orientation (couvre les postures non scriptées)
+
+    func test_genericPlacement_lying() {
+        let s = YogaVoiceScripts.genericPlacement(forName: "Setu Bandha Sarvangasana", language: "fr")
+        XCTAssertEqual(s?.contains("Allonge-toi"), true)
+    }
+
+    func test_genericPlacement_seated() {
+        let s = YogaVoiceScripts.genericPlacement(forName: "Paschimottanasana", language: "fr")
+        XCTAssertEqual(s?.contains("Assieds-toi"), true)
+    }
+
+    func test_genericPlacement_standing_defaut() {
+        // Trikonasana n'est ni lying ni seated → défaut debout.
+        let s = YogaVoiceScripts.genericPlacement(forName: "Trikonasana", language: "fr")
+        XCTAssertEqual(s?.contains("debout"), true)
+    }
+
+    func test_genericPlacement_allFours() {
+        let s = YogaVoiceScripts.genericPlacement(forName: "Table top hold", language: "fr")
+        XCTAssertEqual(s?.contains("quatre pattes"), true)
+    }
+
+    func test_genericPlacement_noFalsePositiveOnGenericSanskritSuffixes() {
+        // Bug trouvé en test (2026-08-11) : "konasana"/"dandasana" bruts sont des
+        // suffixes sanskrit génériques, pas des marqueurs de position assise —
+        // Trikonasana et Chaturanga Dandasana sont DEBOUT, pas assis.
+        XCTAssertEqual(YogaVoiceScripts.genericPlacement(forName: "Trikonasana", language: "fr")?.contains("debout"), true)
+        XCTAssertEqual(YogaVoiceScripts.genericPlacement(forName: "Utthita Parsvakonasana", language: "fr")?.contains("debout"), true)
+        XCTAssertEqual(YogaVoiceScripts.genericPlacement(forName: "Chaturanga Dandasana", language: "fr")?.contains("Assieds-toi"), false)
+    }
+
+    func test_genericPlacement_januSirsasana_pasExcluCommeLeSirsasana() {
+        // "Janu Sirsasana" (flexion avant assise, tête au genou) ne doit PAS être
+        // silencieuse comme "Sirsasana" (poirier) malgré le suffixe partagé.
+        XCTAssertNotNil(YogaVoiceScripts.genericPlacement(forName: "Janu Sirsasana", language: "fr"))
+        XCTAssertNil(YogaVoiceScripts.genericPlacement(forName: "Sirsasana", language: "fr"))
+    }
+
+    func test_genericPlacement_posturesAvanceesExclues_silence() {
+        // Équilibre bras / inversion : une instruction générique fausse serait
+        // pire que le silence — comportement actuel préservé.
+        for name in ["Sirsasana", "Pincha Mayurasana", "Adho Mukha Vrksasana", "Bakasana"] {
+            XCTAssertNil(YogaVoiceScripts.genericPlacement(forName: name, language: "fr"),
+                        "\(name) devrait rester silencieux (posture avancée exclue)")
+        }
+    }
+
+    func test_genericPlacement_langueNonFR_renvoieNil() {
+        XCTAssertNil(YogaVoiceScripts.genericPlacement(forName: "Trikonasana", language: "en"))
+        XCTAssertNil(YogaVoiceScripts.genericPlacement(forName: "Trikonasana", language: "es"))
+    }
+
+    func test_genericPlacement_nomNil_renvoieNil() {
+        XCTAssertNil(YogaVoiceScripts.genericPlacement(forName: nil, language: "fr"))
+    }
+
+    // MARK: - Garde-fou EU MDR (absent jusqu'ici — YogaVoiceScripts n'est pas un
+    // template chargé par TemplateLoader, donc hors du filet NoUnclearYogaJargonTests)
+
+    private static let bannedPatterns = try! NSRegularExpression(
+        pattern: [#"\bTummee\b"#, #"\bPubMed\b"#, #"drainage lymphatique"#,
+                  #"système nerveux"#, #"vasoconstric"#, #"prévent"#].joined(separator: "|"),
+        options: [.caseInsensitive])
+
+    private func hasBannedJargon(_ text: String) -> Bool {
+        Self.bannedPatterns.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)) != nil
+    }
+
+    func test_noBannedJargonInAnyScript() {
+        // Couvre les 6 scripts dédiés (5 témoins + chat-vache) ET les 4 gabarits
+        // génériques — toute string user-facing produite par ce fichier.
+        let dedicatedNames = ["Savasana", "Balasana", "Adho Mukha Svanasana",
+                               "Virabhadrasana I", "Sukhasana", "Chat-vache"]
+        let generic = ["Setu Bandha", "Paschimottanasana", "Trikonasana", "Table top"]
+
+        var offenders: [String] = []
+        for name in dedicatedNames {
+            if let s = YogaVoiceScripts.script(forName: name, language: "fr"), hasBannedJargon(s) {
+                offenders.append("script(\(name))")
+            }
+        }
+        for name in generic {
+            if let s = YogaVoiceScripts.genericPlacement(forName: name, language: "fr"), hasBannedJargon(s) {
+                offenders.append("genericPlacement(\(name))")
+            }
+        }
+        XCTAssertTrue(offenders.isEmpty, "Jargon interdit (EU MDR) dans : \(offenders)")
+    }
 }

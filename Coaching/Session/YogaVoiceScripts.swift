@@ -44,6 +44,68 @@ enum YogaVoiceScripts {
         if lower.contains("sukhasana") || lower.contains("tailleur") || lower.contains("easy pose") {
             return "Assieds-toi en tailleur, les jambes croisées. Allonge la colonne vers le haut, pose les mains sur les genoux, relâche les épaules vers le bas et respire calmement."
         }
+        // À quatre pattes — Chat-vache (Marjaryasana-Bitilasana). Retour Sophie
+        // 08-08 : jamais scripté malgré "chien" couvert. Mouvement dynamique
+        // (pas une tenue statique) → script dédié, pas un fallback générique.
+        if lower.contains("marjaryasana") || lower.contains("bitilasana")
+            || lower.contains("chat-vache") || lower.contains("cat-cow") {
+            return "Mets-toi à quatre pattes, mains sous les épaules, genoux sous les hanches. À l'inspire, crée un creux dans le dos et regarde vers l'avant. À l'expire, arrondis le dos et amène le menton vers la poitrine."
+        }
         return nil
+    }
+
+    // MARK: - Fallback générique par orientation (chantier yoga débutant, 2026-08-11)
+
+    /// Postures d'équilibre bras / inversion avancées — un fallback générique
+    /// (« Mets-toi debout ») serait FAUX et potentiellement dangereux comme
+    /// instruction d'entrée. Silence préservé (comportement actuel), pas de
+    /// script forcé. Mots-clés sanskrit.
+    private static let excludedFromGenericFallback = [
+        "sirsasana", "pincha mayurasana", "adho mukha vrksasana", "bakasana",
+    ]
+
+    /// Instruction de placement GÉNÉRIQUE (orientation corporelle seule), pour
+    /// toute posture non couverte par `script(forName:language:)` — avant ce
+    /// fallback, une posture non scriptée = silence total à l'entrée (~100-130
+    /// postures en prod contre 5 scriptées). Même principe et mêmes familles de
+    /// mots-clés que `YogaIllustration.fallbackOrientation` (décision D1 party
+    /// POC 2026-06-05), repris indépendamment ici (pas d'import croisé, zéro
+    /// risque sur le fallback visuel). Persona Inès (party) : guide l'entrée
+    /// seulement, reste bref — pas de description de bienfaits.
+    static func genericPlacement(forName name: String?, language: String) -> String? {
+        guard language.lowercased().hasPrefix("fr") else { return nil }
+        guard let lower = name?.lowercased() else { return nil }
+        // "sirsasana" (headstand) ≠ "janu sirsasana"/"eka pada sirsasana" (flexions
+        // avant assises au suffixe sanskrit homonyme) — ne pas exclure ces dernières.
+        let isHeadstandFamily = lower.contains("sirsasana") && !lower.contains("janu") && !lower.contains("eka pada")
+        guard !isHeadstandFamily,
+              !excludedFromGenericFallback.contains(where: { $0 != "sirsasana" && lower.contains($0) })
+        else { return nil }
+
+        let allFoursKeys = ["table", "quatre pattes", "all fours", "tabletop"]
+        let lyingKeys = ["savasana", "supta", "jathara", "setu", "sarvangasana", "halasana",
+                         "viparita", "matsyasana", "dhanurasana", "salabhasana", "bhujangasana",
+                         "ananda balasana", "allongé", "allonge", "couché", "couche",
+                         "sur le dos", "sur le ventre", "lying", "reclining", "supine", "prone"]
+        // "konasana"/"dandasana" bruts retirés (2026-08-11) : suffixes sanskrit génériques
+        // qui matchaient à tort des postures DEBOUT (trikonasana, utthita parsvakonasana
+        // contiennent "konasana" ; chaturanga dandasana contient "dandasana") — ne garder
+        // que les formes composées non-ambiguës, réellement assises.
+        let seatedKeys = ["sukhasana", "padmasana", "vajrasana", "baddha konasana",
+                          "upavistha konasana", "paschimottanasana", "marichyasana", "navasana",
+                          "gomukhasana", "siddhasana", "virasana", "agnistambhasana", "assis",
+                          "assise", "seated", "tailleur", "lotus", "à genoux", "a genoux",
+                          "genoux", "kneeling"]
+
+        if allFoursKeys.contains(where: lower.contains) {
+            return "Mets-toi à quatre pattes, mains sous les épaules, genoux sous les hanches."
+        }
+        if lyingKeys.contains(where: lower.contains) {
+            return "Allonge-toi sur le dos ou le ventre selon la posture, et installe-toi confortablement."
+        }
+        if seatedKeys.contains(where: lower.contains) {
+            return "Assieds-toi au sol, colonne allongée."
+        }
+        return "Mets-toi debout, pieds ancrés dans le sol."
     }
 }
