@@ -57,6 +57,42 @@ final class SessionPhaseTextTests: XCTestCase {
         XCTAssertEqual(lines, ["3 min marche lente"]) // point final retiré
     }
 
+    // MARK: - Bug device ui-reviewer 2026-08-10 (chantier yoga, écran 1-sous-pas/écran)
+
+    func test_bulletLines_stripsLeadingTotalDurationPrefix() {
+        // « 7 min : » en tête = durée TOTALE du step (déjà affichée à part), pas une
+        // instruction. Avant le fix, ce préfixe restait collé au 1ᵉʳ segment et
+        // faisait lire `SessionDurationParser.seconds` comme "7 min" + le 1ᵉʳ nombre du
+        // texte réel en secondes (7*60+2 = 422s au lieu de 120s pour "Sukhasana 2 min...").
+        let lines = SessionPhaseText.bulletLines(
+            from: "7 min : Sukhasana 2 min Dirgha + cercles poignets 10/sens.")
+        XCTAssertEqual(lines[0], "Sukhasana 2 min Dirgha")
+        XCTAssertFalse(lines[0].contains("7 min"))
+    }
+
+    func test_bulletLines_leadingPrefixWithLabel_notStripped() {
+        // « N min <label> : » (label non vide avant les deux-points) N'EST PAS le
+        // même motif que « N min : » seul — ne pas le retirer par erreur (cas déjà
+        // couvert par `test_voiceCues_singleProseBlock_readAtStart`, non-régression).
+        let lines = SessionPhaseText.bulletLines(
+            from: "5 min mobilité articulaire : cercles d'épaules, rotations de poignets.")
+        XCTAssertTrue(lines[0].hasPrefix("5 min mobilité articulaire"))
+    }
+
+    func test_bulletLines_respectsParenthesesDepth() {
+        // « + » à l'intérieur d'une parenthèse ne doit PAS couper la ligne en 2 —
+        // sinon 2 phrases orphelines avec une parenthèse non refermée (P1 ui-reviewer).
+        let lines = SessionPhaseText.bulletLines(
+            from: "échauffement poignets complet (cercles + paumes mur 30s × 2)")
+        XCTAssertEqual(lines, ["échauffement poignets complet (cercles + paumes mur 30s × 2)"])
+    }
+
+    func test_bulletLines_parenthesesDepth_stillSplitsOutsideParens() {
+        let lines = SessionPhaseText.bulletLines(
+            from: "Sukhasana 2 min + poignets (cercles + paumes 30s) + chevilles 10/sens.")
+        XCTAssertEqual(lines, ["Sukhasana 2 min", "poignets (cercles + paumes 30s)", "chevilles 10 · sens"])
+    }
+
     // MARK: - Voix échauffement/récup égrenée (device-test 2026-06-09)
 
     func test_voiceCues_egrene_timedSegmentsAtCumulativeOffsets() {
@@ -93,6 +129,20 @@ final class SessionPhaseTextTests: XCTestCase {
         XCTAssertEqual(cues.count, 2)
         XCTAssertEqual(cues[0], .init(offset: 0, phrase: "Échauffement. 5 min course. dos droit."))
         XCTAssertEqual(cues[1], .init(offset: 300, phrase: "2 min vélo."))
+    }
+
+    func test_voiceCues_stripsLeadingTotalDurationPrefix() {
+        // Même bug que `test_bulletLines_stripsLeadingTotalDurationPrefix` côté voix :
+        // sans le retrait du préfixe « 7 min : », le 1ᵉʳ segment minuté était lu comme
+        // 422s (7*60+2) au lieu de 120s → le 2ᵉ cue se déclenchait à un offset faux.
+        let cues = SessionPhaseVoiceSchedule.cues(
+            text: "7 min : Sukhasana 2 min Dirgha + cercles poignets 3 min",
+            header: "Échauffement, 7 minutes"
+        )
+        XCTAssertEqual(cues.count, 2)
+        XCTAssertEqual(cues[0].offset, 0)
+        XCTAssertFalse(cues[0].phrase.contains("7 min :"))
+        XCTAssertEqual(cues[1].offset, 120) // et pas 422
     }
 
     func test_voiceCues_singleProseBlock_readAtStart() {

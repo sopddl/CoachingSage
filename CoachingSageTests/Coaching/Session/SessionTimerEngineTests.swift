@@ -135,12 +135,20 @@ final class SessionTimerEngineTests: XCTestCase {
             cooldown: "3 min marche lente."
         )
         let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "running")
-        // warmup(chrono) + prepare + (course+marche)×8 + cooldown(chrono) = 1+1+16+1 = 19.
-        XCTAssertEqual(phases.count, 19)
+        // Chantier yoga débutant pas assez didactique (2026-08-10) — warmup « 5 min marche
+        // + 10 cercles. » = 2 sous-pas (1 écran chacun) au lieu d'1 seule phase-pavé.
+        // warmup(2 sous-pas) + prepare + (course+marche)×8 + cooldown(1, pas de « + ») = 2+1+16+1 = 20.
+        XCTAssertEqual(phases.count, 20)
         XCTAssertEqual(phases.first?.kind, .warmup)
         // Bug #6 — échauffement/récup chronométrés (auto-avance + pause), plus manuels.
         XCTAssertFalse(phases.first?.isManual ?? true)
-        XCTAssertEqual(phases.first?.duration, 480) // « Total : 8 min »
+        XCTAssertEqual(phases.first?.duration, 300) // « 5 min marche » (durée du 1ᵉʳ sous-pas, pas du total)
+        XCTAssertEqual(phases.first?.exerciseInRound, 1)
+        XCTAssertEqual(phases.first?.totalInRound, 2)
+        let secondWarmup = phases[1]
+        XCTAssertEqual(secondWarmup.kind, .warmup)
+        XCTAssertEqual(secondWarmup.duration, 10) // « 10 cercles » — pas de durée chiffrée → parsé "10" nu
+        XCTAssertEqual(secondWarmup.exerciseInRound, 2)
         XCTAssertEqual(phases.last?.kind, .cooldown)
         XCTAssertFalse(phases.last?.isManual ?? true)
         XCTAssertEqual(phases.last?.duration, 180)  // « 3 min marche lente »
@@ -243,6 +251,77 @@ final class SessionTimerEngineTests: XCTestCase {
         ])
         let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "yoga")
         XCTAssertEqual(phases.filter { $0.kind == .hold }.first?.duration, SessionTimerPhaseBuilder.defaultHoldSeconds)
+    }
+
+    // MARK: - Chantier yoga débutant pas assez didactique (2026-08-10) — un sous-pas = un écran
+
+    func test_builder_warmup_multiSegment_oneScreenPerSubStep() {
+        // Mix durée chiffrée ("2 min", "30s") et sans durée ("10/sens" → parsé comme "10" nu).
+        let s = AdaptedSession(
+            day: 1, name: "S", durationMinutes: 30, type: .mobility,
+            warmup: "Sukhasana 2 min respiration + cercles poignets 10/sens + paumes au mur 30s.",
+            exercises: [AdaptedExercise(name: "X", originalName: "X", duration: "1 min")],
+            cooldown: nil
+        )
+        let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "yoga")
+        let warmups = phases.filter { $0.kind == .warmup }
+        XCTAssertEqual(warmups.count, 3, "3 sous-pas « + » = 3 écrans, pas 1 seul pavé")
+        XCTAssertEqual(warmups.map(\.duration), [120, 10, 30])
+        XCTAssertEqual(warmups.map(\.exerciseInRound), [1, 2, 3])
+        XCTAssertEqual(warmups.map(\.totalInRound), [3, 3, 3])
+        XCTAssertTrue(warmups.allSatisfy { $0.isManual == false }) // auto-avance (bug #6), pas de nouveau régression
+    }
+
+    func test_builder_warmup_singleSegment_staysOnePhase() {
+        // Pas de « + » → dégénère en exactement 1 phase, comportement historique préservé.
+        let s = AdaptedSession(
+            day: 1, name: "S", durationMinutes: 30, type: .mobility,
+            warmup: "Savasana 5 min.",
+            exercises: [AdaptedExercise(name: "X", originalName: "X", duration: "1 min")],
+            cooldown: nil
+        )
+        let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "yoga")
+        let warmups = phases.filter { $0.kind == .warmup }
+        XCTAssertEqual(warmups.count, 1)
+        XCTAssertEqual(warmups.first?.duration, 300)
+        XCTAssertEqual(warmups.first?.totalInRound, 1)
+    }
+
+    func test_builder_warmup_leadingTotalPrefix_doesNotInflateFirstSubPhase() {
+        // Bug device ui-reviewer 2026-08-10 : « 7 min : » en tête (durée totale du
+        // step) restait collé au 1ᵉʳ segment et faisait lire 422s (7*60+2) au lieu de
+        // 120s pour « Sukhasana 2 min Dirgha ». Format réel des templates yoga prod.
+        let s = AdaptedSession(
+            day: 1, name: "S", durationMinutes: 30, type: .mobility,
+            warmup: "7 min : Sukhasana 2 min Dirgha + cercles poignets 10/sens + paumes au mur 30s.",
+            exercises: [AdaptedExercise(name: "X", originalName: "X", duration: "1 min")],
+            cooldown: nil
+        )
+        let phases = SessionTimerPhaseBuilder.phases(for: s, sportCode: "yoga")
+        let warmups = phases.filter { $0.kind == .warmup }
+        XCTAssertEqual(warmups.count, 3)
+        XCTAssertEqual(warmups.first?.duration, 120) // « 2 min Dirgha », pas 422
+    }
+
+    func test_voiceContinuity_cumulativeElapsed_sumsPassedSubPhasesOfSameStep() {
+        let warmupSub1 = SessionTimerPhase(id: 0, kind: .warmup, duration: 120, stepIndex: 0, label: .warmup,
+                                           exerciseInRound: 1, totalInRound: 2)
+        let warmupSub2 = SessionTimerPhase(id: 1, kind: .warmup, duration: 10, stepIndex: 0, label: .warmup,
+                                           exerciseInRound: 2, totalInRound: 2)
+        let exercise = SessionTimerPhase(id: 2, kind: .hold, duration: 45, stepIndex: 1, label: .effort)
+        let phases = [warmupSub1, warmupSub2, exercise]
+
+        // Sur la 1ʳᵉ sous-phase, 30 s écoulées : rien de "passé" avant elle.
+        XCTAssertEqual(SessionTimerPhaseVoiceContinuity.cumulativeElapsed(
+            phases: phases, currentIndex: 0, currentRemaining: 90), 30)
+
+        // Sur la 2ᵉ sous-phase (même step), 4 s écoulées : cumulé = 120 (1ʳᵉ sous-phase entière) + 4.
+        XCTAssertEqual(SessionTimerPhaseVoiceContinuity.cumulativeElapsed(
+            phases: phases, currentIndex: 1, currentRemaining: 6), 124)
+
+        // Sur l'exo (step DIFFÉRENT) : ne compte pas les sous-phases warmup d'un autre step.
+        XCTAssertEqual(SessionTimerPhaseVoiceContinuity.cumulativeElapsed(
+            phases: phases, currentIndex: 2, currentRemaining: 45), 0)
     }
 
     // MARK: - Helpers

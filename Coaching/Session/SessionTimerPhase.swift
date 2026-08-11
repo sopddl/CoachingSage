@@ -76,6 +76,13 @@ enum SessionTimerPhaseBuilder {
     static let defaultWarmupSeconds = 300   // 5 min
     static let defaultCooldownSeconds = 180 // 3 min
 
+    /// Chantier yoga débutant pas assez didactique (2026-08-10) — durée d'un sous-pas
+    /// warmup/cooldown SANS durée chiffrée parsable (ex. « cercles poignets 10/sens »).
+    /// Plancher `max(parsed, 10)` appliqué aussi aux durées parsées pour éviter un
+    /// écran-flash si un segment parse à une valeur aberrante.
+    static let defaultCueSeconds = 20
+    private static let minSubPhaseSeconds = 10
+
     /// Durée chronométrée d'une phase échauffement/récup : total parsé dans le texte
     /// (« 10 min … » → 600), sinon défaut selon le type.
     static func phaseDuration(forText text: String, fallback: Int) -> Int {
@@ -109,11 +116,11 @@ enum SessionTimerPhaseBuilder {
         var phases: [SessionTimerPhase] = []
 
         if let w = warmupStep, case .warmup(let text) = w.kind {
-            // Bug #6 — échauffement chronométré (auto-avance + pause).
-            // Durée parsée depuis le texte canonique FR (chiffres language-agnostic).
-            let dur = phaseDuration(forText: text.canonical, fallback: defaultWarmupSeconds)
-            phases.append(SessionTimerPhase(id: next(), kind: .warmup, duration: dur, stepIndex: w.index,
-                                            label: .warmup, isManual: false))
+            // Chantier yoga débutant pas assez didactique (2026-08-10) — un ÉCRAN par
+            // sous-pas (comme un exercice), plus un seul écran-pavé pour tout l'échauffement.
+            phases.append(contentsOf: manualSubPhases(
+                text: text, kind: .warmup, label: .warmup, stepIndex: w.index,
+                fallbackTotal: defaultWarmupSeconds, next: next))
         }
 
         let effortPhases = exerciseEffortPhases(exoSteps: exoSteps, isYoga: isYoga, isStrength: isStrength, startId: &id)
@@ -127,12 +134,39 @@ enum SessionTimerPhaseBuilder {
         phases.append(contentsOf: effortPhases)
 
         if let c = cooldownStep, case .cooldown(let text) = c.kind {
-            // Bug #6 — récup chronométrée (auto-avance + pause).
-            let dur = phaseDuration(forText: text.canonical, fallback: defaultCooldownSeconds)
-            phases.append(SessionTimerPhase(id: next(), kind: .cooldown, duration: dur, stepIndex: c.index,
-                                            label: .cooldown, isManual: false))
+            phases.append(contentsOf: manualSubPhases(
+                text: text, kind: .cooldown, label: .cooldown, stepIndex: c.index,
+                fallbackTotal: defaultCooldownSeconds, next: next))
         }
         return phases
+    }
+
+    /// Chantier yoga débutant pas assez didactique (2026-08-10) — éclate un step
+    /// warmup/cooldown en UNE PHASE PAR SOUS-PAS (même découpage « + »/« . » que
+    /// `SessionPhaseText.bulletLines`, déjà utilisé par la vue pour l'affichage —
+    /// pas de nouvelle règle de split). Durée = durée chiffrée du segment si
+    /// parsable (`SessionDurationParser`, même parseur que la voix égrenée), sinon
+    /// `defaultCueSeconds`. `exerciseInRound`/`totalInRound` (champs génériques déjà
+    /// utilisés par la muscu/run-walk) portent la position du sous-pas pour l'indicateur
+    /// « N/M » et la sélection de la ligne à afficher côté vue. 1 seul segment → 1
+    /// seule phase (comportement actuel préservé, ex. « Savasana 5 min. »).
+    private static func manualSubPhases(
+        text: LocalizedText, kind: SessionTimerPhase.Kind, label: PhaseLabel, stepIndex: Int,
+        fallbackTotal: Int, next: () -> Int
+    ) -> [SessionTimerPhase] {
+        let segments = SessionPhaseText.bulletLines(from: text.canonical)
+        guard !segments.isEmpty else {
+            return [SessionTimerPhase(id: next(), kind: kind, duration: fallbackTotal, stepIndex: stepIndex,
+                                      label: label, isManual: false)]
+        }
+        let total = segments.count
+        return segments.enumerated().map { idx, segment in
+            let parsed = SessionDurationParser.seconds(segment).map { max($0, minSubPhaseSeconds) }
+            let duration = parsed ?? defaultCueSeconds
+            return SessionTimerPhase(id: next(), kind: kind, duration: duration, stepIndex: stepIndex,
+                                     label: label, isManual: false,
+                                     exerciseInRound: idx + 1, totalInRound: total)
+        }
     }
 
     // MARK: - Efforts chronométrés (yoga tenue / run-walk segments / HIIT)
@@ -301,5 +335,23 @@ enum SessionTimerPhaseBuilder {
             }
         }
         return nil
+    }
+}
+
+/// Chantier yoga débutant pas assez didactique (2026-08-10) — un step warmup/cooldown
+/// est désormais éclaté en plusieurs `SessionTimerPhase` (une par sous-pas). La voix
+/// égrenée (`SessionPhaseVoiceSchedule`, INCHANGÉE) planifie ses cues sur la durée
+/// TOTALE du step dès la 1ʳᵉ sous-phase ; il faut donc cumuler le temps écoulé sur
+/// TOUTES les sous-phases déjà passées du même step (pas seulement la phase courante)
+/// pour que les cues se déclenchent à leur offset d'origine au fil des sous-écrans,
+/// sans rejouer le script depuis le début à chaque transition.
+enum SessionTimerPhaseVoiceContinuity {
+    static func cumulativeElapsed(phases: [SessionTimerPhase], currentIndex: Int, currentRemaining: Int) -> Int {
+        guard phases.indices.contains(currentIndex) else { return 0 }
+        let phase = phases[currentIndex]
+        let passed = phases.enumerated()
+            .filter { $0.offset < currentIndex && $0.element.stepIndex == phase.stepIndex }
+            .reduce(0) { $0 + $1.element.duration }
+        return passed + max(0, phase.duration - currentRemaining)
     }
 }

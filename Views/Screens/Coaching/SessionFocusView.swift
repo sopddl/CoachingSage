@@ -284,10 +284,10 @@ struct SessionFocusView: View {
             switch step.kind {
             case .warmup(let text):
                 phaseHeader(labelKey: "coaching.adapter.session.warmup", tint: .orange, symbol: "flame.fill")
-                GlossaryRichText(text: text.resolved(locale), font: .body, foreground: .primary)
+                BulletedNotes(text: text.resolved(locale), font: .body)
             case .cooldown(let text):
                 phaseHeader(labelKey: "coaching.adapter.session.cooldown", tint: .blue, symbol: "snowflake")
-                GlossaryRichText(text: text.resolved(locale), font: .body, foreground: .primary)
+                BulletedNotes(text: text.resolved(locale), font: .body)
             case .exercise(let ex):
                 exerciseContent(ex, number: step.exerciseNumber ?? 0)
             }
@@ -616,7 +616,13 @@ struct SessionFocusView: View {
         case .rest:
             audioCues.play(.restStart)
         case .warmup, .cooldown:
-            beginPhaseVoice(phase) // voix égrenée : lit le contenu, réparti dans le temps
+            // Chantier yoga débutant pas assez didactique (2026-08-10) — un step warmup/
+            // cooldown est désormais N phases (1 écran/sous-pas) ; ne (re)lancer le script
+            // vocal qu'à l'ENTRÉE du step (1ʳᵉ sous-phase), sinon il rejouerait depuis le
+            // début à chaque transition. La suite est égrenée par `handleTick` (élapsé cumulé).
+            if phase.exerciseInRound == nil || phase.exerciseInRound == 1 {
+                beginPhaseVoice(phase) // voix égrenée : lit le contenu, réparti dans le temps
+            }
         case .prepare:
             // Bug #7 — la pré-annonce dure exactement 3 s : `onChange(remaining)` ne
             // voit jamais la valeur initiale (3 == durée), donc on n'entendait que
@@ -653,9 +659,13 @@ struct SessionFocusView: View {
     /// « 3, 2, 1 » sur les 3 dernières secondes (anti-Decathlon).
     private func handleTick(remaining new: Int) {
         guard !timerEngine.isPaused, let phase = timerEngine.currentPhase, !phase.isManual else { return }
-        // Voix échauffement/récup égrenée : émet les segments minutés à leur offset.
+        // Voix échauffement/récup égrenée : émet les segments minutés à leur offset,
+        // cumulé sur TOUTES les sous-phases déjà passées du step (2026-08-10, un step
+        // = N phases désormais) — pas seulement l'élapsé de la sous-phase courante.
         if phase.kind == .warmup || phase.kind == .cooldown, let guide = voiceGuide {
-            firePhaseVoiceCues(upTo: phase.duration - new, guide: guide)
+            let elapsed = SessionTimerPhaseVoiceContinuity.cumulativeElapsed(
+                phases: timerEngine.phases, currentIndex: timerEngine.currentIndex, currentRemaining: new)
+            firePhaseVoiceCues(upTo: elapsed, guide: guide)
         }
         // Pré-annonce vocale du prochain segment, en fin de phase active (mode Audio).
         if isAudioMode, phase.kind != .prepare, new == 5, phase.duration >= 7, let next = upcomingLabel {
@@ -689,7 +699,10 @@ struct SessionFocusView: View {
         case .prepare:
             guide.announce(String.localized("coaching.session.voice.next \(displayString(phase.label))", locale: locale))
         case .warmup, .cooldown:
-            beginPhaseVoice(phase) // voix égrenée (lit le contenu détaillé, pas juste le titre)
+            // Cf `handlePhaseChange` : ne (re)lancer qu'à l'entrée du step (1ʳᵉ sous-phase).
+            if phase.exerciseInRound == nil || phase.exerciseInRound == 1 {
+                beginPhaseVoice(phase) // voix égrenée (lit le contenu détaillé, pas juste le titre)
+            }
         default:
             break
         }
@@ -993,22 +1006,32 @@ struct SessionFocusView: View {
     }
 
     /// Bug #6 — échauffement / récup CHRONOMÉTRÉS (auto-avance + pause, décision
-    /// Sophie 2026-06-04). Compte à rebours global + sous-étapes en puces, la puce
-    /// courante (estimée par tranche de temps égale) en gras. Le timer auto-avance
-    /// à 0:00 ; pause/passer dans `timedControls`.
+    /// Sophie 2026-06-04). Chantier yoga débutant pas assez didactique (2026-08-10) —
+    /// UN ÉCRAN PAR SOUS-PAS (comme un exercice), plus un seul écran-pavé pour tout
+    /// l'échauffement : `phase` porte déjà exactement le sous-pas à afficher
+    /// (`exerciseInRound`/`totalInRound`, posés par `SessionTimerPhaseBuilder`). Le
+    /// timer auto-avance à 0:00 ; pause/passer dans `timedControls`.
     @ViewBuilder
     private func guidedPhaseContent(_ phase: SessionTimerPhase) -> some View {
         let lines = manualPhaseLines(phase)
-        let current = currentGuidedLineIndex(phase, lineCount: lines.count)
+        let subIndex = (phase.exerciseInRound ?? 1) - 1
+        let currentLine = lines.indices.contains(subIndex) ? lines[subIndex] : (lines.first ?? "")
         VStack(spacing: 16) {
-            Text(verbatim: displayString(phase.label))
-                .font(.largeTitle.bold())
-                .foregroundStyle(phaseTint(phase))
-                .multilineTextAlignment(.center)
+            VStack(spacing: 4) {
+                Text(verbatim: displayString(phase.label))
+                    .font(.largeTitle.bold())
+                    .foregroundStyle(phaseTint(phase))
+                    .multilineTextAlignment(.center)
+                if let total = phase.totalInRound, total > 1, let idx = phase.exerciseInRound {
+                    Text(verbatim: "\(idx)/\(total)")
+                        .font(.subheadline.bold())
+                        .foregroundStyle(.secondary)
+                }
+            }
             bigTime
             timeScrubber(phase: phase)
             VStack(alignment: .leading, spacing: 10) {
-                if Self.isPlaceholderGuidance(lines) {
+                if Self.isPlaceholderGuidance([currentLine]) {
                     // Revue ui-reviewer 2026-06-07 (P1, finding Sophie) : un warmup/récup
                     // « placeholder » (« Échauffement standard 7 min. ») ne produisait qu'une
                     // puce tautologique → écran ressenti vide. Fallback utile, jamais vide.
@@ -1025,24 +1048,14 @@ struct SessionFocusView: View {
                             .foregroundStyle(phaseTint(phase))
                     }
                 } else {
-                    ForEach(Array(lines.enumerated()), id: \.offset) { idx, line in
-                        Label {
-                            // Revue comité 2026-06-06 (P0 challenger) : le jargon des
-                            // sous-étapes d'échauffement (glutes, band, mobilité…) devient
-                            // tappable via le glossaire au lieu d'être du texte opaque.
-                            GlossaryRichText(text: line,
-                                             font: idx == current ? .body.bold() : .body,
-                                             foreground: idx == current ? .primary : .secondary)
-                                .fixedSize(horizontal: false, vertical: true)
-                        } icon: {
-                            Image(systemName: idx == current ? "circle.fill" : "circle")
-                                .font(.system(size: 7))
-                                .foregroundStyle(idx == current ? phaseTint(phase) : .secondary)
-                        }
-                    }
+                    // Revue comité 2026-06-06 (P0 challenger) : le jargon des sous-étapes
+                    // d'échauffement (glutes, band, mobilité…) reste tappable via le glossaire.
+                    GlossaryRichText(text: currentLine, font: .title3.weight(.semibold), foreground: .primary)
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: .center)
         }
     }
 
@@ -1062,15 +1075,6 @@ struct SessionFocusView: View {
         s = s.replacingOccurrences(of: #"[0-9]+\s*(min|sec|s)?\b"#, with: " ", options: .regularExpression)
         let letters = s.filter { $0.isLetter }
         return letters.count < 4
-    }
-
-    /// Index de la sous-étape courante d'un échauffement/récup, par tranche de temps
-    /// égale (faute de durée par sous-étape). 0 si une seule ligne.
-    private func currentGuidedLineIndex(_ phase: SessionTimerPhase, lineCount: Int) -> Int {
-        guard lineCount > 1, phase.duration > 0 else { return 0 }
-        let elapsed = max(0, phase.duration - timerEngine.remaining)
-        let slice = Double(phase.duration) / Double(lineCount)
-        return min(lineCount - 1, Int(Double(elapsed) / slice))
     }
 
     /// Illustration + tip de l'exo courant (mode minuté non-audio).
